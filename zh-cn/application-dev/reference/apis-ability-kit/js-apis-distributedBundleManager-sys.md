@@ -24,13 +24,13 @@ SystemCapability.BundleManager.DistributedBundleFramework
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 允许查询应用的基本信息和其他敏感信息。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## distributedBundle.getRemoteAbilityInfo
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAbilityInfo>): void
 
-以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
+获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -47,7 +47,7 @@ getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback\<RemoteAb
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|--------------------------------------|
@@ -74,7 +74,7 @@ try {
             abilityName: 'EntryAbility'
         }, (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
             if (err) {
-                console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+                console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
             } else {
                 console.info('Operation succeed:' + JSON.stringify(data));
             }
@@ -82,7 +82,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -90,7 +90,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>
 
-以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
+获取由elementName指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -112,7 +112,7 @@ getRemoteAbilityInfo(elementName: ElementName): Promise\<RemoteAbilityInfo>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
@@ -140,12 +140,12 @@ try {
         }).then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -153,7 +153,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void
 
-以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
+获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -170,7 +170,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, callback: AsyncCallback\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
@@ -204,7 +204,7 @@ try {
             }
         ], (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -212,7 +212,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -220,7 +220,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteAbilityInfo>>
 
-以异步方法获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
+获取由elementName指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -242,7 +242,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>): Promise\<Array\<RemoteA
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
@@ -277,12 +277,12 @@ try {
         ]).then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -290,7 +290,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCallback\<RemoteAbilityInfo>): void
 
-以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
+获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -308,7 +308,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string, callback: AsyncCa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
@@ -335,7 +335,7 @@ try {
             abilityName: 'EntryAbility'
         }, 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
           if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -343,7 +343,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -351,7 +351,7 @@ try {
 
 getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteAbilityInfo>
 
-以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
+获取由elementName和locale指定的远程设备上的应用的AbilityInfo信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -374,7 +374,7 @@ getRemoteAbilityInfo(elementName: ElementName, locale: string): Promise\<RemoteA
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
@@ -402,12 +402,12 @@ try {
         }, 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -415,7 +415,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback: AsyncCallback\<Array\<RemoteAbilityInfo>>): void
 
-以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
+获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -433,7 +433,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string, callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID        |    错误信息                   |
 |---------------|-------------------------|
@@ -467,7 +467,7 @@ try {
             }
         ], 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
-           console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+           console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -475,7 +475,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -483,7 +483,7 @@ try {
 
 getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise\<Array\<RemoteAbilityInfo>>
 
-以异步方法获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
+获取由elementName和locale指定的远程设备上的应用的AbilityInfo数组信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -506,7 +506,7 @@ getRemoteAbilityInfo(elementNames: Array\<ElementName>, locale: string): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                   |
 |----------|-------------------------|
@@ -541,11 +541,11 @@ try {
         ], 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```

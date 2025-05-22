@@ -138,14 +138,11 @@ In the following example, two copies of the weather widget are added to the home
 - EntryFormAbility: The widget state data is stored in the local database. When the update event callback is triggered, the current widget state is obtained through **formId**, and then content is updated based on the state obtained.
 
   ```ts
-  import type Base from '@ohos.base';
-  import dataPreferences from '@ohos.data.preferences';
-  import formInfo from '@ohos.app.form.formInfo';
-  import formProvider from '@ohos.app.form.formProvider';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import hilog from '@ohos.hilog';
-  import type Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
+  import { preferences } from '@kit.ArkData';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { formBindingData, FormExtensionAbility, formInfo, formProvider } from '@kit.FormKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'UpdateByStatusFormAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
@@ -155,17 +152,17 @@ In the following example, two copies of the weather widget are added to the home
       let formId: string = '';
       let isTempCard: boolean;
       if (want.parameters) {
-        formId = JSON.stringify(want.parameters[formInfo.FormParam.IDENTITY_KEY]);
+        formId = want.parameters[formInfo.FormParam.IDENTITY_KEY].toString();
         isTempCard = want.parameters[formInfo.FormParam.TEMPORARY_KEY] as boolean;
         if (isTempCard === false) { // If the widget is a normal one, the widget information is persisted.
           hilog.info(DOMAIN_NUMBER, TAG, 'Not temp card, init db for:' + formId);
-          let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
-          promise.then(async (storeDB: dataPreferences.Preferences) => {
+          let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+          promise.then(async (storeDB: preferences.Preferences) => {
             hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
             await storeDB.put('A' + formId, 'false');
             await storeDB.put('B' + formId, 'false');
             await storeDB.flush();
-          }).catch((err: Base.BusinessError) => {
+          }).catch((err: BusinessError) => {
             hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
           });
         }
@@ -176,12 +173,12 @@ In the following example, two copies of the weather widget are added to the home
   
     onRemoveForm(formId: string): void {
       hilog.info(DOMAIN_NUMBER, TAG, 'onRemoveForm, formId:' + formId);
-      let promise = dataPreferences.getPreferences(this.context, 'myStore');
+      let promise = preferences.getPreferences(this.context, 'myStore');
       promise.then(async (storeDB) => {
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
         await storeDB.delete('A' + formId);
         await storeDB.delete('B' + formId);
-      }).catch((err: Base.BusinessError) => {
+      }).catch((err: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
       });
     }
@@ -189,20 +186,20 @@ In the following example, two copies of the weather widget are added to the home
     // If the widget is a temporary one, it is recommended that the widget information be persisted when the widget is converted to a normal one.
     onCastToNormalForm(formId: string): void {
       hilog.info(DOMAIN_NUMBER, TAG, 'onCastToNormalForm, formId:' + formId);
-      let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
-      promise.then(async (storeDB: dataPreferences.Preferences) => {
+      let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+      promise.then(async (storeDB: preferences.Preferences) => {
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
         await storeDB.put('A' + formId, 'false');
         await storeDB.put('B' + formId, 'false');
         await storeDB.flush();
-      }).catch((err: Base.BusinessError) => {
+      }).catch((err: BusinessError) => {
       hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
       });
     }
   
     onUpdateForm(formId: string): void {
-      let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
-      promise.then(async (storeDB: dataPreferences.Preferences) => {
+      let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+      promise.then(async (storeDB: preferences.Preferences) => {
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences from onUpdateForm.');
         let stateA = await storeDB.get('A' + formId, 'false');
         let stateB = await storeDB.get('B' + formId, 'false');
@@ -223,7 +220,7 @@ In the following example, two copies of the weather widget are added to the home
         await formProvider.updateForm(formId, formInfo);
         }
         hilog.info(DOMAIN_NUMBER, TAG, `Update form success stateA:${stateA} stateB:${stateB}.`);
-      }).catch((err: Base.BusinessError) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
       });
     }
@@ -231,8 +228,8 @@ In the following example, two copies of the weather widget are added to the home
     onFormEvent(formId: string, message: string): void {
       // Store the widget state.
       hilog.info(DOMAIN_NUMBER, TAG, 'onFormEvent formId:' + formId + 'msg:' + message);
-      let promise: Promise<dataPreferences.Preferences> = dataPreferences.getPreferences(this.context, 'myStore');
-      promise.then(async (storeDB: dataPreferences.Preferences) => {
+      let promise: Promise<preferences.Preferences> = preferences.getPreferences(this.context, 'myStore');
+      promise.then(async (storeDB: preferences.Preferences) => {
         hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded to get preferences.');
         let msg: Record<string, string> = JSON.parse(message);
         if (msg.selectA !== undefined) {
@@ -244,7 +241,7 @@ In the following example, two copies of the weather widget are added to the home
           await storeDB.put('B' + formId, msg.selectB);
         }
         await storeDB.flush();
-      }).catch((err: Base.BusinessError) => {
+      }).catch((err: BusinessError) => {
         hilog.info(DOMAIN_NUMBER, TAG, `Failed to get preferences. ${JSON.stringify(err)}`);
       });
     }

@@ -9,7 +9,7 @@
 1. 导入模块。
 
    ```ts
-   import displaySync from '@ohos.graphics.displaySync';
+   import { displaySync } from '@kit.ArkGraphics2D';
    ```
 
 2. 定义和构建DisplaySync对象。
@@ -142,7 +142,7 @@
 
 ## 完整示例
 ```ts
-import displaySync from '@ohos.graphics.displaySync';
+import { displaySync } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component

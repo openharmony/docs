@@ -133,3 +133,39 @@ The server is overloaded with messages or events.
 **Solution**
 
 Control the frequency of sending commands or events.
+
+## 6600108 Device Connection Failure
+
+**Error Message**
+
+Device connection failed.
+
+**Description**
+
+Connection to the device fails.
+
+**Possible Causes**
+
+The device connection logic is abnormal or the device status is abnormal.
+
+**Solution**
+
+Refresh the device list and check whether the device is offline.
+
+## 6600109 Remote Session Does Not Exist
+
+**Error Message**
+
+The remote connection is not established.
+
+**Description**
+
+The remote session does not exist, and the related API calls fail.
+
+**Possible Causes**
+
+The remote session has been destroyed or has not been created.
+
+**Solution**
+
+Query the session status again to determine whether the remote session exists.

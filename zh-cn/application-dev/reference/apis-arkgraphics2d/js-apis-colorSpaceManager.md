@@ -9,12 +9,14 @@
 ## 导入模块
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 ```
 
 ## ColorSpace
 
 色域类型枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
@@ -47,6 +49,7 @@ import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
 | LINEAR_SRGB<sup>11+</sup>          | 24     | RGB色域为SRGB类型。<br>转换函数为Linear类型。 |
 | LINEAR_BT709<sup>11+</sup>         | 24     | 与LINEAR_SRGB相同。<br>RGB色域为BT709类型。<br>转换函数为Linear类型。 |
 | LINEAR_BT2020<sup>11+</sup>        | 25     | RGB色域为BT2020类型。<br>转换函数为Linear类型。 |
+| H_LOG<sup>18+</sup>                | 26     | RGB色域为BT2020类型。<br>转换函数为LOG类型。 |
 | DISPLAY_SRGB<sup>11+</sup>         | 4      | 与SRGB相同。<br>RGB色域为SRGB类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
 | DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | 与DISPLAY_P3相同。<br>RGB色域为Display P3类型。<br>转换函数为SRGB类型。<br>编码范围为Full类型。 |
 | DISPLAY_P3_HLG<sup>11+</sup>       | 11     | 与P3_HLG相同。<br>RGB色域为Display P3类型。<br>转换函数为HLG类型。<br>编码范围为Full类型。 |
@@ -91,11 +94,12 @@ create(colorSpaceName: ColorSpace): ColorSpaceManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[色彩管理错误码](errorcode-colorspace-manager.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[色彩管理错误码](errorcode-colorspace-manager.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -131,11 +135,12 @@ create(primaries: ColorSpacePrimaries, gamma: number): ColorSpaceManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[色彩管理错误码](errorcode-colorspace-manager.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[色彩管理错误码](errorcode-colorspace-manager.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -185,7 +190,7 @@ getColorSpaceName(): ColorSpace
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -217,7 +222,7 @@ getWhitePoint(): Array\<number\>
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 
@@ -249,7 +254,7 @@ getGamma(): number
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **示例：**
 

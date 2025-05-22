@@ -13,7 +13,7 @@ ServiceExtensionAbility模块提供后台服务相关扩展能力，提供后台
 ## 导入模块
 
 ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 ```
 
 ## 权限
@@ -24,7 +24,7 @@ import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -39,7 +39,7 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -49,16 +49,15 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 
 **示例：**
 
-  ```ts
-  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
-  class ServiceExt extends ServiceExtension {
-    onCreate(want: Want) {
-      console.log('onCreate, want: ${want.abilityName}');
-    }
+class ServiceExt extends ServiceExtensionAbility {
+  onCreate(want: Want) {
+    console.log(`onCreate, want: ${want.abilityName}`);
   }
-  ```
+}
+```
 
 
 ## ServiceExtensionAbility.onDestroy
@@ -69,19 +68,19 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **示例：**
 
-  ```ts
-  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+```ts
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
-  class ServiceExt extends ServiceExtension {
-    onDestroy() {
-      console.log('onDestroy');
-    }
+class ServiceExt extends ServiceExtensionAbility {
+  onDestroy() {
+    console.log('onDestroy');
   }
-  ```
+}
+```
 
 
 ## ServiceExtensionAbility.onRequest
@@ -92,7 +91,7 @@ Extension生命周期回调，如果是startAbility或者startServiceExtensionAb
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -103,16 +102,15 @@ Extension生命周期回调，如果是startAbility或者startServiceExtensionAb
 
 **示例：**
 
-  ```ts
-  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
-  class ServiceExt extends ServiceExtension {
-    onRequest(want: Want, startId: number) {
-      console.log('onRequest, want: ${want.abilityName}');
-    }
+class ServiceExt extends ServiceExtensionAbility {
+  onRequest(want: Want, startId: number) {
+    console.log('onRequest, want: ${want.abilityName}');
   }
-  ```
+}
+```
 
 
 ## ServiceExtensionAbility.onConnect
@@ -123,7 +121,7 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -135,56 +133,54 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
 
 | 类型 | 说明 |
 | -------- | -------- |
-| rpc.RemoteObject | 一个RemoteObject对象，用于客户端和服务端进行通信。 |
+| [rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject) \| Promise\<[rpc.RemoteObject](../apis-ipc-kit/js-apis-rpc.md#remoteobject)> | 返回RemoteObject对象或带有RemoteObject对象的Promise对象，用于客户端和服务端进行通信。 |
 
 **示例：**
 
-  ```ts
-  import rpc from '@ohos.rpc';
-  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
-  class StubTest extends rpc.RemoteObject{
-      constructor(des: string) {
-          super(des);
-      }
-      onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
-      }
+class StubTest extends rpc.RemoteObject{
+  constructor(des: string) {
+    super(des);
   }
-  class ServiceExt extends ServiceExtension {
-    onConnect(want: Want) {
-      console.log('onConnect , want: ${want.abilityName}');
-      return new StubTest('test');
-    }
+  onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
   }
-  ```
+}
+class ServiceExt extends ServiceExtensionAbility {
+  onConnect(want: Want) {
+    console.log('onConnect , want: ${want.abilityName}');
+    return new StubTest('test');
+  }
+}
+```
 
 如果生成返回值RemoteObject依赖一个异步接口，可以使用异步生命周期：
 
-  ```ts
-import rpc from '@ohos.rpc';
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
 class StubTest extends rpc.RemoteObject{
-    constructor(des: string) {
-        super(des);
-    }
-    onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
-    }
+  constructor(des: string) {
+    super(des);
+  }
+  onConnect(code: number, data: rpc.MessageSequence, reply: rpc.MessageSequence, option: rpc.MessageOption) {
+  }
 }
 async function getDescriptor() {
-    // 调用异步函数...
-    return "asyncTest"
+  // 调用异步函数...
+  return "asyncTest"
 }
-class ServiceExt extends ServiceExtension {
+class ServiceExt extends ServiceExtensionAbility {
   async onConnect(want: Want) {
     console.log(`onConnect , want: ${want.abilityName}`);
     let descriptor = await getDescriptor();
     return new StubTest(descriptor);
   }
 }
-  ```
+```
 
 ## ServiceExtensionAbility.onDisconnect
 
@@ -194,7 +190,7 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -202,32 +198,36 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md)| 是 | 当前Extension相关的Want类型信息，包括ability名称、bundle名称等。 |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **示例：**
 
-  ```ts
-  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
-  class ServiceExt extends ServiceExtension {
-    onDisconnect(want: Want) {
-      console.log('onDisconnect, want: ${want.abilityName}');
-    }
+class ServiceExt extends ServiceExtensionAbility {
+  onDisconnect(want: Want) {
+    console.log('onDisconnect, want: ${want.abilityName}');
   }
-  ```
+}
+```
 
 在执行完onDisconnect生命周期回调后，应用可能会退出，从而可能导致onDisconnect中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDisconnect完成后再继续后续的生命周期。
 
-  ```ts
-import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-import Want from '@ohos.app.ability.Want';
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
-class ServiceExt extends ServiceExtension {
+class ServiceExt extends ServiceExtensionAbility {
   async onDisconnect(want: Want) {
     console.log('onDisconnect, want: ${want.abilityName}');
     // 调用异步函数...
   }
 }
-  ```
+```
 
 ## ServiceExtensionAbility.onReconnect
 
@@ -237,7 +237,7 @@ Extension的生命周期回调，当所有以前的客户端都断开连接之�
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -247,16 +247,15 @@ Extension的生命周期回调，当所有以前的客户端都断开连接之�
 
 **示例：**
 
-  ```ts
-  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
+```ts
+import { ServiceExtensionAbility, Want } from '@kit.AbilityKit';
 
-  class ServiceExt extends ServiceExtension {
-    onReconnect(want: Want) {
-      console.log('onReconnect, want: ${want.abilityName}');
-    }
+class ServiceExt extends ServiceExtensionAbility {
+  onReconnect(want: Want) {
+    console.log('onReconnect, want: ${want.abilityName}');
   }
-  ```
+}
+```
 
 ## ServiceExtensionAbility.onConfigurationUpdate
 
@@ -266,7 +265,7 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -276,16 +275,15 @@ onConfigurationUpdate(newConfig: Configuration): void;
 
 **示例：**
     
-  ```ts
-  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
-  import { Configuration } from '@ohos.app.ability.Configuration';
+```ts
+import { ServiceExtensionAbility, Configuration } from '@kit.AbilityKit';
 
-  class ServiceExt extends ServiceExtension {
-      onConfigurationUpdate(config: Configuration) {
-          console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
-      }
+class ServiceExt extends ServiceExtensionAbility {
+  onConfigurationUpdate(newConfig: Configuration) {
+    console.log(`onConfigurationUpdate, config: ${JSON.stringify(newConfig)}`);
   }
-  ```
+}
+```
 
 ## ServiceExtensionAbility.onDump
 
@@ -295,7 +293,7 @@ onDump(params: Array\<string>): Array\<string>;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -303,16 +301,21 @@ onDump(params: Array\<string>): Array\<string>;
 | -------- | -------- | -------- | -------- |
 | params | Array\<string> | 是 | 表示命令形式的参数。|
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Array\<string> | 表示转存客户端信息数组。 |
+
 **示例：**
     
-  ```ts
-  import ServiceExtension from '@ohos.app.ability.ServiceExtensionAbility';
+```ts
+import { ServiceExtensionAbility } from '@kit.AbilityKit';
 
-  class ServiceExt extends ServiceExtension {
-      onDump(params: Array<string>) {
-          console.log(`dump, params: ${JSON.stringify(params)}`);
-          return ['params'];
-      }
+class ServiceExt extends ServiceExtensionAbility {
+  onDump(params: Array<string>) {
+    console.log(`dump, params: ${JSON.stringify(params)}`);
+    return ['params'];
   }
-  ```
-
+}
+```

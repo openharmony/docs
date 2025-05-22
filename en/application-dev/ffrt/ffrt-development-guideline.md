@@ -1,1397 +1,259 @@
 # Function Flow Runtime Development
 
-## When to Use
+## Overview
 
-Function Flow is a task-based and data-driven concurrent programming model that allows you to develop an application by creating tasks and describing their dependencies. Function Flow Runtime (FFRT) is a software runtime library that works with the Function Flow programming model. It is used to schedule and execute tasks of an application developed on the Function Flow programming model. Specifically, FFRT automatically and concurrently schedules and executes tasks of the application based on the task dependency status and available resources, so that you can focus on feature development.
+Function Flow Runtime (FFRT) is a task-based and data-driven concurrent programming model that allows you to develop an application by creating tasks and describing their dependencies.
+Specifically, FFRT automatically and concurrently schedules and executes tasks of the application based on the task dependency status and available resources, so that you can focus on feature development.
 
-This topic walks you through how to implement parallel programming based on the Function Flow programming model and FFRT.
+This document provides guidance for you to implement concurrent programming based on the FFRT programming model.
 
-## Available APIs
+## Maintenance and Test
 
-| API                                                      | Description                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ffrt_condattr_init (ffrt_condattr_t* attr) | Initializes a condition variable attribute.|
-| ffrt_condattr_destroy(ffrt_condattr_t* attr)  | Destroys a condition variable attribute.|
-| ffrt_condattr_setclock(ffrt_condattr_t* attr, ffrt_clockid_t clock) | Sets the clock of a condition variable attribute.|
-| ffrt_condattr_getclock(const ffrt_condattr_t* attr, ffrt_clockid_t* clock)        | Obtains the clock of a condition variable attribute.             |
-| ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr)   | Initializes a condition variable.     |
-| ffrt_cond_signal(ffrt_cond_t* cond)         | Unblocks at least one of the threads that are blocked on a condition variable.|
-| ffrt_cond_broadcast(ffrt_cond_t* cond) | Unblocks all threads currently blocked on a condition variable.|
-| ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex)            | Blocks the calling thread on a condition variable.|
-| ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point)            | Blocks the calling thread on a condition variable for a given duration.|
-| ffrt_cond_destroy(ffrt_cond_t* cond)            | Destroys a condition variable.|
-| ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr) | Initializes a mutex.|
-| ffrt_mutex_lock(ffrt_mutex_t* mutex)   | Locks a mutex.|
-| ffrt_mutex_unlock(ffrt_mutex_t* mutex)  | Unlocks a mutex.|
-| ffrt_mutex_trylock(ffrt_mutex_t* mutex)   | Attempts to lock a mutex.|
-| ffrt_mutex_destroy(ffrt_mutex_t* mutex)   | Destroys a mutex.|
-| ffrt_queue_attr_init(ffrt_queue_attr_t* attr)    | Initializes a queue attribute.|
-| ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr)    | Destroys a queue attribute.|
-| ffrt_queue_attr_set_qos(ffrt_queue_attr_t* attr, ffrt_qos_t qos)    | Sets the QoS for a queue attribute.|
-| ffrt_queue_attr_get_qos(const ffrt_queue_attr_t* attr)      | Obtains the QoS of a queue attribute.|
-| ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)   | Creates a queue.|
-| ffrt_queue_destroy(ffrt_queue_t queue)   | Destroys a queue.|
-| ffrt_queue_submit(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)   | Submits a task to a queue.|
-| ffrt_queue_submit_h(ffrt_queue_t queue, ffrt_function_header_t* f, const ffrt_task_attr_t* attr)  | Submits a task to a queue, and obtains a task handle.|
-| ffrt_queue_wait(ffrt_task_handle_t handle)    | Waits until a task in the queue is complete.|
-| ffrt_queue_cancel(ffrt_task_handle_t handle)     | Cancels a task in the queue.|
-| ffrt_usleep(uint64_t usec)   | Suspends the calling thread for a given duration.|
-| ffrt_yield(void)     | Passes control to other tasks so that they can be executed.|
-| ffrt_task_attr_init(ffrt_task_attr_t* attr)     | Initializes a task attribute.|
-| ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name)   | Sets a task name.|
-| ffrt_task_attr_get_name(const ffrt_task_attr_t* attr)   | Obtains a task name.|
-| ffrt_task_attr_destroy(ffrt_task_attr_t* attr)    | Destroys a task attribute.|
-| ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos)    | Sets the QoS for a task attribute.|
-| ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr)      | Obtains the QoS of a task attribute.|
-| ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us)    | Sets the task delay time.|
-| ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr)      | Obtains the task delay time.|
-| ffrt_this_task_update_qos(ffrt_qos_t qos)    | Updates the QoS of this task.|
-| ffrt_this_task_get_id(void)    | Obtains the ID of this task.|
-| ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind)     | Applies for memory for the function execution structure.|
-| ffrt_submit_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)   | Submits a task.|
-| ffrt_submit_h_base(ffrt_function_header_t* f, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)    | Submits a task, and obtains a task handle.|
-| ffrt_task_handle_destroy(ffrt_task_handle_t handle)    | Destroys a task handle.|
-| ffrt_skip(ffrt_task_handle_t handle)     | Skips a task.|
-| ffrt_wait_deps(const ffrt_deps_t* deps)    | Waits until the dependent tasks are complete.|
+### Timeout Monitoring
 
+FFRT provides a queue-level and task-level timeout maintenance and test mechanism to monitor the end-to-end time for scheduling queues and tasks that carry important responsibilities in user services.
 
-
-## API Introduction
-
-
-### Task Management APIs
-
-#### ffrt_submit_base
-
-Exports an FFRT dynamic library. You can encapsulate this API into the C API **ffrt_submit** for binary compatibility.
-
-##### Declaration
-
-```{.c}
-const int ffrt_auto_managed_function_storage_size = 64 + sizeof(ffrt_function_header_t);
-typedef enum {
-    ffrt_function_kind_general,
-    ffrt_function_kind_queue
-} ffrt_function_kind_t;
-
-void* ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_t kind);
-
-typedef void(*ffrt_function_t)(void*);
-typedef struct {
-    ffrt_function_t exec;
-    ffrt_function_t destroy;
-    uint64_t reserve[2];
-} ffrt_function_header_t;
-
-void ffrt_submit_base(ffrt_function_header_t* func, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
-```
-
-##### Parameters
-
-`kind`
-
-Subtype of **function**. It is used to optimize the internal data structure. The default value is **ffrt_function_kind_general**.
-
-`func`
-
-Pointer to the CPU function. The struct executed by the pointer describes two function pointers, namely, **exec** and **destroy**, according to the **ffrt_function_header_t** definition. FFRT executes and destroys the task by using the two function pointers.
-
-`in_deps`
-
-* Optional.
-* Input dependencies of the task. FFRT establishes the dependency by using the virtual address of the data as the data signature.
-
-`out_deps`
-
-* Optional.
-
-* Output dependencies of the task.
-
-  **NOTE**
-
-  The dependency is essentially a value. FFRT cannot determine whether the value is reasonable. It always treats the input value reasonable. However, you are not advised to use inappropriate values such as **NULL**, **1**, or **2** to establish dependencies because doing this will establish unnecessary dependencies and affect concurrency. Instead, use the actual memory address.
-
-`attr`
-
-* Optional.
-* Task attribute, such as QoS. For details, see [ffrt_task_attr_t](#ffrt_task_attr_t).
-
-##### Return value
-
-N/A
-
-##### Use guide
-* You are advised to encapsulate **ffrt_submit_base** first. For details, see **Example** below.
-* As an underlying capability, **ffrt_submit_base** must meet the following requirements:
-  * The **func** pointer can be allocated by calling **ffrt_alloc_auto_managed_function_storage_base**, and the two function pointers in the struct must be in the specified sequence (**exec** prior to **destroy**).
-  * The memory allocated by calling **ffrt_alloc_auto_managed_function_storage_base** is of the size specified by **ffrt_auto_managed_function_storage_size**. Its lifecycle is managed by FFRT. When the task is complete, FFRT automatically releases the memory.
-* The following two function pointers are defined in **ffrt_function_header_t**:
-  * **exec**: describes how the task is executed. It is called by FFRT to execute the task.
-  * **destroy**: describes how a task is destroyed. It is called by FFRT to destroy the task.
-
-##### Example
-
-
-```{.c}
-template<class T>
-struct function {
-    template<class CT>
-    function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
-    ffrt_function_header_t header;
-    T closure;
-};
-
-template<class T>
-void exec_function_wrapper(void* t)
-{
-    auto f = (function<std::decay_t<T>>*)t;
-    f->closure();
-}
-
-template<class T>
-void destroy_function_wrapper(void* t)
-{
-    auto f = (function<std::decay_t<T>>*)t;
-    f->closure = nullptr;
-}
-
-template<class T>
-inline ffrt_function_header_t* create_function_wrapper(T&& func)
-{
-    using function_type = function<std::decay_t<T>>;
-    static_assert(sizeof(function_type) <= ffrt_auto_managed_function_storage_size,
-        "size of function must be less than ffrt_auto_managed_function_storage_size");
-
-    auto p = ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    auto f = new (p) function_type(
-        {exec_function_wrapper<T>, destroy_function_wrapper<T>},
-        std::forward<T>(func));
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void submit(std::function<void()>&& func)
-{
-    return ffrt_submit_base(create_function_wrapper(std::move(func)), NULL, NULL, NULL);
-}
-```
-
-#### ffrt_wait
-
-- Used together with **ffrt_submit_base**.
-- Waits by suspending the current execution context, until the specified data is produced or all subtasks of the current task are complete.
-
-##### Declaration
-
-```{.c}
-void ffrt_wait_deps(ffrt_deps_t* deps);
-void ffrt_wait();
-```
-
-##### Parameters
-
-`deps`
-
-Virtual addresses of the data to be produced. These addresses may be used as **out_deps** in **submit()** of some tasks. For details about how to generate the dependency, see **ffrt_deps_t**. Note that a null pointer indicates no dependency.
-
-##### Return value
-
-N/A
-
-##### Use guide
-* **ffrt_wait_deps(deps)** is used to suspend code execution before the data specified by **deps** is produced.
-* **ffrt_wait()** is used to suspend code execution before all subtasks (excluding grandchild tasks and lower-level subtasks) submitted by the current context are complete.
-* This API can be called inside or outside an FFRT task.
-* **ffrt_wait_deps(deps)** or **ffrt_wait()** called outside an FFRT task can be sensed by the OS, and therefore it is more expensive than that called inside an FFRT task. As such, you are advised to use **ffrt_wait()** inside an FFRT task whenever possible.
-
-##### Example
-
-**Recursive Fibonacci**
-
-The Fibonacci Sequence implemented in serial mode is as follows:
-
-```{.c}
-#include <stdio.h>
-
-void fib(int x, int* y) {
-    if (x <= 1) {
-        *y = x;
-    } else {
-        int y1, y2;
-        fib(x - 1, &y1);
-        fib(x - 2, &y2);
-        *y = y1 + y2;
-    }
-}
-int main(int narg, char** argv)
-{
-    int r;
-    fib(10, &r);
-    printf("fibonacci 10: %d\n", r);
-    return 0;
-}
-```
-
-Use FFRT to implement the Fibonacci Sequence in parallel mode: (For Fibonacci, the computing workload of a single task is small and parallel acceleration is not required. However, this pattern requires high flexibility of the parallel programming model.)
-
-```{.c}
-#include <stdio.h>
-#include "ffrt.h" // All header files related to FFRT are included.
-
-typedef struct {
-    int x;
-    int* y;
-} fib_ffrt_s;
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-#define ffrt_deps_define(name, dep1, ...) const void* __v_##name[] = {dep1, ##__VA_ARGS__}; \
-    ffrt_deps_t name = {sizeof(__v_##name) / sizeof(void*), __v_##name}
-
-void fib_ffrt(void* arg)
-{
-    fib_ffrt_s* p = (fib_ffrt_s*)arg;
-    int x = p->x;
-    int* y = p->y;
-
-    if (x <= 1) {
-        *y = x;
-    } else {
-        int y1, y2;
-        fib_ffrt_s s1 = {x - 1, &y1};
-        fib_ffrt_s s2 = {x - 2, &y2};
-        ffrt_deps_define(dx, &x);
-        ffrt_deps_define(dy1, &y1);
-        ffrt_deps_define(dy2, &y2);
-        ffrt_deps_define(dy12, &y1, &y2);
-        ffrt_submit_c(fib_ffrt, NULL, &s1, &dx, &dy1, NULL);
-        ffrt_submit_c(fib_ffrt, NULL, &s2, &dx, &dy2, NULL);
-        ffrt_wait_deps(&dy12);
-        *y = y1 + y2;
-    }
-}
-
-int main(int narg, char** argv)
-{
-    int r;
-    fib_ffrt_s s = {10, &r};
-    ffrt_deps_define(dr, &r);
-    ffrt_submit_c(fib_ffrt, NULL, &s, NULL, &dr, NULL);
-    ffrt_wait_deps(&dr);
-    printf("fibonacci 10: %d\n", r);
-    return 0;
-}
-```
-
-**NOTE**
-
-(1) fibonacci (x-1) and fibonacci (x-2) are submitted to FFRT as two tasks. After the two tasks are complete, the results are accumulated.
-
-(2) A single task can be split into only two subtasks, but the subtasks can be further split. Therefore, the entire computing graph delivers a high DOP, and a call tree is formed between tasks in FFRT.
-
-<img src="figures/ffrtfigure2.png" style="zoom:100%" />
+- When a task in the queue times out, the FFRT prints alarm logs and notifies the service through the callback.
+- When a task times out, the FFRT prints alarm logs and calls the process-level callback function.
 
 > **NOTE**
 >
-> The preceding implementation requires you to explicitly manage the data lifecycle and encapsulate input parameters, making the code complex.
+> The callback function executed when a task times out must be unique in the process and should be configured in the FFRT by the service party before the task is submitted. The callback function cannot be configured during task submission or task timeout detection.
 
-#### ffrt_deps_t
+The APIs are as follows:
 
-Abstraction of dependency arrays in C code, logically equivalent to **std::vector<void*>** in C++ code.
+| C++ API                                                                                                                                  | C API                                                                               | Description                  |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------- |
+| [queue_attr::timeout](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-timeout)   | [ffrt_queue_attr_set_timeout](ffrt-api-guideline-c.md#ffrt_queue_attr_set_timeout)   | Sets the queue timeout.    |
+| [queue_attr::callback](https://gitee.com/openharmony/resourceschedule_ffrt/blob/master/docs/ffrt-api-guideline-cpp.md#set-queue-callback) | [ffrt_queue_attr_set_callback](ffrt-api-guideline-c.md#ffrt_queue_attr_set_callback) | Sets the queue timeout callback.|
 
-##### Declaration
+### Long-Time Task Monitoring
 
-```{.c}
-typedef enum {
-    ffrt_dependence_data,
-    ffrt_dependence_task,
-} ffrt_dependence_type_t;
+#### Mechanism
 
-typedef struct {
-    ffrt_dependence_type_t type;
-    const void* ptr;
-} ffrt_dependence_t;
+- When the task execution reaches one second, stack printing is triggered. The stack printing interval is then changed to one minute. After 10 prints, the interval is changed to 10 minutes. After another 10 prints, the interval is changed to and fixed at 30 minutes.
+- The `GetBacktraceStringByTid` API of DFX is called for stack printing. This API sends stack capture signals to the blocked thread to trigger interrupts and capture the call stack return.
 
-typedef struct {
-    uint32_t len;
-    const ffrt_dependence_t* items;
-} ffrt_deps_t;
+#### Example
+
+Search for the keyword **RecordSymbolAndBacktrace** in the corresponding process log. The following is an example of the corresponding log:
+
+```txt
+W C01719/ffrt: 60500:RecordSymbolAndBacktrace:159 Tid[16579] function occupies worker for more than [1]s.
+W C01719/ffrt: 60501:RecordSymbolAndBacktrace:164 Backtrace:
+W C01719/ffrt: #00 pc 00000000000075f0 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #01 pc 0000000000008758 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #02 pc 0000000000012b98 /system/lib64/module/file/libhash.z.so
+W C01719/ffrt: #03 pc 000000000002aaa0 /system/lib64/platformsdk/libfilemgmt_libn.z.so
+W C01719/ffrt: #04 pc 0000000000054b2c /system/lib64/platformsdk/libace_napi.z.so
+W C01719/ffrt: #05 pc 00000000000133a8 /system/lib64/platformsdk/libuv.so
+W C01719/ffrt: #06 pc 00000000000461a0 /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #07 pc 0000000000046d44 /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #08 pc 0000000000046a6c /system/lib64/chipset-sdk/libffrt.so
+W C01719/ffrt: #09 pc 00000000000467b0 /system/lib64/chipset-sdk/libffrt.so
 ```
 
-##### Parameters
+The log prints the task stack, Worker thread ID, and execution time of the long-time task. Find the corresponding component based on the stack to determine the blocking cause.
 
-`len`
-
-Number of dependent signatures. The value must be greater than or equal to 0.
-
-`item`
-
-Pointer to the start address of each signature.
-
-`type`
-
-Dependency type, which can be data dependency or task dependency.
-
-`ptr`
-
-Actual address of the dependent signature content.
-
-##### Return value
+#### Precautions
 
 N/A
 
-##### Use guide
+### Running Information Dump
 
-**item** is the start address pointer of each signature. The pointer can point to the heap space or stack space, but the allocated space must be greater than or equal to len * sizeof(ffrt_dependence_t).
+#### Mechanism
 
-##### Example
+FFRT provides an external interface API `ffrt_dump` to dump the internal information about the running of the FFRT subsystem, including:
 
-Create a data dependency or task dependency.
+1. FFRT statistics: number of submitted tasks, number of running tasks, number of coroutine switching times, and number of completed tasks;
+2. Worker thread information: number of Worker threads in each QoS, Worker ID, ID of the running task, task name, and task type.
+3. Common task information: common tasks that are not released in the current process, dump task name and ID, and call stack information of each task.
+4. Queue task information: queue tasks that are not released in the current process, dump task name and ID, and call stack information of each task.
 
-```{.c}
-// Create ffrt_deps_t on which the data depends.
-int x = 0;
-const std::vector<ffrt_dependence_t> in_deps = {{ffrt_dependence_data, &x}};
-ffrt_deps_t in{static_cast<uint32_t>(in_deps.size()), in_deps.data()};
+When the current process is frozen, the DFX module proactively calls the `ffrt_dump` API to dump the FFRT information to the freeze file and store the file in the `/data/log/faultlog/faultlogger/` directory. You can directly use the task call stack information in the file to locate the frame freezing of the corresponding task.
 
-// Submit a task, and obtain a task handle.
-ffrt_task_handle_t task = ffrt_submit_h_base(
-        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a), NULL, NULL, &attr);
-// Create ffrt_deps_t on which the task depends.
-const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
-ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
+#### Example
+
+```txt
+ready task ptr: qos 0 readptr 79 writeptr 79
+ready task ptr: qos 1 readptr 360 writeptr 360
+ready task ptr: qos 2 readptr 19 writeptr 19
+ready task ptr: qos 3 readptr 0 writeptr 0
+ready task ptr: qos 4 readptr 0 writeptr 0
+ready task ptr: qos 5 readptr 65 writeptr 65
+ready task ptr: qos 6 readptr 0 writeptr 0
+ready task ptr: qos 7 readptr 0 writeptr 0
+submit queue: readptr 24 writeptr 24
+intr wake: status 255
+proc status: taskCnt 23 vercnt 0sigCnt0
+    |-> worker count
+        qos 0: worker num:1 tid:31676
+        qos 2: worker num:3 tid:51349, 28769, 28565
+        qos 5: worker num:1 tid:30605
+    |-> worker status
+        qos 0: worker tid 31676 is running nothing
+        qos 2: worker tid 51349 is running nothing
+        qos 2: worker tid 28769 is running, task id 24591 name sq_CesSrvMain_12_PublishCommonEventDetailed_24591 fromTid 43928 createTime 2024-11-27 02:52:27.325248 executeTime 2024-11-27 02:52:27.326150
+        qos 2: worker tid 28565 is running, task id 24611 name sq_dfx_freeze_task_queue_16_NotifyAppFaultTask_24611 fromTid 43833 createTime 2024-11-27 02:52:38.114787 executeTime 2024-11-27 02:52:38.115424
+        qos 5: worker tid 30605 is running, task id 24595 name sq_AbilityManagerService_19_SubmitTaskInner_24595 fromTid 43610 createTime 2024-11-27 02:52:27.844237 executeTime 2024-11-27 02:52:27.844573
+    |-> ready queue status
+    |-> blocked by task dependence
+        <1/1>stack: task id 3,qos 2,name AgingTask fromTid 43417 createTime 2024-11-27 01:21:39.641673 executeTime 2024-11-27 01:21:39.642290
+#00 pc 0000000000065c5c /system/lib64/ndk/libffrt.so(CoYield()+560)(22be57f01a789a03813d26a19c3a4042)
+#01 pc 00000000000a3268 /system/lib64/ndk/libffrt.so(ffrt::this_task::SleepUntilImpl(std::__h::chrono::time_point<std::__h::chrono::steady_clock, std::__h::chrono::duration<long long, std::__h::ratio<1l, 1000000000l>>> const&)+356)(22be57f01a789a03813d26a19c3a4042)
+#02 pc 00000000000a39b4 /system/lib64/ndk/libffrt.so(ffrt_usleep+60)(22be57f01a789a03813d26a19c3a4042)
+#03 pc 0000000000420de0 /system/lib64/libbms.z.so(2eb52bd03af1b9a31e14ffe60bfc39da)
+#04 pc 00000000000a6a2c /system/lib64/ndk/libffrt.so(ffrt::CPUEUTask::Execute()+300)(22be57f01a789a03813d26a19c3a4042)
+#05 pc 0000000000066d18 /system/lib64/ndk/libffrt.so(22be57f01a789a03813d26a19c3a4042)
 ```
 
-#### ffrt_task_attr_t
+#### Precautions
 
-Auxiliary class for defining task attributes. It is used together with **ffrt_submit_base**.
+The DFX module has requirements on the processing time during freeze, which has a low probability that the information collected by `ffrt_dump` is incomplete and the freeze processing time expires. In this case, the information flushed to the disk is missing.
 
-##### Declaration
+### Blackbox Logs
 
-```{.c}
-typedef enum {
-    ffrt_qos_inherent = -1,
-    ffrt_qos_background,
-    ffrt_qos_utility,
-    ffrt_qos_default,
-    ffrt_qos_user_initiated,
-} ffrt_qos_default_t;
+#### Mechanism
 
-typedef int ffrt_qos_t;
+When a process crashes, the FFRT module receives signals (`SIGABRT`, `SIGBUS`, `SIGFPE`, `SIGILL`, `SIGSTKFLT`, `SIGSTOP`, `SIGSYS`, and `SIGTRAP`) and saves important running information to the faultlog, including the running task, running information and call stack information of the current Worker thread, common task information, and queue task information. You can use the information to locate the crashes.
 
-typedef struct {
-    uint32_t storage[(ffrt_task_attr_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)];
-} ffrt_task_attr_t;
-typedef void* ffrt_task_handle_t;
+#### Example
 
-int ffrt_task_attr_init(ffrt_task_attr_t* attr);
-void ffrt_task_attr_destroy(ffrt_task_attr_t* attr);
-void ffrt_task_attr_set_qos(ffrt_task_attr_t* attr, ffrt_qos_t qos);
-ffrt_qos_t ffrt_task_attr_get_qos(const ffrt_task_attr_t* attr);
-void ffrt_task_attr_set_name(ffrt_task_attr_t* attr, const char* name);
-const char* ffrt_task_attr_get_name(const ffrt_task_attr_t* attr);
-void ffrt_task_attr_set_delay(ffrt_task_attr_t* attr, uint64_t delay_us);
-uint64_t ffrt_task_attr_get_delay(const ffrt_task_attr_t* attr);
+```txt
+C01719/CameraDaemon/ffrt: 9986:operator():254 <<<=== ffrt black box(BBOX) start ===>>>
+C01719/CameraDaemon/ffrt: 9987:SaveCurrent:63 <<<=== current status ===>>>
+C01719/CameraDaemon/ffrt: 9988:SaveCurrent:68 signal SIGABRT triggered: source tid 5962, task id 17, qos 2, name SvrWatchdog
+C01719/CameraDaemon/ffrt: 9989:SaveWorkerStatus:94 <<<=== worker status ===>>>
+C01719/CameraDaemon/ffrt: 9990:SaveWorkerStatus:100 qos 0: worker tid 6410 is running nothing
+C01719/CameraDaemon/ffrt: 9991:SaveWorkerStatus:100 qos 2: worker tid 5968 is running nothing
+C01719/CameraDaemon/ffrt: 9992:SaveWorkerStatus:100 qos 2: worker tid 5964 is running nothing
+C01719/CameraDaemon/ffrt: 9993:SaveWorkerStatus:100 qos 2: worker tid 5963 is running nothing
+C01719/CameraDaemon/ffrt: 9994:SaveWorkerStatus:105 qos 2: worker tid 5962 is running task id 17 name SvrWatchdog
+C01719/CameraDaemon/ffrt: 9995:SaveWorkerStatus:100 qos 2: worker tid 5967 is running nothing
+C01719/CameraDaemon/ffrt: 9996:SaveWorkerStatus:100 qos 2: worker tid 5965 is running nothing
+C01719/CameraDaemon/ffrt: 9997:SaveWorkerStatus:100 qos 2: worker tid 5961 is running nothing
+C01719/CameraDaemon/ffrt: 9998:SaveWorkerStatus:100 qos 2: worker tid 1146 is running nothing
+C01719/CameraDaemon/ffrt: 9999:SaveWorkerStatus:100 qos 2: worker tid 1145 is running nothing
+C01719/CameraDaemon/ffrt: 10000:SaveWorkerStatus:100 qos 2: worker tid 5966 is running nothing
 ```
 
-##### Parameters
-
-`attr`
-
-Handle of the target task attribute.
-
-`qos`
-
-* Enumerated type of QoS.
-* **ffrt_qos_inherent** is a QoS type, indicating that the QoS of the task to be submitted by **ffrt_submit** inherits the QoS of the current task.
-
-`delay_us`
-
-Delay for executing the task, in μs.
-
-##### Return value
+#### Precautions
 
 N/A
 
-##### Use guide
-* The content passed by **attr** is fetched and stored when **ffrt_submit** is being executed. You can destroy the content on receiving the return value of **ffrt_submit**.
-* Conventions:
-  * If **task_attr** is not used for QoS setting during task submission, the QoS of the task is **ffrt_qos_default**.
-  * If **task_attr** is set to **ffrt_qos_inherent** during task submission, the QoS of the task to be submitted is the same as that of the current task. If a task with the **ffrt_qos_inherent** attribute is submitted outside an FFRT task, its QoS is **ffrt_qos_default**.
-  * In other cases, the QoS value passed in is used.
-* You need to set the **ffrt_task_attr_t** object to null or destroy the object. For the same **ffrt_task_attr_t** object, **ffrt_task_attr_destroy** can be called only once. Otherwise, undefined behavior may occur.
-* If **task_attr** is accessed after **ffrt_task_attr_destroy** is called, undefined behavior may occur.
+### Tracing
 
-##### Example
+#### Mechanism
 
-Submit a task with the QoS set to **ffrt_qos_background**:
+During FFRT task scheduling and execution, the system traces the task status in the FFRT framework in real time. You can use the trace graphical tool to analyze whether the task behavior meets the expectation.
 
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
+#### Example
 
-void my_print(void* arg)
-{
-    printf("hello ffrt\n");
-}
+1. Starting trace capture
 
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
+    ```shell
+    hdc shell "hitrace -t 10 -b 20480 -o /data/local/tmp/in_systrace.ftrace sched freq idle ffrt"
+    # -t: specifies the trace collection duration, during which all trace records are flushed to the disk.
+    # -b: specifies the size of the trace record cache. If the buffer is insufficient, some records may be overwritten and not flushed to disks.
+    # -o: specifies the path for storing trace files.
+    ```
 
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
+2. Using a graphical tool
 
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
+    Obtain the trace file from the device and use a graphical tool, for example, [Perfetto](https://perfetto.dev/), to analyze the file.
 
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
+#### Precautions
 
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
+You can also add traces to your service code to locate the fault. Note that in the high-frequency call process, adding traces will cause system overhead and affect service performance.
 
-int main(int narg, char** argv)
-{
-    ffrt_task_attr_t attr;
-    ffrt_task_attr_init(&attr);
-    ffrt_task_attr_set_qos(&attr, ffrt_qos_background);
-    ffrt_task_attr_set_delay(&attr, 10000);
-    ffrt_submit_c(my_print, NULL, NULL, NULL, NULL, &attr);
-    ffrt_task_attr_destroy(&attr);
-    ffrt_wait();
-    return 0;
-}
+### Debug Logs
+
+#### Mechanism
+
+- By default, debug logs are disabled for the FFRT, but can be enabled by using commands to obtain more maintenance and test information for fault locating in the development.
+- Enable the FFRT debug log function:
+
+    ```shell
+    hdc shell hilog -b DEBUG -D 0xD001719
+    ```
+
+- Restore the default FFRT INFO log level.
+
+    ```shell
+    hdc shell hilog -b INFO -D 0xD001719
+    ```
+
+#### Example
+
+```txt
+4190  5631 D C01719/neboard:EngineServiceAbility:1/ffrt: 275337:Detach:147 qos 3 thread not joinable
+3257  6075 D C01719/com.ohos.sceneboard/ffrt: 513070:SetDefaultThreadAttr:148 qos apply tid[6075] level[3]
 ```
 
+#### Precautions
 
-
-
-#### ffrt_submit_h_base
-
-Submits a task to the scheduler. Different from **ffrt_submit_base**, **ffrt_submit_h_base** returns a task handle. The handle can be used to establish the dependency between tasks or implement synchronization in the **wait** statements.
-
-##### Declaration
-
-```{.c}
-typedef void* ffrt_task_handle_t;
-
-ffrt_task_handle_t ffrt_submit_h_base(ffrt_function_t func, void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr);
-void ffrt_task_handle_destroy(ffrt_task_handle_t handle);
-```
-
-##### Parameters
-
-`func`
-
-Pointer to the CPU function. The struct executed by the pointer describes two function pointers, namely, **exec** and **destroy**, according to the **ffrt_function_header_t** definition. FFRT executes and destroys the task by using the two function pointers.
-
-`in_deps`
-
-* Optional.
-* Input dependencies of the task. FFRT establishes the dependency by using the virtual address of the data as the data signature.
-
-`out_deps`
-
-* Optional.
-
-* Output dependencies of the task.
-
-  **NOTE**
-
-  The dependency is essentially a value. FFRT cannot determine whether the value is reasonable. It always treats the input value reasonable. However, you are not advised to use inappropriate values such as **NULL**, **1**, or **2** to establish dependencies. Instead, use the actual memory address because inappropriate values will establish unnecessary dependencies and affect concurrency.
-
-`attr`
-
-* Optional.
-* Task attribute, such as QoS. For details, see [ffrt_task_attr_t](#ffrt_task_attr_t).
-
-##### Return value
-
-Take handle. The handle can be used to establish the dependency between tasks or implement synchronization in the wait statements.
-
-##### Use guide
-
-* **ffrt_task_handle_t** in the C code must be explicitly destroyed by calling **ffrt_task_handle_destroy**.
-* You need to set the **ffrt_task_handle_t** object in the C code to null or destroy the object. For the same **ffrt_task_handle_t** object, **ffrt_task_handle_destroy** can be called only once. Otherwise, undefined behavior may occur.
-* If **ffrt_task_handle_t** is accessed after **ffrt_task_handle_destroy** is called, undefined behavior may occur.
-
-##### Example
-
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
-
-void func0(void* arg)
-{
-    printf("hello ");
-}
-
-void func1(void* arg)
-{
-    (*(int*)arg)++;
-}
-
-void func2(void* arg)
-{
-    printf("world, x = %d\n", *(int*)arg);
-}
-
-void func3(void* arg)
-{
-    printf("handle wait");
-    (*(int*)arg)++;
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline ffrt_task_handle_t ffrt_submit_h_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    return ffrt_submit_h_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-
-int main(int narg, char** argv)
-{  
-    // Handle the work with submit.
-    ffrt_task_handle_t h = ffrt_submit_h_c(func0, NULL, NULL, NULL, NULL, NULL); // not need some data in this task
-    int x = 1;
-    const std::vector<ffrt_dependence_t> in_deps = {{ffrt_dependence_data, &x}};
-    ffrt_deps_t d2{static_cast<uint32_t>(in_deps.size()), in_deps.data()};
-
-    const std::vector<ffrt_dependence_t> out_deps = {{ffrt_dependence_data, &x}};
-    ffrt_deps_t d1{static_cast<uint32_t>(out_deps.size()), out_deps.data()};
-
-    ffrt_submit_c(func1, NULL, &x, NULL, &d1, NULL);
-    ffrt_submit_c(func2, NULL, &x, &d2, NULL, NULL); // this task depend x and h
-    ffrt_task_handle_destroy(h);
-    
-    // Handle the work with wait.
-    ffrt_task_handle_t h2 = ffrt_submit_h_c(func3, NULL, &x, NULL, NULL, NULL);
-
-    const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, h2}};
-    ffrt_deps_t d3{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
-    ffrt_wait_deps(&d3);
-    ffrt_task_handle_destroy(h2);
-    printf("x = %d", x);
-    ffrt_wait();
-    return 0;
-}
-```
-
-Expected output:
-
-```
-hello world, x = 2
-handle wait
-x = 3
-```
-
-
-
-#### ffrt_this_task_get_id
-
-Obtains the ID of this task. This API is used for maintenance and testing. (The task ID is unique, but the task name may be duplicate.)
-
-##### Declaration
-
-```{.c}
-uint64_t ffrt_this_task_get_id();
-```
-
-##### Parameters
-
-N/A
-
-##### Return value
-
-ID of the task being executed.
-
-##### Use guide
-
-* If this API is called inside a task, the ID of this task is returned. If this API is called outside a task, **0** is returned.
-* You can determine whether the function runs on an FFRT or a non-FFRT worker thread based on the return value.
-* The task ID starts from 1 and is incremented by 1 each time a task is submitted. The task ID contains 64 bits. Even if one million tasks are submitted per second, it takes 292471.2 years to finish one loop.
-
-##### Example
-
-N/A
-
-#### ffrt_this_task_update_qos
-
-Updates the QoS of the task being executed.
-
-##### Declaration
-
-```{.c}
-int ffrt_this_task_update_qos(ffrt_qos_t qos);
-```
-
-##### Parameters
-
-`qos` 
-
-New QoS.
-
-##### Return value
-
-Returns **0** if the operation is successful; returns a non-zero value otherwise.
-
-##### Use guide
-
-* The QoS update takes effect immediately.
-* If the new QoS is different from the current QoS, the task is blocked and then resumed based on the new QoS.
-* If the new QoS is the same as the current QoS, the API returns **0** immediately without any processing.
-* If this API is called not inside a task, a non-zero value is returned. You can ignore the value or perform other operations.
-
-##### Example
-
-N/A
-
-### Serial Queue
-
-FFRT provides **queue** to implement capabilities similar to **WorkQueue** in Android. It can deliver excellent performance if being used properly.
-
-#### ffrt_queue_attr_t
-
-##### Declaration
-```{.c}
-typedef struct {
-    uint32_t storage[(ffrt_queue_attr_storage_size + sizeof(uint32_t) - 1) / sizeof(uint32_t)];
-} ffrt_queue_attr_t;
-
-int ffrt_queue_attr_init(ffrt_queue_attr_t* attr);
-void ffrt_queue_attr_destroy(ffrt_queue_attr_t* attr);
-```
-
-##### Parameters
-
-`attr`
-
-Pointer to the uninitialized **ffrt_queue_attr_t** object.
-
-##### Return value
-Returns **0** if the API is called successfully; returns **-1** otherwise.
-
-##### Use guide
-* An **ffrt_queue_attr_t** object must be created prior to an **ffrt_queue_t** object.
-* You need to set the **ffrt_queue_attr_t** object to null or destroy the object. For the same **ffrt_queue_attr_t** object, **ffrt_queue_attr_destroy** can be called only once. Otherwise, undefined behavior may occur.
-* If **ffrt_queue_attr_t** is accessed after **ffrt_queue_attr_destroy** is called, undefined behavior may occur.
-
-##### Example
-See the example provided in **ffrt_queue_t**.
-
-#### ffrt_queue_t
-
-##### Declaration
-```{.c}
-typedef enum { ffrt_queue_serial, ffrt_queue_max } ffrt_queue_type_t;
-typedef void* ffrt_queue_t;
-
-ffrt_queue_t ffrt_queue_create(ffrt_queue_type_t type, const char* name, const ffrt_queue_attr_t* attr)
-void ffrt_queue_destroy(ffrt_queue_t queue)
-```
-
-##### Parameters
-
-`type`
-
-Queue type.
-
-`name`
-
-Pointer to the queue name.
-
-`attr`
-
-Pointer to the queue attribute. For details, see **ffrt_queue_attr_t**.
-
-##### Return value
-Returns the queue created if the API is called successfully; returns a null pointer otherwise.
-
-##### Use guide
-* Tasks submitted to the queue are executed in sequence. If a task is blocked, the execution sequence of the task cannot be ensured.
-* You need to set the **ffrt_queue_t** object to null or destroy the object. For the same **ffrt_queue_t** object, **ffrt_queue_destroy** can be called only once. Otherwise, undefined behavior may occur.
-* If **ffrt_queue_t** is accessed after **ffrt_queue_destroy** is called, undefined behavior may occur.
-
-##### Example
-```
-#include <stdio.h>
-#include "ffrt.h"
-
-using namespace std;
-
-template<class T>
-struct Function {
-    template<class CT>
-    Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
-    ffrt_function_header_t header;
-    T closure;
-};
-
-template<class T>
-void ExecFunctionWrapper(void* t)
-{
-    auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
-    f->closure();
-}
-
-template<class T>
-void DestroyFunctionWrapper(void* t)
-{
-    auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
-    f->closure = nullptr;
-}
-
-template<class T>
-static inline ffrt_function_header_t* create_function_wrapper(T&& func,
-    ffrt_function_kind_t kind = ffrt_function_kind_general)
-{
-    using function_type = Function<std::decay_t<T>>;
-    auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
-    auto f =
-        new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
-    return reinterpret_cast<ffrt_function_header_t*>(f);
-}
-
-int main(int narg, char** argv)
-{
-    ffrt_queue_attr_t queue_attr;
-    (void)ffrt_queue_attr_init(&queue_attr);
-    ffrt_queue_t queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
-
-    ffrt_queue_submit(queue_handle, create_function_wrapper([]() {printf("Task done.\n");}, ffrt_function_kind_queue), nullptr);
-
-    ffrt_queue_attr_destroy(&queue_attr);
-    ffrt_queue_destroy(queue_handle);
-}
-```
-### Synchronization Primitive
-
-#### ffrt_mutex_t
-
-Provides performance implementation similar to pthread mutex.
-
-##### Declaration
-
-```{.c}
-typedef enum {
-    ffrt_error = -1,
-    ffrt_success = 0,
-    ffrt_error_nomem = ENOMEM,
-    ffrt_error_timedout = ETIMEDOUT,
-    ffrt_error_busy = EBUSY,
-    ffrt_error_inval = EINVAL
-} ffrt_error_t;
-
-struct ffrt_mutex_t;
-
-int ffrt_mutex_init(ffrt_mutex_t* mutex, const ffrt_mutexattr_t* attr);
-int ffrt_mutex_lock(ffrt_mutex_t* mutex);
-int ffrt_mutex_unlock(ffrt_mutex_t* mutex);
-int ffrt_mutex_trylock(ffrt_mutex_t* mutex);
-int ffrt_mutex_destroy(ffrt_mutex_t* mutex);
-```
-
-##### Parameters
-
-`attr`
-
-Attribute of the mutex. Set it to a null pointer. This is because FFRT supports only mutex of the basic type currently.
-
-`mutex`
-
-Pointer to the target mutex.
-
-##### Return value
-
-Returns **ffrt_success** if the API is called successfully; returns an error code otherwise.
-
-##### Use guide
-* This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
-* The traditional function **pthread_mutex_t** may cause unexpected kernel mode trap when it fails to lock a mutex. **ffrt_mutex_t** solves this problem and therefore provides better performance if used properly.
-* Currently, recursion and timing are not supported.
-* **ffrt_mutex_t** in the C code must be explicitly created and destroyed by calling **ffrt_mutex_init** and **ffrt_mutex_destroy**, respectively.
-* You need to set the **ffrt_mutex_t** object in the C code to null or destroy the object. For the same **ffrt_mutex_t** object, **ffrt_mutex_destroy** can be called only once. Otherwise, undefined behavior may occur.
-* If **ffrt_mutex_t** is accessed after **ffrt_mutex_destroy** is called, undefined behavior may occur.
-
-##### Example
-
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
-
-typedef struct {
-    int* sum;
-    ffrt_mutex_t* mtx;
-} tuple;
-
-void func(void* arg)
-{
-    tuple* t = (tuple*)arg;
-    
-    int ret = ffrt_mutex_lock(t->mtx);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    (*t->sum)++;
-    ret = ffrt_mutex_unlock(t->mtx);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-void ffrt_mutex_task()
-{
-    int sum = 0;
-    ffrt_mutex_t mtx;
-    tuple t = {&sum, &mtx};
-    int ret = ffrt_mutex_init(&mtx, NULL);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    for (int i = 0; i < 10; i++) {
-        ffrt_submit_c(func, NULL, &t, NULL, NULL, NULL);
-    }
-    ffrt_mutex_destroy(&mtx);
-    ffrt_wait();
-    printf("sum = %d", sum);
-}
-
-int main(int narg, char** argv)
-{
-    int r;
-    ffrt_submit_c(ffrt_mutex_task, NULL, NULL, NULL, NULL, NULL);
-    ffrt_wait();
-    return 0;
-}
-```
-
-Expected output:
-
-```
-sum=10
-```
-
-This example is for reference only and is not encouraged in practice.
-
-
-#### ffrt_cond_t
-
-Provides performance implementation similar to pthread semaphore.
-
-##### Declaration
-
-```{.c}
-typedef enum {
-    ffrt_error = -1,
-    ffrt_success = 0,
-    ffrt_error_nomem = ENOMEM,
-    ffrt_error_timedout = ETIMEDOUT,
-    ffrt_error_busy = EBUSY,
-    ffrt_error_inval = EINVAL
-} ffrt_error_t;
-
-struct ffrt_cond_t;
-
-int ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr);
-int ffrt_cond_signal(ffrt_cond_t* cond);
-int ffrt_cond_broadcast(ffrt_cond_t* cond);
-int ffrt_cond_wait(ffrt_cond_t*cond, ffrt_mutex_t* mutex);
-int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const struct timespec* time_point);
-int ffrt_cond_destroy(ffrt_cond_t* cond);
-```
-
-##### Parameters
-
-`cond`
-
-Pointer to the target semaphore.
-
-`attr`
-
-Pointer to the attribute. A null pointer indicates that the default attribute is used.
-
-`mutex`
-
-Pointer to the target mutex.
-
-`time_point`
-
-Pointer to the maximum duration during which the thread is blocked.
-
-
-##### Return value
-
-Returns **ffrt_success** if the API is successfully called; returns **ffrt_error_timedout** if the maximum duration is reached before the mutex is locked.
-
-##### Use guide
-* This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
-* The traditional function **pthread_cond_t** may cause unexpected kernel mode trap when the conditions are not met. **ffrt_cond_t** solves this problem and therefore provides better performance if being used properly.
-* **ffrt_cond_t** in the C code must be explicitly created and destroyed by calling **ffrt_cond_init** and **ffrt_cond_destroy**, respectively.
-* You need to set the **ffrt_cond_t** object in the C code to null or destroy the object. For the same **ffrt_cond_t** object, **ffrt_cond_destroy** can be called only once. Otherwise, undefined behavior may occur.
-* If **ffrt_cond_t** is accessed after **ffrt_cond_destroy** is called, undefined behavior may occur.
-
-##### Example
-
-```{.c}
-#include <stdio.h>
-#include "ffrt.h"
-
-typedef struct {
-    ffrt_cond_t* cond;
-    int* a;
-    ffrt_mutex_t* lock_;
-} tuple;
-
-void func1(void* arg)
-{
-    tuple* t = (tuple*)arg;
-    int ret = ffrt_mutex_lock(t->lock_);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    while (*t->a != 1) {
-        ret = ffrt_cond_wait(t->cond, t->lock_);
-        if (ret != ffrt_success) {
-            printf("error\n");
-        }
-    }
-    ret = ffrt_mutex_unlock(t->lock_);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    printf("a = %d", *(t->a));
-}
-
-void func2(void* arg)
-{
-    tuple* t = (tuple*)arg;
-    int ret = ffrt_mutex_lock(t->lock_);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    *(t->a) = 1;
-    ret = ffrt_cond_signal(t->cond);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    ret = ffrt_mutex_unlock(t->lock_);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-void ffrt_cv_task()
-{
-    ffrt_cond_t cond;
-    int ret = ffrt_cond_init(&cond, NULL);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    int a = 0;
-    ffrt_mutex_t lock_;
-    tuple t = {&cond, &a, &lock_};
-    ret = ffrt_mutex_init(&lock_, NULL);
-    if (ret != ffrt_success) {
-        printf("error\n");
-    }
-    ffrt_submit_c(func1, NULL, &t, NULL, NULL, NULL);
-    ffrt_submit_c(func2, NULL, &t, NULL, NULL, NULL);
-    ffrt_wait();
-    ffrt_cond_destroy(&cond);
-    ffrt_mutex_destroy(&lock_);
-}
-
-int main(int narg, char** argv)
-{
-    ffrt_submit_c(ffrt_cv_task, NULL, NULL, NULL, NULL, NULL);
-    ffrt_wait();
-    return 0;
-}
-```
-
-Expected output:
-
-```
-a=1
-```
-
-This example is for reference only and is not encouraged in practice.
-
-### Miscellaneous
-
-#### ffrt_usleep
-
-Provides performance implementation similar to C11 sleep and Linux usleep.
-
-##### Declaration
-
-```{.c}
-int ffrt_usleep(uint64_t usec);
-```
-
-##### Parameters
-
-`usec`
-
-Duration that the calling thread is suspended, in μs.
-
-##### Return value
-
-N/A
-
-##### Use guide
-* This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
-* The traditional function **sleep** may cause unexpected kernel mode trap. **ffrt_usleep** solves this problem and therefore provides better performance if used properly.
-
-##### Example
-
-```{.c}
-#include <time.h>
-#include <stdio.h>
-#include "ffrt.h"
-
-void func(void* arg)
-{
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
-    ffrt_usleep(2000000); // Suspend for 2 seconds
-    printf("Time: %s", ctime(&(time_t){time(NULL)}));
-}
-
-typedef struct {
-    ffrt_function_header_t header;
-    ffrt_function_t func;
-    ffrt_function_t after_func;
-    void* arg;
-} c_function;
-
-static void ffrt_exec_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->func) {
-        f->func(f->arg);
-    }
-}
-
-static void ffrt_destroy_function_wrapper(void* t)
-{
-    c_function* f = (c_function*)t;
-    if (f->after_func) {
-        f->after_func(f->arg);
-    }
-}
-
-#define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-    const ffrt_function_t after_func, void* arg)
-{
-    FFRT_STATIC_ASSERT(sizeof(c_function) <= ffrt_auto_managed_function_storage_size,
-        size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-    c_function* f = (c_function*)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
-    f->header.exec = ffrt_exec_function_wrapper;
-    f->header.destroy = ffrt_destroy_function_wrapper;
-    f->func = func;
-    f->after_func = after_func;
-    f->arg = arg;
-    return (ffrt_function_header_t*)f;
-}
-
-static inline void ffrt_submit_c(ffrt_function_t func, const ffrt_function_t after_func,
-    void* arg, const ffrt_deps_t* in_deps, const ffrt_deps_t* out_deps, const ffrt_task_attr_t* attr)
-{
-    ffrt_submit_base(ffrt_create_function_wrapper(func, after_func, arg), in_deps, out_deps, attr);
-}
-
-int main(int narg, char** argv)
-{
-    ffrt_submit_c(func, NULL, NULL, NULL, NULL, NULL);
-    ffrt_wait();
-    return 0;
-}
-```
-
-#### ffrt_yield
-
-Passes control to other tasks so that they can be executed. If there is no other task that can be executed, this API is invalid. 
-
-##### Declaration
-
-```{.c}
-void ffrt_yield();
-```
-
-##### Parameters
-
-N/A
-
-##### Return value
-
-N/A
-
-##### Use guide
-* This API can be called only inside an FFRT task. If it is called outside an FFRT task, undefined behavior may occur.
-* The exact behavior of this API depends on the implementation, especially the mechanism and system state of the FFRT scheduler in use.
-
-##### Example
-
-N/A
-
+The FFRT is the system base and supports the running of a large number of upper-layer services and frameworks. If the debug log function is enabled globally, the number of logs will exceed the threshold, which affects the log output of other modules.
 
 ## How to Develop
 
 The following describes how to use the native APIs provided by FFRT to create parallel tasks and serial queue tasks and destroy corresponding resources.
 
-**Adding Dynamic Link Libraries**
+1. Add a dynamic link library to the `CMakeLists.txt` project.
 
-Add the following libraries to **CMakeLists.txt**.
-```txt
-libffrt.z.so
-```
+    ```txt
+    libffrt.z.so
+    ```
 
-**Including Header Files**
-```c++
-#include "ffrt/task.h"
-#include "ffrt/type_def.h"
-#include "ffrt/condition_variable.h"
-#include "ffrt/mutex.h"
-#include "ffrt/queue.h"
-#include "ffrt/sleep.h"
-```
+2. Include the following header files in the project.
 
-1. **Encapsulate the function to be executed.**
-    ```c++
+    ```cpp
+    #include "ffrt/task.h"
+    #include "ffrt/type_def.h"
+    #include "ffrt/condition_variable.h"
+    #include "ffrt/loop.h"
+    #include "ffrt/mutex.h"
+    #include "ffrt/queue.h"
+    #include "ffrt/sleep.h"
+    #include "ffrt/timer.h"
+    ```
+
+3. Encapsulate the function to be executed.
+
+    ```cpp
     // Method 1: Use the template. C++ is supported.
     template<class T>
-    struct Function {
-        template<class CT>
-        Function(ffrt_function_header_t h, CT&& c) : header(h), closure(std::forward<CT>(c)) {}
+    struct function {
         ffrt_function_header_t header;
         T closure;
     };
 
     template<class T>
-    void ExecFunctionWrapper(void* t)
+    void exec_function_wrapper(void* t)
     {
-        auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
+        auto f = reinterpret_cast<function<std::decay_t<T>>*>(t);
         f->closure();
     }
 
     template<class T>
-    void DestroyFunctionWrapper(void* t)
+    void destroy_function_wrapper(void* t)
     {
-        auto f = reinterpret_cast<Function<std::decay_t<T>>*>(t);
+        auto f = reinterpret_cast<function<std::decay_t<T>>*>(t);
         f->closure = nullptr;
     }
 
     template<class T>
-    static inline ffrt_function_header_t* create_function_wrapper(T&& func,
+    inline ffrt_function_header_t* create_function_wrapper(T&& func,
         ffrt_function_kind_t kind = ffrt_function_kind_general)
     {
-        using function_type = Function<std::decay_t<T>>;
+        using function_type = function<std::decay_t<T>>;
+        static_assert(sizeof(function_type) <= ffrt_auto_managed_function_storage_size,
+            "size of function must be less than ffrt_auto_managed_function_storage_size");
+
         auto p = ffrt_alloc_auto_managed_function_storage_base(kind);
-        auto f =
-            new (p)function_type({ ExecFunctionWrapper<T>, DestroyFunctionWrapper<T>, { 0 } }, std::forward<T>(func));
+        auto f = new (p)function_type;
+        f->header.exec = exec_function_wrapper<T>;
+        f->header.destroy = destroy_function_wrapper<T>;
+        f->closure = std::forward<T>(func);
         return reinterpret_cast<ffrt_function_header_t*>(f);
     }
 
@@ -1401,37 +263,38 @@ libffrt.z.so
         ffrt_function_t func;
         ffrt_function_t after_func;
         void* arg;
-    } CFunction;
+    } c_function_t;
 
-    static void FfrtExecFunctionWrapper(void* t)
+    static inline void ffrt_exec_function_wrapper(void* t)
     {
-        CFunction* f = static_cast<CFunction*>(t);
-        if (f->func) {
-            f->func(f->arg);
-        }
+       c_function_t* f = (c_function_t *)t;
+       if (f->func) {
+           f->func(f->arg);
+       }
     }
 
-    static void FfrtDestroyFunctionWrapper(void* t)
+    static inline void ffrt_destroy_function_wrapper(void* t)
     {
-        CFunction* f = static_cast<CFunction*>(t);
+        c_function_t* f = (c_function_t *)t;
         if (f->after_func) {
             f->after_func(f->arg);
         }
     }
 
     #define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-    static inline ffrt_function_header_t* ffrt_create_function_wrapper(const ffrt_function_t func,
-        const ffrt_function_t after_func, void* arg, ffrt_function_kind_t kind_t = ffrt_function_kind_general)
+    static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
+        const ffrt_function_t after_func, void *arg)
     {
-        FFRT_STATIC_ASSERT(sizeof(CFunction) <= ffrt_auto_managed_function_storage_size,
+        FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
             size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
-        CFunction* f = static_cast<CFunction*>(ffrt_alloc_auto_managed_function_storage_base(kind_t));
-        f->header.exec = FfrtExecFunctionWrapper;
-        f->header.destroy = FfrtDestroyFunctionWrapper;
+
+        c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
+        f->header.exec = ffrt_exec_function_wrapper;
+        f->header.destroy = ffrt_destroy_function_wrapper;
         f->func = func;
         f->after_func = after_func;
         f->arg = arg;
-        return reinterpret_cast<ffrt_function_header_t*>(f);
+        return (ffrt_function_header_t *)f;
     }
 
     // Example: function to be submitted for execution.
@@ -1440,11 +303,10 @@ libffrt.z.so
         (*static_cast<int*>(arg)) += 1;
     }
     ```
-   
-2. **Set the task attributes.**
 
-    Set the task attributes, including the QoS and task name, before submitting the task.
-    ```c++
+4. Set task attributes, including the QoS level and task name.
+
+    ```cpp
     // ******Initialize the attributes of the parallel task******
     ffrt_task_attr_t attr;
     ffrt_task_attr_init(&attr);
@@ -1453,7 +315,7 @@ libffrt.z.so
 
     // Create the attributes of the serial queue.
     ffrt_queue_attr_t queue_attr;
-    // Create the handle of the serial queue.
+    // Create the handle to the serial queue.
     ffrt_queue_t queue_handle;
 
     // Initialize the queue attribute.
@@ -1472,8 +334,9 @@ libffrt.z.so
     queue_handle = ffrt_queue_create(ffrt_queue_serial, "test_queue", &queue_attr);
     ```
 
-3. **Submit the task.**
-    ```c++
+5. Submit the task.
+
+    ```cpp
     int a = 0;
     // ******Parallel task******
     // Submit the parallel task without obtaining a handle.
@@ -1498,8 +361,9 @@ libffrt.z.so
     ffrt_queue_wait(handle);
     ```
 
-4. **Destroy the resources after the task is submitted.**
-    ```c++
+6. Destroy the resources after the task is submitted.
+
+    ```cpp
     // ******Destroy the parallel task******
     ffrt_task_attr_destroy(&attr);
     ffrt_task_handle_destroy(task);
@@ -1513,96 +377,229 @@ libffrt.z.so
 
 ## Suggestions
 
-### Suggestion 1: Functional programming
+### Suggestion 1: Functional Programming
 
-Basic idea: Use functional programming for the calculation process.
+- Use pure functions and encapsulate them to express each step of the process.
+- There is no global data access.
+- There is no internal state reserved.
+- Use `ffrt_submit_base()` to submit a function in asynchronous mode for execution.
+- Use `in_deps` and `out_deps` of `ffrt_submit_base()` to specify the data objects to be accessed by the function and the access mode.
+- Programmers use the `in_deps` and `out_deps` parameters to express task dependencies to ensure the correctness of program execution.
 
-* Use pure functions and encapsulate them to express each step of the process.
-* There is no global data access.
-* There is no internal state reserved.
-* Use **ffrt_submit_base()** to submit a function in asynchronous mode for execution.
-* Use **in_deps** and **out_deps** of **ffrt_submit_base()** to specify the data objects to be accessed by the function and the access mode.
-* Use **inDeps** and **outDeps** to specify the dependency between tasks to ensure the correctness of program execution.
-
-> **NOTE**
->
 > Using pure functions helps you maximize the parallelism and avoid data races and lock abuse.
+>
+> In practice, you may not use pure functions in certain scenarios, with the following prerequisites:
+>
+> - `in_deps` and `out_deps` can ensure the correctness of program execution.
+> - The lock mechanism provided by FFRT is used to protect access to global variables.
 
-In practice, you may not use pure functions in certain scenarios, with the following prerequisites:
+### Suggestion 2: Using FFRT APIs
 
-* **in_deps** and **out_deps** can ensure the correctness of program execution.
-* The lock mechanism provided by FFRT is used to protect access to global variables.
+- Do not use the APIs of the system thread library to create threads in FFRT tasks. Instead, use `submit` to submit tasks.
+- Use the lock, condition variable, sleep, and I/O APIs provided by FFRT to replace the APIs of the system thread library.
+  - Using the APIs of the system thread library may block worker threads and result in extra performance overhead.
 
+### Suggestion 3: Deadline Mechanism
 
-### Suggestion 2: Use FFRT APIs
+- Use FFRT APIs in processing flows that feature periodic/repeated execution.
+- Use FFRT APIs in processing flows with clear time constraints and is performance critical.
+- Use FFRT APIs in relatively large-granularity processing flows, such as the frame processing flow with the 16.6 ms time constraint.
 
-* Do not use the APIs of the system thread library to create threads in FFRT tasks. Instead, use **ffrt_submit_base** or **ffrt_submit_h_base** to submit tasks.
-* Use the lock, condition variable, sleep, and I/O APIs provided by FFRT to replace the APIs of the system thread library.
-* Using the APIs of the system thread library may block worker threads and result in extra performance overhead.
+### Suggestion 4: Migration from the Thread Model
 
-### Suggestion 3: Deadline mechanism
+- Create a thread instead of creating an FFRT task.
+  - A thread is logically similar to a task without `in_deps`.
+- Identify the dependency between threads and express the dependencies in `in_deps` and `out_deps` of the task.
+- Decompose an intra-thread computing process into asynchronous tasks for invoking.
+- Use the task dependency and lock mechanism to avoid data races of concurrent tasks.
 
-* Use FFRT APIs in processing flows that feature periodic/repeated execution.
-* Use FFRT APIs in processing flows with clear time constraints and is performance critical.
-* Use FFRT APIs in relatively large-granularity processing flows, such as the frame processing flow with the 16.6 ms time constraint.
+### Suggestion 5: C++ APIs Recommended
 
-### Suggestion 4: Migration from the thread model
-
-* Create a thread instead of creating an FFRT task.
-* A thread is logically similar to a task without **in_deps**.
-* Identify the dependency between threads and express the dependencies in **in_deps** or **out_deps** of the task.
-* Decompose an intra-thread computing process into asynchronous tasks for invoking.
-* Use the task dependency and lock mechanism to avoid data races of concurrent tasks.
-
-### Suggestion 5: C++ APIs recommended
-
-* The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file.
-* You can download the C++ APIs from the following website: [FFRT C++ APIs](https://gitee.com/openharmony/resourceschedule_ffrt/tree/master/interfaces/kits)
-
-
-
-
+- The FFRT C++ APIs are implemented based on the C APIs. Before using the APIs, you can manually add the C++ header file.
 
 ## Constraints
 
-After an FFRT object is initialized in the C code, you are responsible for setting the object to null or destroying the object.
+### Thread Local Variables
 
-To ensure high performance, the C APIs of FFRT do not use a flag to indicate the object destruction status. You need to release resources properly. Repeatedly destroying an object will cause undefined behavior.
+Risks exist when thread local variables are used in FFRT tasks. The details are as follows:
 
-Noncompliant example 1: Repeated calling of **destroy()** may cause unpredictable data damage.
+- Thread local variables include the variables defined by `thread_local` provided by C/C++ and the variables created by using `thread_local`.
+- FFRT supports task scheduling. The thread to which a task is scheduled is random. Therefore, there are risks to use thread local variables, which is consistent with all other frameworks that support concurrent task scheduling.
+- By default, an FFRT task runs in coroutine mode. During task execution, the coroutine may exit. When the task is resumed, the thread that executes the task may change.
 
-```{.c}
-#include "ffrt.h"
-void abnormal_case_1()
-{
-    ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
-    ...
-    ffrt_task_handle_destroy(h);
-    ffrt_task_handle_destroy(h); // double free
-}
+### Thread Binding
+
+- FFRT supports task scheduling. The thread to which a task is scheduled is random. Thread-bound behaviors, such as thread_idx, thread priority, and thread affinity, cannot be used in tasks.
+
+### Synchronization Primitives in the Standard Library
+
+A deadlock may occur when the mutex of the standard library is used in the FFRT task. You need to use the mutex provided by the FFRT. The details are as follows:
+
+- When `lock()` is successfully executed, the mutex records the execution stack of the caller as the owner of the lock. If the caller is the current execution stack, a success message is returned to support nested lock obtaining in the same execution stack. In implementation of the standard library, the "execution stack" is represented by a thread identifier.
+- When the mutex of the standard library is used in the FFRT task, if the task (coroutine) exits between the outer and inner lock and the task is resumed on the FFRT Worker thread that is different from the thread that calls `lock()` for the first time, the calling thread is not the owner and `lock()` fails to be called, the FFRT Worker thread is suspended, and `unlock()` is not executed. As a result, a deadlock occurs.
+
+### Support for the Process `fork()` Scenario
+
+- Create a child process in a process that does not use FFRT. FFRT can be used in the child process.
+- Create a child process using `fork()` in a process that uses FFRT. FFRT cannot be used in the child process.
+- Create a child process using `fork()` and `exec()` in a process that uses FFRT. FFRT can be used in the child process.
+
+### Dynamic FFRT Deployment
+
+- Static library deployment may cause multi-instance problems. For example, when multiple .so files loaded by the same process use FFRT in static library mode, FFRT is instantiated into multiple copies, and their behavior is unknown.
+
+### Limited Number of Input and Output Dependencies
+
+- For `ffrt_submit_base`, the total number of input dependencies and output dependencies of each task cannot exceed 8.
+- For `ffrt_submit_h_base`, the total number of input dependencies and output dependencies of each task cannot exceed 7.
+- When a parameter is used as both an input dependency and an output dependency, it is counted as one dependency. For example, if the input dependency is `{&x}` and the output dependency is also `{&x}`, then the number of dependencies is 1.
+
+### Restrictions on Process or Thread Exit
+
+- When a process exits, the shared resources in the process, such as the thread pool in the FFRT, have been released. **submit()** should not be called.
+- When a thread exits, the thread local resources in the FFRT have been released. **submit()** should not be called for the thread that is exiting.
+
+## Common Anti-Patterns
+
+### After an FFRT object is initialized in the C code, you are responsible for setting the object to null or destroying the object.
+
+- To ensure high performance, the C APIs of FFRT do not use a flag to indicate the object destruction status. You need to release resources properly. Repeatedly destroying an object will cause undefined behavior.
+- Noncompliant example 1: Repeated calling of destroy() may cause unpredictable data damage.
+
+    ```cpp
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
+    void abnormal_case_1()
+    {
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
+        // ...
+        ffrt_task_handle_destroy(h);
+        ffrt_task_handle_destroy(h); // Repeated release
+    }
+    ```
+
+- Noncompliant example 2: No calling of destroy() may cause memory leak.
+
+    ```cpp
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
+    void abnormal_case_2()
+    {
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
+        // ...
+        // Memory leak
+    }
+    ```
+
+- Recommended example: Call **destroy()** only once. You can leave it empty if necessary.
+
+    ```cpp
+    #include <stdio.h>
+    #include "ffrt/cpp/task.h"
+
+    void normal_case()
+    {
+        ffrt_task_handle_t h = ffrt_submit_h_base(
+            ffrt::create_function_wrapper(std::function<void()>([](){ printf("Test task running...\n"); })),
+            NULL, NULL, NULL);
+        // ...
+        ffrt_task_handle_destroy(h);
+        h = nullptr; // Set the task handle variable to null if necessary.
+    }
+    ```
+
+### Incorrect Variable Lifecycle
+
+- When submitting an FFRT task, pay attention to the misuse of objects or resources during their lifecycle. These misuses may cause program breakdown, data damage, or difficult debugging.
+- Noncompliant example 1: Ended variable lifecycle causes a UAF problem.
+
+    ```cpp
+    #include <unistd.h>
+    #include "ffrt/cpp/task.h"
+
+    void abnormal_case_3()
+    {
+        int x = 0;
+        ffrt::submit([&] {
+            usleep(1000); // Simulate the service processing logic.
+            x++;          // The variable lifecycle may have ended, and a UAF problem may occur when the variable is accessed.
+        });
+    }
+    ```
+
+- Noncompliant example 2: Ended mutex lifecycle causes function exceptions.
+
+    ```cpp
+    #include <unistd.h>
+    #include "ffrt/cpp/mutex.h"
+    #include "ffrt/cpp/task.h"
+
+    void abnormal_case_4()
+    {
+        ffrt::mutex lock;
+        ffrt::submit([&] {
+            lock.lock();   // When performing operations on the FFRT lock, ensure that the lifecycle of the FFRT lock is valid.
+            usleep(1000);  // Simulate the service processing logic.
+            lock.unlock(); // When performing operations on the FFRT lock, ensure that the lifecycle of the FFRT lock is valid.
+        });
+    }
+    ```
+
+## Using FFRT in DevEco IDE
+
+### Using FFRT C API
+
+Native Development Kit (NDK) is a toolset provided by HarmonyOS SDK. It offers native APIs that allow you to implement key application functions using C or C++ code.
+
+The FFRT C APIs have been integrated into the NDK. You can directly use the corresponding API in DevEco IDE.
+
+```cpp
+#include "ffrt/type_def.h"
+#include "ffrt/task.h"
+#include "ffrt/queue.h"
+#include "ffrt/condition_variable.h"
+#include "ffrt/mutex.h"
+#include "ffrt/shared_mutex.h"
+#include "ffrt/sleep.h"
+#include "ffrt/loop.h"
+#include "ffrt/timer.h"
 ```
 
-Noncompliant example 2: A memory leak occurs if **destroy()** is not called.
+### Using FFRT C++ API
 
-```{.c}
-#include "ffrt.h"
-void abnormal_case_2()
-{
-    ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
-    ...
-    // Memory leak
-}
+The FFRT deployment depends on the FFRT dynamic library `libffrt.so` and a group of header files. The dynamic library exports only C APIs, and C++ APIs call C APIs. In addition, C++ elements in APIs are compiled into the dynamic library based on the header files, ensuring ABI compatibility.
+
+![image](figures/ffrt_figure7.png)
+
+To use FFRT C++ APIs, you need to use the FFRT third-party library [@ppd/ffrt](https://ohpm.openharmony.cn/#/en/detail/@ppd%2Fffrt), which is a C++ API library officially maintained by FFRT.
+
+Run the following command in the module directory to install the third-party library:
+
+```shell
+ohpm install @ppd/ffrt
 ```
 
-Recommended example: Call **destroy()** only once; set the object to null if necessary.
+You can also configure the dependencies in the `oh-package.json5` file so that the third-party library can be automatically downloaded and installed through DevEco Studio.
 
-```{.c}
-#include "ffrt.h"
-void normal_case()
-{
-    ffrt_task_handle_t h = ffrt_submit_h_base([](){printf("Test task running...\n");}, NULL, NULL, NULL, NULL, NULL);
-    ...
-    ffrt_task_handle_destroy(h);
-    h = nullptr; // if necessary
-}
+Add dependencies to the `CMakeLists.txt` file:
+
+```txt
+target_link_libraries(<target_name> PUBLIC libffrt.z.so ffrt::ffrtapi)
+```
+
+Use the FFRT C++ API in the code.
+
+```cpp
+#include "ffrt/cpp/task.h"
+#include "ffrt/cpp/queue.h"
+#include "ffrt/cpp/condition_variable.h"
+#include "ffrt/cpp/mutex.h"
+#include "ffrt/cpp/shared_mutex.h"
+#include "ffrt/cpp/sleep.h"
 ```

@@ -1,25 +1,46 @@
-# Audio Kit API参考
+# Audio Kit（音频服务）
 
-- ArkTS API
+- ArkTS API<!--audio-arkts-->
   - [@ohos.multimedia.audio (音频管理)](js-apis-audio.md)
   - [@ohos.multimedia.audioHaptic (音振协同)](js-apis-audioHaptic.md)
+  <!--Del-->
   - [@ohos.multimedia.audio (音频管理)(系统接口)](js-apis-audio-sys.md)
   - [@ohos.multimedia.systemSoundManager (系统声音管理)(系统接口)](js-apis-systemSoundManager-sys.md)
   - multimedia
     - [ringtonePlayer (铃声播放器)(系统接口)](js-apis-inner-multimedia-ringtonePlayer-sys.md)
     - [systemTonePlayer (系统提示音播放器)(系统接口)](js-apis-inner-multimedia-systemTonePlayer-sys.md)
-- C API
-  - 模块
-    - [OHAudio](_o_h_audio.md)
-  - 头文件
-    - [native_audiocapturer.h](native__audiocapturer_8h.md)
-    - [native_audiorenderer.h](native__audiorenderer_8h.md)
-    - [native_audiostream_base.h](native__audiostream__base_8h.md)
-    - [native_audiostreambuilder.h](native__audiostreambuilder_8h.md)
-  - 结构体
-    - [OH_AudioCapturer_Callbacks_Struct](_o_h___audio_capturer___callbacks___struct.md)
-    - [OH_AudioRenderer_Callbacks_Struct](_o_h___audio_renderer___callbacks___struct.md)
-- ArkTS组件
+  <!--DelEnd-->
+- ArkTS组件<!--audio-comp-->
   - [@ohos.multimedia.avVolumePanel (音量面板)](ohos-multimedia-avvolumepanel.md)
-- 错误码
+- C API<!--audio-c-->
+  - 模块<!--audio-module-->
+    - [OHAudio](capi-ohaudio.md)
+  - 头文件<!--audio-headerfile-->
+    - [native_audiocapturer.h](capi-native-audiocapturer-h.md)
+    - [native_audio_manager.h](capi-native-audio-manager-h.md)
+    - [native_audio_routing_manager.h](capi-native-audio-routing-manager-h.md)
+    - [native_audio_session_manager.h](capi-native-audio-session-manager-h.md)
+    - [native_audio_stream_manager.h](capi-native-audio-stream-manager-h.md)
+    - [native_audiorenderer.h](capi-native-audiorenderer-h.md)
+    - [native_audio_common.h](capi-native-audio-common-h.md)
+    - [native_audio_device_base.h](capi-native-audio-device-base-h.md)
+    - [native_audiostream_base.h](capi-native-audiostream-base-h.md)
+    - [native_audiostreambuilder.h](capi-native-audiostreambuilder-h.md)
+  - 结构体<!--audio-struct-->
+    - [OH_AudioSession_Strategy](capi-oh-audiosession-strategy.md)
+    - [OH_AudioSession_DeactivatedEvent](capi-oh-audiosession-deactivatedevent.md)
+    - [OH_AudioDeviceDescriptorArray](capi-oh-audiodevicedescriptorarray.md)
+    - [OH_AudioStreamInfo](capi-oh-audiostreaminfo.md)
+    - [OH_AudioRenderer_Callbacks_Struct](capi-oh-audiorenderer-callbacks-struct.md)
+    - [OH_AudioCapturer_Callbacks_Struct](capi-oh-audiocapturer-callbacks-struct.md)
+    - [OH_AudioManager](capi-oh-audiomanager.md)
+    - [OH_AudioRoutingManager](capi-oh-audioroutingmanager.md)
+    - [OH_AudioSessionManager](capi-oh-audiosessionmanager.md)
+    - [OH_AudioStreamManager](capi-oh-audiostreammanager.md)
+    - [OH_AudioDeviceDescriptor](capi-oh-audiodevicedescriptor.md)
+    - [OH_AudioStreamBuilderStruct](capi-oh-audiostreambuilderstruct.md)
+    - [OH_AudioRendererStruct](capi-oh-audiorendererstruct.md)
+    - [OH_AudioCapturerStruct](capi-oh-audiocapturerstruct.md)
+- 错误码<!--audio-arkts-errcode-->
   - [Audio错误码](errorcode-audio.md)
+  - [Ringtone错误码](errorcode-ringtone.md)

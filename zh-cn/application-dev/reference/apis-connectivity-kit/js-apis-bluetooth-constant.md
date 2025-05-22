@@ -11,14 +11,14 @@ constant模块提供了蓝牙中常量的定义。
 ## 导入模块
 
 ```js
-import constant from '@ohos.bluetooth.constant';
+import { constant } from '@kit.ConnectivityKit';
 ```
 
 ## ProfileId
 
 蓝牙profile枚举。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
@@ -32,7 +32,9 @@ import constant from '@ohos.bluetooth.constant';
 
 枚举，蓝牙设备的profile连接状态。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                  | 值  | 说明             |
 | ------------------- | ---- | -------------- |
@@ -46,7 +48,7 @@ import constant from '@ohos.bluetooth.constant';
 
 枚举，蓝牙设备主要类别。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                  | 值    | 说明         |
 | ------------------- | ------ | ---------- |
@@ -67,7 +69,7 @@ import constant from '@ohos.bluetooth.constant';
 
 枚举，主要次要蓝牙设备类别。
 
-**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 名称                                       | 值    | 说明              |
 | ---------------------------------------- | ------ | --------------- |
@@ -85,14 +87,14 @@ import constant from '@ohos.bluetooth.constant';
 | PHONE_SMART                              | 0x020C | 表示智能手机设备。       |
 | PHONE_MODEM_OR_GATEWAY                   | 0x0210 | 表示调制解调器或网关手机设备。 |
 | PHONE_ISDN                               | 0x0214 | 表示ISDN手机设备。     |
-| NETWORK_FULLY_AVAILABLE                  | 0x0300 | 表示网络完全可用设备。     |
-| NETWORK_1_TO_17_UTILIZED                 | 0x0320 | 表示使用网络1到17设备。   |
-| NETWORK_17_TO_33_UTILIZED                | 0x0340 | 表示使用网络17到33设备。  |
-| NETWORK_33_TO_50_UTILIZED                | 0x0360 | 表示使用网络33到50设备。  |
-| NETWORK_60_TO_67_UTILIZED                | 0x0380 | 表示使用网络60到67设备。  |
-| NETWORK_67_TO_83_UTILIZED                | 0x03A0 | 表示使用网络67到83设备。  |
-| NETWORK_83_TO_99_UTILIZED                | 0x03C0 | 表示使用网络83到99设备。  |
-| NETWORK_NO_SERVICE                       | 0x03E0 | 表示网络无服务设备。      |
+| NETWORK_FULLY_AVAILABLE                  | 0x0300 | 表示网络负载占用率0%的网络设备。     |
+| NETWORK_1_TO_17_UTILIZED                 | 0x0320 | 表示网络负载占用率1%~17%的网络设备。   |
+| NETWORK_17_TO_33_UTILIZED                | 0x0340 | 表示网络负载占用率17%~33%的网络设备。  |
+| NETWORK_33_TO_50_UTILIZED                | 0x0360 | 表示网络负载占用率33%~50%的网络设备。  |
+| NETWORK_60_TO_67_UTILIZED                | 0x0380 | 表示网络负载占用率60%~67%的网络设备。  |
+| NETWORK_67_TO_83_UTILIZED                | 0x03A0 | 表示网络负载占用率67%~83%的网络设备。  |
+| NETWORK_83_TO_99_UTILIZED                | 0x03C0 | 表示网络负载占用率83%~99%的网络设备。  |
+| NETWORK_NO_SERVICE                       | 0x03E0 | 表示网络负载占用率100%的网络设备。     |
 | AUDIO_VIDEO_UNCATEGORIZED                | 0x0400 | 表示未分类音频视频设备。    |
 | AUDIO_VIDEO_WEARABLE_HEADSET             | 0x0404 | 表示可穿戴式音频视频设备。   |
 | AUDIO_VIDEO_HANDSFREE                    | 0x0408 | 表示免提音频视频设备。     |
@@ -157,3 +159,23 @@ import constant from '@ohos.bluetooth.constant';
 | HEALTH_ANKLE_PROSTHESIS                  | 0x0934 | 表示脚踝假肢健康设备。     |
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | 表示通用健康管理设备。     |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | 表示个人移动健康设备。     |
+
+
+## ProfileUuids<sup>12+</sup>
+
+枚举，表示Profile的UUID。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core
+
+| 名称                                   | 值    | 说明              |
+| ------------------------------------| ------ | --------------- |
+| PROFILE_UUID_HFP_AG      | '0000111F-0000-1000-8000-00805F9B34FB' | 代表HFPAG Profile的UUID。 |
+| PROFILE_UUID_HFP_HF      | '0000111E-0000-1000-8000-00805F9B34FB' | 代表HFPHF Profile的UUID。  |
+| PROFILE_UUID_HSP_AG      | '00001112-0000-1000-8000-00805F9B34FB' | 代表HSPAG Profile的UUID。  |
+| PROFILE_UUID_HSP_HS      | '00001108-0000-1000-8000-00805F9B34FB' | 代表HSPHS Profile的UUID。  |
+| PROFILE_UUID_A2DP_SRC    | '0000110A-0000-1000-8000-00805F9B34FB' | 代表A2DPSRC Profile的UUID。  |
+| PROFILE_UUID_A2DP_SINK   | '0000110B-0000-1000-8000-00805F9B34FB' | 代表A2DPSINK Profile的UUID。  |
+| PROFILE_UUID_AVRCP_CT    | '0000110E-0000-1000-8000-00805F9B34FB' | 代表AVRCPCT Profile的UUID。  |
+| PROFILE_UUID_AVRCP_TG    | '0000110C-0000-1000-8000-00805F9B34FB' | 代表AVRCPTG Profile的UUID。  |
+| PROFILE_UUID_HID         | '00001124-0000-1000-8000-00805F9B34FB' | 代表HID Profile的UUID。  |
+| PROFILE_UUID_HOGP        | '00001812-0000-1000-8000-00805F9B34FB' | 代表HOGP Profile的UUID。  |

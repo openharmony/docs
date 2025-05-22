@@ -1,30 +1,32 @@
 # 在新窗口中打开页面
 
 
-Web组件提供了在新窗口打开页面的能力，开发者可以通过[multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web.md#multiwindowaccess9)接口来设置是否允许网页在新窗口打开。当有新窗口打开时，应用侧会在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口中收到Web组件新窗口事件，开发者需要在此接口事件中，新建窗口来处理Web组件窗口请求。
+Web组件提供了在新窗口打开页面的能力，开发者可以通过[multiWindowAccess()](../reference/apis-arkweb/ts-basic-components-web.md#multiwindowaccess9)接口来设置是否允许网页在新窗口打开。当有新窗口打开时，应用侧会在`onWindowNew()`接口中收到Web组件新窗口事件。开发者需要在此接口事件中新建窗口来处理Web组件的窗口请求。
 
 
 > **说明：**
 >
 > - [allowWindowOpenMethod()](../reference/apis-arkweb/ts-basic-components-web.md#allowwindowopenmethod10)接口设置为true时，前端页面通过JavaScript函数调用的方式打开新窗口。
 >
-> - 如果开发者在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口通知中不需要打开新窗口，需要将[ControllerHandler.setWebController()](../reference/apis-arkweb/ts-basic-components-web.md#setwebcontroller9)接口参数设置成null。
+> - 如果在`onWindowNew()`接口通知中没有创建新窗口，需要将`ControllerHandler.setWebController()`接口的参数设置为`null`。
 
 
-如下面的本地示例，当用户点击“新窗口中打开网页”按钮时，应用侧会在[onWindowNew()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownew9)接口中收到Web组件新窗口事件。
+在下面的本地示例中，当用户点击“新窗口中打开网页”按钮时，应用会在`onWindowNew()`接口收到Web组件的新窗口事件。
+> **说明：**
+> - 网页要求用户创建新的窗口时触发回调[OnWindowNewEvent()](../reference/apis-arkweb/ts-basic-components-web.md#onwindownewevent12)，该回调函数中isUserTrigger参数，true代表用户触发，false代表非用户触发。
 
 
 - 应用侧代码。
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
+  import { webview } from '@kit.ArkWeb';
 
-  // 在同一page页有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
+  // 在同一界面有两个Web组件。在WebComponent新开窗口时，会跳转到NewWebViewComp。
   @CustomDialog
   struct NewWebViewComp {
-    controller?: CustomDialogController
-    webviewController1: web_webview.WebviewController = new web_webview.WebviewController()
+    controller?: CustomDialogController;
+    webviewController1: webview.WebviewController = new webview.WebviewController();
 
     build() {
       Column() {
@@ -32,9 +34,9 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
           .javaScriptAccess(true)
           .multiWindowAccess(false)
           .onWindowExit(() => {
-            console.info("NewWebViewComp onWindowExit")
+            console.info("NewWebViewComp onWindowExit");
             if (this.controller) {
-              this.controller.close()
+              this.controller.close();
             }
           })
       }
@@ -44,8 +46,8 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController()
-    dialogController: CustomDialogController | null = null
+    controller: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController | null = null;
 
     build() {
       Column() {
@@ -58,15 +60,15 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
             if (this.dialogController) {
               this.dialogController.close()
             }
-            let popController: web_webview.WebviewController = new web_webview.WebviewController()
+            let popController: webview.WebviewController = new webview.WebviewController();
             this.dialogController = new CustomDialogController({
               builder: NewWebViewComp({ webviewController1: popController })
             })
-            this.dialogController.open()
+            this.dialogController.open();
             // 将新窗口对应WebviewController返回给Web内核。
-            // 如果不需要打开新窗口请调用event.handler.setWebController接口设置成null。
             // 若不调用event.handler.setWebController接口，会造成render进程阻塞。
-            event.handler.setWebController(popController)
+            // 如果没有创建新窗口，调用event.handler.setWebController接口时设置成null，通知Web没有创建新窗口。
+            event.handler.setWebController(popController);
           })
       }
     }
@@ -80,7 +82,7 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   <!DOCTYPE html>
   <html>
   <head>
-      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width"/>
       <title>WindowEvent</title>
   </head>
   <body>
@@ -88,15 +90,21 @@ Web组件提供了在新窗口打开页面的能力，开发者可以通过[mult
   <script type="text/javascript">
       function OpenNewWindow()
       {
+          var txt = '打开的窗口';
           let openedWindow = window.open("about:blank", "", "location=no,status=no,scrollvars=no");
-          openedWindow.document.write("<p>这是我的窗口</p>");
+          openedWindow.document.write("<p>" + "<br><br>" + txt.fontsize(10) + "</p>");
           openedWindow.focus();
-
       }
   </script>
   </body>
   </html>
   ```
+
+**图1** 新窗口中打开页面效果图  
+
+![web-open-in-new-window](figures/web-open-in-new-window.png)
+
+  
 ## 相关实例
 
 针对创建新窗口，有以下相关实例可供参考：

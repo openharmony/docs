@@ -1,18 +1,13 @@
 # Component-based Startup
-
 ## Overview
-
 ### Function Introduction
+Builds four basic component images and provides component-based directories, including:
+- System component: **system**
+- Common product configuration component: **sys_prod**
+- Chipset component: **chipset**
+- Hardware configuration component: **chip_prod**
 
-This subsystem provides the following functions:
-- Builds four basic component images and provides component-based directories, including:
-  - System component: **system**
-  - Common product configuration component: **sys_prod**
-  - Chipset component: **chipset**
-  - Hardware configuration component: **chip_prod**
-- Ensures that system parameters and startup scripts can be scanned and initialized by component priority.
-- Independently compiles and builds the **system** component and **chipset** component.
-
+The subsystem mainly provides two functions: ensure that system parameters and startup scripts can be scanned and initialized by component priority, and complete the independent compilation and building of system and chipset components.
 ### Basic Concepts
 - Basic Components
 
@@ -33,7 +28,7 @@ This subsystem provides the following functions:
 ### Constraints
 Standard and small systems support component-based compilation and building. System parameters and startup scripts are scanned and initialized by component priority.
 
-## How to Develop
+## Vibrator Development
 ### When to Use
 Component-based startup enables vendors and hardware platforms to quickly develop products through modular combination. The following uses RK3568 as an example to illustrate component-based startup in detail.
 

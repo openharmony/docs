@@ -12,12 +12,12 @@
 
 > **说明：**
 >
-> 本文档涉及系统接口的使用，请使用full-SDK进行开发。具体使用可见[full-SDK替换指南](../faqs/full-sdk-switch-guide.md)。
+> 本文档涉及系统接口的使用，请使用full-SDK进行开发。<!--Del-->具体使用可见[full-SDK替换指南](../faqs/full-sdk-switch-guide.md)。<!--DelEnd-->
 
 
 ## 接口说明
 
-更多API说明请参见[API参考](../reference/apis-arkui/js-apis-window.md)。
+更多API说明请参见[API参考](../reference/apis-arkui/js-apis-window-sys.md)。
 
 | 实例名            | 接口名                                                       | 描述                                                         |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -58,12 +58,11 @@
    当不再需要音量条窗口时，可根据具体实现逻辑，使用`hide`接口或`destroyWindow`接口对其进行隐藏或销毁。
 
 ```ts
-import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { Want, ServiceExtensionAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-export default class ServiceExtensionAbility1 extends ExtensionContext {
+export default class ServiceExtensionAbility1 extends ServiceExtensionAbility {
   onCreate(want: Want) {
     // 1.创建音量条窗口。
     let windowClass: window.Window | null = null;
@@ -73,7 +72,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
     window.createWindow(config, (err: BusinessError, data) => {
       let errCode: number = err.code;
       if (errCode) {
-        console.error('Failed to create the volume window. Cause:' + JSON.stringify(err));
+        console.error(`Failed to create the volume window. Code:${err.code}, message:${err.message}`);
         return;
       }
       console.info('Succeeded in creating the volume window.')
@@ -155,7 +154,7 @@ export default class ServiceExtensionAbility1 extends ExtensionContext {
 
 ```ts
 // xxx.ts 实现使用ts文件引入showWithAnimation，hideWithAnimation方法
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 
 export class AnimationConfig {
   private animationForShownCallFunc_: Function = undefined;
@@ -201,13 +200,9 @@ export class AnimationConfig {
 
 ```ts
 // xxx.ets 实现主窗口创建相关操作
-import window from '@ohos.window';
-import Want from '@ohos.app.ability.Want';
-import hilog from '@ohos.hilog';
-import common from '@ohos.app.ability.common';
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { window } from '@kit.ArkUI';
+import { UIAbility, Want, AbilityConstant, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit'
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want,launchParam:AbilityConstant.LaunchParam) {
@@ -249,9 +244,8 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 // xxx.ets 实现子窗口的属性设置
-import window from '@ohos.window';
-import router from '@ohos.router';
-import common from '@ohos.app.ability.common';
+import { window, router } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -273,7 +267,7 @@ struct transferCtrlSubWindow {
       .onClick(() => {
         let subWin = AppStorage.get<window.Window>("TransferSubWindow");
         subWin?.destroyWindow();
-        AppStorage.SetOrCreate<window.Window>("TransferSubWindow", undefined);
+        AppStorage.setOrCreate<window.Window>("TransferSubWindow", undefined);
       })
     }.height('100%').width('100%').backgroundColor('#ff556243').shadow({radius: 30,color: '#ff555555',offsetX: 15,offsetY: 15})
   }
@@ -282,12 +276,10 @@ struct transferCtrlSubWindow {
 
 ```ts
 // xxx.ets 实现子窗口的创建以及显示、隐藏窗口时的动效操作
-import window from '@ohos.window';
-import router from '@ohos.router';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
+import { window, router } from '@kit.ArkUI';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { AnimationConfig } from '../entryability/AnimationConfig';
-import Want from '@ohos.app.ability.Want';
 
 @Entry
 @Component

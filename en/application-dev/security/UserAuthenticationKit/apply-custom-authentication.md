@@ -1,78 +1,77 @@
 # Applying Custom Authentication
 
-
-The user authentication framework also provides a mechanism for switching from the authentication types supported by the system to the authentication types customized by device vendors.
-
+If the biometric authentication fails and the user taps the navigation button for a custom authentication, the unified identity authentication framework will terminate the system authentication process and instruct the caller to launch the custom authentication page.
 
 For example, if the facial or fingerprint authentication provided by the system fails in a payment process, the user can switch to the password authentication defined by the device vendor.
 
+Since payment password authentication is not a system authentication capability, the application must provide explicit navigation button information, for example, **Use Payment Password**, when initiating authentication. This ensures that a **Use Payment Password** button is displayed on the authentication page.
 
-Because the payment password authentication is not a system authentication capability, a navigation button with **Use payment password** must be passed in to initiate the custom authentication.
+When the user taps this button, the application that initiates the custom authentication request will receive a special authentication result returned by the user authentication framework, indicating that the system authentication process is ended and prompting the application to launch its custom authentication page. As a result, the payment password authentication page customized by the service is displayed.
 
-
-After the user taps this button, the application that initiates the custom authentication will receive a special authentication result returned by the user authentication framework, indicating that the service system authentication is complete and the page for the custom authentication will be started. As a result, the payment password authentication page customized by the service is displayed.
-
-
+<!--RP1-->
 ![](figures/authentication-widget.png)
+<!--RP1End-->
 
-
-You can set **WidgetParam.navigationButtonText** to specify the text displayed on the navigation button.
-
+As shown in the following figure, the selected area is the **WidgetParam.navigationButtonText** field. You can configure this field to guide users to switch from biometric authentication to the service password authentication customized by the application.
 
 > **NOTE**
+>
 > The lock screen password authentication and custom authentication are mutually exclusive.
 
-
-| Authentication Type| Switch to Custom Authentication| 
+| Authentication Type| Switch to Custom Authentication<br>(√ indicates supported, x indicates not supported)|
 | -------- | -------- |
-| Lock screen password authentication| × | 
-| Facial authentication| √ | 
-| Fingerprint authentication| √ | 
-| Facial + lock screen password authentication| × | 
-| Fingerprint + lock screen password authentication| × | 
-| Facial + fingerprint + lock screen password authentication| × | 
-
+| Lock screen password authentication| × |
+| Facial authentication| √ |
+| Fingerprint authentication| √ |
+| Facial + fingerprint authentication<sup>18+</sup>| √ |
+| Facial + lock screen password authentication| × |
+| Fingerprint + lock screen password authentication| × |
+| Facial + fingerprint + lock screen password authentication| × |
 
 ## Development Example
 
-To implement the switchover from a system-supported authentication type to a custom authentication type, the **widgetParam** parameter passed in [initiating authentication](start-authentication.md) must contain **navigationButtonText**.
+For details about how to initiate the authentication request in the transition from a system-supported authentication to a custom authentication, see [initiating authentication](start-authentication.md). Ensure that the **widgetParam** parameter passed in must contain **navigationButtonText**.
 
-The following example only covers how to configure the page for switching to the custom authentication page. You need to implement the process of starting the related page based on the comments in the sample code.
+This example only shows how to configure the UI and select the custom authentication UI. You need to add the code for launching the custom authentication page at the commented line in the example.
 
 ```ts
-import type {BusinessError} from '@ohos.base';
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import { BusinessError } from  '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
-const authParam: userIAM_userAuth.AuthParam = {
-  challenge: new Uint8Array([49, 49, 49, 49, 49, 49]),
-  authType: [userIAM_userAuth.UserAuthType.FACE],
-  authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL3,
-};
-// Set navigationButtonText for the authentication page.
-const widgetParam: userIAM_userAuth.WidgetParam = {
-  title: 'Verify identity',
-  navigationButtonText: 'Use password',
-};
 try {
-  // Obtain a UserAuthInstance object.
-  let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
-  console.log('get userAuth instance success');
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.FACE],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  // Set navigationButtonText for the authentication page.
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Verify identity',
+    navigationButtonText: 'Use password',
+  };
+  // Obtain an authentication object.
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
   // Subscribe to the authentication result.
   userAuthInstance.on('result', {
     onResult(result) {
       // If the ResultCode 12500000 is returned, the operation is successful.
-      console.log('userAuthInstance callback result = ' + JSON.stringify(result));
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
       // If the ResultCode 12500011 is returned, the user taps the navigation button to switch to the custom authentication page.
       if (result.result == 12500011) {
-        // You need to implement the process of starting the custom authentication page.
+        // You need to implement the process of launching the custom authentication page.
       }
     }
   });
-  console.log('auth on success');
+  console.info('auth on success');
   userAuthInstance.start();
-  console.log('auth start success');
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
-  console.log(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```

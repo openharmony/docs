@@ -1,6 +1,6 @@
 # @ohos.app.ability.EmbeddedUIExtensionAbility (跨进程界面嵌入扩展能力)
 
-EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。目前EmbeddedUIExtensionAbility只能被同应用的UIAbility拉起，并且仅允许在拥有多进程权限的场景下使用。
+EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，继承自[UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md)。目前EmbeddedUIExtensionAbility只能被同应用的UIAbility拉起，并且仅允许在拥有多进程权限的场景下使用。各类Ability的继承关系详见[继承关系说明](./js-apis-app-ability-ability.md#ability的继承关系说明)。
 
 > **说明：**
 >
@@ -11,7 +11,7 @@ EmbeddedUIExtensionAbility为开发者提供了跨进程界面嵌入的能力，
 ## 导入模块
 
 ```ts
-import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 ```
 
 ## 属性
@@ -33,7 +33,7 @@ EmbeddedUIExtensionAbility创建时回调，执行初始化业务逻辑操作。
 **示例：**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+  import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -62,9 +62,7 @@ onSessionCreate(want: Want, session: UIExtensionContentSession): void
 **示例：**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-  import Want from '@ohos.app.ability.Want';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import { EmbeddedUIExtensionAbility, Want, UIExtensionContentSession } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -92,8 +90,7 @@ onSessionDestroy(session: UIExtensionContentSession): void
 **示例：**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -115,7 +112,7 @@ EmbeddedUIExtensionAbility生命周期回调，当EmbeddedUIExtensionAbility从�
 **示例：**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+  import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -137,7 +134,7 @@ EmbeddedUIExtensionAbility生命周期回调，当EmbeddedUIExtensionAbility从�
 **示例：**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+  import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 
@@ -166,7 +163,7 @@ EmbeddedUIExtensionAbility生命周期回调，在销毁时回调，执行资源
 **示例：**
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility';
+  import { EmbeddedUIExtensionAbility } from '@kit.AbilityKit';
 
   const TAG: string = '[testTag] EmbeddedUIExt';
 

@@ -1,4 +1,4 @@
-# 能效资源申请（仅对系统特权应用开放）
+# 能效资源申请(ArkTS)（仅对系统特权应用开放）
 
 ## 概述
 
@@ -57,7 +57,7 @@
 1. 导入模块。
 
    ```ts
-   import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
+   import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
    ```
 
 2. 申请能效资源。

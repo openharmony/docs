@@ -19,9 +19,13 @@ ImageAnimator()
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### images
 
@@ -31,13 +35,15 @@ images(value: Array&lt;ImageFrameInfo&gt;)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                   | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[ImageFrameInfo](#imageframeinfo对象说明)&gt; | 是   | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[] |
+| value  | Array&lt;[ImageFrameInfo](#imageframeinfo对象说明)&gt; | 是   | 设置图片帧信息集合。每一帧的帧信息(ImageFrameInfo)包含图片路径、图片大小、图片位置和图片播放时长信息，详见ImageFrameInfo属性说明。<br/>默认值：[] <br/> **说明：** 传入数组的内容过大时，内存占用会随之升高。此内存由开发者自行控制。因此，开发者在传入数据前，请充分评估内存消耗情况，以避免内存不足等问题。 |
 
 ### state
 
@@ -46,6 +52,8 @@ state(value: AnimationStatus)
 控制播放状态。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,6 +71,8 @@ duration(value: number)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -78,6 +88,8 @@ reverse(value: boolean)
 设置播放方向。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -95,6 +107,8 @@ fixedSize(value: boolean)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -110,8 +124,6 @@ preDecode(value: number)
 设置预解码的图片数量。
 
 从API version 9开始废弃。
-
-**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -129,6 +141,8 @@ fillMode(value: FillMode)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -143,6 +157,8 @@ iterations(value: number)
 
 设置播放次数。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -151,20 +167,40 @@ iterations(value: number)
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | value  | number | 是   | 默认播放一次，设置为-1时表示无限次播放。<br/>默认值：1 |
 
+### monitorInvisibleArea<sup>17+</sup>
+
+monitorInvisibleArea(monitorInvisibleArea: boolean)
+
+设置组件是否通过系统[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的可见性判定，控制组件的暂停和播放。
+
+**原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                                                   |
+| ------ | ------ | ---- | ------------------------------------------------------ |
+| monitorInvisibleArea  | boolean | 是 | 当设置为true时，组件将基于系统的[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)可见性判定，控制组件的暂停与播放。<br/> 当组件的运行状态为[AnimationStatus](ts-appendix-enums.md#animationstatus)的Running时，若判定组件不可见，则自动执行暂停操作；若判定为可见，则自动恢复播放。<br/>默认值：false <br/> **说明：** <br/>当该属性由true动态修改为false时，组件将依据当前的[AnimationStatus](ts-appendix-enums.md#animationstatus)状态进行处理。<br/> 例如，若当前状态为Running且因[onVisibleAreaChange](./ts-universal-component-visible-area-change-event.md#onvisibleareachange)的不可见回调暂停，则在属性由true改为false后，组件会从上次暂停的位置重新开始播放。<br/>由该属性导致的不可见暂停和可见暂停操作不会改变用户设置的[state](./ts-basic-components-imageanimator.md#state)值。|
+
 ## ImageFrameInfo对象说明
 
-| 参数名称   | 参数类型   | 必填 | 参数描述 |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填 | 说明 |
 | -------- | -------------- | -------- | -------- |
-| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是    | 图片路径，图片格式为svg，png和jpg，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
-| width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。<br/>默认值：0   <br/>从API version 10开始，该接口支持在ArkTS卡片中使用       |
-| height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。<br/>默认值：0     <br/>从API version 10开始，该接口支持在ArkTS卡片中使用        |
-| top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。<br/>默认值：0  <br/>从API version 10开始，该接口支持在ArkTS卡片中使用  |
-| left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。<br/>默认值：0 <br/>从API version 10开始，该接口支持在ArkTS卡片中使用   |
+| src      | string \| [Resource](ts-types.md#resource)<sup>9+</sup> \| [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是    | 图片路径，图片格式为jpg、jpeg、svg、png、bmp、webp、ico和heif，从API Version9开始支持[Resource](ts-types.md#resource)类型的路径，从API version 12开始支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型。 <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。|
+| width    | number&nbsp;\|&nbsp;string | 否  | 图片宽度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp   <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用       |
+| height   | number&nbsp;\|&nbsp;string | 否  | 图片高度。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp     <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用        |
+| top      | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的纵向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp  <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用  |
+| left     | number&nbsp;\|&nbsp;string | 否  | 图片相对于组件左上角的横向坐标。string类型支持number类型取值的字符串形式，可以附带单位，例如"2"、"2px"。<br/>默认值：0<br/>单位：vp <br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用   |
 | duration | number          | 否     | 每一帧图片的播放时长，单位毫秒。<br/>默认值：0         |
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onStart
 
@@ -173,6 +209,8 @@ onStart(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 状态回调，动画开始播放时触发。
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -184,6 +222,8 @@ onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onRepeat
@@ -191,6 +231,8 @@ onPause(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 onRepeat(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 状态回调，动画重复播放时触发。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -202,6 +244,8 @@ onCancel(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### onFinish
@@ -212,21 +256,25 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 
 **卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
 ## 示例
 
-### 播放Resource动画
+### 示例1（播放Resource动画）
+
+通过ImageAnimator组件播放Resource动画。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct ImageAnimatorExample {
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
 
   build() {
     Column({ space: 10 }) {
@@ -293,27 +341,25 @@ struct ImageAnimatorExample {
 }
 ```
 
-### 播放PixelMap动画
+### 示例2（播放PixelMap动画）
+
+通过ImageAnimator组件播放PixelMap动画。
 
 ```ts
-import image from '@ohos.multimedia.image'
+// xxx.ets
+import { image } from '@kit.ImageKit';
+
 @Entry
 @Component
 struct ImageAnimatorExample {
-  imagePixelMap: Array<PixelMap> = []
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
-  @State images:Array<ImageFrameInfo> = []
+  imagePixelMap: Array<PixelMap> = [];
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
+  @State images:Array<ImageFrameInfo> = [];
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image1')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image2')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image3')))
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.image4')))
-    this.images.push({src:this.imagePixelMap[0]})
-    this.images.push({src:this.imagePixelMap[1]})
-    this.images.push({src:this.imagePixelMap[2]})
-    this.images.push({src:this.imagePixelMap[3]})
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.images.push({src:this.imagePixelMap[0]});
   }
   build() {
     Column({ space: 10 }) {
@@ -324,60 +370,152 @@ struct ImageAnimatorExample {
         .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
         .margin({ top: 100 })
         .onStart(() => {
-          console.info('Start')
+          console.info('Start');
         })
         .onPause(() => {
-          console.info('Pause')
+          console.info('Pause');
         })
         .onRepeat(() => {
-          console.info('Repeat')
+          console.info('Repeat');
         })
         .onCancel(() => {
-          console.info('Cancel')
+          console.info('Cancel');
         })
         .onFinish(() => {
-          console.info('Finish')
-          this.state = AnimationStatus.Stopped
+          console.info('Finish');
+          this.state = AnimationStatus.Stopped;
         })
       Row() {
         Button('start').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Running
+          this.state = AnimationStatus.Running;
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused     // 显示当前帧图片
+          this.state = AnimationStatus.Paused;    // 显示当前帧图片
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped    // 显示动画的起始帧图片
+          this.state = AnimationStatus.Stopped;   // 显示动画的起始帧图片
         }).margin(5)
       }
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
-          this.reverse = !this.reverse
+          this.reverse = !this.reverse;
         }).margin(5)
         Button('once').width(100).padding(5).onClick(() => {
-          this.iterations = 1
+          this.iterations = 1;
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
-          this.iterations = -1 // 无限循环播放
+          this.iterations = -1; // 无限循环播放
         }).margin(5)
       }
     }.width('100%').height('100%')
   }
 
   private async getPixmapFromMedia(resource: Resource) {
-    let unit8Array = await getContext(this)?.resourceManager?.getMediaContent({
+    let unit8Array = await this.getUIContext().getHostContext()?.resourceManager?.getMediaContent({
       bundleName: resource.bundleName,
       moduleName: resource.moduleName,
       id: resource.id
-    })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    });
+    let imageSource = image.createImageSource(unit8Array?.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 }
 ```
 
 ![imageAnimator](figures/imageAnimator.gif)
+
+### 示例3（设置不可见自动停播）
+
+通过[monitorInvisibleArea](#monitorinvisiblearea17)实现了当ImageAnimator的[state](#state)为AnimationStatus.Running时，控制组件在不可见时停止播放，在可见时恢复播放。
+
+```ts
+@Entry
+@Component
+struct ImageAnimatorAutoPauseTest {
+  scroller: Scroller = new Scroller();
+  @State state: AnimationStatus = AnimationStatus.Running;
+  @State reverse: boolean = false;
+  @State iterations: number = 100;
+  @State preCallBack: string = 'Null';
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  build() {
+    Stack({ alignContent: Alignment.TopStart }) {
+      Scroll(this.scroller) {
+        Column() {
+          ImageAnimator()
+            .images([
+              {
+                src: $r('app.media.Clouds')
+              },
+              {
+                src: $r('app.media.landscape')
+              },
+              {
+                src: $r('app.media.sky')
+              },
+              {
+                src: $r('app.media.mountain')
+              }
+            ])
+            .borderRadius(10)
+            .monitorInvisibleArea(true)
+            .clip(true).duration(4000).state(this.state).reverse(this.reverse)
+            .fillMode(FillMode.Forwards).iterations(this.iterations).width(340).height(240)
+            .margin({ top: 100 })
+            .onStart(() => {
+              this.preCallBack = "Start";
+              console.info('ImageAnimator Start');
+            })
+            .onPause(() => {
+              this.preCallBack = "Pause";
+              console.info('ImageAnimator Pause');
+            })
+            .onRepeat(() => {
+              console.info('ImageAnimator Repeat');
+            })
+            .onCancel(() => {
+              console.info('ImageAnimator Cancel');
+            })
+            .onFinish(() => {
+              console.info('ImageAnimator Finish');
+            })
+          ForEach(this.arr, (item: number) => {
+            Text(item.toString())
+              .width('90%')
+              .height(150)
+              .backgroundColor(0xFFFFFF)
+              .borderRadius(15)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .margin({ top: 10 })
+          }, (item: string) => item)
+        }.width('100%')
+      }
+      .scrollable(ScrollDirection.Vertical) // 滚动方向纵向
+      .scrollBar(BarState.On) // 滚动条常驻显示
+      .scrollBarColor(Color.Gray) // 滚动条颜色
+      .scrollBarWidth(10) // 滚动条宽度
+      .friction(0.6)
+      .edgeEffect(EdgeEffect.None)
+      .onWillScroll((xOffset: number, yOffset: number, scrollState: ScrollState) => {
+        console.info(xOffset + ' ' + yOffset);
+      })
+      .onScrollEdge((side: Edge) => {
+        console.info('To the edge');
+      })
+      .onScrollStop(() => {
+        console.info('Scroll Stop');
+      })
+      Text("上次触发的回调（Pause/Start）：" + this.preCallBack)
+        .margin({ top: 60, left: 20 })
+    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+  }
+}
+```
+
+![imageAnimatorMonitorInvisibleAreaExample](figures/imageAnimatorMonitorInvisibleArea.gif)

@@ -28,13 +28,13 @@ listFile(): Array\<FileInfo>
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口：** 此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
   | 类型 | 说明 |
   | --- | -- |
-  | Array [\<FileInfo>](#fileinfo) | FileInfo数组 |
+  | Array [\<FileInfo>](#fileinfo) | FileInfo数组。 |
 
 **错误码：**
 
@@ -57,7 +57,7 @@ listFile(): Array\<FileInfo>
 
 ## trash.recover
 
-recover(uri: string): void;
+recover(uri: string): void
 
 将uri对应文件/目录恢复到原路径。
 
@@ -67,13 +67,13 @@ recover(uri: string): void;
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口：** 此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| uri   | string | 是   | 回收站文件/文件夹URI |
+| uri   | string | 是   | 回收站文件/文件夹URI。 |
 
 **错误码：**
 
@@ -99,13 +99,13 @@ completelyDelete(uri: string): void
 
 **需要权限**：ohos.permission.FILE_ACCESS_MANAGER
 
-**系统接口：** 此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| uri   | string | 是   | 回收站文件/文件夹URI |
+| uri   | string | 是   | 回收站文件/文件夹URI。 |
 
 **错误码：**
 
@@ -119,7 +119,6 @@ completelyDelete(uri: string): void
   trash.completelyDelete(uri);
   ```
 
-
 ## FileInfo
 
 最近删除（回收站）内文件的FileInfo对象。
@@ -130,10 +129,10 @@ completelyDelete(uri: string): void
 
 | 名称 | 类型   | 只读 | 可写 | 说明     |
 | ------ | ------ | -------- | ------ | -------- |
-| uri | string | 是 | 否 | 文件/目录uri |
-| srcPath | string | 是 | 否 | 文件/目录删除前原路径 |
-| fileName | string | 是 | 否 | 文件/目录文件名 |
-| mode | number | 是 | 否 | 文件/目录权限信息 |
-| size | number | 是 | 否 |  文件/目录的大小 |
-| mtime | number | 是 | 否 |  文件/目录的修改时间 |
-| ctime | string | 是 | 否 |  文件/目录的创建时间 |
+| uri | string | 是 | 否 | 文件/目录uri。 |
+| srcPath | string | 是 | 否 | 文件/目录删除前原路径。 |
+| fileName | string | 是 | 否 | 文件/目录文件名。 |
+| mode | number | 是 | 否 | 文件/目录权限信息。 |
+| size | number | 是 | 否 |  文件/目录的大小，单位为Byte。 |
+| mtime | number | 是 | 否 |  文件/目录的修改时间。自1970年1月1日起至目标时间的毫秒数。|
+| ctime | number | 是 | 否 |  文件/目录的创建时间。自1970年1月1日起至目标时间的秒数。|

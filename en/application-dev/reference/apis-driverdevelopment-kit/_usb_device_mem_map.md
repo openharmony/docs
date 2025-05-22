@@ -11,7 +11,9 @@ Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#o
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
+
+**Header file**: [usb_ddk_types.h](usb__ddk__types_8h.md)
 
 
 ## Summary
@@ -21,7 +23,7 @@ Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#o
 
 | Name| Description|
 | -------- | -------- |
-| [address](#address) | Buffer address.|
+| [address](#address) |  Buffer address.|
 | [size](#size) | Buffer size.|
 | [offset](#offset) | Offset of the used buffer. The default value is 0, indicating that there is no offset and the buffer starts from the specified address.|
 | [bufferLength](#bufferlength) | Length of the used buffer. By default, the value is equal to the size, indicating that the entire buffer is used.|

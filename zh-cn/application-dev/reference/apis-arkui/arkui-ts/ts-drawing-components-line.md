@@ -4,7 +4,9 @@
 
 >  **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件从API version 20开始支持使用[AttributeUpdater](../js-apis-arkui-AttributeUpdater.md)类的[updateConstructorParams](../js-apis-arkui-AttributeUpdater.md#updateconstructorparams)接口更新构造参数。
 
 ## 子组件
 
@@ -13,20 +15,37 @@
 
 ## 接口
 
-Line(value?: {width?: string | number, height?: string | number})
+Line(options?: LineOptions)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
+| 参数名 | 类型 | 必填 | 说明 
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度。<br/>**说明：**<br/>值为异常值或缺省时按照自身内容需要的宽度处理。 |
-| height | string \| number | 否 | 高度。<br/>**说明：**<br/>值为异常值或缺省时按照自身内容需要的高度处理。 |
+| options | [LineOptions](ts-drawing-components-line.md#lineoptions18对象说明) | 否 | Line绘制区域。 |
+
+## LineOptions<sup>18+</sup>对象说明
+用于描述Line绘制区域。
+
+**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| width | [Length](ts-types.md#length) | 否 | 宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
+| height | [Length](ts-types.md#length) | 否 | 高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### startPoint
 
@@ -35,6 +54,8 @@ startPoint(value: Array&lt;any&gt;)
 设置直线起点坐标点（相对坐标），异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -52,6 +73,8 @@ endPoint(value: Array&lt;any&gt;)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -67,6 +90,8 @@ fill(value: ResourceColor)
 设置填充区域颜色。Line组件无法形成闭合区域，该属性设置无效。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,6 +109,8 @@ fillOpacity(value: number | string | Resource)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -100,6 +127,8 @@ stroke(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -112,9 +141,11 @@ stroke(value: ResourceColor)
 
 strokeDashArray(value: Array&lt;any&gt;)
 
-设置边框间隙。线段相交时可能会出现重叠现象。异常值按照默认值处理。
+设置边框间隙。线段相交时可能会出现重叠现象。取值范围≥0，异常值按照默认值处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -122,7 +153,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 | 参数名 | 类型                                      | 必填 | 说明                      |
 | ------ | ----------------------------------------- | ---- | ------------------------- |
-| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 边框间隙。<br/>默认值：[] |
+| value  | Array&lt;[Length](ts-types.md#length)&gt; | 是   | 边框间隙。<br/>默认值：[]<br/>默认单位：vp |
 
 ### strokeDashOffset
 
@@ -132,13 +163,15 @@ strokeDashOffset(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -147,6 +180,8 @@ strokeLineCap(value: LineCapStyle)
 设置边框端点绘制样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -164,6 +199,8 @@ strokeLineJoin(value: LineJoinStyle)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -180,6 +217,8 @@ strokeMiterLimit(value: number | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -192,9 +231,11 @@ strokeMiterLimit(value: number | string)
 
 strokeOpacity(value: number | string | Resource)
 
-设置边框透明度。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理 。
+设置边框透明度。该属性的取值范围是[0.0, 1.0]，若给定值小于0.0，则取值为0.0；若给定值大于1.0，则取值为1.0，其余异常值按1.0处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -212,13 +253,15 @@ strokeWidth(value: Length)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | [Length](ts-types.md#length) | 是   | 边框宽度。<br/>默认值：1 |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度，取值范围≥0。<br/>默认值：1<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### antiAlias
 
@@ -228,17 +271,21 @@ antiAlias(value: boolean)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型    | 必填 | 说明                                  |
 | ------ | ------- | ---- | ------------------------------------- |
-| value  | boolean | 是   | 是否开启抗锯齿效果。<br/>默认值：true |
+| value  | boolean | 是   | 是否开启抗锯齿效果。<br/>true：开启抗锯齿；false：关闭抗锯齿。<br/>默认值：true |
 
 ## 示例
 
-### 示例1
+### 示例1（组件属性绘制）
+
+通过startPoint、endPoint、fillOpacity、stroke、strokeDashArray、strokeDashOffset属性分别绘制直线的起始点、结束点、透明度、直线颜色、边框间隙、绘制起点。
 
 ```ts
 // xxx.ets
@@ -292,7 +339,9 @@ struct LineExample {
 
 ![zh-cn_image_0000001219982725](figures/zh-cn_image_0000001219982725.png)
 
-### 示例2
+### 示例2（边框端点绘制）
+
+通过strokeLineCap属性绘制直线的边框端点样式。
 
 ```ts
 // xxx.ets
@@ -310,7 +359,8 @@ struct LineExample1 {
         .stroke(Color.Black)
         .strokeWidth(20)
         .strokeLineCap(LineCapStyle.Butt)
-        .backgroundColor('#F5F5F5').margin(10)
+        .backgroundColor('#F5F5F5')
+        .margin(10)
       // 当LineCapStyle值为Round时
       Line()
         .width(100)
@@ -338,7 +388,9 @@ struct LineExample1 {
 
 ![zh-cn_image1_0000001219982725](figures/zh-cn_image1_0000001219982725.png)
 
-### 示例3
+### 示例3（边框间隙绘制）
+
+通过strokeDashArray属性绘制直线的边框间隙。
 
 ```ts
 // xxx.ets
@@ -390,10 +442,51 @@ struct LineExample {
         .stroke(Color.Black)
         .strokeWidth(10)
         .strokeDashArray([50, 10, 20, 30])
-
     }
   }
 }
 ```
 
 ![zh-cn_image2_0000001219982725](figures/zh-cn_image2_0000001219982725.PNG)
+
+### 示例4（宽和高使用不同参数类型绘制直线）
+
+width、height属性分别使用不同的长度类型绘制直线。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LineTypeExample {
+  build() {
+    Column({ space: 10 }) {
+      // 在200 * 200的区域内绘制一个起始点为（0,0），终点为（150,150），边框宽度为10的直线
+      Line({ width: '200', height: '200' })// 使用string类型
+        .startPoint([0, 0])
+        .endPoint([150, 150])
+        .stroke(Color.Black)
+        .strokeWidth(10)
+        .backgroundColor('#F5F5F5')
+        .margin(10)
+      // 在200 * 200的区域内绘制一个起始点为（0,50），终点为（150,150），边框宽度为10的直线
+      Line({ width: 200, height: 200 })// 使用number类型
+        .startPoint([0, 50])
+        .endPoint([150, 150])
+        .stroke(Color.Black)
+        .strokeWidth(10)
+        .backgroundColor('#F5F5F5')
+        .margin(10)
+      // 在200 * 200的区域内绘制一个起始点为（0,100），终点为（150,150），边框宽度为10的直线
+      Line({ width: $r('app.string.LineWidth'), height: $r('app.string.LineHeight') })// 使用Resource类型，需用户自定义
+        .startPoint([0, 100])
+        .endPoint([150, 150])
+        .stroke(Color.Black)
+        .strokeWidth(10)
+        .backgroundColor('#F5F5F5')
+        .margin(10)
+    }.width('100%')
+  }
+}
+```
+
+![lineDemo4](figures/lineDemo4.png)

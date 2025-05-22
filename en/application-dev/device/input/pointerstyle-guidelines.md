@@ -7,7 +7,7 @@ Mouse pointer management provides the functions such as displaying or hiding the
 ## Modules to Import
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## Available APIs
@@ -25,7 +25,7 @@ The following table lists the common APIs for mouse pointer management. For deta
 
 When watching a video in full-screen mode, a user can hide the mouse pointer for an improved user experience.
 
-## How to Develop
+### How to Develop
 
 1. Switch to the full-screen playback mode.
 2. Hide the mouse pointer.
@@ -33,7 +33,7 @@ When watching a video in full-screen mode, a user can hide the mouse pointer for
 4. Display the mouse pointer.
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 
 // 1. Switch to the full-screen playback mode.
 // 2. Hide the mouse pointer.
@@ -77,13 +77,13 @@ When designing a color picker, you can have the mouse pointer switched to the co
 5. Set the mouse pointer to the default style.
 
 ```js
-import { BusinessError }  from '@ohos.base';
-import pointer from '@ohos.multimodalInput.pointer';
-import window from '@ohos.window';
+import { pointer } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 // 1. Enable the color pickup function.
 // 2. Obtain the window ID.
-window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -103,7 +103,7 @@ window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Wi
   }
 });
 // 4. End color pickup.
-window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;

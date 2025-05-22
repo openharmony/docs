@@ -28,7 +28,7 @@ Enter a valid parameter value.
 
 **Error Message**
 
-Operation failed. Cannot connect to service.
+Service connection failed.
 
 **Description**
 
@@ -67,7 +67,7 @@ Operation error. Try again later.
 
 **Error Message**
 
-Do not have sim card.
+No SIM card found.
 
 **Description**
 
@@ -86,7 +86,7 @@ Insert the SIM card or remove and insert the SIM card again.
 
 **Error Message**
 
-Unknown error code.
+Unknown error.
 
 **Description**
 
@@ -124,7 +124,7 @@ Activate the SIM card.
 
 **Error Message**
 
-SIM card operation error.
+The SIM card failed to read or update data.
 
 **Description**
 
@@ -174,3 +174,42 @@ The current carrier does not support sending of UT requests over a Wi-Fi network
 **Procedure**
 
 Disconnect the Wi-Fi connection, and send a new UT request.
+
+
+## 3120001 Service Connection Error
+
+**Error Message**
+
+Service connection failed.
+
+**Description**
+
+This error code is reported if the attempt to connect to a service fails.
+
+**Possible Causes**
+
+Service startup or IPC connection has failed.
+
+**Procedure**
+
+Operation error. Try again later.
+
+
+
+## 3120002 System Internal Error
+
+**Error Message**
+
+System internal error.
+
+**Description**
+
+This error code is reported if an internal system error occurs.
+
+**Possible Causes**
+
+The possible cause is that data read/write has failed because the network is abnormal.
+
+**Procedure**
+
+Operation error. Try again later.

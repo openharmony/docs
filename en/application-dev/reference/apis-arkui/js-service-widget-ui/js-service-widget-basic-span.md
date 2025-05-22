@@ -25,7 +25,7 @@ The [universal attributes](js-service-widget-common-attributes.md) are supported
 | color | &lt;color&gt; | - | No| Font color of the modified text.|
 | font-size | &lt;length&gt; | 16px | No| Font size of the modified text.|
 | font-style | string | normal | No| Font style of the modified text. For details, see **font-style** of the [**\<text>**](js-service-widget-basic-text.md#styles) component.|
-| font-weight | number \| string | normal | No| Font weight of the modified text. For details, see **font-weight** of the [**\<text>**](js-service-widget-basic-text.md##styles) component.|
+| font-weight | number \| string | normal | No| Font weight of the modified text. For details, see **font-weight** of the [**\<text>**](js-service-widget-basic-text.md#styles) component.|
 | text-decoration | string | none | No| Text decoration of the modified text. For details, see **text-decoration** of the [**\<text>**](js-service-widget-basic-text.md#styles) component.|
 | font-family | string | sans-serif | No| Font family, in which fonts are separated by commas (,). Each font is set using a font name or font family name. The first font in the family or the specified [custom font](js-service-widget-common-customizing-font.md) is used for the text.|
 

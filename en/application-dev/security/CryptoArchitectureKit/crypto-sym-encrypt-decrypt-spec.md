@@ -1,11 +1,8 @@
 # Symmetric Key Encryption and Decryption Algorithm Specifications
 
-
 This topic describes the supported algorithms and specifications for symmetric key encryption and decryption.
 
-
 For details about the cipher modes supported by each algorithm, see the specifications of each algorithm.
-
 
 ## AES
 
@@ -16,7 +13,9 @@ AES is a block cipher, with a fixed block size of 128 bits. If the last block is
 Because the data is padded to the block size, **PKCS5** and **PKCS7** used in the Crypto framework use the block size as the padding length. That is, data is padded to 16 bytes for AES encryption.
 
 > **NOTE**
-> In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.
+>
+> - In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.
+> - In CCM encryption mode, the additional authentication data (AAD) must be specified and its length must be greater than 1 byte and less than 2048 bytes.
 
 The AES encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm and key length), cipher block mode, and padding mode with a vertical bar (|) in between.
 
@@ -41,7 +40,6 @@ The AES encryption and decryption can be implemented based a string parameter. W
   
   For example, if the block mode is CFB and the padding mode is **NoPadding** for an AES key with key length not specified, the string parameter is **AES|CFB|NoPadding**.
 
-
 ## 3DES
 
 [3DES](crypto-sym-key-generation-conversion-spec.md#3des) encryption and decryption apply the DES cipher three times to each data block to obtain the ciphertext or plaintext.
@@ -53,6 +51,7 @@ DES is a block cipher, with a fixed block size of 64 bits. If the last block is 
 Because the data is padded to the block size, **PKCS5** and **PKCS7** used in the Crypto framework use the block size as the padding length. That is, data is padded to 8 bytes for 3DES encryption.
 
 > **NOTE**
+>
 > In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 64 bits.
 
 The 3DES encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm and key length), cipher block mode, and padding mode with a vertical bar (|) in between.
@@ -74,16 +73,16 @@ The 3DES encryption and decryption can be implemented based a string parameter. 
 - Since API version 10, symmetric encryption and decryption support the algorithm specifications without the key length. If the symmetric key type does not contain the key length, the encryption and decryption operations vary with the actual key length.
   For example, if the block mode is CFB and the padding mode is **NoPadding** for a 3DES key with key length not specified, the string parameter is **3DES|CFB|NoPadding**.
 
-
 ## SM4
 
-The Crypto framework provides the following cipher modes for [SM4](crypto-sym-key-generation-conversion-spec.md#sm4) encryption and decryption: ECB, CBC, CTR, OFB, CFB, and CFB128. The encryption and decryption parameters vary depending on the cipher mode. For details, see [ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec).
+The Crypto framework provides the following cipher modes for [SM4](crypto-sym-key-generation-conversion-spec.md#sm4) encryption and decryption: ECB, CBC, CTR, OFB, CFB, CFB128, and GCM. The encryption and decryption parameters vary depending on the cipher mode. For details, see [ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec).
 
 SM4 is a block cipher, with a fixed block size of 128 bits. If the last block is less than 128 bits (16 bytes), you can specify the [padding mode](#padding-mode) to pad data.
 
 Because the data is padded to the block size, **PKCS5** and **PKCS7** used in the Crypto framework use the block size as the padding length. That is, data is padded to 16 bytes for SM4 encryption.
 
 > **NOTE**
+>
 > In ECB and CBC modes, the plaintext must be padded if its length is not an integer multiple of 128 bits.
 
 The SM4 encryption and decryption can be implemented based a string parameter. When creating a **Cipher** instance, you need to specify the algorithm specifications in a string parameter. The string parameter consists of the symmetric key type (algorithm_key length), cipher block mode, and padding mode with a vertical bar (|) in between.
@@ -95,6 +94,8 @@ The SM4 encryption and decryption can be implemented based a string parameter. W
   
   - If the cipher block mode is CFB and padding mode is **NoPadding** for a 128-bit SM4 key, the string parameter is **SM4_128|CFB|NoPadding**.
 
+  - If the cipher block mode is GCM and padding mode is **NoPadding** for a 128-bit SM4 key, the string parameter is **SM4_128|GCM|NoPadding**.
+
   | Cipher Mode| Key Length (Bit)| Padding Mode| API Version| 
   | -------- | -------- | -------- | -------- |
   | ECB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
@@ -103,10 +104,7 @@ The SM4 encryption and decryption can be implemented based a string parameter. W
   | OFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
-
-- Since API version 10, symmetric encryption and decryption support the algorithm specifications without the key length. If the symmetric key type does not contain the key length, the encryption and decryption operations vary with the actual key length.
-  For example, if the block mode is CFB and the padding mode is **NoPadding** for an SM4 key with key length not specified, the string parameter is **SM4|CFB|NoPadding**.
-
+  | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ | 
 
 ## Padding Mode
 

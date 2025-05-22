@@ -110,7 +110,7 @@ Before operating the window context, check whether it exists.
 
 **Error Message**
 
-Start ability failed.
+Failed to start the ability.
 
 **Description**
 
@@ -128,7 +128,7 @@ Pass in the correct parameters.
 
 **Error Message**
 
-The operation is on invalid display.
+The display device is abnormal.
 
 **Description**
 
@@ -164,31 +164,31 @@ This error code is reported when the parent window is invalid.
 1. Ensure that the subwindow is bound to the parent window.
 2. Ensure that the status of the parent window is normal.
 
-## 1300010 Invalid Operation in the Full-Screen Window
+## 1300010 Unsupported Operation in the Current Window Mode
 
 **Error Message**
 
-This operation is not support in fullscreen.
+The operation in the current window status is invalid.
 
 **Description**
 
-This error code is reported when you perform an invalid operation in the full-screen window.
+This error code is reported when the operation is not supported in the current window mode.
 
 **Possible Causes**
 
-1. Perform the move operation in the full-screen window.
-2. Perform the resize operation in the full-screen window.
+1. Perform the move operation in the full-screen or split-screen window.
+2. Perform the resize operation in the full-screen or split-screen window.
 
 **Solution**
 
-1. Do not move the full-screen window.
-2. Do not resize the full-screen window.
+1. Do not move the full-screen or split-screen window.
+2. Do not resize the full-screen or split-screen window.
 
 ## 1300011 Failure in Destroying a PiP Window
 
 **Error Message**
 
-Destroy pip window failed.
+Failed to destroy the PiP window.
 
 **Description**
 
@@ -206,7 +206,7 @@ No action is required.
 
 **Error Message**
 
-Abnormal state of pip window.
+The PiP window state is abnormal.
 
 **Description**
 
@@ -224,7 +224,7 @@ No action is required.
 
 **Error Message**
 
-Create pip window failed.
+Failed to create the PiP window.
 
 **Description**
 
@@ -244,7 +244,7 @@ This error code is reported when creating a PiP window fails.
 
 **Error Message**
 
-Pip internal error.
+PiP internal error.
 
 **Description**
 
@@ -262,7 +262,7 @@ No action is required.
 
 **Error Message**
 
-Repeat operation of pip.
+Repeated PiP operation.
 
 **Description**
 
@@ -279,7 +279,7 @@ Do not start or stop PiP repeatedly.
 ## 1001 Window Null Pointer Exception<sup>(deprecated)</sup>
 **Error Message**
 
-This window nullptr occurs.
+A window null pointer occurs.
 
 **Description**
 
@@ -364,7 +364,7 @@ Before operating a window, ensure that the client and server services in the win
 ## 1007 Application Startup Failure by WindowExtensionAbility<sup>(deprecated)</sup>
 **Error Message**
 
-Start ability failed.
+Failed to start the ability.
 
 **Description**
 

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## pointer.setPointerSpeed
@@ -28,8 +28,17 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | 是    | 鼠标移动速度，范围1-11，默认为5。   |
+| speed    | number                    | 是    | 鼠标移动速度，范围1-20，默认为10。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **示例**：
 
@@ -37,13 +46,13 @@ setPointerSpeed(speed: number, callback: AsyncCallback&lt;void&gt;): void
 try {
   pointer.setPointerSpeed(5, (error: Error) => {
     if (error) {
-      console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set pointer speed success`);
   });
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -61,13 +70,22 @@ setPointerSpeed(speed: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
+| speed | number | 是    | 鼠标移动速度，范围1-20，默认为10。 |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.devicestatus错误码](../apis-distributedservice-kit/errorcode-devicestatus.md)。
+
+| 错误码ID | 错误信息          |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **示例**：
 
@@ -77,7 +95,7 @@ try {
     console.log(`Set pointer speed success`);
   });
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -95,7 +113,16 @@ setPointerSpeedSync(speed: number): void
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | 是    | 鼠标移动速度，范围1-11，默认为5。 |
+| speed | number | 是    | 鼠标移动速度，范围1-20，默认为10。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -104,7 +131,7 @@ try {
   let speed = pointer.setPointerSpeedSync(5);
   console.log(`Set pointer speed success`);
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -124,19 +151,28 @@ getPointerSpeed(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标移动速度。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+
 **示例**：
 
 ```js
 try {
   pointer.getPointerSpeed((error: Error, speed: number) => {
     if (error) {
-      console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -164,7 +200,7 @@ try {
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -184,6 +220,15 @@ getPointerSpeedSync(): number
 | --------------------- | ------------------- |
 | number | 返回鼠标移动速度。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -191,7 +236,7 @@ try {
   let speed = pointer.getPointerSpeedSync();
   console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -212,19 +257,28 @@ setHoverScrollState(state: boolean, callback: AsyncCallback&lt;void&gt;): void
 | state    | boolean                    | 是    | 鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 try {
   pointer.setHoverScrollState(true, (error: Error) => {
     if (error) {
-      console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set the mouse hover scroll success`);
   });
 } catch (error) {
-  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -250,6 +304,15 @@ setHoverScrollState(state: boolean): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -258,7 +321,7 @@ try {
     console.log(`Set the mouse hover scroll success`);
   });
 } catch (error) {
-  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -278,6 +341,15 @@ getHoverScrollState(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -286,7 +358,7 @@ try {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -306,6 +378,15 @@ getHoverScrollState(): Promise&lt;boolean&gt;
 | --------------------- | ------------------- |
 | Promise&lt;boolean&gt; | Promise实例，异步返回鼠标悬停滚动开关状态。true代表开关开启，false代表开关关闭，默认开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -314,7 +395,7 @@ try {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -335,19 +416,28 @@ setMousePrimaryButton(primary: PrimaryButton, callback: AsyncCallback&lt;void&gt
 | primary  | [PrimaryButton](js-apis-pointer.md#primarybutton10)   | 是    | 鼠标主键id。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 try {
   pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error: Error) => {
     if (error) {
-      console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set mouse primary button success`);
   });
 } catch (error) {
-  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -373,6 +463,15 @@ setMousePrimaryButton(primary: PrimaryButton): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -381,7 +480,7 @@ try {
     console.log(`Set mouse primary button success`);
   });
 } catch (error) {
-  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -401,6 +500,15 @@ getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | 是    | 回调函数，异步返回鼠标主键。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -409,7 +517,7 @@ try {
     console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
   });
 } catch (error) {
-  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -429,6 +537,15 @@ getMousePrimaryButton(): Promise&lt;PrimaryButton&gt;
 | --------------------- | ------------------- |
 | Promise&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Promise实例，异步返回鼠标主键。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -437,7 +554,7 @@ try {
     console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
   });
 } catch (error) {
-  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -458,19 +575,28 @@ setMouseScrollRows(rows: number, callback: AsyncCallback&lt;void&gt;): void
 | rows     | number                    | 是    | 鼠标滚动行数，范围1-100，默认为3。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 try {
   pointer.setMouseScrollRows(1, (error: Error) => {
     if (error) {
-      console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setMouseScrollRows success`);
   });
 } catch (error) {
-  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -496,6 +622,15 @@ setMouseScrollRows(rows: number): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -504,7 +639,7 @@ try {
     console.log(`setMouseScrollRows success`);
   });
 } catch (error) {
-  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -524,6 +659,15 @@ getMouseScrollRows(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标滚动行数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -532,7 +676,7 @@ try {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
-  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -552,6 +696,15 @@ getMouseScrollRows(): Promise&lt;number&gt;
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise实例，异步返回鼠标滚动行数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -560,7 +713,7 @@ try {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
-  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -578,8 +731,17 @@ setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | 是    | 滚轴开关开启的状态，true代表开启，false代表关闭，默认为开启   |
+| state | boolean | 是    | 滚轴开关开启的状态，true代表开启，false代表关闭，默认为开启。   |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -587,13 +749,13 @@ setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback\<void>): void
 try {
   pointer.setTouchpadScrollSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadScrollSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -611,13 +773,22 @@ setTouchpadScrollSwitch(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  滚轴开关开启的状态，true代表开启，false代表关闭，默认为开启 |
+| state | boolean| 是    |  滚轴开关开启的状态，true代表开启，false代表关闭，默认为开启。 |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -627,7 +798,7 @@ try {
     console.log(`setTouchpadScrollSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -647,6 +818,15 @@ getTouchpadScrollSwitch(callback:  AsyncCallback\<boolean>): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴能力开启状态。true代表开启，false代表关闭，默认为开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -655,7 +835,7 @@ try {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -675,6 +855,15 @@ getTouchpadScrollSwitch(): Promise\<boolean>
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。true代表开启，false代表关闭，默认为开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -683,7 +872,7 @@ try {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -701,8 +890,17 @@ setTouchpadScrollDirection(state: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | 是    | state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反，<br>默认为true。   |
+| state | boolean | 是    | state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true。   |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -710,13 +908,13 @@ setTouchpadScrollDirection(state: boolean, callback: AsyncCallback\<void>): void
 try {
   pointer.setTouchpadScrollDirection(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadScrollDirection success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -734,13 +932,22 @@ setTouchpadScrollDirection(state: boolean): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true|
+| state | boolean| 是    |  state为触控板滚轴的方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true。|
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -750,7 +957,7 @@ try {
     console.log(`setTouchpadScrollDirection success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -768,7 +975,16 @@ getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -778,7 +994,7 @@ try {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -796,7 +1012,16 @@ getTouchpadScrollDirection(): Promise\<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise\<boolean> | Promise实例，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true |
+| Promise\<boolean> | Promise实例，异步返回触控板滚轴方向。<br>true与手指滑动的方向一致，false与手指滑动的方向相反。<br>默认为true。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -806,7 +1031,7 @@ try {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -827,19 +1052,28 @@ setTouchpadTapSwitch(state: boolean, callback: AsyncCallback\<void>): void
 | state | boolean | 是    |触控板轻触功能开关开启状态。 true代表轻触开启，false代表轻触关闭，默认开启。   |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 try {
   pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadTapSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -865,6 +1099,15 @@ setTouchpadTapSwitch(state: boolean): Promise\<void>
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -873,7 +1116,7 @@ try {
     console.log(`setTouchpadTapSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -893,6 +1136,15 @@ getTouchpadTapSwitch(callback:  AsyncCallback\<boolean>): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板轻触功能开启状态， true代表开启，false代表关闭，默认开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -901,7 +1153,7 @@ try {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -921,6 +1173,15 @@ getTouchpadTapSwitch(): Promise\<boolean>
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板轻触功能开启状态，true代表开启，false代表关闭，默认开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -929,7 +1190,7 @@ try {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -947,8 +1208,17 @@ setTouchpadPointerSpeed(speed: number, callback: AsyncCallback\<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed | number                    | 是    |speed代表光标移动速度。speed取值范围[1,11]，默认5。  |
+| speed | number                    | 是    |speed代表光标移动速度。speed取值范围[1,11]，默认6。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -956,13 +1226,13 @@ setTouchpadPointerSpeed(speed: number, callback: AsyncCallback\<void>): void
 try {
   pointer.setTouchpadPointerSpeed(1, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadPointerSpeed success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -980,13 +1250,22 @@ setTouchpadPointerSpeed(speed: number): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed| number | 是    | speed代表光标移动速度。speed取值范围[1,11]，默认5。    |
+| speed| number | 是    | speed代表光标移动速度。speed取值范围[1,11]，默认6。    |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -996,7 +1275,7 @@ try {
     console.log(`setTouchpadPointerSpeed success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1016,6 +1295,15 @@ getTouchpadPointerSpeed(callback: AsyncCallback\<number>): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<number> | 是    | 回调函数，异步返回触控板光标移动速度。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1024,7 +1312,7 @@ try {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1044,6 +1332,15 @@ getTouchpadPointerSpeed(): Promise\<number>
 | --------------------- | ------------------- |
 | Promise\<number> | Promise实例，异步返回触控板光标移动速度。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1052,7 +1349,7 @@ try {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1073,19 +1370,28 @@ setTouchpadPinchSwitch(state: boolean, callback: AsyncCallback\<void>): void
 | state | boolean | 是    |触控板双指捏合功能开关开启状态。 true代表开启，false代表关闭，默认开启。   |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 try {
   pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadPinchSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1111,6 +1417,15 @@ setTouchpadPinchSwitch(state: boolean): Promise\<void>
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1119,7 +1434,7 @@ try {
     console.log(`setTouchpadPinchSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1139,6 +1454,15 @@ getTouchpadPinchSwitch(callback:  AsyncCallback\<boolean>): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板双指捏合功能开启状态。true代表功能开启，false代表功能关闭，默认开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1147,7 +1471,7 @@ try {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1167,6 +1491,15 @@ getTouchpadPinchSwitch(): Promise\<boolean>
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板双指捏合功能开启状态。true代表功能开启，false代表功能关闭，默认开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1175,7 +1508,7 @@ try {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1196,19 +1529,28 @@ setTouchpadSwipeSwitch(state: boolean, callback: AsyncCallback\<void>): void
 | state | boolean | 是    |触控板多指滑动开关开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。   |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 try {
   pointer.setTouchpadSwipeSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadSwipeSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1234,6 +1576,15 @@ setTouchpadSwipeSwitch(state: boolean): Promise\<void>
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1242,7 +1593,7 @@ try {
     console.log(`setTouchpadSwipeSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1262,6 +1613,15 @@ getTouchpadSwipeSwitch(callback:  AsyncCallback\<boolean>): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板多指滑动功能开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1270,7 +1630,7 @@ try {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1290,6 +1650,15 @@ getTouchpadSwipeSwitch(): Promise\<boolean>
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise实例，异步返回触控板多指滑动功能开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1298,7 +1667,7 @@ try {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1316,8 +1685,17 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：按压触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：按压触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或双指按压触控板。<br>- TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>：双指轻击或双指按压触控板、或按压触控板右键区域。<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>：双指轻击或双指按压触控板、或按压触控板左键区域。<br>默认值为TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON。|
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -1325,13 +1703,13 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 try {
   pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON , (error: Error) => {
     if (error) {
-      console.log(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadRightClickType success`);
   });
 } catch (error) {
-  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1347,15 +1725,24 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 **参数**：
 
-| 参数名    | 类型     | 必填   | 说明                                  |
-| ----- | ------ | ---- | ----------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或按压触控板。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：按压触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：按压触控板左键区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻击或双指按压触控板。<br>- TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>：双指轻击或双指按压触控板、或按压触控板右键区域。<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>：双指轻击或双指按压触控板、或按压触控板左键区域。<br>默认值为TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON。|
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例**：
 
@@ -1365,7 +1752,7 @@ try {
     console.log(`setTouchpadRightClickType success`);
   });
 } catch (error) {
-  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1385,6 +1772,15 @@ getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<[RightClickType](js-apis-pointer.md#rightclicktype10)> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1393,7 +1789,7 @@ try {
     console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1413,6 +1809,15 @@ getTouchpadRightClickType(): Promise\<RightClickType>
 | --------------------- | ------------------- |
 | Promise\<[RightClickType](js-apis-pointer.md#rightclicktype10) > | Promise实例，异步返回触控板右键菜单类型。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1421,7 +1826,7 @@ try {
     console.log(`getTouchpadRightClickType success, typeed: ${JSON.stringify(type)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1442,19 +1847,28 @@ setPointerSize(size: number, callback: AsyncCallback&lt;void&gt;): void
 | size     | number                    | 是    | 鼠标光标大小，范围为[1-7]，默认为1。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，当设置成功时，err为undefined，否则为错误对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 try {
   pointer.setPointerSize(1, (error: Error) => {
     if (error) {
-      console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setPointerSize success`);
   });
 } catch (error) {
-  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1480,6 +1894,15 @@ setPointerSize(size: number): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1488,13 +1911,13 @@ try {
     console.log(`setPointerSize success`);
   });
 } catch (error) {
-  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## pointer.setPointerSizeSync<sup>10+</sup>
 
-setPointerSizeSync(size: number): void;
+setPointerSizeSync(size: number): void
 
 设置鼠标光标大小，使用同步方式进行设置。
 
@@ -1508,6 +1931,15 @@ setPointerSizeSync(size: number): void;
 | ----- | ------ | ---- | ----------------------------------- |
 | size  | number | 是    | 鼠标光标大小，范围为[1-7]，默认为1。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1515,7 +1947,7 @@ try {
   pointer.setPointerSizeSync(5);
   console.log(`setPointerSizeSync success`);
 } catch (error) {
-  console.log(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1535,6 +1967,15 @@ getPointerSize(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标光标大小。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1543,7 +1984,7 @@ try {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
-  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1563,6 +2004,15 @@ getPointerSize(): Promise&lt;number&gt;
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise对象，异步返回鼠标光标大小。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **示例**：
 
 ```js
@@ -1571,7 +2021,7 @@ try {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
-  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1591,6 +2041,15 @@ getPointerSizeSync(): number
 | --------------------- | ------------------- |
 | number | 鼠标光标大小。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **示例**：
 
 ```js
@@ -1598,7 +2057,7 @@ try {
   let pointerSize = pointer.getPointerSizeSync();
   console.log(`getPointerSizeSync success, pointerSize: ${JSON.stringify(pointerSize)}`);
 } catch (error) {
-  console.log(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1623,19 +2082,28 @@ setPointerColor(color: number, callback: AsyncCallback&lt;void&gt;): void
 | color     | number                    | 是    | 鼠标光标颜色，默认为黑色：0x000000。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数，当设置成功时，err为undefined，否则为错误对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
 try {
   pointer.setPointerColor(0xF6C800, (error: Error) => {
     if (error) {
-      console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setPointerColor success`);
   });
 } catch (error) {
-  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1665,6 +2133,15 @@ setPointerColor(color: number): Promise&lt;void&gt;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1673,13 +2150,13 @@ try {
     console.log(`setPointerColor success`);
   });
 } catch (error) {
-  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## pointer.setPointerColorSync<sup>10+</sup>
 
-setPointerColorSync(color: number): void;
+setPointerColorSync(color: number): void
 
 设置鼠标光标颜色，使用同步方式进行设置。
 
@@ -1697,6 +2174,15 @@ setPointerColorSync(color: number): void;
 | ----- | ------ | ---- | ----------------------------------- |
 | color  | number | 是    | 鼠标光标颜色，默认为黑色：0x000000。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1704,7 +2190,7 @@ try {
   pointer.setPointerColorSync(0xF6C800);
   console.log(`setPointerColorSync success`);
 } catch (error) {
-  console.log(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1724,6 +2210,15 @@ getPointerColor(callback: AsyncCallback&lt;number&gt;): void
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标光标颜色。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例**：
 
 ```js
@@ -1732,7 +2227,7 @@ try {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {
-  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1752,6 +2247,15 @@ getPointerColor(): Promise&lt;number&gt;
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise对象，异步返回鼠标光标颜色。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **示例**：
 
 ```js
@@ -1760,7 +2264,7 @@ try {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {
-  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1780,6 +2284,15 @@ getPointerColorSync(): number
 | --------------------- | ------------------- |
 | number | 鼠标光标颜色。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **示例**：
 
 ```js
@@ -1787,6 +2300,164 @@ try {
   let pointerColor = pointer.getPointerColorSync();
   console.log(`getPointerColorSync success, pointerColor: ${JSON.stringify(pointerColor)}`);
 } catch (error) {
-  console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+setTouchpadDoubleTapAndDragState(isOpen: boolean, callback: AsyncCallback\<void>): void
+
+设置触控板双击拖拽开关状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| isOpen | boolean | 是    | 双击拖拽开关的状态，true代表开启，false代表关闭。|
+| callback | AsyncCallback\<void> | 是    | 回调函数。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadDoubleTapAndDragState(true, (error: Error) => {
+    if (error) {
+      console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadDoubleTapAndDragState success`);
+  });
+} catch (error) {
+  console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+setTouchpadDoubleTapAndDragState(isOpen: boolean): Promise\<void>
+
+设置触控板双击拖拽开关状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| 是    |  双击拖拽开关的状态，true代表开启，false代表关闭。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadDoubleTapAndDragState(false).then(() => {
+    console.log(`setTouchpadDoubleTapAndDragState success`);
+  });
+} catch (error) {
+  console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+getTouchpadDoubleTapAndDragState(callback: AsyncCallback\<boolean>): void
+
+获取触控板双击拖拽开关的开启状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板双击拖拽开关的开启状态。返回true代表开启，返回false代表关闭。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadDoubleTapAndDragState((error: Error, state: boolean) => {
+    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.error(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+getTouchpadDoubleTapAndDragState(): Promise\<boolean>
+
+获取触控板双击拖拽开关的开启状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise实例，异步返回触控板双击拖拽开启状态。true代表开启，false代表关闭。|
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID  | 错误信息             |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadDoubleTapAndDragState().then((state) => {
+    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.error(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

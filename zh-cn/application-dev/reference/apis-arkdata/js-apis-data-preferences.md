@@ -2,39 +2,41 @@
 
 用户首选项为应用提供Key-Value键值型的数据处理能力，支持应用持久化轻量级数据，并对其修改和查询。
 
-数据存储形式为键值对，键的类型为字符串型，值的存储数据类型包括数字型、字符型、布尔型以及这3种类型的数组类型。
+数据存储采用键值对形式，键为字符串类型，值可为数字、字符、布尔类型及其对应的数组。
 
+用户首选项的持久化文件存储在[preferencesDir](../../application-models/application-context-stage.md#获取应用文件路径)路径下，创建preferences对象前，需要保证preferencesDir路径可读写。持久化文件存储路径中的[加密等级](../apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode)会影响文件的可读写状态，路径访问限制详见[应用文件目录与应用文件路径](../../file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)。
 
 > **说明：**
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
+>
+> 首选项无法保证进程并发安全，会有文件损坏和数据丢失的风险，不支持在多进程场景下使用。
 
 ## 导入模块
 
 ```ts
-import dataPreferences from '@ohos.data.preferences';
+import { preferences } from '@kit.ArkData';
 ```
 
 ## 常量
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称             | 参数类型 | 可读 | 可写 | 说明                                    |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
-| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为80个字节。     |
-| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为8192个字节。 |
+| MAX_KEY_LENGTH   | number   | 是   | 否   | Key的最大长度限制为1024个字节。     |
+| MAX_VALUE_LENGTH | number   | 是   | 否   | Value的最大长度限制为16MB。 |
 
 
-## dataPreferences.getPreferences
+## preferences.getPreferences
 
 getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Preferences&gt;): void
 
 获取Preferences实例，使用callback异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -48,29 +50,31 @@ getPreferences(context: Context, name: string, callback: AsyncCallback&lt;Prefer
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base';
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
-dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
+preferences.getPreferences(context, 'myStore', (err: BusinessError, val: preferences.Preferences) => {
   if (err) {
     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     return;
   }
-  preferences = val;
+  dataPreferences = val;
   console.info("Succeeded in getting preferences.");
 })
 ```
@@ -78,33 +82,33 @@ dataPreferences.getPreferences(context, 'myStore', (err: BusinessError, val: dat
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
+    preferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: preferences.Preferences) => {
       if (err) {
         console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
         return;
       }
-      preferences = val;
+      dataPreferences = val;
       console.info("Succeeded in getting preferences.");
     })
   }
 }
 ```
 
-## dataPreferences.getPreferences
+## preferences.getPreferences
 
 getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 获取Preferences实例，使用Promise异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -123,27 +127,29 @@ getPreferences(context: Context, name: string): Promise&lt;Preferences&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let preferences: dataPreferences.Preferences | null = null;
-let promise = dataPreferences.getPreferences(context, 'myStore');
-promise.then((object: dataPreferences.Preferences) => {
-  preferences = object;
+let dataPreferences: preferences.Preferences | null = null;
+let promise = preferences.getPreferences(context, 'myStore');
+promise.then((object: preferences.Preferences) => {
+  dataPreferences = object;
   console.info("Succeeded in getting preferences.");
 }).catch((err: BusinessError) => {
   console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -153,17 +159,17 @@ promise.then((object: dataPreferences.Preferences) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let promise = dataPreferences.getPreferences(this.context, 'myStore');
-    promise.then((object: dataPreferences.Preferences) => {
-      preferences = object;
+    let promise = preferences.getPreferences(this.context, 'myStore');
+    promise.then((object: preferences.Preferences) => {
+      dataPreferences = object;
       console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
       console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -172,13 +178,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.getPreferences<sup>10+</sup>
+## preferences.getPreferences<sup>10+</sup>
 
 getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Preferences&gt;): void
 
 获取Preferences实例，使用callback异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -192,33 +198,36 @@ getPreferences(context: Context, options: Options, callback: AsyncCallback&lt;Pr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
+| 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
 | 15500000 | Inner error.                  |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
+let options: preferences.Options = { name: 'myStore' };
+preferences.getPreferences(context, options, (err: BusinessError, val: preferences.Preferences) => {
   if (err) {
     console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
     return;
   }
-  preferences = val;
+  dataPreferences = val;
   console.info("Succeeded in getting preferences.");
 })
 ```
@@ -227,34 +236,34 @@ dataPreferences.getPreferences(context, options, (err: BusinessError, val: dataP
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    dataPreferences.getPreferences(this.context, options, (err: BusinessError, val: dataPreferences.Preferences) => {
+    let options: preferences.Options = { name: 'myStore' };
+    preferences.getPreferences(this.context, options, (err: BusinessError, val: preferences.Preferences) => {
       if (err) {
         console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
         return;
       }
-      preferences = val;
+      dataPreferences = val;
       console.info("Succeeded in getting preferences.");
     })
   }
 }
 ```
 
-## dataPreferences.getPreferences<sup>10+</sup>
+## preferences.getPreferences<sup>10+</sup>
 
 getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 获取Preferences实例，使用Promise异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -273,30 +282,33 @@ getPreferences(context: Context, options: Options): Promise&lt;Preferences&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
+| 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let preferences: dataPreferences.Preferences | null = null;
-let options: dataPreferences.Options = { name: 'myStore' };
-let promise = dataPreferences.getPreferences(context, options);
-promise.then((object: dataPreferences.Preferences) => {
-  preferences = object;
+let dataPreferences: preferences.Preferences | null = null;
+let options: preferences.Options = { name: 'myStore' };
+let promise = preferences.getPreferences(context, options);
+promise.then((object: preferences.Preferences) => {
+  dataPreferences = object;
   console.info("Succeeded in getting preferences.");
 }).catch((err: BusinessError) => {
   console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -306,18 +318,18 @@ promise.then((object: dataPreferences.Preferences) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    let promise = dataPreferences.getPreferences(this.context, options);
-    promise.then((object: dataPreferences.Preferences) => {
-      preferences = object;
+    let options: preferences.Options = { name: 'myStore' };
+    let promise = preferences.getPreferences(this.context, options);
+    promise.then((object: preferences.Preferences) => {
+      dataPreferences = object;
       console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
       console.error("Failed to get preferences. code =" + err.code + ", message =" + err.message);
@@ -326,13 +338,13 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.getPreferencesSync<sup>10+</sup>
+## preferences.getPreferencesSync<sup>10+</sup>
 
 getPreferencesSync(context: Context, options: Options): Preferences
 
 获取Preferences实例，此为同步接口。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -351,54 +363,59 @@ getPreferencesSync(context: Context, options: Options): Preferences
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
 
 let context = featureAbility.getContext();
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
-let options: dataPreferences.Options = { name: 'myStore' };
-preferences = dataPreferences.getPreferencesSync(context, options);
+let options: preferences.Options = { name: 'myStore' };
+dataPreferences = preferences.getPreferencesSync(context, options);
 ```
 
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
-let preferences: dataPreferences.Preferences | null = null;
+let dataPreferences: preferences.Preferences | null = null;
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    preferences = dataPreferences.getPreferencesSync(this.context, options);
+    let options: preferences.Options = { name: 'myStore' };
+    dataPreferences = preferences.getPreferencesSync(this.context, options);
   }
 }
 ```
 
-## dataPreferences.deletePreferences
+## preferences.deletePreferences
 
 deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+不支持该接口与其他preference接口并发调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -412,25 +429,27 @@ deletePreferences(context: Context, name: string, callback: AsyncCallback&lt;voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------|
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
+| 15500010 | Failed to delete the user preferences persistence file. |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
+preferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     return;
@@ -442,13 +461,13 @@ dataPreferences.deletePreferences(context, 'myStore', (err: BusinessError) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    dataPreferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
+    preferences.deletePreferences(this.context, 'myStore', (err: BusinessError) => {
       if (err) {
         console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
         return;
@@ -459,15 +478,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.deletePreferences
+## preferences.deletePreferences
 
 deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+不支持该接口与其他preference接口并发调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -486,25 +507,27 @@ deletePreferences(context: Context, name: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
-| -------- | ------------------------------|
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
+| 15500010 | Failed to delete the user preferences persistence file. |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let promise = dataPreferences.deletePreferences(context, 'myStore');
+let promise = preferences.deletePreferences(context, 'myStore');
 promise.then(() => {
   console.info("Succeeded in deleting preferences.");
 }).catch((err: BusinessError) => {
@@ -515,13 +538,13 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let promise = dataPreferences.deletePreferences(this.context, 'myStore');
+    let promise = preferences.deletePreferences(this.context, 'myStore');
     promise.then(() => {
       console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
@@ -531,15 +554,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.deletePreferences<sup>10+</sup>
+## preferences.deletePreferences<sup>10+</sup>
 
 deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用callback异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+不支持该接口与其他preference接口并发调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -553,28 +578,31 @@ deletePreferences(context: Context, options: Options, callback: AsyncCallback&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                           |
-| -------- | ---------------------------------- |
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid. |
+| 15500010 | Failed to delete the user preferences persistence file. |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
+let options: preferences.Options = { name: 'myStore' };
+preferences.deletePreferences(context, options, (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
     return;
@@ -586,14 +614,14 @@ dataPreferences.deletePreferences(context, options, (err: BusinessError) => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    dataPreferences.deletePreferences(this.context, options, (err: BusinessError) => {
+    let options: preferences.Options = { name: 'myStore' };
+    preferences.deletePreferences(this.context, options, (err: BusinessError) => {
       if (err) {
         console.error("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
         return;
@@ -605,15 +633,17 @@ class EntryAbility extends UIAbility {
 ```
 
 
-## dataPreferences.deletePreferences<sup>10+</sup>
+## preferences.deletePreferences<sup>10+</sup>
 
 deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
+从缓存中删除指定的Preferences实例，若Preferences实例有对应的持久化文件，则同时删除其持久化文件。使用Promise异步回调。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+不支持该接口与其他preference接口并发调用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -632,28 +662,31 @@ deletePreferences(context: Context, options: Options): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                           |
-| -------- | ---------------------------------- |
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15500010 | Failed to delete preferences file. |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid. |
+| 15500010 | Failed to delete the user preferences persistence file. |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
 
-let options: dataPreferences.Options = { name: 'myStore' };
-let promise = dataPreferences.deletePreferences(context, options);
+let options: preferences.Options = { name: 'myStore' };
+let promise = preferences.deletePreferences(context, options);
 promise.then(() => {
   console.info("Succeeded in deleting preferences.");
 }).catch((err: BusinessError) => {
@@ -664,14 +697,14 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    let promise = dataPreferences.deletePreferences(this.context, options);
+    let options: preferences.Options = { name: 'myStore' };
+    let promise = preferences.deletePreferences(this.context, options);
     promise.then(() => {
       console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
@@ -682,17 +715,17 @@ class EntryAbility extends UIAbility {
 ```
 
 
-## dataPreferences.removePreferencesFromCache
+## preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移出指定的Preferences实例，使用callback异步回调。
+从缓存中移除指定的Preferences实例，使用callback异步回调。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -706,23 +739,25 @@ removePreferencesFromCache(context: Context, name: string, callback: AsyncCallba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
+preferences.removePreferencesFromCache(context, 'myStore', (err: BusinessError) => {
   if (err) {
     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     return;
@@ -734,13 +769,13 @@ dataPreferences.removePreferencesFromCache(context, 'myStore', (err: BusinessErr
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    dataPreferences.removePreferencesFromCache(this.context, 'myStore', (err: BusinessError) => {
+    preferences.removePreferencesFromCache(this.context, 'myStore', (err: BusinessError) => {
       if (err) {
         console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
         return;
@@ -751,17 +786,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.removePreferencesFromCache
+## preferences.removePreferencesFromCache
 
 removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，使用Promise异步回调。
+从缓存中移除指定的Preferences实例，使用Promise异步回调。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -780,23 +815,25 @@ removePreferencesFromCache(context: Context, name: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let promise = dataPreferences.removePreferencesFromCache(context, 'myStore');
+let promise = preferences.removePreferencesFromCache(context, 'myStore');
 promise.then(() => {
   console.info("Succeeded in removing preferences.");
 }).catch((err: BusinessError) => {
@@ -807,13 +844,13 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let promise = dataPreferences.removePreferencesFromCache(this.context, 'myStore');
+    let promise = preferences.removePreferencesFromCache(this.context, 'myStore');
     promise.then(() => {
       console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
@@ -823,17 +860,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.removePreferencesFromCacheSync<sup>10+</sup>
+## preferences.removePreferencesFromCacheSync<sup>10+</sup>
 
 removePreferencesFromCacheSync(context: Context, name: string): void
 
-从缓存中移出指定的Preferences实例，此为同步接口。
+从缓存中移除指定的Preferences实例，此为同步接口。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -846,47 +883,49 @@ removePreferencesFromCacheSync(context: Context, name: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
 let context = featureAbility.getContext();
-dataPreferences.removePreferencesFromCacheSync(context, 'myStore');
+preferences.removePreferencesFromCacheSync(context, 'myStore');
 ```
 
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    dataPreferences.removePreferencesFromCacheSync(this.context, 'myStore');
+    preferences.removePreferencesFromCacheSync(this.context, 'myStore');
   }
 }
 ```
 
-## dataPreferences.removePreferencesFromCache<sup>10+</sup>
+## preferences.removePreferencesFromCache<sup>10+</sup>
 
 removePreferencesFromCache(context: Context, options: Options, callback: AsyncCallback&lt;void&gt;): void
 
-从缓存中移出指定的Preferences实例，使用callback异步回调。
+从缓存中移除指定的Preferences实例，使用callback异步回调。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -900,26 +939,29 @@ removePreferencesFromCache(context: Context, options: Options, callback: AsyncCa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
+| 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
+let options: preferences.Options = { name: 'myStore' };
+preferences.removePreferencesFromCache(context, options, (err: BusinessError) => {
   if (err) {
     console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
     return;
@@ -931,14 +973,14 @@ dataPreferences.removePreferencesFromCache(context, options, (err: BusinessError
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    dataPreferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
+    let options: preferences.Options = { name: 'myStore' };
+    preferences.removePreferencesFromCache(this.context, options, (err: BusinessError) => {
       if (err) {
         console.error("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
         return;
@@ -949,17 +991,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.removePreferencesFromCache<sup>10+</sup>
+## preferences.removePreferencesFromCache<sup>10+</sup>
 
 removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&gt;
 
-从缓存中移出指定的Preferences实例，使用Promise异步回调。
+从缓存中移除指定的Preferences实例，使用Promise异步回调。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -978,26 +1020,29 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                       |
+| 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode. |
-| 15501002 | The data group id is not valid.     |
+| 15501001 | The operations is supported in stage mode only. |
+| 15501002 | Invalid dataGroupId.     |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
-import { BusinessError } from '@ohos.base'
+import { featureAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-let promise = dataPreferences.removePreferencesFromCache(context, options);
+let options: preferences.Options = { name: 'myStore' };
+let promise = preferences.removePreferencesFromCache(context, options);
 promise.then(() => {
   console.info("Succeeded in removing preferences.");
 }).catch((err: BusinessError) => {
@@ -1008,14 +1053,14 @@ promise.then(() => {
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import { BusinessError } from '@ohos.base'
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    let promise = dataPreferences.removePreferencesFromCache(this.context, options);
+    let options: preferences.Options = { name: 'myStore' };
+    let promise = preferences.removePreferencesFromCache(this.context, options);
     promise.then(() => {
       console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
@@ -1025,17 +1070,17 @@ class EntryAbility extends UIAbility {
 }
 ```
 
-## dataPreferences.removePreferencesFromCacheSync<sup>10+</sup>
+## preferences.removePreferencesFromCacheSync<sup>10+</sup>
 
 removePreferencesFromCacheSync(context: Context, options: Options):void
 
-从缓存中移出指定的Preferences实例，此为同步接口。
+从缓存中移除指定的Preferences实例，此为同步接口。
 
-应用首次调用[getPreferences](#datapreferencesgetpreferences)接口获取某个Preferences实例后，该实例会被会被缓存起来，后续再次[getPreferences](#datapreferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移出缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
+应用首次调用[getPreferences](#preferencesgetpreferences)接口获取某个Preferences实例后，该实例会被缓存起来，后续调用[getPreferences](#preferencesgetpreferences)时不会再次从持久化文件中读取，直接从缓存中获取Preferences实例。调用此接口移除缓存中的实例之后，再次getPreferences将会重新读取持久化文件，生成新的Preferences实例。
 
-调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会出现数据一致性问题，应将Preferences实例置为null，系统将会统一回收。
+调用该接口后，不建议再使用旧的Preferences实例进行数据操作，否则会导致数据一致性问题，应将Preferences实例置为null，系统会统一回收。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1048,59 +1093,121 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
-| -------- | ------------------------------- |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
+| 801      | Capability not supported.     |
 | 15500000 | Inner error.                   |
-| 15501001 | Only supported in stage mode.   |
-| 15501002 | The data group id is not valid. |
+| 15501001 | The operations is supported in stage mode only.   |
+| 15501002 | Invalid dataGroupId. |
 
 **示例：**
 
 FA模型示例：
 
+<!--code_no_check_fa-->
 ```ts
 // 获取context
-import featureAbility from '@ohos.ability.featureAbility';
+import { featureAbility } from '@kit.AbilityKit';
 let context = featureAbility.getContext();
-let options: dataPreferences.Options = { name: 'myStore' };
-dataPreferences.removePreferencesFromCacheSync(context, options);
+let options: preferences.Options = { name: 'myStore' };
+preferences.removePreferencesFromCacheSync(context, options);
 ```
 
 Stage模型示例：
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
-    let options: dataPreferences.Options = { name: 'myStore', dataGroupId: 'myId' };
-    dataPreferences.removePreferencesFromCacheSync(this.context, options);
+    let options: preferences.Options = { name: 'myStore' };
+    preferences.removePreferencesFromCacheSync(this.context, options);
   }
 }
+```
+
+## StorageType<sup>18+</sup>
+Preferences的存储模式枚举。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+| 名称 | 值   | 说明 |
+| ---- | ---- | ---- |
+| XML |  0    | 表示XML存储模式，这是Preferences的默认存储模式。<br> **特点：** 数据XML格式进行存储。对数据的操作发生在内存中，需要调用flush接口进行落盘。     |
+| GSKV |  1    |表示GSKV存储模式。<br> **特点：** 数据以GSKV数据库模式进行存储。对数据的操作实时落盘，无需调用flush接口对数据进行落盘。      |
+
+
+> **说明：**
+>   - 在选择存储模式前，建议调用isStorageTypeSupported检查当前平台是否支持对应存储模式。
+>   - 当选择某一模式通过getPreferences接口获取实例后，不允许中途切换模式。
+>   - 首选项不支持不同模式间数据的迁移，若需将数据从一种模式切换至另一种模式，需通过读写首选项的形式进行数据迁移。
+>   - 若需要变更首选项的存储路径，不能通过移动或覆盖文件的方式进行，需通过读写首选项的形式进行数据迁移。
+
+## preferences.isStorageTypeSupported<sup>18+</sup>
+isStorageTypeSupported(type: StorageType): boolean
+
+判断当前平台是否支持传入的存储模式，此为同步接口。如果当前平台支持传入的存储模式时，该接口返回true；反之，返回false。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| type | [StorageType](#storagetype18)               | 是   | 需要判断是否支持的存储模式。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| boolean | true表示当前平台支持当前校验的存储模式，false表示当前平台不支持当前校验的存储模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes: Incorrect parameter types. |
+
+
+**示例：**
+
+```ts
+let xmlType = preferences.StorageType.XML;
+let gskvType = preferences.StorageType.GSKV;
+let isXmlSupported = preferences.isStorageTypeSupported(xmlType);
+let isGskvSupported = preferences.isStorageTypeSupported(gskvType);
+console.info("Is xml supported in current platform: " + isXmlSupported);
+console.info("Is gskv supported in current platform: " + isGskvSupported);
 ```
 
 ## Options<sup>10+</sup>
 
 Preferences实例配置选项。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
-
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| name        | string | 是   | Preferences实例的名称。                                      |
-| dataGroupId | string\|null\|undefined | 否   | 应用组ID，需要向应用市场获取。<br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。|
+| name        | string | 是   | Preferences实例的名称。名称长度需大于零且小于等于255字节，名称中不能包含'/'且不能以'/'结尾。 <br/>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 <br/>                                    |
+| dataGroupId | string\|null\|undefined | 否   | 应用组ID，<!--RP1-->暂不支持指定dataGroupId在对应共享沙箱路径下创建Preferences实例。<!--RP1End--><br/>为可选参数。指定在此dataGroupId对应的沙箱路径下创建Preferences实例。当此参数不填时，默认在本应用沙箱目录下创建Preferences实例。<br/> **模型约束：** 此属性仅在Stage模型下可用。<br/>**原子化服务API：** 从API version 11开始，该参数支持在原子化服务中使用。 <br/> |
+| storageType<sup>18+</sup> | [StorageType](#storagetype18)\|null\|undefined | 否  | 存储模式，为可选参数。表示当前Preferences实例需要使用的存储模式。当此参数不填时，默认使用XML存储模式。当选择某种存储模式创建Preferences后，不支持中途切换存储模式。 <br/>**原子化服务API：** 从API version 18开始，该参数支持在原子化服务中使用。 <br/> |
 
 
 ## Preferences
 
 首选项实例，提供获取和修改存储数据的接口。
 
-下列接口都需先使用[dataPreferences.getPreferences](#datapreferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
+下列接口都需先使用[preferences.getPreferences](#preferencesgetpreferences)获取到Preferences实例，再通过此实例调用对应接口。
 
 
 ### get
@@ -1109,7 +1216,7 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用callback异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1123,18 +1230,19 @@ get(key: string, defValue: ValueType, callback: AsyncCallback&lt;ValueType&gt;):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.get('startup', 'default', (err: BusinessError, val: dataPreferences.ValueType) => {
+dataPreferences.get('startup', 'default', (err: BusinessError, val: preferences.ValueType) => {
   if (err) {
     console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
     return;
@@ -1149,7 +1257,7 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，使用Promise异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1168,19 +1276,20 @@ get(key: string, defValue: ValueType): Promise&lt;ValueType&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.get('startup', 'default');
-promise.then((data: dataPreferences.ValueType) => {
+let promise = dataPreferences.get('startup', 'default');
+promise.then((data: preferences.ValueType) => {
   console.info("Succeeded in getting value of 'startup'. Data: " + data);
 }).catch((err: BusinessError) => {
   console.error("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
@@ -1193,7 +1302,7 @@ getSync(key: string, defValue: ValueType): ValueType
 
 从缓存的Preferences实例中获取键对应的值，如果值为null或者非默认值类型，返回默认数据defValue，此为同步接口。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1212,25 +1321,26 @@ getSync(key: string, defValue: ValueType): ValueType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-let value: dataPreferences.ValueType = preferences.getSync('startup', 'default');
+let value: preferences.ValueType = dataPreferences.getSync('startup', 'default');
 ```
 
 ### getAll
 
-getAll(callback: AsyncCallback&lt;Object&gt;): void;
+getAll(callback: AsyncCallback&lt;Object&gt;): void
 
-从缓存的Preferences实例中获取所有键值数据。
+获取缓存的Preferences实例中的所有键值数据。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1242,16 +1352,17 @@ getAll(callback: AsyncCallback&lt;Object&gt;): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Mandatory parameters are left unspecified.|
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
@@ -1260,7 +1371,7 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-preferences.getAll((err: BusinessError, value: Object) => {
+dataPreferences.getAll((err: BusinessError, value: Object) => {
   if (err) {
     console.error("Failed to get all key-values. code =" + err.code + ", message =" + err.message);
     return;
@@ -1276,9 +1387,9 @@ preferences.getAll((err: BusinessError, value: Object) => {
 
 getAll(): Promise&lt;Object&gt;
 
-从缓存的Preferences实例中获取所有键值数据。
+获取缓存的Preferences实例中的所有键值数据。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1286,7 +1397,7 @@ getAll(): Promise&lt;Object&gt;
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;Object&gt; | Promise对象，返回含有所有键值数据。 |
+| Promise&lt;Object&gt; | Promise对象，返回所有包含的键值数据。 |
 
 **错误码：**
 
@@ -1299,7 +1410,7 @@ getAll(): Promise&lt;Object&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 由于ArkTS中无Object.keys，且无法使用for..in...
 // 若报ArkTS问题，请将此方法单独抽离至一个ts文件中并暴露，在需要用到的ets文件中引入使用
@@ -1308,7 +1419,7 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-let promise = preferences.getAll();
+let promise = dataPreferences.getAll();
 promise.then((value: Object) => {
   let allKeys = getObjKeys(value);
   console.info('getAll keys = ' + allKeys);
@@ -1322,9 +1433,9 @@ promise.then((value: Object) => {
 
 getAllSync(): Object
 
-从缓存的Preferences实例中获取所有键值数据，此为同步接口。
+获取缓存的Preferences实例中的所有键值数据，此为同步接口。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1332,7 +1443,7 @@ getAllSync(): Object
 
 | 类型                  | 说明                                        |
 | --------------------- | ------------------------------------------- |
-| Object | 返回含有所有键值数据。 |
+| Object | 返回所有包含的键值数据。|
 
 **错误码：**
 
@@ -1352,7 +1463,7 @@ function getObjKeys(obj: Object): string[] {
   return keys;
 }
 
-let value = preferences.getAllSync();
+let value = dataPreferences.getAllSync();
 let allKeys = getObjKeys(value);
 console.info('getAll keys = ' + allKeys);
 console.info("getAll object = " + JSON.stringify(value));
@@ -1366,9 +1477,11 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
   > **说明：**
   >
+  > 当value中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
+  >
   > 当对应的键已经存在时，put()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1382,18 +1495,19 @@ put(key: string, value: ValueType, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.put('startup', 'auto', (err: BusinessError) => {
+dataPreferences.put('startup', 'auto', (err: BusinessError) => {
   if (err) {
     console.error("Failed to put value of 'startup'. code =" + err.code + ", message =" + err.message);
     return;
@@ -1411,9 +1525,11 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
   > **说明：**
   >
+  > 当value中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
+  >
   > 当对应的键已经存在时，put()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1432,18 +1548,19 @@ put(key: string, value: ValueType): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.put('startup', 'auto');
+let promise = dataPreferences.put('startup', 'auto');
 promise.then(() => {
   console.info("Succeeded in putting value of 'startup'.");
 }).catch((err: BusinessError) => {
@@ -1460,9 +1577,11 @@ putSync(key: string, value: ValueType): void
 
   > **说明：**
   >
+  > 当value中包含非UTF-8格式的字符串时，请使用Uint8Array类型存储，否则会造成持久化文件出现格式错误造成文件损坏。
+  >
   > 当对应的键已经存在时，putSync()方法会覆盖其值。可以使用hasSync()方法检查是否存在对应键值对。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1475,16 +1594,17 @@ putSync(key: string, value: ValueType): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-preferences.putSync('startup', 'auto');
+dataPreferences.putSync('startup', 'auto');
 ```
 
 
@@ -1492,9 +1612,9 @@ preferences.putSync('startup', 'auto');
 
 has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，使用callback异步回调。
+检查缓存的Preferences实例中是否包含指定Key的存储键值对，使用callback异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1507,18 +1627,19 @@ has(key: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.has('startup', (err: BusinessError, val: boolean) => {
+dataPreferences.has('startup', (err: BusinessError, val: boolean) => {
   if (err) {
     console.error("Failed to check the key 'startup'. code =" + err.code + ", message =" + err.message);
     return;
@@ -1536,9 +1657,9 @@ preferences.has('startup', (err: BusinessError, val: boolean) => {
 
 has(key: string): Promise&lt;boolean&gt;
 
-检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，使用Promise异步回调。
+检查缓存的Preferences实例中是否包含指定Key的存储键值对，使用Promise异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1556,18 +1677,19 @@ has(key: string): Promise&lt;boolean&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.has('startup');
+let promise = dataPreferences.has('startup');
 promise.then((val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
@@ -1584,9 +1706,9 @@ promise.then((val: boolean) => {
 
 hasSync(key: string): boolean
 
-检查缓存的Preferences实例中是否包含名为给定Key的存储键值对，此为同步接口。
+检查缓存的Preferences实例中是否包含指定Key的存储键值对，此为同步接口。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1604,16 +1726,17 @@ hasSync(key: string): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-let isExist: boolean = preferences.hasSync('startup');
+let isExist: boolean = dataPreferences.hasSync('startup');
 if (isExist) {
   console.info("The key 'startup' is contained.");
 } else {
@@ -1628,7 +1751,7 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1641,18 +1764,19 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.delete('startup', (err: BusinessError) => {
+dataPreferences.delete('startup', (err: BusinessError) => {
   if (err) {
     console.error("Failed to delete the key 'startup'. code =" + err.code + ", message =" + err.message);
     return;
@@ -1668,7 +1792,7 @@ delete(key: string): Promise&lt;void&gt;
 
 从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1686,18 +1810,19 @@ delete(key: string): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.delete('startup');
+let promise = dataPreferences.delete('startup');
 promise.then(() => {
   console.info("Succeeded in deleting the key 'startup'.");
 }).catch((err: BusinessError) => {
@@ -1712,7 +1837,7 @@ deleteSync(key: string): void
 
 从缓存的Preferences实例中删除名为给定Key的存储键值对，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1724,16 +1849,17 @@ deleteSync(key: string): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-preferences.deleteSync('startup');
+dataPreferences.deleteSync('startup');
 ```
 
 
@@ -1743,7 +1869,11 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用callback异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+  > **说明：**
+  >
+  > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1755,18 +1885,19 @@ flush(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Mandatory parameters are left unspecified.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-preferences.flush((err: BusinessError) => {
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. code =" + err.code + ", message =" + err.message);
     return;
@@ -1782,7 +1913,11 @@ flush(): Promise&lt;void&gt;
 
 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中，使用Promise异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+  > **说明：**
+  >
+  > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1803,9 +1938,9 @@ flush(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.flush();
+let promise = dataPreferences.flush();
 promise.then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
@@ -1813,22 +1948,19 @@ promise.then(() => {
 })
 ```
 
+### flushSync<sup>14+</sup>
 
-### clear
+flushSync(): void
 
-clear(callback: AsyncCallback&lt;void&gt;): void
+将缓存的Preferences实例中的数据存储到用户首选项的持久化文件中。
 
-清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
+  > **说明：**
+  >
+  > 当数据未修改或修改后的数据与缓存数据一致时，不会刷新持久化文件。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
-
-**参数：**
-
-| 参数名   | 类型                      | 必填 | 说明                                                 |
-| -------- | ------------------------- | ---- | ---------------------------------------------------- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当清除成功，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -1841,9 +1973,40 @@ clear(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+dataPreferences.flushSync();
+```
 
-preferences.clear((err: BusinessError) =>{
+### clear
+
+clear(callback: AsyncCallback&lt;void&gt;): void
+
+清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，使用callback异步回调。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                                 |
+| -------- | ------------------------- | ---- | ---------------------------------------------------- |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当清除成功，err为undefined；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
+
+| 错误码ID | 错误信息                        |
+| -------- | ------------------------------ |
+| 401      | Parameter error. Mandatory parameters are left unspecified.                       |
+| 15500000 | Inner error.                   |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+dataPreferences.clear((err: BusinessError) =>{
   if (err) {
     console.error("Failed to clear. code =" + err.code + ", message =" + err.message);
     return;
@@ -1859,7 +2022,7 @@ clear(): Promise&lt;void&gt;
 
 清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，使用Promise异步回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1880,9 +2043,9 @@ clear(): Promise&lt;void&gt;
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = preferences.clear();
+let promise = dataPreferences.clear();
 promise.then(() => {
   console.info("Succeeded in clearing.");
 }).catch((err: BusinessError) => {
@@ -1897,14 +2060,14 @@ clearSync(): void
 
 清除缓存的Preferences实例中的所有数据，可通过[flush](#flush)将Preferences实例持久化，此为同步接口。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
 **示例：**
 
 ```ts
-preferences.clearSync();
+dataPreferences.clearSync();
 ```
 
 
@@ -1914,7 +2077,11 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
 订阅数据变更，订阅的Key的值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+  > **说明：**
+  >
+  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1927,23 +2094,24 @@ on(type: 'change', callback: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
-preferences.on('change', observer);
-preferences.putSync('startup', 'manual');
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('change', observer);
+dataPreferences.putSync('startup', 'manual');
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
@@ -1956,9 +2124,17 @@ preferences.flush((err: BusinessError) => {
 
 on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
-订阅进程间数据变更，多个进程持有同一个首选项文件时，订阅的Key的值在任意一个进程发生变更后，执行[flush](#flush)方法后，触发callback回调。
+订阅进程间数据变更，多个进程持有同一个首选项文件时，在任意一个进程（包括本进程）执行[flush](#flush)方法，持久化文件发生变更后，触发callback回调。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+本接口提供给申请了[dataGroupId](#options10)的应用进行使用，未申请的应用不推荐使用，多进程操作可能会损坏持久化文件，导致数据丢失。
+
+  > **说明：**
+  >
+  > 同一持久化文件在当前进程订阅进程间数据变更的最大数量为50次，超过最大限制后会订阅失败。建议在触发callback回调后及时取消订阅。
+  >
+  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -1971,24 +2147,25 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
-| 错误码ID | 错误信息                               |
+| 错误码ID | 错误信息                                |
 | -------- | -------------------------------------- |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                           |
-| 15500019 | Failed to obtain subscription service. |
+| 15500019 | Failed to obtain the subscription service. |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
-preferences.on('multiProcessChange', observer);
-preferences.putSync('startup', 'manual');
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('multiProcessChange', observer);
+dataPreferences.putSync('startup', 'manual');
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
@@ -2003,7 +2180,11 @@ on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&
 
 精确订阅数据变更，只有被订阅的key值发生变更后，在执行[flush](#flush)方法后，触发callback回调。
 
-**元服务API:** 从API version 12开始，该接口支持在元服务中使用。
+  > **说明：**
+  >
+  > 当调用[removePreferencesFromCache](#preferencesremovepreferencesfromcache)或[deletePreferences](#preferencesdeletepreferences)后，订阅的数据变更会主动取消订阅，在重新[getPreferences](#preferencesgetpreferences)后需要重新订阅数据变更。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -2017,28 +2198,29 @@ on(type: 'dataChange', keys: Array&lt;string&gt;,  callback: Callback&lt;Record&
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let observer = (data: Record<string, dataPreferences.ValueType>) => {
+let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
-let keys = ['name', 'age']
-preferences.on('dataChange', keys, observer);
-preferences.putSync('name', 'xiaohong');
-preferences.putSync('weight', 125);
-preferences.flush((err: BusinessError) => {
+let keys = ['name', 'age'];
+dataPreferences.on('dataChange', keys, observer);
+dataPreferences.putSync('name', 'xiaohong');
+dataPreferences.putSync('weight', 125);
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
@@ -2053,7 +2235,7 @@ off(type: 'change', callback?: Callback&lt;string&gt;): void
 
 取消订阅数据变更。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -2066,30 +2248,31 @@ off(type: 'change', callback?: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
-preferences.on('change', observer);
-preferences.putSync('startup', 'auto');
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('change', observer);
+dataPreferences.putSync('startup', 'auto');
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
   console.info("Succeeded in flushing.");
 })
-preferences.off('change', observer);
+dataPreferences.off('change', observer);
 ```
 
 ### off('multiProcessChange')<sup>10+</sup>
@@ -2098,7 +2281,9 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 取消订阅进程间数据变更。
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+本接口提供给申请了[dataGroupId](#options10)的应用进行使用，未申请的应用不推荐使用，多进程操作可能会损坏持久化文件，导致数据丢失。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -2111,30 +2296,31 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
 }
-preferences.on('multiProcessChange', observer);
-preferences.putSync('startup', 'auto');
-preferences.flush((err: BusinessError) => {
+dataPreferences.on('multiProcessChange', observer);
+dataPreferences.putSync('startup', 'auto');
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
   console.info("Succeeded in flushing.");
 })
-preferences.off('multiProcessChange', observer);
+dataPreferences.off('multiProcessChange', observer);
 ```
 ### off('dataChange')<sup>12+</sup>
 
@@ -2142,7 +2328,7 @@ off(type: 'dataChange', keys: Array&lt;string&gt;,  callback?: Callback&lt;Recor
 
 取消精确订阅数据变更。
 
-**元服务API:** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 
@@ -2156,42 +2342,45 @@ off(type: 'dataChange', keys: Array&lt;string&gt;,  callback?: Callback&lt;Recor
 
 **错误码：**
 
-以下错误码的详细介绍请参见[用户首选项错误码](errorcode-preferences.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[用户首选项错误码](errorcode-preferences.md)。
 
 | 错误码ID | 错误信息                        |
 | -------- | ------------------------------ |
+| 401      | Parameter error. Possible causes:1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed.                       |
 | 15500000 | Inner error.                   |
 
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let observer = (data: Record<string, dataPreferences.ValueType>) => {
+let observer = (data: Record<string, preferences.ValueType>) => {
   for (const keyValue of Object.entries(data)) {
-    console.info(`observer : ${keyValue}`)
+    console.info(`observer : ${keyValue}`);
   }
-  console.info("The observer called.")
+  console.info("The observer called.");
 }
-let keys = ['name', 'age']
-preferences.on('dataChange', keys, observer);
-preferences.putSync('name', 'xiaohong');
-preferences.putSync('weight', 125);
-preferences.flush((err: BusinessError) => {
+let keys = ['name', 'age'];
+dataPreferences.on('dataChange', keys, observer);
+dataPreferences.putSync('name', 'xiaohong');
+dataPreferences.putSync('weight', 125);
+dataPreferences.flush((err: BusinessError) => {
   if (err) {
     console.error("Failed to flush. Cause: " + err);
     return;
   }
   console.info("Succeeded in flushing.");
 })
-preferences.off('dataChange', keys, observer);
+dataPreferences.off('dataChange', keys, observer);
 ```
 
 ## ValueType
 
-用于表示允许的数据字段类型。
+type ValueType = number | string | boolean | Array\<number> | Array\<string> | Array\<boolean> | Uint8Array | object | bigint
 
-**元服务API:** 从API version 11开始，该接口支持在元服务中使用。
+表示支持的值类型。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.DistributedDataManager.Preferences.Core
 

@@ -90,7 +90,7 @@ vendor
 
 RK3399适配主要是将主线编译出来的ramdisk 打包到boot_linux.img中，主要有以下工作：
 
-1. 使能二级启动
+1. 使能二级启动。
 
 在//vendor/yangfan/rk3399.json中使能enable_ramdisk。
 
@@ -109,11 +109,11 @@ RK3399适配主要是将主线编译出来的ramdisk 打包到boot_linux.img中�
   }
   ```
 
-2. 将主线编译出来的ramdsik.img 打包到boot_linux.img
+2. 将主线编译出来的ramdsik.img 打包到boot_linux.img。
 
 配置：
 
-由于rk 启动uboot 支持从ramdisk 启动，只需要在打包boot_linux.img 的配置文件中增加ramdisk.img ，因此没有使用主线的its格式，具体配置就是在内核编译脚本make-ohos.sh 中增加:
+由于rk 启动uboot 支持从ramdisk 启动，只需要在打包boot_linux.img 的配置文件中增加ramdisk.img ，因此没有使用主线的its格式，具体配置就是在内核编译脚本make-ohos.sh 中增加：
 
 ```
 function make_extlinux_conf()
@@ -135,7 +135,7 @@ function make_extlinux_conf()
 
 ### 打包 
 
-增加了打包boot镜像的脚本make-boot.sh，供编译完ramdisk，打包boot 镜像时调用，主要内容:
+增加了打包boot镜像的脚本make-boot.sh，供编译完ramdisk，打包boot 镜像时调用，主要内容：
 
 ```
 genext2fs -B ${blocks} -b ${block_size} -d boot_linux -i 8192 -U boot_linux.img
@@ -145,7 +145,7 @@ genext2fs -B ${blocks} -b ${block_size} -d boot_linux -i 8192 -U boot_linux.img
 
 ### INIT配置
 
-init相关配置请参考[启动恢复子系统]( https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%90%AF%E5%8A%A8%E6%81%A2%E5%A4%8D%E5%AD%90%E7%B3%BB%E7%BB%9F.md )即可
+init相关配置请参考[启动恢复子系统]( https://gitee.com/openharmony/docs/blob/master/zh-cn/readme/%E5%90%AF%E5%8A%A8%E6%81%A2%E5%A4%8D%E5%AD%90%E7%B3%BB%E7%BB%9F.md )即可。
 
 ## **音频**
 
@@ -241,7 +241,7 @@ drivers
 
 #### 实现说明
 
-1. 驱动注册
+1. 驱动注册。
 
    以codec的注册函数为例，当codec驱动初始化时调用如下codec注册函数，将codec注册到codecController链表中。
 
@@ -265,7 +265,7 @@ drivers
    }
    ```
 
-2. 数据流数据分发
+2. 数据流数据分发。
 
    当录音或者播放时，上层lib层通过dispatch将数据下发或读取数据，此接口接收到lib层的请求后，将数据进行分发或将数据返回。
 
@@ -284,7 +284,7 @@ drivers
    }
    ```
 
-3. 控制功能注册接口
+3. 控制功能注册接口。
 
    音量控制、增益控制、通路控制等控制功能都是通过此接口添加到声卡控制列表。
 
@@ -306,7 +306,7 @@ drivers
    }
    ```
 
-4. 电源管理接口
+4. 电源管理接口。
 
    添加组件实现：
 
@@ -403,7 +403,7 @@ drivers
    
    ```
 
-5. 控制流数据分发
+5. 控制流数据分发。
 
    当录音或者播放时，上层lib层通过dispatch将控制指令下发，此接口接收到lib层的控制指令后，将控制指令分发到各驱动模块。
 
@@ -460,26 +460,26 @@ crw------- 1 system system 249,   6 1970-01-01 00:21 hdf_audio_render  //播放�
 
 | **hdf_audio_codec_dev0** | **音频设备名称**       |
 | ------------------------ | ---------------------- |
-| dma_service_0            | dma 驱动服务           |
-| dai_service              | cpu dai 驱动服务       |
-| codec_service_0          | codec 驱动服务         |
-| dsp_service_0            | dsp 驱动服务（可选项） |
+| dma_service_0            | dma 驱动服务。           |
+| dai_service              | cpu dai 驱动服务。      |
+| codec_service_0          | codec 驱动服务。         |
+| dsp_service_0            | dsp 驱动服务（可选项）。 |
 
 | **hdf_audio_codec_dev1** | **音频设备名称**                  |
 | ------------------------ | --------------------------------- |
-| dma_service_0            | dma 驱动服务                      |
-| dai_service              | cpu dai 驱动服务                  |
-| codec_service_1          | accessory 驱动服务（特指smartPA） |
-| dsp_service_0            | dsp 驱动服务（可选项）            |
+| dma_service_0            | dma 驱动服务。                     |
+| dai_service              | cpu dai 驱动服务。                  |
+| codec_service_1          | accessory 驱动服务（特指smartPA）。 |
+| dsp_service_0            | dsp 驱动服务（可选项）。            |
 
 #### 代码路径
 
 ```
 vendor/rockchip/rk3399/hdf_config/khdf
-├── audio 							#audio私有配置文件
+├── audio 							#audio私有配置文件。
 ├── device_info
-|	└── device_info.hcs				#设备配置文件
-└── hdf.hcs							#引用hcs配置文件			
+|	└── device_info.hcs				#设备配置文件。
+└── hdf.hcs							#引用hcs配置文件。			
 ```
 
 #### 配置节点说明
@@ -628,7 +628,7 @@ crw-rw---- 1 root root 81,   9 2013-01-18 10:59 dev/video9
 
 int main(void)
 {
-	// 1. 打开设备
+	// 1. 打开设备。
 	int fd = open("/dev/video10", O_RDWR);
 	if (fd < 0) {
 		printf("open device fail\n");
@@ -656,14 +656,14 @@ int main(void)
 
 int main(void)
 {
-	// 1. 打开设备
+	// 1. 打开设备。
 	int fd = open("/dev/video10", O_RDWR);
 	if (fd < 0) {
 		printf("open device fail\n");
 		return -1;
 	}
 
-	// 2. 获取摄像头支持的格式 ioctl(文件描述符, 命令, 与命令对应的结构体)
+	// 2. 获取摄像头支持的格式 ioctl(文件描述符, 命令, 与命令对应的结构体)。
     struct v4l2_fmtdesc v4fmt;
 	v4fmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
     int i = 0;
@@ -715,44 +715,44 @@ int main(void)
 
 int main(void)
 {
-	// 1. 打开设备
+	// 1. 打开设备。
 	int fd = open("/dev/video10", O_RDWR);
 	if (fd < 0) {
 		printf("open device fail\n");
 		return -1;
 	}
 
-	// 2. 设置采集格式
+	// 2. 设置采集格式。
 	struct v4l2_format vfmt;
 	vfmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 	vfmt.fmt.pix.width = 640;
 	vfmt.fmt.pix.height = 480;
-	vfmt.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV; // 设置的视频采集格式（与上面获取的格式一致）
-	int ret = ioctl(fd, VIDIOC_S_FMT, &vfmt); // 设置格式
+	vfmt.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV; // 设置的视频采集格式（与上面获取的格式一致）。
+	int ret = ioctl(fd, VIDIOC_S_FMT, &vfmt); // 设置格式。
 	if (ret < 0) {
 		printf("set fmt fail\n");
         return -1;
 	}
 	memset(&vfmt, 0, sizeof(vfmt));
 	vfmt.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-	ret = ioctl(fd, VIDIOC_G_FMT, &vfmt); // 获取格式
+	ret = ioctl(fd, VIDIOC_G_FMT, &vfmt); // 获取格式。
 	if (ret < 0) {
 		printf("set->get fmt fail\n");
         return -1;
 	}
 
-    // 3. 申请内核缓冲区队列
+    // 3. 申请内核缓冲区队列。
     struct v4l2_requestbuffers reqbuffer;
     reqbuffer.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-    reqbuffer.count = 4; // 申请4个缓冲区
-    reqbuffer.memory = V4L2_MEMORY_MMAP; // 内存映射方式 MMAP/USERPTR
-    ret = ioctl(fd, VIDIOC_REQBUFS, &reqbuffer); // 分配内存
+    reqbuffer.count = 4; // 申请4个缓冲区。
+    reqbuffer.memory = V4L2_MEMORY_MMAP; // 内存映射方式 MMAP/USERPTR。
+    ret = ioctl(fd, VIDIOC_REQBUFS, &reqbuffer); // 分配内存。
     if (ret < 0) {
         printf("req buffer fail\n");
         return -1;
     }
 
-    // 4. 关闭设备
+    // 4. 关闭设备。
     close(fd);
     return 0;
 }
@@ -762,7 +762,7 @@ int main(void)
 
 执行结果：req buffer fail
 
-原因分析：ioctl(fd, VIDIOC_REQBUFS, &reqbuffer); 失败
+原因分析：ioctl(fd, VIDIOC_REQBUFS, &reqbuffer); 失败。
 
 定位方法1：在内核中加LOG定位VIDIOC_REQBUFS失败的地方。发现所有的ioctl命令下发后都会使用drivers/media/v4l2-core/v4l2-ioctl.c中的video_usercopy接口，但还是没有定位到具体的失败原因。
 
@@ -910,7 +910,7 @@ hdc shell "mount -o rw,remount /"
 hdc file send D:\cyyanl\work\RockChip\bin\v4l2_main /system/bin
 ```
 
-继续执行v4l2_main结果后无framebuffer报错，说明该问题已解决。（另一种思路：分析fb0为何在/dev/graphics/fb0而不是常规的/dev/fb0，然后修改为/dev/fb0。后面有时间再调试该思路）
+继续执行v4l2_main结果后无framebuffer报错，说明该问题已解决。（另一种思路：分析fb0为何在/dev/graphics/fb0而不是常规的/dev/fb0，然后修改为/dev/fb0。后面有时间再调试该思路）。
 
 新报错：ERROR:error: ioctl VIDIOC_QUERYBUF failed.
 
@@ -1073,7 +1073,7 @@ index d7dd15f..f7254b4 100644
 -
      switch (memoryType_) {
          case V4L2_MEMORY_MMAP:
-             // to do something
+             // to do something..
              break;
          case V4L2_MEMORY_USERPTR:
 +            CAMERA_LOGD("V4L2AllocBuffer:V4L2_MEMORY_USERPTR = %d\n", V4L2_MEMORY_USERPTR);
@@ -1210,7 +1210,7 @@ index 0842a47c6..8aa60407f 100644
 
 接下来，调试思路分为2路：
 
-1. 同意用户态和内核态的VIDIOC_QUERYBUF
+1. 同意用户态和内核态的VIDIOC_QUERYBUF。
 
    方案：把用户态的0xc0505609改为内核态的0xc0585609
 
@@ -1234,7 +1234,7 @@ index 0842a47c6..8aa60407f 100644
                 }
    ```
 
-   再次运行v4l2_main结果：Signal 4报错
+   再次运行v4l2_main结果：Signal 4报错。
 
    原因分析：此时ioctl(fd, /*VIDIOC_QUERYBUF*/0xc0585609, &buf) 已经成功了。Signal 4分析可能又是cmd命令码的问题。
 
@@ -1250,7 +1250,7 @@ index 0842a47c6..8aa60407f 100644
    Signal 4
    ```
 
-2. 分析命令码不一致的根因，并做修改
+2. 分析命令码不一致的根因，并做修改。
 
    根因分析：结构体的大小根据32位与64位编译会产生差异，从而影响VIDIOC_QUERYBUF的值。
 
@@ -1558,13 +1558,13 @@ struct v4l2_buffer {
 
 ```
 /drivers/peripheral/input
-├── hal                # input模块的hal层代码
-│   └── include       # input模块hal层内部的头文件
-│   └── src           # input模块hal层代码的具体实现
-├── interfaces         # input模块对上层服务提供的驱动能力接口
-│   └── include       # input模块对外提供的接口定义
-├── test               # input模块的测试代码
-│   └── unittest      # input模块的单元测试代码
+├── hal                # input模块的hal层代码。
+│   └── include       # input模块hal层内部的头文件。
+│   └── src           # input模块hal层代码的具体实现。
+├── interfaces         # input模块对上层服务提供的驱动能力接口。
+│   └── include       # input模块对外提供的接口定义。
+├── test               # input模块的测试代码。
+│   └── unittest      # input模块的单元测试代码。
 ```
 
 详细请参考input子系统[README](https://gitee.com/openharmony/drivers_peripheral/blob/master/input/README_zh.md)
@@ -1602,19 +1602,19 @@ struct v4l2_buffer {
    ```json
     busConfig {
         // 0:i2c 1:spi
-        busType = 0;                            // I2C通信方式
-        busNum = 7;							 // cpu对应touch芯片的I2C编号
-        clkGpio = 72;							 // I2C clk对应的IO引脚编号
-        dataGpio = 71;							 // I2C data对应的IO引脚标号
-        i2cClkIomux = [0xFF77E004, 0x2];		 // I2C [clk引脚对应的复用寄存器，配置为I2C7_clk功能]
-        i2cDataIomux = [0xFF77E000, 0x8000];	 // I2C [data引脚对应的复用寄存器，配置为I2C7_DATA功能]
+        busType = 0;                            // I2C通信方式。
+        busNum = 7;							 // cpu对应touch芯片的I2C编号。
+        clkGpio = 72;							 // I2C clk对应的IO引脚编号。
+        dataGpio = 71;							 // I2C data对应的IO引脚标号。
+        i2cClkIomux = [0xFF77E004, 0x2];		 // I2C [clk引脚对应的复用寄存器，配置为I2C7_clk功能]。
+        i2cDataIomux = [0xFF77E000, 0x8000];	 // I2C [data引脚对应的复用寄存器，配置为I2C7_DATA功能]。
     }
     
     pinConfig {
-        rstGpio = 150;							// touch芯片rst对应的IO引脚编号
-        intGpio = 52;							// touch芯片int对应的IO引脚编号
-        rstRegCfg = [0xFF77E028, 0x00000000];	// rst引脚对应的复用功能寄存器，配置为普通io口
-        intRegCfg = [0xFF770018, 0x00000000];	// int引脚对应的复用功能寄存器，配置为普通io口
+        rstGpio = 150;							// touch芯片rst对应的IO引脚编号。
+        intGpio = 52;							// touch芯片int对应的IO引脚编号。
+        rstRegCfg = [0xFF77E028, 0x00000000];	// rst引脚对应的复用功能寄存器，配置为普通io口。
+        intRegCfg = [0xFF770018, 0x00000000];	// int引脚对应的复用功能寄存器，配置为普通io口。
     }
    ```
 #### FAQ问题

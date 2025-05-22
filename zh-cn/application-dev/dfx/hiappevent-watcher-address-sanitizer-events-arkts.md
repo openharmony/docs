@@ -24,15 +24,21 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
                libentry:
                  - index.d.ts
            - CMakeLists.txt
-           - hello.cpp
+           - napi_init.cpp
          ets:
            - entryability:
-               - EntryAbility.ts
+               - EntryAbility.ets
            - pages:
                - Index.ets
    ```
 
-2. 编辑工程中的“entry > src > main > ets  > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，完整示例代码如下：
+2. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，导入依赖模块：
+
+   ```ts
+   import { hiAppEvent, hilog } from '@kit.PerformanceAnalysisKit';
+   ```
+
+3. 编辑工程中的“entry > src > main > ets > entryability > EntryAbility.ets”文件，在onCreate函数中添加系统事件的订阅，示例代码如下：
 
    ```ts
    hiAppEvent.addWatcher({
@@ -62,7 +68,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.pid=${eventInfo.params['pid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.uid=${eventInfo.params['uid']}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.type=${eventInfo.params['type']}`);
-           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${eventInfo.params['external_log']}`);
+           hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.external_log=${JSON.stringify(eventInfo.params['external_log'])}`);
            hilog.info(0x0000, 'testTag', `HiAppEvent eventInfo.log_over_limit=${eventInfo.params['log_over_limit']}`);
          }
        }
@@ -70,13 +76,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    });
    ```
 
-3. 编辑“entry > src > main > cpp > types > libentry > index.d.ets”文件，完整示例代码如下：
+4. 编辑“entry > src > main > cpp > types > libentry > index.d.ts”文件，完整示例代码如下：
 
    ```ts
    export const test: () => void;
    ```
 
-4. 编辑“entry > src > main > cpp > hello.cpp”文件，该文件实现地址越界场景，并提供NAPI接口给应用层代码调用，完整示例代码如下：
+5. 编辑“entry > src > main > cpp > napi_init.cpp”文件，该文件实现地址越界场景，并提供NAPI接口给应用层代码调用，完整示例代码如下：
 
    ```c++
    #include "napi/native_api.h"
@@ -93,9 +99,9 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    static napi_value Init(napi_env env, napi_value exports)
    {
        napi_property_descriptor desc[] = {
-           {"test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr }
+           { "test", nullptr, Test, nullptr, nullptr, nullptr, napi_default, nullptr }
        };
-       napi_define_properties(envv, exports, sizeof(desc) / sizeof(desc[0]), desc);
+       napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
    EXTERN_C_END
@@ -107,8 +113,8 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
        .nm_register_func = Init,
        .nm_modname = "entry",
        .nm_priv = ((void*)0),
-       .reserved = {0},
-   }
+       .reserved = { 0 },
+   };
 
    extern "C" __attribute__((constructor)) void RegisterEntryModule(void)
    {
@@ -116,10 +122,10 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-5. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，完整示例代码如下：
+6. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，新增按钮触发踩内存事件：
 
    ```ts
-   import testNapi form 'libentry.so'
+   import testNapi from 'libentry.so'
 
    @Entry
    @Component
@@ -127,7 +133,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
      build() {
        Row() {
          Column() {
-           Button("address-sanitizer").onClick(() = > {
+           Button("address-sanitizer").onClick(() => {
              testNapi.test();
            })
          }
@@ -138,7 +144,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    }
    ```
 
-6. 点击IDE界面中的“entry”，点击“Edit Configurations...”，勾选“Address Sanitizer”，保存设置。点击IDE界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
+7. 点击DevEco Studio界面中的“entry”，点击“Edit Configurations”，点击“Diagnostics”，勾选“Address Sanitizer”，保存设置。点击DevEco Studio界面中的运行按钮，运行应用工程，然后在应用界面中点击按钮“address-sanitizer”，触发一次踩内存事件。应用崩溃后重新进入应用，可以在Log窗口看到对系统事件数据的处理日志：
 
    ```text
    HiAppEvent onReceive: domain=OS
@@ -152,6 +158,6 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    HiAppEvent eventInfo.pid=12889
    HiAppEvent eventInfo.uid=20020140
    HiAppEvent eventInfo.type=stack-buffer-overflow
-   HiAppEvent eventInfo.external_log=/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log
+   HiAppEvent eventInfo.external_log=["/data/storage/el2/log/hiappevent/ADDRESS_SANITIZER_1713161197960_12889.log"]
    HiAppEvent eventInfo.log_over_limit=false
    ```

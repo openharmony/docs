@@ -3,11 +3,13 @@
 
 ## Overview
 
-The **Camera_Size** struct defines the parameters that describe the size.
+The Camera_Size struct describes the parameters related to the size.
 
 **Since**: 11
 
 **Related module**: [OH_Camera](_o_h___camera.md)
+
+**Header file**: [camera.h](camera_8h.md)
 
 
 ## Summary

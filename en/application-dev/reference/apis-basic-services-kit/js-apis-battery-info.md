@@ -10,7 +10,7 @@ The **batteryInfo** module provides APIs for querying the charger type, battery 
 ## Modules to Import
 
 ```js
-import batteryInfo from '@ohos.batteryInfo';
+import {batteryInfo} from '@kit.BasicServicesKit';
 ```
 
 ## batteryInfo
@@ -21,20 +21,21 @@ Describes battery information.
 
 | Name     | Type       | Readable| Writable|  Description    |
 | --------------- | ------------------- | ---- | ---- | ---------------------|
-| batterySOC                                | number                                         | Yes  | No  | Battery state of charge (SoC) of the device, in unit of percentage. It applies to atomic services<sup>12+</sup>.                          |
-| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | Yes  | No  | Battery charging status of the current device. It applies to atomic services<sup>12+</sup>.                              |
+| batterySOC                                | number                                         | Yes  | No  | Battery state of charge (SoC) of the device, in unit of percentage.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                          |
+| chargingStatus                            | [BatteryChargeState](#batterychargestate)      | Yes  | No  | Battery charging state of the current device.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                              |
 | healthStatus                              | [BatteryHealthState](#batteryhealthstate)      | Yes  | No  | Battery health status of the device.                              |
 | pluggedType                               | [BatteryPluggedType](#batterypluggedtype)      | Yes  | No  | Charger type of the device.                            |
 | voltage                                   | number                                         | Yes  | No  | Battery voltage of the device, in unit of microvolt.                        |
 | technology                                | string                                         | Yes  | No  | Battery technology of the device.                              |
 | batteryTemperature                        | number                                         | Yes  | No  | Battery temperature of the device, in unit of 0.1°C.                   |
 | isBatteryPresent<sup>7+</sup>             | boolean                                        | Yes  | No  | Whether the battery is supported or present.                |
-| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | Yes  | No  | Battery level of the device.                              |
+| batteryCapacityLevel<sup>9+</sup>         | [BatteryCapacityLevel](#batterycapacitylevel9) | Yes  | No  | Battery level of the device.                                                 
+| nowCurrent<sup>12+</sup>                  | number                                         | Yes  | No  | Battery current of the device, in unit of mA.                       |         
 
 **Example**
 
   ```ts
-  import batteryInfo from '@ohos.batteryInfo';
+  import {batteryInfo} from '@kit.BasicServicesKit';
 
   let batterySOCInfo: number = batteryInfo.batterySOC;
   console.info("The batterySOCInfo is: " + batterySOCInfo);
@@ -62,6 +63,9 @@ Describes battery information.
 
   let batteryCapacityLevelInfo = batteryInfo.batteryCapacityLevel;
   console.info("The batteryCapacityLevelInfo is: " + batteryCapacityLevelInfo);
+
+  let nowCurrentInfo: number = batteryInfo.nowCurrent;
+  console.info("The nowCurrentInfo is: " + nowCurrentInfo);
   ```
 
 ## BatteryPluggedType
@@ -79,7 +83,9 @@ Enumerates charger types.
 
 ## BatteryChargeState
 
-Enumerates charging states. This API applies to atomic services<sup>12+</sup> is supported.
+Enumerates charging states.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 

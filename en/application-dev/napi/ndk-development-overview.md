@@ -87,6 +87,7 @@ The following table describes the common modules of the NDK.
 | C++ standard library| Provides libc++_shared, a C++ runtime library.| 
 | Log| Prints logs to the HiLog interface of the system.| 
 | Node-API | Acts as an intermediary between ArkTS/JS and C/C++.| 
+| FFRT | Provides a task-based concurrent programming framework.| 
 | libuv | Provides a third-party asynchronous I/O library.| 
 | zlib | Provides basic data compression and decompression interfaces.| 
 | Rawfile | Provides interfaces for reading various packaged resources of an application.| 

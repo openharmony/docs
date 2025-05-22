@@ -1,8 +1,60 @@
-# Crypto Architecture Kit API参考
+# Crypto Architecture Kit（加解密算法框架服务）
 
-- ArkTS API
+- ArkTS API<!--crypto-architecture-arkts-->
   - [@ohos.security.cryptoFramework (加解密算法库框架)](js-apis-cryptoFramework.md)
-  - 已停止维护的接口
+  - 已停止维护的接口<!--crypto-architecture-arkts-dep-->
     - [@system.cipher (加密算法)](js-apis-system-cipher.md)
-- 错误码
+- C API<!--crypto-architecture-c-->
+  - 模块<!--crypto-architecture-module-->
+    - [CryptoArchitectureKit](capi-cryptoarchitecturekit.md)
+    - [CryptoAsymCipherApi](capi-cryptoasymcipherapi.md)
+    - [CryptoAsymKeyApi](capi-cryptoasymkeyapi.md)
+    - [CryptoCommonApi](capi-cryptocommonapi.md)
+    - [CryptoDigestApi](capi-cryptodigestapi.md)
+    - [CryptoKdfApi](capi-cryptokdfapi.md)
+    - [CryptoKeyAgreementApi](capi-cryptokeyagreementapi.md)
+    - [CryptoMacApi](capi-cryptomacapi.md)
+    - [CryptoRandApi](capi-cryptorandapi.md)
+    - [CryptoSignatureApi](capi-cryptosignatureapi.md)
+    - [CryptoSymCipherApi](capi-cryptosymcipherapi.md)
+    - [CryptoSymKeyApi](capi-cryptosymkeyapi.md)
+  - 头文件<!--crypto-architecture-headerfile-->
+    - [crypto_architecture_kit.h](capi-crypto-architecture-kit-h.md)
+    - [crypto_asym_cipher.h](capi-crypto-asym-cipher-h.md)
+    - [crypto_asym_key.h](capi-crypto-asym-key-h.md)
+    - [crypto_common.h](capi-crypto-common-h.md)
+    - [crypto_digest.h](capi-crypto-digest-h.md)
+    - [crypto_kdf.h](capi-crypto-kdf-h.md)
+    - [crypto_key_agreement.h](capi-crypto-key-agreement-h.md)
+    - [crypto_mac.h](capi-crypto-mac-h.md)
+    - [crypto_rand.h](capi-crypto-rand-h.md)
+    - [crypto_signature.h](capi-crypto-signature-h.md)
+    - [crypto_sym_cipher.h](capi-crypto-sym-cipher-h.md)
+    - [crypto_sym_key.h](capi-crypto-sym-key-h.md)
+  - 结构体<!--crypto-architecture-struct-->
+    - [Crypto_DataBlob](capi-crypto-datablob.md)
+    - [OH_CryptoAsymCipher](capi-oh-cryptoasymcipher.md)
+    - [OH_CryptoSm2CiphertextSpec](capi-oh-cryptosm2ciphertextspec.md)
+    - [OH_CryptoKeyPair](capi-oh-cryptokeypair.md)
+    - [OH_CryptoPubKey](capi-oh-cryptopubkey.md)
+    - [OH_CryptoPrivKey](capi-oh-cryptoprivkey.md)
+    - [OH_CryptoAsymKeyGenerator](capi-oh-cryptoasymkeygenerator.md)
+    - [OH_CryptoPrivKeyEncodingParams](capi-oh-cryptoprivkeyencodingparams.md)
+    - [OH_CryptoAsymKeySpec](capi-oh-cryptoasymkeyspec.md)
+    - [OH_CryptoAsymKeyGeneratorWithSpec](capi-oh-cryptoasymkeygeneratorwithspec.md)
+    - [OH_CryptoEcPoint](capi-oh-cryptoecpoint.md)
+    - [OH_CryptoDigest](capi-oh-cryptodigest.md)
+    - [OH_CryptoKdf](capi-oh-cryptokdf.md)
+    - [OH_CryptoKdfParams](capi-oh-cryptokdfparams.md)
+    - [OH_CryptoKeyAgreement](capi-oh-cryptokeyagreement.md)
+    - [OH_CryptoMac](capi-oh-cryptomac.md)
+    - [OH_CryptoRand](capi-oh-cryptorand.md)
+    - [OH_CryptoVerify](capi-oh-cryptoverify.md)
+    - [OH_CryptoSign](capi-oh-cryptosign.md)
+    - [OH_CryptoEccSignatureSpec](capi-oh-cryptoeccsignaturespec.md)
+    - [OH_CryptoSymCipher](capi-oh-cryptosymcipher.md)
+    - [OH_CryptoSymCipherParams](capi-oh-cryptosymcipherparams.md)
+    - [OH_CryptoSymKey](capi-oh-cryptosymkey.md)
+    - [OH_CryptoSymKeyGenerator](capi-oh-cryptosymkeygenerator.md)
+- 错误码<!--crypto-architecture-arkts-errcode-->
   - [crypto framework错误码](errorcode-crypto-framework.md)

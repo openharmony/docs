@@ -1,4 +1,5 @@
 # @ohos.wantAgent (WantAgent) (System API)
+<!--deprecated_code_no_check-->
 
 The **WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object.
 
@@ -22,7 +23,7 @@ Obtains the Want in a **WantAgent** object. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -94,7 +95,7 @@ Obtains the Want in a **WantAgent** object. This API uses a promise to return th
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 

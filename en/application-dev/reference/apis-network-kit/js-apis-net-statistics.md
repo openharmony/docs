@@ -1,14 +1,15 @@
 # @ohos.net.statistics (Traffic Management)
 
-The **statistics** module provides APIs to query real-time or historical data traffic by the specified network interface card (NIC) or user ID (UID).
+The **statistics** module provides APIs to obtain the real-time uplink and downlink data traffic of the specified NIC.
 
 > **NOTE**
+>
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```js
-import statistics from "@ohos.net.statistics";
+import { statistics } from '@kit.NetworkKit';
 ```
 
 ## statistics.getIfaceRxBytes<sup>10+</sup>
@@ -33,17 +34,17 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceRxBytes("wlan0", (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -77,16 +78,16 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceRxBytes("wlan0").then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -115,17 +116,17 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceTxBytes("wlan0", (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -159,16 +160,16 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getIfaceTxBytes("wlan0").then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -195,17 +196,17 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -232,16 +233,16 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -268,17 +269,17 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -305,16 +306,16 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
-| 2103012   | Get iface name failed.                       |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
+| 2103012   | Failed to obtain the NIC name.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getCellularTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -341,16 +342,16 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service. |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
-import { BusinessError } from '@ohos.base';
+import { statistics } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 statistics.getAllRxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -377,17 +378,17 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
-statistics.getCellularRxBytes().then((stats: number) => {
+statistics.getAllRxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
 });
 ```
@@ -412,16 +413,16 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getAllTxBytes((error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -448,15 +449,15 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getAllTxBytes().then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -485,16 +486,16 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidRxBytes(20010038, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -528,15 +529,15 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidRxBytes(20010038).then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -565,16 +566,16 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidTxBytes(20010038, (error: BusinessError, stats: number) => {
   console.log(JSON.stringify(error));
@@ -608,15 +609,15 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | ID| Error Message                                    |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
-| 2103005   | Failed to read map.                          |
-| 2103011   | Failed to create map.                        |
+| 2103005   | Failed to read the system map.               |
+| 2103011   | Failed to create a system map.               |
 
 **Example**
 
 ```js
-import statistics from '@ohos.net.statistics';
+import { statistics } from '@kit.NetworkKit';
 
 statistics.getUidTxBytes(20010038).then((stats: number) => {
   console.log(JSON.stringify(stats));
@@ -647,14 +648,14 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // FD of the socket you created.
 statistics.getSockfdRxBytes(sockfd, (error: BusinessError, stats: number) => {
@@ -691,14 +692,14 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // FD of the socket you created.
 statistics.getSockfdRxBytes(sockfd).then((stats: number) => {
@@ -731,14 +732,14 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // FD of the socket you created.
 statistics.getSockfdTxBytes(sockfd, (error: BusinessError, stats: number) => {
@@ -775,14 +776,14 @@ For details about the error codes, see [Traffic Management Error Codes](errorcod
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
-import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { statistics } from '@kit.NetworkKit';
 
 let sockfd = 50; // FD of the socket you created.
 statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
@@ -791,3 +792,15 @@ statistics.getSockfdTxBytes(sockfd).then((stats: number) => {
   console.error(JSON.stringify(err));
 });
 ```
+
+## NetBearType<sup>12+</sup>
+
+type NetBearType = connection.NetBearType
+
+Enumerates network types.
+
+**System capability**: SystemCapability.Communication.NetManager
+
+|       Type      |            Description            |
+| ---------------- | --------------------------- |
+| [connection.NetBearType](js-apis-net-connection.md#netbeartype) | Network type.   |

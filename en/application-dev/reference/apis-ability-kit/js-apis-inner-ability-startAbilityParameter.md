@@ -5,6 +5,7 @@ The **StartAbilityParameter** module defines the parameters for starting an abil
 > **NOTE**
 > 
 > The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> 
 > The APIs of this module can be used only in the FA model.
 
 ## Modules to Import
@@ -20,10 +21,12 @@ import ability from '@ohos.ability.ability';
 | Name              |   Type  | Mandatory  | Description                                   |
 | ------------------- | -------- | ---- | -------------------------------------- |
 | want                | [Want](js-apis-app-ability-want.md)|   Yes  | Want information about the target ability.                    |
-| abilityStartSetting | {[key: string]: any} | No   | Special attribute of the target ability. This attribute can be passed in the call.|
+| abilityStartSetting | { [key: string]: any } | No   | Special attribute of the target ability. This attribute can be passed in the call.|
 | abilityStartSettings<sup>11+<sup> | Record\<string, Object> | No   | Special attribute of the target ability. This attribute can be passed in the call. You are advised to use this attribute to replace **abilityStartSetting**. When this attribute is set, **abilityStartSetting** does not take effect.|
 
 **Example**
+
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';

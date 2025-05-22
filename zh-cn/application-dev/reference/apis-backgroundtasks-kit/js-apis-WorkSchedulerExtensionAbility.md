@@ -11,10 +11,22 @@
 ## 导入模块
 
 ```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
+import { WorkSchedulerExtensionAbility } from '@kit.BackgroundTasksKit';
 ```
 
-## 属性
+## WorkSchedulerExtensionContext<sup>10+</sup>
+
+type WorkSchedulerExtensionContext = _WorkSchedulerExtensionContext
+
+**系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
+
+| 类型 | 说明 |
+| -------- |  -------- |
+| [_WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)|  WorkSchedulerExtension的上下文环境。 |
+
+## WorkSchedulerExtensionAbility
+
+### 属性
 
 **系统能力**：SystemCapability.ResourceSchedule.WorkScheduler
 
@@ -22,7 +34,7 @@ import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
 | -------- | -------- | -------- | -------- | -------- |
 | context<sup>10+</sup> | [WorkSchedulerExtensionContext](js-apis-inner-application-WorkSchedulerExtensionContext.md)  | 是 | 否 | WorkSchedulerExtension的上下文环境，继承自ExtensionContext。 |
 
-## WorkSchedulerExtensionAbility.onWorkStart
+### onWorkStart
 
 onWorkStart(work: workScheduler.WorkInfo): void
 
@@ -39,7 +51,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
 **示例：** 
 
   ```ts
-  import workScheduler from '@ohos.resourceschedule.workScheduler';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStart(workInfo: workScheduler.WorkInfo) {
@@ -48,7 +60,7 @@ onWorkStart(work: workScheduler.WorkInfo): void
   }
   ```
 
-## WorkSchedulerExtensionAbility.onWorkStop
+### onWorkStop
 
 onWorkStop(work: workScheduler.WorkInfo): void
 
@@ -66,7 +78,7 @@ onWorkStop(work: workScheduler.WorkInfo): void
 **示例：** 
 
   ```ts
-  import workScheduler from '@ohos.resourceschedule.workScheduler';
+  import { workScheduler } from '@kit.BackgroundTasksKit';
 
   export default class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
     onWorkStop(workInfo: workScheduler.WorkInfo) {

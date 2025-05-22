@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.StartupConfig
 
-本模块提供组件初始化的配置接口。
+本模块提供启动任务的配置接口。
 
 > **说明：**
 >
@@ -11,45 +11,44 @@
 ## 导入模块
 
 ```js
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
+import { StartupConfig } from '@kit.AbilityKit';
 ```
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
-  | 名称 | 类型 | 只读 | 必填 | 说明 |
+  | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| timeoutMs | number | 是 | 否 | 执行所有组件初始化的超时时间，默认值为10000毫秒。 |
-| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | 是 | 否 | 表示启动框架的监听器，该监听器将在所有组件初始化完成时调用。 |
+| timeoutMs | number | 是 | 是 | 执行所有启动任务的超时时间（单位：毫秒），默认值为10000毫秒。 |
+| startupListener | [StartupListener](./js-apis-app-appstartup-startupListener.md) | 是 | 是 | 表示启动框架的监听器，该监听器将在所有启动任务完成时调用。 |
 
 **示例：**
 
 ```ts
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
-    console.info('StartupTest MyStartupConfigEntry onConfig');
-    let onCompletedCallback = (error) => {
-      console.info('StartupTest MyStartupConfigEntry callback, error=' + JSON.stringify(error));
+    hilog.info(0x0000, 'testTag', `onConfig`);
+    let onCompletedCallback = (error: BusinessError<void>) => {
+      hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        console.error('onCompletedCallback: %{public}d, mssage: %{public}s', error.code, error.mssage);
+        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
-        console.info('onCompletedCallback: success');
+        hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
     }
     let startupListener: StartupListener = {
       'onCompleted': onCompletedCallback
     }
     let config: StartupConfig = {
-      'timeoutMs': 5000,
+      'timeoutMs': 10000,
       'startupListener': startupListener
     }
     return config;
   }
 }
 ```
-

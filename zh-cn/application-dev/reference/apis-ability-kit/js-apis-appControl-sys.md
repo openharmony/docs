@@ -11,14 +11,14 @@
 ## 导入模块
 
 ``` ts
-import appControl from '@ohos.bundle.appControl'
+import appControl from '@ohos.bundle.appControl';
 ```
 
 ## appControl.setDisposedStatus
 
 setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
-以异步方法设置应用的处置状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
+设置应用的处置状态。使用Promise异步回调。成功返回null，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -41,7 +41,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -49,7 +49,7 @@ setDisposedStatus(appId: string, disposedWant: Want): Promise\<void>
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -79,7 +79,7 @@ try {
 
 setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<void>): void;
 
-以异步方法设置应用的处置状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
+设置应用的处置状态。使用callback异步回调。成功返回null，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -97,7 +97,7 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -105,7 +105,7 @@ setDisposedStatus(appId: string, disposedWant: Want, callback: AsyncCallback\<vo
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -154,7 +154,7 @@ setDisposedStatusSync(appId: string, disposedWant: Want): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -162,7 +162,7 @@ setDisposedStatusSync(appId: string, disposedWant: Want): void;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -186,7 +186,7 @@ try {
 
 getDisposedStatus(appId: string): Promise\<Want>;
 
-以异步方法获取指定应用已设置的处置状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+获取指定应用已设置的处置状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -208,7 +208,7 @@ getDisposedStatus(appId: string): Promise\<Want>;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -216,7 +216,7 @@ getDisposedStatus(appId: string): Promise\<Want>;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -244,7 +244,7 @@ try {
 
 getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
-以异步方法获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+获取指定应用的处置状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -261,7 +261,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -269,7 +269,7 @@ getDisposedStatus(appId: string, callback: AsyncCallback\<Want>): void;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -320,7 +320,7 @@ getDisposedStatusSync(appId: string): Want;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -328,7 +328,7 @@ getDisposedStatusSync(appId: string): Want;
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -352,7 +352,7 @@ try {
 
 deleteDisposedStatus(appId: string): Promise\<void>
 
-以异步方法删除应用的处置状态。使用promise异步回调，成功返回null，失败返回对应错误信息。
+删除应用的处置状态。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -370,11 +370,11 @@ deleteDisposedStatus(appId: string): Promise\<void>
 
 | 类型                        | 说明                 |
 | ------------------------- | ------------------ |
-| Promise\<void> | Promise对象，无返回结果的Promise对象 |
+| Promise\<void> | Promise对象，无返回结果的Promise对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -382,7 +382,7 @@ deleteDisposedStatus(appId: string): Promise\<void>
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -410,7 +410,7 @@ try {
 
 deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
-以异步方法删除应用的处置状态。使用callback异步回调，成功返回null，失败返回对应错误信息。
+删除应用的处置状态。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -427,7 +427,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -435,7 +435,7 @@ deleteDisposedStatus(appId: string, callback: AsyncCallback\<void>) : void
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
 
 **示例：**
 
@@ -460,9 +460,9 @@ try {
 
 ## appControl.deleteDisposedStatusSync<sup>10+</sup>
 
-deleteDisposedStatusSync(appId: string) : void
+deleteDisposedStatusSync(appId: string, appIndex:? number) : void
 
-以同步方法删除应用的处置状态。成功返回null，失败抛出对应异常。
+以同步方法删除指定应用或分身应用的处置状态。成功返回null，失败抛出对应异常。
 
 **系统接口：** 此接口为系统接口。
 
@@ -475,10 +475,11 @@ deleteDisposedStatusSync(appId: string) : void
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要查询的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示删除主应用的处置状态。appIndex大于0时，表示删除指定分身应用的处置状态。  |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -486,7 +487,8 @@ deleteDisposedStatusSync(appId: string) : void
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
-| 17700005 |  The specified app ID is empty string.  |
+| 17700005 |  The specified app ID is an empty string.  |
+| 17700061 | AppIndex is not in the valid range. |
 
 **示例：**
 
@@ -497,7 +499,7 @@ import { BusinessError } from '@ohos.base';
 let appId: string = "com.example.myapplication_xxxxx";
 
 try {
-    appControl.deleteDisposedStatusSync(appId);
+    appControl.deleteDisposedStatusSync(appId, 1);
 } catch (error) {
     let message = (error as BusinessError).message;
     console.error('deleteDisposedStatusSync failed ' + message);
@@ -506,7 +508,7 @@ try {
 
 ## 获取应用的appId
 
-appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可以通过[getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo)接口获取。
+appId是应用的唯一标识，由应用Bundle名称和签名信息决定，可以通过[getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo14)接口获取。
 
 **示例：**
 
@@ -533,9 +535,9 @@ try {
 
 ## appControl.getDisposedRule<sup>11+</sup>
 
-getDisposedRule(appId: string): DisposedRule
+getDisposedRule(appId: string, appIndex:? number): DisposedRule
 
-获取指定应用已设置的拦截规则。
+获取指定应用或分身应用已设置的拦截规则。
 
 **系统接口：** 此接口为系统接口。
 
@@ -548,6 +550,7 @@ getDisposedRule(appId: string): DisposedRule
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要获取拦截规则的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示获取主应用的拦截规则。appIndex大于0时，表示获取指定分身应用的拦截规则。    |
 
 **返回值：**
 
@@ -557,7 +560,7 @@ getDisposedRule(appId: string): DisposedRule
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -566,6 +569,7 @@ getDisposedRule(appId: string): DisposedRule
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
 | 17700005 |  The specified app ID is an empty string.  |
+| 17700061 | AppIndex is not in the valid range. |
 
 **示例：**
 
@@ -577,7 +581,7 @@ import Want from '@ohos.app.ability.Want';
 let appId = "com.example.myapplication_xxxxx";
 
 try {
-  let data = appControl.getDisposedRule(appId);
+  let data = appControl.getDisposedRule(appId, 1);
   console.info('getDisposedRule successfully. Data: ' + JSON.stringify(data));
 } catch (error) {
   let message = (error as BusinessError).message;
@@ -587,9 +591,9 @@ try {
 
 ## appControl.setDisposedRule<sup>11+</sup>
 
-setDisposedRule(appId: string, rule: DisposedRule): void
+setDisposedRule(appId: string, rule: DisposedRule, appIndex:? number): void
 
-设置指定应用的拦截规则。
+设置指定应用或分身应用的拦截规则。
 
 **系统接口：** 此接口为系统接口。
 
@@ -603,10 +607,11 @@ setDisposedRule(appId: string, rule: DisposedRule): void
 | ----------- | ------ | ---- | --------------------------------------- |
 | appId  | string | 是    | 要设置拦截规则的应用的appId。<br> appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
 | rule | [DisposedRule](#disposedrule11) | 是 | 指示对应用的拦截规则。 |
+| appIndex<sup>12+</sup>   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示设置主应用的拦截规则。appIndex大于0时，表示设置指定分身应用的拦截规则。            |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -615,6 +620,7 @@ setDisposedRule(appId: string, rule: DisposedRule): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 801 | Capability not supported. |
 | 17700005 |  The specified app ID is an empty string.  |
+| 17700061 | AppIndex is not in the valid range. |
 
 **示例：**
 
@@ -647,10 +653,174 @@ let rule: appControl.DisposedRule = {
 };
 
 try {
-  appControl.setDisposedRule(appId, rule);
+  appControl.setDisposedRule(appId, rule, 1);
 } catch (error) {
   let message = (error as BusinessError).message;
   console.error('setDisposedRule failed ' + message);
+}
+```
+
+## appControl.setUninstallDisposedRule<sup>15+</sup>
+
+setUninstallDisposedRule(appIdentifier: string, rule: UninstallDisposedRule, appIndex:? number): void
+
+设置指定应用或分身应用的卸载处置规则。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appIdentifier  | string | 是    | 要设置卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，获取方法参见[获取应用的appId](#获取应用的appid)。  |
+| rule | [UninstallDisposedRule](#uninstalldisposedrule15) | 是 | 表示要设置的卸载处置规则。 |
+| appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示设置主应用的卸载处置规则。appIndex大于0时，表示设置指定分身应用的卸载处置规则。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied. A non-system application is not allowed to call a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
+| 17700061 | AppIndex is not in the valid range. |
+| 17700074 | The specified appIdentifier is invalid. |
+| 17700075 | The specified bundleName of want is not the same with caller. |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+import Want from '@ohos.app.ability.Want';
+
+let appIdentifier = "com.example.myapplication_xxxxx";
+let want: Want = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
+let rule: appControl.UninstallDisposedRule = {
+  want: want,
+  uninstallComponentType: appControl.UninstallComponentType.EXTENSION,
+  priority: 100
+};
+
+try {
+  appControl.setUninstallDisposedRule(appIdentifier, rule, 1);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('setUninstallDisposedRule failed ' + message);
+}
+```
+
+## appControl.getUninstallDisposedRule<sup>15+</sup>
+
+getUninstallDisposedRule(appIdentifier: string, appIndex:? number): UninstallDisposedRule
+
+获取指定应用或分身应用已设置的卸载处置规则。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS 或 ohos.permission.GET_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appIdentifier  | string | 是    | 要获取卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，设置方法参见[获取应用的appId](#获取应用的appid)。  |
+| appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示获取主应用的卸载处置规则。appIndex大于0时，表示获取指定分身应用的卸载处置规则。              |
+
+**返回值：**
+
+| 类型                        | 说明                 |
+| ------------------------- | ------------------ |
+| [UninstallDisposedRule](#uninstalldisposedrule15) | 表示应用的卸载处置规则。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied. A non-system application is not allowed to call a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
+| 17700061 | AppIndex is not in the valid range. |
+| 17700074 | The specified appIdentifier is invalid. |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appIdentifier = "com.example.myapplication_xxxxx";
+
+try {
+  let data = appControl.getUninstallDisposedRule(appIdentifier, 1);
+  console.info('getUninstallDisposedRule successfully. Data: ' + JSON.stringify(data));
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('getUninstallDisposedRule failed ' + message);
+}
+```
+
+## appControl.deleteUninstallDisposedRule<sup>15+</sup>
+
+deleteUninstallDisposedRule(appIdentifier: string, appIndex:? number): void
+
+删除指定应用或分身应用的卸载处置规则。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.MANAGE_DISPOSED_APP_STATUS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.AppControl
+
+**参数：**
+
+| 参数名       | 类型     | 必填   | 说明                                    |
+| ----------- | ------ | ---- | --------------------------------------- |
+| appIdentifier  | string | 是    | 要删除卸载处置规则的应用的appIdentifier。<br> 如果应用没有appIdentifier可使用appId代替。appId是应用的唯一标识，由应用Bundle名称和签名信息决定，删除方法参见[获取应用的appId](#获取应用的appid)。  |
+| appIndex   | number  | 否   | 表示分身应用的索引，默认值为0。<br> appIndex为0时，表示删除主应用的卸载处置规则。appIndex大于0时，表示删除指定分身应用的卸载处置规则。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                                |
+| ------ | -------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied. A non-system application is not allowed to call a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801 | Capability not supported. |
+| 17700061 | AppIndex is not in the valid range. |
+| 17700074 | The specified appIdentifier is invalid. |
+
+**示例：**
+
+```ts
+import appControl from '@ohos.bundle.appControl';
+import { BusinessError } from '@ohos.base';
+
+let appIdentifier = "com.example.myapplication_xxxxx";
+
+try {
+  appControl.deleteUninstallDisposedRule(appIdentifier, 1);
+} catch (error) {
+  let message = (error as BusinessError).message;
+  console.error('deleteUninstallDisposedRule failed ' + message);
 }
 ```
 
@@ -710,3 +880,29 @@ try {
 | ------- | ---- | -------------------- |
 | ALLOWED_LIST | 1    | 允许运行指定功能的列表。 |
 | DISALLOWED_LIST | 2    | 不允许运行指定功能的列表。 |
+
+## UninstallDisposedRule<sup>15+</sup>
+
+标识卸载处置规则。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称      | 类型           | 可读 | 可写 | 说明                        |
+| --------- | -------------- | ---- | ---- | --------------------------- |
+| want | [Want](js-apis-app-ability-want.md)     | 是   | 是   | 指定应用被拦截时，跳转到的页面。 |
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | 是   | 是   | 拦截时将拉起能力的类型。 |
+| priority | number | 是 | 是 | 拦截规则的优先级。 |
+
+### UninstallComponentType<sup>15+</sup>
+
+标识卸载时功能组件类型。
+
+ **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.AppControl。
+
+ **系统接口：** 此接口为系统接口。
+
+| 名称    | 值   | 说明                 |
+| ------- | ---- | -------------------- |
+| EXTENSION | 1    | 服务扩展能力类型。 |

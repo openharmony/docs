@@ -1,7 +1,0 @@
-# 后台服务
-
-
-Stage模型通过提供ServiceExtensionAbility，支持系统应用实现一个后台服务并对外提供相应的能力；系统应用A实现了一个后台服务，三方应用B可以通过连接系统应用A的后台服务与其进行进程间通信。
-
-
-ServiceExtensionAbility的详细介绍请参见[后台服务开发指导](serviceextensionability.md)。

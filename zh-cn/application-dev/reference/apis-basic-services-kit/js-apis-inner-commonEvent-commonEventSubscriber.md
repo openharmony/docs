@@ -1,866 +1,1032 @@
-# CommonEventSubscriber
-
-描述公共事件的订阅者。
+# commonEventSubscriber
 
 > **说明：**
 >
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## 使用说明
+## CommonEventSubscriber
 
-在使用CommonEventSubscriber的功能前，需要通过CommonEvent.createSubscriber获取subscriber对象。
+表示公共事件的订阅者。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+### 使用说明
+
+在使用CommonEventSubscriber的功能前，需要通过commonEventManager.createSubscriber获取subscriber对象。
 
 ```ts
-import CommonEvent from '@ohos.commonEvent';
-import CommonEventManager from '@ohos.commonEventManager';
-import Base from '@ohos.base';
-let subscriber:CommonEventManager.CommonEventSubscriber; // 用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+import { commonEventManager } from '@kit.BasicServicesKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
+// 定义订阅者，用于保存创建成功的订阅者对象，后续使用其完成订阅及退订的动作
+let subscriber: commonEventManager.CommonEventSubscriber;
 // 订阅者信息
-let subscribeInfo:CommonEventManager.CommonEventSubscribeInfo = {
-	events: ["event"]
+let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+	events: ['event']
 };
-
-// 创建订阅者回调
-function createCB(err:Base.BusinessError, commonEventSubscriber:CommonEventManager.CommonEventSubscriber) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`createSubscriber failed, code is ${err.code}`);
-    } else {
-        console.info("createSubscriber");
-        subscriber = commonEventSubscriber;
-    }
-}
-
 // 创建订阅者
-CommonEvent.createSubscriber(subscribeInfo, createCB);
+subscriber = commonEventManager.createSubscriberSync(subscribeInfo);
 ```
 
-## getCode
+### getCode
 
 getCode(callback: AsyncCallback\<number>): void
 
-获取有序公共事件代码。使用callback异步回调。
+获取有序公共事件传递的数据（number类型）。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明               |
 | -------- | ---------------------- | ---- | ------------------ |
-| callback | AsyncCallback\<number\> | 是   | 公共事件代码。 |
+| callback | AsyncCallback\<number\> | 是   | 回调函数。返回有序公共事件传递的数据（number类型）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//获取有序公共事件代码回调
-function getCodeCB(err:Base.BusinessError, code:number) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getCode " + JSON.stringify(code));
-    }
-}
-subscriber.getCode(getCodeCB);
-```
-
-## getCode
-
-getCode(): Promise\<number>
-
-获取有序公共事件代码。使用Promise异步回调。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型             | 说明                 |
-| ---------------- | -------------------- |
-| Promise\<number> | 公共事件代码。 |
-
-**示例：**
-
-```ts
-subscriber.getCode().then((code:number) => {
-    console.info("getCode " + JSON.stringify(code));
-}).catch((err:Base.BusinessError) => {
-    console.error(`getCode failed, code is ${err.code}, message is ${err.message}`);
+subscriber.getCode((err: BusinessError, code: number) => {
+  if (err) {
+    console.error(`Failed to get code. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
 });
 ```
 
-## getCodeSync<sup>10+</sup>
+### getCode
 
-getCodeSync(): number
+getCode(): Promise\<number>
 
-获取有序公共事件代码。
+获取有序公共事件传递的数据（number类型）。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
-| number | 公共事件代码。 |
+| Promise\<number> | Promise对象。返回有序公共事件传递的数据（number类型）。 |
 
 **示例：**
 
 ```ts
-let code = subscriber.getCodeSync();
-console.info("getCodeSync " + JSON.stringify(code));
+subscriber.getCode().then((code: number) => {
+  console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get code. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## setCode
+### getCodeSync<sup>10+</sup>
+
+getCodeSync(): number
+
+获取有序公共事件传递的数据（number类型）。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型             | 说明                 |
+| ---------------- | -------------------- |
+| number | 表示有序公共事件传递的数据（number类型）。 |
+
+**示例：**
+
+```ts
+let code: number = subscriber.getCodeSync();
+console.info(`Succeeded in getting code, code is ${JSON.stringify(code)}`);
+```
+
+### setCode
 
 setCode(code: number, callback: AsyncCallback\<void>): void
 
-设置有序公共事件的代码。使用callback异步回调。
+设置有序公共事件传递的数据（number类型）。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| code     | number               | 是   | 公共事件的代码。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| code     | number               | 是   | 有序公共事件传递的数据（number类型）。   |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当设置有序公共事件传递的数据（number类型）成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//设置有序公共事件的代码回调
-function setCodeCB(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setCode");
-    }
-}
-subscriber.setCode(1, setCodeCB);
+subscriber.setCode(1, (err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to set code. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting code.`);
+});
 ```
 
-## setCode
+### setCode
 
 setCode(code: number): Promise\<void>
 
-设置有序公共事件的代码。使用Promise异步回调。
+设置有序公共事件传递的数据（number类型）。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | 公共事件的代码。 |
+| code   | number | 是   | 有序公共事件传递的数据（number类型）。 |
 
 **返回值：**
 
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
+| Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
 subscriber.setCode(1).then(() => {
-    console.info("setCode");
-}).catch((err:Base.BusinessError) => {
-    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`Succeeded in setting code.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set code. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## setCodeSync<sup>10+</sup>
+### setCodeSync<sup>10+</sup>
 
 setCodeSync(code: number): void
 
-设置有序公共事件的代码。
+设置有序公共事件传递的数据（number类型）。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| code   | number | 是   | 公共事件的代码。 |
+| code   | number | 是   | 有序公共事件传递的数据（number类型）。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **示例：**
 
 ```ts
-
 try {
-    subscriber.setCodeSync(1);
+  subscriber.setCodeSync(1);
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`setCodeSync failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to set code. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## getData
+### getData
 
 getData(callback: AsyncCallback\<string>): void
 
-获取有序公共事件的数据。使用callback异步回调。
+获取有序公共事件传递的数据（string类型）。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                   | 必填 | 说明                 |
 | -------- | ---------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<string> | 是   | 公共事件的数据。 |
+| callback | AsyncCallback\<string> | 是   | 回调函数。返回有序公共事件传递的数据（string类型）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//获取有序公共事件代码数据回调
-function getDataCB(err:Base.BusinessError, data:string) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("getData " + JSON.stringify(data));
-    }
-}
-subscriber.getData(getDataCB);
-```
-
-## getData
-
-getData(): Promise\<string>
-
-获取有序公共事件的数据。使用Promise异步回调。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型             | 说明               |
-| ---------------- | ------------------ |
-| Promise\<string> | 公共事件的数据。 |
-
-**示例：**
-
-```ts
-subscriber.getData().then((data:string) => {
-    console.info("getData " + JSON.stringify(data));
-}).catch((err:Base.BusinessError) => {
-    console.error(`getData failed, code is ${err.code}, message is ${err.message}`);
+// 获取有序公共事件传递的数据（string类型）回调
+subscriber.getData((err: BusinessError, data: string) => {
+  if (err) {
+    console.error(`Failed to get data. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting data, data is ${JSON.stringify(data)}`);
 });
 ```
 
-## getDataSync<sup>10+</sup>
+### getData
 
-getDataSync(): string
+getData(): Promise\<string>
 
-获取有序公共事件的数据。
+获取有序公共事件传递的数据（string类型）。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型             | 说明               |
 | ---------------- | ------------------ |
-| string | 公共事件的数据。 |
+| Promise\<string> | Promise对象。返回有序公共事件传递的数据（string类型）。 |
 
 **示例：**
 
 ```ts
-let data = subscriber.getDataSync();
-console.info("getDataSync " + JSON.stringify(data));
+subscriber.getData().then((data: string) => {
+  console.info(`Succeeded in getting data, data is ${JSON.stringify(data)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get data. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## setData
+### getDataSync<sup>10+</sup>
+
+getDataSync(): string
+
+获取有序公共事件传递的数据（string类型）。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型             | 说明               |
+| ---------------- | ------------------ |
+| string | 有序公共事件传递的数据（string类型）。 |
+
+**示例：**
+
+```ts
+let data: string = subscriber.getDataSync();
+console.info(`Succeeded in getting data, data is ${data}`);
+```
+
+### setData
 
 setData(data: string, callback: AsyncCallback\<void>): void
 
-设置有序公共事件的数据。使用callback异步回调。
+设置有序公共事件传递的数据（string类型）。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| data     | string               | 是   | 公共事件的数据。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| data     | string               | 是   | 有序公共事件传递的数据（string类型）。   |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当设置有序公共事件传递的数据（string类型）成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//设置有序公共事件的结果数据回调
-function setDataCB(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setData");
-    }
-}
-subscriber.setData("publish_data_changed", setDataCB);
+subscriber.setData('publish_data_changed', (err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting data.`);
+});
 ```
 
-## setData
+### setData
 
 setData(data: string): Promise\<void>
 
-设置有序公共事件的数据。使用Promise异步回调。
+设置有序公共事件传递的数据（string类型）。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| data   | string | 是   | 公共事件的数据。 |
+| data   | string | 是   | 有序公共事件传递的数据（string类型）。 |
 
 **返回值：**
 
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
+| Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-subscriber.setData("publish_data_changed").then(() => {
-    console.info("setData");
-}).catch((err:Base.BusinessError) => {
-    console.error(`setCode failed, code is ${err.code}, message is ${err.message}`);
+subscriber.setData('publish_data_changed').then(() => {
+  console.info(`Succeeded in setting data.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## setDataSync<sup>10+</sup>
+### setDataSync<sup>10+</sup>
 
 setDataSync(data: string): void
 
-设置有序公共事件的数据。
+设置有序公共事件传递的数据（string类型）。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| data   | string | 是   | 公共事件的数据。 |
+| data   | string | 是   | 有序公共事件传递的数据（string类型）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **示例：**
 
 ```ts
 try {
-    subscriber.setDataSync("publish_data_changed");
+  subscriber.setDataSync('publish_data_changed');
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`setDataSync failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to set data. Code is ${err.code}, message is ${err.message}`);
 }
 ```
 
-## setCodeAndData
+### setCodeAndData
 
 setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
-设置有序公共事件代码和数据。使用callback异步回调。
+设置有序公共事件数据。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| code     | number               | 是   | 公共事件的代码。   |
-| data     | string               | 是   | 公共事件的数据。   |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| code     | number               | 是   | 有序公共事件传递的数据（number类型）。   |
+| data     | string               | 是   | 有序公共事件传递的数据（string类型）。   |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当设置有序公共事件传递的数据成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//设置有序公共事件的代码和数据回调
-function setCodeDataCB(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("setCodeDataCallback");
-    }
-}
-subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCB);
+subscriber.setCodeAndData(1, 'publish_data_changed', (err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting code and data.`);
+});
 ```
 
-## setCodeAndData
+### setCodeAndData
 
 setCodeAndData(code: number, data: string): Promise\<void>
 
-设置有序公共事件的代码和数据。使用Promise异步回调。
+设置有序公共事件传递的数据。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| code   | number | 是   | 公共事件的代码。 |
-| data   | string | 是   | 公共事件的数据。 |
+| code   | number | 是   | 有序公共事件传递的数据（number类型）。 |
+| data   | string | 是   | 有序公共事件传递的数据（string类型）。 |
 
 **返回值：**
 
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise。 |
+| Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
-    console.info("setCodeAndData");
-}).catch((err:Base.BusinessError) => {
-    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+subscriber.setCodeAndData(1, 'publish_data_changed').then(() => {
+  console.info(`Succeeded in setting code and data.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## setCodeAndDataSync<sup>10+</sup>
+### setCodeAndDataSync<sup>10+</sup>
 
 setCodeAndDataSync(code: number, data: string): void
 
-设置有序公共事件的代码和数据。
+设置有序公共事件传递的数据。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| code   | number | 是   | 公共事件的代码。 |
-| data   | string | 是   | 公共事件的数据。 |
+| code   | number | 是   | 有序公共事件传递的数据（number类型）。 |
+| data   | string | 是   | 有序公共事件传递的数据（string类型）。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401      | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.                    | 
 
 **示例：**
 
 ```ts
 try {
-    subscriber.setCodeAndDataSync(1, "publish_data_changed");
+  subscriber.setCodeAndDataSync(1, 'publish_data_changed');
 } catch (error) {
-    let err:Base.BusinessError = error as Base.BusinessError;
-    console.error(`setCodeAndData failed, code is ${err.code}, message is ${err.message}`);
+  let err: BusinessError = error as BusinessError;
+  console.error(`Failed to set code and data. Code is ${err.code}, message is ${err.message}`);
 }
 
 ```
 
-## isOrderedCommonEvent
+### isOrderedCommonEvent
 
 isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 查询当前公共事件是否为有序公共事件。使用callback异步回调。
 
-返回true代表是有序公共事件，false代表不是有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 当前公共事件是否为有序公共事件。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示有序公共事件；返回false表示无序公共事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//获取当前公共事件是否为有序事件的回调
-function isOrderedCB(err:Base.BusinessError, isOrdered:boolean) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("isOrdered " + JSON.stringify(isOrdered));
-    }
-}
-subscriber.isOrderedCommonEvent(isOrderedCB);
+subscriber.isOrderedCommonEvent((err: BusinessError, isOrdered:boolean) => {
+  if (err) {
+    console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`isOrderedCommonEvent ${JSON.stringify(isOrdered)}`);
+});
 ```
 
-## isOrderedCommonEvent
+### isOrderedCommonEvent
 
 isOrderedCommonEvent(): Promise\<boolean>
 
 查询当前公共事件是否为有序公共事件。使用Promise异步回调。
 
-返回true代表是有序公共事件，false代表不是有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件是否为有序公共事件。 |
+| Promise\<boolean> | Promise对象。返回true表示有序公共事件；返回false表示无序公共事件。 |
 
 **示例：**
 
 ```ts
 subscriber.isOrderedCommonEvent().then((isOrdered:boolean) => {
-    console.info("isOrdered " + JSON.stringify(isOrdered));
-}).catch((err:Base.BusinessError) => {
-    console.error(`isOrdered failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`isOrderedCommonEvent ${JSON.stringify(isOrdered)}`);
+}).catch((err: BusinessError) => {
+  console.error(`isOrderedCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## isOrderedCommonEventSync<sup>10+</sup>
+### isOrderedCommonEventSync<sup>10+</sup>
 
 isOrderedCommonEventSync(): boolean
 
 查询当前公共事件是否为有序公共事件。
 
-返回true代表是有序公共事件，false代表不是有序公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| boolean | 当前公共事件是否为有序公共事件。 |
+| boolean |返回true表示有序公共事件；返回false表示无序公共事件。 |
 
 **示例：**
 
 ```ts
-let isOrdered  = subscriber.isOrderedCommonEventSync();
-console.info("isOrdered " + JSON.stringify(isOrdered));
+let isOrdered: boolean = subscriber.isOrderedCommonEventSync();
+console.info(`isOrderedCommonEventSync ${JSON.stringify(isOrdered)}`);
 ```
 
-## isStickyCommonEvent
+### isStickyCommonEvent
 
 isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 检查当前公共事件是否为一个粘性事件。使用callback异步回调。
 
-返回true代表是粘性公共事件，false代表不是粘性公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 当前公共事件是否为粘性公共事件。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示是粘性公共事件；返回false表示不是粘性公共事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//获取当前公共事件是否为粘性事件的回调
-function isStickyCB(err:Base.BusinessError, isSticky:boolean) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("isSticky " + JSON.stringify(isSticky));
-    }
-}
-subscriber.isStickyCommonEvent(isStickyCB);
+subscriber.isStickyCommonEvent((err: BusinessError, isSticky:boolean) => {
+  if (err) {
+    console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`isStickyCommonEvent ${JSON.stringify(isSticky)}`);
+});
 ```
 
-## isStickyCommonEvent
+### isStickyCommonEvent
 
 isStickyCommonEvent(): Promise\<boolean>
 
 检查当前公共事件是否为一个粘性事件。使用Promise异步回调。
 
-返回true代表是粘性公共事件，false代表不是粘性公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| Promise\<boolean> | 当前公共事件是否为粘性公共事件。 |
+| Promise\<boolean> | Promise对象。返回true表示是粘性公共事件；返回false表示不是粘性公共事件。 |
 
 **示例：**
 
 ```ts
 subscriber.isStickyCommonEvent().then((isSticky:boolean) => {
-    console.info("isSticky " + JSON.stringify(isSticky));
-}).catch((err:Base.BusinessError) => {
-    console.error(`isSticky failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`isStickyCommonEvent ${JSON.stringify(isSticky)}`);
+}).catch((err: BusinessError) => {
+  console.error(`isStickyCommonEvent failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## isStickyCommonEventSync<sup>10+</sup>
+### isStickyCommonEventSync<sup>10+</sup>
 
 isStickyCommonEventSync(): boolean
 
 检查当前公共事件是否为一个粘性事件。
 
-返回true代表是粘性公共事件，false代表不是粘性公共事件。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型              | 说明                             |
 | ----------------- | -------------------------------- |
-| boolean | 当前公共事件是否为粘性公共事件。 |
+| boolean | 返回true表示是粘性公共事件；返回false表示不是粘性公共事件。 |
 
 **示例：**
 
 ```ts
-let isSticky  = subscriber.isStickyCommonEventSync();
-console.info("isSticky " + JSON.stringify(isSticky));
+let isSticky: boolean = subscriber.isStickyCommonEventSync();
+console.info(`isStickyCommonEventSync ${JSON.stringify(isSticky)}`);
 ```
 
-## abortCommonEvent
+### abortCommonEvent
 
 abortCommonEvent(callback: AsyncCallback\<void>): void
 
-取消当前的有序公共事件，取消后，有序公共事件不再向下一个订阅者传递。使用callback异步回调。
+添加有序公共事件的中止状态。当该接口与[finishCommonEvent](#finishcommonevent9)配合使用时，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | 是   | 取消当前的有序公共事件。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当添加有序公共事件中止状态成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//取消当前有序公共事件的回调
-function abortCB(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-		console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("abortCommonEvent");
-    }
-}
-subscriber.abortCommonEvent(abortCB);
+subscriber.abortCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to abort common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in aborting common event.`);
+});
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
-## abortCommonEvent
+### abortCommonEvent
 
 abortCommonEvent(): Promise\<void>
 
-取消当前的有序公共事件，取消后，公共事件不再向下一个订阅者传递。使用Promise异步回调。
+添加有序公共事件的中止状态。当该接口与[finishCommonEvent](#finishcommonevent9)配合使用时，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
+| Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
 subscriber.abortCommonEvent().then(() => {
-    console.info("abortCommonEvent");
-}).catch((err:Base.BusinessError) => {
-    console.error(`abortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`Succeeded in aborting common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to abort common event. Code is ${err.code}, message is ${err.message}`);
+});
+subscriber.finishCommonEvent().then(() => {
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## abortCommonEventSync<sup>10+</sup>
+### abortCommonEventSync<sup>10+</sup>
 
 abortCommonEventSync(): void
 
-取消当前的有序公共事件，取消后，公共事件不再向下一个订阅者传递。
+添加有序公共事件的中止状态。当该接口与[finishCommonEvent](#finishcommonevent9)配合使用时，可以中止当前的有序公共事件，使该公共事件不再向下一个订阅者传递。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **示例：**
 
 ```ts
 subscriber.abortCommonEventSync();
+subscriber.finishCommonEvent().then(() => {
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## clearAbortCommonEvent
+### clearAbortCommonEvent
 
 clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
-清除当前有序公共事件。使用callback异步回调。
+清理有序公共事件的中止状态。当该接口与[finishCommonEvent](#finishcommonevent9)配合使用时，可以使该公共事件继续向下一个订阅者传递。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                 | 必填 | 说明                 |
 | -------- | -------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当清理有序公共事件中止状态成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//清除当前公共事件取消状态的回调
-function clearAbortCB(err:Base.BusinessError) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("clearAbortCommonEvent");
-    }
-}
-subscriber.clearAbortCommonEvent(clearAbortCB);
+subscriber.clearAbortCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to clear abort common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in clearing abort common event.`);
+});
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
-## clearAbortCommonEvent
+### clearAbortCommonEvent
 
 clearAbortCommonEvent(): Promise\<void>
 
-清除当前有序公共事件。使用Promise异步回调。
+清理有序公共事件的中止状态。当该接口与[finishCommonEvent](#finishcommonevent9)配合使用时，可以使该公共事件继续向下一个订阅者传递。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
+| Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
 subscriber.clearAbortCommonEvent().then(() => {
-    console.info("clearAbortCommonEvent");
-}).catch((err:Base.BusinessError) => {
-    console.error(`clearAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`Succeeded in clearing abort common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to clear abort common event. Code is ${err.code}, message is ${err.message}`);
+});
+subscriber.finishCommonEvent().then(() => {
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## clearAbortCommonEventSync<sup>10+</sup>
+### clearAbortCommonEventSync<sup>10+</sup>
 
 clearAbortCommonEventSync(): void
 
-清除当前有序公共事件。
+清理有序公共事件的中止状态。当该接口与[finishCommonEvent](#finishcommonevent9)配合使用时，可以使该公共事件继续向下一个订阅者传递。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **示例：**
 
 ```ts
 subscriber.clearAbortCommonEventSync();
+subscriber.finishCommonEvent().then(() => {
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## getAbortCommonEvent
+### getAbortCommonEvent
 
 getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
-获取当前有序公共事件是否取消的状态。使用callback异步回调。
+获取当前有序公共事件是否处于中止状态。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                    | 必填 | 说明                               |
 | -------- | ----------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 表示当前有序公共事件是否取消的状态。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示当前有序公共事件处于中止状态；返回false表示当前有序公共事件没有处于中止状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//获取当前有序公共事件是否取消的回调
-function getAbortCB(err:Base.BusinessError, abortEvent:boolean) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("abortCommonEvent " + abortEvent)
-    }
-}
-subscriber.getAbortCommonEvent(getAbortCB);
-```
-
-## getAbortCommonEvent
-
-getAbortCommonEvent(): Promise\<boolean>
-
-获取当前有序公共事件是否取消的状态。使用Promise异步回调。
-
-**系统能力**：`SystemCapability.Notification.CommonEvent`
-
-**返回值：**
-
-| 类型              | 说明                               |
-| ----------------- | ---------------------------------- |
-| Promise\<boolean> | 表示当前有序公共事件是否取消的状态。 |
-
-**示例：**
-
-```ts
-subscriber.getAbortCommonEvent().then((abortEvent:boolean) => {
-    console.info("abortCommonEvent " + JSON.stringify(abortEvent));
-}).catch((err:Base.BusinessError) => {
-    console.error(`getAbortCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+subscriber.getAbortCommonEvent((err: BusinessError, abortEvent: boolean) => {
+  if (err) {
+    console.error(`Failed to get abort common event. Code is ${err.code}, message is ${err.message}`);
+    return;
+  } 
+  console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
 });
 ```
 
-## getAbortCommonEventSync<sup>10+</sup>
+### getAbortCommonEvent
 
-getAbortCommonEventSync(): boolean
+getAbortCommonEvent(): Promise\<boolean>
 
-获取当前有序公共事件是否取消的状态。
+获取当前有序公共事件是否处于中止状态。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型              | 说明                               |
 | ----------------- | ---------------------------------- |
-| boolean | 表示当前有序公共事件是否取消的状态。 |
+| Promise\<boolean> | Promise对象。返回true表示当前有序公共事件处于中止状态；返回false表示当前有序公共事件没有处于中止状态。 |
 
 **示例：**
 
 ```ts
-let abortEvent = subscriber.getAbortCommonEventSync();
-console.info("getAbortCommonEventSync " + JSON.stringify(abortEvent));
+subscriber.getAbortCommonEvent().then((abortEvent: boolean) => {
+  console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get abort common event. Code is ${err.code}, message is ${err.message}`);
+});
 ```
 
-## getSubscribeInfo
+### getAbortCommonEventSync<sup>10+</sup>
+
+getAbortCommonEventSync(): boolean
+
+获取当前有序公共事件是否处于中止状态。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
+
+**返回值：**
+
+| 类型              | 说明                               |
+| ----------------- | ---------------------------------- |
+| boolean |返回true表示当前有序公共事件处于中止状态；返回false表示当前有序公共事件没有处于中止状态。 |
+
+**示例：**
+
+```ts
+let abortEvent: boolean = subscriber.getAbortCommonEventSync();
+console.info(`Succeeded in getting abort common event, abortEvent is ${JSON.stringify(abortEvent)}`);
+```
+
+### getSubscribeInfo
 
 getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 获取订阅者的订阅信息。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                                                         | 必填 | 说明                   |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| callback | AsyncCallback\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | 是   | 表示订阅者的订阅信息。 |
+| callback | AsyncCallback\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | 是   | 回调函数。返回订阅者的订阅信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//获取订阅者信息回调
-function getCB(err:Base.BusinessError, subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) {
-    if (err.code !== undefined && err.code != null) {
-        console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
-    }
-}
-subscriber.getSubscribeInfo(getCB);
+subscriber.getSubscribeInfo((err: BusinessError, subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
+  if (err) {
+    console.error(`Failed to get subscribe info. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
+});
 ```
 
-## getSubscribeInfo
+### getSubscribeInfo
 
 getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
 获取订阅者的订阅信息。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| Promise\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | 表示订阅者的订阅信息。 |
+| Promise\<[CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)> | Promise对象。返回订阅者的订阅信息。 |
 
 **示例：**
 
 ```ts
-subscriber.getSubscribeInfo().then((subscribeInfo:CommonEventManager.CommonEventSubscribeInfo) => {
-    console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
-}).catch((err:Base.BusinessError) => {
-    console.error(`getSubscribeInfo failed, code is ${err.code}, message is ${err.message}`);
+subscriber.getSubscribeInfo().then((subscribeInfo: commonEventManager.CommonEventSubscribeInfo) => {
+  console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to get subscribe info. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
-## getSubscribeInfoSync<sup>10+</sup>
+### getSubscribeInfoSync<sup>10+</sup>
 
 getSubscribeInfoSync(): CommonEventSubscribeInfo
 
 获取订阅者的订阅信息。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
@@ -872,58 +1038,63 @@ getSubscribeInfoSync(): CommonEventSubscribeInfo
 
 ```ts
 let subscribeInfo = subscriber.getSubscribeInfoSync();
-console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
+console.info(`Succeeded in getting subscribe info, subscribe info is ${JSON.stringify(subscribeInfo)}`);
 ```
 
-## finishCommonEvent<sup>9+</sup>
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(callback: AsyncCallback\<void>): void
 
-结束当前有序公共事件。使用callback异步回调。
+用于订阅者结束对当前有序公共事件的处理。使用callback异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **参数：**
 
 | 参数名   | 类型                  | 必填 | 说明                              |
 | -------- | -------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 表示有序公共事件结束后的回调函数。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当订阅者结束当前有序公共事件成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      | 
 
 **示例：**
 
 ```ts
-//结束当前有序公共事件的回调
-function finishCB(err:Base.BusinessError) {
-  if (err.code !== undefined && err.code != null) {
-    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("FinishCommonEvent");
+subscriber.finishCommonEvent((err: BusinessError) => {
+  if (err) {
+    console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
+    return;
   }
-}
-
-subscriber.finishCommonEvent(finishCB);
+  console.info(`Succeeded in finishing common event.`);
+});
 ```
 
-## finishCommonEvent<sup>9+</sup>
+### finishCommonEvent<sup>9+</sup>
 
 finishCommonEvent(): Promise\<void>
 
-结束当前有序公共事件。使用Promise异步回调。
+用于订阅者结束对当前有序公共事件的处理。使用Promise异步回调。
 
-**系统能力**：`SystemCapability.Notification.CommonEvent`
+**系统能力：** `SystemCapability.Notification.CommonEvent`
 
 **返回值：**
 
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
-| Promise\<void>   | 返回一个Promise的结果。 |
+| Promise\<void>   | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
 subscriber.finishCommonEvent().then(() => {
-    console.info("FinishCommonEvent");
-}).catch((err:Base.BusinessError) => {
-    console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
+  console.info(`Succeeded in finishing common event.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to finish common event. Code is ${err.code}, message is ${err.message}`);
 });
 ```

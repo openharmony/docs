@@ -21,7 +21,7 @@ import freeInstall from '@ohos.bundle.freeInstall';
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | 允许应用安装、卸载其他应用（除了企业相关应用，目前有企业InHouse应用，企业MDM应用和企业normal应用）。   |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 ## UpgradeFlag
 
 **系统接口：** 此接口为系统接口。
@@ -65,12 +65,12 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 | ----------- | --------------------------- | ---- | ---------------------------- |
 | bundleName  | string                      | 是   | 应用Bundle名称。     |
 | moduleName  | string                      | 是   | 应用程序模块名称。           |
-| upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位       |
+| upgradeFlag | [UpgradeFlag](#upgradeflag) | 是   | 仅供内部系统使用标志位。       |
 | callback    | AsyncCallback\<void>        | 是   | 回调函数。当函数调用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|---------------------------------------- |
@@ -129,7 +129,7 @@ setHapModuleUpgradeFlag(bundleName: string, moduleName: string, upgradeFlag: Upg
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -181,7 +181,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string, callback: AsyncCall
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -238,7 +238,7 @@ isHapModuleRemovable(bundleName: string, moduleName: string): Promise\<boolean>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -289,7 +289,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -344,7 +344,7 @@ getBundlePackInfo(bundleName: string, bundlePackFlag : BundlePackFlag): Promise\
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -392,7 +392,7 @@ getDispatchInfo(callback: AsyncCallback\<DispatchInfo>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|
@@ -437,7 +437,7 @@ getDispatchInfo(): Promise\<DispatchInfo>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID |    错误信息                            |
 |----------|----------------------------------------|

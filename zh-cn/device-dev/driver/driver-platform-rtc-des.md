@@ -36,7 +36,7 @@ RTC主要用于提供实时时间和定时报警功能。
 
 ### 接口说明
 
-RTC模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/rtc_if.h。
+RTC模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/rtc_if.h)。
 
 **表 1** RTC设备API接口功能介绍
 
@@ -181,9 +181,9 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 设置RTC时间
+- 设置RTC时间。
 
-    设置RTC时间，则可以通过以下函数完成:
+    设置RTC时间，则可以通过以下函数完成：
 
     ```c
     int32_t RtcWriteTime(DevHandle handle, struct RtcTime *time);
@@ -223,7 +223,7 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 读取RTC报警时间
+- 读取RTC报警时间。
 
     如果需要读取定时报警时间，则可以通过以下函数完成：
 
@@ -255,7 +255,7 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 设置RTC报警时间
+- 设置RTC报警时间。
 
     根据报警索引设置RTC报警时间，通过以下函数完成：
 
@@ -298,7 +298,7 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 设置定时报警中断使能或去使能
+- 设置定时报警中断使能或去使能。
 
     在启动报警操作前，需要先设置报警中断使能，报警超时后会触发告警回调函数，可以通过以下函数完成：
 
@@ -329,7 +329,7 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 读取RTC外频
+- 读取RTC外频。
 
     读取RTC外接晶体振荡频率，可以通过以下函数完成：
 
@@ -359,7 +359,7 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 配置RTC外频
+- 配置RTC外频。
 
     配置RTC外接晶体振荡频率，可以通过以下函数完成：
 
@@ -390,7 +390,7 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 复位RTC
+- 复位RTC。
 
     复位RTC，复位RTC后各配置寄存器恢复默认值，可以通过以下函数完成：
 
@@ -419,7 +419,7 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 读取RTC自定义寄存器配置
+- 读取RTC自定义寄存器配置。
 
     按照用户定义的寄存器索引，读取对应的寄存器配置，一个索引对应一字节的配置值，通过以下函数完成：
 
@@ -452,7 +452,7 @@ if (ret != HDF_SUCCESS) {
     }
     ```
 
-- 设置RTC自定义寄存器配置
+- 设置RTC自定义寄存器配置。
 
     按照用户定义的寄存器索引，设置对应的寄存器配置，一个索引对应一字节的配置值，通过以下函数完成：
 

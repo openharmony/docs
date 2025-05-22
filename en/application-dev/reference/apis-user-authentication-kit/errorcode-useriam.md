@@ -112,7 +112,7 @@ Initiate authentication again later.
 
 **Error Message**
 
-Authentication is lockout.
+Authentication is locked out.
 
 **Possible Causes**
 
@@ -137,11 +137,11 @@ The **authType** parameter set in **getAvailableStatus** of the **userAuth** mod
 
 Check that the related type of credential has been enrolled in the device.
 
-## 12500011 Authentication Canceled by the User Authentication Widget
+## 12500011 Switched to Custom Authentication
 
 **Error Message**
 
-Indicates that this operation is canceled from widget's navigation button.
+Switched to the custom authentication process.
 
 **Possible Causes**
 
@@ -150,11 +150,55 @@ The authentication is canceled by the user, who tapped the authentication widget
 **Solution**
 
 Initiate the authentication again.
-## 12700001 Failed to Enroll Faces
+
+## 12500013 Password Expired
 
 **Error Message**
 
-The operation is failed.
+Operation failed because of PIN expired.
+
+**Possible Causes**
+
+The authentication fails because the system lock screen password has expired. The error code 12500013 is returned if the lock screen password has expired when a PIN, fingerprint, or facial authentication is initiated.
+
+**Solution**
+
+Initiate an authentication again after the user sets a new lock screen password.
+
+<!--Del-->
+## 12500015 AuthToken Integrity Check Failed
+
+**Error Message**
+
+Operation failed because of authToken integrity check failed.
+
+**Possible Causes**
+
+The authentication token is invalid.
+
+**Solution**
+
+Initiate authentication again and issue a valid token.
+
+## 12500016 AuthToken Has Expired
+
+**Error Message**
+
+Operation failed because of authToken has expired.
+
+**Possible Causes**
+
+The authentication token has expired. The interval between the time when the AuthToken is issued and the time when the verification is initiated exceeds the AuthToken validity period passed in.
+
+**Solution**
+
+Initiate authentication again and issue a valid token.
+
+## 12700001 FaceAuth Service Unavailable
+
+**Error Message**
+
+The service is unavailable.
 
 **Possible Causes**
 
@@ -166,3 +210,4 @@ The operation is failed.
 **Solution**
 
 Call the API again later or restart the device.
+<!--DelEnd-->

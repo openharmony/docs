@@ -65,7 +65,7 @@ slider组件通过color、selected-color、block-color样式分别为滑动条�
 
 ![zh-cn_image_0000001227661529](figures/zh-cn_image_0000001227661529.gif)
 
-通过添加mix、max、value、step、mode属性分别为滑动条设置最小值、最大值、初始值、滑动步长和滑动条样式。
+通过添加min、max、value、step、mode属性分别为滑动条设置最小值、最大值、初始值、滑动步长和滑动条样式。
 
 
 ```html
@@ -90,17 +90,18 @@ slider组件通过color、selected-color、block-color样式分别为滑动条�
 
 ![zh-cn_image_0000001179438692](figures/zh-cn_image_0000001179438692.gif)
 
-> **说明：**
+> **说明：** 
+>
 > mode属性为滑动条样式，可选值为：
 >
-> - outset：滑块在滑杆上；
+> - outset：滑块在滑杆上。
 >
 > - inset：滑块在滑杆内。
 
 
 ## 绑定事件
 
-向Rating组件添加change事件，添加时需要传入ChangeEvent参数。
+向slider组件添加change事件，添加时需要传入ChangeEvent参数。
 
 
 ```html
@@ -216,8 +217,6 @@ export default{
 ## 相关实例
 
 针对slider开发，有以下相关实例可供参考：
-
-- [JS组件集（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentCollection/JsComponentCollection)
 
 - [slider组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
 

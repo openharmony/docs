@@ -3,13 +3,15 @@
 
 ## Overview
 
-The **CameraManager_Callbacks** struct defines the callbacks used to listen for camera status change events.
+The CameraManager_Callbacks struct describes the callbacks used to listen for camera status change events.
 
 For details, see [OH_CameraManager_RegisterCallback](_o_h___camera.md#oh_cameramanager_registercallback).
 
 **Since**: 11
 
 **Related module**: [OH_Camera](_o_h___camera.md)
+
+**Header file**: [camera_manager.h](camera__manager_8h.md)
 
 
 ## Summary

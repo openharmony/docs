@@ -4,7 +4,8 @@
 
 > **说明：**
 > 
-> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+> 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
 > 除了[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)，本模块接口仅可在FA模型下使用。
 
 ## 导入模块
@@ -41,6 +42,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -83,6 +85,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -96,7 +99,7 @@ DAHelper.openFile('dataability:///com.example.DataAbility', mode).then((data) =>
 });
 ```
 
-## DataAbilityHelper.on
+## DataAbilityHelper.on('dataChange')
 
 on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
@@ -116,6 +119,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -133,7 +137,7 @@ DAHelper.on(
 );
 ```
 
-## DataAbilityHelper.off
+## DataAbilityHelper.off('dataChange')
 
 off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
@@ -153,6 +157,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -193,6 +198,7 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -233,6 +239,7 @@ getType(uri: string): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -265,6 +272,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -306,6 +314,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -337,6 +346,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -377,6 +387,7 @@ normalizeUri(uri: string): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -408,6 +419,7 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -448,6 +460,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -479,6 +492,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -519,6 +533,7 @@ notifyChange(uri: string): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -533,7 +548,7 @@ DAHelper.notifyChange('dataability:///com.example.DataAbility').then(() => {
 
 ## DataAbilityHelper.insert
 
-insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+insert(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), callback: AsyncCallback\<number>): void
 
 将单个数据记录插入数据库。使用callback异步回调。
 
@@ -546,11 +561,12 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 | 参数名         | 类型                   | 必填 | 说明                                                   |
 | ------------ | ---------------------- | ---- | ------------------------------------------------------ |
 | uri          | string                 | 是   | 表示要插入数据的uri。                               |
-| valuesBucket | rdb.ValuesBucket       | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)       | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
 | callback     | AsyncCallback\<number> | 是   | 回调函数，返回插入数据记录的索引。                     |
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -576,7 +592,7 @@ DAHelper.insert('dataability:///com.example.DataAbility', valueBucket, (error, d
 
 ## DataAbilityHelper.insert
 
-insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
+insert(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)): Promise\<number>
 
 将单个数据记录插入数据库。使用Promise异步回调。
 
@@ -589,7 +605,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 | 参数名         | 类型             | 必填 | 说明                                                   |
 | ------------ | ---------------- | ---- | ------------------------------------------------------ |
 | uri          | string           | 是   | 表示要插入数据的uri。                               |
-| valuesBucket | rdb.ValuesBucket | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket) | 是   | 表示要插入的数据记录。如果此参数为空，将插入一个空行。 |
 
 **返回值：**
 
@@ -599,6 +615,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -637,6 +654,7 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -682,6 +700,7 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -718,6 +737,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -761,6 +781,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -794,6 +815,7 @@ predicates筛选条件为空，自定义数据库删除数据记录的处理逻�
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -812,7 +834,7 @@ DAHelper.delete('dataability:///com.example.DataAbility', (error, data) => {
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback\<number>): void
 
 更新数据库中的数据记录。使用callback异步回调。
 
@@ -825,12 +847,13 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要更新数据的uri。                         |
-| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | 是   | 表示要更新的数据。                               |
 | predicates   | dataAbility.DataAbilityPredicates | 是   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
 | callback     | AsyncCallback\<number>            | 是   | 回调函数，返回更新的数据记录数。                 |
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -858,7 +881,7 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da, (error, data) 
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), predicates?: dataAbility.DataAbilityPredicates): Promise\<number>
 
 更新数据库中的数据记录。使用Promise异步回调。
 
@@ -871,7 +894,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要更新数据的uri。                         |
-| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | 是   | 表示要更新的数据。                               |
 | predicates   | dataAbility.DataAbilityPredicates | 否   | 表示筛选条件。当此参数为null时，应定义处理逻辑。 |
 
 **返回值：**
@@ -882,6 +905,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -905,7 +929,7 @@ DAHelper.update('dataability:///com.example.DataAbility', va, da).then((data) =>
 
 ## DataAbilityHelper.update
 
-update(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<number>): void
+update(uri: string, valuesBucket: [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket), callback: AsyncCallback\<number>): void
 
 predicates筛选条件为空，自定义更新数据库的处理逻辑。使用callback异步回调。
 
@@ -918,11 +942,12 @@ predicates筛选条件为空，自定义更新数据库的处理逻辑。使用c
 | 参数名         | 类型                              | 必填 | 说明                                             |
 | ------------ | --------------------------------- | ---- | ------------------------------------------------ |
 | uri          | string                            | 是   | 表示要更新数据的uri。                         |
-| valuesBucket | rdb.ValuesBucket                  | 是   | 表示要更新的数据。                               |
+| valuesBucket | [rdb.ValuesBucket](../apis-arkdata/js-apis-data-rdb.md#valuesbucket)                  | 是   | 表示要更新的数据。                               |
 | callback     | AsyncCallback\<number>            | 是   | 回调函数，返回更新的数据记录数。                 |
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -967,6 +992,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1005,6 +1031,7 @@ query(uri: string, callback: AsyncCallback\<ResultSet>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1041,6 +1068,7 @@ query(uri: string, columns: Array\<string>, callback: AsyncCallback\<ResultSet>)
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1078,6 +1106,7 @@ query(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asyn
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1122,6 +1151,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1159,6 +1189,7 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1203,6 +1234,7 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1239,6 +1271,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>, callback: As
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1282,6 +1315,7 @@ executeBatch(uri: string, operations: Array\<DataAbilityOperation>): Promise\<Ar
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import ability from '@ohos.ability.ability';
 import featureAbility from '@ohos.ability.featureAbility';
@@ -1302,12 +1336,10 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 
 ## PacMap
 
-[key: string]: number | string | boolean | Array\<string | number | boolean> | null
-
 用于存储数据的PacMap类型。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
 
-| 参数名 | 参数类型 | 必填 | 说明 |
-| ------ | ------ | ------ | ------ |
-| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | 是 | 数据存储在键值对中。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| ----- | ---- | ---- | ---- | ---- |
+| [key: string]  | number \| string \| boolean \| Array\<string \| number \| boolean> \| null  | 否 | 否 | 数据存储在键值对中。 |

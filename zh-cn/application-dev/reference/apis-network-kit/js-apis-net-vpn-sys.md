@@ -1,6 +1,7 @@
 # @ohos.net.vpn (VPN 管理)（系统接口）
 
 VPN 管理模块，支持 VPN 的启动和停止功能。
+本模块是操作系统提供的内置VPN功能，允许用户通过系统的网络设置进行VPN连接，通常提供的功能较少，而且有比较严格的限制。
 
 > **说明：**
 > 本模块首批接口从 API version 10 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -9,7 +10,7 @@ VPN 管理模块，支持 VPN 的启动和停止功能。
 ## 导入模块
 
 ```js
-import vpn from "@ohos.net.vpn";
+import { vpn } from '@kit.NetworkKit';
 ```
 
 ## vpn.createVpnConnection
@@ -26,7 +27,7 @@ createVpnConnection(context: AbilityContext): VpnConnection
 
 | 参数名  | 类型                                                                             | 必填 | 说明         |
 | ------- | -------------------------------------------------------------------------------- | ---- | ------------ |
-| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | 是   | 指定 context |
+| context | [AbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontext) | 是   | 指定 context。 |
 
 **返回值：**
 
@@ -44,16 +45,21 @@ createVpnConnection(context: AbilityContext): VpnConnection
 | 401       | Parameter error.                                 |
 
 **示例：**
+
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage 模型示例：
 
 ```ts
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   functiontest()
   {
@@ -98,20 +104,24 @@ setUp(config: VpnConfig, callback: AsyncCallback\<number\>): void
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   SetUp(): void {
     let config: vpn.VpnConfig = {
@@ -170,20 +180,24 @@ setUp(config: VpnConfig): Promise\<number\>
 | 2200001   | Invalid parameter value.                         |
 | 2200002   | Operation failed. Cannot connect to service.     |
 | 2200003   | System internal error.                           |
-| 2203001   | VPN creation denied, please check the user type. |
-| 2203002   | VPN exist already, please execute destroy first. |
+| 2203001   | VPN creation denied. Check the user type.        |
+| 2203002   | VPN already exists.                              |
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   SetUp(): void {
     let config: vpn.VpnConfig = {
@@ -242,16 +256,19 @@ protect(socketFd: number, callback: AsyncCallback\<void\>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```js
-import socket from "@ohos.net.socket";
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { socket, vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   Protect(): void {
@@ -260,11 +277,12 @@ struct Index {
       address: "0.0.0.0"
     }
     tcp.bind(ipAddress);
+    let netAddress: socket.NetAddress = {
+      address: "192.168.1.11",
+      port: 8888
+    }
     let addressConnect: socket.TCPConnectOptions = {
-      address: {
-        address: "192.168.1.11",
-        port: 8888
-      },
+      address: netAddress,
       timeout: 6000
     }
     tcp.connect(addressConnect);
@@ -319,16 +337,19 @@ protect(socketFd: number): Promise\<void\>
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```js
-import socket from "@ohos.net.socket";
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { socket, vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
 
   Protect(): void {
@@ -337,11 +358,12 @@ struct Index {
       address: "0.0.0.0"
     }
     tcp.bind(ipAddress);
+    let netAddress: socket.NetAddress = {
+      address: "192.168.1.11",
+      port: 8888
+    }
     let addressConnect: socket.TCPConnectOptions = {
-      address: {
-        address: "192.168.1.11",
-        port: 8888
-      },
+      address: netAddress,
       timeout: 6000
     }
     tcp.connect(addressConnect);
@@ -390,15 +412,19 @@ destroy(callback: AsyncCallback\<void\>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy((error: BusinessError) => {
@@ -434,21 +460,26 @@ destroy(): Promise\<void\>
 | 错误码 ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 201       | Permission denied.                           |
+| 401       | Parameter error.                                 |
 | 202       | Non-system applications use system APIs.     |
 | 2200002   | Operation failed. Cannot connect to service. |
 | 2200003   | System internal error.                       |
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```js
-import vpn from '@ohos.net.vpn';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from "@ohos.base";
+import { vpn } from '@kit.NetworkKit';
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct Index {
-  private context = getContext(this) as common.UIAbilityContext;
+  private context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
   private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
   Destroy(): void {
     this.VpnConnection.destroy().then(() => {

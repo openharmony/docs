@@ -10,7 +10,7 @@ formHost模块提供了卡片使用方相关接口的能力，包括对使用方
 ## 导入模块
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import { formHost } from '@kit.FormKit';
 ```
 
 ## deleteForm
@@ -32,35 +32,36 @@ deleteForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.deleteForm(formId, (error: Base.BusinessError) => {
-  if (error) {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  } else {
-    console.log('formHost deleteForm success');
-  }
+  formHost.deleteForm(formId, (error: BusinessError) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost deleteForm success');
+    }
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -89,33 +90,34 @@ deleteForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`formHost deleteForm, error: ${JSON.stringify(error)}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -138,33 +140,34 @@ releaseForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.releaseForm(formId, (error: Base.BusinessError) => {
+  formHost.releaseForm(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -188,33 +191,34 @@ releaseForm(formId: string, isReleaseCache: boolean, callback: AsyncCallback&lt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.releaseForm(formId, true, (error: Base.BusinessError) => {
+  formHost.releaseForm(formId, true, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -243,33 +247,34 @@ releaseForm(formId: string, isReleaseCache?: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -292,33 +297,34 @@ requestForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.requestForm(formId, (error: Base.BusinessError) => {
+  formHost.requestForm(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -346,35 +352,35 @@ requestForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
-
 ```
 
 ## requestFormWithParams<sup>12+</sup>
@@ -402,23 +408,24 @@ requestFormWithParams(formId: string, wantParams?: Record<string, Object>): Prom
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
@@ -427,13 +434,12 @@ try {
   };
   formHost.requestFormWithParams(formId, params).then(() => {
     console.log('formHost requestFormWithParams success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
-
 ```
 
 ## castToNormalForm
@@ -455,33 +461,34 @@ castToNormalForm(formId: string, callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501002 | The number of forms exceeds upper bound. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501002 | The number of forms exceeds the maximum allowed. |
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.castToNormalForm(formId, (error: Base.BusinessError) => {
+  formHost.castToNormalForm(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -509,33 +516,34 @@ castToNormalForm(formId: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501002 | The number of forms exceeds upper bound. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501002 | The number of forms exceeds the maximum allowed. |
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -558,31 +566,32 @@ notifyVisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
-  formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
+  formHost.notifyVisibleForms(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -610,31 +619,32 @@ notifyVisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -657,31 +667,32 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;vo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
-  formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
+  formHost.notifyInvisibleForms(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -709,31 +720,32 @@ notifyInvisibleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -756,32 +768,33 @@ enableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
-  formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
+  formHost.enableFormsUpdate(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -809,32 +822,33 @@ enableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -857,33 +871,34 @@ disableFormsUpdate(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
-  formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
+  formHost.disableFormsUpdate(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -911,33 +926,34 @@ disableFormsUpdate(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -957,26 +973,27 @@ isSystemReady(callback: AsyncCallback&lt;void&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application.   |
-| 401 | If the input parameter is not valid parameter. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formHost.isSystemReady((error: Base.BusinessError) => {
+  formHost.isSystemReady((error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -996,25 +1013,26 @@ isSystemReady(): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application.   |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
-
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formHost.isSystemReady().then(() => {
     console.log('formHost isSystemReady success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1036,26 +1054,25 @@ getAllFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
-
 
 **示例：**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
+  formHost.getAllFormsInfo((error: BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1063,7 +1080,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1085,30 +1102,30 @@ getAllFormsInfo(): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
     console.log(`formHost getAllFormsInfo data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1131,26 +1148,26 @@ getFormsInfo(bundleName: string, callback: AsyncCallback&lt;Array&lt;formInfo.Fo
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1158,7 +1175,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1182,26 +1199,26 @@ getFormsInfo(bundleName: string, moduleName: string, callback: AsyncCallback&lt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1209,7 +1226,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1238,32 +1255,32 @@ getFormsInfo(bundleName: string, moduleName?: string): Promise&lt;Array&lt;formI
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
     console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1291,24 +1308,23 @@ getFormsInfo(filter: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.Form
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application.  |
-| 401 | If the input parameter is not valid parameter.  |
-| 16500050 | An IPC connection error happened.  |
-| 16500060 | A service connection error happened, please try again later.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.  |
+| 16500060 | Service connection error.  |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
-import formInfo from '@ohos.app.form.formInfo';
-import formHost from '@ohos.app.form.formHost';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const filter: formInfo.FormInfoFilter = {
   bundleName: 'ohos.samples.FormApplication',
@@ -1318,11 +1334,11 @@ const filter: formInfo.FormInfoFilter = {
 try {
   formHost.getFormsInfo(filter).then((data: formInfo.FormInfo[]) => {
     console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -1345,25 +1361,26 @@ deleteInvalidForms(formIds: Array&lt;string&gt;, callback: AsyncCallback&lt;numb
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formIds: string[] = new Array('12400633174999288', '12400633174999289');
-  formHost.deleteInvalidForms(formIds, (error: Base.BusinessError, data: number) => {
+  formHost.deleteInvalidForms(formIds, (error: BusinessError, data: number) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1371,7 +1388,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1399,31 +1416,32 @@ deleteInvalidForms(formIds: Array&lt;string&gt;): Promise&lt;number&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formIds: string[] = new Array('12400633174999288', '12400633174999289');
   formHost.deleteInvalidForms(formIds).then((data: number) => {
     console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1446,24 +1464,24 @@ acquireFormState(want: Want, callback: AsyncCallback&lt;formInfo.FormStateInfo&g
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   'deviceId': '',
@@ -1476,15 +1494,15 @@ let want: Want = {
   }
 };
 try {
-  formHost.acquireFormState(want, (error:Base.BusinessError, data: formInfo.FormStateInfo) => {
+  formHost.acquireFormState(want, (error: BusinessError, data: formInfo.FormStateInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
       console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1512,24 +1530,24 @@ acquireFormState(want: Want): Promise&lt;formInfo.FormStateInfo&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   'deviceId': '',
@@ -1544,11 +1562,11 @@ let want: Want = {
 try {
   formHost.acquireFormState(want).then((data: formInfo.FormStateInfo) => {
     console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1573,16 +1591,18 @@ on(type: 'formUninstall', callback: Callback&lt;string&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
+import { formHost } from '@kit.FormKit';
+
 formHost.on('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1609,16 +1629,18 @@ off(type: 'formUninstall', callback?: Callback&lt;string&gt;): void
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **示例：**
 
 ```ts
+import { formHost } from '@kit.FormKit';
+
 formHost.off('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1644,32 +1666,33 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean, callback: A
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsVisible(formIds, true, (error: Base.BusinessError) => {
+  formHost.notifyFormsVisible(formIds, true, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1698,32 +1721,33 @@ notifyFormsVisible(formIds: Array&lt;string&gt;, isVisible: boolean): Promise&lt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1747,32 +1771,33 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean, c
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsEnableUpdate(formIds, true, (error: Base.BusinessError) => {
+  formHost.notifyFormsEnableUpdate(formIds, true, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1801,32 +1826,33 @@ notifyFormsEnableUpdate(formIds: Array&lt;string&gt;, isEnableUpdate: boolean): 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 ## shareForm
@@ -1849,33 +1875,34 @@ shareForm(formId: string, deviceId: string, callback: AsyncCallback&lt;void&gt;)
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
-  formHost.shareForm(formId, deviceId, (error: Base.BusinessError) => {
+  formHost.shareForm(formId, deviceId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1904,33 +1931,34 @@ shareForm(formId: string, deviceId: string): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application. |
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1954,31 +1982,32 @@ notifyFormsPrivacyProtected(formIds: Array\<string>, isProtected: boolean, callb
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsPrivacyProtected(formIds, true, (error: Base.BusinessError) => {
+  formHost.notifyFormsPrivacyProtected(formIds, true, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2007,29 +2036,30 @@ notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Pro
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
-
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2054,21 +2084,22 @@ acquireFormData(formId: string, callback: AsyncCallback\<Record\<string, Object>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
@@ -2080,7 +2111,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2110,29 +2141,32 @@ acquireFormData(formId: string): Promise\<Record\<string, Object>>
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 201 | Permissions denied. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+**示例：**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formHost.acquireFormData(formId).then((data) => {
     console.log('formHost acquireFormData success' + data);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2165,60 +2199,59 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;, callba
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application.     |
 
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { common, Want } from '@kit.AbilityKit';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct CardExample {
-  private context = getContext(this) as common.UIAbilityContext;
-  @State formId:number = 0;
-  @State fwidth:number = 420;
-  @State fheight:number = 280;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  @State formId: number = 0;
+  @State fwidth: number = 420;
+  @State fheight: number = 280;
 
   build() {
     Column() {
       FormComponent({
-        id:this.formId,
-        name:"widget",
-        bundle:"com.example.cardprovider",
-        ability:"EntryFormAbility",
-        module:"entry",
-        dimension:FormDimension.Dimension_2_2,
-        temporary:false,
+        id: this.formId,
+        name: "widget",
+        bundle: "com.example.cardprovider",
+        ability: "EntryFormAbility",
+        module: "entry",
+        dimension: FormDimension.Dimension_2_2,
+        temporary: false,
       })
         .allowUpdate(true)
-        .size({width:this.fwidth,height:this.fheight})
+        .size({ width: this.fwidth, height: this.fheight })
         .visibility(Visibility.Visible)
-        .onAcquired((form)=>{
+        .onAcquired((form) => {
           console.log(`testTag form info : ${JSON.stringify(form)}`);
           this.formId = form.id;
           try {
-            let formIds: string[] = [ this.formId.toString() ];
+            let formIds: string[] = [this.formId.toString()];
             formHost.setRouterProxy(formIds, (want: Want) => {
               console.info(`formHost recv router event, want: ${JSON.stringify(want)}`);
               // 卡片使用方自己处理跳转
-              this.context.startAbility(want, (err: Base.BusinessError) => {
+              this.context.startAbility(want, (err: BusinessError) => {
                 console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
               });
-            }, (err: Base.BusinessError) => {
+            }, (err: BusinessError) => {
               console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
             })
           } catch (e) {
@@ -2265,62 +2298,61 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;): Promi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application.     |
 
 **示例：**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct CardExample {
-  private context = getContext(this) as common.UIAbilityContext;
-  @State formId:number = 0;
-  @State fwidth:number = 420;
-  @State fheight:number = 280;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  @State formId: number = 0;
+  @State fwidth: number = 420;
+  @State fheight: number = 280;
 
   build() {
     Column() {
       FormComponent({
-        id:this.formId,
-        name:"widget",
-        bundle:"com.example.cardprovider",
-        ability:"EntryFormAbility",
-        module:"entry",
-        dimension:FormDimension.Dimension_2_2,
-        temporary:false,
+        id: this.formId,
+        name: "widget",
+        bundle: "com.example.cardprovider",
+        ability: "EntryFormAbility",
+        module: "entry",
+        dimension: FormDimension.Dimension_2_2,
+        temporary: false,
       })
         .allowUpdate(true)
-        .size({width:this.fwidth,height:this.fheight})
+        .size({ width: this.fwidth, height: this.fheight })
         .visibility(Visibility.Visible)
-        .onAcquired((form)=>{
+        .onAcquired((form) => {
           console.log(`testTag form info : ${JSON.stringify(form)}`);
           this.formId = form.id;
           try {
-            let formIds: string[] = [ this.formId.toString() ];
+            let formIds: string[] = [this.formId.toString()];
             formHost.setRouterProxy(formIds, (want: Want) => {
               console.info(`formHost recv router event, want: ${JSON.stringify(want)}`);
               // 卡片使用方自己处理跳转
-              this.context.startAbility(want, (err: Base.BusinessError) => {
+              this.context.startAbility(want, (err: BusinessError) => {
                 console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
               });
             }).then(() => {
               console.info('formHost set router proxy success');
-            }).catch((err: Base.BusinessError) => {
+            }).catch((err: BusinessError) => {
               console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
             })
           } catch (e) {
@@ -2353,34 +2385,33 @@ clearRouterProxy(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application.     |
 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
-  formHost.clearRouterProxy(formIds, (err: Base.BusinessError) => {
+  let formIds: string[] = ['12400633174999288'];
+  formHost.clearRouterProxy(formIds, (err: BusinessError) => {
     if (err) {
-        console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+      console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2408,34 +2439,33 @@ clearRouterProxy(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application.     |
 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
+  let formIds: string[] = ['12400633174999288'];
   formHost.clearRouterProxy(formIds).then(() => {
     console.log('formHost clear rourter proxy success');
-  }).catch((err: Base.BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 ## setFormsRecyclable<sup>11+</sup>
@@ -2459,30 +2489,32 @@ setFormsRecyclable(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
-  formHost.setFormsRecyclable(formIds, (err: Base.BusinessError) => {
+  let formIds: string[] = ['12400633174999288'];
+  formHost.setFormsRecyclable(formIds, (err: BusinessError) => {
     if (err) {
-        console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
+      console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2512,30 +2544,32 @@ setFormsRecyclable(formIds:Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
+  let formIds: string[] = ['12400633174999288'];
   formHost.setFormsRecyclable(formIds).then(() => {
     console.log('setFormsRecyclable success');
-  }).catch((err: Base.BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 ## recoverForms<sup>11+</sup>
@@ -2559,30 +2593,32 @@ recoverForms(formIds:Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
-  formHost.recoverForms(formIds, (err: Base.BusinessError) => {
+  let formIds: string[] = ['12400633174999288'];
+  formHost.recoverForms(formIds, (err: BusinessError) => {
     if (err) {
-        console.error(`recoverForms error, code: ${err.code}, message: ${err.message}`);
+      console.error(`recoverForms error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 ## recoverForms<sup>11+</sup>
@@ -2612,26 +2648,28 @@ recoverForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
+  let formIds: string[] = ['12400633174999288'];
   formHost.recoverForms(formIds).then(() => {
     console.info('recover forms success');
-  }).catch((err: Base.BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`formHost recover forms error, code: ${err.code}, message: ${err.message}`);
   });
 } catch (e) {
@@ -2665,32 +2703,34 @@ recycleForms(formIds: Array&lt;string&gt;): Promise&lt;void&gt;
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
+  let formIds: string[] = ['12400633174999288'];
   formHost.recycleForms(formIds).then(() => {
     console.info('recycle forms success');
-  }).catch((err: Base.BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`formHost recycle forms error, code: ${err.code}, message: ${err.message}`);
   });
 } catch (e) {
   console.error(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
-## 
 
 ## updateFormLocation<sup>12+</sup>
 updateFormLocation(formId: string, location: formInfo.FormLocation): void;
@@ -2708,35 +2748,141 @@ updateFormLocation(formId: string, location: formInfo.FormLocation): void;
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
 | formId | string | 是   | 卡片标识。 |
-| location |[FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | 是 | 卡片位置。 |
+| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | 是 | 卡片位置。 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501001 | The ID of the form to be operated does not exist.            |
-| 16501003 | The form can not be operated by the current application.     |
-
-以上错误码的详细介绍请参见[卡片错误码](errorcode-form.md)。
+| 16501003 | The form cannot be operated by the current application.     |
 
 **示例：**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.updateFormLocation(formId, formInfo.FormLocation.SCREEN_LOCK);
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
-##
+
+## setPublishFormResult<sup>12+</sup>
+
+setPublishFormResult(formId: string, result: formInfo.PublishFormResult): void;
+
+设置卡片加桌结果。
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明               |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| formId | string                                                       | 是   | 卡片标识。         |
+| result | [PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult) | 是   | 发布卡片加桌结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501001 | The ID of the form to be operated does not exist.            |
+
+**示例：**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let formId: string = '12400633174999288';
+  let res: formInfo.PublishFormResult = {code: formInfo.PublishFormErrorCode.SUCCESS, message: ''};
+  formHost.setPublishFormResult(formId, res);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## updateFormLockedState<sup>18+</sup>
+
+updateFormLockedState(formId: string, isLocked: boolean): Promise&lt;void&gt;
+
+通知卡片管控状态更新。
+
+卡片管控状态是指，应用使能了应用锁管控，对应应用的卡片也会跟随使能应用锁管控，此时卡片页面会使用加锁的蒙板样式遮罩卡片。在管控状态下，操作和使用卡片需要输入加锁时设置的密码。
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+|-------|------|------|-----|
+| formId | string | 是 | 卡片标识。 |
+| isLocked | boolean | 是 | 标识卡片是否为管控状态，true表示管控状态，false表示非管控状态。 |
+
+**返回值：**
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[卡片错误码](errorcode-form.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | caller is not a system app.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501001 | The ID of the form to be operated does not exist.                       |
+| 16501003 | The form cannot be operated by the current application.     |
+
+**示例：**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let formId: string = '12400633174999288';
+let isLocked: boolean = true;
+
+try {
+  formHost.updateFormLockedState(this.formId, this.isLocked).then(() => {
+    console.log(`formHost updateFormLockedState success`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+
+```

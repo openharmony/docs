@@ -7,6 +7,8 @@ You can set state-specific styles for components.
 >  The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 >
 >  Since API version 11, you can also dynamically set component attributes through [attributeModifier](./ts-universal-attributes-attribute-modifier.md).
+>
+>  Polymorphic styles only support [universal attributes](ts-component-general-attributes.md). If a polymorphic style does not take effect, the attribute you are modifying might be a private attribute of the component, for example, [fontColor](./ts-universal-attributes-text-style.md) or [backgroundColor](./ts-universal-attributes-background.md#backgroundcolor18) of the [TextInput](./ts-basic-components-textinput.md) component. In this case, you can use **attributeModifier** to dynamically set these component-specific attributes.
 
 ## stateStyles
 
@@ -14,7 +16,9 @@ stateStyles(value: StateStyles)
 
 Sets the state-specific styles for the component.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -26,7 +30,9 @@ Sets the state-specific styles for the component.
 
 ## StateStyles
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets. Only the [universal attributes](ts-universal-attributes-size.md) are supported.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -39,7 +45,7 @@ Sets the state-specific styles for the component.
 
 **Notes about the selected state:**
 
-- The selected state style depends on the value of the component's selected attribute. You can change the attribute value through [onClick](ts-universal-events-click.md) or [$$](../../../quick-start/arkts-two-way-sync.md).
+- The selected state style depends on the value of the component's selected attribute. You can change the attribute value through [onClick](ts-universal-events-click.md) or [$$](../../../ui/state-management/arkts-two-way-sync.md).
 
 - The table below lists the components that support the selected state style and their selected attributes or parameters.
 
@@ -55,7 +61,9 @@ Sets the state-specific styles for the component.
 
 ## Example
 
-### Example 1
+### Example 1: Setting Polymorphic Styles for the Text Component
+
+This example demonstrates the style changes of the **Text** component when its state is pressed or disabled.
 
 ```ts
 // xxx.ets
@@ -153,7 +161,9 @@ struct StyleExample {
 
 ![en-us_image_0000001211898512](figures/en-us_image_0000001211898512.gif)
 
-### Example 2
+### Example 2: Setting Polymorphic Styles for the Radio Component
+
+This example demonstrates the style changes of the **Radio** component when its state is selected.
 
 ```ts
 // xxx.ets

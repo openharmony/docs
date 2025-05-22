@@ -24,7 +24,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 | ------------------------------------------ | ------------ | ------------------ |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to obtain basic information and other sensitive information about a bundle.|
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## distributedBundle.getRemoteAbilityInfo
 
@@ -47,10 +47,14 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|--------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -70,7 +74,7 @@ try {
             abilityName: 'EntryAbility'
         }, (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
             if (err) {
-                console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+                console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
             } else {
                 console.info('Operation succeed:' + JSON.stringify(data));
             }
@@ -78,7 +82,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -108,10 +112,14 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -132,12 +140,12 @@ try {
         }).then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -162,10 +170,14 @@ Obtains information about the remote abilities that match the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -192,7 +204,7 @@ try {
             }
         ], (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -200,7 +212,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -230,10 +242,14 @@ Obtains information about the remote abilities that match the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -261,12 +277,12 @@ try {
         ]).then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -292,10 +308,14 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -315,7 +335,7 @@ try {
             abilityName: 'EntryAbility'
         }, 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo) => {
           if (err) {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -323,7 +343,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -354,10 +374,14 @@ Obtains information about the remote ability that matches the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -378,12 +402,12 @@ try {
         }, 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -409,10 +433,14 @@ Obtains information about the remote abilities that match the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID       |    Error Message                  |
 |---------------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -439,7 +467,7 @@ try {
             }
         ], 'zh-Hans-CN', (err: BusinessError, data: distributedBundle.RemoteAbilityInfo[]) => {
           if (err) {
-           console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+           console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
           } else {
             console.info('Operation succeed:' + JSON.stringify(data));
           }
@@ -447,7 +475,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```
 
@@ -478,10 +506,14 @@ Obtains information about the remote abilities that match the given element name
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID|    Error Message                  |
 |----------|-------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 17700001 | The specified bundle name is not found. |
 | 17700003 | The specified ability name is not found. |
 | 17700007 | The specified device ID is not found. |
@@ -509,11 +541,11 @@ try {
         ], 'zh-Hans-CN').then((data: distributedBundle.RemoteAbilityInfo[]) => {
             console.info('Operation succeed:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
-            console.log(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
+            console.error(`Operation failed: error code is ${err.code}  and error message is ${err.message}`);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log(`Operation failed: error code is ${code}  and error message is ${message}`);
+    console.error(`Operation failed: error code is ${code}  and error message is ${message}`);
 }
 ```

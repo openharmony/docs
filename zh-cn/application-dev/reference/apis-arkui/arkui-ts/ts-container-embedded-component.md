@@ -22,16 +22,20 @@ EmbeddedComponent只能在UIAbility中使用，且被拉起的EmbeddedUIExtensio
 
 EmbeddedComponent(loader: Want, type: EmbeddedType)
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名                | 参数类型                                                   | 必填 | 参数描述                             |
+| 参数名                | 类型                          | 必填 |说明   |
 | --------------------- | ---------------------------------------------------------- | ---- | ------------------------------------ |
 | loader                | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 要加载的EmbeddedUIExtensionAbility。 |
-| type                  | [EmbeddedType](#embeddedtype)                              | 是   | 提供方的类型。                       |
+| type                  | [EmbeddedType](ts-appendix-enums.md#embeddedtype12)                              | 是   | 提供方的类型。                       |
 
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)。
+支持[通用属性](ts-component-general-attributes.md)。
 
 > **说明：**
 >
@@ -41,7 +45,7 @@ EmbeddedComponent(loader: Want, type: EmbeddedType)
 
 与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
 
-不支持[通用事件](ts-universal-events-click.md)。仅支持以下事件：
+不支持[点击](ts-universal-events-click.md)等通用事件。仅支持以下事件：
 
 ### onTerminated
 
@@ -49,11 +53,15 @@ onTerminated(callback: Callback&lt;TerminationInfo&gt;)
 
 被拉起的EmbeddedUIExtensionAbility通过调用`terminateSelfWithResult`或者`terminateSelf`正常退出时，触发本回调函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名   | 类型   | 说明                                                                                     |
-| -------  | ------ | ---------------------------------------------------------------------------------------- |
-| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo)> | 回调函数，入参用于接收EmbeddedUIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo)。 |
+| 参数名   | 类型   | 必填 | 说明     |
+| -------  | ------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| callback | [Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[TerminationInfo](#terminationinfo)> | 是 | 回调函数，入参用于接收EmbeddedUIExtensionAbility的返回结果，类型为[TerminationInfo](#terminationinfo)。 |
 
 > **说明：**
 >
@@ -66,11 +74,15 @@ onError(callback: ErrorCallback)
 
 被拉起的EmbeddedUIExtensionAbility在运行过程中发生异常时触发本回调。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 类型                                                                         | 说明      |
-| ------ | ---------------------------------------------------------------------------- | --------- |
-| callback    | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 回调函数，入参用于接收异常信息，类型为[BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror)，可通过参数中的`code`、`name`和`message`获取错误信息并做处理。 |
+| 参数名 | 类型                                                                         | 必填                                                                       | 说明      |
+| ------ | ---------------------------------------------------------------------------- | --------- | --------- |
+| callback    | [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback) | 是 | 回调函数，入参用于接收异常信息，类型为[BusinessError](../../apis-basic-services-kit/js-apis-base.md#businesserror)，可通过参数中的`code`、`name`和`message`获取错误信息并做处理。 |
 
 > **说明：**
 >
@@ -81,40 +93,38 @@ onError(callback: ErrorCallback)
 > - 提供方EmbeddedUIExtensionAbility异常退出。
 > - 在EmbeddedUIExtensionAbility中嵌套使用EmbeddedComponent。
 
-## EmbeddedType
-枚举类型，用于指定EmbeddedComponent可拉起的提供方类型。
-
-| 名称                  | 值 | 说明                                                |
-| --------------------- | - | ---------------------------------------------------- |
-| EMBEDDED_UI_EXTENSION | 0 | 表示当前拉起的提供方类型为EmbeddedUIExtensionAbility。|
-
 ## TerminationInfo
 
 用于表示被拉起的EmbeddedUIExtensionAbility的返回结果。
 
-| 属性名  | 类型   | 说明                                                 |
-| ------- | ------ | ---------------------------------------------------  |
-| code    | number | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
-| want    | [Want](../../apis-ability-kit/js-apis-app-ability-want.md)   | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-## 示例
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-本示例展示EmbeddedComponent组件和EmbeddedUIExtensionAbility的基础使用方式，示例应用的`bundleName`为"com.example.embeddeddemo", 被拉起的`EmbeddedUIExtensionAbility`为"ExampleEmbeddedAbility".
+### 属性
 
-- 示例应用中的EntryAbility(UIAbility)加载首页文件：`pages/Index.ets`，其中内容如下：
+| 名称 | 类型                                                       | 必填 | 说明                                                 |
+| ---- | ---------------------------------------------------------- | ---- | ---------------------------------------------------- |
+| code | number                                                     | 是   | 被拉起EmbeddedUIExtensionAbility退出时返回的结果码。 |
+| want | [Want](../../apis-ability-kit/js-apis-app-ability-want.md) | 否 | 被拉起EmbeddedUIExtensionAbility退出时返回的数据。   |
+
+## 示例（加载EmbeddedComponent）
+
+本示例展示`EmbeddedComponent`组件和`EmbeddedUIExtensionAbility`的基础使用方式，示例应用的`bundleName`为"com.example.embeddeddemo", 同应用下被拉起的`EmbeddedUIExtensionAbility`为"ExampleEmbeddedAbility"。本示例仅支持在拥有多进程权限的设备上运行，如2in1。
+
+- 示例应用中的`EntryAbility(UIAbility)`加载首页文件`ets/pages/Index.ets`，其中内容如下：
 
   ```ts
-  // pages/Index.ets -- UIAbility启动时加载此页面
-  import Want from '@ohos.app.ability.Want'
+  import { Want } from '@kit.AbilityKit';
 
   @Entry
   @Component
   struct Index {
-    @State message: string = 'Message: '
+    @State message: string = 'Message: ';
     private want: Want = {
       bundleName: "com.example.embeddeddemo",
       abilityName: "ExampleEmbeddedAbility",
-    }
+    };
 
     build() {
       Row() {
@@ -123,10 +133,12 @@ onError(callback: ErrorCallback)
           EmbeddedComponent(this.want, EmbeddedType.EMBEDDED_UI_EXTENSION)
             .width('100%')
             .height('90%')
-            .onTerminated((info)=>{
-              this.message = 'Terminarion: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
+            .onTerminated((info) => {
+              // 点击extension页面内的terminateSelfWithResult按钮后触发onTerminated回调，文本框显示如下信息
+              this.message = 'Termination: code = ' + info.code + ', want = ' + JSON.stringify(info.want);
             })
-            .onError((error)=>{
+            .onError((error) => {
+              // 失败或异常触发onError回调，文本框显示如下报错内容
               this.message = 'Error: code = ' + error.code;
             })
         }
@@ -137,16 +149,14 @@ onError(callback: ErrorCallback)
   }
   ```
 
-- EmbeddedComponent拉起的EmbeddedUIExtensionAbility在`ets/extensionAbility/ExampleEmbeddedAbility`文件中实现，内容如下：
+- `EmbeddedComponent`拉起的`ExampleEmbeddedAbility(EmbeddedUIExtensionAbility)`在`ets/extensionAbility/ExampleEmbeddedAbility.ets`文件中实现，内容如下：
 
   ```ts
-  import EmbeddedUIExtensionAbility from '@ohos.app.ability.EmbeddedUIExtensionAbility'
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession'
-  import Want from '@ohos.app.ability.Want';
+  import { EmbeddedUIExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = '[ExampleEmbeddedAbility]'
+  const TAG: string = '[ExampleEmbeddedAbility]';
+
   export default class ExampleEmbeddedAbility extends EmbeddedUIExtensionAbility {
-    
     onCreate() {
       console.log(TAG, `onCreate`);
     }
@@ -169,6 +179,7 @@ onError(callback: ErrorCallback)
         'session': session
       };
       let storage: LocalStorage = new LocalStorage(param);
+      // 加载pages/extension.ets页面内容
       session.loadContent('pages/extension', storage);
     }
 
@@ -178,12 +189,12 @@ onError(callback: ErrorCallback)
   }
   ```
 
-- EmbeddedUIExtensionAbility的入口页面文件`pages/extension.ets`内容如下：
+- `ExampleEmbeddedAbility(EmbeddedUIExtensionAbility)`的入口页面文件`ets/pages/extension.ets`内容如下，同时需要在`resources/base/profile/main_pages.json`文件中配置该页面路径：
 
   ```ts
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+  import { UIExtensionContentSession } from '@kit.AbilityKit';
 
-  let storage = LocalStorage.getShared()
+  let storage = new LocalStorage();
 
   @Entry(storage)
   @Component
@@ -197,19 +208,21 @@ onError(callback: ErrorCallback)
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
         Button("terminateSelfWithResult").fontSize(20).onClick(() => {
+          // 点击按钮后调用terminateSelfWithResult退出
           this.session?.terminateSelfWithResult({
             resultCode: 1,
             want: {
               bundleName: "com.example.embeddeddemo",
               abilityName: "ExampleEmbeddedAbility",
-            }});
+            }
+          });
         })
       }.width('100%').height('100%')
     }
   }
   ```
 
-- 最后，示例应用的`module.json5`中的"extensionAbilities"中需要增加一项，具体内容如下：
+- 在`module.json5`配置文件的"extensionAbilities"标签下增加`ExampleEmbeddedAbility`配置，其type类型为`embeddedUI`，具体内容如下：
   ```json
   {
     "name": "ExampleEmbeddedAbility",

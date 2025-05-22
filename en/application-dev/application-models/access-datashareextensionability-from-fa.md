@@ -5,9 +5,9 @@
 
 Regardless of the FA model or stage model, the data read/write function consists of the client and server.
 
-- In the FA model, the client uses the **DataAbilityHelper** class to provide external APIs, and the server uses the **DataAbility** class to provide database read and write services.
+- In the FA model, the client uses [DataAbilityHelper](../reference/apis-ability-kit/js-apis-inner-ability-dataAbilityHelper.md) to provide external APIs, and the server uses [DataAbility](dataability-overview.md) to provide database read and write services.
 
-- In the stage model, the client uses the **DataShareHelper** class to provide external APIs, and the server uses the **DataShareExtensionAbility** class to provide database read and write services.
+- In the stage model, the client uses [DataShareHelper](../reference/apis-arkdata/js-apis-data-dataShare-sys.md#datasharehelper) to provide external APIs, and the server uses [DataShareExtensionAbility](../reference/apis-arkdata/js-apis-application-dataShareExtensionAbility-sys.md) to provide database read and write services
 
 If the client uses the FA model whereas the server is upgraded to the stage model, the client cannot access the server.
 
@@ -31,7 +31,7 @@ Instead of manual modification, the system adopts the following processing:
 
    ![FAvsStage-uri](figures/FAvsStage-uri.png)
 
-3. The **DataShareHelper** class implements only certain APIs of **DataAbilityHelper**. For details about the APIs, see the table below.
+2. The **DataShareHelper** class implements only certain APIs of **DataAbilityHelper**. For details about the APIs, see the table below.
 
    **Table 1** API compatibility when the FA model accesses a DataShareExtensionAbility of the stage model
 

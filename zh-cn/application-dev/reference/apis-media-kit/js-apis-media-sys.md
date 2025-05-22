@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 ```
 
 ## media.createVideoRecorder<sup>9+</sup>
@@ -41,7 +41,7 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoRecorder: media.VideoRecorder;
 media.createVideoRecorder((error: BusinessError, video: media.VideoRecorder) => {
@@ -82,7 +82,7 @@ createVideoRecorder(): Promise\<VideoRecorder>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoRecorder: media.VideoRecorder;
 media.createVideoRecorder().then((video: media.VideoRecorder) => {
@@ -105,50 +105,140 @@ reportAVScreenCaptureUserChoice(sessionId: number, choice: string): Promise\<voi
 
 此接口提供给创建弹窗的系统应用调用。
 
-**系统能力：**SystemCapability.Multimedia.Media.AVScreenCapture
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **系统接口：** 该接口为系统接口
 
 **参数：**
 
-| 名称      | 类型   | 必填 | 说明                                                         |
+| 参数名    | 类型   | 必填 | 说明                                                          |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | sessionId | number | 是   | AVScreenCapture服务会话Id，会由AVScreenCapture拉起隐私弹窗时传给应用。 |
-| choice    | string | 是   | 用户的选择内容，“取消”为“false”，“确定”为“true“。            |
+| choice    | string | 是   | 用户的选择内容，包含是否同意录屏、选择的屏幕Id和窗口Id。可见示例中JsonData样例。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 401      | Input parameter invalid. Return by promise. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 | 5400101  | No memory. Return by promise.               |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { media } from '@kit.MediaKit';
 
-let sessionId: number = 0; // 替换成拉起此进程的sessionId
-let choice: string = 'false'; // 替换成用户的选择内容
+class JsonData {
+  public choice: string = 'true'
+  public displayId: number | null = -1
+  public missionId: number | null = -1
+}
+let sessionId: number = 0; // 替换成拉起此进程的sessionId。
 
 try {
-    await media.reportAVScreenCaptureUserChoice(sessionId, choice);
+  const jsonData: JsonData = {
+    choice: 'true',  // 替换成用户的选择内容。
+    displayId: -1,   // 替换成用户选择的屏幕Id。
+    missionId: -1,   // 替换成用户选择的窗口Id。
+  }
+  await media.reportAVScreenCaptureUserChoice(sessionId, JSON.stringify(jsonData));
 } catch (error: BusinessError) {
-    console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
+  console.error(`reportAVScreenCaptureUserChoice error, error message: ${error.message}`);
 }
 ```
 
-## AVImageQueryOptions<sup>11+</sup>
+## media.getScreenCaptureMonitor<sup>18+</sup>
 
-需要获取的缩略图时间点与视频帧的对应关系。
+getScreenCaptureMonitor(): Promise\<ScreenCaptureMonitor>
 
-在获取视频缩略图时，传入的时间点与实际取得的视频帧所在时间点不一定相等，需要指定传入的时间点与实际取得的视频帧的时间关系。
+获取录屏监控模块实例。使用Promise异步回调。
 
-**系统能力：** SystemCapability.Multimedia.Media.AVImageGenerator
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
-| 名称                     | 值              | 说明                                                         |
-| ------------------------ | --------------- | ------------------------------------------------------------ |
-| AV_IMAGE_QUERY_CLOSEST          | 3      | 表示选取离传入时间点最近的帧，该帧不一定是关键帧<br>**系统接口：** 该接口为系统接口     |
+**系统接口：** 该接口为系统接口。
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[ScreenCaptureMonitor](#screencapturemonitor18)> | Promise对象。可用于查询和监听系统录屏状态。<br>异步返回ScreenCaptureMonitor实例，失败时返回null。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体错误码](errorcode-media.md)。
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 202  | Not System App. |
+| 5400101  | No memory. Return by promise. |
+
+**示例：**
+
+```ts
+let screenCaptureMonitor: media.ScreenCaptureMonitor;
+try {
+  screenCaptureMonitor = await media.getScreenCaptureMonitor();
+} catch (err) {
+  console.error(`getScreenCaptureMonitor failed, error message:${err.message}`);
+}
+```
+
+## media.createParallelSoundPool<sup>18+</sup>
+
+createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
+
+创建音频池实例，通过Promise获取返回值。
+
+使用[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建的音频池实例，在重复播放相同音频时，会停止之前的播放并重新开始；而使用createParallelSoundPool创建的实例，在重复播放相同音频时，不会停止之前的音频，而是并行播放。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名   | 类型                                            | 必填 | 说明                                                         |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| maxStreams | number | 是   | soundPool实例的最大播放的流数，设置范围为1-32的正整数。 |
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | 是   | 音频播放参数信息。 |
+
+**返回值：**
+
+| 类型                                      | 说明                                                         |
+| ----------------------------------------- | ------------------------------------------------------------ |
+| Promise<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Promise对象。异步返回SoundPool实例，失败时返回null。用于音频池实例的加载播放功能。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                      |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+| 202| System API error. Return by promise. |
+
+**示例：**
+
+```js
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags : 0
+}
+
+media.createParallelSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
+  if (soundpool_ != null) {
+    soundPool = soundpool_;
+    console.info('Succceeded in creating SoundPool');
+  } else {
+    console.error('Failed to create SoundPool');
+  }
+}, (error: BusinessError) => {
+  console.error(`soundpool catchCallback, error message:${error.message}`);
+});
+```
 
 ## PixelMapParams<sup>11+</sup>
 
@@ -173,6 +263,242 @@ try {
 | RGB_565       | 2   | 表示RGB_565颜色格式。                       |
 | RGBA_8888        | 3    | 表示RGBA_8888颜色格式。 |
 | RGB_888        | 5    | 表示RGB_888颜色格式。                 |
+
+## AVMetadataExtractor<sup>11+</sup>
+> **说明：**
+> 元数据获取类，用于从媒体资源中获取元数据。在调用AVMetadataExtractor的方法前，需要先通过[createAVMetadataExtractor()](js-apis-media.md#mediacreateavmetadataextractor11)构建一个AVMetadataExtractor实例。
+
+### getTimeByFrameIndex<sup>12+</sup>
+
+getTimeByFrameIndex(index: number): Promise\<number>
+
+获取目标视频帧号对应的视频时间戳。仅支持MP4视频文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明       |
+| ------ | ------ | ---- | ---------- |
+| index  | number | 是   | 视频帧号。 |
+
+**返回值：**
+
+| 类型             | 说明                                |
+| ---------------- | ----------------------------------- |
+| Promise\<number> | 时间戳的Promise返回值。单位是微秒。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Returned by promise.    |
+| 5400106  | Unsupported format. Returned by promise.       |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avMetadataExtractor.getTimeByFrameIndex(0).then((timeUs: number) => {
+  console.info(`Succeeded getTimeByFrameIndex timeUs: ${timeUs}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getTimeByFrameIndex ${err.message}`);
+})
+```
+
+### getFrameIndexByTime<sup>12+</sup>
+
+getFrameIndexByTime(timeUs: number): Promise\<number>
+
+获取目标视频时间戳对应的视频帧号。仅支持MP4视频文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| timeUs | number | 是   | 视频时间戳，单位：微秒。 |
+
+**返回值：**
+
+| 类型             | 说明                      |
+| ---------------- | ------------------------- |
+| Promise\<number> | 视频帧号的Promise返回值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                       |
+| -------- | ---------------------------------------------- |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Returned by promise.    |
+| 5400106  | Unsupported format. Returned by promise.       |
+
+**示例：**
+
+```ts
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avMetadataExtractor.getFrameIndexByTime(0).then((index: number) => {
+  console.info(`Succeeded getFrameIndexByTime index: ${index}`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to getFrameIndexByTime ${err.message}`);
+})
+```
+
+## AVRecorder<sup>9+</sup>
+
+音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过[createAVRecorder()](js-apis-media.md#mediacreateavrecorder9)构建一个AVRecorder实例。
+
+> **说明：**
+>
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口的使用详情见[相机管理](../apis-camera-kit/js-apis-camera.md)。
+
+### isWatermarkSupported<sup>13+</sup>
+
+isWatermarkSupported(): Promise\<boolean>
+
+检查当前设备录制是否支持硬件数字水印能力。通过Promise获取返回值。
+
+可在[prepare()](js-apis-media.md#prepare9-3)、[start()](js-apis-media.md#start9)、[paused()](js-apis-media.md#pause9)事件成功触发后调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<boolean> | 获取是否支持水印的Promise返回值，支持水印：true，不支持水印：false。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avRecorder.isWatermarkSupported().then((isWatermarkSupported: boolean) => {
+  console.info(`Succeeded in get, isWatermarkSupported: ${isWatermarkSupported}`);
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get and catch error is ${error.message}`);
+});
+```
+
+### setWatermark<sup>13+</sup>
+
+setWatermark(watermark: image.PixelMap, config: WatermarkConfig): Promise\<void>
+
+给AVRecorder设置水印图像。通过Promise获取返回值。
+
+当且仅当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，且在[start()](js-apis-media.md#start9)之前，才能调用setWatermark方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                         |
+| -------- | -------------------- | ---- | --------------------------- |
+| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | 是   | 图像PixelMap数据。<br>当前支持规格:<br>-当前仅支持pixelformat为RGBA8888。<br>-原图像为8K时->水印图像限制范围3072x288,原图像为4K时->水印图像限制范围1536x144。 |
+| config    | [WatermarkConfig](#watermarkconfig13)   | 是   | 水印的相关配置参数。 |
+
+**返回值：**
+
+| 类型             | 说明                             |
+| ---------------- | -------------------------------- |
+| Promise\<void> | 异步返回函数执行结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
+
+| 错误码ID | 错误信息                                 |
+| -------- | --------------------------------------   |
+|   401    | The parameter check failed. Return by promise.            |
+|   801    | Capability not supported. Return by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
+
+let watermark: image.PixelMap|undefined = undefined; // need data.
+let watermarkConfig: media.WatermarkConfig = { top: 100, left: 100 }
+
+avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
+  console.info('Succeeded in setWatermark');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to setWatermark and catch error is ${error.message}`);
+});
+```
+
+### setMetadata<sup>18+</sup>
+setMetadata(metadata: Record\<string, string\>): void
+
+给AVRecorder的录制文件中设置自定义meta数据。
+
+只有当[prepare()](js-apis-media.md#prepare9-3)事件成功触发后，并在调用[stop()](js-apis-media.md#stop9-3)方法之前，才能调用setMetadata方法。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型                  | 必填 | 说明                                                                |
+| -------- | -------------------- | ---- |-------------------------------------------------------------------|
+| metadata | [Record<string, string>]  | 是   | 以键值对形式设置meta数据的tag和value。<br>- 第一个string为meta tag。<br>- 第二个string为meta value。 |
+
+**返回值：**
+
+| 类型            | 说明        |
+| --------------- |-----------|
+| void | 无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息            |
+|-------|-----------------|
+| 202   | Not System App. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let meta : Record<string, string> = {
+   'com.openharmony.userdefine':'10',
+   'com.openharmony.userdefine2':'20'
+};
+
+avRecorder.setMetadata(meta);
+```
+
+## AVRecorderProfile<sup>9+</sup>
+
+音视频录制的配置文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称             | 类型                                         | 必填 | 说明                                                         |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。<br>**系统接口：** 该接口为系统接口。|
 
 ## VideoRecorder<sup>9+</sup>
 
@@ -217,16 +543,16 @@ prepare(config: VideoRecorderConfig, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                   |
 | -------- | ------------------------------------------ |
 | 201      | Permission denied. Return by callback.     |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 | 5400102  | Operation not allowed. Return by callback. |
 | 5400105  | Service died. Return by callback.          |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// 配置参数以实际硬件设备支持的范围为准
+// 配置参数以实际硬件设备支持的范围为准。
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
@@ -244,12 +570,12 @@ let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
-  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限
+  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限。
   rotation : 0,
   location : { latitude : 30, longitude : 130 }
 }
 
-// asyncallback
+// asyncallback.
 videoRecorder.prepare(videoConfig, (err: BusinessError) => {
   if (err == null) {
     console.info('prepare success');
@@ -290,16 +616,16 @@ prepare(config: VideoRecorderConfig): Promise\<void>
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
 | 201      | Permission denied. Return by promise.     |
-| 401      | Parameter error. Return by promise.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 | 5400102  | Operation not allowed. Return by promise. |
 | 5400105  | Service died. Return by promise.          |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// 配置参数以实际硬件设备支持的范围为准
+// 配置参数以实际硬件设备支持的范围为准。
 let videoProfile: media.VideoRecorderProfile = {
   audioBitrate : 48000,
   audioChannels : 2,
@@ -317,12 +643,12 @@ let videoConfig: media.VideoRecorderConfig = {
   audioSourceType : media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType : media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
   profile : videoProfile,
-  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限
+  url : 'fd://xx', // 文件需先由调用者创建，并给予适当的权限。
   rotation : 0,
   location : { latitude : 30, longitude : 130 }
 }
 
-// promise
+// promise.
 videoRecorder.prepare(videoConfig).then(() => {
   console.info('prepare success');
 }).catch((err: BusinessError) => {
@@ -363,10 +689,10 @@ getInputSurface(callback: AsyncCallback\<string>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
-let surfaceID: string; // 传递给外界的surfaceID
+// asyncallback.
+let surfaceID: string; // 传递给外界的surfaceID。
 videoRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
   if (err == null) {
     console.info('getInputSurface success');
@@ -410,10 +736,10 @@ getInputSurface(): Promise\<string>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
-let surfaceID: string; // 传递给外界的surfaceID
+// promise.
+let surfaceID: string; // 传递给外界的surfaceID。
 videoRecorder.getInputSurface().then((surfaceId: string) => {
   console.info('getInputSurface success');
   surfaceID = surfaceId;
@@ -453,9 +779,9 @@ start(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.start((err: BusinessError) => {
   if (err == null) {
     console.info('start videorecorder success');
@@ -496,9 +822,9 @@ start(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.start().then(() => {
   console.info('start videorecorder success');
 }).catch((err: BusinessError) => {
@@ -537,9 +863,9 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.pause((err: BusinessError) => {
   if (err == null) {
     console.info('pause videorecorder success');
@@ -580,9 +906,9 @@ pause(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.pause().then(() => {
   console.info('pause videorecorder success');
 }).catch((err: BusinessError) => {
@@ -619,9 +945,9 @@ resume(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.resume((err: BusinessError) => {
   if (err == null) {
     console.info('resume videorecorder success');
@@ -660,9 +986,9 @@ resume(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.resume().then(() => {
   console.info('resume videorecorder success');
 }).catch((err: BusinessError) => {
@@ -701,9 +1027,9 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.stop((err: BusinessError) => {
   if (err == null) {
     console.info('stop videorecorder success');
@@ -744,9 +1070,9 @@ stop(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.stop().then(() => {
   console.info('stop videorecorder success');
 }).catch((err: BusinessError) => {
@@ -781,9 +1107,9 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.release((err: BusinessError) => {
   if (err == null) {
     console.info('release videorecorder success');
@@ -820,9 +1146,9 @@ release(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.release().then(() => {
   console.info('release videorecorder success');
 }).catch((err: BusinessError) => {
@@ -860,9 +1186,9 @@ reset(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// asyncallback
+// asyncallback.
 videoRecorder.reset((err: BusinessError) => {
   if (err == null) {
     console.info('reset videorecorder success');
@@ -902,9 +1228,9 @@ reset(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// promise
+// promise.
 videoRecorder.reset().then(() => {
   console.info('reset videorecorder success');
 }).catch((err: BusinessError) => {
@@ -941,10 +1267,10 @@ on(type: 'error', callback: ErrorCallback): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// 当获取videoRecordState接口出错时通过此订阅事件上报
-videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回调
+// 当获取videoRecordState接口出错时通过此订阅事件上报。
+videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回调。
   console.error(`audio error called, error: ${error}`);
 })
 ```
@@ -1005,3 +1331,111 @@ videoRecorder.on('error', (error: BusinessError) => { // 设置'error'事件回�
 | videoFrameWidth  | number                                       | 是   | 录制视频帧的宽。 |
 | videoFrameHeight | number                                       | 是   | 录制视频帧的高。 |
 | videoFrameRate   | number                                       | 是   | 录制视频帧率。   |
+
+## WatermarkConfig<sup>13+</sup>
+
+设置给AVRecorder的水印相关配置，该位置以画面的左上角为开始点。
+
+**系统能力：** SystemCapability.Multimedia.Media.Core
+
+**系统接口：** 该接口为系统接口
+
+| 名称      | 类型   | 必填 | 说明             |
+| --------- | ------ | ---- | ---------------- |
+| top       | number | 是   | 显示位置，距离图像顶部的像素偏移量。 |
+| left      | number | 是   | 显示位置，距离图像左部的像素偏移量。 |
+
+## ScreenCaptureMonitor<sup>18+</sup>
+
+录屏状态监控类，用于查询和监听系统录屏的录屏状态。在调用ScreenCaptureMonitor方法前，需要先通过[getScreenCaptureMonitor()](#mediagetscreencapturemonitor18)构建一个[ScreenCaptureMonitor](#screencapturemonitor18)实例。
+
+### 属性
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+| 名称               | 类型                                   | 可读 | 可写 | 说明             |
+| ------------------ | -------------------------------------- | ---- | ---- | ---------------- |
+| isSystemScreenRecorderWorking<sup>18+</sup> | bool | 是   | 否   | 系统录屏是否处于录屏状态。 |
+
+### on('systemScreenRecorder')<sup>18+</sup>
+
+on(type: 'systemScreenRecorder', callback: Callback\<ScreenCaptureEvent>): void
+
+开始订阅系统录屏的录屏状态。当上报ScreenCaptureEvent事件后，用户可以根据ScreenCaptureEvent事件得知系统录屏当前处于开启还是停止的状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录屏状态回调类型'systemScreenRecorder'。<br/>-&nbsp;'systemScreenRecorder'：系统录屏应用的录屏状态发生变化，触发该事件。 |
+| callback | function | 是   | 系统录屏状态回调。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**示例：**
+
+```ts
+
+// 当系统录屏应用的录屏状态发生变化时通过此订阅事件上报。
+screenCaptureMonitor.on('systemScreenRecorder', (event: media.ScreenCaptureEvent) => { 
+  // 设置'systemScreenRecorder'事件回调。
+  console.info(`system ScreenRecorder event: ${event}`);
+})
+```
+
+### off('systemScreenRecorder')<sup>18+</sup>
+
+off(type: 'systemScreenRecorder', callback?: Callback\<ScreenCaptureEvent>): void
+
+取消订阅系统录屏的录屏状态。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                                         |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | 是   | 录屏状态回调类型'systemScreenRecorder'。<br/>-&nbsp;'systemScreenRecorder'：系统录屏应用的录屏状态发生变化，触发该事件。 |
+| callback | function | 否   | 系统录屏状态回调。[ScreenCaptureEvent](#screencaptureevent18)表示切换到的状态，不填此参数则会取消最后一次订阅事件。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                          |
+| -------- | --------------------------------- |
+| 202  | Not System App.    |
+
+**示例：**
+
+```ts
+screenCaptureMonitor.off('systemScreenRecorder');   
+```
+
+## ScreenCaptureEvent<sup>18+</sup>
+
+系统录屏应用录屏状态的枚举值。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**系统接口：** 该接口为系统接口。
+
+| 名称                     | 值              | 说明                                                         |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| SCREENCAPTURE_STARTED       | 0   | 表示系统录屏应用开始录屏。                       |
+| SCREENCAPTURE_STOPPED        | 1    | 表示系统录屏应用停止录屏。 |
+

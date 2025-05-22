@@ -10,13 +10,15 @@ The util module provides common utility functions, such as [TextEncoder](#texten
 ## Modules to Import
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 ```
 ## util.format<sup>9+</sup>
 
 format(format: string,  ...args: Object[]): string
 
 Formats a string by replacing the placeholders in it.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -33,6 +35,13 @@ Formats a string by replacing the placeholders in it.
 | ------ | -----------------|
 | string | Formatted string.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Format Specifiers**
 
@@ -41,7 +50,7 @@ Formats a string by replacing the placeholders in it.
 | %s     | Converts a parameter into a string for all values except **Object**, **BigInt**, and **-0**.|
 | %d     | Converts a parameter into a decimal integer for all values except **Symbol** and **BigInt**.|
 | %i     | Converts a string into a decimal integer for all values except **Symbol** and **BigInt**.|
-| %f     | Converts a string into a floating point number for all values except **Symbol** and **BigInt**.|
+| %f     | Converts a string into a floating point number for all values except **BigInt** and **Symbol**.|
 | %j     | Converts a JavaScript object into a JSON string.|
 | %o     | Converts a JavaScript object into a string, without containing the prototype chain information of the object.|
 | %O     | Converts a JavaScript object into a string.|
@@ -51,7 +60,7 @@ Formats a string by replacing the placeholders in it.
 **Example**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 interface utilAddresstype {
   city: string;
@@ -120,6 +129,8 @@ errnoToString(errno: number): string
 
 Obtains detailed information about a system error code.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -134,12 +145,21 @@ Obtains detailed information about a system error code.
 | ------ | ---------------------- |
 | string | Detailed information about the error code.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
 let errnum = -1; // -1 is a system error code.
 let result = util.errnoToString(errnum);
 console.info("result = " + result);
+// Output: result = operation not permitted
 ```
 
 **Some error code and message examples**
@@ -162,6 +182,12 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
 Calls back an asynchronous function. In the callback, the first parameter indicates the cause of the rejection (the value is **null** if the promise has been resolved), and the second parameter indicates the resolved value.
 
+> **NOTE**
+>
+> **original** must be an asynchronous function. If a non-asynchronous function is passed in, the function is not intercepted, but the error message "callbackWrapper: The type of Parameter must be AsyncFunction" is displayed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -176,6 +202,14 @@ Calls back an asynchronous function. In the callback, the first parameter indica
 | -------- | -------- |
 | Function | Callback function, in which the first parameter **err** indicates the cause of the rejection (the value is **null** if the promise has been resolved) and the second parameter **value** indicates the resolved value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -187,6 +221,7 @@ cb(1, (err : Object, ret : string) => {
   if (err) throw new Error;
   console.info(ret);
 });
+// Output: hello world
 ```
 
 ## util.promisify<sup>9+</sup>
@@ -194,6 +229,8 @@ cb(1, (err : Object, ret : string) => {
 promisify(original: (err: Object, value: Object) =&gt; void): Function
 
 Processes an asynchronous function and returns a promise.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -209,6 +246,14 @@ Processes an asynchronous function and returns a promise.
 | -------- | -------- |
 | Function | Promise function.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -220,6 +265,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
   try {
     let res: string = await addCall();
     console.info(res);
+    // Output: hello world
   } catch (err) {
     console.info(err);
   }
@@ -230,7 +276,9 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-Uses a secure random number generator to generate a random universally unique identifier (UUID) of the string type in RFC 4122 version 4.
+Uses a secure random number generator to generate a random universally unique identifier (UUID) of the string type in RFC 4122 version 4. To improve performance, this API uses cached UUIDs by default, in which **entropyCache** is set to **true**. A maximum of 128 random UUIDs can be cached. After all the 128 UUIDs in the cache are used, a new set of UUIDs is generated to maintain their random distribution. If you do not need to use the cached UUID, set **entropyCache** to **false**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -238,13 +286,21 @@ Uses a secure random number generator to generate a random universally unique id
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+| entropyCache | boolean | No| Whether to use a cached UUID. The value **true** means to use a cached UUID, and **false** means the opposite. The default value is **true**.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
 | string | A string representing the UUID generated.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **Example**
 
@@ -260,13 +316,15 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 Uses a secure random number generator to generate a random UUID of the Uint8Array type in RFC 4122 version 4.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | No| Whether a cached UUID can be used. The default value is **true**.|
+| entropyCache | boolean | No| Whether to use a cached UUID. The value **true** means to use a cached UUID, and **false** means the opposite. The default value is **true**.|
 
 **Return value**
 
@@ -274,13 +332,20 @@ Uses a secure random number generator to generate a random UUID of the Uint8Arra
 | -------- | -------- |
 | Uint8Array | A Uint8Array value representing the UUID generated.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
 **Example**
 
 ```ts
 let uuid = util.generateRandomBinaryUUID(true);
 console.info(JSON.stringify(uuid));
-// Output:
-// 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+// Output a random UUID.
 ```
 
 ## util.parseUUID<sup>9+</sup>
@@ -288,6 +353,8 @@ console.info(JSON.stringify(uuid));
 parseUUID(uuid: string): Uint8Array
 
 Converts a UUID of the string type generated by **generateRandomUUID** to a UUID of the Uint8Array type generated by **generateRandomBinaryUUID**, as described in RFC 4122 version 4.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -303,13 +370,21 @@ Converts a UUID of the string type generated by **generateRandomUUID** to a UUID
 | -------- | -------- |
 | Uint8Array | A Uint8Array value representing the UUID parsed. If the parsing fails, **SyntaxError** is thrown.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 10200002 | Invalid uuid string. |
+
 **Example**
 
 ```ts
 let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-console.info(JSON.stringify(uuid));
-// Output:
-// 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+console.info("uuid = " + uuid);
+// Output: uuid = 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
 ```
 
 ## util.printf<sup>(deprecated)</sup>
@@ -342,6 +417,7 @@ Formats a string by replacing the placeholders in it.
 ```ts
 let res = util.printf("%s", "hello world!");
 console.info(res);
+// Output: hello world!
 ```
 
 
@@ -375,6 +451,7 @@ Obtains detailed information about a system error code.
 let errnum = -1; // -1 is a system error code.
 let result = util.getErrorString(errnum);
 console.info("result = " + result);
+// Output: result = operation not permitted
 ```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
@@ -402,28 +479,88 @@ Processes an asynchronous function and returns a promise.
 | Function | Function in the error-first style (that is, **(err, value) =>...** is called as the last parameter) and the promise.|
 
 
-## TextDecoderOptions<sup>11+</sup>
+## util.getHash<sup>12+</sup>
+
+getHash(object: object): number
+
+Obtains the hash value of an object. If no hash value has been obtained, a random hash value is generated, saved to the **hash** field of the object, and returned. If a hash value has been obtained, the hash value saved in the **hash** field is returned (the same value is returned for the same object).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
-Decoding-related options, which include **fatal** and **ignoreBOM**.
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| object | object | Yes| Object whose hash value is to be obtained.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| number | Hash value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+interface Person {
+  name: string,
+  age: number
+}
+let obj: Person = { name: 'Jack', age: 20 };
+let result1 = util.getHash(obj);
+console.info('result1 is ' + result1);
+let result2 = util.getHash(obj);
+console.info('result2 is ' + result2);
+// Output: The values of result1 and result2 are the same and are a random hash value.
+```
+
+
+## TextDecoderOptions<sup>11+</sup>
+
+Describes decoding-related options, which include **fatal** and **ignoreBOM**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name     | Type| Mandatory| Description              |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**.|
-| ignoreBOM | boolean  | No  | Whether to ignore the BOM. The default value is **false**. |
+| fatal     | boolean  | No  | Whether to display fatal errors. The value **true** means to display fatal errors, and **false** means the opposite. The default value is **false**.|
+| ignoreBOM | boolean  | No  | Whether to ignore the BOM. The value **true** means to ignore the BOM, and **false** means the opposite. The default value is **false**. |
 
+## DecodeToStringOptions<sup>12+</sup>
 
-## DecodeWithStreamOptions<sup>11+</sup>
+Describes the options used during the decoding to a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| stream | boolean | No| Whether the incomplete byte sequence at the end of the input needs to be appended to the parameter for the next call of **decodeToString**. The value **true** means that the incomplete byte sequence is stored in the internal buffer until the function is called next time. If the value is false, the byte sequence is directly decoded when the function is called currently. The default value is **false**.|
+
+## DecodeWithStreamOptions<sup>11+</sup>
+
 Defines whether decoding follows data blocks.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | stream | boolean | No| Whether to allow data blocks in subsequent **decodeWithStream()**. If data is processed in blocks, set this parameter to **true**. If this is the last data block to process or data is not divided into blocks, set this parameter to **false**. The default value is **false**.|
-
 
 ## Aspect<sup>11+</sup>
 
@@ -435,6 +572,8 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 
 Inserts a function before a method of a class object. The inserted function is executed in prior to the original method of the class object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -442,9 +581,17 @@ Inserts a function before a method of a class object. The inserted function is e
 | Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
-| methodName   | string   | Yes  | Name of the method.                   |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
+| methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                   |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.     |
 | before       | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -517,6 +664,8 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 
 Inserts a function after a method of a class object. The final return value is the return value of the function inserted.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -524,9 +673,17 @@ Inserts a function after a method of a class object. The final return value is t
 | Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
-| methodName   | string   | Yes  | Name of the method.                  |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.     |
+| methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                  |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.     |
 | after        | Function | Yes  | Function to insert. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; the second parameter is the return value of the original method (**undefined** if the original method does not have a return value); other parameters are the parameters carried by the original method. If the function does not carry any parameter, no processing is performed. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -590,6 +747,8 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 
 Replaces a method of a class object with another function. After the replacement, only the new function logic is executed. The final return value is the return value of the new function.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -597,9 +756,17 @@ Replaces a method of a class object with another function. After the replacement
 | Name   | Type   | Mandatory| Description                                  |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | Yes  | Target class object.                   |
-| methodName   | string   | Yes  | Name of the method.                 |
-| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** indicates a static method, and **false** indicates an instance method.      |
+| methodName   | string   | Yes  | Name of the method. Read-only methods are not supported.                 |
+| isStatic     | boolean  | Yes  | Whether the method is a static method. The value **true** means a static method, and **false** means an instance method.      |
 | instead      | Function | Yes  | Function to be used replacement. If the function carries parameters, then the first parameter is the **this** object, which is the target class object (specified by **targetClass**) if **isStatic** is **true** or the instance object of the method if **isStatic** is **false**; other parameters are the parameters carried in the original method. If the function does not carry any parameter, no processing is performed.  |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -644,12 +811,14 @@ Provides APIs to decode byte arrays into strings. It supports multiple formats, 
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrilli, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le |
-| fatal | boolean | Yes| No| Whether to display fatal errors.|
+| encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, x-mac-cyrillic, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, utf-16be, utf-16le, UTF-8, GBK, GB2312, gb2312, GB18030 and iso-8859-1.|
+| fatal | boolean | Yes| No| Whether to display fatal errors. The value **true** means to display fatal errors, and **false** means the opposite.|
 | ignoreBOM | boolean | Yes| No| Whether to ignore the byte order marker (BOM). The default value is **false**, which indicates that the result contains the BOM.|
 
 ### constructor<sup>9+</sup>
@@ -658,19 +827,25 @@ constructor()
 
 A constructor used to create a **TextDecoder** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
 ```ts
-let result = new util.TextDecoder();
-let retStr = result.encoding;
+let textDecoder = new util.TextDecoder();
+let retStr = textDecoder.encoding;
+console.info('retStr = ' + retStr);
+// Output: retStr = utf-8
 ```
 ### create<sup>9+</sup>
 
 static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
 Creates a **TextDecoder** object. It provides the same function as the deprecated argument constructor.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -681,6 +856,14 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 | encoding | string | No  | Encoding format. The default format is **'utf-8'**.                     |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | No  | Decoding-related options, which include **fatal** and **ignoreBOM**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -688,15 +871,71 @@ let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,
   ignoreBOM : true
 }
-let result = util.TextDecoder.create('utf-8', textDecoderOptions)
-let retStr = result.encoding
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let retStr = textDecoder.encoding;
+console.info('retStr = ' + retStr);
+// Output: retStr = utf-8
 ```
 
-### decodeWithStream<sup>9+</sup>
+### decodeToString<sup>12+</sup>
+
+decodeToString(input: Uint8Array, options?: DecodeToStringOptions): string
+
+Decodes the input content into a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| input | Uint8Array | Yes| Uint8Array object to decode.|
+| options | [DecodeToStringOptions](#decodetostringoptions12) | No| Decoding-related options. The default value is **undefined**.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| string | String obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+let textDecoderOptions: util.TextDecoderOptions = {
+  fatal: false,
+  ignoreBOM : true
+}
+let decodeToStringOptions: util.DecodeToStringOptions = {
+  stream: false
+}
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
+console.info("retStr = " + retStr);
+// Output: retStr = abc
+```
+
+### decodeWithStream<sup>(deprecated)</sup>
 
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
-Decodes the input content into a string.
+Decodes the input content into a string. If **input** is an empty array, **undefined** is returned.
+
+> **NOTE**
+>
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [decodeToString<sup>12+</sup>](#decodetostring12) instead.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -713,6 +952,14 @@ Decodes the input content into a string.
 | -------- | -------- |
 | string | String obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -724,16 +971,17 @@ let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
+let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
+// Output: retStr = abc
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -759,8 +1007,8 @@ A constructor used to create a **TextDecoder** object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | No| Whether to display fatal errors. The default value is **false**.|
-| ignoreBOM | boolean | No| Whether to ignore the BOM. The default value is **false**.|
+| fatal | boolean | No| Whether to display fatal errors. The value **true** means to display fatal errors, and **false** means the opposite. The default value is **false**.|
+| ignoreBOM | boolean | No| Whether to ignore the BOM. The value **true** means to ignore the BOM, and **false** means the opposite. The default value is **false**.|
 
 **Example**
 
@@ -776,7 +1024,7 @@ Decodes the input content into a string.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [decodeWithStream<sup>9+</sup>](#decodewithstream9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [decodeToString<sup>12+</sup>](#decodetostring12) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -803,16 +1051,17 @@ Decodes the input content into a string.
 
 ```ts
 let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decode( result , {stream: false});
+let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
+// Output: retStr = abc
 ```
 
 ## EncodeIntoUint8ArrayInfo<sup>11+</sup>
@@ -820,6 +1069,8 @@ console.info("retStr = " + retStr);
 **System capability**: SystemCapability.Utils.Lang
 
 Defines encoded text.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name     | Type| Readable |Writable | Description              |
 | --------- | -------- | -------- |-------- |------------------ |
@@ -829,15 +1080,19 @@ Defines encoded text.
 
 ## TextEncoder
 
-Provides APIs to encode strings into byte arrays. It supports multiple formats, including UTF-8, UTF-16LE, and UTF-16BE. When **TextEncoder** is used for encoding, the number of bytes occupied by a character varies according to the encoding format. For example, a Chinese character usually occupies three bytes in UTF-8 encoding format but two bytes in UTF-16LE or UTF-16BE encoding format. Therefore, when using **TextEncoder**, you must explicitly specify the encoding format to obtain the required encoding result.
+Provides APIs to encode strings into byte arrays. Multiple encoding formats are supported.
+
+Note that when **TextEncoder** is used for encoding, the number of bytes occupied by a character varies according to the encoding format. Therefore, when using **TextEncoder**, you must explicitly specify the encoding format to be used to obtain the required encoding result.
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, gb18030, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr<br>The default value is **'utf-8'**. |
+| encoding | string | Yes| No|  Encoding format.<br>The following formats are supported: utf-8, UTF-8, GBK, GB2312, gb2312, GB18030, gb18030, ibm866, iso-8859-1, iso-8859-2, iso-8859-3, iso-8859-4, iso-8859-5, iso-8859-6, iso-8859-7, iso-8859-8, iso-8859-8-i, iso-8859-10, iso-8859-13, iso-8859-14, iso-8859-15, koi8-r, koi8-u, macintosh, windows-874, windows-1250, windows-1251, windows-1252, windows-1253, windows-1254, windows-1255, windows-1256, windows-1257, windows-1258, gbk, big5, euc-jp, iso-2022-jp, shift_jis, euc-kr, x-mac-cyrillic, utf-16be, and utf-16le.<br>The default value is **'utf-8'**.|
 
 
 ### constructor
@@ -845,6 +1100,8 @@ Provides APIs to encode strings into byte arrays. It supports multiple formats, 
 constructor()
 
 A constructor used to create a **TextEncoder** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -860,6 +1117,8 @@ constructor(encoding?: string)
 
 A constructor used to create a **TextEncoder** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -867,6 +1126,14 @@ A constructor used to create a **TextEncoder** object.
 | Name| Type| Mandatory| Description|
 | ----- | ---- | ---- | ---- |
 | encoding | string | No| Encoding format. The default format is **'utf-8'**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **Example**
 
@@ -880,6 +1147,8 @@ static create(encoding?: string): TextEncoder
 
 Creates a **TextEncoder** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -887,6 +1156,14 @@ Creates a **TextEncoder** object.
 | Name| Type| Mandatory| Description|
 | ----- | ---- | ---- | ---- |
 | encoding | string | No| Encoding format. The default format is **'utf-8'**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **Example**
 
@@ -900,13 +1177,15 @@ encodeInto(input?: string): Uint8Array
 
 Encodes the input content into a Uint8Array object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | No  | String to encode. The default value is an empty string.|
+| input  | string | No  | String to encode. The default value is an empty string. If the input parameter is an empty string, the return value is undefined.|
 
 **Return value**
 
@@ -914,13 +1193,21 @@ Encodes the input content into a Uint8Array object.
 | ---------- | ------------------ |
 | Uint8Array | Uint8Array object obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
 **Example**
 
 ```ts
 let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encodeInto("\uD800¥¥");
+let result = textEncoder.encodeInto("\uD800¥¥");
+console.info("result = " + result);
+// Output: result = 237,160,128,194,165,194,165
 ```
 
 ### encodeIntoUint8Array<sup>9+</sup>
@@ -928,6 +1215,8 @@ result = textEncoder.encodeInto("\uD800¥¥");
 encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
 Encodes the input content into a Uint8Array object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -944,14 +1233,27 @@ Encodes the input content into a Uint8Array object.
 | ---------- | ------------------ |
 | [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | Object obtained. **read** indicates the number of encoded characters, and **write** indicates the number of bytes in the encoded characters.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-let that = new util.TextEncoder();
+let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = new Object();
-result = that.encodeIntoUint8Array('abcd', dest);
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
+console.info("uint8 = " + uint8);
+// Output: uint8 = 97,98,99,100
+console.info("result.read = " + result.read);
+// Output: result.read = 4
+console.info("result.written = " + result.written);
+// Output: result.written = 4
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
@@ -982,11 +1284,12 @@ Stores the UTF-8 encoded text.
 **Example**
 
 ```ts
-let that = new util.TextEncoder();
+let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = new Object();
-result = that.encodeInto('abcd', dest);
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeInto('abcd', uint8);
+console.info("uint8 = " + uint8);
+// Output: uint8 = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
@@ -1017,9 +1320,9 @@ Encodes the input content in to a Uint8Array object.
 
 ```ts
 let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encode("\uD800¥¥");
+let result = textEncoder.encode("\uD800¥¥");
+console.info("result = " + result);
+// Output: result = 237,160,128,194,165,194,165
 ```
 
 ## RationalNumber<sup>8+</sup>
@@ -1032,6 +1335,8 @@ constructor()
 
 A constructor used to create a **RationalNumber** object.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
@@ -1042,9 +1347,15 @@ let rationalNumber = new util.RationalNumber();
 
 ### parseRationalNumber<sup>9+</sup>
 
-parseRationalNumber(numerator: number,denominator: number): RationalNumber
+static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 Create a **RationalNumber** instance with a given numerator and denominator.
+
+> **NOTE**
+>
+> The **numerator** and **denominator** parameters must be integers. If a decimal number is passed in, the function is not intercepted, but the error message "parseRationalNumber: The type of Parameter must be integer" is displayed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1052,8 +1363,16 @@ Create a **RationalNumber** instance with a given numerator and denominator.
 
 | Name     | Type  | Mandatory| Description            |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | Yes  | Numerator, which is an integer.|
-| denominator | number | Yes  | Denominator, which is an integer.|
+| numerator   | number | Yes  | Numerator, which is an integer. Value range: -Number.MAX_VALUE <= numerator <= Number.MAX_VALUE.|
+| denominator | number | Yes  | Denominator, which is an integer. Value range: -Number.MAX_VALUE <= denominator <= Number.MAX_VALUE.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -1063,9 +1382,15 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString​(rationalString: string): RationalNumber​
+static createRationalFromString(rationalString: string): RationalNumber​
 
 Creates a **RationalNumber** object based on the given string.
+
+> **NOTE**
+>
+> The **rationalString** parameter must be a string. If a decimal string is passed in, the function is not intercepted, but the error message "createRationalFromString: The type of Parameter must be integer string" is displayed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1081,6 +1406,14 @@ Creates a **RationalNumber** object based on the given string.
 | -------- | -------- |
 | Object | **RationalNumber** object obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | The type of rationalString must be string. |
+
 **Example**
 
 ```ts
@@ -1089,9 +1422,11 @@ let rational = util.RationalNumber.createRationalFromString("3/4");
 
 ### compare<sup>9+</sup>
 
-compare​(another: RationalNumber): number​
+compare(another: RationalNumber): number​
 
 Compares this **RationalNumber** object with another **RationalNumber** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1106,6 +1441,14 @@ Compares this **RationalNumber** object with another **RationalNumber** object.
 | Type  | Description                                                        |
 | ------ | ------------------------------------------------------------ |
 | number | Returns **0** if the two objects are equal; returns **1** if the given object is less than this object; return **-1** if the given object is greater than this object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -1122,6 +1465,8 @@ console.info("result = " + result);
 valueOf(): number
 
 Obtains the value of this **RationalNumber** object as an integer or a floating-point number.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1149,9 +1494,11 @@ console.info("result = " + result);
 
 ### equals<sup>8+</sup>
 
-equals​(obj: Object): boolean
+equals(obj: Object): boolean
 
 Checks whether this **RationalNumber** object equals the given object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1187,9 +1534,15 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number,number2: number): number
 
 Obtains the greatest common divisor of two specified integers.
+
+> **NOTE**
+>
+> The **number1** and **number2** parameters must be integers. If a decimal number is passed in, the function is not intercepted, but the error message "getCommonFactor: The type of Parameter must be integer" is displayed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1197,14 +1550,22 @@ Obtains the greatest common divisor of two specified integers.
 
 | Name | Type  | Mandatory| Description      |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | Yes  | The first integer used to get the greatest common divisor.|
-| number2 | number | Yes  | The second integer used to get the greatest common divisor.|
+| number1 | number | Yes  | The first integer used to get the greatest common divisor. Value range: -Number.MAX_VALUE <= number1 <= Number.MAX_VALUE.|
+| number2 | number | Yes  | The second integer used to get the greatest common divisor. Value range: -Number.MAX_VALUE <= number2 <= Number.MAX_VALUE.|
 
 **Return value**
 
 | Type  | Description                          |
 | ------ | ------------------------------ |
 | number | Greatest common divisor obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -1216,9 +1577,11 @@ console.info("result = " + result);
 
 ### getNumerator<sup>8+</sup>
 
-getNumerator​(): number
+getNumerator(): number
 
 Obtains the numerator of this **RationalNumber** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1246,9 +1609,11 @@ console.info("result = " + result);
 
 ### getDenominator<sup>8+</sup>
 
-getDenominator​(): number
+getDenominator(): number
 
 Obtains the denominator of this **RationalNumber** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1276,9 +1641,11 @@ console.info("result = " + result);
 
 ### isZero<sup>8+</sup>
 
-isZero​():boolean
+isZero():boolean
 
 Checks whether this **RationalNumber** object is **0**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1306,9 +1673,11 @@ console.info("result = " + result);
 
 ### isNaN<sup>8+</sup>
 
-isNaN​(): boolean
+isNaN(): boolean
 
 Checks whether this **RationalNumber** object is a Not a Number (NaN).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1336,9 +1705,11 @@ console.info("result = " + result);
 
 ### isFinite<sup>8+</sup>
 
-isFinite​():boolean
+isFinite():boolean
 
 Checks whether this **RationalNumber** object represents a finite value.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1366,9 +1737,11 @@ console.info("result = " + result);
 
 ### toString<sup>8+</sup>
 
-toString​(): string
+toString(): string
 
 Obtains the string representation of this **RationalNumber** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1402,7 +1775,7 @@ A constructor used to create a **RationalNumber** object.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [parserationalnumber<sup>9+</sup>](#parserationalnumber9) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [parseRationalNumber<sup>9+</sup>](#parserationalnumber9) instead.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1421,7 +1794,7 @@ let rationalNumber = new util.RationalNumber(1,2);
 
 ### compareTo<sup>(deprecated)</sup>
 
-compareTo​(another: RationalNumber): number​
+compareTo(another: RationalNumber): number​
 
 Compares this **RationalNumber** object with a given object.
 
@@ -1449,11 +1822,13 @@ Compares this **RationalNumber** object with a given object.
 let rationalNumber = new util.RationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.compareTo(rational);
+console.info("result = " + result);
+// Output: result = -1
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
 
-static getCommonDivisor​(number1: number,number2: number): number
+static getCommonDivisor(number1: number,number2: number): number
 
 Obtains the greatest common divisor of two specified integers.
 
@@ -1476,18 +1851,15 @@ Obtains the greatest common divisor of two specified integers.
 | -------- | -------- |
 | number | Greatest common divisor obtained.|
 
-**Example**
 
-```ts
-let rationalNumber = new util.RationalNumber(1,2);
-let result = util.RationalNumber.getCommonDivisor(4,6);
-```
 
 ## LRUCache<sup>9+</sup>
 
 Provides APIs to discard the least recently used data to make rooms for new elements when the cache is full. This class uses the Least Recently Used (LRU) algorithm, which believes that the recently used data may be accessed again in the near future and the least accessed data is the least valuable data and should be removed from the cache.
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1498,10 +1870,12 @@ Provides APIs to discard the least recently used data to make rooms for new elem
 **Example**
 
 ```ts
-let  pro : util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(1,8);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(1, 8);
 let result = pro.length;
+console.info('result = ' + result);
+// Output: result = 2
 ```
 
 ### constructor<sup>9+</sup>
@@ -1510,18 +1884,28 @@ constructor(capacity?: number)
 
 A constructor used to create a **LRUCache** instance. The default capacity of the cache is 64.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name  | Type  | Mandatory| Description                        |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | No  | Capacity of the cache to create. The default value is **64**.|
+| capacity | number | No  | Capacity of the cache to create. The default value is **64**, and the maximum value is **2147483647**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 ```
 
 
@@ -1529,7 +1913,9 @@ let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 
 updateCapacity(newCapacity: number): void
 
-Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown.
+Changes the cache capacity. If the new capacity is less than or equal to **0**, an exception will be thrown. If the total number of values in the cache is greater than the specified capacity, the deletion operation is performed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1537,12 +1923,20 @@ Changes the cache capacity. If the new capacity is less than or equal to **0**, 
 
 | Name     | Type  | Mandatory| Description                        |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | Yes  | New capacity of the cache.|
+| newCapacity | number | Yes  | New capacity of the cache. The maximum value is **2147483647**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 pro.updateCapacity(100);
 ```
 
@@ -1551,6 +1945,8 @@ pro.updateCapacity(100);
 toString(): string
 
 Obtains the string representation of this cache.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1563,8 +1959,8 @@ Obtains the string representation of this cache.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 pro.get(3);
 console.info(pro.toString());
@@ -1578,6 +1974,8 @@ getCapacity(): number
 
 Obtains the capacity of this cache.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -1589,25 +1987,34 @@ Obtains the capacity of this cache.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.getCapacity();
+console.info('result = ' + result);
+// Output: result = 64
 ```
 
 ### clear<sup>9+</sup>
 
 clear(): void
 
-Clears key-value pairs from this cache. The **afterRemoval()** method will be called to perform subsequent operations.
+Clears key-value pairs from this cache.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.length;
 pro.clear();
+let res = pro.length;
+console.info('result = ' + result);
+console.info('res = ' + res);
+// Output: result = 1
+// Output: res = 0
 ```
 
 ### getCreateCount<sup>9+</sup>
@@ -1615,6 +2022,8 @@ pro.clear();
 getCreateCount(): number
 
 Obtains the number of times that an object is created.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1638,10 +2047,12 @@ class ChildLRUCache extends util.LRUCache<number, number> {
   }
 }
 let lru = new ChildLRUCache();
-lru.put(2,10);
+lru.put(2, 10);
 lru.get(3);
 lru.get(5);
 let res = lru.getCreateCount();
+console.info('res = ' + res);
+// Output: res = 2
 ```
 
 ### getMissCount<sup>9+</sup>
@@ -1649,6 +2060,8 @@ let res = lru.getCreateCount();
 getMissCount(): number
 
 Obtains the number of times that the queried values are mismatched.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1661,10 +2074,12 @@ Obtains the number of times that the queried values are mismatched.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 let result = pro.getMissCount();
+console.info('result = ' + result);
+// Output: result = 0
 ```
 
 ### getRemovalCount<sup>9+</sup>
@@ -1672,6 +2087,8 @@ let result = pro.getMissCount();
 getRemovalCount(): number
 
 Obtains the number of times that key-value pairs in the cache are recycled.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1684,11 +2101,13 @@ Obtains the number of times that key-value pairs in the cache are recycled.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.updateCapacity(2);
-pro.put(50,22);
+pro.put(50, 22);
 let result = pro.getRemovalCount();
+console.info('result = ' + result);
+// Output: result = 0
 ```
 
 ### getMatchCount<sup>9+</sup>
@@ -1696,6 +2115,8 @@ let result = pro.getRemovalCount();
 getMatchCount(): number
 
 Obtains the number of times that the queried values are matched.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1708,10 +2129,12 @@ Obtains the number of times that the queried values are matched.
 **Example**
 
   ```ts
-  let pro: util.LRUCache<number, number> = new util.LRUCache();
-  pro.put(2,10);
+  let pro = new util.LRUCache<number, number>();
+  pro.put(2, 10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info('result = ' + result);
+  // Output: result = 1
   ```
 
 ### getPutCount<sup>9+</sup>
@@ -1719,6 +2142,8 @@ Obtains the number of times that the queried values are matched.
 getPutCount(): number
 
 Obtains the number of additions to this cache.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1731,9 +2156,11 @@ Obtains the number of additions to this cache.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.getPutCount();
+console.info('result = ' + result);
+// Output: result = 1
 ```
 
 ### isEmpty<sup>9+</sup>
@@ -1741,6 +2168,8 @@ let result = pro.getPutCount();
 isEmpty(): boolean
 
 Checks whether this cache is empty.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1753,16 +2182,20 @@ Checks whether this cache is empty.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.isEmpty();
+console.info('result = ' + result);
+// Output: result = false
 ```
 
 ### get<sup>9+</sup>
 
 get(key: K): V | undefined
 
-Obtains the value of the specified key.
+Obtains the value of a key. If the key is not in the cache, [createDefault<sup>9+</sup>](#createdefault9) is called to create the key. If the value specified in **createDefault** is not **undefined**, [afterRemoval<sup>9+</sup>](#afterremoval9) is called to return the value specified in **createDefault**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1776,21 +2209,33 @@ Obtains the value of the specified key.
 
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | Returns the value of the key if a match is found in the cache; returns **undefined** otherwise.|
+| V \| undefined | Returns the value of the key if a match is found in the cache; returns the value specified in **createDefault** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result  = pro.get(2);
+console.info('result = ' + result);
+// Output: result = 10
 ```
 
 ### put<sup>9+</sup>
 
 put(key: K,value: V): V
 
-Adds a key-value pair to this cache.
+Adds a key-value pair to this cache and returns the value associated with the key. If the total number of values in the cache is greater than the specified capacity, the deletion operation is performed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1805,13 +2250,23 @@ Adds a key-value pair to this cache.
 
 | Type| Description                                                        |
 | ---- | ------------------------------------------------------------ |
-| V    | Returns the existing value if the key already exists; returns the value added otherwise; throws an error if **null** is passed in for **key** or **value**.|
+| V    | Value of the key-value pair added. If the key or value is empty, an exception is thrown.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-let result = pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+let result = pro.put(2, 10);
+console.info('result = ' + result);
+// Output: result = 10
 ```
 
 ### values<sup>9+</sup>
@@ -1819,6 +2274,8 @@ let result = pro.put(2,10);
 values(): V[]
 
 Obtains all values in this cache, listed from the most to the least recently accessed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1831,11 +2288,13 @@ Obtains all values in this cache, listed from the most to the least recently acc
 **Example**
 
 ```ts
-let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
-pro.put(2,10);
-pro.put(2,"anhu");
-pro.put("afaf","grfb");
+let pro = new util.LRUCache<number|string,number|string>();
+pro.put(2, 10);
+pro.put(2, "anhu");
+pro.put("afaf", "grfb");
 let result = pro.values();
+console.info('result = ' + result);
+// Output: result = anhu,grfb
 ```
 
 ### keys<sup>9+</sup>
@@ -1843,6 +2302,8 @@ let result = pro.values();
 keys(): K[]
 
 Obtains all keys in this cache, listed from the most to the least recently accessed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1855,16 +2316,21 @@ Obtains all keys in this cache, listed from the most to the least recently acces
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 1);
 let result = pro.keys();
+console.info('result = ' + result);
+// Output: result = 2,3
 ```
 
 ### remove<sup>9+</sup>
 
 remove(key: K): V | undefined
 
-Removes the specified key and its value from this cache.
+Removes a key and its associated value from this cache and returns the value associated with the key. If the key does not exist, **undefined** is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1880,19 +2346,31 @@ Removes the specified key and its value from this cache.
 | ------------------------ | ------------------------------------------------------------ |
 | V&nbsp;\|&nbsp;undefined | Returns an **Optional** object containing the removed key-value pair if the key exists in the cache; returns **undefined** if the key does not exist; throws an error if **null** is passed in for **key**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.remove(20);
+console.info('result = ' + result);
+// Output: result = undefined
 ```
 
 ### afterRemoval<sup>9+</sup>
 
 afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
-Performs subsequent operations after a value is removed.
+Performs subsequent operations after a value is removed. The subsequent operations must be implemented by developers. This API is called during deletion operations, such as [get<sup>9+</sup>](#get9), [put<sup>9+</sup>](#put9), [remove<sup>9+</sup>](#remove9), [clear<sup>9+</sup>](#clear9), and [updateCapacity<sup>9+</sup>](#updatecapacity9).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1905,6 +2383,14 @@ Performs subsequent operations after a value is removed.
 | value    | V       | Yes  | Value removed.                                              |
 | newValue | V       | Yes  | New value for the key if the **put()** method is called and the key to be added already exists. In other cases, this parameter is left blank.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
@@ -1915,13 +2401,16 @@ class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
 
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
-      console.info('key: ' + key);
-      console.info('value: ' + value);
-      console.info('newValue: ' + newValue);
+      console.info('key = ' + key);
+      // Output: key = 1
+      console.info('value = ' + value);
+      // Output: value = 1
+      console.info('newValue = ' + newValue);
+      // Output: newValue = null
     }
   }
 }
-let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+let lru = new ChildLRUCache<number, number>(2);
 lru.put(1, 1);
 lru.put(2, 2);
 lru.put(3, 3);
@@ -1932,6 +2421,8 @@ lru.put(3, 3);
 contains(key: K): boolean
 
 Checks whether this cache contains the specified key.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1947,23 +2438,31 @@ Checks whether this cache contains the specified key.
 | ------- | ------------------------------------------ |
 | boolean | Returns **true** if the cache contains the specified key; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-let pro : util.LRUCache<number | object, number> = new util.LRUCache();
-pro.put(2,10);
-class Lru{
-s : string = "";
-}
-let obj : Lru = {s : "key" };
-let result = pro.contains(obj);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+let result = pro.contains(2);
+console.info('result = ' + result);
+// Output: result = true
 ```
 
 ### createDefault<sup>9+</sup>
 
 createDefault(key: K): V
 
-Creates a value if the value of the specified key is not available.
+Performs subsequent operations if no key is matched in the cache and returns the value (**undefined** by default) associated with the key.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1971,7 +2470,7 @@ Creates a value if the value of the specified key is not available.
 
 | Name| Type| Mandatory| Description          |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | Yes  | Key of which the value is missing.|
+| key    | K    | Yes  | Key.|
 
 **Return value**
 
@@ -1979,11 +2478,21 @@ Creates a value if the value of the specified key is not available.
 | ---- | ------------------ |
 | V    | Value of the key.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.createDefault(50);
+console.info('result = ' + result);
+// Output: result = undefined
 ```
 
 ### entries<sup>9+</sup>
@@ -1991,6 +2500,8 @@ let result = pro.createDefault(50);
 entries(): IterableIterator&lt;[K,V]&gt;
 
 Obtains a new iterator object that contains all key-value pairs in this object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2003,13 +2514,16 @@ Obtains a new iterator object that contains all key-value pairs in this object.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro.entries();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // Output:
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -2019,9 +2533,7 @@ for (let value of arrayValue) {
 
 Obtains a two-dimensional array in key-value pairs.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2034,13 +2546,16 @@ Obtains a two-dimensional array in key-value pairs.
 **Example**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro[Symbol.iterator]();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // Output:
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -2055,6 +2570,8 @@ The values of the **ScopeComparable** type are used to implement the **compareTo
 compareTo(other: ScopeComparable): boolean
 
 Compares two values and returns a Boolean value.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2094,7 +2611,11 @@ class Temperature{
 
 ## ScopeType<sup>8+</sup>
 
+type ScopeType = ScopeComparable | number
+
 Defines the type of values in a **Scope** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2113,6 +2634,8 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
 A constructor used to create a **ScopeHelper** object with the specified upper and lower limits.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -2121,6 +2644,14 @@ A constructor used to create a **ScopeHelper** object with the specified upper a
 | -------- | ------------------------ | ---- | ---------------------- |
 | lowerObj | [ScopeType](#scopetype8) | Yes  | Lower limit of the **Scope** object.|
 | upperObj | [ScopeType](#scopetype8) | Yes  | Upper limit of the **Scope** object.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2143,6 +2674,8 @@ class Temperature{
 let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
+console.info("range = " + range);
+// Output: range = [30, 40]
 ```
 
 ### toString<sup>9+</sup>
@@ -2150,6 +2683,8 @@ let range = new util.ScopeHelper(tempLower, tempUpper);
 toString(): string
 
 Obtains a string representation that contains this **Scope**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2182,13 +2717,17 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.toString();
+console.info("result = " + result);
+// Output: result = [30, 40]
 ```
 
 ### intersect<sup>9+</sup>
 
 intersect(range: ScopeHelper): ScopeHelper
 
-Obtains the intersection of this **Scope** and the given **Scope**.
+Obtains the intersection of this **Scope** and the given **Scope**. If the intersection is empty, an exception is thrown.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2203,6 +2742,14 @@ Obtains the intersection of this **Scope** and the given **Scope**.
 | Type                          | Description                          |
 | ------------------------------ | ------------------------------ |
 | [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given **Scope**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2238,6 +2785,8 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
 Obtains the intersection of this **Scope** and the given lower and upper limits.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -2252,6 +2801,14 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
 | Type                        | Description                                    |
 | ---------------------------- | ---------------------------------------- |
 | [ScopeHelper](#scopehelper9) | Intersection of this **Scope** and the given lower and upper limits.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2278,6 +2835,8 @@ let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.intersect(tempMiDF, tempMidS);
+console.info("result = " + result);
+// Output: result = [35, 39]
 ```
 
 ### getUpper<sup>9+</sup>
@@ -2285,6 +2844,8 @@ let result = range.intersect(tempMiDF, tempMidS);
 getUpper(): ScopeType
 
 Obtains the upper limit of this **Scope**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2317,6 +2878,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.getUpper();
+console.info("result = " + result);
+// Output: result = 40
 ```
 
 ### getLower<sup>9+</sup>
@@ -2324,6 +2887,8 @@ let result = range.getUpper();
 getLower(): ScopeType
 
 Obtains the lower limit of this **Scope**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2356,6 +2921,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.getLower();
+console.info("result = " + result);
+// Output: result = 30
 ```
 
 ### expand<sup>9+</sup>
@@ -2363,6 +2930,8 @@ let result = range.getLower();
 expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
 Obtains the union set of this **Scope** and the given lower and upper limits.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2378,6 +2947,14 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
 | Type                        | Description                                |
 | ---------------------------- | ------------------------------------ |
 | [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given lower and upper limits.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2404,6 +2981,8 @@ let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.expand(tempMiDF, tempMidS);
+console.info("result = " + result);
+// Output: result = [30, 40]
 ```
 
 ### expand<sup>9+</sup>
@@ -2411,6 +2990,8 @@ let result = range.expand(tempMiDF, tempMidS);
 expand(range: ScopeHelper): ScopeHelper
 
 Obtains the union set of this **Scope** and the given **Scope**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2425,6 +3006,14 @@ Obtains the union set of this **Scope** and the given **Scope**.
 | Type                        | Description                              |
 | ---------------------------- | ---------------------------------- |
 | [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given **Scope**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2452,6 +3041,8 @@ let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
 let result = range.expand(rangeFir);
+console.info("result = " + result);
+// Output: result = [30, 40]
 ```
 
 ### expand<sup>9+</sup>
@@ -2459,6 +3050,8 @@ let result = range.expand(rangeFir);
 expand(value: ScopeType): ScopeHelper
 
 Obtains the union set of this **Scope** and the given value.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2473,6 +3066,14 @@ Obtains the union set of this **Scope** and the given value.
 | Type                        | Description                            |
 | ---------------------------- | -------------------------------- |
 | [ScopeHelper](#scopehelper9) | Union set of this **Scope** and the given value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2498,6 +3099,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.expand(tempMiDF);
+console.info("result = " + result);
+// Output: result = [30, 40]
 ```
 
 ### contains<sup>9+</sup>
@@ -2505,6 +3108,8 @@ let result = range.expand(tempMiDF);
 contains(value: ScopeType): boolean
 
 Checks whether a value is within this **Scope**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2519,6 +3124,14 @@ Checks whether a value is within this **Scope**.
 | Type   | Description                                               |
 | ------- | --------------------------------------------------- |
 | boolean | Returns **true** if the value is within this **Scope**; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2544,6 +3157,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.contains(tempMiDF);
+console.info("result = " + result);
+// Output: result = true
 ```
 
 ### contains<sup>9+</sup>
@@ -2551,6 +3166,8 @@ let result = range.contains(tempMiDF);
 contains(range: ScopeHelper): boolean
 
 Checks whether a range is within this **Scope**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2565,6 +3182,14 @@ Checks whether a range is within this **Scope**.
 | Type   | Description                                                 |
 | ------- | ----------------------------------------------------- |
 | boolean | Returns **true** if the range is within this **Scope**; returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2592,6 +3217,8 @@ let tempLess = new Temperature(20);
 let tempMore = new Temperature(45);
 let rangeSec = new util.ScopeHelper(tempLess, tempMore);
 let result = range.contains(rangeSec);
+console.info("result = " + result);
+// Output: result = false
 ```
 
 ### clamp<sup>9+</sup>
@@ -2599,6 +3226,8 @@ let result = range.contains(rangeSec);
 clamp(value: ScopeType): ScopeType
 
 Limits a value to this **Scope**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2613,6 +3242,14 @@ Limits a value to this **Scope**.
 | Type                    | Description                                                        |
 | ------------------------ | ------------------------------------------------------------ |
 | [ScopeType](#scopetype8) | Returns **lowerObj** if the specified value is less than the lower limit; returns **upperObj** if the specified value is greater than the upper limit; returns the specified value if it is within this **Scope**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **Example**
 
@@ -2638,6 +3275,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.clamp(tempMiDF);
+console.info("result = " + result);
+// Output: result = 35
 ```
 
 ## Base64Helper<sup>9+</sup>
@@ -2652,9 +3291,11 @@ A constructor used to create a **Base64Helper** instance.
 
 **System capability**: SystemCapability.Utils.Lang
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Example**
 
-  ```ts 
+  ```ts
   let base64 = new util.Base64Helper();
   ```
 
@@ -2664,6 +3305,8 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 Encodes the input content into a Uint8Array object.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -2671,7 +3314,7 @@ Encodes the input content into a Uint8Array object.
 | Name| Type      | Mandatory| Description               |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding. |
+| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
 
 **Return value**
 
@@ -2679,12 +3322,22 @@ Encodes the input content into a Uint8Array object.
 | ---------- | ----------------------------- |
 | Uint8Array | Uint8Array object obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64Helper.encodeSync(array);
+  console.info("result = " + result);
+  // Output: result = 99,122,69,122
   ```
 
 
@@ -2693,6 +3346,8 @@ Encodes the input content into a Uint8Array object.
 encodeToStringSync(src: Uint8Array, options?: Type): string
 
 Encodes the input content into a string. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2709,12 +3364,26 @@ Encodes the input content into a string. This API returns the result synchronous
 | ------ | -------------------- |
 | string | String obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  let result = that.encodeToStringSync(array, util.Type.MIME);
+  let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
+  console.info("result = " + result);
+  /*
+  // Output: result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+  aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+  aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+  */
   ```
 
 
@@ -2723,6 +3392,8 @@ Encodes the input content into a string. This API returns the result synchronous
 decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 Decodes a string into a Uint8Array object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2739,12 +3410,24 @@ Decodes a string into a Uint8Array object. This API returns the result synchrono
 | ---------- | ----------------------------- |
 | Uint8Array | Uint8Array object obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  let result = that.decodeSync(buff, util.Type.MIME);
+  let result = base64Helper.decodeSync(buff, util.Type.MIME);
+  console.info("result = " + result);
+  /*
+  Output: result = 77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
+  */
   ```
 
 
@@ -2754,6 +3437,8 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 Encodes the input content into a Uint8Array object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -2761,7 +3446,7 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 | Name| Type      | Mandatory| Description                   |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | Yes  | Uint8Array object to encode.|
-| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC**: Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
+| options<sup>12+</sup> | [Type](#type10) | No| Encoding format.<br>The following values are available:<br>- **util.Type.BASIC** (default): Base64 encoding.<br>- **util.Type.BASIC_URL_SAFE**: Base64URL encoding.|
 
 **Return value**
 
@@ -2769,16 +3454,22 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 | ------------------------- | --------------------------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{
-    for (let i = 0; i < rarray.length; i++) {
-      console.info(val[i].toString());
-    }
+  base64Helper.encode(array).then((val) => {
+    console.info(val.toString());
+    // Output: 99,122,69,122
   })
   ```
 
@@ -2788,6 +3479,8 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 Encodes the input content into a string. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2804,13 +3497,27 @@ Encodes the input content into a string. This API uses a promise to return the r
 | --------------------- | ------------------------ |
 | Promise&lt;string&gt; | Promise used to return the string obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  that.encodeToString(array, util.Type.MIME).then(val=>{
-    // Add information as required.
+  base64Helper.encodeToString(array, util.Type.MIME).then((val) => {
+    console.info(val);
+    /*
+    // Output: TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+    aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+    aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+    */
+
   })
   ```
 
@@ -2820,6 +3527,8 @@ Encodes the input content into a string. This API uses a promise to return the r
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
 Decodes the input content into a Uint8Array object. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2836,16 +3545,143 @@ Decodes the input content into a Uint8Array object. This API uses a promise to r
 | ------------------------- | --------------------------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the Uint8Array object obtained.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **Example**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  that.decode(array, util.Type.MIME).then(val=>{
-    // Add information as required.
+  base64Helper.decode(array, util.Type.MIME).then((val) => {
+    console.info(val.toString());
+    /*
+    Output: 77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
+    */
   })
   ```
 
+## StringDecoder<sup>12+</sup>
+
+Provides the capability of decoding binary streams into strings. The following encoding types are supported: utf-8, iso-8859-2, koi8-r, macintosh, windows-1250, windows-1251, gbk, gb18030, big5, utf-16be, and UTF-16le.
+
+### constructor<sup>12+</sup>
+
+constructor(encoding?: string)
+
+Constructor used to create a **StringDecoder** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type                          | Mandatory| Description                             |
+| ------ | ------------------------------ | ---- | --------------------------------- |
+| encoding  | string | No  | Encoding type of the input data. The default value is **utf-8**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  let decoder = new util.StringDecoder();
+  ```
+
+### write<sup>12+</sup>
+
+write(chunk: string | Uint8Array): string
+
+Decodes a string. Any incomplete multi-byte characters at the end of Uint8Array are filtered out from the returned string and stored in an internal buffer for the next call.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description               |
+| ------ | ---------- | ---- | ------------------- |
+| chunk  | string \| Uint8Array | Yes  | String to decode. Decoding is performed based on the input encoding type. If the input is of the Uint8Array type, decoding is performed normally. If the input is of the string type, decoding is performed in the original path.|
+
+**Return value**
+
+| Type      | Description                         |
+| ---------- | ----------------------------- |
+| string | String decoded.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  let decoder = new util.StringDecoder('utf-8');
+  let input =  new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+  const decoded = decoder.write(input);
+  console.info("decoded:", decoded);
+  // Output: decoded: Hello, World
+  ```
+
+### end<sup>12+</sup>
+
+end(chunk?: string | Uint8Array): string
+
+Ends the decoding process and returns any remaining input stored in the internal buffer as a string.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type      | Mandatory| Description               |
+| ------ | ---------- | ---- | ------------------- |
+| chunk  | string \| Uint8Array | No  | String to decode. The default value is **undefined**.|
+
+**Return value**
+
+| Type      | Description                         |
+| ---------- | ----------------------------- |
+| string | String decoded.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**Example**
+
+  ```ts
+  let decoder = new util.StringDecoder('utf-8');
+  let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
+  const writeString = decoder.write(input.slice(0, 5));
+  const endString = decoder.end(input.slice(5));
+  console.info("writeString:", writeString);
+  // Output: writeString: Hello
+  console.info("endString:", endString);
+  // Output: endString: World
+  ```
 
 ## Type<sup>10+</sup>
 
@@ -2853,12 +3689,13 @@ Enumerates the Base64 encoding formats.
 
 **System capability**: SystemCapability.Utils.Lang
 
+
 | Name  |Value| Description              |
 | ----- |---| ----------------- |
-| BASIC | 0 | Basic format.|
-| MIME  | 1 | MIME format.|
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | BASIC_URL_SAFE format.<br>This value is supported since API version 12.|
-| MIME_URL_SAFE<sup>12+</sup> | 3 | MIME_URL_SAFE format.<br>This value is supported since API version 12.|
+| BASIC | 0 | Basic format. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| MIME  | 1 | MIME format. **Atomic service API**: This API can be used in atomic services since API version 11.|
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | BASIC_URL_SAFE format.<br>This value is supported since API version 12. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | MIME_URL_SAFE format.<br>This value is supported since API version 12. **Atomic service API**: This API can be used in atomic services since API version 12.|
 
 
 ## types<sup>8+</sup>
@@ -2870,6 +3707,8 @@ Provides APIs to check different types of built-in objects, such as ArrayBuffer,
 constructor()
 
 A constructor used to create a **Types** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2884,7 +3723,9 @@ A constructor used to create a **Types** object.
 
 isAnyArrayBuffer(value: Object): boolean
 
-Checks whether the input value is of the ArrayBuffer type.
+Checks whether the input value is of the ArrayBuffer or SharedArrayBuffer type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2898,13 +3739,15 @@ Checks whether the input value is of the ArrayBuffer type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the ArrayBuffer type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is of the ArrayBuffer or SharedArrayBuffer type; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isAnyArrayBuffer(new ArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isAnyArrayBuffer(new ArrayBuffer(0));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -2915,6 +3758,8 @@ isArrayBufferView(value: Object): boolean
 Checks whether the input value is of the ArrayBufferView type.
 
 **ArrayBufferView** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint32Array, Float32Array, **Float64Array**, and DataView.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2933,8 +3778,10 @@ Checks whether the input value is of the ArrayBufferView type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isArrayBufferView(new Int8Array([]));
+  let type = new util.types();
+  let result = type.isArrayBufferView(new Int8Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -2942,7 +3789,9 @@ Checks whether the input value is of the ArrayBufferView type.
 
 isArgumentsObject(value: Object): boolean
 
-Checks whether the input value is of the arguments type.
+Checks whether the input value is an arguments object.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2956,16 +3805,18 @@ Checks whether the input value is of the arguments type.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the input value is of the arguments type; returns **false** otherwise.|
+| boolean | Returns **true** if the input value is an arguments object; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   function foo() {
-      let result = that.isArgumentsObject(arguments);
+      let result = type.isArgumentsObject(arguments);
+      console.info("result = " + result);
   }
   let f = foo();
+  // Output: result = true
   ```
 
 
@@ -2974,6 +3825,8 @@ Checks whether the input value is of the arguments type.
 isArrayBuffer(value: Object): boolean
 
 Checks whether the input value is of the ArrayBuffer type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -2992,8 +3845,10 @@ Checks whether the input value is of the ArrayBuffer type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isArrayBuffer(new ArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isArrayBuffer(new ArrayBuffer(0));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3002,6 +3857,8 @@ Checks whether the input value is of the ArrayBuffer type.
 isAsyncFunction(value: Object): boolean
 
 Checks whether the input value is an asynchronous function.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3020,16 +3877,24 @@ Checks whether the input value is an asynchronous function.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isAsyncFunction(async () => {});
+  let type = new util.types();
+  let result = type.isAsyncFunction(async () => {});
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
-### isBooleanObject<sup>8+</sup>
+### isBooleanObject<sup>(deprecated)</sup>
 
 isBooleanObject(value: Object): boolean
 
 Checks whether the input value is of the Boolean type.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 14. No substitute is provided.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3048,16 +3913,24 @@ Checks whether the input value is of the Boolean type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBooleanObject(new Boolean(true));
+  let type = new util.types();
+  let result = type.isBooleanObject(new Boolean(true));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
-### isBoxedPrimitive<sup>8+</sup>
+### isBoxedPrimitive<sup>(deprecated)</sup>
 
 isBoxedPrimitive(value: Object): boolean
 
 Checks whether the input value is of the Boolean, Number, String, or Symbol type.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 14. No substitute is provided.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3076,8 +3949,10 @@ Checks whether the input value is of the Boolean, Number, String, or Symbol type
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBoxedPrimitive(new Boolean(false));
+  let type = new util.types();
+  let result = type.isBoxedPrimitive(new Boolean(false));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3086,6 +3961,8 @@ Checks whether the input value is of the Boolean, Number, String, or Symbol type
 isDataView(value: Object): boolean
 
 Checks whether the input value is of the DataView type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3104,9 +3981,11 @@ Checks whether the input value is of the DataView type.
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const ab = new ArrayBuffer(20);
-  let result = that.isDataView(new DataView(ab));
+  let result = type.isDataView(new DataView(ab));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3115,6 +3994,8 @@ Checks whether the input value is of the DataView type.
 isDate(value: Object): boolean
 
 Checks whether the input value is of the Date type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3133,8 +4014,10 @@ Checks whether the input value is of the Date type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isDate(new Date());
+  let type = new util.types();
+  let result = type.isDate(new Date());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3143,6 +4026,8 @@ Checks whether the input value is of the Date type.
 isExternal(value: Object): boolean
 
 Checks whether the input value is of the native external type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3160,9 +4045,51 @@ Checks whether the input value is of the native external type.
 
 **Example**
 
+  ```cpp
+  // /entry/src/main/cpp/napi_init.cpp
+  #include "napi/native_api.h"
+  #include <js_native_api.h>
+  #include <stdlib.h>
+
+  napi_value result;
+  static napi_value Testexternal(napi_env env, napi_callback_info info) {
+      int* raw = (int*) malloc(1024);
+      napi_status status = napi_create_external(env, (void*) raw, NULL, NULL, &result);
+      if (status != napi_ok) {
+          napi_throw_error(env, NULL, "create external failed");
+          return NULL;
+      }
+      return result;
+  }
+
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports)
+  {
+      napi_property_descriptor desc[] = {
+          {"testexternal", nullptr, Testexternal, nullptr, nullptr, nullptr, napi_default, nullptr},
+      };
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
+  }
+  EXTERN_C_END
+  // The code for module registration is omitted here. You may need to register the Testexternal method.
+  ...
+
+  ```
+
+  <!--code_no_check-->
   ```ts
-  let that = new util.types();
-  let result = that.isExternal(true);
+  import testNapi from 'libentry.so';
+
+  let type = new util.types();
+  const data = testNapi.testexternal();
+  let result = type.isExternal(data);
+
+  let result01 = type.isExternal(true);
+  console.info("result = " + result);
+  console.info("result01 = " + result01);
+  // Output: result = true
+  // Output: result01 = false
   ```
 
 
@@ -3171,6 +4098,8 @@ Checks whether the input value is of the native external type.
 isFloat32Array(value: Object): boolean
 
 Checks whether the input value is of the Float32Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3189,8 +4118,10 @@ Checks whether the input value is of the Float32Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isFloat32Array(new Float32Array());
+  let type = new util.types();
+  let result = type.isFloat32Array(new Float32Array());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3199,6 +4130,8 @@ Checks whether the input value is of the Float32Array type.
 isFloat64Array(value: Object): boolean
 
 Checks whether the input value is of the Float64Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3217,8 +4150,10 @@ Checks whether the input value is of the Float64Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isFloat64Array(new Float64Array());
+  let type = new util.types();
+  let result = type.isFloat64Array(new Float64Array());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3228,9 +4163,7 @@ isGeneratorFunction(value: Object): boolean
 
 Checks whether the input value is a generator function.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3249,8 +4182,18 @@ Checks whether the input value is a generator function.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isGeneratorFunction(function* foo() {});
+  // /entry/src/main/ets/pages/test.ts
+  export function* foo() {}
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { foo } from './test'
+
+  let type = new util.types();
+  let result = type.isGeneratorFunction(foo);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3260,9 +4203,7 @@ isGeneratorObject(value: Object): boolean
 
 Checks whether the input value is a generator object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3281,11 +4222,19 @@ Checks whether the input value is a generator object.
 **Example**
 
   ```ts
-  // This API cannot be used in .ets files.
-  let that = new util.types();
-  function* foo() {};
-  const generator = foo();
-  let result = that.isGeneratorObject(generator);
+  // /entry/src/main/ets/pages/test.ts
+  function* foo() {}
+  export const generator = foo();
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { generator } from './test'
+
+  let type = new util.types();
+  let result = type.isGeneratorObject(generator);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3294,6 +4243,8 @@ Checks whether the input value is a generator object.
 isInt8Array(value: Object): boolean
 
 Checks whether the input value is of the Int8Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3312,8 +4263,10 @@ Checks whether the input value is of the Int8Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt8Array(new Int8Array([]));
+  let type = new util.types();
+  let result = type.isInt8Array(new Int8Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3322,6 +4275,8 @@ Checks whether the input value is of the Int8Array type.
 isInt16Array(value: Object): boolean
 
 Checks whether the input value is of the Int16Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3340,8 +4295,10 @@ Checks whether the input value is of the Int16Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt16Array(new Int16Array([]));
+  let type = new util.types();
+  let result = type.isInt16Array(new Int16Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3350,6 +4307,8 @@ Checks whether the input value is of the Int16Array type.
 isInt32Array(value: Object): boolean
 
 Checks whether the input value is of the Int32Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3368,8 +4327,10 @@ Checks whether the input value is of the Int32Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt32Array(new Int32Array([]));
+  let type = new util.types();
+  let result = type.isInt32Array(new Int32Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3378,6 +4339,8 @@ Checks whether the input value is of the Int32Array type.
 isMap(value: Object): boolean
 
 Checks whether the input value is of the Map type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3396,8 +4359,10 @@ Checks whether the input value is of the Map type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isMap(new Map());
+  let type = new util.types();
+  let result = type.isMap(new Map());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3406,6 +4371,8 @@ Checks whether the input value is of the Map type.
 isMapIterator(value: Object): boolean
 
 Checks whether the input value is of the MapIterator type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3425,9 +4392,11 @@ Checks whether the input value is of the MapIterator type.
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const map : Map<number,number> = new Map();
-  let result = that.isMapIterator(map.keys());
+  let result = type.isMapIterator(map.keys());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3436,6 +4405,8 @@ Checks whether the input value is of the MapIterator type.
 isNativeError(value: Object): boolean
 
 Checks whether the input value is of the Error type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3454,16 +4425,24 @@ Checks whether the input value is of the Error type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isNativeError(new TypeError());
+  let type = new util.types();
+  let result = type.isNativeError(new TypeError());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
-### isNumberObject<sup>8+</sup>
+### isNumberObject<sup>(deprecated)</sup>
 
 isNumberObject(value: Object): boolean
 
 Checks whether the input value is a number object.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 14. No substitute is provided.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3482,8 +4461,10 @@ Checks whether the input value is a number object.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isNumberObject(new Number(0));
+  let type = new util.types();
+  let result = type.isNumberObject(new Number(0));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3492,6 +4473,8 @@ Checks whether the input value is a number object.
 isPromise(value: Object): boolean
 
 Checks whether the input value is a promise.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3510,8 +4493,10 @@ Checks whether the input value is a promise.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isPromise(Promise.resolve(1));
+  let type = new util.types();
+  let result = type.isPromise(Promise.resolve(1));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3520,6 +4505,8 @@ Checks whether the input value is a promise.
 isProxy(value: Object): boolean
 
 Checks whether the input value is a proxy.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3540,10 +4527,12 @@ Checks whether the input value is a proxy.
   ```ts
   class Target{
   }
-  let that = new util.types();
+  let type = new util.types();
   const target : Target = {};
   const proxy = new Proxy(target, target);
-  let result = that.isProxy(proxy);
+  let result = type.isProxy(proxy);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3552,6 +4541,8 @@ Checks whether the input value is a proxy.
 isRegExp(value: Object): boolean
 
 Checks whether the input value is of the RegExp type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3570,8 +4561,10 @@ Checks whether the input value is of the RegExp type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isRegExp(new RegExp('abc'));
+  let type = new util.types();
+  let result = type.isRegExp(new RegExp('abc'));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3580,6 +4573,8 @@ Checks whether the input value is of the RegExp type.
 isSet(value: Object): boolean
 
 Checks whether the input value is of the Set type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3598,9 +4593,11 @@ Checks whether the input value is of the Set type.
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   let set : Set<number> = new Set();
-  let result = that.isSet(set);
+  let result = type.isSet(set);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3609,6 +4606,8 @@ Checks whether the input value is of the Set type.
 isSetIterator(value: Object): boolean
 
 Checks whether the input value is of the SetIterator type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3627,17 +4626,25 @@ Checks whether the input value is of the SetIterator type.
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const set : Set<number> = new Set();
-  let result = that.isSetIterator(set.keys());
+  let result = type.isSetIterator(set.keys());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
-### isStringObject<sup>8+</sup>
+### isStringObject<sup>(deprecated)</sup>
 
 isStringObject(value: Object): boolean
 
 Checks whether the input value is a string object.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 14. No substitute is provided.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3656,12 +4663,14 @@ Checks whether the input value is a string object.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isStringObject(new String('foo'));
+  let type = new util.types();
+  let result = type.isStringObject(new String('foo'));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
-### isSymbolObjec<sup>8+</sup>
+### isSymbolObject<sup>(deprecated)</sup>
 
 isSymbolObject(value: Object): boolean
 
@@ -3669,7 +4678,9 @@ Checks whether the input value is a symbol object.
 
 > **NOTE**
 >
-> This API cannot be used in .ets files.
+> This API is supported since API version 8 and deprecated since API version 14. No substitute is provided.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3688,10 +4699,18 @@ Checks whether the input value is a symbol object.
 **Example**
 
   ```ts
-  // This API cannot be used in .ets files.
-  let that = new util.types();
-  const symbols = Symbol('foo');
-  let result = that.isSymbolObject(Object(symbols));
+  // /entry/src/main/ets/pages/test.ts
+  export const symbols = Symbol('foo');
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { symbols } from './test'
+
+  let type = new util.types();
+  let result = type.isSymbolObject(Object(symbols));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3701,7 +4720,9 @@ isTypedArray(value: Object): boolean
 
 Checks whether the input value is of the TypedArray type.
 
-**TypedArray** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Float32Array, Float64Array, and DataView.
+**TypedArray** is a helper type representing any of the following: Int8Array, Int16Array, Int32Array, Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Float32Array, Float64Array, BigInt64Array, and BigUint64Array.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3720,8 +4741,10 @@ Checks whether the input value is of the TypedArray type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isTypedArray(new Float64Array([]));
+  let type = new util.types();
+  let result = type.isTypedArray(new Float64Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3730,6 +4753,8 @@ Checks whether the input value is of the TypedArray type.
 isUint8Array(value: Object): boolean
 
 Checks whether the input value is of the Uint8Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3748,8 +4773,10 @@ Checks whether the input value is of the Uint8Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint8Array(new Uint8Array([]));
+  let type = new util.types();
+  let result = type.isUint8Array(new Uint8Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3758,6 +4785,8 @@ Checks whether the input value is of the Uint8Array type.
 isUint8ClampedArray(value: Object): boolean
 
 Checks whether the input value is of the Uint8ClampedArray type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3776,8 +4805,10 @@ Checks whether the input value is of the Uint8ClampedArray type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
+  let type = new util.types();
+  let result = type.isUint8ClampedArray(new Uint8ClampedArray([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3786,6 +4817,8 @@ Checks whether the input value is of the Uint8ClampedArray type.
 isUint16Array(value: Object): boolean
 
 Checks whether the input value is of the Uint16Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3804,8 +4837,10 @@ Checks whether the input value is of the Uint16Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint16Array(new Uint16Array([]));
+  let type = new util.types();
+  let result = type.isUint16Array(new Uint16Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3814,6 +4849,8 @@ Checks whether the input value is of the Uint16Array type.
 isUint32Array(value: Object): boolean
 
 Checks whether the input value is of the Uint32Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3832,8 +4869,10 @@ Checks whether the input value is of the Uint32Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint32Array(new Uint32Array([]));
+  let type = new util.types();
+  let result = type.isUint32Array(new Uint32Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3842,6 +4881,8 @@ Checks whether the input value is of the Uint32Array type.
 isWeakMap(value: Object): boolean
 
 Checks whether the input value is of the WeakMap type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3860,9 +4901,11 @@ Checks whether the input value is of the WeakMap type.
 **Example**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   let value : WeakMap<object, number> = new WeakMap();
-  let result = that.isWeakMap(value);
+  let result = type.isWeakMap(value);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3871,6 +4914,8 @@ Checks whether the input value is of the WeakMap type.
 isWeakSet(value: Object): boolean
 
 Checks whether the input value is of the WeakSet type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3889,8 +4934,10 @@ Checks whether the input value is of the WeakSet type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isWeakSet(new WeakSet());
+  let type = new util.types();
+  let result = type.isWeakSet(new WeakSet());
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3899,6 +4946,8 @@ Checks whether the input value is of the WeakSet type.
 isBigInt64Array(value: Object): boolean
 
 Checks whether the input value is of the BigInt64Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3917,8 +4966,10 @@ Checks whether the input value is of the BigInt64Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBigInt64Array(new BigInt64Array([]));
+  let type = new util.types();
+  let result = type.isBigInt64Array(new BigInt64Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3927,6 +4978,8 @@ Checks whether the input value is of the BigInt64Array type.
 isBigUint64Array(value: Object): boolean
 
 Checks whether the input value is of the BigUint64Array type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3945,8 +4998,10 @@ Checks whether the input value is of the BigUint64Array type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBigUint64Array(new BigUint64Array([]));
+  let type = new util.types();
+  let result = type.isBigUint64Array(new BigUint64Array([]));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3956,9 +5011,7 @@ isModuleNamespaceObject(value: Object): boolean
 
 Checks whether the input value is a module namespace object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -3977,10 +5030,20 @@ Checks whether the input value is a module namespace object.
 **Example**
 
   ```ts
-  // This API cannot be used in .ets files.
-  import url from '@ohos.url'
-  let that = new util.types();
-  let result = that.isModuleNamespaceObject(url);
+  // /entry/src/main/ets/pages/test.ts
+  export function func() {
+    console.info("hello world");
+  }
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import * as nameSpace from './test';
+
+  let type = new util.types();
+  let result = type.isModuleNamespaceObject(nameSpace);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 
@@ -3989,6 +5052,8 @@ Checks whether the input value is a module namespace object.
 isSharedArrayBuffer(value: Object): boolean
 
 Checks whether the input value is of the SharedArrayBuffer type.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -4007,8 +5072,10 @@ Checks whether the input value is of the SharedArrayBuffer type.
 **Example**
 
   ```ts
-  let that = new util.types();
-  let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 ## LruBuffer<sup>(deprecated)</sup>
@@ -4032,6 +5099,8 @@ Checks whether the input value is of the SharedArrayBuffer type.
   pro.put(2,10);
   pro.put(1,8);
   let result = pro.length;
+  console.info("result = " + result);
+  // Output: result = 2
   ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -4055,7 +5124,7 @@ A constructor used to create a **LruBuffer** instance. The default capacity of t
 **Example**
 
   ```ts
-  let lrubuffer : util.LruBuffer<number,number> = new util.LruBuffer();
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   ```
 
 ### updateCapacity<sup>(deprecated)</sup>
@@ -4109,6 +5178,8 @@ Obtains the string representation of this cache.
   pro.get(2);
   pro.remove(20);
   let result = pro.toString();
+  console.info("result = " + result);
+  // Output: result = Lrubuffer[ maxSize = 64, hits = 1, misses = 0, hitRate = 100% ]
   ```
 
 ### getCapacity<sup>(deprecated)</sup>
@@ -4134,6 +5205,8 @@ Obtains the capacity of this cache.
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.getCapacity();
+  console.info("result = " + result);
+  // Output: result = 64
   ```
 
 ### clear<sup>(deprecated)</sup>
@@ -4181,6 +5254,8 @@ Obtains the number of return values for **createDefault()**.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(1,8);
   let result = pro.getCreateCount();
+  console.info("result = " + result);
+  // Output: result = 0
   ```
 
 ### getMissCount<sup>(deprecated)</sup>
@@ -4208,6 +5283,8 @@ Obtains the number of times that the queried values are mismatched.
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMissCount();
+  console.info("result = " + result);
+  // Output: result = 0
   ```
 
 ### getRemovalCount<sup>(deprecated)</sup>
@@ -4236,6 +5313,8 @@ Obtains the number of removals from this cache.
   pro.updateCapacity(2);
   pro.put(50,22);
   let result = pro.getRemovalCount();
+  console.info("result = " + result);
+  // Output: result = 0
   ```
 
 ### getMatchCount<sup>(deprecated)</sup>
@@ -4263,6 +5342,8 @@ Obtains the number of times that the queried values are matched.
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info("result = " + result);
+  // Output: result = 1
   ```
 
 ### getPutCount<sup>(deprecated)</sup>
@@ -4289,6 +5370,8 @@ Obtains the number of additions to this cache.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.getPutCount();
+  console.info("result = " + result);
+  // Output: result = 1
   ```
 
 ### isEmpty<sup>(deprecated)</sup>
@@ -4315,6 +5398,8 @@ Checks whether this cache is empty.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.isEmpty();
+  console.info("result = " + result);
+  // Output: result = false
   ```
 
 ### get<sup>(deprecated)</sup>
@@ -4347,6 +5432,8 @@ Obtains the value of the specified key.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result  = pro.get(2);
+  console.info("result = " + result);
+  // Output: result = 10
   ```
 
 ### put<sup>(deprecated)</sup>
@@ -4379,6 +5466,8 @@ Adds a key-value pair to this cache.
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.put(2,10);
+  console.info("result = " + result);
+  // Output: result = 10
   ```
 
 ### values<sup>(deprecated)</sup>
@@ -4407,6 +5496,8 @@ Obtains all values in this cache, listed from the most to the least recently acc
   pro.put(2,"anhu");
   pro.put("afaf","grfb");
   let result = pro.values();
+  console.info("result = " + result);
+  // Output: result = anhu,grfb
   ```
 
 ### keys<sup>(deprecated)</sup>
@@ -4433,6 +5524,8 @@ Obtains all keys in this cache, listed from the most to the least recently acces
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.keys();
+  console.info("result = " + result);
+  // Output: result = 2
   ```
 
 ### remove<sup>(deprecated)</sup>
@@ -4465,6 +5558,8 @@ Removes the specified key and its value from this cache.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.remove(20);
+  console.info("result = " + result);
+  // Output: result = undefined
   ```
 
 ### afterRemoval<sup>(deprecated)</sup>
@@ -4499,8 +5594,11 @@ class ChildLruBuffer<K, V> extends util.LruBuffer<K, V> {
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
       console.info('key: ' + key);
+      // Output: key: 11
       console.info('value: ' + value);
+      // Output: value: 1
       console.info('newValue: ' + newValue);
+      // Output: newValue: null
     }
   }
 }
@@ -4541,6 +5639,8 @@ Checks whether this cache contains the specified key.
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.contains(20);
+  console.info('result = ' + result);
+  // Output: result = false
   ```
 
 ### createDefault<sup>(deprecated)</sup>
@@ -4672,6 +5772,8 @@ A constructor used to create a **Scope** object with the specified upper and low
   let tempLower = new Temperature(30);
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
+  console.info("range = " + range);
+  // Output: range = [30, 40]
   ```
 
 ### toString<sup>(deprecated)</sup>
@@ -4715,6 +5817,8 @@ Obtains a string representation that contains this **Scope**.
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.toString();
+  console.info("result = " + result);
+  // Output: result = [30, 40]
   ```
 
 ### intersect<sup>(deprecated)</sup>
@@ -4767,6 +5871,8 @@ Obtains the intersection of this **Scope** and the given **Scope**.
   let tempMidS = new Temperature(39);
   let rangeFir = new util.Scope(tempMiDF, tempMidS);
   let result = range.intersect(rangeFir );
+  console.info("result = " + result);
+  // Output: result = [35, 39]
   ```
 
 ### intersect<sup>(deprecated)</sup>
@@ -4819,6 +5925,8 @@ Obtains the intersection of this **Scope** and the given lower and upper limits.
   let tempMidS = new Temperature(39);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.intersect(tempMiDF, tempMidS);
+  console.info("result = " + result);
+  // Output: result = [35, 39]
   ```
 
 ### getUpper<sup>(deprecated)</sup>
@@ -4862,6 +5970,8 @@ Obtains the upper limit of this **Scope**.
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.getUpper();
+  console.info("result = " + result);
+  // Output: result = 40
   ```
 
 ### getLower<sup>(deprecated)</sup>
@@ -4905,6 +6015,8 @@ Obtains the lower limit of this **Scope**.
   let tempUpper = new Temperature(40);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.getLower();
+  console.info("result = " + result);
+  // Output: result = 30
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -4957,6 +6069,8 @@ Obtains the union set of this **Scope** and the given lower and upper limits.
   let tempMidS = new Temperature(39);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.expand(tempMiDF, tempMidS);
+  console.info("result = " + result);
+  // Output: result = [30, 40]
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -5009,6 +6123,8 @@ Obtains the union set of this **Scope** and the given **Scope**.
   let range = new util.Scope(tempLower, tempUpper);
   let rangeFir = new util.Scope(tempMiDF, tempMidS);
   let result = range.expand(rangeFir);
+  console.info("result = " + result);
+  // Output: result = [30, 40]
   ```
 
 ### expand<sup>(deprecated)</sup>
@@ -5059,6 +6175,8 @@ Obtains the union set of this **Scope** and the given value.
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.expand(tempMiDF);
+  console.info("result = " + result);
+  // Output: result = [30, 40]
   ```
 
 ### contains<sup>(deprecated)</sup>
@@ -5109,6 +6227,8 @@ Checks whether a value is within this **Scope**.
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.contains(tempMiDF);
+  console.info("result = " + result);
+  // Output: result = true
   ```
 
 ### contains<sup>(deprecated)</sup>
@@ -5161,6 +6281,8 @@ Checks whether a range is within this **Scope**.
   let tempMore = new Temperature(45);
   let rangeSec = new util.Scope(tempLess, tempMore);
   let result = range.contains(rangeSec);
+  console.info("result = " + result);
+  // Output: result = false
   ```
 
 ### clamp<sup>(deprecated)</sup>
@@ -5212,6 +6334,8 @@ Limits a value to this **Scope**.
   let tempMiDF = new Temperature(35);
   let range = new util.Scope(tempLower, tempUpper);
   let result = range.clamp(tempMiDF);
+  console.info("result = " + result);
+  // Output: result = 35
   ```
 
 
@@ -5266,9 +6390,11 @@ Encodes the input content into a Uint8Array object. This API returns the result 
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64.encodeSync(array);
+  console.info("result = " + result);
+  // Output: result = 99,122,69,122
   ```
 
 ### encodeToStringSync<sup>(deprecated)</sup>
@@ -5298,9 +6424,11 @@ Encodes the input content into a string. This API returns the result synchronous
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeToStringSync(array);
+  let result = base64.encodeToStringSync(array);
+  console.info("result = " + result);
+  // Output: result = czEz
   ```
 
 ### decodeSync<sup>(deprecated)</sup>
@@ -5330,9 +6458,11 @@ Decodes the input content into a Uint8Array object.
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let buff = 'czEz';
-  let result = that.decodeSync(buff);
+  let result = base64.decodeSync(buff);
+  console.info("result = " + result);
+  // Output: result = 115,49,51
   ```
 
 ### encode<sup>(deprecated)</sup>
@@ -5362,13 +6492,11 @@ Encodes the input content into a Uint8Array object. This API uses a promise to r
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString())
-      }
+  base64.encode(array).then((val) => {
+    console.info(val.toString());
+    // Output: 99,122,69,122
   })
   ```
 
@@ -5399,10 +6527,11 @@ Encodes the input content into a string. This API uses a promise to return the r
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  that.encodeToString(array).then(val=>{    
-      console.info(val)
+  base64.encodeToString(array).then((val) => {
+      console.info(val);
+      // Output: czEz
   })
   ```
 
@@ -5434,12 +6563,10 @@ Decodes the input content into a Uint8Array object. This API uses a promise to r
 **Example**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([99,122,69,122]);
-  let rarray = new Uint8Array([115,49,51]);
-  that.decode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString());
-      }
+  base64.decode(array).then((val) => {
+    console.info(val.toString());
+    // Output: 115,49,51
   })
   ```

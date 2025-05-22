@@ -6,12 +6,12 @@ AbilityDelegatorArgs模块提供在应用程序执行测试用例期间，获取
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 > 
-> 本模块接口仅可在[自动化测试框架arkxtest](../../application-test/arkxtest-guidelines.md)中使用。
+> 本模块接口仅可在<!--RP1-->[自动化测试框架arkxtest](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 
 ## 导入模块
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 ```
 
 ## 使用说明
@@ -20,21 +20,23 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 ## AbilityDelegatorArgs
 
-测试参数信息
+测试参数信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 类型                   | 可读 | 可写 | 说明                                                         |
 | ------------------- | ---------------------- | ---- | ---- | ------------------------------------------------------------ |
-| bundleName          | string                 | 是   | 是   | 当前被测试应用的包名 |
-| parameters          | Record\<string, string> | 是   | 是   | 当前启动单元测试的参数 |
-| testCaseNames       | string                 | 是   | 是   | 测试用例名称 |
-| testRunnerClassName | string                 | 是   | 是   | 执行测试用例的测试执行器名称 |
+| bundleName          | string                 | 是   | 是   | 当前被测试应用的包名。 |
+| parameters          | Record\<string, string> | 是   | 是   | 当前启动单元测试的参数。 |
+| testCaseNames       | string                 | 是   | 是   | 测试用例名称。 |
+| testRunnerClassName | string                 | 是   | 是   | 执行测试用例的测试执行器名称。 |
 
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { abilityDelegatorRegistry } from '@kit.TestKit';
 
-let args: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
+let args: abilityDelegatorRegistry.AbilityDelegatorArgs = abilityDelegatorRegistry.getArguments();
 ```

@@ -3,11 +3,13 @@
 
 ## Overview
 
-The **Camera_VideoProfile** struct defines the video profile.
+The Camera_VideoProfile struct describes the video profile.
 
 **Since**: 11
 
 **Related module**: [OH_Camera](_o_h___camera.md)
+
+**Header file**: [camera.h](camera_8h.md)
 
 
 ## Summary

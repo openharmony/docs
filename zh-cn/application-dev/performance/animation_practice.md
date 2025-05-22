@@ -4,10 +4,10 @@
 本文介绍如何在开发应用程序时合理地使用动效，来获得更好的性能。主要通过减少布局和属性的变更频次，避免冗余刷新，从而降低性能开销。
 基于上述考虑，提供四种较为推荐的动效实现方式：
 
-- 组件转场动画使用transition
-- 组件布局改动时使用图形变换属性动画
-- 动画参数相同时使用同一个animateTo
-- 多次animateTo时统一更新状态变量
+- 组件转场动画使用transition。
+- 组件布局改动时使用图形变换属性动画。
+- 动画参数相同时使用同一个animateTo。
+- 多次animateTo时统一更新状态变量。
 
 ## 合理使用动效
 
@@ -46,7 +46,7 @@ struct MyComponent {
           const thisCount: number = this.count;
           this.show = true;
           // 通过改变透明度属性，对Text控件做隐藏或出现的动画
-          animateTo({ duration: 1000, onFinish: () => {
+          this.getUIContext().animateTo({ duration: 1000, onFinish: () => {
             // 在最后一个动画中，先让Text控件隐藏，再改变条件让Text控件消失
             if (thisCount === this.count && this.mOpacity === 0) {
               this.show = false;
@@ -93,8 +93,8 @@ struct MyComponent {
 ### 组件布局改动时使用图形变换属性动画
 改动组件的布局显示有两种方式：
 
-- 改动[布局属性](../ui/arkts-attribute-animation-overview.md)。当布局属性发生改变时，界面将重新布局。常见的布局属性有width、height、layoutWeight等。
-- 改动[图形变换属性](../reference/arkui-ts/ts-universal-attributes-transformation.md)。图形变换是对组件布局结果的变换操作，如平移、旋转、缩放等操作。
+- 通过改变布局属性，实现[属性动画](../ui/arkts-attribute-animation-overview.md)：当布局属性发生改变时，界面将重新布局。常见的布局属性有width、height、layoutWeight等。
+- 通过改变[图形变换属性](../reference/apis-arkui/arkui-ts/ts-universal-attributes-transformation.md)，实现[属性动画](../ui/arkts-attribute-animation-overview.md)：图形变换是对组件布局结果的变换操作，如平移、旋转、缩放等操作。
 
 界面布局是非常耗时的操作，而当图形变换属性发生变化时，并不会重新触发布局。因此，优先推荐使用图形变换属性来实现组件布局的改动。接下来，采用上述两种方式分别对组件实现放大10倍的效果。
 
@@ -124,7 +124,7 @@ struct MyComponent {
         .borderRadius(30)
         .padding(10)
         .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext().animateTo({ duration: 1000 }, () => {
             this.textWidth = 100;
             this.textHeight = 100;
           })
@@ -164,7 +164,7 @@ struct MyComponent {
         .borderRadius(30)
         .padding(10)
         .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
+          this.getUIContext().animateTo({ duration: 1000 }, () => {
             this.textScaleX = 10;
             this.textScaleY = 10;
           })
@@ -188,13 +188,13 @@ struct MyComponent {
   @State color: Color = Color.Red;
   
   func1() {
-    animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+    this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
       this.textWidth = (this.textWidth === 100 ? 200 : 100);
     });
   }
   
   func2() {
-    animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+    this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
       this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
     });
   }
@@ -227,7 +227,7 @@ struct MyComponent {
   @State color: Color = Color.Red;
   
   func() {
-    animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+    this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
       this.textWidth = (this.textWidth === 100 ? 200 : 100);
       this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
     });
@@ -280,11 +280,11 @@ struct MyComponent {
           this.textWidth = 100;
           // textHeight是非动画属性
           this.textHeight = 100;
-          animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
             this.textWidth = 200;
           });
           this.color = Color.Yellow;
-          animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = Color.Red;
           });
         })
@@ -321,10 +321,10 @@ struct MyComponent {
       Text('click')
         .height(this.textHeight)
         .onClick(() => {
-          animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
             this.textWidth = (this.textWidth === 100 ? 200 : 100);
           });
-          animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = (this.color === Color.Yellow ? Color.Red : Color.Yellow);
           });
         })
@@ -358,10 +358,10 @@ struct MyComponent {
         .onClick(() => {
           this.textWidth = 100;
           this.color = Color.Yellow;
-          animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Sharp, duration: 1000 }, () => {
             this.textWidth = 200;
           });
-          animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
+          this.getUIContext().animateTo({ curve: Curve.Linear, duration: 2000 }, () => {
             this.color = Color.Red;
           });
           this.textHeight = 100;

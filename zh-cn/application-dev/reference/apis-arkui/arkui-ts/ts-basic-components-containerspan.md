@@ -14,9 +14,13 @@
 
 ContainerSpan()
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## 属性
 
-仅支持以下属性:
+仅支持以下属性：
 
 ### textBackgroundStyle
 
@@ -24,28 +28,40 @@ textBackgroundStyle(style: TextBackgroundStyle)
 
 设置文本背景样式。子组件在不设置该属性时，将继承此属性值。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| style  | [TextBackgroundStyle](#textbackgroundstyle对象说明) | 是   | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
+| style  | [TextBackgroundStyle](ts-basic-components-span.md#textbackgroundstyle11对象说明) | 是   | 文本背景样式。<br />默认值：<br />{<br />  color: Color.Transparent,<br />  radius: 0<br />} |
 
-## TextBackgroundStyle对象说明
+### attributeModifier<sup>12+</sup>
 
-| 名称   | 参数类型                                                                 | 必填 | 描述         |
-| ------ | ------------------------------------------------------------------------ | ---- | ------------ |
-| color  | [ResourceColor](ts-types.md#resourcecolor)                                  | 否   | 文本背景色。 |
-| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-universal-attributes-border.md#borderradiuses9对象说明) | 否   | 文本背景圆角。 |
+attributeModifier(modifier: AttributeModifier\<ContainerSpanAttribute>)
+
+设置组件的动态属性。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                | 必填 | 说明                                                         |
+| ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| modifier  | [AttributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifiert)\<ContainerSpanAttribute> | 是   | 动态设置组件的属性。 |
 
 ## 事件
 
-不支持[通用事件](ts-universal-events-click.md)。
+不支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
+### 示例1（设置背景样式）
 
-### 示例1
+该示例通过textBackgroundStyle属性展示了文本设置背景样式的效果。
 
 ```ts
 // xxx.ets
@@ -61,7 +77,7 @@ struct Index {
             .height('40vp')
             .verticalAlign(ImageSpanAlignment.CENTER)
           Span('   Hello World !   ').fontSize('16fp').fontColor(Color.White)
-        }.textBackgroundStyle({color: "#7F007DFF", radius: "12vp"})
+        }.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" })
       }
     }.width('100%').alignItems(HorizontalAlign.Center)
   }
@@ -69,3 +85,40 @@ struct Index {
 ```
 
 ![imagespan](figures/container_span.png)
+
+### 示例2（通过attributeModifier设置背景样式）
+
+该示例通过attributeModifier属性展示了文本设置背景样式的效果。
+
+```ts
+import { ContainerSpanModifier } from '@ohos.arkui.modifier';
+
+class MyContainerSpanModifier extends ContainerSpanModifier {
+  applyNormalAttribute(instance: ContainerSpanAttribute): void {
+    super.applyNormalAttribute?.(instance);
+    this.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" });
+  }
+}
+
+@Entry
+@Component
+struct ContainerSpanModifierExample {
+  @State containerSpanModifier: ContainerSpanModifier = new MyContainerSpanModifier();
+
+  build() {
+    Column() {
+      Text() {
+        ContainerSpan() {
+          ImageSpan($r('app.media.app_icon'))
+            .width('40vp')
+            .height('40vp')
+            .verticalAlign(ImageSpanAlignment.CENTER)
+          Span(' I\'m ContainerSpan attributeModifier ').fontSize('16fp').fontColor(Color.White)
+        }.attributeModifier(this.containerSpanModifier as MyContainerSpanModifier)
+      }
+    }.width('100%').alignItems(HorizontalAlign.Center)
+  }
+}
+```
+
+![imagespan](figures/container_attributeModifier.png)

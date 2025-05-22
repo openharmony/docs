@@ -12,7 +12,7 @@ This module provides APIs for accessing a specific ability stage. You can use th
 ## Modules to Import
 
 ```ts
-import common from '@ohos.app.ability.common';
+import { common } from '@kit.AbilityKit';
 ```
 
 ## Usage
@@ -20,16 +20,18 @@ import common from '@ohos.app.ability.common';
 The ability stage context is obtained through an **AbilityStage** instance.
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        let abilityStageContext = this.context;
-    }
+  onCreate() {
+    let abilityStageContext = this.context;
+  }
 }
 ```
 
-## Attributes
+## Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

@@ -1,17 +1,17 @@
 # @ohos.distributedHardware.deviceManager (Device Management) (System API)
 
-The APIs of this module are deprecated. Use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md) instead.
+The APIs of this module are deprecated. You are advised to use [@ohos.distributedDeviceManager](js-apis-distributedDeviceManager.md).
 
-The **distributedHardware.deviceManager** module provides APIs for distributed device management.
+The **deviceManager** module provides APIs for distributed device management.
 
 System applications can call the APIs to do the following:
 
 - Subscribe to or unsubscribe from device state changes.
-- Discover peripheral untrusted devices.
+- Discover devices nearby.
 - Authenticate or deauthenticate a device.
 - Query the trusted device list.
 - Query local device information, including the device name, type, and ID.
-- Publish device information for discovery purposes.
+- Publishes device information for discovery purposes.
 
 > **NOTE**
 >
@@ -28,20 +28,29 @@ import deviceManager from '@ohos.distributedHardware.deviceManager';
 
 ## deviceManager.createDeviceManager
 
-createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void
+createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;
 
 Creates a **DeviceManager** instance.
 
-> **NOTE**<br>This API is deprecated since API version 11. Use [deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager).
+> **NOTE**<br>This API is deprecated since API version 11. Use [deviceManager.createDeviceManager](js-apis-distributedDeviceManager.md#devicemanagercreatedevicemanager) instead.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Parameters**
 
 | Name    | Type                                                | Mandatory| Description                                                       |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
-| bundleName | string                                               | Yes  | Bundle name of the application.                                 |
-| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback invoked to return the **DeviceManager** instance created.|
+| bundleName | string                                               | Yes  | Bundle name of the application. The value is a string of 1 to 255 characters.                                 |
+| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback used to return the **DeviceManager** instance created.|
 
 **Example**
 
@@ -94,9 +103,9 @@ Enumerates the device types.
 | ------------ | ---- | ---- |
 | SPEAKER      | 0x0A | Smart speaker.|
 | PHONE        | 0x0E | Phone.  |
-| TABLET       | 0x11 | Tablet.  |
-| WEARABLE     | 0x6D | Wearable.|
-| TV           | 0x9C | Smart TV. |
+| TABLET       | 0x11 | Tablet  |
+| WEARABLE     | 0x6D | Wearable|
+| TV           | 0x9C | Smart TV |
 | CAR          | 0x83 | Car.   |
 | UNKNOWN_TYPE | 0    | Unknown device type.|
 
@@ -140,16 +149,15 @@ Defines subscription information.
 
 | Name           | Type                               | Mandatory  | Description               |
 | ------------- | --------------------------------- | ---- | ----------------- |
-| subscribeId   | number                            | Yes   | Subscription ID, used to identify a device discovery period.|
+| subscribeId   | number                            | Yes   | Subscription ID, used to identify a device discovery period. The value ranges from 1 to 65535.|
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
 | medium        | [ExchangeMedium](#exchangemedium) | Yes   | Medium used for device discovery.            |
 | freq          | [ExchangeFreq](#exchangefreq)     | Yes   | Frequency of device discovery.            |
-| isSameAccount | boolean                           | No   | Whether the same account is used on the discovered device.           |
-| isWakeRemote  | boolean                           | No   | Whether to wake up the discovered device.          |
+| isSameAccount | boolean                           | No   | Whether the account is the same as the current account. The value **true** indicates the same account and the value **false** indicates a different account.           |
+| isWakeRemote  | boolean                           | No   | Whether to wake up the device. The value **true** means to wake up the device and the value **false** means the opposite.          |
 | capability    | [SubscribeCap](#subscribecap)     | Yes   | Discovery capability.            |
 
-
-## DiscoverMode 
+## DiscoverMode
 
 Enumerates the device discovery modes.
 
@@ -219,7 +227,7 @@ Defines the authentication parameters.
 | Name       | Type                  | Mandatory  | Description        |
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. The default value is **undefined**.|
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. Optional. The default value is **undefined**.|
 
 ## AuthInfo
 
@@ -233,7 +241,7 @@ Defines authentication information.
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
 | token     | number               | Yes   | Authentication token.  |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. The default value is **undefined**.|
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. Optional. The default value is **undefined**.|
 
 ## PublishInfo<sup>9+</sup>
 
@@ -248,7 +256,7 @@ Defines published device information.
 | publishId     | number                            | Yes   | ID used to identify a publication period.|
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
 | freq          | [ExchangeFreq](#exchangefreq)     | Yes   | Frequency of device discovery.            |
-| ranging       | boolean                           | Yes   | Whether the device supports distance reporting.            |
+| ranging       | boolean                           | Yes   | Whether the device supports ranging. The value **true** indicates that the device supports ranging and the value **false** indicates the opposite.            |
 
 ## DeviceManager
 
@@ -256,7 +264,7 @@ Provides APIs to obtain information about trusted devices and local devices. Bef
 
 ### release
 
-release(): void
+release(): void;
 
 Releases this **DeviceManager** instance when it is no longer used.
 
@@ -268,15 +276,17 @@ Releases this **DeviceManager** instance when it is no longer used.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -290,7 +300,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getTrustedDeviceListSync
 
-getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
+getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;;
 
 Obtains all trusted devices synchronously.
 
@@ -308,15 +318,17 @@ Obtains all trusted devices synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -331,7 +343,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getTrustedDeviceListSync<sup>10+</sup>
 
-getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
+getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;;
 
 Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices online and updates the list of online trusted devices.
 
@@ -345,7 +357,7 @@ Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices onl
 
 | Name       | Type                              | Mandatory| Description                               |
 | ------------- | --------------------------------- | ---- | ---------------------------------- |
-|   isRefresh   | boolean                           | Yes  | Whether to enable the heartbeat mode and update the list of online trusted devices.     |
+|   isRefresh   | boolean                           | Yes  | Whether to enable the heartbeat mode and update the list of online trusted devices. The value **true** means to enable the heartbeat mode and update the list of online trusted devices and the value **false** means the opposite.     |
 
 **Return value**
 
@@ -355,15 +367,18 @@ Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices onl
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -378,7 +393,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getTrustedDeviceList<sup>8+</sup>
 
-getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void
+getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void;
 
 Obtains all trusted devices. This API uses an asynchronous callback to return the result.
 
@@ -392,11 +407,20 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
   | Name      | Type                                    | Mandatory  | Description                   |
   | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback invoked to return the list of trusted devices.|
+  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -417,7 +441,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getTrustedDeviceList<sup>8+</sup>
 
-getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
+getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;;
 
 Obtains all trusted devices. This API uses a promise to return the result.
 
@@ -433,9 +457,17 @@ Obtains all trusted devices. This API uses a promise to return the result.
   | ---------------------------------------- | --------------------- |
   | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -449,7 +481,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getLocalDeviceInfoSync<sup>8+</sup>
 
-getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo)
+getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo);
 
 Obtains local device information synchronously.
 
@@ -467,15 +499,17 @@ Obtains local device information synchronously.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -490,7 +524,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
-getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
+getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void;
 
 Obtains local device information. This API uses an asynchronous callback to return the result.
 
@@ -504,11 +538,20 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the local device information.|
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -530,7 +573,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getLocalDeviceInfo<sup>8+</sup>
 
-getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
+getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;;
 
 Obtains local device information. This API uses a promise to return the result.
 
@@ -546,9 +589,17 @@ Obtains local device information. This API uses a promise to return the result.
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -562,7 +613,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
+getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void;
 
 Obtains the information about a specific device based on the network ID. This API uses an asynchronous callback to return the result.
 
@@ -576,12 +627,21 @@ Obtains the information about a specific device based on the network ID. This AP
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback invoked to return the information about the specified device.|
+  | networkId| string                                   | Yes  | Network ID of the device. The value is a string of 1 to 255 characters.|
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the information about the specified device.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -604,7 +664,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### getDeviceInfo<sup>10+</sup>
 
-getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
+getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;;
 
 Obtains the information about a specific device based on the network ID. This API uses a promise to return the result.
 
@@ -618,7 +678,7 @@ Obtains the information about a specific device based on the network ID. This AP
 
   | Name  | Type                                    | Mandatory| Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+  | networkId| string                                   | Yes  | Network ID of the device. The value is a string of 1 to 255 characters.|
   
 **Return value**
 
@@ -626,9 +686,18 @@ Obtains the information about a specific device based on the network ID. This AP
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                        |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
+
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -644,7 +713,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### startDeviceDiscovery<sup>8+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
+startDeviceDiscovery(subscribeInfo: SubscribeInfo): void;
 
 Starts to discover peripheral devices. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered.
 
@@ -662,16 +731,19 @@ Starts to discover peripheral devices. The discovery process lasts 2 minutes. A 
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery invalid.                                              |
+| 11600104 | Discovery unavailable.                                              |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -706,9 +778,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### startDeviceDiscovery<sup>9+</sup>
 
-startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
+startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void;
 
-Starts to discover peripheral devices and filters discovered devices. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered.
+Starts to discover peripheral devices. The discovery process lasts 2 minutes. A maximum of 99 devices can be discovered.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [startDiscovering](js-apis-distributedDeviceManager.md#startdiscovering) instead.
 
@@ -721,20 +793,23 @@ Starts to discover peripheral devices and filters discovered devices. The discov
   | Name           | Type                      | Mandatory  | Description   |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
-| filterOptions | string                          | No  | Options for filtering discovered devices. The default value is **undefined**, which indicates discovery of offline devices.|
+  | filterOptions | string                          | No  | Options for filtering discovered devices. Optional. The default value is **undefined**, indicating that discovery of offline devices. The value is a string of 1 to 255 characters.|
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600104 | Discovery invalid.                                              |
+| 11600104 | Discovery unavailable.                                              |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -791,7 +866,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### stopDeviceDiscovery
 
-stopDeviceDiscovery(subscribeId: number): void
+stopDeviceDiscovery(subscribeId: number): void;
 
 Stops device discovery.
 
@@ -805,19 +880,22 @@ Stops device discovery.
 
   | Name         | Type  | Mandatory  | Description   |
   | ----------- | ------ | ---- | ----- |
-  | subscribeId | number | Yes   | Subscription ID.|
+  | subscribeId | number | Yes   | Subscription ID. The value ranges from 1 to 65535.|
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -833,7 +911,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### publishDeviceDiscovery<sup>9+</sup>
 
-publishDeviceDiscovery(publishInfo: PublishInfo): void
+publishDeviceDiscovery(publishInfo: PublishInfo): void;
 
 Publishes device information for discovery purposes. The publish process lasts 2 minutes.
 
@@ -851,16 +929,19 @@ Publishes device information for discovery purposes. The publish process lasts 2
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
-| 11600105 | Publish invalid.                                                |
+| 11600105 | Publish unavailable.                                                |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -890,7 +971,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### unPublishDeviceDiscovery<sup>9+</sup>
 
-unPublishDeviceDiscovery(publishId: number): void
+unPublishDeviceDiscovery(publishId: number): void;
 
 Stops publishing device information.
 
@@ -904,19 +985,22 @@ Stops publishing device information.
 
   | Name       | Type| Mandatory| Description |
   | ----------- | -------- | ---- | ----- |
-  | publishId   | number   | Yes  | Publish ID.|
+  | publishId   | number   | Yes  | Publish ID. The value ranges from 1 to 2147483647.|
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -932,7 +1016,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### authenticateDevice
 
-authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void
+authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: AsyncCallback&lt;{deviceId: string, pinToken ?: number}&gt;): void;
 
 Authenticates a device.
 
@@ -948,11 +1032,20 @@ Authenticates a device.
   | ---------- | ---------------------------------------- | ---- | ------- |
   | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
   | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback invoked to return the authentication result.|
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback used to return the authentication result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -977,7 +1070,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
   }
 
   interface AuthParam {
-    authType: number,// Authentication type. The value 1 means PIN authentication.
+    authType: number; // Authentication type. The value 1 means no account PIN authentication.
     extraInfo: ExtraInfo;
   }
 
@@ -997,7 +1090,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
     business: '0'
   };
   let authParam: AuthParam = {
-    authType: 1,// Authentication type. The value 1 means no account PIN authentication.
+    authType: 1, // Authentication type. The value 1 means no account PIN authentication.
     extraInfo: extraInfo
   };
 
@@ -1018,7 +1111,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### unAuthenticateDevice<sup>8+</sup>
 
-unAuthenticateDevice(deviceInfo: DeviceInfo): void
+unAuthenticateDevice(deviceInfo: DeviceInfo): void;
 
 Deauthenticates a device.
 
@@ -1036,15 +1129,18 @@ Deauthenticates a device.
 
 **Error codes**
 
-For details about the error codes, see [Device Management Error Codes](errorcode-device-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
 | ID| Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 | 11600101 | Failed to execute the function.                                 |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1074,7 +1170,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### verifyAuthInfo
 
-verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
+verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void;
 
 Verifies authentication information.
 
@@ -1089,11 +1185,20 @@ Verifies authentication information.
   | Name      | Type                                    | Mandatory  | Description     |
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
-  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback invoked to return the verification result.|
+  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback used to return the verification result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1153,12 +1258,22 @@ Sets a user operation.
 
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
-  | operateAction | number          | Yes   | User operation.      |
-  | params        | string          | Yes   | Input parameters of the user.|
+  | operateAction | number          | Yes   | User operation. The value ranges from 0 to 5.      |
+  | params        | string          | Yes   | Input parameters of the user. The value is a string of 1 to 255 characters.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.    |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1195,12 +1310,21 @@ Obtains the registration information of the credential.
 
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
-  | requestInfo   | string          | Yes   | Request credential information.      |
-  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback invoked to return the credential registration information.|
+  | requestInfo   | string          | Yes   | Request credential information. The value contains a maximum of 255 characters.      |
+  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback used to return the credential registration information.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1248,12 +1372,22 @@ Imports credential information.
 
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
-  | credentialInfo| string          | Yes   | Credential information to import.      |
-  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
+  | credentialInfo| string          | Yes   | Credential information to import. The value is a string of 1 to 64000 characters.      |
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+<!--code_no_check-->
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1333,12 +1467,21 @@ Deletes credential information.
 
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
-  | queryInfo     | string          | Yes   | Credential information to delete.      |
-  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback invoked to return the result.|
+  | queryInfo     | string          | Yes   | Credential information to delete. The value is a string of 1 to 64000 characters.      |
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1377,7 +1520,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
-Subscribes to UI state changes.
+Subscribes to UI status changes.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [on('replyResult')](js-apis-distributedDeviceManager-sys.md#onreplyresult) instead.
 
@@ -1389,12 +1532,21 @@ Subscribes to UI state changes.
 
   | Name     | Type                            | Mandatory| Description                           |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
-| type     | string                                | Yes | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback invoked to return the UI status change.       |
+  | type     | string                                | Yes | Event type, which has a fixed value of **uiStateChange**.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback used to return the UI status.       |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1423,7 +1575,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
-Unsubscribes from UI state changes.
+Unsubscribes from UI status changes.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [off('replyResult')](js-apis-distributedDeviceManager-sys.md#offreplyresult) instead.
 
@@ -1435,12 +1587,21 @@ Unsubscribes from UI state changes.
 
   | Name     | Type                             | Mandatory| Description                           |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
-| type     | string                                | Yes  | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
-| callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister. |
+  | type     | string                                | Yes  | Event type, which has a fixed value of **uiStateChange**.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback used to return the UI status.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1454,9 +1615,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### on('deviceStateChange')
 
-on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
+on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void;
 
-Subscribes to device state changes.
+Subscribes to changes in the device state.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [on('deviceStateChange')](js-apis-distributedDeviceManager.md#ondevicestatechange) instead.
 
@@ -1468,12 +1629,21 @@ Subscribes to device state changes.
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value is **deviceStateChange**, which indicates device state changes.|
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the device state change.     |
+  | type     | string                                   | Yes   | Event type. The value is **deviceStateChange**, which indicates a device state change event.|
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback used to return the device information and state.     |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1502,9 +1672,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### off('deviceStateChange')
 
-off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
+off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void;
 
-Unsubscribes from device state changes.
+Unsubscribes from changes in the device state.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [off('deviceStateChange')](js-apis-distributedDeviceManager.md#offdevicestatechange) instead.
 
@@ -1516,12 +1686,21 @@ Unsubscribes from device state changes.
 
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **'deviceStateChange'**, which indicates device state changes.       |
-| callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceStateChange**.       |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback used to return the device information and state.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1550,7 +1729,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### on('deviceFound')
 
-on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
+on(type: 'deviceFound', callback: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void;
 
 Subscribes to device discovery events.
 
@@ -1564,12 +1743,21 @@ Subscribes to device discovery events.
 
   | Name      | Type                                    | Mandatory  | Description                        |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **'deviceFound'**, which indicates discovery of a device.|
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback invoked to return the discovery of a device.              |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceFound**.|
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback used for device discovery.              |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1598,7 +1786,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### off('deviceFound')
 
-off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void
+off(type: 'deviceFound', callback?: Callback&lt;{ subscribeId: number, device: DeviceInfo }&gt;): void;
 
 Unsubscribes from device discovery events.
 
@@ -1612,12 +1800,21 @@ Unsubscribes from device discovery events.
 
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes   | Event type. The value is **'deviceFound'**, which indicates discovery of a device.                |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceFound**.               |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback used to return the device information and state.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import deviceManager from '@ohos.distributedHardware.deviceManager';
   import { BusinessError } from '@ohos.base';
@@ -1646,7 +1843,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### on('discoverFail')
 
-on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
+on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
 
 Subscribes to device discovery failures.
 
@@ -1660,12 +1857,21 @@ Subscribes to device discovery failures.
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | string                                   | Yes   | Event type. The value is **'discoverFail'**, which indicates a failure in discovering devices.|
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback invoked to return a device discovery failure.                |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **discoverFail**.|
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback used for the device discovery failure.                |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1686,7 +1892,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### off('discoverFail')
 
-off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
+off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
 
 Unsubscribes from device discovery failures.
 
@@ -1700,12 +1906,21 @@ Unsubscribes from device discovery failures.
 
   | Name      | Type                                    | Mandatory  | Description               |
   | -------- | ---------------------------------------- | ---- | ----------------- |
-| type     | string                                   | Yes   | Event type. The value is **'discoverFail'**, which indicates a failure in discovering devices.    |
-| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister. |
+  | type     | string                                   | Yes   | Event type, which has a fixed value of **discoverFail**.    |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback used for the device discovery failure.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1726,9 +1941,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### on('publishSuccess')<sup>9+</sup>
 
-on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
+on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void;
 
-Subscribes to the **'publishSuccess'** event. The application will be notified when the information of a device is published.
+Subscribes to device information publication success events.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1740,13 +1955,21 @@ Subscribes to the **'publishSuccess'** event. The application will be notified w
 
   | Name    | Type                                | Mandatory| Description                      |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-| type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.|
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback invoked to return the publish ID.              |
+  | type     | string                                   | Yes  | Event type, which has a fixed value of **publishSuccess**.|
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback used to return the publish ID.              |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1766,7 +1989,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### off('publishSuccess')<sup>9+</sup>
 
-off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
+off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void;
 
 Unsubscribes from device information publication success events.
 
@@ -1780,12 +2003,21 @@ Unsubscribes from device information publication success events.
 
   | Name    | Type                                | Mandatory| Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-| type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.                |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback to unregister. |
+  | type     | string                                   | Yes  | Event type, which has a fixed value of **publishSuccess**.                |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback used to return the publish ID.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1805,7 +2037,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### on('publishFail')<sup>9+</sup>
 
-on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
+on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void;
 
 Subscribes to device information publication failures.
 
@@ -1819,12 +2051,21 @@ Subscribes to device information publication failures.
 
   | Name    | Type                                             | Mandatory| Description                            |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.|
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback invoked to return a failure in publishing device information.                |
+  | type     | string                                                | Yes  | Event type, which has a fixed value of **publishFail**.|
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback used for the publication failure.                |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1845,9 +2086,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### off('publishFail')<sup>9+</sup>
 
-off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
+off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void;
 
-Unsubscribes from the **'publishFail'** event.
+Unsubscribes from device information publication failures.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1859,12 +2100,21 @@ Unsubscribes from the **'publishFail'** event.
 
   | Name    | Type                                             | Mandatory| Description               |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
-| type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.    |
-| callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback to unregister. |
+  | type     | string                                                | Yes  | Event type, which has a fixed value of **publishFail**.    |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback used for the device discovery failure.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1885,9 +2135,9 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### on('serviceDie')
 
-on(type: 'serviceDie', callback: () =&gt; void): void
+on(type: 'serviceDie', callback: () =&gt; void): void;
 
-Subscribes to dead events of the **DeviceManager** service. The application will be notified when the **DeviceManager** service is terminated unexpectedly.
+Subscribes to dead events of the **DeviceManager** service.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [on('serviceDie')](js-apis-distributedDeviceManager.md#onservicedie) instead.
 
@@ -1899,12 +2149,21 @@ Subscribes to dead events of the **DeviceManager** service. The application will
 
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value is **'serviceDie'**, which indicates unexpected termination of the **DeviceManager** service.|
-| callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when the **DeviceManager** service is unexpectedly terminated. |
+  | type     | string                  | Yes   | Event type, which has a fixed value of **serviceDie**.|
+  | callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 
@@ -1920,7 +2179,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 ### off('serviceDie')
 
-off(type: 'serviceDie', callback?: () =&gt; void): void
+off(type: 'serviceDie', callback?: () =&gt; void): void;
 
 Unsubscribes from dead events of the **DeviceManager** service.
 
@@ -1934,12 +2193,21 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
-| type     | string                  | Yes   | Event type. The value is **'serviceDie'**, which indicates unexpected termination of the **DeviceManager** service.|
-| callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback to unregister.     |
+  | type     | string                  | Yes   | Event type, which has a fixed value of **serviceDie**.|
+  | callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback used to return the dead event of the **DeviceManager** service.                    |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                       |
+| -------- | --------------------------------------------------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
 
 **Example**
 
-For details about how to initialize **dmInstance** in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
+For details about how to initialize `dmInstance` in the example, see [deviceManager.createDeviceManager](#devicemanagercreatedevicemanager).
   ```ts
   import { BusinessError } from '@ohos.base';
 

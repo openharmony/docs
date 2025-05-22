@@ -1,4 +1,5 @@
 # AbilityComponent (系统接口)
+<!--deprecated_code_no_check-->
 
 独立显示Ability的容器。
 
@@ -18,7 +19,7 @@ AbilityComponent不支持处理输入事件，事件不经过当前Ability，直
 
 AbilityComponent需设置且只能设置width、height，且width、height不支持动态更新。
 
-被拉起的Ability必须继承[WindowExtension](../../apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility-sys.md)。
+被拉起的Ability必须继承[WindowExtension](../js-apis-application-windowExtensionAbility-sys.md)。
 
 ## 子组件
 

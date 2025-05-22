@@ -1,15 +1,14 @@
-# Concurrency Overview
+# Overview of Concurrency
 
-Concurrency refers to the capability of processing multiple tasks in the same period. To improve the response speed and frame rate of applications and prevent time-consuming tasks from blocking the main thread, two policies are provided: asynchronous concurrency and multithreaded concurrency.
+Concurrency refers to the situation where multiple tasks are executed at the same time. On multi-core devices, these tasks can run in parallel across different CPUs. On single-core devices, while multiple tasks cannot run in parallel at the exact same moment, the CPU can switch between tasks when one is idle or performing I/O operations, thereby optimizing CPU resource utilization.
 
-- Asynchronous concurrency means that an action in asynchronous code is suspended and will continue later. Only one segment of code is being executed at a time.
+To improve the response speed and frame rate of applications and mitigate the impact of time-consuming tasks on the UI main thread, ArkTS provides two concurrency strategies: asynchronous concurrency and multithreaded concurrency.
 
-- Multithreaded concurrency allows multiple segments of code to be executed at a time. When the main thread responds to user operations and updates the UI, time-consuming operations are performed in the background, avoiding application freezing.
+- Asynchronous concurrency involves pausing asynchronous code at a certain point and resuming its execution later, ensuring that only one piece of code is running at any given moment. ArkTS supports asynchronous concurrency through Promises and async/await, which are well-suited for scenarios involving single I/O operations. For details, see [Asynchronous Concurrency](async-concurrency-overview.md).
 
-Concurrency is used in a variety of scenarios, including a [single I/O task](single-io-development.md), [CPU intensive task](cpu-intensive-task-development.md), [I/O intensive task](io-intensive-task-development.md), and [synchronous task](sync-task-development.md). You can select a concurrency policy based on your scenario.
+- Multithreaded concurrency allows multiple segments of code to run simultaneously. While the UI main thread continues to handle user interactions and update the UI, background threads can perform time-consuming operations, thereby preventing application lag. ArkTS supports multithreaded concurrency through TaskPool and Worker, which are ideal for scenarios involving [time-consuming tasks](time-consuming-task-overview.md). For details, see [Multithreaded Concurrency](multi-thread-concurrency-overview.md).
 
-ArkTS provides the following mechanisms to support asynchronous concurrency and multithreaded concurrency:
 
-- Promise and async/await: implement asynchronous concurrency and apply to the development of a single I/O task. For details, see [Asynchronous Concurrency Overview](async-concurrency-overview.md).
+In multithreaded concurrency scenarios, data communication between different threads is necessary, and the transfer methods for different types of objects can vary, including copy or memory sharing. 
 
-- TaskPool and Worker: implement multithreaded concurrency and apply to the development of CPU intensive tasks, I/O intensive tasks, and synchronous tasks. For details, see [Multithreaded Concurrency Overview](multi-thread-concurrency-overview.md).
+Concurrency capabilities are used in various scenarios, including [asynchronous tasks](async-concurrency-overview.md), [time-consuming tasks](time-consuming-task-overview.md) ([CPU intensive tasks](cpu-intensive-task-development.md), [I/O intensive tasks](io-intensive-task-development.md), and [synchronous tasks](sync-task-development.md)), [continuous tasks](long-time-task-overview.md), and [resident tasks](resident-task-overview.md). You can select the appropriate concurrency strategy based on the specific task requirements and scenarios for optimization and development. You can also refer to [Multithreaded Development Practice Cases](batch-database-operations-guide.md).

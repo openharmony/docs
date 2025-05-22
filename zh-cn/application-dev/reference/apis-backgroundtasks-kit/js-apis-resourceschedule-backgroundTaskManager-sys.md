@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';  
 ```
 
 ## backgroundTaskManager.applyEfficiencyResources
@@ -33,20 +33,23 @@ applyEfficiencyResources(request: EfficiencyResourcesRequest): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed for an energy resource request. |
 
 **示例**：
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: backgroundTaskManager.EfficiencyResourcesRequest = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -76,20 +79,23 @@ resetAllEfficiencyResources(): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed for an energy resource request. |
 
 **示例**：
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     backgroundTaskManager.resetAllEfficiencyResources();
@@ -107,7 +113,6 @@ try {
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | WIFI_INTERACTION        | 7    | WLAN相关。<br>**系统API**: 此接口为系统接口。 |
-| VOIP                    | 8    | 音视频通话。<br>**系统API**: 此接口为系统接口。 |
 
 ## EfficiencyResourcesRequest
 
@@ -120,10 +125,10 @@ try {
 | 名称             | 类型     | 必填   | 说明                                       |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | 是    | 申请的资源类型。                               |
-| isApply         | boolean | 是    | 申请或释放资源。<br>- true表示申请资源，false表示释放部分资源。 |
+| isApply         | boolean | 是    | 申请或释放资源。<br>- true表示申请资源。<br>- false表示释放部分资源。 |
 | timeOut         | number  | 是    | 资源使用时间，单位为毫秒。                |
-| isPersist       | boolean | 否    | 是否永久持有资源，默认为false。<br>- true表示永久持有，false表示有限时间内持有。|
-| isProcess       | boolean | 否    | 进程或应用申请，默认为false。<br>- true表示进程申请，false表示应用申请。         |
+| isPersist       | boolean | 否    | 是否永久持有资源，默认为false。<br>- true表示永久持有。<br>- false表示有限时间内持有。|
+| isProcess       | boolean | 否    | 进程或应用申请，默认为false。<br>- true表示进程申请。<br>- false表示应用申请。         |
 | reason          | string  | 是    | 申请资源原因。                |
 
 ## ResourceType

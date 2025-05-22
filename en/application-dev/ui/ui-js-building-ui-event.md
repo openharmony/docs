@@ -1,6 +1,6 @@
 # Defining Gesture Events
 
-A gesture represents a semantic action (for example, tap, drag, or longpress) that can trigger one or more events. A gesture lifecycle may consist of multiple events from the start to the end of the gesture. Supported events are as follows:
+A gesture represents a semantic action (for example, touch, click, or longpress) that can trigger one or more events. A gesture lifecycle may consist of multiple events from the start to the end of the gesture. Supported events are as follows:
 
 **Touch**
 

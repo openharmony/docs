@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **OhosImageSourceProperty** struct defines the property string (in key-value format) of an image source. It is used in [OH_ImageSource_GetImageProperty](image.md#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](image.md#oh_imagesource_modifyimageproperty).
+The OhosImageSourceProperty struct defines the property string (in key-value format) of an image source. It is used in [OH_ImageSource_GetImageProperty](image.md#oh_imagesource_getimageproperty) and [OH_ImageSource_ModifyImageProperty](image.md#oh_imagesource_modifyimageproperty).
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -11,6 +11,7 @@ The **OhosImageSourceProperty** struct defines the property string (in key-value
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
 
 ## Summary
 
@@ -19,5 +20,5 @@ The **OhosImageSourceProperty** struct defines the property string (in key-value
 
 | Name| Description| 
 | -------- | -------- |
-| [value](image.md#value) = nullptr | Defines a pointer to the head of the property string.| 
-| [size](image.md#size-77) = 0 | Defines the size of the property string.| 
+| char \* [value](image.md#value) = nullptr | Pointer to the starting address of the property string.|
+| size_t [size](image.md#size-77) = 0 | Size of the property string.|

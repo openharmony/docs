@@ -1,6 +1,6 @@
 # \<form> Development
 
-The **\<form>** component allows the content in [\<Input>](../reference/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/arkui-js/js-components-container-form.md).
+The **\<form>** component allows the content in [\<Input>](../reference/apis-arkui/arkui-js/js-components-basic-input.md) components to be submitted and reset. For details, see [form](../reference/apis-arkui/arkui-js/js-components-container-form.md).
 
 ## Creating a \<form> Component
 
@@ -31,7 +31,7 @@ Create a **\<form>** component in the .hml file under **pages/index**.
 
 ## Zooming In or Out on a Form
 
-To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **\<form>** component. For values of **click-effect**, see [Universal Attributes](../reference/arkui-js/js-components-common-attributes.md).
+To implement the zoom effect after a form is clicked, add the **click-effect** attribute to the **\<form>** component. For values of **click-effect**, see [Universal Attributes](../reference/apis-arkui/arkui-js/js-components-common-attributes.md).
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -138,7 +138,7 @@ export default{
 
 Select an option and submit or reset the form data.
 
-Create two [\<Input>](../reference/arkui-js/js-components-basic-input.md) components, set their **type** attribute to **checkbox** and **radio**, and use the **onsubmit** and **onreset** events of the **\<form>** component to submit and reset the form data, respectively.
+Create two [\<Input>](../reference/apis-arkui/arkui-js/js-components-basic-input.md) components, set their **type** attribute to **checkbox** and **radio**, and use the **onsubmit** and **onreset** events of the **\<form>** component to submit and reset the form data, respectively.
 
 ```html
 <!-- xxx.hml -->

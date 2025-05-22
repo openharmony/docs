@@ -12,25 +12,25 @@ PC端以Smartperf-Host网站的形式进行发布，内部分为Trace Streamer�
 ## 项目目录
 ```
 /smartperf_host
-├── host                          # Smartperf-Host 相关代码
-│   ├── doc                       # Smartperf-Host 相关使用文档
-│   ├── ide                       # Smartperf-Host IDE 模块目录
-│   │    └── src                  # 主机测调优模块代码
-│   │    │   ├── base-ui          # 基础组件目录
-│   │    │   └── Trace            # 业务逻辑目录
-│   ├── trace_streamer            # 解析模块代码目录
-│   │    ├── base                 # 基础功能
-│   │    ├── cfg                  # 配置目录
-│   │    ├── filter               # Filter 功能
-│   │    ├── include              # Include 头文件
-│   │    ├── multi_platform       # 平台适配
-│   │    ├── parser               # 解析业务逻辑
-│   │    │   ├── bytrace_parser   # byTrace 解析业务逻辑
-│   │    │   └── htrace_parser    # hTrace 解析业务逻辑
-│   │    ├── table                # 表结构
-│   │    ├── trace_data           # trace 结构
-│   │    ├── trace_streamer       # traceStreamer 结构
-│   │    │   └── kits             # js/napi 接口存放目录
+├── host                          # Smartperf-Host 相关代码。
+│   ├── doc                       # Smartperf-Host 相关使用文档。
+│   ├── ide                       # Smartperf-Host IDE 模块目录。
+│   │    └── src                  # 主机侧调优模块代码。
+│   │    │   ├── base-ui          # 基础组件目录。
+│   │    │   └── Trace            # 业务逻辑目录。
+│   ├── trace_streamer            # 解析模块代码目录。
+│   │    ├── base                 # 基础功能。
+│   │    ├── cfg                  # 配置目录。
+│   │    ├── filter               # Filter 功能。
+│   │    ├── include              # Include 头文件。
+│   │    ├── multi_platform       # 平台适配。
+│   │    ├── parser               # 解析业务逻辑。
+│   │    │   ├── bytrace_parser   # byTrace 解析业务逻辑。
+│   │    │   └── htrace_parser    # hTrace 解析业务逻辑。
+│   │    ├── table                # 表结构。
+│   │    ├── trace_data           # trace 结构。
+│   │    ├── trace_streamer       # traceStreamer 结构。
+│   │    │   └── kits             # js/napi 接口存放目录。
 ```
 ## 功能介绍
 - 网页加载trace
@@ -65,19 +65,19 @@ PC端以Smartperf-Host网站的形式进行发布，内部分为Trace Streamer�
   使用Smartperf-Host抓取每次IO访问的起始时间、总延迟、进程、每4k数据的平均延迟、线程、操作（写数据、页面换入、Metadata）、访问量、路径等、Block number、优先级、Backtrace调用栈，详见《[Bio的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_bio.md)》。
 - 进程Smaps抓取
 
-  使用Smartperf-Host抓取单个进程的smaps数据（类别、Pss、Rss、Vss等），数据源为/proc/$pid/smaps，详见《[进程smaps的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_smaps.md)》。
+  使用Smartperf-Host抓取单个进程的smaps数据（类别、Pss、Rss、Vss等），数据源为/proc/$pid/smaps，详见《[进程smaps的抓取和展示说明](https://gitee.com/openharmony/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_memory_template.md)》。
 - Sql分析和Metrics说明
 
   Smartperf-Host网站trace解析完成后在线数据库使用说明，详见《[Sql分析和Metrics说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_sql_metrics.md)》。
 ## 编译指南
 项目编译主要包括两部分，Trace Streamer编译和Smartperf-Host编译部署。
 ### 构建约束
-- C++ 11版本或以上
-- node 16.15.1版本或以上
-- npm  8.13.2版本或以上
-- TypeScript  4.2.3版本或以上
-- golang 版本  1.13.8版本或以上
+- C++ 11版本或以上。
+- node 16.15.1版本或以上。
+- npm  8.13.2版本或以上。
+- TypeScript  4.2.3版本或以上。
+- golang  1.13.8版本或以上。
 ### Trace Streamer编译 
 搭建Smartperf-Host网站需要编译出trace_streamer的wasm版本供网页端进行原始trace数据解析工作，具体的编译过程参考《[如何独立编译Trace Streamer](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/trace_streamer/doc/compile_trace_streamer.md)》。
 ### Smartperf-Host编译部署
-具体的编译部署过程参考《[SmartPerf 编译部署指导](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/README_zh.md)》，部署成功后通过浏览器访问页面 https://[部署机器ip地址]:9000/application/ 即可使用Smartperf-Host的全部功能。
+具体的编译部署过程参考《[SmartPerf 编译部署指导](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/README_zh.md)》，部署成功后通过浏览器访问页面 `https://[部署机器ip地址]:9000/application` 即可使用Smartperf-Host的全部功能。

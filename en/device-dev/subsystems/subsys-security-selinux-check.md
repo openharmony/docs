@@ -32,11 +32,11 @@ The regular expression **log(/.*)?** is detected in the secondary directory of *
 
 You can use either of the following methods to solve the problem:
 
-1. Add **/data/log/(.*)** to the **data_regex_whitelist.txt** file in the **//base/security/selinux_adapter/sepolicy/** directory.
+- Method 1: Add **/data/log/(.*)** to the **data_regex_whitelist.txt** file in the **//base/security/selinux_adapter/sepolicy/** directory.<br>
 
     > **NOTE**<br>Before modifying the file, carefully review the modification to avoid security risks.
 
-2. Modify the regular expression. For example, modify the regular expression as follows:
+- Method 2: Modify the regular expression. For example, modify the regular expression as follows:
     ```text
     /data/log                       u:object_r:data_log:s0
     /data/log/(.*)?                 u:object_r:data_log:s0
@@ -85,11 +85,11 @@ The partition label **u:object_r:data_file:s0** is configured for **/data/log**.
 
 You can use either of the following methods to solve the problem:
 
-1. Add the path and label **/data/log u:object_r:data_file:s0** to the **partition_label_use_whitelist.txt** file in the **//base/security/selinux_adapter/sepolicy/** directory.
+- Method 1: Add the path and label **/data/log u:object_r:data_file:s0** to the **partition_label_use_whitelist.txt** file in the **//base/security/selinux_adapter/sepolicy/** directory.
 
     > **NOTE**<br>Before modifying the file, carefully review the modification to avoid security risks.
 
-2. Modify the label of **/data/log**. For example, modify the label as follows:
+- Method 2: Modify the label of **/data/log**. For example, modify the label as follows:
     ```text
     /data/log    u:object_r:data_log:s0
     ```
@@ -120,7 +120,7 @@ When a pair of subject and object have different SELinux permissions, an attack 
 
 - **name**: name of the check item.
 - **description**: description of the check item.
-- **perm_group**: list of permissions to check. **perm_group** consists of **tclass** and **perm**. **tclass** specifies the type of the object to access. If it is set to *****, it indicates all types. **perm** specifies the permission of the operation.
+- **perm_group**: list of permissions to check. **perm_group** consists of **tclass** and **perm**. **tclass** specifies the type of the object to access. If it is set to **\***, it indicates all types. **perm** specifies the permission of the operation.
 
 ### Error Information
 
@@ -152,10 +152,12 @@ allow appspawn appspawn_exec:file { execute execute_no_trans };
 
 You can use either of the following methods to solve the problem:
 
-1. Add the subject and object to the **user** or **developer** field in the **perm_group_whitelist.json** file in **//base/security/selinux_adapter/sepolicy/**.
-    
-    > **NOTE**<br>Before modifying the file, carefully review the modification to avoid security risks.<br>The following is an example of the file:
-    
+- Method 1: Add the subject and object to the **user** or **developer** field in the **perm_group_whitelist.json** file in **//base/security/selinux_adapter/sepolicy/**.
+
+    > **NOTE**<br>Before modifying the file, carefully review the modification to avoid security risks.
+
+    The following is an example of the file:
+
     ```text
     {
         "whitelist": [
@@ -168,25 +170,26 @@ You can use either of the following methods to solve the problem:
                 ]
             }
         ]
-}
+    }
     ```
-**whitelist** specifies all the permission group check items that are allowed. Each item contains the following fields:
-    
+
+    **whitelist** specifies all the permission group check items that are allowed. Each item contains the following fields:
+
     - **name**: name of the allowed check item, that is, the name of the check item.
     - **user**: policy allowed for the user version.
-    - **developer**: policy allowed for the developer mode. 
-    
-The following table provides the rules for determine where you should add the subject and object.
-    
+    - **developer**: policy allowed for the developer mode.
+
+    The following table provides the rules for determine where you should add the subject and object.
+
     **Table 1** Rules for determining the entry of the subject and object
-    
-    | Violate User Version Policy| Violate Developer Mode Policy| Entry Field|
-    | -------- | -------- | -------- |
-    | Yes| Yes| user |
-    | No| Yes| developer |
-    | Yes| No| user. In addition, delete the subject and object from the **developer** field.|
-    
-2. Modify the policy to avoid the violation.
+
+    | Violate User Version Policy | Violate Developer Mode Policy | Entry Field                                                  |
+    | --------------------------- | ----------------------------- | ------------------------------------------------------------ |
+    | Yes                         | Yes                           | user                                                         |
+    | No                          | Yes                           | developer                                                    |
+    | Yes                         | No                            | user. In addition, delete the subject and object from the **developer** field. |
+
+- Method 2: Modify the policy to avoid the violation.
 
 ### Deleting Redundant Policies from a Whitelist File
 
@@ -218,11 +221,11 @@ To solve the problem, you need to delete the redundant policy from the **perm_gr
 In the **perm_group_whitelist.json** file, locate **execute and execute_no_trans**, and delete **appspawn appspawn_exec** from the **user** field.
 
 **Table 2** Rules for deleting redundant policy from the whitelist file
-| User Version Whitelist Redundant| Developer Mode Whitelist Redundant| Field to Delete|
+| User Version Whitelist Redundant | Developer Mode Whitelist Redundant | Field to Delete |
 | -------- | -------- | -------- |
-| Yes| Yes| user |
-| No| Yes| developer |
-| Yes| No| user |
+| Yes | Yes | user |
+| No | Yes | developer |
+| Yes | No | user |
 
 
 ## Checking for Invalid Policy Baseline of Critical Processes
@@ -265,18 +268,21 @@ The policy **allow sh vendor_file:dir search;**, that is, **(allow sh vendor_fil
 
 You can use either of the following methods to solve the problem:
 
-1. Add the policy (in the CLI format) indicated by **actual rule** in the error message to the baseline file *xx*.**baseline** in **//base/security/selinux_adapter/sepolicy/** as a new baseline. In the file name, *xx* indicates the process label. 
+- Method 1: Add the policy (in the CLI format) indicated by **actual rule** in the error message to the baseline file *xx*.**baseline** in **//base/security/selinux_adapter/sepolicy/** as a new baseline. In the file name, *xx* indicates the process label.
 
-    > **NOTE**<br>Before modifying the baseline file, carefully review the modification to avoid security risks. The following table provides the rules for modifying the policy baseline.
+    > **NOTE**<br>Before modifying the baseline file, carefully review the modification to avoid security risks.
+
+    The following table provides the rules for modifying the policy baseline.
 
     **Table 3** Rules for modifying the policy baseline for critical processes
-    | User Version Baseline Error| Developer Mode Baseline Error| Update Policy in developer_only|
-    | -------- | -------- | -------- |
-    | Yes| Yes| No|
-    | No| Yes| Yes|
-    | Yes| No| Move the policy out of **developer_only**.|
 
-2. Modify the policy to avoid baseline violation.
+    | User Version Baseline Error | Developer Mode Baseline Error | Update Policy in developer_only |
+    | -------- | -------- | -------- |
+    | Yes | Yes | No |
+    | No | Yes | Yes |
+    | Yes | No | Move the policy out of **developer_only**. |
+
+- Method 2: Modify the policy to avoid baseline violation.
 
 ### Deleting Redundant Policies from a Baseline File
 
@@ -300,8 +306,110 @@ Delete the policy from the baseline file, for example, **sh.baseline** in **//ba
 Delete the redundant policy, for example, **(allow sh rootfs (dir (search)))**, and ensure that the actual policy is the same as the expected one. The following table provides the rules for deleting redundant policies from the baseline file.
 
 **Table 4** Rules for deleting redundant policies from the baseline file
-| User Version Baseline Redundant| Developer Mode Baseline Redundant| Field to Delete|
+| User Version Baseline Redundant | Developer Mode Baseline Redundant | Field to Delete |
 | -------- | -------- | -------- |
-| Yes| Yes| Policy outside **developer_only**|
-| No| Yes| Policy in **developer_only**|
-| Yes| No| Policy outside **developer_only**|
+| Yes | Yes | Policy outside **developer_only** |
+| No | Yes | Policy in **developer_only** |
+| Yes | No | Policy outside **developer_only** |
+
+## Checking ioctl Permission Policies
+
+### When to Use
+
+For **ioctl**, you need to restrict **ioctlcmd** based on AVC logs in addition to configuring **allow** rules. Granting all permissions for **ioctlcmd** violates the least privilege principle.
+
+### Error Information
+
+The error "check ioctl rule in user mode failed." will be reported during the compilation if the **allow** rule contains the access permission to **ioctl** but the **ioctl** permissions are not restricted.
+```text
+ check ioctl rule in user mode failed.
+ violation list (allow scontext tcontext:tclass ioctl)
+    allow wifi_host data_service_el1_file:file ioctl;
+    allow wifi_host dev_hdfwifi:chr_file ioctl;
+    allow write_updater updater_block_file:blk_file ioctl;
+ please add "allowxperm" rule based on the above list.
+```
+
+### Block Reason
+
+The **allow scontext tcontext:tclass ioctl** rule allows all **ioctl** permissions for **tcontext:tclass**, which violates the least privilege principle. Specific **allowxperm** rules need to be added to implement fine-grained control over the **ioctl** permissions.
+
+### Solution
+
+You can use either of the following methods to solve the problem:
+- Method 1: Restrict **ioctlcmd** of **ioctl** based on the AVC log. For example, the AVC log is as follows:
+    ```text
+    #avc:  denied  { ioctl } for  pid=1 comm="init" path="/data/app/el1/bundle/public" dev="mmcblk0p11" ino=652804 ioctlcmd=0x6613 scontext=u:r:init:s0 tcontext=u:object_r:data_app_el1_file:s0 tclass=dir permissive=0
+    ```
+    Based on the AVC log, set the SELinux policy as follows:
+    ```text
+    allow init data_app_el1_file:dir { ioctl };
+    ```
+    In addition, based on "ioctlcmd=0x6613" in the AVC log, add **allowxperm** to further restrict the **ioctl** permissions for the same user or developer mode.
+    ```text
+    allowxperm init data_app_el1_file:dir ioctl { 0x6613 };
+    ```
+    
+- Method 2: Add "scontext tcontext tclass" to the **whitelist ioctl_xperm_whitelist.json** file in **//base/security/selinux_adapter/sepolicy/**.
+  
+    > **NOTE**<br>Before modifying the whitelist file, carefully review the modification to avoid security risks.
+    
+    In the AVC log, **user mode** indicates that the policy is the baseline shared by the user and developer modes, and **developer mode** indicates that the policy is used only as the baseline in developer mode and is added to the whitelist.
+    
+    ```text
+    {
+        "whitelist": {
+            "user": [
+                "wifi_host data_service_el1_file file"
+            ],
+            "developer": [
+            ]
+        }
+    }
+    ```
+
+
+## Checking Permissions on the Permissive Subject Type
+
+### When to Use
+
+The **permissive** subject type allows access to all objects, which violates the least privilege principle.
+
+### Error Information
+
+The error "check permissive rule in user mode failed." will be reported during the compilation if the policy file contains "permissive scontext;".
+```text
+ check permissive rule in user mode failed.
+ violation list (scontext):
+    sa_subsys_dfx_service
+ There are two solutions:
+    1. Add the above list to whitelist file 'permissive_whitelist.json' under 'base/security/selinux_adapter/sepolicy' in 'user' mode.
+    2. Change the policy to avoid violating rule.
+```
+
+### Block Reason
+
+The rules contain new **permissive** subject type.
+
+### Solution
+
+You can use either of the following methods to solve the problem:
+- Method 1: Delete unnecessary **permissive** definitions.
+
+- Method 2: Add the subject type **scontext** to the **permissive_whitelist.json** file in **//base/security/selinux_adapter/sepolicy/**.
+  
+    > **NOTE**<br>Before modifying the whitelist file, carefully review the modification to avoid security risks.
+    
+    In the AVC log, **user mode** indicates that the policy is the baseline shared by the user and developer modes, and **developer mode** indicates that the policy is used only as the baseline in developer mode and is added to the whitelist.
+    
+    ```text
+    {
+        "whitelist": {
+            "user": [
+                "sa_subsys_dfx_service"
+            ],
+            "developer": [
+            ]
+        }
+    }
+    ```

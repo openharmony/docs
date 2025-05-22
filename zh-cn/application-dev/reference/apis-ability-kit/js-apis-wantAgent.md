@@ -1,4 +1,5 @@
 # @ohos.wantAgent (WantAgent模块)
+<!--deprecated_code_no_check-->
 
 WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取want信息、比较WantAgent实例和获取bundle名称等能力。
 
@@ -9,14 +10,16 @@ WantAgent模块提供了创建WantAgent实例、获取实例的用户ID、获取
 ## 导入模块
 
 ```ts
-import WantAgent from '@ohos.wantAgent';
+import wantAgent from '@ohos.wantAgent';
 ```
 
-## WantAgent.getWantAgent
+## wantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
-创建WantAgent（callback形式）。 创建失败返回的WantAgent为空值。
+创建WantAgent。创建失败返回的WantAgent为空值。使用callback异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -30,19 +33,19 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     if (err.code) {
-        console.info('getWantAgent Callback err:' + JSON.stringify(err))
+        console.info('getWantAgent Callback err:' + JSON.stringify(err));
     } else { 
-        console.info('getWantAgent Callback success')
+        console.info('getWantAgent Callback success');
     }
 }
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -64,17 +67,19 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }, getWantAgentCallback);
 ```
 
-## WantAgent.getWantAgent
+## wantAgent.getWantAgent
 
 getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
-创建WantAgent（Promise形式）。 创建失败返回的WantAgent为空值。
+创建WantAgent。创建失败返回的WantAgent为空值。使用Promise异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -93,9 +98,9 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -117,19 +122,21 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data: _WantAgent) => {
 	console.info('==========================>getWantAgentCallback=======================>');
 });
 ```
 
-## WantAgent.getBundleName
+## wantAgent.getBundleName
 
 getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 
-获取WantAgent实例的Bundle名称（callback形式）。
+获取WantAgent实例的Bundle名称。使用callback异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -143,17 +150,17 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentObj: _WantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
-    	wantAgent = data;
+    	wantAgentObj = data;
     } else {
         console.error('getWantAgent failed, error: ' + JSON.stringify(err));
         return;
@@ -163,10 +170,10 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     let getBundleNameCallback = (err: BusinessError, data: string) => {
         console.info('==========================>getBundleNameCallback=======================>');
     }
-    WantAgent.getBundleName(wantAgent, getBundleNameCallback);
+    wantAgent.getBundleName(wantAgentObj, getBundleNameCallback);
 }
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -188,19 +195,21 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}, getWantAgentCallback)
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}, getWantAgentCallback);
 ```
 
 
 
-## WantAgent.getBundleName
+## wantAgent.getBundleName
 
 getBundleName(agent: WantAgent): Promise\<string\>
 
-获取WantAgent实例的Bundle名称（Promise形式）。
+获取WantAgent实例的Bundle名称。使用Promise异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -219,12 +228,12 @@ getBundleName(agent: WantAgent): Promise\<string\>
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentObj: _WantAgent;
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -246,14 +255,14 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data: _WantAgent) => {
 	console.info('==========================>getWantAgentCallback=======================>');
-    wantAgent = data;
-    if (wantAgent) {
-        WantAgent.getBundleName(wantAgent).then((data) => {
+    wantAgentObj = data;
+    if (wantAgentObj) {
+        wantAgent.getBundleName(wantAgentObj).then((data) => {
             console.info('==========================>getBundleNameCallback=======================>');
         });
     }
@@ -262,11 +271,13 @@ WantAgent.getWantAgent({
 
 
 
-## WantAgent.getUid
+## wantAgent.getUid
 
 getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 
-获取WantAgent实例的用户ID（callback形式）。
+获取WantAgent实例的用户ID。使用callback异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -280,17 +291,17 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentObj: _WantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
-    	wantAgent = data;
+    	wantAgentObj = data;
     } else {
         console.error('getWantAgent failed, error: ' + JSON.stringify(err));
         return;
@@ -300,10 +311,10 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     let getUidCallback = (err: BusinessError, data: number) => {
         console.info('==========================>getUidCallback=======================>');
     }
-    WantAgent.getUid(wantAgent, getUidCallback);
+    wantAgent.getUid(wantAgentObj, getUidCallback);
 }
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -325,19 +336,21 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}, getWantAgentCallback)
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}, getWantAgentCallback);
 ```
 
 
 
-## WantAgent.getUid
+## wantAgent.getUid
 
 getUid(agent: WantAgent): Promise\<number\>
 
-获取WantAgent实例的用户ID（Promise形式）。
+获取WantAgent实例的用户ID。使用Promise异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -356,12 +369,12 @@ getUid(agent: WantAgent): Promise\<number\>
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentObj: _WantAgent;
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -383,14 +396,14 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
-    wantAgent = data;
-    if (wantAgent) {
-        WantAgent.getUid(wantAgent).then((data) => {
+    wantAgentObj = data;
+    if (wantAgentObj) {
+        wantAgent.getUid(wantAgentObj).then((data) => {
         console.info('==========================>getUidCallback=======================>');
     });
     }
@@ -398,11 +411,13 @@ WantAgent.getWantAgent({
 ```
 
 
-## WantAgent.cancel
+## wantAgent.cancel
 
 cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 
-取消WantAgent实例（callback形式）。
+取消WantAgent实例。使用callback异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -416,17 +431,17 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentObj: _WantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
-    	wantAgent = data;
+    	wantAgentObj = data;
     } else {
         console.error('getWantAgent failed, error: ' + JSON.stringify(err));
         return;
@@ -436,10 +451,10 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     let cancelCallback = (err: BusinessError) => {
         console.info('==========================>cancelCallback=======================>');
     }
-    WantAgent.cancel(wantAgent, cancelCallback);
+    wantAgent.cancel(wantAgentObj, cancelCallback);
 }
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -461,19 +476,21 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}, getWantAgentCallback)
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}, getWantAgentCallback);
 ```
 
 
 
-## WantAgent.cancel
+## wantAgent.cancel
 
 cancel(agent: WantAgent): Promise\<void\>
 
-取消WantAgent实例（Promise形式）。
+取消WantAgent实例。使用Promise异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -492,13 +509,13 @@ cancel(agent: WantAgent): Promise\<void\>
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentObj: _WantAgent;
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
     {
         deviceId: 'deviceId',
@@ -520,14 +537,14 @@ WantAgent.getWantAgent({
         }
     }
 ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
-    wantAgent = data;
-    if (wantAgent) {        
-        WantAgent.cancel(wantAgent).then((data) => {
+    wantAgentObj = data;
+    if (wantAgentObj) {        
+        wantAgent.cancel(wantAgentObj).then((data) => {
             console.info('==========================>cancelCallback=======================>');
         });
     }
@@ -536,11 +553,13 @@ WantAgent.getWantAgent({
 
 
 
-## WantAgent.trigger
+## wantAgent.trigger
 
 trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<CompleteData\>): void
 
-主动激发WantAgent实例（callback形式）。
+主动激发WantAgent实例。使用callback异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -555,31 +574,31 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback\<Complet
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
-let wantAgent: _WantAgent;
+let wantAgentObj: _WantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
-    	wantAgent = data;
+    	wantAgentObj = data;
     } else {
         console.error('getWantAgent failed, error: ' + JSON.stringify(err));
         return;
     }
 
     //trigger回调
-    let triggerCallback = (data: WantAgent.CompleteData) => {
+    let triggerCallback = (data: wantAgent.CompleteData) => {
         console.info('==========================>triggerCallback=======================>');
-    }
+    };
 
-    WantAgent.trigger(wantAgent, {code:0}, triggerCallback)
+    wantAgent.trigger(wantAgentObj, {code:0}, triggerCallback);
 }
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -601,19 +620,21 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}, getWantAgentCallback)
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}, getWantAgentCallback);
 ```
 
 
 
-## WantAgent.equal
+## wantAgent.equal
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-判断两个WantAgent实例是否相等（callback形式）,以此来判断是否是来自同一应用的相同操作。
+判断两个WantAgent实例是否相等，以此来判断是否是来自同一应用的相同操作。使用callback异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -623,24 +644,24 @@ equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
 | otherAgent | WantAgent                | 是   | WantAgent对象。                           |
-| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。 |
+| callback   | AsyncCallback\<boolean\> | 是   | 判断两个WantAgent实例是否相等的回调方法。返回true表示两个WantAgent实例相等；返回false表示不相等。 |
 
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 import { BusinessError } from '@ohos.base';
 
 //wantAgent对象
-let wantAgent1: _WantAgent;
-let wantAgent2: _WantAgent;
+let wantAgentObj1: _WantAgent;
+let wantAgentObj2: _WantAgent;
 
 //getWantAgent回调
 function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
-    	wantAgent1 = data;
-        wantAgent2 = data;
+    	wantAgentObj1 = data;
+        wantAgentObj2 = data;
     } else {
         console.error('getWantAgent failed, error: ' + JSON.stringify(err));
         return;
@@ -649,11 +670,11 @@ function getWantAgentCallback(err: BusinessError, data: _WantAgent) {
     //equal回调
     let equalCallback = (err: BusinessError, data: boolean) => {
         console.info('==========================>equalCallback=======================>');
-    }
-    WantAgent.equal(wantAgent1, wantAgent2, equalCallback)
+    };
+    wantAgent.equal(wantAgentObj1, wantAgentObj2, equalCallback);
 }
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -675,19 +696,21 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
-}, getWantAgentCallback)
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+}, getWantAgentCallback);
 ```
 
 
 
-## WantAgent.equal
+## wantAgent.equal
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-判断两个WantAgent实例是否相等（Promise形式）,以此来判断是否是来自同一应用的相同操作。
+判断两个WantAgent实例是否相等，以此来判断是否是来自同一应用的相同操作。使用Promise异步回调。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -702,20 +725,18 @@ equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。 |
+| Promise\<boolean\> | 以Promise形式返回获取判断两个WantAgent实例是否相等的结果。返回true表示两个WantAgent实例相等；返回false表示不相等。 |
 
 **示例：**
 
 ```ts
-import WantAgent, { WantAgent as _WantAgent} from '@ohos.wantAgent';
-import { BusinessError } from '@ohos.base';
-
+import wantAgent, { WantAgent as _WantAgent } from '@ohos.wantAgent';
 
 //wantAgent对象
-let wantAgent1: _WantAgent;
-let wantAgent2: _WantAgent;
+let wantAgentObj1: _WantAgent;
+let wantAgentObj2: _WantAgent;
 
-WantAgent.getWantAgent({
+wantAgent.getWantAgent({
     wants: [
         {
             deviceId: 'deviceId',
@@ -737,15 +758,15 @@ WantAgent.getWantAgent({
             }
         }
     ],
-    operationType: WantAgent.OperationType.START_ABILITIES,
+    operationType: wantAgent.OperationType.START_ABILITY,
     requestCode: 0,
-    wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+    wantAgentFlags:[wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 }).then((data) => {
 	console.info('==========================>getWantAgentCallback=======================>');
-    wantAgent1 = data;
-    wantAgent2 = data;
+    wantAgentObj1 = data;
+    wantAgentObj2 = data;
     if (data) {
-        WantAgent.equal(wantAgent1, wantAgent2).then((data) => {
+        wantAgent.equal(wantAgentObj1, wantAgentObj2).then((data) => {
             console.info('==========================>equalCallback=======================>');
         });
     }
@@ -754,7 +775,9 @@ WantAgent.getWantAgent({
 
 ## WantAgentFlags
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                | 值             | 说明                                                         |
 | ------------------- | -------------- | ------------------------------------------------------------ |
@@ -763,15 +786,17 @@ WantAgent.getWantAgent({
 | CANCEL_PRESENT_FLAG | 2 | 在生成一个新的WantAgent对象前取消已存在的一个WantAgent对象。 |
 | UPDATE_PRESENT_FLAG | 3 | 使用新的WantAgent的额外数据替换已存在的WantAgent中的额外数据。 |
 | CONSTANT_FLAG       | 4 | WantAgent是不可变的。                                        |
-| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代 |
-| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代 |
-| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代 |
-| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代 |
-| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代 |
+| REPLACE_ELEMENT     | 5 | 当前Want中的element属性可被WantAgent.trigger()中Want的element属性取代。 |
+| REPLACE_ACTION      | 6 | 当前Want中的action属性可被WantAgent.trigger()中Want的action属性取代。 |
+| REPLACE_URI         | 7 | 当前Want中的uri属性可被WantAgent.trigger()中Want的uri属性取代。 |
+| REPLACE_ENTITIES    | 8 | 当前Want中的entities属性可被WantAgent.trigger()中Want的entities属性取代。 |
+| REPLACE_BUNDLE      | 9 | 当前Want中的bundleName属性可被WantAgent.trigger()中Want的bundleName属性取代。 |
 
 ## OperationType
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称              | 值            | 说明                      |
 | ----------------- | ------------- | ------------------------- |
@@ -783,7 +808,9 @@ WantAgent.getWantAgent({
 
 ## CompleteData 
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称           | 类型                           | 必填 | 说明                    |
 | -------------- | ------------------------------ | ---- | ---------------------- |
@@ -791,4 +818,18 @@ WantAgent.getWantAgent({
 | want           | Want                            | 是   | 存在的被触发的want。     |
 | finalCode      | number                          | 是   | 触发wantAgent的请求代码。|
 | finalData      | string                          | 是   | 公共事件收集的最终数据。  |
-| extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
+| extraInfo      | { [key: string]: any }            | 否   | 额外数据。               |
+
+## WantAgent
+
+type WantAgent = object
+
+WantAgent对象。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 类型 | 说明 |
+| --- | --- |
+| object | WantAgent对象。 |

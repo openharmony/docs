@@ -1,6 +1,6 @@
 # @ohos.multimedia.avsession (AVSession Management)
 
-The **avSession** module provides APIs for media playback control so that applications can access the system's Media Controller.
+The avSession module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following typical features related to media sessions:
 
@@ -15,7 +15,7 @@ This module provides the following typical features related to media sessions:
 ## Modules to Import
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
+import { avSession } from '@kit.AVSessionKit';
 ```
 
 ## avSession.createAVSession<sup>10+</sup>
@@ -24,13 +24,15 @@ createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AV
 
 Creates a media session. This API uses a promise to return the result. An ability can have only one session, and repeated calling of this API fails.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
 
 | Name| Type                           | Mandatory| Description                          |
 | ------ | ------------------------------- | ---- | ------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Application context, which provides application environment information.|
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Context of the UIAbility, which is used to obtain information about the application component.|
 | tag    | string                          | Yes  | Custom session name.            |
 | type   | [AVSessionType](#avsessiontype10) | Yes  | Session type.|
 
@@ -46,12 +48,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
@@ -79,7 +82,7 @@ Creates a media session. This API uses an asynchronous callback to return the re
 
 | Name  | Type                                   | Mandatory| Description                                                        |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Application context, which provides application environment information.    |
+| context| [Context](../apis-ability-kit/js-apis-inner-app-context.md) | Yes| Context of the UIAbility, which is used to obtain information about the application component.    |
 | tag      | string                                  | Yes  | Custom session name.                                          |
 | type     | [AVSessionType](#avsessiontype10)         | Yes  | Session type.                              |
 | callback | AsyncCallback<[AVSession](#avsession10)\> | Yes  | Callback used to return the media session obtained, which can be used to obtain the session ID, set the metadata and playback state information, and send key events.|
@@ -90,12 +93,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession;
 let tag = "createNewSession";
@@ -113,9 +117,11 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 });
 ```
 
-## ProtocolType<sup>10+</sup>
+## ProtocolType<sup>11+</sup>
 
 Enumerates the protocol types supported by the remote device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -123,24 +129,48 @@ Enumerates the protocol types supported by the remote device.
 | --------------------------- | ---- | ----------- |
 | TYPE_LOCAL<sup>11+</sup>      | 0    | Local device, which can be the built-in speaker or audio jack of the device, or an A2DP device.|
 | TYPE_CAST_PLUS_STREAM<sup>11+</sup>      | 2    | Cast+ stream mode, indicating that the media asset is being displayed on another device.|
+| TYPE_DLNA<sup>12+</sup>      | 4    | DLNA protocol, indicating that the media asset is being displayed on another device.|
+
+## DistributedSessionType<sup>18+</sup>
+
+Enumerates the session types supported by the remote distributed device.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name                                    | Value| Description                       |
+|----------------------------------------|---|---------------------------|
+| TYPE_SESSION_REMOTE      | 0 | Session on the remote device.      |
+| TYPE_SESSION_MIGRATE_IN  | 1 | Session migrated to the local device.|
+| TYPE_SESSION_MIGRATE_OUT | 2 | Session migrated to the remote device.|
 
 ## AVSessionType<sup>10+<sup>
 
+type AVSessionType = 'audio' | 'video' | 'voice_call' | 'video_call'
+
 Enumerates the session types supported by the session.
+
+You can use the strings listed in the following table.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name | Type  | Description|
-| ----- | ------ | ---- |
-| audio | string | Audio session.|
-| video | string | Video session.|
-| voice_call<sup>11+<sup> | string | Voice call.|
+| Type | Description|
+| -----  | ---- |
+| 'audio' | Audio session.|
+| 'video' | Video session.|
+| 'voice_call'<sup>11+<sup> | Voice call.|
+| 'video_call'<sup>12+<sup> | Video call.|
 
 ## AVSession<sup>10+</sup>
 
 An **AVSession** object is created by calling [avSession.createAVSession](#avsessioncreateavsession10). The object enables you to obtain the session ID and set the metadata and playback state. 
 
-### Attributes
+### Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -152,8 +182,6 @@ An **AVSession** object is created by calling [avSession.createAVSession](#avses
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-
 let sessionId: string = currentAVSession.sessionId;
 let sessionType: avSession.AVSessionType = currentAVSession.sessionType;
 ```
@@ -163,6 +191,8 @@ let sessionType: avSession.AVSessionType = currentAVSession.sessionType;
 setAVMetadata(data: AVMetadata): Promise\<void>
 
 Sets session metadata. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -184,14 +214,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata: avSession.AVMetadata = {
   assetId: "121278",
@@ -205,12 +235,17 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // The LRC contains two types of elements: time tag + lyrics, and ID tag.
+  // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "Lyrics in LRC format",
+  // The singleLyricText field stores a single line of lyric text without timestamps.
+  // Example: "Content of a single lyric line"
+  singleLyricText: "Content of a single lyric line",
   previousAssetId: "121277",
-  nextAssetId: "121279",
+  nextAssetId: "121279"
 };
 currentAVSession.setAVMetadata(metadata).then(() => {
-  console.info(`SetAVMetadata successfully`);
+  console.info('SetAVMetadata successfully');
 }).catch((err: BusinessError) => {
   console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -237,14 +272,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let metadata: avSession.AVMetadata = {
   assetId: "121278",
@@ -258,15 +293,20 @@ let metadata: avSession.AVMetadata = {
   mediaImage: "https://www.example.com/example.jpg",
   subtitle: "8 Mile",
   description: "Rap",
-  lyric: "https://www.example.com/example.lrc",
+  // The LRC contains two types of elements: time tag + lyrics, and ID tag.
+  // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
+  lyric: "Lyrics in LRC format",
+  // The singleLyricText field stores a single line of lyric text without timestamps.
+  // Example: "Content of a single lyric line"
+  singleLyricText: "Content of a single lyric line",
   previousAssetId: "121277",
-  nextAssetId: "121279",
+  nextAssetId: "121279"
 };
 currentAVSession.setAVMetadata(metadata, (err: BusinessError) => {
   if (err) {
     console.error(`SetAVMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SetAVMetadata successfully`);
+    console.info('SetAVMetadata successfully');
   }
 });
 ```
@@ -297,22 +337,27 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg",
-};
+let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+    let imageSource = await image.createImageSource(value.buffer);
+    let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+    let calldata: avSession.CallMetadata = {
+      name: "xiaoming",
+      phoneNumber: "111xxxxxxxx",
+      avatar: imagePixel
+    };
 currentAVSession.setCallMetadata(calldata).then(() => {
-  console.info(`setCallMetadata successfully`);
+  console.info('setCallMetadata successfully');
 }).catch((err: BusinessError) => {
   console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -339,27 +384,34 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let calldata: avSession.CallMetadata = {
-  name: "xiaoming",
-  phoneNumber: "111xxxxxxxx",
-  avatar: "xxx.jpg",
-};
-currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
-  if (err) {
-    console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    console.info(`setCallMetadata successfully`);
-  }
-});
+async function setCallMetadata() {
+  let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
+  let imageSource = await image.createImageSource(value.buffer);
+  let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
+  let calldata: avSession.CallMetadata = {
+    name: "xiaoming",
+    phoneNumber: "111xxxxxxxx",
+    avatar: imagePixel
+  };
+  currentAVSession.setCallMetadata(calldata, (err: BusinessError) => {
+    if (err) {
+      console.error(`setCallMetadata BusinessError: code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info('setCallMetadata successfully');
+    }
+  });
+}
 ```
 
 ### setAVCallState<sup>11+</sup>
@@ -388,21 +440,21 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let calldata: avSession.AVCallState = {
-  state: avSession.AVCallState.CALL_STATE_ACTIVE ,
+  state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(calldata).then(() => {
-  console.info(`setAVCallState successfully`);
+  console.info('setAVCallState successfully');
 }).catch((err: BusinessError) => {
   console.error(`setAVCallState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -429,24 +481,24 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avcalldata: avSession.AVCallState = {
-  state: avsession.CallState.CALL_STATE_ACTIVE,
+  state: avSession.CallState.CALL_STATE_ACTIVE,
   muted: false
 };
 currentAVSession.setAVCallState(avcalldata, (err: BusinessError) => {
   if (err) {
     console.error(`setAVCallState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`setAVCallState successfully`);
+    console.info('setAVCallState successfully');
   }
 });
 ```
@@ -456,6 +508,8 @@ currentAVSession.setAVCallState(avcalldata, (err: BusinessError) => {
 setAVPlaybackState(state: AVPlaybackState): Promise\<void>
 
 Sets information related to the session playback state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -477,14 +531,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let playbackState: avSession.AVPlaybackState = {
   state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
@@ -492,10 +546,10 @@ let playbackState: avSession.AVPlaybackState = {
   position:{elapsedTime:10, updateTime:(new Date()).getTime()},
   bufferedTime:1000,
   loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
-  isFavorite:true,
+  isFavorite:true
 };
 currentAVSession.setAVPlaybackState(playbackState).then(() => {
-  console.info(`SetAVPlaybackState successfully`);
+  console.info('SetAVPlaybackState successfully');
 }).catch((err: BusinessError) => {
   console.error(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -522,14 +576,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let PlaybackState: avSession.AVPlaybackState = {
   state:avSession.PlaybackState.PLAYBACK_STATE_PLAY,
@@ -537,13 +591,13 @@ let PlaybackState: avSession.AVPlaybackState = {
   position:{elapsedTime:10, updateTime:(new Date()).getTime()},
   bufferedTime:1000,
   loopMode:avSession.LoopMode.LOOP_MODE_SINGLE,
-  isFavorite:true,
+  isFavorite:true
 };
 currentAVSession.setAVPlaybackState(PlaybackState, (err: BusinessError) => {
   if (err) {
     console.error(`SetAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SetAVPlaybackState successfully`);
+    console.info('SetAVPlaybackState successfully');
   }
 });
 ```
@@ -553,6 +607,8 @@ currentAVSession.setAVPlaybackState(PlaybackState, (err: BusinessError) => {
 setLaunchAbility(ability: WantAgent): Promise\<void>
 
 Sets a launcher ability. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -574,16 +630,17 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import wantAgent from '@ohos.app.ability.wantAgent';
-import { BusinessError } from '@ohos.base';
+import { wantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// WantAgentInfo object
+// WantAgentInfo object.
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -593,7 +650,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       action: "action1",
       entities: ["entity1"],
       type: "MIMETYPE",
-      uri: "key={true,true,false}",
+      uri: "key = {true,true,false}",
       parameters:
         {
           mykey0: 2222,
@@ -602,7 +659,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
           mykey3: "ssssssssssssssssssssssssss",
           mykey4: [false, true, false],
           mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-          mykey6: true,
+          mykey6: true
         }
     }
   ],
@@ -613,7 +670,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
 
 wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
   currentAVSession.setLaunchAbility(agent).then(() => {
-    console.info(`SetLaunchAbility successfully`);
+    console.info('SetLaunchAbility successfully');
   }).catch((err: BusinessError) => {
     console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
   });
@@ -641,16 +698,17 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import wantAgent from '@ohos.app.ability.wantAgent';
-import { BusinessError } from '@ohos.base';
+import { wantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-// WantAgentInfo object
+// WantAgentInfo object.
 let wantAgentInfo: wantAgent.WantAgentInfo = {
   wants: [
     {
@@ -660,7 +718,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
       action: "action1",
       entities: ["entity1"],
       type: "MIMETYPE",
-      uri: "key={true,true,false}",
+      uri: "key = {true,true,false}",
       parameters:
         {
           mykey0: 2222,
@@ -669,7 +727,7 @@ let wantAgentInfo: wantAgent.WantAgentInfo = {
           mykey3: "ssssssssssssssssssssssssss",
           mykey4: [false, true, false],
           mykey5: ["qqqqq", "wwwwww", "aaaaaaaaaaaaaaaaa"],
-          mykey6: true,
+          mykey6: true
         }
     }
   ],
@@ -683,7 +741,7 @@ wantAgent.getWantAgent(wantAgentInfo).then((agent) => {
     if (err) {
       console.error(`SetLaunchAbility BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`SetLaunchAbility successfully`);
+      console.info('SetLaunchAbility successfully');
     }
   });
 });
@@ -695,6 +753,8 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 
 Dispatches a custom event in the session, including the event name and event content in key-value pair format. This API uses a promise to return the result. It is called by the provider.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -702,10 +762,9 @@ Dispatches a custom event in the session, including the event name and event con
 | Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | Yes  | Name of the session event.|
-| args | {[key: string]: Object} | Yes  | Event content in key-value pair format.|
+| args | {[key: string]: Object} | Yes  | Content of the session event.|
 
 > **NOTE**
->
 > The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).
 
 **Return value**
@@ -720,14 +779,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -743,7 +802,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 let eventName = "dynamic_lyric";
 if (currentAVSession !== undefined) {
   (currentAVSession as avSession.AVSession).dispatchSessionEvent(eventName, {lyric : "This is lyric"}).then(() => {
-    console.info(`dispatchSessionEvent successfully`);
+    console.info('dispatchSessionEvent successfully');
   }).catch((err: BusinessError) => {
     console.error(`dispatchSessionEvent BusinessError: code: ${err.code}, message: ${err.message}`);
   })
@@ -763,11 +822,11 @@ Dispatches a custom event in the session, including the event name and event con
 | Name | Type                                         | Mandatory| Description                                                       |
 | ------- | --------------------------------------------- | ---- | ----------------------------------------------------------- |
 | event | string | Yes  | Name of the session event.|
-| args | {[key: string]: Object} | Yes  | Event content in key-value pair format.|
+| args | {[key: string]: Object} | Yes  | Content of the session event.|
 | callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 > **NOTE**
->
+
 > The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).
 
 **Error codes**
@@ -776,14 +835,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -812,6 +871,8 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise\<void>
 
 Sets a playlist. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -832,20 +893,20 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource= await image.createImageSource(value.buffer);
+  let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
     assetId: '001',
@@ -873,7 +934,7 @@ async function setAVQueueItems() {
   };
   let queueItemsArray: avSession.AVQueueItem[] = [queueItem_1, queueItem_2];
   currentAVSession.setAVQueueItems(queueItemsArray).then(() => {
-    console.info(`SetAVQueueItems successfully`);
+    console.info('SetAVQueueItems successfully');
   }).catch((err: BusinessError) => {
     console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
   });
@@ -901,20 +962,20 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import image from '@ohos.multimedia.image';
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
+import { image } from '@kit.ImageKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function setAVQueueItems() {
   let value = await resourceManager.getSystemResourceManager().getRawFileContent('IMAGE_URI');
-  let imageSource= await image.createImageSource(value.buffer);
+  let imageSource = await image.createImageSource(value.buffer);
   let imagePixel = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
   let queueItemDescription_1: avSession.AVMediaDescription = {
     assetId: '001',
@@ -945,7 +1006,7 @@ async function setAVQueueItems() {
     if (err) {
       console.error(`SetAVQueueItems BusinessError: code: ${err.code}, message: ${err.message}`);
     } else {
-      console.info(`SetAVQueueItems successfully`);
+      console.info('SetAVQueueItems successfully');
     }
   });
 }
@@ -956,6 +1017,8 @@ async function setAVQueueItems() {
 setAVQueueTitle(title: string): Promise\<void>
 
 Sets a name for the playlist. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -977,17 +1040,18 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let queueTitle = 'QUEUE_TITLE';
 currentAVSession.setAVQueueTitle(queueTitle).then(() => {
-  console.info(`SetAVQueueTitle successfully`);
+  console.info('SetAVQueueTitle successfully');
 }).catch((err: BusinessError) => {
   console.error(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1014,20 +1078,21 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let queueTitle = 'QUEUE_TITLE';
 currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
   if (err) {
     console.error(`SetAVQueueTitle BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SetAVQueueTitle successfully`);
+    console.info('SetAVQueueTitle successfully');
   }
 });
 ```
@@ -1037,6 +1102,8 @@ currentAVSession.setAVQueueTitle(queueTitle, (err: BusinessError) => {
 setExtras(extras: {[key: string]: Object}): Promise\<void>
 
 Sets a custom media packet in the form of key-value pairs. This API uses a promise to return the result. It is called by the provider.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1062,14 +1129,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -1084,7 +1151,7 @@ avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSe
 });
 if (currentAVSession !== undefined) {
   (currentAVSession as avSession.AVSession).setExtras({extras : "This is custom media packet"}).then(() => {
-    console.info(`setExtras successfully`);
+    console.info('setExtras successfully');
   }).catch((err: BusinessError) => {
     console.error(`setExtras BusinessError: code: ${err.code}, message: ${err.message}`);
   })
@@ -1107,7 +1174,7 @@ Sets a custom media packet in the form of key-value pairs. This API uses an asyn
 | callback | AsyncCallback\<void>                          | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 > **NOTE**
->
+
 > The **extras** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).
 
 **Error codes**
@@ -1116,14 +1183,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -1151,6 +1218,8 @@ getController(): Promise\<AVSessionController>
 
 Obtains the controller corresponding to this session. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Return value**
@@ -1171,7 +1240,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avsessionController: avSession.AVSessionController;
 currentAVSession.getController().then((avcontroller: avSession.AVSessionController) => {
@@ -1208,7 +1277,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avsessionController: avSession.AVSessionController;
 currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSessionController) => {
@@ -1218,6 +1287,45 @@ currentAVSession.getController((err: BusinessError, avcontroller: avSession.AVSe
     avsessionController = avcontroller;
     console.info(`GetController : SUCCESS : sessionid : ${avsessionController.sessionId}`);
   }
+});
+```
+
+### getAVCastController<sup>10+</sup>
+
+getAVCastController(): Promise\<AVCastController>
+
+Obtains the cast controller when a casting connection is set up. This API uses a promise to return the result. If the session is not in the cast state, the controller returns **null**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise<[AVCastController](#avcastcontroller10)\>  | Promise used to return the cast controller.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | --------------------------------------- |
+| 6600102| The session does not exist.           |
+| 6600109| The remote connection is not established. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let aVCastController: avSession.AVCastController;
+currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
+  aVCastController = avcontroller;
+  console.info('getAVCastController : SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -1241,50 +1349,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message                                 |
 | -------- |---------------------------------------|
-| 6600102  | The session does not exist.           |
-| 6600110  | The remote connection does not exist. |
+| 6600102| The session does not exist.           |
+| 6600109| The remote connection is not established. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
-let aVCastController: avSession.AVCastController;
-currentAVSession.getAVCastController().then((avcontroller: avSession.AVCastController) => {
-  aVCastController = avcontroller;
-  console.info(`getAVCastController : SUCCESS`);
-}).catch((err: BusinessError) => {
-  console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
-```
-
-### getAVCastController<sup>10+</sup>
-
-getAVCastController(): Promise\<AVCastController>
-
-Obtains the cast controller when a casting connection is set up. This API uses an asynchronous callback to return the result. If the session is not in the cast state, the controller returns **null**.
-
-**System capability**: SystemCapability.Multimedia.AVSession.AVCast
-
-**Return value**
-
-| Type                                                       | Description                                                        |
-| --------- | ------------------------------------------------------------ |
-| Promise<[AVCastController](#avcastcontroller10)\>  | Promise used to return the cast controller.|
-
-**Error codes**
-
-For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
-
-| ID| Error Message|
-| -------- | --------------------------------------- |
-| 6600102  | The session does not exist.           |
-| 6600110  | The remote connection does not exist. |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let aVCastController: avSession.AVCastController;
 currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSession.AVCastController) => {
@@ -1292,7 +1363,7 @@ currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSessio
     console.error(`getAVCastController BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
     aVCastController = avcontroller;
-    console.info(`getAVCastController : SUCCESS`);
+    console.info('getAVCastController : SUCCESS');
   }
 });
 ```
@@ -1302,6 +1373,8 @@ currentAVSession.getAVCastController((err: BusinessError, avcontroller: avSessio
 getOutputDevice(): Promise\<OutputDeviceInfo>
 
 Obtains information about the output device for this session. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1323,7 +1396,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.getOutputDevice().then((outputDeviceInfo: avSession.OutputDeviceInfo) => {
   console.info(`GetOutputDevice : SUCCESS : devices length : ${outputDeviceInfo.devices.length}`);
@@ -1358,7 +1431,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.getOutputDevice((err: BusinessError, outputDeviceInfo: avSession.OutputDeviceInfo) => {
   if (err) {
@@ -1374,6 +1447,8 @@ currentAVSession.getOutputDevice((err: BusinessError, outputDeviceInfo: avSessio
 activate(): Promise\<void>
 
 Activates this session. A session can be used only after being activated. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1395,10 +1470,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.activate().then(() => {
-  console.info(`Activate : SUCCESS `);
+  console.info('Activate : SUCCESS ');
 }).catch((err: BusinessError) => {
   console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1430,13 +1505,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.activate((err: BusinessError) => {
   if (err) {
     console.error(`Activate BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Activate : SUCCESS `);
+    console.info('Activate : SUCCESS ');
   }
 });
 ```
@@ -1446,6 +1521,8 @@ currentAVSession.activate((err: BusinessError) => {
 deactivate(): Promise\<void>
 
 Deactivates this session. You can use [activate](#activate10) to activate the session again. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1467,10 +1544,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.deactivate().then(() => {
-  console.info(`Deactivate : SUCCESS `);
+  console.info('Deactivate : SUCCESS ');
 }).catch((err: BusinessError) => {
   console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1504,13 +1581,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.deactivate((err: BusinessError) => {
   if (err) {
     console.error(`Deactivate BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Deactivate : SUCCESS `);
+    console.info('Deactivate : SUCCESS ');
   }
 });
 ```
@@ -1520,6 +1597,8 @@ currentAVSession.deactivate((err: BusinessError) => {
 destroy(): Promise\<void>
 
 Destroys this session. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1541,10 +1620,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.destroy().then(() => {
-  console.info(`Destroy : SUCCESS `);
+  console.info('Destroy : SUCCESS ');
 }).catch((err: BusinessError) => {
   console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -1576,13 +1655,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.destroy((err: BusinessError) => {
   if (err) {
     console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Destroy : SUCCESS `);
+    console.info('Destroy : SUCCESS ');
   }
 });
 ```
@@ -1594,6 +1673,8 @@ on(type: 'play', callback: () => void): void
 Subscribes to play command events. The subscription means that the application supports the play command.
 
 Only one callback can be registered for each playback command. If a new callback is registered, the previous callback is replaced.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1610,6 +1691,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1617,7 +1699,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('play', () => {
-  console.info(`on play entry`);
+  console.info('on play entry');
 });
 ```
 
@@ -1628,6 +1710,8 @@ on(type: 'pause', callback: () => void): void
 Subscribes to pause command events. The subscription means that the application supports the pause command.
 
 Only one callback can be registered for each playback command. If a new callback is registered, the previous callback is replaced.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1644,6 +1728,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1651,7 +1736,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('pause', () => {
-  console.info(`on pause entry`);
+  console.info('on pause entry');
 });
 ```
 
@@ -1662,6 +1747,8 @@ on(type:'stop', callback: () => void): void
 Subscribes to stop command events. The subscription means that the application supports the stop command.
 
 Only one callback can be registered for each playback command. If a new callback is registered, the previous callback is replaced.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1678,6 +1765,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1685,7 +1773,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('stop', () => {
-  console.info(`on stop entry`);
+  console.info('on stop entry');
 });
 ```
 
@@ -1696,6 +1784,8 @@ on(type:'playNext', callback: () => void): void
 Subscribes to playNext command events. The subscription means that the application supports the playNext command.
 
 Only one callback can be registered for each playback command. If a new callback is registered, the previous callback is replaced.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1712,6 +1802,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1719,7 +1810,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('playNext', () => {
-  console.info(`on playNext entry`);
+  console.info('on playNext entry');
 });
 ```
 
@@ -1730,6 +1821,8 @@ on(type:'playPrevious', callback: () => void): void
 Subscribes to playPrevious command events. The subscription means that the application supports the playPrevious command.
 
 Only one callback can be registered for each playback command. If a new callback is registered, the previous callback is replaced.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1746,6 +1839,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1753,7 +1847,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('playPrevious', () => {
-  console.info(`on playPrevious entry`);
+  console.info('on playPrevious entry');
 });
 ```
 
@@ -1764,6 +1858,8 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 Subscribes to fastForward command events. The subscription means that the application supports the fastForward command.
 
 Only one callback can be registered for each playback command. If a new callback is registered, the previous callback is replaced.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1780,6 +1876,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1787,7 +1884,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('fastForward', (time?: number) => {
-  console.info(`on fastForward entry`);
+  console.info('on fastForward entry');
 });
 ```
 
@@ -1796,6 +1893,8 @@ currentAVSession.on('fastForward', (time?: number) => {
 on(type:'rewind', callback: (time?: number) => void): void
 
 Subscribes to rewind command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1812,6 +1911,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1819,7 +1919,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('rewind', (time?: number) => {
-  console.info(`on rewind entry`);
+  console.info('on rewind entry');
 });
 ```
 
@@ -1828,6 +1928,8 @@ currentAVSession.on('rewind', (time?: number) => {
 on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
 Subscribes to playback events of a given media ID.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1844,6 +1946,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1851,7 +1954,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('playFromAssetId', (assetId: number) => {
-  console.info(`on playFromAssetId entry`);
+  console.info('on playFromAssetId entry');
 });
 ```
 
@@ -1861,6 +1964,8 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
 Unsubscribes from playback events of a given media ID.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -1868,7 +1973,7 @@ Unsubscribes from playback events of a given media ID.
 | Name   | Type                 | Mandatory| Description                                                                                                                        |
 | -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
 | type     | string               | Yes  | Event type, which is **'playFromAssetId'** in this case.|
-| callback | callback: (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+| callback | callback: (assetId: number) => void | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session. The **assetId** parameter in the callback indicates the media asset ID.                           |
 
 **Error codes**
 
@@ -1876,6 +1981,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1890,6 +1996,8 @@ currentAVSession.off('playFromAssetId');
 on(type: 'seek', callback: (time: number) => void): void
 
 Subscribes to seek command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -1906,6 +2014,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1923,6 +2032,8 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 
 Subscribes to setSpeed command events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -1938,6 +2049,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1955,6 +2067,8 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 Subscribes to setLoopMode command events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -1970,6 +2084,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -1987,6 +2102,8 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
 Subscribes to toggleFavorite command events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2002,6 +2119,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2019,6 +2137,8 @@ on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
 
 Subscribes to the event that indicates an item in the playlist is selected. The session can play the selected item.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2034,6 +2154,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2049,7 +2170,9 @@ currentAVSession.on('skipToQueueItem', (itemId: number) => {
 
 on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
-Subscribes to key events.
+Subscribes to key events of external devices such as Bluetooth and wired devices to listen for the play, pause, previous, next, fast-forward, and rewind commands in the key events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2066,15 +2189,16 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import keyEvent from '@ohos.multimodalInput.keyEvent';
+import { KeyEvent } from '@kit.InputKit';
 
-currentAVSession.on('handleKeyEvent', (event: keyEvent.KeyEvent) => {
+currentAVSession.on('handleKeyEvent', (event: KeyEvent) => {
   console.info(`on handleKeyEvent event : ${event}`);
 });
 
@@ -2084,7 +2208,9 @@ currentAVSession.on('handleKeyEvent', (event: keyEvent.KeyEvent) => {
 
 on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
-Subscribes to output device change events.
+Subscribes to output device change events. After the application integrates the [**AVCastPicker** component](ohos-multimedia-avcastpicker.md), the application receives the device change callback when the user switches the device through the component.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2093,7 +2219,7 @@ Subscribes to output device change events.
 | Name  | Type                                                   | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                  | Yes  | Event type. The event **'outputDeviceChange'** is triggered when the output device changes.|
-| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback used for subscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | Yes  | Callback function, where the **device** parameter specifies the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
 
@@ -2101,6 +2227,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2118,6 +2245,8 @@ on(type: 'commonCommand', callback: (command: string, args: {[key: string]: Obje
 
 Subscribes to custom control command change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2133,14 +2262,15 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import avSession from '@ohos.multimedia.avsession';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
 let context: Context = getContext(this);
@@ -2167,6 +2297,8 @@ Unsubscribes from play command events.
 
 After the callback is canceled, the list of supported commands must be updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2182,6 +2314,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2199,6 +2332,8 @@ Unsubscribes from pause command events.
 
 After the callback is canceled, the list of supported commands must be updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2214,6 +2349,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2231,6 +2367,8 @@ Unsubscribes from stop command events.
 
 After the callback is canceled, the list of supported commands must be updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2246,6 +2384,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2263,6 +2402,8 @@ Unsubscribes from playNext command events.
 
 After the callback is canceled, the list of supported commands must be updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2278,6 +2419,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2295,6 +2437,8 @@ Unsubscribes from playPrevious command events.
 
 After the callback is canceled, the list of supported commands must be updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2310,6 +2454,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2327,6 +2472,8 @@ Unsubscribes from fastForward command events.
 
 After the callback is canceled, the list of supported commands must be updated.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2342,6 +2489,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2356,6 +2504,8 @@ currentAVSession.off('fastForward');
 off(type: 'rewind', callback?: () => void): void
 
 Unsubscribes from rewind command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2372,6 +2522,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2386,6 +2537,8 @@ currentAVSession.off('rewind');
 off(type: 'seek', callback?: (time: number) => void): void
 
 Unsubscribes from seek command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2402,6 +2555,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2416,6 +2570,8 @@ currentAVSession.off('seek');
 off(type: 'setSpeed', callback?: (speed: number) => void): void
 
 Unsubscribes from setSpeed command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2432,6 +2588,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2446,6 +2603,8 @@ currentAVSession.off('setSpeed');
 off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 Unsubscribes from setSpeed command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2462,6 +2621,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2476,6 +2636,8 @@ currentAVSession.off('setLoopMode');
 off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
 Unsubscribes from toggleFavorite command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2492,6 +2654,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2506,6 +2669,8 @@ currentAVSession.off('toggleFavorite');
 off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void
 
 Unsubscribes from the event that indicates an item in the playlist is selected.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2522,6 +2687,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2536,6 +2702,8 @@ currentAVSession.off('skipToQueueItem');
 off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
 Unsubscribes from key events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2552,6 +2720,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2567,6 +2736,8 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 Unsubscribes from playback device change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2574,7 +2745,7 @@ Unsubscribes from playback device change events.
 | Name  | Type                                                   | Mandatory| Description                                                     |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | string                                                  | Yes  | Event type, which is **'outputDeviceChange'** in this case.    |
-| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                       |
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback function, where the **device** parameter specifies the output device information.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                       |
 
 **Error codes**
 
@@ -2582,6 +2753,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2598,6 +2770,8 @@ off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Obj
 
 Unsubscribes from custom control command change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -2613,6 +2787,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2627,6 +2802,8 @@ currentAVSession.off('commonCommand');
 on(type: 'answer', callback: Callback\<void>): void;
 
 Subscribes to call answer events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2643,6 +2820,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2650,7 +2828,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('answer', () => {
-  console.info(`on call answer`);
+  console.info('on call answer');
 });
 ```
 
@@ -2659,6 +2837,8 @@ currentAVSession.on('answer', () => {
 off(type: 'answer', callback?: Callback\<void>): void;
 
 Unsubscribes from call answer events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2675,6 +2855,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2689,6 +2870,8 @@ currentAVSession.off('answer');
 on(type: 'hangUp', callback: Callback\<void>): void;
 
 Subscribes to call hangup events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2705,6 +2888,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2712,7 +2896,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('hangUp', () => {
-  console.info(`on call hangUp`);
+  console.info('on call hangUp');
 });
 ```
 
@@ -2721,6 +2905,8 @@ currentAVSession.on('hangUp', () => {
 off(type: 'hangUp', callback?: Callback\<void>): void;
 
 Unsubscribes from call answer events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2737,6 +2923,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2751,6 +2938,8 @@ currentAVSession.off('hangUp');
 on(type: 'toggleCallMute', callback: Callback\<void>): void;
 
 Subscribes to call mute events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2767,6 +2956,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2774,7 +2964,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 currentAVSession.on('toggleCallMute', () => {
-  console.info(`on call toggleCallMute`);
+  console.info('on call toggleCallMute');
 });
 ```
 
@@ -2783,6 +2973,8 @@ currentAVSession.on('toggleCallMute', () => {
 off(type: 'toggleCallMute', callback?: Callback\<void>): void;
 
 Unsubscribes from call mute events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2799,6 +2991,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 
@@ -2807,6 +3000,80 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 ```ts
 currentAVSession.off('toggleCallMute');
 ```
+
+### on('castDisplayChange')<sup>12+</sup>
+
+on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
+
+Subscribes to cast display change events in the case of extended screens.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type. The event **'castDisplayChange'** is triggered when the cast display in the case of extended screens changes.|
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | Yes  | Callback used to return the information about the cast display.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```ts
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) => {
+    if (display.state === avSession.CastDisplayState.STATE_ON) {
+        castDisplay = display;
+        console.info(`Succeeded in castDisplayChange display : ${display.id} ON`);
+    } else if (display.state === avSession.CastDisplayState.STATE_OFF){
+        console.info(`Succeeded in castDisplayChange display : ${display.id} OFF`);
+    }
+});
+```
+### off('castDisplayChange')<sup>12+</sup>
+
+ off(type: 'castDisplayChange', callback?: Callback\<CastDisplayInfo>): void
+
+Unsubscribes from cast display change events in the case of extended screens.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**Parameters**
+
+| Name   | Type                 | Mandatory| Description                                                                                                                        |
+| -------- | -------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'castDisplayChange'** in this case.|
+| callback | Callback<[CastDisplayInfo](#castdisplayinfo12)>   | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+
+**Example**
+
+```ts
+currentAVSession.off('castDisplayChange');
+```
+
 ### stopCasting<sup>10+</sup>
 
 stopCasting(callback: AsyncCallback\<void>): void
@@ -2832,13 +3099,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.stopCasting((err: BusinessError) => {
   if (err) {
     console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`stopCasting successfully`);
+    console.info('stopCasting successfully');
   }
 });
 ```
@@ -2848,6 +3115,8 @@ currentAVSession.stopCasting((err: BusinessError) => {
 stopCasting(): Promise\<void>
 
 Stops castings. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -2868,10 +3137,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 currentAVSession.stopCasting().then(() => {
-  console.info(`stopCasting successfully`);
+  console.info('stopCasting successfully');
 }).catch((err: BusinessError) => {
   console.error(`stopCasting BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -2882,6 +3151,8 @@ currentAVSession.stopCasting().then(() => {
 getOutputDeviceSync(): OutputDeviceInfo
 
 Obtains the output device information. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -2903,7 +3174,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let currentOutputDevice: avSession.OutputDeviceInfo = currentAVSession.getOutputDeviceSync();
@@ -2912,38 +3183,85 @@ try {
   console.error(`getOutputDeviceSync error, error code: ${error.code}, error message: ${error.message}`);
 }
 ```
+### getAllCastDisplays<sup>12+</sup>
+
+getAllCastDisplays(): Promise<Array\<CastDisplayInfo>>
+
+Obtains all displays that support extended screen projection in the current system. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+**Return value**
+
+| Type                                           | Description                             |
+| ----------------------------------------------- | --------------------------------- |
+| Promise<Array<[CastDisplayInfo](#castdisplayinfo12)>>| Promise used to return the information about all the cast displays.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID  | Error Message|
+|---------| --------------------------------------- |
+| 6600101 | Session service exception. |
+| 6600102 | The session does not exist. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let castDisplay: avSession.CastDisplayInfo;
+currentAVSession.getAllCastDisplays().then((data: Array< avSession.CastDisplayInfo >) => {
+    if (data.length >= 1) {
+       castDisplay = data[0];
+     }
+   }).catch((err: BusinessError) => {
+     console.error(`Failed to getAllCastDisplay. Code: ${err.code}, message: ${err.message}`);
+   });
+```
 
 ## AVCastControlCommandType<sup>10+</sup>
 
+type AVCastControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
+  'seek' | 'setVolume' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'toggleMute'
+
 Enumerates the commands that can be sent by a cast controller.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
-| Name          | Type  | Description        |
-| -------------- | ------ | ------------ |
-| play           | string | Play the media.        |
-| pause          | string | Pause the playback.        |
-| stop           | string | Stop the playback.        |
-| playNext       | string | Play the next media asset.      |
-| playPrevious   | string | Play the previous media asset.      |
-| fastForward    | string | Fast-forward.        |
-| rewind         | string | Rewind.        |
-| seek           | number | Seek to a playback position.|
-| setSpeed       | number | Set the playback speed.|
-| setLoopMode    | string | Set the loop mode.|
-| toggleFavorite | string | Favorite the media asset.    |
-| setVolume      | number | Set the volume.    |
+| Type            | Description        |
+| ---------------- | ------------ |
+| 'play'           | Play the media.        |
+| 'pause'          | Pause the playback.        |
+| 'stop'           | Stop the playback.        |
+| 'playNext'       | Play the next media asset.      |
+| 'playPrevious'   | Play the previous media asset.      |
+| 'fastForward'    | Fast-forward.        |
+| 'rewind'         | Rewind.        |
+| 'seek'           | Seek to a playback position.|
+| 'setVolume'      | Set the volume.    |
+| 'setSpeed'       | Set the playback speed.|
+| 'setLoopMode'    | Set the loop mode.|
+| 'toggleFavorite' | Favorite the media asset.    |
+| 'toggleMute'     | Set the muted status.|
 
 ## AVCastControlCommand<sup>10+</sup>
 
 Defines the command that can be sent by a cast controller.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 | Name     | Type                                             | Mandatory| Description          |
 | --------- | ------------------------------------------------- | ---- | -------------- |
 | command   | [AVCastControlCommandType](#avcastcontrolcommandtype10)     | Yes  | Command.          |
-| parameter | [LoopMode](#loopmode10) &#124; string &#124; number &#124; [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) | No  | Parameters carried in the command.|
+| parameter | [media.PlaybackSpeed](../apis-media-kit/js-apis-media.md#playbackspeed8) &#124; number &#124; string &#124; [LoopMode](#loopmode10) | No  | Parameters carried in the command.|
 
 ## AVCastController<sup>10+</sup>
 
@@ -2974,13 +3292,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlaybackState) => {
   if (err) {
     console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`getAVPlaybackState : SUCCESS`);
+    console.info('getAVPlaybackState : SUCCESS');
   }
 });
 ```
@@ -2990,6 +3308,8 @@ aVCastController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlay
 getAVPlaybackState(): Promise\<AVPlaybackState>
 
 Obtains the remote playback state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3010,12 +3330,168 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getAVPlaybackState().then((state: avSession.AVPlaybackState) => {
-  console.info(`getAVPlaybackState : SUCCESS`);
+  console.info('getAVPlaybackState : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedDecoders<sup>18+</sup>
+
+getSupportedDecoders(): Promise\<Array\<DecoderType>>
+
+Obtains the decoding modes supported by the current remote device. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<[DecoderType](#decodertype18)\>\> | Promise used to return an array of decoding modes supported by the remote device.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
+  console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
+  if (descriptors.length > 0 ) {
+    console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedDecoders BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getRecommendedResolutionLevel<sup>18+</sup>
+
+getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
+
+Obtains the recommended resolution level based on the passed decoding mode. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise\<[ResolutionLevel](#resolutionlevel18)\> | Promise used to return the recommended resolution level of the remote device.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let decoderType = avSession.DecoderType.OH_AVCODEC_MIMETYPE_VIDEO_AVC;
+let resolutionLeve = avSession.ResolutionLevel;
+aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve) => {
+  console.info('getRecommendedResolutionLevel successfully');
+}).catch((err: BusinessError) => {
+  console.error(`getRecommendedResolutionLevel BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedHdrCapabilities<sup>18+</sup>
+
+getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
+
+Obtains the HDR capabilities supported by the current remote device. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md#hdrformat)\>\> | Promise used to return an array of HDR capabilities supported by the remote device.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import type hdrCapability from './@ohos.graphics.hdrCapability';
+
+aVCastController.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.HDRFormat[]) => {
+  console.info(`getSupportedHdrCapabilities : SUCCESS : hdrFormats.length : ${hdrFormats.length}`);
+  if (hdrFormats.length > 0 ) {
+    console.info(`getSupportedHdrCapabilities : SUCCESS : descriptors[0] : ${hdrFormats[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedHdrCapabilities BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedPlaySpeeds<sup>18+</sup>
+
+getSupportedPlaySpeeds(): Promise\<Array\<number>>
+
+Obtains the playback speeds supported by the current remote device. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type                                                       | Description                                                        |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<number\>\> | Promise used to return an array of playback speeds supported by the remote device.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getSupportedPlaySpeeds().then((nums: number[]) => {
+  console.info(`getSupportedPlaySpeeds : SUCCESS : hdrFormats.length : ${nums.length}`);
+  if (nums.length > 0 ) {
+    console.info(`getSupportedPlaySpeeds : SUCCESS : descriptors[0] : ${nums[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedPlaySpeeds BusinessError: code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -3025,6 +3501,8 @@ sendControlCommand(command: AVCastControlCommand): Promise\<void>
 
 Sends a control command to the session through the controller. This API uses a promise to return the result.
 
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3046,6 +3524,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600109  | The remote connection is not established. |
@@ -3053,12 +3532,11 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
 aVCastController.sendControlCommand(avCommand).then(() => {
-  console.info(`SendControlCommand successfully`);
+  console.info('SendControlCommand successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3086,6 +3564,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600105  | Invalid session command. |
 | 6600109  | The remote connection is not established. |
@@ -3093,15 +3572,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCommand: avSession.AVCastControlCommand = {command:'play'};
 aVCastController.sendControlCommand(avCommand, (err: BusinessError) => {
   if (err) {
     console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SendControlCommand successfully`);
+    console.info('SendControlCommand successfully');
   }
 });
 ```
@@ -3127,14 +3605,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Set playback parameters.
 let playItem: avSession.AVQueueItem = {
@@ -3158,7 +3636,7 @@ aVCastController.prepare(playItem, (err: BusinessError) => {
   if (err) {
     console.error(`prepare BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`prepare successfully`);
+    console.info('prepare successfully');
   }
 });
 ```
@@ -3170,6 +3648,8 @@ prepare(item: AVQueueItem): Promise\<void>
 
 Prepares for the playback of a media asset, that is, loads and buffers a media asset. This API uses a promise to return the result.
 
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3191,6 +3671,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3198,8 +3679,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Set playback parameters.
 let playItem: avSession.AVQueueItem = {
@@ -3220,7 +3700,7 @@ let playItem: avSession.AVQueueItem = {
 };
 // Prepare for playback. This operation triggers loading and buffering, but not the actual playback.
 aVCastController.prepare(playItem).then(() => {
-  console.info(`prepare successfully`);
+  console.info('prepare successfully');
 }).catch((err: BusinessError) => {
   console.error(`prepare BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3247,14 +3727,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Set playback parameters.
 let playItem: avSession.AVQueueItem = {
@@ -3279,7 +3759,7 @@ aVCastController.start(playItem, (err: BusinessError) => {
   if (err) {
     console.error(`start BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`start successfully`);
+    console.info('start successfully');
   }
 });
 ```
@@ -3290,6 +3770,8 @@ start(item: AVQueueItem): Promise\<void>
 
 Prepares for the playback of a media asset. This API uses a promise to return the result.
 
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3311,6 +3793,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600109  | The remote connection is not established. |
 
@@ -3318,8 +3801,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Set playback parameters.
 let playItem: avSession.AVQueueItem = {
@@ -3340,7 +3822,7 @@ let playItem: avSession.AVQueueItem = {
 };
 // Start playback.
 aVCastController.start(playItem).then(() => {
-  console.info(`start successfully`);
+  console.info('start successfully');
 }).catch((err: BusinessError) => {
   console.error(`start BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3371,13 +3853,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getCurrentItem((err: BusinessError, value: avSession.AVQueueItem) => {
   if (err) {
     console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`getCurrentItem successfully`);
+    console.info('getCurrentItem successfully');
   }
 });
 ```
@@ -3387,6 +3869,8 @@ aVCastController.getCurrentItem((err: BusinessError, value: avSession.AVQueueIte
 getCurrentItem(): Promise\<AVQueueItem>
 
 Obtains the information about the media asset that is being played. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3407,14 +3891,128 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.getCurrentItem().then((value: avSession.AVQueueItem) => {
-  console.info(`getCurrentItem successfully`);
+  console.info('getCurrentItem successfully');
 }).catch((err: BusinessError) => {
   console.error(`getCurrentItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
+```
 
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(callback: AsyncCallback<Array\<AVCastControlCommandType>>): void
+
+Obtains the supported commands. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| callback | Array<[AVCastControlCommandType](#avcastcontrolcommandtype10)> | Yes| Callback return the supported commands.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getValidCommands((err: BusinessError, state: avSession.AVCastControlCommandType) => {
+  if (err) {
+    console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+  } else {
+    console.info('getValidCommands successfully');
+  }
+});
+```
+
+### getValidCommands<sup>11+</sup>
+
+getValidCommands(): Promise<Array\<AVCastControlCommandType>>
+
+Obtains the supported commands. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Return value**
+
+| Type| Description|
+| -------------- | ----------------------------- |
+| Promise<Array\<[AVCastControlCommandType](#avcastcontrolcommandtype10)>> | Promise used to return the supported commands.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getValidCommands().then((state: avSession.AVCastControlCommandType) => {
+  console.info('getValidCommands successfully');
+}).catch((err: BusinessError) => {
+  console.error(`getValidCommands BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### processMediaKeyResponse<sup>12+</sup>
+
+processMediaKeyResponse(assetId: string, response: Uint8Array): Promise\<void>
+
+Processes the response to a media key request during online DRM resource projection. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                                 |
+| -------- | ------------------------------------- | ---- | ------------------------------------- |
+| assetId | string                  | Yes  | Media asset ID.|
+| response | Uint8Array             | Yes  | Response to the media key request.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the response is processed successfully, no result is returned. Otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  // Obtain the DRM URL based on the asset ID.
+  let drmUrl = 'http://license.xxx.xxx.com:8080/drmproxy/getLicense';
+  // Obtain a media key from the server. Assign a value based on service requirements.
+  let licenseResponseData: Uint8Array = new Uint8Array();
+  console.info(`Succeeded in get license by ${drmUrl}.`);
+  aVCastController.processMediaKeyResponse(assetId, licenseResponseData);
+}
 ```
 
 ### release<sup>11+</sup>
@@ -3442,13 +4040,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.release((err: BusinessError) => {
   if (err) {
     console.error(`release BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`release successfully`);
+    console.info('release successfully');
   }
 });
 ```
@@ -3458,6 +4056,8 @@ aVCastController.release((err: BusinessError) => {
 release(): Promise\<void>
 
 Releases this cast controller. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3478,10 +4078,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.release().then(() => {
-  console.info(`release successfully`);
+  console.info('release successfully');
 }).catch((err: BusinessError) => {
   console.error(`release BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -3493,6 +4093,8 @@ aVCastController.release().then(() => {
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void): void
 
 Subscribes to playback state change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3510,6 +4112,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3531,6 +4134,8 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void): v
 
 Unsubscribes from playback state change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 **Parameters**
@@ -3538,7 +4143,7 @@ Unsubscribes from playback state change events. This API is called by the contro
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'playbackStateChange'** in this case.   |
-| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback used for unsubscription. The **state** parameter in the callback indicates the changed playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback function, where the **state** parameter indicates the new playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
 
 **Error codes**
 
@@ -3546,6 +4151,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3559,6 +4165,8 @@ aVCastController.off('playbackStateChange');
 on(type: 'mediaItemChange', callback: Callback\<AVQueueItem>): void
 
 Subscribes to media asset change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3575,6 +4183,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3591,6 +4200,8 @@ off(type: 'mediaItemChange'): void
 
 Unsubscribes from media asset change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 **Parameters**
@@ -3605,6 +4216,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3618,6 +4230,8 @@ aVCastController.off('mediaItemChange');
 on(type: 'playNext', callback: Callback\<void>): void
 
 Subscribes to playNext command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3634,13 +4248,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
 
 ```ts
 aVCastController.on('playNext', () => {
-  console.info(`on playNext`);
+  console.info('on playNext');
 });
 ```
 
@@ -3649,6 +4264,8 @@ aVCastController.on('playNext', () => {
 off(type: 'playNext'): void
 
 Unsubscribes from playNext command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3664,6 +4281,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3677,6 +4295,8 @@ aVCastController.off('playNext');
 on(type: 'playPrevious', callback: Callback\<void>): void
 
 Subscribes to playPrevious command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3693,13 +4313,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
 
 ```ts
 aVCastController.on('playPrevious', () => {
-  console.info(`on playPrevious`);
+  console.info('on playPrevious');
 });
 ```
 
@@ -3708,6 +4329,8 @@ aVCastController.on('playPrevious', () => {
 off(type: 'playPrevious'): void
 
 Unsubscribes from playPrevious command events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3723,6 +4346,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3744,7 +4368,7 @@ Subscribes to playback request events.
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | Yes  | Event type. The event **'requestPlay'** is triggered when a playback request is received.|
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | Yes  | Callback used for subscription. **AVQueueItem** is the media asset that is being played. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. | 
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void               | Yes  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the subscription is successful, **err** is **undefined**; otherwise, **err** is an error object. | 
 
 **Error codes**
 
@@ -3752,6 +4376,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3775,7 +4400,7 @@ Unsubscribes from playback request events.
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------| ---- | ----------------------------------------------------- |
 | type     | string                                                      | Yes  | Event type, which is **'requestPlay'** in this case.   |
-| callback | (state: [AVQueueItem](#avqueueitem10)) => void              | No  | Callback used for unsubscription. **AVQueueItem** is the media asset that is being played. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+| callback | (state: [AVQueueItem](#avqueueitem10)) => void              | No  | Callback function, where the **AVQueueItem** parameter specifies the media asset that is being played. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
 
@@ -3783,6 +4408,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3812,13 +4438,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
 
 ```ts
 aVCastController.on('endOfStream', () => {
-  console.info(`on endOfStream`);
+  console.info('on endOfStream');
 });
 ```
 
@@ -3843,6 +4470,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3856,6 +4484,8 @@ aVCastController.off('endOfStream');
 on(type: 'seekDone', callback: Callback\<number>): void
 
 Subscribes to seek done events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -3872,6 +4502,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3888,6 +4519,8 @@ off(type: 'seekDone'): void
 
 Unsubscribes from the seek done events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 **Parameters**
@@ -3902,6 +4535,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 
 **Example**
@@ -3931,6 +4565,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -3964,6 +4599,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message          |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -3979,6 +4615,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to remote AVPlayer errors. This event is used only for error prompt and does not require the user to stop playback control.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 **Parameters**
@@ -3990,10 +4628,11 @@ Subscribes to remote AVPlayer errors. This event is used only for error prompt a
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 5400101  | No memory.            |
 | 5400102  | Operation not allowed.   |
 | 5400103  | I/O error.             |
@@ -4005,11 +4644,10 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 aVCastController.on('error', (error: BusinessError) => {
-  console.info('error happened,and error message is :' + error.message)
-  console.info('error happened,and error code is :' + error.code)
+  console.info(`error happened, error code: ${error.code}, error message : ${error.message}.`)
 })
 ```
 
@@ -4018,6 +4656,8 @@ aVCastController.on('error', (error: BusinessError) => {
 off(type: 'error'): void
 
 Unsubscribes from remote AVPlayer errors.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4029,10 +4669,11 @@ Unsubscribes from remote AVPlayer errors.
 
 **Error codes**
 
-For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md).
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
 
 | ID| Error Message             |
 | -------- | --------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 5400101  | No memory.            |
 | 5400102  | Operation not allowed.   |
 | 5400103  | I/O error.             |
@@ -4047,9 +4688,560 @@ For details about the error codes, see [Media Error Codes](../apis-media-kit/err
 aVCastController.off('error')
 ```
 
+### on('keyRequest')<sup>12+</sup>
+
+on(type: 'keyRequest', callback: KeyRequestCallback): void
+
+Subscribes to media key requests during the cast of online DRM resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string  | Yes  | Event type. The event **'keyRequest'** is triggered when a media key request is required during the cast of online DRM resources.|
+| callback | [KeyRequestCallback](#keyrequestcallback12)  | Yes  | Callback used to request the media resources and media key.|
+
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message          |
+| -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
+}
+aVCastController.on('keyRequest', keyRequestCallback);
+```
+### off('keyRequest')<sup>12+</sup>
+
+off(type: 'keyRequest', callback?: KeyRequestCallback): void
+
+Unsubscribes from media key requests during the cast of online DRM resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type     | string                                                       | Yes  | Event type, which is **'keyRequest'** in this case.|
+| callback |  [KeyRequestCallback](#keyrequestcallback12)  | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                           |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message          |
+| -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
+
+**Example**
+
+```ts
+aVCastController.off('keyRequest');
+```
+
+### on('castControlGenericError')<sup>13+</sup>
+
+on(type: 'castControlGenericError', callback: ErrorCallback): void
+
+Subscribes to generic error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'castControlGenericError'** in this case.|
+| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6611000  | The error code for cast control is unspecified.      |
+| 6611001  | An unspecified error occurs in the remote player.   |
+| 6611002  | The playback position falls behind the live window.     |
+| 6611003  | The process of cast control times out.    |
+| 6611004  | The runtime check failed.      |
+| 6611100  | Cross-device data transmission is locked.    |
+| 6611101  | The specified seek mode is not supported.   |
+| 6611102  | The position to seek to is out of the range of the media asset or the specified seek mode is not supported.  |
+| 6611103  | The specified playback mode is not supported.       |
+| 6611104  | The specified playback speed is not supported.    |
+| 6611105  | The action failed because either the media source device or the media sink device has been revoked.   |
+| 6611106  | The parameter is invalid, for example, the url is illegal to play.  |
+| 6611107  | Allocation of memory failed.  |
+| 6611108  | Operation is not allowed.    |
+
+**Example**
+
+```ts
+aVCastController.on('castControlGenericError', (error: BusinessError) => {
+  console.info(`castControlGenericError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlGenericError')<sup>13+</sup>
+
+off(type: 'castControlGenericError', callback?: ErrorCallback): void
+
+Unsubscribes from generic error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | 	Event type, which is **'castControlGenericError'** in this case.|
+| callback | ErrorCallback | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+aVCastController.off('castControlGenericError');
+```
+
+### on('castControlIoError')<sup>13+</sup>
+
+on(type: 'castControlIoError', callback: ErrorCallback): void
+
+Subscribes to input/output error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'castControlIoError'** in this case.|
+| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6612000  | An unspecified input/output error occurs.     |
+| 6612001  | Network connection failure.   |
+| 6612002  | Network timeout.     |
+| 6612003  | Invalid "Content-Type" HTTP header.    |
+| 6612004  | The HTTP server returns an unexpected HTTP response status code.      |
+| 6612005  | The file does not exist.    |
+| 6612006  | No permission is granted to perform the IO operation.   |
+| 6612007  | Access to cleartext HTTP traffic is not allowed by the app's network security configuration. |
+| 6612008  | Reading data out of the data bound.    |
+| 6612100  | The media does not contain any contents that can be played.   |
+| 6612101  | The media cannot be read, for example, because of dust or scratches.   |
+| 6612102  | This resource is already in use. |
+| 6612103  | The content using the validity interval has expired.  |
+| 6612104  | Using the requested content to play is not allowed.    |
+| 6612105  | The use of the allowed content cannot be verified.  |
+| 6612106  | The number of times this content has been used as requested has reached the maximum allowed number of uses.  |
+| 6612107  | An error occurs when sending packet from source device to sink device.    |
+
+**Example**
+
+```ts
+aVCastController.on('castControlIoError', (error: BusinessError) => {
+  console.info(`castControlIoError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlIoError')<sup>13+</sup>
+
+off(type: 'castControlIoError', callback?: ErrorCallback): void
+
+Unsubscribes from input/output error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | 	Event type, which is **'castControlIoError'** in this case.|
+| callback | ErrorCallback | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+aVCastController.off('castControlIoError');
+```
+
+### on('castControlParsingError')<sup>13+</sup>
+
+on(type: 'castControlParsingError', callback: ErrorCallback): void
+
+Subscribes to parsing error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'castControlParsingError'** in this case.|
+| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
+
+**Error codes**
+
+| ID | Error Message             |
+| -------- | --------------------- |
+| 401      |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6613000  | Unspecified error related to content parsing.     |
+| 6613001  | Parsing error associated with media container format bit streams.   |
+| 6613002  | Parsing error associated with the media manifest.     |
+| 6613003  | An error occurs when attempting to extract a file with an unsupported media container format or an unsupported media container feature.    |
+| 6613004  | Unsupported feature in the media manifest.    |
+
+**Example**
+
+```ts
+aVCastController.on('castControlParsingError', (error: BusinessError) => {
+  console.info(`castControlParsingError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlParsingError')<sup>13+</sup>
+
+off(type: 'castControlParsingError', callback?: ErrorCallback): void
+
+Unsubscribes from parsing error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | 	Event type, which is **'castControlParsingError'** in this case.|
+| callback | ErrorCallback | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+aVCastController.off('castControlParsingError');
+```
+
+### on('castControlDecodingError')<sup>13+</sup>
+
+on(type: 'castControlDecodingError', callback: ErrorCallback): void
+
+Subscribes to decoding error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'castControlDecodingError'** in this case.|
+| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6614000  | Unspecified decoding error.     |
+| 6614001  | Decoder initialization failed.   |
+| 6614002  | Decoder query failed.     |
+| 6614003  | Decoding the media samples failed.    |
+| 6614004  | The format of the content to decode exceeds the capabilities of the device.    |
+| 6614005  | The format of the content to decode is not supported.    |
+
+**Example**
+
+```ts
+aVCastController.on('castControlDecodingError', (error: BusinessError) => {
+  console.info(`castControlDecodingError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+### off('castControlDecodingError')<sup>13+</sup>
+
+off(type: 'castControlDecodingError', callback?: ErrorCallback): void
+
+Unsubscribes from decoding error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | 	Event type, which is **'castControlDecodingError'** in this case.|
+| callback | ErrorCallback | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+aVCastController.off('castControlDecodingError');
+```
+
+### on('castControlAudioRendererError')<sup>13+</sup>
+
+on(type: 'castControlAudioRendererError', callback: ErrorCallback): void
+
+Subscribes to audio renderer error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'castControlAudioRendererError'** in this case.|
+| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](../apis-media-kit/errorcode-media.md) and [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6615000  | Unspecified errors related to the audio renderer.     |
+| 6615001  | Initializing the audio renderer failed.   |
+| 6615002  | The audio renderer fails to write data.     |
+
+**Example**
+
+```ts
+aVCastController.on('castControlAudioRendererError', (error: BusinessError) => {
+  console.info(`castControlAudioRendererError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+### off('castControlAudioRendererError')<sup>13+</sup>
+
+off(type: 'castControlAudioRendererError', callback?: ErrorCallback): void
+
+Unsubscribes from audio renderer error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | 	Event type, which is **'castControlAudioRendererError'** in this case.|
+| callback | ErrorCallback | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+
+**Example**
+
+```ts
+aVCastController.off('castControlAudioRendererError');
+```
+
+### on('castControlDrmError')<sup>13+</sup>
+
+on(type: 'castControlDrmError', callback: ErrorCallback): void
+
+Subscribes to DRM error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'castControlDrmError'** in this case.|
+| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 6616000  | Unspecified error related to DRM.     |
+| 6616001  | The chosen DRM protection scheme is not supported by the device.  |
+| 6616002  | Device provisioning failed.    |
+| 6616003  | The DRM-protected content to play is incompatible.     |
+| 6616004  | Failed to obtain a license.   |
+| 6616005  | The operation is disallowed by the license policy.     |
+| 6616006  | An error occurs in the DRM system.     |
+| 6616007  | The device has revoked DRM privileges.   |
+| 6616008  | The DRM license being loaded into the open DRM session has expired.      |
+| 6616100  | An error occurs when the DRM processes the key response.     |
+
+**Example**
+
+```ts
+aVCastController.on('castControlDrmError', (error: BusinessError) => {
+  console.info(`castControlDrmError happened, error code: ${error.code}, error message : ${error.message}.`)
+})
+```
+
+### off('castControlDrmError')<sup>13+</sup>
+
+off(type: 'castControlDrmError', callback?: ErrorCallback): void
+
+Unsubscribes from DRM error events during cast control.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | 	Event type, which is **'castControlDrmError'** in this case.|
+| callback | ErrorCallback | No  | Callback used for unsubscription. If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object. The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+
+**Error codes**
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 401 |  Parameter check failed. 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
+**Example**
+
+```ts
+aVCastController.off('castControlDrmError');
+```
+
+## ExtraInfo<sup>18+</sup>
+type ExtraInfo = { [key: string]: Object; }
+
+Defines the custom media packet set by the provider.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+| Type                               | Description                         |
+| ----------------------------------- | ----------------------------- |
+| [key: string]: Object   | **key** specifies the remote distributed event type. Currently, the following event types are supported:<br>**'AUDIO_GET_VOLUME'**: obtains the volume of the remote device.<br>**'AUDIO_GET_AVAILABLE_DEVICES'**: obtains all remote devices that can be connected.<br>**'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO'**: obtains the actual remote audio device.<br>The provider returns the corresponding media packet object based on the event type.|
+
+## KeyRequestCallback<sup>12+</sup>
+type KeyRequestCallback = (assetId: string, requestData: Uint8Array) => void
+
+Describes the callback invoked for the media key request event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                     |
+| ------ | ------ | ---- | ----------------------------------------- |
+| assetId     | string  | Yes  | Media asset ID.|
+| requestData |  Uint8Array  | Yes  | Data carried in the media key request.                           |
+
+**Example**
+<!--code_no_check-->
+```ts
+let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, requestData: Uint8Array) => {
+  console.info(`Succeeded in keyRequestCallback. assetId: ${assetId}, requestData: ${requestData}`);
+}
+```
+
+## CastDisplayState<sup>12+</sup>
+
+Enumerates the states of the cast display.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| Name                       | Value  | Description        |
+| --------------------------- | ---- | ----------- |
+| STATE_OFF      | 1    | The device is disconnected, and the extended screen does not display any content.   |
+| STATE_ON      | 2    | The device is connected, and the extended screen is available.|
+
+
+## CastDisplayInfo<sup>12+</sup>
+
+Describes the information about the cast display in the case of extended screens.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.AVSession.ExtendedDisplayCast
+
+| Name           | Type                     | Read Only| Optional| Description                                                                 |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| id            | number                  | No   | No   | ID of the cast display. The value must be an integer. |
+| name     | string                  | No   | No   | Name of the cast display.          |
+| state          | [CastDisplayState](#castdisplaystate12)          | No   | No   |State of the cast display.           |
+| width          | number          | No   | No   | Screen width of the cast display, in px. The value must be an integer.         |  
+| height          | number          | No   | No   | Screen height of the cast display, in px. The value must be an integer.           |  
+
 ## ConnectionState<sup>10+</sup>
 
 Enumerates the connection states.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4065,28 +5257,32 @@ Describes the media metadata.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name           | Type                     | Mandatory| Description                                                                 |
-| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
-| assetId         | string                  | Yes  | Media asset ID. It is the unique ID of a song and defined by the application.                                    |
-| title           | string                  | No  | Title.                                                                |
-| artist          | string                  | No  | Artist.                                                               |
-| author          | string                  | No  | Author.                                                              |
-| avQueueId<sup>11+</sup>       | string                  | No  | Unique ID of the playlist.                                                              |
-| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). |                       
-| album           | string                  | No  | Album name.                                                              |
-| writer          | string                  | No  | Writer.                                                               |
-| composer        | string                  | No  | composer.                                                               |
-| duration        | number                  | No  | Media duration, in ms.                                                 |
-| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Pixel map or image path (local path or network path) of the image.                            |
-| publishDate     | Date                    | No  | Release date.                                                              |
-| subtitle        | string                  | No  | Subtitle.                                                               |
-| description     | string                  | No  | Media description.                                                              |
-| lyric           | string                  | No  | Lyric file path (local path or network path).|
-| previousAssetId | string                  | No  | ID of the previous media asset.                                                           |
-| nextAssetId     | string                  | No  | ID of the next media asset.                                                           |
-| filter<sup>11+</sup>        | number         | No  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype10).                  |
-| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No  | Fast-forward or rewind interval supported by the media session. The default value is **SECONDS_15**, that is, 15 seconds.                           |
-|displayTags<sup>11+</sup>     | [DisplayTag](#displaytag11)                           | No  | Display tags of the media asset.                                                         |
+| Name           | Type                     | Read Only| Optional| Description                                                                 |
+| --------------- |-------------------------| ---- | ---- |---------------------------------------------------------------------|
+| assetId         | string                  | No  | No  | Media asset ID. It is the unique ID of a song and defined by the application.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                    |
+| title           | string                  | No  | Yes  | Title.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                                |
+| artist          | string                  | No  | Yes  | Artist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| author          | string                  | No  | Yes  | Author.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| avQueueName<sup>12+</sup>       | string                  | No  | Yes  | Playlist name.                                                              |
+| avQueueId<sup>11+</sup>       | string                  | No  | Yes  | Unique ID of the playlist.                                                              |
+| avQueueImage<sup>11+</sup>    | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Yes  | Cover image of the playlist, which can be pixel data of an image or an image path (local path or Internet path). Applications call **setAVMetadata** to set the image data.<br>- If the data type is set to **PixelMap**, the data obtained by calling **getAVMetadata** is the pixel data of an image.<br>- If the data type is set to **url**, the data obtained is an image path. |
+| album           | string                  | No  | Yes  | Album name.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| writer          | string                  | No  | Yes  | Writer.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| composer        | string                  | No  | Yes  | composer.                                                               |
+| duration        | number                  | No  | Yes  | Media duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                 |
+| mediaImage      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) &#124; string | No  | Yes  | Pixel map or image path (local path or network path) of the image. Applications call **setAVMetadata** to set the image data.<br>- If the data type is set to **PixelMap**, the data obtained by calling **getAVMetadata** is the pixel data of an image.<br>- If the data type is set to **url**, the data obtained is an image path.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                            |
+| bundleIcon<sup>18+</sup>      | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | Yes  | Yes  | Pixel data of the image that is used as the application icon. It is read-only and cannot be set on the application side.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| publishDate     | Date                    | No  | Yes  | Release date.                                                            |
+| subtitle        | string                  | No  | Yes  | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
+| description     | string                  | No  | Yes  | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
+| lyric           | string                  | No  | Yes  | Lyrics. The application needs to combine the lyrics into a string.<br>The string length must not exceed 40960 bytes.<br>**NOTE**: The system supports lyrics in the simple LRC format. If the lyrics are not standard (for example, having duplicate timestamps), the lyrics fail to be parsed and cannot be displayed properly in the system.|
+| singleLyricText<sup>18+</sup> | string    | No  | Yes  | Lyrics of a single media asset. The application must combine the lyrics into a string (excluding the timestamp).<br>The string length must not exceed 40960 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| previousAssetId | string                  | No  | Yes  | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
+| nextAssetId     | string                  | No  | Yes  | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
+| filter<sup>11+</sup>        | number         | No  | Yes  | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| drmSchemes<sup>12+</sup>        | Array\<string>         | No  | Yes  | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.|
+| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No  | Yes  | Intervals supported for fast-forwarding and rewinding. The default value is **SECONDS_15**, that is, 15 seconds.                           |
+|displayTags<sup>11+</sup>     | number                           | No  | Yes  | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).                                                         |
 
 ## AVMediaDescription<sup>10+</sup>
 
@@ -4096,29 +5292,34 @@ Describes the attributes related to the media metadata in the playlist.
 
 | Name        | Type                   | Mandatory | Description                    |
 | ------------ | ----------------------- | ---- | ----------------------- |
-| assetId      | string                  | Yes  | Media ID in the playlist.         |
-| title        | string                  | No  | Name of the media asset in the playlist.       |
-| subtitle     | string                  | No  | Subname of the media asset in the playlist.     |
-| description  | string                  | No  | Description of the media asset in the playlist.  |
-| mediaImage | image.PixelMap          | No  | Pixel map of the image of the media asset in the playlist.|
-| extras       | {[key: string]: any}    | No  | Additional fields of the media asset in the playlist.    |
-| mediaUri     | string                  | No  | URI of the media asset in the playlist.        |
-| mediaType     | string                  | No  | Type of the media asset in the playlist.        |
-| mediaSize     | number                  | No  | Size of the media asset in the playlist.        |
-| albumTitle     | string                  | No  | Album name of the media asset in the playlist.        |
-| albumCoverUri     | string                  | No  | URI of the album title of the media asset in the playlist.   |
-| lyricContent     | string                  | No  | Lyric content of the media asset in the playlist.        |
-| lyricUri     | string                  | No  | Lyric URI of the media asset in the playlist.        |
-| artist     | string                  | No  | Author of the lyric of the media asset in the playlist.        |
-| fdSrc     | media.AVFileDescriptor        | No  | Handle to the local media file in the playlist.        |
-| duration     | number                  | No  | Playback duration of the media asset in the playlist.        |
-| startPosition     | number                  | No  | Start position for playing the media asset in the playlist.        |
-| creditsPosition     | number                  | No  | Position for playing the closing credits of the media asset in the playlist.        |
-| appName     | string                  | No  | Name of the application provided by the playlist.        |
+| assetId      | string                  | Yes  | Media ID in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.         |
+| title        | string                  | No  | Name of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| subtitle     | string                  | No  | Subname of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.     |
+| description  | string                  | No  | Description of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
+| mediaImage | image.PixelMap \| string   | No  | Pixel map of the image of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| extras       | {[key: string]: Object}    | No  | Additional fields of the media asset in the playlist.    |
+| mediaUri     | string                  | No  | URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| mediaType     | string                  | No  | Type of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| mediaSize     | number                  | No  | Size of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| albumTitle     | string                  | No  | Album name of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| albumCoverUri     | string                  | No  | URI of the album title of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.   |
+| lyricContent     | string                  | No  | Lyric content of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| lyricUri     | string                  | No  | Lyric URI of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| artist     | string                  | No  | Author of the lyric of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| fdSrc     | media.AVFileDescriptor        | No  | Handle to the local media file in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| dataSrc<sup>12+</sup>     | media.AVDataSrcDescriptor        | No  | Descriptor of the data source in the playlist.        |
+| drmScheme<sup>12+</sup>     | string        | No  | DRM scheme supported by the playlist. The value is the UUID of the DRM scheme.      |
+| duration     | number                  | No  | Playback duration of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| startPosition     | number                  | No  | Start position for playing the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| creditsPosition     | number                  | No  | Position for playing the closing credits of the media asset in the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| appName     | string                  | No  | Name of the application provided by the playlist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+|displayTags<sup>11+</sup>     | number | No  | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
 
 ## AVQueueItem<sup>10+</sup>
 
 Describes the attributes of an item in the playlist.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4135,24 +5336,26 @@ Describes the information related to the media playback state.
 
 | Name        | Type                                 | Mandatory| Description    |
 | ------------ | ------------------------------------- | ---- | ------- |
-| state        | [PlaybackState](#playbackstate10)       | No  | Playback state.|
-| speed        | number                                | No  | Playback speed.|
-| position     | [PlaybackPosition](#playbackposition10) | No  | Playback position.|
-| bufferedTime | number                                | No  | Buffered time.|
-| loopMode     | [LoopMode](#loopmode10)                 | No  | Loop mode.|
-| isFavorite   | boolean                               | No  | Whether the media asset is favorited.|
-| activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.|
-| volume<sup>10+</sup> | number                  | No  | Media volume.|
-| maxVolume<sup>11+</sup> | number                    | No  | Maximum volume.|
-| muted<sup>11+</sup>     | boolean                   | No  | Mute status. The value **true** means the muted state.|
+| state        | [PlaybackState](#playbackstate10)       | No  | Playback state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| speed        | number                                | No  | Playback speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| position     | [PlaybackPosition](#playbackposition10) | No  | Playback position.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| bufferedTime | number                                | No  | Buffered time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| loopMode     | [LoopMode](#loopmode10)                 | No  | Loop mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isFavorite   | boolean                               | No  | Whether the media asset is favorited.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| volume<sup>10+</sup> | number                  | No  | Media volume.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| maxVolume<sup>11+</sup> | number                    | No  | Maximum volume.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| muted<sup>11+</sup>     | boolean                   | No  | Mute status. The value **true** means the muted state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | duration<sup>11+</sup>     | number                   | No  | Duration of the media asset.|
-| videoWidth<sup>11+</sup>  | number                  | No  | Video width of the media asset, in px.|
-| videoHeight<sup>11+</sup> |  number                 | No  | Video height of the media asset, in px.|
-| extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.|
+| videoWidth<sup>11+</sup>  | number                  | No  | Video width of the media asset, in px.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| videoHeight<sup>11+</sup> |  number                 | No  | Video height of the media asset, in px.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| extras<sup>10+</sup> | {[key: string]: Object}       | No  | Custom media data.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## PlaybackPosition<sup>10+</sup>
 
 Describes the information related to the playback position.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4165,28 +5368,34 @@ Describes the information related to the playback position.
 
 Defines the attributes related to call metadata.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 | Name           | Type                     | Mandatory| Description                                                                 |
 | --------------- |-------------------------| ---- |---------------------------------------------------------------------|
 | name            | string                  | No   | Name (alias) of the caller.   |                                                                                                                      
 | phoneNumber     | string                  | No   | Phone number of the caller.           |                                                   
-| avatar          | image.PixelMap[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | No   | Profile picture of the caller.           |                                                   
+| avatar          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)          | No   | Profile picture of the caller.           |                                                   
 
 ## AVCallState<sup>11+</sup>
 
 Defines the attributes related to the call state.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 | Name           | Type                     | Mandatory| Description                                                                 |
 | --------------- |-------------------------  | ---- |---------------------------------------------------------------------|
-| state           | CallState[AVCallState](#avcallstate11)                 | Yes   | Call state.     |                                                                                                                      
-| muted           | boolean                   | Yes   | Whether the microphone is muted.|                                                                  
+| state           | [CallState](#callstate11)                 | Yes   | Call state.     |                                                                                                                      
+| muted           | boolean                   | Yes   | Whether the microphone is muted.<br>**true**: The microphone is muted.<br>**false**: The microphone is not muted.|                                                                  
  
 ## CallState<sup>11+</sup>
 
 Enumerates the call states.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4202,7 +5411,7 @@ Enumerates the call states.
 
 ## DisplayTag<sup>11+</sup>
 
-Enumerates the display tags of the media asset, which is a special type identifier of the media audio source.
+Enumerates the display tags of the media asset. The display tag is a special type identifier of the media audio source.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4210,9 +5419,38 @@ Enumerates the display tags of the media asset, which is a special type identifi
 | --------------------------  | ---- | ------------ |
 | TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
 
+## DecoderType<sup>18+</sup>
+
+Enumerates the decoding formats supported by the device.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name                       | Value  | Description          |
+| --------------------------  | ---- | ------------ |
+| OH_AVCODEC_MIMETYPE_VIDEO_AVC      | "video/avc"  | VIDEO AVC. |
+| OH_AVCODEC_MIMETYPE_VIDEO_HEVC     | "video/hevc" | VIDEO HEVC. |
+| OH_AVCODEC_MIMETYPE_AUDIO_VIVID    | "audio/av3a" | AUDIO AV3A. |
+
+
+## ResolutionLevel<sup>18+</sup>
+
+Enumerates the resolution levels supported by the device.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name                       | Value  | Description          |
+| --------------------------  | ---- | ------------ |
+| RESOLUTION_480P             | 0    | 480p (640 x 480 dpi).    |
+| RESOLUTION_720P             | 1    | 720p (1280 x 720 dpi).   |
+| RESOLUTION_1080P            | 2    | 1080p (1920 x 1080 dpi).  |
+| RESOLUTION_2K               | 3    | 2K (2560 x 1440 dpi).  |
+| RESOLUTION_4K               | 4    | 4K (4096 x 3840 dpi).  |
+
 ## AVCastCategory<sup>10+</sup>
 
 Enumerates the cast categories.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
@@ -4225,12 +5463,12 @@ Enumerates the cast categories.
 
 Enumerates the output device types.
 
-**System capability**: SystemCapability.Multimedia.AVSession.Core
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name                       | Value  | Description        |
 | --------------------------- | ---- | ----------- |
-| DEVICE_TYPE_LOCAL      | 0    | Local device.    |
-| DEVICE_TYPE_BLUETOOTH      | 10   | Bluetooth device. |
+| DEVICE_TYPE_LOCAL      | 0    | Local device.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core|
+| DEVICE_TYPE_BLUETOOTH      | 10   | Bluetooth device.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core|
 | DEVICE_TYPE_TV      | 2    | TV.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
 | DEVICE_TYPE_SMART_SPEAKER      | 3   | Speaker.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast|
 
@@ -4238,19 +5476,22 @@ Enumerates the output device types.
 
 Describes the information related to the output device.
 
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
 | Name      | Type          | Mandatory| Description                  |
 | ---------- | -------------- | ---- | ---------------------- |
-| castCategory   | AVCastCategory        | Yes  | Cast category.        |
-| deviceId   | string | Yes  | ID of the output device. |
-| deviceName | string | Yes  | Name of the output device.   |
-| deviceType | DeviceType | Yes  | Type of the output device.   |
-| supportedProtocols<sup>11+</sup> | number | No  | Protocol supported by the output device. The default value is **TYPE_LOCAL**. For details, see [ProtocolType](#protocoltype10).<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast   |
+| castCategory   | AVCastCategory        | Yes  | Cast category.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| deviceId   | string | Yes  | ID of the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| deviceName | string | Yes  | Name of the output device.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| deviceType | DeviceType | Yes  | Type of the output device.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| supportedProtocols<sup>11+</sup> | number | No  | Protocol supported by the output device. The default value is **TYPE_LOCAL**. For details, see [ProtocolType](#protocoltype11).<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| supportedDrmCapabilities<sup>12+</sup> | Array\<string> | No  | DRM capability supported by the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| manufacturer<sup>13+</sup> | string | No  | Manufacturer of the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| modelName<sup>13+</sup> | string | No  | Model name of the output device.<br> **System capability**: SystemCapability.Multimedia.AVSession.AVCast<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
 
 ## OutputDeviceInfo<sup>10+</sup>
 
 Describes the information related to the output device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4261,6 +5502,8 @@ Describes the information related to the output device.
 ## LoopMode<sup>10+</sup>
 
 Enumerates the loop modes of media playback.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4276,6 +5519,8 @@ Enumerates the loop modes of media playback.
 
 Enumerates the media playback states.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 | Name                       | Value  | Description        |
@@ -4286,7 +5531,7 @@ Enumerates the media playback states.
 | PLAYBACK_STATE_PAUSE        | 3    | Paused.        |
 | PLAYBACK_STATE_FAST_FORWARD | 4    | Fast-forwarding.        |
 | PLAYBACK_STATE_REWIND       | 5    | Rewinding.        |
-| PLAYBACK_STATE_STOP         | 6    | Stop the playback.        |
+| PLAYBACK_STATE_STOP         | 6    | Stopped.        |
 | PLAYBACK_STATE_COMPLETED    | 7    | Playback complete.    |
 | PLAYBACK_STATE_RELEASED     | 8    | Released.        |
 | PLAYBACK_STATE_ERROR        | 9    | Error.        |
@@ -4299,6 +5544,8 @@ Through the AV session controller, you can query the session ID, send commands a
 
 ### Attributes
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 | Name     | Type  | Readable| Writable| Description                                   |
@@ -4309,7 +5556,7 @@ Through the AV session controller, you can query the session ID, send commands a
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let AVSessionController: avSession.AVSessionController;
 avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
@@ -4346,13 +5593,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlaybackState) => {
   if (err) {
     console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`getAVPlaybackState : SUCCESS`);
+    console.info('getAVPlaybackState : SUCCESS');
   }
 });
 ```
@@ -4362,6 +5609,8 @@ avsessionController.getAVPlaybackState((err: BusinessError, state: avSession.AVP
 getAVPlaybackState(): Promise\<AVPlaybackState>
 
 Obtains the remote playback state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4384,10 +5633,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVPlaybackState().then((state: avSession.AVPlaybackState) => {
-  console.info(`getAVPlaybackState : SUCCESS`);
+  console.info('getAVPlaybackState : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`getAVPlaybackState BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -4398,6 +5647,8 @@ avsessionController.getAVPlaybackState().then((state: avSession.AVPlaybackState)
 getAVMetadata(): Promise\<AVMetadata>
 
 Obtains the session metadata. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4420,7 +5671,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVMetadata().then((metadata: avSession.AVMetadata) => {
   console.info(`GetAVMetadata : SUCCESS : assetId : ${metadata.assetId}`);
@@ -4456,7 +5707,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVMetadata((err: BusinessError, metadata: avSession.AVMetadata) => {
   if (err) {
@@ -4472,6 +5723,8 @@ avsessionController.getAVMetadata((err: BusinessError, metadata: avSession.AVMet
 getAVQueueTitle(): Promise\<string>
 
 Obtains the name of the playlist. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4494,7 +5747,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVQueueTitle().then((title: string) => {
   console.info(`GetAVQueueTitle : SUCCESS : title : ${title}`);
@@ -4530,7 +5783,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVQueueTitle((err: BusinessError, title: string) => {
   if (err) {
@@ -4546,6 +5799,8 @@ avsessionController.getAVQueueTitle((err: BusinessError, title: string) => {
 getAVQueueItems(): Promise\<Array\<AVQueueItem>>
 
 Obtains the information related to the items in the queue. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4568,7 +5823,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVQueueItems().then((items: avSession.AVQueueItem[]) => {
   console.info(`GetAVQueueItems : SUCCESS : length : ${items.length}`);
@@ -4604,7 +5859,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVQueueItems((err: BusinessError, items: avSession.AVQueueItem[]) => {
   if (err) {
@@ -4620,6 +5875,8 @@ avsessionController.getAVQueueItems((err: BusinessError, items: avSession.AVQueu
 skipToQueueItem(itemId: number): Promise\<void>
 
 Sends the ID of an item in the playlist to the session for processing. The session can play the song. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4641,6 +5898,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -4648,11 +5906,11 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let queueItemId = 0;
 avsessionController.skipToQueueItem(queueItemId).then(() => {
-  console.info(`SkipToQueueItem successfully`);
+  console.info('SkipToQueueItem successfully');
 }).catch((err: BusinessError) => {
   console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -4679,6 +5937,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -4686,14 +5945,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let queueItemId = 0;
 avsessionController.skipToQueueItem(queueItemId, (err: BusinessError) => {
   if (err) {
     console.error(`SkipToQueueItem BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SkipToQueueItem successfully`);
+    console.info('SkipToQueueItem successfully');
   }
 });
 ```
@@ -4703,6 +5962,8 @@ avsessionController.skipToQueueItem(queueItemId, (err: BusinessError) => {
 getOutputDevice(): Promise\<OutputDeviceInfo>
 
 Obtains the output device information. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4724,10 +5985,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getOutputDevice().then((deviceInfo: avSession.OutputDeviceInfo) => {
-  console.info(`GetOutputDevice : SUCCESS`);
+  console.info('GetOutputDevice : SUCCESS');
 }).catch((err: BusinessError) => {
   console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -4759,13 +6020,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getOutputDevice((err: BusinessError, deviceInfo: avSession.OutputDeviceInfo) => {
   if (err) {
     console.error(`GetOutputDevice BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`GetOutputDevice : SUCCESS`);
+    console.info('GetOutputDevice : SUCCESS');
   }
 });
 ```
@@ -4775,6 +6036,8 @@ avsessionController.getOutputDevice((err: BusinessError, deviceInfo: avSession.O
 sendAVKeyEvent(event: KeyEvent): Promise\<void>
 
 Sends a key event to the session corresponding to this controller. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4790,6 +6053,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
@@ -4805,14 +6069,15 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import keyEvent from '@ohos.multimodalInput.keyEvent';
-import { BusinessError } from '@ohos.base';
+import { Key, KeyEvent } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
-let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+let keyItem: Key = {code:0x49, pressedTime:2, deviceId:0};
+let event:KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
+
 
 avsessionController.sendAVKeyEvent(event).then(() => {
-  console.info(`SendAVKeyEvent Successfully`);
+  console.info('SendAVKeyEvent Successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -4839,6 +6104,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 600101  | Session service exception. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
@@ -4848,17 +6114,16 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import keyEvent from '@ohos.multimodalInput.keyEvent';
-import { BusinessError } from '@ohos.base';
+import { Key, KeyEvent } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let keyItem: keyEvent.Key = {code:0x49, pressedTime:2, deviceId:0};
-let event: keyEvent.KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
-
+let keyItem: Key = {code:0x49, pressedTime:2, deviceId:0};
+let event:KeyEvent = {id:1, deviceId:0, actionTime:1, screenId:1, windowId:1, action:2, key:keyItem, unicodeChar:0, keys:[keyItem], ctrlKey:false, altKey:false, shiftKey:false, logoKey:false, fnKey:false, capsLock:false, numLock:false, scrollLock:false};
 avsessionController.sendAVKeyEvent(event, (err: BusinessError) => {
   if (err) {
     console.error(`SendAVKeyEvent BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SendAVKeyEvent Successfully`);
+    console.info('SendAVKeyEvent Successfully');
   }
 });
 ```
@@ -4868,6 +6133,8 @@ avsessionController.sendAVKeyEvent(event, (err: BusinessError) => {
 getLaunchAbility(): Promise\<WantAgent>
 
 Obtains the **WantAgent** object saved by the application in the session. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4890,7 +6157,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getLaunchAbility().then((agent: object) => {
   console.info(`GetLaunchAbility : SUCCESS : wantAgent : ${agent}`);
@@ -4926,7 +6193,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getLaunchAbility((err: BusinessError, agent: object) => {
   if (err) {
@@ -4942,6 +6209,8 @@ avsessionController.getLaunchAbility((err: BusinessError, agent: object) => {
 getRealPlaybackPositionSync(): number
 
 Obtains the playback position.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -4972,6 +6241,8 @@ isActive(): Promise\<boolean>
 
 Checks whether the session is activated. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Return value**
@@ -4993,7 +6264,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.isActive().then((isActive: boolean) => {
   console.info(`IsActive : SUCCESS : isactive : ${isActive}`);
@@ -5029,7 +6300,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.isActive((err: BusinessError, isActive: boolean) => {
   if (err) {
@@ -5045,6 +6316,8 @@ avsessionController.isActive((err: BusinessError, isActive: boolean) => {
 destroy(): Promise\<void>
 
 Destroys this controller. A controller can no longer be used after being destroyed. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5066,10 +6339,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.destroy().then(() => {
-  console.info(`Destroy : SUCCESS `);
+  console.info('Destroy : SUCCESS ');
 }).catch((err: BusinessError) => {
   console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -5101,13 +6374,13 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.destroy((err: BusinessError) => {
   if (err) {
     console.error(`Destroy BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`Destroy : SUCCESS `);
+    console.info('Destroy : SUCCESS ');
   }
 });
 ```
@@ -5117,6 +6390,8 @@ avsessionController.destroy((err: BusinessError) => {
 getValidCommands(): Promise\<Array\<AVControlCommandType>>
 
 Obtains valid commands supported by the session. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5139,7 +6414,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getValidCommands().then((validCommands: avSession.AVControlCommandType[]) => {
   console.info(`GetValidCommands : SUCCESS : size : ${validCommands.length}`);
@@ -5175,7 +6450,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getValidCommands((err: BusinessError, validCommands: avSession.AVControlCommandType[]) => {
   if (err) {
@@ -5195,6 +6470,8 @@ Sends a control command to the session through the controller. This API uses a p
 > **NOTE**
 >
 > Before using **sendControlCommand**, the controller must ensure that the corresponding listeners are registered for the media session. For details about how to register the listeners, see [on'play'](#onplay10), [on'pause'](#onpause10), and the like.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5216,6 +6493,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5226,12 +6504,11 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
 avsessionController.sendControlCommand(avCommand).then(() => {
-  console.info(`SendControlCommand successfully`);
+  console.info('SendControlCommand successfully');
 }).catch((err: BusinessError) => {
   console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
 });
@@ -5262,6 +6539,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5272,15 +6550,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avCommand: avSession.AVControlCommand = {command:'play'};
 avsessionController.sendControlCommand(avCommand, (err: BusinessError) => {
   if (err) {
     console.error(`SendControlCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   } else {
-    console.info(`SendControlCommand successfully`);
+    console.info('SendControlCommand successfully');
   }
 });
 ```
@@ -5290,6 +6567,8 @@ avsessionController.sendControlCommand(avCommand, (err: BusinessError) => {
 sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void>
 
 Sends a custom control command to the session through the controller. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5315,6 +6594,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5325,8 +6605,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5352,7 +6631,7 @@ if (currentAVSession !== undefined) {
 let commandName = "my_command";
 if (avSessionController !== undefined) {
   (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
-    console.info(`SendCommonCommand successfully`);
+    console.info('SendCommonCommand successfully');
   }).catch((err: BusinessError) => {
     console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
   })
@@ -5384,6 +6663,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed.|
 | 6600101  | Session service exception.                |
 | 6600102  | The session does not exist.     |
 | 6600103  | The session controller does not exist.   |
@@ -5394,8 +6674,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
 let tag = "createNewSession";
@@ -5432,6 +6711,8 @@ getExtras(): Promise\<{[key: string]: Object}>
 
 Obtains the custom media packet set by the provider. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Return value**
@@ -5446,6 +6727,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5455,8 +6737,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5507,6 +6788,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 6600101  | Session service exception. |
 | 6600102  | The session does not exist. |
 | 6600103  | The session controller does not exist. |
@@ -5516,8 +6798,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -5550,11 +6831,107 @@ if (avSessionController !== undefined) {
 }
 ```
 
+### getExtrasWithEvent<sup>18+</sup>
+
+getExtrasWithEvent(extraEvent: string): Promise\<ExtraInfo>
+
+Obtains the custom media packet set by the remote distributed media provider based on the remote distributed event type. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.AVSession.Core
+
+**Parameters**
+
+| Name  | Type                                     | Mandatory| Description                      |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| extraEvent | string | Yes| Remote distributed event type.<br>Currently, the following event types are supported:<br>**'AUDIO_GET_VOLUME'**: obtains the volume of the remote device.<br>**'AUDIO_GET_AVAILABLE_DEVICES'**: obtains all remote devices that can be connected.<br>**'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO'**: obtains the actual remote audio device.|
+
+**Return value**
+
+| Type                               | Description                         |
+| ----------------------------------- | ----------------------------- |
+| Promise<[ExtraInfo](#extrainfo18)\>   | Promise used to return the custom media packet set by the remote distributed media provider.<br>The **ExtraInfo** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
+| 6600101  | Session service exception. |
+| 6600102  | The session does not exist. |
+| 6600103  | The session controller does not exist. |
+| 6600105  | Invalid session command. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(40)
+          .fontWeight(FontWeight.Bold)
+          .onClick(() => {
+            getExtrasWithEventTest();
+          })
+      }
+    }
+  }
+}
+
+async function getExtrasWithEventTest() {
+  let controllerList: Array<avSession.AVSessionController>;
+  let controller: avSession.AVSessionController | ESObject;
+  
+  try {
+    controllerList = await avSession.getDistributedSessionController(avSession.DistributedSessionType.TYPE_SESSION_REMOTE);
+    controller = controllerList[0];
+  } catch (err) {
+    console.info(`getDistributedSessionController fail with err: ${err}`);
+  }
+
+  const COMMON_COMMAND_STRING_1 = 'AUDIO_GET_VOLUME';
+  const COMMON_COMMAND_STRING_2 = 'AUDIO_GET_AVAILABLE_DEVICES';
+  const COMMON_COMMAND_STRING_3 = 'AUDIO_GET_PREFERRED_OUTPUT_DEVICE_FOR_RENDERER_INFO';
+  if (controller !== undefined) {
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_1).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_1]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_2).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_2]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+
+    controller.getExtrasWithEvent(COMMON_COMMAND_STRING_3).then((extras: avSession.ExtraInfo) => {
+      console.info(`${extras[COMMON_COMMAND_STRING_3]}`);
+    }).catch((err: BusinessError) => {
+      console.info(`getExtrasWithEvent failed with err: ${err.code}, ${err.message}`);
+    })
+  }
+}
+```
+
 ### on('metadataChange')<sup>10+</sup>
 
 on(type: 'metadataChange', filter: Array\<keyof AVMetadata> | 'all', callback: (data: AVMetadata) => void)
 
 Subscribes to metadata change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5572,6 +6949,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5594,6 +6972,8 @@ off(type: 'metadataChange', callback?: (data: AVMetadata) => void)
 
 Unsubscribes from metadata change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -5609,6 +6989,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5623,6 +7004,8 @@ avsessionController.off('metadataChange');
 on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> | 'all', callback: (state: AVPlaybackState) => void)
 
 Subscribes to playback state change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5640,6 +7023,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5661,6 +7045,8 @@ off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void)
 
 Unsubscribes from playback state change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -5668,7 +7054,7 @@ Unsubscribes from playback state change events. This API is called by the contro
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'playbackStateChange'** in this case.   |
-| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback used for unsubscription. The **state** parameter in the callback indicates the changed playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
+| callback | (state: [AVPlaybackState](#avplaybackstate10)) => void         | No  | Callback function, where the **state** parameter indicates the new playback state.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                     |
 
 **Error codes**
 
@@ -5676,6 +7062,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5690,6 +7077,8 @@ avsessionController.off('playbackStateChange');
 on(type: 'callMetadataChange', filter: Array\<keyof CallMetadata> | 'all', callback: Callback\<CallMetadata>): void;
 
 Subscribes to call metadata change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5707,6 +7096,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5718,7 +7108,7 @@ avsessionController.on('callMetadataChange', 'all', (callmetadata: avSession.Cal
 });
 
 avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.CallMetadata) => {
-  console.info(`on callMetadataChange state : ${callmetadata.state}`);
+  console.info(`on callMetadataChange state : ${callmetadata.name}`);
 });
 ```
 
@@ -5727,6 +7117,8 @@ avsessionController.on('callMetadataChange', ['name'], (callmetadata: avSession.
 off(type: 'callMetadataChange', callback?: Callback\<CallMetadata>): void;
 
 Unsubscribes from call metadata change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5743,6 +7135,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5758,6 +7151,8 @@ on(type: 'callStateChange', filter: Array\<keyof AVCallState> | 'all', callback:
 
 Subscribes to call state change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -5766,7 +7161,7 @@ Subscribes to call state change events.
 | --------| -----------|-----|------------|
 | type     | string    | Yes  | Event type. The event **'callStateChange'** is triggered when the call state changes.|
 | filter   | Array<keyof&nbsp;[AVCallState](#avcallstate11)\>&nbsp;&#124;&nbsp;'all' | Yes  | The value **'all'** indicates that any call state field change will trigger the event, and **Array<keyof&nbsp;[AVCallState](#avcallstate11)\>** indicates that only changes to the listed call state field will trigger the event.|
-| callback | Callback<[AVCallState](#avcallstate11)\>       | Yes  | Callback used for subscription. The **callstate** parameter in the callback indicates the changed call state.|
+| callback | Callback<[AVCallState](#avcallstate11)\>       | Yes  | Callback function, where the **callstate** parameter indicates the new call state.|
 
 **Error codes**
 
@@ -5774,6 +7169,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5795,6 +7191,8 @@ off(type: 'callStateChange', callback?: Callback\<AVCallState>): void;
 
 Unsubscribes from call state change events.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -5802,7 +7200,7 @@ Unsubscribes from call state change events.
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'callStateChange'** in this case.   |
-| callback | Callback<[AVCallState](#avcallstate11)\>           | No  | Callback used for unsubscription. The **callstate** parameter in the callback indicates the changed call metadata.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.     |
+| callback | Callback<[AVCallState](#avcallstate11)\>           | No  | Callback function, where the **callstate** parameter indicates the new call metadata.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.     |
 
 **Error codes**
 
@@ -5810,6 +7208,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5824,6 +7223,8 @@ avsessionController.off('callMetadataChange');
 on(type: 'sessionDestroy', callback: () => void)
 
 Subscribes to session destruction events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5840,6 +7241,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5847,7 +7249,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 avsessionController.on('sessionDestroy', () => {
-  console.info(`on sessionDestroy : SUCCESS `);
+  console.info('on sessionDestroy : SUCCESS ');
 });
 ```
 
@@ -5856,6 +7258,8 @@ avsessionController.on('sessionDestroy', () => {
 off(type: 'sessionDestroy', callback?: () => void)
 
 Unsubscribes from session destruction events. This API is called by the controller.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5872,6 +7276,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5886,6 +7291,8 @@ avsessionController.off('sessionDestroy');
 on(type: 'activeStateChange', callback: (isActive: boolean) => void)
 
 Subscribes to session activation state change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5902,6 +7309,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ----------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  |The session controller does not exist. |
 
@@ -5919,6 +7327,8 @@ off(type: 'activeStateChange', callback?: (isActive: boolean) => void)
 
 Unsubscribes from session activation state change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -5934,6 +7344,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5948,6 +7359,8 @@ avsessionController.off('activeStateChange');
 on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void)
 
 Subscribes to valid command change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -5964,6 +7377,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -5982,6 +7396,8 @@ off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandTyp
 
 Unsubscribes from valid command change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -5997,6 +7413,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message          |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6011,6 +7428,8 @@ avsessionController.off('validCommandChange');
 on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: OutputDeviceInfo) => void): void
 
 Subscribes to output device change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6027,6 +7446,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ----------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6044,6 +7464,8 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 Unsubscribes from output device change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -6051,7 +7473,7 @@ Unsubscribes from output device change events. This API is called by the control
 | Name  | Type                                                   | Mandatory| Description                                                     |
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | string                                                  | Yes  | Event type, which is **'outputDeviceChange'** in this case.     |
-| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback used for unsubscription. The **device** parameter in the callback indicates the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
+| callback | (state: [ConnectionState](#connectionstate10), device: [OutputDeviceInfo](#outputdeviceinfo10)) => void | No  | Callback function, where the **device** parameter specifies the output device information.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                        |
 
 **Error codes**
 
@@ -6059,6 +7481,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID | Error Message         |
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6073,6 +7496,8 @@ avsessionController.off('outputDeviceChange');
 on(type: 'sessionEvent', callback: (sessionEvent: string, args: {[key:string]: Object}) => void): void
 
 Subscribes to session event change events. This API is called by the controller.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6089,14 +7514,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -6131,6 +7556,8 @@ off(type: 'sessionEvent', callback?: (sessionEvent: string, args: {[key:string]:
 
 Unsubscribes from session event change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -6146,6 +7573,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6160,6 +7588,8 @@ avsessionController.off('sessionEvent');
 on(type: 'queueItemsChange', callback: (items: Array<[AVQueueItem](#avqueueitem10)\>) => void): void
 
 Subscribes to playlist item change events. This API is called by the controller.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6176,6 +7606,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6193,6 +7624,8 @@ off(type: 'queueItemsChange', callback?: (items: Array<[AVQueueItem](#avqueueite
 
 Unsubscribes from playback item change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -6208,6 +7641,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6222,6 +7656,8 @@ avsessionController.off('queueItemsChange');
 on(type: 'queueTitleChange', callback: (title: string) => void): void
 
 Subscribes to playlist name change events. This API is called by the controller.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6238,6 +7674,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6255,6 +7692,8 @@ off(type: 'queueTitleChange', callback?: (title: string) => void): void
 
 Unsubscribes from playlist name change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -6270,6 +7709,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
@@ -6284,6 +7724,8 @@ avsessionController.off('queueTitleChange');
 on(type: 'extrasChange', callback: (extras: {[key:string]: Object}) => void): void
 
 Subscribes to custom media packet change events. This API is called by the controller.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6300,14 +7742,14 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ------------------------------ |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception. |
 | 6600103  | The session controller does not exist. |
 
 **Example**
 
 ```ts
-import avSession from '@ohos.multimedia.avsession';
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avSessionController: avSession.AVSessionController | undefined = undefined;
 let currentAVSession: avSession.AVSession | undefined = undefined;
@@ -6342,6 +7784,8 @@ off(type: 'extrasChange', callback?: (extras: {[key:string]: Object}) => void): 
 
 Unsubscribes from custom media packet change events. This API is called by the controller.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
 **Parameters**
@@ -6357,6 +7801,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ----------------                       |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 6600101  | Session service exception.             |
 | 6600103  | The session controller does not exist. |
 
@@ -6371,6 +7816,8 @@ avsessionController.off('extrasChange');
 getAVPlaybackStateSync(): AVPlaybackState;
 
 Obtains the playback state of this session. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6393,10 +7840,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let playbackState: avsession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
+  let playbackState: avSession.AVPlaybackState = avsessionController.getAVPlaybackStateSync();
 } catch (err) {
   let error = err as BusinessError;
   console.info(`getAVPlaybackStateSync error, error code: ${error.code}, error message: ${error.message}`);
@@ -6408,6 +7855,8 @@ try {
 getAVMetadataSync(): AVMetadata
 
 Obtains the session metadata. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6429,10 +7878,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 **Example**
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let metaData: avsession.AVMetadata = avsessionController.getAVMetadataSync();
+  let metaData: avSession.AVMetadata = avsessionController.getAVMetadataSync();
 } catch (err) {
   let error = err as BusinessError;
   console.info(`getAVMetadataSync error, error code: ${error.code}, error message: ${error.message}`);
@@ -6466,7 +7915,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVCallState().then((callstate: avSession.AVCallState) => {
   console.info(`getAVCallState : SUCCESS : state : ${callstate.state}`);
@@ -6502,7 +7951,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getAVCallState((err: BusinessError, callstate: avSession.AVCallState) => {
   if (err) {
@@ -6540,7 +7989,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getCallMetadata().then((calldata: avSession.CallMetadata) => {
   console.info(`getCallMetadata : SUCCESS : name : ${calldata.name}`);
@@ -6576,7 +8025,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avsessionController.getCallMetadata((err: BusinessError, calldata: avSession.CallMetadata) => {
   if (err) {
@@ -6592,6 +8041,8 @@ avsessionController.getCallMetadata((err: BusinessError, calldata: avSession.Cal
 getAVQueueTitleSync(): string
 
 Obtains the name of the playlist of this session. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6614,7 +8065,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let currentQueueTitle: string = avsessionController.getAVQueueTitleSync();
@@ -6629,6 +8080,8 @@ try {
 getAVQueueItemsSync(): Array\<AVQueueItem\>
 
 Obtains the information related to the items in the playlist of this session. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6651,10 +8104,10 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let currentQueueItems: Array<avsession.AVQueueItem> = avsessionController.getAVQueueItemsSync();
+  let currentQueueItems: Array<avSession.AVQueueItem> = avsessionController.getAVQueueItemsSync();
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getAVQueueItemsSync error, error code: ${error.code}, error message: ${error.message}`);
@@ -6666,6 +8119,8 @@ try {
 getOutputDeviceSync(): OutputDeviceInfo
 
 Obtains the output device information. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6687,7 +8142,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let currentOutputDevice: avSession.OutputDeviceInfo = avsessionController.getOutputDeviceSync();
@@ -6702,6 +8157,8 @@ try {
 isActiveSync(): boolean
 
 Checks whether the session is activated. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6724,7 +8181,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let isActive: boolean = avsessionController.isActiveSync();
@@ -6739,6 +8196,8 @@ try {
 getValidCommandsSync(): Array\<AVControlCommandType\>
 
 Obtains valid commands supported by the session. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6761,7 +8220,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let validCommands: Array<avSession.AVControlCommandType> = avsessionController.getValidCommandsSync();
@@ -6773,27 +8232,40 @@ try {
 
 ## AVControlCommandType<sup>10+</sup>
 
+type AVControlCommandType = 'play' | 'pause' | 'stop' | 'playNext' | 'playPrevious' | 'fastForward' | 'rewind' |
+  'seek' | 'setSpeed' | 'setLoopMode' | 'toggleFavorite' | 'playFromAssetId' | 'answer' | 'hangUp' | 'toggleCallMute'
+
 Enumerates the commands that can be sent to a session.
+
+You can use the union of the strings listed in the following table.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
-| Name          | Type  | Description        |
-| -------------- | ------ | ------------ |
-| play           | string | Play the media.        |
-| pause          | string | Pause the playback.        |
-| stop           | string | Stop the playback.        |
-| playNext       | string | Play the next media asset.      |
-| playPrevious   | string | Play the previous media asset.      |
-| fastForward    | string | Fast-forward.        |
-| rewind         | string | Rewind.        |
-| seek           | string | Seek to a playback position.|
-| setSpeed       | string | Set the playback speed.|
-| setLoopMode    | string | Set the loop mode.|
-| toggleFavorite | string | Favorite the media asset.    |
+| Type            | Description        |
+| ---------------- | ------------ |
+| 'play'           | Play the media.        |
+| 'pause'          | Pause the playback.        |
+| 'stop'           | Stop the playback.        |
+| 'playNext'       | Play the next media asset.      |
+| 'playPrevious'   | Play the previous media asset.      |
+| 'fastForward'    | Fast-forward.        |
+| 'rewind'         | Rewind.        |
+| 'seek'           | Seek to a playback position.|
+| 'setSpeed'       | Set the playback speed.|
+| 'setLoopMode'    | Set the loop mode.|
+| 'toggleFavorite' | Favorite the media asset.    |
+| 'playFromAssetId'| Play the media asset with the specified asset ID.|
+|'answer'          | Answer a call.       |
+| 'hangUp'         | The call is disconnecting.       |
+|'toggleCallMute'  | Set the mute status for a call.|
 
 ## AVControlCommand<sup>10+</sup>
 
 Describes the command that can be sent to the session.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.AVSession.Core
 
@@ -6802,23 +8274,264 @@ Describes the command that can be sent to the session.
 | command   | [AVControlCommandType](#avcontrolcommandtype10)     | Yes  | Command.          |
 | parameter | [LoopMode](#loopmode10) &#124; string &#124; number | No  | Parameters carried in the command.|
 
+
+## AVCastPickerOptions<sup>14+</sup>
+
+Describes the properties related to the semi-modal window that is started for casting purposes.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+| Name           | Type                     | Mandatory| Description                                                                 |
+| --------------- |-------------------------| ---- |---------------------------------------------------------------------|
+| sessionType         | [AVSessionType](#avsessiontype10)  | No  | Session type. The default value is **'audio'**.<br>Currently, only the **'audio'** and **'video'** session types are supported. If **'voice_call'** and **'video_call'** are passed, they are treated as the default value **'audio'**.           |
+
+## AVCastPickerHelper<sup>14+</sup>
+
+Implements a semi-modal object used for casting. It displays a semi-modal window for users to select a target cast device. Before using the APIs of this class, you need to create an **AVCastPickerHelper** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+### constructor<sup>14+</sup>
+
+constructor(context: Context)
+
+Creates an **AVCastPickerHelper** instance. For details about how to obtain the context, see [getContext](../apis-arkui/js-apis-getContext.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                                       | Mandatory| Description                                                        |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| context  | Context | Yes  | Application context. (Only [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) is supported.)|
+
+**Example**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() {
+    Row() {
+      Column() {
+        Text(this.message)
+          .fontSize(40)
+          .fontWeight(FontWeight.Bold)
+          .onClick(()=>{
+            let context = getContext(this) as common.Context;
+            let avCastPicker = new avSession.AVCastPickerHelper(context);
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+### select<sup>14+</sup>
+
+select(options?: AVCastPickerOptions): Promise\<void>
+
+Starts the AVCastPicker dialog box, where users can select the target cast device. This API uses a promise to return the result. You can pass in **AVCastPickerOptions** to specify the properties for selection.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name   | Type                                                       | Mandatory| Description                                                        |
+| --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| options  | [AVCastPickerOptions](#avcastpickeroptions14) | No  | AVCastPicker selection options. If this parameter is not specified, the default value of **AVCastPickerOptions** is used.|
+
+**Return value**
+
+| Type          | Description                         |
+| -------------- | ----------------------------- |
+| Promise\<void> | Promise used to return the result. If the command is sent, no value is returned; otherwise, an error object is returned.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function avCastPicker(context: common.Context) {
+  let avCastPickerOptions : avSession.AVCastPickerOptions = {
+    sessionType : 'video',
+  }
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.select(avCastPickerOptions).then(() => {
+    console.info('select successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`AVCastPicker.select failed with err: ${err.code}, ${err.message}`);
+  });
+}
+```
+### on('pickerStateChange')<sup>14+</sup>
+
+on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
+
+Subscribes to semi-modal window change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type      | Mandatory| Description     |
+| --------| -----------|-----|------------|
+| type     | string    | Yes  | Event type. The event **'pickerStateChange'** is triggered when the semi-modal window changes.|
+| callback | Callback\<[AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11)>       | Yes  | Callback function, where the **state** parameter indicates the new state of the semi-modal window.|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { common } from '@kit.AbilityKit';
+import { AVCastPickerState } from '@kit.AVSessionKit';
+
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.on('pickerStateChange', (state: AVCastPickerState) => {
+    console.info(`picker state change : ${state}`);
+  });
+}
+```
+
+### off('pickerStateChange')<sup>14+</sup>
+
+off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
+
+Unsubscribes from semi-modal window change events. After the unsubscription, the event callback is not triggered.
+
+**Atomic service API**: This API can be used in atomic services since API version 14.
+
+**System capability**: SystemCapability.Multimedia.AVSession.AVCast
+
+**Parameters**
+
+| Name  | Type                                              | Mandatory| Description                                                   |
+| -------- | ------------------------------------------------ | ---- | ------------------------------------------------------ |
+| type     | string                                           | Yes  | Event type, which is **'pickerStateChange'** in this case.        |
+| callback | Callback\<[AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate11)> | No  | Callback function, where the **state** parameter indicates the new state of the semi-modal window.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.                          |
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { common } from '@kit.AbilityKit';
+
+async function onPickerStateChange(context: common.Context) {
+  let avCastPicker = new avSession.AVCastPickerHelper(context);
+  avCastPicker.off('pickerStateChange');
+}
+```
+
 ## AVSessionErrorCode<sup>10+</sup>
 
 Enumerates the error codes used in the media session.
 
-**System capability**: SystemCapability.Multimedia.AVSession.Core
-
 | Name                                  | Value     | Description                            |
 | -------------------------------------- | ------- | ------------------------------- |
-| ERR_CODE_SERVICE_EXCEPTION             | 6600101 | Session service exception.               |
-| ERR_CODE_SESSION_NOT_EXIST             | 6600102 | The session does not exist.      |
-| ERR_CODE_CONTROLLER_NOT_EXIST          | 6600103 | The session controller does not exist.   |
-| ERR_CODE_REMOTE_CONNECTION_ERR         | 6600104 | The remote session  connection failed.         |
-| ERR_CODE_COMMAND_INVALID               | 6600105 | Invalid session command.           |
-| ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.                |
-| ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or events.       |
-| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Device connecting failed.       |
-| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote connection is not established.       |
+| ERR_CODE_SERVICE_EXCEPTION             | 6600101 | The session server is abnormal.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_SESSION_NOT_EXIST             | 6600102 | The session does not exist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_CONTROLLER_NOT_EXIST          | 6600103 | The session controller does not exist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_REMOTE_CONNECTION_ERR         | 6600104 | Connection to the remote session fails.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_COMMAND_INVALID               | 6600105 | The session command is invalid.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_SESSION_INACTIVE              | 6600106 | The session is not activated.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_MESSAGE_OVERLOAD              | 6600107 | Too many commands or messages.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_DEVICE_CONNECTION_FAILED      | 6600108 | Connection to the device fails.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_REMOTE_CONNECTION_NOT_EXIST   | 6600109 | The remote session does not exist.<br>**Atomic service API**: This API can be used in atomic services since API version 12.<br>**System capability**: SystemCapability.Multimedia.AVSession.Core|
+| ERR_CODE_CAST_CONTROL_UNSPECIFIED<sup>13+</sup>    | 6611000 | An undefined error occurs during cast control.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_REMOTE_ERROR<sup>13+</sup>    | 6611001 | An unknown error occurs in the remote player.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_BEHIND_LIVE_WINDOW<sup>13+</sup>     | 6611002 | The playback is delayed.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_TIMEOUT<sup>13+</sup>     | 6611003 | The cast control process times out.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_RUNTIME_CHECK_FAILED<sup>13+</sup>      | 6611004 | The runtime check fails.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAYER_NOT_WORKING<sup>13+</sup>      | 6611100 | Cross-device data transfer is locked.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_SEEK_MODE_UNSUPPORTED<sup>13+</sup>      | 6611101 | The specified seek mode is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_ILLEGAL_SEEK_TARGET<sup>13+</sup>      | 6611102 | The seek position is out of the media range, or the current seek mode is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAY_MODE_UNSUPPORTED<sup>13+</sup>      | 6611103 |  The specified playback mode is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PLAY_SPEED_UNSUPPORTED<sup>13+</sup>      | 6611104 | The specified playback speed is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DEVICE_MISSING<sup>13+</sup>      | 6611105 | Operation failed because the media source device or media receiver device has been destroyed.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_INVALID_PARAM<sup>13+</sup>       | 6611106 | The parameter is invalid.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_NO_MEMORY<sup>13+</sup>       | 6611107 | Failed to allocate memory.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_OPERATION_NOT_ALLOWED<sup>13+</sup>       | 6611108 | The operation is not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_UNSPECIFIED<sup>13+</sup>       | 6612000 | An unspecified input/output error occurs.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_CONNECTION_FAILED<sup>13+</sup>       | 6612001 | Network connection fails.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_CONNECTION_TIMEOUT<sup>13+</sup>       | 6612002 | Network connection times out.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_INVALID_HTTP_CONTENT_TYPE <sup>13+</sup>      | 6612003 | The value of **Content-Type** is invalid.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_BAD_HTTP_STATUS<sup>13+</sup>        | 6612004 | The HTTP server returns an unexpected HTTP response status code.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_FILE_NOT_FOUND<sup>13+</sup>   | 6612005 | The file does not exist.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NO_PERMISSION<sup>13+</sup>    | 6612006 | The input/output operation is not allowed.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CLEARTEXT_NOT_PERMITTED<sup>13+</sup>    | 6612007 | The network security configuration of the application does not allow access to plaintext HTTP traffic.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_READ_POSITION_OUT_OF_RANGE<sup>13+</sup>        | 6612008 | Data is read from data binding.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NO_CONTENTS<sup>13+</sup>     | 6612100 | No content can be played in the media.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_READ_ERROR<sup>13+</sup>        | 6612101 | The media cannot be read.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CONTENT_BUSY<sup>13+</sup>         | 6612102 | The resource is in use.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_CONTENT_EXPIRED<sup>13+</sup>    | 6612103 | The input/output request content has expired.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_USE_FORBIDDEN<sup>13+</sup>    | 6612104 | The requested content cannot be played.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NOT_VERIFIED<sup>13+</sup>     | 6612105 | The allowed content cannot be verified.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_EXHAUSTED_ALLOWED_USES<sup>13+</sup>     | 6612106 | The number of times that the content can be used has reached the maximum.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_IO_NETWORK_PACKET_SENDING_FAILED<sup>13+</sup>   | 6612107 | An error occurs when the source device sends data packets to the destination device.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_UNSPECIFIED<sup>13+</sup>    | 6613000 | An unspecified content parsing error occurs.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_CONTAINER_MALFORMED<sup>13+</sup>    | 6613001 | The format of the media container bit stream is incorrectly parsed.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_MANIFEST_MALFORMED<sup>13+</sup>     | 6613002 | An error occurred when parsing the media list.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_CONTAINER_UNSUPPORTED<sup>13+</sup>   | 6613003 | The media container format or feature of the file is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_PARSING_MANIFEST_UNSUPPORTED<sup>13+</sup>      | 6613004 | The feature is not supported in the media list.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_UNSPECIFIED<sup>13+</sup>     | 6614000 | An unspecified decoding error occurs.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_INIT_FAILED<sup>13+</sup>   | 6614001 | Initializing the decoder fails.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_QUERY_FAILED<sup>13+</sup>     | 6614002 | Querying the decoder fails.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FAILED<sup>13+</sup>     | 6614003 | Decoding the media sample fails.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FORMAT_EXCEEDS_CAPABILITIES<sup>13+</sup>    | 6614004 | The device cannot decode the current format.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DECODING_FORMAT_UNSUPPORTED<sup>13+</sup>    | 6614005 | The decoding format is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_UNSPECIFIED<sup>13+</sup>       | 6615000 | An unspecified audio renderer error occurs.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_INIT_FAILED <sup>13+</sup>     | 6615001 | Initializing the audio renderer fails.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_AUDIO_RENDERER_WRITE_FAILED<sup>13+</sup>    | 6615002 | Writing data to the audio renderer fails.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_UNSPECIFIED<sup>13+</sup>      | 6616000 | An unspecified DRM-related error occurs.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_SCHEME_UNSUPPORTED<sup>13+</sup>  | 6616001 | The device does not support the selected DRM scheme.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_PROVISIONING_FAILED<sup>13+</sup>   | 6616002 | Device configurations fail.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_CONTENT_ERROR<sup>13+</sup>  | 6616003 | The DRM-protected content cannot be played.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_LICENSE_ACQUISITION_FAILED<sup>13+</sup>    | 6616004 | Obtaining a license fails.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_DISALLOWED_OPERATION<sup>13+</sup>     | 6616005 | The license policy does not allow this operation.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_SYSTEM_ERROR<sup>13+</sup>     | 6616006 | An error occurs in the DRM system.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_DEVICE_REVOKED<sup>13+</sup>     | 6616007 | The DRM permission has been revoked from the device.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_LICENSE_EXPIRED<sup>13+</sup>   | 6616008 | The DRM license that is being loaded has expired.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
+| ERR_CODE_CAST_CONTROL_DRM_PROVIDE_KEY_RESPONSE_ERROR<sup>13+</sup>    | 6616100 | An error occurs when the DRM processes the key response.<br>**Atomic service API**: This API can be used in atomic services since API version 13.<br>**System capability**: SystemCapability.Multimedia.AVSession.AVCast|
 
 ## SkipIntervals<sup>11+</sup>
 

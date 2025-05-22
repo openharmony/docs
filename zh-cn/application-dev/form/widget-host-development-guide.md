@@ -25,7 +25,7 @@
 
 ## 卡片组件
 
-提供卡片组件，实现卡片的显示功能。详情见[FormComponent](../../application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)。
+提供卡片组件，实现卡片的显示功能。详情见[FormComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-formcomponent-sys.md)。
 
 > **说明：**
 >
@@ -37,7 +37,7 @@
 >
 > - 本模块为系统接口。
 
-通过卡片组件成功添加卡片时，会调用到卡片提供方FormExtensionAbility中的[onAddForm](../../application-dev/reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)方法。
+通过卡片组件成功添加卡片时，会调用到卡片提供方FormExtensionAbility中的[onAddForm](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md#onaddform)方法。
 
 ### 临时卡片和常态卡片
 
@@ -51,19 +51,16 @@
 
 ## formHost接口
 
-formHost提供一系列的卡片使用方接口，来操作卡片的更新、删除等行为，具体的API介绍详见[接口文档](../../application-dev/reference/apis-form-kit/js-apis-app-form-formHost-sys.md)。
+formHost提供一系列的卡片使用方接口，来操作卡片的更新、删除等行为，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formHost-sys.md)。
 
 ## 卡片使用方示例
 
 ```ts
 //Index.ets
-import formHost from '@ohos.app.form.formHost';
-import formInfo from '@ohos.app.form.formInfo';
-import HashMap from '@ohos.util.HashMap';
-import HashSet from '@ohos.util.HashSet';
-import bundleMonitor from '@ohos.bundle.bundleMonitor';
-import { BusinessError } from '@ohos.base';
-import formObserver from '@ohos.app.form.formObserver';
+import { HashMap, HashSet } from '@kit.ArkTS';
+import { formHost, formInfo, formObserver } from '@kit.FormKit';
+import { bundleMonitor } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -119,6 +116,7 @@ struct formHostSample {
     updateDuration: 0,
     defaultDimension: 6,
     supportDimensions: [],
+    supportedShapes: [],
     customizeData: {},
     isDynamic: false,
     transparencyEnabled: false
@@ -278,8 +276,8 @@ struct formHostSample {
         Button($r('app.string.selectAddForm'))
           .enabled(this.showFormPicker)
           .onClick(() => {
-            console.info("TextPickerDialog: show()")
-            TextPickerDialog.show({
+            console.info("showTextPickerDiaglog")
+            this.getUIContext().showTextPickerDiaglog({
               range: this.formInfoRecord,
               selected: this.pickDialogIndex,
               canLoop: false,

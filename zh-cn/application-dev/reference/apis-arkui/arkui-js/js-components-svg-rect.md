@@ -23,12 +23,12 @@
 | 名称 | 类型 | 默认值 | 必填 | 描述 |
 | -------- | -------- | -------- | -------- | -------- |
 | id | string | - | 否 | 组件的唯一标识。 |
-| width | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形的宽度。支持属性动画 |
-| height | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形的高度。支持属性动画 |
-| x | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形左上角x轴坐标。支持属性动画 |
-| y | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形左上角y轴坐标。支持属性动画 |
-| rx | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形圆角x方向半径。支持属性动画 |
-| ry | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形圆角y方向半径。支持属性动画 |
+| width | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形的宽度。支持属性动画。 |
+| height | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形的高度。支持属性动画。 |
+| x | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形左上角x轴坐标。支持属性动画。 |
+| y | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形左上角y轴坐标。支持属性动画。 |
+| rx | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形圆角x方向半径。支持属性动画。 |
+| ry | &lt;length&gt;\|&lt;percentage&gt; | 0 | 否 | 设置矩形圆角y方向半径。支持属性动画。 |
 
 
 ## 示例

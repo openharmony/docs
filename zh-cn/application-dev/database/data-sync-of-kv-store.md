@@ -13,7 +13,7 @@
 
 ### 单版本数据库
 
-单版本是指数据在本地是以单个条目为单位的方式保存，当数据在本地被用户修改时，不管它是否已经被同步出去，均直接在这个条目上进行修改。多个设备全局只保留一份数据，多个设备的相同记录（主码相同）会按时间最新保留一条记录，数据不分设备，设备之间修改相同的key会覆盖。同步也以此为基础，按照它在本地被写入或更改的顺序将当前最新一次修改逐条同步至远端设备，常用于联系人、天气等应用存储场景。
+单版本是指数据在本地是以单个条目为单位的方式保存，当用户修改时，直接在这个条目上进行修改。在数据同步后多个设备全局只保留一份数据，多个设备的相同记录（主码相同）会按时间最新保留一条记录，数据不分设备，设备之间修改相同的key会覆盖。同步也以此为基础，按照它在本地被写入或更改的顺序将当前最新一次修改逐条同步至远端设备，常用于联系人、天气等应用存储场景。
 
 ![singleKVStore](figures/singleKVStore.jpg)
 
@@ -31,10 +31,14 @@
 
 数据管理服务提供了两种同步方式：手动同步和自动同步。键值型数据库可选择其中一种方式实现同应用跨设备数据同步。
 
+### 手动同步
 
-- **手动同步**：由应用程序调用sync接口来触发，需要指定同步的设备列表和同步模式。同步模式分为PULL_ONLY（将远端数据拉取到本端）、PUSH_ONLY（将本端数据推送到远端）和PUSH_PULL（将本端数据推送到远端同时也将远端数据拉取到本端）。[带有Query参数的同步接口](../reference/apis-arkdata/js-apis-distributedKVStore.md#sync-1)，支持按条件过滤的方法进行同步，将符合条件的数据同步到远端。
+由应用程序调用sync接口来触发，需要指定同步的设备列表和同步模式。同步模式分为PULL_ONLY（将远端数据拉取到本端）、PUSH_ONLY（将本端数据推送到远端）和PUSH_PULL（将本端数据推送到远端同时也将远端数据拉取到本端）。[带有Query参数的同步接口](../reference/apis-arkdata/js-apis-distributedKVStore.md#sync-1)，支持按条件过滤的方法进行同步，将符合条件的数据同步到远端。
 
-- **自动同步**：由分布式数据库自动将本端数据推送到远端，同时也将远端数据拉取到本端来完成数据同步，同步时机包括设备上线、应用程序更新数据等，应用不需要主动调用sync接口。
+### 自动同步
+
+<!--RP5-->
+在[跨设备Call调用实现的多端协同](../application-models/hop-multi-device-collaboration.md#通过跨设备call调用实现多端协同)场景中，在应用程序更新数据后，由分布式数据库自动将本端数据推送到远端，同时也将远端数据拉取到本端来完成数据同步，应用不需要主动调用sync接口。<!--RP5End-->
 
 
 ## 运作机制
@@ -46,14 +50,14 @@
 
 ![kvStore](figures/kvStore.jpg)
 
-如图所示，通过put、delete接口触发自动同步，将分布式数据通过通信适配层发送给对端设备，实现分布式数据的自动同步；
+如图所示，通过put、delete接口触发自动同步，将分布式数据通过通信适配层发送给对端设备，实现分布式数据的自动同步。
 
 手动同步则是手动调用sync接口触发同步，将分布式数据通过通信适配层发送给对端设备。
 
 
 ### 数据变化通知机制
 
-增、删、改数据库时，会给订阅者发送数据变化的通知。主要分为本地数据变化通知和分布式数据变化通知。
+增、删、改数据时，会给订阅者发送数据变化的通知。主要分为本地数据变化通知和分布式数据变化通知。
 
 - **本地数据变化通知**：本地设备的应用内订阅数据变化通知，数据库增删改数据时，会收到通知。
 
@@ -68,9 +72,9 @@
 
 - 键值型数据库不支持应用程序自定义冲突解决策略。
 
-- 每个应用程序最多支持同时打开16个键值型分布式数据库。
+- 每个应用程序可以同时打开最多16个键值型分布式数据库。
 
-- 单个数据库最多支持注册8个订阅数据变化的回调。
+- 单个数据库可以注册最多8个订阅数据变化的回调。
 
 
 ## 接口说明
@@ -80,8 +84,8 @@
 | 接口名称 | 描述 | 
 | -------- | -------- |
 | createKVManager(config: KVManagerConfig): KVManager | 创建一个KVManager对象实例，用于管理数据库对象。 | 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定Options和storeId，创建并得到指定类型的KVStore数据库。 | 
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | 插入和更新数据。 | 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定options和storeId，创建并得到指定类型的KVStore数据库。 | 
+| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | 插入和更新数据。 | 
 | on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | 订阅数据库中数据的变化。 | 
 | get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | 查询指定Key键的值。 | 
 | sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | 在手动模式下，触发数据库同步。 | 
@@ -95,12 +99,12 @@
 
 > **说明：**
 >
-> 数据只允许向数据安全标签不高于对端设备安全等级的设备同步数据，具体规则可见[跨设备同步访问控制机制](sync-app-data-across-devices-overview.md#跨设备同步访问控制机制)。
+> 数据只允许向数据安全标签不高于对端设备安全等级的设备同步数据，具体规则可见[跨设备同步访问控制机制](access-control-by-device-and-data-level.md#跨设备同步访问控制机制)。
 
 1. 导入模块。
      
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    ```
 
 2. 请求权限。
@@ -116,9 +120,9 @@
      
    ```ts
    // Stage模型获取context
-   import window from '@ohos.window';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -129,8 +133,8 @@
    }
     
     // FA模型获取context
-   import featureAbility from '@ohos.ability.featureAbility';
-   import { BusinessError } from '@ohos.base';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
     
    let context = featureAbility.getContext();
    
@@ -177,7 +181,7 @@
      schema.root.appendChild(child1);
      schema.root.appendChild(child2);
      schema.indexes = ['$.id', '$.name'];
-     // 0表示STRICT模式，1表示COMPATIBLE模式。
+     // 0表示COMPATIBLE模式，1表示STRICT模式。
      schema.mode = 1;
      // 支持在检查Value时，跳过skip指定的字节数，且取值范围为[0,4M-2]。
      schema.skip = 0;
@@ -192,7 +196,7 @@
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // schema 可以不填，在需要使用schema功能时可以构造此参数，例如：使用谓词查询等。
        schema: schema,
-       securityLevel: distributedKVStore.SecurityLevel.S1
+       securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
@@ -258,9 +262,6 @@
 
      
    ```ts
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   // 如果未定义Schema则Value可以传其他符合要求的值。
-   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -292,12 +293,12 @@
    > 在手动同步的方式下，其中的deviceIds通过调用[devManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync)方法得到。
 
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
     
-   let devManager: deviceManager.DeviceManager;
+   let devManager: distributedDeviceManager.DeviceManager;
    try {
      // create deviceManager
-     devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+     devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
      // deviceIds由deviceManager调用getAvailableDeviceListSync方法得到
      let deviceIds: string[] = [];
      if (devManager != null) {

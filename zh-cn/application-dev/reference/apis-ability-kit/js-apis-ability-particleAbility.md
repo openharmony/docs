@@ -15,7 +15,7 @@ particleAbility模块用来对Data和Service类型的Ability进行操作。
 ## 导入模块
 
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
+import { particleAbility } from '@kit.AbilityKit';
 ```
 
 ## particleAbility.startAbility
@@ -39,31 +39,31 @@ startAbility(parameter: StartAbilityParameter, callback: AsyncCallback\<void>): 
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { particleAbility, wantConstant } from '@kit.AbilityKit';
 
 particleAbility.startAbility(
+  {
+    want:
     {
-        want:
-        {
-            action: 'ohos.want.action.home',
-            entities: ['entity.system.home'],
-            type: 'MIMETYPE',
-            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: '',
-            bundleName: 'com.example.Data',
-            abilityName: 'com.example.Data.EntryAbility',
-            uri: ''
-        },
+      action: 'ohos.want.action.home',
+      entities: ['entity.system.home'],
+      type: 'MIMETYPE',
+      flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+      deviceId: '',
+      bundleName: 'com.example.Data',
+      abilityName: 'com.example.Data.EntryAbility',
+      uri: ''
     },
-    (error, data) => {
-        if (error && error.code !== 0) {
-            console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
-        } else {
-            console.log(`startAbility success, data: ${JSON.stringify(data)}`);
-        }
-    },
+  },
+  (error, data) => {
+    if (error && error.code !== 0) {
+      console.error(`startAbility fail, error: ${JSON.stringify(error)}`);
+    } else {
+      console.log(`startAbility success, data: ${JSON.stringify(data)}`);
+    }
+  },
 );
 ```
 
@@ -93,26 +93,26 @@ startAbility(parameter: StartAbilityParameter): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { particleAbility, wantConstant } from '@kit.AbilityKit';
 
 particleAbility.startAbility(
+  {
+    want:
     {
-        want:
-        {
-            action: 'ohos.want.action.home',
-            entities: ['entity.system.home'],
-            type: 'MIMETYPE',
-            flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            deviceId: '',
-            bundleName: 'com.example.Data',
-            abilityName: 'com.example.Data.EntryAbility',
-            uri: ''
-        },
+      action: 'ohos.want.action.home',
+      entities: ['entity.system.home'],
+      type: 'MIMETYPE',
+      flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+      deviceId: '',
+      bundleName: 'com.example.Data',
+      abilityName: 'com.example.Data.EntryAbility',
+      uri: ''
     },
+  },
 ).then(() => {
-    console.info('particleAbility startAbility');
+  console.info('particleAbility startAbility');
 });
 ```
 
@@ -132,15 +132,16 @@ terminateSelf(callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
+import { particleAbility } from '@kit.AbilityKit';
 
 particleAbility.terminateSelf(
-    (error) => {
-        if (error && error.code !== 0) {
-            console.error(`terminateSelf fail, error: ${JSON.stringify(error)}`);
-        }
+  (error) => {
+    if (error && error.code !== 0) {
+      console.error(`terminateSelf fail, error: ${JSON.stringify(error)}`);
     }
+  }
 );
 ```
 
@@ -160,11 +161,12 @@ terminateSelf(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
+import { particleAbility } from '@kit.AbilityKit';
 
 particleAbility.terminateSelf().then(() => {
-	console.info('particleAbility terminateSelf');
+  console.info('particleAbility terminateSelf');
 });
 ```
 
@@ -197,8 +199,9 @@ acquireDataAbilityHelper(uri: string): DataAbilityHelper
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
+import { particleAbility } from '@kit.AbilityKit';
 
 let uri = '';
 particleAbility.acquireDataAbilityHelper(uri);
@@ -211,11 +214,11 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 
 向系统申请长时任务。使用callback异步回调。
 
-**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+**需要权限**：ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**说明：**
+> **说明：**
 >
 > 从API version 9开始不再维护，建议使用[backgroundTaskManager.startBackgroundRunning](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning)替代。
 
@@ -229,48 +232,47 @@ startBackgroundRunning(id: number, request: NotificationRequest, callback: Async
 
  **示例**：
 
+<!--code_no_check_fa-->
 ```ts
-import notification from '@ohos.notificationManager';
-import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.app.ability.wantAgent';
-import { BusinessError } from '@ohos.base';
+import { particleAbility, wantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import notification from '@ohos.notification';
 
 function callback(error: BusinessError, data: void) {
-    if (error && error.code !== 0) {
-        console.error(`Operation failed error: ${JSON.stringify(error)}`);
-    } else {
-        console.info(`Operation succeeded, data: ${data}`);
-    }
+  if (error && error.code !== 0) {
+    console.error(`Operation failed error: ${JSON.stringify(error)}`);
+  } else {
+    console.info(`Operation succeeded, data: ${data}`);
+  }
 }
 
 let wantAgentInfo: wantAgent.WantAgentInfo = {
-    wants: [
-        {
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility'
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+  wants: [
+    {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let id = 1;
-    particleAbility.startBackgroundRunning(id, {
-        content:
-        {
-            contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-            normal:
-            {
-                title: 'title',
-                text: 'text'
-            }
-        },
-        wantAgent: wantAgentObj
-    }, callback);
+  let id = 1;
+  particleAbility.startBackgroundRunning(id, {
+    content:
+    {
+      contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+      normal:
+      {
+        title: 'title',
+        text: 'text'
+      }
+    },
+    wantAgent: wantAgentObj
+  }, callback);
 });
-
 ```
 
 ## particleAbility.startBackgroundRunning<sup>(deprecated)</sup>
@@ -279,11 +281,11 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 向系统申请长时任务。使用Promise异步回调。
 
-**需要权限:** ohos.permission.KEEP_BACKGROUND_RUNNING
+**需要权限**：ohos.permission.KEEP_BACKGROUND_RUNNING
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**说明：**
+> **说明：**
 >
 > 从API version 9开始不再维护，建议使用[backgroundTaskManager.startBackgroundRunning](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning-1)替代。
 
@@ -302,44 +304,43 @@ startBackgroundRunning(id: number, request: NotificationRequest): Promise&lt;voi
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
-import notification from '@ohos.notificationManager';
-import particleAbility from '@ohos.ability.particleAbility';
-import wantAgent from '@ohos.app.ability.wantAgent';
-import { BusinessError } from '@ohos.base';
+import { particleAbility, wantAgent } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import notification from '@ohos.notification';
 
 let wantAgentInfo: wantAgent.WantAgentInfo = {
-    wants: [
-        {
-            bundleName: 'com.example.myapplication',
-            abilityName: 'EntryAbility'
-        }
-    ],
-    operationType: wantAgent.OperationType.START_ABILITY,
-    requestCode: 0,
-    wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
+  wants: [
+    {
+      bundleName: 'com.example.myapplication',
+      abilityName: 'EntryAbility'
+    }
+  ],
+  operationType: wantAgent.OperationType.START_ABILITY,
+  requestCode: 0,
+  wantAgentFlags: [wantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
 wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj) => {
-    let id = 1;
-    particleAbility.startBackgroundRunning(id, {
-        content:
-        {
-            contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-            normal:
-            {
-                title: 'title',
-                text: 'text'
-            }
-        },
-        wantAgent: wantAgentObj
-    }).then(() => {
-        console.info('Operation succeeded');
-    }).catch((err: BusinessError) => {
-        console.error(`Operation failed cause: ${JSON.stringify(err)}`);
-    });
+  let id = 1;
+  particleAbility.startBackgroundRunning(id, {
+    content:
+    {
+      contentType: notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+      normal:
+      {
+        title: 'title',
+        text: 'text'
+      }
+    },
+    wantAgent: wantAgentObj
+  }).then(() => {
+    console.info('Operation succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`Operation failed cause: ${JSON.stringify(err)}`);
+  });
 });
-
 ```
 
 ## particleAbility.cancelBackgroundRunning<sup>(deprecated)</sup>
@@ -350,7 +351,7 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**说明：**
+> **说明：**
 >
 > 从API version 9开始不再维护，建议使用[backgroundTaskManager.stopBackgroundRunning](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning)替代。
 
@@ -362,20 +363,20 @@ cancelBackgroundRunning(callback: AsyncCallback&lt;void&gt;): void
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
-import { BusinessError } from '@ohos.base';
+import { particleAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function callback(error: BusinessError, data: void) {
-    if (error && error.code !== 0) {
-        console.error(`Operation failed error: ${JSON.stringify(error)}`);
-    } else {
-        console.info(`Operation succeeded, data: ${data}`);
-    }
+  if (error && error.code !== 0) {
+    console.error(`Operation failed error: ${JSON.stringify(error)}`);
+  } else {
+    console.info(`Operation succeeded, data: ${data}`);
+  }
 }
 
 particleAbility.cancelBackgroundRunning(callback);
-
 ```
 
 ## particleAbility.cancelBackgroundRunning<sup>(deprecated)</sup>
@@ -386,7 +387,7 @@ cancelBackgroundRunning(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.ResourceSchedule.BackgroundTaskManager.ContinuousTask
 
-**说明：**
+> **说明：**
 >
 > 从API version 9开始不再维护，建议使用[backgroundTaskManager.stopBackgroundRunning](../apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstopbackgroundrunning-1)替代。
 
@@ -398,16 +399,16 @@ cancelBackgroundRunning(): Promise&lt;void&gt;
 
  **示例**：
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
-import { BusinessError } from '@ohos.base';
+import { particleAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 particleAbility.cancelBackgroundRunning().then(() => {
-    console.info('Operation succeeded');
+  console.info('Operation succeeded');
 }).catch((err: BusinessError) => {
-    console.error(`Operation failed cause: ${JSON.stringify(err)}`);
+  console.error(`Operation failed cause: ${JSON.stringify(err)}`);
 });
-
 ```
 
 ## particleAbility.connectAbility
@@ -439,33 +440,34 @@ connectAbility(request: Want, options:ConnectOptions): number
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { particleAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let connId = particleAbility.connectAbility(
-    {
-        bundleName: 'com.ix.ServiceAbility',
-        abilityName: 'ServiceAbilityA',
+  {
+    bundleName: 'com.ix.ServiceAbility',
+    abilityName: 'ServiceAbilityA',
+  },
+  {
+    onConnect: (element, remote) => {
+      console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
-    {
-        onConnect: (element, remote) => {
-            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
-        },
-        onDisconnect: (element) => {
-            console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
-        },
-        onFailed: (code) => {
-            console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
-        },
+    onDisconnect: (element) => {
+      console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
     },
+    onFailed: (code) => {
+      console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
+    },
+  },
 );
 
 particleAbility.disconnectAbility(connId).then((data) => {
-    console.log(`data: ${data}`);
+  console.log(`data: ${data}`);
 }).catch((error: BusinessError) => {
-    console.error(`particleAbilityTest result errCode: ${error.code}`);
+  console.error(`particleAbilityTest result errCode: ${error.code}`);
 });
 ```
 
@@ -486,30 +488,31 @@ disconnectAbility(connection: number, callback:AsyncCallback\<void>): void
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
-import rpc from '@ohos.rpc';
+import { particleAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
 
 let connId = particleAbility.connectAbility(
-    {
-        bundleName: 'com.ix.ServiceAbility',
-        abilityName: 'ServiceAbilityA',
+  {
+    bundleName: 'com.ix.ServiceAbility',
+    abilityName: 'ServiceAbilityA',
+  },
+  {
+    onConnect: (element, remote) => {
+      console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
-    {
-        onConnect: (element, remote) => {
-            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
-        },
-        onDisconnect: (element) => {
-            console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
-        },
-        onFailed: (code) => {
-            console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
-        },
+    onDisconnect: (element) => {
+      console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
     },
+    onFailed: (code) => {
+      console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
+    },
+  },
 );
 
 particleAbility.disconnectAbility(connId, (err) => {
-    console.error(`particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}`);
+  console.error(`particleAbilityTest disconnectAbility err: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -536,33 +539,34 @@ disconnectAbility(connection: number): Promise\<void>
 
 **示例**：
 
+<!--code_no_check_fa-->
 ```ts
-import particleAbility from '@ohos.ability.particleAbility';
-import rpc from '@ohos.rpc';
-import { BusinessError } from '@ohos.base';
+import { particleAbility } from '@kit.AbilityKit';
+import { rpc } from '@kit.IPCKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let connId = particleAbility.connectAbility(
-    {
-        bundleName: 'com.ix.ServiceAbility',
-        abilityName: 'ServiceAbilityA',
+  {
+    bundleName: 'com.ix.ServiceAbility',
+    abilityName: 'ServiceAbilityA',
+  },
+  {
+    onConnect: (element, remote) => {
+      console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
     },
-    {
-        onConnect: (element, remote) => {
-            console.log(`ConnectAbility onConnect remote is proxy: ${(remote instanceof rpc.RemoteProxy)}`);
-        },
-        onDisconnect: (element) => {
-            console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
-        },
-        onFailed: (code) => {
-            console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
-        },
+    onDisconnect: (element) => {
+      console.log(`ConnectAbility onDisconnect element.deviceId: ${element.deviceId}`);
     },
+    onFailed: (code) => {
+      console.error(`particleAbilityTest ConnectAbility onFailed errCode: ${code}`);
+    },
+  },
 );
 
 particleAbility.disconnectAbility(connId).then(() => {
-    console.log('disconnectAbility success');
+  console.log('disconnectAbility success');
 }).catch((error: BusinessError) => {
-    console.error(`particleAbilityTest result errCode : ${error.code}`);
+  console.error(`particleAbilityTest result errCode : ${error.code}`);
 });
 ```
 ## ErrorCode

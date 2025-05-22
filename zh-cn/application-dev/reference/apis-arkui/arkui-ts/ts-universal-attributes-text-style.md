@@ -14,6 +14,8 @@ fontColor(value: ResourceColor)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -30,13 +32,15 @@ fontSize(value: number | string | Resource)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。不支持设置百分比字符串。 |
+| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;number&nbsp;\|&nbsp;string | 是   | 字体大小。fontSize为number类型时，使用fp单位。字体默认大小16fp。string类型支持number类型取值的字符串形式，可以附带单位，例如"10"、"10fp"，不支持设置百分比字符串。 |
 
 ## fontStyle
 
@@ -45,6 +49,8 @@ fontStyle(value: FontStyle)
 设置字体样式。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -62,6 +68,8 @@ fontWeight(value: number | FontWeight | string)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -78,13 +86,15 @@ fontFamily(value: string | Resource)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
 
 | 参数名 | 类型                                                 | 必填 | 说明                                                         |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是   | 字体列表。默认字体'HarmonyOS Sans'，当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。 |
+| value  | [Resource](ts-types.md#resource)&nbsp;\|&nbsp;string | 是   | 字体列表。默认字体'HarmonyOS Sans'。<br>应用当前支持'HarmonyOS Sans'字体和[注册自定义字体](../js-apis-font.md)。<br>卡片当前仅支持'HarmonyOS Sans'字体。 |
 
 ## lineHeight
 
@@ -93,6 +103,8 @@ lineHeight(value: number | string | Resource)
 设置文本的文本行高，设置值不大于0时，不限制文本行高，自适应字体大小。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -104,11 +116,13 @@ lineHeight(value: number | string | Resource)
 
 ## decoration
 
-decoration(value: { type: TextDecorationType; color?: ResourceColor })
+decoration(value: DecorationStyleInterface)
 
 设置文本装饰线样式及其颜色。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -116,10 +130,11 @@ decoration(value: { type: TextDecorationType; color?: ResourceColor })
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br/>type:&nbsp;[TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br/>color?:&nbsp;[ResourceColor](ts-types.md#resourcecolor)<br/>} | 是   | 文本装饰线样式及其颜色。<br />默认值：{<br/>type:&nbsp;TextDecorationType.None,<br/>color：Color.Black<br/>} |
-
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | 是   | 文本装饰线样式对象。<br/>默认值：<br/>{<br/>&nbsp;type:&nbsp;TextDecorationType.None,<br/>&nbsp;color:&nbsp;Color.Black,<br/>&nbsp;style:&nbsp;TextDecorationStyle.SOLID&nbsp;<br/>}<br/>**说明：** <br/>style参数不支持卡片能力。 |
 
 ## 示例
+
+该示例通过fontColor、fontSize、fontStyle、fontWeight属性展示了不同样式的文本效果。
 
 ```ts
 // xxx.ets
@@ -127,7 +142,7 @@ decoration(value: { type: TextDecorationType; color?: ResourceColor })
 @Component
 struct TextStyleExample {
   build() {
-    Column({ space: 5 }) {
+    Column({ space: 8 }) {
       Text('default text')
       
       Text('text font color red').fontColor(Color.Red)
@@ -152,6 +167,32 @@ struct TextStyleExample {
         .fontColor(Color.Orange)
         .fontSize(18)
         .fontStyle(FontStyle.Normal)
+
+      Text('text lineHeight 30')
+        .lineHeight(30)
+        .backgroundColor(Color.Gray)
+
+      Text('text fontFamily HarmonyOS Sans')
+        .fontFamily("HarmonyOS Sans")
+
+      Text('Underline Black SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.Underline,
+          color: Color.Black,
+          style: TextDecorationStyle.SOLID
+        })
+      Text('Overline Red DOTTED decoration text')
+        .decoration({
+          type: TextDecorationType.Overline,
+          color: Color.Red,
+          style: TextDecorationStyle.DOTTED
+        })
+      Text('LineThrough Orange SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.LineThrough,
+          color: Color.Orange,
+          style: TextDecorationStyle.WAVY
+        })
     }.width('100%')
   }
 }

@@ -28,5 +28,5 @@ Describes the touch point of the touch event.
 | [type](_o_h___native_x_component.md#type-12) = OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | Touch type of the touch event. | 
 | [size](_o_h___native_x_component.md#size-12) = 0.0 | Contact area between the finger pad and the screen.  | 
 | [force](_o_h___native_x_component.md#force-12) = 0.0 | Pressure of the current touch event. | 
-| [timeStamp](_o_h___native_x_component.md#timestamp-12) = 0 | Timestamp of the current touch event. | 
+| [timeStamp](_o_h___native_x_component.md#timestamp-12) = 0 | Timestamp of the current touch event. It is interval between the time when the event is triggered and the time when the system starts, in nanoseconds. | 
 | [isPressed](_o_h___native_x_component.md#ispressed) = false | Whether the current point is pressed. | 

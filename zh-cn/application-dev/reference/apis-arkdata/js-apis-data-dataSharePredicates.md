@@ -1,6 +1,6 @@
 # @ohos.data.dataSharePredicates (数据共享谓词)
 
-**谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据([update](js-apis-data-dataShare-sys.md#update))、删除数据([delete](js-apis-data-dataShare-sys.md#delete))和查询数据([query](js-apis-data-dataShare-sys.md#query))中。
+**谓词(DataSharePredicates)** 是开发者通过DataShare查询数据库中的数据所使用的筛选条件，经常被应用在更新数据、删除数据和查询数据中。
 
 谓词的接口函数与数据库的筛选条件一一对应，开发者在使用前需了解数据库相关知识。
 
@@ -15,7 +15,7 @@
 ## 导入模块
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 ```
 
 ## DataSharePredicates
@@ -30,6 +30,8 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 目前仅RDB及KVDB(schema)支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -62,6 +64,8 @@ and(): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型                                        | 说明                   |
@@ -86,6 +90,8 @@ orderByAsc(field: string): DataSharePredicates
 目前仅RDB及KVDB(schema)支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -116,6 +122,8 @@ orderByDesc(field: string): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -145,12 +153,14 @@ limit(total: number, offset: number): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名   | 类型   | 必填 | 说明           |
 | -------- | ------ | ---- | -------------- |
-| total    | number | 是   | 指定结果数。   |
-| offset | number | 是   | 指示起始位置。 |
+| total    | number | 是   | 表示最大数据记录数，取值为正整数。传入值小于0时，不会限制记录数量。传入值等于0时，KVDB(schema)会限制记录数为0，而RDB则在传入值等于0时不会限制记录数量。|
+| offset | number | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当offset为负数时，起始位置为结果集的最前端。当offset超出结果集最后位置时，查询结果为空。|
 
 **返回值：**
 
@@ -169,11 +179,13 @@ predicates.equalTo("NAME", "Rose").limit(10, 3)
 
 in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
-该接口用于配置谓词以匹配值在指范围内的字段。
+该接口用于配置谓词以匹配值在指定范围内的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 

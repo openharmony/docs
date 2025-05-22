@@ -86,9 +86,9 @@ In DevEco Studio, choose **Tools** > **OpenHarmony SDK Manager** to check the lo
 
    Change the value of **version** in the **oh-uni-package.json** file to the current SDK version number.
 
-   
+   In the ***.x.x.x*\build-tools\ets-loader** directory, open the **cmd/powerShell** window and run the **npm install** command to download the **node_modules** dependency package.
 
-   In the ***3.x.x.x*\build-tools\ets-loader** directory, open the **cmd/powerShell** window and run the **npm install** command to download the **node_modules** dependency package.
+   Verify the SDK version to switch to. The SDKs (4.x.x.x) using API version 10 or later contain the **node_modules** dependency. For these SDKs, you do not need to run the **npm install** command.
 
    ![image-20220613171111405](figures/en-us_image_0000001655129333.png)
 

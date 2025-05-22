@@ -1,6 +1,10 @@
-# 仅对MDM应用开放
+# 仅MDM应用可用权限
 
-以下权限仅对MDM（Mobile Device Management）设备管理应用开放。
+以下权限仅对MDM（Mobile Device Management）设备管理应用开放。MDM应用的详细介绍，请参考[MDM Kit简介](../../mdm/mdm-kit-intro.md)。
+
+> **注意：**
+> 
+> 以下权限不支持自动签名，因此在调试和发布阶段，均需参照[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)的步骤，完成手动签名。
 
 ## ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -8,9 +12,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -20,9 +25,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -32,9 +38,10 @@
 
 **权限级别**：system_core
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -44,9 +51,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -56,9 +64,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -68,9 +77,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -80,9 +90,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -92,9 +103,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：9
 
@@ -104,9 +116,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -116,9 +129,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -128,9 +142,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：9
 
@@ -140,9 +155,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -152,9 +168,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -164,9 +181,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -176,9 +194,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -188,9 +207,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -200,33 +220,36 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
 ## ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE
 
-允许在企业设备上安装企业MDM应用包
+允许在企业设备上安装企业MDM应用包。
 
 **权限级别**：system_core
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
 ## ohos.permission.INSTALL_SELF_BUNDLE
 
-允许企业MDM应用在企业设备上自升级
+允许企业MDM应用在企业设备上自升级。
 
 **权限级别**：system_core
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -236,9 +259,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：10
 
@@ -248,35 +272,12 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：9
-
-## ohos.permission.SET_FILE_GUARD_POLICY
-
-允许应用下发文件管控策略。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：10
-
-## ohos.permission.FILE_GUARD_MANAGER
-
-允许应用进行公共目录扫描及设置文件扩展属性。
-
-**权限级别**：system_core
-
-**授权方式**：system_grant
-
-**ACL使能**：true
-
-**起始版本**：10
 
 ## ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -284,9 +285,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -296,9 +298,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -308,9 +311,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -320,9 +324,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -332,9 +337,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -344,9 +350,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -356,9 +363,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -368,9 +376,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -380,9 +389,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -392,9 +402,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：11
 
@@ -404,9 +415,10 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：12
 
@@ -416,8 +428,125 @@
 
 **权限级别**：system_basic
 
-**授权方式**：system_grant
+**授权方式**：系统授权（system_grant）
 
-**ACL使能**：true
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
 
 **起始版本**：12
+
+## ohos.permission.ENTERPRISE_RECOVERY_KEY
+
+允许应用管理企业级恢复密钥。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：13
+
+## ohos.permission.ENTERPRISE_MANAGE_DELEGATED_POLICY
+
+允许设备管理应用委托其他应用设置设备管控策略。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**起始版本**：14
+
+## ohos.permission.ENTERPRISE_GET_ALL_BUNDLE_INFO
+
+允许设备管理应用获取设备所有应用信息。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_SET_USER_RESTRICTION
+
+允许设备管理应用限制用户修改系统设置。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_APN
+
+允许设备管理应用管理设备APN策略。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_MANAGE_TELEPHONY
+
+允许设备管理应用管理设备通话策略。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_SET_KIOSK
+
+允许设备管理应用设置Kiosk模式。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ENTERPRISE_SET_WALLPAPER
+
+允许设备管理应用设置壁纸。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20

@@ -13,7 +13,7 @@
 ## Modules to Import
 
 ```ts
-import I18n from '@ohos.i18n';
+import { i18n } from '@kit.LocalizationKit';
 ```
 
 ## System<sup>9+</sup>
@@ -22,9 +22,9 @@ import I18n from '@ohos.i18n';
 
 static setSystemLanguage(language: string): void
 
-Sets the system language. Currently, this API does not support real-time updating of the system language.
+Sets the system language.
 
-To listen for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEvent-locale.md#common_event_locale_changed11) events after the system language is set, you need to add an [event subscriber](..//apis-basic-services-kit/js-apis-commonEventManager.md#commoneventmanagercreatesubscriber-1).
+To listen for system language changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
 
 **System API**: This is a system API.
 
@@ -36,38 +36,39 @@ To listen for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_ev
 
 | Name     | Type    | Mandatory  | Description   |
 | -------- | ------ | ---- | ----- |
-| language | string | Yes   | Language ID.|
+| language | string | Yes   | Valid language ID.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import CommonEventManager from '@ohos.commonEventManager';
+  import { BusinessError, commonEventManager } from '@kit.BasicServicesKit';
 
   // Set the system language
   try {
-    I18n.System.setSystemLanguage('zh'); // Set the current system language to zh.
+    i18n.System.setSystemLanguage('zh'); // Set the current system language to zh.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLanguage failed, error code: ${err.code}, message: ${err.message}.`);
   }
  
   // Subscribe to a common event.
-  let subscriber: CommonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
-  let subscribeInfo: CommonEventManager.CommonEventSubscribeInfo = { // Define the subscriber information.
-    events: [CommonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
+  let subscriber: commonEventManager.CommonEventSubscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+  let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = { // Define subscriber information.
+    events: [commonEventManager.Support.COMMON_EVENT_LOCALE_CHANGED]
   };
-  CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:CommonEventManager.CommonEventSubscriber) => { // Create a subscriber.
+  commonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber:commonEventManager.CommonEventSubscriber) => { // Create a subscriber.
       console.info("createSubscriber");
       subscriber = commonEventSubscriber;
-      CommonEventManager.subscribe(subscriber, (err, data) => {
+      commonEventManager.subscribe(subscriber, (err, data) => {
         if (err) {
           console.error(`Failed to subscribe common event. error code: ${err.code}, message: ${err.message}.`);
           return;
@@ -85,6 +86,8 @@ static setSystemRegion(region: string): void
 
 Sets the system region.
 
+To listen for system region changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
@@ -95,22 +98,24 @@ Sets the system region.
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| region | string | Yes   | System region ID.|
+| region | string | Yes   | Valid region ID.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    I18n.System.setSystemRegion('CN'); // Set the current system region to CN.
+    i18n.System.setSystemRegion('CN'); // Set the current system region to CN.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemRegion failed, error code: ${err.code}, message: ${err.message}.`);
@@ -125,6 +130,8 @@ static setSystemLocale(locale: string): void
 
 Sets the system locale.
 
+To listen for system locale changes, enable listening for [COMMON_EVENT_LOCALE_CHANGED](../apis-basic-services-kit/common_event/commonEventManager-definitions.md#common_event_locale_changed).
+
 **System API**: This is a system API.
 
 **Permission required**: ohos.permission.UPDATE_CONFIGURATION
@@ -135,22 +142,24 @@ Sets the system locale.
 
 | Name   | Type    | Mandatory  | Description             |
 | ------ | ------ | ---- | --------------- |
-| locale | string | Yes   | System locale ID, for example, **zh-CN**.|
+| locale | string | Yes   | [System locale](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    I18n.System.setSystemLocale('zh-CN'); // Set the current system locale to zh-CN.
+    i18n.System.setSystemLocale('zh-CN'); // Set the system locale to zh-CN.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setSystemLocale failed, error code: ${err.code}, message: ${err.message}.`);
@@ -162,7 +171,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 static set24HourClock(option: boolean): void
 
-Sets the system time to the 24-hour clock.
+Sets whether to use the 24-hour clock.
 
 **System API**: This is a system API.
 
@@ -174,23 +183,25 @@ Sets the system time to the 24-hour clock.
 
 | Name   | Type     | Mandatory  | Description                                      |
 | ------ | ------- | ---- | ---------------------------------------- |
-| option | boolean | Yes   | Whether to enable the 24-hour clock. The value **true** means to enable the 24-hour clock, and the value **false** means the opposite.|
+| option | boolean | Yes   | Whether to use the 24-hour clock. The value **true** means to use the 24-hour clock, the the value **false** means the opposite.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Set the system time to the 24-hour clock.
   try {
-    I18n.System.set24HourClock(true);
+    i18n.System.set24HourClock(true);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);
@@ -213,26 +224,28 @@ Adds a preferred language to the specified position on the preferred language li
 
 | Name     | Type    | Mandatory  | Description        |
 | -------- | ------ | ---- | ---------- |
-| language | string | Yes   | Preferred language to add. |
+| language | string | Yes   | Valid ID of the language to be added as a preferred language. |
 | index    | number | No   | Position to which the preferred language is added. The default value is the length of the preferred language list.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Add zh-CN to the preferred language list.
   let language = 'zh-CN';
   let index = 0;
   try {
-    I18n.System.addPreferredLanguage(language, index); // Add zh-CN to the first place in the preferred language list.
+    i18n.System.addPreferredLanguage(language, index); // Add zh-CN to the first place in the preferred language list.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.addPreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -243,7 +256,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 static removePreferredLanguage(index: number): void
 
-Deletes a preferred language from the specified position on the preferred language list.
+Removes a preferred language from the specified position on the preferred language list.
 
 **System API**: This is a system API.
 
@@ -259,20 +272,22 @@ Deletes a preferred language from the specified position on the preferred langua
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Delete the first preferred language from the preferred language list.
   let index: number = 0;
   try {
-    I18n.System.removePreferredLanguage(index);
+    i18n.System.removePreferredLanguage(index);
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.removePreferredLanguage failed, error code: ${err.code}, message: ${err.message}.`);
@@ -299,23 +314,115 @@ Specifies whether to enable use of local digits.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    I18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
+    i18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
   } catch(error) {
     let err: BusinessError = error as BusinessError;
     console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
   }
   ```
+
+
+### setTemperatureType<sup>18+</sup>
+
+static setTemperatureType(type: TemperatureType): void
+
+Sets the temperature unit of the system.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| type | [TemperatureType](./js-apis-i18n.md#temperaturetype18) | Yes| Temperature unit.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+> **NOTE**
+>
+> The error message of 890001 is subject to the actual error.
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    i18n.System.setTemperatureType(i18n.TemperatureType.CELSIUS); //: Set the temperature unit to °C.
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setTemperatureType failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
+### setFirstDayOfWeek<sup>18+</sup>
+
+static setFirstDayOfWeek(type: WeekDay): void
+
+Sets the first day of a week.
+
+**System API**: This is a system API.
+
+**Permission required**: ohos.permission.UPDATE_CONFIGURATION
+
+**System capability**: SystemCapability.Global.I18n
+
+**Parameters**
+
+| Name | Type     | Mandatory  | Description                             |
+| ---- | ------- | ---- | ------------------------------- |
+| type | [WeekDay](./js-apis-i18n.md#weekday18) | Yes| Start day of a week.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
+
+> **NOTE**
+>
+> The error message of 890001 is subject to the actual error.
+
+**Example**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    i18n.System.setFirstDayOfWeek (i18n.WeekDay.MON); // Set the preferred start day of a week to Monday.
+  } catch(error) {
+    let err: BusinessError = error as BusinessError;
+    console.error(`call System.setFirstDayOfWeek failed, error code: ${err.code}, message: ${err.message}.`);
+  }
+  ```
+
 
 ## SystemLocaleManager<sup>10+</sup>
 
@@ -331,7 +438,7 @@ Creates a **SystemLocaleManager** object.
 
 **Example**
   ```ts
-  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
+  let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   ```
 
 
@@ -339,7 +446,7 @@ Creates a **SystemLocaleManager** object.
 
 getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-Obtains the language sorting array.
+Obtains the list of languages after sorting.
 
 **System API**: This is a system API.
 
@@ -349,7 +456,7 @@ Obtains the language sorting array.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| languages | Array&lt;string&gt; | Yes  | List of languages to be sorted.|
+| languages | Array&lt;string&gt; | Yes  | Valid IDs of the languages to be sorted.|
 | options   | [SortOptions](#sortoptions10)   | No  | Language sorting option.|
 
 **Return value**
@@ -360,23 +467,25 @@ Obtains the language sorting array.
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Assume that the system language is zh-Hans, the system region is CN, and the system locale is zh-Hans-CN.
-  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
+  let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   let languages: string[] = ["zh-Hans", "en-US", "pt", "ar"];
-  let sortOptions: I18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
+  let sortOptions: i18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
   try {
       // The language list after sorting is [zh-Hans, en-US, pt, ar].
-      let sortedLanguages: Array<I18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
+      let sortedLanguages: Array<i18n.LocaleItem> = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
   } catch(error) {
       let err: BusinessError = error as BusinessError;
       console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
@@ -388,7 +497,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
 
-Obtains the country/region sorting array.
+Obtains the IDs of the countries or regions after sorting.
 
 **System API**: This is a system API.
 
@@ -398,34 +507,36 @@ Obtains the country/region sorting array.
 
 |   Name |      Type     | Mandatory|     Description     |
 | --------- | ------------- | ---- | ------------- |
-| regions   | Array&lt;string&gt; | Yes  | List of countries/regions to be sorted.|
-| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option. The default value of **locale** is the system locale, the default value of **isUseLocalName** is **false**, and the default value of **isSuggestedFirst** is **true**.|
+| regions   | Array&lt;string&gt; | Yes  | Valid IDs of the countries or regions to be sorted.|
+| options   | [SortOptions](#sortoptions10)   | No  | Country/region sorting option.<br>By default, **locale** is the current system locale, **isUseLocalName** is **false**, and **isSuggestedFirst** is **true**.|
 
 **Return value**
 
 |       Type       |         Description         |
 | ----------------- | -------------------- |
-| Array&lt;[LocaleItem](#localeitem10)&gt; | Country/region list after sorting.|
+| Array&lt;[LocaleItem](#localeitem10)&gt; | IDs of the countries or regions after sorting.|
 
 **Error codes**
 
-For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID | Error Message                  |
 | ------ | ---------------------- |
-| 890001 | param value not valid  |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 890001 | Invalid parameter. Possible causes: Parameter verification failed. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Assume that the system language is zh-Hans, the system region is CN, and the system locale is zh-Hans-CN.
-  let systemLocaleManager: I18n.SystemLocaleManager = new I18n.SystemLocaleManager();
+  let systemLocaleManager: i18n.SystemLocaleManager = new i18n.SystemLocaleManager();
   let regions: string[] = ["CN", "US", "PT", "EG"];
-  let sortOptions: I18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
+  let sortOptions: i18n.SortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
   try {
       // The country/region list after sorting is [CN, EG, US, PT].
-      let sortedRegions: Array<I18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
+      let sortedRegions: Array<i18n.LocaleItem> = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
   } catch(error) {
       let err: BusinessError = error as BusinessError;
       console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${err.code}, message: ${err.message}.`);
@@ -436,7 +547,7 @@ For details about the error codes, see [i18n Error Codes](errorcode-i18n.md).
 
 static getTimeZoneCityItemArray(): Array&lt;TimeZoneCityItem&gt;
 
-Obtains the array of time zone city items after sorting.
+Obtains list of time zone city items after sorting.
 
 **System API**: This is a system API.
 
@@ -446,14 +557,22 @@ Obtains the array of time zone city items after sorting.
 
 |       Type       |         Description         |
 | ----------------- | -------------------- |
-| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | Array of time zone city items.|
+| Array&lt;[TimeZoneCityItem](#timezonecityitem10)&gt; | List of time zone city items after sorting.|
+
+**Error codes**
+
+For details about the error codes, see [ohos.i18n Error Codes](errorcode-i18n.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message                  |
+| ------ | ---------------------- |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    let timeZoneCityItemArray: Array<I18n.TimeZoneCityItem> = I18n.SystemLocaleManager.getTimeZoneCityItemArray();
+    let timeZoneCityItemArray: Array<i18n.TimeZoneCityItem> = i18n.SystemLocaleManager.getTimeZoneCityItemArray();
     for (let i = 0; i < timeZoneCityItemArray.length; i++) {
         console.log(timeZoneCityItemArray[i].zoneId + ", " + timeZoneCityItemArray[i].cityId + ", " + timeZoneCityItemArray[i].cityDisplayName +
             ", " + timeZoneCityItemArray[i].offset + "\r\n");
@@ -466,7 +585,7 @@ Obtains the array of time zone city items after sorting.
 
 ## LocaleItem<sup>10+</sup>
 
-Represents the list of languages or countries/regions sorted by **SystemLocaleManager**.
+Represents the locale information, which consists of the language, script, and country/region.
 
 **System API**: This is a system API.
 
@@ -476,12 +595,12 @@ Represents the list of languages or countries/regions sorted by **SystemLocaleMa
 | --------------- | --------------- | ------ | --------------------------------------- |
 | id              | string          |   Yes  | Language code or country/region code, for example, **zh** or **CN**.   |
 | suggestionType  | [SuggestionType](#suggestiontype10)  |   Yes | Language or country/region suggestion type.                 |
-| displayName     | string          |  Yes  | Displayed name of ID in the locale of **SystemLocaleManager**.|
+| displayName     | string          |  Yes  | Representation of ID in the specified locale in **SystemLocaleManager**.|
 | localName       | string          |  No  | Local name of the ID.                          |
 
 ## TimeZoneCityItem<sup>10+</sup>
 
-Represents the time zone and city combination information.
+Represents a time zone and city combination item.
 
 **System API**: This is a system API.
 
@@ -490,10 +609,10 @@ Represents the time zone and city combination information.
 | Name           | Type            |  Mandatory  |  Description                                  |
 | --------------- | --------------- | ------  | --------------------------------------- |
 | zoneId          | string          |   Yes   | Time zone ID, for example, **Asia/Shanghai**.             |
-| cityId          | string          |   Yes   | City ID, for example, **Shanghai**.                  |
-| cityDisplayName | string          |   Yes   | Displayed name of the city ID in the system locale.         |
+| cityId          | string          |   Yes   | City ID, for example, Shanghai.                  |
+| cityDisplayName | string          |   Yes   | City display name in the system locale.         |
 | offset          | int             |   Yes   | Offset of the time zone ID.                        |
-| zoneDisplayName | string          |   Yes   | Displayed name of the time zone ID in the system locale.         |
+| zoneDisplayName | string          |   Yes   | Time zone display name in the system locale.         |
 | rawOffset       | int             |   No   | Fixed offset of the time zone ID.                      |
 
 
@@ -522,6 +641,6 @@ Represents the language or country/region sorting option.
 
 | Name           | Type           |  Mandatory|   Description                                |
 | --------------- | --------------- | ---- | --------------------------------------- |
-| locale          | string          |  No | System locale, for example, **zh-Hans-CN**. The default value of **locale** is the system locale.   |
-| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting. If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**. If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
-| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The default value of **isSuggestedFirst** is **true**. |
+| locale          | string          |  No | [Locale information](../../internationalization/i18n-locale-culture.md#how-it-works), which consists of the language, script, and country/region, for example, **zh-Hans-CN**.<br>The default value is the current system locale.   |
+| isUseLocalName  | boolean         |  No | Whether to use the local name for sorting. The value **true** means to use the local name for sorting, and the value **false** means the opposite.<br>If **getLanguageInfoArray** is called, the default value of **isUseLocalName** is **true**.<br>If **getRegionInfoArray** is called, the default value of **isUseLocalName** is **false**.               |
+| isSuggestedFirst | boolean        |  No | Whether to move the recommended language or country/region to the top in the sorting result. The value **true** means to move the recommended language or country/region to the top, and the value **false** means the opposite.<br>The default value is **true**. |

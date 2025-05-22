@@ -9,14 +9,14 @@ ErrorCode定义启动Ability时返回的错误码，包括无效的参数、权�
 ## 导入模块
 
 ```ts
-import errorCode from '@ohos.ability.errorCode';
+import { ErrorCode } from '@kit.AbilityKit';
 ```
 
 ## ErrorCode
 
 定义启动Ability时返回的错误码。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称                             | 值    | 说明                                       |
 | ------------------------------ | ---- | ---------------------------------------- |

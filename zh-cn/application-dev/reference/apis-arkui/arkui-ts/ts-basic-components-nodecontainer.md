@@ -4,8 +4,14 @@
 
 > **说明：**
 >
-> 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
+> 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件下仅支持挂载自定义节点[FrameNode](../js-apis-arkui-frameNode.md)或者是[BuilderNode](../js-apis-arkui-builderNode.md)中获取的根节点FrameNode。
+> 不支持挂载查询获得的系统组件[代理节点](../js-apis-arkui-frameNode.md#ismodifiable12)。
+>
+> 当前不支持使用[动态属性设置](./ts-universal-attributes-attribute-modifier.md)。
+>
+> 该组件下的节点树构建中会使用UI实例[UIContext](../js-apis-arkui-UIContext.md)，当实例切换时可能会因为实例不匹配而出现问题，因此该组件当前不支持跨实例的节点复用。
 ## 子组件
 
 不支持子组件。
@@ -14,28 +20,31 @@
 
 ### NodeContainer
 
-NodeContainer(controller: import('../api/@ohos.arkui.node').NodeController)
+NodeContainer(controller: NodeController)
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数名     | 参数类型                                             | 必填 | 参数描述                                                     |
+| 参数名     | 类型                                                 | 必填 | 说明                                                         |
 | ---------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | controller | [NodeController](../js-apis-arkui-nodeController.md) | 是   | NodeController用于控制NodeContainer中的节点的上树和下树，反映NodeContainer容器的生命周期。 |
-
 ## 属性
 
-支持[通用属性](ts-universal-attributes-size.md)
+支持[通用属性](ts-component-general-attributes.md)。
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+支持[通用事件](ts-component-general-events.md)。
 
 ## 示例
 
-```ts
-import { UIContext } from '@ohos.arkui.UIContext';
-import { NodeController, BuilderNode, FrameNode } from '@ohos.arkui.node';
+通过NodeController挂载BuilderNode节点。
 
+```ts
+import { NodeController, BuilderNode, FrameNode, UIContext } from '@kit.ArkUI';
 
 declare class Params {
   text: string

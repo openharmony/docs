@@ -1,4 +1,4 @@
-# @ohos.application.DataShareExtensionAbility (Data Share ExtensionAbility) (System API)
+# @ohos.application.DataShareExtensionAbility (DataShare ExtensionAbility) (System API)
 
 The **DataShareExtensionAbility** module provides data share services based on the ExtensionAbility.
 
@@ -14,10 +14,10 @@ The **DataShareExtensionAbility** module provides data share services based on t
 ## Modules to Import
 
 ```ts
-import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbility';
+import { DataShareExtensionAbility } from '@kit.ArkData';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Provider
 
@@ -43,8 +43,8 @@ Called by the server to initialize service logic when the DataShare client conne
 **Example**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore'
-import Want from '@ohos.app.ability.Want'
+import { DataShareExtensionAbility, relationalStore } from '@kit.ArkData';
+import { Want } from '@kit.AbilityKit';
 
 let DB_NAME = 'DB00.db';
 let TBL_NAME = 'TBL00';
@@ -57,7 +57,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
   onCreate(want: Want, callback: Function) {
     relationalStore.getRdbStore(this.context, {
       name: DB_NAME,
-      securityLevel: relationalStore.SecurityLevel.S1
+      securityLevel: relationalStore.SecurityLevel.S3
     }, (err, data) => {
       console.info(`getRdbStore done, data : ${data}`);
       rdbStore = data;
@@ -96,13 +96,12 @@ Inserts data into the database. This API can be overridden as required.
 | ----- | ------ | ------ | ------ |
 | uri |string | Yes | URI of the data to insert.|
 | valueBucket |[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes| Data to insert.|
-| callback |AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the index of the data inserted.|
+| callback |AsyncCallback&lt;number&gt; | Yes| Callback used to return the index of the data inserted.|
 
 **Example**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore'
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { DataShareExtensionAbility, relationalStore, ValuesBucket } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -138,14 +137,12 @@ Updates data in the database. This API can be overridden as required.
 | uri | string | Yes | URI of the data to update.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for updating data.|
 | valueBucket | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes| New data.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the number of updated data records.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the number of updated data records.|
 
 **Example**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { DataShareExtensionAbility, relationalStore, dataSharePredicates, ValuesBucket } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -182,32 +179,34 @@ Batch updates data into the database. This API is called by the server and can b
 **Example**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { DataShareExtensionAbility, relationalStore, dataShare } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
-  batchUpdate(operations, callback) {
-        let recordOps : Record<string, Array<UpdateOperation>> = operations;
-        let results : Record<string, Array<number>> = {};
-        for (const [key, values] of Object.entries(recordOps)) {
-            let result : number[] = [];
-            for (const value of values) {
-                await rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
-                    console.info('Update row count is ' + rows);
-                    result.push(rows);
-                }).catch((err) => {
-                    console.info('Update failed, err is ' + JSON.stringify(err));
-                    result.push(-1)
-                })
-            }
-            results[key] = result;
-        }
-        callback(null, results);
+  batchUpdate(operations:Record<string, Array<dataShare.UpdateOperation>>, callback:Function) {
+    let recordOps : Record<string, Array<dataShare.UpdateOperation>> = operations;
+    let results : Record<string, Array<number>> = {};
+    let a = Object.entries(recordOps);
+    for (let i = 0; i < a.length; i++) {
+      let key = a[i][0];
+      let values = a[i][1];
+      let result : number[] = [];
+      for (const value of values) {
+        rdbStore.update(TBL_NAME, value.values, value.predicates).then(async (rows) => {
+          console.info('Update row count is ' + rows);
+          result.push(rows);
+        }).catch((err:BusinessError) => {
+          console.info('Update failed, err is ' + JSON.stringify(err));
+          result.push(-1)
+        })
+      }
+      results[key] = result;
     }
+    callback(null, results);
+  }
 };
 ```
 
@@ -225,13 +224,12 @@ Deletes data from the database. This API can be overridden as required.
 | ---------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
 | uri        | string                                                       | Yes  | URI of the data to delete.          |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Filter criteria for deleting data.                    |
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of data records deleted.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of data records deleted.|
 
 **Example**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { DataShareExtensionAbility, relationalStore, dataSharePredicates } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -265,13 +263,12 @@ Queries data from the database. This API can be overridden as required.
 | uri | string | Yes | URI of the data to query.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes | Filter criteria for querying data.|
 | columns | Array&lt;string&gt; | Yes| Columns to query. If this parameter is empty, all columns will be queried.|
-| callback | AsyncCallback&lt;Object&gt; | Yes| Callback invoked to return the result set obtained.|
+| callback | AsyncCallback&lt;Object&gt; | Yes| Callback used to return the result set obtained.|
 
 **Example**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { DataShareExtensionAbility, relationalStore, dataSharePredicates } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -307,13 +304,12 @@ Batch inserts data into the database. This API is called by the server and can b
 | ------------ | ------------------------------------------------------------ | ---- | -------------------------------- |
 | uri          | string                                                       | Yes  | URI of the data to insert.    |
 | valueBuckets | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.          |
-| callback     | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of inserted data records.|
+| callback     | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of inserted data records.|
 
 **Example**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { DataShareExtensionAbility, relationalStore, ValuesBucket } from '@kit.ArkData';
 
 let TBL_NAME = 'TBL00';
 let rdbStore: relationalStore.RdbStore;
@@ -351,7 +347,8 @@ Normalizes a URI. This API can be overridden as required.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { DataShareExtensionAbility } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   normalizeUri(uri: string, callback: Function) {
@@ -386,7 +383,8 @@ Denormalizes a URI. This API can be overridden as required.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { DataShareExtensionAbility } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 export default class DataShareExtAbility extends DataShareExtensionAbility {
   denormalizeUri(uri: string, callback: Function) {

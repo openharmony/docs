@@ -1,10 +1,10 @@
-# 管理系统帐号的凭据（仅对系统应用开放）
+# 管理系统账号凭据（仅对系统应用开放）
 
-凭据可用于认证用户的身份，本文档将介绍如何录入、认证、更新、查询和删除指定系统帐号的凭据。
+凭据可用于认证用户的身份，本文档将介绍如何录入、认证、更新、查询和删除指定系统账号的凭据。
 
 ## 凭据类型
 
-系统帐号支持管理以下凭据类型：
+系统账号支持管理以下凭据类型：
 
 | 名称  | 值 | 说明             |
 | ----- | ----- | ---------------- |
@@ -15,6 +15,9 @@
 ## 凭据子类型
 
 凭据类型进一步细分为以下子类型：
+
+> **说明：**
+> 实际设备可支持的凭据类型取决于硬件能力。
 
 | 名称       | 值 | 说明               |
 | ---------- | ----- | ------------------ |
@@ -27,24 +30,22 @@
 | FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | 表示光学指纹。   |
 | FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | 表示超声波指纹。   |
 
-备注：实际设备可支持的凭据类型取决于硬件能力。
-
 ## 开发准备
 
-1. 申请权限，申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+1. 申请权限，申请流程请参考：[申请应用权限](../../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
    - ohos.permission.MANAGE_USER_IDM
    - ohos.permission.ACCESS_PIN_AUTH
 
-2. 导入系统帐号模块。
+2. 导入系统账号模块。
 
    ```ts
-   import account_osAccount from '@ohos.account.osAccount';
+   import { osAccount } from '@kit.BasicServicesKit';
    ```
 
 3. 创建凭据管理对象。
 
    ```ts
-   let userIDM: account_osAccount.UserIDM = new account_osAccount.UserIDM();
+   let userIDM: osAccount.UserIdentityManager = new osAccount.UserIdentityManager();
    ```
 
 ## 注册PIN码输入器
@@ -57,8 +58,8 @@
 
    ```ts
    let pinData: Uint8Array = new Uint8Array([31, 32, 33, 34, 35, 36]); // you can obtain a PIN throught other ways.
-   let inputer: IInputer = {
-     onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+   let inputer: osAccount.IInputer = {
+     onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
        callback.onSetData(authSubType, pinData);
      }
    }
@@ -67,7 +68,7 @@
 2. 调用[registerInputer](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#registerinputer8)注册PIN码输入器。
 
    ```ts
-   let pinAuth: PINAuth = new account_osAccount.PINAuth();
+   let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
    pinAuth.registerInputer(inputer);
    ```
 
@@ -77,7 +78,7 @@
 
 具体开发实例如下：
 
-1. 调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
+调用[openSession](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#opensession8)接口打开凭据管理新会话。
 
    ```ts
    let challenge: Uint8Array = await userIDM.openSession();
@@ -92,9 +93,10 @@
 1. 定义PIN码凭据信息。
 
    ```ts
-   let credentialInfo: account_osAccount.CredentialInfo = {
-     credType: account_osAccount.AuthSubType.PIN,
-     token: null
+   let credentialInfo: osAccount.CredentialInfo = {
+     credType: osAccount.AuthType.PIN,
+     credSubType: osAccount.AuthSubType.PIN_SIX,
+     token: new Uint8Array([0])
    };
    ```
 
@@ -102,7 +104,7 @@
 
    ```ts
    userIDM.addCredential(credentialInfo, {
-     onResult: (code: number, result: account_osAccount.RequestResult) => {
+     onResult: (code: number, result: osAccount.RequestResult) => {
        console.log('addCredential code = ' + code);
        console.log('addCredential result = ' + result);
      }
@@ -119,16 +121,16 @@
 
    ```ts
    let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
-   let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+   let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+   let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
    ```
 
 2. 调用[auth](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#auth8)接口进行认证。
 
    ```ts
-   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
+   let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
    userAuth.auth(challenge, authType, authTrustLevel, {
-     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+     onResult: (result: number, extraInfo: osAccount.AuthResult) => {
        console.log('pin auth result = ' + result);
        console.log('pin auth extraInfo = ' + JSON.stringify(extraInfo));
        let authToken = extraInfo.token;
@@ -147,10 +149,10 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 2. 定义人脸凭据信息（以2D人脸为例）。
 
    ```ts
-   let faceCredInfo: account_osAccount.CredentialInfo = {
-     credType: account_osAccount.AuthType.FACE,
-     credSubType: account_osAccount.AuthSubType.FACE_2D,
-     token: authToken
+   let faceCredInfo: osAccount.CredentialInfo = {
+     credType: osAccount.AuthType.FACE,
+     credSubType: osAccount.AuthSubType.FACE_2D,
+     token: new Uint8Array([1, 2, 3, 4, 5])
    }
    ```
 
@@ -158,7 +160,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    userIDM.addCredential(faceCredInfo, {
-     onResult: (code: number, result: account_osAccount.RequestResult) => {
+     onResult: (code: number, result: osAccount.RequestResult) => {
        console.log('add face credential, resultCode: ' + code);
        console.log('add face credential, request result: ' + result);
      }
@@ -168,10 +170,10 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 4. 定义指纹凭据信息。
 
    ```ts
-   let fingerprintCredInfo: account_osAccount.CredentialInfo = {
-     credType: account_osAccount.AuthType.FINGERPRINT,
-     credSubType: account_osAccount.AuthSubType.FINGERPRINT_CAPACITIVE,
-     token: authToken
+   let fingerprintCredInfo: osAccount.CredentialInfo = {
+     credType: osAccount.AuthType.FINGERPRINT,
+     credSubType: osAccount.AuthSubType.FINGERPRINT_CAPACITIVE,
+     token: new Uint8Array([1, 2, 3, 4, 5])
    }
    ```
 
@@ -179,7 +181,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    userIDM.addCredential(fingerprintCredInfo, {
-     onResult: (code: number, result: account_osAccount.RequestResult) => {
+     onResult: (code: number, result: osAccount.RequestResult) => {
        console.log('add fingerprint credential, resultCode: ' + code);
        console.log('add fingerprint credential, request result: ' + result);
      }
@@ -196,16 +198,16 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    let challenge: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
-   let authType: account_osAccount.AuthType = account_osAccount.AuthType.FACE;
-   let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+   let authType: osAccount.AuthType = osAccount.AuthType.FACE;
+   let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
    ```
 
 2. 调用auth接口进行认证。
 
    ```ts
-   let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
+   let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
    userAuth.auth(challenge, authType, authTrustLevel, {
-     onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+     onResult: (result: number, extraInfo: osAccount.AuthResult) => {
        console.log('face auth result = ' + result);
        console.log('face auth extraInfo = ' + JSON.stringify(extraInfo));
      }
@@ -214,7 +216,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
 ## 更新凭据
 
-用户可以修改系统帐号的凭据。开发者可以使用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)接口完成此操作。
+用户可以修改系统账号的凭据。开发者可以使用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)接口完成此操作。
 
 具体开发实例如下：
 
@@ -223,18 +225,18 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 2. 定义待更新凭据信息。
 
    ```ts
-   let credentialInfo: account_osAccount.CredentialInfo = {
-     credType: account_osAccount.AuthType.PIN,
-     credSubType: account_osAccount.AuthSubType.PIN_SIX,
-     token: authToken,
+   let credentialInfo: osAccount.CredentialInfo = {
+     credType: osAccount.AuthType.PIN,
+     credSubType: osAccount.AuthSubType.PIN_SIX,
+     token: new Uint8Array([1, 2, 3, 4, 5])
    };
    ```
 
-3. 调用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)更新凭据。其中：
+3. 调用[updateCredential](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#updatecredential8)更新凭据。
 
    ```ts
    userIDM.updateCredential(credentialInfo, {
-     onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+     onResult: (result: number, extraInfo: osAccount.RequestResult) => {
        console.log('updateCredential result = ' + result);
        console.log('updateCredential extraInfo = ' + extraInfo);
      }
@@ -250,13 +252,13 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 1. 查询所有已录入的凭据信息。
 
    ```ts
-   let enrolledCredInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo();
+   let enrolledCredInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo();
    ```
 
 2. 调用[getAuthInfo](../../reference/apis-basic-services-kit/js-apis-osAccount-sys.md#getauthinfo8)接口，获取指定类型的凭据信息（以指纹凭据为例）。
 
    ```ts
-   let enrolledFingerCredInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo(account_osAccount.AuthType.Fingerprint);
+   let enrolledFingerCredInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
    ```
 
 ## 删除凭据
@@ -268,8 +270,9 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 1. 获取指纹类型的凭据信息。
 
    ```ts
-   let credInfoList: account_osAccount.EnrolledCredInfo = await userIDM.getAuthInfo(account_osAccount.AuthType.Fingerprint);
-   let credentialId: number = 0;
+   let credentialId: Uint8Array = new Uint8Array([1, 2, 3, 4, 5]);
+   let token: Uint8Array = new Uint8Array([1, 2, 3, 4, 5])
+   let credInfoList: osAccount.EnrolledCredInfo[] = await userIDM.getAuthInfo(osAccount.AuthType.FINGERPRINT);
    if (credInfoList.length != 0) {
      credentialId = credInfoList[0].credentialId;
    }
@@ -281,7 +284,7 @@ PIN码认证成功后，可以录入人脸/指纹，操作流程与录入PIN码�
 
    ```ts
    userIDM.delCred(credentialId, token, {
-     onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+     onResult: (result: number, extraInfo: osAccount.RequestResult) => {
        console.log('delCred result = ' + result);
        console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
      }

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -84,7 +84,7 @@ Service instance duplicated.
 
 **错误信息**
 
-Service instance duplicated.
+Failed to delete the service instance.
 
 **错误描述**
 
@@ -102,7 +102,7 @@ Service instance duplicated.
 
 **错误信息**
 
-Send packet failed.
+Failed to send the message.
 
 **错误描述**
 

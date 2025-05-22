@@ -11,6 +11,8 @@
 
 **相关模块：** [Image](image.md)
 
+**所在头文件：**[image_source_mdk.h](image__source__mdk_8h.md)
+
 
 ## 汇总
 
@@ -19,5 +21,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [value](image.md#value) = nullptr | 定义图像源属性键值字符串头地址 | 
-| [size](image.md#size-77) = 0 | 定义图像源属性键值字符串大小 | 
+| char \* [value](image.md#value) = nullptr | 定义图像源属性键值字符串头地址。 |
+| size_t [size](image.md#size-77) = 0 | 定义图像源属性键值字符串大小。 |

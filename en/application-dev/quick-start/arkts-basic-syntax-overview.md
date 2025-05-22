@@ -22,19 +22,17 @@ In this example, the basic composition of ArkTS is as follows.
 > The name of a custom variable cannot be the same as that of any universal attribute or event.
 
 
-- Decorator: design pattern used to decorate classes, structs, methods, and variables to assign special meanings to them. In the preceding sample code, \@Entry, \@Component, and \@State are decorators. [@Component](arkts-create-custom-components.md#basic-structure-of-a-custom-component) indicates a custom component, [@Entry](arkts-create-custom-components.md#basic-structure-of-a-custom-component) indicates that the custom component is an entry component, and [@State](arkts-state.md) indicates a state variable in the component, whose change will trigger the UI to re-render.
+- Decorator: design pattern used to decorate classes, structs, methods, and variables to assign special meanings to them. In the preceding figure, the [@Component](arkts-create-custom-components.md#component) decorator indicates the custom component, the [@Entry](arkts-create-custom-components.md#entry) decorator indicates that the custom component is an entry component, and the [@State](arkts-state.md) decorator indicates the state variables in the component, whose changes trigger the UI re-render.
 
-- [UI description](arkts-declarative-ui-description.md): declarative description of the UI structure, such as the code block of the **build()** method.
+- [UI description](arkts-declarative-ui-description.md): declarative description of the UI structure, such as the code block of **build()**.
 
 - [Custom component](arkts-create-custom-components.md): reusable UI unit, which can be used with other components, such as the struct **Hello** decorated by @Component.
 
-- Built-in component: default basic or container component preset in ArkTS, which can be directly invoked, such as **\<Column>**, **\<Text>**, **\<Divider>**, and **\<Button>** components in the sample code.
+- Built-in component: default basic or container component preset in ArkTS, which can be directly invoked, such as **Column**, **Text**, **Divider**, and **Button** components in the sample code.
 
-- Attribute method: method used to configure component attributes, such as **fontSize()**, **width()**, **height()**, and **backgroundColor()**. You can configure multiple attributes of a component in method chaining mode.
+- [Attribute method](../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md): A component can configure multiple attributes through chain calls, such as **fontSize()**, **width()**, **height()**, and **backgroundColor()**.
 
-- Event method: method used to add the logic for a component to respond to an event. In the sample code, **onClick()** following **Button** is an event method. You can configure response logic for multiple events in method chaining mode.
-
-- For details about how to use built-in components, attribute methods, and event methods, see [ArkTS-based Declarative Development Paradigm](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md).
+- [Event method](../reference/apis-arkui/arkui-ts/ts-component-general-events.md): A component can set the response logic of multiple events through chain calls, for example, **onClick()** following **Button**.
 
 
 ArkTS extends multiple syntax paradigms to make development a more enjoyable experience.
@@ -45,3 +43,11 @@ ArkTS extends multiple syntax paradigms to make development a more enjoyable exp
 - [@Extend](arkts-extend.md)/[@Styles](arkts-style.md): decorator that extends built-in components and encapsulates attribute styles to combine built-in components more flexibly.
 
 - [stateStyles](arkts-statestyles.md): polymorphic style, which can be set based on the internal state of the component.
+
+##  
+
+ 
+
+-  
+
+-  

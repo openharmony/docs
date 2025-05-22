@@ -55,7 +55,7 @@ RK3568的镜像烧录通过Windows环境进行烧录，开发者启动烧录操�
 
 7. 当屏幕提示“Operation paused，Please press Enter key to continue”，请按**回车键**继续。
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 如果开发板未处于烧录模式，屏幕会提示“The board is not in Loader mode.Please Hold on the VOL+key...”，此时，请长按音量+键，3秒后点击**RESET**键，然后再过3秒放开音量+键，使开发板进入烧录模式。
+   > 如果开发板未处于烧录模式，屏幕会提示“The board is not in Loader mode.Please Hold on the VOL+key...”。此时，请长按音量+键，3秒后点击**RESET**键，然后再过3秒放开音量+键，使开发板进入烧录模式。
 
    等待开发板烧录完成，当屏幕提示如下信息时，表示烧录成功。
 

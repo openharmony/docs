@@ -42,6 +42,7 @@ struct CustomCanvasDrawingCard {
             let leftY = circleY - (radius / 4.5);
             this.context.beginPath();
             this.context.arc(leftX, leftY, leftR, 0, 2 * Math.PI, true);
+            this.context.closePath();
             this.context.strokeStyle = '#FFFFFF';
             this.context.lineWidth = 15;
             this.context.stroke();
@@ -51,6 +52,7 @@ struct CustomCanvasDrawingCard {
             let rightY = circleY - (radius / 4.5);
             this.context.beginPath();
             this.context.arc(rightX, rightY, rightR, 0, 2 * Math.PI, true);
+            this.context.closePath();
             this.context.strokeStyle = '#FFFFFF';
             this.context.lineWidth = 15;
             this.context.stroke();
@@ -63,8 +65,8 @@ struct CustomCanvasDrawingCard {
             this.context.lineTo(startX + 8, startY + 40);
             this.context.strokeStyle = '#FFFFFF';
             this.context.lineWidth = 15;
-            this.context.lineCap = 'round'
-            this.context.lineJoin = 'round'
+            this.context.lineCap = 'round';
+            this.context.lineJoin = 'round';
             this.context.stroke();
             // 绘制笑脸的嘴巴
             let mouthR = radius / 2;

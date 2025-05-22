@@ -71,7 +71,7 @@ Call the **write** API again to perform event logging.
 
 **Error Message**
 
-Length of the event is over limit.
+The event length exceeds the limit.
 
 **Description**
 
@@ -111,7 +111,7 @@ Check whether the event parameter name is valid.
 
 **Error Message**
 
-Size of the event parameter of the string type is over limit.
+The size of the event parameter of the string type exceeds the limit.
 
 **Description**
 
@@ -129,7 +129,7 @@ Check whether the length of parameter values of the string type exceeds 10 KB.
 
 **Error Message**
 
-Count of event parameters is over limit.
+The number of event parameters exceeds the limit.
 
 **Description**
 
@@ -147,7 +147,7 @@ Check whether the number of event parameters exceeds 128.
 
 **Error Message**
 
-Count of event parameter of the array type is over limit.
+The number of event parameters of the array type exceeds the limit.
 
 **Description**
 
@@ -165,7 +165,7 @@ Check whether the length of the parameter value of the array type exceeds 100.
 
 **Error Message**
 
-Count of watchers is over limit.
+The number of watchers exceeds the limit.
 
 **Description**
 
@@ -183,7 +183,7 @@ Check whether the number of event watchers exceeds 30.
 
 **Error Message**
 
-Count of watch rules is over limit.
+The number of watch rules exceeds the limit.
 
 **Description**
 
@@ -220,7 +220,7 @@ Check whether the event watcher to the removed is empty or whether the event wat
 
 **Error Message**
 
-Count of query rules is over limit.
+The number of query rules exceeds the limit.
 
 **Description**
 
@@ -260,7 +260,7 @@ Check whether the event domain name and event name configured in the query rule 
 
 **Error Message**
 
-Count of concurrent queries is over limit.
+The number of concurrent queriers exceeds the limit.
 
 **Description**
 
@@ -278,7 +278,7 @@ Check whether more than four queries are performed at the same time.
 
 **Error Message**
 
-Query frequency is over limit.
+The query frequency exceeds the limit.
 
 **Description**
 
@@ -291,3 +291,21 @@ More than 50 queries are performed in one second.
 **Solution**
 
 Check whether more than 50 queries are performed in one second.
+
+## 11200305 Unsubscription Failed
+
+**Error Message**
+
+Unsubscription failed.
+
+**Description**
+
+This error code is reported when the **unsubscribe()** API fails to be called.
+
+**Possible Causes**
+
+The HiView service is abnormal.
+
+**Solution**
+
+Call the **unsubscribe()** API again.

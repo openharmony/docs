@@ -16,13 +16,13 @@
 ```
 void OHOS_SystemInit(void)
 {
-    MODULE_INIT(bsp);           //执行.zinitcall.bspX.init段中的函数
-    MODULE_INIT(device);        //执行.zinitcall.deviceX.init段中的函数
-    MODULE_INIT(core);          //执行.zinitcall.coreX.init段中的函数
-    SYS_INIT(service);          //执行.zinitcall.sys.serviceX.init段中的函数
-    SYS_INIT(feature);          //执行.zinitcall.sys.featureX.init段中的函数
-    MODULE_INIT(run);           //执行.zinitcall.runX.init段中的函数
-    SAMGR_Bootstrap();          //SAMGR服务初始化
+    MODULE_INIT(bsp);           //执行.zinitcall.bspX.init段中的函数。
+    MODULE_INIT(device);        //执行.zinitcall.deviceX.init段中的函数。
+    MODULE_INIT(core);          //执行.zinitcall.coreX.init段中的函数。
+    SYS_INIT(service);          //执行.zinitcall.sys.serviceX.init段中的函数。
+    SYS_INIT(feature);          //执行.zinitcall.sys.featureX.init段中的函数。
+    MODULE_INIT(run);           //执行.zinitcall.runX.init段中的函数。
+    SAMGR_Bootstrap();          //SAMGR服务初始化。
 }
 ```
 
@@ -30,6 +30,7 @@ void OHOS_SystemInit(void)
 ## 移植实例
 
 1. 在“config.json”中添加启动子系统。
+
    路径：“vendor/MyVendorCompany/MyProduct/config.json”
 
    修改如下：
@@ -37,8 +38,8 @@ void OHOS_SystemInit(void)
      
    ```
    {
-       subsystem": "startup",
-       components": [
+       "subsystem": "startup",
+       "components": [
            { "component": "bootstrap_lite", "features":[] },
            { "component": "syspara_lite", "features":[] }
        ]
@@ -130,20 +131,20 @@ void OHOS_SystemInit(void)
      
    ```
    void mainTask(void) {
-      //厂商自定义功能
-       OHOS_SystemInit();        //启动子系统初始化
+      //厂商自定义功能。
+       OHOS_SystemInit();        //启动子系统初始化。
        printf("MainTask running...\n");
    }
     
    void main(VOID) {
-      //硬件初始化，printf输出重定向到debug串口等
-       if (LOS_KernelInit() == 0) {            //ohos内核初始化
-           task_init_param.usTaskPrio = 10;    //任务优先级
-           task_init_param.pcName = "mainTask"; //任务进程名
-           task_init_param.pfnTaskEntry = (TSK_ENTRY_FUNC)mainTask; //任务入口函数
-           task_init_param.uwStackSize = 8192;          //任务栈大小
-           LOS_TaskCreate(&tid, &task_init_param);      //创建任务
-           LOS_Start();                                 //启动任务
+      //硬件初始化，printf输出重定向到debug串口等。
+       if (LOS_KernelInit() == 0) {            //ohos内核初始化。
+           task_init_param.usTaskPrio = 10;    //任务优先级。
+           task_init_param.pcName = "mainTask"; //任务进程名。
+           task_init_param.pfnTaskEntry = (TSK_ENTRY_FUNC)mainTask; //任务入口函数。
+           task_init_param.uwStackSize = 8192;          //任务栈大小。
+           LOS_TaskCreate(&tid, &task_init_param);      //创建任务。
+           LOS_Start();                                 //启动任务。
        }
        else {
            printf("[BUG] LOS_KernelInit fail\n");

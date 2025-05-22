@@ -18,7 +18,8 @@ The PageAbility lifecycle defines all states of a PageAbility, such as **INACTIV
 | BACKGROUND | The PageAbility runs in the background. After being re-activated, the PageAbility enters the **ACTIVE** state. After being destroyed, it enters the **INITIAL** state.|
 
 
-You can override the lifecycle callbacks (as described in the table below) in **app.js** or **app.ets**.
+You can implement the lifecycle callbacks (as described in the table below) in **app.js** or **app.ets**.
+
 
 **Table 2** PageAbility lifecycle callbacks
 

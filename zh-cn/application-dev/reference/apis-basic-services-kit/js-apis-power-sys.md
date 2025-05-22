@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```js
-import power from '@ohos.power';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.shutdown
@@ -30,7 +30,7 @@ shutdown(reason: string): void
 
 | 参数名    | 类型     | 必填   | 说明    |
 | ------ | ------ | ---- | ----- |
-| reason | string | 是    | 关机原因。 |
+| reason | string | 是    | 关机原因；该参数必须为字符串类型。 |
 
 **错误码：**
 
@@ -38,7 +38,11 @@ shutdown(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+
 
 **示例：**
 
@@ -66,7 +70,7 @@ reboot(reason: string): void
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| reason | string | 是   | 重启原因。 |
+| reason | string | 是   | 重启原因；该参数必须为字符串类型。 |
 
 **错误码：**
 
@@ -74,7 +78,10 @@ reboot(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -94,13 +101,17 @@ wakeup(detail: string): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| detail | string | 是   | 唤醒原因。 |
+| detail | string | 是   | 唤醒原因；该参数必须为字符串类型。 |
 
 **错误码：**
 
@@ -108,7 +119,10 @@ wakeup(detail: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -128,13 +142,17 @@ suspend(isImmediate?: boolean): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明       |
 | ------ | ------ | ---- | ---------- |
-| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。不填该参数则默认为false由系统自动检测何时进入休眠。<br>**说明：** 从API version 10开始，支持该参数。|
+| isImmediate<sup>10+</sup> | boolean |  否  | 是否直接休眠设备。true表示灭屏后立即进入休眠，不填该参数则默认为false，表示灭屏后由系统自动检测何时进入休眠。如果只想做灭屏操作，建议不填参数。<br>**说明：** 从API version 10开始，支持该参数。|
 
 
 **错误码：**
@@ -143,7 +161,10 @@ suspend(isImmediate?: boolean): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
@@ -171,7 +192,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                 | 必填 | 说明                                                         |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| mode     | DevicePowerMode | 是   | 电源模式。                                                   |
+| mode     | DevicePowerMode | 是   | 电源模式；该参数类型是一个枚举类。                                                   |
 | callback | AsyncCallback&lt;void&gt;            | 是   | 回调函数。当设置电源模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -180,7 +201,10 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -210,7 +234,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 参数名 | 类型                                 | 必填 | 说明       |
 | ------ | ------------------------------------ | ---- | ---------- |
-| mode   | DevicePowerMode | 是   | 电源模式。 |
+| mode   | DevicePowerMode | 是   | 电源模式；该参数类型是一个枚举类。 |
 
 **返回值：**
 
@@ -224,7 +248,10 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -246,6 +273,10 @@ setScreenOffTime(timeout: number): void
 
 **系统接口：** 此接口为系统接口。
 
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
 **参数：**
@@ -260,10 +291,10 @@ setScreenOffTime(timeout: number): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 201 | If the permission is denied. |
-| 202 | If the system permission is denied. |
-| 1 | Other unknown reason. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **示例：**
 
@@ -272,5 +303,46 @@ try {
     power.setScreenOffTime(30000);
 } catch(err) {
     console.error('set screen off time failed, err: ' + err);
+}
+```
+
+## power.hibernate<sup>12+</sup>
+
+hibernate(clearMemory: boolean): void
+
+休眠设备。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.POWER_MANAGER
+
+API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+
+**系统能力：** SystemCapability.PowerManager.PowerManager.Core
+
+**参数：**
+
+| 参数名    | 类型     | 必填   | 说明    |
+| ------ | ------ | ---- | ----- |
+| clearMemory | boolean | 是    | true 代表在进入休眠之前清理内存，否则为false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统电源管理错误码](errorcode-power.md)。
+
+| 错误码ID   | 错误信息    |
+|---------|---------|
+| 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+
+**示例：**
+
+```js
+try {
+    power.hibernate(true);
+} catch(err) {
+    console.error('hibernate failed, err: ' + err);
 }
 ```

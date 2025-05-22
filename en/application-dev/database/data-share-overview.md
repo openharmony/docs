@@ -1,4 +1,4 @@
-# Cross-Application Data Sharing
+# Overview of Cross-Application Data Sharing
 
 ## Introduction
 
@@ -23,9 +23,10 @@ Before you start, understand the following concepts:
 - **Predicates**: an object that specifies the conditions for updating, deleting, or querying data in a database.
 
 ## One-to-Many Cross-Application Data Sharing
-
+<!--RP1-->
 You can use **DataShare** to implement one-to-many data sharing across applications. Two implementation modes are provided, depending on whether the data provider is started in the cross-application data sharing.  
-
+<!--RP1End-->
+<!--Del-->
 ### Implementation
 
 The data provider can directly use **DataShare** to share data with other applications without complex encapsulation. The data consumer only needs to use a set of APIs because the **DataShare** access mode does not vary with the data provision mode. This greatly reduces the learning time and development difficulty.
@@ -43,8 +44,6 @@ The data provider can directly use **DataShare** to share data with other applic
   You need to configure database access rules in the HAP. When the data consumer calls an API, the system ability automatically obtains the access rules in the HAP and returns data without starting the data provider.
 
   You can use this mode when the cross-application data access involves only database operations (data addition, deletion, modification, and query) or data hosted to the DatamgrService.
-  
-If your application is signed with a system signature, you can use both methods. When data is created for the first time, use **DataShareExtensionAbility**. When data is accessed and modified later, use the **DatamgrService** to share data. That is, the data provider is started only when the data is accessed for the first time.
 
 ### Restrictions
 
@@ -53,6 +52,7 @@ If your application is signed with a system signature, you can use both methods.
 - The payloads of **ValuesBucket**, **Predicates**, and **ResultSet** are restricted by IPC.
 
 - Currently, **dataShare** supports development based on the stage model only.
+<!--DelEnd-->
 
 ## Many-to-Many Cross-Application Data Sharing
 

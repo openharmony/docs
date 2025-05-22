@@ -3,11 +3,11 @@
 ## 概述
 
 
-本文主要提供应用性能敏感场景下的高性能编程的相关建议，助力开发者开发出高性能的应用。高性能编程实践，是在开发过程中逐步总结出来的一些高性能的写法和建议，在业务功能实现过程中，我们要同步思考并理解高性能写法的原理，运用到代码逻辑实现中。ArkTS编程规范可参考[ArkTS编程规范](../../contribute/OpenHarmony-ArkTS-coding-style-guide.md)。
+本文提供应用性能敏感场景下的高性能编程建议，帮助开发者编写高性能应用。高性能编程实践是在开发过程中总结的一些高性能写法和建议。在实现业务功能时，应同步思考并理解高性能写法的原理，并将其应用于代码逻辑中。关于ArkTS编程规范，请参考[ArkTS编程规范](./arkts-coding-style-guide.md)。
 
 ## 声明与表达式
 
-### 1. 使用`const`声明不变的变量
+### 使用`const`声明不变的变量
 
 不变的变量推荐使用`const`声明。
 
@@ -16,7 +16,7 @@ const index = 10000; // 该变量在后续过程中未发生改变，建议声�
 ```
 
 
-### 2. `number`类型变量避免整型和浮点型混用
+### `number`类型变量避免整型和浮点型混用
 
 针对`number`类型，运行时在优化时会区分整型和浮点型数据。建议避免在初始化后改变数据类型。
 
@@ -25,11 +25,11 @@ let intNum = 1;
 intNum = 1.1;  // 该变量在声明时为整型数据，建议后续不要赋值浮点型数据
 
 let doubleNum = 1.1;
-doubleNum = 1.1;  // 该变量在声明时为浮点型数据，建议后续不要赋值整型数据
+doubleNum = 1;  // 该变量在声明时为浮点型数据，建议后续不要赋值整型数据
 ```
 
 
-### 3. 数值计算避免溢出
+### 数值计算避免溢出
 
 常见的可能导致溢出的数值计算包括如下场景，溢出之后，会导致引擎走入慢速的溢出逻辑分支处理，影响后续的性能。
 
@@ -38,9 +38,9 @@ doubleNum = 1.1;  // 该变量在声明时为浮点型数据，建议后续不�
 - 针对&（and）、>>>（无符号右移）等运算操作，应避免数值大于INT32_MAX。
 
 
-### 4. 循环中常量提取，减少属性访问次数
+### 循环中常量提取，减少属性访问次数
 
-在循环中会大量进行一些常量的访问操作，如果该常量在循环中不会改变，可以提取到循环外部，减少属性访问的次数。
+如果常量在循环中不会改变，可以将其提取到循环外部，减少访问次数。
 
 ``` TypeScript
 class Time {
@@ -58,8 +58,7 @@ function getNum(num: number): number {
 }
 ```
 
-优化后代码如下，可以将`Time.info[num - Time.start]`进行常量提取操作，这样可以大幅减少属性的访问次数，性能收益明显。
-
+优化后的代码如下，可以将`Time.info[num - Time.start]`提取为常量，这样可以显著减少属性访问次数，提升性能。
 
 ``` TypeScript
 class Time {
@@ -82,9 +81,9 @@ function getNum(num: number): number {
 
 ## 函数
 
-### 5. 建议使用参数传递函数外的变量
+### 建议使用参数传递函数外的变量
 
-使用闭包会造成额外的闭包创建和访问开销。在性能敏感场景中，建议使用参数传递函数外的变量来替代使用闭包。
+使用闭包会造成额外的开销。在性能敏感场景中，建议使用参数传递函数外的变量替代。
 
 ``` TypeScript
 let arr = [0, 1, 2];
@@ -96,7 +95,7 @@ function foo(): number {
 foo();
 ```
 
-建议使用参数传递函数外的变量来，替代使用闭包。
+建议使用参数传递函数外部的变量，以替代使用闭包。
 ``` TypeScript
 let arr = [0, 1, 2];
 
@@ -108,9 +107,9 @@ foo(arr);
 ```
 
 
-### 6. 避免使用可选参数
+### 避免使用可选参数
 
-函数的可选参数表示参数可能为`undefined`，在函数内部使用改参数时，需要进行非空值的判断，造成额外的开销。
+函数的可选参数表示参数可能为`undefined`，在函数内部使用该参数时，需要进行非空值的判断，造成额外的开销。
 
 ``` TypeScript
 function add(left?: number, right?: number): number | undefined {
@@ -121,7 +120,7 @@ function add(left?: number, right?: number): number | undefined {
 }
 ```
 
-根据业务需要，将函数参数声明为必须参数。可以考虑使用默认参数。
+根据业务需求，将函数参数声明为必选参数。可以考虑使用默认参数。
 ``` TypeScript
 function add(left: number = 0, right: number = 0): number {
   return left + right;
@@ -131,12 +130,11 @@ function add(left: number = 0, right: number = 0): number {
 
 ## 数组
 
-### 7. 数值数组推荐使用TypedArray
+### 数值数组推荐使用TypedArray
 
-如果是涉及纯数值计算的场合，推荐使用TypedArray数据结构。
+涉及纯数值计算时，推荐使用TypedArray数据结构。
 
-
-优化前
+优化前的代码示例：
 ``` TypeScript
 const arr1 = new Array<number>([1, 2, 3]);
 const arr2 = new Array<number>([4, 5, 6]);
@@ -146,7 +144,7 @@ for (let i = 0; i < 3; i++) {
 }
 ```
 
-优化后
+优化后的代码示例：
 ``` TypeScript
 const typedArray1 = new Int8Array([1, 2, 3]);
 const typedArray2 = new Int8Array([4, 5, 6]);
@@ -157,9 +155,9 @@ for (let i = 0; i < 3; i++) {
 ```
 
 
-### 8. 避免使用稀疏数组
+### 避免使用稀疏数组
 
-运行时在分配超过1024大小的数组或者针对稀疏数组，会采用hash表的方式来存储元素。在该模式下，相比于用偏移访问数组元素速度较慢。在代码开发时，应尽量避免数组变成稀疏数组。
+运行时在分配超过1024大小的数组或稀疏数组时，会采用hash表来存储元素。在该模式下，访问数组元素速度较慢。代码开发时应避免数组变成稀疏数组。
 
 ``` TypeScript
 // 直接分配100000大小的数组，运行时会处理成用hash表来存储元素
@@ -172,7 +170,7 @@ result[9999] = 0;
 ```
 
 
-### 9. 避免使用联合类型数组
+### 避免使用联合类型数组
 
 避免使用联合类型数组。避免在数值数组中混合使用整型数据和浮点型数据。
 
@@ -182,9 +180,61 @@ let arrNum: number[] = [1, 1.1, 2];  // 数值数组中混合使用整型数据�
 let arrUnion: (number | string)[] = [1, 'hello'];  // 联合类型数组
 ```
 
-根据业务需要，将相同类型的数据放置在同一数组中。
+根据业务需求，将相同类型的数据放在同一数组中。  
 ``` TypeScript
 let arrInt: number[] = [1, 2, 3];
 let arrDouble: number[] = [0.1, 0.2, 0.3];
 let arrString: string[] = ['hello', 'world'];
+```
+
+
+## 异常
+
+### 避免频繁抛出异常
+
+创建异常时会构造异常的栈帧，造成性能损耗。在性能敏感场景下，如`for`循环语句中，应避免频繁抛出异常。
+
+优化前的代码示例：
+
+``` TypeScript
+function div(a: number, b: number): number {
+  if (a <= 0 || b <= 0) {
+    throw new Error('Invalid numbers.')
+  }
+  return a / b
+}
+
+function sum(num: number): number {
+  let sum = 0
+  try {
+    for (let t = 1; t < 100; t++) {
+      sum += div(t, num)
+    }
+  } catch (e) {
+    console.log(e.message)
+  }
+  return sum
+}
+```
+
+优化后的代码示例：
+
+``` TypeScript
+function div(a: number, b: number): number {
+  if (a <= 0 || b <= 0) {
+    return NaN
+  }
+  return a / b
+}
+
+function sum(num: number): number {
+  let sum = 0
+  for (let t = 1; t < 100; t++) {
+    if (t <= 0 || num <= 0) {
+      console.log('Invalid numbers.')
+    }
+    sum += div(t, num)
+  }
+  return sum
+}
 ```

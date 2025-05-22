@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -18,23 +18,50 @@ DatePicker(options?: DatePickerOptions)
 
 根据指定范围的Date创建可以选择日期的滑动选择器。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
-| 参数名  | 类型                                            | 必填 | 描述                       |
+| 参数名  | 类型                                            | 必填 | 说明                       |
 | ------- | ----------------------------------------------- | ---- | -------------------------- |
 | options | [DatePickerOptions](#datepickeroptions对象说明) | 否   | 配置日期选择器组件的参数。 |
 
 ## DatePickerOptions对象说明
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 类型 | 必填 | 说明                                                         |
 | -------- | ---- | ---- | ------------------------------------------------------------ |
 | start    | Date | 否   | 指定选择器的起始日期。<br/>默认值：Date('1970-1-1')          |
 | end      | Date | 否   | 指定选择器的结束日期。<br/>默认值：Date('2100-12-31')        |
-| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| selected | Date | 否   | 设置选中项的日期。<br/>默认值：当前系统日期<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
+| mode<sup>18+</sup> | [DatePickerMode](#datepickermode18枚举说明) | 否   | 设置DatePicker显示的日期选项列。<br/>默认值：DatePickerMode.DATE，日期列显示年、月、日三列。 小数值做取整处理。<br/>在DatePickerDialog中，当showTime=true时，此参数不生效，显示默认年月日三列。 |
 
-**异常情形说明:**
+>  **说明：**
+>
+>  Date的使用请参考[TimePickerOptions](ts-basic-components-timepicker.md)。  
+>  在DatePicker组件滑动过程中修改DatePickerOptions中的属性（start、end、selected）,会导致这些属性无法生效。
+
+
+## DatePickerMode<sup>18+</sup>枚举说明
+
+设置要显示的日期选项列。
+
+**原子化服务API：** 从API version 18开始，该类型支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 说明 |
+| -------- | -------- |
+| DATE | 日期列显示年、月、日三列。|
+| YEAR_AND_MONTH | 日期列显示年、月二列。|
+| MONTH_AND_DAY | 日期列显示月、日二列。<br/>此模式下，如果月份从12月变化到1月，年份不增加1年；如果月份从1月变化到12月，年份不减少1年；年份始终在当前设置的年份。|
+
+**异常情形说明：**
 
 | 异常情形   | 对应结果  |
 | -------- |  ------------------------------------------------------------ |
@@ -58,13 +85,15 @@ DatePicker(options?: DatePickerOptions)
 
 ## 属性
 
-除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+除支持[通用属性](ts-component-general-attributes.md)外，还支持以下属性：
 
 ### lunar
 
 lunar(value: boolean)
 
 设置弹窗的日期是否显示农历。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,11 +103,29 @@ lunar(value: boolean)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | value  | boolean | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>默认值：false |
 
+### lunar<sup>18+</sup>
+
+lunar(isLunar: Optional\<boolean>)
+
+设置弹窗的日期是否显示农历。与[lunar](#lunar)相比，isLunar参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| isLunar | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 日期是否显示农历。<br/>-&nbsp;true：展示农历。<br/>-&nbsp;false：不展示农历。<br/>当isLunar的值为undefined时，默认值：false |
+
 ### disappearTextStyle<sup>10+</sup>
 
 disappearTextStyle(value: PickerTextStyle)
 
 设置所有选项中最上和最下两个选项的文本样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -88,11 +135,29 @@ disappearTextStyle(value: PickerTextStyle)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
+### disappearTextStyle<sup>18+</sup>
+
+disappearTextStyle(style: Optional\<PickerTextStyle>)
+
+设置所有选项中最上和最下两个选项的文本样式。与[disappearTextStyle](#disappeartextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
 ### textStyle<sup>10+</sup>
 
 textStyle(value: PickerTextStyle)
 
 设置所有选项中除了最上、最下及选中项以外的文本样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -102,11 +167,29 @@ textStyle(value: PickerTextStyle)
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
 
+### textStyle<sup>18+</sup>
+
+textStyle(style: Optional\<PickerTextStyle>)
+
+设置所有选项中除了最上、最下及选中项以外的文本样式。与[textStyle](#textstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                          | 必填 | 说明                                                         |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| style | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+
 ### selectedTextStyle<sup>10+</sup>
 
 selectedTextStyle(value: PickerTextStyle)
 
 设置选中项的文本样式。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -114,18 +197,78 @@ selectedTextStyle(value: PickerTextStyle)
 
 | 参数名 | 类型                                          | 必填 | 说明                                                         |
 | ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+| value  | [PickerTextStyle](#pickertextstyle10类型说明) | 是   | 选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+
+### selectedTextStyle<sup>18+</sup>
+
+selectedTextStyle(style: Optional\<PickerTextStyle>)
+
+设置选中项的文本样式。与[selectedTextStyle](#selectedtextstyle10)<sup>10+</sup>相比，style参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| style  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[PickerTextStyle](#pickertextstyle10类型说明)> | 是   | 选中项的文本颜色、字号、字体粗细。<br/>当style的值为undefined时，默认值：<br/>{<br/>color: '#ff007dff',<br/>font: {<br/>size: '20fp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
+
+### enableHapticFeedback<sup>18+</sup>
+
+enableHapticFeedback(enable: Optional\<boolean>)
+
+设置是否开启触控反馈。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名 | 类型                                          | 必填  | 说明                                                                                  |
+| ------ | --------------------------------------------- |-----|-------------------------------------------------------------------------------------|
+| enable  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 设置是否开启触控反馈。<br/>默认值：true，true表示开启触控反馈，false表示不开启触控反馈。|
+
+>  **说明：**
+>
+>  开启触控反馈时，需要在工程的module.json5中配置requestPermissions字段开启振动权限，配置如下：
+>  ```json
+>  "requestPermissions": [
+>  {
+>   "name": "ohos.permission.VIBRATE",
+>  }
+>  ]
+>  ```
+
+### digitalCrownSensitivity<sup>18+</sup>
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+
+设置表冠灵敏度。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名   | 参数类型                                     | 必填   | 参数描述                      |
+| ----- | ---------------------------------------- | ---- | ------------------------- |
+| sensitivity | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[CrownSensitivity](ts-appendix-enums.md#crownsensitivity18)> | 是    | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。                    |
+
+>  **说明：**
+>
+>  用于穿戴设备圆形屏幕使用。组件响应[表冠事件](ts-universal-events-crown.md)，需要先获取焦点。
 
 ## PickerTextStyle<sup>10+</sup>类型说明
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 | 参数名   | 参数类型                                     | 必填   | 参数描述                      |
 | ----- | ---------------------------------------- | ---- | ------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否    | 文本颜色。                     |
-| font  | [Font](ts-types.md#font)                 | 否    | 文本样式，picker只支持字号、字体粗细的设置。 |
+| font  | [Font](ts-types.md#font)                 | 否    | 文本样式。 |
 
 ## 事件
 
-除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
 
 ### onChange<sup>(deprecated)</sup>
 
@@ -137,7 +280,7 @@ onChange(callback: (value: DatePickerResult) => void)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：** 
+**参数：**
 
 | 参数名 | 类型                                          | 必填 | 说明             |
 | ------ | --------------------------------------------- | ---- | ---------------- |
@@ -149,6 +292,8 @@ onDateChange(callback: (value: Date) => void)
 
 选择日期时触发该事件。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：** 
@@ -157,16 +302,39 @@ onDateChange(callback: (value: Date) => void)
 | ------ | ---- | ---- | ------------------------------------------------------------ |
 | value  | Date | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。 |
 
+### onDateChange<sup>18+</sup>
+
+onDateChange(callback: Optional\<Callback\<Date>>)
+
+选择日期时触发该事件。与[onDateChange](#ondatechange10)<sup>10+</sup>相比，callback参数新增了对undefined类型的支持。
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| callback | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[Callback](ts-types.md#callback12)\<Date>> | 是   | 返回选中的时间，年月日为选中的日期，时分取决于当前系统时间的时分，秒恒为00。<br/>当callback的值为undefined时，不使用回调函数。 |
+
 ## DatePickerResult对象说明
 
-| 名称    | 参数类型   | 描述                          |
-| ----- | ------ | --------------------------- |
-| year  | number | 选中日期的年。                     |
-| month | number | 选中日期的月(0~11)，0表示1月，11表示12月。 |
-| day   | number | 选中日期的日。                     |
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型   | 只读 | 可选 | 说明                                       |
+| ----- | ------ | ---- | ---- | ------------------------------------------ |
+| year  | number | 否   | 否   | 选中日期的年。<br/>取值范围：与start、end有关，如果没有设置start、end，则取start、end默认值[1970， 2100]。                             |
+| month | number | 否   | 否   | 选中日期的月的索引值，索引从0开始，0表示1月，11表示12月。<br/>取值范围：与start、end有关，如果没有设置start、end，取值范围为[0， 11]。 |
+| day   | number | 否   | 否   | 选中日期的日。<br/>取值范围：与start、end有关，如果没有设置start、end，取值范围为[1， 31]。                             |
 
 ## 示例
+
+### 示例1（切换公历农历）
+
+该示例实现了日期选择器组件，点击按钮可以切换公历农历。
 
 
 ```ts
@@ -174,28 +342,25 @@ onDateChange(callback: (value: Date) => void)
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  private selectedDate: Date = new Date('2021-08-08')
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
       Button('切换公历农历')
         .margin({ top: 30, bottom: 30 })
         .onClick(() => {
-          this.isLunar = !this.isLunar
+          this.isLunar = !this.isLunar;
         })
       DatePicker({
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
-        .disappearTextStyle({color: Color.Gray, font: {size: '16fp', weight: FontWeight.Bold}})
-        .textStyle({color: '#ff182431', font: {size: '18fp', weight: FontWeight.Normal}})
-        .selectedTextStyle({color: '#ff0000FF', font: {size: '26fp', weight: FontWeight.Regular}})
         .lunar(this.isLunar)
         .onDateChange((value: Date) => {
-          this.selectedDate = value
-          console.info('select current date is: ' + value.toString())
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
         })
 
     }.width('100%')
@@ -204,3 +369,86 @@ struct DatePickerExample {
 ```
 
 ![datePicker](figures/DatePickerApi10.gif)
+
+### 示例2（设置文本样式）
+
+该示例通过配置disappearTextStyle、textStyle、selectedTextStyle设置文本样式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerExample {
+  private selectedDate: Date = new Date('2021-08-08');
+
+  build() {
+    Column() {
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate
+      })
+        .disappearTextStyle({ color: Color.Gray, font: { size: '16fp', weight: FontWeight.Bold } })
+        .textStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
+        .selectedTextStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Regular, family: "HarmonyOS Sans", style: FontStyle.Normal } })
+        .onDateChange((value: Date) => {
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
+        })
+
+    }.width('100%')
+  }
+}
+```
+
+![datePicker](figures/DatePickerDemo2.png)
+
+### 示例3（设置显示年、月和月、日列）
+
+该示例通过配置mode参数实现显示年、月和月、日列。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct DatePickerExample {
+  @State isLunar: boolean = false;
+  private selectedDate: Date = new Date('2025-01-15');
+  @State datePickerModeList: (DatePickerMode)[] = [
+    DatePickerMode.DATE,
+    DatePickerMode.YEAR_AND_MONTH,
+    DatePickerMode.MONTH_AND_DAY,
+  ];
+  @State datePickerModeIndex: number = 0;
+
+  build() {
+    Column() {
+      Button('切换公历农历')
+        .margin({ top: 30, bottom: 30 })
+        .onClick(() => {
+          this.isLunar = !this.isLunar;
+        })
+      DatePicker({
+        start: new Date('1970-1-1'),
+        end: new Date('2100-1-1'),
+        selected: this.selectedDate,
+        mode:this.datePickerModeList[this.datePickerModeIndex]
+      })
+        .lunar(this.isLunar)
+        .onDateChange((value: Date) => {
+          this.selectedDate = value;
+          console.info('select current date is: ' + value.toString());
+        })
+
+      Button('mode :' + this.datePickerModeIndex).margin({ top: 20 })
+        .onClick(() => {
+          this.datePickerModeIndex++;
+          if(this.datePickerModeIndex >= this.datePickerModeList.length){
+            this.datePickerModeIndex = 0;
+          }
+        })
+    }.width('100%')
+  }
+}
+```
+![datePicker](figures/DatePickerDemo3.gif)

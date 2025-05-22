@@ -1,10 +1,10 @@
 # Vulkan支持能力
 
-[Vulkan](https://www.vulkan.org/)是一套2D和3D绘图应用程序接口，具有跨平台、高性能的特点。OpenHarmony现已支持Vulkan v1.3.231版本。
+[Vulkan](https://www.vulkan.org/)是一套2D和3D绘图应用程序接口，具有跨平台、高性能的特点。OpenHarmony SDK 现已支持Vulkan v1.4.309版本接口，具体可用版本取决于GPU驱动实现。
 
 ## 支持的标准库接口列表
 
-支持Vulkan v1.3.231版本的部分接口能力，具体请见下表。
+支持Vulkan v1.4.309版本的部分接口能力，具体请见下表。
 
 |符号类型|符号名|
 | --- | --- | 
@@ -23,7 +23,9 @@
 |FUNC|vkCmdBeginRenderPass|
 |FUNC|vkCmdBeginRenderPass2|
 |FUNC|vkCmdBindDescriptorSets|
+|FUNC|vkCmdBindDescriptorSets2|
 |FUNC|vkCmdBindIndexBuffer|
+|FUNC|vkCmdBindIndexBuffer2|
 |FUNC|vkCmdBindPipeline|
 |FUNC|vkCmdBindVertexBuffers|
 |FUNC|vkCmdBindVertexBuffers2|
@@ -61,6 +63,11 @@
 |FUNC|vkCmdPipelineBarrier|
 |FUNC|vkCmdPipelineBarrier2|
 |FUNC|vkCmdPushConstants|
+|FUNC|vkCmdPushConstants2|
+|FUNC|vkCmdPushDescriptorSet|
+|FUNC|vkCmdPushDescriptorSet2|
+|FUNC|vkCmdPushDescriptorSetWithTemplate|
+|FUNC|vkCmdPushDescriptorSetWithTemplate2|
 |FUNC|vkCmdResetEvent|
 |FUNC|vkCmdResetEvent2|
 |FUNC|vkCmdResetQueryPool|
@@ -79,10 +86,13 @@
 |FUNC|vkCmdSetEvent|
 |FUNC|vkCmdSetEvent2|
 |FUNC|vkCmdSetFrontFace|
+|FUNC|vkCmdSetLineStipple|
 |FUNC|vkCmdSetLineWidth|
 |FUNC|vkCmdSetPrimitiveRestartEnable|
 |FUNC|vkCmdSetPrimitiveTopology|
 |FUNC|vkCmdSetRasterizerDiscardEnable|
+|FUNC|vkCmdSetRenderingAttachmentLocations|
+|FUNC|vkCmdSetRenderingInputAttachmentIndices|
 |FUNC|vkCmdSetScissor|
 |FUNC|vkCmdSetScissorWithCount|
 |FUNC|vkCmdSetStencilCompareMask|
@@ -97,6 +107,9 @@
 |FUNC|vkCmdWaitEvents2|
 |FUNC|vkCmdWriteTimestamp|
 |FUNC|vkCmdWriteTimestamp2|
+|FUNC|vkCopyImageToImage|
+|FUNC|vkCopyImageToMemory|
+|FUNC|vkCopyMemoryToImage|
 |FUNC|vkCreateBuffer|
 |FUNC|vkCreateBufferView|
 |FUNC|vkCreateCommandPool|
@@ -111,6 +124,7 @@
 |FUNC|vkCreateFence|
 |FUNC|vkCreateFramebuffer|
 |FUNC|vkCreateGraphicsPipelines|
+|FUNC|vkCreateHeadlessSurfaceEXT|
 |FUNC|vkCreateImage|
 |FUNC|vkCreateImageView|
 |FUNC|vkCreateInstance|
@@ -126,6 +140,7 @@
 |FUNC|vkCreateShaderModule|
 |FUNC|vkCreateSharedSwapchainsKHR|
 |FUNC|vkCreateSwapchainKHR|
+|FUNC|vkCreateWin32SurfaceKHR|
 |FUNC|vkDestroyBuffer|
 |FUNC|vkDestroyBufferView|
 |FUNC|vkDestroyCommandPool|
@@ -175,6 +190,7 @@
 |FUNC|vkGetDeviceGroupSurfacePresentModesKHR|
 |FUNC|vkGetDeviceImageMemoryRequirements|
 |FUNC|vkGetDeviceImageSparseMemoryRequirements|
+|FUNC|vkGetDeviceImageSubresourceLayout|
 |FUNC|vkGetDeviceMemoryCommitment|
 |FUNC|vkGetDeviceMemoryOpaqueCaptureAddress|
 |FUNC|vkGetDeviceProcAddr|
@@ -192,6 +208,7 @@
 |FUNC|vkGetImageSparseMemoryRequirements|
 |FUNC|vkGetImageSparseMemoryRequirements2|
 |FUNC|vkGetImageSubresourceLayout|
+|FUNC|vkGetImageSubresourceLayout2|
 |FUNC|vkGetInstanceProcAddr|
 |FUNC|vkGetPhysicalDeviceDisplayPlaneProperties2KHR|
 |FUNC|vkGetPhysicalDeviceDisplayPlanePropertiesKHR|
@@ -222,14 +239,17 @@
 |FUNC|vkGetPhysicalDeviceSurfacePresentModesKHR|
 |FUNC|vkGetPhysicalDeviceSurfaceSupportKHR|
 |FUNC|vkGetPhysicalDeviceToolProperties|
+|FUNC|vkGetPhysicalDeviceWin32PresentationSupportKHR|
 |FUNC|vkGetPipelineCacheData|
 |FUNC|vkGetPrivateData|
 |FUNC|vkGetQueryPoolResults|
 |FUNC|vkGetRenderAreaGranularity|
+|FUNC|vkGetRenderingAreaGranularity|
 |FUNC|vkGetSemaphoreCounterValue|
 |FUNC|vkGetSwapchainImagesKHR|
 |FUNC|vkInvalidateMappedMemoryRanges|
 |FUNC|vkMapMemory|
+|FUNC|vkMapMemory2|
 |FUNC|vkMergePipelineCaches|
 |FUNC|vkQueueBindSparse|
 |FUNC|vkQueuePresentKHR|
@@ -245,8 +265,10 @@
 |FUNC|vkSetEvent|
 |FUNC|vkSetPrivateData|
 |FUNC|vkSignalSemaphore|
+|FUNC|vkTransitionImageLayout|
 |FUNC|vkTrimCommandPool|
 |FUNC|vkUnmapMemory|
+|FUNC|vkUnmapMemory2|
 |FUNC|vkUpdateDescriptorSets|
 |FUNC|vkUpdateDescriptorSetWithTemplate|
 |FUNC|vkWaitForFences|
@@ -261,5 +283,8 @@
 |FUNC|vkCreateSurfaceOHOS|
 |FUNC|vkGetNativeBufferPropertiesOHOS|
 |FUNC|vkGetMemoryNativeBufferOHOS|
+|FUNC|vkGetSwapchainGrallocUsageOHOS|
+|FUNC|vkAcquireImageOHOS|
+|FUNC|vkQueueSignalReleaseImageOHOS|
 
 新增接口的详细介绍请见[Vulkan模块](_vulkan.md)。

@@ -7,6 +7,8 @@
 
 **库：** libohweb.so
 
+**引用文件：** <web/arkweb_error_code.h>
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **起始版本：** 12
@@ -28,4 +30,4 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode) { [ARKWEB_ERROR_UNKNOWN](_web.md) = 17100100, [ARKWEB_INVALID_PARAM](_web.md) = 17100101, [ARKWEB_SCHEME_REGISTER_FAILED](_web.md) = 17100102 } | 定义ArkWeb NDK接口异常错误码。  | 
+| [ArkWeb_ErrorCode](_web.md#arkweb_errorcode) {<br/>[ARKWEB_SUCCESS](_web.md) = 0, [ARKWEB_INIT_ERROR](_web.md) = 17100001, [ARKWEB_ERROR_UNKNOWN](_web.md) = 17100100, [ARKWEB_INVALID_PARAM](_web.md) = 17100101,<br/>[ARKWEB_SCHEME_REGISTER_FAILED](_web.md) = 17100102, [ARKWEB_INVALID_URL](_web.md) = 17100103, [ARKWEB_INVALID_COOKIE_VALUE](_web.md) = 17100104<br/>} | 定义ArkWeb NDK接口异常错误码。  | 

@@ -9,6 +9,7 @@ ArkUI在native侧的数字类型定义。
 
 **相关模块：**[ArkUI_NativeModule](_ark_u_i___native_module.md)
 
+**所在头文件：** [native_type.h](native__type_8h.md)
 
 ## 汇总
 

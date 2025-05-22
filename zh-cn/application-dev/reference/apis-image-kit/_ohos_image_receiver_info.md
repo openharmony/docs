@@ -11,6 +11,8 @@
 
 **相关模块：** [Image](image.md)
 
+**所在头文件：**[image_receiver_mdk.h](image__receiver__mdk_8h.md)
+
 
 ## 汇总
 
@@ -19,7 +21,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| width | 消费端接收图片时的默认图像宽度，用pixels表示 | 
-| height | 消费端接收图片时的默认图像高度，用pixels表示 | 
-| format | 通过接收器创建图像格式OHOS_IMAGE_FORMAT_JPEG | 
-| capicity | 图片缓存数量的最大值 | 
+|  int32_t width | 消费端接收图片时的默认图像宽度，用pixels表示。 |
+|  int32_t height | 消费端接收图片时的默认图像高度，用pixels表示。 |
+|  int32_t format | 通过接收器创建图像格式OHOS_IMAGE_FORMAT_JPEG。 |
+|  int32_t capicity | 图片缓存数量的最大值。 |

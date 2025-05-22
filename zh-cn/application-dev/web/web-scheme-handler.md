@@ -1,14 +1,14 @@
 # 拦截Web组件发起的网络请求
 
-通过[网络拦截接口](../reference/apis-arkweb/arkweb__scheme__handler_8h.md)对Web组件发出的请求进行拦截，并可以为被拦截的请求提供自定义的响应头以及响应体。
+[网络拦截接口(arkweb_scheme_handler.h)](../reference/apis-arkweb/arkweb__scheme__handler_8h.md)可以对Web组件发出的请求进行拦截，并为被拦截的请求提供自定义的响应头以及响应体。
 
 ## 为Web组件设置网络拦截器
 
 为指定的Web组件或者ServiceWorker设置ArkWeb_SchemeHandler，当Web内核发出相应scheme请求的时候，会触发ArkWeb_SchemeHandler的回调。需要在Web组件初始化之后设置网络拦截器。
 
-当请求开始的时候会回调ArkWeb_OnRequestStart，请求结束的时候会回调ArkWeb_OnRequestStop。
+请求开始时回调ArkWeb_OnRequestStart，请求结束时回调ArkWeb_OnRequestStop。
 
-如果想要拦截Web组件发出的第一个请求，可以通过[initializeWebEngine](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)对Web组件提前进行初始化，然后设置拦截器进行拦截。
+若想要拦截Web组件发出的第一个请求，可以通过[initializeWebEngine](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)方法提前进行初始化Web组建，再设置拦截器实现拦截。
 
   ```c++
     // 创建一个ArkWeb_SchemeHandler对象。
@@ -42,7 +42,7 @@
 
 ## 设置自定义scheme需要遵循的规则
 
-如果要拦截自定义scheme的请求，需要提前将自定义scheme注册到Web内核。需要在Web组件初始化之前进行注册，Web组件初始化后再注册会失败。
+如果要拦截自定义scheme的请求，需要提前将自定义scheme注册到Web内核。需要在Web组件初始化之前进行注册，初始化后再注册会失败。
 
   ```c++
     // 注册“custom“ scheme到Web组件，并指定该scheme需要遵循标准的scheme规则，允许该scheme发出跨域请求。
@@ -55,8 +55,8 @@
     OH_ArkWeb_RegisterCustomSchemes("custom-isolated", ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED);
   ```
 
-由于注册scheme需要在Web组件初始化之前进行注册，而网络拦截器需要在Web组件初始化之后设置，建议在EntryAbility的onCreate中调用c++接口注册scheme。
-scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)对Web组件进行初始化，初始化完成后再设置网络拦截器。
+由于注册scheme需要在Web组件初始化前完成，而网络拦截器需要在Web组件初始化之后设置，建议在EntryAbility的onCreate方法中调用c++接口注册scheme。
+完成scheme注册后，通过[initializeWebEngine](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)初始化Web组建，然后设置网络拦截器。
 
   ```ts
     export default class EntryAbility extends UIAbility {
@@ -74,7 +74,7 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
 
 ## 获取被拦截请求的请求信息
 
-通过OH_ArkWebResourceRequest_*接口获取被拦截请求的信息。可以获取url、method、referrer、headers等信息。
+通过OH_ArkWebResourceRequest_*接口获取被拦截请求的信息。可以获取url、method、referrer、headers、resourceType等信息。
 
   ```c++
     char* url;
@@ -84,6 +84,12 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
     char* method;
     OH_ArkWebResourceRequest_GetMethod(resourceRequest_, &method);
     OH_ArkWeb_ReleaseString(method);
+
+    int32_t resourceType = OH_ArkWebResourceRequest_GetResourceType(resourceRequest_);
+
+    char* frameUrl;
+    OH_ArkWebResourceRequest_GetFrameUrl(resourceRequest_, &frameUrl);
+    OH_ArkWeb_ReleaseString(frameUrl);
     ...
   ```
 
@@ -100,7 +106,7 @@ scheme注册完毕后，通过[initializeWebEngine](../reference/apis-arkweb/js-
 
 ## 为被拦截的请求提供自定义的响应体
 
-Web组件的网络拦截支持在worker线程以流的方式为被拦截的请求提供自定义的响应体。也可以以特定的[网络错误码](../reference/apis-arkweb/arkweb__net__error__list_8h.md)结束当前被拦截的请求。
+网络拦截支持在worker线程以流方式为被拦截的请求提供自定义的响应体。也可用特定的[网络错误码(arkweb_net_error_list.h)](../reference/apis-arkweb/arkweb__net__error__list_8h.md)结束当前被拦截的请求。
 
   ```c++
     // 为被拦截的请求创建一个响应头。
@@ -126,18 +132,18 @@ Web组件的网络拦截支持在worker线程以流的方式为被拦截的请�
 
 ## 完整示例
 
-使用DevEco Studio创建一个默认的Native C++工程，需要提前准备一个mp4文件，命名为test.mp4，将test.mp4放到main/resources/rawfile下。
+使用DevEco Studio创建一个默认的Native C++工程，需要提前准备一个mp4文件，命名为test.mp4，并将其放到main/resources/rawfile下。
 
 main/ets/pages/index.ets
 ```ts
 import testNapi from 'libentry.so';
-import web_webview from '@ohos.web.webview';
-import resource_manager from '@ohos.resourceManager';
+import { webview } from '@kit.ArkWeb';
+import { resourceManager } from '@kit.LocalizationKit';
 
 @Entry
 @Component
 struct Index {
-  mycontroller: web_webview.WebviewController = new web_webview.WebviewController("scheme-handler");
+  mycontroller: webview.WebviewController = new webview.WebviewController("scheme-handler");
 
   build() {
     Row() {
@@ -155,7 +161,7 @@ struct Index {
           .domStorageAccess(true)
           .cacheMode(CacheMode.Default)
           .onPageBegin( event => {
-            testNapi.initResourceManager(getContext().resourceManager);
+            testNapi.initResourceManager(this.getUIContext().getHostContext()!.resourceManager);
           })
       }
       .width('100%')
@@ -171,7 +177,7 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import testNapi from 'libentry.so';
-import webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {

@@ -18,27 +18,28 @@ MIPI CSI标准分为应用层、协议层与物理层，协议层又细分为像
 
 - 物理层（PHY Layer）
 
-    PHY层指定了传输媒介，在电气层面从串行bit流中捕捉“0”与“1”，同时生成SoT与EoT等信号。
+  PHY层指定了传输媒介，在电气层面从串行bit流中捕捉“0”与“1”，同时生成SoT与EoT等信号。
 
 - 协议层（Protocol Layer）
 
-    协议层由三个子层组成，每个子层有不同的职责。CSI-2协议能够在host侧处理器上用一个单独的接口处理多条数据流。协议层规定了多条数据流该如何标记和交织起来，以便每条数据流能够被正确地恢复出来。
+  协议层由三个子层组成，每个子层有不同的职责。CSI-2协议能够在host侧处理器上用一个单独的接口处理多条数据流。协议层规定了多条数据流该如何标记和交织起来，以便每条数据流能够被正确地恢复出来。
 
-    - 像素字节转换层（Pixel/Byte Packing/Unpacking Layer）
+  - 像素字节转换层（Pixel/Byte Packing/Unpacking Layer）
 
     CSI-2规范支持多种不同像素格式的图像应用。在发送方中，本层在发送数据到Low Level Protocol层之前，将来自应用层的像素封包为字节数据。在接收方中，本层在发送数据到应用层之前，将来自Low Level Protocol层的字节数据解包为像素。8位的像素数据在本层中传输时保持不变。
 
-    - 低级协议层（Low Level Protocol）
+  - 低级协议层（Low Level Protocol）
+
     LLP主要包含了在SoT和EoT事件之间的bit和byte级别的同步方法，以及和下一层传递数据的方法。LLP最小数据粒度是1个字节。LLP也包含了一个字节内的bit值解析，即Endian(大小端里的Endian的意思)的处理。
 
-    - Lane管理层（Lane Management）
+  - Lane管理层（Lane Management）
 
     CSI-2的Lane是可扩展的。具体的数据Lane的数量规范并没有给出限制，具体根据应用的带宽需求而定。发送侧分发（distributor功能）来自出口方向数据流的字节到1条或多条Lane上。接收侧则从一条或多条Lane中收集字节并合并（merge功能）到一个数据流上，复原出原始流的字节顺序。对于C-PHY物理层来说，本层专门分发字节对（16 bits）到数据Lane或从数据Lane中收集字节对。基于每Lane的扰码功能是可选特性。
     协议层的数据组织形式是包（packet）。接口的发送侧会增加包头（header）和错误校验（error-checking）信息到即将被LLP发送的数据上。接收侧在LLP将包头剥掉，包头会被接收器中对应的逻辑所解析。错误校验信息可以用来做入口数据的完整性检查。
 
 - 应用层（Application Layer）
 
-    本层描述了更高层级的应用对于数据中的数据的处理，规范并不涵盖应用层。CSI-2规范只给出了像素值和字节的映射关系。
+  本层描述了更高层级的应用对于数据中的数据的处理，规范并不涵盖应用层。CSI-2规范只给出了像素值和字节的映射关系。
 
 ### 运作机制
 
@@ -88,18 +89,18 @@ struct MipiCsiCntlrMethod {
 **表 1** MipiCsiCntlrMethod成员的钩子函数功能说明
 | 成员函数 | 入参 | 出参 | 返回状态 | 功能 |
 | ------------------ | ------------------------------------------------------------ | ---- | ------------------ | -------------------------- |
-| setComboDevAttr | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**pAttr**：结构体指针，MIPI CSI相应配置结构体指针 | 无 | HDF_STATUS相关状态 | 写入MIPI CSI配置 |
-| setPhyCmvmode | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**devno**：uint8_t类型，设备编号;<br>**cmvMode**：枚举类型，共模电压模式参数 | 无 | HDF_STATUS相关状态 | 设置共模电压模式           |
-| setExtDataType | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**dataType**：结构体指针，定义YUV和原始数据格式以及位深度 | 无 | HDF_STATUS相关状态 | 设置YUV和RAW数据格式和位深 |
-| setHsMode | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**laneDivideMode**：枚举类型，Lane模式参数 | 无 | HDF_STATUS相关状态 | 设置MIPI RX的Lane分布 |
-| enableClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**comboDev**：uint8_t类型，通路序号 | 无 | HDF_STATUS相关状态 | 使能MIPI的时钟 |
-| disableClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t类型，通路序号 | 无 | HDF_STATUS相关状态 | 关闭MIPI的时钟 |
-| resetRx | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t类型，通路序号 | 无 | HDF_STATUS相关状态 | 复位MIPI RX |
-| unresetRx | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t类型，通路序号 | 无 | HDF_STATUS相关状态 | 撤销复位MIPI RX |
-| enableSensorClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t类型，传感器的时钟信号线号 | 无 | HDF_STATUS相关状态 | 使能MIPI上的Sensor时钟 |
-| disableSensorClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t类型，传感器的时钟信号线号 | 无 | HDF_STATUS相关状态 | 关闭MIPI上的Sensor时钟 |
-| resetSensor | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t类型，传感器的时钟信号线号 | 无 | HDF_STATUS相关状态 | 复位Sensor |
-| unresetSensor | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t类型，传感器的时钟信号线号 | 无 | HDF_STATUS相关状态 | 撤销复位Sensor |   
+| setComboDevAttr | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**pAttr**：结构体指针，MIPI CSI相应配置结构体指针。 | 无 | HDF_STATUS相关状态 | 写入MIPI CSI配置 |
+| setPhyCmvmode | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**devno**：uint8_t类型，设备编号;<br>**cmvMode**：枚举类型，共模电压模式参数。 | 无 | HDF_STATUS相关状态 | 设置共模电压模式           |
+| setExtDataType | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**dataType**：结构体指针，定义YUV和原始数据格式以及位深度。 | 无 | HDF_STATUS相关状态 | 设置YUV和RAW数据格式和位深 |
+| setHsMode | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**laneDivideMode**：枚举类型，Lane模式参数。 | 无 | HDF_STATUS相关状态 | 设置MIPI RX的Lane分布 |
+| enableClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br>**comboDev**：uint8_t类型，通路序号。 | 无 | HDF_STATUS相关状态 | 使能MIPI的时钟 |
+| disableClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t类型，通路序号。 | 无 | HDF_STATUS相关状态 | 关闭MIPI的时钟 |
+| resetRx | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t类型，通路序号。 | 无 | HDF_STATUS相关状态 | 复位MIPI RX |
+| unresetRx | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**comboDev**：uint8_t类型，通路序号。 | 无 | HDF_STATUS相关状态 | 撤销复位MIPI RX |
+| enableSensorClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t类型，传感器的时钟信号线号。 | 无 | HDF_STATUS相关状态 | 使能MIPI上的Sensor时钟 |
+| disableSensorClock | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t类型，传感器的时钟信号线号。 | 无 | HDF_STATUS相关状态 | 关闭MIPI上的Sensor时钟 |
+| resetSensor | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t类型，传感器的时钟信号线号。 | 无 | HDF_STATUS相关状态 | 复位Sensor |
+| unresetSensor | **cntlr**：结构体指针，MipiCsi控制器 ;<br/>**snsClkSource**：uint8_t类型，传感器的时钟信号线号。 | 无 | HDF_STATUS相关状态 | 撤销复位Sensor |   
 
 ### 开发步骤
 

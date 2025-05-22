@@ -9,12 +9,14 @@ The **DataShare** module allows an application to manage its own data and share 
 > - The APIs provided by this module are system APIs.
 >
 > - The APIs of this module can be used only in the stage model.
+>
+> - The callback in **on('rdbDataChange')** cannot transfer data larger than 200 KB in size.
 
 
 ## Modules to Import
 
 ```ts
-import dataShare from '@ohos.data.dataShare'
+import { dataShare } from '@kit.ArkData';
 ```
 
 ## dataShare.createDataShareHelper
@@ -35,21 +37,22 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
 | uri      | string                                                   | Yes  | Uniform Resource Identifier (URI) of the server application to connect.                              |
-| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -86,22 +89,23 @@ Creates a **DataShareHelper** instance. This API uses an asynchronous callback t
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context)        | Yes  | Context of the application.                                          |
 | uri      | string                                                   | Yes  | URI of the server application to connect.                              |
-| options | [DataShareHelperOptions](#datasharehelperoptions10)| Yes  | Configuration specifying whether [DataShareHelper](#datasharehelper) is in proxy mode.|
-| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
+| options | [DataShareHelperOptions](#datasharehelperoptions10)| Yes  | Whether [DataShareHelper](#datasharehelper) is in proxy mode and the waiting time for starting the data provider process in non-silent access mode.<br>If this parameter is not set, [DataShareHelper](#datasharehelper) is not in proxy mode and the waiting time for starting the data provider process in non-silent access mode is 2 seconds.<br>If the URI starts with **datashareproxy**, the **isProxy** parameter in **options** must be set. Otherwise, **DataShareHelper** will fail to be created and an error will be returned.|
+| callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **DataShareHelper** instance created. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -139,7 +143,7 @@ Creates a **DataShareHelper** instance. This API uses a promise to return the re
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | Yes  | Context of the application.            |
 | uri     | string                                            | Yes  | URI of the server application to connect.|
-| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | No| Configuration of the **DataShareHelper** instance. This parameter is supported from API version 10. If it is not set, [DataShareHelper](#datasharehelper) is not in proxy mode.|
+| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | No| Optional configuration of the **DataShareHelper** instance. It specifies whether [DataShareHelper](#datasharehelper) is in proxy mode and the waiting time for starting the data provider process in non-silent access mode.<br>If this parameter is not set, [DataShareHelper](#datasharehelper) is not in proxy mode and the waiting time for starting the data provider process in non-silent access mode is 2 seconds.<br>If the URI starts with **datashareproxy**, the **isProxy** parameter in **options** must be set. Otherwise, **DataShareHelper** will fail to be created and an error will be returned. |
 
 **Return value**
 
@@ -149,17 +153,18 @@ Creates a **DataShareHelper** instance. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
@@ -206,17 +211,18 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
-| 15700011 | The Uri is not exist. |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700011 | The URI is not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
 let context = getContext(UIAbility);
@@ -246,6 +252,7 @@ Observe the following when using this API:
 | ------- | ------------------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | Yes  | Context of the application.                                                                                                                                                                                                                                                                     |
 | uri     | string                                                  | No  | URI of the data, for which silent access is to be disabled.<br>Global setting: If **uri** is **undefined** or **null** or is not specified, all the previous settings will be cleared and silent access will be disabled globally for the data provider.<br>URI-specific setting: If a URI is specified, silent access to the specified URI will be disabled.<br>When datashareHelper APIs are called, the URI-specific setting is preferentially applied. If no match is found, the global setting is applied.<br>URI format: **datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}**|
+
 **Return value**
 
 | Type                                              | Description                                  |
@@ -254,17 +261,18 @@ Observe the following when using this API:
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                            |
 | -------- | ---------------------------------------------------- |
-| 15700011 | The Uri is not exist. |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700011 | The URI does not exist. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { BusinessError } from '@kit.BasicServicesKit'
+import { UIAbility } from '@kit.AbilityKit';
 
 let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
 let context = getContext(UIAbility);
@@ -277,13 +285,14 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 ## DataShareHelperOptions<sup>10+</sup>
 
-Defines whether [DataShareHelper](#datasharehelper) is in proxy mode.
+Represents the optional parameters of [DataShareHelper](#datasharehelper).
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br/>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper] (#datasharecreatedatasharehelper10) will start the data provider to create a database.|
+| isProxy | boolean | No| Whether the [DataShareHelper](#datasharehelper) is in proxy mode.<br>The default value is **false**.<br>If the value is **true**, the [DataShareHelper](#datasharehelper) to be created is in proxy mode, and all operations will not open the data provider application unless the database does not exist. If the database does not exist, [createDataShareHelper](#datasharecreatedatasharehelper10) will start the data provider to create a database.|
+| waitTime<sup>16+</sup> | number | No| Waiting time for starting the data provider process, in seconds.<br>The default value is **2**.|
 
 ## TemplateId<sup>10+</sup>
 
@@ -305,12 +314,12 @@ Defines the data to publish.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the data to publish.|
-| data | string \| ArrayBuffer | Yes| Data to publish. If the data to publish exceeds 20 KB, you are advised to use **data** of the ArrayBuffer type.|
+| data | string \| ArrayBuffer | Yes| Data to publish. If the data to publish exceeds 20 KB, you are advised to use the data in ArrayBuffer format.|
 | subscriberId | string | Yes| Subscriber ID.|
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-Defines the subscription/unsubscription result of the RDB data changes.
+Represents the RDB data change result. The data returned by the callback is not larger than 200 KB in size.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -318,7 +327,7 @@ Defines the subscription/unsubscription result of the RDB data changes.
 | -------- | -------- | -------- | -------- |
 | uri | string | Yes| URI of the callback.|
 | templateId | [TemplateId](#templateid10) | Yes| ID of the template that triggers the callback.|
-| data | Array&lt;string&gt; | Yes| Data of the callback.|
+| data | Array&lt;string&gt; | Yes| Data of the callback. If an error occurs during callback data processing, the callback will not be triggered.|
 
 ## PublishedDataChangeNode<sup>10+</sup>
 
@@ -341,6 +350,7 @@ Defines the struct of the template used in a subscription.
 | -------- | -------- | -------- | -------- |
 | predicates | Record<string, string> | Yes| Predicates to use. When [**on**](#onrdbdatachange10) is called, the predicates are used to generate data. This parameter applies only to RDB data storage. |
 | scheduler | string | Yes| Template scheduler SQL, which is embedded with a custom function. Currently, the **remindTimer** function is embedded. The **remindTimer** triggers a subscription-based update in specified scenarios.<br>The scheduler SQL statement is triggered when:<br>1. The subscribed data is modified.<br>2. The first subscription is added to the corresponding database.|
+| update<sup>14+<sup> | string | No| Update SQL statement of a specified template. The default value is an empty string. When [on](#onrdbdatachange10) is called, the **update** parameter is used to update data. This parameter applies only to RDB data storage. |
 
 ## OperationResult<sup>10+</sup>
 
@@ -415,7 +425,16 @@ Subscribes to the data change of the specified URI. After an observer is registe
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates the data change.|
 | uri      | string               | Yes  | URI of the data to be observed.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the data change. If the data is changed, **err** is **undefined**. Otherwise, this callback is not invoked or **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the data change. If the data is changed, **err** is **undefined**. Otherwise, this callback is not invoked or **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
@@ -444,13 +463,25 @@ Subscribes to the data change of the specified URI. This API uses an asynchronou
 | event     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates the data change.|
 | type     | [SubscriptionType](#subscriptiontype12)| Yes  | Subscription type.|
 | uri      | string               | Yes  | URI of the data to be observed.|
-| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt; | Yes  | Callback invoked to return the data change when the change notification is triggered.|
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt; | Yes  | Callback used to return the data change when the change notification is triggered.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit'
+
 let uri = ("datashare:///com.acts.datasharetest");
-export function callback(error,ChangeInfo) {
+export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
     console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
 }
 if (dataShareHelper !== undefined) {
@@ -472,7 +503,16 @@ Unsubscribes from the data change of the specified URI.
 | -------- | -------------------- | ---- | ------------------------ |
 | type     | string               | Yes  | Event/callback type. The value is **dataChange**, which indicates the data change.|
 | uri      | string               | Yes  | URI of the data to be observed.|
-| callback | AsyncCallback&lt;void&gt; | No  | Callback to unregister. If this parameter is left empty, all callbacks for the specified URI will be unregistered.|
+| callback | AsyncCallback&lt;void&gt; | No  | Callback to unregister. If this parameter is **undefined**, **null**, or left empty, this API unregisters all callbacks for the specified URI.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
@@ -503,13 +543,25 @@ Unsubscribes from the data change of the specified URI. Silent access is not sup
 | event     | string               | Yes  | Event or callback type. The value is **dataChange**, which indicates the data change.|
 | type     | [SubscriptionType](#subscriptiontype12)| Yes  | Subscription type.|
 | uri      | string               | Yes  | URI of the data to be observed.|
-| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| No  | Callback to unregister. If this parameter is left empty, all notification callbacks of the URI will be unregistered. If this parameter is specified, the callback must be the one registered in [on('datachange')](#ondatachange12).|
+| callback | AsyncCallback&lt;[ChangeInfo](#changeinfo12)&gt;| No  | Callback to unregister. If this parameter is **undefined**, **null**, or left empty, this API unregisters all callbacks for the specified URI. If this parameter is specified, the callback must be the one registered in [on('datachange')](#ondatachange12).|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
+<!--code_no_check-->
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit'
+
 let uri = ("datashare:///com.acts.datasharetest");
-export function callback(error,ChangeInfo) {
+export function callback(error:BusinessError, ChangeInfo:dataShare.ChangeInfo) {
     console.info(' **** Observer callback **** ChangeInfo:' + JSON.stringify(ChangeInfo));
 }
 if (dataShareHelper !== undefined) {
@@ -536,11 +588,13 @@ Adds a data template with the specified subscriber.
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message             |
 | -------- | -------------------- |
-| 15700011 | The uri is not exist.|
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700011 | The URI is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
@@ -556,7 +610,8 @@ let template: dataShare.Template = {
     key1 : value1,
     key2 : value2,
   },
-  scheduler : "select remindTimer(time) from TBL00"
+  scheduler : "select remindTimer(time) from TBL00",
+  update : "update TBL00 set cityColumn = 'visited' where cityColumn = 'someCity'"
 }
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).addTemplate(uri, subscriberId, template);
@@ -580,11 +635,13 @@ Deletes a data template based on the specified subscriber.
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message             |
 | -------- | -------------------- |
-| 15700011 | The uri is not exist.|
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700011 | The URI is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
@@ -623,7 +680,7 @@ Subscribes to the changes of the data corresponding to the specified URI and tem
 | type      | string                           | Yes  | Event type. The value is **rdbDataChange**, which indicates the change of the RDB data. If **type** is any other value, there is no response to this API. |
 | uris    | Array&lt;string&gt;                | Yes  | URIs of the target data.          |
 | templateId | [TemplateId](#templateid10)       | Yes  | ID of the template that triggers the callback.          |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback invoked to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt;   | Yes  | Callback used to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
 
 **Return value**
 
@@ -631,10 +688,19 @@ Subscribes to the changes of the data corresponding to the specified URI and tem
 | ---------------- | ------------------------------------------------------------ |
 | Array&lt;[OperationResult](#operationresult10)&gt; | Returns the operation result.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let onCallback: (err: BusinessError, node: dataShare.RdbDataChangeNode) => void = (err: BusinessError, node:dataShare.RdbDataChangeNode): void => {
   console.info("onCallback " + JSON.stringify(node.uri));
@@ -667,13 +733,22 @@ Unsubscribes from the changes of the data corresponding to the specified URI and
 | type      | string                                      | Yes  | Event type. The value is **rdbDataChange**, which indicates the change of the RDB data.  |
 | uris    | Array&lt;string&gt;                           | Yes  | URIs of the target data.          |
 | templateId | [TemplateId](#templateid10)                | Yes  | ID of the template that triggers the callback.       |
-| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | No  | Callback to unregister. If this parameter is left empty, all callbacks for the specified URIs will be unregistered.|
+| callback | AsyncCallback&lt;[RdbDataChangeNode](#rdbdatachangenode10)&gt; | No  | Callback to unregister. If this parameter is **undefined**, **null**, or left empty, this API unregisters all callbacks for the specified URI.|
 
 **Return value**
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
 | Array&lt;[OperationResult](#operationresult10)&gt; | Returns the operation result.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
@@ -700,7 +775,7 @@ Subscribes to the change of the published data.
 | type      | string                           | Yes  | Event type. The value is **publishedDataChange**, which indicates the change of the published data.|
 | uris    | Array&lt;string&gt;                | Yes  | URIs of the target data.          |
 | subscriberId | string                        | Yes  | Subscriber ID of the callback.          |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback invoked to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data change. Otherwise, this callback is not invoked or **err** is an error object. |
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt;   | Yes  | Callback used to return the data change. If the operation is successful, **err** is **undefined** and **node** is the data changed. Otherwise, this callback is not invoked or **err** is an error object. |
 
 **Return value**
 
@@ -708,10 +783,19 @@ Subscribes to the change of the published data.
 | ---------------- | ------------------------------------------------------------ |
 | Array&lt;[OperationResult](#operationresult10)&gt; | Returns the operation result.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let onPublishCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
   console.info("onPublishCallback node bundleName " + JSON.stringify(node.bundleName));
@@ -748,7 +832,7 @@ Unsubscribes from the change of the published data.
 | type      | string                                      | Yes  | Event type. The value is **publishedDataChange**, which indicates the change of the published data.|
 | uris    | Array&lt;string&gt;                           | Yes  | URIs of the target data.          |
 | subscriberId | string                                   | Yes  | Subscriber ID of the callback.          |
-| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | No  | Callback to unregister. If this parameter is left empty, all callbacks for the specified URIs will be unregistered.|
+| callback | AsyncCallback&lt;[PublishedDataChangeNode](#publisheddatachangenode10)&gt; | No  | Callback to unregister. If this parameter is **undefined**, **null**, or left empty, this API unregisters all callbacks for the specified URI.|
 
 **Return value**
 
@@ -756,10 +840,19 @@ Unsubscribes from the change of the published data.
 | ---------------- | ------------------------------------------------------------ |
 | Array&lt;[OperationResult](#operationresult10)&gt; | Returns the operation result.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let offCallback: (err: BusinessError, node: dataShare.PublishedDataChangeNode) => void = (err: BusinessError, node:dataShare.PublishedDataChangeNode): void => {
   console.info("**** Observer off callback ****");
@@ -786,20 +879,22 @@ Publishes data to the database.
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;     | Yes  | Data to publish.  |
 | bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.          |
 | version | number                                             | Yes  | Version of the data to publish. A larger value indicates a later version. If the version of the data published is earlier than that of the data in the database, the data in the database will not be updated.|
-| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.   |
+| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback used to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.   |
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let arrayBuffer = new ArrayBuffer(1);
 let version = 1;
@@ -831,20 +926,22 @@ Publishes data to the database.
 | -------- | ------------------------------------------------- | ---- | ---------------------------------- |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;                        | Yes  | Data to publish.  |
 | bundleName | string                                          | Yes  | Application of the data to publish. This parameter is valid only for the private data published. Only the application can read the data.      |
-| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.|
-
-**Example**
+| callback | AsyncCallback&lt;Array&lt;[OperationResult](#operationresult10)&gt;&gt; | Yes  | Callback used to return the result. If data is published, **err** is **undefined**, and **result** is the data publish result. Otherwise, this callback is not triggered or **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
+**Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
   console.info("publishCallback " + JSON.stringify(result));
@@ -882,11 +979,13 @@ Publishes data to the database.
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
@@ -913,20 +1012,22 @@ Obtains the published data of an application.
 | Name   | Type            | Mandatory| Description                          |
 | -------- | -----------------| ---- | ----------------------------- |
 | bundleName | string         | Yes  | Application to which the data belongs. |
-| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Yes  | Callback invoked to return the published data obtained.|
+| callback | AsyncCallback&lt;Array&lt;[PublishedItem](#publisheditem10)&gt;&gt; | Yes  | Callback used to return the published data obtained.|
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let publishCallback: (err: BusinessError, data: Array<dataShare.PublishedItem>) => void = (err: BusinessError, result: Array<dataShare.PublishedItem>): void => {
   console.info("**** Observer publish callback ****");
@@ -958,11 +1059,13 @@ Obtains the published data of an application.
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                   |
 | -------- | -------------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
@@ -986,13 +1089,22 @@ Inserts a single data record into the database. This API uses an asynchronous ca
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | Yes  | URI of the data to insert.                                    |
 | value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | Yes  | Data to insert. If this parameter is left empty, a blank row will be inserted.          |
-| callback | AsyncCallback&lt;number&gt;                               | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the index of the inserted data record. Otherwise, **err** is an error object.<br>The data index is not returned if the APIs of the database in use, for example, the key-value database (KVDB), do not support the return of indexes.|
+| callback | AsyncCallback&lt;number&gt;                               | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the index of the inserted data record. Otherwise, **err** is an error object.<br>The data index is not returned if the APIs of the database in use, for example, the key-value database (KVDB), do not support the return of indexes.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1044,11 +1156,20 @@ Inserts a single data record into the database. This API uses a promise to retur
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the index of the inserted data record.<br>The data index is not returned if the APIs of the database in use (for example, KVDB) do not support the return of indexes.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { BusinessError } from '@kit.BasicServicesKit'
+import { ValuesBucket } from '@kit.ArkData'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1091,13 +1212,22 @@ Deletes one or more data records from the database. This API uses an asynchronou
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | Yes  | URI of the data to delete.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for deleting the data.<br>The predicate methods supported by **delete()** vary depending on the database in use. For example, the KVDB supports only **inKeys**. If this parameter is left empty, the entire table will be deleted by default.|
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of deleted data records. Otherwise, **err** is an error object.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
+import { dataSharePredicates } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1140,11 +1270,20 @@ Deletes one or more data records from the database. This API uses a promise to r
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the number of deleted data records.<br>The number of deleted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
+import { dataSharePredicates } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1179,14 +1318,22 @@ Queries data in the database. This API uses an asynchronous callback to return t
 | uri        | string                                                       | Yes  | URI of the data to query.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for querying the data.<br>The predicate methods supported by **query()** vary depending on the database used. For example, the KVDB supports only **inKeys** and **prefixKey**. If this parameter is left empty, the entire table will be queried by default.|
 | columns    | Array&lt;string&gt;                                          | Yes  | Column to query. If this parameter is left empty, all columns will be queried.              |
-| callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the result set obtained. Otherwise, **err** is an error object.|
+| callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the result set obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
-import DataShareResultSet from '@ohos.data.DataShareResultSet'
+import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -1231,12 +1378,20 @@ Queries data in the database. This API uses a promise to return the result.
 | ------------------------------------------------------------ | --------------------------------- |
 | Promise&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | Promise used to return the result set obtained.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
-import DataShareResultSet from '@ohos.data.DataShareResultSet'
+import { dataSharePredicates, DataShareResultSet } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let columns = ["*"];
@@ -1272,14 +1427,22 @@ Updates data in the database. This API uses an asynchronous callback to return t
 | uri        | string                                                       | Yes  | URI of the data to update.                                    |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions for updating the data.<br>The predicate methods supported by **update()** vary depending on the database in use. For example, only the relational database (RDB) supports predicates. If this parameter is left empty, the entire table will be updated by default.|
 | value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | Yes  | New data, which can be null.                                 |
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of updated data records. Otherwise, **err** is an error object.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from '@ohos.base'
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1334,12 +1497,20 @@ Updates data in the database. This API uses a promise to return the result.
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the number of data records updated.<br>The number of updated data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let da = new dataSharePredicates.DataSharePredicates();
@@ -1374,7 +1545,7 @@ try {
 
 batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;
 
-Updates data in batches. A maximum of 900 KB data can be updated at a time. If the data volume exceeds 900 KB, the update will fail. The transaction of this API depends on the data provider. This API uses a promise to return the result.
+Updates data in batches. A maximum of 900 KB data can be updated at a time. If the data volume exceeds 900 KB, the update will fail. The transaction of this API depends on the data provider. This API uses a promise to return the result. Silent access is not supported currently.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -1392,19 +1563,19 @@ Updates data in batches. A maximum of 900 KB data can be updated at a time. If t
 
 **Error codes**
 
-For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md).
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                            |
 | -------- | ------------------------------------ |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700000 | Inner error.                         |
-| 15700010 | The datasharehelper has been closed. |
+| 15700013 | The DataShareHelper instance is already closed. |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { dataSharePredicates, ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let record: Record<string, Array<dataShare.UpdateOperation>> = {};
 let operations1: Array<dataShare.UpdateOperation> = [];
@@ -1412,7 +1583,7 @@ let operations2: Array<dataShare.UpdateOperation> = [];
 
 let pre1: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 pre1.equalTo("name", "ZhangSan");
-let vb1: ValueBucket = {
+let vb1: ValuesBucket = {
   "name": "ZhangSan1",
 }
 let operation1: dataShare.UpdateOperation = {
@@ -1423,7 +1594,7 @@ operations1.push(operation1);
 
 let pre2: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
 pre2.equalTo("name", "ZhangSan2");
-let vb2: ValueBucket = {
+let vb2: ValuesBucket = {
   "name": "ZhangSan3",
 }
 let operation2: dataShare.UpdateOperation = {
@@ -1438,11 +1609,14 @@ try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
       // Traverse data to obtain the update result of each data record. value indicates the number of data records that are successfully updated. If value is less than 0, the update fails.
-      for (const [key, values] of Object.entries(data)) {
-          console.info(`Update uri:${key}`);
-          for (const value of values) {
-              console.info(`Update result:${value}`);
-          }
+      let a = Object.entries(data);
+      for (let i = 0; i < a.length; i++) {
+        let key = a[i][0];
+        let values = a[i][1]
+        console.info(`Update uri:${key}`);
+        for (const value of values) {
+          console.info(`Update result:${value}`);
+        }
       }
     }).catch((err: BusinessError) => {
       console.error(`Batch update error: code: ${err.code}, message: ${err.message} `);
@@ -1469,13 +1643,22 @@ Batch inserts data into the database. This API uses an asynchronous callback to 
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | Yes  | URI of the data to insert.                                    |
 | values   | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | Yes  | Data to insert.                                          |
-| callback | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of data records inserted. Otherwise, **err** is an error object.<br>The number of inserted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+| callback | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the number of data records inserted. Otherwise, **err** is an error object.<br>The number of inserted data records is not returned if the APIs of the database in use (for example, KVDB) do not support this return.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1528,11 +1711,20 @@ Batch inserts data into the database. This API uses a promise to return the resu
 | ---------------- | ------------------------------------------------------------ |
 | Promise&lt;number&gt; | Promise used to return the number of data records inserted.<br>The number of inserted data records is not returned if the APIs of the database (for example, KVDB) in use do not the return of the number of data records.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import { ValuesBucket } from '@ohos.data.ValuesBucket'
-import { BusinessError } from '@ohos.base'
+import { ValuesBucket } from '@kit.ArkData'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let key1: string = "name";
@@ -1605,12 +1797,21 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 | Name    | Type                  | Mandatory| Description                                                    |
 | -------- | ---------------------- | ---- | -------------------------------------------------------- |
 | uri      | string                 | Yes  | [URI](../apis-arkts/js-apis-uri.md#uri) to normalize.     |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the normalized URI (if **null** is returned, URI normalization is not supported). Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the normalized URI (if **null** is returned, URI normalization is not supported). Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1644,10 +1845,19 @@ Normalizes a **DataShare** URI. The **DataShare** URI can be used only by the lo
 | ---------------- | ---------------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result. If URI normalization is supported, the normalized URI is returned. Otherwise, **null** is returned.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1672,12 +1882,21 @@ Denormalizes a URI. This API uses an asynchronous callback to return the result.
 | Name    | Type                  | Mandatory| Description                                               |
 | -------- | ---------------------- | ---- | --------------------------------------------------- |
 | uri      | string                 | Yes  | [URI](../apis-arkts/js-apis-uri.md#uri) to denormalize.|
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the URI obtained. If the original URI is returned, denormalization is not required. If **null** is returned, denormalization is not supported. If the operation fails, **err** is an error object.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the URI obtained. If the original URI is returned, denormalization is not required. If **null** is returned, denormalization is not supported. If the operation fails, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1711,10 +1930,19 @@ Denormalizes a URI. This API uses a promise to return the result. Silent access 
 | ---------------- | ----------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result. If the denormalization is successful, the URI obtained is returned. If no operation is required, the original URI is returned. If denormalization is not supported, **null** is returned.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit'
 
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 if (dataShareHelper != undefined) {
@@ -1739,7 +1967,16 @@ Notifies the registered observer of data changes. This API uses an asynchronous 
 | Name   | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | uri      | string               | Yes  | URI of the data.|
-| callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the observer is notified of the data changes, **err** is **undefined**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the observer is notified of the data changes, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Mandatory parameters are left unspecified.|
+| 15700013 | The DataShareHelper instance is already closed.|
 
 **Example**
 
@@ -1772,6 +2009,15 @@ Notifies the registered observer of data changes. This API uses a promise to ret
 | -------------- | --------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Mandatory parameters are left unspecified.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
@@ -1801,16 +2047,25 @@ Notifies the observer of the data change of the specified URI. This API uses a p
 | -------------- | --------------------- |
 | Promise&lt;void&gt; |  returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [DataShare Error Codes](errorcode-datashare.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message             |
+| -------- | -------------------- |
+| 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
+| 15700013 | The DataShareHelper instance is already closed.|
+
 **Example**
 
 ```ts
-import values from '@ohos.data.ValuesBucket';
+import { ValuesBucket } from '@kit.ArkData'
 
 let dsUri = ("datashare:///com.acts.datasharetest");
-let people: Array<values.ValuesBucket> = new Array(
-                {"name": "LiSi"},
-                {"name": "WangWu"},
-                {"name": "ZhaoLiu"});
+let bucket1: ValuesBucket = {"name": "LiSi"};
+let bucket2: ValuesBucket = {"name": "WangWu"};
+let bucket3: ValuesBucket = {"name": "ZhaoLiu"};
+let people: Array<ValuesBucket> = new Array(bucket1, bucket2, bucket3);
 let changeData:dataShare.ChangeInfo= { type:dataShare.ChangeType.INSERT, uri:dsUri, values:people};
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).notifyChange(changeData);

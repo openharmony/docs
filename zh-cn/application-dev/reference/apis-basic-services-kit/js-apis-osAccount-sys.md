@@ -1,27 +1,27 @@
-# @ohos.account.osAccount (系统帐号管理)(系统接口)
+# @ohos.account.osAccount (系统账号管理)(系统接口)
 
-本模块提供管理系统帐号的基础能力，包括系统帐号的添加、删除、查询、设置、订阅、启动等功能。
+本模块提供管理系统账号的基础能力，包括系统账号的添加、删除、查询、设置、订阅、启动等功能。
 
 > **说明：**
 >
 > - 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 当前页面仅包含本模块的系统接口，其他公开接口参见[ohos.account.osAccount (系统帐号管理)](js-apis-osAccount.md)。
+> - 当前页面仅包含本模块的系统接口，其他公开接口参见[ohos.account.osAccount (系统账号管理)](js-apis-osAccount.md)。
 
 ## 导入模块
 
 ```ts
-import account_osAccount from '@ohos.account.osAccount';
+import { osAccount } from '@kit.BasicServicesKit';
 ```
 
 ## AccountManager
 
-系统帐号管理类。
+系统账号管理类。
 
 ### activateOsAccount
 
 activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-激活指定系统帐号。使用callback异步回调。
+激活指定系统账号。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -33,22 +33,27 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
-| localId  | number                    | 是   | 系统帐号ID。                  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当帐号激活成功时，err为null，否则为错误对象。 |
+| localId  | number                    | 是   | 系统账号ID。                  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当账号激活成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
-| 12300009 | Account has been activated. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
 
-**示例：** 激活ID为100的系统帐号
+**示例：** 激活ID为100的系统账号
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId, (err: BusinessError)=>{
@@ -59,7 +64,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
       }
     });
   } catch (err) {
-    console.log('activateOsAccount failed, error:' + JSON.stringify(err));
+    console.error('activateOsAccount failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -67,7 +72,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 activateOsAccount(localId: number): Promise&lt;void&gt;
 
-激活指定系统帐号。使用Promise异步回调。
+激活指定系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -79,7 +84,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
@@ -91,25 +96,81 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
-| 12300009 | Account has been activated. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
+| 12300016 | The number of logged in accounts reaches the upper limit. |
 
-**示例：** 激活ID为100的系统帐号
+**示例：** 激活ID为100的系统账号
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.activateOsAccount(localId).then(() => {
       console.log('activateOsAccount successfully');
     }).catch((err: BusinessError) => {
-      console.log('activateOsAccount failed, err:' + JSON.stringify(err));
+      console.error('activateOsAccount failed, err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('activateOsAccount exception: ' + JSON.stringify(e));
+    console.error('activateOsAccount exception: ' + JSON.stringify(e));
+  }
+  ```
+
+### deactivateOsAccount<sup>12+</sup>
+
+deactivateOsAccount(localId: number): Promise&lt;void&gt;
+
+注销（退出登录）指定系统账号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                 |
+| ------- | ------ | ---- | -------------------- |
+| localId | number | 是   | 系统账号ID。 |
+
+**返回值：**
+
+| 类型                | 说明                                  |
+| ------------------- | ------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息             |
+| -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
+
+**示例：** 注销ID为100的系统账号
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let localId: number = 100;
+  try {
+    accountManager.deactivateOsAccount(localId).then(() => {
+      console.log('deactivateOsAccount successfully');
+    }).catch((err: BusinessError) => {
+      console.error('deactivateOsAccount failed, err:' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.error('deactivateOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -117,7 +178,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
 
 isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
-判断指定系统帐号是否处于激活状态。使用Promise异步回调。
+判断指定系统账号是否处于激活状态。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -129,35 +190,38 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型   | 必填 | 说明                               |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
 | 类型                   | 说明                                                       |
 | ---------------------- | ---------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示帐号已激活；返回false表示帐号未激活。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示账号已激活；返回false表示账号未激活。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
-**示例：** 判断ID为100的系统帐号是否处于激活状态
+**示例：** 判断ID为100的系统账号是否处于激活状态
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.isOsAccountActivated(localId).then((isActivated: boolean) => {
       console.log('isOsAccountActivated successfully, isActivated: ' + isActivated);
     }).catch((err: BusinessError) => {
-      console.log('isOsAccountActivated failed, error: ' + JSON.stringify(err));
+      console.error('isOsAccountActivated failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('isOsAccountActivated exception: ' + JSON.stringify(err));
+    console.error('isOsAccountActivated exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -165,7 +229,7 @@ isOsAccountActivated(localId: number): Promise&lt;boolean&gt;
 
 isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;boolean&gt;
 
-判断指定系统帐号是否使能指定约束。使用Promise异步回调。
+判断指定系统账号是否使能指定约束。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -177,8 +241,8 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 | 参数名     | 类型   | 必填 | 说明                                |
 | ---------- | ------ | ---- | ---------------------------------- |
-| localId    | number | 是   | 系统帐号ID。  |
-| constraint | string | 是   | 指定的[约束](js-apis-osAccount.md#系统帐号约束列表)名称。 |
+| localId    | number | 是   | 系统账号ID。  |
+| constraint | string | 是   | 指定的[约束](js-apis-osAccount.md#系统账号约束列表)名称。 |
 
 **返回值：**
 
@@ -190,24 +254,27 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
-**示例：** 判断ID为100的系统帐号是否有禁止使用Wi-Fi的约束
+**示例：** 判断ID为100的系统账号是否有禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
     accountManager.isOsAccountConstraintEnabled(localId, constraint).then((isEnabled: boolean) => {
       console.log('isOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
-      console.log('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
+      console.error('isOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
+    console.error('isOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -215,7 +282,7 @@ isOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt;bo
 
 isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
-检查指定系统帐号是否已验证。使用Promise异步回调。
+检查指定系统账号是否已验证。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -227,35 +294,38 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 | 参数名  | 类型   | 必填 | 说明                                                              |
 | ------- | ------ | ---- | --------------------------------------------------------------- |
-| localId | number | 是   | 系统帐号ID。不填则检查当前系统帐号是否已验证。 |
+| localId | number | 是   | 系统账号ID。不填则检查当前系统账号是否已验证。 |
 
 **返回值：**
 
 | 类型                   | 说明                                                               |
 | ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示当前帐号已认证解锁；返回false表示当前帐号未认证解锁。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示当前账号已认证解锁；返回false表示当前账号未认证解锁。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.isOsAccountUnlocked(localId).then((isVerified: boolean) => {
       console.log('isOsAccountUnlocked successfully, isVerified: ' + isVerified);
     }).catch((err: BusinessError) => {
-      console.log('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
+      console.error('isOsAccountUnlocked failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('isOsAccountUnlocked exception: ' + JSON.stringify(err));
+    console.error('isOsAccountUnlocked exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -263,7 +333,7 @@ isOsAccountUnlocked(localId: number): Promise&lt;boolean&gt;
 
 removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-删除指定系统帐号。使用callback异步回调。
+删除指定系统账号。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -275,37 +345,41 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                                 |
 | -------- | ------------------------- | ---- | -------------------------------------------------- |
-| localId  | number                    | 是   | 系统帐号ID。                  |
-| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果删除帐号成功，err为null，否则为错误对象。 |
+| localId  | number                    | 是   | 系统账号ID。                  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果删除账号成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
   try {
-    accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL,
-      (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.createOsAccount(accountName, osAccount.OsAccountType.NORMAL,
+      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo) => {
         accountManager.removeOsAccount(osAccountInfo.localId, (err: BusinessError)=>{
           if (err) {
-            console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+            console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
           } else {
             console.log('removeOsAccount successfully');
           }
       });
     });
   } catch (err) {
-    console.log('removeOsAccount exception: ' + JSON.stringify(err));
+    console.error('removeOsAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -313,7 +387,7 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
 removeOsAccount(localId: number): Promise&lt;void&gt;
 
-删除指定系统帐号。使用Promise异步回调。
+删除指定系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -325,7 +399,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 参数名  | 类型   | 必填 | 说明                               |
 | ------- | ------ | ---- | --------------------------------- |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
@@ -337,28 +411,32 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
+| 12300010 | Service busy. Possible causes: The target account is being operated. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let accountName: string = 'testAccountName';
   try {
-    accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL,
-      (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.createOsAccount(accountName, osAccount.OsAccountType.NORMAL,
+      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
         accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
           console.log('removeOsAccount successfully');
         }).catch((err: BusinessError) => {
-            console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+            console.error('removeOsAccount failed, error: ' + JSON.stringify(err));
         });
     });
   } catch (err) {
-    console.log('removeOsAccount exception: ' + JSON.stringify(err));
+    console.error('removeOsAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -366,7 +444,7 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean,callback: AsyncCallback&lt;void&gt;): void
 
-为指定系统帐号设置/删除约束。使用callback异步回调。
+为指定系统账号设置/删除约束。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -378,37 +456,40 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 参数名      | 类型                      | 必填 | 说明                                             |
 | ----------- | ------------------------- | ---- | ----------------------------------------------- |
-| localId     | number                    | 是   | 系统帐号ID。               |
-| constraints | Array&lt;string&gt;       | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统帐号约束列表)列表。        |
-| enable      | boolean                   | 是   | 设置(true)/删除(false)                           |
+| localId     | number                    | 是   | 系统账号ID。               |
+| constraints | Array&lt;string&gt;       | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统账号约束列表)列表。        |
+| enable      | boolean                   | 是   | 设置(true)/删除(false) 。                          |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 给ID为100的系统帐号设置禁止使用Wi-Fi的约束
+**示例：** 给ID为100的系统账号设置禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let constraint: string = 'constraint.wifi';
   try {
     accountManager.setOsAccountConstraints(localId, [constraint], true, (err: BusinessError) => {
       if (err) {
-        console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+        console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setOsAccountConstraints successfully');
       }
     });
   } catch (err) {
-    console.log('setOsAccountConstraints exception: ' + JSON.stringify(err));
+    console.error('setOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -416,7 +497,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enable: boolean): Promise&lt;void&gt;
 
-为指定系统帐号设置/删除约束。使用Promise异步回调。
+为指定系统账号设置/删除约束。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -428,8 +509,8 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 参数名      | 类型                | 必填 | 说明                                         |
 | ----------- | ------------------- | ---- | -------------------------------------------- |
-| localId     | number              | 是   | 系统帐号ID。           |
-| constraints | Array&lt;string&gt; | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统帐号约束列表)列表。    |
+| localId     | number              | 是   | 系统账号ID。           |
+| constraints | Array&lt;string&gt; | 是   | 待设置/删除的[约束](js-apis-osAccount.md#系统账号约束列表)列表。    |
 | enable      | boolean             | 是   | 设置(true)/删除(false)。                     |
 
 **返回值：**
@@ -442,25 +523,28 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or constraints.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 删除ID为100的系统帐号的禁止使用Wi-Fi的约束
+**示例：** 删除ID为100的系统账号的禁止使用Wi-Fi的约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
       console.log('setOsAccountConstraints succsuccessfully');
     }).catch((err: BusinessError) => {
-      console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
+      console.error('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setOsAccountConstraints exception: ' + JSON.stringify(err));
+    console.error('setOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -468,7 +552,7 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
 
 setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定系统帐号的帐号名。使用callback异步回调。
+设置指定系统账号的账号名。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -480,36 +564,39 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 | 参数名    | 类型                      | 必填 | 说明                                             |
 | :-------- | ------------------------- | ---- | ----------------------------------------------- |
-| localId   | number                    | 是   | 系统帐号ID。               |
-| localName | string                    | 是   | 帐号名，最大长度为1024个字符。                          |
+| localId   | number                    | 是   | 系统账号ID。               |
+| localName | string                    | 是   | 账号名，最大长度为1024个字符。                          |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or localName. |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 将ID为100的系统帐号的帐号名设置成demoName
+**示例：** 将ID为100的系统账号的账号名设置成demoName
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let name: string = 'demoName';
   try {
     accountManager.setOsAccountName(localId, name, (err: BusinessError) => {
       if (err) {
-        console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
+        console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setOsAccountName successfully');
       }
     });
   } catch (err) {
-    console.log('setOsAccountName exception: ' + JSON.stringify(err));
+    console.error('setOsAccountName exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -517,7 +604,7 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
 
 setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
-设置指定系统帐号的帐号名。使用Promise异步调用。
+设置指定系统账号的账号名。使用Promise异步调用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -529,8 +616,8 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明                                |
 | --------- | ------ | ---- | --------------------------------- |
-| localId   | number | 是   | 系统帐号ID。 |
-| localName | string | 是   | 帐号名，最大长度为1024。            |
+| localId   | number | 是   | 系统账号ID。 |
+| localName | string | 是   | 账号名，最大长度为1024。            |
 
 **返回值：**
 
@@ -542,26 +629,29 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or localName.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 将ID为100的系统帐号的帐号名设置成demoName
+**示例：** 将ID为100的系统账号的账号名设置成demoName
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let name: string = 'testName';
   try {
     accountManager.setOsAccountName(localId, name).then(() => {
       console.log('setOsAccountName successfully');
     }).catch((err: BusinessError) => {
-      console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
+      console.error('setOsAccountName failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setOsAccountName exception: ' + JSON.stringify(err));
+    console.error('setOsAccountName exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -569,7 +659,7 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
 
 queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
-查询允许创建的系统帐号的最大数量。使用callback异步回调。
+查询允许创建的系统账号的最大数量。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -579,29 +669,31 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 | 参数名   | 类型                        | 必填 | 说明                                                                              |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，如果查询成功，err为null，data为允许创建的系统帐号的最大数量；否则为错误对象。 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数，如果查询成功，err为null，data为允许创建的系统账号的最大数量；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryMaxOsAccountNumber((err: BusinessError, maxCnt: number) => {
       if (err) {
-        console.log('queryMaxOsAccountNumber failed, error:' + JSON.stringify(err));
+        console.error('queryMaxOsAccountNumber failed, error:' + JSON.stringify(err));
       } else {
         console.log('queryMaxOsAccountNumber successfully, maxCnt:' + maxCnt);
       }
     });
   } catch (err) {
-    console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+    console.error('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -609,7 +701,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
 
 queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
-查询允许创建的系统帐号的最大数量。使用Promise异步回调。
+查询允许创建的系统账号的最大数量。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -619,27 +711,67 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 | 类型                  | 说明                                         |
 | --------------------- | ------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回允许创建的系统帐号的最大数量。 |
+| Promise&lt;number&gt; | Promise对象，返回允许创建的系统账号的最大数量。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.queryMaxOsAccountNumber().then((maxCnt: number) => {
       console.log('queryMaxOsAccountNumber successfully, maxCnt: ' + maxCnt);
     }).catch((err: BusinessError) => {
-      console.log('queryMaxOsAccountNumber failed, error: ' + JSON.stringify(err));
+      console.error('queryMaxOsAccountNumber failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+    console.error('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### queryMaxLoggedInOsAccountNumber<sup>12+</sup>
+
+queryMaxLoggedInOsAccountNumber(): Promise&lt;number&gt;
+
+查询允许同时登录的系统账号的最大数量。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**返回值：**
+
+| 类型                  | 说明                                         |
+| --------------------- | ------------------------------------------- |
+| Promise&lt;number&gt; | Promise对象，返回允许登录的系统账号的最大数量。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  try {
+    accountManager.queryMaxLoggedInOsAccountNumber().then((maxNum: number) => {
+      console.log('queryMaxLoggedInOsAccountNumber successfully, maxNum: ' + maxNum);
+    }).catch((err: BusinessError) => {
+      console.error('queryMaxLoggedInOsAccountNumber failed, error: ' + JSON.stringify(err));
+    });
+  } catch (err) {
+    console.error('queryMaxLoggedInOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -647,7 +779,7 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
 
 getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
 
-获取指定系统帐号已使能的的全部约束。使用Promise异步回调。
+获取指定系统账号已使能的的全部约束。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -659,35 +791,38 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
 | 类型                               | 说明                                                       |
 | ---------------------------------- | ---------------------------------------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统帐号已使能的的全部[约束](js-apis-osAccount.md#系统帐号约束列表)。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回指定系统账号已使能的的全部[约束](js-apis-osAccount.md#系统账号约束列表)。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
-**示例：** 获取ID为100的系统帐号的全部约束
+**示例：** 获取ID为100的系统账号的全部约束
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getEnabledOsAccountConstraints(localId).then((constraints: string[]) => {
       console.log('getEnabledOsAccountConstraints, constraints: ' + constraints);
     }).catch((err: BusinessError) => {
-      console.log('getEnabledOsAccountConstraints err: ' + JSON.stringify(err));
+      console.error('getEnabledOsAccountConstraints err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getEnabledOsAccountConstraints exception: ' + JSON.stringify(e));
+    console.error('getEnabledOsAccountConstraints exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -695,7 +830,7 @@ getEnabledOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&
 
 queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&gt;): void
 
-查询已创建的所有系统帐号的信息列表。使用callback异步回调。
+查询已创建的所有系统账号的信息列表。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -707,26 +842,29 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 | 参数名   | 类型                                                         | 必填 | 说明                                               |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------- |
-| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | 是   | 回调函数。如果查询成功，err为null，data为已创建的所有系统帐号的信息列表；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | 是   | 回调函数。如果查询成功，err为null，data为已创建的所有系统账号的信息列表；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: account_osAccount.OsAccountInfo[])=>{
+    accountManager.queryAllCreatedOsAccounts((err: BusinessError, accountArr: osAccount.OsAccountInfo[])=>{
       console.log('queryAllCreatedOsAccounts err:' + JSON.stringify(err));
       console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
     });
   } catch (e) {
-    console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
+    console.error('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -734,7 +872,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
 
 queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
-查询已创建的所有系统帐号的信息列表。使用Promise异步回调。
+查询已创建的所有系统账号的信息列表。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -746,65 +884,29 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
 
 | 类型                                                        | 说明                                           |
 | ----------------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise对象，返回已创建的所有系统帐号的信息列表。 |
+| Promise&lt;Array&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt;&gt; | Promise对象，返回已创建的所有系统账号的信息列表。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.queryAllCreatedOsAccounts().then((accountArr: account_osAccount.OsAccountInfo[]) => {
+    accountManager.queryAllCreatedOsAccounts().then((accountArr: osAccount.OsAccountInfo[]) => {
       console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
-      console.log('queryAllCreatedOsAccounts err: ' + JSON.stringify(err));
+      console.error('queryAllCreatedOsAccounts err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
-  }
-  ```
-
-### getForegroundOsAccountLocalId<sup>12+</sup>
-
-getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
-
-获取前台系统账号的ID。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**返回值：**
-
-| 类型                   | 说明                                                               |
-| ---------------------- | ----------------------------------------------------------------- |
-| Promise&lt;number&gt; | Promise对象。返回前台系统账号的ID。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息       |
-| -------- | ------------- |
-| 12300001 | System service exception. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  try {
-    accountManager.getForegroundOsAccountLocalId().then((localId: number) => {
-      console.log('getForegroundOsAccountLocalId, localId: ' + localId);
-    }).catch((err: BusinessError) => {
-      console.log('getForegroundOsAccountLocalId err: ' + JSON.stringify(err));
-    });
-  } catch (e) {
-    console.log('getForegroundOsAccountLocalId exception: ' + JSON.stringify(e));
+    console.error('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -812,7 +914,7 @@ getForegroundOsAccountLocalId(): Promise&lt;number&gt;;
 
 createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-创建一个系统帐号。使用callback异步回调。
+创建一个系统账号。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -824,34 +926,37 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 | 参数名    | 类型                                                 | 必填 | 说明                                                                         |
 | :-------- | ---------------------------------------------------- | ---- | --------------------------------------------------------------------------- |
-| localName | string                                               | 是   | 创建的系统帐号的名称。                                                        |
-| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | 是   | 创建的系统帐号的类型。                                                        |
-| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统帐号的信息；否则为错误对象。 |
+| localName | string                                               | 是   | 创建的系统账号的名称。                                                        |
+| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | 是   | 创建的系统账号的类型。                                                        |
+| callback  | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统账号的信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localName or type. |
 | 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.createOsAccount('testName', account_osAccount.OsAccountType.NORMAL,
-      (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.createOsAccount('testName', osAccount.OsAccountType.NORMAL,
+      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
       console.log('createOsAccount err:' + JSON.stringify(err));
       console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
   } catch (e) {
-    console.log('createOsAccount exception: ' + JSON.stringify(e));
+    console.error('createOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -859,7 +964,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
 
 createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccountOptions): Promise&lt;OsAccountInfo&gt;
 
-创建一个系统帐号。使用Promise异步回调。
+创建一个系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -871,44 +976,50 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 
 | 参数名    | 类型                            | 必填 | 说明                   |
 | --------- | ------------------------------- | ---- | ---------------------- |
-| localName | string                          | 是   | 创建的系统帐号的名称。 |
-| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统帐号的类型。 |
-| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统帐号的选项，默认为空。 <br/>从API version 12开始支持该可选参数。|
+| localName | string                          | 是   | 创建的系统账号的名称。 |
+| type      | [OsAccountType](js-apis-osAccount.md#osaccounttype) | 是   | 创建的系统账号的类型。 |
+| options      | [CreateOsAccountOptions](js-apis-osAccount-sys.md#createosaccountoptions12) | 否   | 创建系统账号的选项，默认为空。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
 | 类型                                           | 说明                                  |
 | ---------------------------------------------- | ------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回新创建的系统帐号的信息。 |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回新创建的系统账号的信息。 |
 
 **错误码：**
 
 | 错误码ID  | 错误信息                   |
 | -------- | ------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localName, type or options. |
 | 12300004 | Local name already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
-| 12300015 | Short name already exists. |
+| 12300007 | The number of accounts has reached the upper limit. |
+| 12300015 | The short name already exists. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let options: account_osAccount.CreateOsAccountOptions;
-  options.shortName = 'myShortName';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let options: osAccount.CreateOsAccountOptions = {
+    shortName: 'myShortName',
+    disallowedPreinstalledBundles: [],
+    allowedPreinstalledBundles: [],
+  }
   try {
-    accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL, options).then(
-      (accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.createOsAccount('testAccountName', osAccount.OsAccountType.NORMAL, options).then(
+      (accountInfo: osAccount.OsAccountInfo) => {
       console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.log('createOsAccount err: ' + JSON.stringify(err));
+      console.error('createOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('createOsAccount exception: ' + JSON.stringify(e));
+    console.error('createOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -916,7 +1027,7 @@ createOsAccount(localName: string, type: OsAccountType, options?: CreateOsAccoun
 
 createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-根据域帐号信息，创建一个系统帐号并将其与域帐号关联。使用callback异步回调。
+根据域账号信息，创建一个系统账号并将其与域账号关联。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -928,44 +1039,48 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
 
 | 参数名     | 类型                                                 | 必填 | 说明                                                                         |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------------------------------------------------- |
-| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | 是   | 创建的系统帐号的类型。                                                       |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | 是   | 域帐号信息。                                                               |
-| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统帐号的信息；否则为错误对象。 |
+| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)                      | 是   | 创建的系统账号的类型。                                                       |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8)              | 是   | 域账号信息。                                                               |
+| callback   | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果创建成功，err为null，data为新创建的系统账号的信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or domainInfo. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let domainInfo: account_osAccount.DomainAccountInfo =
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let domainInfo: osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
   try {
-    accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo,
-      (err: BusinessError, osAccountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo,
+      (err: BusinessError, osAccountInfo: osAccount.OsAccountInfo)=>{
       console.log('createOsAccountForDomain err:' + JSON.stringify(err));
       console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
   } catch (e) {
-    console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
+    console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
   }
   ```
 
 ### createOsAccountForDomain<sup>8+</sup>
 
-createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Promise&lt;OsAccountInfo&gt;
+createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, options?: CreateOsAccountForDomainOptions): Promise&lt;OsAccountInfo&gt;
 
-根据传入的域帐号信息，创建与其关联的系统帐号。使用Promise异步回调。
+根据传入的域账号信息，创建与其关联的系统账号。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -977,42 +1092,51 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 
 | 参数名     | 类型                                      | 必填 | 说明                 |
 | ---------- | ---------------------------------------- | ---- | -------------------- |
-| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | 是   | 创建的系统帐号的类型。 |
-| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号信息。          |
+| type       | [OsAccountType](js-apis-osAccount.md#osaccounttype)          | 是   | 创建的系统账号的类型。 |
+| domainInfo | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号信息。          |
+| options      | [CreateOsAccountForDomainOptions](#createosaccountfordomainoptions12) | 否   | 创建账号的可选参数，默认为空。 <br/>从API version 12开始支持该可选参数。|
 
 **返回值：**
 
 | 类型                                           | 说明                                    |
 | ---------------------------------------------- | -------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回新创建的系统帐号的信息。 |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回新创建的系统账号的信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid type or domainInfo. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid type, domainInfo or options. |
 | 12300004 | Account already exists. |
 | 12300005 | Multi-user not supported. |
 | 12300006 | Unsupported account type. |
-| 12300007 | The number of accounts reaches the upper limit. |
+| 12300007 | The number of accounts has reached the upper limit. |
+| 12300015 | The short name already exists. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  let domainInfo: account_osAccount.DomainAccountInfo =
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  let domainInfo: osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
+  let options: osAccount.CreateOsAccountForDomainOptions = {
+    shortName: 'myShortName'
+  }
   try {
-    accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then(
-      (accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.createOsAccountForDomain(osAccount.OsAccountType.NORMAL, domainInfo, options).then(
+      (accountInfo: osAccount.OsAccountInfo) => {
       console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.log('createOsAccountForDomain err: ' + JSON.stringify(err));
+      console.error('createOsAccountForDomain err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
+    console.error('createOsAccountForDomain exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1020,7 +1144,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
 
 queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
-查询当前进程所属的系统帐号的信息。使用Promise异步回调。
+查询当前进程所属的系统账号的信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1032,27 +1156,29 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 | 类型                                           | 说明                                       |
 | ---------------------------------------------- | ----------------------------------------- |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回当前进程所属的系统帐号信息。 |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回当前进程所属的系统账号信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
-    accountManager.queryOsAccount().then((accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.queryOsAccount().then((accountInfo: osAccount.OsAccountInfo) => {
       console.log('queryOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.log('queryOsAccount err: ' + JSON.stringify(err));
+      console.error('queryOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccount exception: ' + JSON.stringify(e));
+    console.error('queryOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1060,7 +1186,7 @@ queryOsAccount(): Promise&lt;OsAccountInfo&gt;
 
 queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;): void
 
-查询指定系统帐号的信息。使用callback异步回调。
+查询指定系统账号的信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1072,30 +1198,33 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                                       |
 | -------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------------------ |
-| localId  | number                                               | 是   | 要查询的系统帐号的ID。                                                      |
-| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果查询成功，err为null，data为查到的系统帐号的信息；否则为错误对象。 |
+| localId  | number                                               | 是   | 要查询的系统账号的ID。                                                      |
+| callback | AsyncCallback&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | 是   | 回调函数。如果查询成功，err为null，data为查到的系统账号的信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**示例：** 查询ID为100的系统帐号信息
+**示例：** 查询ID为100的系统账号信息
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
-    accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: account_osAccount.OsAccountInfo)=>{
+    accountManager.queryOsAccountById(localId, (err: BusinessError, accountInfo: osAccount.OsAccountInfo)=>{
       console.log('queryOsAccountById err:' + JSON.stringify(err));
       console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
     });
   } catch (e) {
-    console.log('queryOsAccountById exception: ' + JSON.stringify(e));
+    console.error('queryOsAccountById exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1103,7 +1232,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
 
 queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
-查询指定系统帐号的信息。使用Promise异步回调。
+查询指定系统账号的信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1115,36 +1244,39 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 | 参数名  | 类型   | 必填 | 说明                 |
 | ------- | ------ | ---- | -------------------- |
-| localId | number | 是   | 要查询的系统帐号的ID |
+| localId | number | 是   | 要查询的系统账号的ID。 |
 
 **返回值：**
 
 | 类型                                           | 说明                                 |
 | ---------------------------------------------- | ------------------------------------ |
-| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回查到的系统帐号的信息。 |
+| Promise&lt;[OsAccountInfo](js-apis-osAccount.md#osaccountinfo)&gt; | Promise对象，返回查到的系统账号的信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId. |
 | 12300003 | Account not found. |
 
-**示例：** 查询ID为100的系统帐号信息
+**示例：** 查询ID为100的系统账号信息
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
-    accountManager.queryOsAccountById(localId).then((accountInfo: account_osAccount.OsAccountInfo) => {
+    accountManager.queryOsAccountById(localId).then((accountInfo: osAccount.OsAccountInfo) => {
       console.log('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err: BusinessError) => {
-      console.log('queryOsAccountById err: ' + JSON.stringify(err));
+      console.error('queryOsAccountById err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccountById exception: ' + JSON.stringify(e));
+    console.error('queryOsAccountById exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1152,7 +1284,7 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
 
 getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定系统帐号的头像信息。使用callback异步回调。
+获取指定系统账号的头像信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1164,22 +1296,25 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 | 参数名   | 类型                        | 必填 | 说明                                                                         |
 | -------- | --------------------------- | ---- | -------------------------------------------------------------------------- |
-| localId  | number                      | 是   | 系统帐号ID。                                                                |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果获取成功，err为null，data为指定系统帐号的头像信息；否则为错误对象。 |
+| localId  | number                      | 是   | 系统账号ID。                                                                |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数。如果获取成功，err为null，data为指定系统账号的头像信息；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**示例：** 获取ID为100的系统帐号的头像
+**示例：** 获取ID为100的系统账号的头像
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId, (err: BusinessError, photo: string)=>{
@@ -1187,7 +1322,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
       console.log('get photo:' + photo + ' by localId: ' + localId);
     });
   } catch (e) {
-    console.log('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    console.error('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1195,7 +1330,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
 
 getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
-获取指定系统帐号的头像信息。使用Promise异步回调。
+获取指定系统账号的头像信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1207,36 +1342,39 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 
 **返回值：**
 
 | 类型                  | 说明                                    |
 | --------------------- | -------------------------------------- |
-| Promise&lt;string&gt; | Promise对象，返回指定系统帐号的头像信息。 |
+| Promise&lt;string&gt; | Promise对象，返回指定系统账号的头像信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId.    |
 | 12300003 | Account not found. |
 
-**示例：** 获取ID为100的系统帐号的头像
+**示例：** 获取ID为100的系统账号的头像
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   try {
     accountManager.getOsAccountProfilePhoto(localId).then((photo: string) => {
       console.log('getOsAccountProfilePhoto: ' + photo);
     }).catch((err: BusinessError) => {
-      console.log('getOsAccountProfilePhoto err: ' + JSON.stringify(err));
+      console.error('getOsAccountProfilePhoto err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    console.error('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1244,7 +1382,7 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
 
 setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback&lt;void&gt;): void
 
-为指定系统帐号设置头像信息。使用callback异步回调。
+为指定系统账号设置头像信息。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1256,7 +1394,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 | 参数名   | 类型                      | 必填 | 说明         |
 | -------- | ------------------------- | ---- | ------------ |
-| localId  | number                    | 是   | 系统帐号ID。 |
+| localId  | number                    | 是   | 系统账号ID。 |
 | photo    | string                    | 是   | 头像信息。   |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。如果设置成功，err为null，否则为错误对象。  |
 
@@ -1264,16 +1402,19 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 给ID为100的系统帐号设置头像
+**示例：** 给ID为100的系统账号设置头像
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let photo: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
   'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
@@ -1284,7 +1425,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
       console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    console.error('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1292,7 +1433,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
 
 setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
-为指定系统帐号设置头像信息。使用Promise异步回调。
+为指定系统账号设置头像信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1304,7 +1445,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId | number | 是   | 系统帐号ID。 |
+| localId | number | 是   | 系统账号ID。 |
 | photo   | string | 是   | 头像信息。   |
 
 **返回值：**
@@ -1317,16 +1458,19 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId or photo.    |
 | 12300003 | Account not found. |
 | 12300008 | Restricted Account. |
 
-**示例：** 给ID为100的系统帐号设置头像
+**示例：** 给ID为100的系统账号设置头像
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let localId: number = 100;
   let photo: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAPCAYAAAA/I0V3AAAAAXNSR0IArs4c6QAAAARnQU1BAA'+
   'Cxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACwSURBVDhPvZLBDYMwDEV/ugsXRjAT0EHCOuFIBwkbdIRewi6unbiAyoGgSn1SFH85+Y'+
@@ -1336,10 +1480,10 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
     accountManager.setOsAccountProfilePhoto(localId, photo).then(() => {
       console.log('setOsAccountProfilePhoto success');
     }).catch((err: BusinessError) => {
-      console.log('setOsAccountProfilePhoto err: ' + JSON.stringify(err));
+      console.error('setOsAccountProfilePhoto err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
+    console.error('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1347,7 +1491,7 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
 
 on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&gt;): void
 
-订阅系统帐号的激活完成与激活中的事件。使用callback异步回调。
+订阅系统账号的激活完成与激活中的事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1359,28 +1503,31 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | 是   | 订阅类型，activate表示订阅的是帐号已激活完成的事件，activating表示订阅的是帐号正在激活的事件。 |
+| type     | 'activate' \| 'activating' | 是   | 订阅类型，activate表示订阅的是账号已激活完成的事件，activating表示订阅的是账号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节。           |
-| callback | Callback&lt;number&gt;     | 是   | 订阅系统帐号激活完成与激活中的事件回调，表示激活完成后或正在激活中的系统帐号ID。    |
+| callback | Callback&lt;number&gt;     | 是   | 订阅系统账号激活完成与激活中的事件回调，表示激活完成后或正在激活中的系统账号ID。    |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or name. |
 
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   function onCallback(receiveLocalId: number){
     console.log('receive localId:' + receiveLocalId);
   }
   try {
     accountManager.on('activating', 'osAccountOnOffNameA', onCallback);
   } catch (e) {
-    console.log('receive localId exception: ' + JSON.stringify(e));
+    console.error('receive localId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1388,7 +1535,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
 
 off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number&gt;): void
 
-取消订阅系统帐号的激活完成与激活中的事件。使用callback异步回调。
+取消订阅系统账号的激活完成与激活中的事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1400,28 +1547,31 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅帐号已激活完成的事件，activating取消订阅帐号正在激活的事件。 |
+| type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅账号已激活完成的事件，activating取消订阅账号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
-| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号激活完成与激活中的事件回调，默认为空，表示取消该类型事件的所有回调。                      |
+| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统账号激活完成与激活中的事件回调，默认为空，表示取消该类型事件的所有回调。                      |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type or name. |
 
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   function offCallback(){
     console.log('off enter')
   }
   try {
     accountManager.off('activating', 'osAccountOnOffNameA', offCallback);
   } catch (e) {
-    console.log('off exception: ' + JSON.stringify(e));
+    console.error('off exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1429,7 +1579,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 
 on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
-订阅系统帐号的前后台正在切换事件。使用callback异步回调。
+订阅系统账号的前后台正在切换事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1441,27 +1591,30 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switching'                 | 是   | 订阅类型，switching表示订阅的是系统帐号的前后台正在切换事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统帐号的前后台正在切换事件回调，表示切换前和切换后的系统帐号ID。    |
+| type     | 'switching'                 | 是   | 订阅类型，switching表示订阅的是系统账号的前后台正在切换事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统账号的前后台正在切换事件回调，表示切换前和切换后的系统账号ID。    |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  function onSwitchingCallback(eventData: account_osAccount.OsAccountSwitchEventData){
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  function onSwitchingCallback(eventData: osAccount.OsAccountSwitchEventData){
     console.log('receive eventData:' + JSON.stringify(eventData));
   }
   try {
     accountManager.on('switching', onSwitchingCallback);
   } catch (e) {
-    console.log('receive eventData exception: ' + JSON.stringify(e));
+    console.error('receive eventData exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1469,7 +1622,7 @@ on(type: 'switching', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
-取消订阅系统帐号的前后台正在切换事件。使用callback异步回调。
+取消订阅系统账号的前后台正在切换事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1481,24 +1634,27 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switching'                 | 是   | 取消订阅类型，switching表示取消订阅的是系统帐号的前后台正在切换事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统帐号的前后台正在切换事件回调，默认为空，表示取消该类型事件的所有回调。                      |
+| type     | 'switching'                 | 是   | 取消订阅类型，switching表示取消订阅的是系统账号的前后台正在切换事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统账号的前后台正在切换事件回调，默认为空，表示取消该类型事件的所有回调。                      |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.off('switching');
   } catch (e) {
-    console.log('off exception: ' + JSON.stringify(e));
+    console.error('off exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1506,7 +1662,7 @@ off(type: 'switching', callback?: Callback&lt;OsAccountSwitchEventData&gt;): voi
 
 on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
-订阅系统帐号的前后台切换结束事件。使用callback异步回调。
+订阅系统账号的前后台切换结束事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1518,27 +1674,30 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switched'                 | 是   | 订阅类型，switched表示订阅的是系统帐号的前后台切换结束事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统帐号的前后台切换结束事件回调，表示切换前和切换后的系统帐号ID。    |
+| type     | 'switched'                 | 是   | 订阅类型，switched表示订阅的是系统账号的前后台切换结束事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 是   | 订阅系统账号的前后台切换结束事件回调，表示切换前和切换后的系统账号ID。    |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
-  function onSwitchedCallback(eventData: account_osAccount.OsAccountSwitchEventData){
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
+  function onSwitchedCallback(eventData: osAccount.OsAccountSwitchEventData){
     console.log('receive eventData:' + JSON.stringify(eventData));
   }
   try {
     accountManager.on('switched', onSwitchedCallback);
   } catch (e) {
-    console.log('receive eventData exception: ' + JSON.stringify(e));
+    console.error('receive eventData exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1546,7 +1705,7 @@ on(type: 'switched', callback: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
-取消订阅系统帐号的前后台切换结束事件。使用callback异步回调。
+取消订阅系统账号的前后台切换结束事件。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1558,24 +1717,27 @@ off(type: 'switched', callback?: Callback&lt;OsAccountSwitchEventData&gt;): void
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| type     | 'switched'                 | 是   | 取消订阅类型，switched表示取消订阅的是系统帐号的前后台切换结束事件。 |
-| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统帐号的前后台切换结束事件回调，默认为空，表示取消该类型事件的所有回调。                      |
+| type     | 'switched'                 | 是   | 取消订阅类型，switched表示取消订阅的是系统账号的前后台切换结束事件。 |
+| callback | Callback&lt;[OsAccountSwitchEventData](#osaccountswitcheventdata12)&gt;     | 否   | 取消订阅系统账号的前后台切换结束事件回调，默认为空，表示取消该类型事件的所有回调。                      |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid type. |
 
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.off('switched');
   } catch (e) {
-    console.log('off exception: ' + JSON.stringify(e));
+    console.error('off exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1600,14 +1762,16 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     accountManager.getBundleIdForUid(testUid, (err: BusinessError, bundleId: number) => {
@@ -1645,14 +1809,16 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid uid. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     accountManager.getBundleIdForUid(testUid).then((result: number) => {
@@ -1691,12 +1857,14 @@ getBundleIdForUidSync(uid: number): number
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid uid. |
 
 **示例：**
 
   ```ts
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   let testUid: number = 1000000;
   try {
     let bundleId : number = accountManager.getBundleIdForUidSync(testUid);
@@ -1722,19 +1890,22 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名   | 类型                          | 必填 | 说明                                                               |
 | -------- | ---------------------------- | ---- | ----------------------------------------------------------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true表示当前帐号为主帐号，返回false表示当前帐号非主帐号。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数，返回true表示当前账号为主账号，返回false表示当前账号非主账号。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.isMainOsAccount((err: BusinessError,result: boolean)=>{
       console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
@@ -1761,19 +1932,21 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 
 | 类型                   | 说明                                                                  |
 | ---------------------- | --------------------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回true表示当前帐号为主帐号，返回false表示当前帐号非主帐号。 |
+| Promise&lt;boolean&gt; | Promise对象，返回true表示当前账号为主账号，返回false表示当前账号非主账号。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 12300001 | The system service works abnormally. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.isMainOsAccount().then((result: boolean) => {
       console.info('isMainOsAccount result:' + JSON.stringify(result));
@@ -1789,7 +1962,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
 
 getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback: AsyncCallback&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;): void
 
-查询指定系统帐号的指定约束来源信息，使用callback异步回调。
+查询指定系统账号的指定约束来源信息，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1801,26 +1974,29 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 | 参数名   | 类型                       | 必填 | 说明                                                         |
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
-| localId     | number | 是   |  要查询的系统帐号ID |
-| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统帐号约束列表)名称 |
-| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统帐号的指定[约束](js-apis-osAccount.md#系统帐号约束列表)来源信息；否则为错误对象。                      |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称。 |
+| callback | AsyncCallback&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt;     | 是   | 回调函数。如果成功，err为null，data为指定系统账号的指定[约束](js-apis-osAccount.md#系统账号约束列表)来源信息；否则为错误对象。                      |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi',
-      (err: BusinessError,sourceTypeInfos: account_osAccount.ConstraintSourceTypeInfo[])=>{
+      (err: BusinessError,sourceTypeInfos: osAccount.ConstraintSourceTypeInfo[])=>{
       console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
     });
@@ -1833,7 +2009,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
 
 getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&lt;Array&lt;ConstraintSourceTypeInfo&gt;&gt;;
 
-查询指定系统帐号的指定约束来源信息，使用Promise异步回调。
+查询指定系统账号的指定约束来源信息，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1845,31 +2021,34 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | 是   |  要查询的系统帐号ID |
-| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统帐号约束列表)名称 |
+| localId     | number | 是   |  要查询的系统账号ID。 |
+| constraint     | string | 是   |  要查询的[约束](js-apis-osAccount.md#系统账号约束列表)名称。 |
 
 **返回值：**
 
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise对象，返回指定系统帐号的指定[约束](js-apis-osAccount.md#系统帐号约束列表)来源信息。 |
+| Promise&lt;Array&lt;[ConstraintSourceTypeInfo](#constraintsourcetypeinfo9)&gt;&gt; | Promise对象，返回指定系统账号的指定[约束](js-apis-osAccount.md#系统账号约束列表)来源信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid name or constraint. |
 | 12300003 | Account not found. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     accountManager.getOsAccountConstraintSourceTypes(100, 'constraint.wifi').then(
-      (result: account_osAccount.ConstraintSourceTypeInfo[]) => {
+      (result: osAccount.ConstraintSourceTypeInfo[]) => {
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
       console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
@@ -1883,7 +2062,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
 
 getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
-查询指定系统帐号的类型，使用Promise异步回调。
+查询指定系统账号的类型，使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1895,29 +2074,32 @@ getOsAccountType(localId: number): Promise&lt;OsAccountType&gt;;
 
 | 参数名  | 类型   | 必填 | 说明         |
 | ------- | ------ | ---- | ------------ |
-| localId     | number | 是   |  要查询的系统帐号ID。 |
+| localId     | number | 是   |  要查询的系统账号ID。 |
 
 **返回值：**
 
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise对象，返回指定系统帐号的类型。 |
+| Promise&lt;[OsAccountType](js-apis-osAccount.md#osaccounttype)&gt; | Promise对象，返回指定系统账号的类型。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息       |
 | -------- | ------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let accountManager: account_osAccount.AccountManager = account_osAccount.getAccountManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let accountManager: osAccount.AccountManager = osAccount.getAccountManager();
   try {
     let localId: number = 100;
-    accountManager.getOsAccountType(localId).then((type: account_osAccount.OsAccountType) => {
+    accountManager.getOsAccountType(localId).then((type: osAccount.OsAccountType) => {
       console.info('getOsAccountType Type:' + type);
     }).catch((err: BusinessError) => {
       console.info('getOsAccountType errInfo:' + JSON.stringify(err));
@@ -1943,9 +2125,15 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 202 | Not system application.|
+
 **示例：**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
+  let userAuth = new osAccount.UserAuth();
   ```
 
 ### getVersion<sup>8+</sup>
@@ -1964,9 +2152,15 @@ getVersion(): number;
 | :----- | :----------- |
 | number | 返回版本信息。|
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 202 | Not system application.|
+
 **示例：**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
+  let userAuth = new osAccount.UserAuth();
   let version: number = userAuth.getVersion();
   console.log('getVersion version = ' + version);
   ```
@@ -2000,19 +2194,22 @@ getAvailableStatus(authType: AuthType, authTrustLevel: AuthTrustLevel): number;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType or authTrustLevel. |
 
 **示例：**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
-  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let userAuth = new osAccount.UserAuth();
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     let status: number = userAuth.getAvailableStatus(authType, authTrustLevel);
     console.log('getAvailableStatus status = ' + status);
   } catch (e) {
-    console.log('getAvailableStatus exception = ' + JSON.stringify(e));
+    console.error('getAvailableStatus exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2039,29 +2236,33 @@ getProperty(request: GetPropertyRequest, callback: AsyncCallback&lt;ExecutorProp
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
+| 12300003 | Account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userAuth = new account_osAccount.UserAuth();
-  let keys: Array<account_osAccount.GetPropertyType>  = [
-    account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
-    account_osAccount.GetPropertyType.REMAIN_TIMES,
-    account_osAccount.GetPropertyType.FREEZING_TIME
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userAuth = new osAccount.UserAuth();
+  let keys: Array<osAccount.GetPropertyType>  = [
+    osAccount.GetPropertyType.AUTH_SUB_TYPE,
+    osAccount.GetPropertyType.REMAIN_TIMES,
+    osAccount.GetPropertyType.FREEZING_TIME
   ];
-  let request: account_osAccount.GetPropertyRequest = {
-    authType: account_osAccount.AuthType.PIN,
+  let request: osAccount.GetPropertyRequest = {
+    authType: osAccount.AuthType.PIN,
     keys: keys
   };
   try {
-    userAuth.getProperty(request, (err: BusinessError, result: account_osAccount.ExecutorProperty) => {
+    userAuth.getProperty(request, (err: BusinessError, result: osAccount.ExecutorProperty) => {
       console.log('getProperty err = ' + JSON.stringify(err));
       console.log('getProperty result = ' + JSON.stringify(result));
     });
   } catch (e) {
-    console.log('getProperty exception = ' + JSON.stringify(e));
+    console.error('getProperty exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2093,30 +2294,105 @@ getProperty(request: GetPropertyRequest): Promise&lt;ExecutorProperty&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
+| 12300003 | Account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userAuth = new account_osAccount.UserAuth();
-  let keys: Array<account_osAccount.GetPropertyType> = [
-    account_osAccount.GetPropertyType.AUTH_SUB_TYPE,
-    account_osAccount.GetPropertyType.REMAIN_TIMES,
-    account_osAccount.GetPropertyType.FREEZING_TIME
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userAuth = new osAccount.UserAuth();
+  let keys: Array<osAccount.GetPropertyType> = [
+    osAccount.GetPropertyType.AUTH_SUB_TYPE,
+    osAccount.GetPropertyType.REMAIN_TIMES,
+    osAccount.GetPropertyType.FREEZING_TIME
   ];
-  let request: account_osAccount.GetPropertyRequest = {
-    authType: account_osAccount.AuthType.PIN,
+  let request: osAccount.GetPropertyRequest = {
+    authType: osAccount.AuthType.PIN,
     keys: keys
   };
   try {
-    userAuth.getProperty(request).then((result: account_osAccount.ExecutorProperty) => {
+    userAuth.getProperty(request).then((result: osAccount.ExecutorProperty) => {
       console.log('getProperty result = ' + JSON.stringify(result));
     }).catch((err: BusinessError) => {
-      console.log('getProperty error = ' + JSON.stringify(err));
+      console.error('getProperty error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getProperty exception = ' + JSON.stringify(e));
+    console.error('getProperty exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### getPropertyByCredentialId<sup>14+</sup>
+
+getPropertyByCredentialId(credentialId: Uint8Array, keys: Array&lt;GetPropertyType&gt;): Promise&lt;ExecutorProperty&gt;;
+
+基于凭据id获取关联执行器的指定属性信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名    | 类型                                                   | 必填 | 说明                                |
+| -------- | ------------------------------------------------------ | ---- | ---------------------------------- |
+| credentialId  | Uint8Array | 是   | 指示凭据索引。 |
+| keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要查询的属性类型数组。 |
+
+**返回值：**
+
+| 类型                                                              | 说明                                                 |
+| :---------------------------------------------------------------- | :-------------------------------------------------- |
+| Promise&lt;[ExecutorProperty](#executorproperty8)&gt; | Promise对象，返回执行器的属性信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid keys. |
+| 12300102 | The credential does not exist. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let credInfo: osAccount.EnrolledCredInfo[] = [];
+  async function getProperty() {
+    try {
+      credInfo = await userIDM.getAuthInfo(osAccount.AuthType.PRIVATE_PIN);
+    } catch (e) {
+      console.error('getAuthInfo exception = ' + JSON.stringify(e));
+      return;
+    }
+    if (credInfo.length == 0) {
+      console.log('no credential infos');
+      return;
+    }
+    let testCredentialId: Uint8Array = credInfo[0].credentialId;
+    let keys: Array<osAccount.GetPropertyType> = [
+      osAccount.GetPropertyType.AUTH_SUB_TYPE,
+      osAccount.GetPropertyType.REMAIN_TIMES,
+      osAccount.GetPropertyType.FREEZING_TIME
+    ];
+    try {
+      let userAuth = new osAccount.UserAuth();
+      userAuth.getPropertyByCredentialId(testCredentialId, keys).then((result: osAccount.ExecutorProperty) => {
+        console.log('getPropertyByCredentialId result = ' + JSON.stringify(result));
+      }).catch((err: BusinessError) => {
+        console.error('getPropertyByCredentialId error = ' + JSON.stringify(err));
+      });
+    } catch (e) {
+      console.error('getPropertyByCredentialId exception = ' + JSON.stringify(e));
+    }
   }
   ```
 
@@ -2143,28 +2419,31 @@ setProperty(request: SetPropertyRequest, callback: AsyncCallback&lt;void&gt;): v
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userAuth = new account_osAccount.UserAuth();
-  let request: account_osAccount.SetPropertyRequest = {
-    authType: account_osAccount.AuthType.PIN,
-    key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userAuth = new osAccount.UserAuth();
+  let request: osAccount.SetPropertyRequest = {
+    authType: osAccount.AuthType.PIN,
+    key: osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
   };
   try {
     userAuth.setProperty(request, (err: BusinessError) => {
       if (err) {
-        console.log('setProperty failed, error = ' + JSON.stringify(err));
+        console.error('setProperty failed, error = ' + JSON.stringify(err));
       } else {
         console.log('setProperty successfully');
       }
     });
   } catch (e) {
-    console.log('setProperty exception = ' + JSON.stringify(e));
+    console.error('setProperty exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2196,27 +2475,87 @@ setProperty(request: SetPropertyRequest): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid request. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userAuth = new account_osAccount.UserAuth();
-  let request: account_osAccount.SetPropertyRequest = {
-    authType: account_osAccount.AuthType.PIN,
-    key: account_osAccount.SetPropertyType.INIT_ALGORITHM,
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userAuth = new osAccount.UserAuth();
+  let request: osAccount.SetPropertyRequest = {
+    authType: osAccount.AuthType.PIN,
+    key: osAccount.SetPropertyType.INIT_ALGORITHM,
     setInfo: new Uint8Array([0])
   };
   try {
     userAuth.setProperty(request).then(() => {
       console.log('setProperty successfully');
     }).catch((err: BusinessError) => {
-      console.log('setProperty failed, error = ' + JSON.stringify(err));
+      console.error('setProperty failed, error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setProperty exception = ' + JSON.stringify(e));
+    console.error('setProperty exception = ' + JSON.stringify(e));
   }
+  ```
+
+### prepareRemoteAuth<sup>12+</sup>
+
+prepareRemoteAuth(remoteNetworkId: string): Promise&lt;void&gt;;
+
+准备远端认证。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名            | 类型   | 必填 | 说明             |
+| --------         | ------ | ---- | --------------- |
+| remoteNetworkId  | string | 是   | 远端网络Id。  |
+
+**返回值：**
+
+| 类型                  | 说明                                                           |
+| :-------------------- | :------------------------------------------------------------ |
+| Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | System service exception. |
+| 12300002 | Invalid remoteNetworkId. |
+
+**示例：**
+  ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let userAuth = new osAccount.UserAuth();
+  let distributedDeviceMgr = distributedDeviceManager.createDeviceManager("com.example.bundleName");
+  distributedDeviceMgr.getAvailableDeviceList().then((data: Array<distributedDeviceManager.DeviceBasicInfo>) => {
+      try {
+        if (data.length > 0 && data[0].networkId != null) {
+          userAuth.prepareRemoteAuth(data[0].networkId).then(() => {
+            console.log('prepareRemoteAuth successfully');
+          }).catch((err: BusinessError) => {
+            console.error('prepareRemoteAuth failed, error = ' + JSON.stringify(err));
+          });
+        }
+      } catch (e) {
+        console.error('prepareRemoteAuth exception = ' + JSON.stringify(e));
+      }
+    }
+  )
   ```
 
 ### auth<sup>8+</sup>
@@ -2250,32 +2589,113 @@ auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, 
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge, authType or authTrustLevel. |
-| 12300101 | Credential is incorrect. |
-| 12300102 | Credential not enrolled. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 12300013 | Network exception. |
+| 12300101 | The credential is incorrect. |
+| 12300102 | The credential does not exist. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
+| 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
+  let userAuth = new osAccount.UserAuth();
   let challenge: Uint8Array = new Uint8Array([0]);
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
-  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
-      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+      onResult: (result: number, extraInfo: osAccount.AuthResult) => {
           console.log('auth result = ' + result);
           console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
-    console.log('auth exception = ' + JSON.stringify(e));
+    console.error('auth exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### auth<sup>12+</sup>
+
+auth(challenge: Uint8Array, authType: AuthType, authTrustLevel: AuthTrustLevel, options: AuthOptions, callback: IUserAuthCallback): Uint8Array
+
+基于指定的挑战值、认证类型（如口令、人脸、指纹等）、认证可信等级以及可选参数（如账号标识、认证意图等）进行身份认证。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.ACCESS_USER_AUTH_INTERNAL
+
+**参数：**
+
+| 参数名           | 类型                                     | 必填 | 说明                                |
+| --------------- | ---------------------------------------- | --- | ------------------------------------ |
+| challenge       | Uint8Array                               | 是  | 指示挑战值，挑战值为一个随机数，用于防止重放攻击，提升安全性。|
+| authType        | [AuthType](#authtype8)                   | 是  | 指示认证类型。                        |
+| authTrustLevel  | [AuthTrustLevel](#authtrustlevel8)       | 是  | 指示认证结果的信任级别。               |
+| options         | [AuthOptions](#authoptions12) | 是 | 指示认证用户的可选参数集合。 |
+| callback        | [IUserAuthCallback](#iuserauthcallback8) | 是  | 回调对象，返回认证结果。  |
+
+**返回值：**
+
+| 类型        | 说明               |
+| ---------- | ------------------ |
+| Uint8Array | 返回取消的上下文ID。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息          |
+| -------- | --------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid challenge, authType, authTrustLevel or options. |
+| 12300003 | Account not found. |
+| 12300013 | Network exception. |
+| 12300101 | The credential is incorrect. |
+| 12300102 | The credential does not exist. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
+| 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
+
+**示例：**
+  ```ts
+  let userAuth = new osAccount.UserAuth();
+  let challenge: Uint8Array = new Uint8Array([0]);
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
+  let options: osAccount.AuthOptions = {
+    accountId: 100
+  };
+  try {
+    userAuth.auth(challenge, authType, authTrustLevel, options, {
+      onResult: (result: number, extraInfo: osAccount.AuthResult) => {
+          console.log('auth result = ' + result);
+          console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
+      }
+    });
+  } catch (e) {
+    console.error('auth exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2311,24 +2731,33 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
 
 | 错误码ID | 错误信息          |
 | -------- | --------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid userId, challenge, authType or authTrustLevel. |
-| 12300101 | Credential is incorrect. |
-| 12300102 | Credential not enrolled. |
-| 12300105 | Unsupported authTrustLevel. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid challenge, authType or authTrustLevel. |
+| 12300003 | Account not found. |
+| 12300013 | Network exception. |
+| 12300101 | The credential is incorrect. |
+| 12300102 | The credential does not exist. |
+| 12300105 | The trust level is not supported. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The authentication service does not exist. |
+| 12300114 | The authentication service works abnormally. |
+| 12300117 | PIN is expired. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
+  let userAuth = new osAccount.UserAuth();
   let userID: number = 100;
   let challenge: Uint8Array = new Uint8Array([0]);
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.PIN;
-  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.authUser(userID, challenge, authType, authTrustLevel, {
       onResult: (result,extraInfo) => {
@@ -2337,7 +2766,7 @@ authUser(userId: number, challenge: Uint8Array, authType: AuthType, authTrustLev
       }
     });
   } catch (e) {
-    console.log('authUser exception = ' + JSON.stringify(e));
+    console.error('authUser exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2357,22 +2786,25 @@ cancelAuth(contextID: Uint8Array): void
 
 | 参数名    | 类型       | 必填  | 说明                                        |
 | ----------| ---------- | ---- | ------------------------------------------ |
-| contextId | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
+| contextID | Uint8Array | 是   | 指示身份验证上下文ID，此ID动态生成没有具体值。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------ |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid contextId. |
 
 **示例：**
   ```ts
-  let userAuth = new account_osAccount.UserAuth();
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let userAuth = new osAccount.UserAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let challenge = new Uint8Array([0]);
-  let contextId: Uint8Array = userAuth.auth(challenge, account_osAccount.AuthType.PIN, account_osAccount.AuthTrustLevel.ATL1, {
-    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+  let contextId: Uint8Array = userAuth.auth(challenge, osAccount.AuthType.PIN, osAccount.AuthTrustLevel.ATL1, {
+    onResult: (result: number, extraInfo: osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
@@ -2380,7 +2812,7 @@ cancelAuth(contextID: Uint8Array): void
   try {
     userAuth.cancelAuth(contextId);
   } catch (e) {
-    console.log('cancelAuth exception = ' + JSON.stringify(e));
+    console.error('cancelAuth exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2400,9 +2832,15 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
+**错误码：**
+
+| 错误码ID | 错误信息       |
+| -------- | ------------- |
+| 202 | Not system application.|
+
 **示例：**
   ```ts
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   ```
 
 ### registerInputer<sup>8+</sup>
@@ -2427,23 +2865,26 @@ registerInputer(inputer: IInputer): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid inputer. |
-| 12300103 | Inputer already registered. |
+| 12300103 | The credential inputer already exists. |
 
 **示例：**
   ```ts
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let password = new Uint8Array([0, 0, 0, 0, 0]);
   try {
     pinAuth.registerInputer({
-        onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+        onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
           callback.onSetData(authSubType, password);
         }
     });
     console.log('registerInputer success.');
   } catch (e) {
-    console.log('registerInputer exception = ' + JSON.stringify(e));
+    console.error('registerInputer exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2459,9 +2900,16 @@ unregisterInputer(): void
 
 **需要权限：** ohos.permission.ACCESS_PIN_AUTH
 
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+
 **示例：**
   ```ts
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   pinAuth.unregisterInputer();
   ```
 
@@ -2492,24 +2940,27 @@ static registerInputer(authType: AuthType, inputer: IInputer): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType or inputer. |
-| 12300103 | The credential inputer has been registered. |
-| 12300106 | Unsupported authType. |
+| 12300103 | The credential inputer already exists. |
+| 12300106 | The authentication type is not supported. |
 
 **示例：**
   ```ts
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
+  let authType: osAccount.AuthType = osAccount.AuthType.DOMAIN;
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0]);
   try {
-    account_osAccount.InputerManager.registerInputer(authType, {
-        onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+    osAccount.InputerManager.registerInputer(authType, {
+        onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
           callback.onSetData(authSubType, password);
         }
     });
     console.log('registerInputer success.');
   } catch (e) {
-    console.log('registerInputer exception = ' + JSON.stringify(e));
+    console.error('registerInputer exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -2535,22 +2986,25 @@ static unregisterInputer(authType: AuthType): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002  | Invalid authType. |
 
 **示例：**
   ```ts
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
+  let authType: osAccount.AuthType = osAccount.AuthType.DOMAIN;
   try {
-    account_osAccount.InputerManager.unregisterInputer(authType);
+    osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
   } catch(err) {
-    console.log('unregisterInputer err:' + JSON.stringify(err));
+    console.error('unregisterInputer err:' + JSON.stringify(err));
   }
   ```
 
 ## DomainPlugin<sup>9+</sup>
 
-域插件，提供域帐号认证功能。
+域插件，提供域账号认证功能。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2558,7 +3012,7 @@ static unregisterInputer(authType: AuthType): void
 
 auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
 
-认证指定的域帐号。
+认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2568,54 +3022,54 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| credential   | Uint8Array  | 是   | 指示域帐号的凭据。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| credential   | Uint8Array  | 是   | 指示域账号的凭据。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **示例：**
   ```ts
-  import { AsyncCallback } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {
+  import { AsyncCallback } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      let result: account_osAccount.AuthResult = {
+      let result: osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
       };
       callback.onResult(0, result);
     },
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                      callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                      callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin);
-  let userAuth = new account_osAccount.UserAuth();
+  osAccount.DomainAccountManager.registerPlugin(plugin);
+  let userAuth = new osAccount.UserAuth();
   let challenge: Uint8Array = new Uint8Array([0]);
-  let authType: account_osAccount.AuthType = account_osAccount.AuthType.DOMAIN;
-  let authTrustLevel: account_osAccount.AuthTrustLevel = account_osAccount.AuthTrustLevel.ATL1;
+  let authType: osAccount.AuthType = osAccount.AuthType.DOMAIN;
+  let authTrustLevel: osAccount.AuthTrustLevel = osAccount.AuthTrustLevel.ATL1;
   try {
     userAuth.auth(challenge, authType, authTrustLevel, {
-      onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
           console.log('auth resultCode = ' + resultCode);
           console.log('auth authResult = ' + JSON.stringify(authResult));
       }
     });
   } catch (err) {
-    console.log('auth exception = ' + JSON.stringify(err));
+    console.error('auth exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -2623,7 +3077,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback): void
 
-弹窗认证指定的域帐号。
+弹窗认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2633,47 +3087,47 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **示例：**
   ```ts
-  import { AsyncCallback } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {
+  import { AsyncCallback } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      let result: account_osAccount.AuthResult = {
+      let result: osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
       };
       callback.onResult(0, result);
     },
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### authWithToken<sup>10+</sup>
 
 authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: IUserAuthCallback): void
 
-使用授权令牌认证指定的域帐号。
+使用授权令牌认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2683,48 +3137,48 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | token   | Uint8Array  | 是   | 指示PIN码或生物识别认证成功时生成的授权令牌。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **示例：**
   ```ts
-  import { AsyncCallback } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {
+  import { AsyncCallback } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {
       // mock authentication
       // notify authentication result
-      let result: account_osAccount.AuthResult = {
+      let result: osAccount.AuthResult = {
         token: new Uint8Array([0]),
         remainTimes: 5,
         freezingTime: 0
       };
       callback.onResult(0, result);
     },
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### getAccountInfo<sup>10+</sup>
 
 getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
-查询指定域帐号的信息。
+查询指定域账号的信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2734,21 +3188,21 @@ getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallba
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | 是   | 指示域帐号信息。|
+| options   | [GetDomainAccountInfoPluginOptions](#getdomainaccountinfopluginoptions10)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;[DomainAccountInfo](#domainaccountinfo8)&gt; | 是   | 指示查询结果回调。|
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {
       // mock getting account information
       // notify result
       let code: BusinessError = {
@@ -2756,30 +3210,30 @@ getAccountInfo(options: GetDomainAccountInfoPluginOptions, callback: AsyncCallba
         name: "",
         message: ""
       };
-      let accountInfo: account_osAccount.DomainAccountInfo = {
+      let accountInfo: osAccount.DomainAccountInfo = {
         domain: options.domain ? options.domain : "",
         accountName: options.accountName,
         accountId: 'xxxx'
       };
       callback(code, accountInfo);
     },
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### getAuthStatusInfo<sup>10+</sup>
 
 getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;AuthStatusInfo&gt;): void
 
-查询指定域帐号的认证状态信息。
+查询指定域账号的认证状态信息。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2789,49 +3243,49 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;[AuthStatusInfo](#authstatusinfo10)&gt; | 是   | 指示查询结果回调。|
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {
       let code: BusinessError = {
         code: 0,
         name: "",
         message: ""
       };
-      let statusInfo: account_osAccount.AuthStatusInfo = {
+      let statusInfo: osAccount.AuthStatusInfo = {
         remainTimes: 5,
         freezingTime: 0
       };
       callback(code, statusInfo);
     },
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### bindAccount<sup>10+</sup>
 
 bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: AsyncCallback&lt;void&gt;): void
 
-绑定指定的域帐号。
+绑定指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2841,24 +3295,24 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {
       // mock unbinding operation
       // notify binding result
@@ -2869,19 +3323,19 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
       };
       callback(code);
     },
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### unbindAccount<sup>10+</sup>
 
 unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;void&gt;): void
 
-解绑指定的域帐号。
+解绑指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2891,26 +3345,26 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;void&gt; | 是   | 指示绑定结果回调。|
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {
       // mock unbinding operation
       // notify unbinding result
       let code: BusinessError = {
@@ -2920,18 +3374,18 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
       };
       callback(code);
     },
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### isAccountTokenValid<sup>10+</sup>
 
 isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查指定的域帐号令牌是否有效。
+检查指定的域账号令牌是否有效。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2941,28 +3395,28 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| token | Uint8Array | 是 | 指示域帐号令牌。 |
-| callback   | AsyncCallback&lt;boolean&gt; | 是   | 指示检查结果回调。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| token | Uint8Array | 是 | 指示域账号令牌。 |
+| callback   | AsyncCallback&lt;boolean&gt; | 是   | 指示检查结果回调。true表示指定的域账号令牌是有效的；false表示指定的域账号令牌是无效的。|
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {
       // mock checking operation
       // notify checking result
@@ -2973,9 +3427,9 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
       };
       callback(code, true);
     },
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ### getAccessToken<sup>10+</sup>
@@ -2997,24 +3451,24 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
 
 **示例：**
   ```ts
-  import { AsyncCallback, BusinessError } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-          callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                    callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                    callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+          callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                    callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                    callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                    callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                           callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {
       // mock getting operation
       // notify result
       let code: BusinessError = {
@@ -3026,11 +3480,11 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
       callback(code, token);
     }
   }
-  account_osAccount.DomainAccountManager.registerPlugin(plugin)
+  osAccount.DomainAccountManager.registerPlugin(plugin)
   ```
 
 ## DomainAccountManager <sup>9+</sup>
-域帐号管理器类。
+域账号管理器类。
 
 ### registerPlugin<sup>9+</sup>
 
@@ -3054,34 +3508,38 @@ static registerPlugin(plugin: DomainPlugin): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
 | 12300201 | The domain plugin has been registered. |
 
 **示例：**
   ```ts
-  import { AsyncCallback } from '@ohos.base';
-  let plugin: account_osAccount.DomainPlugin = {
-    auth: (domainAccountInfo: account_osAccount.DomainAccountInfo, credential: Uint8Array,
-         callback: account_osAccount.IUserAuthCallback) => {},
-    authWithPopup: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                  callback: account_osAccount.IUserAuthCallback) => {},
-    authWithToken: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
-                  callback: account_osAccount.IUserAuthCallback) => {},
-    getAccountInfo: (options: account_osAccount.GetDomainAccountInfoPluginOptions,
-                   callback: AsyncCallback<account_osAccount.DomainAccountInfo>) => {},
-    getAuthStatusInfo: (domainAccountInfo: account_osAccount.DomainAccountInfo,
-                        callback: AsyncCallback<account_osAccount.AuthStatusInfo>) => {},
-    bindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, localId: number,
+  import { AsyncCallback } from '@kit.BasicServicesKit';
+  let plugin: osAccount.DomainPlugin = {
+    auth: (domainAccountInfo: osAccount.DomainAccountInfo, credential: Uint8Array,
+         callback: osAccount.IUserAuthCallback) => {},
+    authWithPopup: (domainAccountInfo: osAccount.DomainAccountInfo,
+                  callback: osAccount.IUserAuthCallback) => {},
+    authWithToken: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
+                  callback: osAccount.IUserAuthCallback) => {},
+    getAccountInfo: (options: osAccount.GetDomainAccountInfoPluginOptions,
+                   callback: AsyncCallback<osAccount.DomainAccountInfo>) => {},
+    getAuthStatusInfo: (domainAccountInfo: osAccount.DomainAccountInfo,
+                        callback: AsyncCallback<osAccount.AuthStatusInfo>) => {},
+    bindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, localId: number,
                   callback: AsyncCallback<void>) => {},
-    unbindAccount: (domainAccountInfo: account_osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
-    isAccountTokenValid: (domainAccountInfo: account_osAccount.DomainAccountInfo, token: Uint8Array,
+    unbindAccount: (domainAccountInfo: osAccount.DomainAccountInfo, callback: AsyncCallback<void>) => {},
+    isAccountTokenValid: (domainAccountInfo: osAccount.DomainAccountInfo, token: Uint8Array,
                         callback: AsyncCallback<boolean>) => {},
-    getAccessToken: (options: account_osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
+    getAccessToken: (options: osAccount.GetDomainAccessTokenOptions, callback: AsyncCallback<Uint8Array>) => {}
   }
   try {
-    account_osAccount.DomainAccountManager.registerPlugin(plugin);
+    osAccount.DomainAccountManager.registerPlugin(plugin);
     console.log('registerPlugin success.');
   } catch(err) {
-    console.log('registerPlugin err:' + JSON.stringify(err));
+    console.error('registerPlugin err:' + JSON.stringify(err));
   }
   ```
 
@@ -3097,13 +3555,21 @@ static unregisterPlugin(): void
 
 **需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
 
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 801 | Capability not supported.|
+
 **示例：**
   ```ts
   try {
-    account_osAccount.DomainAccountManager.unregisterPlugin();
+    osAccount.DomainAccountManager.unregisterPlugin();
     console.log('unregisterPlugin success.');
   } catch(err) {
-    console.log('unregisterPlugin err:' + JSON.stringify(err));
+    console.error('unregisterPlugin err:' + JSON.stringify(err));
   }
   ```
 
@@ -3111,7 +3577,7 @@ static unregisterPlugin(): void
 
 auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUserAuthCallback): void
 
-认证指定的域帐号。
+认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3123,42 +3589,47 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| credential   | Uint8Array  | 是   | 指示域帐号的凭据。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| credential   | Uint8Array  | 是   | 指示域账号的凭据。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo or credential. |
 | 12300003 | Domain account does not exist. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   let credential = new Uint8Array([0])
   try {
-    account_osAccount.DomainAccountManager.auth(domainAccountInfo, credential, {
-      onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+    osAccount.DomainAccountManager.auth(domainAccountInfo, credential, {
+      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
         console.log('auth resultCode = ' + resultCode);
         console.log('auth authResult = ' + JSON.stringify(authResult));
       }
     });
   } catch (err) {
-    console.log('auth exception = ' + JSON.stringify(err));
+    console.error('auth exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3166,7 +3637,7 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 
 authWithPopup(callback: IUserAuthCallback): void
 
-弹框认证指定的域帐号。
+弹框认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3186,28 +3657,33 @@ authWithPopup(callback: IUserAuthCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
   try {
-    account_osAccount.DomainAccountManager.authWithPopup({
-      onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+    osAccount.DomainAccountManager.authWithPopup({
+      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
         console.log('auth resultCode = ' + resultCode);
         console.log('auth authResult = ' + JSON.stringify(authResult));
       }
     })
   } catch (err) {
-    console.log('auth exception = ' + JSON.stringify(err));
+    console.error('auth exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3215,7 +3691,7 @@ authWithPopup(callback: IUserAuthCallback): void
 
 authWithPopup(localId: number, callback: IUserAuthCallback): void
 
-弹框认证指定的域帐号。
+弹框认证指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3229,36 +3705,41 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| localId   | number  | 是   | 指示绑定域帐号的系统帐号的本地标识。|
+| localId   | number  | 是   | 指示绑定域账号的系统账号的本地标识。|
 | callback   | [IUserAuthCallback](#iuserauthcallback8)  | 是   | 指示认证结果回调。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid localId. |
 | 12300003 | No domain account is bound. |
 | 12300013 | Network exception. |
 | 12300101 | Authentication failed. |
-| 12300109 | Authentication is canceled. |
-| 12300110 | Authentication is locked. |
-| 12300111 | Authentication timeout. |
-| 12300112 | Authentication service is busy. |
-| 12300113 | Authentication service does not exist. |
-| 12300114 | Authentication service exception. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300110 | The authentication is locked. |
+| 12300111 | The authentication time out. |
+| 12300112 | The authentication service is busy. |
+| 12300113 | The account authentication service does not exist. |
+| 12300114 | The account authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
   try {
-    account_osAccount.DomainAccountManager.authWithPopup(100, {
-      onResult: (resultCode: number, authResult: account_osAccount.AuthResult) => {
+    osAccount.DomainAccountManager.authWithPopup(100, {
+      onResult: (resultCode: number, authResult: osAccount.AuthResult) => {
         console.log('authWithPopup resultCode = ' + resultCode);
         console.log('authWithPopup authResult = ' + JSON.stringify(authResult));
       }
     })
   } catch (err) {
-    console.log('authWithPopup exception = ' + JSON.stringify(err));
+    console.error('authWithPopup exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3266,7 +3747,7 @@ authWithPopup(localId: number, callback: IUserAuthCallback): void
 
 hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查是否存在指定的域帐号。
+检查是否存在指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3278,35 +3759,42 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| callback   | AsyncCallback&lt;boolean&gt;  | 是   | 指示检查结果回调。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| callback   | AsyncCallback&lt;boolean&gt;  | 是   | 指示检查结果回调。true表示指定的域账号已存在；false表示指定的域账号不存在。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300014 | Not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   try {
-    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err: BusinessError, result: boolean) => {
+    osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err: BusinessError, result: boolean) => {
       if (err) {
-        console.log('call hasAccount failed, error: ' + JSON.stringify(err));
+        console.error('call hasAccount failed, error: ' + JSON.stringify(err));
       } else {
         console.log('hasAccount result: ' + result);
       }
     });
   } catch (err) {
-    console.log('hasAccount exception = ' + JSON.stringify(err));
+    console.error('hasAccount exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3314,7 +3802,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 
 hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
-检查是否存在指定的域帐号。
+检查是否存在指定的域账号。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3326,38 +3814,45 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 
 **返回值：**
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回指定的域帐号是否存在。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示指定的域账号已存在；返回false表示指定的域账号不存在。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid domainAccountInfo. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300014 | Not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   try {
-    account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result: boolean) => {
+    osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result: boolean) => {
       console.log('hasAccount result: ' + result);
     }).catch((err: BusinessError) => {
-        console.log('call hasAccount failed, error: ' + JSON.stringify(err));
+        console.error('call hasAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('hasAccount exception = ' + JSON.stringify(err));
+    console.error('hasAccount exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3365,7 +3860,7 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 
 updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback: AsyncCallback&lt;void&gt;): void
 
-更新指定域帐号的令牌，空令牌表示目标域帐号的令牌失效。使用callback异步回调。
+更新指定域账号的令牌，空令牌表示目标域账号的令牌失效。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3377,37 +3872,40 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| token | Uint8Array  | 是   | 指示域帐号的令牌。|
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| token | Uint8Array  | 是   | 指示域账号的令牌。|
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。如果更新成功，err为null，否则为错误对象。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan',
     accountId: '123456'
   }
   let token = new Uint8Array([0])
   try {
-    account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err: BusinessError) => {
+    osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err: BusinessError) => {
       if (err != null) {
-        console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
+        console.error('updateAccountToken failed, error: ' + JSON.stringify(err));
       } else {
         console.log('updateAccountToken successfully');
       }
     })
   } catch (err) {
-    console.log('updateAccountToken exception = ' + JSON.stringify(err));
+    console.error('updateAccountToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3415,7 +3913,7 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 
 updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Promise&lt;void&gt;
 
-更新指定域帐号的令牌，空令牌表示目标域帐号的令牌失效。使用Promise异步回调。
+更新指定域账号的令牌，空令牌表示目标域账号的令牌失效。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3427,8 +3925,8 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
-| token | Uint8Array  | 是   | 指示域帐号的令牌。|
+| domainAccountInfo | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
+| token | Uint8Array  | 是   | 指示域账号的令牌。|
 
 **返回值：**
 
@@ -3440,73 +3938,30 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid token. |
 | 12300003 | Account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.DomainAccountInfo = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.DomainAccountInfo = {
     domain: 'CHINA',
     accountName: 'zhangsan',
     accountId: '123456'
   }
   let token = new Uint8Array([0])
   try {
-    account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
+    osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
       console.log('updateAccountToken successfully');
     }).catch((err: BusinessError) => {
-        console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
+        console.error('updateAccountToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('updateAccountToken exception = ' + JSON.stringify(err));
-  }
-  ```
-
-### updateAccountInfo<sup>12+</sup>
-
-updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccountInfo): Promise&lt;void&gt;
-
-修改指定域帐号信息。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
-
-**需要权限：** ohos.permission.MANAGE_LOCAL_ACCOUNTS
-
-**系统能力：** SystemCapability.Account.OsAccount
-
-**参数：**
-
-| 参数名      | 类型                                    | 必填 | 说明             |
-| ---------- | --------------------------------------- | ---- | --------------- |
-| oldAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示旧域帐号信息。|
-| newAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示新域帐号信息。|
-
-**错误码：**
-
-| 错误码ID | 错误信息                     |
-| -------- | --------------------------- |
-| 12300001 | System service exception. |
-| 12300002 | The new account info is invalid. |
-| 12300003 | The old account not found. |
-| 12300004 | The new account already exists. |
-
-**示例：**
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let oldDomainInfo: account_osAccount.DomainAccountInfo =
-    {domain: 'testDomain', accountName: 'oldtestAccountName'};
-  let newDomainInfo: account_osAccount.DomainAccountInfo =
-    {domain: 'testDomain', accountName: 'newtestAccountName'};
-  try {
-    account_osAccount.DomainAccountManager.updateAccountInfo(oldDomainInfo, newDomainInfo).then(() => {
-      console.log('updateAccountInfo, success');
-    }).catch((err: BusinessError) => {
-      console.log('updateAccountInfo err: ' + err);
-    });
-  } catch (e) {
-    console.log('updateAccountInfo exception: ' + e);
+    console.error('updateAccountToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3514,7 +3969,7 @@ updateAccountInfo(oldAccountInfo: DomainAccountInfo, newAccountInfo: DomainAccou
 
 getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;DomainAccountInfo&gt;): void
 
-查询指定的域帐号信息，callback方式。
+查询指定的域账号信息，callback方式。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3526,36 +3981,43 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域帐号信息。|
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域账号信息。|
 | callback   | AsyncCallback&lt;DomainAccountInfo&gt;  | 是   | 指示查询结果回调。|
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300014 | Not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   try {
-    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
-      (err: BusinessError, result: account_osAccount.DomainAccountInfo) => {
+    osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo,
+      (err: BusinessError, result: osAccount.DomainAccountInfo) => {
       if (err) {
-        console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+        console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
       } else {
         console.log('getAccountInfo result: ' + result);
       }
     });
   } catch (err) {
-    console.log('getAccountInfo exception = ' + JSON.stringify(err));
+    console.error('getAccountInfo exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3563,7 +4025,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions, callback: AsyncCallback&lt;
 
 getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountInfo&gt;
 
-查询指定的域帐号信息，promise方式。
+查询指定的域账号信息，promise方式。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3575,39 +4037,46 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域帐号信息。|
+| options   | [GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)  | 是   | 指示域账号信息。|
 
 **返回值：**
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;DomainAccountInfo&gt; | Promise对象，返回指定的域帐号信息。 |
+| Promise&lt;DomainAccountInfo&gt; | Promise对象，返回指定的域账号信息。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Account not found. |
 | 12300013 | Network exception. |
-| 12300111 | Operation timeout. |
+| 12300014 | Not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainAccountInfo: account_osAccount.GetDomainAccountInfoOptions = {
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainAccountInfo: osAccount.GetDomainAccountInfoOptions = {
     domain: 'CHINA',
     accountName: 'zhangsan'
   }
   try {
-    account_osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo)
-      .then((result: account_osAccount.DomainAccountInfo) => {
+    osAccount.DomainAccountManager.getAccountInfo(domainAccountInfo)
+      .then((result: osAccount.DomainAccountInfo) => {
       console.log('getAccountInfo result: ' + result);
     }).catch((err: BusinessError) => {
-      console.log('call getAccountInfo failed, error: ' + JSON.stringify(err));
+      console.error('call getAccountInfo failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getAccountInfo exception = ' + JSON.stringify(err));
+    console.error('getAccountInfo exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3615,7 +4084,7 @@ getAccountInfo(options: GetDomainAccountInfoOptions): Promise&lt;DomainAccountIn
 
 getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-获取当前域帐号的业务访问令牌，使用callback异步回调。
+获取当前域账号的业务访问令牌，使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3632,31 +4101,36 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
-| 12300014 | Domain account not authenticated. |
-| 12300111 | Operation timeout. |
+| 12300014 | The domain account is not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let businessParams: Record<string, Object> = {
     'clientId': 'xxx',
     'secretId': 'yyy'
   };  // depends on the implementation of the domain plugin
   try {
-    account_osAccount.DomainAccountManager.getAccessToken(businessParams,
+    osAccount.DomainAccountManager.getAccessToken(businessParams,
       (err: BusinessError, result: Uint8Array) => {
       if (err) {
-        console.log('getAccessToken failed, error: ' + JSON.stringify(err));
+        console.error('getAccessToken failed, error: ' + JSON.stringify(err));
       } else {
         console.log('getAccessToken result: ' + result);
       }
     });
   } catch (err) {
-    console.log('getAccessToken exception = ' + JSON.stringify(err));
+    console.error('getAccessToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3664,7 +4138,7 @@ getAccessToken(businessParams: Record<string, Object>, callback: AsyncCallback&l
 
 getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt;
 
-查询当前域帐号的业务访问令牌，使用promise异步回调。
+查询当前域账号的业务访问令牌，使用promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3686,29 +4160,34 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid business parameters. |
 | 12300003 | Domain account not found. |
 | 12300013 | Network exception. |
-| 12300014 | Domain account not authenticated. |
-| 12300111 | Operation timeout. |
+| 12300014 | The domain account is not authenticated. |
+| 12300111 | The operation time out. |
+| 12300114 | The authentication service works abnormally. |
+| 12300211 | Server unreachable. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let businessParams: Record<string, Object> = {
     'clientId': 'xxx',
     'secretId': 'yyy'
   };  // depends on the implementation of the domain plugin
   try {
-    account_osAccount.DomainAccountManager.getAccessToken(businessParams)
+    osAccount.DomainAccountManager.getAccessToken(businessParams)
       .then((result: Uint8Array) => {
       console.log('getAccessToken result: ' + result);
     }).catch((err: BusinessError) => {
-      console.log('getAccessToken failed, error: ' + JSON.stringify(err));
+      console.error('getAccessToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getAccessToken exception = ' + JSON.stringify(err));
+    console.error('getAccessToken exception = ' + JSON.stringify(err));
   }
   ```
 
@@ -3716,7 +4195,7 @@ getAccessToken(businessParams: Record<string, Object>): Promise&lt;Uint8Array&gt
 
 isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;;
 
-判断指定域帐号是否登录超期。使用Promise异步回调。
+判断指定域账号是否登录超期。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -3728,34 +4207,38 @@ isAuthenticationExpired(domainAccountInfo: DomainAccountInfo): Promise&lt;boolea
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
-| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域帐号信息。|
+| domainAccountInfo   | [DomainAccountInfo](#domainaccountinfo8)  | 是   | 指示域账号信息。|
 
 **返回值：**
 
 | 类型                      | 说明                     |
 | :------------------------ | ----------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回指定的域帐号是否登录超期。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示指定的域账号已登录超期；返回false表示指定的域账号未登录超期。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.|
+| 12300001 | The system service works abnormally. |
 | 12300003 | Domain account not found. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let domainInfo: account_osAccount.DomainAccountInfo =
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let domainInfo: osAccount.DomainAccountInfo =
     {domain: 'testDomain', accountName: 'testAccountName'};
   try {
-    account_osAccount.DomainAccountManager.isAuthenticationExpired(domainInfo).then((result: boolean) => {
+    osAccount.DomainAccountManager.isAuthenticationExpired(domainInfo).then((result: boolean) => {
       console.log('isAuthenticationExpired, result: ' + result);
     }).catch((err: BusinessError) => {
-      console.log('isAuthenticationExpired err: ' + err);
+      console.error('isAuthenticationExpired err: ' + err);
     });
   } catch (e) {
-    console.log('isAuthenticationExpired exception: ' + e);
+    console.error('isAuthenticationExpired exception: ' + e);
   }
   ```
 
@@ -3775,9 +4258,15 @@ constructor()
 
 **系统能力**：SystemCapability.Account.OsAccount
 
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 202 | Not system application.|
+
 **示例：**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   ```
 
 ### openSession<sup>8+</sup>
@@ -3802,33 +4291,42 @@ openSession(callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
   try {
     userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
         console.log('openSession error = ' + JSON.stringify(err));
         console.log('openSession challenge = ' + JSON.stringify(challenge));
     });
   } catch (e) {
-    console.log('openSession exception = ' + JSON.stringify(e));
+    console.error('openSession exception = ' + JSON.stringify(e));
   }
   ```
 
 ### openSession<sup>8+</sup>
 
-openSession(): Promise&lt;Uint8Array&gt;;
+openSession(accountId?: number): Promise&lt;Uint8Array&gt;
 
-打开会话，获取挑战值。使用Promise异步回调。
+打开会话，获取挑战值（用于判断后续的身份认证场景是否处于该会话下，防止重放攻击）。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
 **需要权限：** ohos.permission.MANAGE_USER_IDM
+
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明        |
+| --------- | ------- | ---- | ----------- |
+| accountId<sup>12+</sup> | number  | 否   | 系统账号标识，默认为空。 |
 
 **返回值：**
 
@@ -3840,20 +4338,26 @@ openSession(): Promise&lt;Uint8Array&gt;;
 
 | 错误码ID | 错误信息                     |
 | -------- | --------------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let accountId = 100;
   try {
-    userIDM.openSession().then((challenge: Uint8Array) => {
+    userIDM.openSession(accountId).then((challenge: Uint8Array) => {
         console.info('openSession challenge = ' + JSON.stringify(challenge));
     }).catch((err: BusinessError) => {
-        console.info('openSession error = ' + JSON.stringify(err));
+        console.error('openSession error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('openSession exception = ' + JSON.stringify(e));
+    console.error('openSession exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -3880,40 +4384,46 @@ addCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
-| 12300101 | Token is invalid. |
-| 12300106 | Unsupported authType. |
-| 12300109 | Operation is canceled. |
-| 12300111 | Operation timeout. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
+| 12300101 | The token is invalid. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300111 | The operation time out. |
 | 12300115 | The number of credentials reaches the upper limit. |
+| 12300116 | Credential complexity verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   pinAuth.registerInputer({
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+    onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
       callback.onSetData(authSubType, password);
     }
   });
-  let credentialInfo: account_osAccount.CredentialInfo = {
-    credType: account_osAccount.AuthType.PIN,
-    credSubType: account_osAccount.AuthSubType.PIN_SIX,
+  let credentialInfo: osAccount.CredentialInfo = {
+    credType: osAccount.AuthType.PIN,
+    credSubType: osAccount.AuthSubType.PIN_SIX,
     token: new Uint8Array([]),
   };
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
     try {
     userIDM.addCredential(credentialInfo, {
-      onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+      onResult: (result: number, extraInfo: osAccount.RequestResult) => {
         console.log('addCredential result = ' + result);
         console.log('addCredential extraInfo = ' + extraInfo);
       }
     });
     } catch (e) {
-      console.log('addCredential exception = ' + JSON.stringify(e));
+      console.error('addCredential exception = ' + JSON.stringify(e));
     }
   });
   ```
@@ -3941,35 +4451,40 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300002 | Invalid credentialInfo, i.e. authType or authSubType or token. |
-| 12300101 | Token is invalid. |
-| 12300102 | Credential not enrolled.|
-| 12300106 | Unsupported authType. |
-| 12300109 | Operation is canceled. |
-| 12300111 | Operation timeout. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid credentialInfo, i.e. authType or authSubType. |
+| 12300003 | Account not found. |
+| 12300101 | The token is invalid. |
+| 12300102 | The credential does not exist. |
+| 12300106 | The authentication type is not supported. |
+| 12300109 | The authentication, enrollment, or update operation is canceled. |
+| 12300111 | The operation time out. |
+| 12300116 | Credential complexity verification failed. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
-  let userAuth: account_osAccount.UserAuth = new account_osAccount.UserAuth();
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let userAuth: osAccount.UserAuth = new osAccount.UserAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
-  let credentialInfo: account_osAccount.CredentialInfo = {
-    credType: account_osAccount.AuthType.PIN,
-    credSubType: account_osAccount.AuthSubType.PIN_SIX,
+  let credentialInfo: osAccount.CredentialInfo = {
+    credType: osAccount.AuthType.PIN,
+    credSubType: osAccount.AuthSubType.PIN_SIX,
     token: new Uint8Array([]),
   };
   pinAuth.registerInputer({
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
+    onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
       callback.onSetData(authSubType, password);
     }
   });
   userIDM.openSession((err: BusinessError, challenge: Uint8Array) => {
-    userAuth.auth(challenge, credentialInfo.credType, account_osAccount.AuthTrustLevel.ATL1, {
-      onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
-        if (result != account_osAccount.ResultCode.SUCCESS) {
+    userAuth.auth(challenge, credentialInfo.credType, osAccount.AuthTrustLevel.ATL1, {
+      onResult: (result: number, extraInfo: osAccount.AuthResult) => {
+        if (result != osAccount.ResultCode.SUCCESS) {
           return;
         }
         if (extraInfo.token != null) {
@@ -3977,13 +4492,13 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
         }
         try {
           userIDM.updateCredential(credentialInfo, {
-            onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+            onResult: (result: number, extraInfo: osAccount.RequestResult) => {
                 console.log('updateCredential result = ' + result);
                 console.log('updateCredential extraInfo = ' + extraInfo);
             }
           });
         } catch (e) {
-          console.log('updateCredential exception = ' + JSON.stringify(e));
+          console.error('updateCredential exception = ' + JSON.stringify(e));
         }
       }
     });
@@ -3992,7 +4507,7 @@ updateCredential(credentialInfo: CredentialInfo, callback: IIdmCallback): void
 
 ### closeSession<sup>8+</sup>
 
-closeSession(): void
+closeSession(accountId?: number): void
 
 关闭会话，结束IDM操作。
 
@@ -4002,10 +4517,28 @@ closeSession(): void
 
 **需要权限：** ohos.permission.MANAGE_USER_IDM
 
+**参数：**
+
+| 参数名     | 类型    | 必填 | 说明        |
+| --------- | ------- | ---- | ----------- |
+| accountId<sup>12+</sup> | number  | 否   | 系统账号标识，默认为空。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                     |
+| -------- | --------------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300003 | Account not found. |
+| 12300008 | Restricted account. |
+
 **示例：**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
-  userIDM.closeSession();
+  let userIDM = new osAccount.UserIdentityManager();
+  let accountId = 100;
+  userIDM.closeSession(accountId);
   ```
 
 ### cancel<sup>8+</sup>
@@ -4030,17 +4563,20 @@ cancel(challenge: Uint8Array): void
 
 | 错误码ID | 错误信息            |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid challenge. |
 
 **示例：**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   let challenge: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.cancel(challenge);
   } catch(err) {
-    console.log('cancel err:' + JSON.stringify(err));
+    console.error('cancel err:' + JSON.stringify(err));
   }
   ```
 
@@ -4067,22 +4603,25 @@ delUser(token: Uint8Array, callback: IIdmCallback): void
 
 | 错误码ID | 错误信息        |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
-| 12300101 | Token is invalid. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300101 | The token is invalid. |
 
 **示例：**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   let token: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.delUser(token, {
-      onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+      onResult: (result: number, extraInfo: osAccount.RequestResult) => {
         console.log('delUser result = ' + result);
         console.log('delUser extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
-    console.log('delUser exception = ' + JSON.stringify(e));
+    console.error('delUser exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4110,25 +4649,28 @@ delCred(credentialId: Uint8Array, token: Uint8Array, callback: IIdmCallback): vo
 
 | 错误码ID | 错误信息             |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid credentialId. |
-| 12300101 | Token is invalid. |
-| 12300102 | Credential not enrolled. |
+| 12300101 | The token is invalid. |
+| 12300102 | The credential does not exist. |
 
 **示例：**
   ```ts
-  let userIDM = new account_osAccount.UserIdentityManager();
+  let userIDM = new osAccount.UserIdentityManager();
   let credentialId: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0, 0, 0]);
   let token: Uint8Array = new Uint8Array([0]);
   try {
     userIDM.delCred(credentialId, token, {
-      onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+      onResult: (result: number, extraInfo: osAccount.RequestResult) => {
           console.log('delCred result = ' + result);
           console.log('delCred extraInfo = ' + JSON.stringify(extraInfo));
       }
     });
   } catch (e) {
-    console.log('delCred exception = ' + JSON.stringify(e));
+    console.error('delCred exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4154,20 +4696,22 @@ getAuthInfo(callback: AsyncCallback&lt;Array&lt;EnrolledCredInfo&gt;&gt;): void
 
 | 错误码ID | 错误信息               |
 | -------- | --------------------- |
-| 12300001 | System service exception. |
-| 12300102 | Credential not enrolled. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
   try {
-    userIDM.getAuthInfo((err: BusinessError, result: account_osAccount.EnrolledCredInfo[]) => {
+    userIDM.getAuthInfo((err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
       console.log('getAuthInfo err = ' + JSON.stringify(err));
       console.log('getAuthInfo result = ' + JSON.stringify(result));
     });
   } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    console.error('getAuthInfo exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4194,22 +4738,24 @@ getAuthInfo(authType: AuthType, callback: AsyncCallback&lt;Array&lt;EnrolledCred
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
   try {
-    userIDM.getAuthInfo(account_osAccount.AuthType.PIN,
-      (err: BusinessError, result: account_osAccount.EnrolledCredInfo[]) => {
+    userIDM.getAuthInfo(osAccount.AuthType.PIN,
+      (err: BusinessError, result: osAccount.EnrolledCredInfo[]) => {
       console.log('getAuthInfo err = ' + JSON.stringify(err));
       console.log('getAuthInfo result = ' + JSON.stringify(result));
     });
   } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    console.error('getAuthInfo exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4241,22 +4787,133 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
-| 12300001 | System service exception. |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
 | 12300002 | Invalid authType. |
-| 12300102 | Credential not enrolled. |
 
 **示例：**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  let userIDM = new account_osAccount.UserIdentityManager();
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
   try {
-    userIDM.getAuthInfo(account_osAccount.AuthType.PIN).then((result: account_osAccount.EnrolledCredInfo[]) => {
+    userIDM.getAuthInfo(osAccount.AuthType.PIN).then((result: osAccount.EnrolledCredInfo[]) => {
       console.log('getAuthInfo result = ' + JSON.stringify(result))
     }).catch((err: BusinessError) => {
-      console.log('getAuthInfo error = ' + JSON.stringify(err));
+      console.error('getAuthInfo error = ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getAuthInfo exception = ' + JSON.stringify(e));
+    console.error('getAuthInfo exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### getAuthInfo<sup>12+</sup>
+
+getAuthInfo(options?: GetAuthInfoOptions): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;
+
+依据提供的可选参数，获取认证信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.USE_USER_IDM
+
+**参数：**
+
+| 参数名    | 类型                                | 必填 | 说明      |
+| -------- | ----------------------------------- | ---- | -------- |
+| options | [GetAuthInfoOptions](#getauthinfooptions12)          | 否   | 获取认证信息的可选参数集合。 |
+
+**返回值：**
+
+| 类型                                         | 说明                                                                     |
+| :------------------------------------------- | :----------------------------------------------------------------------- |
+| Promise&lt;Array&lt;[EnrolledCredInfo](#enrolledcredinfo8)&gt;&gt; | Promise对象，返回当前用户指定类型的所有已注册凭据信息。|
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid options. |
+| 12300003 | Account not found. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let options: osAccount.GetAuthInfoOptions = {
+    authType: osAccount.AuthType.PIN,
+    accountId: 100,
+  };
+  try {
+    userIDM.getAuthInfo(options).then((result: osAccount.EnrolledCredInfo[]) => {
+      console.log('getAuthInfo result = ' + JSON.stringify(result))
+    }).catch((err: BusinessError) => {
+      console.error('getAuthInfo error = ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.error('getAuthInfo exception = ' + JSON.stringify(e));
+  }
+  ```
+
+### getEnrolledId<sup>12+</sup>
+
+getEnrolledId(authType: AuthType, accountId?: number): Promise&lt;Uint8Array&gt;
+
+基于凭据类型，以及可选的账号标识，获取已注册的凭据ID。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.USE_USER_IDM
+
+**参数：**
+
+| 参数名     | 类型                   | 必填 | 说明      |
+| --------  | ---------------------- | ---- | -------- |
+| authType  | [AuthType](#authtype8) | 是   | 认证凭据类型 |
+| accountId | number                 | 否   | 系统账号标识，默认为空。 |
+
+**返回值：**
+
+| 类型                       | 说明                                                                     |
+| :------------------------ | :----------------------------------------------------------------------- |
+| Promise&lt;Uint8Array&gt; | Promise对象，返回已注册的凭据ID。|
+
+**错误码：**
+
+| 错误码ID | 错误信息               |
+| -------- | ------------------- |
+| 201 | Permission denied.|
+| 202 | Not system application.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 12300001 | The system service works abnormally. |
+| 12300002 | Invalid authType. |
+| 12300003 | Account not found. |
+| 12300102 | The credential does not exist. |
+| 12300106 | The authentication type is not supported. |
+
+**示例：**
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let userIDM = new osAccount.UserIdentityManager();
+  let authType: osAccount.AuthType = osAccount.AuthType.PIN;
+  let accountId = 100;
+  try {
+    userIDM.getEnrolledId(authType, accountId).then((enrolledId: Uint8Array) => {
+        console.info('getEnrolledId enrolledId = ' + JSON.stringify(enrolledId));
+    }).catch((err: BusinessError) => {
+        console.error('getEnrolledId error = ' + JSON.stringify(err));
+    });
+  } catch (e) {
+    console.error('getEnrolledId exception = ' + JSON.stringify(e));
   }
   ```
 
@@ -4287,15 +4944,17 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 | 错误码ID | 错误信息               |
 | -------- | ------------------- |
+| 202 | Not system application.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300002 | Invalid pinSubType. |
 
 **示例：**
   ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
-  let inputer: account_osAccount.IInputer = {
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
-        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+  let inputer: osAccount.IInputer = {
+    onGetData: (authSubType: osAccount.AuthSubType, callback: osAccount.IInputData) => {
+        if (authSubType == osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
         } else {
           callback.onSetData(authSubType, password);
@@ -4312,9 +4971,9 @@ onSetData: (authSubType: AuthSubType, data: Uint8Array) => void;
 
 ### onGetData<sup>8+</sup>
 
-onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
+onGetData: (authSubType: AuthSubType, callback: IInputData, options: GetInputDataOptions) => void;
 
-通知获取数据。
+通知调用者获取数据的回调函数。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4324,22 +4983,25 @@ onGetData: (authSubType: AuthSubType, callback: IInputData) => void;
 
 | 参数名      | 类型                                    | 必填 | 说明             |
 | ---------- | --------------------------------------- | ---- | --------------- |
+| authSubType | [AuthSubType](#authsubtype8) | 是 | 认证凭据子类型。 |
 | callback   | [IInputData](#iinputdata8)  | 是   | 指示密码数据回调。|
+| options | [GetInputDataOptions](#getinputdataoptions-12) | 是 | 回调函数的可选参数集合。 |
 
 **示例：**
   ```ts
   let password: Uint8Array = new Uint8Array([0, 0, 0, 0, 0, 0]);
   let passwordNumber: Uint8Array = new Uint8Array([1, 2, 3, 4]);
-  let inputer: account_osAccount.IInputer = {
-    onGetData: (authSubType: account_osAccount.AuthSubType, callback: account_osAccount.IInputData) => {
-        if (authSubType == account_osAccount.AuthSubType.PIN_NUMBER) {
+  let inputer: osAccount.IInputer = {
+    onGetData: (authSubType: osAccount.AuthSubType,
+      callback: osAccount.IInputData, options: osAccount.GetInputDataOptions) => {
+        if (authSubType == osAccount.AuthSubType.PIN_NUMBER) {
           callback.onSetData(authSubType, passwordNumber);
         } else {
           callback.onSetData(authSubType, password);
         }
     }
   };
-  let pinAuth: account_osAccount.PINAuth = new account_osAccount.PINAuth();
+  let pinAuth: osAccount.PINAuth = new osAccount.PINAuth();
   let result = pinAuth.registerInputer(inputer);
   console.log('registerInputer result: ' + result);
   ```
@@ -4369,8 +5031,8 @@ onResult: (result: number, extraInfo: AuthResult) => void;
 
 **示例：**
   ```ts
-  let authCallback: account_osAccount.IUserAuthCallback = {
-    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+  let authCallback: osAccount.IUserAuthCallback = {
+    onResult: (result: number, extraInfo: osAccount.AuthResult) => {
       console.log('auth result = ' + result);
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     }
@@ -4397,8 +5059,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **示例：**
   ```ts
-  let authCallback: account_osAccount.IUserAuthCallback = {
-    onResult: (result: number, extraInfo: account_osAccount.AuthResult) => {
+  let authCallback: osAccount.IUserAuthCallback = {
+    onResult: (result: number, extraInfo: osAccount.AuthResult) => {
       console.log('auth result = ' + result)
       console.log('auth extraInfo = ' + JSON.stringify(extraInfo));
     },
@@ -4435,8 +5097,8 @@ onResult: (result: number, extraInfo: RequestResult) => void;
 
 **示例：**
   ```ts
-  let idmCallback: account_osAccount.IIdmCallback = {
-    onResult: (result: number, extraInfo: account_osAccount.RequestResult) => {
+  let idmCallback: osAccount.IIdmCallback = {
+    onResult: (result: number, extraInfo: osAccount.RequestResult) => {
       console.log('callback result = ' + result)
       console.info('callback extraInfo = ' + JSON.stringify(extraInfo));
     }
@@ -4463,7 +5125,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 **示例：**
   ```ts
-  let idmCallback: account_osAccount.IIdmCallback = {
+  let idmCallback: osAccount.IIdmCallback = {
     onResult: (result: number, extraInfo: Object) => {
       console.log('callback result = ' + result)
       console.log('callback onResult = ' + JSON.stringify(extraInfo));
@@ -4488,6 +5150,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | -------- | ------------------------------------------------------------- | ----- | ----------------------- |
 | authType | [AuthType](#authtype8)                            | 是    | 身份验证凭据类型。        |
 | keys     | Array&lt;[GetPropertyType](#getpropertytype8)&gt; | 是    | 指示要获取的属性类型数组。 |
+| accountId<sup>12+</sup> | number | 否 | 系统账号标识，默认为undefined。 |
 
 ## SetPropertyRequest<sup>8+</sup>
 
@@ -4519,6 +5182,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | freezingTime | number                       | 是    | 是   | 指示冻结时间。     |
 | enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
 | sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
+| nextPhaseFreezingTime<sup>12+</sup> | number | 是    | 是   | 指示下次冻结时间，默认为undefined。 |
 
 ## AuthResult<sup>8+</sup>
 
@@ -4533,6 +5197,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | token        | Uint8Array  | 否    | 指示认证令牌，默认为空。      |
 | remainTimes  | number      | 否    | 指示剩余次数，默认为空。      |
 | freezingTime | number      | 否    | 指示冻结时间，默认为空。      |
+| nextPhaseFreezingTime<sup>12+</sup> | number | 否    | 指示下次冻结时间，默认为undefined。 |
+| credentialId<sup>12+</sup> | Uint8Array  | 否    | 指示凭据ID，默认为空。 |
+| accountId<sup>12+</sup>         | number | 否    | 指示系统账号标识，默认为undefined。 |
+| pinValidityPeriod<sup>12+</sup> | number | 否    | 指示认证有效期，默认为undefined。 |
 
 ## CredentialInfo<sup>8+</sup>
 
@@ -4547,6 +5215,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | credType     | [AuthType](#authtype8)       | 是    | 指示凭据类型。     |
 | credSubType  | [AuthSubType](#authsubtype8) | 是    | 指示凭据子类型。   |
 | token        | Uint8Array                           | 是    | 指示认证令牌。     |
+| accountId<sup>12+</sup>    | number | 否    | 系统账号标识，默认为undefined。 |
 
 ## RequestResult<sup>8+</sup>
 
@@ -4586,10 +5255,11 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | 名称           | 值 | 说明      |
 | ------------- | ------ | --------- |
 | AUTH_SUB_TYPE | 1      | 认证子类型。 |
-| REMAIN_TIMES  | 2      | 剩余时间。   |
+| REMAIN_TIMES  | 2      | 剩余次数。   |
 | FREEZING_TIME | 3      | 冻结时间。   |
 | ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
 | SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |
+| NEXT_PHASE_FREEZING_TIME<sup>12+</sup> | 6 | 下次冻结时间。 |
 
 ## SetPropertyType<sup>8+</sup>
 
@@ -4616,6 +5286,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | PIN   | 1     | 表示PIN认证类型。 |
 | FACE  | 2     | 表示脸部认证类型。|
 | FINGERPRINT<sup>10+</sup>   | 4     | 表示指纹认证类型。 |
+| RECOVERY_KEY<sup>12+</sup> | 8 | 表示键恢复类型。 |
+| PRIVATE_PIN<sup>14+</sup> | 16 | 表示隐私PIN类型。 |
 | DOMAIN<sup>9+</sup>  | 1024     | 表示域认证类型。|
 
 ## AuthSubType<sup>8+</sup>
@@ -4631,6 +5303,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | PIN_SIX    | 10000 | 表示6位凭证。       |
 | PIN_NUMBER | 10001 | 表示自定义数字凭证。 |
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
+| PIN_FOUR<sup>12+</sup>   | 10003 | 表示4位凭证。 |
+| PIN_PATTERN<sup>12+</sup>  | 10004 | 表示图案凭据。 |
+| PIN_QUESTION<sup>14+</sup>  | 10005 | 表示密保问题凭据。 |
 | FACE_2D    | 20000 | 表示2D 人脸凭证。   |
 | FACE_3D    | 20001 | 表示3D 人脸凭证。   |
 | FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | 表示电容式指纹。   |
@@ -4730,34 +5405,35 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 ## OsAccountInfo
 
-表示系统帐号信息。
+表示系统账号信息。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName<sup>12+</sup> | string | 否   | 系统帐号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| shortName<sup>12+</sup> | string | 否   | 系统账号的短名称。<br>**系统接口：** 此接口为系统接口，默认为空。 |
+| isLoggedIn<sup>12+</sup> | boolean | 否   | 是否登录。true表示已登录；false表示未登录。<br>**系统接口：** 此接口为系统接口，默认为false。 |
 
 ## OsAccountType
 
-表示系统帐号类型的枚举。
+表示系统账号类型的枚举。
 
 **系统能力：** SystemCapability.Account.OsAccount。
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ----------- |
-| PRIVATE<sup>12+</sup> | 1024  | 隐私帐号。隐私账号只能有一个。<br>**系统接口：** 此接口为系统接口。   |
+| PRIVATE<sup>12+</sup> | 1024  | 隐私账号。隐私账号只能有一个。<br>**系统接口：** 此接口为系统接口。   |
 
 ## DomainAccountInfo<sup>8+</sup>
 
-表示域帐号信息。
+表示域账号信息。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为空。 |
-| isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
+| accountId<sup>10+</sup> | string | 否   | 域账号标识。<br>**系统接口：** 此接口为系统接口，默认为undefined。 |
+| isAuthenticated<sup>11+</sup>| boolean | 否 | 指示域账号是否已认证。true表示指定的域账号已认证；false表示指定的域账号未认证。<br>**系统接口：** 此接口为系统接口，默认为false。|
 
 ## ConstraintSourceTypeInfo<sup>9+</sup>
 
@@ -4769,8 +5445,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| localId      | number | 是   | 系统帐号ID     |
-| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型 |
+| localId      | number | 是   | 系统账号ID     |
+| type | [ConstraintSourceType](#constraintsourcetype9) | 是   | 约束来源类型。 |
 
 ## ConstraintSourceType<sup>9+</sup>
 
@@ -4782,10 +5458,10 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称   | 值 | 说明         |
 | ------ | ------ | ------------ |
-| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在 |
-| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置   |
-| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置   |
-| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置   |
+| CONSTRAINT_NOT_EXIST  | 0      | 约束不存在。 |
+| CONSTRAINT_TYPE_BASE | 1      | 约束源自系统设置。   |
+| CONSTRAINT_TYPE_DEVICE_OWNER  | 2   | 约束源自设备所有者设置。   |
+| CONSTRAINT_TYPE_PROFILE_OWNER  | 3  | 约束源自资料所有者设置。   |
 
 ## AuthStatusInfo<sup>10+</sup>
 
@@ -4797,8 +5473,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| remainTimes  | number | 是   | 剩余次数   |
-| freezingTime | number | 是   | 冻结时间 |
+| remainTimes  | number | 是   | 剩余次数。   |
+| freezingTime | number | 是   | 冻结时间。 |
 
 ## GetDomainAccessTokenOptions<sup>10+</sup>
 
@@ -4810,14 +5486,14 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域帐号的信息   |
-| domainAccountToken | Uint8Array | 是   | 域帐号的令牌 |
-| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义 |
-| callerUid | number | 是   | 调用方唯一标识符 |
+| domainAccountInfo  | [DomainAccountInfo](#domainaccountinfo8) | 是   | 域账号的信息。   |
+| domainAccountToken | Uint8Array | 是   | 域账号的令牌。 |
+| businessParams | Record<string, Object> | 是   | 业务参数，由业务方根据请求协议自定义。 |
+| callerUid | number | 是   | 调用方唯一标识符。 |
 
 ## GetDomainAccountInfoOptions<sup>10+</sup>
 
-表示查询域帐号信息的选项。
+表示查询域账号信息的选项。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4825,12 +5501,13 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| accountName | string | 是   | 域帐号名。 |
-| domain      | string | 否   | 域名。     |
+| accountName | string | 是   | 域账号名。 |
+| domain      | string | 否   | 域名。默认为undefined。|
+| serverConfigId<sup>12+</sup>| string | 否 | 域账号所属服务器标识。默认为undefined。|
 
 ## GetDomainAccountInfoPluginOptions<sup>10+</sup>
 
-表示插件查询域帐号信息的选项。GetDomainAccountInfoPluginOptions类继承[GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)
+表示插件查询域账号信息的选项。GetDomainAccountInfoPluginOptions类继承[GetDomainAccountInfoOptions](#getdomainaccountinfooptions10)
 
 **系统接口：** 此接口为系统接口。
 
@@ -4838,7 +5515,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| callerUid | number | 是   | 调用方唯一标识符 |
+| callerUid | number | 是   | 调用方唯一标识符。 |
 
 ## OsAccountSwitchEventData<sup>12+</sup>
 
@@ -4850,12 +5527,12 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| fromAccountId | number | 是   | 切换前系统账号ID |
-| toAccountId | number | 是   | 切换后系统账号ID |
+| fromAccountId | number | 是   | 切换前系统账号ID。 |
+| toAccountId | number | 是   | 切换后系统账号ID。 |
 
 ## CreateOsAccountOptions<sup>12+</sup>
 
-表示创建系统帐号的选项。
+表示用于创建系统账号的可选参数。
 
 **系统接口：** 此接口为系统接口。
 
@@ -4863,4 +5540,85 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 
 | 名称      | 类型   | 必填 | 说明       |
 | ----------- | ------ | ---- | ---------- |
-| shortName | string | 是   | 表示帐号短名称（用作个人文件夹目录） <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符|
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
+| disallowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用禁止名单，名单中的应用不可被安装在设备上。|
+| allowedPreinstalledBundles<sup>19+</sup> | Array&lt;string&gt; | 否   | 表示预置应用允许名单，仅名单中的应用可以被安装在设备上。|
+
+## CreateOsAccountForDomainOptions<sup>12+</sup>
+
+表示用于创建与指定域账号绑定的系统账号的可选参数。继承自[CreateOsAccountOptions](#createosaccountoptions12)。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称      | 类型   | 必填 | 说明       |
+| ----------- | ------ | ---- | ---------- |
+| shortName | string | 是   | 表示账号短名称（用作个人文件夹目录）。 <br/>**约束：** <br>1）不允许出现的字符：\< \> \| : " * ? / \\<br>2）不允许独立出现的字符串：.或..<br>3）长度不超过255个字符。|
+
+## GetAuthInfoOptions<sup>12+</sup>
+
+表示[查询认证凭据信息](#getauthinfo12)的可选参数集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称      | 类型                    | 必填 | 说明       |
+| --------- | ---------------------- | ---- | ---------- |
+| authType  | [AuthType](#authtype8) | 否   | 认证类型，默认为undefined。 |
+| accountId | number                 | 否   | 系统账号标识，默认为undefined。 |
+
+## AuthIntent<sup>12+</sup>
+
+表示认证意图的枚举。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称     | 值   | 说明       |
+| -------- | --- | ---------- |
+| UNLOCK   | 1   | 解锁意图。 |
+| SILENT_AUTH<sup>14+</sup>  | 2   | 静默认证意图。 |
+| QUESTION_AUTH<sup>14+</sup>   | 3   | 密保问题认证意图。 |
+
+## RemoteAuthOptions<sup>12+</sup>
+
+表示远程认证的可选参数集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称               | 类型    | 必填 | 说明       |
+| ------------------ | ------ | ---- | ---------- |
+| verifierNetworkId  | string | 否   | 凭据验证者的网络标识，默认为空。 |
+| collectorNetworkId | string | 否   | 凭据收集者的网络标识，默认为空。 |
+| collectorTokenId   | number | 否   | 凭据收集者的令牌标识，默认为undefined。 |
+
+## AuthOptions<sup>12+</sup>
+
+表示[认证用户](#auth12)的可选参数集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称               | 类型    | 必填 | 说明       |
+| ------------------ | ------ | ---- | ---------- |
+| accountId          | number | 否   | 系统账号标识，默认为undefined。 |
+| authIntent         | [AuthIntent](#authintent12) | 否   | 认证意图，默认为undefined。 |
+| remoteAuthOptions  | [RemoteAuthOptions](#remoteauthoptions12) | 否   | 远程认证选项，默认为undefined。 |
+
+## GetInputDataOptions <sup>12+</sup>
+
+表示[通知调用者获取数据](#ongetdata8)的可选参数集合。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+| 名称               | 类型    | 必填 | 说明       |
+| ------------------ | ------ | ---- | ---------- |
+| challenge          | Uint8Array | 否   | 挑战值，默认为undefined。 |

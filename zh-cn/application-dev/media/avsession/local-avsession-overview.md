@@ -33,7 +33,7 @@
 实际上，AVSessionManager与AVSession、AVSessionController对象不同，并不是一个具体的对象，它是媒体会话的根命名域。在实际编程过程中，可以通过如下方式引入：
 
 ```ts
-import AVSessionManager from '@ohos.multimedia.avsession';
+import { avSession as AVSessionManager } from '@kit.AVSessionKit';
 ```
 
 根命名域中的所有方法都可以作为AVSessionManager的方法。
@@ -41,28 +41,46 @@ import AVSessionManager from '@ohos.multimedia.avsession';
 例如，媒体会话提供方通过AVSessionManager创建媒体会话的示例如下所示：
  
 ```ts
-// 创建session
-let context: Context = getContext(this);
-async function createSession() {
-  let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
-  console.info(`session create done : sessionId : ${session.sessionId}`);
+import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
+
+  build() { 
+    Column() {
+        Text(this.message)
+          .onClick(()=>{
+            // 创建session。
+            let context = this.getUIContext().getHostContext() as Context;
+            async function createSession() {
+            let session: AVSessionManager.AVSession = await AVSessionManager.createAVSession(context, 'SESSION_NAME', 'audio');
+            console.info(`session create done : sessionId : ${session.sessionId}`);
+            }
+          })
+      }
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
-
+<!--Del-->
 例如，媒体会话控制方通过AVSessionManager创建媒体会话控制器的示例如下所示：
 
 ```ts
-// 创建controller
+// 创建controller。
 async function createController() {
-  // 获取到所有存活session的描述符列表
+  // 获取到所有存活session的描述符列表。
   let descriptorsArray: Array<AVSessionManager.AVSessionDescriptor> = await AVSessionManager.getAllSessionDescriptors();
   if (descriptorsArray.length > 0) {
-    // 为了演示，我们简单取第一个描述符的sessionId用来创建对应的controller
+    // 为了演示，我们简单取第一个描述符的sessionId用来创建对应的controller。
     let sessionId: string = descriptorsArray[0].sessionId;
     let avSessionController: AVSessionManager.AVSessionController = await AVSessionManager.createController(sessionId);
     console.info(`controller create done : sessionId : ${avSessionController.sessionId}`);
   }
 }
 ```
+<!--DelEnd-->
 
 更多关于AVSessionManager的方法，可以参考[API文档](../../reference/apis-avsession-kit/js-apis-avsession.md)。

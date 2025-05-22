@@ -1,4 +1,4 @@
-# 音频输出设备管理
+# 管理全局音频输出设备
 
 有时设备同时连接多个音频输出设备，需要指定音频输出设备进行音频播放，此时需要使用AudioRoutingManager接口进行输出设备的管理，API说明可以参考[AudioRoutingManager API文档](../../reference/apis-audio-kit/js-apis-audio.md#audioroutingmanager9)。
 
@@ -7,11 +7,11 @@
 在使用AudioRoutingManager管理音频设备前，需要先导入模块并创建实例。
 
 ```ts
-import audio from '@ohos.multimedia.audio';  // 导入audio模块
+import { audio } from '@kit.AudioKit';  // 导入audio模块。
 
-let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例
+let audioManager = audio.getAudioManager();  // 需要先创建AudioManager实例。
 
-let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例
+let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioManager的方法创建AudioRoutingManager实例。
 ```
 
 ## 支持的音频输出设备类型
@@ -33,7 +33,7 @@ let audioRoutingManager = audioManager.getRoutingManager();  // 再调用AudioMa
 使用getDevices()方法可以获取当前所有输出设备的信息。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.AudioDeviceDescriptors) => {
   console.info('Promise returned to indicate that the device list is obtained.');
@@ -44,21 +44,25 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data:
 
 可以设置监听事件来监听设备连接状态的变化，当有设备连接或断开时触发回调：
 
-```ts
-import audio from '@ohos.multimedia.audio';
+> **说明：**
+> 监听设备连接状态变化可以监听到全部的设备连接状态变化，不建议作为应用处理自动暂停的依据。应用如需处理自动暂停相关业务，可参考[音频流输出设备变更原因](audio-output-device-change.md)。
 
-// 监听音频设备状态变化
+```ts
+import { audio } from '@kit.AudioKit';
+
+// 监听音频设备状态变化。
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged: audio.DeviceChangeAction) => {
-  console.info(`device change type : ${deviceChanged.type}`);  // 设备连接状态变化，0为连接，1为断开连接
+  console.info(`device change type : ${deviceChanged.type}`);  // 设备连接状态变化，0为连接，1为断开连接。
   console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length}`);
-  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole}`);  // 设备角色
-  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType}`);  // 设备类型
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole}`);  // 设备角色。
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType}`);  // 设备类型。
 });
 
-// 取消监听音频设备状态变化
+// 取消监听音频设备状态变化。
 audioRoutingManager.off('deviceChange');
 ```
 
+<!--Del-->
 ## 选择音频输出设备（仅对系统应用开放）
 
 选择音频输出设备，当前只能选择一个输出设备，以设备ID作为唯一标识。AudioDeviceDescriptors的具体信息可以参考[AudioDeviceDescriptors](../../reference/apis-audio-kit/js-apis-audio.md#audiodevicedescriptors)。
@@ -68,8 +72,8 @@ audioRoutingManager.off('deviceChange');
 > 用户可以选择连接一组音频设备（如一对蓝牙耳机），但系统侧只感知为一个设备，该组设备共用一个设备ID。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
     deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -94,6 +98,7 @@ async function selectOutputDevice() {
   });
 }
 ```
+<!--DelEnd-->
 
 ## 获取最高优先级输出设备信息
 
@@ -104,13 +109,13 @@ async function selectOutputDevice() {
 > 最高优先级输出设备表示声音将在此设备输出的设备。
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags : 0
-}
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,// 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+    rendererFlags: 0 // 音频渲染器标志。
+};
 
 async function getPreferOutputDeviceForRendererInfo() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -124,19 +129,19 @@ async function getPreferOutputDeviceForRendererInfo() {
 ## 监听最高优先级输出设备变化
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-    rendererFlags : 0
-}
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+    rendererFlags: 0 // 音频渲染器标志。
+};
 
-// 监听最高优先级输出设备变化
+// 监听最高优先级输出设备变化。
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
-    console.info(`device change descriptor : ${desc[0].deviceRole}`);  // 设备角色
-    console.info(`device change descriptor : ${desc[0].deviceType}`);  // 设备类型
+    console.info(`device change descriptor : ${desc[0].deviceRole}`);  // 设备角色。
+    console.info(`device change descriptor : ${desc[0].deviceType}`);  // 设备类型。
 });
 
-// 取消监听最高优先级输出设备变化
+// 取消监听最高优先级输出设备变化。
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```

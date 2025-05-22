@@ -26,7 +26,7 @@ NA
 
 **错误信息**
 
-This component has unfocusable ancestor.
+This component has an unfocusable ancestor.
 
 **错误描述**
 

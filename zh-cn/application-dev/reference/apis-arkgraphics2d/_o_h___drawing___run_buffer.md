@@ -9,6 +9,7 @@
 
 **相关模块：**[Drawing](_drawing.md)
 
+**所在头文件：**[drawing_text_blob.h](drawing__text__blob_8h.md)
 
 ## 汇总
 
@@ -17,10 +18,10 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| uint16_t \* [glyphs](#glyphs) | 存储文字索引  |
-| float \* [pos](#pos) | 存储文字的位置  |
-| char \* [utf8text](#utf8text) | 存储文字UTF-8编码  |
-| uint32_t \* [clusters](#clusters) | 存储文字簇UTF-8编码（簇指的是集合）  |
+| uint16_t \* [glyphs](#glyphs) | 存储文字索引。  |
+| float \* [pos](#pos) | 存储文字的位置。  |
+| char \* [utf8text](#utf8text) | 存储文字UTF-8编码。  |
+| uint32_t \* [clusters](#clusters) | 存储文字簇UTF-8编码（簇指的是集合）。  |
 
 
 ## 结构体成员变量说明
@@ -32,7 +33,8 @@
 uint32_t* OH_Drawing_RunBuffer::clusters
 ```
 **描述**
-存储文字簇UTF-8编码（簇指的是集合）
+
+存储文字簇UTF-8编码（簇指的是集合）。
 
 
 ### glyphs
@@ -41,7 +43,8 @@ uint32_t* OH_Drawing_RunBuffer::clusters
 uint16_t* OH_Drawing_RunBuffer::glyphs
 ```
 **描述**
-存储文字索引
+
+存储文字索引。
 
 
 ### pos
@@ -50,7 +53,8 @@ uint16_t* OH_Drawing_RunBuffer::glyphs
 float* OH_Drawing_RunBuffer::pos
 ```
 **描述**
-存储文字的位置
+
+存储文字的位置。
 
 
 ### utf8text
@@ -59,4 +63,5 @@ float* OH_Drawing_RunBuffer::pos
 char* OH_Drawing_RunBuffer::utf8text
 ```
 **描述**
-存储文字UTF-8编码
+
+存储文字UTF-8编码。

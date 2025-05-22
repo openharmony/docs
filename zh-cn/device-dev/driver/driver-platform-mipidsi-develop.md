@@ -180,7 +180,7 @@ MIPI DSI模块适配包含以下四个步骤：
 
     完成驱动入口注册之后，下一步就是以核心层MipiDsiCntlr对象的初始化为核心，包括驱动适配者自定义结构体（传递参数和数据），实例化MipiDsiCntlr成员MipiDsiCntlrMethod（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind、Init、Release）。
 
-    - 自定义结构体参考
+    - 自定义结构体参考。
 
         从驱动的角度看，自定义结构体是参数和数据的载体，一般来说，config文件中的数值也会用来初始化结构体成员，但本例的MIPI DSI无器件属性文件，故基本成员结构与MipiDsiCntlr无太大差异。
 
@@ -219,7 +219,7 @@ MIPI DSI模块适配包含以下四个步骤：
         };
         ```
 
-    - Init函数开发参考
+    - Init函数开发参考。
 
         入参：
 
@@ -279,7 +279,7 @@ MIPI DSI模块适配包含以下四个步骤：
         }
         ```
 
-    - Release函数开发参考
+    - Release函数开发参考。
 
         入参：
 

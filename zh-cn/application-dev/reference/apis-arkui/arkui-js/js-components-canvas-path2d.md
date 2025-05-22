@@ -16,7 +16,7 @@ addPath(path: Object): void
 
 | 参数   | 类型     | 描述             |
 | ---- | ------ | -------------- |
-| path | Object | 需要添加到当前路径的路径对象 |
+| path | Object | 需要添加到当前路径的路径对象。 |
 
 **示例：** 
 
@@ -53,12 +53,12 @@ setTransform(scaleX: number, skewX: number, skewY: number, scaleY: number, trans
 
 | 参数         | 类型     | 描述      |
 | ---------- | ------ | ------- |
-| scaleX     | number | x轴的缩放比例 |
-| skewX      | number | x轴的倾斜角度 |
-| skewY      | number | y轴的倾斜角度 |
-| scaleY     | number | y轴的缩放比例 |
-| translateX | number | x轴的平移距离 |
-| translateY | number | y轴的平移距离 |
+| scaleX     | number | x轴的缩放比例。 |
+| skewX      | number | x轴的倾斜角度。 |
+| skewY      | number | y轴的倾斜角度。 |
+| scaleY     | number | y轴的缩放比例。 |
+| translateX | number | x轴的平移距离。 |
+| translateY | number | y轴的平移距离。 |
 
 **示例：**  
 
@@ -129,8 +129,8 @@ moveTo(x: number, y: number): void
 
 | 参数   | 类型     | 描述      |
 | ---- | ------ | ------- |
-| x    | number | 目标点X轴坐标 |
-| y    | number | 目标点Y轴坐标 |
+| x    | number | 目标点X轴坐标。 |
+| y    | number | 目标点Y轴坐标。 |
 
 **示例：**  
 
@@ -170,8 +170,8 @@ lineTo(x: number, y: number): void
 
 | 参数   | 类型     | 描述      |
 | ---- | ------ | ------- |
-| x    | number | 目标点X轴坐标 |
-| y    | number | 目标点Y轴坐标 |
+| x    | number | 目标点X轴坐标。 |
+| y    | number | 目标点Y轴坐标。|
 
 **示例：**
 

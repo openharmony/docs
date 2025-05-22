@@ -1,14 +1,14 @@
 # 系统相册资源使用指导
 
-photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏相册进行相关操作。
+photoAccessHelper提供对收藏夹、视频相册、截屏和录屏相册的相关操作。
 
 > **说明：**
 >
-> 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
-> 文档中使用到PhotoAccessHelper的地方默认为使用开发准备中获取的对象，如未添加此段代码报PhotoAccessHelper未定义的错误请自行添加。
+> 在进行功能开发前，请查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例及申请相关权限。
+> 文档中使用到PhotoAccessHelper的地方，默认使用[开发准备](photoAccessHelper-preparation.md)中获取的对象，如未添加此段代码提示PhotoAccessHelper未定义的错误请自行添加。
 
 为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。以下异步调用的API示例均采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
-如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
+如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况，请确认文件是否已预置，数据库中是否存在该文件的数据。
 
 ## 收藏夹
 
@@ -29,8 +29,11 @@ photoAccessHelper仅提供开发者对收藏夹、视频相册、截屏和录屏
 2. 调用PhotoAccessHelper.getAlbums接口获取收藏夹对象。
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -45,6 +48,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ### 收藏图片和视频（仅向系统应用开放）
 
 通过[MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将图片或视频设置为收藏。
@@ -63,9 +67,12 @@ async function example() {
 3. 调用PhotoAccessHelper.applyChanges接口提交收藏图片的变更请求。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -88,6 +95,7 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->
 
 ### 获取收藏夹中的图片和视频
 
@@ -108,9 +116,12 @@ async function example() {
 4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -136,6 +147,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ### 取消收藏图片或视频（仅向系统应用开放）
 
 通过[MediaAssetChangeRequest.setFavorite](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#setfavorite11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将图片或视频取消收藏。
@@ -155,9 +167,12 @@ async function example() {
 
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -187,6 +202,7 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->
 
 ## 视频相册
 
@@ -207,8 +223,11 @@ async function example() {
 2. 调用PhotoAccessHelper.getAlbums接口获取视频相册。
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -242,9 +261,12 @@ async function example() {
 4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个视频。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -270,6 +292,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ## 截屏和录屏相册（仅向系统应用开放）
 
 截屏和录屏相册属于系统相册，用户文件中属于截屏和录屏的媒体文件会自动加入到截屏和录屏相册中。
@@ -289,8 +312,11 @@ async function example() {
 2. 调用PhotoAccessHelper.getAlbums接口获取截屏和录屏相册。
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -324,9 +350,12 @@ async function example() {
 4. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一个媒体资源。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -351,3 +380,4 @@ async function example() {
   }
 }
 ```
+<!--DelEnd-->

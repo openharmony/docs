@@ -9,7 +9,7 @@ The network connection management module provides basic network management capab
 ## Modules to Import
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 ```
 
 
@@ -35,14 +35,14 @@ Obtains the global HTTP proxy configuration of the network. This API uses an asy
 | ------- | -----------------------------  |
 | 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   console.info(JSON.stringify(error));
@@ -70,16 +70,15 @@ Obtains the global HTTP proxy configuration of the network. This API uses a prom
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
@@ -115,14 +114,14 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 | 401     | Parameter error.               |
 | 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
@@ -172,14 +171,14 @@ Sets the global HTTP proxy configuration of the network. This API uses a promise
 | 401     | Parameter error.               |
 | 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
@@ -220,14 +219,14 @@ Enables the airplane mode. This API uses an asynchronous callback to return the 
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.enableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -258,14 +257,13 @@ Enables the airplane mode. This API uses a promise to return the result.
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.enableAirplaneMode().then((error: void) => {
   console.log(JSON.stringify(error));
@@ -297,14 +295,14 @@ Disables the airplane mode. This API uses an asynchronous callback to return the
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.disableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -335,14 +333,13 @@ Disables the airplane mode. This API uses a promise to return the result.
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.disableAirplaneMode().then((error: void) => {
   console.log(JSON.stringify(error));
@@ -374,15 +371,15 @@ Resets the network settings to factory defaults. This API uses a promise to retu
 | ------- | ------------------------------------------  |
 | 201     | Permission denied.                          |
 | 202     | Non-system applications use system APIs.    |
-| 401     | Parameter error.                            |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.                      |
 
 **Example**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.factoryReset().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {

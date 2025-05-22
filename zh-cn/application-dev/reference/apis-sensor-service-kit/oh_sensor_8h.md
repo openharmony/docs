@@ -5,13 +5,13 @@
 
 声明操作传感器的API，包括获取传感器信息和订阅取消订阅传感器数据。
 
-**库：** libohsensor.so
+**库**：libohsensor.so
 
-**系统能力：** SystemCapability.Sensors.Sensor
+**系统能力**：SystemCapability.Sensors.Sensor
 
-**起始版本：** 11
+**起始版本**：11
 
-**相关模块：** [Sensor](_sensor.md)
+**相关模块**：[Sensor](_sensor.md)
 
 
 ## 汇总

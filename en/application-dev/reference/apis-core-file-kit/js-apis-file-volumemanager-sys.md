@@ -1,6 +1,6 @@
 # @ohos.file.volumeManager (Volume Management) (System API)
 
-The **volumeManager** module provides APIs for volume and disk management, including obtaining volume information, mounting or unmounting a volume, partitioning a disk, and formatting a volume.
+The **volumeManager** module provides APIs for querying and managing volumes and disks, including querying volume information, mounting or unmounting a volume, partitioning a disk, and formatting a volume.
 
 > **NOTE**
 >
@@ -27,7 +27,7 @@ Obtains information about all volumes of this external storage device. This API 
 
   | Type                              | Description                      |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)[]&gt; | Promise used to return information about all available volumes.|
+  | Promise&lt;[Volume](#volume)[]&gt; | Promise used to return the information about all available volume devices.|
 
 **Error codes**
 
@@ -37,7 +37,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -46,9 +46,9 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   ```ts
   import { BusinessError } from '@ohos.base';
   volumemanager.getAllVolumes().then((volumes: Array<volumemanager.Volume>) => {
-    // Do something with the volume array.
+    // do something with volumes, which is an array
   }).catch((error: BusinessError) => {
-    console.info("getAllVolumes failed");
+    console.error("getAllVolumes failed");
   });
   ```
 
@@ -66,7 +66,7 @@ Obtains information about all volumes of this external storage device. This API 
 
   | Name  | Type                                             | Mandatory| Description                                |
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback invoked to return information about all available volumes.|
+  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | Yes  | Callback used to return information about all available volumes.|
 
 **Error codes**
 
@@ -76,7 +76,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -93,7 +93,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 mount(volumeId: string): Promise&lt;void&gt;
 
-Asynchronously mounts a volume. This API uses a promise to return the result. Currently, only the File Allocation Table (FAT), Extensible FAT (exFAT), and New Technology File System (NTFS) file systems are supported.
+Mounts a volume. This API uses a promise to return the result. Currently, only the FAT, exFAT, and NTFS file systems are supported.
 
 **Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -119,7 +119,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600003 | Failed to mount. |
@@ -135,7 +135,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   volumemanager.mount(volumeId).then(() => {
     // Do something.
   }).catch((error: BusinessError) => {
-    console.info("mount failed");
+    console.error("mount failed");
   });
   ```
 
@@ -143,7 +143,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
-Asynchronously mounts a volume. This API uses an asynchronous callback to return the result. Currently, only the FAT, exFAT, and NTFS file systems are supported.
+Mounts a volume. This API uses an asynchronous callback to return the result. Currently, only the FAT, exFAT, and NTFS file systems are supported.
 
 **Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -154,7 +154,7 @@ Asynchronously mounts a volume. This API uses an asynchronous callback to return
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the specified volume is mounted.|
 
 **Error codes**
 
@@ -164,7 +164,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600003 | Failed to mount. |
@@ -186,7 +186,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 unmount(volumeId: string): Promise&lt;void&gt;
 
-Asynchronously unmounts a volume. This API uses a promise to return the result.
+Unmounts a volume. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -212,7 +212,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600004 | Failed to unmount. |
@@ -228,7 +228,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   volumemanager.unmount(volumeId).then(() => {
     // Do something.
   }).catch((error: BusinessError) => {
-    console.info("mount failed");
+    console.error("mount failed");
   });
   ```
 
@@ -236,7 +236,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
-Asynchronously unmounts a volume. This API uses an asynchronous callback to return the result.
+Unmounts a volume. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MOUNT_UNMOUNT_MANAGER
 
@@ -247,7 +247,7 @@ Asynchronously unmounts a volume. This API uses an asynchronous callback to retu
   | Name  | Type                                 | Mandatory| Description                |
   | -------- | ------------------------------------- | ---- | -------------------- |
   | volumeId | string                                | Yes  | Volume ID.                |
-  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback that returns no value.|
+  | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked when the specified volume is unmounted.|
 
 **Error codes**
 
@@ -257,7 +257,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600004 | Failed to unmount. |
@@ -295,7 +295,7 @@ Obtains information about a volume based on the universally unique identifier (U
 
   | Type                              | Description                      |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the information about all available volume devices.|
 
 **Error codes**
 
@@ -305,7 +305,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -318,7 +318,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   volumemanager.getVolumeByUuid(uuid).then((volume: volumemanager.Volume) => {
     console.info("getVolumeByUuid successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
-    console.info("getVolumeByUuid failed with error:" + JSON.stringify(error));
+    console.error("getVolumeByUuid failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -337,7 +337,7 @@ Obtains information about a volume based on the UUID. This API uses an asynchron
   | Name   | Type                                                | Mandatory| Description                |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
   | uuid | string                                                 | Yes  | UUID of the volume.                |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback invoked to return the volume information obtained.|
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | Yes  | Callback used to return the volume information obtained.|
 
 **Error codes**
 
@@ -347,7 +347,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -382,7 +382,7 @@ Obtains information about a volume based on the volume ID. This API uses a promi
 
   | Type                              | Description                      |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the volume information obtained.|
+  | Promise&lt;[Volume](#volume)&gt; | Promise used to return the information about all available volume devices.|
 
 **Error codes**
 
@@ -392,7 +392,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -405,7 +405,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   volumemanager.getVolumeById(volumeId).then((volume: volumemanager.Volume) => {
     console.info("getVolumeById successfully:" + JSON.stringify(volume));
   }).catch((error: BusinessError) => {
-    console.info("getVolumeById failed with error:" + JSON.stringify(error));
+    console.error("getVolumeById failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -424,7 +424,7 @@ Obtains information about a volume based on the volume ID. This API uses an asyn
   | Name  | Type                     | Mandatory| Description                         |
   | -------- | ------------------------- | ---- | ----------------------------- |
   | volumeId | string                    | Yes  | Volume ID.               |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback invoked to return the volume information obtained. |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | Yes  | Callback used to return the volume information obtained. |
 
 **Error codes**
 
@@ -434,7 +434,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -464,7 +464,7 @@ Sets volume description. This API uses a promise to return the result.
   | Name    | Type  | Mandatory| Description|
   | --------- | ------ | ---- | ---- |
   | uuid      | string | Yes  | UUID of the volume.|
-  | description | string | Yes  | Volume description to set.|
+  | description | string | Yes  | Description of the volume.|
 
 **Return value**
 
@@ -480,7 +480,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -496,7 +496,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   volumemanager.setVolumeDescription(uuid, description).then(() => {
     console.info("setVolumeDescription successfully");
   }).catch((error: BusinessError) => {
-    console.info("setVolumeDescription failed with error:" + JSON.stringify(error));
+    console.error("setVolumeDescription failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -515,8 +515,8 @@ Sets volume description. This API uses an asynchronous callback to return the re
   | Name     | Type                                    | Mandatory| Description             |
   | ---------- | --------------------------------------- | ---- | ---------------- |
   | uuid       | string                                  | Yes  | UUID of the volume.           |
-  | description | string                                 | Yes  | Volume description to set.           |
-  | callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.|
+  | description | string                                 | Yes  | Description of the volume.           |
+  | callback   | AsyncCallback&lt;void&gt;   | Yes  | Callback invoked after the volume description is set.|
 
 **Error codes**
 
@@ -526,7 +526,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -575,7 +575,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -591,7 +591,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   volumemanager.format(volumeId, fsType).then(() => {
     console.info("format successfully");
   }).catch((error: BusinessError) => {
-    console.info("format failed with error:" + JSON.stringify(error));
+    console.error("format failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -621,7 +621,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -670,7 +670,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -684,7 +684,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
   volumemanager.partition(diskId, type).then(() => {
     console.info("partition successfully");
   }).catch((error: BusinessError) => {
-    console.info("partition failed with error:" + JSON.stringify(error));
+    console.error("partition failed with error:" + JSON.stringify(error));
   });
   ```
 
@@ -692,7 +692,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): void
 
-Asynchronously partitions a disk. This API uses a callback to return the result. The system supports access to multi-partition disks. Currently, this API can partition a disk into only one partition.
+Partitions a disk. This API uses a callback to return the result. The system supports access to multi-partition disks. Currently, this API can partition a disk into only one partition.
 
 **Required permissions**: ohos.permission.MOUNT_FORMAT_MANAGER
 
@@ -703,7 +703,7 @@ Asynchronously partitions a disk. This API uses a callback to return the result.
   | Name     | Type                                  | Mandatory| Description             |
   | -------- | --------------------------------------- | ---- | ---------------- |
   | diskId   | string                                  | Yes  | ID of the disk to partition.     |
-  | type     | number                                  | Yes  | Partition type.          |
+  | type     | number                                  | Yes  | Partition type.         |
   | callback | AsyncCallback&lt;void&gt;   | Yes  | Callback that returns no value.     |
 
 **Error codes**
@@ -714,7 +714,7 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -734,14 +734,15 @@ For details about the error codes, see [File Management Error Codes](errorcode-f
 
 **System capability**: SystemCapability.FileManagement.StorageService.Volume
 
-### Attributes
+### Properties
 
-| Name        | Type   | Readable  | Writable  | Description                |
+| Name        | Type   | Read-Only  | Writable  | Description                |
 | ----------- | ------- | ------- | ----- | -------------------- |
 | id          | string  | Yes| No| Volume ID, in the vol-{Primary device ID}-{Secondary device ID} format. The primary device IDs identify devices of different types. The secondary device IDs identify different devices of the same type. The volume IDs vary depending on the card insertion sequence.                |
 | uuid        | string  | Yes| No| Volume UUID, which uniquely identifies a volume irrespective of the card insertion sequence. However, the UUID of a volume will change after the volume is formatted.              |
 | diskId      | string  | Yes| No| ID of the disk to which the volume belongs. A disk can have one or more volumes. The disk ID is in the disk-{Primary device ID}-{Secondary device ID} format, which is similar to the volume ID.       |
 | description | string  | Yes| No| Description of the volume.          |
-| removable   | boolean | Yes| No| Whether the volume can be removed. Currently, only removable storage devices are supported.|
+| removable   | boolean | Yes| No| Whether the volume can be removed. Currently, only removable storage devices are supported. The value **true** means the device can be removed; the value **false** means the opposite.|
 | state       | number  | Yes| No| Volume status.<br>**0**: The volume is unmounted.<br> **1**: The volume is being checked.<br> **2**: The volume is mounted.<br> **3**: The volume is being ejected.         |
 | path        | string  | Yes| No| Path of the volume mounted. Generally, the path is **/mnt/data/external/{uuid}**.        |
+| fsType<sup>12+</sup>        | string  | Yes| No| File system type. Common file systems are **ext2**, **vfat**, and **NTFS**.      |

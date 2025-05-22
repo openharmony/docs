@@ -9,7 +9,7 @@
 
 
 ```ts
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 ```
 
 ## App
@@ -18,9 +18,11 @@ import app, { AppResponse } from '@system.app'
 
 static getInfo(): AppResponse
 
-获取当前应用配置文件中声明的信息。
+获取当前应用配置文件中声明的信息。在Stage模型下接口返回值为null。
 
-从API Version9开始，推荐使用[bundleManager.getApplicationInfo](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)。
+从API Version9开始，推荐使用[bundleManager.getBundleInfoForSelf](../apis-ability-kit/js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
@@ -33,11 +35,11 @@ static getInfo(): AppResponse
 **示例：**
 
 ```ts
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 export default class Info {
   getInfo() {
-    let info:AppResponse = app.getInfo()
-    console.log(JSON.stringify(info))
+    let info:AppResponse = app.getInfo();
+    console.log(JSON.stringify(info));
   }
 }
 ```
@@ -46,19 +48,21 @@ export default class Info {
 
 static terminate(): void
 
-退出当前Ability。
+退出当前Ability。在Stage模型下接口功能不生效。
 
 从API Version 7开始，推荐使用[`@ohos.ability.featureAbility`](../apis-ability-kit/js-apis-ability-featureAbility.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **示例：**
 
 ```ts
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 export default class TerM {
   terminate() {
-    app.terminate()
+    app.terminate();
   }
 }
 ```
@@ -67,6 +71,12 @@ export default class TerM {
 static setImageCacheCount(value: number): void
 
 设置内存中缓存解码后图片的数量上限，提升再次加载同源图片的加载速度。如果不设置则默认为0，不进行缓存。缓存采用内置的LRU策略，新图片加载后，如果超过缓存上限，会删除最久未再次加载的缓存。建议根据应用内存需求，设置合理缓存数量，数字过大可能导致内存使用过高。
+
+setImageCacheCount方法需要在@Entry标记的页面，[onPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)或[aboutToAppear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)里面设置才生效。
+
+setImageCacheCount、setImageRawDataCacheSize、和setImageFileCacheSize并不灵活，后续不继续演进，对于复杂情况，更推荐使用[ImageKnife](https://gitee.com/openharmony-tpc/ImageKnife)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,19 +90,18 @@ static setImageCacheCount(value: number): void
 
 ```ts
 // xxx.ets
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 
 @Entry
 @Component
 struct Index {
-  //app.setImageCacheCount方法需要在由@Entry标记的页面，onPageShow或aboutToAppear里面设置才生效
   onPageShow() {
     // 设置解码后图片内存缓存上限为100张
-    app.setImageCacheCount(100) 
-    console.info('Application onPageShow')
+    app.setImageCacheCount(100);
+    console.info('Application onPageShow');
   }
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   }
 
   build() {
@@ -112,6 +121,10 @@ static setImageRawDataCacheSize(value: number): void
 
 设置内存中缓存解码前图片数据的大小上限，单位为字节，提升再次加载同源图片的加载速度。如果不设置则默认为0，不进行缓存。缓存采用内置的LRU策略，新图片加载后，如果解码前数据超过缓存上限，会删除最久未再次加载的图片数据缓存。建议根据应用内存需求，设置合理缓存上限，过大可能导致应用内存使用过高。
 
+setImageRawDataCacheSize方法需要在@Entry标记的页面，[onPageShow](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#onpageshow)或[aboutToAppear](../apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)里面设置才生效。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -124,19 +137,18 @@ static setImageRawDataCacheSize(value: number): void
 
 ```ts
 // xxx.ets
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 
 @Entry
 @Component
 struct Index {
-  //app.setImageRawDataCacheSize方法需要在由@Entry标记的页面，onPageShow或aboutToAppear里面设置才生效
   onPageShow() {
     // 设置解码前图片数据内存缓存上限为100MB (100MB=100*1024*1024B=104857600B)
-    app.setImageRawDataCacheSize(104857600) 
-    console.info('Application onPageShow')
+    app.setImageRawDataCacheSize(104857600); 
+    console.info('Application onPageShow');
   }
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   }
 
   build() {
@@ -156,6 +168,8 @@ static setImageFileCacheSize(value: number): void
 
 设置图片文件缓存的大小上限，单位为字节，提升再次加载同源图片的加载速度，特别是对网络图源会有较明显提升。如果不设置则默认为100MB。缓存采用内置的LRU策略，新图片加载后，如果超过文件缓存上限，会按照时间由远到近删除缓存图片文件直到缓存图片大小满足缓存上限。建议根据应用实际需求，设置合理文件缓存上限，数字过大可能导致磁盘空间占用过高。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -168,16 +182,16 @@ static setImageFileCacheSize(value: number): void
 
 ```ts
 // app.ets
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 
 export default class OnC {
   onCreate() {
-    app.setImageFileCacheSize(209715200)
+    app.setImageFileCacheSize(209715200);
     // 设置图片文件数据缓存上限为200MB (200MB=200*1024*1024B=209715200B) 
-    console.info('Application onCreate')
+    console.info('Application onCreate');
   }
   onDestroy() {
-    console.info('Application onDestroy')
+    console.info('Application onDestroy');
   }
 }
 ```
@@ -215,12 +229,12 @@ static requestFullWindow(options?: RequestFullWindowOptions): void
 **示例：**
 
 ```ts
-import app, { AppResponse } from '@system.app'
+import app, { AppResponse } from '@system.app';
 export default class Req {
   requestFullWindow() {
     app.requestFullWindow({
       duration: 200
-    })
+    });
   }
 } 
 ```
@@ -228,6 +242,8 @@ export default class Req {
 ## AppResponse
 
 定义AppResponse信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：**  以下各项对应的系统能力有所不同，详见下表。
 

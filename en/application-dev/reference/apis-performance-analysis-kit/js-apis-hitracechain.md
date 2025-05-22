@@ -9,7 +9,7 @@ The **hiTraceChain** module implements call chain trace throughout a service pro
 ## Modules to Import
 
 ```ts
-import hiTraceChain from '@ohos.hiTraceChain';
+import { hiTraceChain } from '@kit.PerformanceAnalysisKit';
 ```
 
 ## HiTraceFlag
@@ -51,7 +51,7 @@ Enumerates communication modes.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| DEFAULT  | 0 | Default communication mode.   |
+| DEFAULT  | 0 | Default communication.   |
 | THREAD   | 1 | Inter-thread communication. |
 | PROCESS  | 2 | Inter-process communication. |
 | DEVICE   | 3 | Inter-device communication. |

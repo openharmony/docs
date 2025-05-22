@@ -4,12 +4,12 @@
 
 > **说明：**
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.net.connection (网络连接管理)](js-apis-net-connection.md)。
 
 ## 导入模块
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 ```
 
 
@@ -27,7 +27,7 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[HttpProxy](js-apis-net-connection.md#httpproxy10)> | 是   | 回调函数。当成功获取网络的全局代理配置信息时，error为undefined，data为网络的全局代理配置信息；否则为错误对象 |
+| callback | AsyncCallback\<[HttpProxy](js-apis-net-connection.md#httpproxy10)> | 是   | 回调函数。当成功获取网络的全局代理配置信息时，error为undefined，data为网络的全局代理配置信息；否则为错误对象。|
 
 **错误码：**
 
@@ -35,14 +35,14 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 | ------- | -----------------------------  |
 | 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy((error: BusinessError, data: connection.HttpProxy) => {
   console.info(JSON.stringify(error));
@@ -70,16 +70,15 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 401     | Parameter error.             |
 | 202     | Non-system applications use system APIs.             |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.getGlobalHttpProxy().then((data: connection.HttpProxy) => {
   console.info(JSON.stringify(data));
@@ -115,14 +114,14 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 | 401     | Parameter error.               |
 | 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
@@ -172,14 +171,14 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 | 401     | Parameter error.               |
 | 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let exclusionStr = "192.168,baidu.com";
 let exclusionArray = exclusionStr.split(',');
@@ -220,14 +219,14 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.enableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -258,14 +257,13 @@ enableAirplaneMode(): Promise\<void>
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.enableAirplaneMode().then((error: void) => {
   console.log(JSON.stringify(error));
@@ -297,14 +295,14 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
 | 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 connection.disableAirplaneMode((error: BusinessError) => {
   console.log(JSON.stringify(error));
@@ -335,14 +333,13 @@ disableAirplaneMode(): Promise\<void>
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 202     | Non-system applications use system APIs.              |
-| 401     | Parameter error.               |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.         |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
+import { connection } from '@kit.NetworkKit';
 
 connection.disableAirplaneMode().then((error: void) => {
   console.log(JSON.stringify(error));
@@ -374,15 +371,15 @@ factoryReset(): Promise\<void\>
 | ------- | ------------------------------------------  |
 | 201     | Permission denied.                          |
 | 202     | Non-system applications use system APIs.    |
-| 401     | Parameter error.                            |
-| 2100002 | Operation failed. Cannot connect to service.|
+| 2100002 | Failed to connect to the service.|
 | 2100003 | System internal error.                      |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 connection.factoryReset().then(() => {
     console.log("success");
 }).catch((error: BusinessError) => {

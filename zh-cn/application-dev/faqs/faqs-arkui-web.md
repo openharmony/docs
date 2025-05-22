@@ -276,15 +276,15 @@ Web({ src: 'www.example.com', controller: this.controller })
 [GET\_NETWORK\_INFO](../security/AccessToken/permissions-for-all.md#ohospermissionget_network_info)
 
 
-## 如何自定义拼接设置UserAgent参数(API 9)
+## 如何自定义拼接设置User-Agent参数(API 9)
 
 **解决措施**
 
-默认UserAgent需要通过WebviewController获取。WebviewController对象必须在Web组件绑定后，才能调用WebviewController上的方法getUserAgent获取默认UserAgent。因此在页面加载前通过自定义字符串拼接修改UserAgent，可采用此方式：
+默认User-Agent需要通过WebviewController获取。WebviewController对象必须在Web组件绑定后，才能调用WebviewController上的方法getUserAgent获取默认User-Agent。因此在页面加载前通过自定义字符串拼接修改User-Agent，可采用此方式：
 
-1. 使用\@State定义初始UserAgent，绑定到Web组件；
+1. 使用\@State定义初始User-Agent，绑定到Web组件；
 
-2. 在Web组件的onUrlLoadIntercept回调中，通过WebviewController.getUserAgent()获取默认UserAgent，并修改Web组件绑定的UserAgent
+2. 在Web组件的onUrlLoadIntercept回调中，通过WebviewController.getUserAgent()获取默认User-Agent，并修改Web组件绑定的User-Agent
 
 **代码示例**
 
@@ -317,46 +317,6 @@ struct Index {
 **参考链接**
 
 [userAgent](../reference/apis-arkweb/ts-basic-components-web.md#useragentdeprecated)、[getUserAgent](../reference/apis-arkweb/js-apis-webview.md#getuseragent)
-
-
-## Web组件中如何通过手势滑动返回上一个Web页面(API 9)
-
-**解决措施**
-
-通过重写onBackPress函数来自定义返回逻辑，使用WebviewController判断是否返回上一个Web页面。
-
-**示例代码**
-
-```
-import web_webview from '@ohos.web.webview';
-@Entry
-@Component
-struct Index {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  build() {
-    Column() {
-      Web({ src: 'http://www.example.com', controller: this.controller })//需要手动替换为真实网站
-    }
-  }
-  onBackPress() {
-    // 当前页面是否可前进或者后退给定的step步(-1),正数代表前进，负数代表后退
-    if (this.controller.accessStep(-1)) {
-      this.controller.backward(); // 返回上一个web页
-      // 执行用户自定义返回逻辑
-      return true
-    } else {
-      // 执行系统默认返回逻辑，返回上一个page页
-      return false
-    }
-  }
-}
-```
-
-**参考链接**
-
-[accessStep](../reference/apis-arkweb/js-apis-webview.md#accessstep)
-
-
 ## WebView支持同层渲染吗(API 10)
 
 **解决措施**
@@ -369,7 +329,7 @@ struct Index {
 
 **解决措施**
 
-setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用DevTools工具可以在电脑上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
+setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用DevTools工具可以在2in1上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
 
 **参考链接**
 
@@ -407,3 +367,56 @@ setWebDebuggingAccess()接口开启Web组件前端页面调试能力，利用Dev
 1. 进程模型：1个主进程、多个render进程。
 2. 渲染机制：web自渲染。
 
+
+## 系统目前是否支持Webrtc的功能？规格是什么？
+
+**解决措施**
+
+1. WebView支持Webrtc的P-P功能以及音视频流功能。
+2. 非WebView场景，系统不直接提供Webrtc，但会提供技术支持，比如支持三方gn+ninja交叉编译方式适配Webrtc（RR-30030985），包含以下两点：
+   * sdk支持gn+ninja交叉编译方式
+   * 提供编译样例指导
+
+
+## Webview如何设置mixcontent策略，用以解决http与https混合加载的问题？
+
+**解决措施**
+
+Webview提供mixedMode(mixedMode: MixedMode)接口，设置是否允许加载超文本传输协议（HTTP）和超文本传输安全协议（HTTPS）混合内容，默认不允许加载HTTP和HTTPS混合内容。
+
+**参考链接**
+
+[mixedmode](../reference/apis-arkweb/ts-basic-components-web.md#mixedmode)
+
+
+## WebView除了设置缓存，还有什么方式可以提升渲染速度吗？
+
+**解决措施**
+
+使用prepareForPageLoad接口开启预解析。
+
+**参考链接**
+
+[prepareforpageload](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)
+
+
+## 如何预创建Web组件？如何回收web组件复用？
+
+**解决措施**
+
+通过ArkUI提供的组件动态上下树能力，实现Web组件预创建、回收复用，使用指南见参考链接。
+
+**参考链接**
+
+[动态创建Web组件](../web/web-page-loading-with-web-components.md)
+
+
+## 目前OpenHarmony是否有提供类似其他系统的JavaScript引擎能力?
+
+**解决措施**
+
+目前已支持，详情请见参考链接。
+
+**参考链接**
+
+[JSVM](../reference/common/_j_s_v_m.md)

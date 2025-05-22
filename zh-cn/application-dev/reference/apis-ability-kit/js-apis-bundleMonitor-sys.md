@@ -20,18 +20,18 @@ import bundleMonitor from '@ohos.bundle.bundleMonitor';
 | ------------------------------------ | ----------- | ------------------------------ |
 | ohos.permission.LISTEN_BUNDLE_CHANGE | system_basic | 可监听应用的安装，卸载，更新。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
-## BundleChangeInfo
+## BundleChangedInfo
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **系统接口：**  此接口为系统接口。
 
-| 名称       | 类型   | 可读 | 可写 | 说明                       |
+| 名称       | 类型   | 只读 | 可选 | 说明                       |
 | ---------- | ------ | ---- | ---- | -------------------------- |
 | bundleName | string | 是   | 否   | 应用状态发生变化的应用Bundle名称。 |
-| userId     | number | 是   | 否   | 应用状态发生变化的用户id。   |
+| userId     | number | 是   | 否   | 应用状态发生变化的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。   |
 
 ## BundleChangedEvent
 
@@ -71,11 +71,11 @@ on(type: BundleChangedEvent, callback: Callback\<BundleChangedInfo>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 
@@ -117,11 +117,11 @@ off(type: BundleChangedEvent, callback?: Callback\<BundleChangedInfo>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | --------------------------------------|
-| 201 | Permission denied. |
+| 201 | Verify permission denied. |
 | 202 | Permission denied, non-system app called system api. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 

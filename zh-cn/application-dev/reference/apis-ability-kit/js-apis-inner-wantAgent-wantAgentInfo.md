@@ -9,12 +9,14 @@
 ## 导入模块
 
 ```ts
-import wantAgent from '@ohos.app.ability.wantAgent';
+import { wantAgent as abilityWantAgent } from '@kit.AbilityKit';
 ```
 
 ## 属性
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称           | 类型                            | 必填 | 说明                   |
 | -------------- | ------------------------------- | ---- | ---------------------- |
@@ -24,5 +26,5 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | requestCode    | number                          | 是   | 使用者定义的一个私有值。 |
 | wantAgentFlags<sup>(deprecated)</sup> | Array<[wantAgent.WantAgentFlags](js-apis-wantAgent.md#wantagentflags)> | 否   | 动作执行属性。<br/>从API version 7 开始支持，从API version 11 开始废弃，建议使用actionFlags<sup>11+</sup>替代。           |
 | actionFlags<sup>11+</sup> | Array<[abilityWantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#wantagentflags)> | 否   | 动作执行属性。           |
-| extraInfo      | {[key: string]: any}            | 否   | 额外数据。               |
+| extraInfo      | { [key: string]: any }            | 否   | 额外数据。               |
 | extraInfos<sup>11+</sup> | Record\<string, Object>            | 否   | 额外数据。推荐使用该属性替代extraInfo，设置该属性后，extraInfo不再生效。               |

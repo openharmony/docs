@@ -1,14 +1,14 @@
 # 媒体资源变更通知相关指导
 
-photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定媒体资源变更进行监听。
+photoAccessHelper提供监听指定媒体资源变更的接口。
 
 > **说明：**
 >
-> 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
-> 文档中使用到photoAccessHelper的地方默认为使用开发准备中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
+> 在进行功能开发前，请查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
+> 文档中使用到photoAccessHelper的地方默认为使用[开发准备](photoAccessHelper-preparation.md)中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
 
 媒体资源变更通知相关接口的异步调用仅支持使用callback方式。以下只列出部分接口使用方式，其他使用方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
-如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
+如无特别说明，文档中涉及的待获取资源均视为已预置且数据库中存在相应数据。若按示例代码执行后资源为空，请确认文件是否已预置，以及数据库中是否存在该文件的数据。
 
 ## 监听指定URI
 
@@ -16,14 +16,14 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 
 ### 对指定PhotoAsset注册监听
 
-对指定PhotoAsset注册监听，当被监听的PhotoAsset发生变更时，返回监听回调。
+对指定PhotoAsset注册监听，当监听的PhotoAsset发生变更时，返回回调。
 
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以对一张图片注册监听，通过将这张图片删除触发监听回调为例。
+以对一张图片注册监听为例，通过删除图片触发回调。
 
 **开发步骤**
 
@@ -32,9 +32,12 @@ photoAccessHelper提供监听媒体资源变更的接口，供开发者对指定
 3. 将指定媒体资源删除。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -62,14 +65,14 @@ async function example() {
 
 ### 对指定Album注册监听
 
-对指定Album注册监听，当被监听的Album发生变更时，返回监听回调。
+对指定Album注册监听，当Album发生变更时，触发监听回调。
 
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以对一个用户相册注册监听，通过重命名相册触发监听回调为例。
+以对一个用户相册注册监听为例，通过重命名相册触发回调。
 
 **开发步骤**
 
@@ -79,9 +82,12 @@ async function example() {
 
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -113,11 +119,13 @@ async function example() {
 
 ## 模糊监听
 
-通过设置forChildUris值为true来注册模糊监听，uri为相册uri时，forChildUris为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。uri为photoAsset时，forChildUris为true、false没有区别，uri为DefaultChangeUri时，forChildUris必须为true，如果为false将找不到该uri，收不到任何消息。
+1. 通过设置forChildUris值为true来注册模糊监听，uri为相册uri时，forChildUris为true能监听到相册中文件的变化，如果是false只能监听相册本身变化。
+2. uri为photoAsset时，forChildUris为true、false没有区别。
+3. uri为DefaultChangeUri时，forChildUris必须为true，如果为false将找不到该uri，收不到任何消息。
 
 ### 对所有PhotoAsset注册监听
 
-对所有PhotoAsset注册监听，当有被监听的PhotoAsset发生变更时，返回监听回调。
+对所有PhotoAsset注册监听，当被监听的PhotoAsset发生变更时，返回监听回调。
 
 **前提条件**
 
@@ -133,9 +141,12 @@ async function example() {
 3. 将指定媒体资源删除。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -169,7 +180,7 @@ async function example() {
 - 获取相册管理模块photoAccessHelper实例。
 - [申请相册管理模块权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.READ_IMAGEVIDEO'和'ohos.permission.WRITE_IMAGEVIDEO'。
 
-下面以取消对一张图片指定的监听为例，取消监听后，删除图片不再触发对应的监听回调。
+下面以取消对图片指定的监听为例，取消监听后，删除图片不再触发对应的监听回调。
 
 **开发步骤**
 
@@ -178,9 +189,12 @@ async function example() {
 3. 将指定媒体资源删除。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {

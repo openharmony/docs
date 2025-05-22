@@ -25,7 +25,7 @@
 
 ### 接口说明
 
-OpenHarmony LiteOS-A内核的时间管理提供以下几种功能，接口详细信息可查看API参考。
+OpenHarmony LiteOS-A内核的时间管理提供以下几种功能，接口详细信息可查看[API参考](https://gitee.com/openharmony/kernel_liteos_m/blob/master/kernel/include/los_tick.h)。
 
   **表1** 时间管理相关接口说明：
 

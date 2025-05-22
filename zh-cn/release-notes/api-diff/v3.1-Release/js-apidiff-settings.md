@@ -62,12 +62,10 @@ OpenHarmony 3.1 Release版本相较于OpenHarmony 3.0 LTS版本，应用子系�
 | ohos.settings | general | const DEBUGGER_WAITING: string | 新增 |
 | ohos.settings | general | const USB_STORAGE_STATUS: string | 新增 |
 | ohos.settings | general | const DEVICE_NAME: string | 新增 |
-| ohos.settings | general | const DEVELOPMENT_SETTINGS_STATUS: string | 新增 |
 | ohos.settings | general | const CONTACT_METADATA_SYNC_STATUS: string | 新增 |
 | ohos.settings | general | const BOOT_COUNTING: string | 新增 |
 | ohos.settings | general | const HDC_STATUS: string | 新增 |
 | ohos.settings | general | const DEVICE_PROVISION_STATUS: string | 新增 |
-| ohos.settings | general | const AIRPLANE_MODE_STATUS: string | 新增 |
 | ohos.settings | general | const ACCELEROMETER_ROTATION_STATUS: string | 新增 |
 | ohos.settings | general | const END_BUTTON_ACTION: string | 新增 |
 | ohos.settings | general | const SETUP_WIZARD_FINISHED: string | 新增 |

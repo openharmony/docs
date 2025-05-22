@@ -1,6 +1,6 @@
 # User File Overview
 
-User files are the private images, video and audio clips, and documents of the user who has logged in to the device.
+User files are the private [images, videos](../media/medialibrary/photoAccessHelper-overview.md), audio clips, and documents of the user who has logged in to the device.
 
 - User files are stored in a directory, whose owner is the user who has logged in to the device.
 
@@ -32,6 +32,6 @@ Built-in storage is the internal storage device (space) of a device. The built-i
 
 External storage is not inside a device's main storage or memory. Common external storage devices include pluggable devices, such as SD cards and USB flash drives. Same as the files in the share directory of the built-in storage device, the files in an external storage device can be viewed by all the users who has logged in to the system.
 
-External storage devices are pluggable. OpenHarmony provides listening for the device insertion/removal events and mount/unmount of an external storage device. For details, see [Managing External Storage Devices](manage-external-storage.md).
+External storage devices are pluggable. The system provides listening for the device insertion/removal events and mount/unmount of an external storage device. <!--RP1-->For details, see [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)<!--RP1End-->.
 
 The files on external storage devices are presented as common files in a directory tree, like the documents in built-in storage.

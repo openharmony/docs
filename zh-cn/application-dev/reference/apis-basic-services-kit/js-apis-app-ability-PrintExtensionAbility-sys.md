@@ -3,138 +3,17 @@
 该模块为打印扩展能力的操作API，提供调用打印扩展能力的接口。
 
 > **说明：**  
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
-> 本模块接口为系统接口。  
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 当前界面仅包含本模块的系统接口，其他公开接口参见[@ohos.app.ability.PrintExtensionAbility (打印扩展能力)](./js-apis-app-ability-PrintExtensionAbility.md)。
 > 本模块接口仅可在Stage模型下使用。
 
 ## 导入模块
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
-## onCreate
-
-onCreate(want: Want): void
-
-初始化扩展能力,会在系统首次连接打印扩展时调用。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| want | Want | 是 | 表示调用打印页面需要参数 |
-
-**示例：**
-
-```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import Want from '@ohos.app.ability.Want';
-
-export default class HWPrintExtension extends PrintExtensionAbility {
-    onCreate(want: Want): void {
-        console.log('onCreate');
-        // ...
-    }
-}
-```
-
-## onStartDiscoverPrinter
-
-onStartDiscoverPrinter(): void
-
-开始发现与设备连接的打印机时调用。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**示例：**
-
-```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-
-export default class HWPrintExtension extends PrintExtensionAbility {
-    onStartDiscoverPrinter(): void {
-        console.log('onStartDiscoverPrinter enter');
-        // ...
-    }
-}
-```
-
-## onStopDiscoverPrinter
-
-onStopDiscoverPrinter(): void
-
-停止发现打印机时调用。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**示例：**
-
-```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-
-export default class HWPrintExtension extends PrintExtensionAbility {
-    onStopDiscoverPrinter(): void {
-        console.log('onStopDiscoverPrinter enter');
-        // ...
-    }
-}
-```
-
-## onConnectPrinter
-
-onConnectPrinter(printerId: number): void
-
-连接到特定打印机时调用。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| printerId | number | 是 | 表示打印机ID |
-
-**示例：**
-
-```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-
-export default class HWPrintExtension extends PrintExtensionAbility {
-    onConnectPrinter(printerId: number): void {
-        console.log('onConnectPrinter enter');
-        // ...
-    }
-}
-```
-
-## onDisconnectPrinter
-
-onDisconnectPrinter(printerId: number): void
-
-断开与特定打印机的连接时调用。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**参数：**
-| **参数名** | **类型** | **必填** | **说明** |
-| -------- | -------- | -------- | -------- |
-| printerId | number | 是 | 表示打印机ID |
-
-**示例：**
-
-```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-
-export default class HWPrintExtension extends PrintExtensionAbility {
-    onDisconnectPrinter(printerId: number): void {
-        console.log('onDisconnectPrinter enter');
-        // ...
-    }
-}
-```
-
-## onStartPrintJob
+## PrintExtensionAbility.onStartPrintJob
 
 onStartPrintJob(jobInfo: print.PrintJob): void
 
@@ -147,11 +26,19 @@ onStartPrintJob(jobInfo: print.PrintJob): void
 | -------- | -------- | -------- | -------- |
 | jobInfo | print.PrintJob | 是 | 表示打印任务的信息 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | not system application |
+
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onStartPrintJob(jobInfo: print.PrintJob): void {
@@ -161,7 +48,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onCancelPrintJob
+## PrintExtensionAbility.onCancelPrintJob
 
 onCancelPrintJob(jobInfo: print.PrintJob): void
 
@@ -174,11 +61,19 @@ onCancelPrintJob(jobInfo: print.PrintJob): void
 | -------- | -------- | -------- | -------- |
 | jobInfo | print.PrintJob | 是 | 表示打印任务的信息 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | not system application |
+
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onCancelPrintJob(jobInfo: print.PrintJob): void {
@@ -188,7 +83,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onRequestPrinterCapability
+## PrintExtensionAbility.onRequestPrinterCapability
 
 onRequestPrinterCapability(printerId: number): print.PrinterCapability
 
@@ -206,11 +101,19 @@ onRequestPrinterCapability(printerId: number): print.PrinterCapability
 | -------- | -------- |
 | print.PrinterCapability | 表示打印能力 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | not system application |
+
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPrinterCapability(printerId: number): print.PrinterCapability {
@@ -226,7 +129,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onRequestPreview
+## PrintExtensionAbility.onRequestPreview
 
 onRequestPreview(jobInfo: print.PrintJob): string
 
@@ -244,11 +147,19 @@ onRequestPreview(jobInfo: print.PrintJob): string
 | -------- | -------- |
 | string | 返回的预览结果 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[打印服务错误码](./errorcode-print.md)。
+
+| 错误码ID | 错误信息                                    |
+| -------- | ------------------------------------------- |
+| 202 | not system application |
+
 **示例：**
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-import print from '@ohos.print';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
+import { print } from '@kit.BasicServicesKit';
 
 export default class HWPrintExtension extends PrintExtensionAbility {
     onRequestPreview(jobInfo: print.PrintJob): string {
@@ -256,26 +167,6 @@ export default class HWPrintExtension extends PrintExtensionAbility {
         // ...
         let tmp : string = '';
         return tmp;
-    }
-}
-```
-
-## onDestroy
-
-onDestroy(): void
-
-结束打印扩展时调用。
-
-**系统能力：** SystemCapability.Print.PrintFramework
-
-**示例：**
-
-```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
-
-export default class HWPrintExtension extends PrintExtensionAbility {
-    onDestroy(): void {
-        console.log('onDestroy');
     }
 }
 ```

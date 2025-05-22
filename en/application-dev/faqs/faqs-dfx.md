@@ -134,3 +134,28 @@ Try the following procedure:
 4. Check the PeerBinderCatcher process to see if the current process is suspended by the peer binder. If there is a synchronous wait related to the current process, the corresponding PeerBinder Stacktrace information will be logged. It contains the stack information of the peer process that leads to suspension of the current process.
 
 5. Check the CPU usage of system processes and the memory usage of the current process.
+
+## How do I view stack traces for error logs generated in ArkCompiler? (API version 10)
+
+**Solution**
+
+To view stack traces for exceptions thrown during native code execution, run the following commands:
+
+Enable backtrace:
+
+```bash
+hdc shell param set persist.ark.properties 0x125c
+hdc shell reboot
+```  
+Restore defaults:
+
+```bash
+hdc shell param set persist.ark.properties 0x105c
+hdc shell reboot
+```  
+
+## How do I view ArkTS parameters and switches of hdc? (API version 10)
+
+**Solution**
+
+To view all ArkTS parameters and switches of hdc, run **hdc shell ark** in the command line interface.

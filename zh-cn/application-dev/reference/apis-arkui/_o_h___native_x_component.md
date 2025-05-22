@@ -16,8 +16,8 @@
 
 | 名称                                       | 描述                                       |
 | ---------------------------------------- | ---------------------------------------- |
-| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native&nbsp;XComponent的API。<br/>**引用文件：** &lt;ace/xcomponent/native_interface_xcomponent.h&gt;<br>**库：** libace_ndk.z.so |
-| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | 声明用于访问Native&nbsp;XComponent键盘事件所使用到的枚举类型。<br/>**引用文件：** &lt;ace/xcomponent/native_xcomponent_key_event.h&gt;<br>**库：** libace_ndk.z.so |
+| [native_interface_xcomponent.h](native__interface__xcomponent_8h.md) | 声明用于访问Native&nbsp;XComponent的API。 |
+| [native_xcomponent_key_event.h](native__xcomponent__key__event_8h.md) | 声明用于访问Native&nbsp;XComponent键盘事件所使用到的枚举类型。 |
 
 
 ### 结构体
@@ -50,10 +50,11 @@
 | [OH_NativeXComponent_TouchEventType](#oh_nativexcomponent_toucheventtype)&nbsp;{<br/>OH_NATIVEXCOMPONENT_DOWN&nbsp;=&nbsp;0,&nbsp;OH_NATIVEXCOMPONENT_UP,&nbsp;OH_NATIVEXCOMPONENT_MOVE,&nbsp;OH_NATIVEXCOMPONENT_CANCEL,<br/>OH_NATIVEXCOMPONENT_UNKNOWN<br/>} | 触摸事件类型。    |
 | [OH_NativeXComponent_TouchPointToolType](#oh_nativexcomponent_touchpointtooltype)&nbsp;{<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN&nbsp;=&nbsp;0,&nbsp;OH_NATIVEXCOMPONENT_TOOL_TYPE_FINGER,&nbsp;OH_NATIVEXCOMPONENT_TOOL_TYPE_PEN,&nbsp;OH_NATIVEXCOMPONENT_TOOL_TYPE_RUBBER,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_BRUSH,&nbsp;OH_NATIVEXCOMPONENT_TOOL_TYPE_PENCIL,&nbsp;OH_NATIVEXCOMPONENT_TOOL_TYPE_AIRBRUSH,&nbsp;OH_NATIVEXCOMPONENT_TOOL_TYPE_MOUSE,<br/>OH_NATIVEXCOMPONENT_TOOL_TYPE_LENS<br/>} | 触摸点工具类型。   |
 | [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype)&nbsp;{<br/>OH_NATIVEXCOMPONENT_SOURCE_TYPE_UNKNOWN&nbsp;=&nbsp;0,&nbsp;OH_NATIVEXCOMPONENT_SOURCE_TYPE_MOUSE,&nbsp;OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHSCREEN,&nbsp;OH_NATIVEXCOMPONENT_SOURCE_TYPE_TOUCHPAD,<br/>OH_NATIVEXCOMPONENT_SOURCE_TYPE_JOYSTICK,&nbsp;OH_NATIVEXCOMPONENT_SOURCE_TYPE_KEYBOARD<br/>} | 触摸事件源类型。   |
-| [OH_NativeXComponent_MouseEventAction](#oh_nativexcomponent_mouseeventaction)&nbsp;{&nbsp;OH_NATIVEXCOMPONENT_MOUSE_NONE&nbsp;=&nbsp;0,&nbsp;OH_NATIVEXCOMPONENT_MOUSE_PRESS,&nbsp;OH_NATIVEXCOMPONENT_MOUSE_RELEASE,&nbsp;OH_NATIVEXCOMPONENT_MOUSE_MOVE&nbsp;} | 鼠标事件动作。    |
+| [OH_NativeXComponent_MouseEventAction](#oh_nativexcomponent_mouseeventaction)&nbsp;{&nbsp;OH_NATIVEXCOMPONENT_MOUSE_NONE&nbsp;=&nbsp;0,&nbsp;OH_NATIVEXCOMPONENT_MOUSE_PRESS,&nbsp;OH_NATIVEXCOMPONENT_MOUSE_RELEASE,&nbsp;OH_NATIVEXCOMPONENT_MOUSE_MOVE&nbsp;OH_NATIVEXCOMPONENT_MOUSE_CANCEL&nbsp;} | 鼠标事件动作。    |
 | [OH_NativeXComponent_MouseEventButton](#oh_nativexcomponent_mouseeventbutton)&nbsp;{<br/>OH_NATIVEXCOMPONENT_NONE_BUTTON&nbsp;=&nbsp;0,&nbsp;OH_NATIVEXCOMPONENT_LEFT_BUTTON&nbsp;=&nbsp;0x01,&nbsp;OH_NATIVEXCOMPONENT_RIGHT_BUTTON&nbsp;=&nbsp;0x02,&nbsp;OH_NATIVEXCOMPONENT_MIDDLE_BUTTON&nbsp;=&nbsp;0x04,<br/>OH_NATIVEXCOMPONENT_BACK_BUTTON&nbsp;=&nbsp;0x08,&nbsp;OH_NATIVEXCOMPONENT_FORWARD_BUTTON&nbsp;=&nbsp;0x10<br/>} | 鼠标事件按键。    |
 | [OH_NativeXComponent_KeyCode](#oh_nativexcomponent_keycode)&nbsp;{<br/>KEY_UNKNOWN&nbsp;=&nbsp;-1,&nbsp;KEY_FN&nbsp;=&nbsp;0,&nbsp;KEY_HOME&nbsp;=&nbsp;1,&nbsp;KEY_BACK&nbsp;=&nbsp;2,KEY_MEDIA_PLAY_PAUSE&nbsp;=&nbsp;10,&nbsp;KEY_MEDIA_STOP&nbsp;=&nbsp;11,&nbsp;KEY_MEDIA_NEXT&nbsp;=&nbsp;12,&nbsp;KEY_MEDIA_PREVIOUS&nbsp;=&nbsp;13,<br/>KEY_MEDIA_REWIND&nbsp;=&nbsp;14,&nbsp;KEY_MEDIA_FAST_FORWARD&nbsp;=&nbsp;15,&nbsp;KEY_VOLUME_UP&nbsp;=&nbsp;16,&nbsp;KEY_VOLUME_DOWN&nbsp;=&nbsp;17,<br/>KEY_POWER&nbsp;=&nbsp;18,&nbsp;KEY_CAMERA&nbsp;=&nbsp;19,&nbsp;KEY_VOLUME_MUTE&nbsp;=&nbsp;22,&nbsp;KEY_MUTE&nbsp;=&nbsp;23,KEY_BRIGHTNESS_UP&nbsp;=&nbsp;40,&nbsp;KEY_BRIGHTNESS_DOWN&nbsp;=&nbsp;41,&nbsp;KEY_0&nbsp;=&nbsp;2000,&nbsp;KEY_1&nbsp;=&nbsp;2001,<br/>KEY_2&nbsp;=&nbsp;2002,&nbsp;KEY_3&nbsp;=&nbsp;2003,&nbsp;KEY_4&nbsp;=&nbsp;2004,&nbsp;KEY_5&nbsp;=&nbsp;2005,<br/>KEY_6&nbsp;=&nbsp;2006,&nbsp;KEY_7&nbsp;=&nbsp;2007,&nbsp;KEY_8&nbsp;=&nbsp;2008,&nbsp;KEY_9&nbsp;=&nbsp;2009,<br/>KEY_STAR&nbsp;=&nbsp;2010,&nbsp;KEY_POUND&nbsp;=&nbsp;2011,&nbsp;KEY_DPAD_UP&nbsp;=&nbsp;2012,&nbsp;KEY_DPAD_DOWN&nbsp;=&nbsp;2013,KEY_DPAD_LEFT&nbsp;=&nbsp;2014,&nbsp;KEY_DPAD_RIGHT&nbsp;=&nbsp;2015,&nbsp;KEY_DPAD_CENTER&nbsp;=&nbsp;2016,<br/>KEY_A&nbsp;=&nbsp;2017,<br/>KEY_B&nbsp;=&nbsp;2018,&nbsp;KEY_C&nbsp;=&nbsp;2019,&nbsp;KEY_D&nbsp;=&nbsp;2020,&nbsp;KEY_E&nbsp;=&nbsp;2021,<br/>KEY_F&nbsp;=&nbsp;2022,&nbsp;KEY_G&nbsp;=&nbsp;2023,&nbsp;KEY_H&nbsp;=&nbsp;2024,&nbsp;KEY_I&nbsp;=&nbsp;2025,<br/>KEY_J&nbsp;=&nbsp;2026,&nbsp;KEY_K&nbsp;=&nbsp;2027,&nbsp;KEY_L&nbsp;=&nbsp;2028,&nbsp;KEY_M&nbsp;=&nbsp;2029,<br/>KEY_N&nbsp;=&nbsp;2030,&nbsp;KEY_O&nbsp;=&nbsp;2031,&nbsp;KEY_P&nbsp;=&nbsp;2032,&nbsp;KEY_Q&nbsp;=&nbsp;2033,<br/>KEY_R&nbsp;=&nbsp;2034,&nbsp;KEY_S&nbsp;=&nbsp;2035,&nbsp;KEY_T&nbsp;=&nbsp;2036,&nbsp;KEY_U&nbsp;=&nbsp;2037,<br/>KEY_V&nbsp;=&nbsp;2038,&nbsp;KEY_W&nbsp;=&nbsp;2039,&nbsp;KEY_X&nbsp;=&nbsp;2040,&nbsp;KEY_Y&nbsp;=&nbsp;2041,<br/>KEY_Z&nbsp;=&nbsp;2042,&nbsp;KEY_COMMA&nbsp;=&nbsp;2043,&nbsp;KEY_PERIOD&nbsp;=&nbsp;2044,&nbsp;KEY_ALT_LEFT&nbsp;=&nbsp;2045,<br/>KEY_ALT_RIGHT&nbsp;=&nbsp;2046,&nbsp;KEY_SHIFT_LEFT&nbsp;=&nbsp;2047,&nbsp;KEY_SHIFT_RIGHT&nbsp;=&nbsp;2048,&nbsp;KEY_TAB&nbsp;=&nbsp;2049,<br/>KEY_SPACE&nbsp;=&nbsp;2050,&nbsp;KEY_SYM&nbsp;=&nbsp;2051,&nbsp;KEY_EXPLORER&nbsp;=&nbsp;2052,&nbsp;KEY_ENVELOPE&nbsp;=&nbsp;2053,<br/>KEY_ENTER&nbsp;=&nbsp;2054,&nbsp;KEY_DEL&nbsp;=&nbsp;2055,&nbsp;KEY_GRAVE&nbsp;=&nbsp;2056,&nbsp;KEY_MINUS&nbsp;=&nbsp;2057,<br/>KEY_EQUALS&nbsp;=&nbsp;2058,&nbsp;KEY_LEFT_BRACKET&nbsp;=&nbsp;2059,&nbsp;KEY_RIGHT_BRACKET&nbsp;=&nbsp;2060,&nbsp;KEY_BACKSLASH&nbsp;=&nbsp;2061,<br/>KEY_SEMICOLON&nbsp;=&nbsp;2062,&nbsp;KEY_APOSTROPHE&nbsp;=&nbsp;2063,&nbsp;KEY_SLASH&nbsp;=&nbsp;2064,&nbsp;KEY_AT&nbsp;=&nbsp;2065,<br/>KEY_PLUS&nbsp;=&nbsp;2066,&nbsp;KEY_MENU&nbsp;=&nbsp;2067,&nbsp;KEY_PAGE_UP&nbsp;=&nbsp;2068,&nbsp;KEY_PAGE_DOWN&nbsp;=&nbsp;2069,<br/>KEY_ESCAPE&nbsp;=&nbsp;2070,&nbsp;KEY_FORWARD_DEL&nbsp;=&nbsp;2071,&nbsp;KEY_CTRL_LEFT&nbsp;=&nbsp;2072,&nbsp;KEY_CTRL_RIGHT&nbsp;=&nbsp;2073,<br/>KEY_CAPS_LOCK&nbsp;=&nbsp;2074,&nbsp;KEY_SCROLL_LOCK&nbsp;=&nbsp;2075,&nbsp;KEY_META_LEFT&nbsp;=&nbsp;2076,&nbsp;KEY_META_RIGHT&nbsp;=&nbsp;2077,<br/>KEY_FUNCTION&nbsp;=&nbsp;2078,&nbsp;KEY_SYSRQ&nbsp;=&nbsp;2079,&nbsp;KEY_BREAK&nbsp;=&nbsp;2080,&nbsp;KEY_MOVE_HOME&nbsp;=&nbsp;2081,<br/>KEY_MOVE_END&nbsp;=&nbsp;2082,&nbsp;KEY_INSERT&nbsp;=&nbsp;2083,&nbsp;KEY_FORWARD&nbsp;=&nbsp;2084,&nbsp;KEY_MEDIA_PLAY&nbsp;=&nbsp;2085,<br/>KEY_MEDIA_PAUSE&nbsp;=&nbsp;2086,&nbsp;KEY_MEDIA_CLOSE&nbsp;=&nbsp;2087,&nbsp;KEY_MEDIA_EJECT&nbsp;=&nbsp;2088,&nbsp;KEY_MEDIA_RECORD&nbsp;=&nbsp;2089,<br/>KEY_F1&nbsp;=&nbsp;2090,&nbsp;KEY_F2&nbsp;=&nbsp;2091,&nbsp;KEY_F3&nbsp;=&nbsp;2092,&nbsp;KEY_F4&nbsp;=&nbsp;2093,<br/>KEY_F5&nbsp;=&nbsp;2094,&nbsp;KEY_F6&nbsp;=&nbsp;2095,&nbsp;KEY_F7&nbsp;=&nbsp;2096,&nbsp;KEY_F8&nbsp;=&nbsp;2097,<br/>KEY_F9&nbsp;=&nbsp;2098,&nbsp;KEY_F10&nbsp;=&nbsp;2099,&nbsp;KEY_F11&nbsp;=&nbsp;2100,&nbsp;KEY_F12&nbsp;=&nbsp;2101,<br/>KEY_NUM_LOCK&nbsp;=&nbsp;2102,&nbsp;KEY_NUMPAD_0&nbsp;=&nbsp;2103,&nbsp;KEY_NUMPAD_1&nbsp;=&nbsp;2104,&nbsp;KEY_NUMPAD_2&nbsp;=&nbsp;2105,<br/>KEY_NUMPAD_3&nbsp;=&nbsp;2106,&nbsp;KEY_NUMPAD_4&nbsp;=&nbsp;2107,&nbsp;KEY_NUMPAD_5&nbsp;=&nbsp;2108,&nbsp;KEY_NUMPAD_6&nbsp;=&nbsp;2109,<br/>KEY_NUMPAD_7&nbsp;=&nbsp;2110,&nbsp;KEY_NUMPAD_8&nbsp;=&nbsp;2111,&nbsp;KEY_NUMPAD_9&nbsp;=&nbsp;2112,&nbsp;KEY_NUMPAD_DIVIDE&nbsp;=&nbsp;2113,<br/>KEY_NUMPAD_MULTIPLY&nbsp;=&nbsp;2114,&nbsp;KEY_NUMPAD_SUBTRACT&nbsp;=&nbsp;2115,&nbsp;KEY_NUMPAD_ADD&nbsp;=&nbsp;2116,&nbsp;KEY_NUMPAD_DOT&nbsp;=&nbsp;2117,<br/>KEY_NUMPAD_COMMA&nbsp;=&nbsp;2118,&nbsp;KEY_NUMPAD_ENTER&nbsp;=&nbsp;2119,&nbsp;KEY_NUMPAD_EQUALS&nbsp;=&nbsp;2120,&nbsp;KEY_NUMPAD_LEFT_PAREN&nbsp;=&nbsp;2121,<br/>KEY_NUMPAD_RIGHT_PAREN&nbsp;=&nbsp;2122,&nbsp;KEY_VIRTUAL_MULTITASK&nbsp;=&nbsp;2210,&nbsp;KEY_SLEEP&nbsp;=&nbsp;2600,&nbsp;KEY_ZENKAKU_HANKAKU&nbsp;=&nbsp;2601,<br/>KEY_102ND&nbsp;=&nbsp;2602,&nbsp;KEY_RO&nbsp;=&nbsp;2603,&nbsp;KEY_KATAKANA&nbsp;=&nbsp;2604,&nbsp;KEY_HIRAGANA&nbsp;=&nbsp;2605,<br/>KEY_HENKAN&nbsp;=&nbsp;2606,&nbsp;KEY_KATAKANA_HIRAGANA&nbsp;=&nbsp;2607,&nbsp;KEY_MUHENKAN&nbsp;=&nbsp;2608,&nbsp;KEY_LINEFEED&nbsp;=&nbsp;2609,<br/>KEY_MACRO&nbsp;=&nbsp;2610,&nbsp;KEY_NUMPAD_PLUSMINUS&nbsp;=&nbsp;2611,&nbsp;KEY_SCALE&nbsp;=&nbsp;2612,&nbsp;KEY_HANGUEL&nbsp;=&nbsp;2613,<br/>KEY_HANJA&nbsp;=&nbsp;2614,&nbsp;KEY_YEN&nbsp;=&nbsp;2615,&nbsp;KEY_STOP&nbsp;=&nbsp;2616,&nbsp;KEY_AGAIN&nbsp;=&nbsp;2617,<br/>KEY_PROPS&nbsp;=&nbsp;2618,&nbsp;KEY_UNDO&nbsp;=&nbsp;2619,&nbsp;KEY_COPY&nbsp;=&nbsp;2620,&nbsp;KEY_OPEN&nbsp;=&nbsp;2621,<br/>KEY_PASTE&nbsp;=&nbsp;2622,&nbsp;KEY_FIND&nbsp;=&nbsp;2623,&nbsp;KEY_CUT&nbsp;=&nbsp;2624,&nbsp;KEY_HELP&nbsp;=&nbsp;2625,<br/>KEY_CALC&nbsp;=&nbsp;2626,&nbsp;KEY_FILE&nbsp;=&nbsp;2627,&nbsp;KEY_BOOKMARKS&nbsp;=&nbsp;2628,&nbsp;KEY_NEXT&nbsp;=&nbsp;2629,<br/>KEY_PLAYPAUSE&nbsp;=&nbsp;2630,&nbsp;KEY_PREVIOUS&nbsp;=&nbsp;2631,&nbsp;KEY_STOPCD&nbsp;=&nbsp;2632,&nbsp;KEY_CONFIG&nbsp;=&nbsp;2634,<br/>KEY_REFRESH&nbsp;=&nbsp;2635,&nbsp;KEY_EXIT&nbsp;=&nbsp;2636,&nbsp;KEY_EDIT&nbsp;=&nbsp;2637,&nbsp;KEY_SCROLLUP&nbsp;=&nbsp;2638,<br/>KEY_SCROLLDOWN&nbsp;=&nbsp;2639,&nbsp;KEY_NEW&nbsp;=&nbsp;2640,&nbsp;KEY_REDO&nbsp;=&nbsp;2641,&nbsp;KEY_CLOSE&nbsp;=&nbsp;2642,<br/>KEY_PLAY&nbsp;=&nbsp;2643,&nbsp;KEY_BASSBOOST&nbsp;=&nbsp;2644,&nbsp;KEY_PRINT&nbsp;=&nbsp;2645,&nbsp;KEY_CHAT&nbsp;=&nbsp;2646,<br/>KEY_FINANCE&nbsp;=&nbsp;2647,&nbsp;KEY_CANCEL&nbsp;=&nbsp;2648,&nbsp;KEY_KBDILLUM_TOGGLE&nbsp;=&nbsp;2649,&nbsp;KEY_KBDILLUM_DOWN&nbsp;=&nbsp;2650,<br/>KEY_KBDILLUM_UP&nbsp;=&nbsp;2651,&nbsp;KEY_SEND&nbsp;=&nbsp;2652,&nbsp;KEY_REPLY&nbsp;=&nbsp;2653,&nbsp;KEY_FORWARDMAIL&nbsp;=&nbsp;2654,<br/>KEY_SAVE&nbsp;=&nbsp;2655,&nbsp;KEY_DOCUMENTS&nbsp;=&nbsp;2656,&nbsp;KEY_VIDEO_NEXT&nbsp;=&nbsp;2657,&nbsp;KEY_VIDEO_PREV&nbsp;=&nbsp;2658,<br/>KEY_BRIGHTNESS_CYCLE&nbsp;=&nbsp;2659,&nbsp;KEY_BRIGHTNESS_ZERO&nbsp;=&nbsp;2660,&nbsp;KEY_DISPLAY_OFF&nbsp;=&nbsp;2661,&nbsp;KEY_BTN_MISC&nbsp;=&nbsp;2662,<br/>KEY_GOTO&nbsp;=&nbsp;2663,&nbsp;KEY_INFO&nbsp;=&nbsp;2664,&nbsp;KEY_PROGRAM&nbsp;=&nbsp;2665,&nbsp;KEY_PVR&nbsp;=&nbsp;2666,<br/>KEY_SUBTITLE&nbsp;=&nbsp;2667,&nbsp;KEY_FULL_SCREEN&nbsp;=&nbsp;2668,&nbsp;KEY_KEYBOARD&nbsp;=&nbsp;2669,&nbsp;KEY_ASPECT_RATIO&nbsp;=&nbsp;2670,<br/>KEY_PC&nbsp;=&nbsp;2671,&nbsp;KEY_TV&nbsp;=&nbsp;2672,&nbsp;KEY_TV2&nbsp;=&nbsp;2673,&nbsp;KEY_VCR&nbsp;=&nbsp;2674,<br/>KEY_VCR2&nbsp;=&nbsp;2675,&nbsp;KEY_SAT&nbsp;=&nbsp;2676,&nbsp;KEY_CD&nbsp;=&nbsp;2677,&nbsp;KEY_TAPE&nbsp;=&nbsp;2678,<br/>KEY_TUNER&nbsp;=&nbsp;2679,&nbsp;KEY_PLAYER&nbsp;=&nbsp;2680,&nbsp;KEY_DVD&nbsp;=&nbsp;2681,&nbsp;KEY_AUDIO&nbsp;=&nbsp;2682,<br/>KEY_VIDEO&nbsp;=&nbsp;2683,&nbsp;KEY_MEMO&nbsp;=&nbsp;2684,&nbsp;KEY_CALENDAR&nbsp;=&nbsp;2685,&nbsp;KEY_RED&nbsp;=&nbsp;2686,<br/>KEY_GREEN&nbsp;=&nbsp;2687,&nbsp;KEY_YELLOW&nbsp;=&nbsp;2688,&nbsp;KEY_BLUE&nbsp;=&nbsp;2689,&nbsp;KEY_CHANNELUP&nbsp;=&nbsp;2690,<br/>KEY_CHANNELDOWN&nbsp;=&nbsp;2691,&nbsp;KEY_LAST&nbsp;=&nbsp;2692,&nbsp;KEY_RESTART&nbsp;=&nbsp;2693,&nbsp;KEY_SLOW&nbsp;=&nbsp;2694,<br/>KEY_SHUFFLE&nbsp;=&nbsp;2695,&nbsp;KEY_VIDEOPHONE&nbsp;=&nbsp;2696,&nbsp;KEY_GAMES&nbsp;=&nbsp;2697,&nbsp;KEY_ZOOMIN&nbsp;=&nbsp;2698,<br/>KEY_ZOOMOUT&nbsp;=&nbsp;2699,&nbsp;KEY_ZOOMRESET&nbsp;=&nbsp;2700,&nbsp;KEY_WORDPROCESSOR&nbsp;=&nbsp;2701,&nbsp;KEY_EDITOR&nbsp;=&nbsp;2702,<br/>KEY_SPREADSHEET&nbsp;=&nbsp;2703,&nbsp;KEY_GRAPHICSEDITOR&nbsp;=&nbsp;2704,&nbsp;KEY_PRESENTATION&nbsp;=&nbsp;2705,&nbsp;KEY_DATABASE&nbsp;=&nbsp;2706,<br/>KEY_NEWS&nbsp;=&nbsp;2707,&nbsp;KEY_VOICEMAIL&nbsp;=&nbsp;2708,&nbsp;KEY_ADDRESSBOOK&nbsp;=&nbsp;2709,&nbsp;KEY_MESSENGER&nbsp;=&nbsp;2710,<br/>KEY_BRIGHTNESS_TOGGLE&nbsp;=&nbsp;2711,&nbsp;KEY_SPELLCHECK&nbsp;=&nbsp;2712,&nbsp;KEY_COFFEE&nbsp;=&nbsp;2713,&nbsp;KEY_MEDIA_REPEAT&nbsp;=&nbsp;2714,<br/>KEY_IMAGES&nbsp;=&nbsp;2715,&nbsp;KEY_BUTTONCONFIG&nbsp;=&nbsp;2716,&nbsp;KEY_TASKMANAGER&nbsp;=&nbsp;2717,&nbsp;KEY_JOURNAL&nbsp;=&nbsp;2718,<br/>KEY_CONTROLPANEL&nbsp;=&nbsp;2719,&nbsp;KEY_APPSELECT&nbsp;=&nbsp;2720,&nbsp;KEY_SCREENSAVER&nbsp;=&nbsp;2721,&nbsp;KEY_ASSISTANT&nbsp;=&nbsp;2722,<br/>KEY_KBD_LAYOUT_NEXT&nbsp;=&nbsp;2723,&nbsp;KEY_BRIGHTNESS_MIN&nbsp;=&nbsp;2724,&nbsp;KEY_BRIGHTNESS_MAX&nbsp;=&nbsp;2725,&nbsp;KEY_KBDINPUTASSIST_PREV&nbsp;=&nbsp;2726,<br/>KEY_KBDINPUTASSIST_NEXT&nbsp;=&nbsp;2727,&nbsp;KEY_KBDINPUTASSIST_PREVGROUP&nbsp;=&nbsp;2728,&nbsp;KEY_KBDINPUTASSIST_NEXTGROUP&nbsp;=&nbsp;2729,&nbsp;KEY_KBDINPUTASSIST_ACCEPT&nbsp;=&nbsp;2730,<br/>KEY_KBDINPUTASSIST_CANCEL&nbsp;=&nbsp;2731,&nbsp;KEY_FRONT&nbsp;=&nbsp;2800,&nbsp;KEY_SETUP&nbsp;=&nbsp;2801,&nbsp;KEY_WAKEUP&nbsp;=&nbsp;2802,<br/>KEY_SENDFILE&nbsp;=&nbsp;2803,&nbsp;KEY_DELETEFILE&nbsp;=&nbsp;2804,&nbsp;KEY_XFER&nbsp;=&nbsp;2805,&nbsp;KEY_PROG1&nbsp;=&nbsp;2806,<br/>KEY_PROG2&nbsp;=&nbsp;2807,&nbsp;KEY_MSDOS&nbsp;=&nbsp;2808,&nbsp;KEY_SCREENLOCK&nbsp;=&nbsp;2809,&nbsp;KEY_DIRECTION_ROTATE_DISPLAY&nbsp;=&nbsp;2810,<br/>KEY_CYCLEWINDOWS&nbsp;=&nbsp;2811,&nbsp;KEY_COMPUTER&nbsp;=&nbsp;2812,&nbsp;KEY_EJECTCLOSECD&nbsp;=&nbsp;2813,&nbsp;KEY_ISO&nbsp;=&nbsp;2814,<br/>KEY_MOVE&nbsp;=&nbsp;2815,&nbsp;KEY_F13&nbsp;=&nbsp;2816,&nbsp;KEY_F14&nbsp;=&nbsp;2817,&nbsp;KEY_F15&nbsp;=&nbsp;2818,<br/>KEY_F16&nbsp;=&nbsp;2819,&nbsp;KEY_F17&nbsp;=&nbsp;2820,&nbsp;KEY_F18&nbsp;=&nbsp;2821,&nbsp;KEY_F19&nbsp;=&nbsp;2822,<br/>KEY_F20&nbsp;=&nbsp;2823,&nbsp;KEY_F21&nbsp;=&nbsp;2824,&nbsp;KEY_F22&nbsp;=&nbsp;2825,&nbsp;KEY_F23&nbsp;=&nbsp;2826,<br/>KEY_F24&nbsp;=&nbsp;2827,&nbsp;KEY_PROG3&nbsp;=&nbsp;2828,&nbsp;KEY_PROG4&nbsp;=&nbsp;2829,&nbsp;KEY_DASHBOARD&nbsp;=&nbsp;2830,<br/>KEY_SUSPEND&nbsp;=&nbsp;2831,&nbsp;KEY_HP&nbsp;=&nbsp;2832,&nbsp;KEY_SOUND&nbsp;=&nbsp;2833,&nbsp;KEY_QUESTION&nbsp;=&nbsp;2834,<br/>KEY_CONNECT&nbsp;=&nbsp;2836,&nbsp;KEY_SPORT&nbsp;=&nbsp;2837,&nbsp;KEY_SHOP&nbsp;=&nbsp;2838,&nbsp;KEY_ALTERASE&nbsp;=&nbsp;2839,<br/>KEY_SWITCHVIDEOMODE&nbsp;=&nbsp;2841,&nbsp;KEY_BATTERY&nbsp;=&nbsp;2842,&nbsp;KEY_BLUETOOTH&nbsp;=&nbsp;2843,&nbsp;KEY_WLAN&nbsp;=&nbsp;2844,<br/>KEY_UWB&nbsp;=&nbsp;2845,&nbsp;KEY_WWAN_WIMAX&nbsp;=&nbsp;2846,&nbsp;KEY_RFKILL&nbsp;=&nbsp;2847,&nbsp;KEY_CHANNEL&nbsp;=&nbsp;3001,<br/>KEY_BTN_0&nbsp;=&nbsp;3100,&nbsp;KEY_BTN_1&nbsp;=&nbsp;3101,&nbsp;KEY_BTN_2&nbsp;=&nbsp;3102,&nbsp;KEY_BTN_3&nbsp;=&nbsp;3103,<br/>KEY_BTN_4&nbsp;=&nbsp;3104,&nbsp;KEY_BTN_5&nbsp;=&nbsp;3105,&nbsp;KEY_BTN_6&nbsp;=&nbsp;3106,&nbsp;KEY_BTN_7&nbsp;=&nbsp;3107,<br/>KEY_BTN_8&nbsp;=&nbsp;3108,&nbsp;KEY_BTN_9&nbsp;=&nbsp;3109<br/>} | 按键事件的键码。   |
 | [OH_NativeXComponent_KeyAction](#oh_nativexcomponent_keyaction)&nbsp;{&nbsp;OH_NATIVEXCOMPONENT_KEY_ACTION_UNKNOWN&nbsp;=&nbsp;-1,&nbsp;OH_NATIVEXCOMPONENT_KEY_ACTION_DOWN&nbsp;=&nbsp;0,&nbsp;OH_NATIVEXCOMPONENT_KEY_ACTION_UP&nbsp;} | 按键事件动作。    |
+|[ArkUI_XComponent_ImageAnalyzerState](#arkui_xcomponent_imageanalyzerstate)&nbsp;{&nbsp;ARKUI_XCOMPONENT_AI_ANALYSIS_FINISHED&nbsp;=&nbsp;0,&nbsp;ARKUI_XCOMPONENT_AI_ANALYSIS_DISABLED&nbsp;=&nbsp;110000,&nbsp;ARKUI_XCOMPONENT_AI_ANALYSIS_UNSUPPORTED&nbsp;=&nbsp;110001,&nbsp;ARKUI_XCOMPONENT_AI_ANALYSIS_ONGOING&nbsp;=&nbsp;110002,&nbsp;ARKUI_XCOMPONENT_AI_ANALYSIS_STOPPED&nbsp;=&nbsp;110003}|XComponent图像AI分析状态码。|
 
 
 ### 函数
@@ -62,7 +63,7 @@
 | ---------------------------------------- | -------------------------------------- |
 | [OH_NativeXComponent_GetXComponentId](#oh_nativexcomponent_getxcomponentid)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;char&nbsp;\*id,&nbsp;uint64_t&nbsp;\*size) | 获取ArkUI&nbsp;XComponent的id。            |
 | [OH_NativeXComponent_GetXComponentSize](#oh_nativexcomponent_getxcomponentsize)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;uint64_t&nbsp;\*width,&nbsp;uint64_t&nbsp;\*height) | 获取ArkUI&nbsp;XComponent持有的surface的大小。  |
-| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;double&nbsp;\*x,&nbsp;double&nbsp;\*y) | 获取ArkUI&nbsp;XComponent组件相对屏幕左上顶点的偏移量。 |
+| [OH_NativeXComponent_GetXComponentOffset](#oh_nativexcomponent_getxcomponentoffset)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;double&nbsp;\*x,&nbsp;double&nbsp;\*y) | 获取XComponent持有的surface相对其父组件左顶点的偏移量。 |
 | [OH_NativeXComponent_GetTouchEvent](#oh_nativexcomponent_gettouchevent)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;const&nbsp;void&nbsp;\*window,&nbsp;[OH_NativeXComponent_TouchEvent](_o_h___native_x_component___touch_event.md)&nbsp;\*touchEvent) | 获取ArkUI&nbsp;XComponent调度的触摸事件。        |
 | [OH_NativeXComponent_GetTouchPointToolType](#oh_nativexcomponent_gettouchpointtooltype)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;uint32_t&nbsp;pointIndex,&nbsp;[OH_NativeXComponent_TouchPointToolType](#oh_nativexcomponent_touchpointtooltype)&nbsp;\*toolType) | 获取ArkUI&nbsp;XComponent触摸点工具类型。        |
 | [OH_NativeXComponent_GetTouchPointTiltX](#oh_nativexcomponent_gettouchpointtiltx)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;uint32_t&nbsp;pointIndex,&nbsp;float&nbsp;\*tiltX) | 获取ArkUI&nbsp;XComponent触摸点倾斜与X轴角度。     |
@@ -72,31 +73,37 @@
 | [OH_NativeXComponent_RegisterMouseEventCallback](#oh_nativexcomponent_registermouseeventcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;[OH_NativeXComponent_MouseEvent_Callback](_o_h___native_x_component___mouse_event___callback.md)&nbsp;\*callback) | 为此OH_NativeXComponent实例注册鼠标事件回调。       |
 | [OH_NativeXComponent_RegisterFocusEventCallback](#oh_nativexcomponent_registerfocuseventcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册获焦事件回调。       |
 | [OH_NativeXComponent_RegisterKeyEventCallback](#oh_nativexcomponent_registerkeyeventcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册按键事件回调。       |
+| [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册有返回值的按键事件回调。       |
 | [OH_NativeXComponent_RegisterBlurEventCallback](#oh_nativexcomponent_registerblureventcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册失焦事件回调。       |
 | [OH_NativeXComponent_GetKeyEvent](#oh_nativexcomponent_getkeyevent)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;[OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*\*keyEvent) | 获取ArkUI&nbsp;XComponent调度的按键事件。        |
 | [OH_NativeXComponent_GetKeyEventAction](#oh_nativexcomponent_getkeyeventaction)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;[OH_NativeXComponent_KeyAction](#oh_nativexcomponent_keyaction)&nbsp;\*action) | 获取传入按键事件的动作。                           |
 | [OH_NativeXComponent_GetKeyEventCode](#oh_nativexcomponent_getkeyeventcode)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;[OH_NativeXComponent_KeyCode](#oh_nativexcomponent_keycode)&nbsp;\*code) | 获取传入按键事件的按键码。                          |
 | [OH_NativeXComponent_GetKeyEventSourceType](#oh_nativexcomponent_getkeyeventsourcetype)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;[OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype)&nbsp;\*sourceType) | 获取传入按键事件的事件源类型。                        |
 | [OH_NativeXComponent_GetKeyEventDeviceId](#oh_nativexcomponent_getkeyeventdeviceid)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;int64_t&nbsp;\*deviceId) | 获取传入按键事件的设备id。                         |
-| [OH_NativeXComponent_GetKeyEventTimeStamp](#oh_nativexcomponent_getkeyeventtimestamp)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;int64_t&nbsp;\*timeStamp) | 获取传入按键事件的时间戳。                          |
+| [OH_NativeXComponent_GetKeyEventTimestamp](#oh_nativexcomponent_getkeyeventtimestamp)&nbsp;([OH_NativeXComponent_KeyEvent](#oh_nativexcomponent_keyevent)&nbsp;\*keyEvent,&nbsp;int64_t&nbsp;\*timeStamp) | 获取传入按键事件的时间戳。                          |
 | [OH_NativeXComponent_SetExpectedFrameRateRange](#oh_nativexcomponent_setexpectedframeraterange) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [OH_NativeXComponent_ExpectedRateRange](_o_h___native_x_component___expected_rate_range.md) \*range) | 设置期望帧率范围。                                           |
 | [OH_NativeXComponent_RegisterOnFrameCallback](#oh_nativexcomponent_registeronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, uint64_t timestamp, uint64_t targetTimestamp)) | 为此OH_NativeXComponent实例注册显示更新回调，并使能每帧回调此函数。 |
 | [OH_NativeXComponent_UnregisterOnFrameCallback](#oh_nativexcomponent_unregisteronframecallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component) | 为此OH_NativeXComponent实例取消注册回调函数，并关闭每帧回调此函数。 |
-| int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。  | 
-| int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将ArkUI的native组件从当前XComponent上卸载.  | 
-| int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | 为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。  | 
+| int32_t [OH_NativeXComponent_AttachNativeRootNode](#oh_nativexcomponent_attachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将通过ArkUI的native接口创建出来的UI组件挂载到当前XComponent上。  |
+| int32_t [OH_NativeXComponent_DetachNativeRootNode](#oh_nativexcomponent_detachnativerootnode) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) root) | 将ArkUI的native组件从当前XComponent上卸载.  |
+| int32_t [OH_NativeXComponent_RegisterUIInputEventCallback](#oh_nativexcomponent_registeruiinputeventcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event, [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type), [ArkUI_UIInputEvent_Type](_ark_u_i___event_module.md#arkui_uiinputevent_type) type) | 为此OH_NativeXComponent实例注册UI输入事件回调，并使能收到UI输入事件时回调此函数。  |
 | int32_t [OH_NativeXComponent_RegisterOnTouchInterceptCallback](#oh_nativexcomponent_registerontouchinterceptcallback) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, [HitTestMode](_ark_u_i___native_module.md#hittestmode)(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, [ArkUI_UIInputEvent](_ark_u_i___event_module.md#arkui_uiinputevent) \*event)) | 为此OH_NativeXComponent实例注册自定义事件拦截回调，并使能在做触摸测试时回调此函数。  |
-| int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | 为此OH_NativeXComponent实例设置是否需要软键盘。  | 
-| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。|
-| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。|
+| int32_t [OH_NativeXComponent_SetNeedSoftKeyboard](#oh_nativexcomponent_setneedsoftkeyboard) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool isNeedSoftKeyboard) | 为此OH_NativeXComponent实例设置是否需要软键盘。  |
+| int32_t [OH_NativeXComponent_RegisterSurfaceShowCallback](#oh_nativexcomponent_registersurfaceshowcallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台后触发。 |
+| int32_t [OH_NativeXComponent_RegisterSurfaceHideCallback](#oh_nativexcomponent_registersurfacehidecallback)&nbsp;([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void(\*callback)([OH_NativeXComponent](#oh_nativexcomponent)&nbsp;\*component,&nbsp;void&nbsp;\*window)) | 为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台后触发。 |
 | int32_t [OH_NativeXComponent_GetTouchEventSourceType](#oh_nativexcomponent_gettoucheventsourcetype) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, int32_t pointId, [OH_NativeXComponent_EventSourceType](#oh_nativexcomponent_eventsourcetype) \*sourceType) | 获取ArkUI XComponent触摸事件的输入设备类型。  |
+| [OH_NativeXComponent](#oh_nativexcomponent) \* [OH_NativeXComponent_GetNativeXComponent](#oh_nativexcomponent_getnativexcomponent) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node) | 基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。  |
+| int32_t [OH_NativeXComponent_GetNativeAccessibilityProvider](#oh_nativexcomponent_getnativeaccessibilityprovider)([OH_NativeXComponent](#oh_nativexcomponent)* component, [ArkUI_AccessibilityProvider](./arkui_native_interface_accessibility.md#arkui_accessibilityprovider)** handle); | 基于NativeXComponent实例获取的ArkUI_AccessibilityProvider类型的指针。 |
+| int32_t [OH_NativeXComponent_RegisterKeyEventCallbackWithResult](#oh_nativexcomponent_registerkeyeventcallbackwithresult) ([OH_NativeXComponent](#oh_nativexcomponent) \*component, bool(\*callback)([OH_NativeXComponent](#oh_nativexcomponent) \*component, void \*window)) | 为此OH_NativeXComponent实例注册有返回值的按键事件回调。  | 
+|int32_t [OH_ArkUI_XComponent_StartImageAnalyzer](#oh_arkui_xcomponent_startimageanalyzer) ([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, void \*userData,void (\*callback)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node, [ArkUI_XComponent_ImageAnalyzerState](#arkui_xcomponent_imageanalyzerstate) statusCode, void \*userData))|为此XComponent实例开始图像AI分析。|
+|int32_t [OH_ArkUI_XComponent_StopImageAnalyzer](#oh_arkui_xcomponent_stopimageanalyzer)([ArkUI_NodeHandle](_ark_u_i___native_module.md#arkui_nodehandle) node)|为此XComponent实例停止图像AI分析。|
 
 ### 变量
 
 | 名称                                       | 描述                             |
 | ---------------------------------------- | ------------------------------ |
-| **OH_XCOMPONENT_ID_LEN_MAX**&nbsp;=&nbsp;128 | ArkUI&nbsp;XComponent的id最大长度。  |
-| **OH_MAX_TOUCH_POINTS_NUMBER**&nbsp;=&nbsp;10 | 触摸事件中的可识别的触摸点个数最大值。            |
+| [OH_XCOMPONENT_ID_LEN_MAX](#oh_xcomponent_id_len_max)&nbsp;=&nbsp;128 | ArkUI&nbsp;XComponent的id最大长度。  |
+| [OH_MAX_TOUCH_POINTS_NUMBER](#oh_max_touch_points_number)&nbsp;=&nbsp;10 | 触摸事件中的可识别的触摸点个数最大值。            |
 | [OH_NativeXComponent_TouchPoint::id](#id-12)&nbsp;=&nbsp;0 | 手指的唯一标识符。                      |
 | [OH_NativeXComponent_TouchPoint::screenX](#screenx-13)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。 |
 | [OH_NativeXComponent_TouchPoint::screenY](#screeny-13)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。 |
@@ -108,8 +115,8 @@
 | [OH_NativeXComponent_TouchPoint::timeStamp](#timestamp-12)&nbsp;=&nbsp;0 | 当前触摸事件的时间戳。                    |
 | [OH_NativeXComponent_TouchPoint::isPressed](#ispressed)&nbsp;=&nbsp;false | 当前点是否被按下。                      |
 | [OH_NativeXComponent_TouchEvent::id](#id-22)&nbsp;=&nbsp;0 | 手指的唯一标识符。                      |
-| [OH_NativeXComponent_TouchEvent::screenX](#screenx-23)&nbsp;=&nbsp;0.0 | 触摸点相对于屏幕左边缘的x坐标。               |
-| [OH_NativeXComponent_TouchEvent::screenY](#screeny-23)&nbsp;=&nbsp;0.0 | 触摸点相对于屏幕上边缘的y坐标。               |
+| [OH_NativeXComponent_TouchEvent::screenX](#screenx-23)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。               |
+| [OH_NativeXComponent_TouchEvent::screenY](#screeny-23)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。               |
 | [OH_NativeXComponent_TouchEvent::x](#x-23)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent组件左边缘的x坐标。     |
 | [OH_NativeXComponent_TouchEvent::y](#y-23)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent组件上边缘的y坐标。     |
 | [OH_NativeXComponent_TouchEvent::type](#type-22)&nbsp;=&nbsp;OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UNKNOWN | 触摸事件的触摸类型。                     |
@@ -357,7 +364,7 @@ enum OH_NativeXComponent_KeyCode
 | KEY_EQUALS                   | 按键'='                       |
 | KEY_LEFT_BRACKET             | 按键'['                       |
 | KEY_RIGHT_BRACKET            | 按键']'                       |
-| KEY_BACKSLASH                | 按键'\'                       |
+| KEY_BACKSLASH                | 按键'\\'                       |
 | KEY_SEMICOLON                | 按键';'                       |
 | KEY_APOSTROPHE               | 按键'''&nbsp;(单引号)            |
 | KEY_SLASH                    | 按键'/'                       |
@@ -630,6 +637,7 @@ enum OH_NativeXComponent_MouseEventAction
 | OH_NATIVEXCOMPONENT_MOUSE_PRESS   | 鼠标按键按下时触发鼠标事件。   |
 | OH_NATIVEXCOMPONENT_MOUSE_RELEASE | 鼠标按键松开时触发鼠标事件。   |
 | OH_NATIVEXCOMPONENT_MOUSE_MOVE    | 鼠标在屏幕上移动时触发鼠标事件。 |
+| OH_NATIVEXCOMPONENT_MOUSE_CANCEL    | 鼠标按键被取消时触发鼠标事件。<br/>**起始版本：** 18 |
 
 **起始版本：**
 
@@ -709,6 +717,27 @@ enum OH_NativeXComponent_TouchPointToolType
 
 9
 
+### ArkUI_XComponent_ImageAnalyzerState
+
+```
+enum ArkUI_XComponent_ImageAnalyzerState
+```
+
+**描述**
+
+XComponent图像AI分析状态码。
+
+| 枚举值                                    | 描述     |
+| --------------------------------------   | -------- |
+| ARKUI_XCOMPONENT_AI_ANALYSIS_FINISHED    | 图像AI分析完成。|
+| ARKUI_XCOMPONENT_AI_ANALYSIS_DISABLED    | 图像AI分析已禁用。|
+| ARKUI_XCOMPONENT_AI_ANALYSIS_UNSUPPORTED | 设备不支持图像AI分析。|
+| ARKUI_XCOMPONENT_AI_ANALYSIS_ONGOING     | 图像AI分析进行中。|
+| ARKUI_XCOMPONENT_AI_ANALYSIS_STOPPED     | 图像AI分析停止。|
+
+**起始版本：**
+
+18
 
 ## 函数说明
 
@@ -725,16 +754,16 @@ int32_t OH_NativeXComponent_AttachNativeRootNode (OH_NativeXComponent * componen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| root | 指向Native接口创建的组件实例的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| root | 指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
 0：成功。 
 
-401：参数异常。
+-2：参数异常。
 
 
 ### OH_NativeXComponent_DetachNativeRootNode()
@@ -750,16 +779,16 @@ int32_t OH_NativeXComponent_DetachNativeRootNode (OH_NativeXComponent * componen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| root | 指向Native接口创建的组件实例的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| root | 指向Native接口创建的组件实例的指针。  |
 
 **返回：**
 
 0：成功。 
 
-401：参数异常。
+-2：参数异常。
 
 
 
@@ -893,10 +922,10 @@ int32_t OH_NativeXComponent_GetKeyEventSourceType (OH_NativeXComponent_KeyEvent 
 10
 
 
-### OH_NativeXComponent_GetKeyEventTimeStamp()
+### OH_NativeXComponent_GetKeyEventTimestamp()
 
 ```
-int32_t OH_NativeXComponent_GetKeyEventTimeStamp (OH_NativeXComponent_KeyEvent * keyEvent, int64_t * timeStamp )
+int32_t OH_NativeXComponent_GetKeyEventTimestamp (OH_NativeXComponent_KeyEvent * keyEvent, int64_t * timeStamp )
 ```
 
 **描述:**
@@ -944,6 +973,27 @@ int32_t OH_NativeXComponent_GetMouseEvent (OH_NativeXComponent * component, cons
 **起始版本：**
 
 9
+
+### OH_NativeXComponent_GetNativeXComponent()
+
+```
+OH_NativeXComponent* OH_NativeXComponent_GetNativeXComponent (ArkUI_NodeHandle node)
+```
+**描述：**
+
+基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| node | 指向Native接口创建的组件实例的指针。  |
+
+**返回：**
+
+表示指向OH_NativeXComponent实例的指针。
 
 
 ### OH_NativeXComponent_GetTouchEvent()
@@ -1027,6 +1077,114 @@ int32_t OH_NativeXComponent_GetTouchPointTiltY (OH_NativeXComponent * component,
 9
 
 
+### OH_NativeXComponent_GetTouchPointWindowX()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointWindowX(OH_NativeXComponent * component, uint32_t pointIndex, float * windowX )
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸点相对于应用窗口左上角的X坐标。
+
+**参数:**
+
+| 名称         | 描述                            |
+| ---------- | ----------------------------- |
+| component  | 表示指向OH_NativeXComponent实例的指针。        |
+| pointIndex | 表示触摸点的指针索引。                          |
+| windowX    | 表示指向触摸点相对于应用窗口左上角的X坐标的指针。  |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointWindowY()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointWindowY(OH_NativeXComponent * component, uint32_t pointIndex, float * windowY )
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸点相对于应用窗口左上角的Y坐标。
+
+**参数:**
+
+| 名称         | 描述                            |
+| ---------- | ----------------------------- |
+| component  | 表示指向OH_NativeXComponent实例的指针。        |
+| pointIndex | 表示触摸点的指针索引。                          |
+| windowY    | 表示指向触摸点相对于应用窗口左上角的Y坐标的指针。  |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointDisplayX()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointDisplayX(OH_NativeXComponent * component, uint32_t pointIndex, float * displayX )
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸点相对于应用所在屏幕左上角的X坐标。
+
+**参数:**
+
+| 名称         | 描述                            |
+| ---------- | ----------------------------- |
+| component  | 表示指向OH_NativeXComponent实例的指针。        |
+| pointIndex | 表示触摸点的指针索引。                          |
+| displayX    | 表示指向触摸点相对于应用所在屏幕左上角的X坐标的指针。  |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+
+### OH_NativeXComponent_GetTouchPointDisplayY()
+
+```
+int32_t OH_NativeXComponent_GetTouchPointDisplayY(OH_NativeXComponent * component, uint32_t pointIndex, float * displayY )
+```
+
+**描述:**
+
+获取ArkUI XComponent触摸点相对于应用所在屏幕左上角的Y坐标。
+
+**参数:**
+
+| 名称         | 描述                            |
+| ---------- | ----------------------------- |
+| component  | 表示指向OH_NativeXComponent实例的指针。        |
+| pointIndex | 表示触摸点的指针索引。                          |
+| displayY    | 表示指向触摸点相对于应用所在屏幕左上角的Y坐标的指针。  |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+12
+
+
 ### OH_NativeXComponent_GetTouchPointToolType()
 
 ```
@@ -1089,7 +1247,7 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 
 **描述:**
 
-获取ArkUI XComponent组件相对屏幕左上顶点的偏移量。
+获取ArkUI XComponent持有的surface相对其父组件左顶点的偏移量。
 
 **参数:**
 
@@ -1097,8 +1255,8 @@ int32_t OH_NativeXComponent_GetXComponentOffset (OH_NativeXComponent * component
 | --------- | ----------------------------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 |
 | window    | 表示NativeWindow句柄。             |
-| x         | 指示指向当前surface的x坐标的指针。         |
-| y         | 指示指向当前surface的y坐标的指针。         |
+| x         | 指示指向当前surface相对于XComponent父组件左顶点x坐标的指针。         |
+| y         | 指示指向当前surface相对于XComponent父组件左顶点y坐标的指针。         |
 
 **返回:**
 
@@ -1241,6 +1399,32 @@ int32_t OH_NativeXComponent_RegisterKeyEventCallback (OH_NativeXComponent * comp
 10
 
 
+### OH_NativeXComponent_RegisterKeyEventCallbackWithResult()
+
+```
+int32_t OH_NativeXComponent_RegisterKeyEventCallbackWithResult (OH_NativeXComponent * component, bool(*callback)(OH_NativeXComponent *component, void *window))
+```
+
+**描述:**
+
+为此OH_NativeXComponent实例注册带有返回值的按键事件回调。通过此接口注册的按键事件回调都必须返回一个结果，即true或false。当返回值为true时，该事件将不会继续分发；当返回值为false时，该事件将按照事件处理流程继续分发。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| callback  | 指示指向按键事件回调的指针。                |
+
+**返回:**
+
+返回执行的状态代码。
+
+**起始版本：**
+
+14
+
+
 ### OH_NativeXComponent_RegisterMouseEventCallback()
 
 ```
@@ -1281,6 +1465,8 @@ int32_t OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent* compon
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。  |
 | callback | 指示指向显示更新回调的指针。  |
+| timestamp | 当前帧到达的时间（单位：纳秒）。 |
+| targetTimestamp | 下一帧预期到达的时间（单位：纳秒）。 |
 
 **返回：**
 
@@ -1303,10 +1489,10 @@ int32_t OH_NativeXComponent_RegisterOnTouchInterceptCallback (OH_NativeXComponen
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| callback | 指示指向自定义事件拦截回调的指针。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| callback | 指示指向自定义事件拦截回调的指针。  |
 
 **返回：**
 
@@ -1325,11 +1511,11 @@ int32_t OH_NativeXComponent_RegisterUIInputEventCallback (OH_NativeXComponent * 
 
 **参数:**
 
-| 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| component | 表示指向OH_NativeXComponent实例的指针。  | 
-| callback | 指示指向UI输入事件回调的指针。  | 
-| type | 指示当前UI输入事件的类型。  | 
+| component | 表示指向OH_NativeXComponent实例的指针。  |
+| callback | 指示指向UI输入事件回调的指针。  |
+| type | 指示当前UI输入事件的类型。  |
 
 **返回：**
 
@@ -1416,7 +1602,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceShowCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台时触发。
+为此OH_NativeXComponent实例注册surface显示回调，该回调在应用从后台返回前台后触发。
 
 **参数:**
 
@@ -1441,7 +1627,7 @@ int32_t OH_NativeXComponent_RegisterSurfaceHideCallback (OH_NativeXComponent * c
 
 **描述:**
 
-为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台时触发。
+为此OH_NativeXComponent实例注册surface隐藏回调，该回调在应用从前台来到后台后触发。
 
 **参数:**
 
@@ -1487,6 +1673,97 @@ OH_NATIVEXCOMPONENT_RESULT_FAILED - 其他错误。
 **起始版本：**
 
 12
+
+### OH_NativeXComponent_GetNativeAccessibilityProvider()
+
+```
+int32_t OH_NativeXComponent_GetNativeAccessibilityProvider(
+    OH_NativeXComponent* component, ArkUI_AccessibilityProvider** handle);
+```
+
+**描述:**
+
+获取ArkUI XComponent无障碍接入句柄指针。
+
+**参数:**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| handle    | 返回无障碍接入句柄指针。                |
+
+**返回:**
+
+OH_NATIVEXCOMPONENT_RESULT_SUCCESS - 成功。
+
+OH_NATIVEXCOMPONENT_RESULT_BAD_PARAMETER - 参数异常。
+
+OH_NATIVEXCOMPONENT_RESULT_FAILED - 其他错误。
+
+**起始版本：**
+
+13
+
+### OH_ArkUI_XComponent_StartImageAnalyzer()
+
+```
+int32_t OH_ArkUI_XComponent_StartImageAnalyzer(ArkUI_NodeHandle node, void* userData,
+    void (*callback)(ArkUI_NodeHandle node, ArkUI_XComponent_ImageAnalyzerState statusCode, void* userData));
+```
+
+**描述：**
+
+为此由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建的XComponent实例开始图像AI分析，使用前需先使能图像AI分析能力。该方法调用时，将截取调用时刻的画面帧进行分析，使用时需注意启动分析的时机，避免出现画面和分析内容不一致的情况。图像AI分析状态刷新时，将会触发传入的回调函数。
+
+**参数：**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node | 表示指向[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件实例的指针。 |
+| userData    | 表示开发者需要在回调函数执行时获取的数据的指针。                |
+|callback| 表示图像AI分析状态刷新时触发的回调函数。|
+|statusCode|回调函数的入参之一，表示当前的图像分析状态。|
+
+> **说明：**
+>
+> 该接口发起的图像AI分析过程为异步执行，接口返回后，并不代表图像AI分析已经产生分析内容。
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR - 成功。
+
+ARKUI_ERROR_CODE_PARAM_INVALID - 参数异常。
+
+**起始版本：**
+
+18
+
+### OH_ArkUI_XComponent_StopImageAnalyzer()
+
+```
+int32_t OH_ArkUI_XComponent_StopImageAnalyzer(ArkUI_NodeHandle node);
+```
+
+**描述：**
+
+为此由[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建的XComponent实例停止图像AI分析。停止图像AI分析功能后，图像AI分析展示的内容将被销毁。
+
+**参数：**
+
+| 名称      | 描述                                    |
+| --------- | --------------------------------------- |
+| node | 表示指向[ArkUI NDK接口](../../ui/ndk-access-the-arkts-page.md)创建的XComponent组件实例的指针。 |
+
+**返回：**
+
+ARKUI_ERROR_CODE_NO_ERROR - 成功。
+
+ARKUI_ERROR_CODE_PARAM_INVALID - 参数异常。
+
+**起始版本：**
+
+18
+
 
 <!--  -->
 
@@ -1596,6 +1873,13 @@ void(* OH_NativeXComponent_MouseEvent_Callback::DispatchMouseEvent) (OH_NativeXC
 **描述:**
 
 当鼠标事件被触发时调用。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
 
 **起始版本：**
 
@@ -1717,6 +2001,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceChanged) (OH_NativeXComponent *com
 
 当surface改变时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
+
 **起始版本：**
 
 8
@@ -1732,6 +2023,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceCreated) (OH_NativeXComponent *com
 
 创建surface时调用。
 
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
+
 **起始版本：**
 
 8
@@ -1746,6 +2044,13 @@ void(* OH_NativeXComponent_Callback::OnSurfaceDestroyed) (OH_NativeXComponent *c
 **描述:**
 
 当surface被销毁时调用。
+
+**参数:**
+
+| 名称        | 描述                            |
+| --------- | ----------------------------- |
+| component | 表示指向OH_NativeXComponent实例的指针。 |
+| window  | 表示NatievWindow句柄。              |
 
 **起始版本：**
 
@@ -1775,7 +2080,7 @@ float OH_NativeXComponent_TouchEvent::screenX = 0.0
 
 **描述:**
 
-触摸点相对于屏幕左边缘的x坐标。
+触摸点相对于所在应用窗口左上角的x坐标。
 
 **起始版本：**
 
@@ -1790,7 +2095,7 @@ float OH_NativeXComponent_MouseEvent::screenX
 
 **描述:**
 
-点击触点相对于屏幕左上角的x轴坐标。
+点击触点相对于所在应用屏幕左上角的x轴坐标。
 
 **起始版本：**
 
@@ -1820,7 +2125,7 @@ float OH_NativeXComponent_TouchEvent::screenY = 0.0
 
 **描述:**
 
-触摸点相对于屏幕上边缘的y坐标。
+触摸点相对于所在应用窗口左上角的y坐标。
 
 **起始版本：**
 
@@ -1835,7 +2140,7 @@ float OH_NativeXComponent_MouseEvent::screenY
 
 **描述:**
 
-点击触点相对于屏幕左上角的y轴坐标。
+点击触点相对于所在应用屏幕左上角的y轴坐标。
 
 **起始版本：**
 

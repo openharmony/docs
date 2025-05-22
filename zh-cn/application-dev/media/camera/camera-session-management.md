@@ -5,7 +5,7 @@
 在会话中，可以完成以下功能：
 
 - 配置相机的输入流和输出流。相机在拍摄前，必须完成输入输出流的配置。
-  配置输入流即添加设备输入，对用户而言，相当于选择设备的某一摄像头拍摄；配置输出流，即选择数据将以什么形式输出。当应用需要实现拍照时，输出流应配置为预览流和拍照流，预览流的数据将显示在XComponent组件上，拍照流的数据将通过ImageReceiver接口的能力保存到相册中。
+  配置输入流即添加设备输入，对用户而言，相当于选择设备的某一相机拍摄；配置输出流，即选择数据将以什么形式输出。当应用需要实现拍照时，输出流应配置为预览流和拍照流，预览流的数据将显示在XComponent组件上，拍照流的数据将通过ImageReceiver接口的能力保存到相册中。
 
 - 添加闪光灯、调整焦距等配置。具体支持的配置及接口说明请参考[Camera API参考](../../reference/apis-camera-kit/js-apis-camera.md)。
 
@@ -17,8 +17,8 @@
 1. 导入相关接口，导入方法如下。
      
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. 调用cameraManager类中的[createSession](../../reference/apis-camera-kit/js-apis-camera.md#createsession11)方法创建一个会话。
@@ -30,7 +30,7 @@
        session = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to create the session instance. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to create the session instance. error: ${err}`);
      }
      return session;
    }
@@ -44,7 +44,7 @@
        photoSession.beginConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to beginConfig. error: ${err}`);
      }
    }
    ```
@@ -57,32 +57,32 @@
        photoSession.addInput(cameraInput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to addInput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to addInput. error: ${err}`);
      }
      try {
        photoSession.addOutput(previewOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add previewOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to add previewOutput. error: ${err}`);
      }
      try {
        photoSession.addOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add photoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to add photoOutput. error: ${err}`);
      }
      try {
        await photoSession.commitConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to commitConfig. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to commitConfig. error: ${err}`);
      }
    
      try {
        await photoSession.start();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to start. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to start. error: ${err}`);
      }
    }
    ```
@@ -95,28 +95,28 @@
        await photoSession.stop();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to stop. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to stop. error: ${err}`);
      }
    
      try {
        photoSession.beginConfig();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to beginConfig. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to beginConfig. error: ${err}`);
      }
-     // 从会话中移除拍照输出流
+     // 从会话中移除拍照输出流。
      try {
        photoSession.removeOutput(photoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to remove photoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to remove photoOutput. error: ${err}`);
      }
-     // 向会话中添加视频输出流
+     // 向会话中添加视频输出流。
      try {
        photoSession.addOutput(videoOutput);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to add videoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to add videoOutput. error: ${err}`);
      }
    }
    ```

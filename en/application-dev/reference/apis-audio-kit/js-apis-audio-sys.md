@@ -15,14 +15,14 @@ This module provides the following common audio-related functions:
 ## Modules to Import
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 ```
 
 ## Constants
 
 | Name                                   | Type     | Readable | Writable| Description              |
 | --------------------------------------- | ----------| ---- | ---- | ------------------ |
-| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device |
+| LOCAL_NETWORK_ID<sup>9+</sup>           | string    | Yes  | No  | Network ID of the local device.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device |
 
 ## audio.createTonePlayer<sup>9+</sup>
 
@@ -44,12 +44,12 @@ Creates a **TonePlayer** instance. This API uses an asynchronous callback to ret
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage : audio.StreamUsage.STREAM_USAGE_DTMF,
   rendererFlags : 0
-}
+};
 let tonePlayer: audio.TonePlayer;
 
 audio.createTonePlayer(audioRendererInfo, (err, data) => {
@@ -88,16 +88,77 @@ Creates a **TonePlayer** instance. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let tonePlayer: audio.TonePlayer;
 async function createTonePlayerBefore(){
   let audioRendererInfo: audio.AudioRendererInfo = {
     usage : audio.StreamUsage.STREAM_USAGE_DTMF,
     rendererFlags : 0
-  }
+  };
   tonePlayer = await audio.createTonePlayer(audioRendererInfo);
 }
+```
+
+## audio.createAsrProcessingController<sup>12+</sup>
+
+createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingController;
+
+Creates an Automatic Speech Recognition (ASR) processing controller.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                                                   | Description        |
+|-------------------------------------------------------| ------------ |
+| [AsrProcessingController](#asrprocessingcontroller12) | ASR processing controller.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let audioStreamInfo: audio.AudioStreamInfo = {
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000,
+  channels: audio.AudioChannel.CHANNEL_2,
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
+};
+
+let audioCapturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC,
+  capturerFlags: 0
+};
+
+let audioCapturerOptions: audio.AudioCapturerOptions = {
+  streamInfo: audioStreamInfo,
+  capturerInfo: audioCapturerInfo
+};
+
+audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
+  if (err) {
+    console.error(`AudioCapturer Created : Error: ${err}`);
+  } else {
+    console.info('AudioCapturer Created : Success : SUCCESS');
+    let audioCapturer = data;
+    let asrProcessingController = audio.createAsrProcessingController(audioCapturer);
+    console.info('AsrProcessingController Created : Success : SUCCESS');
+  }
+});
 ```
 
 ## AudioVolumeType
@@ -137,22 +198,32 @@ Enumerates the audio device flags.
 | DISTRIBUTED_INPUT_DEVICES_FLAG<sup>9+</sup>  | 8   | Distributed input device.<br>This is a system API.   |
 | ALL_DISTRIBUTED_DEVICES_FLAG<sup>9+</sup>    | 12  | Distributed input and output device.<br>This is a system API.|
 
-## DeviceUsage<sup>11+</sup>
+## EffectFlag<sup>18+</sup>
 
-Enumerates the audio device flags.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
+Enumerates the audio effect flags.
 
 **System API**: This is a system API.
 
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
 | Name                           |  Value    | Description                       |
-| ------------------------------- | ------ |---------------------------|
-| MEDIA_OUTPUT_DEVICES<sup>11+</sup> | 1      | Media output device.|
-| MEDIA_INPUT_DEVICES<sup>11+</sup>  | 2      | Media input device.|
-| ALL_MEDIA_DEVICES<sup>11+</sup>    | 3      | All media devices.|
-| CALL_OUTPUT_DEVICES<sup>11+</sup>  | 4      | Call output device.|
-| CALL_INPUT_DEVICES<sup>11+</sup>   | 8      | Call input device.|
-| ALL_CALL_DEVICES<sup>11+</sup>     | 12     | All call devices.|
+| ------------------------------- | ------ |------------------------------|
+| RENDER_EFFECT_FLAG  | 0      | Rendered audio effect flag.  |
+| CAPTURE_EFFECT_FLAG | 1      | Captured audio effect flag.  |
+
+## AudioEffectProperty<sup>18+</sup>
+
+Describes the audio effect properties.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+| Name              | Type| Mandatory| Description      |
+| ------------------ | ---- | ---- | --------- |
+| name         | string | Yes| Audio effect name.|
+| category     | string | Yes| Audio effect category.|
+| flag        | [EffectFlag](#effectflag18) | Yes| Audio effect flag.|
 
 ## StreamUsage
 
@@ -166,6 +237,7 @@ Enumerates the audio stream usage.
 | STREAM_USAGE_DTMF<sup>10+</sup>           | 14     | Dial tone.<br>This is a system API.   |
 | STREAM_USAGE_ENFORCED_TONE<sup>10+</sup>  | 15     | Forcible tone (such as camera shutter sound effect).<br>This is a system API.  |
 | STREAM_USAGE_ULTRASONIC<sup>10+</sup>     | 16     | Ultrasonic (currently provided only for MSDP).<br>This is a system API.|
+| STREAM_USAGE_VOICE_CALL_ASSISTANT<sup>12+</sup>     | 21     | Voice assistant for calls.<br>This is a system API.|
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -178,6 +250,90 @@ Enumerates the audio interruption request types.
 | Name                              |  Value    | Description                      |
 | ---------------------------------- | ------ | ------------------------- |
 | INTERRUPT_REQUEST_TYPE_DEFAULT     | 0      |  Default type, which can be used to interrupt audio requests. |
+
+## VolumeFlag<sup>12+</sup>
+
+Enumerates the volume-related operations.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+| Name                              | Value| Description      |
+| ---------------------------------- |---|----------|
+| FLAG_SHOW_SYSTEM_UI | 1 | Displays the system volume bar.|
+
+## AsrNoiseSuppressionMode<sup>12+</sup>
+
+Enumerates the noise suppression modes in ASR.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name|  Value| Description|
+|-------|-------|-------|
+| BYPASS | 0 |Bypass noise suppression.|
+| STANDARD | 1 |Standard noise suppression.|
+| NEAR_FIELD | 2 |Near-field noise suppression.|
+| FAR_FIELD | 3 |Far-field noise suppression.|
+
+## AsrAecMode<sup>12+</sup>
+
+Enumerates the Acoustic Echo Cancellation (AEC) modes in ASR.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name|  Value| Description|
+|-------|-------|-------|
+| BYPASS | 0 |Bypass AEC.|
+| STANDARD | 1 |Standard AEC.|
+
+## AsrWhisperDetectionMode<sup>12+</sup>
+
+Enumerates the ASR whisper detection modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name | Value| Description      |
+|-----|---|----------|
+| BYPASS  | 0 | ASR whisper detection disabled.|
+| STANDARD | 1 | Standard ASR whisper detection model. |
+
+## AsrVoiceControlMode<sup>12+</sup>
+
+Enumerates the ASR voice control modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name                     | Value| Description                                   |
+|-------------------------|---|---------------------------------------|
+| AUDIO_2_VOICE_TX        | 0 | ASR voice control takes effect only for media audio streams.                           |
+| AUDIO_MIX_2_VOICE_TX    | 1 | ASR voice control takes effect for both media audio streams and microphone audio streams.                     |
+| AUDIO_2_VOICE_TX_EX     | 2 | ASR voice control takes effect only for media audio streams. Media streams are reported to the call recording module.    |
+| AUDIO_MIX_2_VOICE_TX_EX | 3 | ASR voice control takes effect for both media audio streams and microphone audio streams. Media streams are reported to the call recording module.|
+
+## AsrVoiceMuteMode<sup>12+</sup>
+
+Enumerates the ASR voice mute modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+| Name            | Value| Description                 |
+|----------------|---|---------------------|
+| OUTPUT_MUTE    | 0 | The local output is muted.           |
+| INPUT_MUTE     | 1 | The local microphone input is muted.       |
+| TTS_MUTE       | 2 | The media audio delivered by the application is muted locally.    |
+| CALL_MUTE      | 3 | The audio streams of calls are muted.         |
+| OUTPUT_MUTE_EX | 4 | The local output is muted, and media audio streams are sent to the call recording module.|
 
 ## InterruptResult<sup>9+</sup>
 
@@ -248,17 +404,7 @@ Enumerates the audio source types.
 | :------------------------------------------- | :----- | :--------------------- |
 | SOURCE_TYPE_WAKEUP <sup>10+</sup>            | 3 | Audio recording source in voice wake-up scenarios.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.MANAGE_INTELLIGENT_VOICE <br> This is a system API.|
 | SOURCE_TYPE_VOICE_CALL<sup>11+</sup>            | 4 | Audio source in voice calls.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br>**Required permissions**: ohos.permission.RECORD_VOICE_CALL <br> This is a system API.|
-
-## AudioScene<sup>8+</sup>
-
-Enumerates the audio scenes.
-
-**System capability**: SystemCapability.Multimedia.Audio.Communication
-
-| Name                  |  Value    | Description                                         |
-| :--------------------- | :----- | :-------------------------------------------- |
-| AUDIO_SCENE_RINGING    | 1      | Ringing audio scene.<br>This is a system API.|
-| AUDIO_SCENE_PHONE_CALL | 2      | Phone call audio scene.<br>This is a system API.|
+| SOURCE_TYPE_VOICE_TRANSCRIPTION<sup>18+</sup>   | 12     | Audio source for speech-to-text conversion.<br>**System capability**: SystemCapability.Multimedia.Audio.Core<br> This is a system API.|
 
 ## VolumeAdjustType<sup>10+</sup>
 
@@ -306,23 +452,27 @@ Sets extended audio parameters. This API uses a promise to return the result.
 
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
-| ID| Error Message|
-| ------- | -------------------------|
-| 6800101 | Invalid parameter error. |
+| ID| Error Message                                                                                                      |
+|-----|------------------------------------------------------------------------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let kvpairs = {} as Record<string, string>;
 kvpairs = {
-  key_example: 'value_example'
-}
+  'key_example': 'value_example'
+};
+
 audioManager.setExtraParameters('key_example', kvpairs).then(() => {
   console.info('Promise returned to indicate a successful setting of the extra parameters.');
 }).catch ((err: BusinessError) => {
-    console.error(`Failed to set the audio extra parameters ${err}`);
+  console.error(`Failed to set the audio extra parameters ${err}`);
 });
 ```
 
@@ -354,19 +504,21 @@ Obtains the value of an audio parameter. This API uses a promise to return the r
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
-| ------- | -------------------------|
-| 6800101 | Invalid parameter error. |
+| ------ | -------------------------|
+| 202 | Not system App. |
+|  401  | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let subKeys: Array<String> = ['key_example'];
 audioManager.getExtraParameters('key_example', subKeys).then((value: Record<string, string>) => {
   console.info(`Promise returned to indicate that the value of the audio extra parameters is obtained ${value}.`);
 }).catch ((err: BusinessError) => {
-    console.error(`Failed to get the audio extra parameters ${err}`);
+  console.error(`Failed to get the audio extra parameters ${err}`);
 });
 ```
 
@@ -384,13 +536,13 @@ Sets an audio scene. This API uses an asynchronous callback to return the result
 
 | Name  | Type                                | Mandatory| Description                |
 | :------- | :----------------------------------- | :--- | :------------------- |
-| scene    | [AudioScene](#audioscene8) | Yes  | Audio scene to set.      |
+| scene    | [AudioScene](js-apis-audio.md#audioscene8) | Yes  | Audio scene to set.      |
 | callback | AsyncCallback<void\>                 | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL, (err: BusinessError) => {
   if (err) {
@@ -415,7 +567,7 @@ Sets an audio scene. This API uses a promise to return the result.
 
 | Name| Type                                | Mandatory| Description          |
 | :----- | :----------------------------------- | :--- | :------------- |
-| scene  | [AudioScene](#audioscene8) | Yes  | Audio scene to set.|
+| scene  | [AudioScene](js-apis-audio.md#audioscene8) | Yes  | Audio scene to set.|
 
 **Return value**
 
@@ -426,7 +578,7 @@ Sets an audio scene. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
   console.info('Promise returned to indicate a successful setting of the audio scene mode.');
@@ -435,21 +587,21 @@ audioManager.setAudioScene(audio.AudioScene.AUDIO_SCENE_PHONE_CALL).then(() => {
 });
 ```
 
-### getSpatializationManager<sup>11+</sup>
+### getEffectManager<sup>18+</sup>
 
-getSpatializationManager(): AudioSpatializationManager
+getEffectManager(): AudioEffectManager
 
-Obtains an **AudioSpatializationManager** instance.
+Obtains an **AudioEffectManager** instance.
 
 **System API**: This is a system API.
 
-**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+**System capability**: SystemCapability.Multimedia.Audio.Core
 
 **Return value**
 
-| Type                                      | Description                         |
-|------------------------------------------| ----------------------------- |
-| [AudioSpatializationManager](#audiospatializationmanager11) | **AudioSpatializationManager** instance.|
+| Type                                          | Description                         |
+|----------------------------------------------| ----------------------------- |
+| [AudioEffectManager](#audioeffectmanager18) | **AudioEffectManager** instance.|
 
 **Error codes**
 
@@ -462,8 +614,50 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
+import { audio } from '@kit.AudioKit';
+
+let audioEffectManager: audio.AudioEffectManager = audioManager.getEffectManager();
+```
+
+### disableSafeMediaVolume<sup>12+</sup>
+
+disableSafeMediaVolume(): Promise&lt;void&gt;
+
+Disables the safe volume mode. This API uses a promise to return the result.
+
+When the device plays at a high volume for a long time while the safe volume mode is disabled, the system does not automatically remind the user to decrease the volume to a safe volume.
+
+**Required permissions**: ohos.permission.MODIFY_AUDIO_SETTINGS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Return value**
+
+| Type                                      | Description                         |
+|------------------------------------------| ----------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioManager.disableSafeMediaVolume().then(() => {
+  console.info('disableSafeMediaVolume success.');
+}).catch ((err: BusinessError) => {
+  console.error(`disableSafeMediaVolume fail: ${err.code},${err.message}`);
+});
 ```
 
 ### on('volumeChange')<sup>(deprecated)</sup>
@@ -474,7 +668,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 >
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on('volumeChange')](js-apis-audio.md#onvolumechange9) in **AudioVolumeManager**.
 
-Subscribes to system volume change events. This API uses an asynchronous callback to return the result.
+Subscribes to the system volume change event, which is triggered when the system volume is changed. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -503,7 +697,7 @@ audioManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-Subscribes to ringer mode change events. This API uses an asynchronous callback to return the result.
+Subscribes to the ringer mode change event, which is triggered when [audioringmode](js-apis-audio.md#audioringmode) is changed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -551,7 +745,7 @@ Obtains the volume groups. This API uses an asynchronous callback to return the 
 
 **Example**
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeManager.getVolumeGroupInfos(audio.LOCAL_NETWORK_ID, (err: BusinessError, value: audio.VolumeGroupInfos) => {
   if (err) {
@@ -621,12 +815,13 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let volumegroupinfos: audio.VolumeGroupInfos = audioVolumeManager.getVolumeGroupInfosSync(audio.LOCAL_NETWORK_ID);
@@ -635,6 +830,275 @@ try {
   let error = err as BusinessError;
   console.error(`Failed to obtain the volumeGroup list ${error}`);
 }
+```
+
+### getAppVolumePercentageForUid<sup>18+</sup>
+
+getAppVolumePercentageForUid(uid: number\): Promise<number\>
+
+Obtains the volume of an application based on the application ID. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                              |
+| ---------- | ---------------------------------------- | ---- |----------------------------------|
+| uid    | number                                   | Yes  | Application ID.|
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;number&gt; | Promise used to return the application volume (ranging from 0 to 100).|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+
+**Example**
+
+```ts
+let uid: number = 20010041; // Application ID.
+
+audioVolumeManager.getAppVolumePercentageForUid(20010041).then((value: number) => {
+  console.info(`app volume is ${value}.`);
+});
+```
+
+### setAppVolumePercentageForUid<sup>18+</sup>
+
+setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
+
+Sets the volume for an application based on the application ID. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description      |
+| ---------- | ---------------------------------------- | ---- |----------|
+| uid    | number                                   | Yes  | Application ID.  |
+| volume    | number                                   | Yes  | Volume to set.|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | Crash or blocking occurs in system process. |
+
+**Example**
+
+```ts
+let uid: number = 20010041; // Application ID.
+let volume: number = 20;    // Volume to set.
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, volume).then(() => {
+  console.info(`set app volume success.`);
+});
+```
+
+### isAppVolumeMutedForUid<sup>18+</sup>
+
+isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
+
+Checks whether the application volume is muted based on the application ID. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> If multiple callers have muted the application, it will only be unmuted when all callers have explicitly unmuted it.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                                       |
+| ---------- | ---------------------------------------- | ---- |-------------------------------------------|
+| uid    | number                                   | Yes  | Application ID.                                   |
+| owned    | boolean                                   | Yes  | Mute state to check. The value **true** means to check the mute state for the current caller, and **false** means to check the mute state for the application.|
+
+**Return value**
+
+| Type               | Description                 |
+| ------------------- |---------------------|
+| Promise&lt;boolean&gt; | Promise used to return the result. The value **true** means that the application volume is muted, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
+
+**Example**
+
+```ts
+let uid: number = 20010041; // Application ID.
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, true).then((value: boolean) => {
+  console.info(`app muted state is ${value}.`);
+});
+```
+
+### setAppVolumeMutedForUid<sup>18+</sup>
+
+setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
+
+Sets the mute state for an application based on the application ID. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                                     | Mandatory| Description                            |
+| ---------- | ---------------------------------------- | ---- |--------------------------------|
+| uid    | number                                   | Yes  | Application ID.                        |
+| owned    | boolean                                   | Yes  | Mute state to set. The value **true** means to mute the application, and **false** means to unmute the application.|
+
+**Return value**
+
+| Type               | Description                           |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | Crash or blocking occurs in system process. |
+
+**Example**
+
+```ts
+let uid: number = 20010041; // Application ID.
+
+audioVolumeManager.setAppVolumePercentageForUid(uid, true).then(() => {
+  console.info(`set app mute state success.`);
+});
+```
+
+### on('appVolumeChangeForUid')<sup>18+</sup>
+
+on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>): void
+
+Subscribes to the application-level volume change event of an application. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                               |
+| -------- | -------------------------------------- | ---- |-----------------------------------|
+| type     | string                                 | Yes  | Event type. The event **'appVolumeChangeForUid'** is triggered when the application-level volume is changed.|
+| uid | number |  Yes  | Application ID.                         |
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | Yes  | Callback used to return the changed volume.                 |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+let uid: number = 20010041; // Application ID.
+
+audioVolumeManager.on('appVolumeChangeForUid', uid, (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### off('appVolumeChangeForUid')<sup>18+</sup>
+
+off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
+
+Unsubscribes from the application-level volume change event of an application. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name  | Type                                  | Mandatory| Description                                                        |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string | Yes  | Event type. The event **'appVolumeChangeForUid'** is triggered when the application-level volume is changed.|
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | No  | Callback used to return the changed volume.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+// Cancel all subscriptions to the event.
+audioVolumeManager.off('appVolumeChangeForUid');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let appVolumeChangeForUidCallback = (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+};
+
+audioVolumeManager.on('appVolumeChangeForUid', appVolumeChangeForUidCallback);
+
+audioVolumeManager.off('appVolumeChangeForUid', appVolumeChangeForUidCallback);
 ```
 
 ## AudioVolumeGroupManager<sup>9+</sup>
@@ -660,13 +1124,13 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
-| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](js-apis-audio.md#getminvolume9) and [getMaxVolume](js-apis-audio.md#getmaxvolume9).|
 | callback   | AsyncCallback&lt;void&gt;           | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => {
   if (err) {
@@ -696,7 +1160,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 | Name    | Type                               | Mandatory| Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
-| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](js-apis-audio.md#getminvolume9) and [getMaxVolume](js-apis-audio.md#getmaxvolume9).|
 
 **Return value**
 
@@ -708,6 +1172,51 @@ This permission is required only for muting or unmuting the ringer when **volume
 
 ```ts
 audioVolumeGroupManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
+  console.info('Promise returned to indicate a successful volume setting.');
+});
+```
+
+### setVolumeWithFlag<sup>12+</sup>
+
+setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): Promise&lt;void&gt;
+
+Sets the volume for a stream, with a flag to specify whether to display the system volume bar during the volume change. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
+
+This permission is required only for muting or unmuting the ringer when **volumeType** is set to **AudioVolumeType.RINGTONE**.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Volume
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description                                  |
+| ---------- | ----------------------------------- | ---- |--------------------------------------|
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                              |
+| volume     | number                              | Yes  | Volume. The volume range can be obtained by calling [getMinVolume](js-apis-audio.md#getminvolume9) and [getMaxVolume](js-apis-audio.md#getmaxvolume9).|
+| flags      | number                              | Yes  | Whether to display the system volume bar. The value **0** means not to display the system volume bar, and **1** means the opposite.|
+
+**Return value**
+
+| Type               | Description                         |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+
+**Example**
+
+```ts
+audioVolumeGroupManager.setVolumeWithFlag(audio.AudioVolumeType.MEDIA, 10, 1).then(() => {
   console.info('Promise returned to indicate a successful volume setting.');
 });
 ```
@@ -737,7 +1246,7 @@ This permission is required only for muting or unmuting the ringer when **volume
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
   if (err) {
@@ -807,7 +1316,7 @@ This permission is required only for muting or unmuting the ringer.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
@@ -884,8 +1393,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied.                          |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Input parameter value error.                |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
@@ -922,13 +1431,15 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP, (err: BusinessError) => {
   if (err) {
@@ -971,13 +1482,15 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.adjustVolumeByStep(audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the volume by step.');
@@ -1014,13 +1527,15 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP, (err: BusinessError) => {
   if (err) {
@@ -1062,14 +1577,16 @@ This permission is required only for muting or unmuting the ringer when **volume
 For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 
 | ID| Error Message|
-| ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| -------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, audio.VolumeAdjustType.VOLUME_UP).then(() => {
   console.info('Success to adjust the system volume by step.');
@@ -1077,122 +1594,143 @@ audioVolumeGroupManager.adjustSystemVolumeByStep(audio.AudioVolumeType.MEDIA, au
   console.error('Fail to adjust the system volume by step.');
 });
 ```
+## AudioEffectManager<sup>18+</sup>
+
+Manages audio effects. Before calling an API in **AudioEffectManager**, you must use [getEffectManager](#geteffectmanager18) to obtain an **AudioEffectManager** instance.
+
+
+### getSupportedAudioEffectProperty<sup>18+</sup>
+
+getSupportedAudioEffectProperty(): Array\<AudioEffectProperty>
+
+Obtains the supported audio effects. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Return value**
+
+| Type                                                                     | Description                                   |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Array\<[AudioEffectProperty](#audioeffectproperty18)>     | Properties of the audio effects supported.             |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 6800301 | System error. Return by callback. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioStreamManager.getSupportedAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getSupportedAudioEffectProperty ERROR: ${error}`);
+}
+```
+
+
+### getAudioEffectProperty<sup>18+</sup>
+
+getAudioEffectProperty(): Array\<AudioEffectProperty>
+
+Obtains the audio effect in use. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Core
+
+**Return value**
+
+| Type                                                                     | Description                                   |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Array\<[AudioEffectProperty](#audioeffectproperty18)>     | Audio effect in use.                       |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 6800301 | System error. Return by callback. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioStreamManager.getAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`getAudioEffectProperty ERROR: ${error}`);
+}
+```
+
+### setAudioEffectProperty<sup>18+</sup>
+
+setAudioEffectProperty(propertyArray: Array\<AudioEffectProperty>): void
+
+Sets an audio effect in use. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.core
+
+**Parameters**
+| Name       | Type                                                 | Mandatory    | Description                        |
+| ------------- | ----------------------------------------------------- | -------- | ---------------------------- |
+| propertyArray | Array\<[AudioEffectProperty](#audioeffectproperty18)> | Yes      |  Property of the audio effect.       |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Caller is not a system application. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Possible causes: 1.more than one enhanceProps of the same enhanceClass in input Array; 2.input audioEnhanceProperties are not supported by current device. 3.names of enhanceProp or enhanceClass are incorrect.|
+| 6800301 | System error. Return by callback. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let propertyArray: Array<audio.AudioEffectProperty> = audioEffectManager.getAudioEffectProperty();
+  console.info(`The effect modes are: ${propertyArray}`);
+  audioEffectManager.setAudioEffectProperty(propertyArray);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`setAudioEffectProperty ERROR: ${error}`);
+}
+```
 
 ## AudioRoutingManager<sup>9+</sup>
 
 Implements audio routing management. Before calling any API in **AudioRoutingManager**, you must use [getRoutingManager](js-apis-audio.md#getroutingmanager9) to obtain an **AudioRoutingManager** instance.
-
-### getAvailableDevices<sup>11+</sup>
-
-getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
-
-Obtains the available audio devices. This API returns the result synchronously.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name    | Type                     | Mandatory| Description            |
-| ---------- | ------------------------- | ---- | ---------------- |
-| deviceUsage| [DeviceUsage](#deviceusage11) | Yes  | Device usage.|
-
-**Return value**
-
-| Type                                                        | Description                     |
-| ------------------------------------------------------------ | ------------------------- |
-| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | Device list.|
-
-**Error codes**
-
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
-
-**Example**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-try {
-  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
-  console.info(`Indicate that the device list is obtained ${data}`);
-} catch (err) {
-  let error = err as BusinessError;
-  console.error(`Failed to obtain the device list. ${error}`);
-}
-```
-
-### on('availableDeviceChange')<sup>11+</sup>
-
-on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
-
-Subscribes to available audio device change events. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                                | Mandatory| Description                                      |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The event **'availableDeviceChange'** is triggered when the available devices change.|
-| deviceUsage | [DeviceUsage](#deviceusage11)                       | Yes  | Device usage.    |
-| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | Yes  | Callback used to return the available device change details.|
-
-**Error codes**
-
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
-
-**Example**
-
-```ts
-audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, (deviceChanged: audio.DeviceChangeAction) => {
-  console.info('device change type : ' + deviceChanged.type);
-  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
-  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
-  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
-});
-```
-
-### off('availableDeviceChange')<sup>11+</sup>
-
-off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
-
-Unsubscribes from available audio device change events. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Multimedia.Audio.Device
-
-**System API**: This is a system API.
-
-**Parameters**
-
-| Name  | Type                                               | Mandatory| Description                                      |
-| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The event **'availableDeviceChange'** is triggered when the available devices change.|
-| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)> | No  | Callback used to return the available device change details.|
-
-**Error codes**
-
-For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
-
-**Example**
-
-```ts
-audioRoutingManager.off('availableDeviceChange');
-```
 
 ### selectInputDevice<sup>9+</sup>
 
@@ -1213,8 +1751,8 @@ Selects an audio input device. Currently, only one input device can be selected.
 
 **Example**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.INPUT_DEVICE,
@@ -1267,8 +1805,8 @@ Selects an audio input device. Currently, only one input device can be selected.
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.INPUT_DEVICE,
@@ -1313,8 +1851,8 @@ Selects an audio output device. Currently, only one output device can be selecte
 
 **Example**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -1366,8 +1904,8 @@ Selects an audio output device. Currently, only one output device can be selecte
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
@@ -1413,8 +1951,8 @@ Selects an audio output device based on the filter criteria. Currently, only one
 
 **Example**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
@@ -1476,8 +2014,8 @@ Selects an audio output device based on the filter criteria. Currently, only one
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
@@ -1512,6 +2050,384 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
+### selectInputDeviceByFilter<sup>18+</sup>
+
+selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDevices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+Selects an audio input device based on the filter criteria. Currently, only one input device can be selected. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                                                               | Mandatory| Description    |
+| ----------------------|-------------------------------------------------------------------| ---- |--------|
+| filter                      | [AudioCapturerFilter](#audiocapturerfilter18)                     | Yes  | Filter criteria.|
+| inputAudioDevices | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | Yes  | Input device.|
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
+
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+let inputAudioDeviceDescriptor: audio.AudioDeviceDescriptors = [{
+    deviceRole : audio.DeviceRole.INPUT_DEVICE,
+    deviceType : audio.DeviceType.MIC,
+    id : 1,
+    name : "",
+    address : "",
+    sampleRates : [44100],
+    channelCounts : [2],
+    channelMasks : [0],
+    networkId : audio.LOCAL_NETWORK_ID,
+    interruptGroupId : 1,
+    volumeGroupId : 1,
+    displayName : "",
+}];
+
+async function selectInputDeviceByFilter(){
+    let audioManager = audio.getAudioManager();  // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager();  // Call an API of AudioManager to create an AudioRoutingManager instance.
+    audioRoutingManager.selectInputDeviceByFilter(inputAudioCapturerFilter, inputAudioDeviceDescriptor).then(() => {
+        console.info('Select input devices by filter result promise: SUCCESS');
+    }).catch((err: BusinessError) => {
+        console.error(`Result ERROR: ${err}`);
+    })
+}
+```
+
+### getPreferredOutputDeviceByFilter<sup>18+</sup>
+
+getPreferredOutputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescriptors
+
+Obtains an audio output device based on the filter criteria.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| filter                      | [AudioRendererFilter](#audiorendererfilter9)                 | Yes  | Filter criteria.              |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)| return the device list. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
+
+**Example**
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let outputAudioRendererFilter: audio.AudioRendererFilter = {
+  uid : 20010041,
+  rendererInfo : {
+    usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags : 0
+  },
+  rendererId : 0
+};
+
+async function selectOutputDeviceByFilter(){
+    let audioManager = audio.getAudioManager();  // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager();  // Call an API of AudioManager to create an AudioRoutingManager instance.
+    let desc : audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceByFilter(outputAudioRendererFilter);
+    console.info(`device descriptor: ${desc}`);
+}
+```
+
+### getPreferredInputDeviceByFilter<sup>18+</sup>
+
+getPreferredInputDeviceByFilter(filter: AudioCapturerFilter): AudioDeviceDescriptors
+
+Obtains an audio input device based on the filter criteria. Currently, only one input device can be acquired.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                                           | Mandatory| Description                     |
+|---------------------|-----------------------------------------------| ---- | ------------------------- |
+| filter              | [AudioCapturerFilter](#audiocapturerfilter18) | Yes  | Filter criteria.|
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | return the device list. |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 |  Parameter verification failed.|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+
+async function getPreferredInputDeviceByFilter(){
+    let audioManager = audio.getAudioManager();  // Create an AudioManager instance.
+    let audioRoutingManager = audioManager.getRoutingManager();  // Call an API of AudioManager to create an AudioRoutingManager instance.
+    let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceByFilter(inputAudioCapturerFilter);
+    console.info(`device descriptor: ${desc}`);
+}
+```
+
+### excludeOutputDevices<sup>18+</sup>
+
+excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+Excludes output devices. Once this API is successfully called, audio will no longer be played on the specified devices.
+
+> **NOTE**
+>
+> This API can exclude only external output devices, but not local output devices.
+
+**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
+| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | List of output devices to exclude.              |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no result.|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+let excludedDevices: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 3,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
+}];
+
+async function excludeOutputDevices(){
+  audioRoutingManager.excludeOutputDevices(usage, excludedDevices, (err: BusinessError) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Exclude Output Devices result callback: SUCCESS'); }
+  });
+}
+```
+
+### unexcludeOutputDevices<sup>18+</sup>
+
+unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promise&lt;void&gt;
+
+Restores previously excluded output devices. Once this API is called successfully, the audio output device can be reselected.
+
+**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
+| devices          | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors)            | Yes  | Lit of output devices to restore.              |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no result.|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+let unexcludedDevices: audio.AudioDeviceDescriptors = [{
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 3,
+  name : "",
+  address : "",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : "",
+}];
+
+async function unexcludeOutputDevices(){
+  audioRoutingManager.unexcludeOutputDevices(usage, unexcludedDevices, (err: BusinessError) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info('Unexclude Output Devices result callback: SUCCESS'); }
+  });
+}
+```
+
+### unexcludeOutputDevices<sup>18+</sup>
+
+unexcludeOutputDevices(usage: DeviceUsage): Promise&lt;void&gt;
+
+Restores all previously excluded output devices that are used for a specific purpose. Once this API is called successfully, the audio output device can be reselected.
+
+**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no result.|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+
+async function unexcludeOutputDevices(){
+  audioRoutingManager.unexcludeOutputDevices(usage).then(() => {
+    console.info('Unexclude Output Devices result promise: SUCCESS');
+  }).catch((err: BusinessError) => {
+    console.error(`Result ERROR: ${err}`);
+  });
+}
+```
+
+### getExcludedDevices<sup>18+</sup>
+
+getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
+
+Obtains excluded output devices.
+
+**Required permissions**: ohos.permission.MANAGE_AUDIO_CONFIG
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| usage          | [DeviceUsage](js-apis-audio.md#deviceusage12)            | Yes  | Device type. Only output devices can be excluded.              |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | List of excluded output devices.|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let usage: audio.DeviceUsage.MEDIA_OUTPUT_DEVICES;
+
+async function getExcludedDevices(){
+  let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getExcludedDevices(usage);
+  console.info(`device descriptor: ${desc}`);
+}
+```
+
 ## AudioRendererChangeInfo<sup>9+</sup>
 
 Describes the audio renderer change event.
@@ -1540,7 +2456,7 @@ Describes an audio device.
 
 | Name                         | Type                      | Readable| Writable| Description      |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| networkId<sup>9+</sup>        | string                     | Yes  | No  | ID of the device network.<br>This is a system API.<br>**System capability**: SystemCapability.Multimedia.Audio.Device|
+| networkId<sup>9+</sup>        | string                     | Yes  | No  | ID of the device network.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
 | interruptGroupId<sup>9+</sup> | number                     | Yes  | No  | ID of the interruption group to which the device belongs.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
 | volumeGroupId<sup>9+</sup>    | number                     | Yes  | No  | ID of the volume group to which the device belongs.<br>This is a system API.<br> **System capability**: SystemCapability.Multimedia.Audio.Device|
 
@@ -1552,14 +2468,14 @@ Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you m
 
 | Name         | Type                                    | Mandatory| Description         |
 | -------------| ---------------------------------------- | ---- | -------------- |
-| uid          | number                                   |  No | Application ID.<br>**System capability**: SystemCapability.Multimedia.Audio.Core|
-| rendererInfo | [AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) |  No | Audio renderer information.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer|
-| rendererId   | number                                   |  No | Unique ID of an audio stream.<br>**System capability**: SystemCapability.Multimedia.Audio.Renderer|
+| uid          | number                                   |  No | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
+| rendererInfo | [AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) |  No | Audio renderer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer|
+| rendererId   | number                                   |  No | Unique ID of an audio stream.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer|
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let outputAudioRendererFilter: audio.AudioRendererFilter = {
   uid : 20010041,
@@ -1570,10 +2486,47 @@ let outputAudioRendererFilter: audio.AudioRendererFilter = {
   rendererId : 0
 };
 ```
+## AudioCapturerFilter<sup>18+</sup>
+
+Filter criteria. Before calling **selectOutputDeviceByFilter**, you must obtain an **AudioCapturerFilter** instance.
+
+**System API**: This is a system API.
+
+| Name         | Type                                    | Mandatory| Description         |
+| -------------| ---------------------------------------- | ---- | -------------- |
+| uid          | number                                   |  No | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core|
+| capturerInfo | [AudioCapturerInfo](js-apis-audio.md#audiocapturerinfo8) |  No | Audio capturer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Capturer|
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let inputAudioCapturerFilter: audio.AudioCapturerFilter = {
+    uid : 20010041,
+    capturerInfo : {
+        source: audio.SourceType.SOURCE_TYPE_MIC,
+        capturerFlags: 0
+    }
+};
+```
+
+## AudioSpatialEnabledStateForDevice<sup>12+</sup>
+
+Describes the enabled status of spatial audio rendering of the device.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio
+
+| Name                | Type                                                        | Mandatory| Description                     |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| enabled               | boolean                                                      | Yes  | Whether spatial audio rendering or head tracking is enabled. The value **true** means that it is enabled, and **false** means the opposite. |
 
 ## AudioSpatializationManager<sup>11+</sup>
 
-Implements spatial audio management. Before calling an API in **AudioSpatializationManager**, you must use [getSpatializationManager](#getspatializationmanager11) to obtain an **AudioSpatializationManager** instance.
+Implements spatial audio management. Before calling any API in **AudioSpatializationManager**, you must use [getSpatializationManager](js-apis-audio.md#getspatializationmanager18) to obtain an **AudioSpatializationManager** instance.
 
 ### isSpatializationSupported<sup>11+</sup>
 
@@ -1602,8 +2555,8 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let isSpatializationSupported: boolean = audioSpatializationManager.isSpatializationSupported();
   console.info(`AudioSpatializationManager isSpatializationSupported: ${isSpatializationSupported}`);
@@ -1627,7 +2580,7 @@ Checks whether a device supports spatial audio rendering. This API returns the r
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -1642,14 +2595,15 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -1663,7 +2617,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isSpatializationSupportedForDevice: boolean = audioSpatializationManager.isSpatializationSupportedForDevice(deviceDescriptor);
   console.info(`AudioSpatializationManager isSpatializationSupportedForDevice: ${isSpatializationSupportedForDevice}`);
@@ -1700,8 +2655,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isHeadTrackingSupported: boolean = audioSpatializationManager.isHeadTrackingSupported();
   console.info(`AudioSpatializationManager isHeadTrackingSupported: ${isHeadTrackingSupported}`);
@@ -1725,7 +2681,7 @@ Checks whether a device supports head tracking. This API returns the result sync
 
 | Name    | Type                                                        | Mandatory| Description                |
 | ---------- | ------------------------------------------------------------ | ---- | -------------------- |
-| deviceDescriptor | [AudioDeviceDescriptor](#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
 
 **Return value**
 
@@ -1740,14 +2696,15 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let deviceDescriptor: audio.AudioDeviceDescriptor = {
   deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
   deviceType : audio.DeviceType.BLUETOOTH_A2DP,
@@ -1761,7 +2718,8 @@ let deviceDescriptor: audio.AudioDeviceDescriptor = {
   interruptGroupId : 1,
   volumeGroupId : 1,
   displayName : ""
-}
+};
+
 try {
   let isHeadTrackingSupportedForDevice: boolean = audioSpatializationManager.isHeadTrackingSupportedForDevice(deviceDescriptor);
   console.info(`AudioSpatializationManager isHeadTrackingSupportedForDevice: ${isHeadTrackingSupportedForDevice}`);
@@ -1771,11 +2729,15 @@ try {
 }
 ```
 
-### setSpatializationEnabled<sup>11+</sup>
+### setSpatializationEnabled<sup>(deprecated)</sup>
 
 setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Enables or disables spatial audio rendering. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise\<void>](#setspatializationenabled12) instead.
 
 **Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -1788,7 +2750,7 @@ Enables or disables spatial audio rendering. This API uses an asynchronous callb
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | enable                      | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
-| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback that returns no value.|
+| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1798,15 +2760,16 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by callback.      |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError) => {
   if (err) {
     console.error(`Result ERROR: ${err}`);
@@ -1816,11 +2779,15 @@ audioSpatializationManager.setSpatializationEnabled(enable, (err: BusinessError)
 });
 ```
 
-### setSpatializationEnabled<sup>11+</sup>
+### setSpatializationEnabled<sup>(deprecated)</sup>
 
 setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
 Enables or disables spatial audio rendering. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise\<void>](#setspatializationenabled12) instead.
 
 **Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -1848,27 +2815,97 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by promise.       |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setSpatializationEnabled(enable).then(() => {
   console.info(`setSpatializationEnabled success`);
 }).catch((err: BusinessError) => {
   console.error(`Result ERROR: ${err}`);
 });
 ```
+### setSpatializationEnabled<sup>12+</sup>
 
-### isSpatializationEnabled<sup>11+</sup>
+setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise&lt;void&gt;
+
+Enables or disables spatial audio rendering for a device. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description                     |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| enabled               | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by promise.       |
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let deviceDescriptor: audio.AudioDeviceDescriptor = {
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
+};
+let enabled: boolean = true;
+
+audioSpatializationManager.setSpatializationEnabled(deviceDescriptor, enabled).then(() => {
+  console.info(`setSpatializationEnabled success`);
+}).catch((err: BusinessError) => {
+  console.error(`Result ERROR: ${err}`);
+});
+```
+
+### isSpatializationEnabled<sup>(deprecated)</sup>
 
 isSpatializationEnabled(): boolean
 
 Checks whether spatial audio rendering is enabled. This API returns the result synchronously.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean](#isspatializationenabled12) instead.
 
 **System API**: This is a system API.
 
@@ -1891,8 +2928,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled();
   console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
@@ -1902,11 +2940,11 @@ try {
 }
 ```
 
-### on('spatializationEnabledChange')<sup>11+</sup>
+### isSpatializationEnabled<sup>12+</sup>
 
-on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
+isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
-Subscribes to spatial audio rendering status changes.
+Checks whether spatial audio rendering is enabled. This API returns the result synchronously.
 
 **System API**: This is a system API.
 
@@ -1914,10 +2952,15 @@ Subscribes to spatial audio rendering status changes.
 
 **Parameters**
 
-| Name  | Type                                                | Mandatory| Description                                      |
-| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the status of spatial audio rendering.|
+| Name                | Type                                                        | Mandatory| Description                     |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor) | Yes  | Descriptor of the device.    |
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if spatial audio rendering is enabled for the device, and returns **false** otherwise.|
 
 **Error codes**
 
@@ -1926,24 +2969,127 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let deviceDescriptor: audio.AudioDeviceDescriptor = {
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
+};
+
+try {
+  let isSpatializationEnabled: boolean = audioSpatializationManager.isSpatializationEnabled(deviceDescriptor);
+  console.info(`AudioSpatializationManager isSpatializationEnabled: ${isSpatializationEnabled}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### on('spatializationEnabledChange')<sup>(deprecated)</sup>
+
+on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
+
+Subscribes to the spatial audio rendering status change event, which is triggered when the spatial audio rendering status is changed. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onspatializationenabledchangeforanydevice12) instead.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                          |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
+| type     | string | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the spatial audio rendering status is changed.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
 
 audioSpatializationManager.on('spatializationEnabledChange', (isSpatializationEnabled: boolean) => {
   console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
 });
 ```
 
-### off('spatializationEnabledChange')<sup>11+</sup>
+### on('spatializationEnabledChangeForAnyDevice')<sup>12+</sup>
+
+on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void
+
+Subscribes to the spatial audio rendering status change event, which is triggered when the spatial audio rendering status is changed. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                          |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
+| type     | string | Yes  | Event type. The event **'spatializationEnabledChangeForAnyDevice'** is triggered when the spatial audio rendering status is changed.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of spatial audio rendering.   |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioSpatializationManager.on('spatializationEnabledChangeForAnyDevice', (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+});
+```
+
+### off('spatializationEnabledChange')<sup>(deprecated)</sup>
 
 off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
-Unsubscribes from spatial audio rendering status changes.
+Unsubscribes from the spatial audio rendering status change event. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [off(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offspatializationenabledchangeforanydevice12) instead.
 
 **System API**: This is a system API.
 
@@ -1953,8 +3099,8 @@ Unsubscribes from spatial audio rendering status changes.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the status of spatial audio rendering changes.|
-| callback | Callback<boolean\> | No  | Callback used to return the status of spatial audio rendering.|
+| type     | string | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the spatial audio rendering status is changed.|
+| callback | Callback<boolean\> | No  | Callback used to return the result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1963,22 +3109,80 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+// Cancel all subscriptions to the event.
 audioSpatializationManager.off('spatializationEnabledChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let spatializationEnabledChangeCallback = (isSpatializationEnabled: boolean) => {
+  console.info(`isSpatializationEnabled: ${isSpatializationEnabled}`);
+};
+
+audioSpatializationManager.on('spatializationEnabledChange', spatializationEnabledChangeCallback);
+
+audioSpatializationManager.off('spatializationEnabledChange', spatializationEnabledChangeCallback);
 ```
 
+### off('spatializationEnabledChangeForAnyDevice')<sup>12+</sup>
 
-### setHeadTrackingEnabled<sup>11+</sup>
+off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice\>): void
+
+Unsubscribes from the spatial audio rendering status change event. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                          |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
+| type     | string | Yes  | Event type. The event **'spatializationEnabledChangeForAnyDevice'** is triggered when the spatial audio rendering status is changed.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of spatial audio rendering.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+// Cancel all subscriptions to the event.
+audioSpatializationManager.off('spatializationEnabledChangeForAnyDevice');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let spatializationEnabledChangeForAnyDeviceCallback = (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+};
+
+audioSpatializationManager.on('spatializationEnabledChangeForAnyDevice', spatializationEnabledChangeForAnyDeviceCallback);
+
+audioSpatializationManager.off('spatializationEnabledChangeForAnyDevice', spatializationEnabledChangeForAnyDeviceCallback);
+```
+
+### setHeadTrackingEnabled<sup>(deprecated)</sup>
 
 setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 Enables or disables head tracking. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise\<void>](#setheadtrackingenabled12) instead.
 
 **Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -1991,7 +3195,7 @@ Enables or disables head tracking. This API uses an asynchronous callback to ret
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | enable                      | boolean                                                      | Yes  | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
-| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback that returns no value.|
+| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2001,15 +3205,16 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by callback.      |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) => {
   if (err) {
     console.error(`Result ERROR: ${err}`);
@@ -2019,11 +3224,15 @@ audioSpatializationManager.setHeadTrackingEnabled(enable, (err: BusinessError) =
 });
 ```
 
-### setHeadTrackingEnabled<sup>11+</sup>
+### setHeadTrackingEnabled<sup>(deprecated)</sup>
 
 setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 Enables or disables head tracking. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [setHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boolean): Promise\<void>](#setheadtrackingenabled12) instead.
 
 **Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
 
@@ -2051,15 +3260,16 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied. Return by promise.       |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let enable: boolean = true
+let enable: boolean = true;
+
 audioSpatializationManager.setHeadTrackingEnabled(enable).then(() => {
   console.info(`setHeadTrackingEnabled success`);
 }).catch((err: BusinessError) => {
@@ -2067,11 +3277,80 @@ audioSpatializationManager.setHeadTrackingEnabled(enable).then(() => {
 });
 ```
 
-### isHeadTrackingEnabled<sup>11+</sup>
+### setHeadTrackingEnabled<sup>12+</sup>
+
+setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
+
+Enables or disables head tracking for a device. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description                     |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor)         | Yes  | Descriptor of the device.    |
+| enable                | boolean                                                      | Yes  | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;void&gt;   | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by promise.       |
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let deviceDescriptor: audio.AudioDeviceDescriptor = {
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
+};
+let enable: boolean = true;
+
+audioSpatializationManager.setHeadTrackingEnabled(deviceDescriptor, enable).then(() => {
+  console.info(`setHeadTrackingEnabled success`);
+}).catch((err: BusinessError) => {
+  console.error(`Result ERROR: ${err}`);
+});
+```
+
+### isHeadTrackingEnabled<sup>(deprecated)</sup>
 
 isHeadTrackingEnabled(): boolean
 
 Checks whether head tracking is enabled. This API returns the result synchronously.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean](#isheadtrackingenabled12) instead.
 
 **System API**: This is a system API.
 
@@ -2094,8 +3373,9 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 try {
   let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled();
   console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
@@ -2105,11 +3385,77 @@ try {
 }
 ```
 
-### on('headTrackingEnabledChange')<sup>11+</sup>
+### isHeadTrackingEnabled<sup>12+</sup>
+
+isHeadTrackingEnabled(): boolean
+
+Checks whether head tracking is enabled for a device. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description                     |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| deviceDescriptor | [AudioDeviceDescriptor](js-apis-audio.md#audiodevicedescriptor) | Yes  | Descriptor of the device.    |
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | Returns **true** if head tracking is enabled for the device, and returns **false** otherwise.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let deviceDescriptor: audio.AudioDeviceDescriptor = {
+  deviceRole : audio.DeviceRole.OUTPUT_DEVICE,
+  deviceType : audio.DeviceType.BLUETOOTH_A2DP,
+  id : 1,
+  name : "",
+  address : "123",
+  sampleRates : [44100],
+  channelCounts : [2],
+  channelMasks : [0],
+  networkId : audio.LOCAL_NETWORK_ID,
+  interruptGroupId : 1,
+  volumeGroupId : 1,
+  displayName : ""
+};
+
+try {
+  let isHeadTrackingEnabled: boolean = audioSpatializationManager.isHeadTrackingEnabled(deviceDescriptor);
+  console.info(`AudioSpatializationManager isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### on('headTrackingEnabledChange')<sup>(deprecated)</sup>
 
 on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
-Subscribes to head tracking status changes.
+Subscribes to the head tracking status change event, which is triggered when the head tracking status is changed. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#onheadtrackingenabledchangeforanydevice12) instead.
 
 **System API**: This is a system API.
 
@@ -2119,8 +3465,8 @@ Subscribes to head tracking status changes.
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the status of head tracking.|
+| type     | string | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the head tracking status is changed.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2129,24 +3475,66 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioSpatializationManager.on('headTrackingEnabledChange', (isHeadTrackingEnabled: boolean) => {
   console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
 });
 ```
 
-### off('headTrackingEnabledChange')<sup>11+</sup>
+### on('headTrackingEnabledChangeForAnyDevice')<sup>12+</sup>
+
+on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void
+
+Subscribes to the head tracking status change event, which is triggered when the head tracking status is changed. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                      |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string | Yes  | Event type. The event **'headTrackingEnabledChangeForAnyDevice'** is triggered when the head tracking status is changed.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+});
+```
+
+### off('headTrackingEnabledChange')<sup>(deprecated)</sup>
 
 off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
-Unsubscribes from head tracking status changes.
+Unsubscribes from the head tracking status change event. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 11 and deprecated since API version 12. You are advised to use [off(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatialEnabledStateForDevice\>): void](#offheadtrackingenabledchangeforanydevice12) instead.
 
 **System API**: This is a system API.
 
@@ -2156,8 +3544,8 @@ Unsubscribes from head tracking status changes.
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the status of head tracking changes.|
-| callback | Callback<boolean\> | No  | Callback used to return the status of head tracking.|
+| type     | string | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the head tracking status is changed.|
+| callback | Callback<boolean\> | No  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2166,14 +3554,71 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ID| Error Message|
 | ------- | --------------------------------------------|
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
+
+// Cancel all subscriptions to the event.
 audioSpatializationManager.off('headTrackingEnabledChange');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let headTrackingEnabledChangeCallback = (isHeadTrackingEnabled: boolean) => {
+  console.info(`isHeadTrackingEnabled: ${isHeadTrackingEnabled}`);
+};
+
+audioSpatializationManager.on('headTrackingEnabledChange', headTrackingEnabledChangeCallback);
+
+audioSpatializationManager.off('headTrackingEnabledChange', headTrackingEnabledChangeCallback);
+```
+
+### off('headTrackingEnabledChangeForAnyDevice')<sup>12+</sup>
+
+off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpatialEnabledStateForDevice\>): void
+
+Unsubscribes from the head tracking status change event. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string | Yes  | Event type. The event **'headTrackingEnabledChangeForAnyDevice'** is triggered when the head tracking status is changed.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+// Cancel all subscriptions to the event.
+audioSpatializationManager.off('headTrackingEnabledChangeForAnyDevice');
+
+// For the same event, if the callback parameter passed to the off API is the same as that passed to the on API, the off API cancels the subscription registered with the specified callback parameter.
+let headTrackingEnabledChangeForAnyDeviceCallback = (audioSpatialEnabledStateForDevice: audio.AudioSpatialEnabledStateForDevice) => {
+  console.info(`deviceDescriptor: ${audioSpatialEnabledStateForDevice.deviceDescriptor}`);
+  console.info(`isSpatializationEnabled: ${audioSpatialEnabledStateForDevice.enabled}`);
+};
+
+audioSpatializationManager.on('headTrackingEnabledChangeForAnyDevice', headTrackingEnabledChangeForAnyDeviceCallback);
+
+audioSpatializationManager.off('headTrackingEnabledChangeForAnyDevice', headTrackingEnabledChangeForAnyDeviceCallback);
 ```
 
 ### updateSpatialDeviceState<sup>11+</sup>
@@ -2202,23 +3647,108 @@ For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
 | ------- | --------------------------------------------|
 | 201     | Permission denied.                          |
 | 202     | Not system App.                             |
-| 401     | Input parameter type or number mismatch.    |
-| 6800101 | Invalid parameter error.                    |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let spatialDeviceState: audio.AudioSpatialDeviceState = {
   address: "123",
   isSpatializationSupported: true,
   isHeadTrackingSupported: true,
   spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
-}
+};
+
 try {
   audioSpatializationManager.updateSpatialDeviceState(spatialDeviceState);
   console.info(`AudioSpatializationManager updateSpatialDeviceState success`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### setSpatializationSceneType<sup>12+</sup>
+
+setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType): void
+
+Sets the scene type for spatial audio rendering. This API returns the result synchronously.
+
+**Required permissions**: ohos.permission.MANAGE_SYSTEM_AUDIO_EFFECTS
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| spatializationSceneType     | [AudioSpatializationSceneType](#audiospatializationscenetype12)     | Yes  | Scene type.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 201     | Permission denied.                          |
+| 202     | Not system App.                             |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  audioSpatializationManager.setSpatializationSceneType(audio.AudioSpatializationSceneType.DEFAULT);
+  console.info(`AudioSpatializationManager setSpatializationSceneType success`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`ERROR: ${error}`);
+}
+```
+
+### getSpatializationSceneType<sup>12+</sup>
+
+getSpatializationSceneType(): AudioSpatializationSceneType
+
+Obtains the scene type of spatial audio rendering in use. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+**Return value**
+
+| Type                  | Description                                                        |
+| ---------------------- | ------------------------------------------------------------ |
+| [AudioSpatializationSceneType](#audiospatializationscenetype12) | Scene type.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 202     | Not system App.                             |
+
+**Example**
+
+```ts
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let spatializationSceneType: audio.AudioSpatializationSceneType = audioSpatializationManager.getSpatializationSceneType();
+  console.info(`AudioSpatializationManager spatializationSceneType: ${spatializationSceneType}`);
 } catch (err) {
   let error = err as BusinessError;
   console.error(`ERROR: ${error}`);
@@ -2235,22 +3765,22 @@ Defines the state information of a spatial device.
 
 | Name                         | Type                      | Readable| Writable| Description      |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address<sup>11+</sup>                    | string         | Yes  | Yes  | Address of the spatial device.|
-| isSpatializationSupported<sup>11+</sup>  | boolean        | Yes  | Yes  | Whether the spatial device supports spatial audio rendering.|
-| isHeadTrackingSupported<sup>11+</sup>    | boolean        | Yes  | Yes  | Whether the spatial device supports head tracking.|
-| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | Yes  | Yes  | Type of the spatial device.|
+| address | string         | Yes  | Yes  | Address of the spatial device.|
+| isSpatializationSupported | boolean        | Yes  | Yes  | Whether the spatial device supports spatial audio rendering. The value **true** means that spatial audio rendering is supported, and **false** means the opposite.|
+| isHeadTrackingSupported | boolean        | Yes  | Yes  | Whether the spatial device supports head tracking. The value **true** means that head tracking is supported, and **false** means the opposite.|
+| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | Yes  | Yes  | Type of the spatial device.|
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let spatialDeviceState: audio.AudioSpatialDeviceState = {
   address: "123",
   isSpatializationSupported: true,
   isHeadTrackingSupported: true,
   spatialDeviceType: audio.AudioSpatialDeviceType.SPATIAL_DEVICE_TYPE_IN_EAR_HEADPHONE
-}
+};
 ```
 
 ## AudioSpatialDeviceType<sup>11+</sup>
@@ -2269,6 +3799,21 @@ Enumerates the types of spatial devices.
 | SPATIAL_DEVICE_TYPE_OVER_EAR_HEADPHONE     | 3      |  Over-ear headphones.      |
 | SPATIAL_DEVICE_TYPE_GLASSES                | 4      |  Glasses.      |
 | SPATIAL_DEVICE_TYPE_OTHERS                 | 5      |  Other type of the spatial device.|
+
+## AudioSpatializationSceneType<sup>12+</sup>
+
+Enumerates the scene types available for spatial audio rendering.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Spatialization
+
+| Name                              |  Value    | Description                      |
+| ---------------------------------- | ------ | ------------------------- |
+| DEFAULT                            | 0      |  Default scene.           |
+| MUSIC                              | 1      |  Music scene for spatial audio rendering.           |
+| MOVIE                              | 2      |  Movie scene for spatial audio rendering.           |
+| AUDIOBOOK                          | 3      |  Audiobook scene for spatial audio rendering.         |
 
 ## ToneType<sup>9+</sup>
 
@@ -2303,6 +3848,7 @@ Enumerates the tone types of the player.
 | TONE_TYPE_COMMON_SUPERVISORY_RADIO_NOT_AVAILABLE  | 104    | Supervisory tone - radio path not available.    |
 | TONE_TYPE_COMMON_SUPERVISORY_CALL_WAITING         | 106    | Supervisory tone - call waiting tone.       |
 | TONE_TYPE_COMMON_SUPERVISORY_RINGTONE             | 107    | Supervisory tone - ringing tone.           |
+| TONE_TYPE_COMMON_SUPERVISORY_CALL_HOLDING<sup>18+</sup>  | 108  | Call hold tone.           |
 | TONE_TYPE_COMMON_PROPRIETARY_BEEP                 | 200    | Proprietary tone - beep tone.         |
 | TONE_TYPE_COMMON_PROPRIETARY_ACK                  | 201    | Proprietary tone - ACK.               |
 | TONE_TYPE_COMMON_PROPRIETARY_PROMPT               | 203    | Proprietary tone - PROMPT.            |
@@ -2335,7 +3881,7 @@ Loads the DTMF tone configuration. This API uses an asynchronous callback to ret
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err: BusinessError) => {
   if (err) {
@@ -2398,7 +3944,7 @@ Starts DTMF tone playing. This API uses an asynchronous callback to return the r
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 tonePlayer.start((err: BusinessError) => {
   if (err) {
@@ -2455,7 +4001,7 @@ Stops the tone that is being played. This API uses an asynchronous callback to r
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 tonePlayer.stop((err: BusinessError) => {
   if (err) {
@@ -2512,7 +4058,7 @@ Releases the resources associated with the **TonePlayer** instance. This API use
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 tonePlayer.release((err: BusinessError) => {
   if (err) {
@@ -2548,4 +4094,336 @@ tonePlayer.release().then(() => {
 }).catch(() => {
   console.error('promise call release fail');
 });
+```
+
+## AsrProcessingController<sup>12+</sup>
+
+Implements an ASR processing controller.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+### setAsrAecMode<sup>12+</sup>
+
+setAsrAecMode(mode: AsrAecMode): boolean;
+
+Sets an ASR AEC mode. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name| Type                        | Mandatory| Description|
+|-------|----------------------------|-------|-------|
+| mode | [AsrAecMode](#asraecmode12) | Yes|ASR AEC mode.|
+
+**Return value**
+
+| Type| Description                                   |
+|-------|---------------------------------------|
+| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.setAsrAecMode(audio.AsrAecMode.BYPASS);
+```
+
+### getAsrAecMode<sup>12+</sup>
+
+getAsrAecMode(): AsrAecMode;
+
+Obtains the ASR AEC mode in use. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type| Description|
+|-------|-------|
+| [AsrAecMode](#asraecmode12) |ASR AEC mode.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+
+**Example**
+
+```ts
+let mode = asrProcessingController.getAsrAecMode();
+```
+
+### setAsrNoiseSuppressionMode<sup>12+</sup>
+
+setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean;
+
+Sets an ASR noise suppression mode. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description|
+|-------|-------------------------------------------------------|-------|-------|
+| mode | [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) | Yes|ASR noise suppression mode.|
+
+**Return value**
+
+| Type| Description                                    |
+|-------|----------------------------------------|
+| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.setAsrNoiseSuppressionMode(audio.AsrNoiseSuppressionMode.BYPASS);
+```
+
+### getAsrNoiseSuppressionMode<sup>12+</sup>
+
+getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode;
+
+Obtains the ASR noise suppression mode in use. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type                     |Description|
+|-------------------------|-------|
+| [AsrNoiseSuppressionMode](#asrnoisesuppressionmode12) |ASR noise suppression mode.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+let mode = asrProcessingController.getAsrNoiseSuppressionMode();
+```
+
+### isWhispering<sup>12+</sup>
+
+isWhispering(): boolean;
+
+Checks whether it is in the whisper state.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type| Description                      |
+|-------|--------------------------|
+| boolean | **true**: It is in the whisper state.<br>**false**: It is not in the whisper state.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202 | Caller is not a system application. |
+| 6800104 | Operation not allowed. |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.isWhispering();
+```
+
+### setAsrWhisperDetectionMode<sup>12+</sup>
+
+setAsrWhisperDetectionMode(mode: AsrWhisperDetectionMode): boolean
+
+Sets an ASR whisper detection mode.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name | Type                 | Mandatory| Description    |
+|------|---------------------|-------|--------|
+| mode | [AsrWhisperDetectionMode](#asrwhisperdetectionmode12) | Yes| ASR whisper detection mode.|
+
+**Return value**
+
+| Type| Description                                    |
+|-------|----------------------------------------|
+| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202     | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters unspecified; 2.Incorrect parameter types.                 |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed.                 |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.setAsrWhisperDetectionMode(audio.AsrWhisperDetectionMode.BYPASS);
+```
+
+
+### getAsrWhisperDetectionMode<sup>12+</sup>
+
+getAsrWhisperDetectionMode(): AsrWhisperDetectionMode
+
+Obtains the ASR whisper detection mode. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Return value**
+
+| Type| Description    |
+|-------|--------|
+| [AsrWhisperDetectionMode](#asrwhisperdetectionmode12) | ASR whisper detection mode.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202     | Caller is not a system application. |
+| 6800104 | Operation not allowed.                 |
+
+**Example**
+
+```ts
+let mode = asrProcessingController.getAsrWhisperDetectionMode();
+```
+
+
+### setAsrVoiceControlMode<sup>12+</sup>
+
+setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
+
+Sets an ASR voice control mode of the uplink channel for reporting modem and call recording during a call.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name | Type                 | Mandatory| Description    |
+|------|---------------------|-------|--------|
+| mode | [AsrVoiceControlMode](#asrvoicecontrolmode12) | Yes| ASR voice control mode.|
+| enable   | boolean             | Yes| Whether to enable the ASR voice control mode. The value **true** means to enable the ASR voice control mode, and **false** means the opposite.  |
+
+**Return value**
+
+| Type| Description                                                           |
+|-------|---------------------------------------------------------------|
+| boolean | Operation result. The value **true** means that the setting is successful, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202     | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters unspecified; 2.Incorrect parameter types.                 |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed.                 |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.setAsrVoiceControlMode(audio.AsrVoiceControlMode.AUDIO_2_VOICE_TX, true);
+```
+
+### setAsrVoiceMuteMode<sup>12+</sup>
+
+setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean
+
+Sets an ASR voice mute mode.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Audio.Capturer
+
+**Parameters**
+
+| Name | Type                                   | Mandatory| Description      |
+|------|---------------------------------------|-------|----------|
+| mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | Yes| ASR voice mute mode.|
+| enable   | boolean                               | Yes| Whether to enable the ASR voice mute mode. The value **true** means to enable the ASR voice mute mode, and **false** means the opposite.|
+
+**Return value**
+
+| Type| Description                                              |
+|-------|--------------------------------------------------|
+| boolean | Operation result. The value **true** means that the setting is successful, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](errorcode-audio.md).
+
+| ID  | Error Message                                    |
+|---------|------------------------------------------|
+| 202     | Caller is not a system application. |
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters unspecified; 2.Incorrect parameter types.                 |
+| 6800101 | Parameter verification failed. |
+| 6800104 | Operation not allowed.                 |
+
+**Example**
+
+```ts
+let flag = asrProcessingController.setAsrVoiceMuteMode(audio.AsrVoiceMuteMode.OUTPUT_MUTE, true);
 ```

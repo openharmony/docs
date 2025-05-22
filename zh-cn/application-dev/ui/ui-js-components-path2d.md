@@ -169,7 +169,7 @@ export default {
     },
     addPath() {
         if (this.isAdd == "addPath2") {
-            // 删除指定指定区域的绘制内容
+            // 删除指定区域的绘制内容
             this.ctx.clearRect(0, 0, 600, 600);
             this.ctx.beginPath();
             // 将另一个的路径添加到当前路径对象中

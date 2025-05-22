@@ -1,5 +1,3 @@
-
-
 # 物联网解决方案之芯海cst85芯片移植案例
 
 本文介绍基于芯海cst85芯片的cst85_wblink开发板移植OpenHarmony LiteOS-M轻量系统的移植案例。开发了Wi-Fi连接样例和XTS测试样例，同时实现了wifi_lite, lwip, startup, utils, xts, hdf等部件基于OpenHarmony LiteOS-M内核的适配。移植架构上采用Board和Soc分离的方案，工具链采用NewLib C库，LiteOS-M内核编译采用gn结合Kconfig图形化配置的方式。
@@ -46,28 +44,28 @@ vendor
 ### 单板配置
 在产品定义关联到的目录下，以/device/board/chipsea/cst85_wblink为例，需要在liteos_m目录下放置config.gni文件，这个配置文件用于描述该单板的信息，包括cpu, toolchain, kernel, compile_flags等。例如：
 ```
-# 内核类型
+# 内核类型。
 kernel_type = "liteos_m"
 
-# 内核版本
+# 内核版本。
 kernel_version = "3.0.0"
 
-# 单板CPU类型
+# 单板CPU类型。
 board_cpu = "cortex-m4"
 
-# 工具链，这里使用arm-none-eabi
+# 工具链，这里使用arm-none-eabi。
 board_toolchain = "arm-none-eabi"
 
 # 工具链路径，可以使用系统路径，填""，也可以自定义，如下：
 board_toolchain_path = ""
 
-# 单板相关的编译参数
+# 单板相关的编译参数。
 board_cflags = []
 
-# 单板相关的链接参数
+# 单板相关的链接参数。
 board_ld_flags = []
 
-# 单板相关的头文件
+# 单板相关的头文件。
 board_include_dirs = []
 
 # Board adapter dir for OHOS components.
@@ -79,7 +77,7 @@ board_adapter_dir = "${ohos_root_path}device/soc/chipsea"
 
 ![ohos_config.json](figures/cst85_hb_set.png)
 
-选择好产品后，输入回车就会在根目录下自动生成`ohos_config.json`文件，这里会列出待编译的产品信息:
+选择好产品后，输入回车就会在根目录下自动生成`ohos_config.json`文件，这里会列出待编译的产品信息：
 
 ```
 {
@@ -294,7 +292,7 @@ LOSCFG_PLATFORM_EXC=y
 ```
 
 ### 中断适配
-要使LiteOS-M系统正常的运转起来，有两个中断服务例程必须重定向到LiteOS-M指定的ISR：HalPendSV和OsTickerHandler。而这取决于适配LiteOS-M系统时是否让LiteOS-M来接管中断向量表。
+要使LiteOS-M系统正常的运转起来，有两个中断服务线程必须重定向到LiteOS-M指定的ISR：HalPendSV和OsTickerHandler。而这取决于适配LiteOS-M系统时是否让LiteOS-M来接管中断向量表。
 ```
 /**
  * @ingroup los_config
@@ -309,14 +307,14 @@ LOSCFG_PLATFORM_EXC=y
 #endif
 ```
 
-#### 操作系统接管还是不接管中断向量
+#### 操作系统是否接管中断向量
 LiteOS接管与否可以通过配置target_config.h中的配置来实现。1接管，0不接管。
 ```
 #define LOSCFG_USE_SYSTEM_DEFINED_INTERRUPT                 0
 ```
 
 
-如果配置为1，这时LiteOS会修改SCB->VTOR为g_hwiForm。所以需要在启动的时候通过调用LITEOS的"ArchHwiCreate"接口把芯片原先的ISRs(中断服务程序)配置到新的中断向量表g_hwiForm中去, 而PendSV和SysTicke的中断服务例程则重定向到HalPendSV和OsTickerHandler。否则芯片原先的ISRs不会响应。
+如果配置为1，这时LiteOS会修改SCB->VTOR为g_hwiForm。所以需要在启动的时候通过调用LITEOS的"ArchHwiCreate"接口把芯片原先的ISRs(中断服务程序)配置到新的中断向量表g_hwiForm中去, 而PendSV和SysTicke的中断服务线程则重定向到HalPendSV和OsTickerHandler。否则芯片原先的ISRs不会响应。
 
 如果配置为0，则使用芯片原有的中断向量表，对于CST85F01而言就是__vectors_start___(NVIC_Vectors_Init会把__isr_vector的内容拷贝过来)。但要想适配LITEOS的话，必须把PendSV和SysTick的中断服务程序重定向到HalPendSV和OsTickHandler才行，否则系统跑不起来。
 
@@ -335,12 +333,12 @@ static void OsVectorInit(void)
 在Cortex-M的相关文档已经说明，中断向量表的地址最小是32字对齐，也就是0x80。
 举例来说，如果需要21个中断，因为系统中断有16个，所以总共就有37个中断，需要37\*4个表项，一个0x80已经不够了，需要两个0x80，也就是0x100才能覆盖的住。
 
-而在cst85f01的适配中， 我们的中断向量LIMIT为128个(target_config.h中定义的)：
+而在cst85f01的适配中，我们的中断向量LIMIT为128个(target_config.h中定义的)：
 ```
 #define LOSCFG_PLATFORM_HWI_LIMIT                           128
 ```
 我们需要128个中断，加上系统中断，总共(128+16)=144个中断，需要144\*4个表项，这些表项总共需要4个0x80才能盖的住，也即必须是0x200对齐才行。否则，会出现系统重启的现象。
-为此，我们需要把中断对齐覆盖为0x200:
+为此，我们需要把中断对齐覆盖为0x200：
 ```
 #ifndef LOSCFG_ARCH_HWI_VECTOR_ALIGN
 #define LOSCFG_ARCH_HWI_VECTOR_ALIGN                         0x200
@@ -373,9 +371,9 @@ int32_t hal_vfs_init(void)
         memset(VfsOps, 0, sizeof(struct lfs_manager));
     }
 
-    VfsOps->LfsOps.read = lfs_block_read; //read flash 接口
-    VfsOps->LfsOps.prog = lfs_block_write; //write flash 接口
-    VfsOps->LfsOps.erase = lfs_block_erase; //erase flash 接口
+    VfsOps->LfsOps.read = lfs_block_read; //read flash 接口。
+    VfsOps->LfsOps.prog = lfs_block_write; //write flash 接口。
+    VfsOps->LfsOps.erase = lfs_block_erase; //erase flash 接口。
     VfsOps->LfsOps.sync = lfs_block_sync; 
     VfsOps->LfsOps.read_size = 256;  
     VfsOps->LfsOps.prog_size = 256;
@@ -410,7 +408,7 @@ int32_t hal_vfs_init(void)
 
 ### C库适配
 
-在轻量系统中，C库适配比较复杂，设计思路请参考[LiteOS-M内核支持musl与newlib平滑切换方案](https://gitee.com/arvinzzz/ohos_kernel_design_specification/blob/master/liteos_m/%E6%94%AF%E6%8C%81newlib/%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8Dnewlib%E6%96%B9%E6%A1%88%E6%80%9D%E8%B7%AF.md)， 自带`newlib`的C库，那么系统移植整体采用`newlib`的C库。在`vendor/chipsea/iotlink_demo/kernel_configs/debug.config`选中LOSCFG_LIBC_NEWLIB=y即可。
+在轻量系统中，C库适配比较复杂，设计思路请参考[LiteOS-M内核支持musl与newlib平滑切换方案](https://gitee.com/arvinzzz/ohos_kernel_design_specification/blob/master/liteos_m/%E6%94%AF%E6%8C%81newlib/%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8Dnewlib%E6%96%B9%E6%A1%88%E6%80%9D%E8%B7%AF.md)，自带`newlib`的C库，那么系统移植整体采用`newlib`的C库。在`vendor/chipsea/iotlink_demo/kernel_configs/debug.config`选中LOSCFG_LIBC_NEWLIB=y即可。
 
 
 ### printf适配
@@ -739,14 +737,14 @@ bootstrap提供的自动初始化宏如下表所示：
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
-| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口 |
-| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口 |
-| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口   |
-| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
+| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口。 |
+| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口。 |
+| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口。   |
+| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
-​如在 `vendor/chipsea/wblink_demo/config.json` 中配置了`bootstrap_lite` 部件
+​如在 `vendor/chipsea/wblink_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
 ```
     {

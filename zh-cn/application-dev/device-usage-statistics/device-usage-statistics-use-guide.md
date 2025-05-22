@@ -8,7 +8,7 @@
 ## 接口说明
 注册相关接口包导入：
 ```ts
-import usageStatistics from '@ohos.resourceschedule.usageStatistics';
+import { usageStatistics } from '@kit.BackgroundTasksKit';
 ```
 
 **表1** 设备使用信息统计主要接口
@@ -28,7 +28,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 | function isIdleState(bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void | 判断指定Bundle Name的应用当前是否是空闲状态。 |
 |function isIdleStateSync(bundleName: string): boolean; | 判断指定Bundle Name的应用当前是否是空闲状态，同步接口。 |
 | function queryModuleUsageRecords(callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 查询FA使用记录，返回不超过1000条FA使用记录。 |
-| function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000|
+| function queryModuleUsageRecords(maxNum: number, callback: AsyncCallback&lt;HapModuleInfo&gt;): void | 根据maxNum，查询FA使用记录，返回不超过maxNum条FA使用记录。 maxNum不超过1000。|
 | function queryNotificationEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询所有应用的通知次数。 |
 | function queryDeviceEventStats(begin: number, end: number, callback: AsyncCallback&lt;Array&lt;DeviceEventStats&gt;&gt;): void | 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息。 |
 | function setAppGroup(bundleName : string, newGroup: GroupType, callback: AsyncCallback&lt;void&gt;): void | 给应用名是bundleName的应用分组设置成newGroup，返回设置结果是否成功，以callback形式返回。 |
@@ -42,12 +42,12 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 1. 获取设备使用信息之前，需要检查是否已经配置请求相应的权限。
     系统提供的设备使用信息统计的权限是ohos.permission.BUNDLE_ACTIVE_INFO
-    具体配置方式请参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级的应用申请权限)。
+    具体配置方式请参考[申请应用权限](../security/AccessToken/determine-application-mode.md#system_basic等级应用申请权限的方式)。
 
 2. 通过指定起始和结束时间查询所有应用的事件集合，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise方式
     usageStatistics.queryBundleEvents(0, 20000000000000).then( (res : Array<usageStatistics.BundleEvents>) => {
@@ -63,7 +63,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // 异步方法callback方式
     usageStatistics.queryBundleEvents(0, 20000000000000, (err : BusinessError, res : Array<usageStatistics.BundleEvents>) => {
         if (err) {
-            console.log('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+            console.error('BUNDLE_ACTIVE queryBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryBundleEvents callback success.');
             for (let i = 0; i < res.length; i++) {
@@ -77,7 +77,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 3. 通过指定起始和结束时间查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise方式
     usageStatistics.queryBundleStatsInfos(0, 20000000000000).then( (res : usageStatistics.BundleStatsMap) => {
@@ -90,7 +90,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // 异步方法callback方式
     usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err : BusinessError, res : usageStatistics.BundleStatsMap) => {
         if (err) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryBundleStatsInfos callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback success.');
         console.log('BUNDLE_ACTIVE queryBundleStatsInfos callback result ' + JSON.stringify(res));
@@ -101,7 +101,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 4. 通过指定起始和结束时间查询当前应用的事件集合，不需要配置权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise方式
     usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then( (res : Array<usageStatistics.BundleEvents>) => {
@@ -117,7 +117,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // 异步方法callback方式
     usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err : BusinessError, res : Array<usageStatistics.BundleEvents>) => {
         if (err) {
-        console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryCurrentBundleEvents callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE queryCurrentBundleEvents callback success.');
         for (let i = 0; i < res.length; i++) {
@@ -131,7 +131,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 5. 通过指定时间段间隔（天、周、月、年）查询应用使用时长统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise方式
     usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then( (res : Array<usageStatistics.BundleStatsInfo>) => {
@@ -148,7 +148,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
     usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err : BusinessError, res : Array<usageStatistics.BundleStatsInfo>) => {
         if (err) {
-        console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval callback success.');
         for (let i = 0; i < res.length; i++) {
@@ -162,7 +162,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 6. 查询当前应用的使用优先级群组，不需要配置权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // promise方式
     usageStatistics.queryAppGroup().then( (res : number) => {
@@ -174,7 +174,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // callback方式
     usageStatistics.queryAppGroup((err : BusinessError, res : number) => {
         if(err) {
-            console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+            console.error('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
             console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
         }
@@ -188,7 +188,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 7. 判断指定Bundle Name的应用当前是否是空闲状态，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise方式
     usageStatistics.isIdleState("com.ohos.camera").then( (res : boolean) => {
@@ -200,7 +200,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // 异步方法callback方式
     usageStatistics.isIdleState("com.ohos.camera", (err : BusinessError, res : boolean) => {
         if (err) {
-        console.log('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE isIdleState callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE isIdleState callback succeeded, result: ' + JSON.stringify(res));
         }
@@ -213,7 +213,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 8. 查询FA使用记录。返回数量最大不超过maxNum设置的值，若不传入maxNum参数，则默认maxNum为1000, 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise方式
     usageStatistics.queryModuleUsageRecords(1000).then( (res : Array<usageStatistics.HapModuleInfo>) => {
@@ -240,7 +240,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // 异步方法callback方式
     usageStatistics.queryModuleUsageRecords(1000, (err : BusinessError, res : Array<usageStatistics.HapModuleInfo>) => {
         if(err) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
         for (let i = 0; i < res.length; i++) {
@@ -253,7 +253,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // 无maxNum参数异步方法callback方式
     usageStatistics.queryModuleUsageRecords((err : BusinessError, res : Array<usageStatistics.HapModuleInfo>) => {
         if(err) {
-        console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryModuleUsageRecords callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE queryModuleUsageRecords callback succeeded.');
         for (let i = 0; i < res.length; i++) {
@@ -267,7 +267,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 9. 通过指定起始和结束时间查询所有应用的通知次数，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise方式
     usageStatistics.queryNotificationEventStats(0, 20000000000000).then( (res : Array<usageStatistics.DeviceEventStats>) => {
@@ -280,7 +280,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // 异步方法callback方式
     usageStatistics.queryNotificationEventStats(0, 20000000000000, (err : BusinessError, res : Array<usageStatistics.DeviceEventStats>) => {
         if(err) {
-        console.log('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryNotificationEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE queryNotificationEventStats callback success.');
         console.log('BUNDLE_ACTIVE queryNotificationEventStats callback result ' + JSON.stringify(res));
@@ -291,7 +291,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 10. 通过指定起始和结束时间查询系统事件（休眠、唤醒、解锁、锁屏）统计信息，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise方式
     usageStatistics.queryDeviceEventStats(0, 20000000000000).then( (res : Array<usageStatistics.DeviceEventStats>) => {
@@ -304,7 +304,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // 异步方法callback方式
     usageStatistics.queryDeviceEventStats(0, 20000000000000, (err : BusinessError, res : Array<usageStatistics.DeviceEventStats>) => {
         if(err) {
-        console.log('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryDeviceEventStats callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE queryDeviceEventStats callback success.');
         console.log('BUNDLE_ACTIVE queryDeviceEventStats callback result ' + JSON.stringify(res));
@@ -315,7 +315,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 11. 查询指定bundleName的应用的使用优先级群组，返回查询的优先级分组结果，需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
      ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 有bundleName异步promise方式
     let bundleName = "com.ohos.camera";
@@ -329,7 +329,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     let bundleName = "com.ohos.camera";
     usageStatistics.queryAppGroup(bundleName, (err : BusinessError, res : number) => {
         if(err) {
-        console.log('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE queryAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE queryAppGroup callback succeeded. result: ' + JSON.stringify(res));
         }
@@ -339,7 +339,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 12. 给指定bundleName的应用的优先级分组设置成newGroup。 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise
     let bundleName = "com.example.deviceUsageStatistics";
@@ -356,17 +356,17 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     let newGroup = usageStatistics.GroupType.DAILY_GROUP;
     usageStatistics.setAppGroup(bundleName, newGroup, (err : BusinessError) => {
         if(err) {
-        console.log('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE setAppGroup callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE setAppGroup callback succeeded.');
         }
     });
     ```
 
-13. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限
+13. 注册应用分组变化监听回调，返回注册是否成功，当应用分组发生变化时，会给所有已注册的监听者返回回调信息， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // 异步方法promise形式
     function  onBundleGroupChanged (res : usageStatistics.AppGroupCallbackInfo) {
@@ -394,7 +394,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     };
     usageStatistics.registerAppGroupCallBack(onBundleGroupChanged, (err : BusinessError) => {
     if(err) {
-        console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE registerAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
     } else {
         console.log('BUNDLE_ACTIVE registerAppGroupCallBack callback success.');
     }
@@ -404,7 +404,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 14. 解除应用分组监听回调， 需要配置ohos.permission.BUNDLE_ACTIVE_INFO权限。
 
     ```ts
-    import { BusinessError } from '@ohos.base';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     // promise
     usageStatistics.unregisterAppGroupCallBack().then( () => {
@@ -416,7 +416,7 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
     // callback
     usageStatistics.unregisterAppGroupCallBack((err : BusinessError) => {
         if(err) {
-        console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
+        console.error('BUNDLE_ACTIVE unregisterAppGroupCallBack callback failed. code is: ' + err.code + ',message is: ' + err.message);
         } else {
         console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack callback success.');
         }
@@ -428,4 +428,4 @@ import usageStatistics from '@ohos.resourceschedule.usageStatistics';
 
 - [存储空间统计（ArkTS）（Full SDK）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceManagement/StorageStatistic)
 
-- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics)
+- [设备使用信息统计（ArkTS）（Full SDK）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/DeviceUsageStatistics/DeviceUsageStatistics)

@@ -28,12 +28,12 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 | 环境依赖          | 版本型号                                                     | 详细说明                                                     |
 | ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 操作系统          | Ubuntu20.04及以上                                            | 代码编译环境                                                 |
-| Linux系统扩展组件 | libreadline-dev                                              | 命令行读取插件                                               |
-| python            | 3.7.5版本及以上                                              | 测试框架语言                                                 |
-| python插件        | pyserial 3.3及以上、paramiko2.7.1及以上、setuptools40.8.0及以上、rsa4.0及以上 | pserial：支持python的串口通信；paramiko：支持python使用SSH协议；setuptools：支持python方便创建和分发python包；rsa：支持python rsa加密 |
-| NFS Server        | haneWIN NFS Server 1.2.50及以上或者 NFS v4及以上             | 支持设备通过串口连接，使用轻量、小型设备                     |
-| HDC               | 1.2.0a                                                        | 支持设备通过HDC连接                                          |
+| 操作系统          | Ubuntu20.04及以上                                            | 代码编译环境。                                                 |
+| Linux系统扩展组件 | libreadline-dev                                              | 命令行读取插件。                                               |
+| python            | 3.7.5版本及以上                                              | 测试框架语言。                                                 |
+| python插件        | pyserial 3.3及以上、paramiko2.7.1及以上、setuptools40.8.0及以上、rsa4.0及以上 | pserial：支持python的串口通信；paramiko：支持python使用SSH协议；setuptools：支持python方便创建和分发python包；rsa：支持python rsa加密。 |
+| NFS Server        | haneWIN NFS Server 1.2.50及以上或者 NFS v4及以上             | 支持设备通过串口连接，使用轻量、小型设备。                     |
+| HDC               | 1.2.0a                                                        | 支持设备通过HDC连接。                                         |
 
 
 
@@ -93,7 +93,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     Requirement already satisfied: pyserial in d:\programs\python37\lib\site-packages\pyserial-3.4-py3.7.egg (3.4)
     ```
 
-6. 如果设备仅支持串口输出测试结果，则需要安装NFS Server
+6. 如果设备仅支持串口输出测试结果，则需要安装NFS Server。
 
 	> **说明：** 
 	> 
@@ -120,10 +120,10 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 | 检查项                                             | 操作                                                | 满足环境                  |
 | -------------------------------------------------- | --------------------------------------------------- | ------------------------- |
-| 检查python安装成功                                 | 命令行窗口执行命令：python --version                | 版本不小于3.7.5即可       |
-| 检查python扩展插件安装成功                         | 打开test/developertest目录，执行start.bat或start.sh | 可进入提示符“>>>”界面即可 |
-| 检查NFS Server启动状态（被测设备仅支持串口时检测） | 通过串口登录开发板，执行mount命令挂载NFS            | 可正常挂载文件目录即可    |
-| 检查HDC安装成功                                    | 命令行窗口执行命令：hdc -v                      | 版本不小于1.2.0a即可       |
+| 检查python安装成功                                 | 命令行窗口执行命令：python --version。                | 版本不小于3.7.5即可。       |
+| 检查python扩展插件安装成功                         | 打开test/developertest目录，执行start.bat或start.sh。 | 可进入提示符“>>>”界面即可。 |
+| 检查NFS Server启动状态（被测设备仅支持串口时检测） | 通过串口登录开发板，执行mount命令挂载NFS。            | 可正常挂载文件目录即可。    |
+| 检查HDC安装成功                                    | 命令行窗口执行命令：hdc -v。                     | 版本不小于1.2.0a即可。       |
 
 
 ## 编写测试用例
@@ -132,7 +132,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 **TDD测试（C++）**
 
-- 用例源文件命名规范
+- 用例源文件命名规范。
 
     测试用例源文件名称和测试套内容保持一致，文件命名采用全小写+下划线格式，以test结尾，具体格式为：[功能]_[子功能]_test，子功能支持向下细分。
 
@@ -169,22 +169,22 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     
     void CalculatorSubTest::SetUpTestCase(void)
     {
-        // input testsuit setup step，setup invoked before all testcases
+        // input testsuit setup step，setup invoked before all testcases.
     }
     
     void CalculatorSubTest::TearDownTestCase(void)
     {
-        // input testsuit teardown step，teardown invoked after all testcases
+        // input testsuit teardown step，teardown invoked after all testcases.
     }
     
     void CalculatorSubTest::SetUp(void)
     {
-        // input testcase setup step，setup invoked before each testcases
+        // input testcase setup step，setup invoked before each testcases.
     }
     
     void CalculatorSubTest::TearDown(void)
     {
-        // input testcase teardown step，teardown invoked after each testcases
+        // input testcase teardown step，teardown invoked after each testcases.
     }
     
     /**
@@ -195,15 +195,15 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
      */
     HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
     {
-        // step 1:调用函数获取结果
+        // step 1:调用函数获取结果。
         int actual = Sub(4，0)；
     
-        // Step 2:使用断言比较预期与实际结果
+        // Step 2:使用断言比较预期与实际结果。
         EXPECT_EQ(4, actual);
     }
     ```
     详细内容介绍：
-    1. 添加测试用例文件头注释信息
+    1. 添加测试用例文件头注释信息。
 	    ```
     	/*
     	 * Copyright (c) 2023 XXXX Device Co., Ltd.
@@ -220,17 +220,17 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     	 * limitations under the License.
     	 */
     	```
-    2. 引用测试框架头文件和命名空间
+    2. 引用测试框架头文件和命名空间。
 	    ```
     	#include <gtest/gtest.h>
     	
     	using namespace testing::ext;
     	```
-    3. 添加被测试类的头文件
+    3. 添加被测试类的头文件。
 	    ```
     	#include "calculator.h"
     	```
-    4. 定义测试套（测试类）
+    4. 定义测试套（测试类）。
 		> **注意：** 在定义测试套时，测试套名称应与编译目标保持一致，采用大驼峰风格。
 	    ```
     	class CalculatorSubTest : public testing::Test {
@@ -243,26 +243,26 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
         
     	void CalculatorSubTest::SetUpTestCase(void)
     	{
-    	    // input testsuit setup step，setup invoked before all testcases
+    	    // input testsuit setup step，setup invoked before all testcases.
     	}
         
     	void CalculatorSubTest::TearDownTestCase(void)
     	{
-    	    // input testsuit teardown step，teardown invoked after all testcases
+    	    // input testsuit teardown step，teardown invoked after all testcases.
     	}
         
     	void CalculatorSubTest::SetUp(void)
     	{
-    	    // input testcase setup step，setup invoked before each testcases
+    	    // input testcase setup step，setup invoked before each testcases.
     	}
         
     	void CalculatorSubTest::TearDown(void)
     	{
-    	    // input testcase teardown step，teardown invoked after each testcases
+    	    // input testcase teardown step，teardown invoked after each testcases.
     	}
     	```
 
-    5. 测试用例实现，包含用例注释和逻辑实现
+    5. 测试用例实现，包含用例注释和逻辑实现。
 	    ```
     	/**
     	 * @tc.name: integer_sub_001
@@ -272,10 +272,10 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     	 */
     	HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
     	{
-    	    //step 1:调用函数获取结果
+    	    //step 1:调用函数获取结果.
     	    int actual = Sub(4，0)；
         
-    	    //Step 2:使用断言比较预期与实际结果
+    	    //Step 2:使用断言比较预期与实际结果.
     	    EXPECT_EQ(4, actual);
     	}
     	```
@@ -297,7 +297,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	namespace AAFwk {
     class AAFwkBaseObjectTest : public testing::Test {......}
 
-	// Step 1:待测函数，返回阶乘结果
+	// Step 1:待测函数，返回阶乘结果。
 	int factorial(int n)
 	{
 		int result = 1;
@@ -308,16 +308,16 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		return result;
 	} 
 
-	// Step 2:使用断言比较预期与实际结果
+	// Step 2:使用断言比较预期与实际结果。
 	void factorial_test()
 	{
-		int ret = factorial(3); // 调用函数获取结果
+		int ret = factorial(3); // 调用函数获取结果。
 		std::thread::id this_id = std::this_thread::get_id();
 		std::ostringstream oss;
 		oss << this_id;
 		std::string this_id_str = oss.str();
 		long int thread_id = atol(this_id_str.c_str());
-		printf("running thread...: %ld\n", thread_id); // 输出当前线程的id
+		printf("running thread...: %ld\n", thread_id); // 输出当前线程的id。
 		EXPECT_EQ(ret, 6);
 	}
 
@@ -336,16 +336,16 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		printf("Factorial_test_002 END\n");
 	}
 
-	}  // namespace AAFwk
-	}  // namespace OHOS
+	}  // namespace AAFwk.
+	}  // namespace OHOS.
 
     ```
     详细内容介绍：
-    1. 添加测试用例文件头注释信息
+    1. 添加测试用例文件头注释信息。
 
 		> **注意：** 与单线程用例标准一致。
 
-    2. 引用测试框架头文件和命名空间
+    2. 引用测试框架头文件和命名空间。
 	    ```
     	#include <gtest/gtest.h>
     	#include <gtest/hwext/gtest-multithread.h>
@@ -353,21 +353,21 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     	using namespace testing::ext;
    		using namespace testing::mt;
     	```
-    3. 添加被测试类的头文件
+    3. 添加被测试类的头文件。
 	    ```
     	#include "base_object.h"
     	```
-    4. 定义测试套（测试类）
+    4. 定义测试套（测试类）。
 	    ```
     	class AAFwkBaseObjectTest : public testing::Test {......}
 
     	```
 	    > **注意：** 与单线程用例标准一致。
 
-    5. 测试用例实现，包含用例注释和逻辑实现
+    5. 测试用例实现，包含用例注释和逻辑实现。
 
 	    ```
-		// Step 1:待测函数，返回阶乘结果
+		// Step 1:待测函数，返回阶乘结果。
 		int factorial(int n)
 		{
 			int result = 1;
@@ -378,16 +378,16 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 			return result;
 		} 
 	
-		// Step 2:使用断言比较预期与实际结果
+		// Step 2:使用断言比较预期与实际结果。
 		void factorial_test()
 		{
-			int ret = factorial(3); // 调用函数获取结果
+			int ret = factorial(3); // 调用函数获取结果。
 			std::thread::id this_id = std::this_thread::get_id();
 			std::ostringstream oss;
 			oss << this_id;
 			std::string this_id_str = oss.str();
 			long int thread_id = atol(this_id_str.c_str());
-			printf("running thread...: %ld\n", thread_id); // 输出当前线程的id
+			printf("running thread...: %ld\n", thread_id); // 输出当前线程的id。
 			EXPECT_EQ(ret, 6);
 		}
 
@@ -397,11 +397,11 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     	{
 			SET_THREAD_NUM(4); // 设置线程数量，同一测试套中可动态设置线程数。
 			printf("Factorial_test_001 BEGIN\n");
-			GTEST_RUN_TASK(factorial_test); // 启动factorial_test任务的多线程执行
+			GTEST_RUN_TASK(factorial_test); // 启动factorial_test任务的多线程执行。
 			printf("Factorial_test_001 END\n");
     	}
 
-		// HWMTEST_F(TEST_SUITE, TEST_TC, TEST_LEVEL, THREAD_NUM)
+		// HWMTEST_F(TEST_SUITE, TEST_TC, TEST_LEVEL, THREAD_NUM).
 		// THREAD_NUM可设置用例执行的线程数量。
 		// HWMTEST_F会创建指定数量的线程并执行被测函数。
     	HWMTEST_F(AAFwkBaseObjectTest, Factorial_test_002, TestSize.Level1, 6)
@@ -422,10 +422,10 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 	|      类型 |    描述 |
 	| ------------| ------------|
-	| HWTEST(A,B,C)| 用例执行不依赖Setup&Teardown时，可选取|
-	| HWTEST_F(A,B,C)| 用例执行（不含参数）依赖于Setup&Teardown时，可选取|
-	| HWMTEST_F(A,B,C,D)| 多线程用例执行依赖于Setup&Teardown时，可选取|
-	| HWTEST_P(A,B,C)| 用例执行（含参数）依赖于Set&Teardown时，可选取|
+	| HWTEST(A,B,C)| 用例执行不依赖Setup&Teardown时，可选取。|
+	| HWTEST_F(A,B,C)| 用例执行（不含参数）依赖于Setup&Teardown时，可选取。|
+	| HWMTEST_F(A,B,C,D)| 多线程用例执行依赖于Setup&Teardown时，可选取。|
+	| HWTEST_P(A,B,C)| 用例执行（含参数）依赖于Set&Teardown时，可选取。|
 
 
 	其中，参数A，B，C的含义如下：
@@ -459,7 +459,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 **TDD测试（JavaScript）**
 
-- 用例源文件命名规范
+- 用例源文件命名规范。
 
 
 	测试用例原文件名称采用大驼峰风格，以Test结尾，具体格式为：[功能][子功能]Test，子功能支持向下细分。
@@ -468,7 +468,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	AppInfoTest.js
 	```
 
-- 用例示例
+- 用例示例。
 
 	```js
 	/*
@@ -491,22 +491,22 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 	describe("AppInfoTest", function () {
 		beforeAll(function() {
-			// input testsuit setup step，setup invoked before all testcases
+			// input testsuit setup step，setup invoked before all testcases.
 			console.info('beforeAll caled')
 		})
 		
 		afterAll(function() {
-			// input testsuit teardown step，teardown invoked after all testcases
+			// input testsuit teardown step，teardown invoked after all testcases.
 			console.info('afterAll caled')
 		})
 		
 		beforeEach(function() {
-			// input testcase setup step，setup invoked before each testcases
+			// input testcase setup step，setup invoked before each testcases.
 			console.info('beforeEach caled')
 		})
 		
 		afterEach(function() {
-			// input testcase teardown step，teardown invoked after each testcases
+			// input testcase teardown step，teardown invoked after each testcases.
 			console.info('afterEach caled')
 		})
 
@@ -517,16 +517,16 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		* @tc.require: issueNumber
 		*/
 		it("appInfoTest001", 0, function () {
-			//step 1:调用函数获取结果
+			//step 1:调用函数获取结果。
 			var info = app.getInfo()
 
-			//Step 2:使用断言比较预期与实际结果
+			//Step 2:使用断言比较预期与实际结果。
 			expect(info != null).assertEqual(true)
 		})
 	})
 	```
 	详细内容介绍：
-	1. 添加测试用例文件头注释信息
+	1. 添加测试用例文件头注释信息。
 		```
 		/*
 		* Copyright (C) 2023 XXXX Device Co., Ltd.
@@ -543,36 +543,36 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		* limitations under the License.
 		*/
 		```
-	2. 导入被测api和jsunit测试库
+	2. 导入被测api和jsunit测试库。
 		```js
 		import app from '@system.app'
 		
 		import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
 		```
-	3. 定义测试套（测试类）
+	3. 定义测试套（测试类）。
 		```js
 		describe("AppInfoTest", function () {
 			beforeAll(function() {
-				// input testsuit setup step，setup invoked before all testcases
+				// input testsuit setup step，setup invoked before all testcases.
 				console.info('beforeAll caled')
 			})
 			
 			afterAll(function() {
-				// input testsuit teardown step，teardown invoked after all testcases
+				// input testsuit teardown step，teardown invoked after all testcases.
 				console.info('afterAll caled')
 			})
 			
 			beforeEach(function() {
-				// input testcase setup step，setup invoked before each testcases
+				// input testcase setup step，setup invoked before each testcases.
 				console.info('beforeEach caled')
 			})
 			
 			afterEach(function() {
-				// input testcase teardown step，teardown invoked after each testcases
+				// input testcase teardown step，teardown invoked after each testcases.
 				console.info('afterEach caled')
 			})
 		```
-	4. 测试用例实现
+	4. 测试用例实现。
 		```JS
 		/*
 		* @tc.name:appInfoTest001
@@ -581,10 +581,10 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		* @tc.require: issueNumber
 		*/
 		it("appInfoTest001", 0, function () {
-			//step 1:调用函数获取结果
+			//step 1:调用函数获取结果。
 			var info = app.getInfo()
 		
-			//Step 2:使用断言比较预期与实际结果
+			//Step 2:使用断言比较预期与实际结果。
 			expect(info != null).assertEqual(true)
 		})
 		```
@@ -592,7 +592,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 **TDD测试（Rust）**
 
-- 用例源文件命名规范
+- 用例源文件命名规范。
 
     测试用例源文件名称和测试套内容保持一致，测试套命名采用全小写rust_+下划线格式，以test结尾，具体格式为：rust_[功能]_[子功能]_test，子功能支持向下细分。
 
@@ -614,7 +614,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
      * limitations under the License.
      */
     
-    /// pub add
+    /// pub add.
     pub fn add(a: i32, b: i32) -> i32 {
         a + b
     }
@@ -638,7 +638,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     }
     ```
     详细内容介绍：
-    1. 添加测试用例文件头注释信息
+    1. 添加测试用例文件头注释信息。
 	    ```
     	/*
     	 * Copyright (c) 2023 XXXX Device Co., Ltd.
@@ -655,7 +655,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     	 * limitations under the License.
     	 */
     	```
-    2. 定义测试类
+    2. 定义测试类。
 	    ```Rust
         /// pub add
         pub fn add(a: i32, b: i32) -> i32 {
@@ -667,7 +667,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
             a - b
         }
     	```
-    3. 测试用例实现
+    3. 测试用例实现。
 	    ```Rust
         #[cfg(test)]
         mod tests {
@@ -684,7 +684,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
            }
         }
     	```
-        > **注意：** #[cfg(test)]属性将测试代码标记为测试模块，并使用#[test]属性标记测试函数，这样才能被Rust的测试框架识别为测试函数
+        > **注意：** #[cfg(test)]属性将测试代码标记为测试模块，并使用#[test]属性标记测试函数，这样才能被Rust的测试框架识别为测试函数。
 
 **Fuzzing安全测试**
 
@@ -740,15 +740,15 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	```
 	详细内容如下：
 
-	1. 添加文件头注释信息
+	1. 添加文件头注释信息。
 		```
 		# Copyright (c) 2023 XXXX Device Co., Ltd.
 		```
-	2. 导入编译模板文件
+	2. 导入编译模板文件。
 		```
 		import("//build/test.gni")
 		```
-	3. 指定文件输出路径
+	3. 指定文件输出路径。
 		```
 		module_output_path = "developertest/calculator"
 		```
@@ -756,7 +756,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> 
 		> 此处输出路径为部件/模块名。
 
-	4. 配置依赖包含目录
+	4. 配置依赖包含目录。
 
 		```
 		config("module_private_config") {
@@ -769,13 +769,13 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		>  
 		> 一般在此处对相关配置进行设置，在测试用例编译脚本中可直接引用。
 
-	5. 指定测试用例编译目标输出的文件名称
+	5. 指定测试用例编译目标输出的文件名称。
 
 		```
 		ohos_unittest("CalculatorSubTest") {
 		}
 		```
-	6. 编写具体的测试用例编译脚本（添加需要参与编译的源文件、配置和依赖）
+	6. 编写具体的测试用例编译脚本（添加需要参与编译的源文件、配置和依赖）。
 		```
 		ohos_unittest("CalculatorSubTest") {
 		module_out_path = module_output_path
@@ -793,17 +793,17 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> **说明：** 
 		> 
 		> 根据测试类型的不同，在具体编写过程中可选择不同的测试类型。
-		> - ohos_unittest：单元测试
-        > - ohos_js_unittest: FA模型js用例单元测试
-        > - ohos_js_stage_unittest: stage模型ArkTs用例单元测试
-		> - ohos_moduletest：模块测试
-		> - ohos_systemtest：系统测试
-		> - ohos_performancetest：性能测试
-		> - ohos_securitytest：安全测试
-		> - ohos_reliabilitytest：可靠性测试
-		> - ohos_distributedtest：分布式测试
+		> - ohos_unittest：单元测试。
+        > - ohos_js_unittest: FA模型js用例单元测试。
+        > - ohos_js_stage_unittest: stage模型ArkTs用例单元测试。
+		> - ohos_moduletest：模块测试。
+		> - ohos_systemtest：系统测试。
+		> - ohos_performancetest：性能测试。
+		> - ohos_securitytest：安全测试。
+		> - ohos_reliabilitytest：可靠性测试。
+		> - ohos_distributedtest：分布式测试。
 
-	7. 对目标测试用例文件进行条件分组
+	7. 对目标测试用例文件进行条件分组。
 
 		```
 		group("unittest") {
@@ -839,19 +839,19 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 	详细内容如下：
 
-	1. 添加文件头注释信息
+	1. 添加文件头注释信息。
 
 		```
 		# Copyright (C) 2023 XXXX Device Co., Ltd.
 		```
 
-	2. 导入编译模板文件
+	2. 导入编译模板文件。
 
 		```
 		import("//build/test.gni")
 		```
 
-	3. 指定文件输出路径
+	3. 指定文件输出路径。
 
 		```
 		module_output_path = "developertest/app_info"
@@ -860,7 +860,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> 
 		> 此处输出路径为部件/模块名。
 
-	4. 指定测试用例编译目标输出的文件名称
+	4. 指定测试用例编译目标输出的文件名称。
 
 		```
 		ohos_js_unittest("GetAppInfoJsTest") {
@@ -894,7 +894,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 			},
 			"apiVersion": {
 				"compatible": 4,
-				"target": 5     // 根据被测sdk版本进行修改，此例为sdk5
+				"target": 5     // 根据被测sdk版本进行修改，此例为sdk5。
 			}
 		},
 		"deviceConfig": {},
@@ -945,7 +945,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		}
 		```
  
-	6. 对目标测试用例文件进行条件分组
+	6. 对目标测试用例文件进行条件分组。
 
 		```
 		group("unittest") {
@@ -999,19 +999,19 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     ```
 	详细内容如下：
 
-	1. 添加文件头注释信息
+	1. 添加文件头注释信息。
 
 		```
 		# Copyright (C) 2023 XXXX Device Co., Ltd.
 		```
 
-	2. 导入编译模板文件
+	2. 导入编译模板文件。
 
 		```
 		import("//build/test.gni")
 		```
 
-	3. 指定文件输出路径
+	3. 指定文件输出路径。
 
 		```
 		want_output_path = "developertest/stage_test"
@@ -1020,7 +1020,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		> 
 		> 此处输出路径为部件/模块名。
 
-	4. 指定测试用例编译目标输出的文件名称
+	4. 指定测试用例编译目标输出的文件名称。
 
 		```
 		ohos_js_stage_unittest("ActsBundleMgrStageEtsTest") {
@@ -1037,11 +1037,11 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
         hap_profile = "entry/src/main/module.json"
         certificate_profile = "signature/openharmony_sx.p7b"
         subsystem_name = "developertest"
-        part_name = "stage_test"  // 部件名称
+        part_name = "stage_test"  // 部件名称。
 		}
 		```
 
-	6. 指定配置资源文件（添加需要参与编译的源文件、配置和依赖）
+	6. 指定配置资源文件（添加需要参与编译的源文件、配置和依赖）。
 		```
 		# 声明一个HAP的AppScope模块，该目标的app_profile和sources会在编译时拼接到具体的entry内编译。
 		ohos_app_scope("actbmsstageetstest_app_profile") {
@@ -1063,7 +1063,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 		```
 
-   7. 对目标测试用例文件进行条件分组
+   7. 对目标测试用例文件进行条件分组。
 
        ```
        group("unittest") {
@@ -1102,18 +1102,18 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 	详细内容如下：
 
-	1. 添加文件头注释信息
+	1. 添加文件头注释信息。
 
         ```
         #Copyright (C) 2023 XXXX Device Co., Ltd.
         ```
-	2. 导入编译模板文件
+	2. 导入编译模板文件。
 
         ```
         import("//build/ohos.gni")
         import("//build/test.gni")
         ```
-	3. 指定文件输出路径
+	3. 指定文件输出路径。
 
         ```
         module_output_path = "developer_test/rust_add_test"
@@ -1121,7 +1121,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
         > **说明：**
         > 此处输出路径为部件/模块名。
 
-	4. 指定测试用例编译目标输出的文件名称
+	4. 指定测试用例编译目标输出的文件名称。
 
         ```
         ohos_rust_unittest("rust_add_test") {
@@ -1153,7 +1153,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 		"name": "//test/testfwk/developer_test/examples/detector:detector"
 	  }
     ],
-    "test": [ //配置模块calculator下的test
+    "test": [ //配置模块calculator下的test。
       "//test/testfwk/developer_test/examples/app_info/test:unittest",  
       "//test/testfwk/developer_test/examples/calculator/test:unittest",
       "//test/testfwk/developer_test/examples/calculator/test:fuzztest"
@@ -1220,9 +1220,9 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
   <environment>
     <!-- 配置远程映射机器的IP及端口，以支持HDC连接的设备 -->
     <device type="usb-hdc">
-      <ip></ip>
-      <port></port>
-      <sn></sn>
+      \<ip\></ip>
+      \<port\></port>
+      \<sn\></sn>
     </device>
     <!-- 配置设备的串口信息，以支持串口连接的设备 -->
     <device type="com" label="ipcamera">
@@ -1280,7 +1280,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	>  
 	> 将测试框架及测试用例从Linux环境移植到Windows环境，以便后续执行。
 	
-3. 修改user_config.xml
+3. 修改user_config.xml。
 	```xml
 	<build>
 	  <!-- 由于测试用例已编译完成，此标签属性需改为false -->
@@ -1297,17 +1297,17 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 #### 执行用例命令
 
-1. 启动测试框架
+1. 启动测试框架。
 	```
 	start.bat
 	```
-2. 选择产品形态
+2. 选择产品形态。
 
     进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。
 
 	如需手动添加，请在config/framework_config.xml的\<productform\>标签内增加产品项。
 
-3. 执行测试用例
+3. 执行测试用例。
 
     当选择完产品形态，可参考如下指令执行TDD测试用例。
 	```
@@ -1336,7 +1336,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	-ts [TESTSUITE]: 指定测试套，可独立使用。
 	-tc [TESTCASE]: 指定测试用例，同时需要注明测试套内class名称，不可独立使用，需结合-ts指定上级测试套使用。
 	-cov [COVERAGE]: 覆盖率执行参数。
-	-h : 帮助命令
+	-h : 帮助命令。
 	-ra [random]: c++用例乱序执行参数。
 	--repeat : 支持设置用例执行次数。
 	-hl [HISTORYLIST]: 显示最近10条测试用例，超过10条，只显示最近10条。
@@ -1367,7 +1367,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	> 
 	> 此处IP填写设备侧IP地址。
 
-3. 修改配置文件user_config.xml
+3. 修改配置文件user_config.xml。
 	```xml
 	<build>
 	  <!-- 测试用例需要编译时，此标签属性为true，反之为false -->
@@ -1376,20 +1376,20 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	<environment>
     <!-- 需要配置IP为远程映射机器的IP，端口即为8710，sn号为设备的sn号，以支持HDC连接的设备 -->
     <device type="usb-hdc">
-      <ip></ip>
-      <port></port>
-      <sn></sn>
+      \<ip\></ip>
+      \<port\></port>
+      \<sn\></sn>
     </device>
 	<environment>
 	```
 
 
 #### 执行用例命令
-1. 启动测试框架
+1. 启动测试框架。
 	```
 	./start.sh
 	```
-2. 选择产品形态
+2. 选择产品形态。
 
     进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。
 
@@ -1407,9 +1407,9 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 	```
 
-3. 执行测试用例
+3. 执行测试用例。
 
-    1） TDD命令
+    1） TDD命令。
 
     测试框架在执行用例时会根据指令找到所需用例，自动实现用例编译，执行过程，完成自动化测试。
 	```
@@ -1437,9 +1437,9 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	-ts [TESTSUITE]: 指定测试套，可独立使用。
 	-tc [TESTCASE]: 指定测试用例，同时需要注明测试套内class名称，不可独立使用，需结合-ts指定上级测试套使用。
 	-cov [COVERAGE]: 覆盖率执行参数。
-	-h : 帮助命令
-	-ra [random]: c++用例乱序执行参数
-	-pd [partdeps]: 二级依赖部件执行参数
+	-h : 帮助命令。
+	-ra [random]: c++用例乱序执行参数。
+	-pd [partdeps]: 二级依赖部件执行参数。
 	--repeat : 支持设置用例执行次数。
 	-hl [HISTORYLIST]: 显示最近10条测试用例，超过10条，只显示最近10条。
 	-rh [RUNHISTORY]: 执行历史记录的第几条记录运行。
@@ -1455,7 +1455,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	查看支持的测试子系统： show subsystemlist
 	查看支持的测试部件：   show partlist
 	```
-	2） ACTS/HATS命令
+	2） ACTS/HATS命令。
 
 	当选择完产品形态，可以参考如下执行ACTS或HATS测试用例。
 	```
@@ -1503,10 +1503,10 @@ test/developertest/reports/xxxx_xx_xx_xx_xx_xx
 该目录中包含以下几类结果：
 | 类型                                 | 描述               |
 | ------------------------------------ | ------------------ |
-| result/                              | 测试用例格式化结果 |
-| log/plan_log_xxxx_xx_xx_xx_xx_xx.log | 测试用例日志       |
-| summary_report.html                  | 测试报告汇总       |
-| details_report.html                  | 测试报告详情       |
+| result/                              | 测试用例格式化结果。 |
+| log/plan_log_xxxx_xx_xx_xx_xx_xx.log | 测试用例日志。       |
+| summary_report.html                  | 测试报告汇总。       |
+| details_report.html                  | 测试报告详情。       |
 
 
 
@@ -1540,9 +1540,9 @@ test/developertest/reports/xxxx_xx_xx_xx_xx_xx
 
        <!-- 配置远程映射机器的IP(设备挂载的pc的ip) -->
        <device type="usb-hdc">
-         <ip></ip>
-         <port></port>
-         <sn></sn>
+         \<ip\></ip>
+         \<port\></port>
+         \<sn\></sn>
        </device>
 
 5. 执行 ./start.sh，输入运行命令，示例如下：
@@ -1552,7 +1552,7 @@ test/developertest/reports/xxxx_xx_xx_xx_xx_xx
        run -t UT -ss 子系统名 -tp 部件名 -cov coverage
        run -t UT MST ST -tp 部件名 -cov coverage
 
-   **注意：** 执行以上命令必须添加 -cov coverage 参数
+   **注意：** 执行以上命令必须添加 -cov coverage 参数。
 
 6. 从以下路径获取覆盖率报告：
 

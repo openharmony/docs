@@ -22,6 +22,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 | processName | string | Yes| No| Process name.|
 
 **Example**
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 

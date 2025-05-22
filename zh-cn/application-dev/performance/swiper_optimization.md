@@ -2,11 +2,11 @@
 
 ## 背景
 
-在应用开发中，Swiper 组件常用于翻页场景，比如：桌面、图库等应用。Swiper 组件滑动切换页面时，基于按需加载原则通常会在下一个页面将要显示时才对该页面进行加载和布局绘制，这个过程包括：
+在应用开发中，[Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) 组件常用于翻页场景，比如：桌面、图库等应用。Swiper 组件滑动切换页面时，基于按需加载原则通常会在下一个页面将要显示时才对该页面进行加载和布局绘制，这个过程包括：
 
 - 如果该页面使用了@Component 装饰的自定义组件，那么自定义组件的 build 函数会被执行并创建内部的 UI 组件；
 
-- 如果使用了[LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md)，会执行 LazyForEach 的 UI 生成函数生成 UI 组件；
+- 如果使用了[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)，会执行 LazyForEach 的 UI 生成函数生成 UI 组件；
 
 - 在 UI 组件构建完成后，会对 UI 组件进行布局测算和绘制。
 
@@ -32,16 +32,16 @@
 
 ## 使用指导
 
-- 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#属性)属性中配置。
+- 预加载子组件的个数在[cachedCount](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#cachedcount8)属性中配置。
 
-Swiper 共 5 页，当开发者设置了 cacheCount 属性为 1 且 loop 属性为 false 时，预加载的结果如下：\
+Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 false 时，预加载的结果如下：\
  ![loop=false](figures/swiper_loop_false.png)
 
 \
- Swiper 共 5 页，当开发者设置了 cacheCount 属性为 1 且 loop 属性为 true 时，预加载的结果如下：\
+ Swiper 共 5 页，当开发者设置了 cachedCount 属性为 1 且 loop 属性为 true 时，预加载的结果如下：\
  ![loop=true](figures/swiper_loop_true.png)
 
-- Swiper 组件的子组件使用[LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
+- Swiper 组件的子组件使用[LazyForEach](../ui/state-management/arkts-rendering-control-lazyforeach.md)动态加载和销毁组件。
 
 **示例**
 
@@ -110,7 +110,7 @@ struct SwiperExample {
   private dataSrc: MyDataSource = new MyDataSource([]);
 
   aboutToAppear(): void {
-    let list: Array<number> = []
+    let list: Array<number> = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
@@ -159,23 +159,24 @@ struct SwiperExample {
 
 由于组件构建和布局计算需要一定时间，cachedCount 的数量也不是设置得越大越好，过大的 cachedCount 可能会导致应用性能降低。当前 Swiper 组件滑动离手后的动效时间大约是 400ms，如果应用加载一个子组件的时间在 100ms\~200ms 之间，为了在离手动效时间内完成组件的预加载，cachedCount 属性建议设置为 1 或 2，设置过大会导致主线程阻塞而产生卡顿。
 
-那么方案可以继续优化，Swiper 组件有一个[OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#事件)回调接口，切换动画开始时触发该回调。此时，主线程空闲，应用可以充分利用这段时间进行图片等资源的预加载，减少后续 cachedCount 范围内的节点预加载耗时。
+那么方案可以继续优化，在抛滑场景时，Swiper 组件有一个[OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#事件)回调接口，切换动画开始时触发该回调。此时，主线程空闲，应用可以充分利用这段时间进行图片等资源的预加载，减少后续 cachedCount 范围内的节点预加载耗时；
+跟手滑动阶段不会触发[OnAnimationStart](../reference/apis-arkui/arkui-ts/ts-container-swiper.md#事件)回调，只有在离手后做切换动画(也就是抛滑阶段)才会触发。
 
 **示例**
 
 Swiper 子组件页面代码如下：
 
-在子组件首次构建（生命周期执行到[aboutToAppear](../quick-start/arkts-page-custom-components-lifecycle.md)）时，先判断 dataSource 中该 index 的数据是否有数据，若无数据则先进行资源加载，再构建节点。若有数据，则直接构建节点即可。
+在子组件首次构建（生命周期执行到[aboutToAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)）时，先判断 dataSource 中该 index 的数据是否有数据，若无数据则先进行资源加载，再构建节点。若有数据，则直接构建节点即可。
 
 ```TypeScript
 import image from '@ohos.multimedia.image';
-import { MyDataSource } from './Index'
+import { MyDataSource } from './Index';
 
 @Component
 export struct PhotoItem { //Swiper的子组件
   myIndex: number = 0;
   private dataSource: MyDataSource = new MyDataSource([]);
-  context = getContext(this);
+  context = this.getUIContext().getHostContext();
   @State imageContent: image.PixelMap | undefined = undefined;
 
   aboutToAppear(): void {
@@ -184,20 +185,20 @@ export struct PhotoItem { //Swiper的子组件
     if (!this.imageContent) { // 先判断dataSource中该index的数据是否有数据，若无数据则先进行资源加载
       try {
         // 获取resourceManager资源管理器
-        const resourceMgr = this.context.resourceManager;
+        const resourceMgr = this.context?.resourceManager;
         // 获取rawfile文件夹下item.jpg的ArrayBuffer
         let str = "item" + (this.myIndex + 1) + ".jpg";
-        resourceMgr.getRawFileContent(str).then((value) => {
+        resourceMgr?.getRawFileContent(str).then((value) => {
           // 创建imageSource
           const imageSource = image.createImageSource(value.buffer);
           imageSource.createPixelMap().then((value) => {
-            console.log("aboutToAppear push" + this.myIndex)
-            this.dataSource.addData(this.myIndex, { description: "" + this.myIndex, image: value })
+            console.info("aboutToAppear push" + this.myIndex);
+            this.dataSource.addData(this.myIndex, { description: "" + this.myIndex, image: value });
             this.imageContent = value;
           })
         })
       } catch (err) {
-        console.log("error code" + err);
+        console.error("error code" + err);
       }
     }
   }
@@ -213,29 +214,29 @@ export struct PhotoItem { //Swiper的子组件
 ```
 
 Swiper 主页面的代码如下：
-```
+```TypeScript
 import Curves from '@ohos.curves';
-import { PhotoItem } from './PhotoItem'
+import { PhotoItem } from './PhotoItem';
 import image from '@ohos.multimedia.image';
 
 interface MyObject {
   description: string,
   image: image.PixelMap,
-};
+}
 
 export class MyDataSource implements IDataSource {
-  private list: MyObject[] = []
+  private list: MyObject[] = [];
 
   constructor(list: MyObject[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): MyObject {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -253,17 +254,17 @@ export class MyDataSource implements IDataSource {
 @Component
 struct Index {
   @State currentIndex: number = 0;
-  cacheCount: number = 1
+  cacheCount: number = 1;
   swiperController: SwiperController = new SwiperController();
   private data: MyDataSource = new MyDataSource([]);
-  context = getContext(this);
+  context = this.getUIContext().getHostContext();
 
   aboutToAppear() {
-    let list: MyObject[] = []
+    let list: MyObject[] = [];
     for (let i = 0; i < 6; i++) {
-      list.push({ description: "", image: this.data.getData(this.currentIndex)?.image })
+      list.push({ description: "", image: this.data.getData(this.currentIndex)?.image });
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSource(list);
   }
 
   build() {
@@ -286,21 +287,21 @@ struct Index {
       if (targetIndex !== index) {
         try {
           // 获取resourceManager资源管理器
-          const resourceMgr = this.context.resourceManager;
+          const resourceMgr = this.context?.resourceManager;
           // 获取rawfile文件夹下item.jpg的ArrayBuffer
           let str = "item" + (targetIndex + this.cacheCount + 2) + ".jpg";
-          resourceMgr.getRawFileContent(str).then((value) => {
+          resourceMgr?.getRawFileContent(str).then((value) => {
             // 创建imageSource
             const imageSource = image.createImageSource(value.buffer);
             imageSource.createPixelMap().then((value) => {
               this.data.addData(targetIndex + this.cacheCount + 1, {
                 description: "" + (targetIndex + this.cacheCount + 1),
                 image: value
-              })
-            })
+              });
+            });
           })
         } catch (err) {
-          console.log("error code" + err);
+          console.error("error code" + err);
         }
       }
     })

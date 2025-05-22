@@ -1,7 +1,7 @@
 # &lt;qrcode&gt; Development
 
 
-The **&lt;qrcode&gt;** component is used to generate and display a QR code. For details, see [qrcode](../reference/arkui-js/js-components-basic-qrcode.md).
+The **&lt;qrcode&gt;** component is used to generate and display a QR code. For details, see [qrcode](../reference/apis-arkui/arkui-js/js-components-basic-qrcode.md).
 
 
 ## Creating a &lt;qrcode&gt; Component

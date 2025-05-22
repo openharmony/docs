@@ -1,20 +1,16 @@
 # memcheck
 
-
 ## 命令功能
 
 检查动态申请的内存块是否完整，是否存在内存越界造成节点损坏。
 
-
 ## 命令格式
 
-memcheck
-
+memcheck。
 
 ## 参数说明
 
-无
-
+无。
 
 ## 使用指南
 
@@ -22,26 +18,24 @@ memcheck
 
 - 当内存池存在节点不完整时，输出被损坏节点的内存块信息。
 
-
 ## 使用实例
 
 举例：
 
-- 输入memcheck
+- 输入memcheck。
 
-- 输入memcheck出现内存越界
-
+- 输入memcheck出现内存越界。
 
 ## 输出说明
 
-**示例1** 当前没有内存越界
+**示例1** 当前没有内存越界。
 
 ```
 OHOS # memcheck
 system memcheck over, all passed!
 ```
 
-**示例2** 出现内存越界
+**示例2** 出现内存越界。
 
 ```
 [L0S DLnkCheckMenl 349, memory check

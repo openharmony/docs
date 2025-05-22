@@ -1,7 +1,7 @@
 # @ohos.app.appstartup.StartupListener
 
 
-本模块提供监听组件初始化的能力。
+本模块提供监听启动任务的能力。
 
 > **说明：**
 >
@@ -12,16 +12,16 @@
 ## 导入模块
 
 ```ts
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { StartupListener } from '@kit.AbilityKit';
 ```
 
 ## StartupListener.onCompleted
 
-onCompleted(error: BusinessError\<void\>): void
+onCompleted?(error: BusinessError\<void\>): void
 
-在所有组件初始化完成时调用。
+在所有启动任务完成时调用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -32,26 +32,26 @@ onCompleted(error: BusinessError\<void\>): void
 **示例：**
 
 ```ts
-import StartupConfig from '@ohos.app.appstartup.StartupConfig';
-import StartupConfigEntry from '@ohos.app.appstartup.StartupConfigEntry';
-import StartupListener from '@ohos.app.appstartup.StartupListener';
+import { StartupConfig, StartupConfigEntry, StartupListener } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class MyStartupConfigEntry extends StartupConfigEntry {
   onConfig() {
-    console.info('StartupTest MyStartupConfigEntry onConfig');
-    let onCompletedCallback = (error) => {
-      console.info('StartupTest MyStartupConfigEntry callback, error=' + JSON.stringify(error));
+    hilog.info(0x0000, 'testTag', `onConfig`);
+    let onCompletedCallback = (error: BusinessError<void>) => {
+      hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        console.error('onCompletedCallback: %{public}d, mssage: %{public}s', error.code, error.mssage);
+        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
-        console.info('onCompletedCallback: success');
+        hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
     }
     let startupListener: StartupListener = {
       'onCompleted': onCompletedCallback
     }
     let config: StartupConfig = {
-      'timeoutMs': 5000,
+      'timeoutMs': 10000,
       'startupListener': startupListener
     }
     return config;

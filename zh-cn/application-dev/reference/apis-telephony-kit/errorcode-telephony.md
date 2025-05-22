@@ -28,7 +28,7 @@ The input parameter value is out of range.
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Service connection failed.
 
 **错误描述**
 
@@ -67,7 +67,7 @@ System internal error.
 
 **错误信息**
 
-Do not have sim card.
+No SIM card found.
 
 **错误描述**
 
@@ -82,19 +82,19 @@ Do not have sim card.
 请插卡或重新拔插SIM卡。
 
 
-## 8300999 未知错误
+## 8300999 内部错误
 
 **错误信息**
 
-Unknown error code.
+Internal error.
 
 **错误描述**
 
-未知的错误。
+内部错误。
 
 **可能原因**
 
-系统内部出现了意料之外的错误，可能是由于底层的错误码不在处理范围内。
+内存不足、内存操作失误、空指针。
 
 **处理步骤**
 
@@ -124,7 +124,7 @@ SIM卡未激活。
 
 **错误信息**
 
-SIM card operation error.
+The SIM card failed to read or update data.
 
 **错误描述**
 
@@ -165,7 +165,7 @@ UT is not connected.
 
 **错误描述**
 
-UT未连接
+UT未连接。
 
 **可能原因**
 
@@ -174,3 +174,42 @@ UT未连接
 **处理步骤**
 
 断开WIFI，再重发UT请求。
+
+
+## 3120001 服务连接失败
+
+**错误信息**
+
+Service connection failed.
+
+**错误描述**
+
+操作失败。无法连接到服务。
+
+**可能原因**
+
+服务启动失败，IPC连接失败等。
+
+**处理步骤**
+
+本次操作异常，请稍后重试。
+
+
+
+## 3120002 系统内部错误
+
+**错误信息**
+
+System internal error.
+
+**错误描述**
+
+系统内部错误。
+
+**可能原因**
+
+网络异常，数据读写失败等。
+
+**处理步骤**
+
+本次操作异常，请稍后重试。

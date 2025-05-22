@@ -1,12 +1,12 @@
 # Grid Layout
 
 
-The **\<grid-container>** component is the root container of the grid layout. Within the root container, you can use **\<grid-row>** and **\<grid-col>** for the grid layout. For details, see [Grid-container](../reference/arkui-js/js-components-grid-container.md).
+The **\<grid-container>** component is the root container of the grid layout. Within the root container, you can use **\<grid-row>** and **\<grid-col>** for the grid layout. For details, see [Grid-container](../reference/apis-arkui/arkui-js/js-components-grid-container.md).
 
 
 ## Creating a \<grid-container> Component
 
-Create a **\<grid-container>** component in the .hml file under **pages/index** and add a [\<Grid-row>](../reference/arkui-js/js-components-grid-row.md) child component.
+Create a **\<grid-container>** component in the .hml file under **pages/index** and add a [\<grid-row>](../reference/apis-arkui/arkui-js/js-components-grid-row.md) child component.
 
 
 ```html

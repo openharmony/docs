@@ -1,31 +1,98 @@
 # ArkTS
 
-- [Introduction to ArkTS](arkts-commonlibrary-overview.md)
-- Concurrency
-  - [Concurrency Overview](concurrency-overview.md)
-  - Using Asynchronous Concurrency for Development
-    - [Asynchronous Concurrency Overview (Promise and Async/Await)](async-concurrency-overview.md)
-    - [Single I/O Task Development (Promise and Async/Await)](single-io-development.md)
-  - Using Multithreaded Concurrency for Development
-    - [Multithreaded Concurrency Overview (TaskPool and Worker)](multi-thread-concurrency-overview.md)
-    - [TaskPool Introduction](taskpool-introduction.md)
-    - [Worker Introduction](worker-introduction.md)
-    - [Comparison Between TaskPool and Worker](taskpool-vs-worker.md)
-    - [CPU Intensive Task Development (TaskPool and Worker)](cpu-intensive-task-development.md)
-    - [I/O Intensive Task Development (TaskPool)](io-intensive-task-development.md)
-    - [Synchronous Task Development (TaskPool and Worker)](sync-task-development.md)
-  - Appendix
-    - [Comparison Between the Actor and Memory Sharing Models](actor-model-development-samples.md)
-    - [Serialization Types Supported by TaskPool and Worker](serialization-support-types.md)
-    - [Precautions for Multithread Safe](multi-thread-safety.md)
-    - [\@Concurrent Decorator: Declaring and Verifying Concurrent Functions](arkts-concurrent.md)
-    - [\@Sendable Decorator: Declaring and Verifying the Sendable Class](arkts-sendable.md)
-- Container
-  - [Container Overview](container-overview.md)
-  - [Linear Containers](linear-container.md)
-  - [Nonlinear Containers](nonlinear-container.md)
-- XML Generation, Parsing, and Conversion
-  - [XML Overview](xml-overview.md)
-  - [XML Generation](xml-generation.md)
-  - [XML Parsing](xml-parsing.md)
-  - [XML Conversion](xml-conversion.md)
+- [Introduction to ArkTS](arkts-overview.md)
+- ArkTS Common Library<!--arkts-utils-->
+    - [Overview of the ArkTS Common Library](arkts-utils-overview.md)
+    - XML Generation, Parsing, and Conversion<!--xml-generation-parsing-conversion-->
+        - [XML Overview](xml-overview.md)
+        - [XML Generation](xml-generation.md)
+        - [XML Parsing](xml-parsing.md)
+        - [XML Conversion](xml-conversion.md)
+    - [Buffer](buffer.md)
+    - ArkTS Container Library<!--containers-->
+        - [Overview of the ArkTS Container Library](container-overview.md)
+        - [Linear Containers](linear-container.md)
+        - [Nonlinear Containers](nonlinear-container.md)
+- ArkTS Concurrency<!--arkts-concurrency-->
+    - [Overview of Concurrency](concurrency-overview.md)
+    - [Asynchronous Concurrency](async-concurrency-overview.md)
+    - Multithreaded Concurrency<!--multithread-concurrency-->
+        - [Overview of Multithreaded Concurrency](multi-thread-concurrency-overview.md)
+        - [TaskPool](taskpool-introduction.md)
+        - [Worker](worker-introduction.md)
+        - [Comparison Between TaskPool and Worker](taskpool-vs-worker.md)
+    - Inter-Thread Communication<!--interthead-communication-->
+        - [Overview of ArkTS Inter-Thread Communication](interthread-communication-overview.md)
+        - Inter-Thread Communication Objects<!--interthead-communication-object-->
+            - [Regular Object](normal-object.md)
+            - [ArrayBuffer Object](arraybuffer-object.md)
+            - [SharedArrayBuffer Object](shared-arraybuffer-object.md)
+            - [Transferable Object (NativeBinding Object)](transferabled-object.md)
+            - Sendable Object<!--sendable-object-->
+                - [Overview of Sendable Objects](arkts-sendable.md)
+                - [Usage Rules and Constraints for Sendable](sendable-constraints.md)
+                - [Asynchronous Lock](arkts-async-lock-introduction.md)
+                - [Asynchronous Waiting](arkts-condition-variable-introduction.md)
+                - [ASON Parsing and Generation](ason-parsing-generation.md)
+                - [Shared Container](arkts-collections-introduction.md)
+                - [Shared Module](arkts-sendable-module.md)
+                - [Freezing Sendable Objects](sendable-freeze.md)
+                - [Use Scenarios of Sendable](sendable-guide.md)
+        - Communication Between Threads<!--interthead-communication-guide-->
+            - [Using TaskPool for Independent Time-Consuming Tasks](independent-time-consuming-task.md)
+            - [Using TaskPool for Multiple Time-Consuming Tasks](multi-time-consuming-tasks.md)
+            - [Communication Between the TaskPool Task and Host Thread](taskpool-communicates-with-mainthread.md)
+            - [Real-Time Communication Between the Worker Thread and Host Thread](worker-communicates-with-mainthread.md)
+            - [Synchronous Calls to Host Thread Interfaces from Worker](worker-invoke-mainthread-interface.md)
+            - [High-Performance Communication Between Multi-Level Workers](worker-postMessage-sendable.md)
+    - Multithreaded Development<!--multithread-develop-guide-->
+        - [Overview of Multithreaded Development](multithread-develop-overview.md)
+        - Concurrency in Time-Consuming Tasks<!--time-consuming-task-->
+            - [Overview of Concurrency in Time-Consuming Tasks](time-consuming-task-overview.md)
+            - [CPU Intensive Task Development (TaskPool and Worker)](cpu-intensive-task-development.md)
+            - [I/O Intensive Task Development (TaskPool)](io-intensive-task-development.md)
+            - [Synchronous Task Development (TaskPool and Worker)](sync-task-development.md)
+        - Concurrency in Continuous Tasks<!--long-time-task-->
+            - [Overview of Concurrency in Continuous Tasks](long-time-task-overview.md)
+            - [Continuous Task Development (TaskPool)](long-time-task-guide.md)
+        - Concurrency in Resident Tasks<!--resident-task-->
+            - [Overview of Concurrency in Resident Tasks](resident-task-overview.md)
+            - [Resident Task Development (Worker)](resident-task-guide.md)
+        - Multithreaded Development Practice Cases<!--multithread-develop-case-->
+            - [Batch Database Operations](batch-database-operations-guide.md)
+            - [Concurrent Loading of Service Modules](concurrent-loading-modules-guide.md)
+            - [Global Configuration](global-configuration-guide.md)
+            - [ArkUI Data Updates](makeobserved-sendable.md)
+            - [C++ Inter-Thread Data Sharing](native-interthread-shared.md)
+            - [Specifying Task Concurrency with TaskPool](taskpool-async-task-guide.md)
+            - [ArkUI Waterfall Rendering](taskpool-waterflow.md)
+            - [Obtaining the Recently Accessed List](sendablelrucache-recent-list.md)
+            - [Canceling Tasks in Multithreading with TaskPool](multi-thread-cancel-task.md)
+- [ArkTS Cross-Language Interaction](arkts-cross-language-interaction.md)
+- ArkTS Runtime<!--arkts-runtime-->
+    - [Overview of ArkTS Runtime](arkts-runtime-overview.md)
+    - [GC](gc-introduction.md)
+    - ArkTS Modularization<!--arkts-runtime-module-->
+        - [Overview of Modular Operation](module-principle.md)
+        - [Dynamic Import](arkts-dynamic-import.md)
+        - [Lazy Import](arkts-lazy-import.md)
+        - [Dynamically Loading Native Modules in Synchronous Mode](js-apis-load-native-module.md)
+        - [Statically Loading Native Modules](arkts-import-native-module.md).
+        - [Loading Modules Using Node-API](load-module-base-nodeapi.md)
+        - [Side Effects and Optimization of Module Loading](arkts-module-side-effects.md)
+- ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
+    - [Overview of the ArkTS Compilation Toolchain](compilation-tool-chain-overview.md)
+    - Ark Bytecode<!--arkts-bytecode-->
+        - [Overview of Ark Bytecode](arkts-bytecode-overview.md)
+        - [Ark Bytecode File Format](arkts-bytecode-file-format.md)
+        - [Ark Bytecode Fundamentals](arkts-bytecode-fundamentals.md)
+        - [Naming Conventions for Ark Bytecode Functions](arkts-bytecode-function-name.md)
+        - [Customizing Ark Bytecode During Compilation](customize-bytecode-during-compilation.md)
+    - [Disassembler](tool-disassembler.md)
+    - ArkGuard for Code Obfuscation<!--arkts-arkguard-->
+        - [Overview of ArkGuard](source-obfuscation-overview.md)
+        - [Obfuscation Principles and Capabilities of ArkGuard](source-obfuscation.md)
+        - [Using ArkGuard for Obfuscation](source-obfuscation-guide.md)
+        - [Package-specific Obfuscation Recommendations](source-obfuscation-practice.md)
+        - [Common Issues with ArkGuard](source-obfuscation-questions.md)
+    - [Configuring arkOptions in build-profile.json5](arkoptions-guide.md)

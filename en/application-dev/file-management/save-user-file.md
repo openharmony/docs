@@ -1,122 +1,53 @@
 # Saving User Files
 
-When a user needs to download a file from the Internet or save a file to another directory, use **FilePicker** to save the file.
+When a user needs to download a file from the Internet or save a file to another directory, use **FilePicker** to save the file. Pay attention to the following key points:
 
-The operations for saving images, audio or video clips, and documents are similar. Call **save()** of the corresponding picker instance and pass in **saveOptions**. No permission is required if your application uses **FilePicker** to access files.
+**Permission Description**
 
-Currently, all the **save()** behaviors of **FilePicker** can be perceived by users. Specifically, **FilePicker** is started to save the files to a directory managed by **FileManager**. The files are isolated from the assets managed by **Gallery** and cannot be viewed in **Gallery**.
+- The read and write permissions on the file URI granted by Picker is temporary by default, and will be automatically invalidated once the application exits.
+- You can persist the permissions on the URI. For details, see [Persisting a Temporary Permission Granted by Picker](file-persistPermission.md#persisting-a-temporary-permission-granted-by-picker). (This operation is available only for 2-in-1 devices.)
+- No permission is required if your application uses Picker to save audio clips, images, videos, and document files.
 
-To enable the saved image or video to be viewed in **Gallery**, [create the media asset using a security component](../media/medialibrary/photoAccessHelper-resource-guidelines.md#creating-a-media-asset-using-a-security-component).
+**System Isolation Description**
 
+- The files saved by the Picker are stored in the specified directory. They are isolated from the assets managed by **Gallery** and cannot be viewed in **Gallery**.
+- To save images and videos to **Gallery**, [use a security component](../media/medialibrary/photoAccessHelper-savebutton.md).
 
 ## Saving Images or Videos
 
-For example, select an image from **Gallery** and save it.
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated) will not be maintained in later versions. You are advised to use [Media Library Kit](../media/medialibrary/photoAccessHelper-savebutton.md) to save media assets.
 
-1. Import the [picker](../reference/apis-core-file-kit/js-apis-file-picker.md), [fs](../reference/apis-core-file-kit/js-apis-file-fs.md), and [photoAccessHelper](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md) modules.
-
-   ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   ```
-   
-2. Use [select()](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select) to select an image from the device and use a global variable to hold the returned URI.
-
-   ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
-
-   let selectUris: Array<string> = [];
-       try {
-           let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
-        	PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
-           PhotoSelectOptions.maxSelectNumber = 1;
-           let photoPicker = new photoAccessHelper.PhotoViewPicker();
-           photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
-               selectUris = PhotoSelectResult.photoUris;
-               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
-           }).catch((err: BusinessError) => {
-               console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
-           });
-       } catch (error) {
-           let err: BusinessError = error as BusinessError;
-           console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
-       }
-   ```
-   
-3. Use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save) to start the FilePicker page to save the image. After the user selects the destination folder, the image is saved. A global variable holding the URI of the image is returned.
-   
-   The permission on the URI returned by **save()** is read/write. Further file operations can be performed based on the URI.
-
-   ```ts  
-   import picker from '@ohos.file.picker';
-   import { BusinessError } from '@ohos.base';
-   
-   let saveUris: Array<string> = [];
-   try {
-       const photoSaveOptions = new picker.PhotoSaveOptions(); // Create a photoSaveOptions instance.
-       photoSaveOptions.newFileNames = ["PhotoViewPicker01.png"]; // (Optional) Name of the file to be saved. The file name in the square brackets can be customized and must be unique. If the file name already exists on the device, change the file name. Otherwise, an error will be returned.
-       const photoViewPicker = new picker.PhotoViewPicker();
-       try {
-           let photoSaveResult = await photoViewPicker.save(photoSaveOptions);
-           if (photoSaveResult != undefined) {
-               saveUris = photoSaveResult;
-               console.info('photoViewPicker.save to file succeed and uris are:' + photoSaveResult);
-           }
-       } catch (error) {
-           let err: BusinessError = error as BusinessError;
-           console.error(`[picker] Invoke photoViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
-       }
-   } catch (error) {
-       let err: BusinessError = error as BusinessError;
-       console.info("[picker] photoViewPickerSave error = " + JSON.stringify(err));
-   }
-   ```
-   
-4. Use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to select the file and save it. The FDs of the file selected and the file saved are returned. Note that the permission is **fs.OpenMode.READ_ONLY** in the select API and **fs.OpenMode.WRITE_ONLY** in the save API. Use [fs.copyFileSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopyfilesync) to copy the file. Then, use **close()** to close the file selected and the file saved.
-
-   ```ts
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   
-   try {
-   	let photoSelect = fs.openSync(selectUris[0], fs.OpenMode.READ_ONLY);
-       let photoSave = fs.openSync(saveUris[0], fs.OpenMode.WRITE_ONLY);
-       fs.copyFileSync(photoSelect.fd, photoSave.fd);
-       fs.close(photoSelect);
-       fs.close(photoSave);
-   } catch (error) {
-       let err: BusinessError = error as BusinessError;
-       console.info("[picker] Photo Save error = " + JSON.stringify(err));
-   }
-   ```
+If the security component cannot be called to save images and videos in your development, use [PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12) to save images and videos.
 
 ## Saving Documents
 
-1. Import the **picker** and **fs** modules.
+1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
-2. Create a **documentSaveOptions** instance.
+2. Configure the save options.
 
    ```ts
-   const documentSaveOptions = new picker.DocumentSaveOptions(); // Create a documentSaveOptions instance.
-   documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"]; // (Optional) Set the name of the document to save.
-   documentSaveOptions.fileSuffixChoices = ['.png', '.txt', '.mp4']; // (Optional) Types of the documents to save.
+   // Create a documentSaveOptions instance.
+   const documentSaveOptions = new picker.DocumentSaveOptions();
+   // (Optional) Name of the file to save. The default value is empty.
+   documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
+   // (Optional) Type of the document to save. The value is in ['Description|File name extensions'] format. To save all files, use 'All files (*.*)|.*'. If there are multiple file name extensions (a maximum of 100 extensions can be filtered), the first one is used by default. If this parameter is not specified, no extension is filtered by default.
+   documentSaveOptions.fileSuffixChoices = ['Document|.txt', '.pdf'];
    ```
 
-3. Create a **documentViewPicker** instance, and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3) to start the FilePicker page to save the document. After the user selects the destination folder, the document is saved and the URI of the document saved is returned.<br>The permission on the URI returned by **save()** is read/write. Further file operations can be performed based on the URI. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to hold the URI and use a button to open the file.
-   
+3. Create a [DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12) instance, and call [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save) to start the FilePicker page to save the document.
+
    ```ts
-import { BusinessError } from '@ohos.base';
-   
    let uris: Array<string> = [];
-const documentViewPicker = new picker.DocumentViewPicker(); // Create a documentViewPicker instance.
+   // Ensure that getContext(this) returns UIAbilityContext.
+   let context = getContext(this) as common.Context;
+   const documentViewPicker = new picker.DocumentViewPicker(context);
    documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uris = documentSaveResult;
      console.info('documentViewPicker.save to file succeed and uris are:' + uris);
@@ -124,22 +55,28 @@ const documentViewPicker = new picker.DocumentViewPicker(); // Create a document
      console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-   
-4. After the application UI is returned from **FilePicker**, use a button to trigger the application's API. Use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. After the document is opened, the FD is returned. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
+
+   > **NOTE**
+   >
+   > 1. URI storage:<br>
+   > - Avoid directly using a URI in the Picker callback.<br>
+   > - Define a global variable to save the URI for future use.<br>
+   >
+   > 2. Quick saving:<br>
+   > - Directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).<br>
+
+4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open a document based on the URI. The file descriptor (FD) is returned after the document is opened.
 
    ```ts
-   import fs from '@ohos.file.fs';
-   
    const uri = '';
+   // Note that the permission specified by the mode parameter of fs.openSync() is fs.OpenMode.READ_WRITE.
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. Use [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the document based on the FD, and use **closeSync()** to close the document.
+5. Call [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the document based on the FD, and call **fs.closeSync()** to close the FD.
 
    ```ts
-   import fs from '@ohos.file.fs';
-   
    let writeLen: number = fs.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);
    fs.closeSync(file);
@@ -147,26 +84,30 @@ const documentViewPicker = new picker.DocumentViewPicker(); // Create a document
 
 ## Saving Audio Clips
 
-1. Import the **picker** and **fs** modules.
+1. Import modules.
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
-2. Create an **audioSaveOptions** instance.
+2. Configure the save options.
 
    ```ts
-   const audioSaveOptions = new picker.AudioSaveOptions(); // Create an audioSaveOptions instance.
-   audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; // (Optional) Set the name of the audio file to save.
+   const audioSaveOptions = new picker.AudioSaveOptions();
+   // (Optional) Name of the document to save.
+   audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; 
    ```
 
-3. Create an **audioViewPicker** instance, and use [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6) to start the FilePicker page to save the audio clip. After the user selects the destination folder, the audio clip is saved and the URI of the audio clip saved is returned.<br>The permission on the URI returned by **save()** is read/write. Further file operations can be performed based on the URI. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to hold the URI and use a button to open the audio clip.
-   
+3. Create an [AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker) instance and call [save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-5) to start the FilePicker page to save the audio clip.
+
    ```ts
    let uri: string = '';
-   const audioViewPicker = new picker.AudioViewPicker();
+   // Ensure that getContext(this) returns UIAbilityContext.
+   let context = getContext(this) as common.Context; 
+   const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.save(audioSaveOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
      console.info('audioViewPicker.save to file succeed and uri is:' + uri);
@@ -174,20 +115,75 @@ const documentViewPicker = new picker.DocumentViewPicker(); // Create a document
      console.error(`Invoke audioViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
    })
    ```
-   
-4. After the application UI is returned from **FilePicker**, use a button to trigger the application's API. Use [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. After the audio clip is opened, the FD is returned. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_WRITE**.
+
+   > **NOTE**
+   >
+   > 1. URI storage:<br>
+   > - Avoid directly using a URI in the Picker callback.<br>
+   > - Define a global variable to save the URI for future use.<br>
+   >
+   > 2. Quick saving:<br>
+   > - Directly access the download directory in [DOWNLOAD mode](#saving-files-to-the-download-directory).<br>
+
+4. After the application UI is returned from FilePicker, call [fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync) to open an audio clip based on the URI. The FD is returned after the audio clip is opened.
 
    ```ts
+   // Note that the permission specified by the mode parameter of fs.openSync() is fileIo.OpenMode.READ_WRITE.
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. Use [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the audio clip based on the FD, and use **closeSync()** to close the audio clip.
+5. Call [fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync) to modify the document based on the FD, and call **fs.closeSync()** to close the FD.
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);
    fs.closeSync(file);
+ 
    ```
-   
-<!--no_check-->
+
+## Saving Files to the Download Directory
+
+**Characteristics**
+
+- The directory is automatically created in `Download/bundle name/`.
+- Files can be directly saved without file selection.
+- You can create files under the returned URI that has persistent permissions.
+
+1. Import modules.
+
+   ```ts
+   import { fileUri, picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
+   ```
+
+2. Configure the download mode.
+
+   ```ts
+   const documentSaveOptions = new picker.DocumentSaveOptions();
+   // Set pickerMode to DOWNLOAD, which takes precedence over the settings in documentSaveOptions.
+   documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD; 
+   ```
+
+3. Save the file to the **Download** directory.
+
+   ```ts
+   let uri: string = '';
+   // Ensure that getContext(this) returns UIAbilityContext.
+   let context = getContext(this) as common.Context; 
+   const documentViewPicker = new picker.DocumentViewPicker(context);
+   const documentSaveOptions = new picker.DocumentSaveOptions();
+   documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD;
+   documentViewPicker.save(documentSaveOptions ).then((documentSaveResult: Array<string>) => {
+     uri = documentSaveResult[0];
+     console.info('documentViewPicker.save succeed and uri is:' + uri);
+     const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
+     const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+     fs.writeSync(file.fd, 'Hello World!');
+     fs.closeSync(file.fd);
+   }).catch((err: BusinessError) => {
+     console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+   })
+   ```

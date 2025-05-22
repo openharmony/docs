@@ -1,11 +1,10 @@
 # DRM Kit
 
 - [Introduction to DRM Kit](drm-overview.md)
-- DRM Development (ArkTS)
-  - [DRM Plug-in Management (ArkTS)](drm-plugin-management.md)
-  - [Media Key System Management (ArkTS)](drm-mediakeysystem-management.md)
-  - [Media Key Session Management (ArkTS)](drm-mediakeysession-management.md)
-- DRM Development (C/C++)
-  - [Media Key System Management (C/C++)](native-drm-mediakeysystem-management.md)
-  - [Media Key Session Management (C/C++)](native-drm-mediakeysession-management.md)
-
+- [DRM Development (ArkTS)](drm-arkts-dev-guide.md)
+- [DRM Development (C/C++)](drm-c-dev-guide.md)
+<!--Del-->
+- [DRM Solution Development](drm-solution-dev-guide.md)
+<!--DelEnd-->
+- [Using AVPlayer to Play DRM Content (ArkTS)](drm-avplayer-arkts-integration.md)
+- [Using AVCodec to Play DRM Content (C/C++)](drm-avcodec-integration.md)

@@ -1,7 +1,7 @@
-# Container Overview
+# Overview of the ArkTS Container Library
 
-The container classes provide a set of methods to process elements of various data types stored in containers. It has advantages as a pure data structure container.
+The ArkTS container library provides a set of methods to process elements of various data types stored in containers. It can yield certain benefits when being used as pure data structure containers.
 
-The container classes are implemented in a way similar to static languages. By restricting storage locations and attributes, they remove redundant logic while providing the complete functionalities for each type of data, ensuring efficient data access and improving application performance.
+Container classes are implemented similarly to static languages, with constraints on storage locations and properties. This approach allows each data type to fulfill its purpose without unnecessary logic, ensuring efficient data access and boosting application performance.
 
-There are 14 types of linear and nonlinear containers, each of which has its own features and uses cases. For details, see [Linear Containers](linear-container.md) and [Nonlinear Containers](nonlinear-container.md).
+At present, two categories of containers are available: [linear containers](linear-container.md) and [nonlinear containers](nonlinear-container.md). Linear containers are backed by arrays, whereas non-linear containers rely on hash tables or red-black trees. Neither type of container is designed to be thread-safe.

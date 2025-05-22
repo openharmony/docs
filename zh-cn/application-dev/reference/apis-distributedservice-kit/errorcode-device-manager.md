@@ -36,7 +36,7 @@ Failed to obtain the service.
 
 **错误信息**
 
-Authentication invalid.
+Authentication unavailable.
 
 **可能原因**
 
@@ -50,7 +50,7 @@ Authentication invalid.
 
 **错误信息**
 
-Discovery invalid.
+Discovery unavailable.
 
 **可能原因**
 
@@ -64,7 +64,7 @@ Discovery invalid.
 
 **错误信息**
 
-Publish invalid.
+Publish unavailable.
 
 **可能原因**
 
@@ -73,3 +73,59 @@ Publish invalid.
 **处理步骤**
 
 等待上一次发布业务结束，重新发起发布调用。
+
+## 32300001 重复创建传输流
+
+**错误信息**
+
+Only one stream can be created for the current session.
+
+**可能原因**
+
+每个会话只能创建一个传输流。当前会话已存在传输流。
+
+**处理步骤**
+
+确认上一个传输流的任务已完成，使用destroyStream接口关闭此传输流后，重新创建。
+
+## 32300002 流接收端未启动
+
+**错误信息**
+
+The stream at the receive end is not started.
+
+**可能原因**
+
+接收端未启动。
+
+**处理步骤**
+
+等待接收端启动之后，启动传输流。
+
+## 32300003 比特率不支持
+
+**错误信息**
+
+Bitrate not supported.
+
+**可能原因**
+
+配置的比特率与设备支持的比特率不匹配。
+
+**处理步骤**
+
+根据网络条件和需求选择合适的比特率。
+
+## 32300004 色彩空间不支持
+
+**错误信息**
+
+Color space not supported.
+
+**可能原因**
+
+色彩空间输出类型指定为OH_COLORSPACE_BT2020_HLG_LIMIT，当前输出类型不是指定类型。
+
+**处理步骤**
+
+在设置色彩空间时，确保其位于支持范围内。

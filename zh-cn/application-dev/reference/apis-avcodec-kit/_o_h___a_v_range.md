@@ -9,9 +9,9 @@
 
 **起始版本：** 10
 
-**相关模块：**
+**相关模块：**[AVCapability](_a_v_capability.md)
 
-[AVCapability](_a_v_capability.md)
+**所在头文件：**[native_avcapability.h](native__avcapability_8h.md)
 
 
 ## 汇总

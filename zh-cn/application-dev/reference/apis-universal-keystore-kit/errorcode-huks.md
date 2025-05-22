@@ -11,6 +11,7 @@
 The ``${messageInfo}`` is not supported.
 
 **可能原因**
+
 支持API，但是不支持API内部某些子特性（功能），如算法参数。
 
 **处理步骤**
@@ -182,7 +183,7 @@ The entity does not exist.
 
 **错误信息**
 
-System external error.
+Device environment or input parameter abnormal.
 
 **可能原因**
 
@@ -215,14 +216,14 @@ The credential does not exist.
 - Insufficient memory.
 - Malloc failed.
 
-
 **可能原因**
 
-系统内存不足。
+系统内存不足，或出参缓存太小。
 
 **处理步骤**
 
-开发者释放部分内存或重启。
+1. 开发者释放部分内存或重启。
+2. 检查传入的出参缓存大小。
 
 ## 12000015 调用其他系统服务失败
 
@@ -242,7 +243,7 @@ Failed to obtain the ``${messageInfo}`` information via UserIAM.
 
 **错误信息**
 
-Device password is required but not set.
+A device password is required but not set.
 
 **可能原因**
 

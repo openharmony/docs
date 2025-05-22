@@ -3,6 +3,10 @@
 
 This topic walks you through on how to derive a 256-bit key using HKDF. For details about the scenarios and supported algorithms, see [Supported Algorithms](huks-key-generation-overview.md#supported-algorithms).
 
+## Add the dynamic library in the CMake script.
+```txt
+   target_link_libraries(entry PUBLIC libhuks_ndk.z.so)
+```
 
 ## How to Develop
 
@@ -10,11 +14,15 @@ This topic walks you through on how to derive a 256-bit key using HKDF. For deta
 
 1. Set the key alias.
 
-2. Initialize the key property set. The optional parameter **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** specifies how a derived key is stored.
-   - **OH_HUKS_STORAGE_ONLY_USED_IN_HUKS**: The key is stored and managed by HUKS.
-   - **OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED** (default): The key is directly exported to the service and not managed by HUKS.
+2. Initialize the key property set. You can set **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** (optional) to specify how the key derived from this key is managed.
 
-3. Use **OH_Huks_GenerateKeyItem** to generate a key. For details, see [Key Generation](huks-key-generation-overview.md).
+    - If this tag is set to **OH_HUKS_STORAGE_ONLY_USED_IN_HUKS**, the derived key is managed by HUKS. That is, the derived key is always in a secure environment throughout its lifecycle.
+
+    - If this tag is set to **OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED**, the derived key will be returned to the caller for management. That is, the service side ensures the key security.
+
+    - If this tag is not set, the derived key can be either managed by HUKS or returned to the caller for management. The key protection mode can be set in the subsequent key derivation on the service side.
+
+3. Use [OH_Huks_GenerateKeyItem](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_generatekeyitem) to generate a key. For details, see [Key Generation Overview and Algorithm Specifications](huks-key-generation-overview.md).
 
 Alternatively, you can [import a key](huks-key-import-overview.md).
 
@@ -22,11 +30,17 @@ Alternatively, you can [import a key](huks-key-import-overview.md).
 
 1. Obtain the key alias and set the **HuksOptions** parameter.
 
-   You are advised to pass in [OH_Huks_KeyStorageType](../../reference/apis-universal-keystore-kit/_huks_type_api.md#oh_huks_keystoragetype), which can be any of the following values:
+   You can set **OH_HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG** to specify how the derived key is managed.
 
-   - **OH_HUKS_STORAGE_ONLY_USED_IN_HUKS**: The key is used only in HUKS.
-   - **OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED**: The key is directly exported and is not stored in HUKS.
-   - If this parameter is not specified, the key can be stored in HUKS and exported by default, which poses security risks and is not recommended.
+    | Key Generation| Key Derivation| Specifications|
+    | -------- | -------- | -------- |
+    | OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | The key is managed by HUKS.|
+    | OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | The key is returned to the caller for management.|
+    | The tag is not set.| OH_HUKS_STORAGE_ONLY_USED_IN_HUKS | The key is managed by HUKS.|
+    | The tag is not set.| OH_HUKS_STORAGE_KEY_EXPORT_ALLOWED | The key is returned to the caller for management.|
+    | The tag is not set.| The tag is not set.| The key is returned to the caller for management.|
+
+    >**NOTE**<br>The tag value set in key derivation should not conflict with the tag value set in key generation. The above table lists only valid settings.
 
 2. Use [OH_Huks_InitSession](../../reference/apis-universal-keystore-kit/_huks_key_api.md#oh_huks_initsession) to initialize a key session. The session handle is returned after the initialization.
 
@@ -64,6 +78,7 @@ OH_Huks_Result InitParamSet(
     return ret;
 }
 static const uint32_t DERIVE_KEY_SIZE_32 = 32;
+static const uint32_t DERIVE_KEY_SIZE_256 = 256;
 static struct OH_Huks_Blob g_deriveKeyAlias = {
     (uint32_t)strlen("test_derive"),
     (uint8_t *)"test_derive"
@@ -107,10 +122,10 @@ static struct OH_Huks_Param g_hkdfFinishParams[] = {
         .blob = g_deriveKeyAlias
     }, {
         .tag =  OH_HUKS_TAG_ALGORITHM,
-        .uint32Param = OH_HUKS_ALG_HKDF
+        .uint32Param = OH_HUKS_ALG_AES
     }, {
         .tag =  OH_HUKS_TAG_KEY_SIZE,
-        .uint32Param = DERIVE_KEY_SIZE_32
+        .uint32Param = DERIVE_KEY_SIZE_256
     }, {
         .tag =  OH_HUKS_TAG_PURPOSE,
         .uint32Param = OH_HUKS_KEY_PURPOSE_DERIVE

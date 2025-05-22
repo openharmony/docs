@@ -13,6 +13,8 @@ USB接口，是特定接口下备用设置的集合。
 
 [USB DDK](_usb_ddk.md)
 
+**所在头文件：** [usb_ddk_types.h](usb__ddk__types_8h.md)
+
 
 ## 汇总
 

@@ -1,9 +1,9 @@
-# OHOS::Media::OhosPixelMapInfo
+# OhosPixelMapInfo
 
 
 ## Overview
 
-The **OHOS::Media::OhosPixelMapInfo** struct defines the information about a pixel map.
+The **OHOS::Media::OhosPixelMapInfo** struct describes the information about a PixelMap.
 
 **System capability**: SystemCapability.Multimedia.Image
 
@@ -13,6 +13,8 @@ The **OHOS::Media::OhosPixelMapInfo** struct defines the information about a pix
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_pixel_map_napi.h](image__pixel__map__napi_8h.md)
+
 
 ## Summary
 
@@ -21,10 +23,10 @@ The **OHOS::Media::OhosPixelMapInfo** struct defines the information about a pix
 
 | Name| Description| 
 | -------- | -------- |
-| [width](#width) | Image width, in pixels.| 
-| [height](#height) | Image height, in pixels.| 
-| [rowSize](#rowsize) | Number of bytes per row. In the case of Direct Memory Access (DMA), the formula is as follows: Image width x Number of bytes of each pixel + Padding. In the case of other types of memory, the formula is as follows: Image width x Number of bytes of each pixel.| 
-| [pixelFormat](#pixelformat) | Pixel format.| 
+| uint32_t [width](#width) | Image width, in pixels. | 
+| uint32_t [height](#height) | Image height, in pixels. | 
+| uint32_t [rowSize](#rowsize) | Number of bytes that each row of the image occupies in the memory. | 
+| int32_t [pixelFormat](#pixelformat) | Pixel format. | 
 
 
 ## Member Variable Description
@@ -33,7 +35,7 @@ The **OHOS::Media::OhosPixelMapInfo** struct defines the information about a pix
 ### height
 
 ```
-uint32_t OHOS::Media::OhosPixelMapInfo::height
+uint32_t OhosPixelMapInfo::height
 ```
 
 **Description**
@@ -44,29 +46,42 @@ Image height, in pixels.
 ### pixelFormat
 
 ```
-int32_t OHOS::Media::OhosPixelMapInfo::pixelFormat
+int32_t OhosPixelMapInfo::pixelFormat
 ```
 
 **Description**
 
-Pixel format.
+Pixel format. The options are as follows:
 
+| Value| Description|
+| ------ | ----------------- |
+| 0 | Unknown format.|
+| 2 | RGB_565.|
+| 3 | RGBA_8888.|
+| 4 | BGRA_8888.|
+| 5 | RGB_888.|
+| 6 | ALPHA_8.|
+| 7 | RGBA_F16.|
+| 8 | NV21.|
+| 9 | NV12.|
 
 ### rowSize
 
 ```
-uint32_t OHOS::Media::OhosPixelMapInfo::rowSize
+uint32_t OhosPixelMapInfo::rowSize
 ```
 
 **Description**
 
-Number of bytes per row. In the case of DMA, the formula is as follows: Image width x Number of bytes of each pixel + Padding. In the case of other types of memory, the formula is as follows: Image width x Number of bytes of each pixel.
+Number of bytes that each row of the image occupies in the memory.
+
+In the case of DMA, the formula is as follows: Image width x Number of bytes of each pixel + Number of padding bytes at the end of each row. In the case of other types of memory, the formula is as follows: Image width x Number of bytes of each pixel.
 
 
 ### width
 
 ```
-uint32_t OHOS::Media::OhosPixelMapInfo::width
+uint32_t OhosPixelMapInfo::width
 ```
 
 **Description**

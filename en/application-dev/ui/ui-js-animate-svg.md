@@ -1,10 +1,10 @@
-# Defining Animations for SVG Components
+# Animation for SVG Components
 
 You can use child components in the **\<svg>** component to animate attributes over time.
 
 ## Attribute Style Animation
 
-In the [animate](../reference/arkui-js/js-components-svg-animate.md) child component of the **\<svg>** component, set **attributeName** to the attribute you want to animate, **from** to the animation start value, and **to** to the animation end value.
+In the [animate](../reference/apis-arkui/arkui-js/js-components-svg-animate.md) child component of the **\<svg>** component, set **attributeName** to the attribute you want to animate, **from** to the animation start value, and **to** to the animation end value.
 
 
 ```html
@@ -41,7 +41,7 @@ In the [animate](../reference/arkui-js/js-components-svg-animate.md) child compo
 
 ## Motion Path Animation
 
-In the [animateMotion](../reference/arkui-js/js-components-svg-animatemotion.md) child component of the &lt;svg&gt; component, set path to define a shape for the animation.
+In the [animateMotion](../reference/apis-arkui/arkui-js/js-components-svg-animatemotion.md) child component of the &lt;svg&gt; component, set path to define a shape for the animation.
 
 
 ```html
@@ -62,7 +62,7 @@ In the [animateMotion](../reference/arkui-js/js-components-svg-animatemotion.md)
 
 ## animateTransform Animation
 
-In the [animateTransform](../reference/arkui-js/js-components-svg-animatetransform.md) child component of the **\<svg>** component, set attributeName to bind the corresponding attribute to the **transform** attribute, and set **type** to the animation type, **from** to the start value, and **to** to the end value.
+In the [animateTransform](../reference/apis-arkui/arkui-js/js-components-svg-animatetransform.md) child component of the **\<svg>** component, set attributeName to bind the corresponding attribute to the **transform** attribute, and set **type** to the animation type, **from** to the start value, and **to** to the end value.
 
 
 ```html

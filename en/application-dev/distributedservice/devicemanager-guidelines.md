@@ -34,7 +34,7 @@ Device information is sensitive user data. Even if the devices are connected to 
 
 ### Scenario
 
-To use the distributed device management capabilities, your application must have the ohos.permission.DISTRIBUTED_DATASYNC permission, which allows the application data to be exchanged between devices. This permission is a user_grant permission, which means the application must apply for user authorization.
+To use the distributed device management capabilities, your application must have the ohos.permission.DISTRIBUTED_DATASYNC permission, which allows application data to be exchanged between devices. This permission is a user_grant permission, which means the application must apply for user authorization.
 
 Before using the distributed device management capabilities, the application must be checked for the required permission.
 
@@ -65,8 +65,7 @@ The APIs used in this section are based on the stage model.
 2. Import the **common** and **abilityAccessCtrl** modules.
 
    ```ts
-   import common from '@ohos.app.ability.common';
-   import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+   import { common, abilityAccessCtrl } from '@kit.AbilityKit';
    ```
 
 3. Use **requestPermissionsFromUser** to request user authorization for the ohos.permission.DISTRIBUTED_DATASYNC permission.
@@ -93,32 +92,32 @@ Discover nearby devices.
 
 ### Available APIs
 
-startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object} ): void;
+startDiscovering(discoverParam: {[key:&nbsp;string]:&nbsp;Object;} , filterOptions?: {[key:&nbsp;string]:&nbsp;Object;} ): void;
 
-Starts to discover the devices that are in the same LAN or have Bluetooth enabled. For details, see [startDiscovering](../reference/apis/js-apis-distributedDeviceManager.md#startdiscovering).
+Starts to discover the devices that are in the same LAN or have Bluetooth enabled. For details, see [startDiscovering](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#startdiscovering).
 
 
 ### How to Develop
 
 1. Request the ohos.permission.DISTRIBUTED_DATASYNC permission for your application.
 
-2. Import the **deviceManager** module, which provides APIs for device management.
+2. Import the **distributedDeviceManager** module, which provides APIs for device management.
    
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
    ```
 
-3. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the **deviceManager** module.
+3. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the **distributedDeviceManager** module.
    
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. Create a **DeviceManager** instance, which is the entry for calling distributed device management APIs and registering the callback for discovering devices.
 
    ```ts
    try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.on('discoverSuccess', data => console.log('discoverSuccess on:' + JSON.stringify(data)));
      dmInstance.on('discoverFailure', data => console.log('discoverFailure on:' + JSON.stringify(data)));
    } catch(err) {
@@ -161,9 +160,9 @@ Bind an untrusted device discovered to establish a trust relationship.
 
 ### Available APIs
 
-bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object} , callback: AsyncCallback&lt;{deviceId: string}>): void;
+bindTarget(deviceId: string, bindParam: {[key:&nbsp;string]:&nbsp;Object;} , callback: AsyncCallback&lt;{deviceId: string;}>): void;
 
-Binds a device. For details, see [bindTarget](../reference/apis/js-apis-distributedDeviceManager.md#bindtarget).
+Binds a device. For details, see [bindTarget](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#bindtarget).
 
 ### How to Develop
 
@@ -209,7 +208,7 @@ Obtain information about all the online and trusted devices.
 
 getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
-Obtains information about all the available devices. For details, see [getAvailableDeviceListSync](../reference/apis/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
+Obtains information about all the available devices. For details, see [getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
 ### How to Develop
 
@@ -223,7 +222,7 @@ Obtains information about all the available devices. For details, see [getAvaila
 
    ```ts
    try {
-     let deviceInfoList: Array<deviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
+     let deviceInfoList: Array<distributedDeviceManager.DeviceBasicInfo> = dmInstance.getAvailableDeviceListSync();
    } catch (err) {
      let e: BusinessError = err as BusinessError;
      console.error('getAvailableDeviceListSync errCode:' + e.code + ',errMessage:' + e.message);
@@ -238,31 +237,31 @@ You can listen for the device online/offline status. The service will be notifie
 
 ### Available APIs
 
-on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange, device: DeviceBasicInfo }&gt;): void;
+on(type: 'deviceStateChange', callback: Callback&lt;{ action: DeviceStateChange; device: DeviceBasicInfo; }&gt;): void;
 
-Listens for device online/offline status. For details, see [on('deviceStateChange')](../reference/apis/js-apis-distributedDeviceManager.md#ondevicestatechange).
+Listens for device online/offline status. For details, see [on('deviceStateChange')](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#ondevicestatechange).
 
 ### How to Develop
 
 1. Request the ohos.permission.DISTRIBUTED_DATASYNC permission for your application.
 
-2. Import the **deviceManager** module, which provides APIs for device management.
+2. Import the **distributedDeviceManager** module, which provides APIs for device management.
    
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
    ```
 
-3. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the **deviceManager** module.
+3. Import the **BusinessError** module, which provides the error codes thrown by the APIs of the **distributedDeviceManager** module.
    
    ```ts
-   import { BusinessError } from '@ohos.base';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. Create a **DeviceManager** instance.
 
    ```ts
    try {
-     let dmInstance = deviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
      dmInstance.on('deviceStateChange', data => console.log('deviceStateChange on:' + JSON.stringify(data)));
    } catch(err) {
      let e: BusinessError = err as BusinessError;

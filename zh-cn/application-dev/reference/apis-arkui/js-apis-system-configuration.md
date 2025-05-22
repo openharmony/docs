@@ -21,6 +21,8 @@ static getLocale(): LocaleResponse
 
 获取应用当前的语言和地区。默认与系统的语言和地区同步。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Lite
 
 **返回值：**
@@ -43,10 +45,12 @@ static getLocale(): LocaleResponse
 
 表示应用当前Locale的属性。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.ArkUI.ArkUI.Lite
 
 | 名称   | 类型   | 可读   | 可写   | 说明                                       |
 | ---- | ------ | ---- | ---- | ---------------------------------------- |
 | language | string | 是    | 否    | 语言。例如：zh。 |
 | countryOrRegion | string | 是    | 否    | 国家或地区。例如：CN。 |
-| dir | string | 是    | 否    | 文字布局方向。取值范围：<br/>-&nbsp;ltr：从左到右；<br/>-&nbsp;rtl：从右到左。 |
+| dir | string | 是    | 否    | 文字布局方向。取值范围：<br/>-&nbsp;ltr：从左到右。<br/>-&nbsp;rtl：从右到左。 |

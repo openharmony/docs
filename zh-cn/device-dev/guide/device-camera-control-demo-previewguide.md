@@ -25,10 +25,10 @@
     ```
     Surface *surface = Surface::CreateSurface();
     /* 设置显示区域 */
-    surface->SetUserData("region_position_x", "480"); // 矩形左上角横坐标
-    surface->SetUserData("region_position_y", "270"); // 矩形左上角纵坐标
-    surface->SetUserData("region_width", "960"); // 宽
-    surface->SetUserData("region_height", "540"); // 高
+    surface->SetUserData("region_position_x", "480"); // 矩形左上角横坐标。
+    surface->SetUserData("region_position_y", "270"); // 矩形左上角纵坐标。
+    surface->SetUserData("region_width", "960"); // 宽。
+    surface->SetUserData("region_height", "540"); // 高。
     
     fc->AddSurface(*surface);
     ```
@@ -36,8 +36,8 @@
 3.  开始和结束预览。
 
     ```
-    stateCallback->camera_->TriggerLoopingCapture(*fc); // start previewing
-    stateCallback->camera_->StopLoopingCapture(); // stop previewing
+    stateCallback->camera_->TriggerLoopingCapture(*fc); // start previewing.
+    stateCallback->camera_->StopLoopingCapture(); // stop previewing.
     ```
 
 

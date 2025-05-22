@@ -5,17 +5,17 @@
 
 当设备需要振动固定时长时，可以调用Vibrator模块，例如：设备的按键可以设置不同时长的振动。
 
-详细的接口介绍请参考[Vibrator接口](../../reference/apis-as/js-apis-vibrator.md)。
+详细的接口介绍请参考[Vibrator接口](../../reference/apis-sensor-service-kit/js-apis-vibrator.md)。
 
 
 ## 接口说明
 
-| 模块          | 接口名                                                       | 描述                                                         |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ohos.vibrator | startVibration(effect: VibrateTime, attribute: VibrateAttribute): Promise&lt;void&gt; | 根据指定振动效果和振动属性触发马达振动，使用Promise异步回调。 |
-| ohos.vibrator | startVibration(effect: VibrateTime, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | 根据指定振动效果和振动属性触发马达振动，使用Callback异步回调。 |                                |
-| ohos.vibrator | stopVibration(): Promise&lt;void&gt;                         | 停止所有模式的马达振动，使用Promise异步回调。                                     |
-| ohos.vibrator | stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动，使用Callback异步回调。                                     |
+| 名称                                                         | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| startVibration(effect: VibrateTime, attribute: VibrateAttribute): Promise&lt;void&gt; | 根据指定振动效果和振动属性触发马达振动，使用Promise异步回调。 |
+| startVibration(effect: VibrateTime, attribute: VibrateAttribute, callback: AsyncCallback&lt;void&gt;): void | 根据指定振动效果和振动属性触发马达振动，使用Callback异步回调。 |
+| stopVibration(): Promise&lt;void&gt;                         | 停止所有模式的马达振动，使用Promise异步回调。                |
+| stopVibration(callback: AsyncCallback&lt;void&gt;): void     | 停止所有模式的马达振动，使用Callback异步回调。               |
 
 
 ## 开发步骤
@@ -25,8 +25,8 @@
 2. 根据指定振动时长和振动属性触发马达振动。
 
     ```ts
-    import vibrator from '@ohos.vibrator';
-    import { BusinessError } from '@ohos.base';
+    import { vibrator } from '@kit.SensorServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
       // 触发马达振动
@@ -52,8 +52,8 @@
 3. 停止马达的振动。
 
     ```ts
-    import vibrator from '@ohos.vibrator';
-    import { BusinessError } from '@ohos.base';
+    import { vibrator } from '@kit.SensorServiceKit';
+    import { BusinessError } from '@kit.BasicServicesKit';
 
     try {
       // 停止所有模式的马达振动

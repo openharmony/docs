@@ -25,20 +25,21 @@ The **clamp** function is defined as follows:
 
 **Substitute**: You are advised to use [NN_QuantParam](_neural_network_runtime.md#nn_quantparam).
 
-**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
+**Header file**: [neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [quantCount](#quantcount) | Length of the numBits, scale, and zeroPoint arrays. In the per-layer quantization scenario, **quantCount** is usually set to **1**. That is, all channels of a tensor share a set of quantization parameters. In the per-channel quantization scenario, **quantCount** is usually the same as the number of tensor channels, and each channel uses its own quantization parameters.|
-| [numBits](#numbits) | Number of quantization bits.|
-| [scale](#scale) | Pointer to the scale data in the quantization formula.|
-| [zeroPoint](#zeropoint) | Pointer to the zero point data in the quantization formula.|
+| uint32_t [quantCount](#quantcount) | Length of the numBits, scale, and zeroPoint arrays. In the per-layer quantization scenario, **quantCount** is usually set to **1**. That is, all channels of a tensor share a set of quantization parameters. In the per-channel quantization scenario, **quantCount** is usually the same as the number of tensor channels, and each channel uses its own quantization parameters.| 
+| const uint32_t \* [numBits](#numbits) | Number of quantization bits.| 
+| const double \* [scale](#scale) | Pointer to the scale data in the quantization formula.| 
+| const int32_t \* [zeroPoint](#zeropoint) | Pointer to the zero point data in the quantization formula.| 
 
 
 ## Member Variable Description
@@ -86,5 +87,3 @@ const int32_t* OH_NN_QuantParam::zeroPoint
 **Description**
 
 Pointer to the zero point data in the quantization formula.
-
-<!--no_check-->

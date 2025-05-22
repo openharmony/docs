@@ -1,4 +1,4 @@
- # AutoStartupInfo (系统接口)
+# AutoStartupInfo (系统接口)
 
 定义开机自启动应用组件信息。
 
@@ -10,7 +10,7 @@
 
 ## 属性
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -20,19 +20,19 @@
 | moduleName | string | 否   | 应用程序的Module名称。 |
 | abilityName | string | 是  | 应用程序的Ability名称。 |
 | abilityTypeName | string | 否 | 应用程序的Ability类型。 |
+| appCloneIndex | number   | 否   | 分身应用索引。  |
 
 **示例：**
 
 ```ts
-import autoStartupManager from '@ohos.app.ability.autoStartupManager';
-import common from '@ohos.app.ability.common';
+import { autoStartupManager, common } from '@kit.AbilityKit';
 
 autoStartupManager.setApplicationAutoStartup({
   bundleName: 'com.example.autostartupapp',
   moduleName: 'entry',
   abilityName: 'EntryAbility',
   abilityTypeName: 'ServiceExtension'
-} as common.AutoStartupInfo , (err, data) => {
+} as common.AutoStartupInfo, (err, data) => {
   console.info('====> err: ' + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
 });
 ```

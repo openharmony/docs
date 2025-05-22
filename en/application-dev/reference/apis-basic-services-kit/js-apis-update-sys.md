@@ -17,7 +17,7 @@ There are two types of updates: SD card update and over the air (OTA) update.
 ## Modules to Import
 
 ```js
-import update from '@ohos.update';
+import { update } from '@kit.BasicServicesKit';
 ```
 
 ## update.getOnlineUpdater
@@ -105,7 +105,7 @@ try {
   let localUpdater = update.getLocalUpdater();
 } catch(error) {
   console.error(`Fail to get localUpdater error: ${error}`);
-};
+}
 ```
 
 ## Updater
@@ -132,12 +132,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.checkNewVersion((err: BusinessError, result: update.CheckResult) => {
       console.log(`checkNewVersion isExistNewVersion  ${result?.isExistNewVersion}`);
@@ -166,12 +167,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.checkNewVersion()
       .then((result: update.CheckResult) => {
@@ -181,7 +183,7 @@ updater.checkNewVersion()
       })
       .catch((err: BusinessError)=>{
         console.log(`checkNewVersion promise error ${JSON.stringify(err)}`);
-      })
+      });
 ```
 
 ###  getNewVersionInfo
@@ -206,12 +208,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getNewVersionInfo((err: BusinessError, info: update.NewVersionInfo) => {
       console.log(`info displayVersion = ${info?.versionComponents[0].displayVersion}`);
@@ -241,12 +244,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getNewVersionInfo().then((info: update.NewVersionInfo) => {
     console.log(`info displayVersion = ${info.versionComponents[0].displayVersion}`);
@@ -280,12 +284,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -307,7 +313,7 @@ updater.getNewVersionDescription(versionDigestInfo, descriptionOptions).then((in
 
 ### getNewVersionDescription
 
-getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>;
+getNewVersionDescription(versionDigestInfo: VersionDigestInfo, descriptionOptions: DescriptionOptions): Promise\<Array\<ComponentDescription>>
 
 Obtains the description file of the new version. This API uses a promise to return the result.
 
@@ -334,12 +340,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -381,12 +389,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getCurrentVersionInfo((err: BusinessError, info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info?.osVersion}`);
@@ -417,12 +426,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getCurrentVersionInfo().then((info: update.CurrentVersionInfo) => {
   console.log(`info osVersion = ${info.osVersion}`);
@@ -456,6 +466,8 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -501,13 +513,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-
+import { BusinessError } from '@kit.BasicServicesKit';
 // Options of the description file
 const descriptionOptions: update.DescriptionOptions = {
   format: update.DescriptionFormat.STANDARD, // Standard format
@@ -542,12 +555,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getTaskInfo((err: BusinessError, info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info?.existTask}`);
@@ -576,12 +590,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getTaskInfo().then((info: update.TaskInfo) => {
   console.log(`getTaskInfo isexistTask= ${info.existTask}`);
@@ -606,7 +621,7 @@ Downloads the new version. This API uses an asynchronous callback to return the 
 | ----------------- | --------------------------------------- | ---- | ---------------------------------- |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                            |
 | downloadOptions   | [DownloadOptions](#downloadoptions)     | Yes   | Download options.                              |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -614,12 +629,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -665,12 +682,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -705,7 +724,7 @@ Resumes download of the new version. This API uses an asynchronous callback to r
 | --------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo     | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | resumeDownloadOptions | [ResumeDownloadOptions](#resumedownloadoptions) | Yes   | Options for resuming download.                              |
-| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback              | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -713,12 +732,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo : update.VersionDigestInfo= {
@@ -763,12 +784,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -802,7 +825,7 @@ Pauses download of the new version. This API uses an asynchronous callback to re
 | -------------------- | ---------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo    | [VersionDigestInfo](#versiondigestinfo)  | Yes   | Version digest information.                              |
 | pauseDownloadOptions | [PauseDownloadOptions](#pausedownloadoptions) | Yes   | Options for pausing download.                              |
-| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback             | AsyncCallback\<void>                     | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -810,12 +833,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -860,12 +885,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -899,7 +926,7 @@ Updates the version. This API uses an asynchronous callback to return the result
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | upgradeOptions    | [UpgradeOptions](#upgradeoptions)       | Yes   | Update options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -907,12 +934,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -957,12 +986,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -996,7 +1027,7 @@ Clears errors. This API uses an asynchronous callback to return the result.
 | ----------------- | --------------------------------------- | ---- | ------------------------------------ |
 | versionDigestInfo | [VersionDigestInfo](#versiondigestinfo) | Yes   | Version digest information.                              |
 | clearOptions      | [ClearOptions](#clearoptions)           | Yes   | Clear options.                                |
-| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback          | AsyncCallback\<void>                    | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -1004,12 +1035,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -1054,12 +1087,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Version digest information
 const versionDigestInfo: update.VersionDigestInfo = {
@@ -1099,12 +1134,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getUpgradePolicy(err: BusinessError, policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy?.downloadStrategy}`);
@@ -1134,12 +1170,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.getUpgradePolicy().then((policy: update.UpgradePolicy) => {
   console.log(`policy downloadStrategy = ${policy.downloadStrategy}`);
@@ -1172,12 +1209,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
@@ -1217,12 +1255,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const policy: update.UpgradePolicy = {
   downloadStrategy: false,
@@ -1250,7 +1289,7 @@ Terminates the update. This API uses an asynchronous callback to return the resu
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -1258,12 +1297,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.terminateUpgrade((err: BusinessError) => {
   console.log(`terminateUpgrade error ${JSON.stringify(err)}`);
@@ -1292,12 +1332,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 updater.terminateUpgrade().then(() => {
   console.log(`terminateUpgrade success`);
@@ -1379,7 +1420,7 @@ Restores the scale to its factory settings. This API uses an asynchronous callba
 
 | Name     | Type                  | Mandatory  | Description                                    |
 | -------- | -------------------- | ---- | -------------------------------------- |
-| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation fails, **err** is an error object and a callback is returned. If the the operation is successful, **err** is undefined and no callback is returned.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation fails, **err** is an error object and a callback is returned. If the operation is successful, **err** is undefined and no callback is returned.|
 
 **Error codes**
 
@@ -1387,6 +1428,7 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1411,7 +1453,7 @@ Restores the scale to its factory settings. This API uses a promise to return th
 
 | Type            | Description                        |
 | -------------- | -------------------------- |
-| Promise\<void> | Promise that returns no value. If the operation fails, a callback is returned. If the the operation is successful, no callback is returned.|
+| Promise\<void> | Promise that returns no value. If the operation fails, a callback is returned. If the operation is successful, no callback is returned.|
 
 **Error codes**
 
@@ -1419,12 +1461,13 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 restorer.factoryReset().then(() => {
   console.log(`factoryReset success`);
@@ -1459,6 +1502,8 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1503,12 +1548,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const upgradeFile: update.UpgradeFile = {
   fileType: update.ComponentType.OTA, // OTA package
@@ -1535,7 +1582,7 @@ Installs the update package. This API uses an asynchronous callback to return th
 | Name        | Type                                | Mandatory  | Description                                     |
 | ----------- | ---------------------------------- | ---- | --------------------------------------- |
 | upgradeFile | Array<[UpgradeFile](#upgradefile)> | Yes   | Update file.                                   |
-| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, `err` is `undefined`; otherwise, `err` is an `Error` object.|
+| callback    | AsyncCallback\<void>               | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an **Error** object.|
 
 **Error codes**
 
@@ -1543,6 +1590,8 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
@@ -1580,12 +1629,14 @@ For details about the error codes, see [Update Error Codes](errorcode-update.md)
 
 | ID      | Error Message                                                 |
 | -------  | ---------------------------------------------------- |
+| 201      | Permission denied.       |
+| 401      | Parameter verification failed.    |
 | 11500104 | IPC error.               |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const upgradeFiles: Array<update.UpgradeFile> = [{
   fileType: update.ComponentType.OTA, // OTA package

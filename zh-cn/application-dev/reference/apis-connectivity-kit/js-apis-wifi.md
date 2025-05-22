@@ -165,7 +165,7 @@ WLAN热点信息。
 | capabilities | string | 是 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | WLAN加密类型。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段。 |
+| band | number | 是 | 否 | WLAN接入点的频段。1表示2.4GHZ；2表示5GHZ。|
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
 | channelWidth | number | 是 | 否 | WLAN接入点的带宽。 |
 | timestamp | number | 是 | 否 | 时间戳。 |
@@ -200,7 +200,7 @@ WLAN配置信息。
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | preSharedKey | string | 是 | 否 | 热点的密钥，最大长度为64字节。 |
-| isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。 |
+| isHiddenSsid | boolean | 是 | 否 | 是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
 
 
@@ -489,7 +489,7 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getLinkedInfo((err, data) => {
+wifi.getLinkedInfo((err, data:wifi.WifiLinkedInfo) => {
     if (err) {
         console.error("get linked info error");
         return;
@@ -516,11 +516,11 @@ wifi.getLinkedInfo().then(data => {
 | ssid | string | 是 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
 | bssid | string | 是 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 是 | 否 | WLAN接入点的频段。 |
-| linkSpeed | number | 是 | 否 | WLAN接入点的速度。 |
+| band | number | 是 | 否 | WLAN接入点的频段。1表示2.4GHZ；2表示5GHZ。|
+| linkSpeed | number | 是 | 否 | WLAN接入点的速度，单位Mbps。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
-| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 |
-| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
+| isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
+| isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。true: 限制，false:不限制。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
 | connState | [ConnState](#connstate) | 是 | 否 | WLAN连接状态。 |
@@ -701,7 +701,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | connectState | [P2pConnectState](#p2pconnectstate8) | 是 | 否 | P2P连接状态。 |
-| isGroupOwner | boolean | 是 | 否 | 是否是群主。 |
+| isGroupOwner | boolean | 是 | 否 | 是否是群主。true:是群主，false:不是群主。 |
 | groupOwnerAddr | string | 是 | 否 | 群组MAC地址。 
 
 
@@ -737,7 +737,7 @@ getP2pLinkedInfo(callback: AsyncCallback&lt;WifiP2pLinkedInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pLinkedInfo((err, data) => {
+wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
    if (err) {
        console.error("get p2p linked info error");
        return;
@@ -787,7 +787,7 @@ getCurrentGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getCurrentGroup((err, data) => {
+wifi.getCurrentGroup((err, data:wifi.WifiP2pGroupInfo) => {
    if (err) {
        console.error("get current P2P group error");
        return;
@@ -837,7 +837,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 ```ts
 import wifi from '@ohos.wifi';
 
-wifi.getP2pPeerDevices((err, data) => {
+wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
    if (err) {
        console.error("get P2P peer devices error");
        return;
@@ -1006,7 +1006,7 @@ import wifi from '@ohos.wifi';
 
 let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p connection change receive event: " + JSON.stringify(result));
-    wifi.getP2pLinkedInfo((err, data) => {
+    wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
         if (err) {
             console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
             return;
@@ -1023,7 +1023,7 @@ wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
 let recvP2pPeerDeviceChangeFunc = (result:wifi.WifiP2pDevice[]) => {
     console.info("p2p peer device change receive event: " + JSON.stringify(result));
-    wifi.getP2pPeerDevices((err, data) => {
+    wifi.getP2pPeerDevices((err, data:wifi.WifiP2pDevice) => {
         if (err) {
             console.error('failed to get peer devices: ' + JSON.stringify(err));
             return;
@@ -1050,7 +1050,7 @@ wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 let recvP2pPersistentGroupChangeFunc = () => {
     console.info("p2p persistent group change receive event");
 
-    wifi.getCurrentGroup((err, data) => {
+    wifi.getCurrentGroup((err, data:wifi.WifiP2pGroupInfo) => {
         if (err) {
             console.error('failed to get current group: ' + JSON.stringify(err));
             return;
@@ -1135,7 +1135,7 @@ stopDiscoverDevices(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true:操作执行成功，操作执行失败。 |
+  | boolean | true:操作执行成功 flase:操作执行失败。 |
 
 **示例：**
 ```ts
@@ -1148,8 +1148,6 @@ try {
 }
 ```
 
-
-
 ## WifiP2pGroupInfo<sup>8+</sup>
 
 表示P2P群组相关信息。
@@ -1158,7 +1156,7 @@ try {
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isP2pGo | boolean | 是 | 否 | 是否是群主。 |
+| isP2pGo | boolean | 是 | 否 | 是否是群主。true:是群主，false:不是群主。 |
 | ownerInfo | [WifiP2pDevice](#wifip2pdevice8) | 是 | 否 | 群组的设备信息。 |
 | passphrase | string | 是 | 否 | 群组密钥。 |
 | interface | string | 是 | 否 | 接口名称。 |
@@ -1172,7 +1170,7 @@ try {
 
 ## wifi.on('wifiStateChange')<sup>7+</sup>
 
-on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiStateChange', callback: Callback&lt;number&gt;): void
 
 注册WLAN状态改变事件。
 
@@ -1199,7 +1197,7 @@ on(type: "wifiStateChange", callback: Callback&lt;number&gt;): void
 
 ## wifi.off('wifiStateChange')<sup>7+</sup>
 
-off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiStateChange', callback?: Callback&lt;number&gt;): void
 
 取消注册WLAN状态改变事件。
 
@@ -1232,7 +1230,7 @@ wifi.off("wifiStateChange", recvPowerNotifyFunc);
 
 ## wifi.on('wifiConnectionChange')<sup>7+</sup>
 
-on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiConnectionChange', callback: Callback&lt;number&gt;): void
 
 注册WLAN连接状态改变事件。
 
@@ -1257,7 +1255,7 @@ on(type: "wifiConnectionChange", callback: Callback&lt;number&gt;): void
 
 ## wifi.off('wifiConnectionChange')<sup>7+</sup>
 
-off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiConnectionChange', callback?: Callback&lt;number&gt;): void
 
 取消注册WLAN连接状态改变事件。
 
@@ -1289,7 +1287,7 @@ wifi.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
 
-on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiScanStateChange', callback: Callback&lt;number&gt;): void
 
 注册扫描状态改变事件。
 
@@ -1314,7 +1312,7 @@ on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
 
 ## wifi.off('wifiScanStateChange')<sup>7+</sup>
 
-off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiScanStateChange', callback?: Callback&lt;number&gt;): void
 
 取消注册扫描状态改变事件。
 
@@ -1346,7 +1344,7 @@ wifi.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
 
 ## wifi.on('wifiRssiChange')<sup>7+</sup>
 
-on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
+on(type: 'wifiRssiChange', callback: Callback&lt;number&gt;): void
 
 注册RSSI状态改变事件。
 
@@ -1364,7 +1362,7 @@ on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
 
 ## wifi.off('wifiRssiChange')<sup>7+</sup>
 
-off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
+off(type: 'wifiRssiChange', callback?: Callback&lt;number&gt;): void
 
 取消注册RSSI状态改变事件。
 
@@ -1398,7 +1396,7 @@ wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
 
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
-on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'hotspotStateChange', callback: Callback&lt;number&gt;): void
 
 注册热点状态改变事件。
 
@@ -1439,7 +1437,7 @@ wifi.off("hotspotStateChange", recvHotspotStateChangeFunc);
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
 
-off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'hotspotStateChange', callback?: Callback&lt;number&gt;): void
 
 取消注册热点状态改变事件。
 
@@ -1458,7 +1456,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
 
-on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
+on(type: 'p2pStateChange', callback: Callback&lt;number&gt;): void
 
 注册P2P开关状态改变事件。
 
@@ -1485,7 +1483,7 @@ on(type: "p2pStateChange", callback: Callback&lt;number&gt;): void
 
 ## wifi.off('p2pStateChange')<sup>8+</sup>
 
-off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
+off(type: 'p2pStateChange', callback?: Callback&lt;number&gt;): void
 
 取消注册P2P开关状态改变事件。
 
@@ -1517,7 +1515,7 @@ wifi.off("p2pStateChange", recvP2pStateChangeFunc);
 
 ## wifi.on('p2pConnectionChange')<sup>8+</sup>
 
-on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
+on(type: 'p2pConnectionChange', callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
 注册P2P连接状态改变事件。
 
@@ -1535,7 +1533,7 @@ on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): vo
 
 ## wifi.off('p2pConnectionChange')<sup>8+</sup>
 
-off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): void
+off(type: 'p2pConnectionChange', callback?: Callback&lt;WifiP2pLinkedInfo&gt;): void
 
 取消注册P2P连接状态改变事件。
 
@@ -1567,7 +1565,7 @@ wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);
 
 ## wifi.on('p2pDeviceChange')<sup>8+</sup>
 
-on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
+on(type: 'p2pDeviceChange', callback: Callback&lt;WifiP2pDevice&gt;): void
 
 注册P2P设备状态改变事件。
 
@@ -1585,7 +1583,7 @@ on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
 
 ## wifi.off('p2pDeviceChange')<sup>8+</sup>
 
-off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
+off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 取消注册P2P设备状态改变事件。
 
@@ -1617,7 +1615,7 @@ wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);
 
 ## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
 
-on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
+on(type: 'p2pPeerDeviceChange', callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 注册P2P对端设备状态改变事件。
 
@@ -1635,7 +1633,7 @@ on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
 
 ## wifi.off('p2pPeerDeviceChange')<sup>8+</sup>
 
-off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): void
+off(type: 'p2pPeerDeviceChange', callback?: Callback&lt;WifiP2pDevice[]&gt;): void
 
 取消注册P2P对端设备状态改变事件。
 
@@ -1667,7 +1665,7 @@ wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
 
-on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
+on(type: 'p2pPersistentGroupChange', callback: Callback&lt;void&gt;): void
 
 注册P2P永久组状态改变事件。
 
@@ -1685,7 +1683,7 @@ on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
 
 ## wifi.off('p2pPersistentGroupChange')<sup>8+</sup>
 
-off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
+off(type: 'p2pPersistentGroupChange', callback?: Callback&lt;void&gt;): void
 
 取消注册P2P永久组状态改变事件。
 
@@ -1718,7 +1716,7 @@ wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
 
 ## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
 
-on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
+on(type: 'p2pDiscoveryChange', callback: Callback&lt;number&gt;): void
 
 注册发现设备状态改变事件。
 
@@ -1743,7 +1741,7 @@ on(type: "p2pDiscoveryChange", callback: Callback&lt;number&gt;): void
 
 ## wifi.off('p2pDiscoveryChange')<sup>8+</sup>
 
-off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
+off(type: 'p2pDiscoveryChange', callback?: Callback&lt;number&gt;): void
 
 取消注册发现设备状态改变事件。
 

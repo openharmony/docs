@@ -14,7 +14,7 @@ The **HarmonyAppProvision** file consists of several parts, which are described 
 | issuer | Issuer of the **HarmonyAppProvision** file.       | String    | Yes| No|
 | validity    | Validity period of the **HarmonyAppProvision** file. For details, see [validity](#validity). | Object    | Yes| No |
 | bundle-info | Information about the application bundle and developer. For details, see [bundle-info](#bundle-info).        | Object    | Yes| No |
-| acls        | Information about the permissions authorized via the Access Control List (ACL). For details, see [acls](#acls). | Object    | No| Yes   |
+| acls        | Information about the permissions requested via Access Control List (ACL). For details, see [acls](#acls). | Object    | No| Yes   |
 | permissions | Permissions required for your application. For details, see [permissions](#permissions).     | Object    | No| Yes   |
 | debug-info  | Additional information for application debugging. For details, see [debug-info](#debug-info).         | Object    | No| Yes        |
 | app-privilege-capabilities | Privilege information required by the application bundle. For details, see the [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).  | String array| No| Yes        |
@@ -37,7 +37,11 @@ An example of the **HarmonyAppProvision** file is as follows:
 		"distribution-certificate": "Base64 string",
 		"bundle-name": "com.OpenHarmony.app.test",
 		"apl": "normal",
-        "app-feature": "hos_normal_app"
+		"app-feature": "hos_normal_app",
+		"data-group-ids": [
+			"testGroupId1",
+			"testGroupId2"
+		]
 	},
 	"acls": {
 		"allowed-acls": ["string"]
@@ -74,6 +78,8 @@ An example of the **HarmonyAppProvision** file is as follows:
 | bundle-name  | Bundle name of the application.| String   | Yes| No  |
 | apl  | [Ability Privilege Level (APL)](AccessToken/access-token-overview.md) of the application. The predefined APLs includes normal, system_basic, and system_core.| String   | Yes| No  |
 | app-feature  | Type of your application. The value can be **hos_system_app** (system application) or **hos_normal_app** (normal application). Only system applications are allowed to call system APIs. If a normal application calls a system API, the call cannot be successful or the application may run abnormally.| String   | Yes| No  |
+| data-group-ids  | IDs of application data groups. When an application is installed, a directory is generated for each data group ID. If two applications or an ExtensionAbility and its application have the same data group ID in **data-group-ids**, they can share the data in the directory corresponding to the data group ID. An ExtensionAbility declares the data group IDs in the **dataGroupIds** field in the [module.json5](../quick-start/module-configuration-file.md#extensionabilities) file.| String array   | No| Yes (initial value: left empty)  |
+| app-identifier | Unique ID of the application, which is allocated by the cloud. This ID does not change along the application lifecycle, including version updates, certificate changes, public and private key changes, and application transfers.| String array   | No| Yes (initial value: left empty)  |
 
 
 ### acls
@@ -88,7 +94,7 @@ The **permissions** object contains restricted permissions required for your app
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | ------- | --------- |
-| restricted-permissions | [user_grant permissions](AccessToken/permissions-for-all.md#user_grant-permissions) that can be used.| String array   | No| No  |
+| restricted-permissions | Restricted sensitive permissions allowed. For details, see [Restricted Permissions](AccessToken/restricted-permissions.md).| String array   | No| No  |
 
 ### debug-info
 The **debug-info** object contains debugging information of your application, mainly device management and control information.
@@ -113,3 +119,4 @@ To modify the HarmonyAppProvision configuration file, perform the following step
 
 After modifying the configuration file, [sign the application](hapsigntool-guidelines.md).
 
+<!--no_check-->

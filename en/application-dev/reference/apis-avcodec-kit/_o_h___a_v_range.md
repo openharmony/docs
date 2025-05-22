@@ -3,15 +3,15 @@
 
 ## Overview
 
-The **OH_AVRange** struct defines the value range, which contains the minimum value and maximum value.
+The OH_AVRange struct describes the value range, which contains the minimum value and maximum value.
 
 **System capability**: SystemCapability.Multimedia.Media.CodecBase
 
 **Since**: 10
 
-**Related Modules**
+**Related module**: [AVCapability](_a_v_capability.md)
 
-[AVCapability](_a_v_capability.md)
+**Header file**: [native_avcapability.h](native__avcapability_8h.md)
 
 
 ## Summary
@@ -21,8 +21,8 @@ The **OH_AVRange** struct defines the value range, which contains the minimum va
 
 | Name| Description| 
 | -------- | -------- |
-| [minVal](#minval) | Defines the minimum value.| 
-| [maxVal](#maxval) | Defines the maximum value.| 
+| [minVal](#minval) | Minimum value.| 
+| [maxVal](#maxval) | Maximum value.| 
 
 
 ## Member Variable Description
@@ -37,7 +37,7 @@ int32_t minVal
 
 **Description**
 
-Defines the minimum value.
+Minimum value.
 
 **Since**: 10
 
@@ -51,6 +51,6 @@ int32_t maxVal
 
 **Description**
 
-Defines the maximum value.
+Maximum value.
 
 **Since**: 10

@@ -29,11 +29,13 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | callback | AsyncCallback&lt;[AttestResultInfo](#attestresultinfo)&gt; | 是   | 回调函数。当获取端云校验结果的详细信息成功，error为undefined，result为获取到的[AttestResultInfo](#attestresultinfo)；否则为错误对象。 |
 
-**错误码：**
-
+**错误码：**  
+以下错误码的详细介绍请参见[设备证明错误码](./errorcode-deviceAttest.md)和[通用错误码说明文档](../errorcode-universal.md)。  
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api. |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect. |
+| 20000001 | System service exception, please try again or reboot your device. |
 
 **示例：**
 
@@ -74,11 +76,13 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 | ----------------------------------------------------- | ------------------------------- |
 | Promise&lt;[AttestResultInfo](#attestresultinfo)&gt; | Promise对象，返回端云校验结果的详细信息。 |
 
-**错误码：**
-
+**错误码：**  
+以下错误码的详细介绍请参见[设备证明错误码](./errorcode-deviceAttest.md)和[通用错误码说明文档](../errorcode-universal.md)。  
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api. |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect. |
+| 20000001 | System service exception, please try again or reboot your device. |
 
 **示例：**
 
@@ -117,11 +121,13 @@ getAttestStatusSync() : AttestResultInfo
 | ----------------------------------------------------- | ------------------------------- |
 | [AttestResultInfo](#attestresultinfo) | 返回端云校验结果的详细信息。 |
 
-**错误码：**
-
+**错误码：**  
+以下错误码的详细介绍请参见[设备证明错误码](./errorcode-deviceAttest.md)和[通用错误码说明文档](../errorcode-universal.md)。  
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception. |
+| 202     | This api is system api, Please use the system application to call this api. |
+| 401     | Input parameters wrong, the number of parameters is incorrect, or the type of parameters is incorrect. |
+| 20000001 | System service exception, please try again or reboot your device. |
 
 **示例：**
 
@@ -153,8 +159,8 @@ try {
 | --------------------- | --------------------- | ---- | ---- | ---------------------- |
 | authResult            | number               | 是   | 否   | 设备硬件信息校验结果。    |
 | softwareResult        | number               | 是   | 否   | 设备软件信息校验结果。    |
-| softwareResultDetail  | Array&lt;number&gt;  | 是   | 否   | 设备软件信息校验结果详细说明<br/> - softwareResultDetail[0]:版本Id的校验结果；<br/>- softwareResultDetail[1]:安全补丁标签的校验结果；<br/>- softwareResultDetail[2]:版本Hash的校验结果；<br/>- softwareResultDetail[3]:系统能力集合的校验结果；<br/>- softwareResultDetail[4]:保留位。  |
-| ticket                | string               | 是   | 否   | 云侧下发的软证书。<br/>设备硬件信息校验结果通过后有值；校验结果失败，该值为空        |
+| softwareResultDetail  | Array&lt;number&gt;  | 是   | 否   | 设备软件信息校验结果详细说明：<br/> - softwareResultDetail[0]：版本Id的校验结果。<br/>- softwareResultDetail[1]：安全补丁标签的校验结果。<br/>- softwareResultDetail[2]：版本Hash的校验结果。<br/>- softwareResultDetail[3]：系统能力集合的校验结果。<br/>- softwareResultDetail[4]：保留位。  |
+| ticket                | string               | 是   | 否   | 云侧下发的软证书。<br/>设备硬件信息校验结果通过后有值；校验结果失败，该值为空。        |
 
 > **说明：**
 >

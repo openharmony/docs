@@ -9,6 +9,7 @@
 
 **相关模块：**[Drawing](_drawing.md)
 
+**所在头文件：**[drawing_types.h](drawing__types_8h.md)
 
 ## 汇总
 
@@ -17,6 +18,6 @@
 
 | 名称 | 描述 |
 | -------- | -------- |
-| float **x** | x轴坐标 |
-| float **y** | y轴坐标 |
-| float **z** | z轴坐标 |
+| float **x** | x轴坐标。 |
+| float **y** | y轴坐标。 |
+| float **z** | z轴坐标。 |

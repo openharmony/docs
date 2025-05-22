@@ -7,18 +7,19 @@ Defines the structure for storing 32-bit unsigned integer arrays.
 
 **Since**: 9
 
-**Related module**: [NeuralNetworkRuntime](_neural_network_runtime.md)
+**Related module**: [NeuralNeworkRuntime](_neural_network_runtime.md)
 
+**Header file**: [neural_network_runtime_type.h](neural__network__runtime__type_8h.md)
 
 ## Summary
 
 
 ### Member Variables
 
-| Name| Description|
+| Name| Description| 
 | -------- | -------- |
-| [data](#data) | Pointer to the unsigned integer array.|
-| [size](#size) | Array length.|
+| uint32_t \* [data](#data) | Pointer to the unsigned integer array.| 
+| uint32_t [size](#size) | Array length.| 
 
 
 ## Member Variable Description
@@ -43,6 +44,4 @@ uint32_t OH_NN_UInt32Array::size
 
 **Description**
 
-Array length.
-
-<!--no_check-->
+Size of the array.

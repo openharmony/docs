@@ -10,14 +10,14 @@ The **DataAbility** module provides APIs to create predicates for querying data 
 ## Modules to Import
 
 ```js
-import dataAbility from '@ohos.data.dataAbility';
+import { dataAbility } from '@kit.ArkData';
 ```
 
 ## dataAbility.createRdbPredicates
 
 createRdbPredicates(name: string, dataAbilityPredicates: DataAbilityPredicates): rdb.RdbPredicates
 
-Creates an **RdbPredicates** object with a table name and a **DataAbilityPredicates** object.
+Creates an **RdbPredicates** object with a table name and **DataAbilityPredicates** object.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -39,13 +39,13 @@ Creates an **RdbPredicates** object with a table name and a **DataAbilityPredica
   ```js
   let dataAbilityPredicates = new dataAbility.DataAbilityPredicates()
   dataAbilityPredicates.equalTo("NAME", "Rose")
-  // EMPLOYEE is a table created in a relational database.
+  // EMPLOYEE is a table created in an RDB store.
   let predicates = dataAbility.createRdbPredicates("EMPLOYEE", dataAbilityPredicates)
   ```
 
 ## DataAbilityPredicates
 
-Provides predicates for implementing diverse query methods.
+Provides APIs for creating diverse query conditions.
 
 **Initialization**
 
@@ -57,7 +57,7 @@ Provides predicates for implementing diverse query methods.
 
 equalTo(field: string, value: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value equals to the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are equal to the given value.
 
 This API is similar to the SQL equal to (=) operator.
 
@@ -68,13 +68,13 @@ This API is similar to the SQL equal to (=) operator.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -86,7 +86,7 @@ This API is similar to the SQL equal to (=) operator.
 
 notEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value not equal to the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are not equal to the given value.
 
 This API is similar to the SQL not equal (!=) operator.
 
@@ -97,13 +97,13 @@ This API is similar to the SQL not equal (!=) operator.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -115,7 +115,7 @@ This API is similar to the SQL not equal (!=) operator.
 
 beginWrap(): DataAbilityPredicates
 
-Adds a left parenthesis to this **DataAbilityPredicates**. This API is similar to "(" in an SQL statement and must be used with **endWrap**.
+Creates a **DataAbilityPredicates** object to add a left parenthesis. This API is similar to "(" in an SQL statement and must be used with **endWrap**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -140,7 +140,7 @@ Adds a left parenthesis to this **DataAbilityPredicates**. This API is similar t
 
 endWrap(): DataAbilityPredicates
 
-Adds a right parenthesis to this **DataAbilityPredicates**. This API is similar to ")" in an SQL statement and must be used with **beginWrap**.
+Creates a **DataAbilityPredicates** object to add a right parenthesis. This API is similar to ")" in an SQL statement and must be used with **beginWrap**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -165,7 +165,7 @@ Adds a right parenthesis to this **DataAbilityPredicates**. This API is similar 
 
 or(): DataAbilityPredicates
 
-Adds the OR condition to this **DataAbilityPredicates**.
+Creates a **DataAbilityPredicates** object to add the OR condition.
 
 This API is similar to the SQL **or** operator.
 
@@ -189,7 +189,7 @@ This API is similar to the SQL **or** operator.
 
 and(): DataAbilityPredicates
 
-Adds the AND condition to this **DataAbilityPredicates**.
+Creates a **DataAbilityPredicates** object to add the AND condition.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -211,7 +211,7 @@ Adds the AND condition to this **DataAbilityPredicates**.
 
 contains(field: string, value: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match a string containing the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that contain the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -220,13 +220,13 @@ Sets a **DataAbilityPredicates** object to match a string containing the specifi
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -238,9 +238,9 @@ Sets a **DataAbilityPredicates** object to match a string containing the specifi
 
 beginsWith(field: string, value: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match a string that starts with the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that begin with the given value.
 
-This API is similar to the SQL modulo (%) operator.
+This API is similar to the percent sign (%) in SQL statements.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -249,13 +249,13 @@ This API is similar to the SQL modulo (%) operator.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -267,9 +267,9 @@ This API is similar to the SQL modulo (%) operator.
 
 endsWith(field: string, value: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match a string that ends with the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that end with the given value.
 
-This API is similar to the SQL equal to (=) operator.
+This API is similar to the percent sign (%) in SQL statements.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -278,13 +278,13 @@ This API is similar to the SQL equal to (=) operator.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -296,7 +296,7 @@ This API is similar to the SQL equal to (=) operator.
 
 isNull(field: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field whose value is null.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -310,7 +310,7 @@ Sets a **DataAbilityPredicates** object to match the field whose value is null.
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -322,7 +322,7 @@ Sets a **DataAbilityPredicates** object to match the field whose value is null.
 
 isNotNull(field: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field whose value is not null.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are not **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -336,7 +336,7 @@ Sets a **DataAbilityPredicates** object to match the field whose value is not nu
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -348,7 +348,7 @@ Sets a **DataAbilityPredicates** object to match the field whose value is not nu
 
 like(field: string, value: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match a string that is similar to the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are similar to the given value.
 
 This API is similar to the SQL **like** statement.
 
@@ -359,13 +359,13 @@ This API is similar to the SQL **like** statement.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -377,7 +377,7 @@ This API is similar to the SQL **like** statement.
 
 glob(field: string, value: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the specified string. Different from **like**, the input parameters of this API are case-sensitive.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that match the given string. Different from **like**, the input parameters of this API are case-sensitive.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -386,23 +386,23 @@ Sets a **DataAbilityPredicates** object to match the specified string. Different
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | string | Yes| Value to match the **DataAbilityPredicates**.|
+| value | string | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
   ```js
   dataAbilityPredicates.glob("NAME", "?h*g")
 
-  // Only the data with name of Lisa matches the specified predicate.
+  // Only the records whose value is "Lisa" in the "name" column are matched.
   dataAbilityPredicates.glob("NAME", "Lisa")
 
-  // Only the data with name of lisa matches the specified predicate.
+  // Only the records whose value is "lisa" in the "name" column are matched.
   dataAbilityPredicates.glob("NAME", "lisa")
   ```
 
@@ -410,7 +410,7 @@ Sets a **DataAbilityPredicates** object to match the specified string. Different
 
 between(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match a field whose data type is **ValueType** and value is within the specified range.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are within the given range.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -419,14 +419,14 @@ Sets a **DataAbilityPredicates** object to match a field whose data type is **Va
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
+| low | [ValueType](#valuetype) | Yes| Minimum value of the range to set.|
+| high | [ValueType](#valuetype) | Yes| Maximum value of the range to set.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -438,7 +438,7 @@ Sets a **DataAbilityPredicates** object to match a field whose data type is **Va
 
 notBetween(field: string, low: ValueType, high: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value out of the specified range.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are out of the given range.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -447,14 +447,14 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| low | [ValueType](#valuetype) | Yes| Minimum value to match the **DataAbilityPredicates**.|
-| high | [ValueType](#valuetype) | Yes| Maximum value to match the **DataAbilityPredicates**.|
+| low | [ValueType](#valuetype) | Yes| Minimum value of the range to set.|
+| high | [ValueType](#valuetype) | Yes| Maximum value of the range to set.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -466,7 +466,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 greaterThan(field: string, value: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value greater than the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are greater than the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -475,13 +475,13 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -493,7 +493,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 lessThan(field: string, value: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value less than the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are less than the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -502,13 +502,13 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -520,7 +520,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 greaterThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value greater than or equal to the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are greater than or equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -529,13 +529,13 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -547,7 +547,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 lessThanOrEqualTo(field: string, value: ValueType): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type **ValueType** and value less than or equal to the specified value.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are less than or equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -556,13 +556,13 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | field | string | Yes| Column name in the table.|
-| value | [ValueType](#valuetype) | Yes| Value to match the **DataAbilityPredicates**.|
+| value | [ValueType](#valuetype) | Yes| Value to match.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -574,7 +574,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type **Valu
 
 orderByAsc(field: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to sort the data records in ascending order. When there are multiple **orderByAsc**s, the first **orderByAsc** used has the highest priority.
+Creates a **DataAbilityPredicates** object to sort the records in the specified column in ascending order. When there are multiple **orderByAsc**s, the first **orderByAsc** used has the highest priority.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -588,7 +588,7 @@ Sets a **DataAbilityPredicates** object to sort the data records in ascending or
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -601,7 +601,7 @@ Sets a **DataAbilityPredicates** object to sort the data records in ascending or
 
 orderByDesc(field: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to sort the data records in descending order. When there are multiple **orderByDesc**s, the first **orderByDesc** used has the highest priority.
+Creates a **DataAbilityPredicates** object to sort the records in the specified column in descending order. When there are multiple **orderByDesc**s, the first **orderByDesc** used has the highest priority.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -615,7 +615,7 @@ Sets a **DataAbilityPredicates** object to sort the data records in descending o
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -628,7 +628,7 @@ Sets a **DataAbilityPredicates** object to sort the data records in descending o
 
 distinct(): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to filter out duplicate records.
+Creates a **DataAbilityPredicates** object to filter out duplicate records.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -636,7 +636,7 @@ Sets a **DataAbilityPredicates** object to filter out duplicate records.
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that can filter out duplicate records.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -648,7 +648,7 @@ Sets a **DataAbilityPredicates** object to filter out duplicate records.
 
 limitAs(value: number): DataAbilityPredicates
 
-Set a **DataAbilityPredicates** object to specify the maximum number of records.
+Creates a **DataAbilityPredicates** object to limit the number of records.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -656,13 +656,13 @@ Set a **DataAbilityPredicates** object to specify the maximum number of records.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Maximum number of records.|
+| value | number | Yes| Maximum number of records. The value should be a positive integer. If a value less than or equal to **0** is specified, the number of records is not limited.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the maximum number of records.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -674,7 +674,7 @@ Set a **DataAbilityPredicates** object to specify the maximum number of records.
 
 offsetAs(rowOffset: number): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to specify the start position of the returned result. This API must be used with **limitAs**.
+Creates a **DataAbilityPredicates** object to set the start position of the query result. This API must be used together with **limitAs**. Otherwise, no result will be returned. To query all rows after the specified offset, pass in **-1** in **limitAs**.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -682,13 +682,13 @@ Sets a **DataAbilityPredicates** object to specify the start position of the ret
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| rowOffset | number | Yes| Number of rows to offset from the beginning. The value is a positive integer.|
+| rowOffset | number | Yes| Start position. The value should be a positive integer. If a value less than or equal to **0** is specified, the query result is returned from the first element.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the start position of the returned result.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -702,7 +702,7 @@ Sets a **DataAbilityPredicates** object to specify the start position of the ret
 
 groupBy(fields: Array&lt;string&gt;): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to group rows that have the same value into summary rows.
+Creates a **DataAbilityPredicates** object to group the query results based on the specified columns.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -716,7 +716,7 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that groups rows with the same value.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -728,7 +728,7 @@ Sets a **DataAbilityPredicates** object to group rows that have the same value i
 
 indexedBy(field: string): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to specify the index column. Before calling this API, you need to create an index column.
+Creates a **DataAbilityPredicates** object to specify the index column. Before calling this API, you need to create an index column.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -736,29 +736,28 @@ Sets a **DataAbilityPredicates** object to specify the index column. Before call
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| indexName | string | Yes| Name of the index.|
+| field | string | Yes| Name of the index.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that specifies the index column.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
   ```js
-  import rdb from '@ohos.data.rdb'; // Import the module.
-  import featureAbility from '@ohos.ability.featureAbility';
-  import dataAbility from '@ohos.data.dataAbility';
+  import { dataAbility, relationalStore } from '@kit.ArkData';
 
   let context = getContext(this);
 
-  const STORE_CONFIG : rdb.StoreConfig= {
+  const STORE_CONFIG : relationalStore.StoreConfig = {
       name: 'RdbTest.db', // Database file name.
+      securityLevel: relationalStore.SecurityLevel.S3,
   };
   // Table structure: EMPLOYEE (NAME, AGE, SALARY, CODES)
   const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)'; // SQL statement for creating a data table.
-  rdb.getRdbStore(this.context, STORE_CONFIG, 3, async (err, store) => {
+  relationalStore.getRdbStore(context, STORE_CONFIG, async (err, store) => {
     if (err) {
       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
       return;
@@ -785,7 +784,7 @@ Sets a **DataAbilityPredicates** object to specify the index column. Before call
 
 in(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type Array\<ValueType> and value within the specified range.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are in the given range.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -801,7 +800,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array\
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -813,7 +812,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array\
 
 notIn(field: string, value: Array&lt;ValueType&gt;): DataAbilityPredicates
 
-Sets a **DataAbilityPredicates** object to match the field with data type Array\<ValueType> and value out of the specified range.
+Creates a **DataAbilityPredicates** object to search for the records in the specified column that are out of the given range.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -828,7 +827,7 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array\
 
 | Type| Description|
 | -------- | -------- |
-| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object that matches the specified field.|
+| [DataAbilityPredicates](#dataabilitypredicates) | **DataAbilityPredicates** object created.|
 
 **Example**
 
@@ -838,7 +837,9 @@ Sets a **DataAbilityPredicates** object to match the field with data type Array\
 
 ## ValueType
 
-Enumerates the value types.
+type ValueType = number | string | boolean
+
+Defines the value types.
 
 **System capability**: SystemCapability.DistributedDataManager.DataShare.Core
 

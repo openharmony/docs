@@ -8,7 +8,7 @@ MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、
 ## 导入模块
 
 ```ts
-import mdns from '@ohos.net.mdns'
+import { mdns } from '@kit.NetworkKit';
 ```
 
 ## mdns.addLocalService
@@ -16,6 +16,8 @@ import mdns from '@ohos.net.mdns'
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
 添加一个mDNS服务，使用callback方式作为异步方法。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -32,25 +34,30 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+// 获取context
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -74,6 +81,8 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 添加一个mDNS服务，使用Promise方式作为异步方法。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -94,25 +103,30 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204003 | Callback duplicated. |
-| 2204008 | Service instance duplicated. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+// 获取context
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -135,7 +149,9 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 移除一个mDNS服务，使用callback方式作为异步方法。
 
-**系统能力**: SystemCapability.Communication.NetManager.MDNS
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**： SystemCapability.Communication.NetManager.MDNS
 
 **参数**
 
@@ -150,25 +166,30 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+// 获取context
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -190,9 +211,11 @@ mdns.removeLocalService(context, localServiceInfo, (error: BusinessError, data: 
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
-移除一个mDNS服务. 使用Promise方式作为异步方法。
+移除一个mDNS服务，使用Promise方式作为异步方法。
 
-**系统能力**: SystemCapability.Communication.NetManager.MDNS
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**： SystemCapability.Communication.NetManager.MDNS
 
 **参数**
 
@@ -212,24 +235,29 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance not found. |
-| 2204010 | Send packet failed. |
+| 2204008 | Failed to delete the service instance. |
+| 2204010 | Failed to send the message. |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -251,6 +279,8 @@ mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalService
 createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 返回一个DiscoveryService对象，该对象用于发现指定服务类型的mDNS服务。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -275,14 +305,19 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 **示例**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+// 获取context
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let serviceType = "_print._tcp";
 let discoveryService : Object = mdns.createDiscoveryService(context, serviceType);
@@ -294,7 +329,9 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 解析一个mDNS服务，使用callback方式作为异步方法。
 
-**系统能力**: SystemCapability.Communication.NetManager.MDNS
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**： SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
 
@@ -309,25 +346,30 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+// 获取context
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -351,7 +393,9 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 解析一个mDNS服务，使用Promise方式作为异步方法。
 
-**系统能力**: SystemCapability.Communication.NetManager.MDNS
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力**： SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
 
@@ -371,25 +415,30 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
-| 2100002 | Operation failed. Cannot connect to service. |
+| 2100002 | Failed to connect to the service.            |
 | 2100003 | System internal error.                       |
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
-| 2204010 | Send packet failed.                          |
+| 2204010 | Failed to send the message.                  |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+// 获取context
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
   serviceType: "_print._tcp",
@@ -415,18 +464,25 @@ startSearchingMDNS(): void
 
 开始搜索局域网内的mDNS服务。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+// 获取context
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -438,18 +494,25 @@ stopSearchingMDNS(): void
 
 停止搜索局域网内的mDNS服务。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 Stage模型示例：
 
 ```ts
-// 获取context
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
-let context = getContext(this) as Context;
+// 获取context
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
@@ -460,6 +523,8 @@ discoveryService.stopSearchingMDNS();
 on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 
 订阅开启监听mDNS服务的通知。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -472,12 +537,17 @@ on(type: 'discoveryStart', callback: Callback\<DiscoveryEventInfo\>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 参考mdns.createDiscoveryService
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -495,6 +565,8 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 
 取消开启监听mDNS服务的通知。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -506,12 +578,17 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 参考mdns.createDiscoveryService
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -533,6 +610,8 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 
 订阅停止监听mDNS服务的通知。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -544,12 +623,17 @@ on(type: 'discoveryStop', callback: Callback\<DiscoveryEventInfo\>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 参考mdns.createDiscoveryService
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -567,6 +651,8 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 
 取消订阅停止监听mDNS服务的通知。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -578,12 +664,17 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 参考mdns.createDiscoveryService
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -605,6 +696,8 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 订阅发现mDNS服务的通知。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -612,22 +705,30 @@ on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'serviceFound'。<br>serviceFound：发现mDNS服务事件。 |
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 是        |   mDNS服务的信息。      |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 是        |   mDNS服务的信息，需调用resolveLocalService解析这个mDNS服务信息。      |
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 参考mdns.createDiscoveryService
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
+  console.info('serviceFound', JSON.stringify(data));
+  mdns.resolveLocalService(context, data, (error: BusinessError, resolveData: mdns.LocalServiceInfo) =>  {
+    console.info('serviceFound', JSON.stringify(resolveData));
+  });
 });
 
 discoveryService.stopSearchingMDNS();
@@ -638,6 +739,8 @@ discoveryService.stopSearchingMDNS();
 off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅发现mDNS服务的通知。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -650,18 +753,26 @@ off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 参考mdns.createDiscoveryService
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data: mdns.LocalServiceInfo) => {
-  console.log(JSON.stringify(data));
+  console.info('serviceFound', JSON.stringify(data));
+  mdns.resolveLocalService(context, data, (error: BusinessError, resolveData: mdns.LocalServiceInfo) =>  {
+    console.info('serviceFound', JSON.stringify(resolveData));
+  });
 });
 
 discoveryService.stopSearchingMDNS();
@@ -677,6 +788,8 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 订阅移除mDNS服务的通知。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -688,12 +801,17 @@ on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 参考mdns.createDiscoveryService
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -711,6 +829,8 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 取消订阅移除mDNS服务的通知。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 **参数：**
@@ -722,12 +842,17 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 
 **示例：**
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
-import mdns from '@ohos.net.mdns'
-import { BusinessError } from '@ohos.base';
+import { mdns } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
 // 参考mdns.createDiscoveryService
-let context = getContext(this) as Context;
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
@@ -745,7 +870,9 @@ discoveryService.off('serviceLost', (data: mdns.LocalServiceInfo) => {
 
 ## LocalServiceInfo
 
-mDNS服务信息
+mDNS服务信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -753,13 +880,15 @@ mDNS服务信息
 | --------------------- | ---------------------------------- | --- | ------------------------ |
 | serviceType   | string                             |  是 |  mDNS服务的类型。格式_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。  |
 | serviceName | string                             |  是 |  mDNS服务的名字。   |
-| port            | number           |  否 |  mDNS服务的端口号。           |
+| port            | number           |  否 |  mDNS服务的端口号。取值范围[0,65535]。           |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 |  mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。               |
-| serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  否 |  mDNS服务属性信息。               |
+| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  否 |  mDNS服务属性信息。               |
 
 ## ServiceAttribute
 
-mDNS服务属性信息
+mDNS服务属性信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -770,7 +899,9 @@ mDNS服务属性信息
 
 ## DiscoveryEventInfo<sup>11+</sup>
 
-监听到的mDNS服务事件信息
+监听到的mDNS服务事件信息。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
@@ -783,10 +914,26 @@ mDNS服务属性信息
 
 mDNS错误信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
 | 名称         | 值   | 说明        |
 | --------------- | ---- | ----------- |
-| INTERNAL_ERROR  | 0    | 内部错误导致操作失败。（暂不支持）  |
-| ALREADY_ACTIVE      | 1    | 服务已经存在导致操作失败。（暂不支持） |
-| MAX_LIMIT  | 2 | 请求超过最大限制导致操作失败。（暂不支持） |
+| INTERNAL_ERROR  | 0    | 内部错误导致操作失败。  |
+| ALREADY_ACTIVE      | 1    | 服务已经存在导致操作失败。 |
+| MAX_LIMIT  | 2 | 请求超过最大限制导致操作失败。 |
+
+## NetAddress
+
+type NetAddress = connection.NetAddress
+
+获取网络地址。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Communication.NetManager
+
+|       类型       |            说明             |
+| ---------------- | --------------------------- |
+| connection.NetAddress | 定义网络地址。     |

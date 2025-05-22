@@ -1,6 +1,6 @@
 # OverlayModuleInfo
 
-The **OverlayModuleInfo** module provides information about a module with the overlay feature. A third-party application can obtain such information through [overlay.getOverlayModuleInfo](js-apis-overlay.md#overlaygetoverlaymoduleinfo).
+The OverlayModuleInfo module provides information about a module with the overlay feature. A third-party application can obtain such information through [overlay.getOverlayModuleInfo](js-apis-overlay.md#overlaygetoverlaymoduleinfo).
 
 > **NOTE**
 >
@@ -10,10 +10,10 @@ The **OverlayModuleInfo** module provides information about a module with the ov
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
-| Name                 | Type                                               | Readable| Writable| Description                                           |
+| Name                 | Type                                               | Read-Only| Optional| Description                                           |
 | --------------------- | ---------------------------------------------------| ---- | ---- | ---------------------------------------------- |
 | bundleName            | string                                             | Yes  | No  | Bundle name of the application to which the module with the overlay feature belongs.          |
 | moduleName            | string                                             | Yes  | No  | Name of the module with the overlay feature.                      |
 | targetModuleName      | string                                             | Yes  | No  | Name of the target module specified by the module with the overlay feature.       |
-| priority              | number                                             | Yes  | No  | Priority of the module with the overlay feature.                  |
-| state                 | number                                             | Yes  | No  | Whether the module with the overlay feature is disabled. The value **0** means that the module is disabled, and **1** means the opposite.                      |
+| priority              | number                                             | Yes  | No  | Priority of the module with the overlay feature. The value is an integer ranging from 1 to 100. A larger value indicates a higher priority.   |
+| state                 | number                                             | Yes  | No  | Whether the module with the overlay feature is [disabled](js-apis-overlay.md#overlaysetoverlayenabled). The value **0** means that the module with the overlay feature is disabled, and **1** means the opposite.                      |

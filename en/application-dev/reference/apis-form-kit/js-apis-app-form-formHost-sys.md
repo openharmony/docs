@@ -10,7 +10,7 @@ The **formHost** module provides APIs related to the widget host, which is an ap
 ## Modules to Import
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
+import { formHost } from '@kit.FormKit';
 ```
 
 ## deleteForm
@@ -32,35 +32,36 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.deleteForm(formId, (error: Base.BusinessError) => {
-  if (error) {
-    console.error(`error, code: ${error.code}, message: ${error.message}`);
-  } else {
-    console.log('formHost deleteForm success');
-  }
+  formHost.deleteForm(formId, (error: BusinessError) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost deleteForm success');
+    }
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -89,33 +90,34 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.deleteForm(formId).then(() => {
     console.log('formHost deleteForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`formHost deleteForm, error: ${JSON.stringify(error)}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -138,33 +140,34 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.releaseForm(formId, (error: Base.BusinessError) => {
+  formHost.releaseForm(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -188,33 +191,34 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.releaseForm(formId, true, (error: Base.BusinessError) => {
+  formHost.releaseForm(formId, true, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -243,33 +247,34 @@ Releases a widget. After this API is called, the application can no longer use t
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.releaseForm(formId, true).then(() => {
     console.log('formHost releaseForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -292,33 +297,34 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.requestForm(formId, (error: Base.BusinessError) => {
+  formHost.requestForm(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -346,35 +352,35 @@ Requests a widget update. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.requestForm(formId).then(() => {
     console.log('formHost requestForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
-
 ```
 
 ## requestFormWithParams<sup>12+</sup>
@@ -402,23 +408,24 @@ Carries parameters to request a widget update. This API uses a promise to return
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
@@ -427,13 +434,12 @@ try {
   };
   formHost.requestFormWithParams(formId, params).then(() => {
     console.log('formHost requestFormWithParams success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
-
 ```
 
 ## castToNormalForm
@@ -455,33 +461,34 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501002 | The number of forms exceeds upper bound. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501002 | The number of forms exceeds the maximum allowed. |
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
-  formHost.castToNormalForm(formId, (error: Base.BusinessError) => {
+  formHost.castToNormalForm(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -509,33 +516,34 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501002 | The number of forms exceeds upper bound. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501002 | The number of forms exceeds the maximum allowed. |
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.castToNormalForm(formId).then(() => {
     console.log('formHost castTempForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -558,31 +566,32 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
-  formHost.notifyVisibleForms(formId, (error: Base.BusinessError) => {
+  formHost.notifyVisibleForms(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -610,31 +619,32 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
   formHost.notifyVisibleForms(formId).then(() => {
     console.log('formHost notifyVisibleForms success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -657,31 +667,32 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
-  formHost.notifyInvisibleForms(formId, (error: Base.BusinessError) => {
+  formHost.notifyInvisibleForms(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -709,31 +720,32 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
   formHost.notifyInvisibleForms(formId).then(() => {
     console.log('formHost notifyInvisibleForms success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -756,32 +768,33 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
-  formHost.enableFormsUpdate(formId, (error: Base.BusinessError) => {
+  formHost.enableFormsUpdate(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -809,32 +822,33 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
   formHost.enableFormsUpdate(formId).then(() => {
     console.log('formHost enableFormsUpdate success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -857,33 +871,34 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
-  formHost.disableFormsUpdate(formId, (error: Base.BusinessError) => {
+  formHost.disableFormsUpdate(formId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -911,33 +926,34 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string[] = ['12400633174999288'];
   formHost.disableFormsUpdate(formId).then(() => {
     console.log('formHost disableFormsUpdate success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -957,26 +973,27 @@ Checks whether the system is ready. This API uses an asynchronous callback to re
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application.   |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formHost.isSystemReady((error: Base.BusinessError) => {
+  formHost.isSystemReady((error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -996,25 +1013,26 @@ Checks whether the system is ready. This API uses a promise to return the result
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application.   |
 
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
-
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formHost.isSystemReady().then(() => {
     console.log('formHost isSystemReady success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1036,26 +1054,25 @@ Obtains the widget information provided by all applications on the device. This 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
-
 
 **Example**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formHost.getAllFormsInfo((error: Base.BusinessError, data: formInfo.FormInfo[]) => {
+  formHost.getAllFormsInfo((error: BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1063,7 +1080,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1085,30 +1102,30 @@ Obtains the widget information provided by all applications on the device. This 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formHost.getAllFormsInfo().then((data: formInfo.FormInfo[]) => {
     console.log(`formHost getAllFormsInfo data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1131,26 +1148,26 @@ Obtains the widget information provided by a given application on the device. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', (error: BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1158,7 +1175,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1182,26 +1199,26 @@ Obtains the widget information provided by a given application on the device. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: Base.BusinessError, data: formInfo.FormInfo[]) => {
+  formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry', (error: BusinessError, data: formInfo.FormInfo[]) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1209,7 +1226,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1238,32 +1255,32 @@ Obtains the widget information provided by a given application on the device. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data: formInfo.FormInfo[]) => {
     console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1291,24 +1308,23 @@ Obtains the widget information provided by a given application on the device. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application.  |
-| 401 | If the input parameter is not valid parameter.  |
-| 16500050 | An IPC connection error happened.  |
-| 16500060 | A service connection error happened, please try again later.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.  |
+| 16500060 | Service connection error.  |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
-import formInfo from '@ohos.app.form.formInfo';
-import formHost from '@ohos.app.form.formHost';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const filter: formInfo.FormInfoFilter = {
   bundleName: 'ohos.samples.FormApplication',
@@ -1318,11 +1334,11 @@ const filter: formInfo.FormInfoFilter = {
 try {
   formHost.getFormsInfo(filter).then((data: formInfo.FormInfo[]) => {
     console.log(`formHost getFormsInfo, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`promise error, code: ${error.code}, message: ${error.message})`);
   });
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message})`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
 
@@ -1345,25 +1361,26 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formIds: string[] = new Array('12400633174999288', '12400633174999289');
-  formHost.deleteInvalidForms(formIds, (error: Base.BusinessError, data: number) => {
+  formHost.deleteInvalidForms(formIds, (error: BusinessError, data: number) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
@@ -1371,7 +1388,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1399,31 +1416,32 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formIds: string[] = new Array('12400633174999288', '12400633174999289');
   formHost.deleteInvalidForms(formIds).then((data: number) => {
     console.log(`formHost deleteInvalidForms, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1446,24 +1464,24 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   'deviceId': '',
@@ -1476,15 +1494,15 @@ let want: Want = {
   }
 };
 try {
-  formHost.acquireFormState(want, (error:Base.BusinessError, data: formInfo.FormStateInfo) => {
+  formHost.acquireFormState(want, (error: BusinessError, data: formInfo.FormStateInfo) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     } else {
       console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1512,24 +1530,24 @@ Obtains the widget state. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let want: Want = {
   'deviceId': '',
@@ -1544,11 +1562,11 @@ let want: Want = {
 try {
   formHost.acquireFormState(want).then((data: formInfo.FormStateInfo) => {
     console.log(`formHost acquireFormState, data: ${JSON.stringify(data)}`);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1573,16 +1591,18 @@ Subscribes to widget uninstall events. This API uses an asynchronous callback to
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
+import { formHost } from '@kit.FormKit';
+
 formHost.on('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1609,16 +1629,18 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
 
 **Example**
 
 ```ts
+import { formHost } from '@kit.FormKit';
+
 formHost.off('formUninstall', (formId: string) => {
   console.log(`formHost on formUninstall, formId: ${formId}`);
 });
@@ -1644,32 +1666,33 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsVisible(formIds, true, (error: Base.BusinessError) => {
+  formHost.notifyFormsVisible(formIds, true, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1698,32 +1721,33 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsVisible(formIds, true).then(() => {
     console.log('formHost notifyFormsVisible success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1747,32 +1771,33 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsEnableUpdate(formIds, true, (error: Base.BusinessError) => {
+  formHost.notifyFormsEnableUpdate(formIds, true, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1801,32 +1826,33 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsEnableUpdate(formIds, true).then(() => {
     console.log('formHost notifyFormsEnableUpdate success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 ## shareForm
@@ -1849,33 +1875,34 @@ Shares a specified widget with a remote device. This API uses an asynchronous ca
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
-  formHost.shareForm(formId, deviceId, (error: Base.BusinessError) => {
+  formHost.shareForm(formId, deviceId, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1904,33 +1931,34 @@ Shares a specified widget with a remote device. This API uses a promise to retur
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
-| 16501003 | The form can not be operated by the current application. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application. |
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 let deviceId: string = 'EFC11C0C53628D8CC2F8CB5052477E130D075917034613B9884C55CD22B3DEF2';
 try {
   formHost.shareForm(formId, deviceId).then(() => {
     console.log('formHost shareForm success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -1954,31 +1982,32 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
-  formHost.notifyFormsPrivacyProtected(formIds, true, (error: Base.BusinessError) => {
+  formHost.notifyFormsPrivacyProtected(formIds, true, (error: BusinessError) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2007,29 +2036,30 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
 | 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred. |
 
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
-
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formIds: string[] = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2054,21 +2084,22 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
@@ -2080,7 +2111,7 @@ try {
     }
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2110,29 +2141,32 @@ Requests data from the widget provider. This API uses a promise to return the re
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
-| 401 | If the input parameter is not valid parameter. |
-| 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error. |
+| 16500060 | Service connection error. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+**Example**
 
 ```ts
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let formId: string = '12400633174999288';
 try {
   formHost.acquireFormData(formId).then((data) => {
     console.log('formHost acquireFormData success' + data);
-  }).catch((error: Base.BusinessError) => {
+  }).catch((error: BusinessError) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
 } catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2142,9 +2176,12 @@ setRouterProxy(formIds: Array&lt;string&gt;, proxy: Callback&lt;Want&gt;, callba
 
 Sets a router proxy for widgets and obtains the Want information required for redirection. This API uses an asynchronous callback to return the result.
 
+
+
 > **NOTE**
 >
->- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see [UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+>- Generally, for a widget added to the home screen, in the case of router-based redirection, the widget framework checks whether the destination is proper and whether the widget has the redirection permission, and then triggers redirection accordingly. For a widget that is added to a widget host and has a router proxy configured, in the case of router-based redirection, the widget framework does not trigger redirection for the widget. Instead, it returns the **want** parameter containing the destination to the widget host. Therefore, if the widget host wants to use the Want information for redirection, it must have the application redirection permission. For details, see
+[UIAbilityContext.startAbility()](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
 >
 >- Only one router proxy can be set for a widget. If multiple proxies are set, only the last proxy takes effect.
 
@@ -2162,60 +2199,59 @@ Sets a router proxy for widgets and obtains the Want information required for re
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application.     |
 
 **Example**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { common, Want } from '@kit.AbilityKit';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct CardExample {
   private context = getContext(this) as common.UIAbilityContext;
-  @State formId:number = 0;
-  @State fwidth:number = 420;
-  @State fheight:number = 280;
+  @State formId: number = 0;
+  @State fwidth: number = 420;
+  @State fheight: number = 280;
 
   build() {
     Column() {
       FormComponent({
-        id:this.formId,
-        name:"widget",
-        bundle:"com.example.cardprovider",
-        ability:"EntryFormAbility",
-        module:"entry",
-        dimension:FormDimension.Dimension_2_2,
-        temporary:false,
+        id: this.formId,
+        name: "widget",
+        bundle: "com.example.cardprovider",
+        ability: "EntryFormAbility",
+        module: "entry",
+        dimension: FormDimension.Dimension_2_2,
+        temporary: false,
       })
         .allowUpdate(true)
-        .size({width:this.fwidth,height:this.fheight})
+        .size({ width: this.fwidth, height: this.fheight })
         .visibility(Visibility.Visible)
-        .onAcquired((form)=>{
+        .onAcquired((form) => {
           console.log(`testTag form info : ${JSON.stringify(form)}`);
           this.formId = form.id;
           try {
-            let formIds: string[] = [ this.formId.toString() ];
+            let formIds: string[] = [this.formId.toString()];
             formHost.setRouterProxy(formIds, (want: Want) => {
               console.info(`formHost recv router event, want: ${JSON.stringify(want)}`);
               // The widget host processes the redirection.
-              this.context.startAbility(want, (err: Base.BusinessError) => {
+              this.context.startAbility(want, (err: BusinessError) => {
                 console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
               });
-            }, (err: Base.BusinessError) => {
+            }, (err: BusinessError) => {
               console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
             })
           } catch (e) {
@@ -2262,62 +2298,61 @@ Sets a router proxy for widgets and obtains the Want information required for re
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application.     |
 
 **Example**
 
 ```ts
-import common from '@ohos.app.ability.common';
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { common, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct CardExample {
   private context = getContext(this) as common.UIAbilityContext;
-  @State formId:number = 0;
-  @State fwidth:number = 420;
-  @State fheight:number = 280;
+  @State formId: number = 0;
+  @State fwidth: number = 420;
+  @State fheight: number = 280;
 
   build() {
     Column() {
       FormComponent({
-        id:this.formId,
-        name:"widget",
-        bundle:"com.example.cardprovider",
-        ability:"EntryFormAbility",
-        module:"entry",
-        dimension:FormDimension.Dimension_2_2,
-        temporary:false,
+        id: this.formId,
+        name: "widget",
+        bundle: "com.example.cardprovider",
+        ability: "EntryFormAbility",
+        module: "entry",
+        dimension: FormDimension.Dimension_2_2,
+        temporary: false,
       })
         .allowUpdate(true)
-        .size({width:this.fwidth,height:this.fheight})
+        .size({ width: this.fwidth, height: this.fheight })
         .visibility(Visibility.Visible)
-        .onAcquired((form)=>{
+        .onAcquired((form) => {
           console.log(`testTag form info : ${JSON.stringify(form)}`);
           this.formId = form.id;
           try {
-            let formIds: string[] = [ this.formId.toString() ];
+            let formIds: string[] = [this.formId.toString()];
             formHost.setRouterProxy(formIds, (want: Want) => {
               console.info(`formHost recv router event, want: ${JSON.stringify(want)}`);
               // The widget host processes the redirection.
-              this.context.startAbility(want, (err: Base.BusinessError) => {
+              this.context.startAbility(want, (err: BusinessError) => {
                 console.info(`formHost startAbility error, code: ${err.code}, message: ${err.message}`);
               });
             }).then(() => {
               console.info('formHost set router proxy success');
-            }).catch((err: Base.BusinessError) => {
+            }).catch((err: BusinessError) => {
               console.error(`set router proxy error, code: ${err.code}, message: ${err.message}`);
             })
           } catch (e) {
@@ -2350,34 +2385,33 @@ Clears the router proxy set for widgets. This API uses an asynchronous callback 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application.     |
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
-  formHost.clearRouterProxy(formIds, (err: Base.BusinessError) => {
+  let formIds: string[] = ['12400633174999288'];
+  formHost.clearRouterProxy(formIds, (err: BusinessError) => {
     if (err) {
-        console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
+      console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2405,34 +2439,33 @@ Clears the router proxy set for widgets. This API uses a promise to return the r
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
 | 202      | The application is not a system application.                 |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-| 16501003 | The form can not be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application.     |
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
+  let formIds: string[] = ['12400633174999288'];
   formHost.clearRouterProxy(formIds).then(() => {
     console.log('formHost clear rourter proxy success');
-  }).catch((err: Base.BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`formHost clear router proxy error, code: ${err.code}, message: ${err.message}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 ## setFormsRecyclable<sup>11+</sup>
@@ -2456,30 +2489,32 @@ Sets widgets to be recyclable. This API uses an asynchronous callback to return 
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
-  formHost.setFormsRecyclable(formIds, (err: Base.BusinessError) => {
+  let formIds: string[] = ['12400633174999288'];
+  formHost.setFormsRecyclable(formIds, (err: BusinessError) => {
     if (err) {
-        console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
+      console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 
@@ -2509,30 +2544,32 @@ Sets widgets to be recyclable. This API uses a promise to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
+  let formIds: string[] = ['12400633174999288'];
   formHost.setFormsRecyclable(formIds).then(() => {
     console.log('setFormsRecyclable success');
-  }).catch((err: Base.BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`setFormsRecyclable error, code: ${err.code}, message: ${err.message}`);
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 ## recoverForms<sup>11+</sup>
@@ -2556,30 +2593,32 @@ Recovers widgets. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
-  formHost.recoverForms(formIds, (err: Base.BusinessError) => {
+  let formIds: string[] = ['12400633174999288'];
+  formHost.recoverForms(formIds, (err: BusinessError) => {
     if (err) {
-        console.error(`recoverForms error, code: ${err.code}, message: ${err.message}`);
+      console.error(`recoverForms error, code: ${err.code}, message: ${err.message}`);
     }
   });
-} catch(error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
 ## recoverForms<sup>11+</sup>
@@ -2609,26 +2648,28 @@ Recovers recycled widgets and updates their status to non-recyclable, or updates
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
-import Want from '@ohos.app.ability.Want';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
+  let formIds: string[] = ['12400633174999288'];
   formHost.recoverForms(formIds).then(() => {
     console.info('recover forms success');
-  }).catch((err: Base.BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`formHost recover forms error, code: ${err.code}, message: ${err.message}`);
   });
 } catch (e) {
@@ -2662,32 +2703,34 @@ Recycles widgets, that is, reclaims their memory. This API uses a promise to ret
 
 **Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import Base from '@ohos.base';
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  let formIds: string[] = [ '12400633174999288' ];
+  let formIds: string[] = ['12400633174999288'];
   formHost.recycleForms(formIds).then(() => {
     console.info('recycle forms success');
-  }).catch((err: Base.BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`formHost recycle forms error, code: ${err.code}, message: ${err.message}`);
   });
 } catch (e) {
   console.error(`catch error, code: ${e.code}, message: ${e.message}`);
 }
 ```
-## 
 
 ## updateFormLocation<sup>12+</sup>
 updateFormLocation(formId: string, location: formInfo.FormLocation): void;
@@ -2705,35 +2748,141 @@ Updates the widget location.
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | formId | string | Yes  | Widget ID.|
-| location |[FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | Yes| Widget location.|
+| location |[formInfo.FormLocation](js-apis-app-form-formInfo-sys.md#formlocation) | Yes| Widget location.|
 
 **Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
 
 | Error Code ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 201      | Permissions denied.                                          |
-| 202      | caller is not system app.                                    |
-| 401      | If the input parameter is not valid parameter.               |
-| 16500050 | An IPC connection error happened.                            |
-| 16500060 | A service connection error happened, please try again later. |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
 | 16501000 | An internal functional error occurred.                       |
 | 16501001 | The ID of the form to be operated does not exist.            |
-| 16501003 | The form can not be operated by the current application.     |
-
-For details about the error codes, see [Form Error Codes](errorcode-form.md).
+| 16501003 | The form cannot be operated by the current application.     |
 
 **Example**
 
 ```ts
-import formHost from '@ohos.app.form.formHost';
-import formInfo from '@ohos.app.form.formInfo';
-import Base from '@ohos.base';
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let formId: string = '12400633174999288';
   formHost.updateFormLocation(formId, formInfo.FormLocation.SCREEN_LOCK);
 } catch (error) {
-  console.error(`catch error, code: ${(error as Base.BusinessError).code}, message: ${(error as Base.BusinessError).message}`);
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
 }
 ```
-##
+
+## setPublishFormResult<sup>12+</sup>
+
+setPublishFormResult(formId: string, result: formInfo.PublishFormResult): void;
+
+Sets the result for the operation of adding a widget to the home screen.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type                                                        | Mandatory| Description              |
+| ------ | ------------------------------------------------------------ | ---- | ------------------ |
+| formId | string                                                       | Yes  | Widget ID.        |
+| result | [PublishFormResult](js-apis-app-form-formInfo-sys.md#publishformresult) | Yes  | Result of the operation.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | The application is not a system application.                                    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501001 | The ID of the form to be operated does not exist.            |
+
+**Example**
+
+```ts
+import { formHost, formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let formId: string = '12400633174999288';
+  let res: formInfo.PublishFormResult = {code: formInfo.PublishFormErrorCode.SUCCESS, message: ''};
+  formHost.setPublishFormResult(formId, res);
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## updateFormLockedState<sup>18+</sup>
+
+updateFormLockedState(formId: string, isLocked: boolean): Promise&lt;void&gt;
+
+Notifies the update of the widget lock state.
+
+If an application is locked, its widget will also be locked and masked in a locked style. To use the widget, you need to enter the password set for the widget.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+|-------|------|------|-----|
+| formId | string | Yes| Widget ID.|
+| isLocked | boolean | Yes| A Boolean value indicates whether a widget is in the locked state. The value **true** indicates that the widget is in the locked state, and the value **false** indicates the opposite.|
+
+**Return value**
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Form Error Codes](errorcode-form.md).
+
+| Error Code ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permissions denied.                                          |
+| 202      | caller is not a system app.                 |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. |
+| 16500050 | IPC connection error.                            |
+| 16500060 | Service connection error. |
+| 16501000 | An internal functional error occurred.                       |
+| 16501001 | The ID of the form to be operated does not exist.                       |
+| 16501003 | The form cannot be operated by the current application.     |
+
+**Example**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let formId: string = '12400633174999288';
+let isLocked: boolean = true;
+
+try {
+  formHost.updateFormLockedState(this.formId, this.isLocked).then(() => {
+    console.log(`formHost updateFormLockedState success`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+
+```

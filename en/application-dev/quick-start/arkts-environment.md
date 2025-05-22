@@ -1,11 +1,15 @@
 # Environment: Device Environment Query
 
 
-You may want your application to behave differently based on the device environment where the application is running, for example, switching to dark mode or a specific language. In this case, you need Environment for device environment query.
+If you need the environment parameters of the device where the application runs to set different scenarios, such as multi-language support and dark/light color mode, use Environment to query the parameters.
 
 
 Environment is a singleton object created by the ArkUI framework at application startup. It provides a range of application state attributes to AppStorage that describe the device environment in which the application is running. Environment and its attributes are immutable. All property values are of simple types only.
 
+
+Environment provides the capability of reading some environment variables of the system (for details, see [Environment Built-in Parameters](#environment-built-in-parameters)) and writing the values of the variables to AppStorage. Therefore, you can use AppStorage to obtain the values of environment variables.
+
+Before reading this topic, you are advised to read [AppStorage](./arkts-appstorage.md).
 
 ## Environment Built-in Parameters
 
@@ -13,10 +17,10 @@ Environment is a singleton object created by the ArkUI framework at application 
 | ------------------ | ------------------ | ------------------ |
 | accessibilityEnabled              | boolean                  | Whether to enable accessibility.                |
 | colorMode              | ColorMode                  | Color mode. The options are as follows:<br>- **ColorMode.LIGHT**: light mode.<br>- **ColorMode.DARK**: dark mode.                |
-| fontScale              | number                  | Font scale. Range: [0.85, 1.45].                |
-| fontWeightScale              | number                  | Font weight scale. Range: [0.6, 1.6].               |
+| fontScale              | number                  | Font scale. To enable the font scale to change with the system, set the [configuration](./app-configuration-file.md#configuration) tag.               |
+| fontWeightScale              | number                  | Font weight.               |
 | layoutDirection              | LayoutDirection                  | Layout direction. The options are as follows:<br>- **LayoutDirection.LTR**: from left to right.<br>- **LayoutDirection.RTL**: from right to left.                |
-| languageCode              | string                  | Current system language. The value is in lowercase, for example, **zh**.                |
+| languageCode              | string                  | System language value. The value must be in lowercase, for example, **zh**.                |
 
 
 ## Use Scenarios
@@ -34,7 +38,7 @@ Environment is a singleton object created by the ArkUI framework at application 
 - Decorate the variables with \@StorageProp to link them with components.
 
   ```ts
-  @StorageProp('languageCode') lang : string = 'en';
+  @StorageProp('languageCode') lang: string = 'en';
   ```
 
 The chain of updates is as follows: Environment > AppStorage > Component.
@@ -69,7 +73,7 @@ struct Index {
 
 
 ```ts
-// Use Environment.EnvProp to save the device language code to AppStorage.
+// Use Environment.envProp to save the device language code to AppStorage.
 Environment.envProp('languageCode', 'en');
 // Obtain the one-way bound languageCode variable from AppStorage.
 const lang: SubscribedAbstractProperty<string> = AppStorage.prop('languageCode');
@@ -82,7 +86,7 @@ if (lang.get() === 'en') {
 ```
 
 
-## Restrictions
+## Constraints
 
 
 Environment can be called only when the [UIContext](../reference/apis-arkui/js-apis-arkui-UIContext.md#uicontext) is specified. The UIContext is specified when [runScopedTask](../reference/apis-arkui/js-apis-arkui-UIContext.md#runscopedtask) is called. If Environment is called otherwise, no device environment data can be obtained.
@@ -90,8 +94,8 @@ Environment can be called only when the [UIContext](../reference/apis-arkui/js-a
 
 ```ts
 // EntryAbility.ets
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {

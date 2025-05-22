@@ -1,15 +1,22 @@
 # @ohos.bundle.overlay (overlay)
 
-The **overlay** module provides APIs for installing a [module with the overlay feature](#module-with-the-overlay-feature), querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
+The overlay module provides APIs for installing a module with the overlay feature, querying the [module information](js-apis-bundleManager-overlayModuleInfo.md), and disabling and enabling the module.
+
+A module with the [overlay feature](../../quick-start/resource-categories-and-access.md#overlay-mechanism) generally provides additional resource files for modules without the overlay feature on the device, so that the target modules can use these resource files at runtime to display different colors, labels, themes, and the like.
+
+If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority fields** during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The overlay feature applies only to the stage model.
+
 
 ## Modules to Import
 
 ``` ts
-import overlay from '@ohos.bundle.overlay';
+import { overlay } from '@kit.AbilityKit';
 ```
 
 ## overlay.setOverlayEnabled
@@ -35,38 +42,40 @@ Enables or disables a module with the overlay feature in the current application
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let moduleName = "feature";
 let isEnabled = false;
 
 try {
-    overlay.setOverlayEnabled(moduleName, isEnabled)
-        .then(() => {
-            console.info('setOverlayEnabled success');
-        }).catch((err: BusinessError) => {
-            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
-        });
+  overlay.setOverlayEnabled(moduleName, isEnabled)
+    .then(() => {
+      console.info('setOverlayEnabled success');
+    }).catch((err: BusinessError) => {
+      console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+    });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
 ## overlay.setOverlayEnabled
 
-setOverlayEnabled(moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
+setOverlayEnabled(moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
 Enables or disables a module with the overlay feature in the current application. This API uses an asynchronous callback to return the result. If the operation is successful, **null** is returned; otherwise, an error message is returned.
 
@@ -82,33 +91,35 @@ Enables or disables a module with the overlay feature in the current application
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let moduleName = "feature";
 let isEnabled = false;
 
 try {
-    overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
-        if (err) {
-            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
-            return;
-        }
-        console.info('setOverlayEnabled success');
-    });
+  overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
+    if (err) {
+      console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+      return;
+    }
+    console.info('setOverlayEnabled success');
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -134,10 +145,11 @@ Obtains the information about a module with the overlay feature in the current a
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -145,19 +157,20 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let moduleName = "feature";
 
-(async() => {
-    try {
-        let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
-        console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
-    } catch(err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
-    }
+(async () => {
+  try {
+    let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
+    console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
+  }
 })();
 ```
 
@@ -178,10 +191,11 @@ Obtains the information about a module with the overlay feature in the current a
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
@@ -189,21 +203,23 @@ For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md)
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let moduleName = "feature";
+
 try {
-    overlay.getOverlayModuleInfo(moduleName, (err, data) => {
-        if (err) {
-            console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
-            return;
-        }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
-    });
+  overlay.getOverlayModuleInfo(moduleName, (err, data) => {
+    if (err) {
+      console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+      return;
+    }
+    console.log('overlayModuleInfo is ' + JSON.stringify(data));
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -229,29 +245,31 @@ Obtains the information about modules with the overlay feature in the current ap
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found. |
 | 17700034 | The specified module is an overlay module. |
 
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let targetModuleName = "feature";
 
-(async() => {
-    try {
-        let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
-        console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
-    } catch(err) {
-        let code = (err as BusinessError).code;
-        let message = (err as BusinessError).message;
-        console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
-    }
+(async () => {
+  try {
+    let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
+    console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+  }
 })();
 ```
 
@@ -272,38 +290,45 @@ Obtains the information about modules with the overlay feature in the current ap
 
 **Error codes**
 
-For details about the error codes, see [Bundle Error Codes](errorcode-bundle.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
 | 17700002 | The specified module name is not found.  |
 | 17700034 | The specified module is an overlay module. |
 
 **Example**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let targetModuleName = "feature";
+
 try {
-    overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
-        if (err) {
-            console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
-            return;
-        }
-        console.log('overlayModuleInfo is ' + JSON.stringify(data));
-    });
+  overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
+    if (err) {
+      console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+      return;
+    }
+    console.log('overlayModuleInfo is ' + JSON.stringify(data));
+  });
 } catch (err) {
-    let code = (err as BusinessError).code;
-    let message = (err as BusinessError).message;
-    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
-## Module with the Overlay Feature
+## OverlayModuleInfo
 
-**Concept**
-A module with the overlay feature generally provides additional resource files for modules without the overlay feature on the device, so that the target modules can use these resource files at runtime to display different colors, labels, themes, and the like. The overlay feature applies only to the stage model.
+type OverlayModuleInfo = _OverlayModuleInfo.OverlayModuleInfo
 
-**How do I identify a module with the overlay feature?**
-If the **module.json5** file of a module contains the **targetModuleName** and **targetPriority fields** during project creation on DevEco Studio, the module is identified as a module with the overlay feature in the installation phase.
+Defines the information about a module with the overlay feature.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_OverlayModuleInfo.OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md#overlaymoduleinfo-1) |Information about a module with the overlay feature.|

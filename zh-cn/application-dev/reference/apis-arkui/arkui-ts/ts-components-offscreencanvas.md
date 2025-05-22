@@ -6,7 +6,7 @@ OffscreenCanvas组件用于自定义绘制图形。
 
 > **说明：** 
 >
-> 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 子组件
 
@@ -14,25 +14,36 @@ OffscreenCanvas组件用于自定义绘制图形。
 
 ## 接口
 
-OffscreenCanvas(width: number, height: number)
+OffscreenCanvas(width: number, height: number, unit?: LengthMetricsUnit)
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                              |
-| ------ | -------- | ---- | ------ | ------------------------------------- |
-| width  | number   | 是   | 0      | OffscreenCanvas组件的宽度，单位为vp。 |
-| height | number   | 是   | 0      | OffscreenCanvas组件的高度，单位为vp。 |
+| 参数名 | 类型 | 必填 | 说明                        |
+| ------ | -------- | ---- | ------------------------------------- |
+| width  | number   | 是  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
+| height | number   | 是  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
+| unit<sup>12+</sup>  | [LengthMetricsUnit](../js-apis-arkui-graphics.md#lengthmetricsunit12) | 否   |  用来配置OffscreenCanvas对象的单位模式，配置后无法动态更改，配置方法同[CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md#lengthmetricsunit12)。<br>默认值：DEFAULT |
 
 ## 属性
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 OffscreenCanvas支持以下属性：
 
-| 名称   | 类型   | 默认值 | 描述                                                         |
-| ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 0      | OffscreenCanvas组件的宽度，单位为vp。**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | 0      | OffscreenCanvas组件的高度，单位为vp。**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
+| ------ | ------ | ------ | ------- | ---- |
+| width  | number | 否  |  否  | OffscreenCanvas组件的宽度。<br>默认单位为vp。 |
+| height | number | 否  |  否  | OffscreenCanvas组件的高度。<br>默认单位为vp。 |
 
 ### width
 
@@ -43,7 +54,7 @@ OffscreenCanvas支持以下属性：
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -79,7 +90,7 @@ struct OffscreenCanvasPage {
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -116,6 +127,10 @@ transferToImageBitmap(): ImageBitmap
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **返回值：**
 
 | 类型                                               | 描述                    |
@@ -129,9 +144,9 @@ transferToImageBitmap(): ImageBitmap
 @Entry
 @Component
 struct OffscreenCanvasPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500)
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -166,12 +181,16 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 
 返回OffscreenCanvas组件的绘图上下文。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 **参数：**
 
-| 参数        | 类型                                                         | 必填 | 默认值 | 说明                                                         |
-| ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| contextType | string                                                       | 是   | "2d"   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。                       |
-| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否   | -      | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。 |
+| 参数名  | 类型 | 必填 | 说明    |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| contextType | string | 是   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。|
+| options      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否 | 用来配置OffscreenCanvasRenderingContext2D对象的参数，见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。<br>默认值：null |
 
 **返回值：**
 
@@ -187,7 +206,7 @@ getContext(contextType: "2d", options?: RenderingContextSettings): OffscreenCanv
 struct OffscreenCanvasExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 800)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 800);
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -233,7 +252,7 @@ struct OffscreenCanvasExamplePage {
 
 ## OffscreenCanvas支持并发线程绘制
 
-从API version 11开始，当应用创建Worker线程，支持使用postMessage将OffscreenCanvas实例传到Worker中进行绘制，并使用onmessage接收Worker线程发送的绘制结果进行显示。
+从API version 11开始，当应用创建[Worker线程](../../../arkts-utils/worker-introduction.md)，支持使用postMessage将OffscreenCanvas实例传到Worker中进行绘制，并使用onmessage接收Worker线程发送的绘制结果进行显示。
 
 > **说明：**
 >
@@ -242,11 +261,13 @@ struct OffscreenCanvasExamplePage {
 > 已经通过postMessage传OffscreenCanvas对象到某一线程，声明该对象的线程不允许该对象使用getContext和transferToImageBitmap方法，否则抛出异常。
 >
 > 已经通过postMessage传OffscreenCanvas对象到某一线程，不允许再将该对象通过postMessage传给其他线程，否则抛出异常。
+>
+> DevEco Studio的预览器不支持显示在worker线程中绘制的内容。
 
 **示例：**
 
 ```ts
-import worker from '@ohos.worker';
+import { worker } from '@kit.ArkTS';
 
 @Entry
 @Component
@@ -298,5 +319,5 @@ workerPort.onmessage = (e: MessageEvents) => {
 }
 ```
 
-![zh-cn_image_0000001194032666](figures/offscreen_canvas_width.png)
+![offscreenCanvasPostMessage](figures/offscreen_canvas_postMessage.png)
 

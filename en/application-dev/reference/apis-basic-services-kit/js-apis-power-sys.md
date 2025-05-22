@@ -11,7 +11,7 @@ The **power** module provides APIs for rebooting and shutting down the system, a
 ## Modules to Import
 
 ```js
-import power from '@ohos.power';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.shutdown
@@ -24,13 +24,13 @@ Shuts down the system.
 
 **Required permission**: ohos.permission.REBOOT
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
 | Name   | Type    | Mandatory  | Description   |
 | ------ | ------ | ---- | ----- |
-| reason | string | Yes   | Reason for system shutdown.|
+| reason | string | Yes   | Shutdown reason. The value must be a string.|
 
 **Error codes**
 
@@ -38,7 +38,11 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+
 
 **Example:**
 
@@ -60,13 +64,13 @@ The device is restarted.
 
 **Required permission**: ohos.permission.REBOOT
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| reason | string | Yes  | Reason for system reboot.|
+| reason | string | Yes  | Restart reason. The value must be a string.|
 
 **Error codes**
 
@@ -74,7 +78,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -94,13 +101,17 @@ Wakes up a device.
 
 **System API**: This is a system API.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**Required permissions**: ohos.permission.POWER_MANAGER
+
+For API version 9 to 17, no permission is required to use this API. Since API version 18, this permission is required.
+
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description      |
 | ------ | ------ | ---- | ---------- |
-| detail | string | Yes  | Reason for wakeup.|
+| detail | string | Yes  | Wakeup reason. The value must be a string.|
 
 **Error codes**
 
@@ -108,7 +119,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -128,7 +142,11 @@ Hibernates a device.
 
 **System API**: This is a system API.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**Required permissions**: ohos.permission.POWER_MANAGER
+
+For API version 9 to 17, no permission is required to use this API. Since API version 18, this permission is required.
+
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
@@ -143,7 +161,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example:**
 
@@ -165,13 +186,13 @@ Sets the power mode of this device. This API uses an asynchronous callback to re
 
 **Required permission**: ohos.permission.POWER_OPTIMIZATION
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
 | Name  | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| mode     | DevicePowerMode | Yes  | Power mode.                                                  |
+| mode     | DevicePowerMode | Yes  | Power mode. The value must be an enum.                                                  |
 | callback | AsyncCallback&lt;void&gt;            | Yes  | Callback invoked to return the result.<br> If the power mode is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -180,7 +201,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -204,13 +228,13 @@ Sets the power mode of this device. This API uses a promise to return the result
 
 **Required permission**: ohos.permission.POWER_OPTIMIZATION
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
 | Name| Type                                | Mandatory| Description      |
 | ------ | ------------------------------------ | ---- | ---------- |
-| mode   | DevicePowerMode | Yes  | Power mode.|
+| mode   | DevicePowerMode | Yes  | Power mode. The value must be an enum.|
 
 **Return value**
 
@@ -224,7 +248,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -246,7 +273,11 @@ Set the screen-off timeout duration.
 
 **System API**: This is a system API.
 
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
+**Required permissions**: ohos.permission.POWER_MANAGER
+
+For API version 12 to 17, no permission is required to use this API. Since API version 18, this permission is required.
+
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
 
 **Parameters**
 
@@ -260,10 +291,10 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
-| 201 | If the permission is denied. |
-| 202 | If the system permission is denied. |
-| 1 | Other unknown reason. |
+| 4900101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1. Parameter verification failed. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
 
 **Example:**
 
@@ -272,5 +303,46 @@ try {
     power.setScreenOffTime(30000);
 } catch(err) {
     console.error('set screen off time failed, err: ' + err);
+}
+```
+
+## power.hibernate<sup>12+</sup>
+
+hibernate(clearMemory: boolean): void
+
+Hibernates a device.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.POWER_MANAGER
+
+For API version 12 to 17, no permission is required to use this API. Since API version 18, this permission is required.
+
+**System capability**: SystemCapability.PowerManager.PowerManager.Core
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| clearMemory | boolean | Yes   | Whether to clear the memory. The value **true** means to clear the memory before the system enters the hibernation state, and the value **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Power Manager Error Codes](errorcode-power.md).
+
+| ID  | Error Message   |
+|---------|---------|
+| 4900101 | Failed to connect to the service. |
+| 201     | Permission verification failed. The application does not have the permission required to call the API. |
+| 202     | Permission verification failed. A non-system application calls a system API.  |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
+
+**Example:**
+
+```js
+try {
+    power.hibernate(true);
+} catch(err) {
+    console.error('hibernate failed, err: ' + err);
 }
 ```

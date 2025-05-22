@@ -1,5 +1,7 @@
 # Camera Metadata (ArkTS)
 
+Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+
 Metadata is the description and context of image information returned by the camera application. It provides detailed data for the image information, such as the coordinates of a viewfinder frame for identifying a portrait in a photo or video.
 
 Metadata uses a tag (key) to find the corresponding data during parameter transfers and configurations, reducing memory copy operations.
@@ -10,8 +12,8 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 
 1. Import the modules.
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Obtain the metadata types supported by the current device from **supportedMetadataObjectTypes** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class, and then use [createMetadataOutput](../../reference/apis-camera-kit/js-apis-camera.md#createmetadataoutput) to create a metadata output stream.
@@ -54,7 +56,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        console.error('cameraInput is undefined');
        return;
      }
-     // Open a camera.
+     // Open the camera.
      await cameraInput.open();
      let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      session.beginConfig();
@@ -87,6 +89,9 @@ During camera application development, you can listen for the status of metadata
   ```ts
   function onMetadataObjectsAvailable(metadataOutput: camera.MetadataOutput): void {
     metadataOutput.on('metadataObjectsAvailable', (err: BusinessError, metadataObjectArr: Array<camera.MetadataObject>) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('metadata output metadataObjectsAvailable');
     });
   }

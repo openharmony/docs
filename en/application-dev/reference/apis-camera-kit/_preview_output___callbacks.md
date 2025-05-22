@@ -3,13 +3,15 @@
 
 ## Overview
 
-The **PreviewOutput_Callbacks** struct defines the callbacks used for preview output.
+The PreviewOutput_Callbacks struct describes the callbacks related to preview output.
 
 For details, see [OH_PreviewOutput_RegisterCallback](_o_h___camera.md#oh_previewoutput_registercallback).
 
 **Since**: 11
 
 **Related module**: [OH_Camera](_o_h___camera.md)
+
+**Header file**: [preview_output.h](preview__output_8h.md)
 
 
 ## Summary

@@ -11,6 +11,8 @@
 
 **相关模块：** [Image](image.md)
 
+**所在头文件：**[image_source_mdk.h](image__source__mdk_8h.md)
+
 
 ## 汇总
 
@@ -19,5 +21,5 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [delayTimeList](image.md#delaytimelist) | 图像源延迟时间列表头地址 | 
-| [size](image.md#size-47) = 0 | 图像源延迟时间列表大小 | 
+| int32_t \* [delayTimeList](image.md#delaytimelist) | 图像源延迟时间列表头地址。 |
+| size_t [size](image.md#size-47) = 0 | 图像源延迟时间列表大小。 |

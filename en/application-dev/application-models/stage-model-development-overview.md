@@ -9,6 +9,11 @@ The following figure illustrates the stage model.
 
 ![stage-concepts](figures/stage-concepts.png)
 
+
+- [AbilityStage](abilitystage.md)
+
+  Each [HAP](../quick-start/hap-package.md) of the Entry or Feature type has an instance of the **AbilityStage** class at runtime. When the code in the [HAP](../quick-start/hap-package.md) is loaded to a process for the first time, the system creates an **AbilityStage** instance first.
+  
 - [UIAbility](uiability-overview.md) and [ExtensionAbility](extensionability-overview.md) components
   
   The stage model provides two types of application components: UIAbility and ExtensionAbility. Both have specific classes and support object-oriented development.
@@ -24,9 +29,7 @@ The following figure illustrates the stage model.
 
   In the stage model, Context and its derived classes provide a variety of resources and capabilities that can be called during the runtime. The UIAbility component and ExtensionAbility derived classes have different Context classes. These classes, which all inherit from the base class Context, provide different capabilities.
 
-- [AbilityStage](abilitystage.md)
 
-  Each HAP of the Entry or Feature type has an AbilityStage class instance during the runtime. When the code in the HAP is loaded to the process for the first time, the system creates an AbilityStage class instance.
 
 
 ## How to Develop
@@ -40,5 +43,4 @@ During application development based on the stage model, the following tasks are
 | Application component development| Use the UIAbility and ExtensionAbility components of the stage model to develop your application.| - [Application- or Component-Level Configuration](application-component-configuration-stage.md)<br>- [UIAbility Component](uiability-overview.md)<br>- [ExtensionAbility Component](extensionability-overview.md)<br>- [AbilityStage Container Component](abilitystage.md)<br>- [Context](application-context-stage.md)<br>- [Component Startup Rules](component-startup-rules.md)|
 | Process model development| Learn the process model and common IPC modes of the stage model.| [Process Model Overview](process-model-stage.md)|
 | Thread model development| Learn the thread model and common inter-thread communication modes of the stage model.| [Thread Model Overview](thread-model-stage.md)|
-| Mission management development| Learn the basic concepts and typical scenarios of mission management in the stage model.| - [Mission Management Scenarios](mission-management-overview.md)<br>- [Mission Management and Launch Type](mission-management-launch-type.md)<br>- [Page Stack and Mission List](page-mission-stack.md)|
 | Configuration file development| Learn the requirements for developing application configuration files in the stage model.| [Application Configuration File](config-file-stage.md)|

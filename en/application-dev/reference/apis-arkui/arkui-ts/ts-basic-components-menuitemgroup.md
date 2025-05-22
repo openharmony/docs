@@ -1,6 +1,6 @@
 # MenuItemGroup
 
-The **\<MenuItemGroup>** component represents a group of menu items.
+The **MenuItemGroup** component represents a group of menu items.
 
 > **NOTE**
 >
@@ -14,16 +14,24 @@ This component contains the [MenuItem](ts-basic-components-menuitem.md) child co
 
 MenuItemGroup(value?: MenuItemGroupOptions)
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
 **Parameters**
 
-| Name | Type                                                                                  | Mandatory| Description                                   |
-| ----- | -------------------------------------------------------------------------------------- | ---- | ------------------------------------------- |
-| value | [MenuItemGroupOptions](ts-basic-components-menuitemgroup.md#menuitemgroupoptions) | No  | Header and footer of the menu item group.|
+| Name| Type                                                 | Mandatory| Description                                       |
+| ------ | ----------------------------------------------------- | ---- | ------------------------------------------- |
+| value  | [MenuItemGroupOptions](#menuitemgroupoptions) | No  | Header and footer of the menu item group.|
 
 ## MenuItemGroupOptions
 
-| Name  | Type                                                                                     | Mandatory| Description                         |
-| ------ | ----------------------------------------------------------------------------------------- | ---- | ----------------------------- |
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name  | Type                                                        | Mandatory| Description                         |
+| ------ | ------------------------------------------------------------ | ---- | ----------------------------- |
 | header | [ResourceStr](ts-types.md#resourcestr) \| [CustomBuilder](ts-types.md#custombuilder8) | No  | Header of the menu item group.|
 | footer | [ResourceStr](ts-types.md#resourcestr) \| [CustomBuilder](ts-types.md#custombuilder8) | No  | Footer of the menu item group.|
 

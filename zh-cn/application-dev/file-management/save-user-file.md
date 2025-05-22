@@ -1,118 +1,53 @@
 # 保存用户文件
 
-在从网络下载文件到本地、或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。
+在从网络下载文件到本地或将已有用户文件另存为新的文件路径等场景下，需要使用FilePicker提供的保存用户文件的能力。需关注以下关键点：
 
-对音频、图片、视频、文档类文件的保存操作类似，均通过调用对应picker的save()接口并传入对应的saveOptions来实现。通过Picker访问相关文件，无需申请权限。
+**权限说明**
 
-当前所有picker的save接口都是用户可感知的，具体行为是拉起FilePicker, 将文件保存在系统文件管理器管理的特定目录，与图库管理的资源隔离，无法在图库中看到。
+- 通过Picker获取的uri默认只具备**临时读写权限**，临时授权在应用退出后台自动失效。
+- 获取持久化权限需要通过[FilePicker设置永久授权](file-persistPermission.md#通过picker获取临时授权并进行授权持久化)方式获取。（仅限2in1设备）。
+- 使用Picker对音频、图片、视频、文档类文件的保存操作**无需申请权限**。
 
-如需要在图库中看到所保存的图片、视频资源，请使用用户无感的[安全控件创建媒体资源](../media/medialibrary/photoAccessHelper-resource-guidelines.md#使用安全控件创建媒体资源)。
+**系统隔离说明**
 
+- 通过Picker保存的文件存储在用户指定的目录。此类文件与图库管理的资源隔离，无法在图库中看到。
+- 若开发者需要保存图片、视频资源到图库，可使用用户无感的[安全控件进行保存](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
 ## 保存图片或视频类文件
 
-本例展示了从图库中选择一张图片，保存到文件管理器的示例代码。
+[PhotoViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#photoviewpickerdeprecated)在后续版本不再演进，建议使用[Media Library Kit（媒体文件管理服务）中能力来保存媒体库资源](../media/medialibrary/photoAccessHelper-savebutton.md)。
 
-1. 导入[选择器](../reference/apis-core-file-kit/js-apis-file-picker.md)、[文件管理](../reference/apis-core-file-kit/js-apis-file-fs.md)、[相册管理](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)模块。
-
-   ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
-   ```
-   
-2. 调用[select()](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select)接口从设备中选择一张图片，并用一个全局变量存储返回的uri。
-
-   ```ts
-
-   let selectUris: Array<string> = [];
-       try {
-           let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
-        	PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
-           PhotoSelectOptions.maxSelectNumber = 1;
-           let photoPicker = new photoAccessHelper.PhotoViewPicker();
-           photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
-               selectUris = PhotoSelectResult.photoUris;
-               console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
-           }).catch((err: BusinessError) => {
-               console.error(`PhotoViewPicker.select failed with err: ${err.code}, ${err.message}`);
-           });
-       } catch (error) {
-           let err: BusinessError = error as BusinessError;
-           console.error(`PhotoViewPicker failed with err: ${err.code}, ${err.message}`);
-       }
-   ```
-   
-3. 调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，并用一个全局变量存储返回的uri。
-   
-   save返回的uri权限是读写权限，可以根据结果集里面的uri进行文件读写等操作。
-
-   ```ts  
-   
-   let saveUris: Array<string> = [];
-   try {
-       const photoSaveOptions = new picker.PhotoSaveOptions(); // 创建文件管理器保存选项实例
-       photoSaveOptions.newFileNames = ["PhotoViewPicker01.png"]; // 保存文件名（可选），方括号里的文件名自定义，每次不能重复，设备里已有这个文件的话，名字就需要改个不一样的，不然接口会报错
-       const photoViewPicker = new picker.PhotoViewPicker();
-       try {
-           let photoSaveResult = await photoViewPicker.save(photoSaveOptions);
-           if (photoSaveResult != undefined) {
-               saveUris = photoSaveResult;
-               console.info('photoViewPicker.save to file succeed and uris are:' + photoSaveResult);
-           }
-       } catch (error) {
-           let err: BusinessError = error as BusinessError;
-           console.error(`[picker] Invoke photoViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
-       }
-   } catch (error) {
-       let err: BusinessError = error as BusinessError;
-       console.info("[picker] photoViewPickerSave error = " + JSON.stringify(err));
-   }
-   ```
-   
-4. 使用[fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过选择和保存uri打开这两个文件得到fd，这里需要注意接口权限参数分别是fs.OpenMode.READ_ONLY和fs.OpenMode.WRITE_ONLY。再调用[fs.copyFileSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fscopyfilesync)接口进行复制，修改完成后关闭两个文件。
-
-   ```ts
-
-   try {
-   	let photoSelect = fs.openSync(selectUris[0], fs.OpenMode.READ_ONLY);
-       let photoSave = fs.openSync(saveUris[0], fs.OpenMode.WRITE_ONLY);
-       fs.copyFileSync(photoSelect.fd, photoSave.fd);
-       fs.close(photoSelect);
-       fs.close(photoSave);
-   } catch (error) {
-       let err: BusinessError = error as BusinessError;
-       console.info("[picker] Photo Save error = " + JSON.stringify(err));
-   }
-   ```
+如果开发场景无法调用安全控件进行图片、视频保存，可使用相册管理模块[PhotoAccessHelper.showAssetsCreationDialog](../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#showassetscreationdialog12)接口进行保存操作。
 
 ## 保存文档类文件
 
-1. 导入选择器模块和文件管理模块。
+1. 模块导入。
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
-2. 创建文档保存选项实例。
+2. 配置保存选项。
 
    ```ts
-   const documentSaveOptions = new picker.DocumentSaveOptions(); // 创建文件管理器选项实例
-   documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"]; // 保存文件名（可选）
-   documentSaveOptions.fileSuffixChoices = ['.png', '.txt', '.mp4']; // 保存文件类型（可选）
+   // 创建文件管理器选项实例。
+   const documentSaveOptions = new picker.DocumentSaveOptions();
+   // 保存文件名（可选）。 默认为空。
+   documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"];
+   // 保存文件类型['后缀类型描述|后缀类型'],选择所有文件：'所有文件(*.*)|.*'（可选） ，如果选择项存在多个后缀（做大限制100个过滤后缀），默认选择第一个。如果不传该参数，默认无过滤后缀。
+   documentSaveOptions.fileSuffixChoices = ['文档|.txt', '.pdf']; 
    ```
 
-3. 创建文档选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-3)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
-   
-   </br>save返回的uri权限是读写权限，可以根据结果集中uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
+3. 创建[文件选择器DocumentViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#constructor12)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save)接口拉起FilePicker界面进行文件保存。
 
    ```ts
-
    let uris: Array<string> = [];
-   const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+   const documentViewPicker = new picker.DocumentViewPicker(context);
    documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
      uris = documentSaveResult;
      console.info('documentViewPicker.save to file succeed and uris are:' + uris);
@@ -121,19 +56,27 @@
    })
    ```
 
-4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
+   > **注意**：
+   >
+   > 1. URI存储建议：
+   > - 避免在Picker回调中直接操作URI。
+   > - 建议使用全局变量保存URI以供后续使用。
+   >
+   > 2. 快捷保存：
+   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。
+
+4. 待界面从FilePicker返回后，使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符（fd）。
 
    ```ts
-   
    const uri = '';
+   //这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过fd使用[fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+5. 通过（fd）使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭（fd）。
 
    ```ts
-   
    let writeLen: number = fs.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);
    fs.closeSync(file);
@@ -141,28 +84,30 @@
 
 ## 保存音频类文件
 
-1. 导入选择器模块和文件管理模块。
+1. 模块导入。
 
    ```ts
-   import picker from '@ohos.file.picker';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
+   import { picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
    ```
 
-2. 创建音频保存选项实例。
+2. 配置保存选项。
 
    ```ts
-   const audioSaveOptions = new picker.AudioSaveOptions(); // 创建文件管理器选项实例
-   audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; // 保存文件名（可选）
+   const audioSaveOptions = new picker.AudioSaveOptions();
+   // 保存文件名（可选） 
+   audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; 
    ```
 
-3. 创建音频选择器实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-6)接口拉起FilePicker界面进行文件保存。用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的uri。
-   
-   </br>save返回的uri权限是读写权限，可以根据结果集中uri进行文件读写等操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
-   
+3. 创建[音频选择器AudioViewPicker](../reference/apis-core-file-kit/js-apis-file-picker.md#audioviewpicker)实例。调用[save()](../reference/apis-core-file-kit/js-apis-file-picker.md#save-5)接口拉起FilePicker界面进行文件保存。
+
    ```ts
    let uri: string = '';
-   const audioViewPicker = new picker.AudioViewPicker();
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;  
+   const audioViewPicker = new picker.AudioViewPicker(context);
    audioViewPicker.save(audioSaveOptions).then((audioSelectResult: Array<string>) => {
      uri = audioSelectResult[0];
      console.info('audioViewPicker.save to file succeed and uri is:' + uri);
@@ -171,19 +116,74 @@
    })
    ```
 
-4. 待界面从FilePicker返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_WRITE。
+   > **注意**：
+   >
+   > 1. URI存储建议：
+   > - 避免在Picker回调中直接操作URI。
+   > - 建议使用全局变量保存URI以供后续使用。
+   >
+   > 2. 快捷保存：
+   > - 可以通过[DOWNLOAD模式](#download模式保存文件)直达下载目录。
+
+4. 待界面从FilePicker返回后，可以使用[基础文件API的fs.openSync](../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过URI打开这个文件得到文件描述符（fd）。
 
    ```ts
+   //这里需要注意接口权限参数是fileIo.OpenMode.READ_WRITE。
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过fd使用[fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+5. 通过（fd）使用[基础文件API的fs.writeSync](../reference/apis-core-file-kit/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭（fd）。
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');
    console.info('write data to file succeed and size is:' + writeLen);
    fs.closeSync(file);
+ 
    ```
-   
 
+## DOWNLOAD模式保存文件
+
+**模式特点**
+
+- 自动创建在`Download/包名/`目录。
+- 跳过文件选择界面直接保存。
+- 返回的URI已具备持久化权限， 用户可在该URI下创建文件。
+
+1. 模块导入。
+
+   ```ts
+   import { fileUri, picker } from '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { common } from '@kit.AbilityKit';
+   ```
+
+2. 配置下载模式。
+
+   ```ts
+   const documentSaveOptions = new picker.DocumentSaveOptions();
+   // 配置保存的模式为DOWNLOAD，若配置了DOWNLOAD模式，此时配置的其他documentSaveOptions参数将不会生效。
+   documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD; 
+   ```
+
+3. 保存到下载目录。
+
+   ```ts
+   let uri: string = '';
+   // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
+   const documentViewPicker = new picker.DocumentViewPicker(context);
+   const documentSaveOptions = new picker.DocumentSaveOptions();
+   documentSaveOptions.pickerMode = picker.DocumentPickerMode.DOWNLOAD;
+   documentViewPicker.save(documentSaveOptions).then((documentSaveResult: Array<string>) => {
+     uri = documentSaveResult[0];
+     console.info('documentViewPicker.save succeed and uri is:' + uri);
+     const testFilePath = new fileUri.FileUri(uri + '/test.txt').path;
+     const file = fs.openSync(testFilePath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+     fs.writeSync(file.fd, 'Hello World!');
+     fs.closeSync(file.fd);
+   }).catch((err: BusinessError) => {
+     console.error(`Invoke documentViewPicker.save failed, code is ${err.code}, message is ${err.message}`);
+   })
+   ```

@@ -1,4 +1,3 @@
-
 # ICU4C
 
 当今的软件市场是一个全球性的市场，应用程序的开发和维护需要支持多种语言。International Components for Unicode (ICU) 库为多平台多系统提供了强大且功能齐全的多语言文化信息处理能力。
@@ -16,7 +15,21 @@
 - 字符/文本属性(uchar.h，uscript.h)
 - 编码转换(ucnv.h)
 - 文本双向处理(ubidi.h)
+- 域名转换(uidna.h)
+- Unicode字符串处理(ustring.h)
+- ICU文本抽象表示(utext.h)
 
+## 引入ICU4C国际化能力
+
+如果开发者需要使用ICU4C相关功能，请按需要添加对应的头文件。本模块头文件需要添加unicode目录前缀，例如：
+```
+#include <unicode/uloc.h>
+```
+
+其次在CMakeList.txt中添加以下动态库:
+```
+libicu.so
+```
 
 ## 标准库中导出的符号列表
 

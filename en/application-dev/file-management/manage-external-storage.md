@@ -39,11 +39,11 @@ The following table describes the broadcast related parameters.
 
 You can subscribe to broadcast events to observe the insertion and removal of external storage devices, and query or manage volumes based on the volume information obtained from the broadcast.
 
-1. Apply for permissions.<br>
-   Apply for the ohos.permission.STORAGE_MANAGER permission if your application needs to subscribe to volume broadcast events. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Apply for permissions.<br> 
+  Apply for the ohos.permission.STORAGE_MANAGER permission if your application needs to subscribe to volume broadcast events. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
-2. Subscribe to broadcast events.<br>
-   You can subscribe to the following events:
+2. Subscribe to broadcast events.<br> 
+  You can subscribe to the following events:
 
    - "usual.event.data.VOLUME_REMOVED": The device is removed.
    - "usual.event.data.VOLUME_UNMOUNTED": The volume is unmounted.
@@ -52,13 +52,13 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
    - "usual.event.data.VOLUME_EJECT": The device is being ejected.
 
    ```ts
-   import CommonEvent from '@ohos.commonEventManager';
-   import volumeManager from '@ohos.file.volumeManager';
-   import { BusinessError } from '@ohos.base';
+   import { commonEventManager } from '@kit.BasicServicesKit';
+   import { volumeManager } from '@kit.CoreFileKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
-   let subscriber: CommonEvent.CommonEventSubscriber;
+   let subscriber: commonEventManager.CommonEventSubscriber;
    async function example() {
-     const subscribeInfo: CommonEvent.CommonEventSubscribeInfo = {
+     const subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
        events: [
          "usual.event.data.VOLUME_REMOVED",
          "usual.event.data.VOLUME_UNMOUNTED",
@@ -67,24 +67,28 @@ You can subscribe to broadcast events to observe the insertion and removal of ex
          "usual.event.data.VOLUME_EJECT"
        ]
      };
-     subscriber = await CommonEvent.createSubscriber(subscribeInfo);
+     subscriber = await commonEventManager.createSubscriber(subscribeInfo);
    }
    ```
 
 3. Obtain volume information from the broadcast.
 
    ```ts
-   CommonEvent.subscribe(subscriber, (err: BusinessError, data: CommonEvent.CommonEventData) => {
-     if (data.event === 'usual.event.data.VOLUME_MOUNTED') {
-       // Manage the volume device based on the information obtained from the broadcast.
-       let volId: string = data.parameters.id;
-       volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
-         if (error) {
-           console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
-         } else {
-           console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
-         }
-       })
-     }
-   })
+   let subscriber: commonEventManager.CommonEventSubscriber|undefined;
+   // Note that the subscriber value is obtained from await commonEventManager.createSubscriber (subscribeInfo) in step 2.
+   if (subscriber !== undefined) {
+    commonEventManager.subscribe(subscriber, (err: BusinessError, data: commonEventManager.CommonEventData) => {
+      if (data.event === 'usual.event.data.VOLUME_MOUNTED' && data.parameters !== undefined) {
+        // Manage the volume device based on the information obtained from the broadcast.
+        let volId: string = data.parameters.id;
+        volumeManager.getVolumeById(volId, (error: BusinessError, vol: volumeManager.Volume) => {
+          if (error) {
+            console.error('volumeManager getVolumeById failed for ' + JSON.stringify(error));
+          } else {
+            console.info('volumeManager getVolumeById successfully, the volume state is ' + vol.state);
+          }
+        })
+      }
+    })
+   }
    ```

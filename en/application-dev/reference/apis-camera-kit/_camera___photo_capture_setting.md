@@ -3,12 +3,13 @@
 
 ## Overview
 
-The **Camera_PhotoCaptureSetting** struct defines the photographing parameters.
+The Camera_PhotoCaptureSetting struct describes the parameters related to photo capture.
 
 **Since**: 11
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
 
 ## Summary
 
@@ -19,8 +20,8 @@ The **Camera_PhotoCaptureSetting** struct defines the photographing parameters.
 | -------- | -------- |
 | [Camera_QualityLevel](_o_h___camera.md#camera_qualitylevel) [quality](#quality) | Quality of the photo. | 
 | [Camera_ImageRotation](_o_h___camera.md#camera_imagerotation) [rotation](#rotation) | Rotation angle. | 
-| [Camera_Location](_camera___location.md) \* [location](#location) | Location where the photo is taken. | 
-| bool [mirror](#mirror) | Whether mirroring is enabled. The default value is **false**. | 
+| [Camera_Location](_camera___location.md) \* [location](#location) | Pointer to the location where the photo is taken. | 
+| bool [mirror](#mirror) | Whether mirroring is enabled. The value **true** means that mirroring is enabled, and **false** means the opposite. The default value is **false**. | 
 
 
 ## Member Variable Description
@@ -33,7 +34,7 @@ Camera_Location* Camera_PhotoCaptureSetting::location
 ```
 **Description**
 
-Location where the photo is taken.
+Pointer to the location where the photo is taken.
 
 
 ### mirror

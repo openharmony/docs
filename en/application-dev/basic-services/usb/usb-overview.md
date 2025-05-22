@@ -1,4 +1,4 @@
-# USB Service Development Overview
+# USB Service Overview
 
 ## Basic Concepts
 

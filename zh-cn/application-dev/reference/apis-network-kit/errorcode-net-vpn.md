@@ -8,7 +8,7 @@
 
 **错误信息**
 
-VPN creation denied, please check the user type.
+VPN creation denied. Check the user type.
 
 **错误描述**
 
@@ -27,7 +27,7 @@ VPN creation denied, please check the user type.
 
 **错误信息**
 
-VPN exist already, please execute destroy first.
+VPN already exists.
 
 **错误描述**
 

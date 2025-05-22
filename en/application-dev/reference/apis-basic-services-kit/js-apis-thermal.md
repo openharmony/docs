@@ -9,7 +9,7 @@ The **thermal** module provides thermal level-related callback and query APIs to
 ## Modules to Import
 
 ```js
-import thermal from '@ohos.thermal';
+import {thermal} from '@kit.BasicServicesKit';
 ```
 
 ## thermal.registerThermalLevelCallback<sup>9+</sup>
@@ -24,7 +24,7 @@ Subscribes to thermal level changes.
 
 | Name  | Type                        | Mandatory| Description                          |
 | -------- | ---------------------------- | ---- | ------------------------------ |
-| callback | Callback&lt;ThermalLevel&gt; | Yes  | Callback used to return the result.|
+| callback | Callback&lt;ThermalLevel&gt; | Yes  | Callback used to return thermal level. This parameter is of the function type.|
 
 **Error codes**
 
@@ -32,7 +32,8 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-t
 
 | ID  | Error Message   |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example**
 
@@ -67,7 +68,8 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-t
 
 | ID  | Error Message   |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
+| 401     | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **Example**
 
@@ -102,7 +104,7 @@ For details about the error codes, see [Thermal Manager Error Codes](errorcode-t
 
 | ID  | Error Message   |
 |---------|---------|
-| 4800101 | If connecting to the service failed. |
+| 4800101 | Failed to connect to the service. |
 
 **Example**
 
@@ -188,9 +190,7 @@ console.info('thermal level is: ' + level);
 
 ## ThermalLevel
 
-> **NOTE**<br>The enum value **ESCAPE** is supported since API version 11.
-
-Represents the thermal level.
+Enumerates thermal levels.
 
 **System capability:** SystemCapability.PowerManager.ThermalManager
 
@@ -203,4 +203,4 @@ Represents the thermal level.
 | OVERHEATED | 4    | The device is overheated. You need to stop all imperceptible services and downgrade or reduce the load of major foreground services.|
 | WARNING    | 5    | The device is overheated and is about to enter the emergency state. You need to stop all imperceptible services and downgrade major foreground services to the maximum extent.|
 | EMERGENCY  | 6    | The device has entered the emergency state. You need to stop all services except those for fundamental use.|
-| ESCAPE     | 7    | The device is about to enter the escape state. You need to stop all services and take necessary emergency measures such as data backup.|
+| ESCAPE<sup>11+</sup>     | 7    | The device is about to enter the escape state. You need to stop all services and take necessary emergency measures such as data backup.<br>Note: This API is supported since API version 11.|

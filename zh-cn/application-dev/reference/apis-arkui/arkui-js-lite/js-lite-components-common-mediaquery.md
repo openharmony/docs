@@ -71,7 +71,7 @@
 
 ## 通用媒体特征示例代码
 
-多个.container中的所写的属性个数以及类型需要相同，若不相同会导致显示异常。
+多个.container中定义的属性个数及类型必须保持一致，否则可能导致显示异常。
 
 ```html
 <!-- xxx.hml -->
@@ -93,7 +93,7 @@
     font-size: 30px;
     text-align: center;
 }
-@media (device-type: samrtVision) {
+@media (device-type: smartVision) {
   .container {
     width: 500px;
     height: 500px;

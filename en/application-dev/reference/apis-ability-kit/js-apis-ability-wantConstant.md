@@ -12,7 +12,7 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 import wantConstant from '@ohos.ability.wantConstant';
 ```
 
-## wantConstant.Action
+## Action
 
 Enumerates the action constants of the **Want** object. **action** specifies the operation to execute.
 
@@ -21,7 +21,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 | Name     | Value         | Description    |
 | ------------ | ------------------ | ---------------------- |
 | ACTION_HOME                                 | ohos.want.action.home                    | Action of returning to the home page.                                       |
-| ACTION_DIAL                                 | ohos.want.action.dial                    | Action of launching the numeric keypad.                          |
+| ACTION_DIAL                                 | ohos.want.action.dial                    | Action of launching the numeric keypad.                         |
 | ACTION_SEARCH                               | ohos.want.action.search                  | Action of launching the search function.                                |
 | ACTION_WIRELESS_SETTINGS                    | ohos.settings.wireless                   | Action of launching the UI that provides wireless network settings, for example, Wi-Fi options.   |
 | ACTION_MANAGE_APPLICATIONS_SETTINGS         | ohos.settings.manage.applications        | Action of launching the UI for managing installed applications.                 |
@@ -48,7 +48,7 @@ Enumerates the action constants of the **Want** object. **action** specifies the
 |  ACTION_APP_ACCOUNT_OAUTH <sup>8+</sup>     | ohos.account.appAccount.action.oauth     | Action of providing the OAuth service.                                    |
 
 
-## wantConstant.Entity
+## Entity
 
 Enumerates the entity constants of the **Want** object. **entity** specifies additional information of the target ability.
 
@@ -63,7 +63,7 @@ Enumerates the entity constants of the **Want** object. **entity** specifies add
 | ENTITY_VIDEO                               | entity.system.video                      | Video type entity.                                     |
 
 
-## wantConstant.Flags
+## Flags
 
  Enumerates the flags that specify how the Want will be handled.
 

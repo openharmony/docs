@@ -10,7 +10,7 @@
 ## 导入模块
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 ```
 
 ## policy.setBackgroundAllowed<sup>10+</sup>
@@ -29,7 +29,7 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名    | 类型                 | 必填 | 说明                                                         |
 | --------- | -------------------- | ---- | ------------------------------------------------------------ |
-| isAllowed | boolean              | 是   | 是否允许应用后台使用数据                                     |
+| isAllowed | boolean              | 是   | 是否允许应用后台使用数据。                                     |
 | callback  | AsyncCallback\<void> | 是   | 回调函数，成功时，err 为 undefined，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -40,13 +40,14 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setBackgroundAllowed(true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -68,7 +69,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| isAllowed | boolean | 是   | 是否允许应用后台使用数据 |
+| isAllowed | boolean | 是   | 是否允许应用后台使用数据。 |
 
 **错误码：**
 
@@ -78,19 +79,20 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **返回值：**
 
 | 类型           | 说明                                                              |
 | -------------- | ----------------------------------------------------------------- |
-| Promise\<void> | 以 Promise 形式返回设定结果，成功返回空，失败返回错误码错误信息。 |
+| Promise\<void> | 以 Promise 形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setBackgroundAllowed(true).then(() => {
   console.log("setBackgroundAllowed success");
 }).catch((error: BusinessError) => {
@@ -114,7 +116,7 @@ isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                                             |
 | -------- | ----------------------- | ---- | ---------------------------------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，返回 true 代表后台策略为允许。失败返回错误码错误信息。 |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 代表后台策略为允许，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -124,13 +126,14 @@ isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -139,7 +142,7 @@ policy.isBackgroundAllowed((error: BusinessError, data: boolean) => {
 
 ## policy.isBackgroundAllowed<sup>10+</sup>
 
-isBackgroundAllowed(): Promise\<boolean>;
+isBackgroundAllowed(): Promise\<boolean>
 
 获取当前应用是否允许后台访问网络，使用 Promise 方式作为异步方法。
 
@@ -153,7 +156,7 @@ isBackgroundAllowed(): Promise\<boolean>;
 
 | 类型              | 说明                                                                                 |
 | ----------------- | ------------------------------------------------------------------------------------ |
-| Promise\<boolean> | 以 Promise 形式返回设定结果。 返回 true 代表后台策略为允许。失败返回错误码错误信息。 |
+| Promise\<boolean> | 以 Promise 形式返回设定结果。 返回 true 代表后台策略为允许，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -163,13 +166,14 @@ isBackgroundAllowed(): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isBackgroundAllowed()
   .then((data: boolean) => {
@@ -196,8 +200,8 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 
 | 参数名   | 类型                            | 必填 | 说明                                           |
 | -------- | ------------------------------- | ---- | ---------------------------------------------- |
-| uid      | number                          | 是   | app 唯一标识符                                 |
-| policy   | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略                                 |
+| uid      | number                          | 是   | app 唯一标识符。                                 |
+| policy   | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略。                                 |
 | callback | AsyncCallback\<void>            | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -208,13 +212,14 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -222,7 +227,7 @@ policy.setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE, (error: Busine
 
 ## policy.setPolicyByUid<sup>10+</sup>
 
-setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
+setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>
 
 设置对应 uid 应用是否能够访问计量网络的策略，使用 Promise 方式作为异步方法。
 
@@ -236,8 +241,8 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
 | 参数名 | 类型                            | 必填 | 说明           |
 | ------ | ------------------------------- | ---- | -------------- |
-| uid    | number                          | 是   | app 唯一标识符 |
-| policy | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略 |
+| uid    | number                          | 是   | app 唯一标识符。 |
+| policy | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的策略。 |
 
 **返回值：**
 
@@ -253,13 +258,14 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setPolicyByUid(11111, policy.NetUidPolicy.NET_POLICY_NONE)
   .then(() => {
@@ -286,8 +292,8 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 
 | 参数名   | 类型                                            | 必填 | 说明                                                     |
 | -------- | ----------------------------------------------- | ---- | -------------------------------------------------------- |
-| uid      | number                                          | 是   | app 唯一标识符                                           |
-| callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | 是   | 回调函数，成功返回获取策略结果，失败返回错误码错误信息。 |
+| uid      | number                                          | 是   | app 唯一标识符。                                           |
+| callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | 是   | 回调函数。成功返回获取策略结果，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -297,13 +303,14 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -312,7 +319,7 @@ policy.getPolicyByUid(11111, (error: BusinessError, data: policy.NetUidPolicy) =
 
 ## policy.getPolicyByUid<sup>10+</sup>
 
-getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
+getPolicyByUid(uid: number): Promise\<NetUidPolicy>
 
 通过应用 uid 获取对应访问网络策略，使用 Promise 方式作为异步方法。
 
@@ -326,7 +333,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符 |
+| uid    | number | 是   | app 唯一标识符。 |
 
 **返回值：**
 
@@ -342,13 +349,14 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getPolicyByUid(11111)
   .then((data: policy.NetUidPolicy) => {
@@ -375,8 +383,8 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 
 | 参数名   | 类型                            | 必填 | 说明                                                        |
 | -------- | ------------------------------- | ---- | ----------------------------------------------------------- |
-| policy   | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的计量网络下的策略                                  |
-| callback | AsyncCallback\<Array\<number>>  | 是   | 回调函数，成功返回应用的 uid 数组，失败返回错误码错误信息。 |
+| policy   | [NetUidPolicy](#netuidpolicy10) | 是   | 应用对应的计量网络下的策略。                                  |
+| callback | AsyncCallback\<Array\<number>>  | 是   | 回调函数。成功返回应用的 uid 数组，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -386,13 +394,14 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -401,7 +410,7 @@ policy.getUidsByPolicy(11111, (error: BusinessError, data: number[]) => {
 
 ## policy.getUidsByPolicy<sup>10+</sup>
 
-getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
+getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>
 
 通过策略获取跟策略匹配的所有 uid，使用 Promise 方式作为异步方法。
 
@@ -415,7 +424,7 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 
 | 参数名 | 类型                            | 必填 | 说明                       |
 | ------ | ------------------------------- | ---- | -------------------------- |
-| policy | [NetUidPolicy](#netuidpolicy10) | 是   | app 对应的计量网络下的策略 |
+| policy | [NetUidPolicy](#netuidpolicy10) | 是   | app 对应的计量网络下的策略。 |
 
 **返回值：**
 
@@ -431,13 +440,14 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getUidsByPolicy(11111)
   .then((data: object) => {
@@ -464,7 +474,7 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 
 | 参数名   | 类型                                                        | 必填 | 说明                     |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 是   | 回调函数，返回获取结果。 |
+| callback | AsyncCallback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 是   | 回调函数。返回获取结果。 |
 
 **错误码：**
 
@@ -474,13 +484,14 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -489,7 +500,7 @@ policy.getNetQuotaPolicies((error: BusinessError, data: policy.NetQuotaPolicy[])
 
 ## policy.getNetQuotaPolicies<sup>10+</sup>
 
-getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
+getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>
 
 获取计量网络策略，使用 Promise 方式作为异步方法。
 
@@ -512,13 +523,14 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getNetQuotaPolicies()
   .then((data: policy.NetQuotaPolicy[]) => {
@@ -545,8 +557,8 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 
 | 参数名        | 类型                                        | 必填 | 说明                                           |
 | ------------- | ------------------------------------------- | ---- | ---------------------------------------------- |
-| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | 是   | 计量网络策略                                   |
-| callback      | AsyncCallback\<void>                        | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
+| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | 是   | 计量网络策略。                                   |
+| callback      | AsyncCallback\<void>                        | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -556,14 +568,14 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
 let netquotapolicy: policy.NetQuotaPolicy = {
@@ -589,7 +601,7 @@ policy.setNetQuotaPolicies(netQuotaPolicyList, (error: BusinessError) => {
 
 ## policy.setNetQuotaPolicies<sup>10+</sup>
 
-setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
+setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>
 
 设置计量网络策略，使用 Promise 方式作为异步方法。
 
@@ -603,7 +615,7 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 
 | 参数名        | 类型                                        | 必填 | 说明         |
 | ------------- | ------------------------------------------- | ---- | ------------ |
-| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | 是   | 计量网络策略 |
+| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | 是   | 计量网络策略。 |
 
 **错误码：**
 
@@ -613,7 +625,7 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **返回值：**
@@ -625,8 +637,8 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let netQuotaPolicyList: Array<policy.NetQuotaPolicy> = [];
 let netquotapolicy: policy.NetQuotaPolicy = {
@@ -671,9 +683,9 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 
 | 参数名    | 类型                    | 必填 | 说明                                                      |
 | --------- | ----------------------- | ---- | --------------------------------------------------------- |
-| uid       | number                  | 是   | app 唯一标识符                                            |
-| isMetered | boolean                 | 是   | 是否为计量网络                                            |
-| callback  | AsyncCallback\<boolean> | 是   | 回调函数，返回 true 表示这个 uid 可以访问对应的计量网络。 |
+| uid       | number                  | 是   | app 唯一标识符。                                            |
+| isMetered | boolean                 | 是   | 是否为计量网络。                                            |
+| callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应的计量网络。 |
 
 **错误码：**
 
@@ -683,13 +695,14 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -698,7 +711,7 @@ policy.isUidNetAllowed(11111, true, (error: BusinessError, data: boolean) => {
 
 ## policy.isUidNetAllowed<sup>10+</sup>
 
-isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
+isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>
 
 判断对应 uid 能否访问计量或非计量网络，使用 Promise 方式作为异步方法。
 
@@ -712,8 +725,8 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 
 | 参数名    | 类型    | 必填 | 说明           |
 | --------- | ------- | ---- | -------------- |
-| uid       | number  | 是   | app 唯一标识符 |
-| isMetered | boolean | 是   | 是否为计量网络 |
+| uid       | number  | 是   | app 唯一标识符。 |
+| isMetered | boolean | 是   | 是否为计量网络。 |
 
 **返回值：**
 
@@ -729,13 +742,14 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isUidNetAllowed(11111, true)
   .then((data: boolean) => {
@@ -762,9 +776,9 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 
 | 参数名   | 类型                    | 必填 | 说明                                                         |
 | -------- | ----------------------- | ---- | ------------------------------------------------------------ |
-| uid      | number                  | 是   | app 唯一标识符                                               |
-| iface    | string                  | 是   | 网络对应的名称                                               |
-| callback | AsyncCallback\<boolean> | 是   | 回调函数，返回 true 表示这个 uid 可以访问对应 iface 的网络。 |
+| uid      | number                  | 是   | app 唯一标识符。                                               |
+| iface    | string                  | 是   | 网络对应的名称 。                                              |
+| callback | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应 iface 的网络。 |
 
 **错误码：**
 
@@ -774,13 +788,14 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -789,7 +804,7 @@ policy.isUidNetAllowed(11111, 'wlan0', (error: BusinessError, data: boolean) => 
 
 ## policy.isUidNetAllowed<sup>10+</sup>
 
-isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
+isUidNetAllowed(uid: number, iface: string): Promise\<boolean>
 
 获取对应 uid 能否访问指定的 iface 的网络，使用 Promise 方式作为异步方法。
 
@@ -803,8 +818,8 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符 |
-| iface  | string | 是   | 网络对应的名称 |
+| uid    | number | 是   | app 唯一标识符。 |
+| iface  | string | 是   | 网络对应的名称。 |
 
 **返回值：**
 
@@ -820,13 +835,14 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .isUidNetAllowed(11111, 'wlan0')
   .then((data: boolean) => {
@@ -853,9 +869,9 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 
 | 参数名    | 类型                           | 必填 | 说明                                           |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
-| uids      | Array\<number>                 | 是   | app 唯一标识符                                 |
-| isAllowed | boolean                        | 是   | 是否加入白名单                                 |
-| callback  | callback: AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
+| uids      | Array\<number>                 | 是   | app 唯一标识符。                                 |
+| isAllowed | boolean                        | 是   | 是否加入白名单。                                 |
+| callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -865,13 +881,14 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setDeviceIdleTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -879,7 +896,7 @@ policy.setDeviceIdleTrustlist([11111, 22222], true, (error: BusinessError) => {
 
 ## policy.setDeviceIdleTrustlist<sup>10+</sup>
 
-setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
+setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 
 设置多个 uid 是否在休眠防火墙的白名单，使用 Promise 方式作为异步方法。
 
@@ -893,8 +910,8 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 
 | 参数名    | 类型           | 必填 | 说明           |
 | --------- | -------------- | ---- | -------------- |
-| uids      | Array\<number> | 是   | app 唯一标识符 |
-| isAllowed | boolean        | 是   | 是否加入白名单 |
+| uids      | Array\<number> | 是   | app 唯一标识符。 |
+| isAllowed | boolean        | 是   | 是否加入白名单。 |
 
 **返回值：**
 
@@ -910,13 +927,14 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setDeviceIdleTrustlist([11111, 22222], true)
   .then(() => {
@@ -943,7 +961,7 @@ getDeviceIdleTrustlist(callback: AsyncCallback\<Array\<number>>): void
 
 | 参数名   | 类型                           | 必填 | 说明                     |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<number>> | 是   | 回调函数，返回获取结果。 |
+| callback | AsyncCallback\<Array\<number>> | 是   | 回调函数。返回获取结果。 |
 
 **错误码：**
 
@@ -953,13 +971,14 @@ getDeviceIdleTrustlist(callback: AsyncCallback\<Array\<number>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -968,7 +987,7 @@ policy.getDeviceIdleTrustlist((error: BusinessError, data: number[]) => {
 
 ## policy.getDeviceIdleTrustlist<sup>10+</sup>
 
-getDeviceIdleTrustlist(): Promise\<Array\<number>>;
+getDeviceIdleTrustlist(): Promise\<Array\<number>>
 
 获取休眠模式白名单所包含的 uid，使用 Promise 方式作为异步方法。
 
@@ -991,13 +1010,14 @@ getDeviceIdleTrustlist(): Promise\<Array\<number>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getDeviceIdleTrustlist()
   .then((data: number[]) => {
@@ -1024,8 +1044,8 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 
 | 参数名   | 类型                                                          | 必填 | 说明                     |
 | -------- | ------------------------------------------------------------- | ---- | ------------------------ |
-| uid      | number                                                        | 是   | app 唯一标识符           |
-| callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | 是   | 回调函数，返回获取结果。 |
+| uid      | number                                                        | 是   | app 唯一标识符。           |
+| callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | 是   | 回调函数。返回获取结果。 |
 
 **错误码：**
 
@@ -1035,13 +1055,14 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBackgroundPolicy) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -1050,7 +1071,7 @@ policy.getBackgroundPolicyByUid(11111, (error: BusinessError, data: policy.NetBa
 
 ## policy.getBackgroundPolicyByUid<sup>10+</sup>
 
-getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
+getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>
 
 获取指定 uid 能否访问后台网络，使用 Promise 方式作为异步方法。
 
@@ -1064,7 +1085,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| uid    | number | 是   | app 唯一标识符 |
+| uid    | number | 是   | app 唯一标识符。 |
 
 **返回值：**
 
@@ -1080,13 +1101,14 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getBackgroundPolicyByUid(11111)
   .then((data: policy.NetBackgroundPolicy) => {
@@ -1113,8 +1135,8 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                 | 必填 | 说明                                           |
 | -------- | -------------------- | ---- | ---------------------------------------------- |
-| simId    | string               | 是   | SIM 卡 ID                                      |
-| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
+| simId    | string               | 是   | SIM 卡 ID。                                      |
+| callback | AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1124,13 +1146,14 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.resetPolicies('1', (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -1138,7 +1161,7 @@ policy.resetPolicies('1', (error: BusinessError) => {
 
 ## policy.resetPolicies<sup>10+</sup>
 
-resetPolicies(simId: string): Promise\<void>;
+resetPolicies(simId: string): Promise\<void>
 
 重置对应 sim 卡 id 的蜂窝网络、后台网络策略、防火墙策略、应用对应的策略，使用 Promise 方式作为异步方法。
 
@@ -1152,7 +1175,7 @@ resetPolicies(simId: string): Promise\<void>;
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ------ | ------ | ---- | --------- |
-| simId  | string | 是   | SIM 卡 ID |
+| simId  | string | 是   | SIM 卡 ID。 |
 
 **返回值：**
 
@@ -1168,13 +1191,14 @@ resetPolicies(simId: string): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .resetPolicies('1')
   .then(() => {
@@ -1201,10 +1225,10 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 
 | 参数名     | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
-| netType    | [NetBearType](js-apis-net-connection.md#netbeartype) | 是   | 网络类型                                       |
-| simId      | string                                               | 是   | SIM 卡 ID                                      |
-| remindType | [RemindType](#remindtype10)                          | 是   | 提醒类型                                       |
-| callback   | AsyncCallback\<void>                                 | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
+| netType    | [NetBearType](js-apis-net-connection.md#netbeartype) | 是   | 网络类型。                                       |
+| simId      | string                                               | 是   | SIM 卡 ID。                                      |
+| remindType | [RemindType](#remindtype10)                          | 是   | 提醒类型。                                       |
+| callback   | AsyncCallback\<void>                                 | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1214,14 +1238,15 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.updateRemindPolicy(
   connection.NetBearType.BEARER_CELLULAR,
   '1',
@@ -1234,7 +1259,7 @@ policy.updateRemindPolicy(
 
 ## policy.updateRemindPolicy<sup>10+</sup>
 
-updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType): Promise\<void>;
+updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType): Promise\<void>
 
 更新提醒策略，使用 Promise 方式作为异步方法。
 
@@ -1248,9 +1273,9 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 
 | 参数名     | 类型                                                 | 必填 | 说明      |
 | ---------- | ---------------------------------------------------- | ---- | --------- |
-| netType    | [NetBearType](js-apis-net-connection.md#netbeartype) | 是   | 网络类型  |
-| simId      | string                                               | 是   | SIM 卡 ID |
-| remindType | [RemindType](#remindtype10)                          | 是   | 提醒类型  |
+| netType    | [NetBearType](js-apis-net-connection.md#netbeartype) | 是   | 网络类型。  |
+| simId      | string                                               | 是   | SIM 卡 ID。 |
+| remindType | [RemindType](#remindtype10)                          | 是   | 提醒类型。  |
 
 **返回值：**
 
@@ -1266,14 +1291,15 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import connection from '@ohos.net.connection';
-import { BusinessError } from '@ohos.base';
+import { connection } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .updateRemindPolicy(
     connection.NetBearType.BEARER_CELLULAR,
@@ -1304,9 +1330,9 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 
 | 参数名    | 类型                           | 必填 | 说明                                           |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
-| uids      | Array\<number>                 | 是   | app 唯一标识符                                 |
-| isAllowed | boolean                        | 是   | 是否加入白名单                                 |
-| callback  | callback: AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
+| uids      | Array\<number>                 | 是   | app 唯一标识符。                                |
+| isAllowed | boolean                        | 是   | 是否加入白名单。                                 |
+| callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1316,13 +1342,14 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.setPowerSaveTrustlist([11111, 22222], true, (error: BusinessError) => {
   console.log(JSON.stringify(error));
 });
@@ -1330,7 +1357,7 @@ policy.setPowerSaveTrustlist([11111, 22222], true, (error: BusinessError) => {
 
 ## policy.setPowerSaveTrustlist<sup>10+</sup>
 
-setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
+setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 
 设置指定 uid 应用是否在省电防火墙的白名单，使用 Promise 方式作为异步方法。
 
@@ -1344,8 +1371,8 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 
 | 参数名    | 类型           | 必填 | 说明           |
 | --------- | -------------- | ---- | -------------- |
-| uids      | Array\<number> | 是   | app 唯一标识符 |
-| isAllowed | boolean        | 是   | 是否加入白名单 |
+| uids      | Array\<number> | 是   | app 唯一标识符。 |
+| isAllowed | boolean        | 是   | 是否加入白名单。 |
 
 **返回值：**
 
@@ -1361,13 +1388,14 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .setPowerSaveTrustlist([11111, 22222], true)
   .then(() => {
@@ -1394,7 +1422,7 @@ getPowerSaveTrustlist(callback: AsyncCallback\<Array\<number>>): void
 
 | 参数名   | 类型                           | 必填 | 说明                     |
 | -------- | ------------------------------ | ---- | ------------------------ |
-| callback | AsyncCallback\<Array\<number>> | 是   | 回调函数，返回获取结果。 |
+| callback | AsyncCallback\<Array\<number>> | 是   | 回调函数。返回获取结果。 |
 
 **错误码：**
 
@@ -1404,13 +1432,14 @@ getPowerSaveTrustlist(callback: AsyncCallback\<Array\<number>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
   console.log(JSON.stringify(error));
   console.log(JSON.stringify(data));
@@ -1419,7 +1448,7 @@ policy.getPowerSaveTrustlist((error: BusinessError, data: number[]) => {
 
 ## policy.getPowerSaveTrustlist<sup>10+</sup>
 
-getPowerSaveTrustlist(): Promise\<Array\<number>>;
+getPowerSaveTrustlist(): Promise\<Array\<number>>
 
 获取休眠模式白名单所包含的 uid 数组，使用 Promise 方式作为异步方法。
 
@@ -1442,13 +1471,14 @@ getPowerSaveTrustlist(): Promise\<Array\<number>>;
 | 201       | Permission denied.                           |
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 policy
   .getPowerSaveTrustlist()
   .then((data: number[]) => {
@@ -1456,6 +1486,171 @@ policy
   })
   .catch((error: BusinessError) => {
     console.log(JSON.stringify(error));
+  });
+```
+
+## policy.setNetworkAccessPolicy<sup>12+</sup>
+
+setNetworkAccessPolicy(uid: number, policy: NetworkAccessPolicy, isReconfirmed?: boolean): Promise\<void>
+
+设置指定 uid 应用能否能访问网络的策略，使用 Promise 方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_NET_STRATEGY
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名         | 类型                                           | 必填 | 说明                                                                          |
+| ------------- | ---------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
+| uid           | number                                         | 是   | app 唯一标识符。                                                                |
+| policy        | [NetworkAccessPolicy](#networkaccesspolicy12)  | 是   | 网络策略。                                                                      |
+| isReconfirmed | boolean                                        | 否   | 默认false；false 表示需要重确认，应用访问网络会弹框; true 表示不需要重确认，无弹框。 |
+
+**返回值：**
+
+| 类型           | 说明                                                          |
+| -------------- | ------------------------------------------------------------ |
+| Promise\<void> | 以 Promise 形式返回设定结果。成功返回空，失败返回错误码错误信息。 |
+
+**错误码：**
+
+| 错误码 ID | 错误信息                                     |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let accessPolicy: policy.NetworkAccessPolicy = {
+  allowWiFi: false,
+  allowCellular: true,
+}
+policy
+  .setNetworkAccessPolicy(11111, accessPolicy)
+  .then(() => {
+    console.log('setNetworkAccessPolicy success');
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  });
+```
+
+## policy.getNetworkAccessPolicy<sup>12+</sup>
+
+getNetworkAccessPolicy(uid: number): Promise\<NetworkAccessPolicy>
+
+获取指定 uid 能否访问网络策略，使用 Promise 方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_NET_STRATEGY
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| uid    | number | 是   | app 唯一标识符。 |
+
+**返回值：**
+
+| 类型                                                    | 说明                          |
+| ------------------------------------------------------- | ----------------------------- |
+| Promise\<[NetworkAccessPolicy](#networkaccesspolicy12)> | 以 Promise 形式返回设定结果。 |
+
+**错误码：**
+
+| 错误码 ID | 错误信息                                     |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 401       | Parameter error.                             |
+| 2100001   | Invalid parameter value.                     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+policy
+  .getNetworkAccessPolicy(11111)
+  .then((data: policy.NetworkAccessPolicy) => {
+    console.log(JSON.stringify(data));
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
+  });
+```
+
+## policy.getNetworkAccessPolicy<sup>12+</sup>
+
+getNetworkAccessPolicy(): Promise\<UidNetworkAccessPolicy>
+
+获取当前用户下所有应用 app 能否访问网络策略信息，使用 Promise 方式作为异步方法。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.MANAGE_NET_STRATEGY
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                                                          | 说明                        |
+| ------------------------------------------------------------- | --------------------------- |
+| Promise\<[UidNetworkAccessPolicy](#uidnetworkaccesspolicy12)> | 以 Promise 形式返回设定结果。 |
+
+**错误码：**
+
+| 错误码 ID | 错误信息                                     |
+| --------- | -------------------------------------------- |
+| 201       | Permission denied.                           |
+| 202       | Non-system applications use system APIs.     |
+| 2100002   | Failed to connect to the service.            |
+| 2100003   | System internal error.                       |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+policy
+  .getNetworkAccessPolicy()
+  .then((data: policy.UidNetworkAccessPolicy) => {
+    let keyMap: Map<string, object> = new Map<string, object>(Object.entries(data));
+    let uid:number = 0;
+    let allowWiFi: string = "";
+    let allowCellular: string = "";
+
+    keyMap.forEach((value:object, key:string) => {
+      let valueMap: Map<string, string> = new Map<string, string>(Object.entries(value));
+      uid = Number.parseInt(key);
+      valueMap.forEach((value:string, key:string)=>{
+        if (key == "allowWiFi") {
+          allowWiFi = value;
+        }
+        if (key == "allowCellular") {
+          allowCellular = value;
+        }
+      })
+    })
+    console.log(JSON.stringify(data));
+  })
+  .catch((error: BusinessError) => {
+    console.error(JSON.stringify(error));
   });
 ```
 
@@ -1479,7 +1674,7 @@ on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | 是   | policy 发生改变的类型                  |
+| type     | string                                                              | 是   | policy 发生改变的类型。                  |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 是   | 回调函数。注册 policy 发生改变时调用。 |
 
 **错误码：**
@@ -1490,13 +1685,14 @@ on(type: "netUidPolicyChange", callback: Callback\<NetUidPolicyInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   policy: policy.NetUidPolicy
@@ -1527,7 +1723,7 @@ off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 
 | 参数名   | 类型                                                                | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                              | 是   | policy 发生改变的类型                  |
+| type     | string                                                              | 是   | policy 发生改变的类型。                 |
 | callback | Callback\<[NetUidPolicyInfo](#netuidpolicyinfo11)> | 否   | 回调函数。注销 policy 发生改变时调用。 |
 
 **错误码：**
@@ -1538,13 +1734,14 @@ off(type: "netUidPolicyChange", callback?: Callback\<NetUidPolicyInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   policy: policy.NetUidPolicy
@@ -1583,7 +1780,7 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型                    |
+| type     | string                                                        | 是   | rule 发生改变的类型。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 是   | 回调函数。注册 rule 发生改变时的调用。 |
 
 **错误码：**
@@ -1594,13 +1791,14 @@ on(type: "netUidRuleChange", callback: Callback\<NetUidRuleInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   rule: policy.NetUidRule
@@ -1631,7 +1829,7 @@ off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 
 | 参数名   | 类型                                                          | 必填 | 说明                                   |
 | -------- | ------------------------------------------------------------- | ---- | -------------------------------------- |
-| type     | string                                                        | 是   | rule 发生改变的类型                    |
+| type     | string                                                        | 是   | rule 发生改变的类型。                    |
 | callback | Callback\<[NetUidRuleInfo](#netuidruleinfo11)> | 否   | 回调函数。注销 rule 发生改变时的调用。 |
 
 **错误码：**
@@ -1642,13 +1840,14 @@ off(type: "netUidRuleChange", callback?: Callback\<NetUidRuleInfo\>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   rule: policy.NetUidRule
@@ -1687,7 +1886,7 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | 是   | 计量 iface 发生改变的类型                 |
+| type     | string                    | 是   | 计量 iface 发生改变的类型。                 |
 | callback | Callback\<Array\<string>> | 是   | 回调函数。注册计量 iface 发生改变时调用。 |
 
 **错误码：**
@@ -1698,13 +1897,14 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 try {
   policy.on('netMeteredIfacesChange', (data: string[]) => {
     console.log('on netMeteredIfacesChange data: ' + JSON.stringify(data));
@@ -1730,7 +1930,7 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 
 | 参数名   | 类型                      | 必填 | 说明                                      |
 | -------- | ------------------------- | ---- | ----------------------------------------- |
-| type     | string                    | 是   | 计量 iface 发生改变的类型                 |
+| type     | string                    | 是   | 计量 iface 发生改变的类型。                 |
 | callback | Callback\<Array\<string>> | 否   | 回调函数。注册计量 iface 发生改变时调用。 |
 
 **错误码：**
@@ -1741,13 +1941,13 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netMeteredIfacesChange', (data: string[]) => {
@@ -1782,7 +1982,7 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 
 | 参数名   | 类型                                                   | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | 是   | 计量网络策略发生改变的类型                 |
+| type     | string                                                 | 是   | 计量网络策略发生改变的类型。                 |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 是   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
@@ -1793,13 +1993,14 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
+
 interface Data {
   uid: number,
   policy: policy.NetUidPolicy
@@ -1830,7 +2031,7 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 
 | 参数名   | 类型                                                   | 必填 | 说明                                       |
 | -------- | ------------------------------------------------------ | ---- | ------------------------------------------ |
-| type     | string                                                 | 是   | 计量网络策略发生改变的类型                 |
+| type     | string                                                 | 是   | 计量网络策略发生改变的类型。                 |
 | callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 否   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
@@ -1841,13 +2042,13 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netQuotaPolicyChange', (data: Array<policy.NetQuotaPolicy>) => {
@@ -1882,7 +2083,7 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 | 参数名   | 类型               | 必填 | 说明                                       |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | 是   | 后台网络策略发生改变的类型                 |
+| type     | string             | 是   | 后台网络策略发生改变的类型。                 |
 | callback | Callback\<boolean> | 是   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **错误码：**
@@ -1893,13 +2094,13 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netBackgroundPolicyChange', (data: boolean) => {
@@ -1926,7 +2127,7 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 
 | 参数名   | 类型               | 必填 | 说明                                       |
 | -------- | ------------------ | ---- | ------------------------------------------ |
-| type     | string             | 是   | 后台网络策略发生改变的类型                 |
+| type     | string             | 是   | 后台网络策略发生改变的类型。                 |
 | callback | Callback\<boolean> | 否   | 回调函数。注册后台网络策略发生改变时调用。 |
 
 **错误码：**
@@ -1937,13 +2138,13 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 | 202       | Non-system applications use system APIs.     |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
-| 2100002   | Operation failed. Cannot connect to service. |
+| 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
 
 **示例：**
 
 ```ts
-import policy from '@ohos.net.policy';
+import { policy } from '@kit.NetworkKit';
 
 try {
   policy.on('netBackgroundPolicyChange', (data: boolean) => {
@@ -1987,8 +2188,8 @@ try {
 
 | 名称             | 类型                                    | 必填 | 说明                             |
 | ---------------- | --------------------------------------- | ---- | -------------------------------- |
-| networkMatchRule | [NetworkMatchRule](#networkmatchrule10) | 是   | 网络标识，用来确定设置哪一个网络 |
-| quotaPolicy      | [QuotaPolicy](#quotapolicy10)           | 是   | 具体的计量网络策略               |
+| networkMatchRule | [NetworkMatchRule](#networkmatchrule10) | 是   | 网络标识，用来确定设置哪一个网络。 |
+| quotaPolicy      | [QuotaPolicy](#quotapolicy10)           | 是   | 具体的计量网络策略。               |
 
 ## NetworkMatchRule<sup>10+</sup>
 
@@ -2001,7 +2202,7 @@ try {
 | 名称     | 类型                                                 | 必填 | 说明                                                                         |
 | -------- | ---------------------------------------------------- | ---- | ---------------------------------------------------------------------------- |
 | netType  | [NetBearType](js-apis-net-connection.md#netbeartype) | 是   | 网络类型。                                                                   |
-| simId    | string                                               | 是   | 计量蜂窝网络的 SIM 卡的标识值。以太网，wifi 网络不会用到                     |
+| simId    | string                                               | 是   | 计量蜂窝网络的 SIM 卡的标识值。以太网，wifi 网络不会用到。                     |
 | identity | string                                               | 是   | 计量蜂窝网络中配合 simId 联合使用。以太网，wifi 网络单独使用。用于标记类型。 |
 
 ## QuotaPolicy<sup>10+</sup>
@@ -2012,15 +2213,15 @@ try {
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
-| 名称              | 类型                          | 必填 | 说明                                                                                     |
-| ----------------- | ----------------------------- | ---- | ---------------------------------------------------------------------------------------- |
+| 名称              | 类型                            | 必填 | 说明                                                  |
+| ----------------- |-------------------------------| ---- |-----------------------------------------------------|
 | periodDuration    | string                        | 是   | 流量限制计量周期。D1，M1，Y1 分别代表 1 天，1 个月，1 年内流量限制，超出时间则不受限制。 |
-| warningBytes      | number                        | 是   | 发出警告的流量阈值。                                                                     |
-| limitBytes        | number                        | 是   | 流量设置的配额。                                                                         |
-| metered           | string                        | 是   | 是否为计量网络。                                                                         |
-| limitAction       | [LimitAction](#limitaction10) | 是   | 到达流量限制后的动作。                                                                   |
-| lastWarningRemind | string                        | 否   | 最新一次发出警告的时间。                                                                 |
-| lastLimitRemind   | string                        | 否   | 最新一次配额耗尽的时间。                                                                 |
+| warningBytes      | number                        | 是   | 发出警告的流量阈值。                                          |
+| limitBytes        | number                        | 是   | 流量设置的配额。                                            |
+| metered           | boolean                       | 是   | 是否为计量网络。                                            |
+| limitAction       | [LimitAction](#limitaction10) | 是   | 到达流量限制后的动作。                                         |
+| lastWarningRemind | number                        | 否   | 最新一次发出警告的时间。默认值：-1                                  |
+| lastLimitRemind   | number                        | 否   | 最新一次配额耗尽的时间。默认值：-1                                        |
 
 ## LimitAction<sup>10+</sup>
 
@@ -2046,12 +2247,12 @@ try {
 
 | 名称                              | 值     | 说明                 |
 | --------------------------------- | ------ | -------------------- |
-| NET_RULE_NONE                     | 0      | 默认规则             |
-| NET_RULE_ALLOW_METERED_FOREGROUND | 1 << 0 | 允许前台访问计量网络 |
-| NET_RULE_ALLOW_METERED            | 1 << 1 | 允许访问计量网络     |
-| NET_RULE_REJECT_METERED           | 1 << 2 | 拒绝访问计量网络     |
-| NET_RULE_ALLOW_ALL                | 1 << 5 | 允许访问所有网络     |
-| NET_RULE_REJECT_ALL               | 1 << 6 | 拒绝访问所有网络     |
+| NET_RULE_NONE                     | 0      | 默认规则。             |
+| NET_RULE_ALLOW_METERED_FOREGROUND | 1 << 0 | 允许前台访问计量网络。 |
+| NET_RULE_ALLOW_METERED            | 1 << 1 | 允许访问计量网络。     |
+| NET_RULE_REJECT_METERED           | 1 << 2 | 拒绝访问计量网络。     |
+| NET_RULE_ALLOW_ALL                | 1 << 5 | 允许访问所有网络。    |
+| NET_RULE_REJECT_ALL               | 1 << 6 | 拒绝访问所有网络。     |
 
 ## NetUidRuleInfo<sup>11+</sup>
 
@@ -2076,7 +2277,7 @@ try {
 
 | 名称              | 类型                            | 必填 | 说明                                    |
 | ----------------- | ------------------------------- | ---- | -------------------------------------- |
-| uid               | number                          | 是   | 流量警告的阈值，默认：DATA_USAGE_UNKNOWN |
+| uid               | number                          | 是   | 流量警告的阈值，默认：DATA_USAGE_UNKNOWN。 |
 | policy            | [NetUidPolicy](#netuidpolicy10) | 是   | UID指定了在后台模式下网络访问的策略。    |
 
 ## RemindType<sup>10+</sup>
@@ -2089,8 +2290,8 @@ try {
 
 | 名称                | 值  | 说明     |
 | ------------------- | --- | -------- |
-| REMIND_TYPE_WARNING | 1   | 警告提醒 |
-| REMIND_TYPE_LIMIT   | 2   | 限制提醒 |
+| REMIND_TYPE_WARNING | 1   | 警告提醒。 |
+| REMIND_TYPE_LIMIT   | 2   | 限制提醒。 |
 
 ## NetUidPolicy<sup>10+</sup>
 
@@ -2102,6 +2303,31 @@ try {
 
 | 名称                                 | 值     | 说明                       |
 | ------------------------------------ | ------ | -------------------------- |
-| NET_POLICY_NONE                      | 0      | 默认网络策略               |
-| NET_POLICY_ALLOW_METERED_BACKGROUND  | 1 << 0 | 允许应用在后台访问计量网络 |
-| NET_POLICY_REJECT_METERED_BACKGROUND | 1 << 1 | 拒绝应用在后台访问计量网络 |
+| NET_POLICY_NONE                      | 0      | 默认网络策略。               |
+| NET_POLICY_ALLOW_METERED_BACKGROUND  | 1 << 0 | 允许应用在后台访问计量网络。 |
+| NET_POLICY_REJECT_METERED_BACKGROUND | 1 << 1 | 拒绝应用在后台访问计量网络。 |
+
+## NetworkAccessPolicy<sup>12+</sup>
+
+应用对应的连接网络的策略。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 名称              | 类型       | 必填 | 说明                          |
+| ----------------- | --------- | ---- | ----------------------------- |
+| allowWiFi         | boolean   | 是   | 能否允许访问wifi网络。 |
+| allowCellular     | boolean   | 是   | 能否允许访问蜂窝网络。 |
+
+## UidNetworkAccessPolicy<sup>12+</sup>
+
+应用标识以及对应应用连接网络的策略。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+| 名称       | 类型                                                         | 必填 | 说明                 |
+| --------- | -----------------------------------------------------------  | ---- | ------------------- |
+| undefined | [uid: string]: [NetworkAccessPolicy](#networkaccesspolicy12) | 否   | 数据类型为键值对。      |

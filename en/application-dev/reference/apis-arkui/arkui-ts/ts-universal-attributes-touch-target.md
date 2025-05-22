@@ -15,18 +15,22 @@ Sets one or more touch targets.
 
 **Widget capability**: Since API version 9, this feature is supported in ArkTS widgets.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | Array&lt;[Rectangle](#rectangle)&gt; \| [Rectangle](#rectangle) | Yes  | One or more touch targets, including their location and size.<br>The default touch target is the entire component. Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>}<br>**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.|
+| value  | Array&lt;[Rectangle](#rectangle)&gt; \| [Rectangle](#rectangle) | Yes  | One or more touch targets, including their location and size.<br>The default touch target is the entire component. Default value:<br>{<br>x: 0,<br>y: 0,<br>width: '100%',<br>height: '100%'<br>}<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.|
 
 
 ## Rectangle
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name       | Type                      | Mandatory  | Description                            |
 | ------ | ----------------------------- | -----| -------------------------------- |
@@ -35,7 +39,7 @@ Sets one or more touch targets.
 | width  | [Length](ts-types.md#length)  | No  | Width of the touch target.<br>Default value: **'100%'**|
 | height | [Length](ts-types.md#length) | No  | Height of the touch target.<br>Default value: **'100%'**|
 
-  >  **NOTE**<br>
+  >  **NOTE**
   >
   >  **x** and **y** can be set to a positive or negative percentage value. For example, when **x** is set to **'100%'**, the touch target is the offset from the right edge of the component by the component's width. When **x** is set to **'-100%'**, the touch target is the offset from the left edge of the component by the component's width. When **y** is set to **'100%'**, the touch target is the offset from the bottom edge of the component by the component's height. When **y** is set to **'-100%'**, the touch target is the offset from the top edge of the component by the component's height.
   >
@@ -45,6 +49,8 @@ Sets one or more touch targets.
 
 
 ## Example
+
+This example demonstrates how to set a touch target for a button using **responseRegion** to respond to click events.
 
 ```ts
 // xxx.ets

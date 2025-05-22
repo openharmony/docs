@@ -8,11 +8,12 @@
 
 **错误信息**
 
-Function is disabled.
+Function disabled.
 
 **错误描述**
 
-在调用write接口进行应用事件打点时，由于打点功能未开启，系统将忽略相关事件。
+- 在调用write接口进行应用事件打点时，由于打点功能未开启，系统将忽略相关事件。
+- 在调用setEventParam接口设置事件自定义参数时，由于打点功能未开启，系统将忽略此次调用。
 
 **可能原因**
 
@@ -23,7 +24,7 @@ Function is disabled.
 调用配置接口开启打点功能。
 
    ```ts
-   import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
+   import { hiAppEvent } from '@kit.PerformanceAnalysisKit';
 
    hiAppEvent.configure({
        disable: false
@@ -37,7 +38,8 @@ Invalid event domain.
 
 **错误描述**
 
-在调用write接口进行应用事件打点时，由于传入了非法的事件领域名称，系统将忽略相关事件。
+- 在调用write接口进行应用事件打点时，由于传入了非法的事件领域名称，系统将忽略相关事件。
+- 在调用setEventParam接口设置事件自定义参数时，由于传入了非法的事件领域名称，系统将忽略此次调用。
 
 **可能原因**
 
@@ -59,7 +61,8 @@ Invalid event name.
 
 **错误描述**
 
-在调用write接口进行应用事件打点时，由于传入了非法的事件名称，系统将忽略相关事件。
+- 在调用write接口进行应用事件打点时，由于传入了非法的事件名称，系统将忽略相关事件。
+- 在调用setEventParam接口设置事件自定义参数时，由于传入了非法的事件名称，系统将忽略此次调用。
 
 **可能原因**
 
@@ -99,11 +102,13 @@ Invalid string length of the event parameter.
 
 **错误描述**
 
-在调用write接口进行应用事件打点时，由于事件参数值传入了超长的字符串，系统将忽略相关事件参数。
+- 在调用write接口进行应用事件打点时，由于事件参数值传入了超长的字符串，系统将忽略相关事件参数。
+- 在调用setEventParam接口设置事件自定义参数时，由于传入了非法的事件参数值，系统将忽略此次调用。
 
 **可能原因**
 
-传入的事件参数值中的字符串长度超过8*1024个字符。
+- 调用write接口传入的事件参数值中的字符串长度超过8*1024个字符。
+- 调用setEventParam接口传入的事件自定义参数值的长度超过1024个字符。
 
 **处理步骤**
 
@@ -117,7 +122,8 @@ Invalid event parameter name.
 
 **错误描述**
 
-在调用write接口进行应用事件打点时，由于传入了非法的事件参数名称，系统将忽略相关事件参数。
+- 在调用write接口进行应用事件打点时，由于传入了非法的事件参数名称，系统将忽略相关事件参数。
+- 在调用setEventParam接口设置事件自定义参数时，由于传入了非法的事件参数名称，系统将忽略此次调用。
 
 **可能原因**
 
@@ -148,6 +154,24 @@ Invalid array length of the event parameter.
 **处理步骤**
 
 传入合法长度数组的事件参数值。
+
+## 11101007 非法的事件自定义参数数量
+
+**错误信息**
+
+The number of parameter keys exceeds the limit.
+
+**错误描述**
+
+在调用setEventParam接口设置事件自定义参数时，由于传入了非法的事件参数数量，系统将忽略此次调用。
+
+**可能原因**
+
+传入的事件自定义参数数量超过64个。
+
+**处理步骤**
+
+传入合法数量的事件自定义参数。
 
 ## 11102001 非法的观察者名称
 

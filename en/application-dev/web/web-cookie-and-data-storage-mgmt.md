@@ -5,30 +5,31 @@
 
 A cookie is a segment of data sent from the server to the client to uniquely identify a user during network access. The client may hold the data and provide it to the server at later interactions so that the server can quickly identify the client identity and status.
 
-The **Web** component provides the **WebCookieManager** class for you to manage cookie information, which is stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd** file in the application sandbox path.
+When the **SameSite** attribute of a cookie is not specified, the default value is **SameSite=Lax**. The cookie is sent only when the user navigates to the source site of the cookie and is not sent in cross-site requests.
+
+The **Web** component provides the [WebCookieManager](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager) class for you to manage cookie information, which is stored in the **/proc/{pid}/root/data/storage/el2/base/cache/web/Cookiesd** file in the application sandbox path.
 
 The following uses [configCookieSync()](../reference/apis-arkweb/js-apis-webview.md#configcookiesync11) as an example to describe how to set a cookie's value to **value=test** for **www\.example.com**. For details about functions and usage of other APIs, see [WebCookieManager()](../reference/apis-arkweb/js-apis-webview.md#webcookiemanager).
 
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
 
   build() {
     Column() {
       Button('configCookieSync')
         .onClick(() => {
           try {
-            web_webview.WebCookieManager.configCookieSync('https://www.example.com', 'value=test');
+            webview.WebCookieManager.configCookieSync('https://www.example.com', 'value=test');
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -62,13 +63,14 @@ In the following example, the cache mode is set to **None**.
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
   @State mode: CacheMode = CacheMode.None;
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })
@@ -83,14 +85,15 @@ struct WebComponent {
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
 struct WebComponent {
   @State mode: CacheMode = CacheMode.None;
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Button('removeCache')
@@ -99,8 +102,7 @@ struct WebComponent {
             // If this parameter is set to true, the cache in both the ROM and RAM is cleared. If this parameter is set to false, only the cache in the RAM is cleared.
             this.controller.removeCache(true);
           } catch (error) {
-            let e: business_error.BusinessError = error as business_error.BusinessError;
-            console.error(`ErrorCode: ${e.code},  Message: ${e.message}`);
+            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
@@ -119,12 +121,13 @@ Dom Storage falls into Session Storage and Local Storage. Wherein, Session Stora
 
 ```ts
 // xxx.ets
-import web_webview from '@ohos.web.webview';
+import { webview } from '@kit.ArkWeb';
 
 @Entry
 @Component
 struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
+
   build() {
     Column() {
       Web({ src: 'www.example.com', controller: this.controller })

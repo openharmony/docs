@@ -9,7 +9,7 @@ The HiChecker module allows you to check issues that may be easily ignored durin
 ## Modules to Import
 
 ```ts
-import hichecker from '@ohos.hichecker';
+import { hichecker } from '@kit.PerformanceAnalysisKit';
 ```
 
 
@@ -19,18 +19,19 @@ Provides the constants of all rule types.
 
 **System capability**: SystemCapability.HiviewDFX.HiChecker
 
-| Name                              | Type| Description                                                  |
-| ---------------------------------- | -------- | ------------------------------------------------------ |
-| RULE_CAUTION_PRINT_LOG             | bigint   | Alarm rule, which is programmed to print a log when an alarm is generated.                        |
-| RULE_CAUTION_TRIGGER_CRASH         | bigint   | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                      |
-| RULE_THREAD_CHECK_SLOW_PROCESS     | bigint   | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                  |
-| RULE_CHECK_ABILITY_CONNECTION_LEAK | bigint   | Caution rule, which is programmed to detect whether ability leakage has occurred.                   |
+| Name                                            | Type     | Value        | Description                                                  |
+| ------------------------------------------------ | -------- | -----------| ------------------------------------------------------ |
+| RULE_CAUTION_PRINT_LOG                           | bigint   | 1ULL << 63 | Alarm rule, which is programmed to print a log when an alarm is generated.                           |
+| RULE_CAUTION_TRIGGER_CRASH                       | bigint   | 1ULL << 62 | Alarm rule, which is programmed to force the application to exit when an alarm is generated.                         |
+| RULE_THREAD_CHECK_SLOW_PROCESS                   | bigint   | 1ULL       | Caution rule, which is programmed to detect whether any time-consuming function is invoked.                     |
+| RULE_CHECK_ABILITY_CONNECTION_LEAK               | bigint   | 1ULL << 33 | Caution rule, which is programmed to detect whether ability leakage has occurred.                     |
+| RULE_CHECK_ARKUI_PERFORMANCE<sup>11+</sup>       | bigint   | 1ULL << 34 | Caution rule, which is programmed to detect the ArkUI performance.                              |
 
 ## hichecker.addCheckRule<sup>9+</sup>
 
 addCheckRule(rule: bigint): void
 
-Adds one or more rules. HiChecker detects unexpected operations or gives feedback based on the added rules.
+Adds one or more check rules. HiChecker detects unexpected operations or gives feedback based on the added rules. You can use **grep HiChecker** to check for the application running information in the hilog.
 
 **System capability**: SystemCapability.HiviewDFX.HiChecker
 
@@ -40,10 +41,16 @@ Adds one or more rules. HiChecker detects unexpected operations or gives feedbac
 | ------ | ------ | ---- | ---------------- |
 | rule   | bigint | Yes  | Rule to be added.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // Add a rule.
@@ -70,10 +77,16 @@ Removes one or more rules. The removed rules will become ineffective.
 | ------ | ------ | ---- | ---------------- |
 | rule   | bigint | Yes  | Rule to be removed.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
+
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // Remove a rule.
@@ -104,12 +117,18 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Check result. If the rule exists in the collection of added rules, **true** is returned; otherwise, **false** is returned.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | ----------------------------------------------------------------- |
+| 401 | the parameter check failed, only one bigint type parameter is needed  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     // Add a rule.
@@ -199,7 +218,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 ```ts
 // Add a rule.
-hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
+hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
 // Obtain the collection of added rules.
 hichecker.getRule();   // return 1n;
@@ -227,7 +246,7 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Check result. If the rule exists in the collection of added rules, **true** is returned; otherwise, **false** is returned.|
 
 **Example**
 

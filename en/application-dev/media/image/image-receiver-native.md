@@ -1,12 +1,12 @@
-# Image Receiver (C/C++)
+# Image Receiving
 
-You can use the **ImageReceiver** APIs to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
+You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
 
 ## How to Develop
 
 ### Adding Dependencies
 
-Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libimage_ndk.z.so**, **libimage_receiver_ndk.z.so**, **libnative_image.so**, and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
+Open the **src/main/cpp/CMakeLists.txt** file of the native project, add **libace_napi.z.so**, **libimage_ndk.z.so**, **libimage_receiver_ndk.z.so**, **libnative_image.so**, and **libhilog_ndk.z.so** (on which the native log APIs depend) to the **target_link_libraries** dependency.
 
 ```txt
 target_link_libraries(entry PUBLIC libace_napi.z.so libhilog_ndk.z.so libimage_ndk.z.so libimage_receiver_ndk.z.so libnative_image.so)
@@ -32,33 +32,25 @@ EXTERN_C_END
 
 ### Requesting Permissions
 
-To enable debugging, add the permissions to the **src\main\module.json5** file of the DevEco Studio project. For details about the fields in the configuration file, see [module.json5 Configuration File](../../quick-start/module-configuration-file.md).
-
-   ```
-   "requestPermissions":[
-      {
-        "name" : "ohos.permission.CAMERA"
-      }
-    ]
-   ```
+To obtain input data of an image from a camera, you must request the **ohos.permission.CAMERA** permission. For details, see [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ### Calling APIs on the JS Side
 
 1. Open **src\main\cpp\types\*libentry*\index.d.ts** (where **libentry** varies according to the project name), and import the following files:
 
     ```js
-    import image from '@ohos.multimedia.image'
+    import { image } from '@kit.ImageKit';
 
     export const createFromReceiver: (a: image.ImageReceiver) => image.Image;
     ```
-    
+
 2. Open **src\main\ets\pages\index.ets**, import ***libentry*.so** (where **libentry** varies according to the project name), call the native APIs, and pass in the JS resource object. The following is an example:
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
-    import abilityAccessCtrl from '@ohos.abilityAccessCtrl'
-    import camera from '@ohos.multimedia.camera'
+    import { image } from '@kit.ImageKit';
+    import { abilityAccessCtrl } from '@kit.AbilityKit';
+    import { camera } from '@kit.CameraKit';
 
     @Entry
     @Component
@@ -74,31 +66,31 @@ To enable debugging, add the permissions to the **src\main\module.json5** file o
             return;
             }
             // Obtain the profiles of the cameras.
-            let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevices[0])
+            let profiles: camera.CameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevices[0], camera.SceneMode.NORMAL_PHOTO);
             let previewProfiles: Array<camera.Profile> = profiles.previewProfiles;
             if (previewProfiles.length <= 0) {
             return;
             }
             let profileObj = previewProfiles[0];
-            this.receiver = image.createImageReceiver(profileObj.size.width, profileObj.size.height, image.ImageFormat.JPEG, 8);
+            this.receiver = image.createImageReceiver({width:profileObj.size.width, height:profileObj.size.height}, image.ImageFormat.JPEG, 8);
             let receiverSurfaceId: string = await this.receiver.getReceivingSurfaceId();
             // Create an output object for the preview stream.
             let previewOutput: camera.PreviewOutput = cameraManager.createPreviewOutput(profileObj,receiverSurfaceId);
             let cameraInput : camera.CameraInput = cameraManager.createCameraInput(cameraDevices[0]);
-            // Open a camera.
+            // Open the camera.
             await cameraInput.open();
             // Create a session.
-            let captureSession : camera.CaptureSession = cameraManager.createCaptureSession();
+            let session : camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
             // Configure the session.
-            captureSession.beginConfig();
+            session.beginConfig();
             // Add a CameraInput instance to the session.
-            captureSession.addInput(cameraInput);
+            session.addInput(cameraInput);
             // Add the preview stream to the session.
-            captureSession.addOutput(previewOutput);
+            session.addOutput(previewOutput);
             // Commit the configuration.
-            await captureSession.commitConfig();
+            await session.commitConfig();
             // Start the session.
-            await captureSession.start();
+            await session.start();
 
             this.receiver.on('imageArrival', () => {
                let img : image.Image = testNapi.createFromReceiver(this.receiver);
@@ -128,10 +120,9 @@ To enable debugging, add the permissions to the **src\main\module.json5** file o
    }
     ```
 
-
 ### Calling the Native APIs
 
-For details about the APIs, see [Image API Reference](../../reference/apis-image-kit/image.md).
+For details about the APIs, see [Image](../../reference/apis-image-kit/image.md).
 
 Obtain the JS resource object from the **hello.cpp** file and convert it to a native resource object. Then you can call native APIs.
 

@@ -4,7 +4,7 @@
 
 OAID会在下述场景中发生变化：
 - 用户恢复手机出厂设置。
-- 系统应用将bundleName配置到设备侧系统目录中，文件路径：etc/advertising/oaid/oaid_service_config_ext.json，配置方式：用英文逗号隔开，添加到数组末尾。即可主动调用resetOAID()接口重置OAID。
+- 系统应用将bundleName配置到设备侧系统目录中，文件路径：etc/advertising/oaid/oaid_service_config.json，配置方式：用英文逗号隔开，添加到数组末尾。即可主动调用resetOAID()接口重置OAID。
 下面为系统应用开发者给出重置OAID的开发指导。
 
 ## 接口说明
@@ -16,7 +16,7 @@ OAID会在下述场景中发生变化：
 
 ## 开发步骤
 
-1. 在模块的module.json5文件中，申请广告跟踪权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all.md#ohospermissionapp_tracking_consent)。示例代码如下所示：
+1. 在模块的module.json5文件中，申请广告跟踪权限[ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent)。示例代码如下所示：
    ```ts
     {
      "module": {

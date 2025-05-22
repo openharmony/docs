@@ -11,7 +11,9 @@ Defines endpoint descriptors.
 
 **Related Modules**
 
-[UsbDdk](_usb_ddk.md)
+[USB DDK](_usb_ddk.md)
+
+**Header file**: [usb_ddk_types.h](usb__ddk__types_8h.md)
 
 
 ## Summary

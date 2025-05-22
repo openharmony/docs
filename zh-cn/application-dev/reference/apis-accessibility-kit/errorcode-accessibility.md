@@ -3,7 +3,7 @@
 > **说明：**
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
-
+<!--Del-->
 ## 9300001 输入无效的包名称或者Ability名称
 
 **错误信息**
@@ -43,12 +43,12 @@ Target ability already enabled.
 
 1. 停止该目标Ability。
 2. 重新启用该目标Ability。
-
+<!--DelEnd-->
 ## 9300003 不具备执行该操作的无障碍权限
 
 **错误信息**
 
-Do not have accessibility right for this operation.
+No accessibility permission to perform the operation.
 
 **错误描述**
 
@@ -98,3 +98,40 @@ This action is not supported.
 **处理步骤**
 
 确认该无障碍节点元素支持的操作列表中是否包含该操作。
+
+## 9300006 目标应用和无障碍服务建立连接失败
+
+**错误信息**
+
+The connection between the target application and accessibility services failed.
+
+**错误描述**
+
+当目标应用和无障碍框架的连接句柄不存在时，方法将返回该错误码。
+
+**可能原因**
+
+目标应用尚未完成向无障碍框架服务注册连接。
+
+**处理步骤**
+
+尝试延后调用此方法。
+
+## 9300007 触发放大功能失败
+
+**错误信息**
+
+Failed to trigger amplification.
+
+**错误描述**
+
+当触发放大功能失败时，方法将返回该错误码。
+
+**可能原因**
+
+1. 设置中未开启放大功能。
+2. 放大模式未配置。
+
+**处理步骤**
+
+先开启放大功能开关并配置放大模式。

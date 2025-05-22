@@ -1,0 +1,15 @@
+name: 文档更新自提单|Self-tracking
+description: 您需要自主更新文档时，使用此模板。
+title: "[文档更新自提单]: [xxx模块]"
+labels: ["SelfTracking"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢提交文档更新需求单。
+  - type: textarea
+    attributes:
+      label: 文档更新涉及子系统模块
+      description: 请提供文档更新内容所属子系统或手册名称，如元能力、ArkUI、DFX、快速入门等。
+    validations:
+      required: true

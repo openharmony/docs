@@ -1,17 +1,20 @@
 # HapModuleInfo
 
-> **说明：**
-> 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 Hap模块信息，未做特殊说明的属性，均通过[bundle.getBundleInfo](js-apis-Bundle.md#bundlegetbundleinfodeprecated)获取。
+
+> **说明：**
+> 
+> 本模块首批接口从API version 7 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 
+> 从API Version 9开始，该模块不再维护，建议使用[bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
 
 ## HapModuleInfo<sup>(deprecated)<sup>
 
-> 从API version 9开始不再维护，建议使用[bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)替代。
+> 从API version 9开始不再维护，建议使用[bundleManager-HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md#hapmoduleinfo-1)替代。
 
-**系统能力**: 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 
-| 名称                              | 类型                                                         | 可读 | 可写 | 说明                 |
+| 名称                              | 类型                                                         | 只读 | 可选 | 说明                 |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | -------------------- |
 | name                              | string                                                       | 是   | 否   | 模块名称。             |
 | description                       | string                                                       | 是   | 否   | 模块描述信息。         |
@@ -27,5 +30,5 @@ Hap模块信息，未做特殊说明的属性，均通过[bundle.getBundleInfo](
 | abilityInfo                       | Array\<[AbilityInfo](js-apis-bundle-AbilityInfo.md)>         | 是   | 否   | Ability信息。          |
 | moduleName                        | string                                                       | 是   | 否   | 模块名。               |
 | mainAbilityName                   | string                                                       | 是   | 否   | 入口Ability名称。      |
-| installationFree                  | boolean                                                      | 是   | 否   | 是否支持免安装。       |
+| installationFree                  | boolean                                                      | 是   | 否   | 是否支持免安装，取值为true表示支持免安装，取值为false表示不支持免安装。       |
 

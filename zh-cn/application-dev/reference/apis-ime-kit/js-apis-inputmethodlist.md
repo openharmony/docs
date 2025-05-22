@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import inputMethodL from '@ohos.inputMethodList';
+import { inputMethod } from '@kit.IMEKit';
 ```
 
 ## 子组件
@@ -17,7 +17,7 @@ import inputMethodL from '@ohos.inputMethodList';
 无
 
 ## 属性
-不支持[通用属性](../apis-arkui/arkui-ts/ts-universal-attributes-size.md)
+不支持[通用属性](../apis-arkui/arkui-ts/ts-component-general-attributes.md)
 
 ## InputMethodListDialog
 
@@ -40,29 +40,29 @@ InputMethodListDialog({controller: CustomDialogController, patternOptions?: Patt
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| defaultSelected<sup>11+</sup>  | number | 是 | 是 | 非必填。默认选择的模式。 |
-| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | 是 | 是 | 必填。模式选项的资源。 |
-| action<sup>9+</sup> | function | 是 | 是 | 必填。模式选项改变时的回调。 |
+| defaultSelected<sup>11+</sup>  | number | 否 | 是 | 非必填。默认选择的模式。 |
+| patterns<sup>11+</sup>    | Array<[Pattern](#pattern)> | 否 | 否 | 必填。模式选项的资源。 |
+| action<sup>9+</sup> | function | 否 | 否 | 必填。模式选项改变时的回调。 |
 
 ## Pattern
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。默认图片资源。 |
-| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 是 | 必填。选中时的图片资源。 |
+| icon<sup>11+</sup>  | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 否 | 否 | 必填。默认图片资源。 |
+| selectedIcon<sup>11+</sup>    | [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 否 | 否 | 必填。选中时的图片资源。 |
 
 ##  事件
 
-不支持[通用事件](../apis-arkui/arkui-ts/ts-universal-events-click.md)
+不支持[通用事件](../apis-arkui/arkui-ts/ts-component-general-events.md)
 
 ##  示例
 
 ```ts
-import { InputMethodListDialog, Pattern, PatternOptions } from '@ohos.inputMethodList';
+import { InputMethodListDialog, Pattern, PatternOptions } from '@kit.IMEKit';
 
 @Entry
 // 设置组件
@@ -110,3 +110,5 @@ export struct settingsItem {
   }
 }
 ```
+示例效果图：
+![示例效果图](./figures/示例效果图.png)

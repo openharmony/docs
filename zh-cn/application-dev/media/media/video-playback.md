@@ -1,12 +1,12 @@
-# 视频播放
+# 使用AVPlayer播放视频(ArkTS)
 
 当前提供两种视频播放开发的方案：
 
-- AVPlayer：功能较完善的音视频播放ArkTS/JS API，集成了流媒体和本地资源解析，媒体资源解封装，视频解码和渲染功能，适用于对媒体资源进行端到端播放的场景，可直接播放mp4、mkv等格式的视频文件。
+- [AVPlayer](media-kit-intro.md#avplayer)：功能较完善的音视频播放ArkTS/JS API，集成了流媒体和本地资源解析，媒体资源解封装，视频解码和渲染功能，适用于对媒体资源进行端到端播放的场景，可直接播放mp4、mkv等格式的视频文件。
 
 - Video组件：封装了视频播放的基础能力，需要设置数据源以及基础信息即可播放视频，但相对扩展能力较弱。Video组件由ArkUI提供能力，相关指导请参考UI开发文档-[Video组件](../../ui/arkts-common-components-video-player.md)。
 
-本开发指导将介绍如何使用AVPlayer开发视频播放功能，以完整地播放一个视频作为示例，实现端到端播放原始媒体资源。如果要实现后台播放或熄屏播放，需要使用[AVSession（媒体会话）](../avsession/avsession-overview.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放过程中音频模块被系统强制中断。
+本开发指导将介绍如何使用AVPlayer开发视频播放功能，以完整地播放一个视频作为示例，实现端到端播放原始媒体资源。
 
 播放的全流程包含：创建AVPlayer，设置播放资源和窗口，设置播放参数（音量/倍速/缩放模式），播放控制（播放/暂停/跳转/停止），重置，销毁资源。在进行应用开发的过程中，开发者可以通过AVPlayer的state属性主动获取当前状态或使用on('stateChange')方法监听状态变化。如果应用在视频播放器处于错误状态时执行操作，系统可能会抛出异常或生成其他未定义的行为。
 
@@ -15,6 +15,15 @@
 ![Playback status change](figures/video-playback-status-change.png)
 
 状态的详细说明请参考[AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
+
+## 开发建议
+
+当前指导仅介绍如何实现媒体资源播放，在应用开发过程中可能会涉及后台播放、播放冲突等情况，请根据实际需要参考以下说明。
+
+- 如果要实现后台播放或熄屏播放，需要接入[AVSession（媒体会话）](../avsession/avsession-access-scene.md)和[申请长时任务](../../task-management/continuous-task.md)，避免播放被系统强制中断。
+- 应用在播放过程中，若播放的媒体数据涉及音频，根据系统音频管理策略（参考[处理音频焦点事件](../audio/audio-playback-concurrency.md)），可能会被其他应用打断，建议应用主动监听音频打断事件，根据其内容提示，做出相应的处理，避免出现应用状态与预期效果不一致的问题。
+- 面对设备同时连接多个音频输出设备的情况，应用可以通过[on('audioOutputDeviceChangeWithInfo')](../../reference/apis-media-kit/js-apis-media.md#onaudiooutputdevicechangewithinfo11)监听音频输出设备的变化，从而做出相应处理。
+- 如果需要访问在线媒体资源，需要申请 ohos.permission.INTERNET 权限。
 
 ## 开发步骤及注意事项
 
@@ -63,209 +72,339 @@
 
 8. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
 
-## 完整示例
+## 运行完整示例
 
+1. 新建工程，下载[示例工程](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Media/AVPlayer/AVPlayerArkTSVideo)，并将示例工程的以下资源复制到对应目录。
+    ```
+    AVPlayerArkTSVideo
+    entry/src/main/ets/
+    └── pages
+        └── Index.ets (播放界面)
+    entry/src/main/resources/
+    ├── base
+    │   ├── element
+    │   │   ├── color.json
+    │   │   ├── float.json
+    │   │   └── string.json
+    │   └── media
+    │       ├── ic_video_play.svg  (播放键图片资源)
+    │       └── ic_video_pause.svg (暂停键图片资源)
+    └── rawfile
+        └── test1.mp4 （视频资源）
+    ```
+2. 编译新建工程并运行。
+
+## 开发示例
 
 ```ts
+import display from '@ohos.display';
+import emitter from '@ohos.events.emitter';
+import { common } from '@kit.AbilityKit';
 import media from '@ohos.multimedia.media';
-import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import { BusinessError } from '@ohos.base';
 
-export class AVPlayerDemo {
-  private count: number = 0;
-  private surfaceID: string = ''; // surfaceID用于播放画面显示，具体的值需要通过Xcomponent接口获取，相关文档链接见上面Xcomponent创建方法
-  private isSeek: boolean = true; // 用于区分模式是否支持seek操作
-  private fileSize: number = -1;
-  private fd: number = 0;
-  // 注册avplayer回调函数
-  setAVPlayerCallback(avPlayer: media.AVPlayer) {
-    // startRenderFrame首帧渲染回调函数
-    avPlayer.on('startRenderFrame', () => {
-      console.info(`AVPlayer start render frame`);
-    })
-    // seek操作结果回调函数
-    avPlayer.on('seekDone', (seekDoneTime: number) => {
-      console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
-    })
-    // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程
-    avPlayer.on('error', (err: BusinessError) => {
-      console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
-      avPlayer.reset(); // 调用reset重置资源，触发idle状态
-    })
-    // 状态机变化回调函数
-    avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
-      switch (state) {
-        case 'idle': // 成功调用reset接口后触发该状态机上报
-          console.info('AVPlayer state idle called.');
-          avPlayer.release(); // 调用release接口销毁实例对象
-          break;
-        case 'initialized': // avplayer 设置播放源后触发该状态上报
-          console.info('AVPlayer state initialized called.');
-          avPlayer.surfaceId = this.surfaceID; // 设置显示画面，当播放的资源为纯音频时无需设置
-          avPlayer.prepare();
-          break;
-        case 'prepared': // prepare调用成功后上报该状态机
-          console.info('AVPlayer state prepared called.');
-          avPlayer.play(); // 调用播放接口开始播放
-          break;
-        case 'playing': // play成功调用后触发该状态机上报
-          console.info('AVPlayer state playing called.');
-          if (this.count !== 0) {
-            if (this.isSeek) {
-              console.info('AVPlayer start to seek.');
-              avPlayer.seek(avPlayer.duration); //seek到视频末尾
-            } else {
-              // 当播放模式不支持seek操作时继续播放到结尾
-              console.info('AVPlayer wait to play end.');
-            }
-          } else {
-            avPlayer.pause(); // 调用暂停接口暂停播放
-          }
-          this.count++;
-          break;
-        case 'paused': // pause成功调用后触发该状态机上报
-          console.info('AVPlayer state paused called.');
-          avPlayer.play(); // 再次播放接口开始播放
-          break;
-        case 'completed': // 播放结束后触发该状态机上报
-          console.info('AVPlayer state completed called.');
-          avPlayer.stop(); //调用播放结束接口
-          break;
-        case 'stopped': // stop接口成功调用后触发该状态机上报
-          console.info('AVPlayer state stopped called.');
-          avPlayer.reset(); // 调用reset接口初始化avplayer状态
-          break;
-        case 'released':
-          console.info('AVPlayer state released called.');
-          break;
-        default:
-          console.info('AVPlayer state unknown called.');
-          break;
-      }
+...
+
+@Entry
+@Component
+struct Index {
+  private avPlayer: media.AVPlayer | null = null;
+  private context: common.UIAbilityContext | undefined = undefined;
+  @State fileName: string = 'test1.mp4';
+  ...
+
+  getDurationTime(): number {
+    return this.durationTime;
+  }
+
+  getCurrentTime(): number {
+    return this.currentTime;
+  }
+
+  timeConvert(time: number): string {
+    let min: number = Math.floor(time / TIME_ONE);
+    let second: string = ((time % TIME_ONE) / TIME_TWO).toFixed(0);
+    // return `${min}:${(+second < TIME_THREE ? '0' : '') + second}`;
+    second = second.padStart(2, '0');
+    return `${min}:${second}`;
+  }
+
+  async msleepAsync(ms: number): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true)
+      }, ms)
     })
   }
 
-  // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过url属性进行播放示例
-  async avPlayerUrlDemo() {
-    // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
-    this.setAVPlayerCallback(avPlayer);
-    let fdPath = 'fd://';
-    let context = getContext(this) as common.UIAbilityContext;
-    // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
-    let pathDir = context.filesDir;
-    let path = pathDir + '/H264_AAC.mp4';
-    // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
-    this.isSeek = true; // 支持seek操作
-    avPlayer.url = fdPath;
-  }
-
-  // 以下demo为使用资源管理接口获取打包在HAP内的媒体资源文件并通过fdSrc属性进行播放示例
-  async avPlayerFdSrcDemo() {
-    // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
-    this.setAVPlayerCallback(avPlayer);
-    // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址
-    // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度
-    let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+  async avSetupVideo() {
+    // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址。
+    // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度。
+    if (this.context == undefined) return;
+    let fileDescriptor = await this.context.resourceManager.getRawFd(this.fileName);
     let avFileDescriptor: media.AVFileDescriptor =
       { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
-    this.isSeek = true; // 支持seek操作
+
+    if (this.avPlayer) {
+      console.info(`${this.tag}: init avPlayer release2createNew`);
+      this.avPlayer.release();
+      await this.msleepAsync(1500);
+    }
+    // 创建avPlayer实例对象
+    this.avPlayer = await media.createAVPlayer();
+
+    // 创建状态机变化回调函数
+    await this.setAVPlayerCallback((avPlayer: media.AVPlayer) => {
+      this.percent = avPlayer.width / avPlayer.height;
+      this.setVideoWH();
+      this.durationTime = this.getDurationTime();
+      setInterval(() => { // 更新当前时间
+        if (!this.isSwiping) {
+          this.currentTime = this.getCurrentTime();
+        }
+      }, SET_INTERVAL);
+    });
+
     // 为fdSrc赋值触发initialized状态机上报
-    avPlayer.fdSrc = avFileDescriptor;
+    this.avPlayer.fdSrc = avFileDescriptor;
   }
 
-  // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过dataSrc属性进行播放(seek模式)示例
-  async avPlayerDataSrcSeekDemo() {
-    // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
-    this.setAVPlayerCallback(avPlayer);
-    // dataSrc播放模式的的播放源地址，当播放为Seek模式时fileSize为播放文件的具体大小，下面会对fileSize赋值
-    let src: media.AVDataSrcDescriptor = {
-      fileSize: -1,
-      callback: (buf: ArrayBuffer, length: number, pos: number | undefined) => {
-        let num = 0;
-        if (buf == undefined || length == undefined || pos == undefined) {
-          return -1;
-        }
-        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
-        if (num > 0 && (this.fileSize >= pos)) {
-          return num;
-        }
-        return -1;
+  avPlay(): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.play();
+      } catch (e) {
+        console.error(`${this.tag}: avPlay = ${JSON.stringify(e)}`);
       }
     }
-    let context = getContext(this) as common.UIAbilityContext;
-    // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
-    let pathDir = context.filesDir;
-    let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file: fs.File) => {
-      this.fd = file.fd;
-    })
-    // 获取播放文件的大小
-    this.fileSize = fs.statSync(path).size;
-    src.fileSize = this.fileSize;
-    this.isSeek = true; // 支持seek操作
-    avPlayer.dataSrc = src;
   }
 
-  // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过dataSrc属性进行播放(No seek模式)示例
-  async avPlayerDataSrcNoSeekDemo() {
-    // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
-    this.setAVPlayerCallback(avPlayer);
-    let context = getContext(this) as common.UIAbilityContext;
-    let src: media.AVDataSrcDescriptor = {
-      fileSize: -1,
-      callback: (buf: ArrayBuffer, length: number) => {
-        let num = 0;
-        if (buf == undefined || length == undefined) {
-          return -1;
-        }
-        num = fs.readSync(this.fd, buf);
-        if (num > 0) {
-          return num;
-        }
-        return -1;
+  avPause(): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.pause();
+        console.info(`${this.tag}: avPause==`);
+      } catch (e) {
+        console.info(`${this.tag}: avPause== ${JSON.stringify(e)}`);
       }
     }
-    // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
-    let pathDir = context.filesDir;
-    let path = pathDir + '/H264_AAC.mp4';
-    await fs.open(path).then((file: fs.File) => {
-      this.fd = file.fd;
-    })
-    this.isSeek = false; // 不支持seek操作
-    avPlayer.dataSrc = src;
   }
 
-  // 以下demo为通过url设置网络地址来实现播放直播码流的demo
-  async avPlayerLiveDemo() {
-    // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    // 创建状态机变化回调函数
-    this.setAVPlayerCallback(avPlayer);
-    this.isSeek = false; // 不支持seek操作
-    avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8'; // 播放hls网络直播码流
+  async avSeek(seekTime: number, mode: SliderChangeMode): Promise<void> {
+    if (this.avPlayer) {
+      try {
+        console.info(`${this.tag}: videoSeek  seekTime== ${seekTime}`);
+        this.avPlayer.seek(seekTime, 2);
+        this.currentTime = seekTime;
+      } catch (e) {
+        console.info(`${this.tag}: videoSeek== ${JSON.stringify(e)}`);
+      }
+    }
   }
 
-  // 以下demo为通过setMediaSource设置网络地址来实现视频预下载
-  async preDownloadDemo() {
-    // 创建avPlayer实例对象
-    let avPlayer: media.AVPlayer = await media.createAVPlayer();
-    let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  {"User-Agent" : "User-Agent-Value"});
-    let playbackStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
-    // 设置媒体来源和播放策略
-    avPlayer.setMediaSource(mediaSource, playbackStrategy);
+  avSetSpeed(speed: number): void {
+    if (this.avPlayer) {
+      try {
+        this.avPlayer.setSpeed(speed);
+        console.info(`${this.tag}: avSetSpeed enum ${speed}`);
+      } catch (e) {
+        console.info(`${this.tag}: avSetSpeed == ${JSON.stringify(e)}`);
+      }
+    }
   }
+
+  // 注册avplayer回调函数
+  async setAVPlayerCallback(callback: (avPlayer: media.AVPlayer) => void, vType?: number): Promise<void> {
+    // seek操作结果回调函数
+    if (this.avPlayer == null) {
+      console.info(`${this.tag}: avPlayer has not init!`);
+      return;
+    }
+    this.avPlayer.on('seekDone', (seekDoneTime) => {
+      console.info(`${this.tag}: setAVPlayerCallback AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
+    });
+    this.avPlayer.on('speedDone', (speed) => {
+      console.info(`${this.tag}: setAVPlayerCallback AVPlayer speedDone, speed is ${speed}`);
+    });
+    // error回调监听函数,当avPlayer在操作过程中出现错误时调用reset接口触发重置流程
+    this.avPlayer.on('error', (err) => {
+      console.error(`${this.tag}: setAVPlayerCallback Invoke avPlayer failed ${JSON.stringify(err)}`);
+      if (this.avPlayer == null) {
+        console.info(`${this.tag}: avPlayer has not init on error`);
+        return;
+      }
+      this.avPlayer.reset();
+    });
+    // 状态机变化回调函数
+    this.avPlayer.on('stateChange', async (state, reason) => {
+      if (this.avPlayer == null) {
+        console.info(`${this.tag}: avPlayer has not init on state change`);
+        return;
+      }
+      switch (state) {
+        case 'idle': // 成功调用reset接口后触发该状态机上报
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state idle called.`);
+          break;
+        case 'initialized': // avplayer 设置播放源后触发该状态上报
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state initialized called.`);
+          if (this.surfaceId) {
+            this.avPlayer.surfaceId = this.surfaceId; // 设置显示画面，当播放的资源为纯音频时无需设置
+            console.info(`${this.tag}: setAVPlayerCallback this.avPlayer.surfaceId = ${this.avPlayer.surfaceId}`);
+            this.avPlayer.prepare();
+          }
+          break;
+        case 'prepared': // prepare调用成功后上报该状态机
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state prepared called.`);
+          this.avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
+            console.info(`${this.tag}: bufferingUpdate called, infoType value: ${infoType}, value:${value}}`);
+          })
+          this.durationTime = this.avPlayer.duration;
+          this.currentTime = this.avPlayer.currentTime;
+          this.avPlayer.play(); // 调用播放接口开始播放
+          console.info(`${this.tag}:
+            setAVPlayerCallback speedSelect: ${this.speedSelect}, duration: ${this.durationTime}`);
+          if (this.speedSelect != -1) {
+            switch (this.speedSelect) {
+              case SPEED_ZERO:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_00_X);
+                break;
+              case SPEED_ONE:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_25_X);
+                break;
+              case SPEED_TWO:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_1_75_X);
+                break;
+              case SPEED_THREE:
+                this.avSetSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
+                break;
+            }
+          }
+          callback(this.avPlayer);
+          break;
+        case 'playing': // play成功调用后触发该状态机上报
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state playing called.`);
+          if (this.intervalID != -1) {
+            clearInterval(this.intervalID)
+          }
+          this.intervalID = setInterval(() => { // 更新当前时间
+            AppStorage.setOrCreate('durationTime', this.durationTime);
+            AppStorage.setOrCreate('currentTime', this.currentTime);
+          }, 100);
+          let eventDataTrue: emitter.EventData = {
+            data: {
+              'flag': true
+            }
+          };
+          let innerEventTrue: emitter.InnerEvent = {
+            eventId: 2,
+            priority: emitter.EventPriority.HIGH
+          };
+          emitter.emit(innerEventTrue, eventDataTrue);
+          break;
+        case 'completed': // 播放结束后触发该状态机上报
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state completed called.`);
+          let eventDataFalse: emitter.EventData = {
+            data: {
+              'flag': false
+            }
+          };
+          let innerEvent: emitter.InnerEvent = {
+            eventId: 1,
+            priority: emitter.EventPriority.HIGH
+          };
+          emitter.emit(innerEvent, eventDataFalse);
+          if (this.intervalID != -1) {
+            clearInterval(this.intervalID)
+          }
+          this.avPlayer.off('bufferingUpdate')
+          AppStorage.setOrCreate('currentTime', this.durationTime);
+          break;
+        case 'released':
+          console.info(`${this.tag}: setAVPlayerCallback released called.`);
+          break
+        case 'stopped':
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state stopped called.`);
+          break
+        case 'error':
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state error called.`);
+          break
+        case 'paused':
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state paused called.`);
+          break
+        default:
+          console.info(`${this.tag}: setAVPlayerCallback AVPlayer state unknown called.`);
+          break;
+      }
+    });
+    // 时间上报监听函数
+    this.avPlayer.on('timeUpdate', (time: number) => {
+      this.currentTime = time;
+    });
+  }
+
+  aboutToAppear() {
+    this.windowWidth = display.getDefaultDisplaySync().width;
+    this.windowHeight = display.getDefaultDisplaySync().height;
+    this.surfaceW = this.windowWidth * SURFACE_W;
+    this.surfaceH = this.surfaceW / SURFACE_H;
+    this.isPaused = true;
+    this.context = getContext(this) as common.UIAbilityContext;
+  }
+
+  aboutToDisappear() {
+    if (this.avPlayer == null) {
+      console.info(`${this.tag}: avPlayer has not init aboutToDisappear`);
+      return;
+    }
+    this.avPlayer.release((err) => {
+      if (err == null) {
+        console.info(`${this.tag}: videoRelease release success`);
+      } else {
+        console.error(`${this.tag}: videoRelease release filed,error message is = ${JSON.stringify(err.message)}`);
+      }
+    });
+    emitter.off(innerEventFalse.eventId);
+  }
+
+  onPageHide() {
+    this.avPause();
+    this.isPaused = false;
+  }
+
+  onPageShow() {
+    emitter.on(innerEventTrue, (res: emitter.EventData) => {
+      if (res.data) {
+        this.isPaused = res.data.flag;
+        this.XComponentFlag = res.data.flag;
+      }
+    });
+    emitter.on(innerEventFalse, (res: emitter.EventData) => {
+      if (res.data) {
+        this.isPaused = res.data.flag;
+      }
+    });
+    emitter.on(innerEventWH, (res: emitter.EventData) => {
+      if (res.data) {
+        this.windowWidth = res.data.width;
+        this.windowHeight = res.data.height;
+        this.setVideoWH();
+      }
+    });
+  }
+
+  setVideoWH(): void {
+    if (this.percent >= 1) { // 横向视频
+      this.surfaceW = Math.round(this.windowWidth * PROPORTION);
+      this.surfaceH = Math.round(this.surfaceW / this.percent);
+    } else { // 纵向视频
+      this.surfaceH = Math.round(this.windowHeight * PROPORTION);
+      this.surfaceW = Math.round(this.surfaceH * this.percent);
+    }
+  }
+
+  @Builder
+  CoverXComponent() {...}
+
+  build() {...}
 }
 ```
 

@@ -30,7 +30,7 @@ PageTransitionExit({type?: RouteType,duration?: number,curve?: Curve | string,de
 上述接口定义了PageTransitionEnter和PageTransitionExit组件，可通过slide、translate、scale、opacity属性定义不同的页面转场效果。对于PageTransitionEnter而言，这些效果表示入场时起点值，对于PageTransitionExit而言，这些效果表示退场的终点值，这一点与组件转场transition配置方法类似。此外，PageTransitionEnter提供了onEnter接口进行自定义页面入场动画的回调，PageTransitionExit提供了onExit接口进行自定义页面退场动画的回调。
 
 
-上述接口中的参数type，表示路由生效的类型，这一点开发者容易混淆其含义。页面转场的两个页面，必定有一个页面退出，一个页面进入。如果通过router.pushUrl操作从页面A跳转到页面B，则页面A退出，做页面退场动画，页面B进入，做页面入场动画。如果通过router.back操作从页面B返回到页面A，则页面B退出，做页面退场动画，页面A进入，做页面入场动画。即页面的PageTransitionEnter既可能是由于新增页面(push，入栈)引起的新页面的入场动画，也可能是由于页面返回(back，或pop，出栈)引起的页面栈中老页面的入场动画，为了能区分这两种形式的入场动画，提供了type参数，这样开发者能完全定义所有类型的页面转场效果。
+上述接口中的参数type，表示路由生效的类型，这一点开发者容易混淆其含义。页面转场的两个页面，必定有一个页面退出，一个页面进入。如果通过[pushUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushurl)操作从页面A跳转到页面B，则页面A退出，做页面退场动画，页面B进入，做页面入场动画。如果通过[back](../reference/apis-arkui/js-apis-arkui-UIContext.md#back)操作从页面B返回到页面A，则页面B退出，做页面退场动画，页面A进入，做页面入场动画。即页面的PageTransitionEnter既可能是由于新增页面(push，入栈)引起的新页面的入场动画，也可能是由于页面返回(back，或pop，出栈)引起的页面栈中老页面的入场动画，为了能区分这两种形式的入场动画，提供了type参数，这样开发者能完全定义所有类型的页面转场效果。
 
 
 ## type配置为RouteType.None
@@ -68,10 +68,10 @@ pageTransition() {
 
 | 路由操作                         | 页面A转场效果                            | 页面B转场效果                            |
 | ---------------------------- | ---------------------------------- | ---------------------------------- |
-| router.pushUrl，从页面A跳转到新增的页面B | 页面退出，PageTransitionExit生效，向左侧滑出屏幕  | 页面进入，PageTransitionEnter生效，从右侧滑入屏幕 |
-| router.back，从页面B返回到页面A       | 页面进入，PageTransitionEnter生效，从左侧滑入屏幕 | 页面退出，PageTransitionExit生效，向右侧滑出屏幕  |
-| router.pushUrl，从页面B跳转到新增的页面A | 页面进入，PageTransitionEnter生效，从左侧滑入屏幕 | 页面退出，PageTransitionExit生效，向右侧滑出屏幕  |
-| router.back，从页面A返回到页面B       | 页面退出，PageTransitionExit生效，向左侧滑出屏幕  | 页面进入，PageTransitionEnter生效，从右侧滑入屏幕 |
+| pushUrl，从页面A跳转到新增的页面B | 页面退出，PageTransitionExit生效，向左侧滑出屏幕  | 页面进入，PageTransitionEnter生效，从右侧滑入屏幕 |
+| back，从页面B返回到页面A       | 页面进入，PageTransitionEnter生效，从左侧滑入屏幕 | 页面退出，PageTransitionExit生效，向右侧滑出屏幕  |
+| pushUrl，从页面B跳转到新增的页面A | 页面进入，PageTransitionEnter生效，从左侧滑入屏幕 | 页面退出，PageTransitionExit生效，向右侧滑出屏幕  |
+| back，从页面A返回到页面B       | 页面退出，PageTransitionExit生效，向左侧滑出屏幕  | 页面进入，PageTransitionEnter生效，从右侧滑入屏幕 |
 
 
 如果希望pushUrl进入的页面总是从右侧滑入，back时退出的页面总是从右侧滑出，则上表中的第3、4种情况不满足要求，那么需要完整的定义4个页面转场效果。
@@ -124,10 +124,10 @@ pageTransition() {
 
 | 路由操作                         | 页面A转场效果                                  | 页面B转场效果                                  |
 | ---------------------------- | ---------------------------------------- | ---------------------------------------- |
-| router.pushUrl，从页面A跳转到新增的页面B | 页面退出，PageTransitionExit且type为RouteType.Push的转场样式生效，向左侧滑出屏幕 | 页面进入，PageTransitionEnter且type为RouteType.Push的转场样式生效，从右侧滑入屏幕 |
-| router.back，从页面B返回到页面A       | 页面进入，PageTransitionEnter且type为RouteType.Pop的转场样式生效，从左侧滑入屏幕 | 页面退出，PageTransitionExit且type为RouteType.Pop的转场样式生效，向右侧滑出屏幕 |
-| router.pushUrl，从页面B跳转到新增的页面A | 页面进入，PageTransitionEnter且type为RouteType.Push的转场样式生效，从右侧滑入屏幕 | 页面退出，PageTransitionExit且type为RouteType.Push的转场样式生效，向左侧滑出屏幕 |
-| router.back，从页面A返回到页面B       | 页面退出，PageTransitionExit且type为RouteType.Pop的转场样式生效，向右侧滑出屏幕 | 页面进入，PageTransitionEnter且type为RouteType.Pop的转场样式生效，从左侧滑入屏幕 |
+| pushUrl，从页面A跳转到新增的页面B | 页面退出，PageTransitionExit且type为RouteType.Push的转场样式生效，向左侧滑出屏幕 | 页面进入，PageTransitionEnter且type为RouteType.Push的转场样式生效，从右侧滑入屏幕 |
+| back，从页面B返回到页面A       | 页面进入，PageTransitionEnter且type为RouteType.Pop的转场样式生效，从左侧滑入屏幕 | 页面退出，PageTransitionExit且type为RouteType.Pop的转场样式生效，向右侧滑出屏幕 |
+| pushUrl，从页面B跳转到新增的页面A | 页面进入，PageTransitionEnter且type为RouteType.Push的转场样式生效，从右侧滑入屏幕 | 页面退出，PageTransitionExit且type为RouteType.Push的转场样式生效，向左侧滑出屏幕 |
+| back，从页面A返回到页面B       | 页面退出，PageTransitionExit且type为RouteType.Pop的转场样式生效，向右侧滑出屏幕 | 页面进入，PageTransitionEnter且type为RouteType.Pop的转场样式生效，从左侧滑入屏幕 |
 
 
 >**说明：**
@@ -153,11 +153,10 @@ pageTransition() {
 
 ## 场景示例
 
-下面介绍了利用[router.pushUrl](../reference/apis-arkui/js-apis-router.md#routerpushurl9)跳转能力定义了所有的四种页面转场样式的页面转场动画示例。
+下面介绍了利用[pushUrl](../reference/apis-arkui/js-apis-arkui-UIContext.md#pushurl)跳转能力定义了所有的四种页面转场样式的页面转场动画示例。
 
 ```ts
 // PageTransitionSrc1
-import router from '@ohos.router';
 @Entry
 @Component
 struct PageTransitionSrc1 {
@@ -174,12 +173,12 @@ struct PageTransitionSrc1 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一个页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
           })
         Button("back")
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -209,7 +208,6 @@ struct PageTransitionSrc1 {
 
 ```ts
 // PageTransitionDst1
-import router from '@ohos.router';
 @Entry
 @Component
 struct PageTransitionDst1 {
@@ -226,12 +224,12 @@ struct PageTransitionDst1 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
           })
         Button("back")
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -267,7 +265,6 @@ struct PageTransitionDst1 {
 
 ```ts
 // PageTransitionSrc2
-import router from '@ohos.router';
 @Entry
 @Component
 struct PageTransitionSrc2 {
@@ -284,12 +281,12 @@ struct PageTransitionSrc2 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionDst2' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionDst2' });
           })
         Button("back")
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }
@@ -313,7 +310,6 @@ struct PageTransitionSrc2 {
 
 ```ts
 // PageTransitionDst2
-import router from '@ohos.router';
 @Entry
 @Component
 struct PageTransitionDst2 {
@@ -330,12 +326,12 @@ struct PageTransitionDst2 {
         Button("pushUrl")
           .onClick(() => {
             // 路由到下一页面，push操作
-            router.pushUrl({ url: 'pages/myTest/pageTransitionSrc2' });
+            this.getUIContext().getRouter().pushUrl({ url: 'pages/myTest/pageTransitionSrc2' });
           })
         Button("back")
           .onClick(() => {
             // 返回到上一页面，相当于pop操作
-            router.back();
+            this.getUIContext().getRouter().back();
           })
       }.justifyContent(FlexAlign.Center)
     }

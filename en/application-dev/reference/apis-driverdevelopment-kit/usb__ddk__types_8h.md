@@ -32,18 +32,19 @@ Provides the enumerated variables, structures, and macros used in USB DDK APIs.
 | [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) | Configuration descriptor.|
 | [UsbRequestPipe](_usb_request_pipe.md) | Request pipe.|
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
+| [Usb_DeviceArray](_usb_device_array.md) | Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).|
 
 
 ### Types
 
 | Name| Description|
 | -------- | -------- |
-| [UsbDdkEndpointDescriptor](_usb_ddk.md#usbddkendpointdescriptor) | Endpoint descriptor.|
-| [UsbDdkInterfaceDescriptor](_usb_ddk.md#usbddkinterfacedescriptor) | Interface descriptor.|
-| [UsbDdkInterface](_usb_ddk.md#usbddkinterface) | USB interface.|
-| [UsbDdkConfigDescriptor](_usb_ddk.md#usbddkconfigdescriptor) | Configuration descriptor.|
-| [UsbDeviceMemMap](_usb_ddk.md#usbdevicememmap) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
-
+| typedef struct [UsbDdkEndpointDescriptor](_usb_ddk_endpoint_descriptor.md) [UsbDdkEndpointDescriptor](_usb_ddk.md#usbddkendpointdescriptor) | Endpoint descriptor.|
+| typedef struct [UsbDdkInterfaceDescriptor](_usb_ddk_interface_descriptor.md) [UsbDdkInterfaceDescriptor](_usb_ddk.md#usbddkinterfacedescriptor) | Interface descriptor.|
+| typedef struct [UsbDdkInterface](_usb_ddk_interface.md) [UsbDdkInterface](_usb_ddk.md#usbddkinterface) | USB interface.|
+| typedef struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) [UsbDdkConfigDescriptor](_usb_ddk.md#usbddkconfigdescriptor) | Configuration descriptor.|
+| typedef struct [UsbDeviceMemMap](_usb_device_mem_map.md) [UsbDeviceMemMap](_usb_ddk.md#usbdevicememmap) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
+| typedef struct [Usb_DeviceArray](_usb_device_array.md) [Usb_DeviceArray](_usb_ddk.md#usb_devicearray) | Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).|
 
 ### Enums
 
@@ -97,6 +98,8 @@ Provides the enumerated variables, structures, and macros used in USB DDK APIs.
 | [interfaceHandle](#interfacehandle) | Interface operation handle.|
 | [endpoint](#endpoint) | Endpoint address.|
 | [timeout](#timeout) | Timeout duration, in milliseconds.|
+| [deviceIds](#deviceids) | Start address of the device ID array.|
+| [num](#num) | Device quantity.|
 
 
 ## Variable Description
@@ -592,3 +595,24 @@ uint16_t wTotalLength
 **Description**
 
 Total length of the configuration descriptor, including the configuration, interface, endpoint, and class- or vendor-specific descriptors.
+
+
+### deviceIds
+
+```
+uint64_t* deviceIds
+```
+
+**Description**
+
+Defines the start address of the device ID array. The number of device IDs cannot exceed 128.
+### num
+
+
+```
+uint32_t num
+```
+
+**Description**
+
+Defines the device quantity. Device IDs are obtained by traversing **deviceIds** based on the value of this parameter. If the value is **0**, there is no USB device.

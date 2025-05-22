@@ -6,12 +6,12 @@
 
 API详细介绍请参见[ohos.file.securityLabel](../reference/apis-core-file-kit/js-apis-file-securityLabel.md)。
 
-**表1** 设置文件数据等级
+**表1** 设置文件数据等级，其中“√”表示支持。
 
-| 接口名 | 功能 | 接口类型 | 支持同步 | 支持异步 | 
+| 接口名 | 功能 | 接口类型 | 支持同步 | 支持异步 |
 | -------- | -------- | -------- | -------- | -------- |
-| setSecurityLabel | 设置文件安全标签 | 方法 | √ | √ | 
-| getSecurityLabel | 获取文件安全标签 | 方法 | √ | √ | 
+| setSecurityLabel | 设置文件安全标签。 | 方法 | √ | √ |
+| getSecurityLabel | 获取文件安全标签。 | 方法 | √ | √ |
 
 > **须知：**
 >
@@ -23,15 +23,15 @@ API详细介绍请参见[ohos.file.securityLabel](../reference/apis-core-file-ki
 
 获取通用文件沙箱路径，并设置数据等级标签。示例中的context的获取方式请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
-  
-```ts
-import securityLabel from '@ohos.file.securityLabel';
-import { BusinessError } from '@ohos.base';
-import common from '@ohos.app.ability.common';
-import fs from '@ohos.file.fs';
 
-// 获取需要设备数据等级的文件沙箱路径
-let context = getContext(this) as common.UIAbilityContext; // 获取UIAbilityContext信息
+```ts
+import { securityLabel } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+
+// 获取需要设备数据等级的文件沙箱路径，请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let pathDir = context.filesDir;
 let filePath = pathDir + '/test.txt';
 

@@ -21,19 +21,19 @@
 
 启动子系统内部涉及以下组件：
 
-- init启动引导组件
+- init启动引导组件：
 
   init启动引导组件对应的进程为init进程，是内核完成初始化后启动的第一个用户态进程。init进程启动之后，读取init.cfg配置文件，根据解析结果，执行相应命令（见[job解析接口说明](../subsystems/subsys-boot-init-jobs.md#接口说明)）并依次启动各关键系统服务进程，在启动系统服务进程的同时设置其对应权限。
 
-- ueventd启动引导组件
+- ueventd启动引导组件：
 
   ueventd负责监听内核设备驱动插拔的netlink事件，根据事件类型动态管理相应设备的dev节点。
 
-- appspawn应用孵化组件
+- appspawn应用孵化组件：
 
   负责接收用户程序框架的命令孵化应用进程，设置新进程的权限，并调用应用程序框架的入口函数。
 
-- bootstrap服务启动组件
+- bootstrap服务启动组件：
 
   提供了各服务和功能的启动入口标识。在SAMGR启动时，会调用bootstrap标识的入口函数，并启动系统服务。
 
@@ -70,7 +70,7 @@
 | boot.img     | NA      | 内核和ramdisk镜像，bootloader加载的第一个镜像      |
 | system.img   | /system | 系统组件镜像，存放与芯片方案无关的平台业务         |
 | vendor.img   | /vendor | 芯片组件镜像，存放芯片相关的硬件抽象服务           |
-| updater.img  | /       | 升级组件镜像，用于完成升级；正常启动时不加载次镜像 |
+| updater.img  | /       | 升级组件镜像，用于完成升级；正常启动时不加载此镜像 |
 | userdata.img | /data   | 可写的用户数据镜像                                 |
 
 每个开发板都需要在存储器上划分好分区来存放上述镜像，SOC启动时都由bootloader来加载这些镜像，具体过程包括以下几个大的步骤：
@@ -142,11 +142,11 @@
   | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
   | initrd      | 0x84000000,0x292e00                                          | 参考内核文档。<br/>[ramfs-rootfs-initramfs.rst](https://gitee.com/openharmony/kernel_linux_5.10/blob/master/Documentation/filesystems/ramfs-rootfs-initramfs.rst)<br/>[initrd.rst](https://gitee.com/openharmony/kernel_linux_5.10/blob/master/Documentation/admin-guide/initrd.rst) |
   | init        | /init                                                        |                                                              |
-  | blkdevparts | mmcblk0:1M(boot),15M(kernel),200M(system),200M(vendor),<br/>2M(misc),20M(updater),-(userdata) | 分区表信息，kernel会根据此信息创建物理分区。                 |
-  | hardware    | Hi3516DV300、rk3568等                                                  | （必要信息）硬件平台。 |
-  | root        | /dev/ram0（Hi3516DV00)、root=PARTUUID=614e0000-0000 rw（rk3568）                                                    | kernel加载的启动设备。 |
-  | rootfstype  | ext4                                                         | 根文件系统类型。 |
-  | default_boot_device | soc/10100000.himci.eMMC | （建议配置信息）默认启动设备，在启动第一阶段会根据这个参数创建required设备的软链接。 |
+  | blkdevparts | mmcblk0:1M(boot),15M(kernel),200M(system),200M(vendor),<br/>2M(misc),20M(updater),-(userdata) | 分区表信息，kernel会根据此信息创建物理分区                 |
+  | hardware    | Hi3516DV300、rk3568等                                                  | （必要信息）硬件平台 |
+  | root        | /dev/ram0（Hi3516DV00)、root=PARTUUID=614e0000-0000 rw（rk3568）                                                    | kernel加载的启动设备 |
+  | rootfstype  | ext4                                                         | 根文件系统类型 |
+  | default_boot_device | soc/10100000.himci.eMMC | （建议配置信息）默认启动设备，在启动第一阶段会根据这个参数创建required设备的软链接 |
   | ohos.required_mount.xxx | /dev/block/platform/soc/10100000.himci.eMMC/by-name/xxx@/usr@ext4@ro,barrier=1@wait,required |  现支持从cmdline中读取fstab信息，获取失败的情况下，会继续尝试从fstab.required文件中读取 |
 
 - init挂载required分区
@@ -292,7 +292,7 @@
          ```
          /sys/devices/platform/soc/10100000.himci.eMMC/mmc_host/mmc0/mmc0:0001/block/mmcblk0/mmcblk0p5
          ```
-         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径`soc/10100000.himci.eMMC`相匹配，因此而创建相应的软链接，这一软连接的路径是：
+         因此在处理内核上报的该设备uevent消息时，会与bootDevice中的路径`soc/10100000.himci.eMMC`相匹配，因此而创建相应的软链接，这一软链接的路径是：
          ```
          /dev/block/by-name/system
          ```
@@ -356,7 +356,7 @@
   | mnt_point             | 在根文件系统中的挂载点                                       |
   | type                  | 文件系统的类型(常见有ext2、vfat、NTFS等)                     |
   | mnt_flags and options | 挂载的参数,详细的如下说明                                    |
-  | fs_mgr_flags          | 文化系统管理的标识(Android10引入)<br />可用值有：{"check","wait,"required","nofail","hvb"} |
+  | fs_mgr_flags          | 文化系统管理的标识<br />可用值有：{"check","wait,"required","nofail","hvb"} |
 
 - mnt_flags and options 参数说明
 

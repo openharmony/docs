@@ -1,5 +1,3 @@
-
-
 # 轻量系统STM32F407芯片移植案例
 
 介绍基于`STM32F407IGT6`芯片在拓维信息[Niobe407](https://gitee.com/openharmony-sig/device_board_talkweb)开发板上移植OpenHarmony LiteOS-M轻量系统，提供交通、工业领域开发板解决方案。移植架构采用`Board`与`SoC`分离方案，使用`arm gcc`工具链`Newlib C`库，实现了`lwip`、`littlefs`、`hdf`等子系统及组件的适配，开发了配套应用示例代码，支持通过Kconfig图形化配置编译选项。
@@ -102,38 +100,38 @@ vendor
 
 1. 在`vendor/talkweb/niobe407`目录下新增`config.json`文件，用于描述这个产品样例所使用的单板、内核等信息，描述信息可参考如下内容：
 
-```
-{
-  "product_name": "niobe407",           --- 用于hb set进行选择时，显示的产品名称
-  "type": "mini",                       --- 构建系统的类型，mini/small/standard
-  "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
-  "device_company": "talkweb",          --- 单板厂商名，用于编译时找到/device/board/talkweb目录
-  "board": "niobe407",                  --- 单板名，用于编译时找到/device/board/talkweb/niobe407目录
-  "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
-  "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
-  "subsystems": [ ]                     --- 选择所需要编译构建的子系统
-}
-```
+   ```
+   {
+     "product_name": "niobe407",           --- 用于hb set进行选择时，显示的产品名称
+     "type": "mini",                       --- 构建系统的类型，mini/small/standard
+     "version": "3.0",                     --- 构建系统的版本，1.0/2.0/3.0
+     "device_company": "talkweb",          --- 单板厂商名，用于编译时找到/device/board/talkweb目录
+     "board": "niobe407",                  --- 单板名，用于编译时找到/device/board/talkweb/niobe407目录
+     "kernel_type": "liteos_m",            --- 内核类型，因为OpenHarmony支持多内核，一块单板可能适配了多个内核，所以需要指定某个内核进行编译
+     "kernel_version": "3.0.0",            --- 内核版本，一块单板可能适配了多个linux内核版本，所以需要指定某个具体的内核版本进行编译
+     "subsystems": [ ]                     --- 选择所需要编译构建的子系统
+   }
+   ```
 
 2. 在`//device/board/talkweb/niobe407`目录下创建`board`目录，在创建的目录下新增一个`config.gni`文件，用于描述该产品的编译配置信息：
 
-```
-# Kernel type, e.g. "linux", "liteos_a", "liteos_m".
-kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应
+   ```
+   # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
+   kernel_type = "liteos_m"                --- 内核类型，跟config.json中kernel_type对应
 
-# Kernel version.
-kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应
-```
+   # Kernel version.
+   kernel_version = "3.0.0"                --- 内核版本，跟config.json中kernel_version对应
+   ```
 
 3. 验证`hb set`配置是否正确，输入`hb set`能够显示如下信息：
 
- ![hb set](figures/niobe407_hb_set.png)
+   ![hb set](figures/niobe407_hb_set.png)
 
 4. 通过`hb env`可以查看选择出来的预编译环境变量：
 
- ![hb env](figures/niobe407_hb_env.png)
+   ![hb env](figures/niobe407_hb_env.png)
 
-5. hb介绍
+5. hb介绍。
 
    `hb`是OpenHarmony为了方便开发者进行代码构建编译，提供的python脚本工具，其源码就在`//build/lite`仓库目录下。在执行`hb set`命令时，脚本会遍历`//vendor/<product_company>/<product_name>`目录下的`config.json`，给出可选产品编译选项。在config.json文件中，`product_name`表示产品名，`device_company`和`board`用于关联出`//device/board/<device_company>/<board>`目录，匹配该目录下的`<any_dir_name>/config.gni`文件，其中`<any_dir_name>`目录名可以是任意名称，但建议将其命名为适配内核名称（如：liteos_m、liteos_a、linux）。hb命令如果匹配到了多个`config.gni`，会将其中的`kernel_type`和`kernel_version`字段与`vendor/<device_company>`下`config.json`文件中的字段进行匹配，从而确定参与编译的`config.gni`文件。
 
@@ -149,28 +147,28 @@ kernel_version = "3.0.0"                --- 内核版本，跟config.json中kern
 
 2. 打开`//kernel/liteos_m/Kconfig`文件，可以看到在该文件通过orsource命令导入了`//device/board`和`//device/soc`下多个Kconfig文件，后续需要创建并修改这些文件：
 
-```
-orsource "../../device/board/*/Kconfig.liteos_m.shields"
-orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.defconfig.boards"
-orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.boards"
-orsource "../../device/soc/*/Kconfig.liteos_m.defconfig"
-orsource "../../device/soc/*/Kconfig.liteos_m.series"
-orsource "../../device/soc/*/Kconfig.liteos_m.soc"
-```
+   ```
+   orsource "../../device/board/*/Kconfig.liteos_m.shields"
+   orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.defconfig.boards"
+   orsource "../../device/board/$(BOARD_COMPANY)/Kconfig.liteos_m.boards"
+   orsource "../../device/soc/*/Kconfig.liteos_m.defconfig"
+   orsource "../../device/soc/*/Kconfig.liteos_m.series"
+   orsource "../../device/soc/*/Kconfig.liteos_m.soc"
+   ```
 
 3. 在`//device/board/talkweb`下参考如下目录结构创建相应的Kconfig文件：
 
-```
-.
-├── Kconfig.liteos_m.boards
-├── Kconfig.liteos_m.defconfig.boards
-├── Kconfig.liteos_m.shields
-└── niobe407
-    ├── Kconfig.liteos_m.board                --- 开发板配置选项
-    ├── Kconfig.liteos_m.defconfig.board      --- 开发板默认配置选项
-    └── liteos_m
-        └── config.gni
-```
+   ```
+   .
+   ├── Kconfig.liteos_m.boards
+   ├── Kconfig.liteos_m.defconfig.boards
+   ├── Kconfig.liteos_m.shields
+   └── niobe407
+       ├── Kconfig.liteos_m.board                --- 开发板配置选项
+       ├── Kconfig.liteos_m.defconfig.board      --- 开发板默认配置选项
+       └── liteos_m
+           └── config.gni
+   ```
 
 4. 修改`Kconfig`文件内容：
 
@@ -312,8 +310,8 @@ orsource "../../device/soc/*/Kconfig.liteos_m.soc"
 1. 在 `kernel/liteos_m/BUILD.gn` 中，可以看到，通过`deps`指定了`Board`和`SoC`的编译入口：
 
    ```
-   deps += [ "//device/board/$device_company" ]            --- 对应//device/board/talkweb目录
-   deps += [ "//device/soc/$LOSCFG_SOC_COMPANY" ]          --- 对应//device/soc/st目录
+   deps += [ "//device/board/$device_company" ]            --- 对应//device/board/talkweb目录。
+   deps += [ "//device/soc/$LOSCFG_SOC_COMPANY" ]          --- 对应//device/soc/st目录。
    ```
 
 2. 在`//device/board/talkweb/BUILD.gn`中，新增内容如下：
@@ -529,7 +527,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 #define _TARGET_CONFIG_H
 
 #define LOSCFG_BASE_CORE_TICK_RESPONSE_MAX                  0xFFFFFFUL
-#include "stm32f4xx.h"			//包含了stm32f4平台大量的宏定义
+#include "stm32f4xx.h"			//包含了stm32f4平台大量的宏定义。
 
 #endif
 ```
@@ -540,7 +538,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
 
 至此，已经可以成功将kernel子系统编译通过，并且在out目录下生成OHOS_Image.bin文件。将生成的OHOS_Image.bin文件烧录至开发板，验证板子能否正常启动运行，如果能成功打印出main函数中串口输出的正确的打印信息，则可以开始进行内核启动适配。
 
-1. 为liteos_m分配内存，适配内存分配函数
+1. 为liteos_m分配内存，适配内存分配函数。
 
    在文件`//kernel/liteos_m/kernel/src/mm/los_memory.c`中，`OsMemSystemInit`函数通过LOS_MemInit进行了内存初始化。可以看到几个比较关键的宏需要我们指定，我们将其添加到`target_config.h`中：
 
@@ -552,7 +550,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
    #define LOSCFG_SYS_HEAP_SIZE (((unsigned long)&__los_heap_addr_end__) - ((unsigned long)&__los_heap_addr_start__))
    ```
 
-   其中，`__los_heap_addr_start__`与`__los_heap_addr_end__`变量在`STM32F407IGTx_FLASH.ld`链接文件中被定义, 将_user_heap_stack花括号内内容修改为:
+   其中，`__los_heap_addr_start__`与`__los_heap_addr_end__`变量在`STM32F407IGTx_FLASH.ld`链接文件中被定义, 将_user_heap_stack花括号内内容修改为：
 
    ```
    ._user_heap_stack :
@@ -578,7 +576,7 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
    board_ld_flags += board_opt_flags
    ```
 
-2. 适配printf打印
+2. 适配printf打印。
 
    为了方便后续调试，第一步需要先适配printf函数。而printf的函数适配可大可小，在此只做简单适配，具体实现可以参考其它各开发板源码。
 
@@ -655,10 +653,10 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
    #include "los_task.h"
    
    UINT32 ret;
-   ret = LOS_KernelInit();  //初始化内核
+   ret = LOS_KernelInit();  //初始化内核。
    if (ret == LOS_OK) {
-       TaskSample();  //示例任务函数，在此函数中创建线程任务
-       LOS_Start();   //开始任务调度，程序执行将阻塞在此，由内核接管调度
+       TaskSample();  //示例任务函数，在此函数中创建线程任务。
+       LOS_Start();   //开始任务调度，程序执行将阻塞在此，由内核接管调度。
    }
    ```
 
@@ -758,9 +756,9 @@ board_ld_flags  ：链接选项，与Makefile中的LDFLAGS变量对应。
   }
 ```
 
-`W25x_BufferRead`等函数是spi-flash读写操作的接口，不同型号的spi-flash其实现也不同，Niobe407的SPI-Flash操作具体实现可参考`//device/board/talkweb/niobe407/liteos_m/drivers/spi_flash/src/w25qxx.c`
+`W25x_BufferRead`等函数是spi-flash读写操作的接口，不同型号的spi-flash其实现也不同，Niobe407的SPI-Flash操作具体实现可参考`//device/board/talkweb/niobe407/liteos_m/drivers/spi_flash/src/w25qxx.c`。
 
-由于SPI已经hdf化了，而littlefs依赖于spi驱动，为了方便对文件系统进行配置，可以将littlefs的配置加入至.hcs文件中，具体参考：`//device/board/talkweb/niobe407/liteos_m/hdf_config/hdf_littlefs.hcs`文件
+由于SPI已经hdf化了，而littlefs依赖于spi驱动，为了方便对文件系统进行配置，可以将littlefs的配置加入至.hcs文件中，具体参考：`//device/board/talkweb/niobe407/liteos_m/hdf_config/hdf_littlefs.hcs`文件。
 
 ```
 misc {
@@ -991,10 +989,10 @@ __zinitcall_exit_end = .;
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
-| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口 |
-| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口 |
-| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口   |
-| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
+| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口。 |
+| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口。 |
+| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口。   |
+| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 
 
@@ -1222,7 +1220,7 @@ config("public") {
         "-lbroadcast",
         "-lhctest",
 
-        #公共基础库
+        #公共基础库。
         # "-lmodule_ActsUtilsFileTest",
         # "-lmodule_ActsKvStoreTest",
 
@@ -1230,11 +1228,11 @@ config("public") {
         "-lmodule_ActsDfxFuncTest",
         "-lmodule_ActsHieventLiteTest",
 
-        #启动恢复
+        #启动恢复。
         # "-lmodule_ActsBootstrapTest",
         # "-lmodule_ActsParameterTest",
 
-        #分布式任务调度
+        #分布式任务调度。
         # "-lmodule_ActsSamgrTest",
 
         "-Wl,--no-whole-archive",  --- 关掉whole-archive这个特性

@@ -10,12 +10,12 @@ The **MissionInfo** module defines detailed information about a mission. The inf
 ## Modules to Import
 
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
 ```
 
 ## Attributes
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -23,25 +23,26 @@ import missionManager from '@ohos.app.ability.missionManager';
 | -------- | -------- | -------- | -------- | -------- |
 | missionId | number | Yes| Yes| Mission ID.|
 | runningState | number | Yes| Yes| Running state of the mission.|
-| lockedState | boolean | Yes| Yes| Locked state of the mission.|
+| lockedState | boolean | Yes| Yes| Locked state of the mission. The value **true** means that the mission is locked, and **false** means the opposite.|
 | timestamp | string | Yes| Yes| Latest time when the mission was created or updated.|
 | want | [Want](js-apis-app-ability-want.md) | Yes| Yes| Want information of the mission.|
 | label | string | Yes| Yes| Label of the mission.|
 | iconPath | string | Yes| Yes| Path of the mission icon.|
-| continuable | boolean | Yes| Yes| Whether the mission can be continued on another device.|
+| continuable | boolean | Yes| Yes| Whether the mission can be continued on another device. The value **true** means that the mission can be continued on another device, and **false** means the opposite.|
 | abilityState<sup>10+</sup> | number | Yes| Yes| Capability status of the mission.|
-| unclearable<sup>10+</sup> | boolean | Yes| Yes| Whether the mission can be manually deleted.|
+| unclearable<sup>10+</sup> | boolean | Yes| Yes| Whether the mission can be manually deleted. The value **true** means that the mission can be manually deleted, and **false** means the opposite.|
 
 **Example**
 ```ts
-import missionManager from '@ohos.app.ability.missionManager';
+import { missionManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   missionManager.getMissionInfo('', 1, (error, data) => {
     if (error) {
-        // Process service logic errors.
-        console.error(`getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}`);
-        return;
+      // Process service logic errors.
+      console.error(`getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}`);
+      return;
     }
 
     console.log(`getMissionInfo missionId is: ${JSON.stringify(data.missionId)}`);
@@ -53,8 +54,8 @@ try {
     console.log(`getMissionInfo iconPath is: ${JSON.stringify(data.iconPath)}`);
     console.log(`getMissionInfo continuable is: ${JSON.stringify(data.continuable)}`);
     console.log(`getMissionInfo unclearable is: ${JSON.stringify(data.unclearable)}`);
-    });
+  });
 } catch (paramError) {
-    console.error(`error: ${paramError.code}, ${paramError.message}`);
+  console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
 }
 ```

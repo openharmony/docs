@@ -11,8 +11,21 @@ The **hfp** module provides APIs for using the Bluetooth Hands-Free Profile (HFP
 ## Modules to Import
 
 ```js
-import hfp from '@ohos.bluetooth.hfp';
+import { hfp } from '@kit.ConnectivityKit';
 ```
+
+
+## BaseProfile
+
+type BaseProfile = baseProfile.BaseProfile
+
+**BaseProfile** API definition.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Type                           | Description        |
+| ----------------------------- | ---------- |
+| [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | **BaseProfile** API definition.|
 
 
 ## hfp.createHfpAgProfile
@@ -29,10 +42,19 @@ Creates an **HfpAgProfile** instance.
 | ----------------------------- | ---------- |
 | HandsFreeAudioGatewayProfile | **HfpAgProfile** instance created.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                 |
+|801 | Capability not supported.          |
+
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
     let hfpAgProfile = hfp.createHfpAgProfile();
     console.info('hfpAg success');
@@ -44,4 +66,4 @@ try {
 
 ## HandsFreeAudioGatewayProfile
 
-Before using any API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using **createHfpAgProfile()**.
+Before using any API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using [createHfpAgProfile()](#hfpcreatehfpagprofile).

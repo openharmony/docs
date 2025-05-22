@@ -107,7 +107,7 @@ int foo(...)
 
 ### Example
 
-The sample code is located in **kernel/linux/linux-5.10/samples/hck**.
+kernel/linux/linux-5.10(or linux-6.6)/samples/hck
 
 To enable the sample code, enable the following settings in **config** (do not enable the settings in the official version):
 

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```ts
-import screenLock from '@ohos.screenLock';
+import { screenLock } from '@kit.BasicServicesKit';
 ```
 
 ## EventType<sup>9+</sup>
@@ -45,7 +45,7 @@ import screenLock from '@ohos.screenLock';
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 | 名称    | 类型   | 必填 |       说明        |
 | --------- | ------ | ---- | ------------- |
@@ -60,13 +60,21 @@ isLocked(): boolean
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **返回值：** 
 
 | 类型    | 说明                                              |
 | ------- | ------------------------------------------------- |
 | boolean | 返回true表示屏幕已锁屏；返回false表示屏幕未锁屏。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 
 **示例：** 
 
@@ -82,7 +90,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **参数：** 
 
@@ -92,17 +100,19 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 | 13200003  | illegal use.         |
 
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.unlock((err: BusinessError, data: Boolean) => {
     if (err) {
@@ -125,7 +135,7 @@ unlock(): Promise&lt;boolean&gt;
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **返回值：** 
 
@@ -135,17 +145,18 @@ unlock(): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 | 13200003  | illegal use.         |
 
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.unlock().then((data: Boolean) => {
     console.info(`Succeeded in unlocking the screen. result: ${data}`);
@@ -168,7 +179,7 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **参数：** 
 
@@ -178,16 +189,19 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.lock((err: BusinessError, data: Boolean) => {
     if (err) {
@@ -208,7 +222,7 @@ lock(): Promise&lt;boolean&gt;
 
 **需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **返回值：** 
 
@@ -218,16 +232,18 @@ lock(): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.lock().then((data: Boolean) => {
     console.info(`Succeeded in locking the screen. result: ${data}`);
@@ -246,7 +262,7 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 **需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **参数：** 
 
@@ -262,22 +278,27 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
   try {
     let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
-      console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
+      console.info(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`);
     });
   } catch (err) {
     let error = err as BusinessError;
-    console.error(`Failed to register the system event which related to screenlock, Code: ${error.code}, message: ${error.message}`)
+    console.error(`Failed to register the system event which related to screenlock, Code: ${error.code}, message: ${error.message}`);
   }
   ```
 
@@ -291,28 +312,31 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 **需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **参数：** 
 
-| 参数名    | 类型            | 必填 | 说明                             |
-| --------- | ------------------------ | ---- | -------------------- |
-| event     | String                   | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
+| 参数名    | 类型            | 必填 | 说明                                                                                                                |
+| --------- | ------------------------ | ---- |-------------------------------------------------------------------------------------------------------------------|
+| event     | String                   | 是   | 事件类型，支持如下取值：<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
 | parameter | number                   | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
-| callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示发送事件成功；返回false表示发送事件失败。                 |
+| callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示发送事件成功；返回false表示发送事件失败。                                                                              |
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  |the screenlock management service is abnormal.         |
 
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err: BusinessError, result: Boolean) => {
     if (err) {
@@ -333,13 +357,13 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 **需要权限：** ohos.permission.ACCESS_SCREEN_LOCK_INNER
 
-**系统接口**：此接口为系统接口
+**系统接口**：此接口为系统接口。
 
 **参数：** 
 
-| 参数名    | 类型   | 必填 | 说明                                       |
-| --------- | ------ | ---- | --------------------------------------- |
-| event     | String | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
+| 参数名    | 类型   | 必填 | 说明                                                                                                                |
+| --------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------|
+| event     | String | 是   | 事件类型，支持如下取值：<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
 | parameter | number | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
 
 **返回值：** 
@@ -350,16 +374,19 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
 **错误码**：
 
-以下错误码的详细介绍请参见[锁屏服务错误码](errorcode-screenlock.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[锁屏服务错误码](errorcode-screenlock.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result: Boolean) => {
     console.info(`Succeeded in Sending screenlock event. result: ${result}`);

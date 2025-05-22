@@ -1,4 +1,5 @@
 # @ohos.application.appManager (appManager) (System API)
+<!--deprecated_code_no_check-->
 
 The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
@@ -6,7 +7,7 @@ The **appManager** module implements application management. You can use the API
 > 
 > The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.appManager](js-apis-app-ability-appManager.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.application.appManager (appManager)](js-apis-app-ability-wantConstant.md).
+> This topic describes only system APIs provided by the module. For details about its public APIs, see [@ohos.application.appManager (appManager)](js-apis-application-appManager.md).
 
 ## Modules to Import
 
@@ -30,7 +31,7 @@ Registers an observer to listen for the state changes of all applications.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver (System API)](js-apis-inner-application-applicationStateObserver-sys.md)| Yes| Application state observer, which is used to observe the lifecycle change of an application.|
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | Yes| Application state observer, which is used to observe the lifecycle change of an application.|
 
 **Return value**
 
@@ -143,7 +144,7 @@ Deregisters the application state observer. This API uses a promise to return th
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
-Obtains information about the applications that are running in the foreground. The application information is defined by [AppStateData](js-apis-inner-application-appStateData-sys.md). This API uses an asynchronous callback to return the result.
+Obtains information about the applications that are running in the foreground. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md). This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -155,7 +156,7 @@ Obtains information about the applications that are running in the foreground. T
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Yes| Callback used to return the application information.|
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Yes| Callback used to return the application information.|
 
 **Example**
     
@@ -175,7 +176,7 @@ Obtains information about the applications that are running in the foreground. T
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-Obtains information about the applications that are running in the foreground. The application information is defined by [AppStateData](js-apis-inner-application-appStateData-sys.md). This API uses a promise to return the result.
+Obtains information about the applications that are running in the foreground. The application information is defined by [AppStateData](js-apis-inner-application-appStateData.md). This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -187,7 +188,7 @@ Obtains information about the applications that are running in the foreground. T
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Promise used to return the application information.|
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise used to return the application information.|
 
 **Example**
     
@@ -273,7 +274,7 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes| Bundle name.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the process is killed, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void\> | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 

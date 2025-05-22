@@ -1,4 +1,3 @@
-
 # ICU4C
 
 In today's software market, applications need to support multiple languages for efficient development and maintenance. The International Components for Unicode (ICU) library provides powerful and complete multilingual cultural information processing capability to address this demand.
@@ -16,7 +15,21 @@ In today's software market, applications need to support multiple languages for 
 - Character/text attribute setting (uchar.h and uscript.h)
 - Code conversion (ucnv.h)
 - Bidirectional text processing (ubidi.h)
+- Domain name conversion (uidna.h)
+- Unicode string processing (ustring.h)
+- ICU text abstract representation (utext.h)
 
+## Introducing ICU4C Internationalization Capabilities
+
+If you need to use ICU4C internationalization capabilities, add the corresponding header file as required. Add the unicode directory prefix to the header file of this module. For example:
+```
+#include <unicode/uloc.h>
+```
+
+Add the following dynamic library to CMakeList.txt:
+```
+libicu.so
+```
 
 ## Symbols Exported from the Standard Library
 

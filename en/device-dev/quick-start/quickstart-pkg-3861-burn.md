@@ -22,7 +22,7 @@ The following exemplifies how to burn an image to Hi3861 using Hi3861. You can a
 1. Prepare the files to be burnt.
    1. On the client platform, create a folder for storing the files to be burnt, for example, **D:\hi3861**.
    2. Download the compiled source package to the client platform, decompress the package, and copy the files required for burning to the folder created in step 1.
-      Specifically, the files required for burning are **Hi3861_wifiiot_app_allinone.bin** and **Hi3861_loader_signed.bin**.
+      Specifically, the files required for burning are **Hi3861_wifiiot_app_burn.bin** and **Hi3861_loader_signed.bin**.
 
 2. Burn the files using HiBurn.
    1. Open HiBurn.
@@ -33,7 +33,7 @@ The following exemplifies how to burn an image to Hi3861 using Hi3861. You can a
       
       ![quickstart-pkg-3861-burn-hiburn](figures/quickstart-pkg-3861-burn-hiburn.png)
       
-   3. Click **Select file** and select the **Hi3861_wifiiot_app_allinone.bin** file in the folder created in step 1.
+   3. Click **Select file** and select the files in the folder created in step 1.
       
        **Figure 2** File selected 
      

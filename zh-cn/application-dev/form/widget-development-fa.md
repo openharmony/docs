@@ -13,7 +13,7 @@
 
 - 卡片管理服务：用于管理系统中所添加卡片的常驻代理服务，包括卡片对象的管理与使用，以及卡片周期性刷新等。
 
-- 卡片提供方：提供卡片显示内容元服务，控制卡片的显示内容、控件布局以及控件点击事件。
+- 卡片提供方：提供卡片显示内容原子化服务，控制卡片的显示内容、控件布局以及控件点击事件。
 
 
 ## 运作机制
@@ -60,7 +60,7 @@ FormAbility生命周期接口如下：
 | 接口名 | 描述 |
 | -------- | -------- |
 | onCreate(want:&nbsp;Want):&nbsp;formBindingData.FormBindingData | 卡片提供方接收创建卡片的通知接口。 |
-| onCastToNormal(formId:&nbsp;string):&nbsp;void | 卡片提供方接收临时卡片转常态卡片的通知接口 |
+| onCastToNormal(formId:&nbsp;string):&nbsp;void | 卡片提供方接收临时卡片转常态卡片的通知接口。 |
 | onUpdate(formId:&nbsp;string):&nbsp;void | 卡片提供方接收更新卡片的通知接口。 |
 | onVisibilityChange(newStatus:&nbsp;Record&lt;string,&nbsp;number&gt;):&nbsp;void | 卡片提供方接收修改可见性的通知接口。 |
 | onEvent(formId:&nbsp;string,&nbsp;message:&nbsp;string):&nbsp;void | 卡片提供方接收处理卡片事件的通知接口。 |
@@ -80,7 +80,7 @@ FormProvider类有如下API接口，具体的API介绍详见[接口文档](../re
 | updateForm(formId:&nbsp;string,&nbsp;formBindingData:&nbsp;FormBindingData):&nbsp;Promise&lt;void&gt;; | 更新指定的卡片，以promise方式返回。 |
 
 
-formBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
+FormBindingData类有如下API接口，具体的API介绍详见[接口文档](../reference/apis-form-kit/js-apis-app-form-formBindingData.md)。
 
 
 | 接口名 | 描述 |
@@ -107,152 +107,152 @@ FA卡片开发，即基于[FA模型](../application-models/fa-model-development-
 
 ### 实现卡片生命周期接口
 
-创建FA模型的卡片，需实现卡片的生命周期接口。先参考[IDE开发服务卡片指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425)生成服务卡片模板。
+创建FA模型的卡片，需实现卡片的生命周期接口。先参考<!--RP1-->[创建服务卡片](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->生成服务卡片模板。
 
 1. 在form.ts中，导入相关模块
    
-  ```ts
-  import type featureAbility from '@ohos.ability.featureAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import formInfo from '@ohos.app.form.formInfo';
-  import formProvider from '@ohos.app.form.formProvider';
-  import dataPreferences from '@ohos.data.preferences';
-  import hilog from '@ohos.hilog';
-  ```
+    ```ts
+    import type featureAbility from '@ohos.ability.featureAbility';
+    import type Want from '@ohos.app.ability.Want';
+    import formBindingData from '@ohos.app.form.formBindingData';
+    import formInfo from '@ohos.app.form.formInfo';
+    import formProvider from '@ohos.app.form.formProvider';
+    import dataPreferences from '@ohos.data.preferences';
+    import hilog from '@ohos.hilog';
+    ```
 
 2. 在form.ts中，实现卡片生命周期接口
    
-  ```ts
-const TAG: string = '[Sample_FAModelAbilityDevelop]';
-const domain: number = 0xFF00;
-
-const DATA_STORAGE_PATH: string = 'form_store';
-let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
-  // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
-  let formInfo: Record<string, string | number | boolean> = {
-    formName: 'formName',
-    tempFlag: 'tempFlag',
-    updateCount: 0
-  };
-  try {
-    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
-    // put form info
-    await storage.put(formId, JSON.stringify(formInfo));
-    hilog.info(domain, TAG, `storeFormInfo, put form info successfully, formId: ${formId}`);
-    await storage.flush();
-  } catch (err) {
-    hilog.error(domain, TAG, `failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
-  }
-};
-
-let deleteFormInfo = async (formId: string, context) => {
-  try {
-    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
-    // del form info
-    await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
-    await storage.flush();
-  } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
-  }
-}
-
-class LifeCycle {
-    onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' });
-    onCastToNormal: (formId: string) => void = (formId) => {
-    };
-    onUpdate: (formId: string) => void = (formId) => {
-    };
-    onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
-      let obj: Record<string, number> = {
-        'test': 1
+    ```ts
+    const TAG: string = '[Sample_FAModelAbilityDevelop]';
+    const domain: number = 0xFF00;
+    
+    const DATA_STORAGE_PATH: string = 'form_store';
+    let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
+      // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
+      let formInfo: Record<string, string | number | boolean> = {
+        'formName': 'formName',
+        'tempFlag': 'tempFlag',
+        'updateCount': 0
       };
-      return obj;
-    };
-    onEvent: (formId: string, message: string) => void = (formId, message) => {
-    };
-    onDestroy: (formId: string) => void = (formId) => {
-    };
-    onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0);
-    onShareForm?: (formId: string) => Record<string, Object> = (formId) => {
-      let obj: Record<string, number> = {
-        test: 1
-      };
-      return obj;
-    };
-  }
-
-  let obj: LifeCycle = {
-    onCreate(want: Want) {
-      hilog.info(domain, TAG, 'FormAbility onCreate');
-      if (want.parameters) {
-        let formId = String(want.parameters['ohos.extra.param.key.form_identity']);
-        let formName = String(want.parameters['ohos.extra.param.key.form_name']);
-        let tempFlag = Boolean(want.parameters['ohos.extra.param.key.form_temporary']);
-        // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
-        // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-        hilog.info(domain, TAG, 'FormAbility onCreate' + formId);
-        storeFormInfo(formId, formName, tempFlag, this.context);
+      try {
+        const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+        // put form info
+        await storage.put(formId, JSON.stringify(formInfo));
+        hilog.info(domain, TAG, `storeFormInfo, put form info successfully, formId: ${formId}`);
+        await storage.flush();
+      } catch (err) {
+        hilog.error(domain, TAG, `failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
       }
-
-      // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
-      let obj: Record<string, string> = {
-        title: 'titleOnCreate',
-        detail: 'detailOnCreate'
-      };
-      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-      return formData;
-    },
-    onCastToNormal(formId: string) {
-      // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
-      hilog.info(domain, TAG, 'FormAbility onCastToNormal');
-    },
-    onUpdate(formId: string) {
-      // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-      hilog.info(domain, TAG, 'FormAbility onUpdate');
-      let obj: Record<string, string> = {
-        title: 'titleOnUpdate',
-        detail: 'detailOnUpdate'
-      };
-      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-      // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
-      formProvider.updateForm(formId, formData).catch((error: Error) => {
-        hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
-      });
-    },
-    onVisibilityChange(newStatus: Record<string, number>) {
-      // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
-      hilog.info(domain, TAG, 'FormAbility onVisibilityChange');
-    },
-    onEvent(formId: string, message: string) {
-      // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-      let obj: Record<string, string> = {
-        title: 'titleOnEvent',
-        detail: 'detailOnEvent'
-      };
-      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-      // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
-      formProvider.updateForm(formId, formData).catch((error: Error) => {
-        hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
-      });
-      hilog.info(domain, TAG, 'FormAbility onEvent');
-    },
-    onDestroy(formId: string) {
-      // 删除卡片实例数据
-      hilog.info(domain, TAG, 'FormAbility onDestroy');
-      // 删除之前持久化的卡片实例数据
-      // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
-      deleteFormInfo(formId, this.context);
-    },
-    onAcquireFormState(want: Want) {
-      hilog.info(domain, TAG, 'FormAbility onAcquireFormState');
-      return formInfo.FormState.READY;
+    };
+    
+    let deleteFormInfo = async (formId: string, context: featureAbility.Context) => {
+      try {
+        const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+        // del form info
+        await storage.delete(formId);
+        hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
+        await storage.flush();
+      } catch (err) {
+        hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+      }
     }
-  };
-
-  export default obj;
-  ```
+    
+    class LifeCycle {
+      onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' });
+      onCastToNormal: (formId: string) => void = (formId) => {
+      };
+      onUpdate: (formId: string) => void = (formId) => {
+      };
+      onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
+        let obj: Record<string, number> = {
+          'test': 1
+        };
+        return obj;
+      };
+      onEvent: (formId: string, message: string) => void = (formId, message) => {
+      };
+      onDestroy: (formId: string) => void = (formId) => {
+      };
+      onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0);
+      onShareForm?: (formId: string) => Record<string, Object> = (formId) => {
+        let obj: Record<string, number> = {
+          'test': 1
+        };
+        return obj;
+      };
+    }
+    
+    let obj: LifeCycle = {
+      onCreate(want: Want) {
+        hilog.info(domain, TAG, 'FormAbility onCreate');
+        if (want.parameters) {
+          let formId = String(want.parameters['ohos.extra.param.key.form_identity']);
+          let formName = String(want.parameters['ohos.extra.param.key.form_name']);
+          let tempFlag = Boolean(want.parameters['ohos.extra.param.key.form_temporary']);
+          // 将创建的卡片信息持久化，以便在下次获取/更新该卡片实例时进行使用
+          // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+          hilog.info(domain, TAG, 'FormAbility onCreate' + formId);
+          storeFormInfo(formId, formName, tempFlag, this.context);
+        }
+  
+        // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+        let obj: Record<string, string> = {
+          'title': 'titleOnCreate',
+          'detail': 'detailOnCreate'
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        return formData;
+      },
+      onCastToNormal(formId: string) {
+        // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+        hilog.info(domain, TAG, 'FormAbility onCastToNormal');
+      },
+      onUpdate(formId: string) {
+        // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+        hilog.info(domain, TAG, 'FormAbility onUpdate');
+        let obj: Record<string, string> = {
+          'title': 'titleOnUpdate',
+          'detail': 'detailOnUpdate'
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
+        formProvider.updateForm(formId, formData).catch((error: Error) => {
+          hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
+        });
+      },
+      onVisibilityChange(newStatus: Record<string, number>) {
+        // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+        hilog.info(domain, TAG, 'FormAbility onVisibilityChange');
+      },
+      onEvent(formId: string, message: string) {
+        // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+        let obj: Record<string, string> = {
+          'title': 'titleOnEvent',
+          'detail': 'detailOnEvent'
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变
+        formProvider.updateForm(formId, formData).catch((error: Error) => {
+          hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
+        });
+        hilog.info(domain, TAG, 'FormAbility onEvent');
+      },
+      onDestroy(formId: string) {
+        // 删除卡片实例数据
+        hilog.info(domain, TAG, 'FormAbility onDestroy');
+        // 删除之前持久化的卡片实例数据
+        // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
+        deleteFormInfo(formId, this.context);
+      },
+      onAcquireFormState(want: Want) {
+        hilog.info(domain, TAG, 'FormAbility onAcquireFormState');
+        return formInfo.FormState.READY;
+      }
+    };
+  
+    export default obj;
+    ```
 
 > **说明：**
 > FormAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
@@ -266,16 +266,16 @@ class LifeCycle {
   | -------- | -------- | -------- | -------- |
   | name | 表示JS&nbsp;Component的名字。该标签不可缺省，默认值为default。 | 字符串 | 否 |
   | pages | 表示JS&nbsp;Component的页面用于列举JS&nbsp;Component中每个页面的路由信息[页面路径+页面名称]。该标签不可缺省，取值为数组，数组第一个元素代表JS&nbsp;FA首页。 | 数组 | 否 |
-  | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省 |
-  | type | 表示JS应用的类型。取值范围如下：<br/>normal：标识该JS&nbsp;Component为应用实例。<br/>form：标识该JS&nbsp;Component为卡片实例。 | 字符串 | 可缺省，缺省值为“normal” |
-  | mode | 定义JS组件的开发模式。 | 对象 | 可缺省，缺省值为空 |
+  | window | 用于定义与显示窗口相关的配置。 | 对象 | 可缺省。 |
+  | type | 表示JS应用的类型。取值范围如下：<br/>normal：标识该JS&nbsp;Component为应用实例。<br/>form：标识该JS&nbsp;Component为卡片实例。 | 字符串 | 可缺省，缺省值为“normal” 。|
+  | mode | 定义JS组件的开发模式。 | 对象 | 可缺省，缺省值为空。 |
 
   配置示例如下：
 
   
   ```json
   "js": [
-    ...
+    // ...
     {
       "name": "widget",
       "pages": [
@@ -314,7 +314,7 @@ class LifeCycle {
   
   ```json
   "abilities": [
-    ...
+    // ...
     {
       "name": ".FormAbility",
       "srcPath": "FormAbility",
@@ -343,7 +343,7 @@ class LifeCycle {
         }
       ]
     },
-    ...
+    // ...
   ]
   ```
 
@@ -361,9 +361,9 @@ const DATA_STORAGE_PATH: string = 'form_store';
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
   // 此处仅对卡片ID：formId，卡片名：formName和是否为临时卡片：tempFlag进行了持久化
   let formInfo: Record<string, string | number | boolean> = {
-    formName: 'formName',
-    tempFlag: 'tempFlag',
-    updateCount: 0
+    'formName': 'formName',
+    'tempFlag': 'tempFlag',
+    'updateCount': 0
   };
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -376,19 +376,19 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
   }
 };
 
-let deleteFormInfo = async (formId: string, context) => {
+let deleteFormInfo = async (formId: string, context: featureAbility.Context) => {
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // del form info
     await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+    hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
   }
 }
 
-...
+// ...
   onCreate(want: Want) {
     hilog.info(domain, TAG, 'FormAbility onCreate');
     if (want.parameters) {
@@ -403,13 +403,13 @@ let deleteFormInfo = async (formId: string, context) => {
 
     // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
     let obj: Record<string, string> = {
-      title: 'titleOnCreate',
-      detail: 'detailOnCreate'
+      'title': 'titleOnCreate',
+      'detail': 'detailOnCreate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
   },
-...
+// ...
 
 let deleteFormInfo = async (formId: string, context: featureAbility.Context): Promise<void> => {
   try {
@@ -423,7 +423,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
   }
 };
 
-...
+// ...
     // 适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
   onDestroy(formId: string) {
     // 删除卡片实例数据
@@ -432,10 +432,10 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
     // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
     deleteFormInfo(formId, this.context);
   }
-...
+// ...
 ```
 
-具体的持久化方法可以参考[数据管理开发指导](../database/app-data-persistence-overview.md)。
+具体的持久化方法可以参考[应用数据持久化概述](../database/app-data-persistence-overview.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
@@ -461,8 +461,8 @@ onUpdate(formId: string) {
   // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
   hilog.info(domain, TAG, 'FormAbility onUpdate');
   let obj: Record<string, string> = {
-    title: 'titleOnUpdate',
-    detail: 'detailOnUpdate'
+    'title': 'titleOnUpdate',
+    'detail': 'detailOnUpdate'
   };
   let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
   // 调用updateForm接口去更新对应的卡片，仅更新入参中携带的数据信息，其他信息保持不变

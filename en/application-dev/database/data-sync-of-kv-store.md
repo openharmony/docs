@@ -13,7 +13,7 @@ Before implementing cross-device sync of KV stores, understand the following con
 
 ### Single KV Store
 
-In a single KV store, data is saved in the unit of a single entry. When data is modified locally, the data entry is updated no matter whether it has been synced. Only one copy of data is retained globally for multiple devices. The data of the latest time is kept for the same entry (with the same primary code) of multiple devices. The data in single KV stores is not differentiated by device. If the data modified on multiple devices has the same key, the value will be overwritten. For the data written or modified locally, the data with the latest time is synced to other devices. Single KV stores are used to store information, such as the Contacts and weather application data.
+In a single KV store, data is stored locally as individual entries. When data is modified, the change is applied directly to the entry. After sync, only one global copy of the data is retained across multiple devices. If multiple devices have the same record (with the same primary key), the latest version is preserved irrespective of the device. If data with the same key is modified on multiple devices, the latest change will overwrite the previous ones. For the data written or modified locally, the data with the latest time is synced to other devices. Single KV stores are used to store information, such as the contacts and weather application data.
 
 ![singleKVStore](figures/singleKVStore.jpg)
 
@@ -31,10 +31,14 @@ The underlying devices manage the data by device. The device KV stores support d
 
 **DatamgrService** provides the following sync types:
 
+### Manual Sync
 
-- Manual sync: The application calls **sync()** to trigger a sync. The list of devices to be synced and the sync mode must be specified. The sync mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis-arkdata/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions.
+The application calls **sync()** with the devices to be synced and the sync mode specified to trigger the sync. The sync mode can be **PULL_ONLY** (pulling remote data to the local end), **PUSH_ONLY** (pushing local data to the remote end), or **PUSH_PULL** (pushing local data to the remote end and pulling remote data to the local end). You can use the [**sync()** with the **query** parameter](../reference/apis-arkdata/js-apis-distributedKVStore.md#sync-1) to synchronize the data that meets the specified conditions.
 
-- Automatic sync: The distributed database automatically pushes local data to the remote end and pulls remote data to the local end. An automatic sync is triggered when a device goes online or an application updates data.
+### Auto Sync
+
+<!--RP5-->
+In [multi-device collaboration via cross-device calls](../application-models/hop-multi-device-collaboration.md#using-cross-device-call), after an application updates data, the distributed database automatically pushes the local data to the peer ends and pulls the peer data to the local device for data sync. In this case, the application does not need to call **sync()**.<!--RP5End-->
 
 
 ## Working Principles
@@ -46,7 +50,7 @@ After completing device discovery and authentication, the underlying communicati
 
 ![kvStore](figures/kvStore.jpg)
 
-When **put()** or **delete()** is called successfully, an automatic sync is triggered. The distributed data is sent to the peer device through the communication adaptation layer for sync.
+When **put()** or **delete()** is called successfully, an auto sync is triggered. The distributed data is sent to the peer device through the communication adaptation layer for sync.
 
 If **sync()** is called successfully, a manual sync is triggered to send distributed data to the peer device through the communication adaptation layer.
 
@@ -68,9 +72,9 @@ When data is added, deleted, or modified, a notification is sent to the subscrib
 
 - The KV stores do not support custom conflict resolution policies for applications.
 
-- A maximum of 16 KV stores can be opened simultaneously for an application.
+- An application can open a maximum of 16 distributed KV stores at a time.
 
-- Each KV store supports a maximum of eight callbacks for subscription of data change notifications.
+- A single KV store supports a maximum of eight listener callbacks for data changes.
 
 
 ## Available APIs
@@ -80,8 +84,8 @@ The following table lists the APIs for cross-device data sync of the single KV s
 | API| Description| 
 | -------- | -------- |
 | createKVManager(config: KVManagerConfig): KVManager | Creates a **KvManager** instance to manage database objects.| 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Creates and obtains a KV store of the specified type.| 
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.| 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | Obtains a KV store of the specified type.| 
+| put(key: string, value: Uint8Array \| string \| number \| boolean, callback: AsyncCallback&lt;void&gt;): void | Inserts and updates data.| 
 | on(event: 'dataChange', type: SubscribeType, listener: Callback&lt;ChangeNotification&gt;): void | Subscribes to data changes in the KV store.| 
 | get(key: string, callback: AsyncCallback&lt;boolean \| string \| number \| Uint8Array&gt;): void | Queries the value of the specified key.| 
 | sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void | Triggers a manual sync of the KV store.| 
@@ -95,30 +99,30 @@ The following uses a single KV store as an example to describe how to implement 
 
 > **NOTE**
 >
-> The data on a device can be synced only to the devices whose data security labels are not higher than the security level of the device. For details, see [Access Control Mechanism in Cross-Device Sync](sync-app-data-across-devices-overview.md#access-control-mechanism-in-cross-device-sync).
+> The security level of the destination device (to which data is synced) cannot be higher than that of the source device. For details, see [Access Control Mechanism in Cross-Device Sync](access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-sync).
 
 1. Import the module.
      
    ```ts
-   import distributedKVStore from '@ohos.data.distributedKVStore';
+   import { distributedKVStore } from '@kit.ArkData';
    ```
 
 2. Request permissions.
 
-   a) Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
-   b) Display a dialog box to ask for user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
+   (1) Declare the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+   (2) Display a dialog box to ask for user authorization when the application is started for the first time. For details, see [Requesting User Authorization](../security/AccessToken/request-user-authorization.md).
 
 3. Create a **KvManager** instance based on the specified **KvManagerConfig** object.
 
-   a) Create a **kvManagerConfig** object based on the application context.
-   b) Create a **KvManager** instance.
+   (1) Create a **kvManagerConfig** object based on the application context.
+   (2) Create a **KvManager** instance.
 
      
    ```ts
    // Obtain the context of the stage model.
-   import window from '@ohos.window';
-   import UIAbility from '@ohos.app.ability.UIAbility';
-   import { BusinessError } from '@ohos.base';
+   import { window } from '@kit.ArkUI';
+   import { UIAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let kvManager: distributedKVStore.KVManager | undefined = undefined;
    
@@ -129,8 +133,8 @@ The following uses a single KV store as an example to describe how to implement 
    }
     
     // Obtain the context of the FA model.
-   import featureAbility from '@ohos.ability.featureAbility';
-   import { BusinessError } from '@ohos.base';
+   import { featureAbility } from '@kit.AbilityKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
     
    let context = featureAbility.getContext();
    
@@ -157,22 +161,42 @@ The following uses a single KV store as an example to describe how to implement 
 
 4. Obtain the KV store of the specified type.
 
-   a) Declare the ID of the distributed KV store to create, for example, **'storeId'** in the sample code.
-   b) Disable the auto sync function (**autoSync:false**) to facilitate subsequent verification of the sync function. If sync is required, call the **sync()** interface.
+   (1) Declare the ID of the distributed KV store to create, for example, **'storeId'** in the sample code.
+   (2) Disable the auto sync function (**autoSync:false**) to facilitate subsequent verification of the sync function. If sync is required, call the **sync()** interface.
 
      
    ```ts
    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
    try {
+     let child1 = new distributedKVStore.FieldNode('id');
+     child1.type = distributedKVStore.ValueType.INTEGER;
+     child1.nullable = false;
+     child1.default = '1';
+     let child2 = new distributedKVStore.FieldNode('name');
+     child2.type = distributedKVStore.ValueType.STRING;
+     child2.nullable = false;
+     child2.default = 'zhangsan';
+
+     let schema = new distributedKVStore.Schema();
+     schema.root.appendChild(child1);
+     schema.root.appendChild(child2);
+     schema.indexes = ['$.id', '$.name'];
+     // The value 0 indicates the compatible mode, and 1 indicates the strict mode.
+     schema.mode = 1;
+     // Set the number of bytes to be skipped during the value check. The value range is [0, 4M-2].
+     schema.skip = 0;
+
      const options: distributedKVStore.Options = {
        createIfMissing: true,
        encrypt: false,
        backup: false,
        autoSync: false,
        // If kvStoreType is left empty, a device KV store is created by default.
-       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
        // Device KV store: kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
-       securityLevel: distributedKVStore.SecurityLevel.S1
+       kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+       // The schema parameter is optional. You need to set this parameter when the schema function is required, for example, when predicates are used for query.
+       schema: schema,
+       securityLevel: distributedKVStore.SecurityLevel.S3
      };
      kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
        if (err) {
@@ -209,13 +233,14 @@ The following uses a single KV store as an example to describe how to implement 
 
 6. Write data to the single KV store.
 
-   a) Construct the key and value to be written to the single KV store.
-   b) Write KV pairs to the single KV store.
+   (1) Construct the key and value to be written to the single KV store.
+   (2) Write KV pairs to the single KV store.
 
      
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
+   // If schema is not defined, pass in other values that meet the requirements.
+   const VALUE_TEST_STRING_ELEMENT = '{"id":0, "name":"lisi"}';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -232,13 +257,11 @@ The following uses a single KV store as an example to describe how to implement 
 
 7. Query data in the single KV store.
 
-   a) Construct the key to be queried from the single KV store.
-   b) Query data from the single KV store.
+   (1) Construct the key to be queried from the single KV store.
+   (2) Query data from the single KV store.
 
      
    ```ts
-   const KEY_TEST_STRING_ELEMENT = 'key_test_string';
-   const VALUE_TEST_STRING_ELEMENT = 'value_test_string';
    try {
      kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, (err) => {
        if (err !== undefined) {
@@ -270,12 +293,12 @@ The following uses a single KV store as an example to describe how to implement 
    > In manual sync mode, **deviceIds** can be obtained by [devManager.getAvailableDeviceListSync](../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md#getavailabledevicelistsync).
 
    ```ts
-   import deviceManager from '@ohos.distributedDeviceManager';
+   import { distributedDeviceManager } from '@kit.DistributedServiceKit';
     
-   let devManager: deviceManager.DeviceManager;
+   let devManager: distributedDeviceManager.DeviceManager;
    try {
      // create deviceManager
-     devManager = deviceManager.createDeviceManager(context.applicationInfo.name);
+     devManager = distributedDeviceManager.createDeviceManager(context.applicationInfo.name);
      // deviceIds is obtained by devManager.getAvailableDeviceListSync.
      let deviceIds: string[] = [];
      if (devManager != null) {

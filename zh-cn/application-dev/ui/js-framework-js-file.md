@@ -2,7 +2,7 @@
 
 ## 应用生命周期
 
-每个应用可以在app.js自定义应用级[生命周期](../ui/js-framework-lifecycle.md)的实现逻辑，以下示例仅在生命周期函数中打印对应日志：
+每个应用可以在app.js自定义应用级[生命周期](js-framework-lifecycle.md)的实现逻辑，以下示例仅在生命周期函数中打印对应日志：
 ```js
 // app.js
 export default {
@@ -28,7 +28,7 @@ export default {
 // app.js
 export default {
     data: {
-        test: "by getAPP"
+        test: "by getApp"
     },
     onCreate() {
         console.info('AceApplication onCreate');
@@ -36,7 +36,7 @@ export default {
     onDestroy() {
         console.info('AceApplication onDestroy');
     },
-};
+}
 ```
 
 ```js

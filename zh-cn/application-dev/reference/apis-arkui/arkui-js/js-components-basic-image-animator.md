@@ -17,7 +17,7 @@
 
 | 名称                     | 类型                         | 默认值      | 必填   | 描述                                       |
 | ---------------------- | -------------------------- | -------- | ---- | ---------------------------------------- |
-| images                 | Array&lt;ImageFrame&gt;    | -        | 是    | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg。ImageFrame的详细说明请见表 ImageFrame说明。<br/>使用时需要使用数据绑定的方式：<br>- hml文件中引用图片资源：`images = {{images}}`，<br>- js文件中声明相应变量：<br>`images: [{src: "/common/heart-rate01.png",duration:"100"}]`。从API Version 6 开始，支持配置每一帧图片的时长，单位毫秒。 |
+| images                 | Array&lt;ImageFrame&gt;    | -        | 是    | 设置图片帧信息集合。每一帧的帧信息包含图片路径、图片大小和图片位置信息。目前支持以下图片格式：png、jpg。ImageFrame的详细说明请见表 ImageFrame说明。<br/>使用时需要使用数据绑定的方式：<br>- hml文件中引用图片资源：`images = {{images}}`，<br>- js文件中声明相应变量：<br>`images: [{src: "/common/heart-rate01.png",duration:"100"}]`。从API version 6开始，支持配置每一帧图片的时长，单位毫秒。 |
 | predecode<sup>6+</sup> | number                     | 0        | 否    | 是否启用预解码，默认值为0，即不启用预解码，如该值设为2，则播放当前页时会提前加载后面两张图片至缓存以提升性能。 |
 | iteration              | number&nbsp;\|&nbsp;string | infinite | 否    | 设置帧动画播放次数。number表示固定次数，infinite枚举表示无限次数播放。 |
 | reverse                | boolean                    | false    | 否    | 设置播放顺序。false表示从第1张图片播放到最后1张图片；&nbsp;true表示从最后1张图片播放到第1张图片。 |
@@ -29,7 +29,7 @@
 
 | 名称                    | 类型             | 默认值  | 必填   | 描述                     |
 | --------------------- | -------------- | ---- | ---- | ---------------------- |
-| src                   | &lt;uri&gt;    | -    | 是    | 图片路径，图片格式为svg，png和jpg。 |
+| src                   | &lt;uri&gt;    | -    | 是    | 图片路径，图片格式支持svg、png、jpg和heif。 |
 | width                 | &lt;length&gt; | 0    | 否    | 图片宽度。                  |
 | height                | &lt;length&gt; | 0    | 否    | 图片高度。                  |
 | top                   | &lt;length&gt; | 0    | 否    | 图片相对于组件左上角的纵向坐标。       |
@@ -64,7 +64,7 @@
 | pause    | -    | 暂停播放图片帧动画。                               |
 | stop     | -    | 停止播放图片帧动画。                               |
 | resume   | -    | 继续播放图片帧。                                 |
-| getState | -    | 获取播放状态。<br/>-&nbsp;playing：播放中<br/>-&nbsp;paused：已暂停<br/>-&nbsp;stopped：已停止。 |
+| getState | -    | 获取播放状态。<br/>-&nbsp;playing：播放中。<br/>-&nbsp;paused：已暂停。<br/>-&nbsp;stopped：已停止。 |
 
 
 ## 示例
@@ -117,61 +117,61 @@ export default {
   data: {
     frames: [
       {
-        src: "/common/asserts/heart78.png",
+        src: "/common/assets/heart78.png",
       },
       {
-        src: "/common/asserts/heart79.png",
+        src: "/common/assets/heart79.png",
       },
       {
-        src: "/common/asserts/heart80.png",
+        src: "/common/assets/heart80.png",
       },
       {
-        src: "/common/asserts/heart81.png",
+        src: "/common/assets/heart81.png",
       },
       {
-        src: "/common/asserts/heart82.png",
+        src: "/common/assets/heart82.png",
       },
       {
-        src: "/common/asserts/heart83.png",
+        src: "/common/assets/heart83.png",
       },
       {
-        src: "/common/asserts/heart84.png",
+        src: "/common/assets/heart84.png",
       },
       {
-        src: "/common/asserts/heart85.png",
+        src: "/common/assets/heart85.png",
       },
       {
-        src: "/common/asserts/heart86.png",
+        src: "/common/assets/heart86.png",
       },
       {
-        src: "/common/asserts/heart87.png",
+        src: "/common/assets/heart87.png",
       },
       {
-        src: "/common/asserts/heart88.png",
+        src: "/common/assets/heart88.png",
       },
       {
-        src: "/common/asserts/heart89.png",
+        src: "/common/assets/heart89.png",
       },
       {
-        src: "/common/asserts/heart90.png",
+        src: "/common/assets/heart90.png",
       },
       {
-        src: "/common/asserts/heart91.png",
+        src: "/common/assets/heart91.png",
       },
       {
-        src: "/common/asserts/heart92.png",
+        src: "/common/assets/heart92.png",
       },
       {
-        src: "/common/asserts/heart93.png",
+        src: "/common/assets/heart93.png",
       },
       {
-        src: "/common/asserts/heart94.png",
+        src: "/common/assets/heart94.png",
       },
       {
-        src: "/common/asserts/heart95.png",
+        src: "/common/assets/heart95.png",
       },
       {
-        src: "/common/asserts/heart96.png",
+        src: "/common/assets/heart96.png",
       },
     ],
   },

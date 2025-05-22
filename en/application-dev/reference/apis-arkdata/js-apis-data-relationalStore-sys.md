@@ -18,17 +18,30 @@ The **relationalStore** module provides the following functions:
 ## Modules to Import
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
+import { relationalStore } from '@kit.ArkData';
 ```
 
 ## StoreConfig
 
-Defines the RDB store configuration.
+Defines the configuration of an RDB store.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Name       | Type         | Mandatory| Description                                                     |
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
-| isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
-| vector<sup>12+</sup> | boolean | No| Whether the RDB store is a vector database. The value **true** means the RDB store is a vector database, and the value **false** means the opposite.<br>The vector database is ideal for storing and managing high-dimensional vector data, while the relational database is optimal for storing and processing structured data.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12. Currently, the [execute](js-apis-data-relationalStore.md#execute12-1), [querySql](js-apis-data-relationalStore.md#querysql-1), [beginTrans](js-apis-data-relationalStore.md#begintrans12), [commit](js-apis-data-relationalStore.md#commit12), [rollback](js-apis-data-relationalStore.md#rollback12), and [ResultSet](js-apis-data-relationalStore.md#resultset) APIs support vector databases.<br>**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core|
+| isSearchable<sup>11+</sup> | boolean | No| Whether the RDB store is searchable. The value **true** means the RDB store is searchable; the value **false** means the opposite. The default value is **false**.<br>**System API**: This is a system API.<br>This parameter is supported since API version 11.|
+| haMode<sup>12+</sup> | [HAMode](#hamode12) | No| High availability (HA) mode.<br>The value **SINGLE** means data can be written only to a single RDB store. The value **MAIN_REPLICA** means data can be written to the main and replica RDB stores to ensure HA. However, this mode is not supported in encryption and attach scenarios. The default value is **SINGLE**. The value **MAIN_REPLICA** may affect the database write performance.<br>**System API**: This is a system API.<br>This parameter is supported since API version 12.<br>|
+
+## HAMode<sup>12+</sup>
+
+Enumerates the HA modes of an RDB store.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| Name                             | Value  | Description            |
+| ------------------------------- | --- | -------------- |
+| SINGLE      | 0 | Allows data to be written to a single RDB store.     |
+| MAIN_REPLICA | 1 | Allows data to be written to the main and replica RDB stores for HA. This mode is not supported in encryption and attach scenarios.|
 
 ## Reference<sup>11+</sup>
 
@@ -40,8 +53,8 @@ Represents the reference between tables by field. If table **b** references tabl
 
 | Name      | Type  | Mandatory| Description                                    |
 | ---------- | ------ | ---- | ---------------------------------------- |
-| sourceTable | string | Yes  | Source table.  |
-| targetTable | string | Yes  | Target table.  |
+| sourceTable | string | Yes  | Name of the table referenced.  |
+| targetTable | string | Yes  | Name of the table that references the source table.  |
 | refFields   | Record<string, string> | Yes  | Fields referenced. In a KV pair, the key indicates the field in the source table, and the value indicates the field in the target table.      |
 
 ## DistributedConfig<sup>10+</sup>
@@ -78,22 +91,41 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 | table      | string                                                       | Yes  | Name of the target table.                                            |
 | values     | [ValuesBucket](js-apis-data-relationalStore.md#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Update conditions specified by the **DataSharePredicates** object.               |
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of rows updated.                  |
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of rows updated.                  |
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| **ID**| **Error Message**                                                |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates'
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
+import { dataSharePredicates } from '@kit.ArkData';
+import { ValuesBucket } from '@kit.ArkData';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -161,19 +193,38 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| **ID**| **Error Message**                                                |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { ValuesBucket } from '@ohos.data.ValuesBucket';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { ValuesBucket } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let value1 = "Rose";
 let value2 = 22;
@@ -227,23 +278,42 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 
 | Name    | Type                                                        | Mandatory| Description                                         |
 | ---------- | ------------------------------------------------------------ | ---- | --------------------------------------------- |
-| table      | string                                                       | Yes  | Name of the target table.                             |
+| table      | string                                                       | Yes  | Name of the target table, which cannot be an empty string.             |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data.|
-| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of rows deleted.     |
+| callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback used to return the number of rows deleted.     |
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| **ID**| **Error Message**                                                |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
@@ -285,18 +355,37 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                |
-| ------------ | -------------------------------------------- |
-| 14800047     | The WAL file size exceeds the default limit. |
-| 14800000     | Inner error.                                 |
+| **ID**| **Error Message**     |
+|-----------| --------------------- |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+| 14800047  | The WAL file size exceeds the default limit. |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
@@ -327,20 +416,24 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 | ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | table      | string                                                       | Yes  | Name of the target table.                                           |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**          |
+|-----------| ------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -384,20 +477,24 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 | table      | string                                                       | Yes  | Name of the target table.                                           |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Query conditions specified by the **DataSharePredicates** object.              |
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**     |
+|-----------| --------------- |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
+import { dataSharePredicates } from '@kit.ArkData';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -450,17 +547,21 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                |
-| ------------ | ---------------------------- |
-| 14800000     | Inner error.                 |
+| **ID**| **Error Message**        |
+|-----------| ----------- |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 14800000  | Inner error. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
 
 **Example**
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { BusinessError } from "@ohos.base";
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
@@ -489,6 +590,12 @@ cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;Progr
 
 Manually performs device-cloud sync based on specified conditions. This API uses an asynchronous callback to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
 
+> **NOTE**
+>
+> Since API version 18, you can specify assets in predicates when performing manual device-cloud sync. In this case, the sync mode must be **relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST**.
+>
+> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit of 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
+
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
 **System API**: This is a system API.
@@ -499,10 +606,21 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 |-------------|--------------------------------| ---- |-------------------------------|
 | mode        | [SyncMode](js-apis-data-relationalStore.md#syncmode)          | Yes  | Sync mode of the database.                  |
 | predicates  | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                  | Yes  | Conditions for data sync.                 |
-| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#details10)&gt; | Yes  | Callback invoked to process database sync details.          |
-| callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback invoked to send the sync result to the caller.|
+| progress    | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.          |
+| callback    | AsyncCallback&lt;void&gt;      | Yes  | Callback used to return the sync result to the caller.|
 
-**Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**    |
+|-----------|--------------|
+| 202       | if permission verification failed, application which is not a system application uses system API. |
+| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. 6.The callback must be a function.|
+| 801       | Capability not supported.  |
+| 14800014  | Already closed.      |
+
+**Example 1**: Manually sync data on the local device with the cloud.
 
 ```ts
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -520,12 +638,46 @@ if(store != undefined) {
   });
 };
 ```
+**Example 2**: Download the specified asset.
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let asset : relationalStore.Asset = {
+  name: "name",
+  uri: "uri",
+  path: "path",
+  createTime: new Date().getTime().toString(),
+  modifyTime: new Date().getTime().toString(),
+  size: "1024"
+}
+// Specify the primary key and asset (asset column in the database) in the predicates.
+predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+   }, (err) => {
+     if (err) {
+       console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+       return;
+     }
+     console.info('cloud sync succeeded');
+  });
+};
+```
 
 ### cloudSync<sup>11+</sup>
 
 cloudSync(mode: SyncMode, predicates: RdbPredicates, progress: Callback&lt;ProgressDetails&gt;): Promise&lt;void&gt;
 
 Manually performs device-cloud sync based on specified conditions. This API uses a promise to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
+
+> **NOTE**
+>
+> Since API version 18, you can specify assets in predicates when performing manual device-cloud sync. In this case, the sync mode must be **relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST**.
+>
+> When specifying the predicates, you can use the primary key (mandatory) and asset (optional) as sync conditions. If assets are specified, the predicate supports only [equalTo](js-apis-data-relationalStore.md#equalto), with a limit of 50 assets. If more assets are involved, you are advised to use only the primary key as the sync condition.
 
 **System capability**: SystemCapability.DistributedDataManager.CloudSync.Client
 
@@ -537,7 +689,7 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 |------------|---------------------------------| ---- |---------------------|
 | mode       | [SyncMode](js-apis-data-relationalStore.md#syncmode)           | Yes  | Sync mode of the database.        |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)                   | Yes  | Conditions for data sync.               |
-| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback invoked to process database sync details.|
+| progress   | Callback&lt;[ProgressDetails](js-apis-data-relationalStore.md#progressdetails10)&gt; | Yes  | Callback used to process database sync details.|
 
 **Return value**
 
@@ -545,10 +697,21 @@ Manually performs device-cloud sync based on specified conditions. This API uses
 | ------------------- | --------------------------------------- |
 | Promise&lt;void&gt; | Promise used to return the sync result.|
 
-**Example**
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+|-----------|---------------------------|
+| 202       | if permission verification failed, application which is not a system application uses system API.  |
+| 401       | Parameter error. Possible causes: 1. Need 2 - 4  parameter(s). 2. The RdbStore must be not nullptr. 3. The mode must be a SyncMode of cloud. 4. The tablesNames must be not empty. 5. The progress must be a callback type. |
+| 801       | Capability not supported.       |
+| 14800014  | Already closed.      |
+
+**Example 1**: Manually sync data on the local device with the cloud.
 
 ```ts
-import {BusinessError} from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.in("id", ["id1", "id2"]);
@@ -557,6 +720,32 @@ if(store != undefined) {
   (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
     console.info(`progress: ${progressDetail}`);
   }).then(() => {
+    console.info('cloud sync succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`cloud sync failed, code is ${err.code},message is ${err.message}}`);
+  });
+};
+```
+**Example 2**: Download the specified asset.
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+let asset : relationalStore.Asset = {
+  name: "name",
+  uri: "uri",
+  path: "path",
+  createTime: new Date().getTime().toString(),
+  modifyTime: new Date().getTime().toString(),
+  size: "1024"
+}
+// Specify the primary key and asset (asset column in the database) in the predicates.
+predicates.beginWrap().equalTo("id", "id1").and().equalTo("asset", asset).endWrap();
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).cloudSync(relationalStore.SyncMode.SYNC_MODE_CLOUD_FIRST, predicates, (progressDetail: relationalStore.ProgressDetails) => {
+    console.info(`progress: ${progressDetail}`);
+   }).then(() => {
     console.info('Cloud sync succeeded');
   }).catch((err: BusinessError) => {
     console.error(`cloudSync failed, code is ${err.code},message is ${err.message}}`);
@@ -589,16 +778,35 @@ Queries the shared resource of the data matching the specified conditions. This 
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                          |
-| ------------ | -------------------------------------- |
-| 14800000     | Inner error.                           |
+| **ID**| **Error Message**          |
+|-----------|-------------|
+| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
+| 801       | Capability not supported.       |
+| 14800000  | Inner error.                      |
+| 14800011  | Database corrupted.           |
+| 14800014  | Already closed.                        |
+| 14800015  | The database does not respond.          |
+| 14800021  | SQLite: Generic error.             |
+| 14800022  | SQLite: Callback routine requested an abort.          |
+| 14800023  | SQLite: Access permission denied.         |
+| 14800024  | SQLite: The database file is locked.         |
+| 14800025  | SQLite: A table in the database is locked.           |
+| 14800026  | SQLite: The database is out of memory.            |
+| 14800027  | SQLite: Attempt to write a readonly database.         |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.             |
+| 14800029  | SQLite: The database is full.           |
+| 14800030  | SQLite: Unable to open the database file.        |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.           |
+| 14800032  | SQLite: Abort due to constraint violation.        |
+| 14800033  | SQLite: Data type mismatch.             |
+| 14800034  | SQLite: Library used incorrectly.          |
 
 **Example**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sharingResource: string;
 let predicates = new relationalStore.RdbPredicates('test_table');
@@ -634,15 +842,35 @@ Queries the shared resource of the data matching the specified conditions. This 
 | Name  | Type                                                 | Mandatory| Description                                              |
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates)              | Yes  | Query conditions.          |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result set.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback used to return the result set.|
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                          |
-| ------------ | -------------------------------------- |
-| 14800000     | Inner error.                           |
+| **ID**| **Error Message**     |
+|-----------|------|
+| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
+| 801       | Capability not supported.                 |
+| 14800000  | Inner error.          |
+| 14800011  | Database corrupted.       |
+| 14800014  | Already closed.      |
+| 14800015  | The database does not respond.        |
+| 14800021  | SQLite: Generic error.        |
+| 14800022  | SQLite: Callback routine requested an abort.         |
+| 14800023  | SQLite: Access permission denied.                    |
+| 14800024  | SQLite: The database file is locked.            |
+| 14800025  | SQLite: A table in the database is locked.           |
+| 14800026  | SQLite: The database is out of memory.           |
+| 14800027  | SQLite: Attempt to write a readonly database.            |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.         |
+| 14800029  | SQLite: The database is full.       |
+| 14800030  | SQLite: Unable to open the database file.       |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.         |
+| 14800032  | SQLite: Abort due to constraint violation.      |
+| 14800033  | SQLite: Data type mismatch.         |
+| 14800034  | SQLite: Library used incorrectly.     |
+
 
 **Example**
 
@@ -684,15 +912,35 @@ Queries the shared resource of the data matching the specified conditions. This 
 | -------- | ----------------------------------------------------- | ---- | -------------------------------------------------- |
 | predicates | [RdbPredicates](js-apis-data-relationalStore.md#rdbpredicates) | Yes  | Query conditions.          |
 | columns    | Array&lt;string&gt;              | Yes  | Columns to be searched for.          |
-| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | Yes  | Callback invoked to return the result set.|
+| callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt;  | Yes  | Callback used to return the result set.|
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                          |
-| ------------ | -------------------------------------- |
-| 14800000     | Inner error.                           |
+| **ID**| **Error Message**      |
+|-----------|--------------|
+| 401       | Parameter error. Possible causes: 1. Need 1 - 3  parameter(s)! 2. The RdbStore must be not nullptr. 3. The predicates must be an RdbPredicates. 4. The columns must be a string array. |
+| 801       | Capability not supported.       |
+| 14800000  | Inner error.            |
+| 14800011  | Database corrupted.         |
+| 14800014  | Already closed.          |
+| 14800015  | The database does not respond.          |
+| 14800021  | SQLite: Generic error.           |
+| 14800022  | SQLite: Callback routine requested an abort.    |
+| 14800023  | SQLite: Access permission denied.     |
+| 14800024  | SQLite: The database file is locked.     |
+| 14800025  | SQLite: A table in the database is locked.       |
+| 14800026  | SQLite: The database is out of memory.      |
+| 14800027  | SQLite: Attempt to write a readonly database.    |
+| 14800028  | SQLite: Some kind of disk I/O error occurred.       |
+| 14800029  | SQLite: The database is full.       |
+| 14800030  | SQLite: Unable to open the database file.       |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit.      |
+| 14800032  | SQLite: Abort due to constraint violation.       |
+| 14800033  | SQLite: Data type mismatch.        |
+| 14800034  | SQLite: Library used incorrectly.          |
+
 
 **Example**
 
@@ -718,15 +966,155 @@ if(store != undefined) {
 
 ```
 
+
+### lockCloudContainer<sup>12+</sup>
+
+lockCloudContainer(): Promise&lt;number&gt;
+
+Manually locks the cloud database of an application. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> After the cloud database is locked, data of the same application logged in with the same account on other devices cannot be synced to the cloud. The cloud sync function must be implemented. Otherwise, this API cannot be used.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type               | Description                                   |
+| ------------------- | ---------------------------------------|
+| Promise&lt;number&gt; | Promise used to return the lock validity period (in ms) if the operation is successful. If the operation fails, **0** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**           |
+|-----------|---------------------------|
+| 202       | Permission verification failed, application which is not a system application uses system API.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).lockCloudContainer().then((time: Number) => {
+    console.info('lockCloudContainer succeeded time:' + time);
+  }).catch((err: BusinessError) => {
+    console.error(`lockCloudContainer failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### unlockCloudContainer<sup>12+</sup>
+
+unlockCloudContainer(): Promise&lt;void&gt;
+
+Manually unlocks the cloud database of an application. This API uses a promise to return the result. The cloud sync function must be implemented. Otherwise, this API cannot be used.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type               | Description                                   |
+| ------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| **ID**| **Error Message**           |
+|-----------|---------------------------|
+| 202       | Permission verification failed, application which is not a system application uses system API.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+if(store != undefined) {
+  (store as relationalStore.RdbStore).unlockCloudContainer().then(() => {
+    console.info('unlockCloudContainer succeeded');
+  }).catch((err: BusinessError) => {
+    console.error(`unlockCloudContainer failed, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
+### restore<sup>12+</sup>
+
+restore(): Promise&lt;void&gt;
+
+Restores data from a replica RDB store file. This API uses a promise to return the result. This API can be used only when [HAMode](#hamode12) is **MAIN_REPLICA**, and cannot be used in transactions.
+
+**System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                                |
+|-----------| ------------------------------------------------------------ |
+| 202       | Permission verification failed, application which is not a system application uses system API. |
+| 14800000  | Inner error. |
+| 14800010  | Invalid database path. |
+| 14800011  | Database corrupted. |
+| 14800014  | Already closed. |
+| 14800015  | The database does not respond. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let store: relationalStore.RdbStore | undefined = undefined;
+if(store != undefined) {
+  let promiseRestore = (store as relationalStore.RdbStore).restore();
+  promiseRestore.then(() => {
+    console.info('Succeeded in restoring.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to restore, code is ${err.code},message is ${err.message}`);
+  })
+}
+```
+
 ## ResultSet
 
-Provides APIs to access the result set obtained by querying the RDB store. A result set is a set of results returned by **query()**.
+Provides APIs to access the **resultSet** object returned by **query()**.
 
 ### getFloat32Array<sup>12+</sup>
 
 getFloat32Array(columnIndex: number): Float32Array
 
-Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector database](#storeconfig).
+Obtains the value from the specified column in the current row and outputs it in a Float32Array (array of 32-bit floating-point numbers). This API is available only for a [vector store](#storeconfig).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -744,12 +1132,29 @@ Obtains the value from the specified column in the current row and outputs it in
 
 **Error codes**
 
-For details about the error codes, see [RDB Error Codes](errorcode-data-rdb.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [RDB Store Error Codes](errorcode-data-rdb.md).
 
-| **ID**| **Error Message**                                                |
-| ------------ | ------------------------------------------------------------ |
-| 14800011     | Failed to open database by database corrupted. |
-| 14800013     | The column value is null or the column type is incompatible. |
+| **ID**| **Error Message**         |
+|-----------| ------------ |
+| 401       | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801       | The capability is not supported because the database is not a vector DB. |
+| 14800011  | Database corrupted. |
+| 14800013  | Column out of bounds. |
+| 14800014  | Already closed. |
+| 14800021  | SQLite: Generic error. |
+| 14800022  | SQLite: Callback routine requested an abort. |
+| 14800023  | SQLite: Access permission denied. |
+| 14800024  | SQLite: The database file is locked. |
+| 14800025  | SQLite: A table in the database is locked. |
+| 14800026  | SQLite: The database is out of memory. |
+| 14800027  | SQLite: Attempt to write a readonly database. |
+| 14800028  | SQLite: Some kind of disk I/O error occurred. |
+| 14800029  | SQLite: The database is full. |
+| 14800030  | SQLite: Unable to open the database file. |
+| 14800031  | SQLite: TEXT or BLOB exceeds size limit. |
+| 14800032  | SQLite: Abort due to constraint violation. |
+| 14800033  | SQLite: Data type mismatch. |
+| 14800034  | SQLite: Library used incorrectly. |
 
 **Example**
 

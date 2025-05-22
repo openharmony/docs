@@ -4,7 +4,7 @@ The **Router** module provides APIs to access pages through URIs.
 
 > **NOTE**
 >
-> - The APIs of this module are no longer maintained since API version 8. You are advised to use [`@ohos.router`](js-apis-router.md) instead.
+> - The APIs of this module are no longer maintained since API version 8. You are advised to use [@ohos.router](js-apis-router.md) instead.
 >
 >
 > - The initial APIs of this module are supported since API version 3. Newly added APIs will be marked with a superscript to indicate their earliest API version.
@@ -66,7 +66,8 @@ class B{
 export default new B()
 ```
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The page routing stack supports a maximum of 32 pages.
 
 
@@ -193,7 +194,8 @@ class H{
 export default new H()
 ```
 
-> **NOTE**<br>
+> **NOTE**
+>
 > In the example, the **uri** field indicates the page route, which is specified by the **pages** list in the **config.json** file.
 
 ## router.getParams<sup>7+</sup>

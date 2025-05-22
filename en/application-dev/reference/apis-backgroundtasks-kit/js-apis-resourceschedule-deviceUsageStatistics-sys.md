@@ -11,7 +11,7 @@ The **usageStatistics** module provides APIs for collecting statistics on device
 ## Modules to Import
 
 ```
-import usageStatistics from '@ohos.resourceschedule.usageStatistics'
+import { usageStatistics } from '@kit.BackgroundTasksKit'
 ```
 
 ## usageStatistics.isIdleState
@@ -33,10 +33,14 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                    |
-| ---------- | ----------------------------     |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -45,7 +49,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 
 **Example**
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.isIdleState("com.ohos.camera", (err: BusinessError, res: boolean) => {
   if (err) {
@@ -80,10 +84,14 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                    |
-| ---------- | ----------------------------     |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -93,7 +101,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.isIdleState("com.ohos.camera").then((res: boolean) => {
   console.log('BUNDLE_ACTIVE isIdleState promise succeeded, result: ' + JSON.stringify(res));
@@ -125,10 +133,14 @@ Checks whether an application is commonly used (with the value of **GroupType** 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                    |
-| ---------- | ----------------------------     |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.         |
 | 10000002   | Parcel operation failed.         |
 | 10000003   | System service operation failed. |
@@ -146,6 +158,8 @@ queryAppGroup(): Promise&lt;number&gt;
 
 Queries the priority group of this application. This API uses a promise to return the result.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **Return value**
@@ -156,10 +170,14 @@ Queries the priority group of this application. This API uses a promise to retur
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -171,7 +189,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryAppGroup().then((res: number) => {
   console.log('BUNDLE_ACTIVE queryAppGroup promise succeeded. result: ' + JSON.stringify(res));
@@ -186,6 +204,8 @@ queryAppGroup(callback: AsyncCallback&lt;number&gt;): void
 
 Queries the priority group of this application. This API uses an asynchronous callback to return the result.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **Parameters**
@@ -196,10 +216,14 @@ Queries the priority group of this application. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -211,7 +235,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryAppGroup((err: BusinessError, res: number) => {
   if(err) {
@@ -228,6 +252,8 @@ queryAppGroupSync(): number
 
 Queries the priority group of this application. This API returns the result synchronously.
 
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
 **System capability**: SystemCapability.ResourceSchedule.UsageStatistics.AppGroup
 
 **Return value**
@@ -238,10 +264,14 @@ Queries the priority group of this application. This API returns the result sync
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -280,10 +310,14 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -296,7 +330,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 
 ```javascript
 // Promise mode when bundleName is specified
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName).then((res: number) => {
@@ -325,10 +359,14 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -340,7 +378,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = "com.ohos.camera";
 usageStatistics.queryAppGroup(bundleName, (err: BusinessError, res: number) => {
@@ -376,10 +414,14 @@ Queries the priority group of the application specified by **bundleName**. This 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -419,10 +461,14 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -433,7 +479,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = "com.example.deviceUsageStatistics";
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
@@ -465,10 +511,14 @@ Sets a new group for the application specified by **bundleName**. This API uses 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -479,7 +529,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bundleName: string = "com.example.deviceUsageStatistics";
 let newGroup = usageStatistics.GroupType.DAILY_GROUP;
@@ -513,10 +563,14 @@ Queries the application usage duration statistics based on the specified start t
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -527,7 +581,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfos(0, 20000000000000, (err: BusinessError, res:usageStatistics.BundleStatsMap) => {
   if (err) {
@@ -564,10 +618,14 @@ Queries the application usage duration statistics based on the specified start t
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -578,13 +636,118 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfos(0, 20000000000000).then((res:usageStatistics.BundleStatsMap) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise success.');
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise result ' + JSON.stringify(res));
 }).catch((err: BusinessError) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryAppStatsInfos<sup>15+</sup>
+
+queryAppStatsInfos(begin: number, end: number): Promise&lt;AppStatsMap&gt;
+
+Queries the application usage duration statistics based on the specified start time and end time, with the minimum granularity of a day. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| begin | number | Yes   | Start time, in milliseconds.|
+| end   | number | Yes   | End time, in milliseconds.|
+
+**Return value**
+
+| Type                                      | Description                                    |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[AppStatsMap](#appstatsmap15)&gt; | Promise used to return the application usage details in a specified period.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+usageStatistics.queryAppStatsInfos(0, 20000000000000).then((res:usageStatistics.AppStatsMap) => {
+  console.log('queryAppStatsInfos promise success.');
+  console.log('queryAppStatsInfos promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('queryAppStatsInfos promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+```
+
+## usageStatistics.queryLastUseTime<sup>15+</sup>
+
+queryLastUseTime(appInfo: Record&lt;string, Array&lt;number&gt;&gt;): Promise&lt;AppStatsMap&gt;
+
+Queries application usage details based on the specified bundle name and application index. The minimum granularity is day. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.BUNDLE_ACTIVE_INFO
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| appInfo | Record&lt;string, Array&lt;number&gt;&gt; | Yes   | The parameter is in the map structure. The key is the bundle name, and the value is the index of the queried application. Multiple indexes can be transferred through the array.|
+
+**Return value**
+
+| Type                                      | Description                                    |
+| ---------------------------------------- | -------------------------------------- |
+| Promise&lt;[AppStatsMap](#appstatsmap15)&gt; | Promise used to return the detailed information about the application with the specified bundle name and index.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
+| 10000001   | Memory operation failed.           |
+| 10000002   | Parcel operation failed.           |
+| 10000003   | System service operation failed.   |
+| 10000004   | IPC failed.          |
+| 10000006   | Failed to get the application information.       |
+| 10000007   | Failed to get the system time.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+usageStatistics.queryLastUseTime({"com.huawei.hmos.ailife": [0]}).then((res:usageStatistics.AppStatsMap) => {
+  console.log('queryLastUseTime promise success.');
+  console.log('queryLastUseTime promise result ' + JSON.stringify(res));
+}).catch((err: BusinessError) => {
+  console.log('queryLastUseTime promise failed. code is: ' + err.code + ',message is: ' + err.message);
 });
 ```
 
@@ -609,10 +772,14 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -623,7 +790,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleStatsInfo>) => {
   if (err) {
@@ -664,10 +831,14 @@ Queries the application usage duration statistics in the specified time frame at
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -678,7 +849,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleStatsInfoByInterval(0, 0, 20000000000000).then((res: Array<usageStatistics.BundleStatsInfo>) => {
   console.log('BUNDLE_ACTIVE queryBundleStatsInfoByInterval promise success.');
@@ -711,10 +882,14 @@ Queries events of all applications based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -725,7 +900,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
@@ -761,14 +936,18 @@ Queries events of all applications based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events.|
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events obtained.|
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -779,7 +958,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryBundleEvents promise success.');
@@ -810,10 +989,13 @@ Queries events of this application based on the specified start time and end tim
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -824,7 +1006,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.BundleEvents>) => {
   if (err) {
@@ -858,14 +1040,17 @@ Queries events of this application based on the specified start time and end tim
 
 | Type                                      | Description                                    |
 | ---------------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events.|
+| Promise&lt;Array&lt;[BundleEvents](#bundleevents)&gt;&gt; | Promise used to return the events obtained.|
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -876,7 +1061,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryCurrentBundleEvents(0, 20000000000000).then((res: Array<usageStatistics.BundleEvents>) => {
   console.log('BUNDLE_ACTIVE queryCurrentBundleEvents promise success.');
@@ -914,10 +1099,14 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -928,7 +1117,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryDeviceEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
   console.log('BUNDLE_ACTIVE queryDeviceEventStates promise success.');
@@ -958,10 +1147,14 @@ Queries statistics about system events (hibernation, wakeup, unlocking, and lock
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -972,7 +1165,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryDeviceEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
@@ -1009,10 +1202,14 @@ Queries the number of notifications from all applications based on the specified
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1023,7 +1220,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryNotificationEventStats(0, 20000000000000).then((res: Array<usageStatistics.DeviceEventStats>) => {
   console.log('BUNDLE_ACTIVE queryNotificationEventStats promise success.');
@@ -1053,10 +1250,14 @@ Queries the number of notifications from all applications based on the specified
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1067,7 +1268,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryNotificationEventStats(0, 20000000000000, (err: BusinessError, res: Array<usageStatistics.DeviceEventStats>) => {
   if(err) {
@@ -1099,10 +1300,14 @@ Queries FA usage records. This API uses a promise to return a maximum of 1000 FA
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1114,7 +1319,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 
 ```ts
 // Invocation when maxNum is not passed
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords().then((res: Array<usageStatistics.HapModuleInfo>) => {
   console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
@@ -1159,7 +1364,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords((err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
@@ -1198,10 +1403,14 @@ Queries a given number of usage records of unused HAP files for each application
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1212,7 +1421,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords(1000).then((res: Array<usageStatistics.HapModuleInfo>) => {
   console.log('BUNDLE_ACTIVE queryModuleUsageRecords promise succeeded');
@@ -1244,10 +1453,14 @@ Queries a given number of usage records of unused HAP files for each application
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                      |
-| ---------- | ----------------------------       |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.           |
 | 10000002   | Parcel operation failed.           |
 | 10000003   | System service operation failed.   |
@@ -1258,7 +1471,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.queryModuleUsageRecords(1000, (err: BusinessError, res: Array<usageStatistics.HapModuleInfo>) => {
   if(err) {
@@ -1297,10 +1510,14 @@ Registers a callback for application group changes. When an application group of
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1311,7 +1528,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
   console.log('BUNDLE_ACTIVE registerAppGroupCallBack RegisterGroupCallBack callback success.');
@@ -1347,10 +1564,14 @@ Registers a callback for application group changes. When an application group of
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1361,7 +1582,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function onBundleGroupChanged(res: usageStatistics.AppGroupCallbackInfo) {
   console.log('BUNDLE_ACTIVE onBundleGroupChanged RegisterGroupCallBack callback success.');
@@ -1398,10 +1619,14 @@ Unregisters the callback for application group changes. This API uses a promise 
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1411,7 +1636,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.unregisterAppGroupCallBack().then( () => {
   console.log('BUNDLE_ACTIVE unregisterAppGroupCallBack promise succeeded.');
@@ -1438,10 +1663,14 @@ Unregisters the callback for application group changes. This API uses an asynchr
 
 **Error codes**
 
-For details about the error codes, see [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [DeviceUsageStatistics Error Codes](errorcode-DeviceUsageStatistics.md).
 
-| ID       | Error Message                         |
-| ---------- | ----------------------------          |
+| ID | Error Message            |
+| ---- | --------------------- |
+| 201  | Permission denied. |
+| 202  | Not System App. |
+| 401 | Parameter error. |
+| 801 | Capability not supported.|
 | 10000001   | Memory operation failed.              |
 | 10000002   | Parcel operation failed.              |
 | 10000003   | System service operation failed.      |
@@ -1451,7 +1680,7 @@ For details about the error codes, see [DeviceUsageStatistics Error Codes](error
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 usageStatistics.unregisterAppGroupCallBack((err: BusinessError) => {
   if(err) {
@@ -1530,6 +1759,7 @@ Provides the usage duration information of an application.
 | fgAbilityPrevAccessTime  | number | No   | Last time when the application accessed the foreground.|
 | infosBeginTime           | number | No   | Time logged in the first application usage record in the **BundleActiveInfo** object.|
 | infosEndTime             | number | No   | Time logged in the last application usage record in the **BundleActiveInfo** object.|
+| appIndex<sup>15+</sup>                 | number | No   | Application index.|
 
 ## BundleEvents
 
@@ -1555,6 +1785,16 @@ Provides the usage duration information of an application.
 |Name                          | Description                                      |
 | ------------------------------ | ---------------------------------------- |
 | Record<string, [BundleStatsInfo](#bundlestatsinfo)> | Usage duration information by application.|
+
+## AppStatsMap<sup>15+</sup>
+
+Provides the detailed usage information of an application (including application clones).
+
+**System capability**: SystemCapability.ResourceSchedule.UsageStatistics.App
+
+|Name                          | Description                                      |
+| ------------------------------ | ---------------------------------------- |
+| Record<string, Array<[BundleStatsInfo](#bundlestatsinfo)>> | Usage information by application (including application clones).|
 
 ## DeviceEventStats
 

@@ -13,26 +13,38 @@
 ## Modules to Import
 
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 ```
+
+## Properties
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+| Name| Type| Read-Only| Optional| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| context  | [AbilityStageContext](js-apis-inner-application-abilityStageContext.md) | No| No| Context of an AbilityStage.|
 
 ## AbilityStage.onCreate
 
 onCreate(): void
 
-Called when the application is created.
+Called when the application is created. This API returns the result synchronously and does not support asynchronous callbacks.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log('MyAbilityStage.onCreate is called');
-    }
+  onCreate() {
+    console.log('MyAbilityStage.onCreate is called');
+  }
 }
 ```
 
@@ -41,7 +53,9 @@ class MyAbilityStage extends AbilityStage {
 
 onAcceptWant(want: Want): string
 
-Called when a specified ability is started.
+Called when a specified ability is started. This API returns the result synchronously and does not support asynchronous callbacks.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -60,14 +74,13 @@ Called when a specified ability is started.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import Want from '@ohos.app.ability.Want';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onAcceptWant(want: Want) {
-        console.log('MyAbilityStage.onAcceptWant called');
-        return 'com.example.test';
-    }
+  onAcceptWant(want: Want) {
+    console.log('MyAbilityStage.onAcceptWant called');
+    return 'com.example.test';
+  }
 }
 ```
 
@@ -75,7 +88,7 @@ class MyAbilityStage extends AbilityStage {
 
 onNewProcessRequest(want: Want): string
 
-Called when the UIAbility is started in the specified process.
+Called when the UIAbility is started in the specified process. This API returns the result synchronously and does not support asynchronous callbacks.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -94,14 +107,13 @@ Called when the UIAbility is started in the specified process.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import Want from '@ohos.app.ability.Want';
+import { AbilityStage, Want } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onNewProcessRequest(want: Want) {
-        console.log('MyAbilityStage.onNewProcessRequest called');
-        return 'com.example.test';
-    }
+  onNewProcessRequest(want: Want) {
+    console.log('MyAbilityStage.onNewProcessRequest called');
+    return 'com.example.test';
+  }
 }
 ```
 
@@ -110,7 +122,9 @@ class MyAbilityStage extends AbilityStage {
 
 onConfigurationUpdate(newConfig: Configuration): void
 
-Called when the global configuration is updated.
+Called when the global configuration is updated. This API returns the result synchronously and does not support asynchronous callbacks.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -123,13 +137,12 @@ Called when the global configuration is updated.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import { Configuration } from '@ohos.app.ability.Configuration';
+import { AbilityStage, Configuration } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onConfigurationUpdate(config: Configuration) {
-        console.log(`onConfigurationUpdate, language: ${config.language}`);
-    }
+  onConfigurationUpdate(config: Configuration) {
+    console.log(`onConfigurationUpdate, language: ${config.language}`);
+  }
 }
 ```
 
@@ -137,7 +150,11 @@ class MyAbilityStage extends AbilityStage {
 
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
-Called when the system has decided to adjust the memory level. For example, this API can be used when there is not enough memory to run as many background processes as possible.
+Listens for changes in the system memory level status. When the system detects low memory resources, it will proactively invoke this callback. You can implement this callback to promptly release non-essential resources (such as cached data or temporary objects) upon receiving a memory shortage event, thereby preventing the application process from being forcibly terminated by the system.
+
+This API returns the result synchronously and does not support asynchronous callbacks.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -145,18 +162,17 @@ Called when the system has decided to adjust the memory level. For example, this
 
   | Name| Type| Mandatory| Description| 
   | -------- | -------- | -------- | -------- |
-  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#abilityconstantmemorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.| 
+  | level | [AbilityConstant.MemoryLevel](js-apis-app-ability-abilityConstant.md#memorylevel) | Yes| Memory level that indicates the memory usage status. When the specified memory level is reached, a callback will be invoked and the system will start adjustment.<br>**NOTE**<br>The trigger conditions may differ across various devices. For example, on a standard device with 12 GB of memory:<br>- A callback with value 0 is triggered when available memory drops between 1700 MB and 1800 MB.<br>- A callback with value 1 is triggered when available memory drops between 1600 MB and 1700 MB.<br>- A callback with value 2 is triggered when available memory falls below 1600 MB.| 
 
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { AbilityStage, AbilityConstant } from '@kit.AbilityKit';
 
 class MyAbilityStage extends AbilityStage {
-    onMemoryLevel(level: AbilityConstant.MemoryLevel) {
-        console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
-    } 
+  onMemoryLevel(level: AbilityConstant.MemoryLevel) {
+    console.log(`onMemoryLevel, level: ${JSON.stringify(level)}`);
+  }
 }
 ```
 
@@ -165,6 +181,8 @@ class MyAbilityStage extends AbilityStage {
 context: AbilityStageContext
 
 Defines the context of **AbilityStage**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -175,12 +193,111 @@ Defines the context of **AbilityStage**.
 **Example**
     
 ```ts
-import AbilityStage from '@ohos.app.ability.AbilityStage';
+import { AbilityStage } from '@kit.AbilityKit';
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     let abilityStageContext = this.context;
   }
-  // ...
+}
+```
+
+## AbilityStage.onDestroy<sup>12+<sup>
+
+onDestroy(): void
+
+Called when the application is destroyed. This API is called during the normal lifecycle. If the application exits abnormally or is terminated, this API is not called. This API returns the result synchronously and does not support asynchronous callbacks.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Example**
+
+```ts
+import { AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  onDestroy() {
+    console.log('MyAbilityStage.onDestroy is called');
+  }
+}
+```
+
+## AbilityStage.onPrepareTermination<sup>15+<sup>
+
+onPrepareTermination(): AbilityConstant.PrepareTermination
+
+Called when the application is closed by the user, allowing the user to choose between immediate termination or cancellation. This API returns the result synchronously and does not support asynchronous callbacks.
+
+Currently, this API takes effect only on 2-in-1 devices.
+
+> **NOTE**
+>
+> - This API is called only when the application exits normally. It is not called if the application is forcibly closed.
+> 
+> - This API is not executed when [AbilityStage.onPrepareTerminationAsync](#abilitystageonprepareterminationasync15) is implemented.
+
+**Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description| 
+| -------- | -------- |
+| [AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination15) | The user's choice.| 
+
+**Example**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  onPrepareTermination(): AbilityConstant.PrepareTermination {
+    console.info('MyAbilityStage.onPrepareTermination is called');
+    return AbilityConstant.PrepareTermination.CANCEL;
+  }
+}
+```
+
+## AbilityStage.onPrepareTerminationAsync<sup>15+<sup>
+
+onPrepareTerminationAsync(): Promise\<AbilityConstant.PrepareTermination>
+
+Called when the application is closed by the user, allowing the user to choose between immediate termination or cancellation. This API uses a promise to return the result. Currently, this API takes effect only on 2-in-1 devices.
+
+> **NOTE**
+>
+> - This API is called only when the application exits normally. It is not called if the application is forcibly closed.
+>
+> - If an asynchronous callback crashes, it will be handled as a timeout. If the application does not respond within 10 seconds, it will be terminated forcibly.
+
+**Required permissions**: ohos.permission.PREPARE_APP_TERMINATE
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type| Description| 
+| -------- | -------- |
+| Promise\<[AbilityConstant.PrepareTermination](js-apis-app-ability-abilityConstant.md#preparetermination15)> | Promise used to return the user's choice.| 
+
+**Example**
+
+```ts
+import { AbilityConstant, AbilityStage } from '@kit.AbilityKit';
+
+class MyAbilityStage extends AbilityStage {
+  async onPrepareTerminationAsync(): Promise<AbilityConstant.PrepareTermination> {
+    await new Promise<AbilityConstant.PrepareTermination>((res, rej) => {
+      setTimeout(res, 3000); // Execute the operation after 3 seconds.
+    });
+    return AbilityConstant.PrepareTermination.CANCEL;
+  }
 }
 ```

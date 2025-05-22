@@ -3,11 +3,13 @@
 
 ## Overview
 
-The **Camera_Rect** struct defines a rectangle.
+The Camera_Rect struct describes a rectangle.
 
 **Since**: 11
 
 **Related module**: [OH_Camera](_o_h___camera.md)
+
+**Header file**: [camera.h](camera_8h.md)
 
 
 ## Summary

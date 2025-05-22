@@ -21,14 +21,14 @@
   | gidTable | 即将启动的应用进程组信息，长度由gidCount指定，最大支持64个进程组，必须为正值。 |
   | gidCount | 即将启动的应用进程组个数。 |
   | accessTokenId | 即应用进程权限控制的token id。 |
-  | apl | 即应用进程权限控制的apl，最大32字节. |
+  | apl | 即应用进程权限控制的apl，最大32字节。|
   | renderCmd | 即图形图像渲染命令， 最大1024字节。 |
   | flags | 即冷启动标志位。 |
   | pid | 即渲染进程pid，查询渲染进程退出状态。 |
   | AppOperateType | 即App操作类型，0： 默认状态； 1：获取渲染终止状态。 |
 
 ### 约束与限制
-仅限标准系统下使用
+仅限标准系统下使用。
 
 ## 开发指导
 
@@ -134,15 +134,20 @@
    参考沙盒配置说明，修改配置文件。
 
    - 进入设备下：/system/etc/sandbox/路径下，直接修改对应沙盒配置文件， 重新启动。
-   - 代码路径下：base/startup/appspawn_standard， 修改对应沙盒配置文件。
+   - 代码路径下：base/startup/appspawn， 修改对应沙盒配置文件。
 
   **表 3**  沙盒配置文件解释
 
   | 沙盒配置文件 | 解释 |
   | -------- | -------- |
-  | appdata-sandbox64.json | 64位系统的沙盒配置 |
-  | appdata-sandbox.json | 32位系统的沙盒配置 |
-  | product-sandbox.json  | 应用沙盒的产品差异化配置 |
+  | appdata-sandbox-app.json            | 新特性沙盒应用挂载点配置 |
+  | appdata-sandbox-asan.json           | 新特性沙盒asan版本额外挂载点配置 |
+  | appdata-sandbox-isolated-new.json   | native进程新特性沙盒挂载点配置  |
+  | appdata-sandbox-isolated.json       | native进程沙盒挂载点配置 |
+  | appdata-sandbox-nweb.json           | 新特性沙盒渲染进程挂载点配置 |
+  | appdata-sandbox.json                | 32位系统的沙盒配置 |
+  | appdata-sandbox64.json              | 64位系统的沙盒配置 |
+  | appspawn_preload.json               | 预加载配置 |
 
 ### 开发实例
 以launcher应用新增独有配置应用为例：

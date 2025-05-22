@@ -2,25 +2,25 @@
 
 ## 场景介绍
 
-FileIO模块提供了文件基础操作能力。
+FileIO模块提供了部分文件基础操作能力，其他能力请参考[libc标准库](../reference/native-lib/musl.md)/[标准C++库](../reference/native-lib/cpp.md)。
 
 ## 基本概念
 
-**结果集**：满足使用场景正确的 URI。
+**结果集**：满足使用场景正确的 uri。
 
 ## 约束限制
 
-- 进行文件操作之前，必须保证传入正确有效的uri或path。
+进行文件操作之前，必须保证传入正确有效的uri或path。
 
 ## 接口说明
 
-接口的详细说明，请参考[API参考](../reference/apis-core-file-kit/_file_i_o.md)
+接口的详细说明，请参考[FileIO](../reference/apis-core-file-kit/_file_i_o.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
 | FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength, FileIO_FileLocation *location)| 获取文件存储位置。|
 | enum FileIO_FileLocation FileIO_FileLocation| 文件存储位置枚举值。 |
-| enum enum FileManagement_ErrCode FileManagement_ErrCode| 文件管理模块错误码。|
+| enum FileManagement_ErrCode FileManagement_ErrCode| 文件管理模块错误码。|
 
 ## 开发步骤
 
@@ -35,6 +35,8 @@ target_link_libraries(sample PUBLIC libohfileio.so)
 **添加头文件**
 
 ```c++
+#include <cstdio>
+#include <cstring>
 #include <filemanagement/fileio/oh_fileio.h>
 ```
 
@@ -55,5 +57,5 @@ target_link_libraries(sample PUBLIC libohfileio.so)
         } else {
             printf("GetFileLocation failed, error code is %d", ret);
         }
-    }    
+    }
    ```

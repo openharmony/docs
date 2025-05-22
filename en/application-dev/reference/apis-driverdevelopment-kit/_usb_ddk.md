@@ -37,12 +37,13 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) | Configuration descriptor.|
 | [UsbRequestPipe](_usb_request_pipe.md) | Request pipe.|
 | [UsbDeviceMemMap](_usb_device_mem_map.md) | Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.|
+| [Usb_DeviceArray](_usb_device_array.md) | Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](oh_usb_getdevices16).|
 
 ### Enums
 
 | Name| Description|
 | -------- | -------- |
-| [UsbDdkErrCode](#usbddkerrcode) {<br>USB_DDK_SUCCESS = 0, USB_DDK_FAILED = -1, USB_DDK_INVALID_PARAMETER = -2, USB_DDK_MEMORY_ERROR = -3,<br>USB_DDK_INVALID_OPERATION = -4, USB_DDK_NULL_PTR = -5, USB_DDK_DEVICE_BUSY = -6, USB_DDK_TIMEOUT = -7<br>} | USB DDK error code definitions.|
+| [UsbDdkErrCode](#usbddkerrcode) {<br>USB_DDK_SUCCESS = 0, USB_DDK_NO_PERM = 201, USB_DDK_INVALID_PARAMETER = 401, USB_DDK_MEMORY_ERROR = 27400001,<br>USB_DDK_INVALID_OPERATION = 27400002, USB_DDK_IO_FAILED = 27400003, USB_DDK_TIMEOUT = 27400004<br>} | USB DDK error code definitions.|
 
 
 ### Functions
@@ -51,6 +52,7 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | -------- | -------- |
 | [OH_Usb_Init](#oh_usb_init) (void) | Initializes the DDK.|
 | [OH_Usb_Release](#oh_usb_release) (void) | Releases the DDK.|
+| [OH_Usb_ReleaseResource](#oh_usb_releaseresource14) (void) | Releases the DDK.|
 | [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor) (uint64_t deviceId, struct [UsbDeviceDescriptor](_usb_device_descriptor.md) \*desc) | Obtains the device descriptor.|
 | [OH_Usb_GetConfigDescriptor](#oh_usb_getconfigdescriptor) (uint64_t deviceId, uint8_t configIndex, struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*\*const config) | Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_FreeConfigDescriptor** to release a descriptor after use.|
 | [OH_Usb_FreeConfigDescriptor](#oh_usb_freeconfigdescriptor) (const struct [UsbDdkConfigDescriptor](_usb_ddk_config_descriptor.md) \*const config) | Releases the configuration descriptor. To avoid memory leakage, release a descriptor after use.|
@@ -61,16 +63,106 @@ Provides USB DDK APIs to open and close USB interfaces, perform non-isochronous 
 | [OH_Usb_SendControlReadRequest](#oh_usb_sendcontrolreadrequest) (uint64_t [interfaceHandle](usb__ddk__types_8h.md#interfacehandle), const struct [UsbControlRequestSetup](_usb_control_request_setup.md) \*setup, uint32_t [timeout](usb__ddk__types_8h.md#timeout), uint8_t \*data, uint32_t \*dataLen) | Sends a control read transfer request. This API works in a synchronous manner.|
 | [OH_Usb_SendControlWriteRequest](#oh_usb_sendcontrolwriterequest) (uint64_t [interfaceHandle](usb__ddk__types_8h.md#interfacehandle), const struct [UsbControlRequestSetup](_usb_control_request_setup.md) \*setup, uint32_t [timeout](usb__ddk__types_8h.md#timeout), const uint8_t \*data, uint32_t dataLen) | Sends a control write transfer request. This API works in a synchronous manner.|
 | [OH_Usb_SendPipeRequest](#oh_usb_sendpiperequest) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Sends a pipe request. This API works in a synchronous manner. It applies to interrupt transfer and bulk transfer.|
+| [OH_Usb_SendPipeRequestWithAshmem](#oh_usb_sendpiperequestwithashmem12) (const struct [UsbRequestPipe](_usb_request_pipe.md) \*pipe, [DDK_Ashmem](_ddk_ashmem.md) \*ashmem) | Sends a pipe request for the shared memory. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.|
 | [OH_Usb_CreateDeviceMemMap](#oh_usb_createdevicememmap) (uint64_t deviceId, size_t size, [UsbDeviceMemMap](_usb_device_mem_map.md) \*\*devMmap) | Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#oh_usb_destroydevicememmap) to destroy a buffer after use.|
 | [OH_Usb_DestroyDeviceMemMap](#oh_usb_destroydevicememmap) ([UsbDeviceMemMap](_usb_device_mem_map.md) \*devMmap) | Destroys a buffer. To avoid resource leakage, destroy a buffer in time after use.|
+| [OH_Usb_GetDevices](#oh_usb_getdevices16) ([Usb_DeviceArray](_usb_device_array.md) \*devices) | Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.|
 
-#### Description of deviceId
+#### deviceId Description
 
 You can call **queryDevices()** to obtain the device ID, that is, **deviceId**.
-For details, see [Peripheral Management Development](../../device/externaldevice-guidelines.md).
+For details, see [Peripheral Management Development](../../device/driver/externaldevice-guidelines.md).
+
+#### deviceId Conversion
+
+The **deviceId** obtained through **queryDevices()** cannot be directly used as the input parameter for functions such as [OH_Usb_GetDeviceDescriptor](#oh_usb_getdevicedescriptor).
+<p>Specifically, you need to extract its first 32 bits as the input parameter **deviceId** for C APIs.</p>
+<p>The following code is for reference only: </p>
+
+ ~~~
+uint64_t JsDeviceIdToNative(uint64_t deviceId)
+{
+    uint32_t busNum = (uint32_t)(deviceId >> 48);
+    uint32_t devNum = (uint32_t)((deviceId & 0x0000FFFF00000000) >> 32);
+    return (((static_cast<uint64_t>(busNum)) << 32) | devNum);
+}
+~~~
+
+## Type Description
+
+### UsbDdkEndpointDescriptor
+
+```
+typedef struct UsbDdkEndpointDescriptor UsbDdkEndpointDescriptor
+```
+
+**Description**
+
+Endpoint descriptor.
+
+**Since**: 10
+
+### UsbDdkInterfaceDescriptor
+
+```
+typedef struct UsbDdkInterfaceDescriptor UsbDdkInterfaceDescriptor
+```
+
+**Description**
+
+Interface descriptor.
+
+**Since**: 10
+
+### UsbDdkInterface
+
+```
+typedef struct UsbDdkInterface UsbDdkInterface
+```
+
+**Description**
+
+USB API.
+
+**Since**: 10
+
+### UsbDdkConfigDescriptor
+
+```
+typedef struct UsbDdkConfigDescriptor UsbDdkConfigDescriptor
+```
+
+**Description**
+
+Configuration descriptor.
+
+**Since**: 10
+
+### UsbDeviceMemMap
+
+```
+typedef struct UsbDeviceMemMap UsbDeviceMemMap
+```
+
+**Description**
+
+ Device memory map created by calling [OH_Usb_CreateDeviceMemMap()](_usb_ddk.md#oh_usb_createdevicememmap). A buffer using the device memory map can provide better performance.
+
+**Since**: 10
+
+### Usb_DeviceArray
+
+```
+typedef struct Usb_DeviceArray usb_DeviceArray
+```
+
+**Description**
+
+Defines the device ID list, which is used to store the device IDs and device quantity obtained using [OH_Usb_GetDevices()](_usb_ddk.md#oh_usb_getdevices16).
+
+**Since**: 10
 
 ## Enum Description
-
 
 ### UsbDdkErrCode
 
@@ -83,16 +175,15 @@ enum UsbDdkErrCode
 
 USB DDK error code definitions.
 
-| Value| Description|
-| -------- | -------- |
-| USB_DDK_SUCCESS | Operation successful.|
-| USB_DDK_FAILED | Operation failed.|
-| USB_DDK_INVALID_PARAMETER | Invalid parameter.|
-| USB_DDK_MEMORY_ERROR | Memory-related error, for example, insufficient memory, memory data copy failure, or memory application failure.|
-| USB_DDK_INVALID_OPERATION | Invalid operation.|
-| USB_DDK_NULL_PTR | Null pointer.|
-| USB_DDK_DEVICE_BUSY | Device busy.|
-| USB_DDK_TIMEOUT | Transfer timed out.|
+| Enum| Value| Description|
+| -------- | -------- |-------- |
+| USB_DDK_SUCCESS | 0 | Operation successful.|
+| USB_DDK_NO_PERM | 201 | Operation failed.|
+| USB_DDK_INVALID_PARAMETER | 401 | Invalid parameter.|
+| USB_DDK_MEMORY_ERROR | 27400001 | Memory-related error, for example, insufficient memory, memory data copy failure, or memory application failure.|
+| USB_DDK_INVALID_OPERATION | 27400002 | Invalid operation.|
+| USB_DDK_IO_FAILED | 27400003 | The device I/O operation fails.|
+| USB_DDK_TIMEOUT | 27400004 | Transfer timed out.|
 
 
 ## Function Description
@@ -102,7 +193,7 @@ USB DDK error code definitions.
 
 
 ```
-int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64_t * interfaceHandle )
+int32_t OH_Usb_ClaimInterface (uint64_t deviceId, uint8_t interfaceIndex, uint64_t * interfaceHandle)
 ```
 
 **Description**
@@ -121,14 +212,17 @@ Declares a USB interface.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **interfaceHandle** is a null pointer.
 
 
 ### OH_Usb_CreateDeviceMemMap()
 
 
 ```
-int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemMap ** devMmap )
+int32_t OH_Usb_CreateDeviceMemMap (uint64_t deviceId, size_t size, UsbDeviceMemMap ** devMmap)
 ```
 
 **Description**
@@ -147,7 +241,10 @@ Creates a buffer. To avoid memory leakage, use [OH_Usb_DestroyDeviceMemMap()](#o
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **devMmap** is a null pointer.
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode): indicates that the mmap fails or the memory space of the devMmap fails to be applied for.
 
 
 ### OH_Usb_DestroyDeviceMemMap()
@@ -194,7 +291,7 @@ Releases the configuration descriptor. To avoid memory leakage, use **OH_Usb_Fre
 
 
 ```
-int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config )
+int32_t OH_Usb_GetConfigDescriptor (uint64_t deviceId, uint8_t configIndex, struct UsbDdkConfigDescriptor **const config)
 ```
 
 **Description**
@@ -213,14 +310,18 @@ Obtains the configuration descriptor. To avoid memory leakage, use **OH_Usb_Free
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **config** is a null pointer.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
 
 
 ### OH_Usb_GetCurrentInterfaceSetting()
 
 
 ```
-int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * settingIndex )
+int32_t OH_Usb_GetCurrentInterfaceSetting (uint64_t interfaceHandle, uint8_t * settingIndex)
 ```
 
 **Description**
@@ -238,14 +339,17 @@ Obtains the activated alternate setting of a USB interface.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **settingIndex** is a null pointer.
 
 
 ### OH_Usb_GetDeviceDescriptor()
 
 
 ```
-int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescriptor * desc )
+int32_t OH_Usb_GetDeviceDescriptor (uint64_t deviceId, struct UsbDeviceDescriptor * desc)
 ```
 
 **Description**
@@ -263,8 +367,10 @@ Obtains the device descriptor.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
-
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **desc** is a null pointer.
 
 ### OH_Usb_Init()
 
@@ -281,14 +387,15 @@ Initializes the DDK.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
-
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
 
 ### OH_Usb_Release()
 
 
 ```
-void OH_Usb_Release (void )
+void OH_Usb_Release (void)
 ```
 
 **Description**
@@ -297,9 +404,25 @@ Releases the DDK.
 
 **Required permissions**: ohos.permission.ACCESS_DDK_USB
 
+### OH_Usb_ReleaseResource()<sup>14+</sup>
+
+```
+int32_t OH_Usb_ReleaseResource (void)
+```
+
+**Description**
+
+Releases the DDK.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Returns**
+
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
 
 ### OH_Usb_ReleaseInterface()
-
 
 ```
 int32_t OH_Usb_ReleaseInterface (uint64_t interfaceHandle)
@@ -319,14 +442,16 @@ Releases a USB interface.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
 
 
 ### OH_Usb_SelectInterfaceSetting()
 
 
 ```
-int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t settingIndex )
+int32_t OH_Usb_SelectInterfaceSetting (uint64_t interfaceHandle, uint8_t settingIndex)
 ```
 
 **Description**
@@ -344,14 +469,16 @@ Activates the alternate setting of a USB interface.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
 
 
 ### OH_Usb_SendControlReadRequest()
 
 
 ```
-int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, uint8_t * data, uint32_t * dataLen )
+int32_t OH_Usb_SendControlReadRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, uint8_t * data, uint32_t * dataLen)
 ```
 
 **Description**
@@ -372,14 +499,20 @@ Sends a control read transfer request. This API works in a synchronous manner.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **setup**, **data**, or **dataLen** is a null pointer, or the value of **datalen** is less than the length of the read data.
+- [USB_DDK_MEMORY_ERROR](#usbddkerrcode): The attempt to copy the memory that stores the read data fails.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
+- [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
 
 
 ### OH_Usb_SendControlWriteRequest()
 
 
 ```
-int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, const uint8_t * data, uint32_t dataLen )
+int32_t OH_Usb_SendControlWriteRequest (uint64_t interfaceHandle, const struct UsbControlRequestSetup * setup, uint32_t timeout, const uint8_t * data, uint32_t dataLen)
 ```
 
 **Description**
@@ -400,14 +533,19 @@ Sends a control write transfer request. This API works in a synchronous manner.
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **setup** or **data** is a null pointer.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
+- [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
 
 
 ### OH_Usb_SendPipeRequest()
 
 
 ```
-int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMemMap * devMmap )
+int32_t OH_Usb_SendPipeRequest (const struct UsbRequestPipe * pipe, UsbDeviceMemMap * devMmap)
 ```
 
 **Description**
@@ -425,6 +563,64 @@ Sends a pipe request. This API works in a synchronous manner. It applies to inte
 
 **Returns**
 
-**0** if the operation is successful; a negative value otherwise.
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **pipe**, **devMmap**, or **devMmap** address is a null pointer.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
+- [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
 
-<!--no_check-->
+### OH_Usb_SendPipeRequestWithAshmem()<sup>12+</sup>
+
+
+```
+int32_t OH_Usb_SendPipeRequestWithAshmem(const struct UsbRequestPipe *pipe, DDK_Ashmem *ashmem)
+```
+
+**Description**
+
+Sends a pipe request for the shared memory. This API returns the result synchronously. It applies to interrupt transfer and bulk transfer.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| pipe | Pipe used to transfer data.|
+| ashmem | Shared memory, which can be obtained through [OH_DDK_CreateAshmem()](_base_ddk.md#oh_ddk_createashmem).|
+
+**Returns**
+
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The input **pipe**, **ashmem**, or **ashmem** address is a null pointer.
+- [USB_DDK_IO_FAILED](#usbddkerrcode): The device I/O operation fails.
+- [USB_DDK_TIMEOUT] (#usbddkerrcode): The request times out.
+
+### OH_Usb_GetDevices()<sup>16+</sup>
+
+
+```
+int32_t OH_Usb_GetDevices(struct Usb_DeviceArray *devices)
+```
+
+**Description**
+
+Obtains the USB device ID list. Ensure that the input pointer is valid and the number of devices does not exceed 128. To prevent resource leakage, release the member memory after usage. Besides, make sure that the obtained USB device ID has been filtered by **vid** in the driver configuration information.
+
+**Required permissions**: ohos.permission.ACCESS_DDK_USB
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| devices | Device memory address, which is used to store the obtained device ID list and quantity.|
+
+**Returns**
+
+- [USB_DDK_SUCCESS] (#usbddkerrcode): The API call is successful.
+- [USB_DDK_NO_PERM](#usbddkerrcode): The permission verification fails.
+- [USB_DDK_INVALID_OPERATION](#usbddkerrcode): The usb_ddk service connection fails.
+- [USB_DDK_INVALID_PARAMETER](#usbddkerrcode): The address of **devices** is a null pointer.

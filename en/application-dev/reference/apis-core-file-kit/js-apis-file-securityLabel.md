@@ -9,7 +9,7 @@ The **securityLabel** module provides APIs for managing data security levels of 
 ## Modules to Import
 
 ```ts
-import securityLabel from '@ohos.file.securityLabel';
+import { securityLabel } from '@kit.CoreFileKit';
 ```
 
 ## Guidelines
@@ -18,8 +18,8 @@ Before using the APIs provided by this module to perform operations on a file or
 
 
   ```ts
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import window from '@ohos.window';
+  import { UIAbility } from '@kit.AbilityKit';
+  import { window } from '@kit.ArkUI';
 
   export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage: window.WindowStage) {
@@ -31,11 +31,19 @@ Before using the APIs provided by this module to perform operations on a file or
 
 For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths).
 
+## DataLevel
+
+type DataLevel = 's0' | 's1' | 's2' | 's3' | 's4'
+
+Defines the data security level.
+
+**System capability**: SystemCapability.FileManagement.File.FileIO
+
 ## securityLabel.setSecurityLabel
 
 setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
 
-Sets a security label for a file. This API uses a promise to return the result.
+Sets a security label for a file. This API returns the result synchronously. The security label cannot be changed from a higher level to a lower level. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -43,8 +51,8 @@ Sets a security label for a file. This API uses a promise to return the result.
 
 | Name   | Type      | Mandatory| Description                                        |
 | --------- | ------    | ---- | -------------------------------------------- |
-| path      | string    | Yes  | Path of the target file.                                    |
-| type      | DataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| path      | string    | Yes  | File path.                                    |
+| type      | [DataLevel](#datalevel) | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
 **Return value**
 
@@ -70,7 +78,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0").then(() => {
     console.info("setSecurityLabel successfully");
@@ -83,7 +91,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt;):void
 
-Sets a security label for a file. This API uses an asynchronous callback to return the result.
+Sets a security label for a file. This API returns the result synchronously. The security label cannot be changed from a higher level to a lower level. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -91,9 +99,9 @@ Sets a security label for a file. This API uses an asynchronous callback to retu
 
 | Name   | Type                     | Mandatory| Description                                        |
 | --------- | ------------------------- | ---- | -------------------------------------------- |
-| path      | string                    | Yes  | Path of the target file.                                    |
-| type      | DataLevel                 | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
-| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                  |
+| path      | string                    | Yes  | File path.                                    |
+| type      | DataLevel                 | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                  |
 
 **Error codes**
 
@@ -113,7 +121,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.setSecurityLabel(filePath, "s0", (err: BusinessError) => {
     if (err) {
@@ -128,7 +136,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 setSecurityLabelSync(path:string, type:DataLevel):void
 
-Sets a security label for a file. This API returns the result synchronously.
+Sets a security label for a file. This API returns the result synchronously. The security label cannot be changed from a higher level to a lower level.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -136,8 +144,8 @@ Sets a security label for a file. This API returns the result synchronously.
 
 | Name   | Type  | Mandatory| Description                                        |
 | --------- | ------ | ---- | -------------------------------------------- |
-| path      | string | Yes  | Path of the target file.                                    |
-| type      | DataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
+| path      | string | Yes  | File path.                                    |
+| type      | DataLevel | Yes  | Security label to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
 **Error codes**
 
@@ -165,7 +173,7 @@ securityLabel.setSecurityLabelSync(filePath, "s0");
 
 getSecurityLabel(path:string):Promise&lt;string&gt;
 
-Obtains the security label of a file. This API uses a promise to return the result.
+Obtains the security label. If no security label has been set for the file, **s3** is returned by default. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -173,7 +181,7 @@ Obtains the security label of a file. This API uses a promise to return the resu
 
   | Name| Type  | Mandatory| Description    |
   | ------ | ------ | ---- | -------- |
-  | path   | string | Yes  | Path of the target file.|
+  | path   | string | Yes  | File path.|
 
 **Return value**
 
@@ -199,12 +207,12 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.getSecurityLabel(filePath).then((type: string) => {
     console.log("getSecurityLabel successfully, Label: " + type);
   }).catch((err: BusinessError) => {
-    console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+    console.error("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
   });
   ```
 
@@ -212,7 +220,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
 
-Obtains the security label of a file. This API uses an asynchronous callback to return the result.
+Obtains the security label. If no security label has been set for the file, **s3** is returned by default. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -220,8 +228,8 @@ Obtains the security label of a file. This API uses an asynchronous callback to 
 
   | Name  | Type                       | Mandatory| Description                      |
   | -------- | --------------------------- | ---- | -------------------------- |
-  | path     | string                      | Yes  | Path of the target file.                  |
-  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the security label obtained.|
+  | path     | string                      | Yes  | File path.                  |
+  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback used to return the security label obtained.|
 
 **Error codes**
 
@@ -241,11 +249,11 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let filePath = pathDir + '/test.txt';
   securityLabel.getSecurityLabel(filePath, (err: BusinessError, type: string) => {
     if (err) {
-      console.log("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
+      console.error("getSecurityLabel failed with error message: " + err.message + ", error code: " + err.code);
     } else {
       console.log("getSecurityLabel successfully, Label: " + type);
     }
@@ -256,7 +264,7 @@ For details about the error codes, see [Basic File IO Error Codes](errorcode-fil
 
 getSecurityLabelSync(path:string):string
 
-Obtains the security label of a file. This API returns the result synchronously.
+Obtains the security label. If no security label has been set for the file, **s3** is returned by default.
 
 **System capability**: SystemCapability.FileManagement.File.FileIO
 
@@ -264,7 +272,7 @@ Obtains the security label of a file. This API returns the result synchronously.
 
 | Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
-| path   | string | Yes  | Path of the target file.|
+| path   | string | Yes  | File path.|
 
 **Return value**
 

@@ -8,13 +8,13 @@
    ```ts
     Text()
      .animation({
-      duration: 1200,
-      iterations: 10,
-      expectedFrameRateRange: { // 设置属性动画的帧率范围
-   ​    expected: 60, // 设置动画的期望帧率为60hz
-   ​    min: 0, // 设置帧率范围
-   ​    max: 120 // 设置帧率范围
-      },
+        duration: 1200,
+        iterations: 10,
+        expectedFrameRateRange: { // 设置属性动画的帧率范围
+          expected: 60, // 设置动画的期望帧率为60hz
+          min: 0, // 设置帧率范围
+          max: 120, // 设置帧率范围
+        },
      })
    ```
 
@@ -24,7 +24,8 @@
    ```ts
    Button()
     .onClick(() => {
-      animateTo({
+      // uiContext需通过getUIContext获取，具体可见下文完整示例
+      this.uiContext?.animateTo({
         duration: 1200,
         iterations: 10,
         expectedFrameRateRange: { // 设置显式动画的帧率范围
@@ -48,6 +49,15 @@ struct AnimationToAnimationDemo {
   @State translateX1: number = -100;
   @State translateX2: number = -100;
   @State translateX3: number = -100;
+  uiContext: UIContext | undefined = undefined;
+
+  aboutToAppear() {
+    this.uiContext = this.getUIContext();
+    if (!this.uiContext) {
+      console.warn('no uiContext');
+      return;
+    }
+  }
 
   build() {
     Column() {
@@ -114,7 +124,7 @@ struct AnimationToAnimationDemo {
             this.isAnimation = !this.isAnimation;
             this.translateX3 = this.isAnimation ? 100 : -100;
 
-            animateTo({
+            this.uiContext?.animateTo({
               duration: 1200,
               iterations: 10,
               playMode: PlayMode.AlternateReverse,
@@ -127,7 +137,7 @@ struct AnimationToAnimationDemo {
               this.translateX1 = this.isAnimation ? 100 : -100;
             })
 
-            animateTo({
+            this.uiContext?.animateTo({
               duration: 1200,
               iterations: 10,
               playMode: PlayMode.AlternateReverse,

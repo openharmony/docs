@@ -1,4 +1,10 @@
-# Location Kit
+# Location Kit<!--location-api-->
 
 - [Introduction to Location Kit](location-kit-intro.md)
-- [Location Kit Development](location-guidelines.md)
+- [Applying for Location Permissions (ArkTS)](location-permission-guidelines.md)
+- [Obtaining Device Location Information (C/C++)](location-guidelines-capi.md)
+- [Obtaining Device Location Information (ArkTS)](location-guidelines.md)
+- [Geocoding and Reverse Geocoding (ArkTS)](geocode-guidelines.md)
+- [Geofencing (ArkTS)](geofence-guidelines.md)
+- [FenceExtensionAbility](fenceExtensionAbility.md)
+- [Samples](app-samples.md)

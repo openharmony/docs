@@ -1,4 +1,5 @@
 # @ohos.application.appManager (appManager)
+<!--deprecated_code_no_check-->
 
 The **appManager** module implements application management. You can use the APIs of this module to query whether the application is undergoing a stability test, whether the application is running on a RAM constrained device, the memory size of the application, and information about the running process.
 
@@ -186,7 +187,7 @@ Obtains information about the running processes. This API uses a promise to retu
 
 > This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) instead.
 
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
+**Required permissions**: ohos.permission.GET_RUNNING_INFO (available only for system applications)
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -217,7 +218,7 @@ Obtains information about the running processes. This API uses an asynchronous c
 
 > This API is deprecated since API version 9. You are advised to use [appManager.getRunningProcessInformation](js-apis-app-ability-appManager.md#appmanagergetrunningprocessinformation) instead.
 
-**Required permissions**: ohos.permission.GET_RUNNING_INFO
+**Required permissions**: ohos.permission.GET_RUNNING_INFO (available only for system applications)
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

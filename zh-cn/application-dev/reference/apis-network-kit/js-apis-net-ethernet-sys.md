@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 ```
 
 ## ethernet.setIfaceConfig<sup>9+</sup>
@@ -28,9 +28,9 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 
 | 参数名   | 类型                                              | 必填 | 说明                                       |
 | -------- | ------------------------------------------------- | ---- | ------------------------------------------ |
-| iface    | string                                            | 是   | 网络接口名                                     |
-| ic       | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息                   |
-| callback | AsyncCallback\<void>                     | 是   | 回调函数，成功无返回，失败返回对应错误码。 |
+| iface    | string                                            | 是   | 网络接口名。                                     |
+| ic       | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息。                   |
+| callback | AsyncCallback\<void>                     | 是   | 回调函数。成功无返回，失败返回对应错误码。 |
 
 **错误码：**
 
@@ -40,7 +40,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -50,8 +50,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
@@ -87,8 +87,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 
 | 参数名 | 类型                                              | 必填 | 说明                     |
 | ------ | ------------------------------------------------- | ---- | ------------------------ |
-| iface  | string                                            | 是   | 接口名                   |
-| ic     | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息 |
+| iface  | string                                            | 是   | 接口名。                   |
+| ic     | [InterfaceConfiguration](#interfaceconfiguration9) | 是   | 要设置的网络接口配置信息。 |
 
 **返回值：**
 
@@ -104,7 +104,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 |Failed to connect to the service. |
 | 2200003 | System internal error.                  |
 | 2201004 | Invalid Ethernet profile.  |
 | 2201005 | Device information does not exist.  |
@@ -114,8 +114,8 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let config: ethernet.InterfaceConfiguration = {
   mode: 0,
@@ -151,8 +151,8 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 
 | 参数名   | 类型                                            | 必填  | 说明         |
 | -------- | ----------------------------------------------- | ----- | ------------ |
-| iface    | string                                          | 是    | 指定网络接口 |
-| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | 是    | 回调函数，返回指定网络接口信息   |
+| iface    | string                                          | 是    | 指定网络接口。 |
+| callback | AsyncCallback\<[InterfaceConfiguration](#interfaceconfiguration9)> | 是    | 回调函数。返回指定网络接口信息。   |
 
 **错误码：**
 
@@ -162,15 +162,15 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0", (error: BusinessError, value: ethernet.InterfaceConfiguration) => {
   if (error) {
@@ -202,7 +202,7 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
 | 参数名   | 类型                                    | 必填 | 说明         |
 | -------- | --------------------------------------- | ---- | ------------ |
-| iface    | string                                  | 是   | 指定网络接口 |
+| iface    | string                                  | 是   | 指定网络接口。 |
 
 **返回值：**
 
@@ -218,15 +218,15 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getIfaceConfig("eth0").then((data: ethernet.InterfaceConfiguration) => {
   console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
@@ -256,8 +256,8 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 
 | 参数名   | 类型                        | 必填 | 说明                                               |
 | -------- | --------------------------- | ---- | -------------------------------------------------- |
-| iface    | string                      | 是   | 接口名。为空时代表查询是否存在激活接口             |
-| callback | AsyncCallback\<number>       | 是   | 回调函数，已激活:1,未激活:0,其他为获取失败错误码。 |
+| iface    | string                      | 是   | 接口名。为空时代表查询是否存在激活接口。             |
+| callback | AsyncCallback\<number>       | 是   | 回调函数。已激活：1，未激活：0，其他为获取失败错误码。 |
 
 **错误码：**
 
@@ -267,15 +267,15 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0", (error: BusinessError, value: number) => {
   if (error) {
@@ -302,13 +302,13 @@ isIfaceActive(iface: string): Promise\<number>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| iface  | string | 是   | 接口名。为空时代表查询是否存在激活接口 |
+| iface  | string | 是   | 接口名。为空时代表查询是否存在激活接口。 |
 
 **返回值：**
 
 | 类型            | 说明                                                               |
 | ----------------| ------------------------------------------------------------------ |
-| Promise\<number> | 以Promise形式返回获取结果。已激活:1,未激活:0,其他为获取失败错误码。|
+| Promise\<number> | 以Promise形式返回获取结果。已激活：1，未激活：0，其他为获取失败错误码。|
 
 **错误码：**
 
@@ -318,15 +318,15 @@ isIfaceActive(iface: string): Promise\<number>
 | 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 | 2201005 | Device information does not exist.  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.isIfaceActive("eth0").then((data: number) => {
   console.log("isIfaceActive promise = " + JSON.stringify(data));
@@ -351,7 +351,7 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 
 | 参数名   | 类型                                 | 必填 | 说明                           |
 | -------- | ------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<string>>         | 是   | 回调函数，返回值为对应接口名。 |
+| callback | AsyncCallback\<Array\<string>>         | 是   | 回调函数。返回值为对应接口名。 |
 
 **错误码：**
 
@@ -359,14 +359,14 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces((error: BusinessError, value: string[]) => {
   if (error) {
@@ -404,14 +404,14 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
 | 202     | Non-system applications use system APIs.                      |
-| 2200002 | Operation failed. Cannot connect to service.|
+| 2200002 | Failed to connect to the service.       |
 | 2200003 | System internal error.                  |
 
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
-import { BusinessError } from '@ohos.base'
+import { ethernet } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 ethernet.getAllActiveIfaces().then((data: string[]) => {
   console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
@@ -453,7 +453,7 @@ on(type: 'interfaceStateChange', callback: Callback\<InterfaceStateInfo>): void
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 
 ethernet.on('interfaceStateChange', (data: object) => {
   console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
@@ -490,7 +490,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<InterfaceStateInfo\>): vo
 **示例：**
 
 ```ts
-import ethernet from '@ohos.net.ethernet'
+import { ethernet } from '@kit.NetworkKit';
 
 ethernet.off('interfaceStateChange');
 ```

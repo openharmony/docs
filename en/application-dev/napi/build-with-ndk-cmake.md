@@ -5,14 +5,12 @@ In many complex application projects, C++ projects are compiled and built in com
 
 
 ## Downloading the NDK
-
-1. (Recommended) Acquire source code from mirrors for an officially released version.
-
-   Specifically, access the release notes of the target version, locate the **Acquiring Source Code from Mirror** section, and download the source code based on your system type.
+<!--RP1-->
+1. (Recommended) Acquire source code from mirrors for an officially released version. Specifically, access the release notes of the target version, locate the **Acquiring Source Code from Mirror** section, and download the source code based on your system type.
 
 
 2. Download the NDK from the SDK Manager in DevEco Studio.
-
+<!--RP1End-->
 
 ## Decompressing the NDK
 
@@ -31,39 +29,36 @@ Skip this step if the NDK is downloaded from DevEco Studio.
 1. Add the CMake tool that comes with the NDK to the environment variables.
 + Configure the environment variables in Linux.
 
-
-        #Open the .bashrc file.
-        vim ~/.bashrc
-        #Append the custom CMake path to the file.
-        export PATH=~/ohos-sdk/ohos-sdk/linux/native/build-tools/cmake/bin:$PATH
-        #Run the source ~/.bashrc command to make the environment variable take effect.
-        source ~/.bashrc
+  ```
+  # Open the .bashrc file.
+  vim ~/.bashrc
+  # Append the custom CMake path to the file. Save the file and exit.
+  export PATH=${sdk_path}/native/build-tools/cmake/bin:$PATH
+  # Run the source ~/.bashrc command to make the environment variable take effect.
+  source ~/.bashrc
+  ```
 
 + Configure the environment variables in macOS.
 
-  
-        # In the current user directory
-        # Open the .bash_profile file.
-        # If the file does not exist, create one.
-        vim ~/.bash_profile
-        # Append the custom CMake path to the file. Save the file and exit.
-        export PATH=~/Ndk/mac-sdk-full/sdk/packages/ohos-sdk/darwin/native/build-tools/cmake/bin:$PATH
-        # Run the source ~/.bash_profile command to make the environment variable take effect.
-        source ~/.bash_profile
-    
+  ```
+  #In the current user directory, open the .bash_profile file. If the file does not exist, create one.
+  vim ~/.bash_profile
+  #Append the custom CMake path to the file. Save the file and exit.
+  export PATH=${sdk_path}/native/build-tools/cmake/bin:$PATH
+  #Run the source ~/.bash_profile command to make the environment variable take effect.
+  source ~/.bash_profile
+  ```
+
 + Configure the environment variable in Windows.
 
   Right-click **This PC** and choose **Properties** from the shortcut menu. In the displayed dialog box, click the **Advanced System Settings** tab and then click **Environment Variables**. Under **System Variables** dialog box, select the **Path** environment variable and click **Edit**. Add the paths, save the settings, and exit. (If the next step cannot be performed, restart the computer.)
   
   ![en-us_image_20-24-01-16-14-38](figures/en-us_image_20-24-01-16-14-38.png)
   
-  Verify whether the environment variable is configured successfully.
-
-  Open the CLI and run **F:\windows\native\build-tools\cmake\bin\cmake.exe -version**, replacing the path with the actual CMake path.
+  Open the CLI and run **{*cmake_installation_path*}\cmake.exe -version** command. If the CMake version number is displayed correctly, the environment variable configuration is complete.
 
   ![en-us_image_20-24-01-16-14-41](figures/en-us_image_20-24-01-16-14-41.png)
-  
-  If the information similar to that shown above is displayed, the environment variable is configured successfully.
+
 
 2. Check the default CMake path.
    + In Linux or macOS
@@ -175,7 +170,11 @@ int sum(int a, int b)
 ### Compiling and Building the Demo Project
 
 #### In Linux or macOS
-In the project directory, create the **build** directory to store the intermediate files generated during CMake building. **NOTE**<br>In the following commands, **ohos-sdk** is the root directory of the downloaded SDK. Replace it with the actual directory.
+In the project directory, create the **build** directory to store the intermediate files generated during CMake building.
+
+> **NOTE**
+>
+> In the following commands, **ohos-sdk** is the root directory of the downloaded SDK. Replace it with the actual directory.
 
 1. Use **OHOS_STL=c++_shared** to dynamically link the C++ library to build a project. If **OHOS_STL** is not specified, **c++_shared** is used by default. Set **DOHOS_ARCH** based on the system architecture.
 
@@ -193,13 +192,10 @@ In the project directory, create the **build** directory to store the intermedia
     >cmake --build .
    ```
 
-   In the command, the **OHOS_ARCH** and **OHOS_PLATFORM** variables generate the **--target** options of Clang++.
+   In the command, the **OHOS_ARCH** and **OHOS_PLATFORM** variables ultimately generate the **--target** command argument for Clang++. In this example, they correspond to the **--target=arm-linux-ohos** and **--march=armv7a** arguments.
    
-   In this example, **--target=arm-linux-ohos** and **--march=armv7a** are generated.
+   In the **CMAKE_TOOLCHAIN_FILE** file, **--sysroot={ndk_*sysroot_directory*}** is set for Clang++ by default, instructing the compiler to search for the root directory of system header files.
 
-   **CMAKE_TOOLCHAIN_FILE** specifies the toolchain file.
-
-   In this file, **--sysroot={ndk_*sysroot directory*}** is set for Clang++ by default, instructing the compiler to search for the root directory of system header files.
 #### In Windows
 
 Using CMake in Windows, unlike that in Linux, requires you to use the **-G** option to specify the generator.
@@ -214,13 +210,12 @@ Step 1. Create the **build** folder in the project directory and run the followi
 ```
  F:\windows\native\build-tools\cmake\bin\cmake.exe -G "Ninja" -D OHOS_STL=c++_shared -D OHOS_ARCH=armeabi-v7a -D OHOS_PLATFORM=OHOS -D CMAKE_TOOLCHAIN_FILE=F:\windows\native\build\cmake\ohos.toolchain.cmake ..
 ```
-Note: If debugging is required, add the **-D CMAKE_BUILD_TYPE=normal** option.
-The CMake path and the ohos.toolchain.cmake path are where the NDK is downloaded.
+Note: If debugging is required, add the **-D CMAKE_BUILD_TYPE=normal** option. The CMake path and the ohos.toolchain.cmake path are where the NDK is downloaded.
 The following figure shows the command output.
 
 ![en-us_image_20-24-01-16-14-58](figures/en-us_image_20-24-01-16-14-58.png)
 
-The **build.ninja** file generated here is what we need.
+The **build.ninja** file generated is what we need.
 
 Step 2. Use the ninja command to compile and generate the target file. The following figure shows the location of the target file.
 

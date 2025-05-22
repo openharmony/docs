@@ -12,6 +12,8 @@ renderFit(fitMode: RenderFit)
 
 Sets how the final state of the component's content is rendered during its width and height animation process.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -20,7 +22,33 @@ Sets how the final state of the component's content is rendered during its width
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | fitMode | [RenderFit](#renderfit) | Yes  | How the final state of the component's content is rendered during its width and height animation process.<br>If **renderFit** is not set, the default value **RenderFit.TOP_LEFT** is used.|
 
+## renderFit<sup>18+</sup>
+
+renderFit(fitMode: Optional\<RenderFit>)
+
+Sets how the final state of the component's content is rendered during its width and height animation process. Compared to [renderFit](#renderfit), this API supports the **undefined** type for the **fitMode** parameter.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                                      | Mandatory| Description                                                        |
+| ------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
+| fitMode | Optional\<[RenderFit](#renderfit)> | Yes  | How the final state of the component's content is rendered during its width and height animation process.<br>If **fitMode** is set to **undefined**, the default value is used, which is equivalent to **RenderFit.TOP_LEFT**.|
+
+>  **NOTE**
+>
+>  For the [XComponent](./ts-basic-components-xcomponent.md) component of the TEXTURE or SURFACE type, if the **renderFit** attribute is not set, it defaults to **RenderFit.RESIZE_FILL**.
+>
+> For the **XComponent** component of the SURFACE type with an opaque black background color: In versions earlier than API version 18, the **renderFit** attribute only supports **RenderFit.RESIZE_FILL**; since API version 18, the **renderFit** attribute supports all its available enum values.
+>
+>  For the **XComponent** component created using the [ArkUI NDK API](../../../ui/ndk-access-the-arkts-page.md), the [getAttribute](../_ark_u_i___native_node_a_p_i__1.md#getattribute) function is not supported for obtaining the **renderFit** attribute value.
+
 ## RenderFit
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 | Name                         | Description                                      | Diagram                                     |
 | --------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -48,6 +76,8 @@ Sets how the final state of the component's content is rendered during its width
 
 ## Example
 
+This example demonstrates how to set different content fill modes for a component during width and height animations through the **renderFit** attribute.
+
 ```ts
 // xxx.ets
 @Entry
@@ -56,6 +86,7 @@ struct RenderFitExample {
   @State width1: number = 100;
   @State height1: number = 30;
   flag: boolean = true;
+
   build() {
     Column() {
       Text("Hello")
@@ -63,7 +94,7 @@ struct RenderFitExample {
         .height(this.height1)
         .borderWidth(1)
         .textAlign(TextAlign.Start)
-        .renderFit(RenderFit.LEFT) // The component's content stays at the final size and always aligned with the left of the component.
+        .renderFit(RenderFit.LEFT)// The component's content stays at the final size and always aligned with the left of the component.
         .margin(20)
 
       Text("Hello")
@@ -71,12 +102,12 @@ struct RenderFitExample {
         .height(this.height1)
         .textAlign(TextAlign.Center)
         .borderWidth(1)
-        .renderFit(RenderFit.CENTER) // The component's content stays at the final size and always aligned with the center of the component.
+        .renderFit(RenderFit.CENTER)// The component's content stays at the final size and always aligned with the center of the component.
         .margin(20)
 
       Button("animate")
         .onClick(() => {
-          animateTo({ curve: Curve.Ease }, () => {
+          this.getUIContext()?.animateTo({ curve: Curve.Ease }, () => {
             if (this.flag) {
               this.width1 = 150;
               this.height1 = 50;

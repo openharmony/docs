@@ -1,14 +1,14 @@
 # Drawing Geometric Shapes (Shape)
 
 
-The drawing components are used to draw graphs on the page. The **\<Shape>** component is the parent component of the drawing components. The attributes of **\<Shape>** are universal attributes supported by all the drawing components. For details, see [Shape](../reference/arkui-ts/ts-drawing-components-shape.md).
+The drawing components are used to draw graphs on the page. The **Shape** component is the parent component of the drawing components. The attributes of **Shape** are universal attributes supported by all the drawing components. For details, see [Shape](../reference/apis-arkui/arkui-ts/ts-drawing-components-shape.md).
 
 
 ## Creating a Drawing Component
 
 A drawing component can be created in either of the following ways:
 
-- Create a drawing component with **\<Shape>** as their parent to implement the effect similar to SVG. The API used is as follows:
+- Create a drawing component with **Shape** as their parent to implement the effect similar to SVG. The API used is as follows:
 
   ```ts
   Shape(value?: PixelMap)
@@ -23,10 +23,10 @@ A drawing component can be created in either of the following ways:
   ```
 
 
-- Create an independent drawing component to draw a specific shape. Seven shapes are supported: [Circle](../reference/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/arkui-ts/ts-drawing-components-line.md), [Polyline](../reference/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
+- Create an independent drawing component to draw a specific shape. Seven shapes are supported: [Circle](../reference/apis-arkui/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/apis-arkui/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/apis-arkui/arkui-ts/ts-drawing-components-line.md), [Polyline](../reference/apis-arkui/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/apis-arkui/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/apis-arkui/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/apis-arkui/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
 
   ```ts
-  Circle(options?: {width?: string | number, height?: string | number}
+  Circle(value?: { width?: string | number, height?: string | number })
   ```
 
     This API draws a circle on a page. The **width** parameter indicates the width of the circle, and the **height** parameter indicates the height of the circle. The diameter of the circle is determined by the minimum width and height.
@@ -42,7 +42,7 @@ A drawing component can be created in either of the following ways:
 
 
 ```ts
-viewPort{ x?: number | string, y?: number | string, width?: number | string, height?: number | string }
+viewPort(value: { x?: number | string, y?: number | string, width?: number | string, height?: number | string })
 ```
 
 Creates a viewport, which is a rectangle in the user space that maps to the view boundary established for the associated SVG element. Among the four optional parameters, **x** and **y** represent the coordinates of the upper left corner of the viewport, and **width** and **height** represent the size of the viewport.
@@ -59,6 +59,7 @@ The following examples describe how to use the viewport:
     height:number = 75
   }
   let viep:tmp = new tmp()
+
   class tmp1{
     x:number = 0
     y:number = 0
@@ -66,15 +67,16 @@ The following examples describe how to use the viewport:
     height:number = 300
   }
   let viep1:tmp1 = new tmp1()
+
   // Draw a circle whose width and height are both 75.
-  Text ('Original Size Circle')
+  Text('Original Size Circle')
   Circle({width: 75, height: 75}).fill('#E87361')
 
   Row({space:10}) {
     Column() {
       // Create a shape component whose width and height are both 150, the background color is yellow, and a viewport whose width and height are both 75. Fill the viewport with a blue rectangle and draw a circle with a diameter of 75 in the viewport.
       // The drawing is complete. The viewport is zoomed in twice based on the width and height of the component.
-      Text ('Enlarged Circle')
+      Text('Enlarged Circle')
       Shape() {
         Rect().width('100%').height('100%').fill('#0097D4')
         Circle({width: 75, height: 75}).fill('#E87361')
@@ -87,7 +89,7 @@ The following examples describe how to use the viewport:
     Column() {
       // Create a shape component whose width and height are both 150, the background color is yellow, and a viewport whose width and height are both 300. Fill the viewport with a green rectangle and draw a circle with a diameter of 75 in the viewport.
       // After the drawing is complete, the viewport is zoomed out by twice based on the width and height of the component.
-      Text ('Shrunk Circle')
+      Text('Shrunk Circle')
       Shape() {
         Rect().width('100%').height('100%').fill('#BDDB69')
         Circle({width: 75, height: 75}).fill('#E87361')
@@ -112,13 +114,7 @@ The following examples describe how to use the viewport:
     height:number = 300
   }
   let viep:tmp = new tmp()
-  class tmp1{
-    x:number = -150
-    y:number = -150
-    width:number = 300
-    height:number = 300
-  }
-  let viep1:tmp1 = new tmp1()
+
   Shape() {
     Rect().width("100%").height("100%").fill("#0097D4")
     Circle({ width: 150, height: 150 }).fill("#E87361")
@@ -134,15 +130,22 @@ The following examples describe how to use the viewport:
 - Create a shape component whose width and height are both 300, with a yellow background and a viewport whose width and height are both 300. Fill the viewport with a blue rectangle, draw a circle with a radius of 75 in the viewport, and move the viewport 150 to the right and below respectively.
 
   ```ts
+  class tmp{
+    x:number = -150
+    y:number = -150
+    width:number = 300
+    height:number = 300
+  }
+  let viep:tmp = new tmp()
+
   Shape() {
     Rect().width("100%").height("100%").fill("#0097D4")
     Circle({ width: 150, height: 150 }).fill("#E87361")
   }
-    .viewPort(viep1)
+    .viewPort(viep)
     .width(300)
     .height(300)
     .backgroundColor("#F5DC62")
-
   ```
 
   ![viewport (3) ](figures/viewport (3) .jpg)
@@ -160,6 +163,7 @@ The drawing component allows you to change the component style through various a
     .height(100)
     .commands('M150 0 L300 300 L0 300 Z')
     .fill("#E87361")
+    .strokeWidth(0)
   ```
 
   ![2023022792216(1)](figures/2023022792216(1).jpg)
@@ -266,7 +270,9 @@ The drawing component allows you to change the component style through various a
 
 ## Example Scenario
 
-- Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 10, the stroke color is red, and the stroke join style is miter (default value).
+### Drawing a Closed Path
+
+  Draw a closed path at (-80, -5). The fill color is 0x317AF7, the stroke width is 3, the stroke color is red, and the stroke join style is miter (default value).
 
   ```ts
   @Entry
@@ -290,7 +296,9 @@ The drawing component allows you to change the component style through various a
 
   ![scenario-1](figures/scenario-1.jpg)
 
-- Draw a circle with a diameter of 150 mm and a ring with a diameter of 150 mm and a red dotted line (use the shorter side as the diameter if the width and height are different).
+### Drawing a Circle and Ring
+
+  Draw a circle with a diameter of 150 mm and a ring with a diameter of 150 mm and a red dotted line (use the shorter side as the diameter if the width and height are different).
 
   ```ts
   @Entry

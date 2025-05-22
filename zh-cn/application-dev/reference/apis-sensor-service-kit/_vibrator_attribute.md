@@ -7,7 +7,9 @@
 
 **起始版本：** 11
 
-**相关模块：**[Vibrator](_vibrator.md)
+**相关模块：** [Vibrator](_vibrator.md)
+
+**所在头文件：** [vibrator_type.h](vibrator_type_8h.md)
 
 
 ## 汇总
@@ -29,7 +31,7 @@
 ```
 int32_t Vibrator_Attribute::id
 ```
-**描述：**
+**描述**：
 
 马达ID。
 
@@ -39,6 +41,6 @@ int32_t Vibrator_Attribute::id
 Vibrator_Usage Vibrator_Attribute::usage
 ```
 
-**描述：**
+**描述**：
 
 振动场景。

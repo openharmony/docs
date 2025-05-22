@@ -441,7 +441,7 @@ struct ChainCallStorage1 {
 
 请参考相关文档规范，做相应适配整改，LocalStorage实例对象的赋值优先级高于本地默认值。
 
-[@LocalStorageProp初始化规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-localstorage.md)
+[@LocalStorageProp初始化规则](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/ui/state-management/arkts-localstorage.md)
 
 ## cl.arkui.7 RichEditor处于获焦时调用addTextSpan，addImageSpan，addBuilderSpan，addSymbolSpan，光标位置变更
 
@@ -533,9 +533,9 @@ UX设计优化
 
 API version 12开始，Tabs组件底部页签样式去除按压态动效，默认高度从56vp变更为52vp
 
-**API Level**
+**起始API Level**
 
-12
+9
 
 **变更发生版本**
 
@@ -557,3 +557,139 @@ Tabs组件
 **适配指导**
 
 UX默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期， 如不符合则应自定义修改效果控制变量以达到预期
+
+## cl.arkui.10 SubHeader组件边距、超长显示规则等默认样式变更。
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更，只影响SubHeader组件的默认样式。
+
+- 变更前
+  1. SubHeader组件左右边距24vp。
+  2. SubHeader组件一级标题字重Medium,二级标题超长缩小字号，最小14号。
+  3. SubHeader组件显示规则：组件优先展示左侧内容信息。
+  <br/>
+  
+- 变更后
+  1. SubHeader组件左右边距16vp。
+  2. SubHeader组件一级标题字重Bold,二级标题超长不缩小字号。
+  3. SubHeader组件显示规则：组件右侧默认占据整体组件宽度的1/3，左侧默认占据整体组件宽度的2/3。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/SubHeader_Margin_Before.png) |  ![](figures/SubHeader_Margin_After.png) |
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**变更的接口/组件**
+
+SubHeader组件。
+
+**适配指导**
+
+UX默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.11 advanced.Dialog组件弹窗内边距、标题字重、对齐方式等默认样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+UX样式变更
+
+**变更影响**
+
+该变更为非兼容性变更，只影响弹窗的默认样式，默认样式随系统风格变更。
+
+- 变更前
+  1. 弹窗内上边距为24vp，主标题字重为FontWeight.Medium。
+  2. 弹窗标题对齐方式为左对齐。
+  3. TipsDialog图片默认展示为充满边界。
+
+  <br/>
+- 变更后
+  1. 弹窗内上边距为8vp，主标题字重为FontWeight.Bold。
+  2. 弹窗标题对齐方式为居中对齐。
+  3. 优化图片显示规则，优先保证显示比例。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/SelectDialog_Before.png)  |  ![](figures/SelectDialog_After.png)  |
+
+**起始API Level**
+
+10
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**变更的接口/组件**
+
+advanced.Dialog.TipsDialog,advanced.Dialog.SelectDialog,advanced.Dialog.AlertDialog,advanced.Dialog.LoadingDialog
+
+**适配指导**
+
+UX默认行为变更，无需适配，但应注意变更后的默认效果是否符合开发者预期，如不符合则应自定义修改效果控制变量以达到预期。
+
+## cl.arkui.12 分段按钮组件选中项底板默认阴影效果样式变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修正视觉效果以获得更好的用户体验。
+
+**变更影响**
+
+该变更为非兼容性变更，只影响选中按钮的底板阴影效果。
+
+- 变更前
+  1. 底板阴影效果为ShadowStyle.OUTER_DEFAULT_MD。
+
+- 变更后
+  1. 底板阴影效果为ShadowStyle.OUTER_DEFAULT_XS。
+
+  如下图所示为变更前后效果对比：
+
+ | 变更前 | 变更后 |
+|---------|---------|
+| ![](figures/SegmentButton_Before.png)  |  ![](figures/SegmentButton_After.png)  |
+
+**起始API Level**
+
+11
+
+**变更发生版本**
+
+从OpenHarmony SDK 5.0.0.19 版本开始。
+
+**变更的接口/组件**
+
+SegmentButton
+
+**适配指导**
+
+默认行为变更，无需适配，但应注意变更后的行为是否对整体应用逻辑产生影响。

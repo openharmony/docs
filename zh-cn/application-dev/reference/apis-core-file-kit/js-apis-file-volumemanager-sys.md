@@ -27,7 +27,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)[]&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)[]&gt; | Promise对象，返回当前所有可获得的卷设备信息。 |
 
 **错误码：**
 
@@ -37,7 +37,7 @@ getAllVolumes(): Promise&lt;Array&lt;Volume&gt;&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -66,7 +66,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 
   | 参数名   | 类型                                              | 必填 | 说明                                 |
   | -------- | ------------------------------------------------- | ---- | ------------------------------------ |
-  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷设备信息之后的回调 |
+  | callback | AsyncCallback&lt;[Volume](#volume)[]&gt; | 是   | 获取当前所有可获得的卷设备信息之后的回调。 |
 
 **错误码：**
 
@@ -76,7 +76,7 @@ getAllVolumes(callback: AsyncCallback&lt;Array&lt;Volume&gt;&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: Mandatory parameters are left unspecified. |
 | 13600001 | IPC error. |
 | 13900042 | Unknown error. |
 
@@ -103,13 +103,13 @@ mount(volumeId: string): Promise&lt;void&gt;
 
   | 参数名   | 类型   | 必填 | 说明 |
   | -------- | ------ | ---- | ---- |
-  | volumeId | string | 是   | 卷设备id |
+  | volumeId | string | 是   | 卷设备id。 |
 
 **返回值：**
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -119,7 +119,7 @@ mount(volumeId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600003 | Failed to mount. |
@@ -153,8 +153,8 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
-  | volumeId | string                                | 是   | 卷设备id                 |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 挂载指定卷设备之后的回调 |
+  | volumeId | string                                | 是   | 卷设备id。                 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 挂载指定卷设备之后的回调。 |
 
 **错误码：**
 
@@ -164,7 +164,7 @@ mount(volumeId: string, callback:AsyncCallback&lt;void&gt;):void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600003 | Failed to mount. |
@@ -196,13 +196,13 @@ unmount(volumeId: string): Promise&lt;void&gt;
 
   | 参数名   | 类型   | 必填 | 说明 |
   | -------- | ------ | ---- | ---- |
-  | volumeId | string | 是   | 卷设备id |
+  | volumeId | string | 是   | 卷设备id。 |
 
 **返回值：**
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -212,7 +212,7 @@ unmount(volumeId: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600004 | Failed to unmount. |
@@ -246,8 +246,8 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名   | 类型                                  | 必填 | 说明                 |
   | -------- | ------------------------------------- | ---- | -------------------- |
-  | volumeId | string                                | 是   | 卷设备id                 |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 卸载指定卷设备之后的回调 |
+  | volumeId | string                                | 是   | 卷设备id。                 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 卸载指定卷设备之后的回调。 |
 
 **错误码：**
 
@@ -257,7 +257,7 @@ unmount(volumeId: string, callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600004 | Failed to unmount. |
@@ -289,13 +289,13 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 
   | 参数名   | 类型   | 必填 | 说明 |
   | -------- | ------ | ---- | ---- |
-  | uuid | string | 是   | 卷设备uuid |
+  | uuid | string | 是   | 卷设备uuid。 |
 
 **返回值：**
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息。 |
 
 **错误码：**
 
@@ -305,7 +305,7 @@ getVolumeByUuid(uuid: string): Promise&lt;Volume&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -336,8 +336,8 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 
   | 参数名    | 类型                                                 | 必填 | 说明                 |
   | -------- | ------------------------------------------------ | ---- | -------------------- |
-  | uuid | string                                                 | 是   | 卷设备uuid                 |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷设备信息之后的回调 |
+  | uuid | string                                                 | 是   | 卷设备uuid。                 |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt;  | 是   | 获取卷设备信息之后的回调。 |
 
 **错误码：**
 
@@ -347,7 +347,7 @@ getVolumeByUuid(uuid: string, callback: AsyncCallback&lt;Volume&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -376,13 +376,13 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 
   | 参数名    | 类型    | 必填  | 说明 |
   | -------- | ------ | ---- | ---- |
-  | volumeId | string | 是   | 卷设备id |
+  | volumeId | string | 是   | 卷设备id。 |
 
 **返回值：**
 
   | 类型                               | 说明                       |
   | ---------------------------------- | -------------------------- |
-  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息 |
+  | Promise&lt;[Volume](#volume)&gt; | Promise对象，返回当前所有可获得的卷设备信息。 |
 
 **错误码：**
 
@@ -392,7 +392,7 @@ getVolumeById(volumeId: string): Promise&lt;Volume&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -423,8 +423,8 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | volumeId | string                    | 是   | 卷设备id                |
-  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | 是   | 获取卷设备信息之后的回调  |
+  | volumeId | string                    | 是   | 卷设备id。                |
+  | callback | AsyncCallback&lt;[Volume](#volume)&gt; | 是   | 获取卷设备信息之后的回调。  |
 
 **错误码：**
 
@@ -434,7 +434,7 @@ getVolumeById(volumeId: string, callback: AsyncCallback&lt;Volume&gt;): void
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -463,14 +463,14 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 
   | 参数名     | 类型   | 必填 | 说明 |
   | --------- | ------ | ---- | ---- |
-  | uuid      | string | 是   | 卷设备uuid |
-  | description | string | 是   | 卷设备描述 |
+  | uuid      | string | 是   | 卷设备uuid。 |
+  | description | string | 是   | 卷设备描述。 |
 
 **返回值：**
 
   | 类型                    | 说明                       |
   | ---------------------- | -------------------------- |
-  | Promise&lt;void&gt; | 无返回结果的Promise对象                  |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。                  |
 
 **错误码：**
 
@@ -480,7 +480,7 @@ setVolumeDescription(uuid: string, description: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -514,9 +514,9 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 
   | 参数名      | 类型                                     | 必填 | 说明              |
   | ---------- | --------------------------------------- | ---- | ---------------- |
-  | uuid       | string                                  | 是   | 卷设备uuid            |
-  | description | string                                 | 是   | 卷设备描述            |
-  | callback   | AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调 |
+  | uuid       | string                                  | 是   | 卷设备uuid。            |
+  | description | string                                 | 是   | 卷设备描述。            |
+  | callback   | AsyncCallback&lt;void&gt;   | 是   | 设置卷描述之后的回调。 |
 
 **错误码：**
 
@@ -526,7 +526,7 @@ setVolumeDescription(uuid: string, description: string, callback: AsyncCallback&
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -558,14 +558,14 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 
   | 参数名       | 类型   | 必填 | 说明 |
   | ----------- | ------ | ---- | ---- |
-  | volumeId    | string | 是   | 卷设备id |
-  | fsType    | string | 是   | 文件系统类型（vfat或者exfat） |
+  | volumeId    | string | 是   | 卷设备id。 |
+  | fsType    | string | 是   | 文件系统类型（vfat或者exfat）。 |
 
 **返回值：**
 
   | 类型                   | 说明       |
   | ---------------------- | ---------- |
-  | Promise&lt;void&gt; | 无返回结果的Promise对象 |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -575,7 +575,7 @@ format(volumeId: string, fsType: string): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -609,9 +609,9 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 
   | 参数名   | 类型                      | 必填 | 说明                          |
   | -------- | ------------------------- | ---- | ----------------------------- |
-  | volumeId | string                    | 是   | 卷设备id                |
-  | fsType    | string | 是   | 文件系统类型(vfat或者exfat) |
-  | callback | AsyncCallback&lt;void&gt;  | 是   | 对指定卷设备格式化后的回调  |
+  | volumeId | string                    | 是   | 卷设备id。                |
+  | fsType    | string | 是   | 文件系统类型(vfat或者exfat)。 |
+  | callback | AsyncCallback&lt;void&gt;  | 是   | 对指定卷设备格式化后的回调。  |
 
 **错误码：**
 
@@ -621,7 +621,7 @@ format(volumeId: string, fsType: string, callback: AsyncCallback&lt;void&gt;): v
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600002 | Not supported filesystem. |
 | 13600005 | Incorrect volume state. |
@@ -653,14 +653,14 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 
   | 参数名       | 类型   | 必填 | 说明 |
   | ----------- | ------ | ---- | ---- |
-  | diskId    | string | 是   | 卷设备所属的磁盘设备id |
-  | type      | number | 是   | 分区类型    |
+  | diskId    | string | 是   | 卷设备所属的磁盘设备id。 |
+  | type      | number | 是   | 分区类型。    |
 
 **返回值：**
 
   | 类型                      | 说明                       |
    | --------------------- | ----------------------- |
-  | Promise&lt;void&gt;   | 无返回结果的Promise对象              |
+  | Promise&lt;void&gt;   | 无返回结果的Promise对象。              |
 
 **错误码：**
 
@@ -670,7 +670,7 @@ partition(diskId: string, type: number): Promise&lt;void&gt;
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -702,9 +702,9 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 
   | 参数名      | 类型                                   | 必填 | 说明              |
   | -------- | --------------------------------------- | ---- | ---------------- |
-  | diskId   | string                                  | 是   | 卷设备所属的磁盘id      |
-  | type     | number                                  | 是   | 分区类型           |
-  | callback | AsyncCallback&lt;void&gt;   | 是   | 对磁盘设备进行分区      |
+  | diskId   | string                                  | 是   | 卷设备所属的磁盘id。      |
+  | type     | number                                  | 是   | 分区类型。          |
+  | callback | AsyncCallback&lt;void&gt;   | 是   | 对磁盘设备进行分区。      |
 
 **错误码：**
 
@@ -714,7 +714,7 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 | -------- | -------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001 | IPC error. |
 | 13600008 | No such object. |
 | 13900042 | Unknown error. |
@@ -742,6 +742,7 @@ partition(diskId: string, type: number, callback: AsyncCallback&lt;void&gt;): vo
 | uuid        | string  | 是 | 否 | 卷设备uuid是卷设备的通用唯一识别码，不会随着插卡顺序变化而变化，但是卷设备的格式化会改变卷设备的uuid。               |
 | diskId      | string  | 是 | 否 | 卷设备所属的磁盘ID，一个磁盘可以有一个或者多个卷设备。磁盘设备ID的格式为disk-{主设备号}-{次设备号}，与卷设备ID相似。        |
 | description | string  | 是 | 否 | 卷设备描述。           |
-| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备。true为可移除，false为不可移除 |
-| state       | number  | 是 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED<br> 1：检查状态 CHECKING<br> 2：挂载状态 MOUNTED<br> 3：正在弹出状态 EJECTING          |
-| path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/data/external/{uuid}         |
+| removable   | boolean | 是 | 否 | 表示卷设备是否可移除，当前仅支持可移除存储设备。true为可移除；false为不可移除。 |
+| state       | number  | 是 | 否 | 卷设备状态标识：<br>0：卸载状态 UNMOUNTED。<br> 1：检查状态 CHECKING。<br> 2：挂载状态 MOUNTED。<br> 3：正在弹出状态 EJECTING。          |
+| path        | string  | 是 | 否 | 卷设备的挂载地址，一般为/mnt/data/external/{uuid}。         |
+| fsType<sup>12+</sup>        | string  | 是 | 否 | 文件系统的类型，常见有ext2、vfat、NTFS等。       |

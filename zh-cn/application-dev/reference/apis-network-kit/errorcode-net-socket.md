@@ -1,4 +1,4 @@
-# Socket 错误码
+# SOCKET 错误码
 
 > **说明：**
 >
@@ -52,7 +52,7 @@ No such process.
 
 **可能原因**
 
-进程不存在
+进程不存在。
 
 **处理步骤**
 
@@ -101,6 +101,150 @@ System internal error.
 
 2.系统异常，请稍后重试或重启设备。
 
+## 2301206 SOCKS5连接代理服务器失败
+
+**错误信息**
+
+Socks5 failed to connect to the proxy server.
+
+**错误描述**
+
+SOCKS5客户端连接代理服务器失败。
+
+**可能原因**
+
+代理服务器地址有误。
+
+**处理步骤**
+
+排查代理服务器地址是否正确。
+
+## 2301207 SOCKS5认证用户名或密码无效
+
+**错误信息**
+
+Socks5 username or password is invalid.
+
+**错误描述**
+
+SOCKS5使用用户名密码认证方式时，用户名或者密码无效。
+
+**可能原因**
+
+用户名密码有误。
+
+**处理步骤**
+
+排查用户名密码是否设置准确。
+
+## 2301208 SOCKS5连接远程服务器失败
+
+**错误信息**
+
+Socks5 failed to connect to the remote server.
+
+**错误描述**
+
+SOCKS5代理连接远程服务器失败。
+
+**可能原因**
+
+远程服务器网络问题。
+
+**处理步骤**
+
+排查远程服务器网络状况。
+
+## 2301209 SOCKS5协商认证方式失败
+
+**错误信息**
+
+Socks5 failed to negotiate the authentication method.
+
+**错误描述**
+
+SOCKS5协商认证方式失败。
+
+**可能原因**
+
+代理服务器不支持客户端提供的认证方式。
+
+**处理步骤**
+
+排查代理服务器是否支持客户端提供的认证方式。
+
+## 2301210 SOCKS5发送消息失败
+
+**错误信息**
+
+Socks5 failed to send the message.
+
+**错误描述**
+
+SOCKS5因系统调用错误，发送消息失败。
+
+**可能原因**
+
+内存溢出、参数无效等，关键信息请参考日志中Linux系统内核错误码。
+
+**处理步骤**
+
+尝试新建socket，再次发起连接。
+
+## 2301211 SOCKS5接收消息失败
+
+**错误信息**
+
+Socks5 failed to receive the message.
+
+**错误描述**
+
+SOCKS5因系统调用错误，接收消息失败。
+
+**可能原因**
+
+内存溢出、参数无效等，关键信息请参考日志中Linux系统内核错误码。
+
+**处理步骤**
+
+尝试新建socket，再次发起连接。
+
+## 2301212 SOCKS5消息序列化失败
+
+**错误信息**
+
+Socks5 serialization error.
+
+**错误描述**
+
+SOCKS5消息序列化失败。
+
+**可能原因**
+
+用户名密码过长，代理服务器、远端服务器地址和协议类型不匹配。
+
+**处理步骤**
+
+排查用户名密码长度是否过长，代理服务器、远端服务器的地址和协议类型是否匹配。
+
+## 2301213 SOCKS5消息反序列化失败
+
+**错误信息**
+
+Socks5 deserialization error.
+
+**错误描述**
+
+SOCKS5消息反序列化失败。
+
+**可能原因**
+
+服务器响应数据包长度不符合协议。
+
+**处理步骤**
+
+排查服务器响应数据包。
+
 ## 2303104 中断系统调用
 
 **错误信息**
@@ -113,7 +257,7 @@ Interrupted system call.
 
 **可能原因**
 
-调有connect时，可能会导致阻塞时间过长，所以系统产生中断信号，返回EINTR错误。
+调用connect时，可能会导致阻塞时间过长，所以系统产生中断信号，返回EINTR错误。
 
 **处理步骤**
 
@@ -141,7 +285,7 @@ socket fd可能被关闭了，所以发生参数无效的错误。
 
 **错误信息**
 
-Resource temporarily unavailable try again.
+Resource temporarily unavailable. Try again.
 
 **错误描述**
 
@@ -177,7 +321,7 @@ Not a socket.
 
 **错误信息**
 
-Protocol wrong type for socket.
+Incorrect socket protocol type.
 
 **错误描述**
 
@@ -185,8 +329,7 @@ Protocol wrong type for socket.
 
 **可能原因**
 
-标识了协议的Socket函数在不支持的socket上进行操作。
-如Internet UDP协议不能被标识为SOCK_STREAM socket类型。
+标识了协议的Socket函数在不支持的socket上进行操作，如Internet UDP协议不能被标识为SOCK_STREAM socket类型。
 
 **处理步骤**
 
@@ -228,6 +371,24 @@ Address not available.
 
 检查地址或端口是否正确。
 
+## 2303200 网络已关闭
+
+**错误信息**
+
+Network is down.
+
+**错误描述**
+
+网络已关闭。
+
+**可能原因**
+
+网络服务未启动或已停止。
+
+**处理步骤**
+
+检查网络连接。
+
 ## 2303210 连接超时
 
 **错误信息**
@@ -244,7 +405,7 @@ Connection timed out.
 
 **处理步骤**
 
-本地处理不了，需要确认远程服务器是否发生问题。
+本地无法处理此问题，需确认远程服务器是否出现故障。
 
 ## 2303501 SSL为空
 
@@ -264,11 +425,11 @@ SSL is null.
 
 尝试重新执行一遍流程。
 
-## 2303502 tls读取错误
+## 2303502 TLS读取错误
 
 **错误信息**
 
-Error in tls reading.
+An error occurred when reading data on the TLS socket.
 
 **错误描述**
 
@@ -282,11 +443,11 @@ Error in tls reading.
 
 重新执行接收数据的操作。
 
-## 2303503 tls写入错误
+## 2303503 TLS写入错误
 
 **错误信息**
 
-Error in tls writing.
+An error occurred when writing data on the TLS socket.
 
 **错误描述**
 
@@ -298,13 +459,13 @@ Error in tls writing.
 
 **处理步骤**
 
-需要检查服务器并修复它。
+需检查服务器状态并进行修复。
 
 ## 2303504 查找x509时出错
 
 **错误信息**
 
-Error looking up x509.
+An error occurred when verifying the x509 certificate.
 
 **错误描述**
 
@@ -318,11 +479,11 @@ Error looking up x509.
 
 检查本地CA跟证书和服务器证书是否匹配。
 
-## 2303505 tls系统调用错误
+## 2303505 TLS系统调用错误
 
 **错误信息**
 
-Error occurred in the tls system call.
+An error occurred in the TLS system call.
 
 **错误描述**
 
@@ -336,11 +497,11 @@ Error occurred in the tls system call.
 
 请参阅Linux系统内核错误码errno以了解详细信息。
 
-## 2303506 清除tls连接出错
+## 2303506 清除TLS连接出错
 
 **错误信息**
 
-Error clearing tls connection.
+Failed to close the TLS connection.
 
 **错误描述**
 

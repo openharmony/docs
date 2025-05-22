@@ -1,4 +1,6 @@
-# Camera Preview (ArkTS)
+# Preview (ArkTS)
+
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 Preview is the image you see after you start the camera application but before you take photos or record videos.
 
@@ -9,57 +11,26 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
 1. Import the camera module, which provides camera-related attributes and methods.
      
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 2. Create a surface.
 
-    The **\<XComponent>**, the capabilities of which are provided by the UI, offers the surface for preview streams. For details, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
+    The camera development model relies on the surface model, which uses surface for data interaction. When developing the camera application UI, you need to create an XComponent to provide a surface for the preview stream, and then obtain the surface ID associated with the XComponent to create a preview stream. The preview stream can be directly rendered within the XComponent. For details about how to obtain the surface ID, see [getXComponentSurfaceId](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid9). The capabilities of the XComponent are provided by the UI. For details, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
 
     > **NOTE**
     >
-    > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 1920:1080 (which is equal to 16:9), then the aspect ratio of the resolution of the preview stream must also be 16:9. This means that the resolution can be 640:360, 960:540, 1920:1080, or the like.
+    > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio of the surface of the **XComponent** is 1920:1080 (which is equal to 16:9), then the aspect ratio of the resolution of the preview stream must also be 16:9. This means that the resolution can be 640:360, 960:540, 1920:1080, or the like.
 
-   ```ets
-   // xxx.ets
-   // Create an XComponentController object.
-   @Component
-   struct XComponentPage {
-     // Create an XComponentController object.
-     mXComponentController: XComponentController = new XComponentController;
-     surfaceId: string = '';
-
-     build() {
-       Flex() {
-         // Create an XComponent object.
-         XComponent({
-           id: '',
-           type: 'surface',
-           libraryname: '',
-           controller: this.mXComponentController
-         })
-           .onLoad(() => {
-             // Set the surface width and height (1920 x 1080). For details about how to set the preview size, see the preview resolutions supported by the current device, which are obtained from previewProfilesArray.
-             // The preview stream and video output stream must have the same aspect ratio of the resolution.
-             this.mXComponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
-             // Obtain the surface ID.
-             this.surfaceId = this.mXComponentController.getXComponentSurfaceId();
-           })
-           .width('1920px')
-           .height('1080px')
-       }
-     }
-   }
-   ```
-
-3. Use **previewProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call [createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput) to create a **PreviewOutput** object, with the first parameter set to the first item in the **previewProfilesArray** array and the second parameter set to the surface ID obtained in step 2.
+3. Use **previewProfiles** in the [CameraOutputCapability](../../reference/apis-camera-kit/js-apis-camera.md#cameraoutputcapability) class to obtain the preview output capabilities, in the format of an **previewProfilesArray** array, supported by the current device. Then call [createPreviewOutput](../../reference/apis-camera-kit/js-apis-camera.md#createpreviewoutput) to create a **PreviewOutput** object, with the first parameter set to the preview profile supported by the camera and the second parameter set to the surface ID obtained in step 2.
      
    ```ts
    function getPreviewOutput(cameraManager: camera.CameraManager, cameraOutputCapability: camera.CameraOutputCapability, surfaceId: string): camera.PreviewOutput | undefined {
      let previewProfilesArray: Array<camera.Profile> = cameraOutputCapability.previewProfiles;
      let previewOutput: camera.PreviewOutput | undefined = undefined;
      try {
+       // Choose the preview profile from previewProfilesArray that matches the aspect ratio set in Step 2. Selecting the first item in the array is for illustrative purposes only.
        previewOutput = cameraManager.createPreviewOutput(previewProfilesArray[0], surfaceId);
      } catch (error) {
        let err = error as BusinessError;
@@ -92,7 +63,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        console.error('cameraInput is undefined');
        return;
      }
-     // Open a camera.
+     // Open the camera.
      await cameraInput.open();
      let session: camera.PhotoSession = cameraManager.createSession(camera.SceneMode.NORMAL_PHOTO) as camera.PhotoSession;
      session.beginConfig();
@@ -112,7 +83,10 @@ During camera application development, you can listen for the preview output str
     
   ```ts
   function onPreviewOutputFrameStart(previewOutput: camera.PreviewOutput): void {
-    previewOutput.on('frameStart', () => {
+    previewOutput.on('frameStart', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Preview frame started');
     });
   }
@@ -122,13 +96,16 @@ During camera application development, you can listen for the preview output str
     
   ```ts
   function onPreviewOutputFrameEnd(previewOutput: camera.PreviewOutput): void {
-    previewOutput.on('frameEnd', () => {
+    previewOutput.on('frameEnd', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Preview frame ended');
     });
   }
   ```
 
-- Register the **'error'** event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [Camera Error Codes](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
+- Register the **'error'** event to listen for preview output errors. The callback function returns an error code when an API is incorrectly used. For details about the error code types, see [CameraErrorCode](../../reference/apis-camera-kit/js-apis-camera.md#cameraerrorcode).
     
   ```ts
   function onPreviewOutputError(previewOutput: camera.PreviewOutput): void {

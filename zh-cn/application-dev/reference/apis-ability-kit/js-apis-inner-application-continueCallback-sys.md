@@ -13,7 +13,7 @@ onContinueDone(result: number): void;
 
 Mission迁移完成后调用，返回迁移结果。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -21,13 +21,13 @@ Mission迁移完成后调用，返回迁移结果。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| result |  number | 是 | 迁移任务的结果。 |
+| result |  number | 是 | 迁移任务的结果，0表示迁移成功，其他表示迁移失败。 |
 
 **示例：**
 
 ```ts
-import distributedMissionManager from '@ohos.distributedMissionManager';
-import { BusinessError } from '@ohos.base';
+import { distributedMissionManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 distributedMissionManager.continueMission(
   {
@@ -35,18 +35,17 @@ distributedMissionManager.continueMission(
     dstDeviceId: '456',
     missionId: 123,
     wantParam: {
-        'key':'value'
+      'key': 'value'
     }
   },
   {
     onContinueDone(result: number) {
-        console.log(`onContinueDone, result: ${JSON.stringify(result)}`);
+      console.log(`onContinueDone, result: ${JSON.stringify(result)}`);
     }
   }, (error: BusinessError) => {
-    if (error && error.code) {
-        console.error(`continueMission failed, error.code: ${error.code}, error.message: ${error.message}`);
-    }
-    console.log(`continueMission finished`);
+  if (error && error.code) {
+    console.error(`continueMission failed, error.code: ${error.code}, error.message: ${error.message}`);
   }
-);
+  console.log(`continueMission finished`);
+});
 ```

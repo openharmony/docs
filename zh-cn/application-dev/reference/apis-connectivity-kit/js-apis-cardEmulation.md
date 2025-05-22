@@ -13,10 +13,10 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 ```json
 {
   "module": {
-    // other declared attributes.
+    // 其他已声明的属性
     "abilities": [
       {
-        // other declared attributes.
+        // 其他已声明的属性
         "skills": [
           {
             "actions": [
@@ -39,7 +39,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
     "requestPermissions": [
       {
         "name": "ohos.permission.NFC_CARD_EMULATION",
-        // should add variable card_emulation_reason in string.json
+        // 必须要添加reason: card_mulation_reason
         "reason": "$string:card_emulation_reason",
       }
     ]
@@ -54,7 +54,7 @@ HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安�
 ## 导入模块
 
 ```
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 ```
 
 ## FeatureType<sup>(deprecated)</sup>
@@ -62,7 +62,8 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 定义不同的NFC卡模拟类型。
 
 > **说明：**
-> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#hashcecapability9)替代。
+> 
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#cardemulationhashcecapability9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
@@ -78,21 +79,22 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 | 名称      | 值         | 说明                |
 | ------- | --------- | ----------------- |
 | PAYMENT | "payment" | 卡模拟应用所使用的业务是支付类型。 |
 | OTHER   | "other"   | 卡模拟应用所使用的业务是其他类型。 |
 
-## isSupported<sup>(deprecated)</sup>
+## cardEmulation.isSupported<sup>(deprecated)</sup>
 
 isSupported(feature: number): boolean
 
 是否支持某种类型的卡模拟。
 
 > **说明：**
-> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#hashcecapability9)替代。
+> 
+> 从 API version 6 开始支持，从 API version 9 开始废弃，建议使用[hasHceCapability](#cardemulationhashcecapability9)替代。
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
@@ -108,7 +110,18 @@ isSupported(feature: number): boolean
 | ------- | -------------------------------------- |
 | boolean | true: 支持该类型卡模拟，&nbsp;false: 不支持该类型卡模拟。 |
 
-## hasHceCapability<sup>9+</sup>
+**示例：**
+
+```js
+import { cardEmulation } from '@kit.ConnectivityKit';
+
+let isHceSupported: boolean = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
+if (!isHceSupported) {
+    console.log('this device is not supported for HCE, ignore it.');
+}
+```
+
+## cardEmulation.hasHceCapability<sup>9+</sup>
 
 hasHceCapability(): boolean
 
@@ -118,7 +131,7 @@ hasHceCapability(): boolean
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **返回值：**
 
@@ -126,23 +139,27 @@ hasHceCapability(): boolean
 | ------- | -------------------------------- |
 | boolean | true: 支持HCE，&nbsp;false: 不支持HCE。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
+import { cardEmulation } from '@kit.ConnectivityKit';
 
-let isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
-if (!isHceSupported) {
-    console.log('this device is not supported for HCE, ignore it.');
-}
-
-let hasHceCap = cardEmulation.hasHceCapability();
+let hasHceCap: boolean = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
 }
 ```
 
-## isDefaultService<sup>9+</sup>
+## cardEmulation.isDefaultService<sup>9+</sup>
 
 isDefaultService(elementName: ElementName, type: CardType): boolean
 
@@ -152,14 +169,24 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名         | 类型                                       | 必填   | 说明                      |
 | ----------- | ---------------------------------------- | ---- |-------------------------|
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询。   |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 
 **返回值：**
 
@@ -167,19 +194,21 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 | ------- | ------------------------------------ |
 | boolean | true: 是默认支付应用，&nbsp;false: 不是默认支付应用。 |
 
+
 **示例：**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import bundleManager from '@ohos.bundle.bundleManager';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { bundleManager, Want } from '@kit.AbilityKit';
 
-let elementName : bundleManager.ElementName;
+// 需要初始化 elementName、bundleName、abilityName，根据实际应用信息更改为正确的值
+let elementName: bundleManager.ElementName = {
+  bundleName: "com.example.myapplication",
+  moduleName: "entry",
+  abilityName: "EntryAbility"
+};
 
-// init elementName here, bundleName and abilityName are required.
-
-let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
-// do something according to the isDefaultService value
+let isDefaultService: boolean = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 ```
-
 
 ## HceService<sup>8+</sup>
 
@@ -189,7 +218,7 @@ let isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation
 
 startHCE(aidList: string[]): boolean
 
-启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。暂不支持使用，仅做接口声明。
+启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[start](#start9)替代。
@@ -212,21 +241,21 @@ startHCE(aidList: string[]): boolean
 
 ### start<sup>9+</sup>
 
-start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname), aidList: string[]): void
+start(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname), aidList: string[]): void
 
-启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。暂不支持使用，仅做接口声明。
+启动HCE业务功能。包括设置当前应用为前台优先，动态注册AID列表。
 
 **需要权限：** ohos.permission.NFC_CARD_EMULATION
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | aidList | string[] | 是   | 动态注册卡模拟的AID列表，允许为空。 |
 
 **错误码：**
@@ -235,6 +264,9 @@ start(elementName: [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 ### stopHCE<sup>(deprecated)</sup>
@@ -270,13 +302,13 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](../apis-ability-kit/js-apis-bundle-ElementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
+| elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是   | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 
 **错误码：**
 
@@ -284,6 +316,9 @@ stop(elementName: [ElementName](../apis-ability-kit/js-apis-bundleManager-elemen
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 ### on<sup>8+</sup>
@@ -296,7 +331,7 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -305,45 +340,120 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 | type     | string                  | 是   | 要订阅的回调类型，固定填"hceCmd"字符串。                         |
 | callback | AsyncCallback\<number[]> | 是   | 订阅的事件回调，入参是符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+|201 | Permission denied.                 |
+|801 | Capability not supported.          |
+
 **示例：**
 ```js
-import UIAbility from '@ohos.app.ability.UIAbility';
-import hilog from '@ohos.hilog';
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { AsyncCallback } from '@ohos.base';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
 import { ElementName } from './bundleManager/ElementName'
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 let element: ElementName;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
     element = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName
     }
     const apduCallback: AsyncCallback<number[]> = (err, data) => {
-      //handle the data and err
+      //处理数据和异常
       console.log("got apdu data");
     };
     hceService.on('hceCmd', apduCallback);
   }
   onDestroy() {
     hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
-    hceService.stop(element)
+    hceService.stop(element);
   }
-  // other life cycle method...
+  // 生命周期内的其它功能
 }
 ```
 
+### off<sup>18+</sup>
+
+off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
+
+取消APDU数据接收的订阅。
+
+**需要权限：** ohos.permission.NFC_CARD_EMULATION
+
+**系统能力：** SystemCapability.Communication.NFC.CardEmulation
+
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                         |
+| -------- | ----------------------- | ---- | -------------------------------------------- |
+| type     | string                  | 是   | 要取消订阅的事件类型，固定填"hceCmd"字符串。                         |
+| callback | AsyncCallback\<number[]> | 否   | 订阅的事件回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+|201 | Permission denied.                 |
+|401 | Invalid parameter.                 |
+|801 | Capability not supported.          |
+
+**示例：**
+```js
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { AsyncCallback } from '@kit.BasicServicesKit';
+import { ElementName } from './bundleManager/ElementName'
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+
+let hceService: cardEmulation.HceService = new cardEmulation.HceService();
+let element: ElementName;
+const apduCallback: AsyncCallback<number[]> = (err, data) => {
+  // 处理数据和异常
+  console.log("AsyncCallback got apdu data");
+};
+
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, param: AbilityConstant.LaunchParam) {
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onCreate');
+    element = {
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
+      moduleName: want.moduleName
+    }
+    const apduCallback: AsyncCallback<number[]> = (err, data) => {
+      // 处理数据和异常
+      console.log("got apdu data");
+    };
+    hceService.on('hceCmd', apduCallback);
+  }
+  onDestroy() {
+    hilog.info(0x0000, 'testHce', '%{public}s', 'Ability onDestroy');
+    hceService.off('hceCmd', apduCallback);
+    hceService.stop(element);
+  }
+  // 生命周期内的其它功能
+}
+```
 
 ### sendResponse<sup>(deprecated)</sup>
 
 sendResponse(responseApdu: number[]): void
 
-发送APDU数据到对端读卡设备。暂不支持使用，仅做接口声明。
+发送APDU数据到对端读卡设备。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[transmit](#transmit9)替代。
@@ -368,7 +478,7 @@ transmit(response: number[]): Promise\<void>
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -388,19 +498,22 @@ transmit(response: number[]): Promise\<void>
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 **示例：**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// 应用程序实际想要发送的数据， 此处仅做为示例
 const responseData = [0x1, 0x2];
 hceService.transmit(responseData).then(() => {
-  // handle the transmit promise
+  // 处理 promise 的回调
   console.log("transmit Promise success.");
 }).catch((err: BusinessError) => {
   console.log("transmit Promise error:", err);
@@ -417,14 +530,14 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 
 **系统能力：** SystemCapability.Communication.NFC.CardEmulation
 
-**元服务API：** 从API version 12开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回发送APDU数据的结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当发送APDU数据成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -432,29 +545,32 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+|201 | Permission denied.                 |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3100301 | Card emulation running state is abnormal in service. |
 
 **示例：**
 ```js
-import cardEmulation from '@ohos.nfc.cardEmulation';
-import { BusinessError } from '@ohos.base';
+import { cardEmulation } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let hceService: cardEmulation.HceService = new cardEmulation.HceService();
 
-// the data app wanna send, just a example data
+// 应用程序实际想要发送的数据， 此处仅做为示例
 try {
   const responseData = [0x1, 0x2];
 
   hceService.transmit(responseData, (err : BusinessError)=> {
     if (err) {
-      console.error("transmit AsyncCallback err Code: ${err.code}, message: ${err.message}");
+      console.error(`transmit AsyncCallback err Code: ${err.code}, message: ${err.message}`);
     } else {
       console.log("transmit AsyncCallback success.");
     }
   });
-} catch (busiError) {
-  console.error("transmit AsyncCallback catch Code: ${(busiError as Businsess).code}, " +
-    "message: ${(busiError as Businsess).message}");
+} catch (error) {
+  console.error(`transmit AsyncCallback catch Code: ${(error as BusinessError).code}, ` +
+    `message: ${(error as BusinessError).message}`);
 }
 ```
 

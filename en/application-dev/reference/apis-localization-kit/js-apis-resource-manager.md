@@ -9,7 +9,7 @@ The **resourceManager** module provides APIs to obtain information about applica
 ## Modules to Import
 
 ```js
-import resourceManager from '@ohos.resourceManager';
+import { resourceManager } from '@kit.LocalizationKit'
 ```
 
 ## How to Use
@@ -19,8 +19,8 @@ For the FA model, you need to import the required bundle and then call the [getR
 For details about how to reference context in the stage model, see [Context in the Stage Model](../../application-models/application-context-stage.md).
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -44,16 +44,17 @@ Obtains the **ResourceManager** object of this application. This API uses an asy
 
 | Name     | Type                                      | Mandatory  | Description                           |
 | -------- | ---------------------------------------- | ---- | ----------------------------- |
-| callback | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   |Callback used to return the result, which is a **ResourceManager** object.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | Yes   |Callback used to return the result, which is a **ResourceManager** object.|
 
 **Example**
+  <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager((error, mgr) => {
     if (error != null) {
       console.error("error is " + error);
       return;
     }
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -78,10 +79,10 @@ Obtains the **ResourceManager** object of the specified application. This API us
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
 | bundleName | string                                   | Yes   | Bundle name of an application.                |
-| callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result, which is a **ResourceManager** object.|
+| callback   | [AsyncCallback](#asynccallbackdeprecated)&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result, which is a **ResourceManager** object.|
 
 **Example**
-
+  <!--code_no_check_fa-->
   ```js
   resourceManager.getResourceManager("com.example.myapplication", (error, mgr) => {
   });
@@ -104,12 +105,13 @@ Obtains the **ResourceManager** object of this application. This API uses a prom
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
 
 **Example**
+  <!--code_no_check_fa-->
   ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager().then((mgr: resourceManager.ResourceManager) => {
-    mgr.getStringValue($r('app.string.text').id, (error: BusinessError, value: string) => {
+    mgr.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
       if (error != null) {
         console.error("error is " + error);
       } else {
@@ -144,9 +146,10 @@ Obtains the **ResourceManager** object of the specified application. This API us
 | Promise&lt;[ResourceManager](#resourcemanager)&gt; | Promise used to return the result, which is a **ResourceManager** object.|
 
 **Example**
+  <!--code_no_check_fa-->
   ```js
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager("com.example.myapplication").then((mgr: resourceManager.ResourceManager) => {
   }).catch((error: BusinessError) => {
@@ -158,6 +161,8 @@ Obtains the **ResourceManager** object of the specified application. This API us
 getSystemResourceManager(): ResourceManager
 
 Obtains a **ResourceManager** object.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -173,12 +178,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001009  | If application can't access system resource.                       |
+| 9001009  | Failed to access the system resource.which is not mapped to application sandbox, This error code will be thrown. |
 
 **Example**
   ```js
-import resourceManager from '@ohos.resourceManager';
-import { BusinessError } from '@ohos.base';
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     let systemResourceManager = resourceManager.getSystemResourceManager();
@@ -198,6 +203,8 @@ import { BusinessError } from '@ohos.base';
 
 Enumerates the screen directions.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 | Name                  | Value | Description  |
@@ -210,19 +217,25 @@ Enumerates the screen directions.
 
 Enumerates the device types.
 
-**System capability**: SystemCapability.Global.ResourceManager
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
+**System capability**: SystemCapability.Global.ResourceManager
+<!--RP1-->
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
+| DEVICE_TYPE_PHONE    | 0x00 | Phone  |
 | DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
 | DEVICE_TYPE_CAR      | 0x02 | Automobile  |
 | DEVICE_TYPE_TV       | 0x04 | TV |
 | DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
-
+| DEVICE_TYPE_2IN1<sup>11+</sup>     | 0x07 | 2-in-1 device  |
+<!--RP1End-->
 
 ## ScreenDensity
 
 Enumerates the screen density types.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -236,27 +249,45 @@ Enumerates the screen density types.
 | SCREEN_XXXLDPI | 640  | Screen density with extra-extra-extra-large-scale dots per inch (XXXLDPI).|
 
 
+## ColorMode<sup>12+</sup>
+
+Defines the color mode of the current device.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+| Name | Value  | Description      |
+| ----- | ---- | ---------- |
+| DARK  | 0    | Dark mode.|
+| LIGHT | 1    | Light mode.|
+
+
 ## Configuration
 
 Defines the device configuration.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
+| Name                       | Type                           | Readable| Writable| Description              |
+| --------------------------- | ------------------------------- | ---- | ---- | ------------------ |
+| direction                   | [Direction](#direction)         | Yes  | Yes  | Screen orientation modes.<br>**Atomic service API**: This API can be used in atomic services since API version 11.        |
+| locale                      | string                          | Yes  | Yes  | Language locale.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| deviceType<sup>12+</sup>    | [DeviceType](#devicetype)       | Yes  | Yes  | Device type.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| screenDensity<sup>12+</sup> | [ScreenDensity](#screendensity) | Yes  | Yes  | Screen density<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| colorMode<sup>12+</sup>     | [ColorMode](#colormode12)       | Yes  | Yes  | Color mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.       |
+| mcc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile country code (MCC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| mnc<sup>12+</sup>           | number                          | Yes  | Yes  | Mobile network code (MNC).<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
 
-| Name       | Type                   | Readable  | Writable  | Description      |
-| --------- | ----------------------- | ---- | ---- | -------- |
-| direction | [Direction](#direction) | Yes   | No   | Screen direction of the device.|
-| locale    | string                  | Yes   | No   | Current system language.  |
 
 
 ## DeviceCapability
 
 Defines the device capability.
 
-**System capability**: SystemCapability.Global.ResourceManager
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters**
+**System capability**: SystemCapability.Global.ResourceManager
 
 | Name           | Type                           | Readable  | Writable  | Description      |
 | ------------- | ------------------------------- | ---- | ---- | -------- |
@@ -264,35 +295,29 @@ Defines the device capability.
 | deviceType    | [DeviceType](#devicetype)       | Yes   | No   | Device type.  |
 
 
-## RawFileDescriptor<sup>8+</sup>
+## RawFileDescriptor<sup>9+</sup>
 
-Defines the descriptor of the HAP where the raw file is located.
+type RawFileDescriptor = _RawFileDescriptor
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
-
-| Name    | Type   | Readable  | Writable | Description          |
-| ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | Yes   | No| File descriptor.|
-| offset | number  | Yes   | No| Start offset of the raw file.     |
-| length | number  | Yes   | No| File length.      |
+| Type   | Description  |
+| ------  | ---- | 
+|[_RawFileDescriptor](js-apis-rawFileDescriptor.md#rawfiledescriptor-1)|Descriptor of the HAP where the raw file is located.|
 
 ## Resource<sup>9+</sup>
 
-Defines the resource information of an application.
+type Resource = _Resource
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
-**Parameters**
-
-| Name        | Type    | Readable  | Writable |Description         |
-| ---------- | ------ | ----- | ----  | ---------------|
-| bundleName | string | Yes   | No| Bundle name of the application.|
-| moduleName | string | Yes   | No| Module name of the application.|
-| id         | number | Yes   | No| Resource ID.     |
-| params     | any[] | Yes   | No| Other resource parameters, which are optional.     |
-| type       | number | Yes   | No| Resource type, which is optional.     |
+| Type   | Description  |
+| ------  | ---- | 
+|[_Resource](js-apis-resource.md#resource-1)|Resource information of an application.|
 
 ## ResourceManager
 
@@ -302,17 +327,21 @@ Defines the capability of accessing application resources.
 >
 > - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
-> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding strings and string arrays based on the specified resource ID, resource name, or resource object. You can use **$r(resource address).id**, for example, **$r('app.string.test').id**, to obtain the resource ID.
+> - Resource files are defined in the **resources** directory of the project. You can obtain the corresponding strings and string arrays based on the specified resource ID, resource name, or resource object. You can use `$r(resource address).id`, for example, `$r('app.string.test').id`, to obtain the resource ID.
 >
 > - Use the resource object for cross-package access in a multi-project application. It works by creating the context of the corresponding module to obtain required resources. Therefore, it takes a longer time than using the resource ID or resource name.
 >
 > - For details about intra-HAP and cross-HAP/HSP resource access modes, see [Resource Access](../../quick-start/resource-categories-and-access.md#resource-access).
+>
+> - For details about the content of the test files used in the sample code, see [Appendix](#appendix).
 
 ### getStringSync<sup>9+</sup>
 
 getStringSync(resId: number): string
 
 Obtains a string based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -330,17 +359,18 @@ Obtains a string based on the specified resource ID. This API returns the result
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id);
@@ -357,6 +387,8 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource ID and formats the string based on **args**. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -364,7 +396,7 @@ Obtains a string based on the specified resource ID and formats the string based
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -373,19 +405,19 @@ Obtains a string based on the specified resource ID and formats the string based
 | string | Formatted string corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
-| -------- | ----------------------------------------------- |
-| 9001001  | If the resId invalid.                               |
-| 9001002  | If the resource not found by resId.                 |
-| 9001006  | If the resource re-ref too much.                    |
-| 9001007  | If the resource obtained by resId formatting error. |
+| -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                               |
+| 9001002  | No matching resource is found based on the resource ID.                 |
+| 9001006  | The resource is referenced cyclically.                    |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
@@ -401,6 +433,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringSync(resource: Resource): string
 
 Obtains a string based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -420,18 +454,19 @@ Obtains a string based on the specified resource object. This API returns the re
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -453,6 +488,8 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource object and formats the string based on **args**. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -462,7 +499,7 @@ Obtains a string based on the specified resource object and formats the string b
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -471,20 +508,20 @@ Obtains a string based on the specified resource object and formats the string b
 | string | Formatted string corresponding to the specified resource object.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-| 9001007  | If the resource obtained by resId formatting error. |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -498,13 +535,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     let message = (error as BusinessError).message;
     console.error(`getStringSync failed, error code: ${code}, message: ${message}.`);
   }
- ```
+  ```
 
 ### getStringByNameSync<sup>9+</sup>
 
 getStringByNameSync(resName: string): string
 
 Obtains a string based on the specified resource name. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -522,17 +561,18 @@ Obtains a string based on the specified resource name. This API returns the resu
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByNameSync("test");
@@ -549,6 +589,8 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 
 Obtains a string based on the specified resource name and formats the string based on **args**. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -556,7 +598,7 @@ Obtains a string based on the specified resource name and formats the string bas
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number\\$d, %number\\$f, and %number\\$s.<br>Note: %% is escaped to %. % number\\$d indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1\\$d indicates that the first parameter is used.|
+| ...args | Array<string \| number> | No   | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
@@ -566,18 +608,19 @@ Obtains a string based on the specified resource name and formats the string bas
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
-| 9001008  | If the resource obtained by resName formatting error. |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
+| 9001008  | Failed to format the resource obtained based on the resource Name. |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
@@ -586,13 +629,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     let message = (error as BusinessError).message;
     console.error(`getStringByNameSync failed, error code: ${code}, message: ${message}.`);
   }
- ```
+  ```
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resId: number, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -601,21 +646,22 @@ Obtains a string based on the specified resource ID. This API uses an asynchrono
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id, (error: BusinessError, value: string) => {
@@ -638,6 +684,8 @@ getStringValue(resId: number): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -654,17 +702,18 @@ Obtains a string based on the specified resource ID. This API uses a promise to 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringValue($r('app.string.test').id).then((value: string) => {
@@ -681,9 +730,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getStringValue<sup>9+</sup>
 
-getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getStringValue(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -694,7 +745,7 @@ Obtains a string based on the specified resource object. This API uses an asynch
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -702,14 +753,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -737,6 +789,8 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -759,14 +813,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -788,9 +843,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getStringByName<sup>9+</sup>
 
-getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
+getStringByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains a string based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -799,21 +856,21 @@ Obtains a string based on the specified resource name. This API uses an asynchro
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   |Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByName("test", (error: BusinessError, value: string) => {
@@ -836,6 +893,8 @@ getStringByName(resName: string): Promise&lt;string&gt;
 
 Obtains a string based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -852,17 +911,18 @@ Obtains a string based on the specified resource name. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringByName("test").then((value: string) => {
@@ -882,6 +942,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValueSync(resId: number): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -903,13 +965,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValueSync($r('app.strarray.test').id);
@@ -925,6 +988,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getStringArrayValueSync(resource: Resource): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -948,14 +1013,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -977,6 +1043,8 @@ getStringArrayByNameSync(resName: string): Array&lt;string&gt;
 
 Obtains a string array based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -997,9 +1065,10 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
@@ -1014,9 +1083,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getStringArrayValue<sup>9+</sup>
 
-getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getStringArrayValue(resId: number, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains a string array based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1025,21 +1096,21 @@ Obtains a string array based on the specified resource ID. This API uses an asyn
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id, (error: BusinessError, value: Array<string>) => {
@@ -1062,6 +1133,8 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1077,18 +1150,18 @@ Obtains a string array based on the specified resource ID. This API uses a promi
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayValue($r('app.strarray.test').id).then((value: Array<string>) => {
@@ -1105,9 +1178,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getStringArrayValue<sup>9+</sup>
 
-getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getStringArrayValue(resource: Resource, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains a string array based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1117,7 +1193,7 @@ Obtains a string array based on the specified resource object. This API uses an 
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resource | [Resource](#resource9)                   | Yes   | Resource object.             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -1125,14 +1201,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1160,6 +1237,8 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1182,14 +1261,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1211,9 +1291,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getStringArrayByName<sup>9+</sup>
 
-getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+getStringArrayByName(resName: string, callback: _AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
 Obtains a string array based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1222,21 +1304,22 @@ Obtains a string array based on the specified resource name. This API uses an as
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resName  | string                                   | Yes   | Resource name.             |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayByName("test", (error: BusinessError, value: Array<string>) => {
@@ -1259,6 +1342,8 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains a string array based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1275,17 +1360,18 @@ Obtains a string array based on the specified resource name. This API uses a pro
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getStringArrayByName("test").then((value: Array<string>) => {
@@ -1300,63 +1386,71 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   }
   ```
 
-### getPluralStringValueSync<sup>10+</sup>
+### getIntPluralStringValueSync<sup>18+</sup>
 
-getPluralStringValueSync(resId: number, num: number): string
+getIntPluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API returns the result synchronously.
+Obtains singular/plural strings based on the specified resource ID.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number.  |
+| Name | Type                   | Mandatory| Description                                                        |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resId   | number                  | Yes  | Resource ID.                                                  |
+| num     | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description         |
-| -------- | ----------- |
-| string   | Singular-plural string corresponding to the specified resource ID.|
+| Type  | Description                  |
+| ------ | ---------------------- |
+| string | Singular or plural string corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
+	this.context.resourceManager.getIntPluralStringValueSync($r('app.plural.format_test').id, 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValueSync<sup>10+</sup>
+### getIntPluralStringValueSync<sup>18+</sup>
 
-getPluralStringValueSync(resource: Resource, num: number): string
+getIntPluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource object. This API returns the result synchronously.
+Obtains singular/plural strings based on the specified resource object.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1364,204 +1458,169 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
-| num      | number                 | Yes   | Number.  |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)  | Yes  | Resource object.                                                  |
+| num      | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args  | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description         |
-| --------------------- | ----------- |
-| string | Singular-plural string corresponding to the specified resource object.|
+| Type  | Description                                |
+| ------ | ------------------------------------ |
+| string | Singular/plural string represented by the resource object.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-  ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
 
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValueSync(resource, 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let resource: resourceManager.Resource = {
+	bundleName: "com.example.myapplication",
+	moduleName: "entry",
+	id: $r('app.plural.format_test').id
+};
+try {
+    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
+	this.context.resourceManager.getIntPluralStringValueSync(resource, 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getIntPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringByNameSync<sup>10+</sup>
+### getIntPluralStringByNameSync<sup>18+</sup>
 
-getPluralStringByNameSync(resName: string, num: number): string
+getIntPluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource name. This API returns the result synchronously.
+Obtains singular/plural strings based on the specified resource name.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resName | string | Yes   | Resource name.|
-| num      | number                 | Yes   | Number.  |
+| Name | Type                   | Mandatory| Description                                                        |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resName | string                  | Yes  | Resource name.                                                  |
+| num     | number                  | Yes  | Integer number used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description         |
-| --------------------- | ----------- |
-| string | Singular-plural string corresponding to the specified resource name.|
+| Type  | Description                                |
+| ------ | ------------------------------------ |
+| string | Singular/plural string represented by the resource name.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
-| 9001006  | If the resource re-ref too much.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.resourceManager.getPluralStringByNameSync("test", 1);
-  } catch (error) {
-    let code = (error as BusinessError).code;
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // If the value of num is 1, the value of quantity is one according to the language plural rules. Therefore, the string whose quantity is one is obtained from the $r ('app.plural.format_test') resource.
+	this.context.resourceManager.getIntPluralStringByNameSync("format_test", 1, 1, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
-  }
+	console.error(`getIntPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValue<sup>9+</sup>
+### getDoublePluralStringValueSync<sup>18+</sup>
 
-getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
+getDoublePluralStringValueSync(resId: number, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains singular/plural strings based on the specified resource ID.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
-| Name     | Type                         | Mandatory  | Description                             |
-| -------- | --------------------------- | ---- | ------------------------------- |
-| resId    | number                      | Yes   | Resource ID.                          |
-| num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
-
-**Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-
-**Example**
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringValue<sup>9+</sup>
-
-getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
-
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses a promise to return the result.
-
->**NOTE**
->
-> Singular and plural forms are available for English, but not Chinese.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Parameters**
-
-| Name  | Type    | Mandatory  | Description   |
-| ----- | ------ | ---- | ----- |
-| resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number. |
+| Name | Type                   | Mandatory| Description                                                        |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resId   | number                  | Yes  | Resource ID.                                                  |
+| num     | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description                       |
-| --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| Type  | Description                            |
+| ------ | -------------------------------- |
+| string | Singular/plural string represented by the resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
+	this.context.resourceManager.getDoublePluralStringValueSync($r('app.plural.format_test').id, 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringValue<sup>9+</sup>
+### getDoublePluralStringValueSync<sup>18+</sup>
 
-getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt;string&gt;): void
+getDoublePluralStringValueSync(resource: Resource, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource object. This API uses an asynchronous callback to return the result.
+Obtains singular/plural strings based on the specified resource object.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1569,206 +1628,102 @@ Obtains a singular-plural string by the specified number based on the specified 
 
 **Parameters**
 
-| Name     | Type                         | Mandatory  | Description                                  |
-| -------- | --------------------------- | ---- | ------------------------------------ |
-| resource | [Resource](#resource9)      | Yes   | Resource object.                                |
-| num      | number                      | Yes   | Number.                                 |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource object.|
-
-**Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
-
-**Example**
-  ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
-
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringValue<sup>9+</sup>
-
-getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
-
-Obtains a singular-plural string by the specified number based on the specified resource object. This API uses a promise to return the result.
-
->**NOTE**
->
-> Singular and plural forms are available for English, but not Chinese.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Model restriction**: This API can be used only in the stage model.
-
-**Parameters**
-
-| Name     | Type                    | Mandatory  | Description  |
-| -------- | ---------------------- | ---- | ---- |
-| resource | [Resource](#resource9) | Yes   | Resource object.|
-| num      | number                 | Yes   | Number. |
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)  | Yes  | Resource object.                                                  |
+| num      | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args  | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description                            |
-| --------------------- | ------------------------------ |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource object.|
+| Type  | Description                                    |
+| ------ | ---------------------------------------- |
+| string | Singular/plural string represented by the resource object.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001007  | Failed to format the resource obtained based on the resource ID. |
 
 **Example**
-  ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
 
-  let resource: resourceManager.Resource = {
-    bundleName: "com.example.myapplication",
-    moduleName: "entry",
-    id: $r('app.plural.test').id
-  };
-  try {
-    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringValue promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { resourceManager } from '@kit.LocalizationKit'
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let resource: resourceManager.Resource = {
+	bundleName: "com.example.myapplication",
+	moduleName: "entry",
+	id: $r('app.plural.format_test').id
+};
+try {
+    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
+	this.context.resourceManager.getDoublePluralStringValueSync(resource, 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
-### getPluralStringByName<sup>9+</sup>
+### getDoublePluralStringByNameSync<sup>18+</sup>
 
-getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;string&gt;): void
+getDoublePluralStringByNameSync(resName: string, num: number, ...args: Array<string | number>): string;
 
-Obtains a singular-plural string by the specified number based on the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains singular/plural strings based on the specified resource name.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
+> Singular/plural forms are available for English, but not Chinese.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
-| Name     | Type                         | Mandatory  | Description                           |
-| -------- | --------------------------- | ---- | ----------------------------- |
-| resName  | string                      | Yes   | Resource name.                         |
-| num      | number                      | Yes   | Number.                          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource name.|
-
-**Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
-
-**Example**
-  ```ts
-  import { BusinessError } from '@ohos.base';
-
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
-      if (error != null) {
-        console.error("error is " + error);
-      } else {
-        let str = value;
-      }
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
-  ```
-
-### getPluralStringByName<sup>9+</sup>
-
-getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
-
-Obtains a singular-plural string by the specified number based on the specified resource name. This API uses a promise to return the result.
-
->**NOTE**
->
-> Singular and plural forms are available for English, but not Chinese.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Parameters**
-
-| Name    | Type    | Mandatory  | Description  |
-| ------- | ------ | ---- | ---- |
-| resName | string | Yes   | Resource name.|
-| num     | number | Yes   | Number. |
+| Name | Type                   | Mandatory| Description                                                        |
+| ------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| resName | string                  | Yes  | Resource name.                                                  |
+| num     | number                  | Yes  | Quantity value (a floating point number), which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+| ...args | Array<string \| number> | No  | Arguments for formatting strings.<br>Supported value types include %d, %f, %s, %%, %number`$d`, %number`$f`, and %number`$s`.<br>Note: %% is escaped to %. %number`$d` indicates the sequence number of the parameter to be used.<br>For example, %%d is converted to a %d string after formatting, and %1`$d` indicates that the first parameter is used.|
 
 **Return value**
 
-| Type                   | Description                    |
-| --------------------- | ---------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource name.|
+| Type  | Description                            |
+| ------ | -------------------------------- |
+| string | Singular/plural string represented by the resource name.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+| 9001008  | Failed to format the resource obtained based on the resource name. |
 
 **Example**
-  ```ts
-  import { BusinessError } from '@ohos.base';
 
-  try {
-    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
-      let str = value;
-    }).catch((error: BusinessError) => {
-      console.error("getPluralStringByName promise error is " + error);
-    });
-  } catch (error) {
-    let code = (error as BusinessError).code;
-    let message = (error as BusinessError).message;
-    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
-  }
+  ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+    // If the value of num is 2.1, the value of quantity is other according to the language plural rules. Therefore, the string whose quantity is other is obtained from the $r('app.plural.format_test') resource.
+	this.context.resourceManager.getDoublePluralStringByNameSync("format_test", 2.1, 2, "aaa", 1.1);
+} catch (error) {
+	let code = (error as BusinessError).code;
+	let message = (error as BusinessError).message;
+	console.error(`getDoublePluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+}
   ```
 
 ### getMediaContentSync<sup>10+</sup>
@@ -1776,6 +1731,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentSync(resId: number, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1798,12 +1755,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentSync($r('app.media.test').id); // Default screen density
@@ -1828,6 +1786,8 @@ getMediaContentSync(resource: Resource, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -1851,13 +1811,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -1887,6 +1848,8 @@ getMediaByNameSync(resName: string, density?: number): Uint8Array
 
 Obtains the content of a media file with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -1908,12 +1871,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByNameSync("test"); // Default screen density
@@ -1934,9 +1898,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaContent<sup>9+</sup>
 
-getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resId: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1945,20 +1911,21 @@ Obtains the content of a media file based on the specified resource ID. This API
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.              | 
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, (error: BusinessError, value: Uint8Array) => {
@@ -1977,9 +1944,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaContent<sup>10+</sup>
 
-getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resId: number, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1989,20 +1958,21 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
 | [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error: BusinessError, value: Uint8Array) => {
@@ -2025,6 +1995,8 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2041,16 +2013,17 @@ Obtains the content of a media file based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id).then((value: Uint8Array) => {
@@ -2070,6 +2043,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2092,12 +2067,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then((value: Uint8Array) => {
@@ -2114,9 +2090,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaContent<sup>9+</sup>
 
-getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resource: Resource, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2127,7 +2105,7 @@ Obtains the content of a media file based on the specified resource object. This
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2135,13 +2113,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2165,9 +2144,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaContent<sup>10+</sup>
 
-getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaContent(resource: Resource, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2179,7 +2160,7 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2187,13 +2168,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2221,6 +2203,8 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2243,13 +2227,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2275,6 +2260,8 @@ getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2298,13 +2285,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2326,9 +2314,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaByName<sup>9+</sup>
 
-getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaByName(resName: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2337,20 +2327,20 @@ Obtains the content of a media file based on the specified resource name. This A
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
-
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", (error: BusinessError, value: Uint8Array) => {
@@ -2369,9 +2359,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaByName<sup>10+</sup>
 
-getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getMediaByName(resName: string, density: number, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of a media file with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2381,7 +2373,7 @@ Obtains the content of a media file with the specified screen density based on t
 | -------- | ------------------------------- | ---- | ------------------ |
 | resName  | string                          | Yes   | Resource name.              |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2389,12 +2381,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", 120, (error: BusinessError, value: Uint8Array) => {
@@ -2417,6 +2410,8 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2433,16 +2428,17 @@ Obtains the content of a media file based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test").then((value: Uint8Array) => {
@@ -2462,6 +2458,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of a media file with the specified screen density based on the specified resource name. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2484,12 +2482,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaByName("test", 120).then((value: Uint8Array) => {
@@ -2509,6 +2508,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64Sync(resId: number, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2531,12 +2532,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id); // Default screen density
@@ -2561,6 +2563,8 @@ getMediaContentBase64Sync(resource: Resource, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource object. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2584,13 +2588,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2620,6 +2625,8 @@ getMediaBase64ByNameSync(resName: string, density?: number): string
 
 Obtains the Base64 code of an image with the default or specified screen density based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2641,12 +2648,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                       |
-| 9001004  | If the resource not found by resName.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                       |
+| 9001004  | No matching resource is found based on the resource name.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByNameSync("test"); // Default screen density
@@ -2667,9 +2675,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaContentBase64<sup>9+</sup>
 
-getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resId: number, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2678,20 +2688,21 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, (error: BusinessError, value: string) => {
@@ -2710,9 +2721,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaContentBase64<sup>10+</sup>
 
-getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resId: number, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2722,7 +2735,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2730,12 +2743,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error: BusinessError, value: string) => {
@@ -2758,6 +2772,8 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -2774,16 +2790,17 @@ Obtains the Base64 code of an image based on the specified resource ID. This API
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id).then((value: string) => {
@@ -2803,6 +2820,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource ID. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2825,12 +2844,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then((value: string) => {
@@ -2847,9 +2867,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaContentBase64<sup>9+</sup>
 
-getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resource: Resource, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2860,7 +2882,7 @@ Obtains the Base64 code of an image based on the specified resource object. This
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2868,13 +2890,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2898,9 +2921,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaContentBase64<sup>10+</sup>
 
-getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
+getMediaContentBase64(resource: Resource, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2912,7 +2937,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -2920,13 +2945,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -2954,6 +2980,8 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -2976,13 +3004,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3008,6 +3037,8 @@ getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -3031,13 +3062,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3059,9 +3091,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaBase64ByName<sup>9+</sup>
 
-getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
+getMediaBase64ByName(resName: string, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3070,20 +3104,21 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", (error: BusinessError, value: string) => {
@@ -3102,9 +3137,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getMediaBase64ByName<sup>10+</sup>
 
-getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
+getMediaBase64ByName(resName: string, density: number, callback: _AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3114,7 +3151,7 @@ Obtains the Base64 code of an image with the specified screen density based on t
 | -------- | --------------------------- | ---- | ------------------------ |
 | resName  | string                      | Yes   | Resource name.                    |
 | [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3122,12 +3159,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120, (error: BusinessError, value: string) => {
@@ -3150,6 +3188,8 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3166,16 +3206,17 @@ Obtains the Base64 code of an image based on the specified resource name. This A
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test").then((value: string) => {
@@ -3195,6 +3236,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of an image with the specified screen density based on the specified resource name. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3217,12 +3260,13 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getMediaBase64ByName("test", 120).then((value: string) => {
@@ -3239,9 +3283,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resId: number, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3257,37 +3303,39 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type    | Description        |
 | ------ | ---------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3297,9 +3345,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptor<sup>10+</sup>
 
-getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptor(resource: Resource, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3317,21 +3367,23 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type     | Description               |
 | ------- | ----------------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3339,21 +3391,21 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     id: $r('app.media.icon').id
   };
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource, 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptor failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptor(resource, 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3363,9 +3415,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getDrawableDescriptorByName<sup>10+</sup>
 
-getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor;
+getDrawableDescriptorByName(resName: string, density?: number, type?: number): DrawableDescriptor
 
 Obtains a **DrawableDescriptor** object for icon display based on the specified resource name. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3381,37 +3435,39 @@ Obtains a **DrawableDescriptor** object for icon display based on the specified 
 
 | Type    | Description       |
 | ------ | --------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
+| [DrawableDescriptor](../apis-arkui/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
+| 401 | If the input parameter invalid. Possible causes: 1.Incorrect parameter types; 2.Parameter verification failed.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { DrawableDescriptor } from '@kit.ArkUI';
 
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon');
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon');
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`getDrawableDescriptorByName failed, error code: ${code}, message: ${message}.`);
   }
   try {
-    this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
+    let drawableDescriptor:DrawableDescriptor = this.context.resourceManager.getDrawableDescriptorByName('icon', 0, 1);
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
@@ -3424,6 +3480,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getBoolean(resId: number): boolean
 
 Obtains a Boolean result based on the specified resource ID. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3441,17 +3499,18 @@ Obtains a Boolean result based on the specified resource ID. This API returns th
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getBoolean($r('app.boolean.boolean_test').id);
@@ -3466,6 +3525,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getBoolean(resource: Resource): boolean
 
 Obtains a Boolean result based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3485,18 +3546,19 @@ Obtains a Boolean result based on the specified resource object. This API return
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3518,6 +3580,8 @@ getBooleanByName(resName: string): boolean
 
 Obtains a Boolean result based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3534,17 +3598,18 @@ Obtains a Boolean result based on the specified resource name. This API returns 
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getBooleanByName("boolean_test");
@@ -3561,6 +3626,8 @@ getNumber(resId: number): number
 
 Obtains an integer or float value based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3573,21 +3640,22 @@ Obtains an integer or float value based on the specified resource ID. This API r
 
 | Type    | Description        |
 | ------ | ---------- | 
-| number | Integer or float value corresponding to the specified resource ID. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
+| number | Integer or float value corresponding to the specified resource ID. An integer indicates the original value, and a float number indicates the actual pixel value. For details, see the sample code.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer refers to the original value.
@@ -3612,6 +3680,12 @@ getNumber(resource: Resource): number
 
 Obtains an integer or float value based on the specified resource object. This API returns the result synchronously.
 
+> **NOTE**
+>
+> If this API is used to obtain the float value whose unit is vp, the value obtained through **resId** is different from that obtained through **resource**. In this case, the value obtained through **resId** is correct. This issue will be rectified in future versions.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -3626,22 +3700,23 @@ Obtains an integer or float value based on the specified resource object. This A
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource name. An interger indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float value corresponding to the specified resource name.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3663,6 +3738,8 @@ getNumberByName(resName: string): number
 
 Obtains an integer or float value based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3675,21 +3752,22 @@ Obtains an integer or float value based on the specified resource name. This API
 
 | Type    | Description       |
 | ------ | --------- |
-| number | Integer or float value corresponding to the specified resource name. An interger indicates the original value. A float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
+| number | Integer or float value corresponding to the specified resource name.<br>An integer indicates the original value, and a float number without a unit indicates the original value and a float number with the unit of vp or fp indicates the px value.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getNumberByName("integer_test");
@@ -3714,6 +3792,8 @@ getColorSync(resId: number) : number;
 
 Obtains a color value based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3734,13 +3814,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorSync($r('app.color.test').id);
@@ -3756,6 +3837,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getColorSync(resource: Resource): number
 
 Obtains a color value based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3779,14 +3862,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3808,6 +3892,8 @@ getColorByNameSync(resName: string) : number;
 
 Obtains a color value based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3828,13 +3914,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByNameSync("test");
@@ -3847,9 +3934,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getColor<sup>10+</sup>
 
-getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
+getColor(resId: number, callback: _AsyncCallback&lt;number&gt;): void;
 
 Obtains a color value based on the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3858,7 +3947,7 @@ Obtains a color value based on the specified resource ID. This API uses an async
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3866,13 +3955,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001001  | If the module resId invalid.             |
-| 9001002  | If the resource not found by resId.      |
-| 9001006  | If the resource re-ref too much.         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.         |
 
 **Example (stage)**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColor($r('app.color.test').id, (error: BusinessError, value: number) => {
@@ -3895,6 +3985,8 @@ getColor(resId: number): Promise&lt;number&gt;
 
 Obtains a color value based on the specified resource ID. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -3915,13 +4007,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColor($r('app.color.test').id).then((value: number) => {
@@ -3938,9 +4031,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getColor<sup>10+</sup>
 
-getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
+getColor(resource: Resource, callback: _AsyncCallback&lt;number&gt;): void;
 
 Obtains a color value based on the specified resource object. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -3951,7 +4046,7 @@ Obtains a color value based on the specified resource object. This API uses an a
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource ID.|
 
 **Error codes**
 
@@ -3959,14 +4054,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -3994,6 +4090,8 @@ getColor(resource: Resource): Promise&lt;number&gt;;
 
 Obtains a color value based on the specified resource object. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Model restriction**: This API can be used only in the stage model.
@@ -4016,14 +4114,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -4045,9 +4144,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getColorByName<sup>10+</sup>
 
-getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
+getColorByName(resName: string, callback: _AsyncCallback&lt;number&gt;): void
 
 Obtains a color value based on the specified resource name. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4056,7 +4157,7 @@ Obtains a color value based on the specified resource name. This API uses an asy
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resName  | string                      | Yes   | Resource name.           |
-| callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource name.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;number&gt; | Yes   | Callback used to return the result, which is the color value (decimal) corresponding to the specified resource name.|
 
 **Error codes**
 
@@ -4064,13 +4165,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByName("test", (error: BusinessError, value: number) => {
@@ -4093,6 +4195,8 @@ getColorByName(resName: string): Promise&lt;number&gt;
 
 Obtains a color value based on the specified resource name. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4113,13 +4217,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getColorByName("test").then((value: number) => {
@@ -4139,6 +4244,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getRawFileContentSync(path: string): Uint8Array
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4160,11 +4267,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContentSync("test.txt");
@@ -4177,9 +4285,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getRawFileContent<sup>9+</sup>
 
-getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
+getRawFileContent(path: string, callback: _AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4188,19 +4298,19 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContent("test.txt", (error: BusinessError, value: Uint8Array) => {
@@ -4223,6 +4333,8 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4239,15 +4351,16 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFileContent("test.txt").then((value: Uint8Array) => {
@@ -4272,6 +4385,8 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4292,11 +4407,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileListSync("")
@@ -4309,13 +4425,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getRawFileList<sup>10+</sup>
 
-getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): void;
+getRawFileList(path: string, callback: _AsyncCallback&lt;Array\<string\>&gt;): void;
 
 Obtains the list of folders and files in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
 >**NOTE**
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4324,7 +4442,7 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | **rawfile** directory.            |
-| callback | AsyncCallback&lt;Array\<string\>&gt; | Yes| Callback used to return the result, which is the list of folders and files in the **rawfile** directory.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;Array\<string\>&gt; | Yes| Callback used to return the result, which is the list of folders and files in the **rawfile** directory.|
 
 **Error codes**
 
@@ -4332,11 +4450,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.       |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.       |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileList("", (error: BusinessError, value: Array<string>) => {
@@ -4363,6 +4482,8 @@ Obtains the list of folders and files in the **resources/rawfile** directory. Th
 >
 > If there is no folder or file in the directory, no information is returned. If there are folders and files in the directory, the list of folders and files is returned.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4383,11 +4504,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try { // Passing "" means to obtain the list of files in the root directory of the raw file.
     this.context.resourceManager.getRawFileList("").then((value: Array<string>) => {
@@ -4408,6 +4530,8 @@ getRawFdSync(path: string): RawFileDescriptor
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4420,7 +4544,7 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                       | Description         |
 | ------------------------- | ----------- |
-| [RawFileDescriptor](#rawfiledescriptor8) | Descriptor of the HAP where the raw file is located.|
+| [RawFileDescriptor](#rawfiledescriptor9) | Descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
@@ -4428,11 +4552,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getRawFdSync("test.txt");
@@ -4445,9 +4570,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### getRawFd<sup>9+</sup>
 
-getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
+getRawFd(path: string, callback: _AsyncCallback&lt;RawFileDescriptor&gt;): void
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4456,20 +4583,21 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getRawFd("test.txt", (error: BusinessError, value: resourceManager.RawFileDescriptor) => {
@@ -4494,6 +4622,8 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 
 Obtains the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4506,20 +4636,21 @@ Obtains the descriptor of the HAP where the raw file is located in the **resourc
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Descriptor of the HAP where the raw file is located.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Descriptor of the HAP where the raw file is located.|
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getRawFd("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -4542,6 +4673,8 @@ closeRawFdSync(path: string): void
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4556,11 +4689,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFdSync("test.txt");
@@ -4573,9 +4707,11 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 ### closeRawFd<sup>9+</sup>
 
-closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
+closeRawFd(path: string, callback: _AsyncCallback&lt;void&gt;): void
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4584,19 +4720,20 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | Yes   | Path of the raw file.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;void&gt; | Yes   | Callback used to return the result.       |
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
 | 9001005  | The resource not found by path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFd("test.txt", (error: BusinessError) => {
@@ -4617,6 +4754,8 @@ closeRawFd(path: string): Promise&lt;void&gt;
 
 Closes the descriptor of the HAP where the raw file is located in the **resources/rawfile** directory. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4633,15 +4772,16 @@ Closes the descriptor of the HAP where the raw file is located in the **resource
 
 **Error codes**
 
-For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.closeRawFd("test.txt");
@@ -4657,6 +4797,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getConfigurationSync(): Configuration
 
 Obtains the device configuration. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4679,9 +4821,11 @@ Obtains the device configuration. This API returns the result synchronously.
 
 ### getConfiguration
 
-getConfiguration(callback: AsyncCallback&lt;Configuration&gt;): void
+getConfiguration(callback: _AsyncCallback&lt;Configuration&gt;): void
 
 Obtains the device configuration. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4689,11 +4833,11 @@ Obtains the device configuration. This API uses an asynchronous callback to retu
 
 | Name     | Type                                      | Mandatory  | Description                       |
 | -------- | ---------------------------------------- | ---- | ------------------------- |
-| callback | AsyncCallback&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the result, which is the device configuration.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[Configuration](#configuration)&gt; | Yes   | Callback used to return the result, which is the device configuration.|
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getConfiguration((error: BusinessError, value: resourceManager.Configuration) => {
@@ -4715,6 +4859,8 @@ getConfiguration(): Promise&lt;Configuration&gt;
 
 Obtains the device configuration. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4725,8 +4871,8 @@ Obtains the device configuration. This API uses a promise to return the result.
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getConfiguration().then((value: resourceManager.Configuration) => {
@@ -4745,6 +4891,8 @@ Obtains the device configuration. This API uses a promise to return the result.
 getDeviceCapabilitySync(): DeviceCapability
 
 Obtains the device capability. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4767,9 +4915,11 @@ Obtains the device capability. This API returns the result synchronously.
 
 ### getDeviceCapability
 
-getDeviceCapability(callback: AsyncCallback&lt;DeviceCapability&gt;): void
+getDeviceCapability(callback: _AsyncCallback&lt;DeviceCapability&gt;): void
 
 Obtains the device capability. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4777,11 +4927,11 @@ Obtains the device capability. This API uses an asynchronous callback to return 
 
 | Name     | Type                                      | Mandatory  | Description                          |
 | -------- | ---------------------------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the result, which is the device capability.|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;[DeviceCapability](#devicecapability)&gt; | Yes   | Callback used to return the result, which is the device capability.|
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getDeviceCapability((error: BusinessError, value: resourceManager.DeviceCapability) => {
@@ -4803,6 +4953,8 @@ getDeviceCapability(): Promise&lt;DeviceCapability&gt;
 
 Obtains the device capability. This API uses a promise to return the result.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Return value**
@@ -4813,8 +4965,8 @@ Obtains the device capability. This API uses a promise to return the result.
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import resourceManager from '@ohos.resourceManager';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   try {
     this.context.resourceManager.getDeviceCapability().then((value: resourceManager.DeviceCapability) => {
@@ -4828,28 +4980,13 @@ Obtains the device capability. This API uses a promise to return the result.
   }
   ```
 
-### release<sup>7+</sup>
-
-release()
-
-Releases a **ResourceManager** object. This API is not supported currently.
-
-**System capability**: SystemCapability.Global.ResourceManager
-
-**Example**
-  ```ts
-  try {
-    this.context.resourceManager.release();
-  } catch (error) {
-    console.error("release error is " + error);
-  }
-  ```
-
 ### addResource<sup>10+</sup>
 
 addResource(path: string) : void
 
 Loads resources from the specified path.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4865,13 +5002,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001010  | If the overlay path is invalid.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001010  | Invalid overlay path.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
   } catch (error) {
@@ -4887,6 +5025,8 @@ removeResource(path: string) : void
 
 Removes the resources loaded from the specified path to restore the original resources.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4901,13 +5041,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001010  | If the overlay path is invalid.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001010  | Invalid overlay path.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
   } catch (error) {
@@ -4922,6 +5063,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getLocales(includeSystem?: boolean): Array\<string>
 
 Obtains the language list of an application.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -4939,8 +5082,8 @@ Obtains the language list of an application.
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getLocales(); // Obtain only the language list of application resources.
@@ -4973,6 +5116,8 @@ getSymbol(resId: number):number
 
 Obtains a symbol value based on the specified resource ID. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -4993,13 +5138,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getSymbol($r('app.symbol.test').id);
@@ -5014,6 +5160,8 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 getSymbol(resource: Resource): number
 
 Obtains a symbol value based on the specified resource object. This API returns the result synchronously.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5037,14 +5185,15 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001001  | If the resId invalid.                       |
-| 9001002  | If the resource not found by resId.         |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001001  | Invalid resource ID.                       |
+| 9001002  | No matching resource is found based on the resource ID.         |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
-  import { BusinessError } from '@ohos.base';
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let resource: resourceManager.Resource = {
     bundleName: "com.example.myapplication",
@@ -5066,6 +5215,8 @@ getSymbolByName(resName: string) : number;
 
 Obtains a symbol value based on the specified resource name. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
@@ -5086,13 +5237,14 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001003  | If the resName invalid.                     |
-| 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001003  | Invalid resource name.                     |
+| 9001004  | No matching resource is found based on the resource name.       |
+| 9001006  | The resource is referenced cyclically.            |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.getSymbolByName("test");
@@ -5109,13 +5261,15 @@ isRawDir(path: string) : bool
 
 Checks whether a path is a subdirectory in the **rawfile** directory. This API returns the result synchronously.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Global.ResourceManager
 
 **Parameters**
 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
-| path | string | Yes   | Path of a rawfile.|
+| path | string | Yes   | Path of a raw file.|
 
 **Return value**
 
@@ -5129,11 +5283,12 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 9001005  | If the resource not found by path.          |
+| 401 | If the input parameter invalid. Possible causes: Incorrect parameter types.               |
+| 9001005  | Invalid relative path.          |
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     this.context.resourceManager.isRawDir("test.txt");
@@ -5141,6 +5296,144 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
     console.error(`isRawDir failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideResourceManager<sup>12+</sup>
+
+getOverrideResourceManager(configuration?: Configuration) : ResourceManager
+
+Obtains a **ResourceManager** object for loading differentiated resources. This API returns the result synchronously.
+
+The style (including the language, color mode, resolution, and orientation) of the resources obtained by a common **ResourceManager** object is determined by the system. With this API, an application can obtain the style of differentiated resources, for example, dark color resources in light color mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                                                        |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | No  | Configuration of differentiated resources.<br>After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.<br>If this parameter is not specified, the system obtains resources that best match the current system.|
+
+**Return value**
+
+| Type           | Description                              |
+| --------------- | ---------------------------------- |
+| ResourceManager | **ResourceManager** object for loading differentiated resources.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.getOverrideResourceManager(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getOverrideResourceManager failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getOverrideConfiguration<sup>12+</sup>
+
+getOverrideConfiguration() : Configuration
+
+Obtains the configuration of differentiated resources. This API returns the result synchronously. This API allows a common **ResourceManager** object and a **ResourceManager** object obtained through [getOverrideResourceManager](#getoverrideresourcemanager12) to obtain the configuration of differentiated resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Return value**
+
+| Type                           | Description            |
+| ------------------------------- | ---------------- |
+| [Configuration](#configuration) | Configuration of differentiated resources.|
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  let overrideConfig = this.context.resourceManager.getOverrideConfiguration()
+  ```
+
+### updateOverrideConfiguration<sup>12+</sup>
+
+updateOverrideConfiguration(configuration: Configuration) : void
+
+Updated configuration of differentiated resources. This API allows a common **ResourceManager** object and a **ResourceManager** object obtained through [getOverrideResourceManager](#getoverrideresourcemanager12) to update the configuration of differentiated resources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name       | Type                           | Mandatory| Description                                                        |
+| ------------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| configuration | [Configuration](#configuration) | Yes  | Configuration of differentiated resources. After obtaining the configuration of differentiated resources through [getOverrideConfiguration](#getoverrideconfiguration12), modify the configuration items as required, and then pass these items as input parameters to the API.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { resourceManager } from '@kit.LocalizationKit'
+
+  try {
+    let resMgr = this.context.resourceManager
+    let overrideConfig = resMgr.getOverrideConfiguration()
+    overrideConfig.colorMode = resourceManager.ColorMode.DARK
+    let overrideResMgr = resMgr.updateOverrideConfiguration(overrideConfig)
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`updateOverrideConfiguration failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### release<sup>(deprecated)</sup>
+
+release()
+
+Releases a **ResourceManager** object. This API is not supported currently.
+
+This API is supported since API version 7 and is deprecated since API version 12.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.release();
+  } catch (error) {
+    console.error("release error is " + error);
   }
   ```
 
@@ -5159,7 +5452,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 | Name     | Type                         | Mandatory  | Description             |
 | -------- | --------------------------- | ---- | --------------- |
 | resId    | number                      | Yes   | Resource ID.          |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the result, which is the string corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5199,7 +5492,7 @@ This API is deprecated since API version 9. You are advised to use [getStringVal
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getString($r('app.string.test').id).then((value: string) => {
@@ -5226,7 +5519,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 | Name     | Type                                      | Mandatory  | Description               |
 | -------- | ---------------------------------------- | ---- | ----------------- |
 | resId    | number                                   | Yes   | Resource ID.            |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result, which is the string array corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5266,7 +5559,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
        mgr.getStringArray($r('app.strarray.test').id).then((value: Array<string>) => {
@@ -5293,7 +5586,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 | Name     | Type                             | Mandatory  | Description                |
 | -------- | ------------------------------- | ---- | ------------------ |
 | resId    | number                          | Yes   | Resource ID.             |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the media file corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5332,7 +5625,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMedia($r('app.media.test').id).then((value: Uint8Array) => {
@@ -5359,7 +5652,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 | Name     | Type                         | Mandatory  | Description                      |
 | -------- | --------------------------- | ---- | ------------------------ |
 | resId    | number                      | Yes   | Resource ID.                   |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the result, which is the Base64 code of the image corresponding to the specified resource ID.|
 
 **Example**
   ```ts
@@ -5399,7 +5692,7 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getMediaBase64($r('app.media.test').id).then((value: string) => {
@@ -5410,18 +5703,542 @@ This API is deprecated since API version 9. You are advised to use [getMediaCont
   });
   ```
 
+### getPluralStringValueSync<sup>(deprecated)</sup>
+
+getPluralStringValueSync(resId: number, num: number): string
+
+Obtains singular/plural strings based on the specified resource ID and quantity. This API returns the result synchronously.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| resId  | number | Yes  | Resource ID.                                                  |
+| num    | number | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type  | Description                                            |
+| ------ | ------------------------------------------------ |
+| string | Singular/plural string corresponding to the specified quantity and resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValueSync($r('app.plural.test').id, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValueSync<sup>(deprecated)</sup>
+
+getPluralStringValueSync(resource: Resource, num: number): string
+
+Obtains singular/plural strings based on the specified quantity and resource object. This API returns the result synchronously.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9) | Yes  | Resource object.                                                  |
+| num      | number                 | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type  | Description                                                |
+| ------ | ---------------------------------------------------- |
+| string | Singular/plural string corresponding to the specified quantity and resource object.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValueSync(resource, 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringValueSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByNameSync<sup>(deprecated)</sup>
+
+getPluralStringByNameSync(resName: string, num: number): string
+
+Obtains singular/plural strings based on the specified quantity and resource name. This API returns the result synchronously.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| resName | string | Yes  | Resource name.                                                  |
+| num     | number | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type  | Description                                            |
+| ------ | ------------------------------------------------ |
+| string | Singular/plural string corresponding to the specified quantity and resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByNameSync("test", 1);
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`getPluralStringByNameSync failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resId: number, num: number, callback: _AsyncCallback&lt;string&gt;): void
+
+Obtains singular/plural strings based on the specified quantity and resource ID. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resId    | number                      | Yes  | Resource ID.                                                  |
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource ID.          |
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
+
+Obtains singular/plural strings based on the specified quantity and resource ID. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| resId  | number | Yes  | Resource ID.                                                  |
+| num    | number | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type                 | Description                                                |
+| --------------------- | ---------------------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringValue($r("app.plural.test").id, 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringValue promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resource: Resource, num: number, callback: _AsyncCallback&lt;string&gt;): void
+
+Obtains singular/plural strings based on the specified quantity and resource object. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9)      | Yes  | Resource object.                                                  |
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource object.      |
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValue(resource, 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringValue<sup>(deprecated)</sup>
+
+getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
+
+Obtains singular/plural strings based on the specified quantity and resource object. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18-1).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                                                        |
+| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
+| resource | [Resource](#resource9) | Yes  | Resource object.                                                  |
+| num      | number                 | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type                 | Description                                                    |
+| --------------------- | -------------------------------------------------------- |
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource object.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001001  | Invalid resource ID.                                         |
+| 9001002  | No matching resource is found based on the resource ID.      |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { resourceManager } from '@kit.LocalizationKit'
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  let resource: resourceManager.Resource = {
+    bundleName: "com.example.myapplication",
+    moduleName: "entry",
+    id: $r('app.plural.test').id
+  };
+  try {
+    this.context.resourceManager.getPluralStringValue(resource, 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringValue promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringValue failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByName<sup>(deprecated)</sup>
+
+getPluralStringByName(resName: string, num: number, callback: _AsyncCallback&lt;string&gt;): void
+
+Obtains singular/plural strings based on the specified quantity and resource name. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type                       | Mandatory| Description                                                        |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| resName  | string                      | Yes  | Resource name.                                                  |
+| num      | number                      | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| callback | [_AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;string&gt; | Yes  | Callback used to return the result, which is the singular/plural string corresponding to the specified resource name.            |
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByName("test", 1, (error: BusinessError, value: string) => {
+      if (error != null) {
+        console.error("error is " + error);
+      } else {
+        let str = value;
+      }
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`callback getPluralStringByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
+
+### getPluralStringByName<sup>(deprecated)</sup>
+
+getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
+
+Obtains singular/plural strings based on the specified quantity and resource name. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 9 and deprecated since API version 18. You are advised to use [getIntPluralStringByNameSync](#getintpluralstringbynamesync18).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description                                                        |
+| ------- | ------ | ---- | ------------------------------------------------------------ |
+| resName | string | Yes  | Resource name.                                                  |
+| num     | number | Yes  | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
+
+**Return value**
+
+| Type                 | Description                                            |
+| --------------------- | ------------------------------------------------ |
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource name.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](errorcode-resource-manager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
+| 9001003  | Invalid resource name.                                       |
+| 9001004  | No matching resource is found based on the resource name.    |
+| 9001006  | The resource is referenced cyclically.                       |
+
+**Example**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    this.context.resourceManager.getPluralStringByName("test", 1).then((value: string) => {
+      let str = value;
+    }).catch((error: BusinessError) => {
+      console.error("getPluralStringByName promise error is " + error);
+    });
+  } catch (error) {
+    let code = (error as BusinessError).code;
+    let message = (error as BusinessError).message;
+    console.error(`promise getPluralStringByName failed, error code: ${code}, message: ${message}.`);
+  }
+  ```
 
 ### getPluralString<sup>(deprecated)</sup>
 
 getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses a promise to return the result.
+Obtains singular/plural strings based on the specified quantity and resource ID. This API uses a promise to return the result.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
-
-This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9).
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5430,17 +6247,18 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| num   | number | Yes   | Number.  |
+| num   | number | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html).|
 
 **Return value**
 
 | Type                   | Description                       |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| Promise&lt;string&gt; | Promise used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
 
 **Example**
+
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1).then((value: string) => {
@@ -5456,13 +6274,13 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 
 getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains a singular-plural string by the specified number based on the specified resource ID. This API uses an asynchronous callback to return the result.
+Obtains singular/plural strings based on the specified quantity and resource ID. This API uses an asynchronous callback to return the result.
 
->**NOTE**
+> **NOTE**
 >
-> Singular and plural forms are available for English, but not Chinese.
-
-This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9-1).
+> Singular/plural forms are available for English, but not Chinese.
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getIntPluralStringValueSync](#getintpluralstringvaluesync18).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5471,10 +6289,11 @@ This API is deprecated since API version 9. You are advised to use [getPluralStr
 | Name     | Type                         | Mandatory  | Description                             |
 | -------- | --------------------------- | ---- | ------------------------------- |
 | resId    | number                      | Yes   | Resource ID.                          |
-| num      | number                      | Yes   | Number.                            |
-| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result, which is the singular-plural string corresponding to the specified resource ID.|
+| num      | number                      | Yes   | Quantity value, which is used to obtain the corresponding string representation based on the current language's plural rules. For details about the plural rules of a language, see [Language Plural Rules](https://www.unicode.org/cldr/charts/45/supplemental/language_plural_rules.html)|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;string&gt; | Yes   | Callback used to return the result, which is the singular/plural string corresponding to the specified resource ID.|
 
 **Example**
+
   ```ts
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getPluralString($r("app.plural.test").id, 1, (error: Error, value: string) => {
@@ -5494,7 +6313,9 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getRawFileContent](#getrawfilecontent9).
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getRawFileContent](#getrawfilecontent9) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5503,7 +6324,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 | Name     | Type                             | Mandatory  | Description                     |
 | -------- | ------------------------------- | ---- | ----------------------- |
 | path     | string                          | Yes   | Path of the raw file.            |
-| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;Uint8Array&gt; | Yes   | Callback used to return the result, which is the content of the raw file.|
 
 **Example**
   ```ts
@@ -5525,7 +6346,9 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getRawFileContent](#getrawfilecontent9-1).
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getRawFileContent](#getrawfilecontent9-1) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5543,7 +6366,7 @@ This API is deprecated since API version 9. You are advised to use [getRawFileCo
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFile("test.txt").then((value: Uint8Array) => {
@@ -5561,7 +6384,9 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getRawFd](#getrawfd9).
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getRawFd](#getrawfd9) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5570,11 +6395,11 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 | Name     | Type                                      | Mandatory  | Description                              |
 | -------- | ---------------------------------------- | ---- | -------------------------------- |
 | path     | string                                   | Yes   | Path of the raw file.                     |
-| callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Yes   | Callback used to return the result, which is the descriptor of the raw file.|
 
 **Example**
   ```ts
-  import resourceManager from '@ohos.resourceManager';
+  import { resourceManager } from '@kit.LocalizationKit'
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt", (error: Error, value: resourceManager.RawFileDescriptor) => {
@@ -5595,7 +6420,9 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getRawFd](#getrawfd9-1).
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getRawFd](#getrawfd9-1) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5609,11 +6436,11 @@ This API is deprecated since API version 9. You are advised to use [getRawFd](#g
 
 | Type                                      | Description                 |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
+| Promise&lt;[RawFileDescriptor](#rawfiledescriptor9)&gt; | Promise used to return the result, which is the descriptor of the raw file.|
 
 **Example**
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   resourceManager.getResourceManager((error, mgr) => {
       mgr.getRawFileDescriptor("test.txt").then((value: resourceManager.RawFileDescriptor) => {
@@ -5632,7 +6459,9 @@ closeRawFileDescriptor(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [closeRawFd](#closerawfd9).
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [closeRawFd](#closerawfd9) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5643,7 +6472,7 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
 | Name     | Type                       | Mandatory  | Description         |
 | -------- | ------------------------- | ---- | ----------- |
 | path     | string                    | Yes   | Path of the raw file.|
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
+| callback | [AsyncCallback](#asynccallbackdeprecated)&lt;void&gt; | Yes   | Callback used to return the result.       |
 
 **Example**
   ```ts
@@ -5662,7 +6491,9 @@ closeRawFileDescriptor(path: string): Promise&lt;void&gt;
 
 Closes the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [closeRawFd](#closerawfd9-1).
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [closeRawFd](#closerawfd9-1) instead.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -5684,3 +6515,156 @@ This API is deprecated since API version 9. You are advised to use [closeRawFd](
       mgr.closeRawFileDescriptor("test.txt");
   });
   ```
+
+## AsyncCallback<sup>(deprecated)</sup>
+
+```
+AsyncCallback<T> {
+  (err: Error, data: T): void;
+}
+```
+
+Defines an asynchronous callback that carries an error parameter and asynchronous return value.
+
+> **NOTE**
+>
+> This API is supported since API version 6 and deprecated since API version 9. You are advised to use [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback) instead.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+| Name| Type                                                        | Mandatory| Description                        |
+| ---- | ------------------------------------------------------------ | ---- | ---------------------------- |
+| err  | Error | Yes  | Error message when the API fails to be called.|
+| data | T     | Yes  | Callback information when the API is called.|
+
+## Appendix
+
+- Content of the **app.string.test** file:
+
+    ```json
+    {
+      "string": [
+        {
+          "name": "test",
+          "value": "10"
+        }
+      ]
+    }
+    ```
+
+    ```json
+    {
+      "string": [
+        {
+          "name": "test",
+          "value": "%s %d %f"
+        }
+      ]
+    }
+    ```
+
+- Content of the **app.strarray.test** file:
+
+    ```json
+    {
+      "strarray": [
+        {
+          "name": "test",
+          "value": [
+            {
+              "value": "strarray_test"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+- Content of the **app.plural.test** file:
+    ```json
+    {
+      "plural": [
+        {
+          "name": "test",
+          "value": [
+            {
+              "quantity": "one",
+              "value": "%d apple"
+            },
+            {
+              "quantity": "other",
+              "value": "%d apples"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+- Content of the **app.plural.format_test** file:
+
+    ```json
+    {
+      "plural": [
+        {
+          "name": "format_test",
+          "value": [
+            {
+              "quantity": "one",
+              "value": "%d apple, %s, %f"
+            },
+            {
+              "quantity": "other",
+              "value": "%d apples, %s, %f"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+- Content of the **app.boolean.boolean_test** file:
+    ```json
+    {
+      "boolean": [
+        {
+          "name": "boolean_test",
+          "value": true
+        }
+      ]
+    }
+    ```
+
+- Content of the **integer_test** and **float_test** files:
+    ```json
+    {
+      "integer": [
+        {
+          "name": "integer_test",
+          "value": 100
+        }
+      ]
+    }
+    ```
+
+    ```json
+    {
+      "float": [
+        {
+          "name": "float_test",
+          "value": "30.6"
+        }
+      ]
+    }
+    ```
+- Content of the **app.color.test** file:
+    ```json
+    {
+      "color": [
+        {
+          "name": "test",
+          "value": "#FFFFFF"
+        }
+      ]
+    }
+    ```

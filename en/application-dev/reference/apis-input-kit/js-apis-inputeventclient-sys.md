@@ -11,7 +11,7 @@ The **inputEventClient** module implements the input event injection capability.
 ## Modules to Import
 
 ```js
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## inputEventClient.injectEvent
@@ -22,11 +22,21 @@ Injects keys (including single keys and combination keys).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
 **Parameters**
 
 | Name      | Type                   | Mandatory  | Description       |
 | -------- | --------------------- | ---- | --------- |
 | KeyEvent | [KeyEvent](#keyevent) | Yes   | Key event to inject.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -60,9 +70,10 @@ try {
   let eventUp: EventUp = { KeyEvent: backKeyUp }
   inputEventClient.injectEvent(eventUp);
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
 ## inputEventClient.injectKeyEvent<sup>11+</sup>
 
 injectKeyEvent(keyEvent: KeyEventData): void
@@ -71,11 +82,22 @@ Injects key events (for both single keys and combination keys).
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
 **Parameters**
 
 | Name      | Type                   | Mandatory  | Description       |
 | -------- | --------------------- | ---- | --------- |
 | keyEvent | [KeyEventData](#keyeventdata11) | Yes   | Key event to inject.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -89,10 +111,10 @@ try {
   }
 
   class EventDown {
-    KeyEvent: inputEventClient.KeyEvent | null = null
+    keyEvent: inputEventClient.KeyEvent | null = null
   }
 
-  let eventDown: EventDown = { KeyEvent: backKeyDown }
+  let eventDown: EventDown = { keyEvent: backKeyDown }
   inputEventClient.injectKeyEvent(eventDown);
 
   let backKeyUp: inputEventClient.KeyEvent = {
@@ -103,22 +125,24 @@ try {
   };
 
   class EventUp {
-    KeyEvent: inputEventClient.KeyEvent | null = null
+    keyEvent: inputEventClient.KeyEvent | null = null
   }
 
-  let eventUp: EventUp = { KeyEvent: backKeyUp }
+  let eventUp: EventUp = { keyEvent: backKeyUp }
   inputEventClient.injectKeyEvent(eventUp);
 } catch (error) {
-  console.log(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject KeyEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ## inputEventClient.injectMouseEvent<sup>11+</sup>
 
-injectMouseEvent(mouseEvent: MouseEventData): void;
+injectMouseEvent(mouseEvent: MouseEventData): void
 
 Injects a mouse/touchpad event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+Permission required: ohos.permission.INJECT_INPUT_EVENT
 
 **Parameters**
 
@@ -126,13 +150,22 @@ Injects a mouse/touchpad event.
 | -------- | --------------------- | ---- | --------- |
 | mouseEvent | [MouseEventData](#mouseeventdata11) | Yes   | Mouse/touchpad event to inject.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import mouseEvent from '@ohos.multimodalInput.mouseEvent'
+import { MouseEvent } from '@kit.InputKit';
 
 try {
-  let mouseButtonUpData: mouseEvent.MouseEvent = {
+  let mouseButtonUpData: MouseEvent = {
     id: 0,
     deviceId: 1,
     actionTime: 2,
@@ -164,7 +197,7 @@ try {
   }
   inputEventClient.injectMouseEvent(mouseButtonUp);
 
-  let mouseButtonDownData: mouseEvent.MouseEvent = {
+  let mouseButtonDownData: MouseEvent = {
     id: 0,
     deviceId: 1,
     actionTime: 2,
@@ -198,9 +231,8 @@ try {
 }
 
 catch (error) {
-  console.log(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject MouseEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-
 ```
 
 ## inputEventClient.injectTouchEvent<sup>11+</sup>
@@ -211,19 +243,30 @@ Injects a touchscreen event.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
 
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
 **Parameters**
 
 | Name      | Type                   | Mandatory  | Description       |
 | -------- | --------------------- | ---- | --------- |
 | touchEvent | [TouchEventData](#toucheventdata11) | Yes   | Touchscreen event to inject.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
-import touchEvent from '@ohos.multimodalInput.touchEvent'
+import { Touch, TouchEvent } from '@kit.InputKit';
 
 try {
-  let touchEvent: touchEvent.Touch = {
+  let touchEvent: Touch = {
     id: 1,
     pressedTime: 1,
     screenX: 0,
@@ -244,7 +287,7 @@ try {
     toolType: 0,
   }
 
-  let touchEventUpData: touchEvent.TouchEvent = {
+  let touchEventUpData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,
@@ -261,7 +304,7 @@ try {
   }
   inputEventClient.injectTouchEvent(touchEventUp);
 
-  let touchEventDownData: touchEvent.TouchEvent = {
+  let touchEventDownData: TouchEvent = {
     action: 1,
     sourceType: 0,
     touch: touchEvent,
@@ -278,7 +321,44 @@ try {
   }
   inputEventClient.injectTouchEvent(touchEventDown);
 } catch (error) {
-  console.log(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to inject touchEvent, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputEventClient.permitInjection<sup>12+</sup>
+
+permitInjection(result: boolean): void
+
+Specifies whether to authorize event injection.
+
+**System capability**: SystemCapability.MultimodalInput.Input.InputSimulator
+
+Permission required: ohos.permission.INJECT_INPUT_EVENT
+
+**Parameters**
+
+| Name   | Type   | Mandatory  | Description       |
+| -------- | ------  | ----   | --------- |
+| result   | boolean | Yes    | Authorization result. The value **true** indicates that event injection is allowed, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+
+```ts
+import { inputEventClient } from '@kit.InputKit';
+
+try {
+  let result = true;
+  inputEventClient.permitInjection(result);
+}catch(error){
+  console.error("failed:" + JSON.stringify(error));
 }
 ```
 

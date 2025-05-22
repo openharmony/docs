@@ -1,4 +1,5 @@
 # @ohos.application.appManager (appManager)(系统接口)
+<!--deprecated_code_no_check-->
 
 appManager模块提供App管理的能力，包括查询当前是否处于稳定性测试场景、查询是否为ram受限设备、获取应用程序的内存大小、获取有关运行进程的信息等。
 
@@ -6,7 +7,7 @@ appManager模块提供App管理的能力，包括查询当前是否处于稳定�
 > 
 > 本模块首批接口从API version 8 开始支持，从API version 9废弃，替换模块为[@ohos.app.ability.appManager](js-apis-app-ability-appManager.md)。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.application.appManager (appManager)](js-apis-app-ability-wantConstant.md)。
+> 当前页面仅包含本模块的系统接口，其他公开接口参见[@ohos.application.appManager (appManager)](js-apis-application-appManager.md)。
 
 ## 导入模块
 
@@ -30,7 +31,7 @@ registerApplicationStateObserver(observer: ApplicationStateObserver): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| observer | [ApplicationStateObserver (系统接口)](js-apis-inner-application-applicationStateObserver-sys.md) | 是 | 表示程序状态观测器，用于观测应用的生命周期变化。 |
+| observer | [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md) | 是 | 表示程序状态观测器，用于观测应用的生命周期变化。 |
 
 **返回值：**
 
@@ -73,7 +74,7 @@ unregisterApplicationStateObserver(observerId: number,  callback: AsyncCallback\
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -108,7 +109,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -120,7 +121,7 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
     
@@ -143,19 +144,19 @@ unregisterApplicationStateObserver(observerId: number): Promise\<void>
 
 getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData-sys.md)定义。使用callback异步回调。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。使用callback异步回调。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | 是 | 回调函数，返回所有当前处于前台的应用信息。 |
+| callback | AsyncCallback\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | 是 | 回调函数，返回所有当前处于前台的应用信息。 |
 
 **示例：**
     
@@ -175,19 +176,19 @@ getForegroundApplications(callback: AsyncCallback\<Array\<AppStateData>>): void
 
 getForegroundApplications(): Promise\<Array\<AppStateData>>
 
-获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData-sys.md)定义。使用Promise异步回调。
+获取所有当前处于前台的应用信息。该应用信息由[AppStateData](js-apis-inner-application-appStateData.md)定义。使用Promise异步回调。
 
 **需要权限**：ohos.permission.GET_RUNNING_INFO
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData-sys.md)>> | Promise对象，返回所有当前处于前台的应用信息。 |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise对象，返回所有当前处于前台的应用信息。 |
 
 **示例：**
     
@@ -218,14 +219,14 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
 
 **返回值：**
 
@@ -263,7 +264,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS, ohos.permission.CLEAN_BACKGROUND_PROCESSES
 
@@ -272,8 +273,8 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 | 应用Bundle名称。 |
-| accountId | number | 是 | 系统帐号的帐号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
-| callback | AsyncCallback\<void\> | 是 | 回调函数，当切断account进程成功。，err为undefined，否则为错误对象。 |
+| accountId | number | 是 | 系统账号的账号ID，详情参考[getCreatedOsAccountsCount](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+| callback | AsyncCallback\<void\> | 是 | 回调函数，当切断account进程成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
@@ -303,7 +304,7 @@ killProcessesByBundleName(bundleName: string, callback: AsyncCallback\<void>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -339,7 +340,7 @@ killProcessesByBundleName(bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -379,7 +380,7 @@ clearUpApplicationData(bundleName: string, callback: AsyncCallback\<void>)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 
@@ -415,7 +416,7 @@ clearUpApplicationData(bundleName: string): Promise\<void>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**系统接口**: 此接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **参数：**
 

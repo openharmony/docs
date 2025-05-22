@@ -1,4 +1,4 @@
-# Randomly Generating a Symmetric Key
+# Randomly Generating a Symmetric Key (ArkTS)
 
 
 This topic uses AES and SM4 as an example to describe how to generate a symmetric key and obtain the binary data.
@@ -11,16 +11,16 @@ The symmetric key (**SymKey**) object created can be used for subsequent encrypt
 
 For details about the algorithm specifications, see [AES](crypto-sym-key-generation-conversion-spec.md#aes).
 
-1. Use [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) with the string parameter **'AES256'** to create a symmetric key generator (**SymKeyGenerator**) object for a 256-bit AES key.
+1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) with the string parameter **'AES256'** to create a symmetric key generator (**SymKeyGenerator**) object for a 256-bit AES key.
 
-2. Use [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to randomly generate a symmetric key (**SymKey**) object.
+2. Call [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to randomly generate a symmetric key (**SymKey**) object.
 
-3. Use [SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the key.
+3. Call [SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the key.
 
 - Example: Randomly generate a 256-bit AES key (using promise-based APIs).
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testGenerateAesKey() {
     // Create a SymKeyGenerator instance.
@@ -37,7 +37,7 @@ For details about the algorithm specifications, see [AES](crypto-sym-key-generat
 
 - Example using synchronous API [generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testSyncGenerateAesKey() {
     // Create a SymKeyGenerator instance.
@@ -55,17 +55,17 @@ For details about the algorithm specifications, see [AES](crypto-sym-key-generat
 
 For details about the algorithm specifications, see [SM4](crypto-sym-key-generation-conversion-spec.md#sm4).
 
-1. Use [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) with the string parameter **'SM4_128'** to create a symmetric key generator (**SymKeyGenerator**) object for a 128-bit SM4 key.
+1. Call [cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator) with the string parameter **'SM4_128'** to create a symmetric key generator (**SymKeyGenerator**) object for a 128-bit SM4 key.
    If you need to use other algorithms, modify the string parameter.
 
-2. Use [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to randomly generate a symmetric key (**SymKey**) object.
+2. Call [SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1) to randomly generate a symmetric key (**SymKey**) object.
 
-3. Use [SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the key.
+3. Call [SymKey.getEncoded](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getencoded) to obtain the binary data of the key.
 
 - Example: Randomly generate a 128-bit SM4 key (using promise-based APIs).
 
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function testGenerateSM4Key() {
     // Create a SymKeyGenerator instance.
@@ -82,9 +82,9 @@ For details about the algorithm specifications, see [SM4](crypto-sym-key-generat
 
 - Example using synchronous API [generateSymKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkeysync12):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
-  function testSyncGenerateAesKey() {
+  function testSyncGenerateSm4Key() {
     // Create a SymKeyGenerator instance.
     let symKeyGenerator = cryptoFramework.createSymKeyGenerator('SM4_128');
     // Use SymKeyGenerator to randomly generate a symmetric key.

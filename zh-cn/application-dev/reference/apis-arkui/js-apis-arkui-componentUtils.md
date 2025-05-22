@@ -6,22 +6,26 @@
 >
 > 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。 
->
-> 从API version 10开始，可以通过使用UIContext中的[getComponentUtils](./js-apis-arkui-UIContext.md#getcomponentutils)方法获取当前UI上下文关联的ComponentUtils对象。该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[@ohos.arkui.inspector(布局回调)](js-apis-arkui-inspector.md)接收到布局完成的通知以后使用该接口。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。 
 
 ## 导入模块
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils'
+import { componentUtils } from '@kit.ArkUI';
 ```
-## componentUtils.getRectangleById
+## componentUtils.getRectangleById<sup>(deprecated)</sup>
 
 getRectangleById(id: string): ComponentInfo
 
-根据组件ID获取组件实例对象, 通过组件实例对象将获取的坐标位置和大小同步返回给开发者。
+根据组件ID获取组件实例对象，通过组件实例对象将获取的坐标位置和大小同步返回给开发者。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+> **说明：**
+>
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils)获取[ComponentUtils](js-apis-arkui-UIContext.md#componentutils)实例，再通过此实例调用替代方法[getRectangleById](js-apis-arkui-UIContext.md#getrectanglebyid)。
+>
+> 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](js-apis-arkui-UIContext.md#getcomponentutils)方法获取当前UI上下文关联的[ComponentUtils](js-apis-arkui-UIContext.md#componentutils)对象。该接口需要在目标组件布局、完成以后获取目标组件区域大小信息，建议在[@ohos.arkui.inspector(布局回调)](js-apis-arkui-inspector.md)接收到布局完成的通知以后使用该接口。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -37,16 +41,24 @@ getRectangleById(id: string): ComponentInfo
 | ------ | ---------- |
 | [ComponentInfo](#componentinfo) | 组件大小、位置、平移缩放旋转及仿射矩阵属性信息。 |
 
+**错误码：** 
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)错误码。
+
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 100001 | UI execution context not found. |
+
 **示例：**
 
 ```ts
-import componentUtils from '@ohos.arkui.componentUtils';
+import { componentUtils } from '@kit.ArkUI';
 let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("onClick");
 ```
 
 ## ComponentInfo
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -63,7 +75,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Size 
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,7 +86,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Offset
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -85,7 +97,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### TranslateResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -97,7 +109,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### ScaleResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -111,7 +123,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### RotateResult
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -126,13 +138,15 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 ### Matrix4Result
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+type Matrix4Result = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 取值范围   | 说明                               |
+| 类型 | 说明                               |
 | --------| -----------------------------------|
-| [number,number,number,number,<br />number,number,number,number,<br />number,number,number,number,<br />number,number,number,number] | 取值范围为长度为16（4\*4）的number数组,&nbsp;详情见四阶矩阵说明,单位: px  |
+| [number,number,number,number,<br />number,number,number,number,<br />number,number,number,number,<br />number,number,number,number] | 取值范围为长度为16（4\*4）的number数组，&nbsp;详情见四阶矩阵说明。<br/>单位: px  |
 
 **四阶矩阵说明：**
 
@@ -157,9 +171,12 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 
 **示例：**
 
+> **说明：**
+>
+> 推荐通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getComponentUtils](./js-apis-arkui-UIContext.md#getcomponentutils)方法获取当前UI上下文关联的ComponentUtils对象。
+
   ```ts
-import matrix4 from '@ohos.matrix4';
-import componentUtils from '@ohos.arkui.componentUtils';
+import { matrix4, componentUtils } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -189,7 +206,7 @@ struct Utils {
         .key("image_01")
       Button('getRectangleById')
       .onClick(() => {
-        this.value = JSON.stringify(componentUtils.getRectangleById("image_01"))
+        this.value = JSON.stringify(this.getUIContext().getComponentUtils().getRectangleById("image_01")) // 建议使用this.getUIContext().getComponentUtils()接口
       }).margin(10).id('onClick')
       Text(this.value)
         .margin(20)

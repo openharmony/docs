@@ -16,7 +16,7 @@ The application icon and application label are used to identify an application, 
 * Notification messages displayed in the status bar
 
 
-The entry icon and entry label are displayed on the device's home screen after an application is installed. The entry icon maps to a PageAbility. Therefore, an application can have multiple entry icons and entry labels. When you touch one of them, the corresponding page is displayed. Example scenarios are as follows:
+The entry icon and entry label are displayed on the device's home screen after an application is installed. The entry icon is specific to a PageAbility. Only one entry icon and entry label can be configured for an application. If there are multiple entry abilities, only the entry icon and entry label configured for the mainAbility in the entry HAP take effect. After you touch the entry icon, the corresponding PageAbility page is displayed. Example scenarios are as follows:
 * Applications displayed on the device's home screen
 * Applications displayed in Recents
 
@@ -71,7 +71,7 @@ In the **skills** attribute of the PageAbility, if the **actions** value contain
 #### Control Rules
 The system strictly controls applications without icons to prevent malicious applications from deliberately configuring no icon to block uninstall attempts.
 
-To hide an entry icon on the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md). The rules for displaying the entry icon and entry label are as follows:
+To hide an entry icon on the home screen, you must configure the **AllowAppDesktopIconHide** privilege.<!--Del--> For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd--> The rules for displaying the entry icon and entry label are as follows:
 
 * The HAP file contains PageAbility configuration.
   * An entry icon is set in the **abilities** field of the **config.json** file.

@@ -4,18 +4,18 @@
 
 > **说明：**
 >
-> - 在进行功能开发前，请开发者查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
-> - 文档中使用到photoAccessHelper的地方默认为使用开发准备中获取的对象，如未添加此段代码报photoAccessHelper未定义的错误请自行添加。
+> - 在进行功能开发前，请查阅[开发准备](photoAccessHelper-preparation.md)，了解如何获取相册管理模块实例和如何申请相册管理模块功能开发相关权限。
+> - 文档中使用到photoAccessHelper的地方，默认为使用[开发准备](photoAccessHelper-preparation.md)中获取的对象，如果未添加此段代码，报photoAccessHelper未定义的错误，请自行添加。
 
-为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。以下异步调用的API示例均采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
+为了保证应用的运行效率，大部分photoAccessHelper的接口调用都是异步的。示例采用Promise函数，更多方式可以查阅[API参考](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md)。
 
 ## 获取指定媒体资源
 
-开发者可以根据特定的条件查询媒体资源，如指定类型、指定日期、指定相册等。
+根据特定条件查询媒体资源，如类型、日期、相册等。
 
-应用通过调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)获取媒体资源，并传入[FetchOptions](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions)对象指定检索条件。如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现按照示例代码执行出现获取资源为空的情况请确认文件是否已预置，数据库中是否存在该文件的数据。
+应用通过调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)获取媒体资源，并传入[FetchOptions](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchoptions)对象指定检索条件。如无特别说明，文档中涉及的待获取的资源均视为已经预置且在数据库中存在相应数据。如出现获取资源为空的情况，请确认文件是否已预置，数据库中是否存在该文件的数据。
 
-如果只想获取某个位置的对象（如第一个、最后一个、指定索引等），可以通过[FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的媒体资源对象。
+如果只想获取某个位置的对象（如第一个、最后一个、指定索引等），可以通过[FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取。
 
 **前提条件**
 
@@ -28,9 +28,12 @@
 下面以查询文件名为'test.jpg'的图片资源为例。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -42,69 +45,6 @@ async function example() {
   };
   try {
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
-    fetchResult.close();
-  } catch (err) {
-    console.error('getAssets failed with err: ' + err);
-  }
-}
-```
-
-### 指定URI获取图片或视频资源
-
-下面以查询指定URI为'file://media/Photo/1/IMG_datetime_0001/displayName.jpg'为例。
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let uri = 'file://media/Photo/1/IMG_datetime_0001/displayName.jpg' // 需保证此uri已存在。
-  predicates.equalTo(photoAccessHelper.PhotoKeys.URI, uri.toString());
-  let fetchOptions: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    console.info('getAssets photoAsset.uri : ' + photoAsset.uri);
-    fetchResult.close();
-  } catch (err) {
-    console.error('getAssets failed with err: ' + err);
-  }
-}
-```
-
-### 指定文件添加的时间获取图片或视频资源
-
-下面以查询指定添加时间为'2022-06-01'至'2023-06-01'这一年内为例。
-
-```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
-let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-
-async function example() {
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let startTime = Date.parse(new Date('2022-06-01').toString()) / 1000; // 查询起始时间距1970年1月1日的秒数值。
-  let endTime = Date.parse(new Date('2023-06-01').toString()) / 1000;  // 查询结束时间距1970年1月1日的秒数值。
-  let date_added: photoAccessHelper.PhotoKeys = photoAccessHelper.PhotoKeys.DATE_ADDED;
-  predicates.between(date_added, startTime, endTime);
-  predicates.orderByDesc(date_added); // 查询结果按照降序排序。
-  let fetchOptions: photoAccessHelper.FetchOptions = {
-    fetchColumns: [date_added], // date_added属性不属于默认查询列，需要自行添加。
-    predicates: predicates
-  };
-  try {
-    let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOptions);
-    console.info('getAssets count: ' + fetchResult.getCount());
     let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
     console.info('getAssets photoAsset.displayName : ' + photoAsset.displayName);
     fetchResult.close();
@@ -128,7 +68,7 @@ async function example() {
 
 当需要在相册展示图片和视频、编辑预览，应用需要获取某张图片的缩略图。
 
-参考以下示例，获取图片的文件描述符fd后，需要解码为统一的PixelMap，方便在应用中进行图片显示或图片处理，具体请参考[图片解码](../image/image-decoding.md)。
+参考以下示例，获取图片的文件描述符fd后，需要解码为统一的PixelMap，以便在应用中进行图片显示或图片处理，具体请参考[图片解码](../image/image-decoding.md)。
 
 下面以获取一张图片的缩略图为例，缩略图尺寸为720*720。
 
@@ -140,10 +80,13 @@ async function example() {
 4. 调用PhotoAsset.getThumbnail获取图片的缩略图的[PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import image from '@ohos.multimedia.image';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-const context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { image } from '@kit.ImageKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -168,6 +111,7 @@ async function example() {
 }
 ```
 
+<!--Del-->
 ## 创建媒体资源
 
 创建[MediaAssetChangeRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#mediaassetchangerequest11)媒体资产变更对象并写入媒体资源内容，然后调用[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口提交创建资产的变更请求。
@@ -175,7 +119,7 @@ async function example() {
 **前提条件**
 
 - 获取相册管理模块photoAccessHelper实例。
-- [申请相册管理模块读权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'。
+- [申请相册管理模块读写权限](photoAccessHelper-preparation.md#申请相册管理模块功能相关权限)'ohos.permission.WRITE_IMAGEVIDEO'。
 
 ### 创建图片或视频资源（仅向系统应用开放）
 
@@ -189,9 +133,12 @@ async function example() {
 4. 调用PhotoAccessHelper.applyChanges接口提交资产变更请求。
 
 ```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-import fs from '@ohos.file.fs';
-let context = getContext(this);
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -202,8 +149,8 @@ async function example() {
     };
     let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(context, displayName, createOption);
     let fd: number = await assetChangeRequest.getWriteCacheHandler();
-    // write date into fd
-    await fs.close(fd);
+    // write date into fd.
+    await fileIoclose(fd);
     await phAccessHelper.applyChanges(assetChangeRequest);
   } catch (err) {
     console.error(`create asset failed with error: ${err.code}, ${err.message}`);
@@ -212,67 +159,13 @@ async function example() {
 ```
 
 应用还可以调用MediaAssetChangeRequest.addResource接口指定媒体资源内容的数据来源，具体包括[应用沙箱](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11)，[ArrayBuffer](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#addresource11-1)和[PhotoProxy](../../reference/apis-media-library-kit/js-apis-photoAccessHelper-sys.md#addresource11)。
-
-## 使用安全控件创建媒体资源
-
-下面以使用安全控件创建一张图片资源为例。使用安全控件创建媒体资源无需在应用中申请相册管理模块权限'ohos.permission.WRITE_IMAGEVIDEO'，详情请参考[安全控件的保存控件](../../reference/apis-arkui/arkui-ts/ts-security-components-savebutton.md)。
-
-**开发步骤**
-
-1. 设置安全控件按钮属性。
-2. 创建安全控件按钮。
-3. 调用[MediaAssetChangeRequest.createImageAssetRequest](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#createimageassetrequest11)和[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口创建图片资源。
-
-```ts
-import photoAccessHelper from '@ohos.file.photoAccessHelper'
-
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World'
-  @State saveButtonOptions: SaveButtonOptions = {
-    icon: SaveIconStyle.FULL_FILLED,
-    text: SaveDescription.SAVE_IMAGE,
-    buttonType: ButtonType.Capsule
-  } // 设置安全控件按钮属性
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        SaveButton(this.saveButtonOptions) // 创建安全控件按钮
-          .onClick(async (event, result: SaveButtonOnClickResult) => {
-             if (result == SaveButtonOnClickResult.SUCCESS) {
-               try {
-                 let context = getContext();
-                 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
-                 // 需要确保fileUri对应的资源存在
-                 let fileUri = 'file://com.example.temptest/data/storage/el2/base/haps/entry/files/test.jpg';
-                 let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createImageAssetRequest(context, fileUri);
-                 await phAccessHelper.applyChanges(assetChangeRequest);
-                 console.info('createAsset successfully, uri: ' + assetChangeRequest.getAsset().uri);
-               } catch (err) {
-                 console.error(`create asset failed with error: ${err.code}, ${err.message}`);
-               }
-             } else {
-               console.error('SaveButtonOnClickResult create asset failed');
-             }
-          })
-      }
-      .width('100%')
-    }
-    .height('100%')
-  }
-}
-```
+<!--DelEnd-->
 
 ## 重命名媒体资源
 
 重命名修改的是文件的PhotoAsset.displayName属性，即文件的显示文件名，包含文件后缀。
 
-调用[MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)重命名后再通过[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)更新到数据库中完成修改。
+调用[MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)重命名后，再通过[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)更新到数据库中完成修改。
 
 在重命名文件之前，需要先获取文件对象，可以通过[FetchResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#fetchresult)中的接口获取对应位置的文件。
 
@@ -288,13 +181,16 @@ struct Index {
 1. 建立检索条件，用于获取图片资源。
 2. 调用[PhotoAccessHelper.getAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getassets-1)接口获取目标图片资源。
 3. 调用[FetchResult.getFirstObject](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#getfirstobject-1)接口获取第一张图片，即要重命名的图片对象。
-4. 调用[MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)接口将图片重命名为新的名字。
+4. 调用[MediaAssetChangeRequest.setTitle](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#settitle11)接口将图片重命名。
 5. 调用[PhotoAccessHelper.applyChanges](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#applychanges11)接口将修改的图片属性更新到数据库中完成修改。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-let context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -322,7 +218,7 @@ async function example() {
 
 通过[MediaAssetChangeRequest.deleteAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets11)可以将文件放入回收站。
 
-放入回收站的文件将会保存30天，30天后会自动彻底删除。在此期间，应用用户可以通过系统应用“文件管理”或“图库”恢复文件。
+放入回收站的文件将保存30天，到期后自动彻底删除。在此期间，用户可以通过系统应用“文件管理”或“图库”恢复文件。
 
 **前提条件**
 
@@ -339,9 +235,12 @@ async function example() {
 4. 调用[MediaAssetChangeRequest.deleteAssets](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#deleteassets11)接口将文件放入回收站。
 
 ```ts
-import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import photoAccessHelper from '@ohos.file.photoAccessHelper';
-let context = getContext(this);
+import { dataSharePredicates } from '@kit.ArkData';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit';
+
+// 请在组件内获取context，确保this.getUiContext().getHostContext()返回结果为UIAbilityContext
+let context: Context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(context);
 
 async function example() {
@@ -361,63 +260,3 @@ async function example() {
   }
 }
 ```
-
-## 使用Picker选择媒体库资源
-
-用户有时需要分享图片、视频等用户文件，开发者可以通过特定接口拉起系统图库，用户自行选择待分享的资源，然后最终分享出去。此接口本身无需申请权限，目前适用于界面UIAbility，使用窗口组件触发。具体使用方式如下：
-
-1. 导入选择器模块和文件管理模块。
-
-   ```ts
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import fs from '@ohos.file.fs';
-   import { BusinessError } from '@ohos.base';
-   ```
-
-2. 创建图片-音频类型文件选择选项实例。
-
-   ```ts
-   const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
-   ```
-
-3. 选择媒体文件类型和选择媒体文件的最大数目。
-   以下示例以图片选择为例，媒体文件类型请参见[PhotoViewMIMETypes](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoviewmimetypes)。
-
-   ```ts
-   photoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE; // 过滤选择媒体文件类型为IMAGE
-   photoSelectOptions.maxSelectNumber = 5; // 选择媒体文件的最大数目
-   ```
-
-4. 创建图库选择器实例，调用[PhotoViewPicker.select](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#select)接口拉起图库界面进行文件选择。文件选择成功后，返回[PhotoSelectResult](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md#photoselectresult)结果集。
-
-   select返回的uri权限是只读权限，可以根据结果集中uri进行读取文件数据操作。注意不能在picker的回调里直接使用此uri进行打开文件操作，需要定义一个全局变量保存uri，使用类似一个按钮去触发打开文件。
-
-   如有获取元数据需求，可以通过[文件管理接口](../../reference/apis-core-file-kit/js-apis-file-fs.md)和[文件URI](../../reference/apis-core-file-kit/js-apis-file-fileuri.md)根据uri获取部分文件属性信息，比如文件大小、访问时间、修改时间、文件名、文件路径等。
-
-   ```ts
-   let uris: Array<string> = [];
-   const photoViewPicker = new photoAccessHelper.PhotoViewPicker();
-   photoViewPicker.select(photoSelectOptions).then((photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
-     uris = photoSelectResult.photoUris;
-     console.info('photoViewPicker.select to file succeed and uris are:' + uris);
-   }).catch((err: BusinessError) => {
-     console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
-   })
-   ```
-
-5. 待界面从图库返回后，再通过类似一个按钮调用其他函数，使用[fs.openSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。这里需要注意接口权限参数是fs.OpenMode.READ_ONLY。
-
-   ```ts
-   let uri: string = '';
-   let file = fs.openSync(uri, fs.OpenMode.READ_ONLY);
-   console.info('file fd: ' + file.fd);
-   ```
-
-6. 通过fd使用[fs.readSync](../../reference/apis-core-file-kit/js-apis-file-fs.md#readsync)接口读取这个文件内的数据，读取完成后关闭fd。
-
-   ```ts
-   let buffer = new ArrayBuffer(4096);
-   let readLen = fs.readSync(file.fd, buffer);
-   console.info('readSync data to file succeed and buffer size is:' + readLen);
-   fs.closeSync(file);
-   ```

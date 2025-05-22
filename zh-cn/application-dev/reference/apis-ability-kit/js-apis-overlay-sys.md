@@ -1,6 +1,6 @@
 # @ohos.bundle.overlay (overlay模块)(系统接口)
 
-本模块提供[overlay特征应用](js-apis-overlay.md#overlay特征应用介绍)的安装，overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息的查询以及overlay特征应用的禁用使能的能力。
+本模块提供[overlay特征应用](js-apis-overlay.md)的安装，overlay特征应用的[OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)信息的查询以及overlay特征应用的禁用使能的能力。
 
 > **说明：**
 >
@@ -11,14 +11,14 @@
 ## 导入模块
 
 ``` ts
-import overlay from '@ohos.bundle.overlay';
+import { overlay } from '@kit.AbilityKit';
 ```
 
 ## overlay.setOverlayEnabledByBundleName
 
-setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean): Promise\<void>
+setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean): Promise\<void>
 
-以异步方法设置指定应用的overlay module的禁用使能状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+设置指定应用的overlay module的禁用使能状态。使用Promise异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -42,7 +42,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -57,8 +57,8 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -68,20 +68,20 @@ try {
         .then((data) => {
             console.info('setOverlayEnabledByBundleName successfully');
         }).catch((err: BusinessError) => {
-            console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+            console.error('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.info('setOverlayEnabledByBundleName failed due to err code: ' + code + ' ' + 'message:' + message);
+    console.error('setOverlayEnabledByBundleName failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
 ## overlay.setOverlayEnabledByBundleName
 
-setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: boolean, callback: AsyncCallback\<void>): void
+setOverlayEnabledByBundleName(bundleName: string, moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void
 
-以异步方法设置指定应用的overlay module的禁用使能状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
+设置指定应用的overlay module的禁用使能状态。使用callback异步回调，成功返回应用的处置状态，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
@@ -100,7 +100,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -115,8 +115,8 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 let isEnabled = false;
@@ -124,7 +124,7 @@ let isEnabled = false;
 try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled, (err, data) => {
         if (err) {
-            console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+            console.error('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
             return;
         }
         console.info('setOverlayEnabledByBundleName successfully');
@@ -132,7 +132,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.info('setOverlayEnabledByBundleName failed due to err code: ' + code + ' ' + 'message:' + message);
+    console.error('setOverlayEnabledByBundleName failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -140,7 +140,7 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-以异步方法获取指定应用中指定module的OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module的OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -163,7 +163,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -178,8 +178,8 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -190,7 +190,7 @@ let moduleName = "feature";
     } catch(err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+        console.error('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -199,7 +199,7 @@ let moduleName = "feature";
 
 getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-以异步方法获取指定应用中指定module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -217,7 +217,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -232,15 +232,15 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (err, data) => {
         if (err) {
-            console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+            console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
@@ -248,7 +248,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
+    console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -256,7 +256,7 @@ try {
 
 getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Array\<OverlayModuleInfo>>): void
 
-以异步方法获取指定应用中所有module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中所有module的OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -273,7 +273,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -286,14 +286,14 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let bundleName = "com.example.myapplication_xxxxx";
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, (err, data) => {
         if (err) {
-            console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+            console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
@@ -301,7 +301,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
+    console.error('getOverlayModuleInfoByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -309,7 +309,7 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: string): Promise\<Array\<OverlayModuleInfo>>
 
-以异步方法获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用promise异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -332,7 +332,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -347,8 +347,8 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
@@ -359,7 +359,7 @@ let moduleName = "feature";
     } catch(err) {
         let code = (err as BusinessError).code;
         let message = (err as BusinessError).message;
-        console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
+        console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
     }
 })();
 ```
@@ -368,7 +368,7 @@ let moduleName = "feature";
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
-以异步方法获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -386,7 +386,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -401,15 +401,15 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 let moduleName = "feature";
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (err, data) => {
         if (err) {
-            console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+            console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
@@ -417,7 +417,7 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
+    console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -425,7 +425,7 @@ try {
 
 getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void
 
-以异步方法获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
+获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
 **需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -442,7 +442,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
@@ -455,14 +455,14 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 **示例：**
 
 ```ts
-import overlay from '@ohos.bundle.overlay';
-import { BusinessError } from '@ohos.base';
+import { overlay } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let targetBundleName = "com.example.myapplication_xxxxx";
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, (err, data) => {
         if (err) {
-            console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+            console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
@@ -470,6 +470,6 @@ try {
 } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
+    console.error('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```

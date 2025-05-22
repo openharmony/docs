@@ -57,7 +57,7 @@ OpenHarmony针对不同量级的系统，使用了不同形态的内核。轻量
 | 系统级别 | 轻量系统 | 小型系统 | 标准系统 | 
 | -------- | -------- | -------- | -------- |
 | LiteOS-M | √ | × | × | 
-| LiteOS-A | × | √ | √ | 
+| LiteOS-A | × | √ | × | 
 | Linux | × | √ | √ | 
 
 
@@ -133,7 +133,7 @@ OpenHarmony针对linux内核在ESwap(Enhanced Swap)、关联线程组调度和CP
 
 **Enhanced SWAP特性**
 
-ESwap提供了自定义新增存储分区作为内存交换分区的能力，并创建了一个常驻进程zswapd将[ZRAM](https://gitee.com/link?target=https%3A%2F%2Fwww.kernel.org%2Fdoc%2Fhtml%2Flatest%2Fadmin-guide%2Fblockdev%2Fzram.html)压缩后的匿名页加密换出到ESwap存储分区，从而能完全的空出一块可用内存，以此来达到维持Memavailable水线的目标。同时，配合这个回收机制，在整个内存框架上进行改进，优化匿名页和文件页的回收效率，并且使两者的回收比例更加合理以避免过度回收导致的refault问题造成卡顿现象。
+ESwap提供了自定义新增存储分区作为内存交换分区的能力，并创建了一个常驻进程zswapd将[ZRAM](https://www.kernel.org/doc/html/latest/admin-guide/blockdev/zram.html)压缩后的匿名页加密换出到ESwap存储分区，从而能完全的空出一块可用内存，以此来达到维持Memavailable水线的目标。同时，配合这个回收机制，在整个内存框架上进行改进，优化匿名页和文件页的回收效率，并且使两者的回收比例更加合理以避免过度回收导致的refault问题造成卡顿现象。
 
 **关联线程组调度**
 

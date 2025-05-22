@@ -11,7 +11,7 @@ The **inputConsumer** module implements listening for combination key events.
 ## Modules to Import
 
 ```js
-import inputConsumer from '@ohos.multimodalInput.inputConsumer';
+import { inputConsumer } from '@kit.InputKit';
 ```
 
 ## inputConsumer.on
@@ -47,7 +47,7 @@ let callback = (keyOptions: inputConsumer.KeyOptions) => {
 try {
   inputConsumer.on("key", keyOptions, callback);
 } catch (error) {
-  console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -83,7 +83,7 @@ try {
   inputConsumer.off("key", keyOption, callback);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```js
@@ -99,7 +99,7 @@ try {
   inputConsumer.off("key", keyOption);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -107,7 +107,7 @@ try {
 
 setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
-Sets the key shielding status.
+Sets the shortcut key shield status.
 
 **Required permissions**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -117,7 +117,7 @@ Sets the key shielding status.
 
 | Name        | Type                        | Mandatory  | Description                                      |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | ShieldMode                     | Yes   | Shielding mode. Currently, only **FACTORY_MODE** is supported.                      |
+| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                     | Yes   | Shortcut key shield mode. Currently, only **FACTORY_MODE** is supported, which means to shield all shortcut keys.                      |
 | isShield | boolean  | Yes   | Whether to enable key shielding. The value **true** means to enable key shielding, and the value **false** indicates the opposite.             |
 
 **Example**
@@ -128,16 +128,15 @@ try {
   inputConsumer.setShieldStatus(FACTORY_MODE,true);
   console.log(`set shield status success`);
 } catch (error) {
-  console.log(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-
 ```
 
 ## inputConsumer.getShieldStatus<sup>11+</sup>
 
 getShieldStatus(shieldMode: ShieldMode): boolean
 
-Checks whether key shielding is enabled.
+Obtains the shortcut key shield status.
 
 **Required permissions**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -147,13 +146,13 @@ Checks whether key shielding is enabled.
 
 | Name        | Type                        | Mandatory  | Description                                      |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | ShieldMode                    | Yes   | Shielding mode. Currently, only **FACTORY_MODE** is supported.                      |
+| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                    | Yes   | Shortcut key shield mode. Currently, only **FACTORY_MODE** is supported, which means to shield all shortcut keys.                      |
 
 **Return value**
 
-| Parameter        |  Description                                      |
+| Type        |  Description                                      |
 | ---------- |  ---------------------------------------- |
-| boolean                    | Whether to enable key shielding. The value **true** means to enable key shielding, and the value **false** indicates the opposite.                      |
+| boolean                    | Whether to enable shortcut key shielding. The value **true** means to enable shortcut key shielding, and the value **false** indicates the opposite.                      |
 
 **Example**
 
@@ -163,7 +162,7 @@ try {
   let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
   console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
 } catch (error) {
-  console.log(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -178,14 +177,17 @@ Represents combination key options.
 | preKeys    | Array\<number>   | Yes   | No| Preceding key set. The number of preceding keys ranges from 0 to 4. There is no requirement on the sequence of the keys.<br>For example, in the combination keys **Ctrl+Alt+A**, **Ctrl+Alt** are called preceding keys.|
 | finalKey             | number  | Yes   |  No| Final key. This parameter is mandatory. A callback is triggered by the final key.<br>For example, in the combination keys **Ctrl+Alt+A**, **A** is called the final key.|
 | isFinalKeyDown       | boolean | Yes   |  No| Whether the final key is pressed.<br>The value **true** indicates that the key is pressed, and the value **false** indicates the opposite.|
-| finalKeyDownDuration | number  | Yes   |  No| Duration for pressing a key, in μs.<br>If the value of this field is **0**, a callback is triggered immediately.<br>If the value of this field is greater than **0** and **isFinalKeyDown** is **true**, a callback is triggered when the key keeps being pressed after the specified duration expires. If **isFinalKeyDown** is **false**, a callback is triggered when the key is released before the specified duration expires.  |
+| finalKeyDownDuration | number  | Yes   |  No| Duration for holding down the key, in μs.<br>If the value of this field is **0**, a callback is triggered immediately.<br>If the value of this field is greater than **0** and **isFinalKeyDown** is **true**, a callback is triggered when the key keeps being pressed after the specified duration expires. If **isFinalKeyDown** is **false**, a callback is triggered when the key is released before the specified duration expires.  |
+| isRepeat<sup>18+</sup> | boolean  | Yes     | No     | Whether to report repeated key events. The value **true** means to report repeated key events, and the value **false** means the opposite. The default value is **true**.|
 
 ## shieldMode<sup>11+</sup>
 
-Enumerates key shielding modes.
+Enumerates shortcut key shield modes.
 
 **System capability**: SystemCapability.MultimodalInput.Input.InputConsumer
 
-| Name                       | Type | Readable| Writable| Description          |
-| ------------------------------ | ----------- | ---------------- | ---------------- | ---------------- |
-| FACTORY_MODE | number | Yes| No| Factory mode, which means to shield all shortcut keys.|
+| Name                       | Value| Description          |
+| ------------------------------ | ----------- | ---------------- |
+| UNSET_MODE | -1 | Unspecified shield mode, which means not to shield shortcut keys.|
+| FACTORY_MODE | 0 | Factory mode, which means to shield all shortcut keys.|
+| OOBE_MODE | 1 | OOBE mode, which means to shield all shortcut keys during the OOBE. This function is not supported currently.|

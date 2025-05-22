@@ -109,152 +109,152 @@ The widget provider development based on the [FA model](../application-models/fa
 
 ### Implementing Widget Lifecycle Callbacks
 
-To create a widget in the FA model, implement the widget lifecycle callbacks. Generate a widget template by referring to [Developing a Service Widget](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-development-service-widget-0000001263280425).
+To create a widget in the FA model, implement the widget lifecycle callbacks. For details about how to generate a service widget template, see <!--RP1-->[Creating a Service Widget](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-service-widget-V5)<!--RP1End-->.
 
 1. Import related modules to **form.ts**.
    
-  ```ts
-  import type featureAbility from '@ohos.ability.featureAbility';
-  import type Want from '@ohos.app.ability.Want';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import formInfo from '@ohos.app.form.formInfo';
-  import formProvider from '@ohos.app.form.formProvider';
-  import dataPreferences from '@ohos.data.preferences';
-  import hilog from '@ohos.hilog';
-  ```
+    ```ts
+    import type featureAbility from '@ohos.ability.featureAbility';
+    import type Want from '@ohos.app.ability.Want';
+    import formBindingData from '@ohos.app.form.formBindingData';
+    import formInfo from '@ohos.app.form.formInfo';
+    import formProvider from '@ohos.app.form.formProvider';
+    import dataPreferences from '@ohos.data.preferences';
+    import hilog from '@ohos.hilog';
+    ```
 
 2. Implement the widget lifecycle callbacks in **form.ts**.
    
-  ```ts
-const TAG: string = '[Sample_FAModelAbilityDevelop]';
-const domain: number = 0xFF00;
-
-const DATA_STORAGE_PATH: string = 'form_store';
-let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
-  // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
-  let formInfo: Record<string, string | number | boolean> = {
-    formName: 'formName',
-    tempFlag: 'tempFlag',
-    updateCount: 0
-  };
-  try {
-    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
-    // Put the widget information.
-    await storage.put(formId, JSON.stringify(formInfo));
-    hilog.info(domain, TAG, `storeFormInfo, put form info successfully, formId: ${formId}`);
-    await storage.flush();
-  } catch (err) {
-    hilog.error(domain, TAG, `failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
-  }
-};
-
-let deleteFormInfo = async (formId: string, context) => {
-  try {
-    const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
-    // Delete the widget information.
-    await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
-    await storage.flush();
-  } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
-  }
-}
-
-class LifeCycle {
-    onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' });
-    onCastToNormal: (formId: string) => void = (formId) => {
-    };
-    onUpdate: (formId: string) => void = (formId) => {
-    };
-    onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
-      let obj: Record<string, number> = {
-        'test': 1
+    ```ts
+    const TAG: string = '[Sample_FAModelAbilityDevelop]';
+    const domain: number = 0xFF00;
+    
+    const DATA_STORAGE_PATH: string = 'form_store';
+    let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
+      // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
+      let formInfo: Record<string, string | number | boolean> = {
+        'formName': 'formName',
+        'tempFlag': 'tempFlag',
+        'updateCount': 0
       };
-      return obj;
-    };
-    onEvent: (formId: string, message: string) => void = (formId, message) => {
-    };
-    onDestroy: (formId: string) => void = (formId) => {
-    };
-    onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0);
-    onShareForm?: (formId: string) => Record<string, Object> = (formId) => {
-      let obj: Record<string, number> = {
-        test: 1
-      };
-      return obj;
-    };
-  }
-
-  let obj: LifeCycle = {
-    onCreate(want: Want) {
-      hilog.info(domain, TAG, 'FormAbility onCreate');
-      if (want.parameters) {
-        let formId = String(want.parameters['ohos.extra.param.key.form_identity']);
-        let formName = String(want.parameters['ohos.extra.param.key.form_name']);
-        let tempFlag = Boolean(want.parameters['ohos.extra.param.key.form_temporary']);
-        // Persistently store widget data for subsequent use, such as instance acquisition and update.
-        // Implement this API based on project requirements.
-        hilog.info(domain, TAG, 'FormAbility onCreate' + formId);
-        storeFormInfo(formId, formName, tempFlag, this.context);
+      try {
+        const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+        // Put the widget information.
+        await storage.put(formId, JSON.stringify(formInfo));
+        hilog.info(domain, TAG, `storeFormInfo, put form info successfully, formId: ${formId}`);
+        await storage.flush();
+      } catch (err) {
+        hilog.error(domain, TAG, `failed to storeFormInfo, err: ${JSON.stringify(err as Error)}`);
       }
-
-      // Called when the widget is created. The widget provider should return the widget data binding class.
-      let obj: Record<string, string> = {
-        title: 'titleOnCreate',
-        detail: 'detailOnCreate'
-      };
-      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-      return formData;
-    },
-    onCastToNormal(formId: string) {
-      // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
-      hilog.info(domain, TAG, 'FormAbility onCastToNormal');
-    },
-    onUpdate(formId: string) {
-      // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
-      hilog.info(domain, TAG, 'FormAbility onUpdate');
-      let obj: Record<string, string> = {
-        title: 'titleOnUpdate',
-        detail: 'detailOnUpdate'
-      };
-      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-      // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
-      formProvider.updateForm(formId, formData).catch((error: Error) => {
-        hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
-      });
-    },
-    onVisibilityChange(newStatus: Record<string, number>) {
-      // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
-      hilog.info(domain, TAG, 'FormAbility onVisibilityChange');
-    },
-    onEvent(formId: string, message: string) {
-      // If the widget supports event triggering, override this method and implement the trigger.
-      let obj: Record<string, string> = {
-        title: 'titleOnEvent',
-        detail: 'detailOnEvent'
-      };
-      let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
-      // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
-      formProvider.updateForm(formId, formData).catch((error: Error) => {
-        hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
-      });
-      hilog.info(domain, TAG, 'FormAbility onEvent');
-    },
-    onDestroy(formId: string) {
-      // Delete widget data.
-      hilog.info(domain, TAG, 'FormAbility onDestroy');
-      // Delete the persistent widget instance data.
-      // Implement this API based on project requirements.
-      deleteFormInfo(formId, this.context);
-    },
-    onAcquireFormState(want: Want) {
-      hilog.info(domain, TAG, 'FormAbility onAcquireFormState');
-      return formInfo.FormState.READY;
+    };
+    
+    let deleteFormInfo = async (formId: string, context: featureAbility.Context) => {
+      try {
+        const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
+        // Delete the widget information.
+        await storage.delete(formId);
+        hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
+        await storage.flush();
+      } catch (err) {
+        hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+      }
     }
-  };
-
-  export default obj;
-  ```
+    
+    class LifeCycle {
+      onCreate: (want: Want) => formBindingData.FormBindingData = (want) => ({ data: '' });
+      onCastToNormal: (formId: string) => void = (formId) => {
+      };
+      onUpdate: (formId: string) => void = (formId) => {
+      };
+      onVisibilityChange: (newStatus: Record<string, number>) => void = (newStatus) => {
+        let obj: Record<string, number> = {
+          'test': 1
+        };
+        return obj;
+      };
+      onEvent: (formId: string, message: string) => void = (formId, message) => {
+      };
+      onDestroy: (formId: string) => void = (formId) => {
+      };
+      onAcquireFormState?: (want: Want) => formInfo.FormState = (want) => (0);
+      onShareForm?: (formId: string) => Record<string, Object> = (formId) => {
+        let obj: Record<string, number> = {
+          'test': 1
+        };
+        return obj;
+      };
+    }
+    
+    let obj: LifeCycle = {
+      onCreate(want: Want) {
+        hilog.info(domain, TAG, 'FormAbility onCreate');
+        if (want.parameters) {
+          let formId = String(want.parameters['ohos.extra.param.key.form_identity']);
+          let formName = String(want.parameters['ohos.extra.param.key.form_name']);
+          let tempFlag = Boolean(want.parameters['ohos.extra.param.key.form_temporary']);
+          // Persistently store widget data for subsequent use, such as instance acquisition and update.
+          // Implement this API based on project requirements.
+          hilog.info(domain, TAG, 'FormAbility onCreate' + formId);
+          storeFormInfo(formId, formName, tempFlag, this.context);
+        }
+  
+        // Called when the widget is created. The widget provider should return the widget data binding class.
+        let obj: Record<string, string> = {
+          'title': 'titleOnCreate',
+          'detail': 'detailOnCreate'
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        return formData;
+      },
+      onCastToNormal(formId: string) {
+        // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
+        hilog.info(domain, TAG, 'FormAbility onCastToNormal');
+      },
+      onUpdate(formId: string) {
+        // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
+        hilog.info(domain, TAG, 'FormAbility onUpdate');
+        let obj: Record<string, string> = {
+          'title': 'titleOnUpdate',
+          'detail': 'detailOnUpdate'
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
+        formProvider.updateForm(formId, formData).catch((error: Error) => {
+          hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
+        });
+      },
+      onVisibilityChange(newStatus: Record<string, number>) {
+        // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
+        hilog.info(domain, TAG, 'FormAbility onVisibilityChange');
+      },
+      onEvent(formId: string, message: string) {
+        // If the widget supports event triggering, override this method and implement the trigger.
+        let obj: Record<string, string> = {
+          'title': 'titleOnEvent',
+          'detail': 'detailOnEvent'
+        };
+        let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
+        // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.
+        formProvider.updateForm(formId, formData).catch((error: Error) => {
+          hilog.error(domain, TAG, 'FormAbility updateForm, error:' + JSON.stringify(error));
+        });
+        hilog.info(domain, TAG, 'FormAbility onEvent');
+      },
+      onDestroy(formId: string) {
+        // Delete widget data.
+        hilog.info(domain, TAG, 'FormAbility onDestroy');
+        // Delete the persistent widget instance data.
+        // Implement this API based on project requirements.
+        deleteFormInfo(formId, this.context);
+      },
+      onAcquireFormState(want: Want) {
+        hilog.info(domain, TAG, 'FormAbility onAcquireFormState');
+        return formInfo.FormState.READY;
+      }
+    };
+  
+    export default obj;
+    ```
 
 > **NOTE**
 >
@@ -278,7 +278,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
   
   ```json
   "js": [
-    ...
+    // ...
     {
       "name": "widget",
       "pages": [
@@ -317,7 +317,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
   
   ```json
   "abilities": [
-    ...
+    // ...
     {
       "name": ".FormAbility",
       "srcPath": "FormAbility",
@@ -346,7 +346,7 @@ The widget configuration file is named **config.json**. Find the **config.json**
         }
       ]
     },
-    ...
+    // ...
   ]
   ```
 
@@ -364,9 +364,9 @@ const DATA_STORAGE_PATH: string = 'form_store';
 let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, context: featureAbility.Context): Promise<void> => {
   // Only the widget ID (formId), widget name (formName), and whether the widget is a temporary one (tempFlag) are persistently stored.
   let formInfo: Record<string, string | number | boolean> = {
-    formName: 'formName',
-    tempFlag: 'tempFlag',
-    updateCount: 0
+    'formName': 'formName',
+    'tempFlag': 'tempFlag',
+    'updateCount': 0
   };
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
@@ -379,19 +379,19 @@ let storeFormInfo = async (formId: string, formName: string, tempFlag: boolean, 
   }
 };
 
-let deleteFormInfo = async (formId: string, context) => {
+let deleteFormInfo = async (formId: string, context: featureAbility.Context) => {
   try {
     const storage = await dataPreferences.getPreferences(context, DATA_STORAGE_PATH);
     // Delete the widget information.
     await storage.delete(formId);
-    console.info(`deleteFormInfo, del form info successfully, formId: ${formId}`);
+    hilog.info(domain, TAG, `deleteFormInfo, del form info successfully, formId: ${formId}`);
     await storage.flush();
   } catch (err) {
-    console.error(`failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
+    hilog.error(domain, TAG, `failed to deleteFormInfo, err: ${JSON.stringify(err)}`);
   }
 }
 
-...
+// ...
   onCreate(want: Want) {
     hilog.info(domain, TAG, 'FormAbility onCreate');
     if (want.parameters) {
@@ -406,13 +406,13 @@ let deleteFormInfo = async (formId: string, context) => {
 
     // Called when the widget is created. The widget provider should return the widget data binding class.
     let obj: Record<string, string> = {
-      title: 'titleOnCreate',
-      detail: 'detailOnCreate'
+      'title': 'titleOnCreate',
+      'detail': 'detailOnCreate'
     };
     let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
     return formData;
   },
-...
+// ...
 
 let deleteFormInfo = async (formId: string, context: featureAbility.Context): Promise<void> => {
   try {
@@ -426,7 +426,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
   }
 };
 
-...
+// ...
     // Override onDestroy to implement widget data deletion.
   onDestroy(formId: string) {
     // Delete widget data.
@@ -435,7 +435,7 @@ let deleteFormInfo = async (formId: string, context: featureAbility.Context): Pr
     // Implement this API based on project requirements.
     deleteFormInfo(formId, this.context);
   }
-...
+// ...
 ```
 
 For details about how to implement persistent data storage, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
@@ -464,8 +464,8 @@ onUpdate(formId: string) {
   // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
   hilog.info(domain, TAG, 'FormAbility onUpdate');
   let obj: Record<string, string> = {
-    title: 'titleOnUpdate',
-    detail: 'detailOnUpdate'
+    'title': 'titleOnUpdate',
+    'detail': 'detailOnUpdate'
   };
   let formData: formBindingData.FormBindingData = formBindingData.createFormBindingData(obj);
   // Call the updateForm() method to update the widget. Only the data passed through the input parameter is updated. Other information remains unchanged.

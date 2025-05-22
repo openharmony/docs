@@ -12,14 +12,18 @@ This subsystem offers the following audio and video services:
 
 - Audio and video recording [AVRecorder](#avrecorder9)<sup>9+</sup>)
 
-- Obtaining audio and video metadata ([AVMetadataExtractor](#avmetadataextractor11)<sup>11+</sup>).
+- Video transcoding ([AVTranscoder](#avtranscoder12)<sup>12+</sup>)
+
+- Obtaining audio and video metadata ([AVMetadataExtractor](#avmetadataextractor11)<sup>11+</sup>)
 
 - Obtaining video thumbnails ([AVImageGenerator](#avimagegenerator12)<sup>12+</sup>)
+
+- Screen capture ([AVScreenCaptureRecorder](#avscreencapturerecorder12)<sup>12+</sup>)
 
 ## Modules to Import
 
 ```ts
-import media from '@ohos.multimedia.media';
+import { media } from '@kit.MediaKit';
 ```
 
 ## media.createAVPlayer<sup>9+</sup>
@@ -30,9 +34,10 @@ Creates an **AVPlayer** instance. This API uses an asynchronous callback to retu
 
 > **NOTE**
 >
-> - A maximum of 13 instances can be created in video-only playback scenarios.
-> - A maximum of 16 instances can be created in both audio and video playback scenarios.
-> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, a maximum of 6 instances can be created in video-only playback scenarios.
+> - You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -53,15 +58,15 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avPlayer: media.AVPlayer;
 media.createAVPlayer((error: BusinessError, video: media.AVPlayer) => {
   if (video != null) {
     avPlayer = video;
-    console.info('createAVPlayer success');
+    console.info('Succeeded in creating AVPlayer');
   } else {
-    console.error(`createAVPlayer fail, error message:${error.message}`);
+    console.error(`Failed to create AVPlayer, error message:${error.message}`);
   }
 });
 ```
@@ -74,9 +79,10 @@ Creates an **AVPlayer** instance. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - A maximum of 13 instances can be created in video-only playback scenarios.
-> - A maximum of 16 instances can be created in both audio and video playback scenarios.
-> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, a maximum of 6 instances can be created in video-only playback scenarios.
+> - You are advised to create a maximum of 16 **AVPlayer** instances for an application in both audio and video playback scenarios.<!--Del-->
+> - The actual number of instances that can be created may be different. It depends on the specifications of the device chip in use. For example, in the case of RK3568, you are advised to create a maximum of 6 **AVPlayer** instances for an application in audio and video playback scenarios.<!--DelEnd-->
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -97,18 +103,18 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avPlayer: media.AVPlayer;
 media.createAVPlayer().then((video: media.AVPlayer) => {
   if (video != null) {
     avPlayer = video;
-    console.info('createAVPlayer success');
+    console.info('Succeeded in creating AVPlayer');
   } else {
-    console.error('createAVPlayer fail');
+    console.error('Failed to create AVPlayer');
   }
 }).catch((error: BusinessError) => {
-  console.error(`AVPlayer catchCallback, error message:${error.message}`);
+  console.error(`Failed to create AVPlayer, error message:${error.message}`);
 });
 ```
 
@@ -120,8 +126,7 @@ Creates an **AVRecorder** instance. This API uses an asynchronous callback to re
 
 > **NOTE**
 >
-> - A maximum of 2 instances can be created in audio and video recording scenarios.
-> - Only one instance can perform audio recording on a device at one time, since all the applications share the audio channel. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
+> An application can create multiple **AVRecorder** instances. However, because the device shares a common audio channel, only one instance can record audio at a time. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -142,15 +147,15 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let avRecorder: media.AVRecorder;
 
 media.createAVRecorder((error: BusinessError, recorder: media.AVRecorder) => {
   if (recorder != null) {
     avRecorder = recorder;
-    console.info('createAVRecorder success');
+    console.info('Succeeded in creating AVRecorder');
   } else {
-    console.error(`createAVRecorder fail, error message:${error.message}`);
+    console.error(`Failed to create AVRecorder, error message:${error.message}`);
   }
 });
 ```
@@ -163,12 +168,11 @@ Creates an **AVRecorder** instance. This API uses a promise to return the result
 
 > **NOTE**
 >
-> - A maximum of 2 instances can be created in audio and video recording scenarios.
-> - Only one instance can perform audio recording on a device at one time, since all the applications share the audio channel. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
-
-**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+> An application can create multiple **AVRecorder** instances. However, because the device shares a common audio channel, only one instance can record audio at a time. Any attempt to create the second instance for audio recording fails due to audio channel conflicts.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Return value**
 
@@ -187,18 +191,62 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avRecorder: media.AVRecorder;
 media.createAVRecorder().then((recorder: media.AVRecorder) => {
   if (recorder != null) {
     avRecorder = recorder;
-    console.info('createAVRecorder success');
+    console.info('Succeeded in creating AVRecorder');
   } else {
-    console.error('createAVRecorder fail');
+    console.error('Failed to create AVRecorder');
   }
 }).catch((error: BusinessError) => {
-  console.error(`createAVRecorder catchCallback, error message:${error.message}`);
+  console.error(`Failed to create AVRecorder, error message:${error.message}`);
+});
+```
+
+## media.createAVTranscoder<sup>12+</sup>
+
+createAVTranscoder(): Promise\<AVTranscoder>
+
+Creates an **AVTranscoder** instance. This API uses a promise to return the result.
+
+> **NOTE**
+
+> A maximum of 2 **AVTranscoder** instances can be created.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Return value**
+
+| Type                           | Description                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| Promise\<[AVTranscoder](#avtranscoder12)> | Promise used to return the result. If the operation is successful, an **AVTranscoder** instance is returned; otherwise, **null** is returned. The instance can be used for video transcoding.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                     |
+| -------- | ----------------------------- |
+| 5400101  | No memory. Return by promise. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avTranscoder: media.AVTranscoder | undefined = undefined;
+media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
+  if (transcoder != null) {
+    avTranscoder = transcoder;
+    console.info('Succeeded in creating AVTranscoder');
+  } else {
+    console.error('Failed to create AVTranscoder');
+  }
+}).catch((error: BusinessError) => {
+  console.error(`Failed to create AVTranscoder, error message:${error.message}`);
 });
 ```
 
@@ -214,7 +262,7 @@ Creates an **AVMetadataExtractor** instance. This API uses an asynchronous callb
 
 | Name  | Type                                 | Mandatory| Description                                                        |
 | -------- | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<[AVMetadataExtractor](#avmetadataextractor11)> | Yes  | Callback used to return the result. If the operation is successful, an **AVMetadataExtractor** instance is returned; otherwise, **null** is returned. The interface can be used to obtain audio and video metadata.|
+| callback | AsyncCallback\<[AVMetadataExtractor](#avmetadataextractor11)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **AVMetadataExtractor** instance created; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -227,15 +275,15 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor((error: BusinessError, extractor: media.AVMetadataExtractor) => {
   if (extractor != null) {
     avMetadataExtractor = extractor;
-    console.info('createAVMetadataExtractor success');
+    console.info('Succeeded in creating AVMetadataExtractor');
   } else {
-    console.error(`createAVMetadataExtractor fail, error message:${error.message}`);
+    console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
   }
 });
 ```
@@ -248,35 +296,29 @@ Creates an **AVMetadataExtractor** instance. This API uses a promise to return t
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
-**Return value**
-
-| Type                           | Description                                                        |
-| ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVMetadataExtractor](#avmetadataextractor11)> | Promise used to return the result. If the operation is successful, an **AVMetadataExtractor** instance is returned; otherwise, **null** is returned. The interface can be used to obtain audio and video metadata.|
-
 **Error codes**
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
-| ID| Error Message                     |
-| -------- | ----------------------------- |
+| ID| Error Message                      |
+| -------- | ------------------------------ |
 | 5400101  | No memory. Returned by promise. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avMetadataExtractor: media.AVMetadataExtractor;
 media.createAVMetadataExtractor().then((extractor: media.AVMetadataExtractor) => {
   if (extractor != null) {
     avMetadataExtractor = extractor;
-    console.info('createAVMetadataExtractor success');
+    console.info('Succeeded in creating AVMetadataExtractor');
   } else {
-    console.error('createAVMetadataExtractor fail');
+    console.error(`Failed to create AVMetadataExtractor`);
   }
 }).catch((error: BusinessError) => {
-  console.error(`AVMetadataExtractor catchCallback, error message:${error.message}`);
+  console.error(`Failed to create AVMetadataExtractor, error message:${error.message}`);
 });
 ```
 
@@ -286,14 +328,19 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo, ca
 
 Creates a **SoundPool** instance. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> - In versions earlier than API version 18, the bottom layer of the created **SoundPool** object is in singleton mode. Therefore, an application process can create only one **SoundPool** instance.
+> - In API version 18 and later versions, the bottom layer of the created **SoundPool** object is in multiton mode. Therefore, an application process can create a maximum of 128 **SoundPool** instances.
+
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance.|
-| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance. The value is an integer ranging from 1 to 32.|
+| audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters. When the **usage** parameter in **audioRenderInfo** is set to **STREAM_USAGE_UNKNOWN**, **STREAM_USAGE_MUSIC**, **STREAM_USAGE_MOVIE**, or **STREAM_USAGE_AUDIOBOOK**, the SoundPool uses the audio mixing mode when playing a short sound, without interrupting the playback of other audios.|
 | callback | AsyncCallback<[SoundPool](js-apis-inner-multimedia-soundPool.md)> | Yes  | Callback used to return the result. If the operation is successful, a **SoundPool** instance is returned; otherwise, **null** is returned. The instance is used for loading and playback.|
 
 **Error codes**
@@ -307,7 +354,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```js
-import audio from '@ohos.multimedia.audio'
+import { audio } from '@kit.AudioKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -317,11 +364,11 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 
 media.createSoundPool(5, audioRendererInfo, (error, soundPool_: media.SoundPool) => {
   if (error) {
-    console.error(`createSoundPool failed`)
+    console.error(`Failed to createSoundPool`)
     return;
   } else {
     soundPool = soundPool_;
-    console.info(`createSoundPool success`)
+    console.info(`Succeeded in createSoundPool`)
   }
 });
 ```
@@ -332,13 +379,18 @@ createSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): P
 
 Creates a **SoundPool** instance. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> - In versions earlier than API version 18, the bottom layer of the created **SoundPool** object is in singleton mode. Therefore, an application process can create only one **SoundPool** instance.
+> - In API version 18 and later versions, the bottom layer of the created **SoundPool** object is in multiton mode. Therefore, an application process can create a maximum of 128 **SoundPool** instances.
+
 **System capability**: SystemCapability.Multimedia.Media.SoundPool
 
 **Parameters**
 
 | Name  | Type                                           | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance.|
+| maxStreams | number | Yes  | Maximum number of streams that can be played by the **SoundPool** instance. The value is an integer ranging from 1 to 32.|
 | audioRenderInfo | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8)  | Yes  | Audio renderer parameters.|
 
 **Return value**
@@ -358,8 +410,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```js
-import audio from '@ohos.multimedia.audio'
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
@@ -370,9 +422,9 @@ let audioRendererInfo: audio.AudioRendererInfo = {
 media.createSoundPool(5, audioRendererInfo).then((soundpool_: media.SoundPool) => {
   if (soundpool_ != null) {
     soundPool = soundpool_;
-    console.info('create SoundPool success');
+    console.info('Succceeded in creating SoundPool');
   } else {
-    console.error('create SoundPool fail');
+    console.error('Failed to create SoundPool');
   }
 }, (error: BusinessError) => {
   console.error(`soundpool catchCallback, error message:${error.message}`);
@@ -397,36 +449,62 @@ Creates an **AVScreenCaptureRecorder** instance. This API uses a promise to retu
 
 | ID| Error Message                      |
 | -------- | ------------------------------ |
-| 5400101  | No memory. Return by callback. |
+| 5400101  | No memory. Return by promise. |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avScreenCaptureRecorder: media.AVScreenCaptureRecorder;
 media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptureRecorder) => {
   if (captureRecorder != null) {
     avScreenCaptureRecorder = captureRecorder;
-    console.info('createAVScreenCaptureRecorder success');
+    console.info('Succeeded in createAVScreenCaptureRecorder');
   } else {
-    console.error('createAVScreenCaptureRecorder fail');
+    console.error('Failed to createAVScreenCaptureRecorder');
   }
 }).catch((error: BusinessError) => {
   console.error(`createAVScreenCaptureRecorder catchCallback, error message:${error.message}`);
 });
 ```
 
+## SoundPool<sup>10+</sup>
+
+type SoundPool = _SoundPool
+
+SoundPool, which provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+| Type    | Description                      |
+| -------- | ------------------------------ |
+| [_SoundPool](js-apis-inner-multimedia-soundPool.md#soundpool)  | Provides APIs for loading, unloading, playing, and stopping playing system sounds, setting the volume, and setting the number of loops.|
+
+## PlayParameters<sup>10+</sup>
+
+type PlayParameters = _PlayParameters
+
+Describes the playback parameters of the sound pool.
+
+**System capability**: SystemCapability.Multimedia.Media.SoundPool
+
+| Type    | Description                      |
+| -------- | ------------------------------ |
+| [_PlayParameters](js-apis-inner-multimedia-soundPool.md#playparameters)  | Playback parameters of the sound pool.|
+
 ## AVErrorCode<sup>9+</sup>
 
 Enumerates the [media error codes](errorcode-media.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
 | Name                                 | Value     | Description                                |
 | :------------------------------------ | ------- | ------------------------------------ |
 | AVERR_OK                              | 0       | The operation is successful.                      |
-| AVERR_NO_PERMISSION                   | 201     | You do not have the permission to perform the operation.              |
+| AVERR_NO_PERMISSION                   | 201     | No permission to perform the operation.              |
 | AVERR_INVALID_PARAMETER               | 401     | Invalid input parameter.                  |
 | AVERR_UNSUPPORT_CAPABILITY            | 801     | Unsupported API.       |
 | AVERR_NO_MEMORY                       | 5400101 | The system memory is insufficient or the number of services reaches the upper limit.|
@@ -436,6 +514,20 @@ Enumerates the [media error codes](errorcode-media.md).
 | AVERR_SERVICE_DIED                    | 5400105 | The service process is dead.                  |
 | AVERR_UNSUPPORT_FORMAT                | 5400106 | The format of the media asset is not supported.      |
 | AVERR_AUDIO_INTERRUPTED<sup>11+</sup> | 5400107 | The audio focus is interrupted.                  |
+| AVERR_IO_HOST_NOT_FOUND<sup>14+</sup> | 5411001 | Failed to parse the server address or connect to the server.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_CONNECTION_TIMEOUT<sup>14+</sup> | 5411002 | Network connection times out.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_NETWORK_ABNORMAL<sup>14+</sup> | 5411003 | Data or links are abnormal due to network exceptions.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_NETWORK_UNAVAILABLE<sup>14+</sup> | 5411004 | The network is disabled.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_NO_PERMISSION<sup>14+</sup> | 5411005 | No access permission.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_REQUEST_DENIED<sup>14+</sup> | 5411006 | The client request parameter is incorrect or exceeds the processing capability.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_RESOURCE_NOT_FOUND<sup>14+</sup> | 5411007 | No network resource is available.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_SSL_CLIENT_CERT_NEEDED<sup>14+</sup> | 5411008 | The server fails to verify the client certificate.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_SSL_CONNECTION_FAILED<sup>14+</sup> | 5411009 | The SSL connection fails.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_SSL_SERVER_CERT_UNTRUSTED<sup>14+</sup> | 5411010 | The client fails to verify the server certificate.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_IO_UNSUPPORTED_REQUEST<sup>14+</sup> | 5411011 | The request is not supported due to a network protocol error.<br>**Atomic service API**: This API can be used in atomic services since API version 14.       |
+| AVERR_SEEK_CONTINUOUS_UNSUPPORTED<sup>18+</sup> | 5410002 | The seek operation in SEEK_CONTINUOUS mode is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
+| AVERR_SUPER_RESOLUTION_UNSUPPORTED<sup>18+</sup> | 5410003 | Super resolution is not supported.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
+| AVERR_SUPER_RESOLUTION_NOT_ENABLED<sup>18+</sup> | 5410004 | Super resolution is not enabled.<br>**Atomic service API**: This API can be used in atomic services since API version 18.       |
 
 ## MediaType<sup>8+</sup>
 
@@ -443,10 +535,11 @@ Enumerates the media types.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
-| Name          | Value  | Description      |
-| -------------- | ---- | ---------- |
-| MEDIA_TYPE_AUD | 0    | Media.|
-| MEDIA_TYPE_VID | 1    | Video.|
+| Name          | Value                   | Description                |
+| -------------- | --------------------- | ------------------- |
+| MEDIA_TYPE_AUD | 0                     | Media.<br>**Atomic service API**: This API can be used in atomic services since API version 11.          |
+| MEDIA_TYPE_VID | 1                     | Video.<br>**Atomic service API**: This API can be used in atomic services since API version 11.         |
+| MEDIA_TYPE_SUBTITLE<sup>12+</sup> | 2    | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## CodecMimeType<sup>8+</sup>
 
@@ -465,6 +558,10 @@ Enumerates the codec MIME types.
 | AUDIO_AAC    | 'audio/mp4a-latm'     | Audio in MP4A-LATM format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | AUDIO_VORBIS | 'audio/vorbis'        | Audio in Vorbis format.   |
 | AUDIO_FLAC   | 'audio/flac'          | Audio in FLAC format.     |
+| AUDIO_MP3<sup>12+</sup>   | 'audio/mpeg'          | Audio in MPEG format.     |
+| AUDIO_G711MU<sup>12+</sup>   | 'audio/g711mu'     | Audio in G.711 μ-law format.|
+| AUDIO_AMR_NB<sup>18+</sup>   | 'audio/3gpp'     | Audio in AMR-NB format.|
+| AUDIO_AMR_WB<sup>18+</sup>   | 'audio/amr-wb'     | Audio in AMR-WB format.|
 
 ## MediaDescriptionKey<sup>8+</sup>
 
@@ -474,34 +571,55 @@ Enumerates the media description keys.
 
 | Name                    | Value             | Description                                                        |
 | ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | 'track_index'   | Track index, which is a number.                      |
-| MD_KEY_TRACK_TYPE        | 'track_type'    | Track type, which is a number. For details, see [MediaType](#mediatype8).|
-| MD_KEY_CODEC_MIME        | 'codec_mime'    | Codec MIME type, which is a string.                |
-| MD_KEY_DURATION          | 'duration'      | Media duration, which is a number, in units of ms.    |
-| MD_KEY_BITRATE           | 'bitrate'       | Bit rate, which is a number, in units of bit/s.   |
-| MD_KEY_WIDTH             | 'width'         | Video width, which is a number, in units of pixel.    |
-| MD_KEY_HEIGHT            | 'height'        | Video height, which is a number, in units of pixel.    |
-| MD_KEY_FRAME_RATE        | 'frame_rate'    | Video frame rate, which is a number, in units of 100 fps.|
-| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Number of audio channels, which is a number.                        |
-| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.      |
-| MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | Bit depth, which is a number, in units of bits.         |
+| MD_KEY_TRACK_INDEX       | 'track_index'   | Track index, which is a number.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_TRACK_TYPE        | 'track_type'    | Track type, which is a number. For details, see [MediaType](#mediatype8).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_CODEC_MIME        | 'codec_mime'    | Codec MIME type, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_DURATION          | 'duration'      | Media duration, which is a number, in units of ms.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_BITRATE           | 'bitrate'       | Bit rate, which is a number, in units of bit/s.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_WIDTH             | 'width'         | Video width, which is a number, in units of pixel.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_HEIGHT            | 'height'        | Video height, which is a number, in units of pixel.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_FRAME_RATE        | 'frame_rate'    | Video frame rate, which is a number, measured in frames per 100 seconds.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | Number of audio channels, which is a number.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | Sampling rate, which is a number, in units of Hz.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| MD_KEY_AUD_SAMPLE_DEPTH<sup>12+</sup>  | 'sample_depth'  | Bit depth, which is a number, in units of bits.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MD_KEY_LANGUAGE<sup>12+</sup>  | 'language'  | Subtitle language, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MD_KEY_TRACK_NAME<sup>12+</sup>  | 'track_name'  | Track name, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| MD_KEY_HDR_TYPE<sup>12+</sup>  | 'hdr_type'  | Codec track type, which is a string.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+
+## PlaybackInfoKey<sup>12+</sup>
+
+Enumerates the playback description keys.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name                    | Value             | Description                                                        |
+| ------------------------ | --------------- | ------------------------------------------------------------ |
+| SERVER_IP_ADDRESS        | 'server_ip_address'    | IP address of the server, which is a string. |
+| AVG_DOWNLOAD_RATE        | 'average_download_rate'| Average download rate, which is a number, in units of bit/s.|
+| DOWNLOAD_RATE            | 'download_rate'        | Download rate in one second, which is a number, in units of bit/s.|
+| IS_DOWNLOADING           | 'is_downloading'       | Download status, which is a number. The value **1** means that the downloaded is in progress, and **0** means that the download is complete.|
+| BUFFER_DURATION          | 'buffer_duration'      | Duration that the cached data can be played, which is a number, in units of seconds.|
 
 ## BufferingInfoType<sup>8+</sup>
 
 Enumerates the buffering event types.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Media.Core
 
 | Name             | Value  | Description                            |
 | ----------------- | ---- | -------------------------------- |
-| BUFFERING_START   | 1    | Buffering starts.                  |
-| BUFFERING_END     | 2    | Buffering ends.                  |
-| BUFFERING_PERCENT | 3    | Buffering progress, in percent.                |
-| CACHED_DURATION   | 4    | Cache duration, in ms.|
+| BUFFERING_START   | 1    | Buffering starts. When this event is triggered, the player pauses the playback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| BUFFERING_END     | 2    | Buffering ends. When this event is triggered, the player resumes the playback.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
+| BUFFERING_PERCENT | 3    | Buffering percentage. You can use this event to monitor the buffering status.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                |
+| CACHED_DURATION   | 4    | Estimated duration, in ms, that the buffered data can be played. This event is triggered once the data change amount in the buffer exceeds 500 ms. You can use this event to develop a progress bar.<br>**Atomic service API**: This API can be used in atomic services since API version 12. |
 
 ## StateChangeReason<sup>9+</sup>
 
 Enumerates the reasons for the state transition of the **AVPlayer** or **AVRecorder** instance. The enum value is reported together with **state**.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -516,47 +634,49 @@ A playback management class that provides APIs to manage and play media assets. 
 
 For details about the audio and video playback demo, see [Audio Playback](../../media/media/using-avplayer-for-playback.md) and [Video Playback](../../media/media/video-playback.md).
 
+> **NOTE**
+>
+> When using the **AVPlayer** instance, you are advised to register the following callbacks to proactively obtain status changes:
+> - [on('stateChange')](#onstatechange9): listens for AVPlayer state changes.
+> - [on('error')](#onerror9): listens for error events.
+
 ### Attributes
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
-| Name                                               | Type                                                        | Readable| Writable| Description                                                        |
+| Name                                               | Type                                                        | Read-Only| Optional| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>9+</sup>                                    | string                                                       | Yes  | Yes  | URL of the media asset. It can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
-| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | FD of the media asset. It can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.<br>**NOTE**<br>WebM is no longer supported since API version 11.|
-| dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Descriptor of a streaming media asset. It can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, and FLAC are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.<br>**NOTE**<br>WebM is no longer supported since API version 11.|
-| surfaceId<sup>9+</sup>                              | string                                                       | Yes  | Yes  | Video window ID. By default, there is no video window.<br>This parameter can be set when the AVPlayer is in the initialized state.<br>It can be set again when the AVPlayer is in the prepared, playing, paused, completed, or stopped state, in the prerequisite that the a video window ID has been set in the initialized state. After the new setting is performed, the video is played in the new window.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).|
-| loop<sup>9+</sup>                                   | boolean                                                      | Yes  | Yes  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.|
-| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | Yes  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | Yes  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>To take effect, this attribute must be set before [play()](#play9) is called for the first time.|
-| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8) | Yes  | Yes  | Audio renderer information. The default values of **usage** and **rendererFlags** are **STREAM_USAGE_MUSIC** and **0**, respectively.<br>This parameter can be set only when the AVPlayer is in the initialized state.<br>To take effect, this attribute must be set before [prepare()](#prepare9) is called for the first time.|
-| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](../apis-audio-kit/js-apis-audio.md#audioeffectmode10)  | Yes  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **usage** of **audioRendererInfo** is changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.|
-| state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.                  |
-| currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
-| duration<sup>9+</sup> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.|
-| width<sup>9+</sup>                                  | number                                                       | Yes  | No  | Video width, in px. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
-| height<sup>9+</sup>                                 | number                                                       | Yes  | No  | Video height, in px. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.|
-
-**NOTE**
-
-After the resource handle (FD) is transferred to the AVPlayer, do not use the resource handle to perform read and write operations, including but not limited to transferring it to multiple AVPlayers. Competition occurs when multiple AVPlayers use the same resource handle to read and write files at the same time, resulting in playback errors.
+| url<sup>9+</sup>                                    | string                                                       | No  | Yes  | URL of the media asset. It can be set only when the AVPlayer is in the idle state. <br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**NOTE**<br>- To set a network playback path, you must declare the [ohos.permission.INTERNET](../../security/AccessToken/permissions-for-all.md#ohospermissioninternet) permission by following the instructions provided in [Declaring Permissions](../../security/AccessToken/declare-permissions.md). The error code [201](../errorcode-universal.md) may be reported.<br>- WebM is no longer supported since API version 11.<br> - After the resource handle (FD) is transferred to an **AVPlayer** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVPlayers use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| fdSrc<sup>9+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | No  | Yes  | FD of the media asset. It can be set only when the AVPlayer is in the idle state.<br>This attribute is required when media assets of an application are continuously stored in a file.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example:**<br>Assume that a media file that stores continuous assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent media file, use **src=fd://xx**.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| dataSrc<sup>10+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | No  | Yes  | Descriptor of a streaming media asset. It can be set only when the AVPlayer is in the idle state.<br>Use scenario: An application starts playing a media file while the file is still being downloaded from the remote to the local host.<br>The video formats MP4, MPEG-TS, and MKV are supported.<br>The audio formats M4A, AAC, MP3, OGG, WAV, FLAC, and AMR are supported.<br>**Example:**<br>A user is obtaining an audio and video file from a remote server and wants to play the downloaded file content. To implement this scenario, do as follows:<br>1. Obtain the total file size, in bytes. If the total size cannot be obtained, set **fileSize** to **-1**.<br>2. Implement the **func** callback to fill in data. If **fileSize** is **-1**, the format of **func** is **func(buffer: ArrayBuffer, length: number)**, and the AVPlayer obtains data in sequence; otherwise, the format is **func(buffer: ArrayBuffer, length: number, pos: number)**, and the AVPlayer seeks and obtains data in the required positions.<br>3. Set **AVDataSrcDescriptor {fileSize = size, callback = func}**.<br>**Notes:**<br>If the media file to play is in MP4/M4A format, ensure that the **moov** field (specifying the media information) is before the **mdat** field (specifying the media data) or the fields before the **moov** field is less than 10 MB. Otherwise, the parsing fails and the media file cannot be played.<br>**NOTE**<br>WebM is no longer supported since API version 11.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| surfaceId<sup>9+</sup>                              | string                                                       | No  | Yes  | Video window ID. By default, there is no video window.<br>This parameter can be set when the AVPlayer is in the initialized state.<br>It can be set again when the AVPlayer is in the prepared, playing, paused, completed, or stopped state, in the prerequisite that the video window ID has been set in the initialized state. After the new setting is performed, the video is played in the new window.<br>It is used to render the window for video playback and therefore is not required in audio-only playback scenarios.<br>**Example:**<br>[Create a surface ID through XComponent](../apis-arkui/arkui-ts/ts-basic-components-xcomponent.md#getxcomponentsurfaceid).<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| loop<sup>9+</sup>                                   | boolean                                                      | No  | No  | Whether to loop playback. The value **true** means to loop playback, and **false** (default) means the opposite. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>This setting is not supported in live mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | No  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9)       | No  | Yes  | Audio interruption mode. The default value is **SHARE_MODE**. It is a dynamic attribute<br>and can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>To take effect, this attribute must be set before [play()](#play9) is called for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8) | No  | Yes  | Audio renderer information. If the media source contains videos, the default value of **usage** is **STREAM_USAGE_MOVIE**. Otherwise, the default value of **usage** is **STREAM_USAGE_MUSIC**. The default value of **rendererFlags** is 0. If the default value of **usage** does not meet the requirements, configure [audio.AudioRendererInfo](../apis-audio-kit/js-apis-audio.md#audiorendererinfo8).<br>This parameter can be set only when the AVPlayer is in the initialized state.<br>To take effect, this attribute must be set before [prepare()](#prepare9) is called for the first time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](../apis-audio-kit/js-apis-audio.md#audioeffectmode10)  | No  | Yes  | Audio effect mode. The audio effect mode is a dynamic attribute and is restored to the default value **EFFECT_DEFAULT** when **usage** of **audioRendererInfo** is changed. It can be set only when the AVPlayer is in the prepared, playing, paused, or completed state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | Yes  | No  | AVPlayer state. It can be used as a query parameter when the AVPlayer is in any state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| currentTime<sup>9+</sup>                            | number                                                       | Yes  | No  | Current video playback position, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| duration<sup>9+</sup> | number                                                       | Yes  | No  | Video duration, in ms. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **-1** indicates an invalid value.<br>In live mode, **-1** is returned by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| width<sup>9+</sup>                                  | number                                                       | Yes  | No  | Video width, in px. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| height<sup>9+</sup>                                 | number                                                       | Yes  | No  | Video height, in px. It can be used as a query parameter when the AVPlayer is in the prepared, playing, paused, or completed state.<br>The value **0** indicates an invalid value.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ### on('stateChange')<sup>9+</sup>
 
-on(type: 'stateChange', callback: (state: AVPlayerState, reason: StateChangeReason) => void): void
+on(type: 'stateChange', callback: OnAVPlayerStateChangeHandle): void
 
 Subscribes to AVPlayer state changes.
 
-**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Parameters**
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'stateChange'** in this case. This event can be triggered by both user operations and the system.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It reports the following information:<br>state: [AVPlayerState](#avplayerstate9), indicating the AVPlayer state.<br>reason: [StateChangeReason](#statechangereason9), indicating the reason for the state transition.|
+| callback | [OnAVPlayerStateChangeHandle](#onavplayerstatechangehandle12) | Yes  | Callback invoked when the event is triggered.|
 
 **Example**
 
@@ -599,9 +719,11 @@ avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason
 
 ### off('stateChange')<sup>9+</sup>
 
-off(type: 'stateChange'): void
+off(type: 'stateChange', callback?: OnAVPlayerStateChangeHandle): void
 
 Unsubscribes from AVPlayer state changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -610,6 +732,7 @@ Unsubscribes from AVPlayer state changes.
 | Name| Type  | Mandatory| Description                                                 |
 | ------ | ------ | ---- | ----------------------------------------------------- |
 | type   | string | Yes  | Event type, which is **'stateChange'** in this case.|
+| callback   | [OnAVPlayerStateChangeHandle](#onavplayerstatechangehandle12) | No  | Callback invoked when the event is triggered.<br>This parameter is supported since API version 12.|
 
 **Example**
 
@@ -623,9 +746,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to AVPlayer errors. This event is used only for error prompt and does not require the user to stop playback control. If [AVPlayerState](#avplayerstate9) is also switched to error, call [reset()](#reset9) or [release()](#release9) to exit the playback.
 
-**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Parameters**
 
@@ -638,22 +761,35 @@ Subscribes to AVPlayer errors. This event is used only for error prompt and does
 
 For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
+In API versions 9 to 13, error code 5400103 is reported when the network or server data flow is abnormal. In API version 14 and later, error codes 5411001 to 5411011 are reported for refined management.
+
 | ID| Error Message             |
 | -------- | --------------------- |
-| 201      | Permission denied     |
+| 201      | Permission denied.     |
 | 401      | The parameter check failed. |
 | 801      | Capability not supported. |
-| 5400101  | No Memory. Return by callback. |
+| 5400101  | No memory. |
 | 5400102  | Operation not allowed.|
-| 5400103  | I/O error             |
-| 5400104  | Time out              |
-| 5400105  | Service Died.         |
-| 5400106  | Unsupport Format.     |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.              |
+| 5400105  | Service died.         |
+| 5400106  | Unsupported format.     |
+| 5411001  | IO can not find host.    |
+| 5411002  | IO connection timeout.  |
+| 5411003  | IO network abnormal.     |
+| 5411004  | IO network unavailable.  |
+| 5411005  | IO no permission.        |
+| 5411006  | IO request denied.  |
+| 5411007  | IO resource not found. |
+| 5411008  | IO SSL client cert needed.    |
+| 5411009  | IO SSL connect fail.     |
+| 5411010  | IO SSL server cert untrusted.    |
+| 5411011  | IO unsupported request.      |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.on('error', (error: BusinessError) => {
   console.info('error happened,and error message is :' + error.message)
@@ -663,9 +799,11 @@ avPlayer.on('error', (error: BusinessError) => {
 
 ### off('error')<sup>9+</sup>
 
-off(type: 'error'): void
+off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from AVPlayer errors.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -674,6 +812,7 @@ Unsubscribes from AVPlayer errors.
 | Name| Type  | Mandatory| Description                                     |
 | ------ | ------ | ---- | ----------------------------------------- |
 | type   | string | Yes  | Event type, which is **'error'** in this case.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used to return the error code ID and error message.<br>This parameter is supported since API version 12.|
 
 **Example**
 
@@ -685,7 +824,9 @@ avPlayer.off('error')
 
 setMediaSource(src:MediaSource, strategy?: PlaybackStrategy): Promise\<void>
 
-Sets a source of streaming media that can be pre-downloaded, downloads the media data, and temporarily stores the data in the memory. For details about how to use the API, see [Video Playback](../../media/media/video-playback.md)
+Sets a source of streaming media that can be pre-downloaded, downloads the media data, and temporarily stores the data in the memory. For details about how to use the API, see [Video Playback](../../media/media/video-playback.md) This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -700,7 +841,7 @@ Sets a source of streaming media that can be pre-downloaded, downloads the media
 
 | Type          | Description                                      |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -708,26 +849,131 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400102  | Operation not allowed. Return by callback. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**Example**
+
+<!--code_no_check-->
+```ts
+let player = await media.createAVPlayer();
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let playStrategy : media.PlaybackStrategy = {
+  preferredWidth: 1,
+  preferredHeight: 2,
+  preferredBufferDuration: 3,
+  preferredHdr: false,
+  preferredBufferDurationForPlaying: 1,
+  thresholdForAutoQuickPlay: 5
+};
+player.setMediaSource(mediaSource, playStrategy);
+```
+
+### setPlaybackStrategy<sup>12+</sup>
+
+setPlaybackStrategy(strategy: PlaybackStrategy): Promise\<void>
+
+Sets a playback strategy. This API can be called only when the AVPlayer is in the initialized state.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| strategy | [PlaybackStrategy](#playbackstrategy12) | Yes  | Playback strategy.|
+
+**Return value**
+
+| Type          | Description                                 |
+| -------------- | ------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**Example**
+
+<!--code_no_check-->
+```ts
+import { common } from '@kit.AbilityKit';
+
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+
+let player = await media.createAVPlayer();
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.mp4')
+player.fdSrc = fileDescriptor
+let playStrategy : media.PlaybackStrategy = {
+  preferredWidth: 1,
+  preferredHeight: 2,
+  preferredBufferDuration: 3,
+  preferredHdr: false,
+  mutedMediaType: media.MediaType.MEDIA_TYPE_AUD,
+  preferredBufferDurationForPlaying: 1,
+  thresholdForAutoQuickPlay: 5
+};
+player.setPlaybackStrategy(playStrategy);
+```
+
+### setPlaybackRange<sup>18+</sup>
+
+setPlaybackRange(startTimeMs: number, endTimeMs: number, mode?: SeekMode) : Promise\<void>
+
+Sets the playback range and seeks to the start position of the range based on the specified [SeekMode](#seekmode8). After the setting, only the content in the specified range of the audio or video file is played. This API uses a promise to return the result. It can be used in the initialized, prepared, paused, stopped, or completed state.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description                       |
+| -------- | ---------------------- | ---- | --------------------------- |
+| startTimeMs | number | Yes  | Start position of the range, in ms. The value range is [0, duration). If **-1** is passed in, the system starts playing from position 0.|
+| endTimeMs | number | Yes  | End position of the range, in ms. The value range is (startTimeMs, duration]. If **-1** is passed in, the system plays the content until it reaches the final part of the asset.|
+| mode | [SeekMode](#seekmode8) | No  | Seek mode, which can be **SeekMode.SEEK_PREV_SYNC** or **SeekMode.SEEK_CLOSEST**.<br>The default value is **SeekMode.SEEK_PREV_SYNC**.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401  | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
 
 **Example**
 
 ```ts
-import media from '@ohos.multimedia.media'
+import { media } from '@kit.MediaKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let player = await media.createAVPlayer();
-let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
-let playStrategy : media.PlaybackStrategy = {preferredWidth: 1, preferredHeight: 2, preferredBufferDuration: 3, preferredHdr: false};
-player.setMediaSource(mediaSource, playStrategy);
+avPlayer.setPlaybackRange(0, 6000, media.SeekMode.SEEK_CLOSEST).then(() => {
+  console.info('Succeeded setPlaybackRange');
+}).catch((err: BusinessError) => {
+  console.error('Failed to setPlaybackRange' + err.message);
+});
 ```
 
 ### prepare<sup>9+</sup>
 
 prepare(callback: AsyncCallback\<void>): void
 
-Prepares for audio and video playback. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event.
+Prepares for audio and video playback. This API can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -744,18 +990,18 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
 | 5400102  | Operation not allowed. Return by callback. |
-| 5400106  | Unsupport format. Return by callback.      |
+| 5400106  | Unsupported format. Return by callback.      |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare((err: BusinessError) => {
-  if (err == null) {
-    console.info('prepare success');
+  if (err) {
+    console.error('Failed to prepare,error message is :' + err.message)
   } else {
-    console.error('prepare filed,error message is :' + err.message)
+    console.info('Succeeded in preparing');
   }
 })
 ```
@@ -764,7 +1010,11 @@ avPlayer.prepare((err: BusinessError) => {
 
 prepare(): Promise\<void>
 
-Prepares for audio and video playback. This API uses a promise to return the result. It can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event.
+Prepares for audio and video playback. This API can be called only when the AVPlayer is in the initialized state. The state changes can be detected by subscribing to the [stateChange](#onstatechange9) event. This API uses a promise to return the result.
+
+If your application frequently switches between short videos, you can create multiple AVPlayer objects to prepare the next video in advance, thereby improving the switching performance. For details, see [Smooth Switchover Between Online Short Videos](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-smooth-switching).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -772,7 +1022,7 @@ Prepares for audio and video playback. This API uses a promise to return the res
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -781,17 +1031,62 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
 | 5400102  | Operation not allowed. Return by promise. |
-| 5400106  | Unsupport format. Return by promise.      |
+| 5400106  | Unsupported format. Return by promise.      |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.prepare().then(() => {
-  console.info('prepare success');
+  console.info('Succeeded in preparing');
 }, (err: BusinessError) => {
-  console.error('prepare filed,error message is :' + err.message)
+  console.error('Failed to prepare,error message is :' + err.message)
+})
+```
+
+### setMediaMuted<sup>12+</sup>
+
+setMediaMuted(mediaType: MediaType,  muted: boolean ): Promise\<void>
+
+Mutes or unmutes the audio. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. The **mediaType** parameter can be set only to the audio format.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| mediaType | [MediaType](#mediatype8) | Yes  | Media type.|
+| muted | boolean | Yes  | Whether to mute the audio. The value **true** means to mute the audio, and **false** means the opposite.|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message|
+| -------- | ----------------------------------------- |
+| 401 | The parameter check failed. Return by promise. |
+| 5400102 | Operation not allowed. Return by promise. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.prepare().then(() => {
+  console.info('Succeeded in preparing');
+  avPlayer.setMediaMuted(media.MediaType.MEDIA_TYPE_AUD, true)
+}, (err: BusinessError) => {
+  console.error('Failed to prepare,error message is :' + err.message)
 })
 ```
 
@@ -799,7 +1094,9 @@ avPlayer.prepare().then(() => {
 
 play(callback: AsyncCallback\<void>): void
 
-Starts to play an audio and video asset. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the prepared, paused, or completed state.
+Starts to play an audio and video asset. This API can be called only when the AVPlayer is in the prepared, paused, or completed state. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -820,13 +1117,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play((err: BusinessError) => {
-  if (err == null) {
-    console.info('play success');
+  if (err) {
+    console.error('Failed to play,error message is :' + err.message)
   } else {
-    console.error('play filed,error message is :' + err.message)
+    console.info('Succeeded in playing');
   }
 })
 ```
@@ -835,7 +1132,9 @@ avPlayer.play((err: BusinessError) => {
 
 play(): Promise\<void>
 
-Starts to play an audio and video asset. This API uses a promise to return the result. It can be called only when the AVPlayer is in the prepared, paused, or completed state.
+Starts to play an audio and video asset. This API can be called only when the AVPlayer is in the prepared, paused, or completed state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -843,7 +1142,7 @@ Starts to play an audio and video asset. This API uses a promise to return the r
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -856,12 +1155,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.play().then(() => {
-  console.info('play success');
+  console.info('Succeeded in playing');
 }, (err: BusinessError) => {
-  console.error('play filed,error message is :' + err.message)
+  console.error('Failed to play,error message is :' + err.message)
 })
 ```
 
@@ -869,7 +1168,9 @@ avPlayer.play().then(() => {
 
 pause(callback: AsyncCallback\<void>): void
 
-Pauses audio and video playback. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the playing state.
+Pauses audio and video playback. This API can be called only when the AVPlayer is in the playing state. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -890,13 +1191,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.pause((err: BusinessError) => {
-  if (err == null) {
-    console.info('pause success');
+  if (err) {
+    console.error('Failed to pause,error message is :' + err.message)
   } else {
-    console.error('pause filed,error message is :' + err.message)
+    console.info('Succeeded in pausing');
   }
 })
 ```
@@ -905,7 +1206,9 @@ avPlayer.pause((err: BusinessError) => {
 
 pause(): Promise\<void>
 
-Pauses audio and video playback. This API uses a promise to return the result. It can be called only when the AVPlayer is in the playing state.
+Pauses audio and video playback. This API can be called only when the AVPlayer is in the playing state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -913,7 +1216,7 @@ Pauses audio and video playback. This API uses a promise to return the result. I
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -926,12 +1229,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.pause().then(() => {
-  console.info('pause success');
+  console.info('Succeeded in pausing');
 }, (err: BusinessError) => {
-  console.error('pause filed,error message is :' + err.message)
+  console.error('Failed to pause,error message is :' + err.message)
 })
 ```
 
@@ -939,7 +1242,9 @@ avPlayer.pause().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-Stops audio and video playback. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the prepared, playing, paused, or completed state.
+Stops audio and video playback. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -960,13 +1265,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.stop((err: BusinessError) => {
-  if (err == null) {
-    console.info('stop success');
+  if (err) {
+    console.error('Failed to stop,error message is :' + err.message)
   } else {
-    console.error('stop filed,error message is :' + err.message)
+    console.info('Succeeded in stopping');
   }
 })
 ```
@@ -975,7 +1280,9 @@ avPlayer.stop((err: BusinessError) => {
 
 stop(): Promise\<void>
 
-Stops audio and video playback. This API uses a promise to return the result. It can be called only when the AVPlayer is in the prepared, playing, paused, or completed state.
+Stops audio and video playback. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -983,7 +1290,7 @@ Stops audio and video playback. This API uses a promise to return the result. It
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -996,12 +1303,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.stop().then(() => {
-  console.info('stop success');
+  console.info('Succeeded in stopping');
 }, (err: BusinessError) => {
-  console.error('stop filed,error message is :' + err.message)
+  console.error('Failed to stop,error message is :' + err.message)
 })
 ```
 
@@ -1009,7 +1316,9 @@ avPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-Resets audio and video playback. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the initialized, prepared, playing, paused, completed, stopped, or error state.
+Resets audio and video playback. This API can be called only when the AVPlayer is in the initialized, prepared, playing, paused, completed, stopped, or error state. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1030,13 +1339,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.reset((err: BusinessError) => {
-  if (err == null) {
-    console.info('reset success');
+  if (err) {
+    console.error('Failed to reset,error message is :' + err.message)
   } else {
-    console.error('reset filed,error message is :' + err.message)
+    console.info('Succeeded in resetting');
   }
 })
 ```
@@ -1045,7 +1354,9 @@ avPlayer.reset((err: BusinessError) => {
 
 reset(): Promise\<void>
 
-Resets audio and video playback. This API uses a promise to return the result. It can be called only when the AVPlayer is in the initialized, prepared, playing, paused, completed, stopped, or error state.
+Resets audio and video playback. This API can be called only when the AVPlayer is in the initialized, prepared, playing, paused, completed, stopped, or error state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1053,7 +1364,7 @@ Resets audio and video playback. This API uses a promise to return the result. I
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1066,12 +1377,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.reset().then(() => {
-  console.info('reset success');
+  console.info('Succeeded in resetting');
 }, (err: BusinessError) => {
-  console.error('reset filed,error message is :' + err.message)
+  console.error('Failed to reset,error message is :' + err.message)
 })
 ```
 
@@ -1079,7 +1390,9 @@ avPlayer.reset().then(() => {
 
 release(callback: AsyncCallback\<void>): void
 
-Releases the playback resources. This API uses an asynchronous callback to return the result. It can be called when the AVPlayer is in any state except released.
+Releases the playback resources. This API can be called when the AVPlayer is in any state except released. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1100,13 +1413,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.release((err: BusinessError) => {
-  if (err == null) {
-    console.info('release success');
+  if (err) {
+    console.error('Failed to release,error message is :' + err.message)
   } else {
-    console.error('release filed,error message is :' + err.message)
+    console.info('Succeeded in releasing');
   }
 })
 ```
@@ -1115,7 +1428,9 @@ avPlayer.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-Releases the playback resources. This API uses a promise to return the result. It can be called when the AVPlayer is in any state except released.
+Releases the playback resources. This API can be called when the AVPlayer is in any state except released. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1123,7 +1438,7 @@ Releases the playback resources. This API uses a promise to return the result. I
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1136,12 +1451,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.release().then(() => {
-  console.info('release success');
+  console.info('Succeeded in releasing');
 }, (err: BusinessError) => {
-  console.error('release filed,error message is :' + err.message)
+  console.error('Failed to release,error message is :' + err.message)
 })
 ```
 
@@ -1149,7 +1464,9 @@ avPlayer.release().then(() => {
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
-Obtains the audio and video track information. This API uses an asynchronous callback to return the result. It can be called only when the AVPlayer is in the prepared, playing, or paused state. To obtain information about all audio and video tracks, this API must be called after the data loading callback is triggered.
+Obtains the audio and video track information. This API can be called only when the AVPlayer is in the prepared, playing, or paused state. To obtain information about all audio and video tracks, this API must be called after the data loading callback is triggered. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1157,7 +1474,7 @@ Obtains the audio and video track information. This API uses an asynchronous cal
 
 | Name  | Type                                                        | Mandatory| Description                                        |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return a **MediaDescription** array, which records the audio and video track information.|
+| callback | AsyncCallback<Array<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the MediaDescription array obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -1170,13 +1487,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
-    console.info('getTrackDescription success');
+    console.info('Succeeded in doing getTrackDescription');
   } else {
-    console.error(`video getTrackDescription fail, error:${error}`);
+    console.error(`Failed to do getTrackDescription, error:${error}`);
   }
 });
 ```
@@ -1185,7 +1502,9 @@ avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDe
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
-Obtains the audio and video track information. This API uses a promise to return the result. It can be called only when the AVPlayer is in the prepared, playing, or paused state.
+Obtains the audio and video track information. This API can be called only when the AVPlayer is in the prepared, playing, or paused state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1193,7 +1512,7 @@ Obtains the audio and video track information. This API uses a promise to return
 
 | Type                                                  | Description                                             |
 | ------------------------------------------------------ | ------------------------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return a **MediaDescription** array, which records the audio and video track information.|
+| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return the MediaDescription array that holds the audio and video track information.|
 
 **Error codes**
 
@@ -1206,13 +1525,241 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
-  console.info('getTrackDescription success');
+  console.info('Succeeded in getting TrackDescription');
 }).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
+  console.error(`Failed to get TrackDescription, error:${error}`);
 });
+```
+
+### getSelectedTracks<sup>12+</sup>
+
+getSelectedTracks(): Promise\<Array\<number>>
+
+Obtains the indexes of the selected audio or video tracks. This API can be called only when the AVPlayer is in the prepared, playing, or paused state. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Return value**
+
+| Type                                                  | Description                                             |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| Promise\<Array\<number>> | Promise used to return the index array.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.getSelectedTracks().then((arrList: Array<number>) => {
+  console.info('Succeeded in getting SelectedTracks');
+}).catch((error: BusinessError) => {
+  console.error(`Failed to get SelectedTracks, error:${error}`);
+});
+```
+
+### getPlaybackInfo<sup>12+</sup>
+
+getPlaybackInfo(): Promise\<PlaybackInfo>
+
+Obtains the playback information. This API can be called only when the AVPlayer is in the prepared, playing, or paused state. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Return value**
+
+| Type                                                  | Description                                             |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| Promise<[PlaybackInfo](#playbackinfo12)> | Promise used to return **PlaybackInfo**.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+let playbackInfo: media.PlaybackInfo | undefined = undefined;
+media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
+  if (player != null) {
+    avPlayer = player;
+    console.info(`Succeeded in creating AVPlayer`);
+    if (avPlayer) {
+      try {
+        playbackInfo = await avPlayer.getPlaybackInfo();
+        console.info(`AVPlayer getPlaybackInfo = ${JSON.stringify(playbackInfo)}`); // Print PlaybackInfo.
+      } catch (error) {
+        console.error(`error = ${error}`);
+      }
+    }
+  } else {
+    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+  }
+});
+```
+
+### getPlaybackPosition<sup>18+</sup>
+
+getPlaybackPosition(): number
+
+Obtains the current playback position. This API can be used in the prepared, playing, paused, or completed state.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Return value**
+
+| Type                                                  | Description                                             |
+| ------------------------------------------------------ | ------------------------------------------------- |
+| number | Current playback time, in milliseconds.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avPlayer.prepare().then(() => {
+  console.info('Succeeded in preparing')
+  let playbackPosition: number = avPlayer.getPlaybackPosition()
+  console.info(`AVPlayer getPlaybackPosition== ${playbackPosition}`)
+}, (err: BusinessError) => {
+  console.error('Failed to prepare,error message is :' + err.message)
+})
+```
+
+### selectTrack<sup>12+</sup>
+
+selectTrack(index: number, mode?: SwitchMode): Promise\<void>
+
+Selects a track when the AVPlayer is used to play a resource with multiple audio and video tracks. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| index | number | Yes  | Index of the track. You can call [getTrackDescription](#gettrackdescription9-1) to obtain all track information [MediaDescription](#mediadescription8) of the current resource.|
+| mode   | [SwitchMode](#switchmode12) | No  | Video track switch mode. The default mode is **SMOOTH**. This parameter takes effect only for the switch of a video track for DASH streams.|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401      | The parameter check failed. Return by promise.       |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**Example**
+
+<!--code_no_check-->
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
+let audioTrackIndex: Object = 0;
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+  if (arrList != null) {
+    for (let i = 0; i < arrList.length; i++) {
+      if (i != 0) {
+        // Obtain the audio track list.
+        audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+      }
+    }
+  } else {
+    console.error(`Failed to get TrackDescription, error:${error}`);
+  }
+});
+
+// Select an audio track.
+avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
+```
+
+### deselectTrack<sup>12+</sup>
+
+deselectTrack(index: number): Promise\<void>
+
+Deselects a track when the AVPlayer is used to play a resource with multiple audio and video tracks. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| index | number | Yes  | Track index, which is obtained from [MediaDescription](#mediadescription8) by calling [getTrackDescription](#gettrackdescription9-1).|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401      | The parameter check failed. Return by promise.       |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**Example**
+
+<!--code_no_check-->
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let avPlayer: media.AVPlayer = await media.createAVPlayer();
+let audioTrackIndex: Object = 0;
+avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
+  if (arrList != null) {
+    for (let i = 0; i < arrList.length; i++) {
+      if (i != 0) {
+        // Obtain the audio track list.
+        audioTrackIndex = arrList[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+      }
+    }
+  } else {
+    console.error(`Failed to get TrackDescription, error:${error}`);
+  }
+});
+
+// Select an audio track.
+avPlayer.selectTrack(parseInt(audioTrackIndex.toString()));
+// Deselect the audio track and restore to the default audio track.
+avPlayer.deselectTrack(parseInt(audioTrackIndex.toString()));
 ```
 
 ### setDecryptionConfig<sup>11+</sup>
@@ -1220,6 +1767,8 @@ avPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => 
 setDecryptionConfig(mediaKeySession: drm.MediaKeySession, secureVideoPath: boolean): void
 
 Sets the decryption configuration. When receiving a [mediaKeySystemInfoUpdate event](#onmediakeysysteminfoupdate11), create the related configuration and set the decryption configuration based on the information in the reported event. Otherwise, the playback fails.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1230,16 +1779,25 @@ Sets the decryption configuration. When receiving a [mediaKeySystemInfoUpdate ev
 | mediaKeySession | [drm.MediaKeySession](../apis-drm-kit/js-apis-drm.md#mediakeysession) | Yes  | Decryption session.|
 | secureVideoPath | boolean | Yes| Secure video channel. The value **true** means that a secure video channel is selected, and **false** means that a non-secure video channel is selected.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                 |
+| -------- | ----------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+
 **Example**
 
 For details about the DRM module, see [js-apis-drm.md](../apis-drm-kit/js-apis-drm.md).
 ```ts
-import drm from '@ohos.multimedia.drm'
+import { drm } from '@kit.DrmKit';
 
 // Create a media key system.
 let keySystem:drm.MediaKeySystem = drm.createMediaKeySystem('com.clearplay.drm');
 // Create a media key session.
 let keySession:drm.MediaKeySession = keySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+// Generate a media key request and set the response to the media key request.
 // Flag indicating whether a secure video channel is used.
 let secureVideoPath:boolean = false;
 // Set the decryption configuration.
@@ -1250,7 +1808,9 @@ avPlayer.setDecryptionConfig(keySession, secureVideoPath);
 
 getMediaKeySystemInfos(): Array\<drm.MediaKeySystemInfo>
 
-Obtains the media key system information of the media asset that is being played. This API must be called after the [mediaKeySystemInfoUpdate event[(#onmediakeysysteminfoupdate11) is triggered.
+Obtains the media key system information of the media asset that is being played. This API must be called after the [mediaKeySystemInfoUpdate event](#onmediakeysysteminfoupdate11) is triggered.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1263,7 +1823,7 @@ Obtains the media key system information of the media asset that is being played
 **Example**
 
 ```ts
-import drm from '@ohos.multimedia.drm'
+import { drm } from '@kit.DrmKit';
 
 const infos = avPlayer.getMediaKeySystemInfos();
 console.info('GetMediaKeySystemInfos count: ' + infos.length);
@@ -1280,13 +1840,15 @@ seek(timeMs: number, mode?:SeekMode): void
 Seeks to the specified playback position. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the seek operation takes effect by subscribing to the [seekDone](#onseekdone9) event.
 This API is not supported in live mode.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Parameters**
 
 | Name| Type                  | Mandatory| Description                                                        |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
-| timeMs | number                 | Yes  | Position to seek to, in ms. The value range is [0, [duration](#attributes)].|
+| timeMs | number                 | Yes  | Position to seek to, in ms. The value range is [0, [duration](#attributes)]. In SEEK_CONTINUOU mode, the value **-1** can be used to indicate the end of SEEK_CONTINUOUS mode.|
 | mode   | [SeekMode](#seekmode8) | No  | Seek mode based on the video I frame. The default value is **SEEK_PREV_SYNC**. **Set this parameter only for video playback.**|
 
 **Example**
@@ -1294,6 +1856,31 @@ This API is not supported in live mode.
 ```ts
 let seekTime: number = 1000
 avPlayer.seek(seekTime, media.SeekMode.SEEK_PREV_SYNC)
+```
+
+```ts
+// Use SEEK_CONTINUOUS with the onChange callback of the Slider. When slideMode is Moving, it triggers continuous seeking during the drag.
+let slideMovingTime: number = 2000
+avPlayer.seek(slideMovingTime, media.SeekMode.SEEK_CONTINUOUS)
+
+// To end the seek when slideMode is End, call seek(-1, media.SeekMode.SEEK_CONTINUOUS).
+avPlayer.seek(-1, media.SeekMode.SEEK_CONTINUOUS)
+```
+
+### isSeekContinuousSupported<sup>18+</sup>
+
+isSeekContinuousSupported() : boolean
+
+Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode ([SeekMode](#seekmode8)). The actual value is returned when this API is called in the prepared, playing, paused, or completed state. The value **false** is returned if it is called in other states. For devices that do not support the seek operation in SEEK_CONTINUOUS mode, **false** is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Example**
+
+```ts
+let isSupported = avPlayer.isSeekContinuousSupported()
 ```
 
 ### on('seekDone')<sup>9+</sup>
@@ -1304,26 +1891,30 @@ Subscribes to the event to check whether the seek operation takes effect.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type, which is **'seekDone'** in this case. This event is triggered each time **seek()** is called.|
+| type     | string   | Yes  | Event type, which is **'seekDone'** in this case. This event is triggered each time **seek()** is called, except in SEEK_CONTINUOUS mode.|
 | callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the time position requested by the user.<br>For video playback, [SeekMode](#seekmode8) may cause the actual position to be different from that requested by the user. The exact position can be obtained from the **currentTime** attribute. The time in this callback only means that the requested seek operation is complete.|
 
 **Example**
 
 ```ts
 avPlayer.on('seekDone', (seekDoneTime:number) => {
-  console.info('seekDone success,and seek time is:' + seekDoneTime)
+  console.info('seekDone called,and seek time is:' + seekDoneTime)
 })
 ```
 
 ### off('seekDone')<sup>9+</sup>
 
-off(type: 'seekDone'): void
+off(type: 'seekDone', callback?: Callback\<number>): void
 
 Unsubscribes from the event that checks whether the seek operation takes effect.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1332,6 +1923,7 @@ Unsubscribes from the event that checks whether the seek operation takes effect.
 | Name| Type  | Mandatory| Description                                                |
 | ------ | ------ | ---- | ---------------------------------------------------- |
 | type   | string | Yes  | Event type, which is **'seekDone'** in this case.|
+| callback | Callback\<number> | No  | Callback invoked when the event is triggered. It reports the time position requested by the user.<br>For video playback, [SeekMode](#seekmode8) may cause the actual position to be different from that requested by the user. The exact position can be obtained from the **currentTime** attribute. The time in this callback only means that the requested seek operation is complete.<br>This parameter is supported since API version 12.|
 
 **Example**
 
@@ -1345,6 +1937,8 @@ setSpeed(speed: PlaybackSpeed): void
 
 Sets the playback speed. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [speedDone](#onspeeddone9) event.
 This API is not supported in live mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1366,6 +1960,8 @@ on(type: 'speedDone', callback: Callback\<number>): void
 
 Subscribes to the event to check whether the playback speed is successfully set.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Parameters**
@@ -1373,19 +1969,19 @@ Subscribes to the event to check whether the playback speed is successfully set.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'speedDone'** in this case. This event is triggered each time **setSpeed()** is called.|
-| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the speed set. For details, see [PlaybackSpeed](#playbackspeed8).|
+| callback | Callback\<number> | Yes  | Callback used to return the result. When the call of **setSpeed** is successful, the effective speed mode is reported. For details, see [PlaybackSpeed](#playbackspeed8).|
 
 **Example**
 
 ```ts
 avPlayer.on('speedDone', (speed:number) => {
-  console.info('speedDone success,and speed value is:' + speed)
+  console.info('speedDone called,and speed value is:' + speed)
 })
 ```
 
 ### off('speedDone')<sup>9+</sup>
 
-off(type: 'speedDone'): void
+off(type: 'speedDone', callback?: Callback\<number>): void
 
 Unsubscribes from the event that checks whether the playback speed is successfully set.
 
@@ -1396,6 +1992,7 @@ Unsubscribes from the event that checks whether the playback speed is successful
 | Name| Type  | Mandatory| Description                                                     |
 | ------ | ------ | ---- | --------------------------------------------------------- |
 | type   | string | Yes  | Event type, which is **'speedDone'** in this case.|
+| callback | Callback\<number> | No  | Callback used to return the result. When the call of **setSpeed** is successful, the effective speed mode is reported. For details, see [PlaybackSpeed](#playbackspeed8).<br>This parameter is supported since API version 12.|
 
 **Example**
 
@@ -1407,7 +2004,9 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [bitrateDone](#onbitratedone9) event. Note that the AVPlayer selects a proper bit rate based on the network connection speed.
+Sets the bit rate for the streaming media. This API is valid only for HLS/DASH streams. By default, the AVPlayer selects a proper bit rate based on the network connection speed. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [bitrateDone](#onbitratedone9) event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1415,7 +2014,7 @@ Sets the bit rate, which is valid only for HTTP Live Streaming (HLS) streams. Th
 
 | Name | Type  | Mandatory| Description                                                        |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| bitrate | number | Yes  | Bit rate to set. You can obtain the available bit rates of the current HLS stream by subscribing to the [availableBitrates](#onavailablebitrates9) event. If the bit rate to set is not in the list of the available bit rates, the AVPlayer selects from the list the minimum bit rate that is closed to the bit rate to set. If the length of the available bit rate list obtained through the event is 0, no bit rate can be set and the **bitrateDone** callback will not be triggered.|
+| bitrate | number | Yes  | Bit rate to set. You can obtain the available bit rates of the current HLS/DASH stream by subscribing to the [availableBitrates](#onavailablebitrates9) event. If the bit rate to set is not in the list of the available bit rates, the AVPlayer selects from the list the bit rate that is closed to the bit rate to set. If the length of the available bit rate list obtained through the event is 0, no bit rate can be set and the **bitrateDone** callback will not be triggered.|
 
 **Example**
 
@@ -1430,6 +2029,8 @@ on(type: 'bitrateDone', callback: Callback\<number>): void
 
 Subscribes to the event to check whether the bit rate is successfully set.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Parameters**
@@ -1443,13 +2044,13 @@ Subscribes to the event to check whether the bit rate is successfully set.
 
 ```ts
 avPlayer.on('bitrateDone', (bitrate:number) => {
-  console.info('bitrateDone success,and bitrate value is:' + bitrate)
+  console.info('bitrateDone called,and bitrate value is:' + bitrate)
 })
 ```
 
 ### off('bitrateDone')<sup>9+</sup>
 
-off(type: 'bitrateDone'): void
+off(type: 'bitrateDone', callback?: Callback\<number>): void
 
 Unsubscribes from the event that checks whether the bit rate is successfully set.
 
@@ -1460,6 +2061,7 @@ Unsubscribes from the event that checks whether the bit rate is successfully set
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'bitrateDone'** in this case.|
+| callback | Callback\<number> | No  | Callback invoked when the event is triggered. It reports the effective bit rate.<br>This parameter is supported since API version 12.            |
 
 **Example**
 
@@ -1469,9 +2071,11 @@ avPlayer.off('bitrateDone')
 
 ### on('availableBitrates')<sup>9+</sup>
 
-on(type: 'availableBitrates', callback: (bitrates: Array\<number>) => void): void
+on(type: 'availableBitrates', callback: Callback\<Array\<number>>): void
 
-Subscribes to available bit rates of HLS streams. This event is reported only after the AVPlayer switches to the prepared state.
+Subscribes to available bit rates of HLS/DASH streams. This event is reported only after the AVPlayer switches to the prepared state.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1480,21 +2084,23 @@ Subscribes to available bit rates of HLS streams. This event is reported only af
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'availableBitrates'** in this case. This event is triggered once after the AVPlayer switches to the prepared state.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It returns an array that holds the available bit rates. If the array length is 0, no bit rate can be set.|
+| callback | Callback\<Array\<number>> | Yes  | Callback invoked when the event is triggered. It returns an array that holds the available bit rates. If the array length is 0, no bit rate can be set.|
 
 **Example**
 
 ```ts
 avPlayer.on('availableBitrates', (bitrates: Array<number>) => {
-  console.info('availableBitrates success,and availableBitrates length is:' + bitrates.length)
+  console.info('availableBitrates called,and availableBitrates length is:' + bitrates.length)
 })
 ```
 
 ### off('availableBitrates')<sup>9+</sup>
 
-off(type: 'availableBitrates'): void
+off(type: 'availableBitrates', callback?: Callback\<Array\<number>>): void
 
-Unsubscribes from available bit rates of HLS streams. This event is reported after [prepare](#prepare9) is called.
+Unsubscribes from available bit rates of HLS/DASH streams. This event is reported after [prepare](#prepare9) is called.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1503,6 +2109,7 @@ Unsubscribes from available bit rates of HLS streams. This event is reported aft
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'availableBitrates'** in this case.|
+| callback | Callback\<Array\<number>> | No  | Callback invoked when the event is triggered. It returns an array that holds the available bit rates. If the array length is 0, no bit rate can be set.<br>This parameter is supported since API version 12.|
 
 **Example**
 
@@ -1513,9 +2120,11 @@ avPlayer.off('availableBitrates')
 
 ### on('mediaKeySystemInfoUpdate')<sup>11+</sup>
 
-on(type: 'mediaKeySystemInfoUpdate', callback: (mediaKeySystemInfo: Array\<drm.MediaKeySystemInfo>) => void): void
+on(type: 'mediaKeySystemInfoUpdate', callback: Callback\<Array\<drm.MediaKeySystemInfo>>): void
 
 Subscribes to media key system information changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1524,13 +2133,12 @@ Subscribes to media key system information changes.
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'mediaKeySystemInfoUpdate'** in this case. This event is triggered when the copyright protection information of the media asset being played changes.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It returns an array that holds the media key system information. For details, see [MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo).|
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | Yes  | Callback invoked when the event is triggered. It reports a **MediaKeySystemInfo** array.|
 
 **Example**
 
 ```ts
-
-import drm from './@ohos.multimedia.drm';
+import { drm } from '@kit.DrmKit';
 
 avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => {
     for (let i = 0; i < mediaKeySystemInfo.length; i++) {
@@ -1542,9 +2150,11 @@ avPlayer.on('mediaKeySystemInfoUpdate', (mediaKeySystemInfo: Array<drm.MediaKeyS
 
 ### off('mediaKeySystemInfoUpdate')<sup>11+</sup>
 
-off(type: 'mediaKeySystemInfoUpdate', callback?: (mediaKeySystemInfo: Array<drm.MediaKeySystemInfo>) => void): void;
+off(type: 'mediaKeySystemInfoUpdate', callback?: Callback\<Array\<drm.MediaKeySystemInfo>>): void;
 
 Unsubscribes from media key system information changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1553,7 +2163,7 @@ Unsubscribes from media key system information changes.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'mediaKeySystemInfoUpdate'** in this case.|
-| callback | function | No  | Callback invoked when the event is triggered. It returns an array that holds the media key system information. For details, see [MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo). If this parameter is specified, only the specified callback is unregistered. Otherwise, all callbacks associated with the specified event will be unregistered.|
+| callback | Callback\<Array\<drm.[MediaKeySystemInfo](../apis-drm-kit/js-apis-drm.md#mediakeysysteminfo)>> | No  | Callback invoked when the event is triggered. It reports a **MediaKeySystemInfo** array. If this parameter is specified, only the specified callback is unregistered. Otherwise, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
 
@@ -1566,6 +2176,8 @@ avPlayer.off('mediaKeySystemInfoUpdate')
 setVolume(volume: number): void
 
 Sets the volume. This API can be called only when the AVPlayer is in the prepared, playing, paused, or completed state. You can check whether the setting takes effect by subscribing to the [volumeChange](#onvolumechange9) event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1588,6 +2200,8 @@ on(type: 'volumeChange', callback: Callback\<number>): void
 
 Subscribes to the event to check whether the volume is successfully set.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Parameters**
@@ -1601,13 +2215,13 @@ Subscribes to the event to check whether the volume is successfully set.
 
 ```ts
 avPlayer.on('volumeChange', (vol: number) => {
-  console.info('volumeChange success,and new volume is :' + vol)
+  console.info('volumeChange called,and new volume is :' + vol)
 })
 ```
 
 ### off('volumeChange')<sup>9+</sup>
 
-off(type: 'volumeChange'): void
+off(type: 'volumeChange', callback?: Callback\<number>): void
 
 Unsubscribes from the event that checks whether the volume is successfully set.
 
@@ -1618,6 +2232,7 @@ Unsubscribes from the event that checks whether the volume is successfully set.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'volumeChange'** in this case.|
+| callback | Callback\<number> | No  | Callback invoked when the event is triggered. It reports the effective volume.<br>This parameter is supported since API version 12.           |
 
 **Example**
 
@@ -1630,6 +2245,8 @@ avPlayer.off('volumeChange')
 on(type: 'endOfStream', callback: Callback\<void>): void
 
 Subscribes to the event that indicates the end of the stream being played. If **[loop](#attributes) = true** is set, the AVPlayer seeks to the beginning of the stream and plays the stream again. If **loop** is not set, the completed state is reported through the [stateChange](#onstatechange9) event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1644,13 +2261,13 @@ Subscribes to the event that indicates the end of the stream being played. If **
 
 ```ts
 avPlayer.on('endOfStream', () => {
-  console.info('endOfStream success')
+  console.info('endOfStream called')
 })
 ```
 
 ### off('endOfStream')<sup>9+</sup>
 
-off(type: 'endOfStream'): void
+off(type: 'endOfStream', callback?: Callback\<void>): void
 
 Unsubscribes from the event that indicates the end of the stream being played.
 
@@ -1661,6 +2278,7 @@ Unsubscribes from the event that indicates the end of the stream being played.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'endOfStream'** in this case.|
+| callback | Callback\<void> | No  | Callback invoked when the event is triggered.<br>This parameter is supported since API version 12.                              |
 
 **Example**
 
@@ -1673,7 +2291,10 @@ avPlayer.off('endOfStream')
 on(type: 'timeUpdate', callback: Callback\<number>): void
 
 Subscribes to playback position changes. It is used to refresh the current position of the progress bar. By default, this event is reported every 100 ms. However, it is reported immediately upon a successful seek operation.
+
 The **'timeUpdate'** event is not supported in live mode.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1682,21 +2303,23 @@ The **'timeUpdate'** event is not supported in live mode.
 | Name  | Type    | Mandatory| Description                                          |
 | -------- | -------- | ---- | ---------------------------------------------- |
 | type     | string   | Yes  | Event type, which is **'timeUpdate'** in this case.|
-| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the current playback position, in ms.                                    |
+| callback | Callback\<number> | Yes  | Callback used to return the current time.                                    |
 
 **Example**
 
 ```ts
 avPlayer.on('timeUpdate', (time:number) => {
-  console.info('timeUpdate success,and new time is :' + time)
+  console.info('timeUpdate called,and new time is :' + time)
 })
 ```
 
 ### off('timeUpdate')<sup>9+</sup>
 
-off(type: 'timeUpdate'): void
+off(type: 'timeUpdate', callback?: Callback\<number>): void
 
 Unsubscribes from playback position changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1705,6 +2328,7 @@ Unsubscribes from playback position changes.
 | Name| Type  | Mandatory| Description                                              |
 | ------ | ------ | ---- | -------------------------------------------------- |
 | type   | string | Yes  | Event type, which is **'timeUpdate'** in this case.|
+| callback | Callback\<number> | No  | Callback used to return the current time.<br>This parameter is supported since API version 12.            |
 
 **Example**
 
@@ -1720,6 +2344,8 @@ on(type: 'durationUpdate', callback: Callback\<number>): void
 Subscribes to media asset duration changes. It is used to refresh the length of the progress bar. By default, this event is reported once in the prepared state. However, it can be repeatedly reported for special streams that trigger duration changes.
 The **'durationUpdate'** event is not supported in live mode.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 **Parameters**
@@ -1727,19 +2353,19 @@ The **'durationUpdate'** event is not supported in live mode.
 | Name  | Type    | Mandatory| Description                                              |
 | -------- | -------- | ---- | -------------------------------------------------- |
 | type     | string   | Yes  | Event type, which is **'durationUpdate'** in this case.|
-| callback | Callback\<number> | Yes  | Callback invoked when the event is triggered. It reports the media asset duration, in ms.                                        |
+| callback | Callback\<number> | Yes  | Callback used to return the resource duration.       |
 
 **Example**
 
 ```ts
 avPlayer.on('durationUpdate', (duration: number) => {
-  console.info('durationUpdate success,new duration is :' + duration)
+  console.info('durationUpdate called,new duration is :' + duration)
 })
 ```
 
 ### off('durationUpdate')<sup>9+</sup>
 
-off(type: 'durationUpdate'): void
+off(type: 'durationUpdate', callback?: Callback\<number>): void
 
 Unsubscribes from media asset duration changes.
 
@@ -1750,6 +2376,7 @@ Unsubscribes from media asset duration changes.
 | Name| Type  | Mandatory| Description                                                  |
 | ------ | ------ | ---- | ------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'durationUpdate'** in this case.|
+| callback | Callback\<number> | No  | Callback used to return the resource duration.<br>This parameter is supported since API version 12.       |
 
 **Example**
 
@@ -1759,9 +2386,11 @@ avPlayer.off('durationUpdate')
 
 ### on('bufferingUpdate')<sup>9+</sup>
 
-on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
+on(type: 'bufferingUpdate', callback: OnBufferingUpdateHandler): void
 
 Subscribes to audio and video buffer changes. This subscription is supported only in network playback scenarios.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1770,21 +2399,23 @@ Subscribes to audio and video buffer changes. This subscription is supported onl
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'bufferingUpdate'** in this case.       |
-| callback | function | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
+| callback | [OnBufferingUpdateHandler](#onbufferingupdatehandler12) | Yes  | Callback invoked when the event is triggered.|
 
 **Example**
 
 ```ts
 avPlayer.on('bufferingUpdate', (infoType: media.BufferingInfoType, value: number) => {
-  console.info('bufferingUpdate success,and infoType value is:' + infoType + ', value is :' + value)
+  console.info('bufferingUpdate called,and infoType value is:' + infoType + ', value is :' + value)
 })
 ```
 
 ### off('bufferingUpdate')<sup>9+</sup>
 
-off(type: 'bufferingUpdate'): void
+off(type: 'bufferingUpdate', callback?: OnBufferingUpdateHandler): void
 
 Unsubscribes from audio and video buffer changes. 
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1793,6 +2424,7 @@ Unsubscribes from audio and video buffer changes.
 | Name| Type  | Mandatory| Description                                                     |
 | ------ | ------ | ---- | --------------------------------------------------------- |
 | type   | string | Yes  | Event type, which is **'bufferingUpdate'** in this case.|
+| callback | [OnBufferingUpdateHandler](#onbufferingupdatehandler12) | No  | Callback invoked when the event is triggered.|
 
 **Example**
 
@@ -1805,6 +2437,8 @@ avPlayer.off('bufferingUpdate')
 on(type: 'startRenderFrame', callback: Callback\<void>): void
 
 Subscribes to the event that indicates rendering starts for the first frame. This subscription is supported only in video playback scenarios. This event only means that the playback service sends the first frame to the display module. The actual rendering effect depends on the rendering performance of the display service.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1819,13 +2453,13 @@ Subscribes to the event that indicates rendering starts for the first frame. Thi
 
 ```ts
 avPlayer.on('startRenderFrame', () => {
-  console.info('startRenderFrame success')
+  console.info('startRenderFrame called')
 })
 ```
 
 ### off('startRenderFrame')<sup>9+</sup>
 
-off(type: 'startRenderFrame'): void
+off(type: 'startRenderFrame', callback?: Callback\<void>): void
 
 Unsubscribes from the event that indicates rendering starts for the first frame.
 
@@ -1836,6 +2470,7 @@ Unsubscribes from the event that indicates rendering starts for the first frame.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'startRenderFrame'** in this case.|
+| callback | Callback\<void> | No  | Callback invoked when the event is triggered.<br>This parameter is supported since API version 12.                  |
 
 **Example**
 
@@ -1845,9 +2480,11 @@ avPlayer.off('startRenderFrame')
 
 ### on('videoSizeChange')<sup>9+</sup>
 
-on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
+on(type: 'videoSizeChange', callback: OnVideoSizeChangeHandler): void
 
 Subscribes to video size (width and height) changes. This subscription is supported only in video playback scenarios. By default, this event is reported only once in the prepared state. However, it is also reported upon resolution changes in the case of HLS streams.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1856,21 +2493,23 @@ Subscribes to video size (width and height) changes. This subscription is suppor
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'videoSizeChange'** in this case.|
-| callback | function | Yes  | Callback invoked when the event is triggered. **width** indicates the video width, and **height** indicates the video height.   |
+| callback | [OnVideoSizeChangeHandler](#onvideosizechangehandler12) | Yes  | Callback invoked when the event is triggered.   |
 
 **Example**
 
 ```ts
 avPlayer.on('videoSizeChange', (width: number, height: number) => {
-  console.info('videoSizeChange success,and width is:' + width + ', height is :' + height)
+  console.info('videoSizeChange called,and width is:' + width + ', height is :' + height)
 })
 ```
 
 ### off('videoSizeChange')<sup>9+</sup>
 
-off(type: 'videoSizeChange'): void
+off(type: 'videoSizeChange', callback?: OnVideoSizeChangeHandler): void
 
 Unsubscribes from video size changes. 
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1879,6 +2518,7 @@ Unsubscribes from video size changes.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'videoSizeChange'** in this case.|
+| callback | [OnVideoSizeChangeHandler](#onvideosizechangehandler12) | No  | Callback invoked when the event is triggered.<br>This parameter is supported since API version 12.   |
 
 **Example**
 
@@ -1888,9 +2528,11 @@ avPlayer.off('videoSizeChange')
 
 ### on('audioInterrupt')<sup>9+</sup>
 
-on(type: 'audioInterrupt', callback: (info: audio.InterruptEvent) => void): void
+on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void
 
-Subscribes to the audio interruption event. When multiple audio and video assets are played at the same time, this event is triggered based on the audio interruption mode [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9).
+Subscribes to the audio interruption event. When multiple audio and video assets are played at the same time, this event is triggered based on the audio interruption mode [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9). The application needs to perform corresponding processing based on different audio interruption events. For details, see [Handling Audio Interruption Events](../../media/audio/audio-playback-concurrency.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1899,23 +2541,25 @@ Subscribes to the audio interruption event. When multiple audio and video assets
 | Name  | Type                                                        | Mandatory| Description                                                    |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------------------------------------- |
 | type     | string                                                       | Yes  | Event type, which is **'audioInterrupt'** in this case.|
-| callback | [audio.InterruptEvent<sup>9+</sup>](../apis-audio-kit/js-apis-audio.md#interruptevent9) | Yes  | Callback invoked when the event is triggered.                              |
+| callback | Callback\<[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)> | Yes  | Callback invoked when the event is triggered.                          |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt success,and InterruptEvent info is:' + info)
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
 })
 ```
 
 ### off('audioInterrupt')<sup>9+</sup>
 
-off(type: 'audioInterrupt'): void
+off(type: 'audioInterrupt', callback?: Callback<audio.InterruptEvent>): void
 
 Unsubscribes from the audio interruption event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1924,6 +2568,7 @@ Unsubscribes from the audio interruption event.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'audioInterrupt'** in this case.|
+| callback | Callback\<[audio.InterruptEvent](../apis-audio-kit/js-apis-audio.md#interruptevent9)> | No  | Callback invoked when the event is triggered.<br>This parameter is supported since API version 12.            |
 
 **Example**
 
@@ -1931,11 +2576,15 @@ Unsubscribes from the audio interruption event.
 avPlayer.off('audioInterrupt')
 ```
 
-### on('audioOutputDeviceChangeWithInfo') <sup>11+</sup>
+### on('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'audioOutputDeviceChangeWithInfo', callback: Callback\<audio.AudioStreamDeviceChangeInfo>): void
 
 Subscribes to audio stream output device changes and reasons. This API uses an asynchronous callback to return the result.
+
+When subscribing to this event, you are advised to implement the player behavior when the device is connected or disconnected by referring to [Responding to Audio Output Device Changes](../../media/audio/audio-output-device-change.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1943,30 +2592,32 @@ Subscribes to audio stream output device changes and reasons. This API uses an a
 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Event type. The event **'outputDeviceChangeWithInfo'** is triggered when the output device is changed.|
+| type     | string                     | Yes  | Event type, which is **'outputDeviceChangeWithInfo'** in this case. The event is triggered when the output device is changed.|
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | Yes  | Callback used to return the output device descriptor of the current audio stream and the change reason.|
 
 **Error codes**
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.       |
 
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 avPlayer.on('audioOutputDeviceChangeWithInfo', (data: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`${JSON.stringify(data)}`);
 });
 ```
 
-### off('audioOutputDeviceChangeWithInfo') <sup>11+</sup>
+### off('audioOutputDeviceChangeWithInfo')<sup>11+</sup>
 
 off(type: 'audioOutputDeviceChangeWithInfo', callback?: Callback\<audio.AudioStreamDeviceChangeInfo>): void
 
 Unsubscribes from audio stream output device changes and reasons. This API uses an asynchronous callback to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1974,14 +2625,14 @@ Unsubscribes from audio stream output device changes and reasons. This API uses 
 
 | Name  | Type                      | Mandatory| Description                                       |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | Yes  | Event type. The event **'outputDeviceChange'** is triggered when the audio output device is changed.|
+| type     | string                     | Yes  | Event type, which is **'outputDeviceChange'** in this case. The event is triggered when the audio output device is changed.|
 | callback | Callback\<[audio.AudioStreamDeviceChangeInfo](../apis-audio-kit/js-apis-audio.md#audiostreamdevicechangeinfo11)> | No  | Callback used to return the output device descriptor of the current audio stream and the change reason.|
 
 **Error codes**
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 
 **Example**
 
@@ -1989,33 +2640,615 @@ Unsubscribes from audio stream output device changes and reasons. This API uses 
 avPlayer.off('audioOutputDeviceChangeWithInfo');
 ```
 
-## AVPlayerState<sup>9+</sup>
+### addSubtitleFromFd<sup>12+</sup>
 
-Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](##onstatechange9) event. For details about the rules for state transition, see [Audio Playback](../../media/media/using-avplayer-for-playback.md).
+addSubtitleFromFd(fd: number, offset?: number, length?: number): Promise\<void>
+
+Adds an external subtitle to a video based on the FD. Currently, the external subtitle must be set after **fdSrc** of the video resource is set in an **AVPlayer** instance. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
-|              Name              |  Type | Description                                                        |
-| :-----------------------------: | :----: | :----------------------------------------------------------- |
-|              idle               | string | The AVPlayer enters this state after [createAVPlayer()](#mediacreateavplayer9) or [reset()](#reset9) is called.<br>In case [createAVPlayer()](#mediacreateavplayer9) is used, all attributes are set to their default values.<br>In case [reset()](#reset9) is called, the **url<sup>9+</sup>**, **fdSrc<sup>9+</sup>**, or **dataSrc<sup>10+</sup>** attribute and the **loop** attribute are reset, and other attributes are retained.|
-|           initialized           | string | The AVPlayer enters this state after **url<sup>9+</sup>** or **fdSrc<sup>9+</sup>** attribute is set in the idle state. In this case, you can configure static attributes such as the window and audio.|
-|            prepared             | string | The AVPlayer enters this state when [prepare()](#prepare9) is called in the initialized state. In this case, the playback engine has prepared the resources.|
-|             playing             | string | The AVPlayer enters this state when [play()](#play9) is called in the prepared, paused, or completed state.|
-|             paused              | string | The AVPlayer enters this state when **pause()** is called in the playing state.|
-|            completed            | string | The AVPlayer enters this state when a media asset finishes playing and loop playback is not set (no **loop = true**). In this case, if [play()](#play9) is called, the AVPlayer enters the playing state and replays the media asset; if [stop()](#stop9) is called, the AVPlayer enters the stopped state.|
-|             stopped             | string | The AVPlayer enters this state when [stop()](#stop9) is called in the prepared, playing, paused, or completed state. In this case, the playback engine retains the attributes but releases the memory resources. You can call [prepare()](#prepare9) to prepare the resources again, call [reset()](#reset9) to reset the attributes, or call [release()](#release9) to destroy the playback engine.|
-|            released             | string | The AVPlayer enters this state when [release()](#release9) is called. The playback engine associated with the **AVPlayer** instance is destroyed, and the playback process ends. This is the final state.|
-| error | string | The AVPlayer enters this state when an irreversible error occurs in the playback engine. You can call [reset()](#reset9) to reset the attributes or call [release()](#release9) to destroy the playback engine. For details about the error codes, see [Media Error Codes](errorcode-media.md).<br>**NOTE** Relationship between the error state and the [on('error')](#onerror9) event<br>1. When the AVPlayer enters the error state, the **on('error')** event is triggered. You can obtain the detailed error information through this event.<br>2. When the AVPlayer enters the error state, the playback service stops. This requires the client to design a fault tolerance mechanism to call [reset()](#reset9) or [release()](#release9).<br>3. The client receives **on('error')** event but the AVPlayer does not enter the error state. This situation occurs due to either of the following reasons:<br>Cause 1: The client calls an API in an incorrect state or passes in an incorrect parameter, and the AVPlayer intercepts the call. If this is the case, the client must correct its code logic.<br>Cause 2: A stream error is detected during playback. As a result, the container and decoding are abnormal for a short period of time, but continuous playback and playback control operations are not affected. If this is the case, the client does not need to design a fault tolerance mechanism.|
+**Parameters**
+
+| Name| Type                  | Mandatory| Description                                                        |
+| ------ | ---------------------- | ---- | ------------------------------------------------------------ |
+| fd | number   | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9).|
+| offset | number | No  | Resource offset, which needs to be entered based on the preset asset information. An invalid value causes a failure to parse subtitle assets. The default value is **0**.|
+| length | number | No  | Resource length, which needs to be entered based on the preset asset information. The default value is the remaining bytes from the offset in the file. An invalid value causes a failure to parse subtitle assets. The default value is **0**.|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**Example**
+
+<!--code_no_check-->
+```ts
+import { common } from '@kit.AbilityKit'
+
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let fileDescriptor = await this.context.resourceManager.getRawFd('xxx.srt');
+
+avPlayer.addSubtitleFromFd(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length)
+```
+
+### addSubtitleFromUrl<sup>12+</sup>
+
+addSubtitleFromUrl(url: string): Promise\<void>
+
+Adds an external subtitle to a video based on the URL. Currently, the external subtitle must be set after **fdSrc** of the video resource is set in an **AVPlayer** instance. This API uses a promise to return the result.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| url    | string | Yes  | Address of the external subtitle file.|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401      | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**Example**
+
+<!--code_no_check-->
+```ts
+let fdUrl:string = 'http://xxx.xxx.xxx/xx/index.srt'
+
+let avPlayer: media.AVPlayer = await media.createAVPlayer()
+avPlayer.addSubtitleFromUrl(fdUrl)
+```
+
+### on('subtitleUpdate')<sup>12+</sup>
+
+on(type: 'subtitleUpdate', callback: Callback\<SubtitleInfo>): void
+
+Subscribes to subtitle update events. When external subtitles exist, the system notifies the application through the subscribed-to callback. An application can subscribe to only one subtitle update event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | Yes  | Event type, which is **'subtitleUpdate'** in this case. The event is triggered when the external subtitle is updated.|
+| callback | function | Yes  | Callback invoked when the subtitle is updated.|
+
+**Example**
+
+```ts
+avPlayer.on('subtitleUpdate', async (info: media.SubtitleInfo) => {
+  if (info) {
+    let text = (!info.text) ? '' : info.text
+    let startTime = (!info.startTime) ? 0 : info.startTime
+    let duration = (!info.duration) ? 0 : info.duration
+    console.info('subtitleUpdate info: text=' + text + ' startTime=' + startTime +' duration=' + duration)
+  } else {
+    console.info('subtitleUpdate info is null')
+  }
+})
+```
+
+### off('subtitleUpdate')<sup>12+</sup>
+
+off(type: 'subtitleUpdate', callback?: Callback\<SubtitleInfo>): void
+
+Unsubscribes from subtitle update events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | Yes  | Event type, which is **'subtitleUpdate'** in this case. The event is triggered when the external subtitle is updated.|
+| callback | function | No  | Callback that has been registered to listen for subtitle update events.|
+
+**Example**
+
+```ts
+avPlayer.off('subtitleUpdate')
+```
+
+### on('trackChange')<sup>12+</sup>
+
+on(type: 'trackChange', callback: OnTrackChangeHandler): void
+
+Subscribes to track change events. When the track changes, the system notifies the application through the subscribed-to callback. An application can subscribe to only one track change event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | Yes  | Event type, which is **'trackChange'** in this case. The event is triggered when the track changes.|
+| callback | [OnTrackChangeHandler](#ontrackchangehandler12) | Yes  | Callback invoked when the event is triggered.|
+
+**Example**
+
+```ts
+avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
+  console.info('trackChange info: index=' + index + ' isSelect=' + isSelect)
+})
+```
+
+### off('trackChange')<sup>12+</sup>
+
+off(type: 'trackChange', callback?: OnTrackChangeHandler): void
+
+Unsubscribes from track change events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | Yes  | Event type, which is **'trackChange'** in this case. The event is triggered when the track changes.|
+| callback | [OnTrackChangeHandler](#ontrackchangehandler12) | No  | Callback that has been registered to listen for track changes.|
+
+**Example**
+
+```ts
+avPlayer.off('trackChange')
+```
+
+### on('trackInfoUpdate')<sup>12+</sup>
+
+on(type: 'trackInfoUpdate', callback: Callback\<Array\<MediaDescription>>): void
+
+Subscribes to track information update events. When the track information is updated, the system notifies the application through the subscribed-to callback. An application can subscribe to only one track change event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | Yes  | Event type, which is **'trackInfoUpdate'** in this case. The event is triggered when the track information is updated.|
+| callback | Callback\<Array\<[MediaDescription](#mediadescription8)>> | Yes  | Callback invoked when the event is triggered.|
+
+**Example**
+
+```ts
+avPlayer.on('trackInfoUpdate', (info: Array<media.MediaDescription>) => {
+  if (info) {
+    for (let i = 0; i < info.length; i++) {
+      let propertyIndex: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_INDEX];
+      let propertyType: Object = info[i][media.MediaDescriptionKey.MD_KEY_TRACK_TYPE];
+      console.info('track info: index=' + propertyIndex + ' tracktype=' + propertyType)
+    }
+  } else {
+    console.info('track info is null')
+  }
+})
+```
+
+### off('trackInfoUpdate')<sup>12+</sup>
+
+off(type: 'trackInfoUpdate', callback?: Callback\<Array\<MediaDescription>>): void
+
+Unsubscribes from track information update events.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type | string | Yes  | Event type, which is **'trackInfoUpdate'** in this case. The event is triggered when the track information is updated.|
+| callback | Callback\<Array\<[MediaDescription](#mediadescription8)>> | No  | Callback that has been registered to listen for track information updates.|
+
+**Example**
+
+```ts
+avPlayer.off('trackInfoUpdate')
+```
+
+### on('amplitudeUpdate')<sup>13+</sup>
+
+on(type: 'amplitudeUpdate', callback: Callback\<Array\<number>>): void
+
+Subscribes to update events of the maximum audio level value, which is periodically reported when audio resources are played.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'amplitudeUpdate'** in this case. The event is triggered when the amplitude changes.|
+| callback | Callback\<Array\<number>> | Yes  | Callback invoked when the event is triggered.|
+
+**Example**
+
+```ts
+avPlayer.on('amplitudeUpdate', (value: Array<number>) => {
+  console.info('amplitudeUpdate called,and amplitudeUpdate = ${value}')
+})
+```
+
+### off('amplitudeUpdate')<sup>13+</sup>
+
+off(type: 'amplitudeUpdate', callback?: Callback\<Array\<number>>): void
+
+Unsubscribes from update events of the maximum amplitude.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'amplitudeUpdate'** in this case. The event is triggered when the amplitude changes.|
+| callback | Callback\<Array\<number>> | No  | Callback that has been registered to listen for amplitude updates.|
+
+**Example**
+
+```ts
+avPlayer.off('amplitudeUpdate')
+```
+
+### on('seiMessageReceived')<sup>18+</sup>
+
+on(type: 'seiMessageReceived', payloadTypes: Array\<number>, callback: OnSeiMessageHandle): void
+
+Subscribes to events indicating that a Supplemental Enhancement Information (SEI) message is received. This applies only to HTTP-FLV live streaming and is triggered when SEI messages are present in the video stream. You must initiate the subscription before calling **prepare**. If you initiate multiple subscriptions to this event, the last subscription is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | Yes| Event type, which is **'seiMessageReceived'** in this case. The event is triggered when an SEI message is received.|
+| payloadTypes | Array\<number> | Yes| Array of subscribed-to payload types of SEI messages. Currently, only payloadType = 5 is supported.|
+| callback | [OnSeiMessageHandle](#onseimessagehandle18) | Yes| Callback used to listen for SEI message events and receive the subscribed-to payload types.|
+
+**Example**
+
+```ts
+import util from '@ohos.util';
+
+avPlayer.on('seiMessageReceived', [5], (messages: Array<media.SeiMessage>, playbackPosition?: number) =>
+{
+  console.info('seiMessageReceived playbackPosition ' + playbackPosition)
+
+  for (let key = 0; key < messages.length; key++) {
+    console.info('seiMessageReceived messages payloadType ' + messages[key].payloadType + ' payload size ' + messages[key].payload.byteLength)
+
+    let textDecoder = util.TextDecoder.create("utf-8",{ignoreBOM: true})
+    let ab = messages[key]?.payload?.slice(16, messages[key].payload.byteLength)
+    let result: Uint8Array = new Uint8Array(ab)
+    let retStr: string = textDecoder.decodeToString(result)
+    console.info('seiMessageReceived messages payload ' + retStr)
+  }
+});
+```
+
+### off('seiMessageReceived')<sup>18+</sup>
+
+off(type: 'seiMessageReceived', payloadTypes?: Array\<number>, callback?: OnSeiMessageHandle): void
+
+Unsubscribes from the events indicating that an SEI message is received.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'seiMessageReceived'** in this case. The event is triggered when an SEI message is received.|
+| payloadTypes | Array\<number> | No  | Array of subscribed-to payload types of SEI messages.|
+| callback | [OnSeiMessageHandle](#onseimessagehandle18) | No  | Callback used to listen for SEI message events and receive the subscribed-to payload types.|
+
+**Example**
+
+```ts
+avPlayer.off('seiMessageReceived')
+```
+
+### setSuperResolution<sup>18+</sup>
+
+setSuperResolution(enabled: boolean) : Promise\<void>
+
+Enables or disables super resolution. This API can be called when the AVPlayer is in the initialized, prepared, playing, paused, completed, or stopped state. This API uses a promise to return the result.
+
+Before calling [prepare()](#prepare9), enable super resolution by using [PlaybackStrategy](#playbackstrategy12).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| enabled    | boolean | Yes  | Whether to enable or disable super resolution. The value **true** means to enable it, and **false** means to disable it.|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5410003  | Super-resolution not supported. Return by promise. |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). Return by promise. |
+
+**Example**
+
+```ts
+avPlayer.setSuperResolution(true)
+```
+
+### setVideoWindowSize<sup>18+</sup>
+
+setVideoWindowSize(width: number, height: number) : Promise\<void>
+
+Sets the resolution of the output video after super resolution. This API can be called when the AVPlayer is in the initialized, prepared, playing, paused, completed, or stopped state. This API uses a promise to return the result. The input parameter values s must be in the range of 320 x 320 to 1920 x 1080 (in px).
+
+Before calling [prepare()](#prepare9), enable super resolution by using [PlaybackStrategy](#playbackstrategy12).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| width    | number | Yes  | Target width of the output video after super resolution. The value range is [320-1920], in px.|
+| height    | number | Yes  | Target height of the output video after super resolution. The value range is [320-1080], in px.|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401      | Parameter error. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5410003  | Super-resolution not supported. Return by promise. |
+| 5410004  | Missing enable super-resolution feature in [PlaybackStrategy](#playbackstrategy12). Return by promise. |
+
+**Example**
+
+```ts
+avPlayer.setVideoWindowSize(1920, 1080)
+```
+
+### on('superResolutionChanged')<sup>18+</sup>
+
+on(type:'superResolutionChanged', callback: OnSuperResolutionChanged): void
+
+Subscribes to the event indicating that super resolution is enabled or disabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | Yes| Event type, which is **'superResolutionChanged'** in this case. The event is triggered when super resolution is enabled or disabled.|
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged-18) | Yes| Callback used to listen for super resolution status changes.|
+
+**Example**
+
+```ts
+avPlayer.on('superResolutionChanged', (enabled: boolean) => {
+  console.info('superResolutionChanged called, and enabled is:' + enabled)
+})
+```
+
+### off('superResolutionChanged')<sup>18+</sup>
+
+off(type:'superResolutionChanged', callback?: OnSuperResolutionChanged): void
+
+Unsubscribes from the event indicating that super resolution is enabled or disabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string | Yes| Event type, which is **'superResolutionChanged'** in this case. The event is triggered when super resolution is enabled or disabled.|
+| callback | [OnSuperResolutionChanged](#onsuperresolutionchanged-18) | No| Callback used to listen for super resolution status changes.|
+
+**Example**
+
+```ts
+avPlayer.off('superResolutionChanged')
+```
+
+## AVPlayerState<sup>9+</sup>
+
+type AVPlayerState = 'idle' | 'initialized' | 'prepared' | 'playing' | 'paused' | 'completed' | 'stopped' | 'released' | 'error'
+
+Enumerates the states of the [AVPlayer](#avplayer9). Your application can proactively obtain the AVPlayer state through the **state** attribute or obtain the reported AVPlayer state by subscribing to the [stateChange](#onstatechange9) event. For details about the rules for state transition, see [Audio Playback](../../media/media/using-avplayer-for-playback.md).
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+|              Type              | Description                                                        |
+| :-----------------------------: | :----------------------------------------------------------- |
+|              'idle'               | The AVPlayer enters this state after [createAVPlayer()](#mediacreateavplayer9) or [reset()](#reset9) is called.<br>In case [createAVPlayer()](#mediacreateavplayer9) is used, all attributes are set to their default values.<br>In case [reset()](#reset9) is called, the **url<sup>9+</sup>**, **fdSrc<sup>9+</sup>**, or **dataSrc<sup>10+</sup>** attribute and the **loop** attribute are reset, and other attributes are retained.|
+|           'initialized'           | The AVPlayer enters this state after **url<sup>9+</sup>** or **fdSrc<sup>9+</sup>** attribute is set in the idle state. In this case, you can configure static attributes such as the window and audio.|
+|            'prepared'             | The AVPlayer enters this state when [prepare()](#prepare9) is called in the initialized state. In this case, the playback engine has prepared the resources.|
+|             'playing'             | The AVPlayer enters this state when [play()](#play9) is called in the prepared, paused, or completed state.|
+|             'paused'              | The AVPlayer enters this state when **pause()** is called in the playing state.|
+|            'completed'            | The AVPlayer enters this state when a media asset finishes playing and loop playback is not set (no **loop = true**). In this case, if [play()](#play9) is called, the AVPlayer enters the playing state and replays the media asset; if [stop()](#stop9) is called, the AVPlayer enters the stopped state.|
+|             'stopped'             | The AVPlayer enters this state when [stop()](#stop9) is called in the prepared, playing, paused, or completed state. In this case, the playback engine retains the attributes but releases the memory resources. You can call [prepare()](#prepare9) to prepare the resources again, call [reset()](#reset9) to reset the attributes, or call [release()](#release9) to destroy the playback engine.|
+|            'released'             | The AVPlayer enters this state when [release()](#release9) is called. The playback engine associated with the **AVPlayer** instance is destroyed, and the playback process ends. This is the final state.|
+| 'error' | The AVPlayer enters this state when an irreversible error occurs in the playback engine. You can call [reset()](#reset9) to reset the attributes or call [release()](#release9) to destroy the playback engine. For details about the error codes, see [Media Error Codes](errorcode-media.md).<br>**NOTE** Relationship between the error state and the [on('error')](#onerror9) event<br>1. When the AVPlayer enters the error state, the **on('error')** event is triggered. You can obtain the detailed error information through this event.<br>2. When the AVPlayer enters the error state, the playback service stops. This requires the client to design a fault tolerance mechanism to call [reset()](#reset9) or [release()](#release9).<br>3. The client receives **on('error')** event but the AVPlayer does not enter the error state. This situation occurs due to either of the following reasons:<br>Cause 1: The client calls an API in an incorrect state or passes in an incorrect parameter, and the AVPlayer intercepts the call. If this is the case, the client must correct its code logic.<br>Cause 2: A stream error is detected during playback. As a result, the container and decoding are abnormal for a short period of time, but continuous playback and playback control operations are not affected. If this is the case, the client does not need to design a fault tolerance mechanism.|
+
+## OnTrackChangeHandler<sup>12+</sup>
+
+type OnTrackChangeHandler = (index: number, isSelected: boolean) => void
+
+Describes the callback invoked for the track change event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ------ | ---------------------------------------------------------- |
+| index  | number | Yes| Index of a track.    |
+| isSelected | boolean | Yes| Status of the track, that is, whether the track is selected.|
+
+## OnAVPlayerStateChangeHandle<sup>12+</sup>
+
+type OnAVPlayerStateChangeHandle = (state: AVPlayerState, reason: StateChangeReason) => void
+
+Describes the callback invoked for the AVPlayer state change event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ------ | ---------------------------------------------------------- |
+| state  | [AVPlayerState](#avplayerstate9) | Yes| State of the AVPlayer.    |
+| reason | [StateChangeReason](#statechangereason9) | Yes| Reason for the state change.|
+
+## OnBufferingUpdateHandler<sup>12+</sup>
+
+type OnBufferingUpdateHandler = (infoType: BufferingInfoType, value: number) => void
+
+Describes the callback invoked for the buffering update event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| infoType  | [BufferingInfoType](#bufferinginfotype8) | Yes| Buffering information type.    |
+| value | number | Yes| The value is fixed at **0**.|
+
+## OnVideoSizeChangeHandler<sup>12+</sup>
+
+type OnVideoSizeChangeHandler = (width: number, height: number) => void
+
+Describes the callback invoked for the video size change event.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| width  | number | Yes| Video width, in px.|
+| height | number | Yes| Video height, in px.|
+
+## OnSeiMessageHandle<sup>18+</sup>
+
+type OnSeiMessageHandle = (messages: Array\<SeiMessage>, playbackPosition?: number) => void
+
+Describes the handle used to obtain SEI messages. This is used when in subscriptions to SEI message events, and the callback returns detailed SEI information.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+**Parameters**
+
+| Name  |   Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| messages | Array\<[SeiMessage](#seimessage18)> | Yes | Array of SEI messages.|
+| playbackPosition | number | No | Current playback position, in milliseconds.|
+
+## OnSuperResolutionChanged <sup>18+</sup>
+
+type OnSuperResolutionChanged = (enabled: boolean) => void
+
+Describes the callback used to listen for video super resolution status changes. If super resolution is enabled by using [PlaybackStrategy](#playbackstrategy12), this callback is invoked to report the super resolution status changes. It is also invoked to report the initial status when the video starts. However, this callback is not invoked when super resolution is not enabled.
+
+Super resolution is automatically disabled in either of the following cases:
+* The current super resolution algorithm only works with videos that have a frame rate of 30 fps or lower. If the video frame rate exceeds 30 fps, or if the input frame rate exceeds the processing capability of the super resolution algorithm in scenarios such as fast playback, super resolution is automatically disabled.
+* The current super resolution algorithm supports input resolutions from 320 x 320 to 1920 x 1080, in px. If the input video resolution exceeds the range during playback, super resolution is automatically disabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.AVPlayer
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| enabled  | boolean | Yes| Whether super resolution is enabled. The value **true** means that it is enabled, and **false** means the opposite.    |
 
 ## AVFileDescriptor<sup>9+</sup>
 
 Describes an audio and video file asset. It is used to specify a particular asset for playback based on its offset and length within a file.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Media.Core
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9).    |
+| fd     | number | Yes  | Resource handle, which is obtained by calling [resourceManager.getRawFd](../apis-localization-kit/js-apis-resource-manager.md#getrawfd9) or [fs.open](../apis-core-file-kit/js-apis-file-fs.md#fsopen).   |
 | offset | number | No  | Resource offset, which needs to be entered based on the preset asset information. The default value is **0**. An invalid value causes a failure to parse audio and video assets.|
 | length | number | No  | Resource length, which needs to be entered based on the preset asset information. The default value is the remaining bytes from the offset in the file. An invalid value causes a failure to parse audio and video assets.|
 
@@ -2023,13 +3256,41 @@ Describes an audio and video file asset. It is used to specify a particular asse
 
 Defines the descriptor of an audio and video file, which is used in DataSource playback mode.<br>Use scenario: An application can create a playback instance and start playback before it finishes downloading the audio and video resources.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | fileSize     | number | Yes  | Size of the file to play, in bytes. The value **-1** indicates that the size is unknown. If **fileSize** is set to **-1**, the playback mode is similar to the live mode. In this mode, the **seek** and **setSpeed** operations cannot be performed, and the **loop** attribute cannot be set, indicating that loop playback is unavailable.|
-| callback | function | Yes  | Callback used to fill in data.<br>- Function: callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- **buffer**: memory to be filled. The value is of the ArrayBuffer type. This parameter is mandatory.<br>- **length**: maximum length of the memory to be filled. The value is of the number type. This parameter is mandatory.<br>- **pos**: position of the data to be filled in the file. The value is of the number type. This parameter is optional. When **fileSize** is set to **-1**, this parameter cannot be used.<br>- Return value: length of the data to be filled, which is of the number type.|
+| callback | (buffer: ArrayBuffer, length: number, pos?: number) => number | Yes  | Callback used to fill in data.<br>- Function: callback: (buffer: ArrayBuffer, length: number, pos?:number) => number;<br>- **buffer**: memory to be filled. The value is of the ArrayBuffer type. This parameter is mandatory.<br>- **length**: maximum length of the memory to be filled. The value is of the number type. This parameter is mandatory.<br>- **pos**: position of the data to be filled in the file. The value is of the number type. This parameter is optional. When **fileSize** is set to **-1**, this parameter cannot be used.<br>- Return value: length of the data filled, which is of the number type. If **-1** is returned, the end of stream is reached. If **-2** is returned, an unrecoverable error occurs.|
 
+## SubtitleInfo<sup>12+</sup>
+
+Describes the external subtitle information. When a subtitle update event is subscribed to, the information about the external subtitle is returned through a callback.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| text | string | No | Text information of the subtitle.|
+| startTime | number | No | Start time for displaying the subtitle, in milliseconds.|
+| duration | number | No| Duration for displaying the subtitle, in milliseconds.|
+
+## SeiMessage<sup>18+</sup>
+
+Describes the information of an SEI message.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name  | Type  | Read-Only| Optional | Description                                                        |
+| ------ | ------ | ---- | ---- | ------------------------------------------------------------ |
+| payloadType | number | No | No | Payload type of the SEI message.|
+| payload | ArrayBuffer | No | No | Payload data of the SEI message.|
 
 ## SeekMode<sup>8+</sup>
 
@@ -2039,29 +3300,49 @@ Enumerates the video playback seek modes, which can be passed in the **seek** AP
 
 | Name          | Value  | Description                                                        |
 | -------------- | ---- | ------------------------------------------------------------ |
-| SEEK_NEXT_SYNC | 0    | Seeks to the next key frame at the specified position. You are advised to use this value for the rewind operation.|
-| SEEK_PREV_SYNC | 1    | Seeks to the previous key frame at the specified position. You are advised to use this value for the fast-forward operation.|
-| SEEK_CLOSEST<sup>12+</sup> | 2    | Seeks to the frame closest to the specified position. You are advised to use this value for accurate seek.|
+| SEEK_NEXT_SYNC | 0    | Seeks to the next key frame at the specified position. You are advised to use this value for the rewind operation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SEEK_PREV_SYNC | 1    | Seeks to the previous key frame at the specified position. You are advised to use this value for the fast-forward operation.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| SEEK_CLOSEST<sup>12+</sup> | 2    | Seeks to the frame closest to the specified position. You are advised to use this value for accurate seek.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SEEK_CONTINUOUS<sup>18+</sup> | 3    | Offers a smooth and fluid visual experience for seeking. Applications can use a progress bar component to continuously invoke the **seek** method, and the AVPlayer will update the video frames smoothly in response to these calls.<br>Applications can call [isSeekContinuousSupported](#isseekcontinuoussupported18) to check whether the video source supports this seeking mode.<br>If the video source does not support this mode, calling **seek** will result in an **AVERR_SEEK_CONTINUOUS_UNSUPPORTED** error (see [Media Error Codes](#averrorcode9)), and the smoothness of frame updates will be compromised.<br>This seeking mode does not trigger the [seekDone event](#onseekdone9).<br>To exit this seeking mode, applications must call **seek(-1, SeekMode.SEEK_CONTINUOUS)** to end the seeking process.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+
+## SwitchMode<sup>12+</sup>
+
+Enumerates the track switching modes for video playback. The mode can be passed in to **selectTrack**. Currently, this enum is valid only for DASH video tracks.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name          | Value  | Description                                                        |
+| -------------- | ---- | ------------------------------------------------------------ |
+| SMOOTH | 0    | Smooth playback is ensured after the switching. This mode has a delay, that is, the switching does not take effect immediately.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SEGMENT | 1    | The playback starts from the start position of the current segment after the switching. In this mode, the switching takes effect immediately and repeated playback may occur.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| CLOSEST | 2    | The playback starts from the frame closest to the current playback time. In this mode, the switching takes effect immediately, and the playback is suspended for 3s to 5s and then resumed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## PlaybackSpeed<sup>8+</sup>
 
 Enumerates the video playback speeds, which can be passed in the **setSpeed** API.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
 | Name                | Value  | Description                          |
 | -------------------- | ---- | ------------------------------ |
-| SPEED_FORWARD_0_75_X | 0    | Plays the video at 0.75 times the normal speed.|
-| SPEED_FORWARD_1_00_X | 1    | Plays the video at the normal speed.        |
-| SPEED_FORWARD_1_25_X | 2    | Plays the video at 1.25 times the normal speed.|
-| SPEED_FORWARD_1_75_X | 3    | Plays the video at 1.75 times the normal speed.|
-| SPEED_FORWARD_2_00_X | 4    | Plays the video at 2.00 times the normal speed.|
-| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | Plays the video at 0.50 times the normal speed.|
-| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | Plays the video at 1.50 times the normal speed.|
+| SPEED_FORWARD_0_75_X | 0    | Plays the video at 0.75 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEED_FORWARD_1_00_X | 1    | Plays the video at the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.        |
+| SPEED_FORWARD_1_25_X | 2    | Plays the video at 1.25 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEED_FORWARD_1_75_X | 3    | Plays the video at 1.75 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEED_FORWARD_2_00_X | 4    | Plays the video at 2.00 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEED_FORWARD_0_50_X<sup>12+</sup> | 5    | Plays the video at 0.50 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEED_FORWARD_1_50_X<sup>12+</sup> | 6    | Plays the video at 1.50 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEED_FORWARD_3_00_X<sup>13+</sup> | 7    | Plays the video at 3.00 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| SPEED_FORWARD_0_25_X<sup>12+</sup> | 8    | Plays the video at 0.25 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| SPEED_FORWARD_0_125_X<sup>12+</sup> | 9    | Plays the video at 0.125 times the normal speed.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
 ## VideoScaleType<sup>9+</sup>
 
 Enumerates the video scale modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
@@ -2074,6 +3355,8 @@ Enumerates the video scale modes.
 
 Defines media information in key-value mode.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Multimedia.Media.Core
 
 | Name         | Type  | Mandatory| Description                                                        |
@@ -2083,8 +3366,7 @@ Defines media information in key-value mode.
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function printfItemDescription(obj: media.MediaDescription, key: string) {
   let property: Object = obj[key];
@@ -2096,18 +3378,60 @@ let avPlayer: media.AVPlayer | undefined = undefined;
 media.createAVPlayer((err: BusinessError, player: media.AVPlayer) => {
   if(player != null) {
     avPlayer = player;
-    console.info(`createAVPlayer success`);
+    console.info(`Succeeded in creating AVPlayer`);
     avPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
       if (arrList != null) {
         for (let i = 0; i < arrList.length; i++) {
           printfItemDescription(arrList[i], media.MediaDescriptionKey.MD_KEY_TRACK_TYPE);  // Print the MD_KEY_TRACK_TYPE value of each track.
         }
       } else {
-        console.error(`audio getTrackDescription fail, error:${error}`);
+        console.error(`Failed to get TrackDescription, error:${error}`);
       }
     });
   } else {
-    console.error(`createAVPlayer fail, error message:${err.message}`);
+    console.error(`Failed to create AVPlayer, error message:${err.message}`);
+  }
+});
+```
+
+## PlaybackInfo<sup>12+</sup>
+
+Defines the playback information in key-value pairs.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name         | Type  | Mandatory| Description                                                        |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| [key: string] | Object | Yes  | For details about the key range supported and the object type and range of each key, see [PlaybackInfoKey](#playbackinfokey12).|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function printfPlaybackInfo(obj: media.PlaybackInfo, key: string) {
+  let property: Object = obj[key];
+  console.info('key is ' + key); // // Specify a key. For details about the keys, see [PlaybackInfoKey].
+  console.info('value is ' + property); // Obtain the value of the key. The value can be any type. For details about the types, see [PlaybackInfoKey].
+}
+
+let avPlayer: media.AVPlayer | undefined = undefined;
+let playbackInfo: media.PlaybackInfo | undefined = undefined;
+media.createAVPlayer(async (err: BusinessError, player: media.AVPlayer) => {
+  if (player != null) {
+    avPlayer = player;
+    console.info(`Succeeded in creating AVPlayer`);
+    if (avPlayer) {
+      try {
+        playbackInfo = await avPlayer.getPlaybackInfo();
+        console.info(`AVPlayer getPlaybackInfo = ${JSON.stringify(playbackInfo)}`); // Print PlaybackInfo.
+        printfPlaybackInfo(playbackInfo, media.PlaybackInfoKey.SERVER_IP_ADDRESS); // Print the IP address.
+      } catch (error) {
+        console.error(`error = ${error}`);
+      }
+    }
+  } else {
+    console.error(`Failed to create AVPlayer, error message:${err.message}`);
   }
 });
 ```
@@ -2126,7 +3450,7 @@ For details about the audio and video recording demo, see [Audio Recording](../.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
-| Name   | Type                                | Readable| Writable| Description              |
+| Name   | Type                                | Read-Only| Optional| Description              |
 | ------- | ------------------------------------ | ---- | ---- | ------------------ |
 | state9+ | [AVRecorderState](#avrecorderstate9) | Yes  | No  | AVRecorder state.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 
@@ -2149,7 +3473,7 @@ To use the camera to record videos, the camera module is required. For details a
 | Name  | Type                                  | Mandatory| Description                                 |
 | -------- | -------------------------------------- | ---- | ------------------------------------- |
 | config   | [AVRecorderConfig](#avrecorderconfig9) | Yes  | Audio and video recording parameters to set.           |
-| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2158,14 +3482,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | ID| Error Message                               |
 | -------- | --------------------------------------- |
 | 201      | Permission denied. Return by callback.  |
-| 401      | Parameter error. Return by callback.    |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 5400102  | Operate not permit. Return by callback. |
 | 5400105  | Service died. Return by callback.       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Configure the parameters based on those supported by the hardware device.
 let avRecorderProfile: media.AVRecorderProfile = {
@@ -2190,10 +3514,10 @@ let avRecorderConfig: media.AVRecorderConfig = {
 }
 
 avRecorder.prepare(avRecorderConfig, (err: BusinessError) => {
-  if (err == null) {
-    console.info('prepare success');
+  if (err) {
+    console.error('Failed to prepare and error is ' + err.message);
   } else {
-    console.error('prepare failed and error is ' + err.message);
+    console.info('Succeeded in preparing');
   }
 })
 ```
@@ -2210,9 +3534,9 @@ This permission is required only if audio recording is involved.
 
 To use the camera to record videos, the camera module is required. For details about how to use the APIs provided by the camera module, see [Camera Management](../apis-camera-kit/js-apis-camera.md).
 
-**System capability**: SystemCapability.Multimedia.Media.AVRecorder
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Parameters**
 
@@ -2224,7 +3548,7 @@ To use the camera to record videos, the camera module is required. For details a
 
 | Type          | Description                                      |
 | -------------- | ------------------------------------------ |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2233,14 +3557,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
 | 201      | Permission denied. Return by promise.  |
-| 401      | Parameter error. Return by promise.    |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 5400102  | Operate not permit. Return by promise. |
 | 5400105  | Service died. Return by promise.       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // Configure the parameters based on those supported by the hardware device.
 let avRecorderProfile: media.AVRecorderProfile = {
@@ -2265,9 +3589,9 @@ let avRecorderConfig: media.AVRecorderConfig = {
 }
 
 avRecorder.prepare(avRecorderConfig).then(() => {
-  console.info('prepare success');
+  console.info('Succeeded in preparing');
 }).catch((err: BusinessError) => {
-  console.error('prepare failed and catch error is ' + err.message);
+  console.error('Failed to prepare and catch error is ' + err.message);
 });
 ```
 
@@ -2287,7 +3611,7 @@ This API can be called only after the [prepare()](#prepare9-2) API is called.
 
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<string> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<string> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the surface ID obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2302,15 +3626,15 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let surfaceID: string; // The surfaceID is transferred to the camera API to create a videoOutput instance.
 
 avRecorder.getInputSurface((err: BusinessError, surfaceId: string) => {
-  if (err == null) {
-    console.info('getInputSurface success');
-    surfaceID = surfaceId;
+  if (err) {
+    console.error('Failed to do getInputSurface and error is ' + err.message);
   } else {
-    console.error('getInputSurface failed and error is ' + err.message);
+    console.info('Succeeded in doing getInputSurface');
+    surfaceID = surfaceId;
   }
 });
 
@@ -2347,14 +3671,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 let surfaceID: string; // The surfaceID is transferred to the camera API to create a videoOutput instance.
 
 avRecorder.getInputSurface().then((surfaceId: string) => {
-  console.info('getInputSurface success');
+  console.info('Succeeded in getting InputSurface');
   surfaceID = surfaceId;
 }).catch((err: BusinessError) => {
-  console.error('getInputSurface failed and catch error is ' + err.message);
+  console.error('Failed to get InputSurface and catch error is ' + err.message);
 });
 ```
 
@@ -2362,7 +3686,7 @@ avRecorder.getInputSurface().then((surfaceId: string) => {
 
 updateRotation(rotation: number): Promise\<void>
 
-Updates the video rotation angle.
+Updates the video rotation angle. This API uses a promise to return the result.
 
 This API can be called only after the [prepare()](#prepare9-3) event is triggered and before the [start()](#start9) API is called.
 
@@ -2378,7 +3702,7 @@ This API can be called only after the [prepare()](#prepare9-3) event is triggere
 
 | Type            | Description                            |
 | ---------------- | -------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2386,22 +3710,22 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                              |
 | -------- | -------------------------------------- |
-|   401    | Parameter error. Return by callback.   |
-| 5400102  | Operate not permit. Return by promise. |
+|   401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.   |
+| 5400102  | Operation not allowed. Return by promise. |
 | 5400103  | IO error. Return by promise.           |
 | 5400105  | Service died. Return by promise.       |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rotation = 90
 
 avRecorder.updateRotation(rotation).then(() => {
-  console.info('updateRotation success');
+  console.info('Succeeded in updateRotation');
 }).catch((err: BusinessError) => {
-  console.error('updateRotation failed and catch error is ' + err.message);
+  console.error('Failed to updateRotation and catch error is ' + err.message);
 });
 ```
 
@@ -2419,7 +3743,7 @@ For audio-only recording, this API can be called only after the [prepare()](#pre
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  |Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2434,13 +3758,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.start((err: BusinessError) => {
-  if (err == null) {
-    console.info('start AVRecorder success');
+  if (err) {
+    console.error('Failed to start AVRecorder and error is ' + err.message);
   } else {
-    console.error('start AVRecorder failed and error is ' + err.message);
+    console.info('Succeeded in starting AVRecorder');
   }
 });
 ```
@@ -2453,15 +3777,15 @@ Starts recording. This API uses a promise to return the result.
 
 For audio-only recording, this API can be called only after the [prepare()](#prepare9-3) API is called. For video-only recording, this API can be called only after the [getInputSurface()](#getinputsurface9-1) API is called.
 
-**System capability**: SystemCapability.Multimedia.Media.AVRecorder
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2476,12 +3800,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.start().then(() => {
-  console.info('start AVRecorder success');
+  console.info('Succeeded in starting AVRecorder');
 }).catch((err: BusinessError) => {
-  console.error('start AVRecorder failed and catch error is ' + err.message);
+  console.error('Failed to start AVRecorder and catch error is ' + err.message);
 });
 ```
 
@@ -2499,7 +3823,7 @@ This API can be called only after the [start()](#start9) API is called. You can 
 
 | Name  | Type                | Mandatory| Description                       |
 | -------- | -------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2514,13 +3838,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.pause((err: BusinessError) => {
-  if (err == null) {
-    console.info('pause AVRecorder success');
+  if (err) {
+    console.error('Failed to pause AVRecorder and error is ' + err.message);
   } else {
-    console.error('pause AVRecorder failed and error is ' + err.message);
+    console.info('Succeeded in pausing');
   }
 });
 ```
@@ -2533,15 +3857,15 @@ Pauses recording. This API uses a promise to return the result.
 
 This API can be called only after the [start()](#start9-1) API is called. You can call [resume()](#resume9-1) to resume recording.
 
-**System capability**: SystemCapability.Multimedia.Media.AVRecorder
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2556,12 +3880,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.pause().then(() => {
-  console.info('pause AVRecorder success');
+  console.info('Succeeded in pausing');
 }).catch((err: BusinessError) => {
-  console.error('pause AVRecorder failed and catch error is ' + err.message);
+  console.error('Failed to pause AVRecorder and catch error is ' + err.message);
 });
 ```
 
@@ -2579,7 +3903,7 @@ This API can be called only after the [pause()](#pause9-2) API is called.
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2594,13 +3918,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.resume((err: BusinessError) => {
-  if (err == null) {
-    console.info('resume AVRecorder success');
+  if (err) {
+    console.error('Failed to resume AVRecorder and error is ' + err.message);
   } else {
-    console.error('resume AVRecorder failed and error is ' + err.message);
+    console.info('Succeeded in resuming AVRecorder');
   }
 });
 ```
@@ -2613,15 +3937,15 @@ Resumes recording. This API uses a promise to return the result.
 
 This API can be called only after the [pause()](#pause9-3) API is called.
 
-**System capability**: SystemCapability.Multimedia.Media.AVRecorder
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2636,12 +3960,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.resume().then(() => {
-  console.info('resume AVRecorder success');
+  console.info('Succeeded in resuming AVRecorder');
 }).catch((err: BusinessError) => {
-  console.error('resume AVRecorder failed and catch error is ' + err.message);
+  console.error('Failed to resume  AVRecorder failed and catch error is ' + err.message);
 });
 ```
 
@@ -2661,7 +3985,7 @@ For audio-only recording, you can call [prepare()](#prepare9-2) again for re-rec
 
 | Name  | Type                | Mandatory| Description                        |
 | -------- | -------------------- | ---- | ---------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2676,13 +4000,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.stop((err: BusinessError) => {
-  if (err == null) {
-    console.info('stop AVRecorder success');
+  if (err) {
+    console.error('Failed to stop AVRecorder and error is ' + err.message);
   } else {
-    console.error('stop AVRecorder failed and error is ' + err.message);
+    console.info('Succeeded in stopping AVRecorder');
   }
 });
 ```
@@ -2697,15 +4021,15 @@ This API can be called only after the [start()](#start9-1) or [pause()](#pause9-
 
 For audio-only recording, you can call [prepare()](#prepare9-3) again for re-recording. For video-only recording or audio and video recording, you can call [prepare()](#prepare9-3) and [getInputSurface()](#getinputsurface9-1) again for re-recording.
 
-**System capability**: SystemCapability.Multimedia.Media.AVRecorder
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Return value**
 
 | Type          | Description                                 |
 | -------------- | ------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2720,12 +4044,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.stop().then(() => {
-  console.info('stop AVRecorder success');
+  console.info('Succeeded in stopping AVRecorder');
 }).catch((err: BusinessError) => {
-  console.error('stop AVRecorder failed and catch error is ' + err.message);
+  console.error('Failed to stop AVRecorder and catch error is ' + err.message);
 });
 ```
 
@@ -2743,7 +4067,7 @@ For audio-only recording, you can call [prepare()](#prepare9-2) again for re-rec
 
 | Name  | Type                | Mandatory| Description                          |
 | -------- | -------------------- | ---- | ------------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2757,13 +4081,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.reset((err: BusinessError) => {
-  if (err == null) {
-    console.info('reset AVRecorder success');
+  if (err) {
+    console.error('Failed to reset AVRecorder and error is ' + err.message);
   } else {
-    console.error('reset AVRecorder failed and error is ' + err.message);
+    console.info('Succeeded in resetting AVRecorder');
   }
 });
 ```
@@ -2782,7 +4106,7 @@ For audio-only recording, you can call [prepare()](#prepare9-3) again for re-rec
 
 | Type          | Description                                   |
 | -------------- | --------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2796,12 +4120,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.reset().then(() => {
-  console.info('reset AVRecorder success');
+  console.info('Succeeded in resetting AVRecorder');
 }).catch((err: BusinessError) => {
-  console.error('reset AVRecorder failed and catch error is ' + err.message);
+  console.error('Failed to reset and catch error is ' + err.message);
 });
 ```
 
@@ -2819,7 +4143,7 @@ After the resources are released, you can no longer perform any operation on the
 
 | Name  | Type                | Mandatory| Description                              |
 | -------- | -------------------- | ---- | ---------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2832,13 +4156,13 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.release((err: BusinessError) => {
-  if (err == null) {
-    console.info('release AVRecorder success');
+  if (err) {
+    console.error('Failed to release AVRecorder and error is ' + err.message);
   } else {
-    console.error('release AVRecorder failed and error is ' + err.message);
+    console.info('Succeeded in releasing AVRecorder');
   }
 });
 ```
@@ -2851,15 +4175,15 @@ Releases the audio and video recording resources. This API uses a promise to ret
 
 After the resources are released, you can no longer perform any operation on the **AVRecorder** instance.
 
-**System capability**: SystemCapability.Multimedia.Media.AVRecorder
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Return value**
 
 | Type          | Description                                       |
 | -------------- | ------------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -2872,12 +4196,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.release().then(() => {
-  console.info('release AVRecorder success');
+  console.info('Succeeded in releasing AVRecorder');
 }).catch((err: BusinessError) => {
-  console.error('release AVRecorder failed and catch error is ' + err.message);
+  console.error('Failed to release AVRecorder and catch error is ' + err.message);
 });
 ```
 
@@ -2895,7 +4219,7 @@ This API can be called only after the **prepare()** API is called. If this API i
 
 | Name  | Type                                                        | Mandatory| Description                                |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
-| callback | AsyncCallback\<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | Yes  | Callback used to return the audio capturer information.|
+| callback | AsyncCallback\<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **audio.AudioCapturerChangeInfo** object obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2903,21 +4227,23 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
+| 5400102  | Operation not allowed. |
+| 5400103  | I/O error.             |
 | 5400105  | Service died. Return by callback.          |
 
 **Example**
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.getCurrentAudioCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerChangeInfo) => {
-  if (err == null) {
-    console.info('getCurrentAudioCapturerInfo success');
-    currentCapturerInfo = capturerInfo;
+  if (err) {
+    console.error('Failed to get CurrentAudioCapturerInfo and error is ' + err.message);
   } else {
-    console.error('getCurrentAudioCapturerInfo failed and error is ' + err.message);
+    console.info('Succeeded in getting CurrentAudioCapturerInfo');
+    currentCapturerInfo = capturerInfo;
   }
 });
 ```
@@ -2951,13 +4277,15 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
+import { audio } from '@kit.AudioKit';
+
 let currentCapturerInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.getCurrentAudioCapturerInfo().then((capturerInfo: audio.AudioCapturerChangeInfo) => {
-  console.info('getCurrentAudioCapturerInfo success');
+  console.info('Succeeded in getting CurrentAudioCapturerInfo');
   currentCapturerInfo = capturerInfo;
 }).catch((err: BusinessError) => {
-  console.error('getCurrentAudioCapturerInfo failed and catch error is ' + err.message);
+  console.error('Failed to get CurrentAudioCapturerInfo and catch error is ' + err.message);
 });
 ```
 
@@ -2977,7 +4305,7 @@ The return value is the maximum amplitude within the duration from the time the 
 
 | Name  | Type                  | Mandatory| Description                                |
 | -------- | ---------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the maximum amplitude.|
+| callback | AsyncCallback\<number> | Yes  |  Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the maximum amplitude obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2985,7 +4313,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
+| 5400102  | Operation not allowed. |
 | 5400105  | Service died. Return by callback.          |
 
 **Example**
@@ -2994,11 +4322,11 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude((err: BusinessError, amplitude: number) => {
-  if (err == null) {
-    console.info('getAudioCapturerMaxAmplitude success');
-    maxAmplitude = amplitude;
+  if (err) {
+    console.error('Failed to get AudioCapturerMaxAmplitude and error is ' + err.message);
   } else {
-    console.error('getAudioCapturerMaxAmplitude failed and error is ' + err.message);
+    console.info('Succeeded in getting AudioCapturerMaxAmplitude');
+    maxAmplitude = amplitude;
   }
 });
 ```
@@ -3019,7 +4347,7 @@ The return value is the maximum amplitude within the duration from the time the 
 
 | Type            | Description                                             |
 | ---------------- | ------------------------------------------------- |
-| Promise\<number>| Promise used to return the maximum amplitude.|
+| Promise\<number>| Promise used to return the maximum amplitude obtained.|
 
 **Error codes**
 
@@ -3036,10 +4364,10 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 let maxAmplitude: number;
 
 avRecorder.getAudioCapturerMaxAmplitude().then((amplitude: number) => {
-  console.info('getAudioCapturerMaxAmplitude success');
+  console.info('Succeeded in getting AudioCapturerMaxAmplitude');
   maxAmplitude = amplitude;
 }).catch((err: BusinessError) => {
-  console.error('getAudioCapturerMaxAmplitude failed and catch error is ' + err.message);
+  console.error('Failed to get AudioCapturerMaxAmplitude and catch error is ' + err.message);
 });
 ```
 
@@ -3055,7 +4383,7 @@ Obtains available encoders. This API uses an asynchronous callback to return the
 
 | Name  | Type                                                 | Mandatory| Description                                |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------ |
-| callback | AsyncCallback\<Array\<[EncoderInfo](#encoderinfo11)>> | Yes  | Callback used to return the information about the available encoders.|
+| callback | AsyncCallback\<Array\<[EncoderInfo](#encoderinfo11)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the available encoders obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3063,7 +4391,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
-| 5400102  | Operation not allowed. Return by callback. |
+| 5400102  | Operation not allowed. |
 | 5400105  | Service died. Return by callback.          |
 
 **Example**
@@ -3071,12 +4399,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo) => {
-  if (err == null) {
-    console.info('getAvailableEncoder success');
-    encoderInfo = info;
+avRecorder.getAvailableEncoder((err: BusinessError, info: media.EncoderInfo[]) => {
+  if (err) {
+    console.error('Failed to get AvailableEncoder and error is ' + err.message);
   } else {
-    console.error('getAvailableEncoder failed and error is ' + err.message);
+    console.info('Succeeded in getting AvailableEncoder');
+    encoderInfo = info[0];
   }
 });
 ```
@@ -3109,11 +4437,11 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 ```ts
 let encoderInfo: media.EncoderInfo;
 
-avRecorder.getAvailableEncoder().then((info: media.EncoderInfo) => {
-  console.info('getAvailableEncoder success');
-  encoderInfo = info;
+avRecorder.getAvailableEncoder().then((info: media.EncoderInfo[]) => {
+  console.info('Succeeded in getting AvailableEncoder');
+  encoderInfo = info[0];
 }).catch((err: BusinessError) => {
-  console.error('getAvailableEncoder failed and catch error is ' + err.message);
+  console.error('Failed to get AvailableEncoder and catch error is ' + err.message);
 });
 ```
 
@@ -3131,7 +4459,7 @@ This API can be called only after [prepare()](#prepare9-2) is called.
 
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
-| callback | AsyncCallback\<[AVRecorderConfig](#avrecorderconfig9)> | Yes  | Callback used to return the real-time configuration.|
+| callback | AsyncCallback\<[AVRecorderConfig](#avrecorderconfig9)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the real-time configuration obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3146,16 +4474,16 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: media.AVRecorderConfig;
 
-avRecorder.getAVRecorderConfig((err: BusinessError, config: AVRecorderConfig) => {
-  if (err == null) {
-    console.info('getAVRecorderConfig success');
-    AVRecorderConfig = config;
+avRecorder.getAVRecorderConfig((err: BusinessError, config: media.AVRecorderConfig) => {
+  if (err) {
+    console.error('Failed to get avConfig and error is ' + err.message);
   } else {
-    console.error('getAVRecorderConfig failed and error is ' + err.message);
+    console.info('Succeeded in getting AVRecorderConfig');
+    avConfig = config;
   }
 });
 ```
@@ -3189,23 +4517,25 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let AVRecorderConfig: AVRecorderConfig;
+let avConfig: media.AVRecorderConfig;
 
-avRecorder.getAVRecorderConfig().then((config: AVRecorderConfig) => {
-  console.info('getAVRecorderConfig success');
-  AVRecorderConfig = config;
+avRecorder.getAVRecorderConfig().then((config: media.AVRecorderConfig) => {
+  console.info('Succeeded in getting AVRecorderConfig');
+  avConfig = config;
 }).catch((err: BusinessError) => {
-  console.error('getAVRecorderConfig failed and catch error is ' + err.message);
+  console.error('Failed to get AVRecorderConfig and catch error is ' + err.message);
 });
 ```
 
 ### on('stateChange')<sup>9+</sup>
 
-on(type: 'stateChange', callback: (state: AVRecorderState, reason: StateChangeReason) => void): void
+on(type: 'stateChange', callback: OnAVRecorderStateChangeHandler): void
 
-Subscribes to AVRecorder state changes. An application can subscribe to only one AVRecorder state change event. When the application initiates multiple subscriptions to this event, the last subscription prevails.
+Subscribes to AVRecorder state changes. An application can subscribe to only one AVRecorder state change event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3214,7 +4544,7 @@ Subscribes to AVRecorder state changes. An application can subscribe to only one
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'stateChange'** in this case. This event can be triggered by both user operations and the system.|
-| callback | function | Yes  | Callback invoked when the event is triggered. It reports the following information:<br>**state**: [AVRecorderState](#avrecorderstate9), indicating the AVRecorder state.<br>**reason**: [StateChangeReason](#statechangereason9), indicating the reason for the state transition.|
+| callback | [OnAVRecorderStateChangeHandler](#onavrecorderstatechangehandler12) | Yes  | Callback invoked when the event is triggered.|
 
 **Error codes**
 
@@ -3235,19 +4565,20 @@ avRecorder.on('stateChange', async (state: media.AVRecorderState, reason: media.
 
 ### off('stateChange')<sup>9+</sup>
 
-off(type: 'stateChange'): void
+off(type: 'stateChange', callback?: OnAVRecorderStateChangeHandler): void
 
 Unsubscribes from AVRecorder state changes.
 
-**System capability**: SystemCapability.Multimedia.Media.AVRecorder
-
 **Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 **Parameters**
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'stateChange'** in this case. This event can be triggered by both user operations and the system.|
+| callback | [OnAVRecorderStateChangeHandler](#onavrecorderstatechangehandler12) | No  | Callback invoked when the event is triggered.<br>This parameter is supported since API version 12.|
 
 **Example**
 
@@ -3261,7 +4592,9 @@ on(type: 'error', callback: ErrorCallback): void
 
 Subscribes to AVRecorder errors. This event is used only for error prompt and does not require the user to stop recording control. If the [AVRecorderState](#avrecorderstate9) is also switched to error, call [reset()](#reset9-2) or [release()][release()](#release9-2) to exit the recording.
 
-An application can subscribe to only one AVRecorder error event. When the application initiates multiple subscriptions to this event, the last subscription prevails.
+An application can subscribe to only one AVRecorder error event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3278,18 +4611,21 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
-| 5400101  | No memory. Return by callback.             |
-| 5400102  | Operation not allowed. Return by callback. |
-| 5400103  | I/O error. Return by callback.             |
-| 5400104  | Time out. Return by callback.              |
-| 5400105  | Service died. Return by callback.          |
-| 5400106  | Unsupport format. Return by callback.      |
-| 5400107  | Audio interrupted. Return by callback.     |
+| 201      | Permission denied.     |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
+| 801      | Capability not supported. |
+| 5400101  | No memory.             |
+| 5400102  | Operation not allowed. |
+| 5400103  | I/O error.             |
+| 5400104  | Time out.              |
+| 5400105  | Service died.          |
+| 5400106  | Unsupported format.    |
+| 5400107  | Audio interrupted.     |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avRecorder.on('error', (err: BusinessError) => {
   console.info('case avRecorder.on(error) called, errMessage is ' + err.message);
@@ -3298,9 +4634,11 @@ avRecorder.on('error', (err: BusinessError) => {
 
 ### off('error')<sup>9+</sup>
 
-off(type: 'error'): void
+off(type: 'error', callback?: ErrorCallback): void
 
 Unsubscribes from AVRecorder errors. After the unsubscription, your application can no longer receive AVRecorder errors.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3309,6 +4647,7 @@ Unsubscribes from AVRecorder errors. After the unsubscription, your application 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'error'** in this case.<br>This event is triggered when an error occurs during recording.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback invoked when the event is triggered.<br>This parameter is supported since API version 12.                  |
 
 **Example**
 
@@ -3322,7 +4661,7 @@ on(type: 'audioCapturerChange', callback: Callback<audio.AudioCapturerChangeInfo
 
 Subscribes to audio capturer configuration changes. Any configuration change triggers the callback that returns the entire configuration information.
 
-When the application initiates multiple subscriptions to this event, the last subscription prevails.
+When the application initiates multiple subscriptions to this event, the last subscription is applied.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
@@ -3337,22 +4676,24 @@ When the application initiates multiple subscriptions to this event, the last su
 
 | ID| Error Message                                  |
 | -------- | ------------------------------------------ |
-| 401      | Parameter error. Return by callback.       |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 
 **Example**
 
 ```ts
+import { audio } from '@kit.AudioKit'
+
 let capturerChangeInfo: audio.AudioCapturerChangeInfo;
 
 avRecorder.on('audioCapturerChange',  (audioCapturerChangeInfo: audio.AudioCapturerChangeInfo) => {
-  console.info('audioCapturerChange success');
+  console.info('audioCapturerChange called');
   capturerChangeInfo = audioCapturerChangeInfo;
 });
 ```
 
 ### off('audioCapturerChange')<sup>11+</sup>
 
-off(type: 'audioCapturerChange'): void
+off(type: 'audioCapturerChange', callback?: Callback<audio.AudioCapturerChangeInfo>): void
 
 Subscribes to audio capturer configuration changes.
 
@@ -3363,6 +4704,7 @@ Subscribes to audio capturer configuration changes.
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | type   | string | Yes  | Event type, which is **'audioCapturerChange'** in this case.|
+| callback | Callback<[audio.AudioCapturerChangeInfo](../apis-audio-kit/js-apis-audio.md#audiocapturerchangeinfo9)> | No| Callback used to return the entire configuration information about the audio capturer.<br>This parameter is supported since API version 12.|
 
 **Example**
 
@@ -3370,23 +4712,123 @@ Subscribes to audio capturer configuration changes.
 avRecorder.off('audioCapturerChange');
 ```
 
-## AVRecorderState<sup>9+</sup>
+### on('photoAssetAvailable')<sup>12+</sup>
 
-Enumerates the AVRecorder states. You can obtain the state through the **state** attribute.
+on(type: 'photoAssetAvailable', callback: Callback\<photoAccessHelper.PhotoAsset>): void
+
+Subscribes to media asset callback events. When [FileGenerationMode](#filegenerationmode12) is used during media file creation, the [PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset) object is called back to the application after the [stop](#stop9-2) operation is complete.
+
+When the application initiates multiple subscriptions to this event, the last subscription is applied.
 
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  |Event type, which is **'photoAssetAvailable'** in this case. The event is triggered when a photo asset is available.|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | Yes| Callback used to return the **PhotoAsset** object corresponding to the resource file created by the system.|
+
+**Error codes**
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 5400103  | IO error. Return by callback.             |
+| 5400105  | Service died. Return by callback.          |
+
+**Example**
+
+<!--code_no_check-->
+```ts
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { common } from '@kit.AbilityKit'
+let photoAsset: photoAccessHelper.PhotoAsset;
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+
+// Example: Process the photoAsset callback and save the video.
+async function saveVideo(asset: photoAccessHelper.PhotoAsset) {
+  console.info("saveVideo called");
+  try {
+    let phAccessHelper = photoAccessHelper.getPhotoAccessHelper(this.context);
+    let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+    assetChangeRequest.saveCameraPhoto();
+    await phAccessHelper.applyChanges(assetChangeRequest);
+    console.info('apply saveVideo successfully');
+  } catch (err) {
+    console.error(`apply saveVideo failed with error: ${err.code}, ${err.message}`);
+  }
+}
+// Subscribe to the photoAsset event.
+avRecorder.on('photoAssetAvailable',  (asset: photoAccessHelper.PhotoAsset) => {
+  console.info('photoAssetAvailable called');
+  if (asset != undefined) {
+    photoAsset = asset;
+    // Process the photoAsset callback.
+    // Example: this.saveVideo (asset);
+  } else {
+    console.error('photoAsset is undefined');
+  }
+});
+```
+
+### off('photoAssetAvailable')<sup>12+</sup>
+
+off(type: 'photoAssetAvailable', callback?: Callback<photoAccessHelper.PhotoAsset>): void
+
+Unsubscribes from media asset callback events.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'photoAssetAvailable'** in this case.|
+| callback | Callback<[photoAccessHelper.PhotoAsset](../apis-media-library-kit/js-apis-photoAccessHelper.md#photoasset)> | No| Callback used to return the **PhotoAsset** object corresponding to the resource file created by the system.|
+
+**Example**
+
+```ts
+avRecorder.off('photoAssetAvailable');
+```
+
+## AVRecorderState<sup>9+</sup>
+
+type AVRecorderState = 'idle' | 'prepared' | 'started' | 'paused' | 'stopped' | 'released' | 'error'
+
+Enumerates the AVRecorder states. You can obtain the state through the **state** attribute.
+
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-| Name    | Type  | Description                                                        |
-| -------- | ------ | ------------------------------------------------------------ |
-| idle     | string | The AVRecorder enters this state after it is just created or the [AVRecorder.reset()](#reset9-2) API is called when the AVRecorder is in any state except released. In this state, you can call [AVRecorder.prepare()](#prepare9-2) to set recording parameters.  |
-| prepared | string | The AVRecorder enters this state when the parameters are set. In this state, you can call [AVRecorder.start()](#start9) to start recording.|
-| started  | string | The AVRecorder enters this state when the recording starts. In this state, you can call [AVRecorder.pause()](#pause9-2) to pause recording or call [AVRecorder.stop()](#stop9-2) to stop recording.|
-| paused   | string | The AVRecorder enters this state when the recording is paused. In this state, you can call [AVRecorder.resume()](#resume9) to continue recording or call [AVRecorder.stop()](#stop9-2) to stop recording.|
-| stopped  | string | The AVRecorder enters this state when the recording stops. In this state, you can call [AVRecorder.prepare()](#prepare9-2) to set recording parameters so that the AVRecorder enters the prepared state again.|
-| released | string | The AVRecorder enters this state when the recording resources are released. In this state, no operation can be performed. In any other state, you can call [AVRecorder.release()](#release9-2) to enter the released state.|
-| error    | string | The AVRecorder enters this state when an irreversible error occurs in the **AVRecorder** instance. In this state, the [AVRecorder.on('error') event](#onerror9-1) is reported, with the detailed error cause. In the error state, you must call [AVRecorder.reset()](#reset9-2) to reset the **AVRecorder** instance or call [AVRecorder.release()](#release9-2) to release the resources.|
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+| Type    | Description                                                        |
+| -------- | ------------------------------------------------------------ |
+| 'idle'     | The AVRecorder enters this state after it is just created or the [AVRecorder.reset()](#reset9-2) API is called when the AVRecorder is in any state except released. In this state, you can call [AVRecorder.prepare()](#prepare9-2) to set recording parameters.  |
+| 'prepared' | The AVRecorder enters this state when the parameters are set. In this state, you can call [AVRecorder.start()](#start9) to start recording.|
+| 'started'  | The AVRecorder enters this state when the recording starts. In this state, you can call [AVRecorder.pause()](#pause9-2) to pause recording or call [AVRecorder.stop()](#stop9-2) to stop recording.|
+| 'paused'   | The AVRecorder enters this state when the recording is paused. In this state, you can call [AVRecorder.resume()](#resume9) to continue recording or call [AVRecorder.stop()](#stop9-2) to stop recording.|
+| 'stopped'  | The AVRecorder enters this state when the recording stops. In this state, you can call [AVRecorder.prepare()](#prepare9-2) to set recording parameters so that the AVRecorder enters the prepared state again.|
+| 'released' | The AVRecorder enters this state when the recording resources are released. In this state, no operation can be performed. In any other state, you can call [AVRecorder.release()](#release9-2) to enter the released state.|
+| 'error'    | The AVRecorder enters this state when an irreversible error occurs in the **AVRecorder** instance. In this state, the [AVRecorder.on('error') event](#onerror9-1) is reported, with the detailed error cause. In the error state, you must call [AVRecorder.reset()](#reset9-2) to reset the **AVRecorder** instance or call [AVRecorder.release()](#release9-2) to release the resources.|
+
+## OnAVRecorderStateChangeHandler<sup>12+</sup>
+
+type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChangeReason) => void
+
+Describes the callback invoked for the AVRecorder state change event. 
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+| Name  | Type  | Mandatory| Description                                                        |
+| ------ | ------ | ------ | ------------------------------------------------------------ |
+| state  | [AVRecorderState](#avrecorderstate9) | Yes| AVRecorder state.    |
+| reason | [StateChangeReason](#statechangereason9) | Yes| Reason for the state change.|
 
 ## AVRecorderConfig<sup>9+</sup>
 
@@ -3398,33 +4840,47 @@ The **audioSourceType** and **videoSourceType** parameters are used to distingui
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                 |
+| audioSourceType | [AudioSourceType](#audiosourcetype9)     | No  | Type of the audio source to record. This parameter is mandatory for audio recording.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | No  | Type of the video source to record. This parameter is mandatory for video recording.                  |
-| profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                  |
+| profile         | [AVRecorderProfile](#avrecorderprofile9) | Yes  | Recording profile. This parameter is mandatory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | url             | string                                   | Yes  | Recording output URL: fd://xx (fd number).<br>![img](figures/en-us_image_url.png)<br>This parameter is mandatory.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| rotation        | number                                   | No  | Rotation angle of the recorded video. The value can be 0 (default), 90, 180, or 270 for MP4 videos.      |
-| location        | [Location](#location)                    | No  | Geographical location of the recorded video. By default, the geographical location information is not recorded.                    |
+|fileGenerationMode<sup>12+</sup> | [FileGenerationMode](#filegenerationmode12)  | No  |  Mode for creating the file, which is used together with [on('photoAssetAvailable')](#onphotoassetavailable12).|
+| rotation<sup>(deprecated)</sup>        | number                                   | No  | Rotation angle of the recorded video. The value can be 0 (default), 90, 180, or 270 for MP4 videos.<br>This API is supported since API version 6 and deprecated since API version 12. You are advised to use **[AVMetadata](#avmetadata11).videoOrientation** instead. If both parameters are set, **[AVMetadata](#avmetadata11).videoOrientation** is used.    |
+| location<sup>(deprecated)</sup>        | [Location](#location)                    | No  | Geographical location of the recorded video. By default, the geographical location information is not recorded.<br>This API is supported since API version 6 and deprecated since API version 12. You are advised to use **[AVMetadata](#avmetadata11).location** instead. If both parameters are set, **[AVMetadata](#avmetadata11).location** is used.|
+| metadata<sup>12+</sup>        | [AVMetadata](#avmetadata11)              | No  | Metadata. For details, see [AVMetadata](#avmetadata11).                 |
+| maxDuration<sup>18+</sup>        | number             | No  | Maximum recording duration, in seconds. The value range is [1, 2^31-1]. If an invalid value is provided, it is reset to the maximum allowed duration. Once the recording reaches the specified duration, it stops automatically and notifies via the **stateChange** callback that the recording has stopped: [AVRecorderState](#avrecorderstate9) = 'stopped', [StateChangeReason](#statechangereason9) = BACKGROUND.|
 
 ## AVRecorderProfile<sup>9+</sup>
 
 Describes the audio and video recording profile.
 
+> **NOTE**
+> The following table lists the audio parameters. For details about each parameter, see the field description below.
+>
+> | Encoding Format | Container Format | Sampling Rate | Bit Rate | Audio Channel Count |
+> |----|----|----|----|----|
+> |AUDIO_AAC|MP4,M4A|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000]|[32000-500000]|[1-8]|
+> |AUDIO_MP3|MP3|[8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000]|<br>- When the sampling rate is lower than 16000, the bit rate range is [8000 - 64000].<br>- When the sampling rate ranges from 16000 to 32000, the bit rate range is [8000 - 160000].<br>- When the sampling rate is greater than 32000, the bit rate range is [32000 - 320000].|[1-2]|
+> |AUDIO_G711MU|WAV|[8000]|[64000]|[1]|
+> |AUDIO_AMR_NB<sup>18+</sup> |AMR|[8000]|[4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200]|[1]|
+> |AUDIO_AMR_WB<sup>18+</sup> |AMR|[16000]|[6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850]|[1]|
+
 **System capability**: SystemCapability.Multimedia.Media.AVRecorder
 
 | Name            | Type                                        | Mandatory| Description                                                        |
 | ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording. The value range is [8000 - 384000].<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording. The value range is [1 - 2].<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
-| audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Only **AUDIO_AAC** is supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
-| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording. The value range is [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 96000].<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory.                                  |
-| videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [1 - 3000000]. |
-| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Currently, VIDEO_AVC is supported.       |
-| videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1920].        |
-| videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [2 - 1080].        |
-| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 30].            |
+| audioBitrate     | number                                       | No  | Audio encoding bit rate. This parameter is mandatory for audio recording.<br>Supported bit rate ranges:<br>- Range [32000 - 500000] for the AAC encoding format.<br>- Range [64000] for the G.711 μ-law encoding format.<br>- Range [8000, 16000, 32000, 40000, 48000, 56000, 64000, 80000, 96000, 112000, 128000, 160000, 192000, 224000, 256000, 320000] for the MP3 encoding format.<br>When the MP3 encoding format is used, the mapping between the sampling rate and bit rate is as follows:<br>- When the sampling rate is lower than 16 kHZ, the bit rate range is [8000 - 64000].<br>- When the sampling rate ranges from 16 kHz to 32 kHz, the bit rate range is [8000 - 160000].<br>- When the sampling rate is greater than 32 kHz, the bit rate range is [32000 - 320000].<br>- Range [4750, 5150, 5900, 6700, 7400, 7950, 10200, 12200] for the AMR-NB encoding format.<br>- Range [6600, 8850, 12650, 14250, 15850, 18250, 19850, 23050, 23850] for the AMR-WB encoding format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| audioChannels    | number                                       | No  | Number of audio channels. This parameter is mandatory for audio recording.<br>- Range [1 - 8] for the AAC encoding format.<br>- Range [1] for the G.711 μ-law encoding format.<br>- Range [1 - 2] for the MP3 encoding format.<br>- Range [1] for the AMR-NB and AMR-WB encoding formats.<br>**Atomic service API**: This API can be used in atomic services since API version 12.      |
+| audioCodec       | [CodecMimeType](#codecmimetype8)             | No  | Audio encoding format. This parameter is mandatory for audio recording. Currently, AUDIO_AAC, AUDIO_MP3, AUDIO_G711MU, AUDIO_AMR_NB, and AUDIO_AMR_WB are supported.<br>**Atomic service API**: This API can be used in atomic services since API version 12.    |
+| audioSampleRate  | number                                       | No  | Audio sampling rate. This parameter is mandatory for audio recording.<br>Supported sampling rate ranges:<br>- Range [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, 96000] for the AAC encoding format.<br>- Range [8000] for the G.711 μ-law encoding format.<br>- Range [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000] for the MP3 encoding format.<br>- Range [8000] for the AMR-NB encoding format.<br>- Range [16000] for the AMR-WB encoding format.<br>Variable bit rate. The bit rate is for reference only.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| fileFormat       | [ContainerFormatType](#containerformattype8) | Yes  | Container format of a file. This parameter is mandatory. Currently, the MP4, M4A, MP3, WAV, and AMR container formats are supported. The AUDIO_MP3 encoding format cannot be used in the MP4 container format.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| videoBitrate     | number                                       | No  | Video encoding bit rate. This parameter is mandatory for video recording. The value range is [10000 - 100000000]. |
+| videoCodec       | [CodecMimeType](#codecmimetype8)             | No  | Video encoding format. This parameter is mandatory for video recording. Currently, VIDEO_AVC is supported.|
+| videoFrameWidth  | number                                       | No  | Width of a video frame. This parameter is mandatory for video recording. The value range is [176 - 4096].        |
+| videoFrameHeight | number                                       | No  | Height of a video frame. This parameter is mandatory for video recording. The value range is [144 - 4096].        |
+| videoFrameRate   | number                                       | No  | Video frame rate. This parameter is mandatory for video recording. The value range is [1 - 60].            |
 | isHdr<sup>11+</sup>            | boolean                        | No  | HDR encoding. This parameter is optional for video recording. The default value is **false**, and there is no requirement on the encoding format. When **isHdr** is set to **true**, the encoding format must be **video/hevc**.|
-| enableTemporalScale<sup>12+</sup>            | boolean                        | No  | Whether layered encoding is supported. This parameter is optional for video recording. The default value is **false**.|
+| enableTemporalScale<sup>12+</sup>            | boolean                        | No  | Whether temporal layered encoding is supported. This parameter is optional for video recording. The default value is **false**. If this parameter is set to **true**, some frames in the video output streams can be skipped without being encoded.|
 
 ## AudioSourceType<sup>9+</sup>
 
@@ -3436,6 +4892,10 @@ Enumerates the audio source types for video recording.
 | ------------------------- | ---- | ---------------------- |
 | AUDIO_SOURCE_TYPE_DEFAULT | 0    | Default audio input source.|
 | AUDIO_SOURCE_TYPE_MIC     | 1    | Microphone audio input source.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| AUDIO_SOURCE_TYPE_VOICE_RECOGNITION<sup>12+</sup> | 2    | Audio source in speech recognition scenarios.|
+| AUDIO_SOURCE_TYPE_VOICE_COMMUNICATION<sup>12+</sup>     | 7    | Voice communication source.|
+| AUDIO_SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup> | 10    | Voice message source.|
+| AUDIO_SOURCE_TYPE_CAMCORDER<sup>12+</sup>     | 13    | Audio source in camera recording scenarios.|
 
 ## VideoSourceType<sup>9+</sup>
 
@@ -3458,6 +4918,9 @@ Enumerates the container format types (CFTs).
 | ----------- | ----- | --------------------- |
 | CFT_MPEG_4  | 'mp4' | Video container format MP4.|
 | CFT_MPEG_4A | 'm4a' | Audio container format M4A.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| CFT_MP3<sup>12+</sup>  | 'mp3' | Audio container format MP3.|
+| CFT_WAV<sup>12+</sup>  | 'wav' | Audio container format WAV.|
+| CFT_AMR<sup>18+</sup>  | 'amr' | Audio container format AMR.|
 
 ## Location
 
@@ -3467,8 +4930,8 @@ Describes the geographical location of the recorded video.
 
 | Name     | Type  | Mandatory| Description            |
 | --------- | ------ | ---- | ---------------- |
-| latitude  | number | Yes  | Latitude of the geographical location.|
-| longitude | number | Yes  | Longitude of the geographical location.|
+| latitude  | number | Yes  | Latitude of the geographical location. The value range is [-90, 90].|
+| longitude | number | Yes  | Longitude of the geographical location. The value range is [-180, 180].|
 
 ## EncoderInfo<sup>11+</sup>
 
@@ -3481,11 +4944,11 @@ Describes the information about an encoder.
 | mimeType   | [CodecMimeType](#codecmimetype8) | Yes  | No  | MIME type of the encoder.                                          |
 | type       | string                           | Yes  | No  | Encoder type. The value **audio** means an audio encoder, and **video** means a video encoder.        |
 | bitRate    | [Range](#range11)                | Yes  | No  | Bit rate range of the encoder, with the minimum and maximum bit rates specified.                          |
-| frameRate  | [Range](#range11)                | Yes  | No  | Video frame rate range, with the minimum and maximum frame rates specified. This parameter is available only for video encoders.          |
+| frameRate  | [Range](#range11)                | Yes  | No  | Video frame rate range, with the minimum and maximum frame rates specified. This parameter is available only for video encoders.         |
 | width      | [Range](#range11)                | Yes  | No  | Video frame width range, with the minimum and maximum widths specified. This parameter is available only for video encoders.      |
 | height     | [Range](#range11)                | Yes  | No  | Video frame height range, with the minimum and maximum heights specified. This parameter is available only for video encoders.      |
 | channels   | [Range](#range11)                | Yes  | No  | Number of audio channels for the audio capturer, with the minimum and maximum numbers of audio channels specified. This parameter is available only for audio encoders.  |
-| sampleRate | Array\<number>                    | Yes  | No  | Audio sampling rate, including all available audio sampling rates. This parameter is available only for audio encoders.|
+| sampleRate | Array\<number>                    | Yes  | No  | Audio sampling rate, including all available audio sampling rates. The value depends on the encoder type, and this parameter is available only for audio encoders.|
 
 ## Range<sup>11+</sup>
 
@@ -3497,6 +4960,446 @@ Describes a range.
 | ---- | ------ | ---- | ---- | ------------ |
 | min  | number | Yes  | No  | Minimum value.|
 | max  | number | Yes  | No  | Maximum value.|
+
+## FileGenerationMode<sup>12+</sup>
+
+Enumerates the modes for creating media files.
+
+**System capability**: SystemCapability.Multimedia.Media.AVRecorder
+
+| Name                         | Value  | Description                           |
+| ----------------------------- | ---- | ------------------------------- |
+| APP_CREATE  | 0    | The application creates a media file in the sandbox.|
+| AUTO_CREATE_CAMERA_SCENE  | 1    | The system creates a media file. Currently, this mode takes effect only in camera recording scenarios. The URL set by the application is ignored.|
+
+## AVTranscoder<sup>12+</sup>
+
+A transcoding management class that provides APIs to transcode videos. Before calling any API in **AVTranscoder**, you must use [createAVTranscoder()](#mediacreateavtranscoder12) to create an **AVTranscoder** instance.
+
+For details about the AVTranscoder demo, see [Using AVTranscoder for Transcoding](../../media/media/using-avtranscoder-for-transcodering.md).
+
+### Attributes
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+| Name   | Type                                | Read-Only| Optional| Description              |
+| ------- | ------------------------------------ | ---- | ---- | ------------------ |
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       |  No | No  | Source media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+| fdDst<sup>12+</sup>                               | number                 |  No | No  | Destination media file descriptor, which specifies the data source. After creating an **AVTranscoder** instance, you must set both **fdSrc** and **fdDst**.<br>**NOTE**<br> - After the resource handle (FD) is transferred to an **AVTranscoder** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVTranscoders use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
+
+### prepare<sup>12+</sup>
+
+prepare(config: AVTranscoderConfig): Promise\<void>
+
+Sets video transcoding parameters. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Parameters**
+
+| Name| Type                                  | Mandatory| Description                      |
+| ------ | -------------------------------------- | ---- | -------------------------- |
+| config | [AVTranscoderConfig](#avtranscoderconfig12) | Yes  | Video transcoding parameters to set.<!--RP1--><!--RP1End-->|
+
+**Return value**
+
+| Type          | Description                                      |
+| -------------- | ------------------------------------------ |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 401  | The parameter check failed. Return by promise. |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise.       |
+| 5400106  | Unsupported format. Returned by promise.  |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// Configure the parameters based on those supported by the hardware device.
+let avTranscoderConfig: media.AVTranscoderConfig = {
+  audioBitrate : 200000,
+  audioCodec : media.CodecMimeType.AUDIO_AAC,
+  fileFormat : media.ContainerFormatType.CFT_MPEG_4,
+  videoBitrate : 3000000,
+  videoCodec : media.CodecMimeType.VIDEO_AVC,
+}
+
+avTranscoder.prepare(avTranscoderConfig).then(() => {
+  console.info('prepare success');
+}).catch((err: BusinessError) => {
+  console.error('prepare failed and catch error is ' + err.message);
+});
+```
+
+### start<sup>12+</sup>
+
+start(): Promise\<void>
+
+Starts transcoding. This API uses a promise to return the result.
+
+This API can be called only after the [prepare()](#prepare12) API is called.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Return value**
+
+| Type          | Description                                 |
+| -------------- | ------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.start().then(() => {
+  console.info('start AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('start AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### pause<sup>12+</sup>
+
+pause(): Promise\<void>
+
+Pauses transcoding. This API uses a promise to return the result.
+
+This API can be called only after the [start()](#start12) API is called. You can call [resume()](#resume12) to resume transcoding.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Return value**
+
+| Type          | Description                                 |
+| -------------- | ------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.pause().then(() => {
+  console.info('pause AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('pause AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### resume<sup>12+</sup>
+
+resume(): Promise\<void>
+
+Resumes transcoding. This API uses a promise to return the result.
+
+This API can be called only after the [pause()](#pause12) API is called.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Return value**
+
+| Type          | Description                                 |
+| -------------- | ------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.resume().then(() => {
+  console.info('resume AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('resume AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### cancel<sup>12+</sup>
+
+cancel(): Promise\<void>
+
+Cancels transcoding. This API uses a promise to return the result.
+
+This API can be called only after the [prepare()](#prepare12), [start()](#start12), [pause()](#pause12), or [resume()](#resume12) API is called.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Return value**
+
+| Type          | Description                                 |
+| -------------- | ------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                              |
+| -------- | -------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | IO error. Return by promise.           |
+| 5400105  | Service died. Return by promise.       |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.cancel().then(() => {
+  console.info('cancel AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('cancel AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### release<sup>12+</sup>
+
+release(): Promise\<void>
+
+Releases the video transcoding resources. This API uses a promise to return the result.
+
+After the resources are released, you can no longer perform any operation on the **AVTranscoder** instance.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Return value**
+
+| Type          | Description                                       |
+| -------------- | ------------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                         |
+| -------- | --------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+| 5400105  | Service died. Return by promise. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.release().then(() => {
+  console.info('release AVTranscoder success');
+}).catch((err: BusinessError) => {
+  console.error('release AVTranscoder failed and catch error is ' + err.message);
+});
+```
+
+### on('progressUpdate')<sup>12+</sup>
+
+on(type: 'progressUpdate', callback: Callback\<number>): void
+
+Subscribes to transcoding progress updates. An application can subscribe to only one transcoding progress update event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'progressUpdate'** in this case. This event is triggered by the system during transcoding.|
+| callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | Yes  | Callback invoked when the event is triggered. **progress** is a number that indicates the current transcoding progress.|
+
+**Example**
+
+```ts
+avTranscoder.on('progressUpdate', (progress: number) => {
+  console.info('avTranscoder progressUpdate = ' + progress);
+});
+```
+
+### off('progressUpdate')<sup>12+</sup>
+
+off(type:'progressUpdate', callback?: Callback\<number>): void
+
+Unsubscribes from transcoding progress updates.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'progressUpdate'** in this case. This event can be triggered by both user operations and the system.|
+| callback | [Callback\<number>](../apis-basic-services-kit/js-apis-base.md#callback) | No  | Called that has been registered to listen for progress updates. You are advised to use the default value because only the last registered callback is retained in the current callback mechanism.|
+
+**Example**
+
+```ts
+avTranscoder.off('progressUpdate');
+```
+
+### on('error')<sup>12+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+Subscribes to AVTranscoder errors. If this event is reported, call [release()](#release12) to exit the transcoding.
+
+An application can subscribe to only one AVTranscoder error event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Parameters**
+
+| Name  | Type         | Mandatory| Description                                                        |
+| -------- | ------------- | ---- | ------------------------------------------------------------ |
+| type     | string        | Yes  | Event type, which is **'error'** in this case.<br>This event is triggered when an error occurs during recording.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback invoked when the event is triggered.                                      |
+
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message                                  |
+| -------- | ------------------------------------------ |
+| 401      | The parameter check failed. |
+| 801      | Capability not supported. |
+| 5400101  | No memory.            |
+| 5400102  | Operation not allowed. |
+| 5400103  | I/O error.              |
+| 5400104  | Time out.            |
+| 5400105  | Service died.           |
+| 5400106  | Unsupported format.      |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+avTranscoder.on('error', (err: BusinessError) => {
+  console.info('case avTranscoder.on(error) called, errMessage is ' + err.message);
+});
+```
+
+### off('error')<sup>12+</sup>
+
+off(type:'error', callback?: ErrorCallback): void
+
+Unsubscribes from AVTranscoder errors. After the unsubscription, your application can no longer receive AVTranscoder errors.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'error'** in this case.<br>This event is triggered when an error occurs during transcoding.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback that has been registered to listen for AVTranscoder errors.|
+
+**Example**
+
+```ts
+avTranscoder.off('error');
+```
+
+### on('complete')<sup>12+</sup>
+
+on(type: 'complete', callback: Callback\<void>): void
+
+Subscribes to the event indicating that transcoding is complete. An application can subscribe to only one transcoding completion event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
+
+When this event is reported, the current transcoding operation is complete. You need to call [release()](#release12) to exit the transcoding.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                                                        |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | Yes  | Event type, which is **'complete'** in this case. This event is triggered by the system during transcoding.|
+| callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | Yes  | Callback that has been registered to listen for transcoding completion events.|
+
+**Example**
+
+```ts
+avTranscoder.on('complete', async () => {
+  console.info('avTranscoder complete');
+  // Listen for transcoding completion events.
+  // Wait until avTranscoder.release() is complete and then forward, upload, or save the transcoded file.
+  await avTranscoder.release();
+  avTranscoder = undefined;
+});
+```
+
+### off('complete')<sup>12+</sup>
+
+off(type:'complete', callback?: Callback\<void>): void
+
+Unsubscribes from the event indicating that transcoding is complete.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                                        |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| type   | string | Yes  | Event type, which is **'complete'** in this case. This event can be triggered by both user operations and the system.|
+| callback | [Callback\<void>](../apis-basic-services-kit/js-apis-base.md#callback) | No  | Callback that has been registered to listen for transcoding completion events.|
+
+**Example**
+
+```ts
+avTranscoder.off('complete');
+```
+
+## AVTranscoderConfig<sup>12+</sup>
+
+Describes the video transcoding parameters.
+
+**System capability**: SystemCapability.Multimedia.Media.AVTranscoder
+
+| Name           | Type                                   | Read-Only| Optional| Description                                                        |
+| --------------- | ---------------------------------------- |---- | ---- | ------------------------------------------------------------ |
+| audioBitrate | number     | No| Yes| Bit rate of the output audio, in bit/s. The value range is [1-500000]. The default value is 48 kbit/s.|
+| audioCodec | [CodecMimeType](#codecmimetype8)     | No| Yes | Encoding format of the output audio. Currently, only AAC is supported. The default value is **AAC**.                  |
+| fileFormat         | [ContainerFormatType](#containerformattype8) | No| No  | Container format of the output video file. Currently, only MP4 is supported.|
+| videoBitrate         | number | No|  Yes | Bit rate of the output video, in bit/s. The default bit rate depends on the resolution of the output video. The default bit rate is 1 Mbit/s for the resolution in the range [240p, 480P], 2 Mbit/s for the range (480P,720P], 4 Mbit/s for the range (720P,1080P], and 8 Mbit/s for 1080p or higher.|
+| videoCodec        | [CodecMimeType](#codecmimetype8) | No| Yes  | Encoding format of the output video. Currently, only AVC and HEVC are supported. If the source video is in HEVC format, the default value is **HEVC**. Otherwise, the default value is **AVC**.|
+| videoFrameWidth        | number | No|  Yes  | Width of the output video frame, in px. The value range is [240 - 3840]. The default value is the width of the source video frame.|
+| videoFrameHeight        | number | No|  Yes  | Height of the output video frame, in px. The value range is [240 - 2160]. The default value is the height of the source video frame.|
 
 
 
@@ -3512,7 +5415,7 @@ For details about the demo for obtaining audio or video metadata, see [Obtaining
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.|
+| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVMetadataExtractor** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVMetadataExtractor use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 | dataSrc<sup>11+</sup>                               | [AVDataSrcDescriptor](#avdatasrcdescriptor10)                | Yes  | Yes  | Streaming media resource descriptor, which specifies the data source. Before obtaining metadata, you must set the data source through either **fdSrc** or **dataSrc**.<br> When an application obtains a media file from the remote, you can set **dataSrc** to obtain the metadata before the application finishes the downloading.|
 
 ### fetchMetadata<sup>11+</sup>
@@ -3541,14 +5444,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.fetchMetadata((error: BusinessError, metadata: media.AVMetadata) => {
   if (error) {
-    console.error(`fetchMetadata callback failed, err = ${JSON.stringify(error)}`);
+    console.error(`Failed to fetch Metadata, err = ${JSON.stringify(error)}`);
     return;
   }
-  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`);
+  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`);
 });
 ```
 
@@ -3578,12 +5481,12 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.fetchMetadata().then((metadata: media.AVMetadata) => {
-  console.info(`fetchMetadata callback success, genre: ${metadata.genre}`)
+  console.info(`Succeeded in fetching Metadata, genre: ${metadata.genre}`)
 }).catch((error: BusinessError) => {
-  console.error(`fetchMetadata catchCallback, error message:${error.message}`);
+  console.error(`Failed to fetch Metadata, error message:${error.message}`);
 });
 ```
 
@@ -3613,14 +5516,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
 avMetadataExtractor.fetchAlbumCover((error: BusinessError, pixelMap: image.PixelMap) => {
   if (error) {
-    console.error(`fetchAlbumCover callback failed, error = ${JSON.stringify(error)}`);
+    console.error(`Failed to fetch AlbumCover, error = ${JSON.stringify(error)}`);
     return;
   }
   pixel_map = pixelMap;
@@ -3653,15 +5556,15 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let pixel_map : image.PixelMap | undefined = undefined;
 
 avMetadataExtractor.fetchAlbumCover().then((pixelMap: image.PixelMap) => {
   pixel_map = pixelMap;
 }).catch((error: BusinessError) => {
-  console.error(`fetchAlbumCover catchCallback, error message:${error.message}`);
+  console.error(`Failed to fetch AlbumCover, error message:${error.message}`);
 });
 ```
 
@@ -3677,7 +5580,7 @@ Releases this **AVMetadataExtractor** instance. This API uses an asynchronous ca
 
 | Name  | Type                                        | Mandatory| Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void>                   | Yes  |Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -3690,14 +5593,14 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.release((error: BusinessError) => {
   if (error) {
-    console.error(`release failed, err = ${JSON.stringify(error)}`);
+    console.error(`Failed to release, err = ${JSON.stringify(error)}`);
     return;
   }
-  console.info(`release success.`);
+  console.info(`Succeeded in releasing.`);
 });
 ```
 
@@ -3713,7 +5616,7 @@ Releases this **AVMetadataExtractor** instance. This API uses a promise to retur
 
 | Type          | Description                                    |
 | -------------- | ---------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -3726,41 +5629,55 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 avMetadataExtractor.release().then(() => {
-  console.info(`release success.`);
+  console.info(`Succeeded in releasing.`);
 }).catch((error: BusinessError) => {
-  console.error(`release catchCallback, error message:${error.message}`);
+  console.error(`Failed to release, error message:${error.message}`);
 });
 ```
 
 ## AVMetadata<sup>11+</sup>
 
-Defines the audio and video metadata.
+Defines the audio and video metadata. Parameters that are not declared as read-only in [AVRecorderConfig](#avrecorderconfig9) can be used as input parameters for recording of [AVRecorder](#avrecorder9).
 
 **System capability**: SystemCapability.Multimedia.Media.AVMetadataExtractor
 
 | Name  | Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| album     | string | No  | Title of the album.    |
-| albumArtist | string | No  | Artist of the album.|
-| artist | string | No  | Artist of the media asset.|
-| author | string | No  | Author of the media asset.|
-| dateTime | string | No  | Time when the media asset is created.|
-| dateTimeFormat | string | No  | Time when the media asset is created. The value is in the YYYY-MM-DD HH:mm:ss format.|
-| composer | string | No  | Composer of the media asset.|
-| duration | string | No  | Duration of the media asset.|
+| album     | string | No  | Title of the album. This parameter is read-only in the current version.    |
+| albumArtist | string | No  | Artist of the album. This parameter is read-only in the current version.|
+| artist | string | No  | Artist of the media asset. This parameter is read-only in the current version.|
+| author | string | No  | Author of the media asset. This parameter is read-only in the current version.|
+| dateTime | string | No  | Time when the media asset is created. This parameter is read-only in the current version.|
+| dateTimeFormat | string | No  | Time when the media asset is created. The value is in the YYYY-MM-DD HH:mm:ss format. This parameter is read-only in the current version.|
+| composer | string | No  | Composer of the media asset. This parameter is read-only in the current version.|
+| duration | string | No  | Duration of the media asset. This parameter is read-only in the current version.|
 | genre | string | No  | Type or genre of the media asset.|
-| hasAudio | string | No  | Whether the media asset contains audio.|
-| hasVideo | string | No  | Whether the media asset contains a video.|
-| mimeType | string | No  | MIME type of the media asset.|
-| trackCount | string | No  | Number of tracks of the media asset.|
-| sampleRate | string | No  | Audio sampling rate, in Hz.|
-| title | string | No  | Title of the media asset.|
-| videoHeight | string | No  | Video height, in px.|
-| videoWidth | string | No  | Video width, in px.|
+| hasAudio | string | No  | Whether the media asset contains audio. This parameter is read-only in the current version.|
+| hasVideo | string | No  | Whether the media asset contains a video. This parameter is read-only in the current version.|
+| mimeType | string | No  | MIME type of the media asset. This parameter is read-only in the current version.|
+| trackCount | string | No  | Number of tracks of the media asset. This parameter is read-only in the current version.|
+| sampleRate | string | No  | Audio sampling rate, in Hz. This parameter is read-only in the current version.|
+| title | string | No  | Title of the media asset. This parameter is read-only in the current version. This parameter is read-only in the current version.|
+| videoHeight | string | No  | Video height, in px. This parameter is read-only in the current version.|
+| videoWidth | string | No  | Video width, in px. This parameter is read-only in the current version.|
 | videoOrientation | string | No  | Video rotation direction, in degrees.|
+| hdrType<sup>12+</sup> | [HdrType](#hdrtype12) | No  | HDR type of the media asset. This parameter is read-only in the current version.|
+| location<sup>12+</sup> | [Location](#location) | No| Geographical location of the media asset.|
+| customInfo<sup>12+</sup> | Record<string, string> | No| Custom key-value mappings obtained from **moov.meta.list**.|
+
+## HdrType<sup>12+</sup>
+
+Enumerates the HDR types.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name                     | Value  | Description                  |
+| ------------------------- | ---- | ---------------------- |
+| AV_HDR_TYPE_NONE          | 0    | No HDR.|
+| AV_HDR_TYPE_VIVID         | 1    | HDR VIVID.|
 
 ## media.createAudioPlayer<sup>(deprecated)</sup>
 
@@ -3802,20 +5719,20 @@ Creates a **VideoPlayer** instance. This API uses an asynchronous callback to re
 
 | Name  | Type                                      | Mandatory| Description                                                        |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[VideoPlayer](#videoplayerdeprecated)> | Yes  | Callback used to return the result. If the operation is successful, a **VideoPlayer** instance is returned; otherwise, **null** is returned. The instance can be used to manage and play video.|
+| callback | AsyncCallback<[VideoPlayer](#videoplayerdeprecated)> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **VideoPlayer** instance created; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
-    console.info('video createVideoPlayer success');
+    console.info('Succeeded in creating VideoPlayer');
   } else {
-    console.error(`video createVideoPlayer fail, error:${error}`);
+    console.error(`Failed to create VideoPlayer, error:${error}`);
   }
 });
 ```
@@ -3841,18 +5758,18 @@ Creates a **VideoPlayer** instance. This API uses a promise to return the result
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
 media.createVideoPlayer().then((video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
-    console.info('video createVideoPlayer success');
+    console.info('Succeeded in creating VideoPlayer');
   } else {
-    console.error('video createVideoPlayer fail');
+    console.error('Failed to create VideoPlayer');
   }
 }).catch((error: BusinessError) => {
-  console.error(`video catchCallback, error:${error}`);
+  console.error(`Failed to create VideoPlayer, error:${error}`);
 });
 ```
 
@@ -3916,11 +5833,11 @@ Provides APIs to manage and play audio. Before calling any API in **AudioPlayer*
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name                           | Type                                                  | Readable| Writable| Description                                                        |
+| Name                           | Type                                                  | Read-Only| Optional| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| src                             | string                                                 | Yes  | Yes  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, and WAV) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of the audio file. This attribute is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
-| loop                            | boolean                                                | Yes  | Yes  | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
+| src                             | string                                                 | No  | No  | Audio file URI. The mainstream audio formats (M4A, AAC, MP3, OGG, WAV, and AMR) are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>**Required permissions**: ohos.permission.READ_MEDIA or ohos.permission.INTERNET|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of the audio file. This attribute is required when audio assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Music 1 (address offset: 0, byte length: 100)<br>Music 2 (address offset: 101; byte length: 50)<br>Music 3 (address offset: 151, byte length: 150)<br>1. To play music 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play music 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play music 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent music file, use **src=fd://xx**.<br>|
+| loop                            | boolean                                                | No  | No | Whether to loop audio playback. The value **true** means to loop audio playback, and **false** means the opposite.                |
 | audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
 | currentTime                     | number                                                 | Yes  | No  | Current audio playback position, in ms.                      |
 | duration                        | number                                                 | Yes  | No  | Audio duration, in ms.                                |
@@ -3942,7 +5859,7 @@ Starts to play an audio asset. This API can be called only after the **'dataLoad
 
 ```ts
 audioPlayer.on('play', () => {    // Set the 'play' event callback.
-  console.info('audio play success');
+  console.info('audio play called');
 });
 audioPlayer.play();
 ```
@@ -3963,7 +5880,7 @@ Pauses audio playback.
 
 ```ts
 audioPlayer.on('pause', () => {    // Set the 'pause' event callback.
-  console.info('audio pause success');
+  console.info('audio pause called');
 });
 audioPlayer.pause();
 ```
@@ -3984,7 +5901,7 @@ Stops audio playback.
 
 ```ts
 audioPlayer.on('stop', () => {    // Set the 'stop' event callback.
-  console.info('audio stop success');
+  console.info('audio stop called');
 });
 audioPlayer.stop();
 ```
@@ -4005,7 +5922,7 @@ Resets the audio asset to be played.
 
 ```ts
 audioPlayer.on('reset', () => {    // Set the 'reset' event callback.
-  console.info('audio reset success');
+  console.info('audio reset called');
 });
 audioPlayer.reset();
 ```
@@ -4033,10 +5950,10 @@ Seeks to the specified playback position.
 ```ts
 audioPlayer.on('timeUpdate', (seekDoneTime: number) => {    // Set the 'timeUpdate' event callback.
   if (seekDoneTime == null) {
-    console.error('audio seek fail');
+    console.error('Failed to seek');
     return;
   }
-  console.info('audio seek success. seekDoneTime: ' + seekDoneTime);
+  console.info('Succeeded in seek. seekDoneTime: ' + seekDoneTime);
 });
 audioPlayer.seek(30000); // Seek to 30000 ms.
 ```
@@ -4063,7 +5980,7 @@ Sets the volume.
 
 ```ts
 audioPlayer.on('volumeChange', () => {    // Set the 'volumeChange' event callback.
-  console.info('audio volumeChange success');
+  console.info('audio volumeChange called');
 });
 audioPlayer.setVolume(1);    // Set the volume to 100%.
 ```
@@ -4091,7 +6008,7 @@ audioPlayer = undefined;
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
-Obtains the audio track information. This API uses an asynchronous callback to return the result. It can be called only after the **'dataLoad'** event is triggered.
+Obtains the audio track information. It can be called only after the **'dataLoad'** event is triggered. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -4103,18 +6020,18 @@ Obtains the audio track information. This API uses an asynchronous callback to r
 
 | Name  | Type                                                        | Mandatory| Description                                      |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<Array\<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return a **MediaDescription** array, which records the audio track information.|
+| callback | AsyncCallback\<Array\<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the MediaDescription array obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
-    console.info('audio getTrackDescription success');
+    console.info('Succeeded in getting TrackDescription');
   } else {
-    console.error(`audio getTrackDescription fail, error:${error}`);
+    console.error(`Failed to get TrackDescription, error:${error}`);
   }
 });
 ```
@@ -4123,7 +6040,7 @@ audioPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.Medi
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
-Obtains the audio track information. This API uses a promise to return the result. It can be called only after the **'dataLoad'** event is triggered.
+Obtains the audio track information. It can be called only after the **'dataLoad'** event is triggered. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -4140,12 +6057,12 @@ Obtains the audio track information. This API uses a promise to return the resul
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
-  console.info('audio getTrackDescription success');
+  console.info('Succeeded in getting TrackDescription');
 }).catch((error: BusinessError) => {
-  console.error(`audio catchCallback, error:${error}`);
+  console.error(`Failed to get TrackDescription, error:${error}`);
 });
 ```
 
@@ -4166,7 +6083,7 @@ Subscribes to the audio buffering update event. This API works only under online
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'bufferingUpdate'** in this case.       |
-| callback | function | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
+| callback | function | Yes  | Callback invoked when the event is triggered.<br>The value of [BufferingInfoType](#bufferinginfotype8) is fixed at **0**.|
 
 **Example**
 
@@ -4199,37 +6116,37 @@ Subscribes to the audio playback events.
 **Example**
 
 ```ts
-import fs from '@ohos.file.fs';
-import { BusinessError } from '@ohos.base';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioPlayer: media.AudioPlayer = media.createAudioPlayer();  // Create an AudioPlayer instance.
 audioPlayer.on('dataLoad', () => {            // Set the 'dataLoad' event callback, which is triggered when the src attribute is set successfully.
-  console.info('audio set source success');
+  console.info('audio set source called');
   audioPlayer.play();                       // Start the playback and trigger the 'play' event callback.
 });
 audioPlayer.on('play', () => {                // Set the 'play' event callback.
-  console.info('audio play success');
+  console.info('audio play called');
   audioPlayer.seek(30000);                  // Call the seek() API and trigger the 'timeUpdate' event callback.
 });
 audioPlayer.on('pause', () => {               // Set the 'pause' event callback.
-  console.info('audio pause success');
+  console.info('audio pause called');
   audioPlayer.stop();                       // Stop the playback and trigger the 'stop' event callback.
 });
 audioPlayer.on('reset', () => {               // Set the 'reset' event callback.
-  console.info('audio reset success');
+  console.info('audio reset called');
   audioPlayer.release();                    // Release the AudioPlayer instance.
   audioPlayer = undefined;
 });
 audioPlayer.on('timeUpdate', (seekDoneTime: number) => {  // Set the 'timeUpdate' event callback.
   if (seekDoneTime == null) {
-    console.error('audio seek fail');
+    console.error('Failed to seek');
     return;
   }
-  console.info('audio seek success, and seek time is ' + seekDoneTime);
+  console.info('Succeeded in seek, and seek time is ' + seekDoneTime);
   audioPlayer.setVolume(0.5);                // Set the volume to 50% and trigger the 'volumeChange' event callback.
 });
 audioPlayer.on('volumeChange', () => {         // Set the 'volumeChange' event callback.
-  console.info('audio volumeChange success');
+  console.info('audio volumeChange called');
   audioPlayer.pause();                       // Pause the playback and trigger the 'pause' event callback.
 });
 audioPlayer.on('finish', () => {               // Set the 'finish' event callback.
@@ -4246,12 +6163,12 @@ let fdPath = 'fd://';
 let path = '/data/accounts/account_0/appdata/ohos.xxx.xxx.xxx/01.mp3';
 fs.open(path).then((file) => {
   fdPath = fdPath + '' + file.fd;
-  console.info('open fd success fd is' + fdPath);
+  console.info('Succeeded in opening fd, fd is' + fdPath);
   audioPlayer.src = fdPath;  // Set the src attribute and trigger the 'dataLoad' event callback.
 }, (err: BusinessError) => {
-  console.error('open fd failed err is' + err);
+  console.error('Failed to open fd, err is' + err);
 }).catch((err: BusinessError) => {
-  console.error('open fd failed err is' + err);
+  console.error('Failed to open fd, err is' + err);
 });
 ```
 
@@ -4279,10 +6196,10 @@ Subscribes to the **'timeUpdate'** event. This event is reported every second wh
 ```ts
 audioPlayer.on('timeUpdate', (newTime: number) => {    // Set the 'timeUpdate' event callback.
   if (newTime == null) {
-    console.error('audio timeUpadate fail');
+    console.error('Failed to do timeUpadate');
     return;
   }
-  console.info('audio timeUpadate success. seekDoneTime: ' + newTime);
+  console.info('Succeeded in doing timeUpadate. seekDoneTime: ' + newTime);
 });
 audioPlayer.play();    // The 'timeUpdate' event is triggered when the playback starts.
 ```
@@ -4309,10 +6226,10 @@ Subscribes to the audio interruption event. For details, see [audio.InterruptEve
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 audioPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt success,and InterruptEvent info is:' + info)
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
 })
 ```
 
@@ -4338,7 +6255,7 @@ Subscribes to audio playback error events. After an error event is reported, you
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioPlayer.on('error', (error: BusinessError) => {  // Set the 'error' event callback.
   console.error(`audio error called, error: ${error}`);
@@ -4348,6 +6265,8 @@ audioPlayer.setVolume(3); // Set volume to an invalid value to trigger the 'erro
 
 ## AudioState<sup>(deprecated)</sup>
 
+type AudioState = 'idle' | 'playing' | 'paused' | 'stopped' | 'error'
+
 Enumerates the audio playback states. You can obtain the state through the **state** attribute.
 
 > **NOTE**
@@ -4356,13 +6275,13 @@ Enumerates the audio playback states. You can obtain the state through the **sta
 
 **System capability**: SystemCapability.Multimedia.Media.AudioPlayer
 
-| Name   | Type  | Description                                          |
-| ------- | ------ | ---------------------------------------------- |
-| idle    | string | No audio playback is in progress. The audio player is in this state after the **'dataload'** or **'reset'** event is triggered.|
-| playing | string | Audio playback is in progress. The audio player is in this state after the **'play'** event is triggered.          |
-| paused  | string | Audio playback is paused. The audio player is in this state after the **'pause'** event is triggered.         |
-| stopped | string | Audio playback is stopped. The audio player is in this state after the **'stop'** event is triggered.     |
-| error   | string | Audio playback is in the error state.                                    |
+| Type   | Description                                          |
+| ------- | ---------------------------------------------- |
+| 'idle'    | No audio playback is in progress. The audio player is in this state after the **'dataload'** or **'reset'** event is triggered.|
+| 'playing' | Audio playback is in progress. The audio player is in this state after the **'play'** event is triggered.          |
+| 'paused'  | Audio playback is paused. The audio player is in this state after the **'pause'** event is triggered.         |
+| 'stopped' | Audio playback is stopped. The audio player is in this state after the **'stop'** event is triggered.     |
+| 'error'   | Audio playback is in the error state.                                    |
 
 ## VideoPlayer<sup>(deprecated)</sup>
 
@@ -4376,13 +6295,13 @@ Provides APIs to manage and play video. Before calling any API of **VideoPlayer*
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
-| Name                           | Type                                                  | Readable| Writable| Description                                                        |
+| Name                           | Type                                                  | Read-Only| Optional| Description                                                        |
 | ------------------------------- | ------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| url<sup>8+</sup>                | string                                                 | Yes  | Yes  | Video URL. The video formats MP4, MPEG-TS, and MKV are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>5. File type: file\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
-| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | Yes  | Yes  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor {fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor {fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor {fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
-| loop<sup>8+</sup>               | boolean                                                | Yes  | Yes  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
-| videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | Yes  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**.                                              |
-| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | Yes  | Yes  | Audio interruption mode.                                              |
+| url<sup>8+</sup>                | string                                                 | No  | No  | Video URL. The video formats MP4, MPEG-TS, and MKV are supported.<br>**Example of supported URLs**:<br>1. FD: fd://xx<br>![](figures/en-us_image_url.png)<br>2. HTTP: http\://xx<br>3. HTTPS: https\://xx<br>4. HLS: http\://xx or https\://xx<br>5. File type: file\://xx<br>**NOTE**<br>WebM is no longer supported since API version 11.|
+| fdSrc<sup>9+</sup>              | [AVFileDescriptor](#avfiledescriptor9)                 | No  | No  | Description of a video file. This attribute is required when video assets of an application are continuously stored in a file.<br>**Example:**<br>Assume that a music file that stores continuous music assets consists of the following:<br>Video 1 (address offset: 0, byte length: 100)<br>Video 2 (address offset: 101; byte length: 50)<br>Video 3 (address offset: 151, byte length: 150)<br>1. To play video 1: AVFileDescriptor { fd = resource handle; offset = 0; length = 100; }<br>2. To play video 2: AVFileDescriptor { fd = resource handle; offset = 101; length = 50; }<br>3. To play video 3: AVFileDescriptor { fd = resource handle; offset = 151; length = 150; }<br>To play an independent video file, use **src=fd://xx**.<br>|
+| loop<sup>8+</sup>               | boolean                                                | No  | No  | Whether to loop video playback. The value **true** means to loop video playback, and **false** means the opposite.                |
+| videoScaleType<sup>9+</sup>     | [VideoScaleType](#videoscaletype9)                     | No  | Yes  | Video scale type. The default value is **VIDEO_SCALE_TYPE_FIT**.                                              |
+| audioInterruptMode<sup>9+</sup> | [audio.InterruptMode](../apis-audio-kit/js-apis-audio.md#interruptmode9) | No  | Yes  | Audio interruption mode.                                              |
 | currentTime<sup>8+</sup>        | number                                                 | Yes  | No  | Current video playback position, in ms.                      |
 | duration<sup>8+</sup>           | number                                                 | Yes  | No  | Video duration, in ms. The value **-1** indicates the live mode.            |
 | state<sup>8+</sup>              | [VideoPlayState](#videoplaystatedeprecated)                    | Yes  | No  | Video playback state.                                            |
@@ -4393,7 +6312,7 @@ Provides APIs to manage and play video. Before calling any API of **VideoPlayer*
 
 setDisplaySurface(surfaceId: string, callback: AsyncCallback\<void>): void
 
-Sets **SurfaceId**. This API uses an asynchronous callback to return the result.
+Sets a surface ID. This API uses an asynchronous callback to return the result.
 
 *Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
 
@@ -4407,20 +6326,20 @@ Sets **SurfaceId**. This API uses an asynchronous callback to return the result.
 
 | Name   | Type                | Mandatory| Description                     |
 | --------- | -------------------- | ---- | ------------------------- |
-| surfaceId | string               | Yes  | Surface ID to set.                |
-| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| surfaceId | string               | Yes  | Surface ID.                |
+| callback  | AsyncCallback\<void> | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
-  if (err == null) {
-    console.info('setDisplaySurface success!');
+  if (err) {
+    console.error('Failed to set DisplaySurface!');
   } else {
-    console.error('setDisplaySurface fail!');
+    console.info('Succeeded in setting DisplaySurface!');
   }
 });
 ```
@@ -4429,7 +6348,7 @@ videoPlayer.setDisplaySurface(surfaceId, (err: BusinessError) => {
 
 setDisplaySurface(surfaceId: string): Promise\<void>
 
-Sets **SurfaceId**. This API uses a promise to return the result.
+Sets a surface ID. This API uses a promise to return the result.
 
 *Note: **SetDisplaySurface** must be called between the URL setting and the calling of **prepare**. A surface must be set for video streams without audio. Otherwise, the calling of **prepare** fails.
 
@@ -4443,22 +6362,22 @@ Sets **SurfaceId**. This API uses a promise to return the result.
 
 | Name   | Type  | Mandatory| Description     |
 | --------- | ------ | ---- | --------- |
-| surfaceId | string | Yes  | Surface ID to set.|
+| surfaceId | string | Yes  | Surface ID.|
 
 **Return value**
 
 | Type          | Description                          |
 | -------------- | ------------------------------ |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let surfaceId: string = '';
 videoPlayer.setDisplaySurface(surfaceId).then(() => {
-  console.info('setDisplaySurface success');
+  console.info('Succeeded in setting DisplaySurface');
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
@@ -4480,18 +6399,18 @@ Prepares for video playback. This API uses an asynchronous callback to return th
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.prepare((err: BusinessError) => {
-  if (err == null) {
-    console.info('prepare success!');
+  if (err) {
+    console.error('Failed to prepare!');
   } else {
-    console.error('prepare fail!');
+    console.info('Succeeded in preparing!');
   }
 });
 ```
@@ -4512,15 +6431,15 @@ Prepares for video playback. This API uses a promise to return the result.
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.prepare().then(() => {
-  console.info('prepare success');
+  console.info('Succeeded in preparing');
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
@@ -4530,7 +6449,7 @@ videoPlayer.prepare().then(() => {
 
 play(callback: AsyncCallback\<void>): void
 
-Starts to play video assets. This API uses an asynchronous callback to return the result.
+Starts video playback. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -4542,18 +6461,18 @@ Starts to play video assets. This API uses an asynchronous callback to return th
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.play((err: BusinessError) => {
-  if (err == null) {
-    console.info('play success!');
+  if (err) {
+    console.error('Failed to play!');
   } else {
-    console.error('play fail!');
+    console.info('Succeeded in playing!');
   }
 });
 ```
@@ -4562,7 +6481,7 @@ videoPlayer.play((err: BusinessError) => {
 
 play(): Promise\<void>
 
-Starts to play video assets. This API uses a promise to return the result.
+Starts video playback. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -4574,15 +6493,15 @@ Starts to play video assets. This API uses a promise to return the result.
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.play().then(() => {
-  console.info('play success');
+  console.info('Succeeded in playing');
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
@@ -4603,18 +6522,18 @@ Pauses video playback. This API uses an asynchronous callback to return the resu
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.pause((err: BusinessError) => {
-  if (err == null) {
-    console.info('pause success!');
+  if (err) {
+    console.error('Failed to pause!');
   } else {
-    console.error('pause fail!');
+    console.info('Succeeded in pausing!');
   }
 });
 ```
@@ -4635,15 +6554,15 @@ Pauses video playback. This API uses a promise to return the result.
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.pause().then(() => {
-  console.info('pause success');
+  console.info('Succeeded in pausing');
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
@@ -4665,18 +6584,18 @@ Stops video playback. This API uses an asynchronous callback to return the resul
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.stop((err: BusinessError) => {
-  if (err == null) {
-    console.info('stop success!');
+  if (err) {
+    console.error('Failed to stop!');
   } else {
-    console.error('stop fail!');
+    console.info('Succeeded in stopping!');
   }
 });
 ```
@@ -4697,15 +6616,15 @@ Stops video playback. This API uses a promise to return the result.
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.stop().then(() => {
-  console.info('stop success');
+  console.info('Succeeded in stopping');
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
@@ -4715,7 +6634,7 @@ videoPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-Resets the video asset to be played. This API uses an asynchronous callback to return the result.
+Resets video playback. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -4727,18 +6646,18 @@ Resets the video asset to be played. This API uses an asynchronous callback to r
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.reset((err: BusinessError) => {
-  if (err == null) {
-    console.info('reset success!');
+  if (err) {
+    console.error('Failed to reset!');
   } else {
-    console.error('reset fail!');
+    console.info('Succeeded in resetting!');
   }
 });
 ```
@@ -4747,7 +6666,7 @@ videoPlayer.reset((err: BusinessError) => {
 
 reset(): Promise\<void>
 
-Resets the video asset to be played. This API uses a promise to return the result.
+Resets video playback. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -4759,15 +6678,15 @@ Resets the video asset to be played. This API uses a promise to return the resul
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.reset().then(() => {
-  console.info('reset success');
+  console.info('Succeeded in resetting');
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
@@ -4790,29 +6709,29 @@ Seeks to the specified playback position. The previous key frame at the specifie
 | Name  | Type                  | Mandatory| Description                                                        |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | timeMs   | number                 | Yes  | Position to seek to, in ms. The value range is [0, duration].|
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the new playback position; otherwise, **err** is an error object.                              |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
-    console.info('video createVideoPlayer success');
+    console.info('Succeeded in creating VideoPlayer');
   } else {
-    console.error(`video createVideoPlayer fail, error:${error}`);
+    console.error(`Failed to create VideoPlayer, error:${error}`);
   }
 });
 
 let seekTime: number = 5000;
 videoPlayer.seek(seekTime, (err: BusinessError, result: number) => {
-  if (err == null) {
-    console.info('seek success!');
+  if (err) {
+    console.error('Failed to do seek!');
   } else {
-    console.error('seek fail!');
+    console.info('Succeeded in doing seek!');
   }
 });
 ```
@@ -4835,29 +6754,29 @@ Seeks to the specified playback position. This API uses an asynchronous callback
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | timeMs   | number                 | Yes  | Position to seek to, in ms. The value range is [0, duration].|
 | mode     | [SeekMode](#seekmode8) | Yes  | Seek mode.                                                  |
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result.                              |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the new playback position; otherwise, **err** is an error object.                              |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
-    console.info('video createVideoPlayer success');
+    console.info('Succeeded in creating VideoPlayer');
   } else {
-    console.error(`video createVideoPlayer fail, error:${error}`);
+    console.error(`Failed to create VideoPlayer, error:${error}`);
   }
 });
 let seekTime: number = 5000;
 if (videoPlayer) {
   (videoPlayer as media.VideoPlayer).seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC, (err: BusinessError, result: number) => {
-    if (err == null) {
-      console.info('seek success!');
+    if (err) {
+      console.error('Failed to do seek!');
     } else {
-      console.error('seek fail!');
+      console.info('Succeeded in doing seek!');
     }
   });
 }
@@ -4891,27 +6810,27 @@ Seeks to the specified playback position. If **mode** is not specified, the prev
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
-    console.info('video createVideoPlayer success');
+    console.info('Succeeded in creating VideoPlayer');
   } else {
-    console.error(`video createVideoPlayer fail, error:${error}`);
+    console.error(`Failed to create VideoPlayer, error:${error}`);
   }
 });
 let seekTime: number = 5000;
 if (videoPlayer) {
   (videoPlayer as media.VideoPlayer).seek(seekTime).then((seekDoneTime: number) => { // seekDoneTime indicates the position after the seek operation is complete.
-    console.info('seek success');
+    console.info('Succeeded in doing seek');
   }).catch((error: BusinessError) => {
     console.error(`video catchCallback, error:${error}`);
   });
 
   (videoPlayer as media.VideoPlayer).seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime: number) => {
-    console.info('seek success');
+    console.info('Succeeded in doing seek');
   }).catch((error: BusinessError) => {
     console.error(`video catchCallback, error:${error}`);
   });
@@ -4935,19 +6854,19 @@ Sets the volume. This API uses an asynchronous callback to return the result.
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
 | vol      | number               | Yes  | Relative volume. The value ranges from 0.00 to 1.00. The value **1.00** indicates the maximum volume (100%).|
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.                                        |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the setting is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let vol: number = 0.5;
 videoPlayer.setVolume(vol, (err: BusinessError) => {
-  if (err == null) {
-    console.info('setVolume success!');
+  if (err) {
+    console.error('Failed to set Volume!');
   } else {
-    console.error('setVolume fail!');
+    console.info('Succeeded in setting Volume!');
   }
 });
 ```
@@ -4974,16 +6893,16 @@ Sets the volume. This API uses a promise to return the result.
 
 | Type          | Description                     |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let vol: number = 0.5;
 videoPlayer.setVolume(vol).then(() => {
-  console.info('setVolume success');
+  console.info('Succeeded in setting Volume');
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
@@ -5005,18 +6924,18 @@ Releases the video playback resources. This API uses an asynchronous callback to
 
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.release((err: BusinessError) => {
-  if (err == null) {
-    console.info('release success!');
+  if (err) {
+    console.error('Failed to release!');
   } else {
-    console.error('release fail!');
+    console.info('Succeeded in releasing!');
   }
 });
 ```
@@ -5037,15 +6956,15 @@ Releases the video playback resources. This API uses a promise to return the res
 
 | Type          | Description                         |
 | -------------- | ----------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.release().then(() => {
-  console.info('release success');
+  console.info('Succeeded in releasing');
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
 });
@@ -5067,18 +6986,18 @@ Obtains the video track information. This API uses an asynchronous callback to r
 
 | Name  | Type                                                        | Mandatory| Description                                      |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------ |
-| callback | AsyncCallback\<Array\<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return a **MediaDescription** array, which records the video track information.|
+| callback | AsyncCallback\<Array\<[MediaDescription](#mediadescription8)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the MediaDescription array obtained; otherwise, **err** is an error object.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.getTrackDescription((error: BusinessError, arrList: Array<media.MediaDescription>) => {
   if ((arrList) != null) {
-    console.info('video getTrackDescription success');
+    console.info('Succeeded in getting TrackDescription');
   } else {
-    console.error(`video getTrackDescription fail, error:${error}`);
+    console.error(`Failed to get TrackDescription, error:${error}`);
   }
 });
 ```
@@ -5099,18 +7018,18 @@ Obtains the video track information. This API uses a promise to return the resul
 
 | Type                                                  | Description                                           |
 | ------------------------------------------------------ | ----------------------------------------------- |
-| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return a **MediaDescription** array, which records the video track information.|
+| Promise<Array<[MediaDescription](#mediadescription8)>> | Promise used to return the MediaDescription array that holds the video track information.|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) => {
   if (arrList != null) {
-    console.info('video getTrackDescription success');
+    console.info('Succeeded in getting TrackDescription');
   } else {
-    console.error('video getTrackDescription fail');
+    console.error('Failed to get TrackDescription');
   }
 }).catch((error: BusinessError) => {
   console.error(`video catchCallback, error:${error}`);
@@ -5121,7 +7040,7 @@ videoPlayer.getTrackDescription().then((arrList: Array<media.MediaDescription>) 
 
 setSpeed(speed: number, callback: AsyncCallback\<number>): void
 
-Sets the video playback speed. This API uses an asynchronous callback to return the result.
+Sets the playback speed. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
@@ -5134,29 +7053,29 @@ Sets the video playback speed. This API uses an asynchronous callback to return 
 | Name  | Type                  | Mandatory| Description                                                      |
 | -------- | ---------------------- | ---- | ---------------------------------------------------------- |
 | speed    | number                 | Yes  | Video playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
-| callback | AsyncCallback\<number> | Yes  | Callback used to return the result.                                  |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the playback speed; otherwise, **err** is an error object.                                  |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
-    console.info('video createVideoPlayer success');
+    console.info('Succeeded in creating VideoPlayer');
   } else {
-    console.error(`video createVideoPlayer fail, error:${error}`);
+    console.error(`Failed to create VideoPlayer, error:${error}`);
   }
 });
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 if (videoPlayer) {
   (videoPlayer as media.VideoPlayer).setSpeed(speed, (err: BusinessError, result: number) => {
-    if (err == null) {
-      console.info('setSpeed success!');
+    if (err) {
+      console.error('Failed to set Speed!');
     } else {
-      console.error('setSpeed fail!');
+      console.info('Succeeded in setting Speed!');
     }
   });
 }
@@ -5166,7 +7085,7 @@ if (videoPlayer) {
 
 setSpeed(speed: number): Promise\<number>
 
-Sets the video playback speed. This API uses a promise to return the result.
+Sets the playback speed. This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -5184,28 +7103,28 @@ Sets the video playback speed. This API uses a promise to return the result.
 
 | Type            | Description                                                        |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<number>| Promise used to return playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
+| Promise\<number>| Promise used to return the playback speed. For details, see [PlaybackSpeed](#playbackspeed8).|
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let videoPlayer: media.VideoPlayer | null = null;
 media.createVideoPlayer((error: BusinessError, video: media.VideoPlayer) => {
   if (video != null) {
     videoPlayer = video;
-    console.info('video createVideoPlayer success');
+    console.info('Succeeded in creating VideoPlayer');
   } else {
-    console.error(`video createVideoPlayer fail, error:${error}`);
+    console.error(`Failed to create VideoPlayer, error:${error}`);
   }
 });
 let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
 if (videoPlayer) {
   (videoPlayer as media.VideoPlayer).setSpeed(speed).then((result: number) => {
-    console.info('setSpeed success');
+    console.info('Succeeded in setting Speed');
   }).catch((error: BusinessError) => {
-    console.error(`video catchCallback, error:${error}`);
+    console.error(`Failed to set Speed, error:${error}`);//todo:: error.
   });
 }
 ```
@@ -5233,7 +7152,7 @@ Subscribes to the video playback completion event.
 
 ```ts
 videoPlayer.on('playbackCompleted', () => {
-  console.info('playbackCompleted success!');
+  console.info('playbackCompleted called!');
 });
 ```
 
@@ -5241,7 +7160,7 @@ videoPlayer.on('playbackCompleted', () => {
 
 on(type: 'bufferingUpdate', callback: (infoType: BufferingInfoType, value: number) => void): void
 
-Subscribes to the video buffering update event. Only network playback supports this subscription.
+Subscribes to the video buffering update event. This API works only under online playback.
 
 > **NOTE**
 >
@@ -5254,7 +7173,7 @@ Subscribes to the video buffering update event. Only network playback supports t
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'bufferingUpdate'** in this case.       |
-| callback | function | Yes  | Callback invoked when the event is triggered.<br>When [BufferingInfoType](#bufferinginfotype8) is set to **BUFFERING_PERCENT** or **CACHED_DURATION**, **value** is valid. Otherwise, **value** is fixed at **0**.|
+| callback | function | Yes  | Callback invoked when the event is triggered.<br>The value of [BufferingInfoType](#bufferinginfotype8) is fixed at **0**.|
 
 **Example**
 
@@ -5288,7 +7207,7 @@ Subscribes to the frame rendering start event.
 
 ```ts
 videoPlayer.on('startRenderFrame', () => {
-  console.info('startRenderFrame success!');
+  console.info('startRenderFrame called!');
 });
 ```
 
@@ -5299,7 +7218,6 @@ on(type: 'videoSizeChanged', callback: (width: number, height: number) => void):
 Subscribes to the video width and height change event.
 
 > **NOTE**
->
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [AVPlayer.on('videoSizeChange')](#onvideosizechange9) instead.
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
@@ -5341,10 +7259,10 @@ Subscribes to the audio interruption event. For details, see [audio.InterruptEve
 **Example**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 videoPlayer.on('audioInterrupt', (info: audio.InterruptEvent) => {
-  console.info('audioInterrupt success,and InterruptEvent info is:' + info)
+  console.info('audioInterrupt called,and InterruptEvent info is:' + info)
 })
 ```
 
@@ -5370,7 +7288,7 @@ Subscribes to video playback error events. After an error event is reported, you
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 videoPlayer.on('error', (error: BusinessError) => {  // Set the 'error' event callback.
   console.error(`video error called, error: ${error}`);
@@ -5380,6 +7298,8 @@ videoPlayer.url = 'fd://error';  // Set an incorrect URL to trigger the 'error' 
 
 ## VideoPlayState<sup>(deprecated)</sup>
 
+type VideoPlayState = 'idle' | 'prepared' | 'playing' | 'paused' | 'stopped' | 'error'
+
 Enumerates the video playback states. You can obtain the state through the **state** attribute.
 
 > **NOTE**
@@ -5388,14 +7308,14 @@ Enumerates the video playback states. You can obtain the state through the **sta
 
 **System capability**: SystemCapability.Multimedia.Media.VideoPlayer
 
-| Name    | Type  | Description          |
-| -------- | ------ | -------------- |
-| idle     | string | The video player is idle.|
-| prepared | string | Video playback is being prepared.|
-| playing  | string | Video playback is in progress.|
-| paused   | string | Video playback is paused.|
-| stopped  | string | Video playback is stopped.|
-| error    | string | Video playback is in the error state.    |
+| Type    | Description          |
+| -------- | -------------- |
+| 'idle'     | The video player is idle.|
+| 'prepared' | Video playback is being prepared.|
+| 'playing'  | Video playback is in progress.|
+| 'paused'   | Video playback is paused.|
+| 'stopped'  | Video playback is stopped.|
+| 'error'    | Video playback is in the error state.    |
 
 ## AudioRecorder<sup>(deprecated)</sup>
 
@@ -5425,6 +7345,14 @@ Prepares for recording.
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
 | config | [AudioRecorderConfig](#audiorecorderconfigdeprecated) | Yes  | Audio recording parameters, including the audio output URI, encoding format, sampling rate, number of audio channels, and output format.|
 
+**Error codes**
+
+For details about the error codes, see [Media Error Codes](errorcode-media.md).
+
+| ID| Error Message             |
+| -------- | --------------------- |
+| 201      | permission denied     |
+
 **Example**
 
 ```ts
@@ -5438,7 +7366,7 @@ let audioRecorderConfig: media.AudioRecorderConfig = {
   location : { latitude : 30, longitude : 130},
 }
 audioRecorder.on('prepare', () => {    // Set the 'prepare' event callback.
-  console.info('prepare success');
+  console.info('prepare called');
 });
 audioRecorder.prepare(audioRecorderConfig);
 ```
@@ -5459,7 +7387,7 @@ Starts audio recording. This API can be called only after the **'prepare'** even
 
 ```ts
 audioRecorder.on('start', () => {    // Set the 'start' event callback.
-  console.info('audio recorder start success');
+  console.info('audio recorder start called');
 });
 audioRecorder.start();
 ```
@@ -5480,7 +7408,7 @@ Pauses audio recording. This API can be called only after the **'start'** event 
 
 ```ts
 audioRecorder.on('pause', () => {    // Set the 'pause' event callback.
-  console.info('audio recorder pause success');
+  console.info('audio recorder pause called');
 });
 audioRecorder.pause();
 ```
@@ -5501,7 +7429,7 @@ Resumes audio recording. This API can be called only after the **'pause'** event
 
 ```ts
 audioRecorder.on('resume', () => { // Set the 'resume' event callback.
-  console.info('audio recorder resume success');
+  console.info('audio recorder resume called');
 });
 audioRecorder.resume();
 ```
@@ -5522,7 +7450,7 @@ Stops audio recording.
 
 ```ts
 audioRecorder.on('stop', () => {    // Set the 'stop' event callback.
-  console.info('audio recorder stop success');
+  console.info('audio recorder stop called');
 });
 audioRecorder.stop();
 ```
@@ -5543,7 +7471,7 @@ Releases the audio recording resources.
 
 ```ts
 audioRecorder.on('release', () => {    // Set the 'release' event callback.
-  console.info('audio recorder release success');
+  console.info('audio recorder release called');
 });
 audioRecorder.release();
 audioRecorder = undefined;
@@ -5567,7 +7495,7 @@ Before resetting audio recording, you must call **stop()** to stop recording. Af
 
 ```ts
 audioRecorder.on('reset', () => {    // Set the 'reset' event callback.
-  console.info('audio recorder reset success');
+  console.info('audio recorder reset called');
 });
 audioRecorder.reset();
 ```
@@ -5588,13 +7516,13 @@ Subscribes to the audio recording events.
 
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | Yes  | Event type. The following events are supported:<br>- 'prepare': triggered when the **prepare()** API is called and the audio recording parameters are set.<br>- 'start': triggered when the **start()** API is called and audio recording starts.<br>- 'pause': triggered when the **pause()** API is called and audio recording is paused.<br>- 'resume': triggered when the **resume()** API is called and audio recording is resumed.<br>- 'stop': triggered when the **stop()** API is called and audio recording stops.<br>- 'release': triggered when the **release()** API is called and the recording resources are released.<br>- 'reset': triggered when the **reset()** API is called and audio recording is reset.|
+| type     | string   | Yes  | Event type. The following events are supported: 'prepare'\|'start'\|  'pause' \| 'resume' \|'stop'\|'release'\|'reset'<br>- 'prepare': triggered when the **prepare()** API is called and the audio recording parameters are set.<br>- 'start': triggered when the **start()** API is called and audio recording starts.<br>- 'pause': triggered when the **pause()** API is called and audio recording is paused.<br>- 'resume': triggered when the **resume()** API is called and audio recording is resumed.<br>- 'stop': triggered when the **stop()** API is called and audio recording stops.<br>- 'release': triggered when the **release()** API is called and the recording resources are released.<br>- 'reset': triggered when the **reset()** API is called and audio recording is reset.|
 | callback | ()=>void | Yes  | Callback invoked when the event is triggered.                                          |
 
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRecorder: media.AudioRecorder = media.createAudioRecorder(); // Create an AudioRecorder instance.
 let audioRecorderConfig: media.AudioRecorderConfig = {
@@ -5610,26 +7538,26 @@ audioRecorder.on('error', (error: BusinessError) => {  // Set the 'error' event 
   console.error(`audio error called, error: ${error}`);
 });
 audioRecorder.on('prepare', () => {  // Set the 'prepare' event callback.
-  console.info('prepare success');
+  console.info('prepare called');
   audioRecorder.start();  // // Start recording and trigger the 'start' event callback.
 });
 audioRecorder.on('start', () => {  // Set the 'start' event callback.
-  console.info('audio recorder start success');
+  console.info('audio recorder start called');
 });
 audioRecorder.on('pause', () => {  // Set the 'pause' event callback.
-  console.info('audio recorder pause success');
+  console.info('audio recorder pause called');
 });
 audioRecorder.on('resume', () => {  // Set the 'resume' event callback.
-  console.info('audio recorder resume success');
+  console.info('audio recorder resume called');
 });
 audioRecorder.on('stop', () => {  // Set the 'stop' event callback.
-  console.info('audio recorder stop success');
+  console.info('audio recorder stop called');
 });
 audioRecorder.on('release', () => {  // Set the 'release' event callback.
-  console.info('audio recorder release success');
+  console.info('audio recorder release called');
 });
 audioRecorder.on('reset', () => {  // Set the 'reset' event callback.
-  console.info('audio recorder reset success');
+  console.info('audio recorder reset called');
 });
 audioRecorder.prepare(audioRecorderConfig)  // // Set recording parameters and trigger the 'prepare' event callback.
 ```
@@ -5656,7 +7584,7 @@ Subscribes to audio recording error events. After an error event is reported, yo
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioRecorderConfig: media.AudioRecorderConfig = {
   audioEncoder : media.AudioEncoder.AAC_LC,
@@ -5687,7 +7615,7 @@ Describes audio recording configurations.
 | ----------------------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | audioEncoder                        | [AudioEncoder](#audioencoderdeprecated)                | No  | Audio encoding format. The default value is **AAC_LC**.<br>**Note**: This parameter is deprecated since API version 8. Use **audioEncoderMime** instead.|
 | audioEncodeBitRate                  | number                                       | No  | Audio encoding bit rate. The default value is **48000**.                             |
-| audioSampleRate                     | number                                       | No  | Audio sampling rate. The default value is **48000**.                             |
+| audioSampleRate                     | number                                       | No  | Audio sampling rate. The default value is **48000**.<br>Variable bit rate. The bit rate is for reference only.                             |
 | numberOfChannels                    | number                                       | No  | Number of audio channels. The default value is **2**.                                 |
 | format                              | [AudioOutputFormat](#audiooutputformatdeprecated)      | No  | Audio output format. The default value is **MPEG_4**.<br>**Note**: This parameter is deprecated since API version 8. Use **fileFormat** instead.|
 | location                            | [Location](#location)                        | No  | Geographical location of the recorded audio.                                        |
@@ -5725,7 +7653,7 @@ Enumerates the audio output formats.
 
 | Name    | Value  | Description                                                        |
 | -------- | ---- | ------------------------------------------------------------ |
-| DEFAULT  | 0    | Default encapsulation format.<br>This API is defined but not implemented yet.             |
+| DEFAULT  | 0    | Default output format.<br>This API is defined but not implemented yet.             |
 | MPEG_4   | 2    | MPEG-4.                                          |
 | AMR_NB   | 3    | AMR_NB.<br>This API is defined but not implemented yet.         |
 | AMR_WB   | 4    | AMR_WB.<br>This API is defined but not implemented yet.         |
@@ -5757,15 +7685,15 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator((error: BusinessError, generator: media.AVImageGenerator) => {
   if (generator != null) {
     avImageGenerator = generator;
-    console.info('createAVImageGenerator success');
+    console.info('Succeeded in creating AVImageGenerator');
   } else {
-    console.error(`createAVImageGenerator fail, error message:${error.message}`);
+    console.error(`Failed to creat AVImageGenerator, error message:${error.message}`);
   }
 });
 ```
@@ -5795,18 +7723,18 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avImageGenerator: media.AVImageGenerator;
 media.createAVImageGenerator().then((generator: media.AVImageGenerator) => {
   if (generator != null) {
     avImageGenerator = generator;
-    console.info('createAVImageGenerator success');
+    console.info('Succeeded in creating AVImageGenerator');
   } else {
-    console.error('createAVImageGenerator fail');
+    console.error('Failed to creat AVImageGenerator');
   }
 }).catch((error: BusinessError) => {
-  console.error(`AVImageGenerator catchCallback, error message:${error.message}`);
+  console.error(`Failed to creat AVImageGenerator, error message:${error.message}`);
 });
 ```
 
@@ -5822,7 +7750,7 @@ For details about the demo for obtaining video thumbnails, see [Obtaining Video 
 
 | Name                                               | Type                                                        | Readable| Writable| Description                                                        |
 | --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
-| fdSrc<sup>11+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor {fd = resourceHandle; offset = 0; length = 100; }**.|
+| fdSrc<sup>12+</sup>                                  | [AVFileDescriptor](js-apis-media.md#avfiledescriptor9)                       | Yes  | Yes  | Media file descriptor, which specifies the data source.<br>**Example:**<br>There is a media file that stores continuous assets, the address offset is 0, and the byte length is 100. Its file descriptor is **AVFileDescriptor { fd = resourceHandle; offset = 0; length = 100; }**.<br>**NOTE**<br>- After the resource handle (FD) is transferred to an **AVImageGenerator** instance, do not use the resource handle to perform other read and write operations, including but not limited to transferring this handle to other **AVPlayer**, **AVMetadataExtractor**, **AVImageGenerator**, or **AVTranscoder** instance. Competition occurs when multiple AVImageGenerator use the same resource handle to read and write files at the same time, resulting in errors in obtaining data.|
 
 ### fetchFrameByTime<sup>12+</sup>
 
@@ -5839,7 +7767,7 @@ Obtains a video thumbnail. This API uses an asynchronous callback to return the 
 | timeUs | number                   | Yes  | Time of the video for which a thumbnail is to be obtained, in μs.|
 | options | [AVImageQueryOptions](#avimagequeryoptions12)     | Yes  | Relationship between the time passed in and the video frame.|
 | param | [PixelMapParams](#pixelmapparams12)     | Yes  | Format parameters of the thumbnail to be obtained.|
-| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | Yes  | Callback used to return the video thumbnail.|
+| callback | AsyncCallback\<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)>   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the **PixelMap** instance obtained; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -5853,9 +7781,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -5874,16 +7801,16 @@ let param: media.PixelMapParams = {
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.info(`createAVImageGenerator success`);
+    console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param, (error: BusinessError, pixelMap) => {
       if (error) {
-        console.error(`fetchFrameByTime callback failed, err = ${JSON.stringify(error)}`)
+        console.error(`Failed to fetch FrameByTime, err = ${JSON.stringify(error)}`)
         return
       }
       pixel_map = pixelMap;
     });
   } else {
-    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
   };
 });
 ```
@@ -5922,9 +7849,8 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
-import image from '@ohos.multimedia.image';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { image } from '@kit.ImageKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 let pixel_map : image.PixelMap | undefined = undefined;
@@ -5943,14 +7869,14 @@ let param: media.PixelMapParams = {
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.info(`createAVImageGenerator success`);
+    console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.fetchFrameByTime(timeUs, queryOption, param).then((pixelMap: image.PixelMap) => {
       pixel_map = pixelMap;
     }).catch((error: BusinessError) => {
-      console.error(`fetchFrameByTime catchCallback, error message:${error.message}`);
+      console.error(`Failed to fetch FrameByTime, error message:${error.message}`);
     });
   } else {
-    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
   };
 });
 ```
@@ -5967,7 +7893,7 @@ Releases this **AVMetadataExtractor** instance. This API uses an asynchronous ca
 
 | Name  | Type                                        | Mandatory| Description                               |
 | -------- | -------------------------------------------- | ---- | ----------------------------------- |
-| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<void>                   | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -5980,25 +7906,24 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
-// Release the instance.
+// Release the resources.
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.info(`createAVImageGenerator success`);
+    console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.release((error: BusinessError) => {
       if (error) {
-        console.error(`release failed, err = ${JSON.stringify(error)}`);
+        console.error(`Failed to release, err = ${JSON.stringify(error)}`);
         return;
       }
-      console.info(`release success.`);
+      console.info(`Succeeded in releasing`);
     });
   } else {
-    console.error(`createAVImageGenerator fail, error message:${err.message}`);
+    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
   };
 });
 ```
@@ -6015,7 +7940,7 @@ Releases this **AVMetadataExtractor** instance. This API uses a promise to retur
 
 | Type          | Description                                    |
 | -------------- | ---------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -6028,8 +7953,7 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 **Example**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import media from '@ohos.multimedia.media';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 
@@ -6037,14 +7961,14 @@ let avImageGenerator: media.AVImageGenerator | undefined = undefined;
 media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenerator) => {
   if(generator != null){
     avImageGenerator = generator;
-    console.info(`createAVImageGenerator success`);
+    console.info(`Succeeded in creating AVImageGenerator`);
     avImageGenerator.release().then(() => {
-      console.info(`release success.`);
+      console.info(`Succeeded in releasing.`);
     }).catch((error: BusinessError) => {
-      console.error(`release catchCallback, error message:${error.message}`);
+      console.error(`Failed to release, error message:${error.message}`);
     });
   } else {
-    console.error(`creatAVImageGenerator fail, error message:${err.message}`);
+    console.error(`Failed to creat AVImageGenerator, error message:${err.message}`);
   };
 });
 ```
@@ -6062,6 +7986,7 @@ The time passed in for obtaining the thumbnail may be different from the time of
 | AV_IMAGE_QUERY_NEXT_SYNC       | 0   | The key frame at or next to the specified time is selected.                      |
 | AV_IMAGE_QUERY_PREVIOUS_SYNC        | 1    | The key frame at or prior to the specified time is selected.|
 | AV_IMAGE_QUERY_CLOSEST_SYNC        | 2    | The key frame closest to the specified time is selected.                |
+| AV_IMAGE_QUERY_CLOSEST             | 3    | The frame (not necessarily a key frame) closest to the specified time is selected.|
 
 ## PixelMapParams<sup>12+</sup>
 
@@ -6069,16 +7994,18 @@ Defines the format parameters of the video thumbnail to be obtained.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
-| Name    | Type  |  Readable  |   Writable   |  Description                  |
-| -------- | ------ |   ------| ------ | ---------------------- |
-| width     | number |  Yes  |  Yes  |  Width of the thumbnail.        |
-| height | number |  Yes  |  Yes  | Height of the thumbnail.|
+| Name  | Type  | Readable| Writable| Description                                                                           |
+|--------|--------|------|------|---------------------------------------------------------------------------------|
+| width  | number | Yes  | Yes  | Width of the thumbnail. The value must be greater than 0 and less than or equal to the width of the original video. Otherwise, the returned thumbnail will not be scaled.|
+| height | number | Yes  | Yes  | Height of the thumbnail. The value must be greater than 0 and less than or equal to the height of the original video. Otherwise, the returned thumbnail will not be scaled.|
 
 ## media.createMediaSourceWithUrl<sup>12+</sup>
 
-createMediaSourceWithUrl(url: string, header?: Record\<string, string>): MediaSource
+createMediaSourceWithUrl(url: string, headers?: Record\<string, string>): MediaSource
 
 Creates a media source for streaming media to be pre-downloaded.
+
+**Atomic service API**: This API can be used in atomic services since API version 13.
 
 **System capability**: SystemCapability.Multimedia.Media.Core
 
@@ -6086,8 +8013,8 @@ Creates a media source for streaming media to be pre-downloaded.
 
 | Name  | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| url | string | Yes  | URL of the media source. The following streaming media formats are supported: HLS, HTTP-FLV, DASH, and HTTPS. |
-| header | Record\<string, string> | No  | HTTP header customized for streaming media pre-download.|
+| url | string | Yes  | - URL of the media source. The following streaming media formats are supported: HLS, HTTP-FLV, DASH, and HTTPS.<br> - FD path of the local M3U8 file. |
+| headers | Record\<string, string> | No  | HTTP header customized for streaming media pre-download.|
 
 **Return value**
 
@@ -6101,23 +8028,452 @@ For details about the error codes, see [Media Error Codes](errorcode-media.md).
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 401      | Parameter error. Return by callback.       |
-| 5400101  | No memory. Return by callback. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 5400101  | No memory.  |
 
-**Example**
+**Example 1**
 
 ```ts
-import media from '@ohos.multimedia.media'
-
-let header: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
-let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  header);
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
 ```
+
+**Example 2**
+
+<!--code_no_check-->
+```ts
+import { common } from '@kit.AbilityKit';
+import { resourceManager } from '@kit.LocalizationKit';
+
+private context: Context | undefined;
+constructor(context: Context) {
+  this.context = context; // this.getUIContext().getHostContext();
+}
+let mgr = this.context.resourceManager;
+let fileDescriptor = await mgr.getRawFd("xxx.m3u8");
+
+let fd:string = fileDescriptor.fd.toString();
+let offset:string = fileDescriptor.offset.toString();
+let length:string = fileDescriptor.length.toString();
+let fdUrl:string = "fd://" + fd + "?offset=" + offset + "&size=" + length;
+
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl(fdUrl,  headers);
+
+let mimeType : media.AVMimeTypes = media.AVMimeTypes.APPLICATION_M3U8;
+mediaSource.setMimeType(mimeType);
+
+```
+## media.createMediaSourceWithStreamData<sup>19+</sup>
+
+createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
+
+Creates a multi-bitrate media source for streaming media. Currently, only the HTTP-FLV multi-bitrate media source is supported.
+
+**Atomic service API**: This API can be used in atomic services since API version 19.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name | Type                                | Read-Only| Optional| Description                                                 |
+| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream19)> | No| No  | Array of **MediaStream** objects. The supported streaming media format is HTTP-FLV.|
+
+**Return value**
+
+| Type                         | Description               |
+| ----------------------------- | ------------------- |
+| [MediaSource](#mediasource12) | **MediaSource** instance.|
+
+**Example 1**
+
+```ts
+let streams : Array<media.MediaStream> = [];
+streams.push({url: "http://xxx/480p.flv", width: 854, height: 480, bitrate: 800000});
+streams.push({url: "http:/xxx/720p.flv", width: 1280, height: 720, bitrate: 2000000});
+streams.push({url: "http:/xxx/1080p.flv", width: 1280, height: 720, bitrate: 2000000});
+let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(streams);
+```
+
+## MediaStream<sup>19+</sup>
+
+Defines the media stream data information.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name | Type  | Read-Only| Optional| Description                                                        |
+| ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
+| url     | string | No  | No  | URL of the media resource. Only HTTP and HTTPS are supported.                                                |
+| width   | number | No  | No  | Video width of the media resource. If the video width is unknown, set it to **0**. In this case, [PlaybackStrategy](#playbackstrategy12) cannot be used for optimal matching.|
+| height  | number | No  | No  | Video height of the media resource. If the video width is unknown, set it to **0**. In this case, [PlaybackStrategy](#playbackstrategy12) cannot be used for optimal matching.|
+| bitrate | number | No  | No  | Bit rate of media resources, in bit/s.                                       |
 
 ## MediaSource<sup>12+</sup>
 
 Defines the media data information, which is from [createMediaSourceWithUrl](#mediacreatemediasourcewithurl12).
 
 **System capability**: SystemCapability.Multimedia.Media.Core
+
+### setMimeType<sup>12+</sup>
+
+setMimeType(mimeType: AVMimeTypes): void
+
+Sets the MIME type to help the player process extended media sources.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| mimeType | [AVMimeTypes](#mediasource12) | Yes  | MIME type.|
+
+### setMediaResourceLoaderDelegate<sup>18+</sup>
+
+setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
+
+Sets a **MediaSourceLoader** object, which is used to help the player request media data.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| resourceLoader | [MediaSourceLoader](#mediasourceloader18) | Yes  | **MediaSourceLoader** object used to obtain media data for the player.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+
+// Implemented by applications as required.
+let resourceLoader: media.MediaSourceLoader = {
+  open: SourceOpenCallback,
+  read: SourceReadCallback,
+  close: SourceCloseCallback
+};
+
+mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
+```
+
+## SourceOpenCallback<sup>18+</sup>
+
+type SourceOpenCallback = (request: MediaSourceLoadingRequest) => number
+
+This callback function is implemented by applications to handle resource open requests and return a unique handle for the opened resource.
+
+> **NOTE**
+>
+> The client must return the handle immediately after processing the request.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| request | [MediaSourceLoadingRequest](#mediasourceloadingrequest18) | Yes | 	Parameters for the resource open request, including detailed information about the requested resource and the data push method.|
+
+**Return value**
+
+| Type  | Description                |
+| -------- | -------------------- |
+| number  | Handle for the current resource open request. A value greater than 0 means the request is successful, whereas a value less than or equal to 0 means it fails.<br> - The handle for the request object is unique.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // Open the resource and return a unique handle, ensuring the mapping between the UUID and request.
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+}
+```
+
+## SourceReadCallback<sup>18+</sup>
+
+type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => void
+
+This callback function is implemented by applications to handle resource read requests. When data is available, applications should push it to the player using the [respondData](#responddata18) API of the corresponding **MediaSourceLoadingRequest** object.
+
+> **NOTE**
+>
+> The client must return the handle immediately after processing the request.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | Yes | 	ID for the resource handle.|
+| requestedOffset | number | Yes | 	Offset of the current media data relative to the start of the resource.|
+| requestedLength | number | Yes | 	Length of the current request. The value **-1** indicates reaching the end of the resource. After pushing the data, call [finishLoading](#finishloading18) to notify the player that the push is complete.|
+
+**Example**
+
+```ts
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // Check whether the UUID is valid and store the read request. Avoid blocking the request while pushing data and header information.
+}
+```
+
+## SourceCloseCallback<sup>18+</sup>
+
+type SourceCloseCallback = (uuid: number) => void
+
+This callback function is implemented by applications to release related resources.
+
+> **NOTE**
+>
+> The client must return the handle immediately after processing the request.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid      | number | Yes | 	ID for the resource handle.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // Clear resources related to the current UUID.
+  requests.remove(uuid);
+}
+```
+
+## MediaSourceLoader<sup>18+</sup>
+
+Defines a media data loader, which needs to be implemented by applications.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| open | [SourceOpenCallback](#sourceopencallback18) | Yes | Callback function implemented by applications to handle resource open requests.|
+| read | [SourceReadCallback](#sourcereadcallback18) | Yes | Callback function implemented by applications to handle resource read requests.|
+| close | [SourceCloseCallback](#sourceclosecallback18) | Yes | Callback function implemented by applications to handle resource close requests.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+
+let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
+let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let mediaSourceLoader: media.MediaSourceLoader = {
+  open: (request: media.MediaSourceLoadingRequest) => {
+    console.log(`Opening resource: ${request.url}`);
+    // Open the resource and return a unique handle, ensuring the mapping between the UUID and request.
+    uuid += 1;
+    requests.set(uuid, request);
+    return uuid;
+  },
+  read: (uuid: number, requestedOffset: number, requestedLength: number) => {
+    console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+    // Check whether the UUID is valid and store the read request. Avoid blocking the request while pushing data and header information.
+  },
+  close: (uuid: number) => {
+    console.log(`Closing resource with handle ${uuid}`);
+    // Clear resources related to the current UUID.
+    requests.remove(uuid);
+  }
+};
+
+mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
+let playStrategy : media.PlaybackStrategy = {
+  preferredBufferDuration: 20,
+};
+let player = media.createAVPlayer();
+player.setMediaSource(mediaSource, playStrategy);
+```
+
+## MediaSourceLoadingRequest<sup>18+</sup>
+
+Defines a loading request object. Applications use this object to obtain the location of the requested resource and to interact with the player for data exchange.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+### Attributes
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name  | Type   | Read-Only  | Optional  | Description               |
+| --------------------------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
+| url<sup>18+</sup>        | string                        | No  | No  | Resource URL, which is the path to the resource that the application needs to open.|
+| header<sup>18+</sup>     | Record<string, string>        | No  | Yes  | HTTP request header. If the header exists, the application should set the header information in the HTTP request when downloading data.|
+
+### respondData<sup>18+</sup>
+
+respondData(uuid: number, offset: number, buffer: ArrayBuffer): number
+
+Sends data to the player.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | Yes | 	ID for the resource handle.|
+| offset | number | Yes | 	Offset of the current media data relative to the start of the resource.|
+| buffer | ArrayBuffer | Yes | 	Media data sent to the player.<br>**Note**: Do not transmit irrelevant data, as it can affect normal data parsing and playback.|
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| number | Number of bytes received by the server.<br>- A return value less than 0 indicates failure.<br>- A return value of -2 indicates that the player no longer needs the current data, and the client should stop the current read process.<br>- A return value of -3 indicates that the player's buffer is full, and the client should wait for the next read.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+let request = requests.get(uuid);
+let offset = 0; // Offset of the current media data relative to the start of the resource.
+let buf = new ArrayBuffer(0); // Data defined by the application and pushed to the player.
+let num = request.respondData(uuid, offset, buf);
+```
+
+### respondHeader<sup>18+</sup>
+
+respondHeader(uuid: number, header?: Record<string, string>, redirectUrl?: string): void
+
+Sends response header information to the player. This API must be called before the first call to [respondData](#responddata18).
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | Yes | 	ID for the resource handle.|
+| header | Record<string, string> | No | Header information in the HTTP response. The application can intersect the header fields with the fields supported by the underlying layer for parsing or directly pass in all corresponding header information.<br> - The following fields need to be parsed by the underlying player: Transfer-Encoding, Location, Content-Type, Content-Range, Content-Encode, Accept-Ranges, and content-length.|
+| redirectUrl | string | No | 	Redirect URL in the HTTP response.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+// The application fills this in as needed.
+let header:Record<string, string> = {
+  'Transfer-Encoding':'xxx',
+  'Location' : 'xxx',
+  'Content-Type' : 'xxx',
+  'Content-Range' : 'xxx',
+  'Content-Encode' : 'xxx',
+  'Accept-Ranges' : 'xxx',
+  'content-length' : 'xxx'
+};
+let request = requests.get(uuid);
+request.respondHeader(uuid, header);
+```
+
+### finishLoading<sup>18+</sup>
+
+finishLoading(uuid: number, state: LoadingRequestError): void
+
+Notifies the player of the current request status. After pushing all the data for a single resource, the application should send the **LOADING_ERROR_SUCCESS** state to notify the player that the resource push is complete.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | -------------------- |
+| uuid | number | Yes | 	ID for the resource handle.|
+| state  | [LoadingRequestError](#loadingrequesterror18) | Yes | Request status.|
+
+**Example**
+
+```ts
+import HashMap from '@ohos.util.HashMap';
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+let uuid = 1;
+
+let request = requests.get(uuid);
+let loadingError = media.LoadingRequestError.LOADING_ERROR_SUCCESS;
+request.finishLoading(uuid, loadingError);
+```
+
+## LoadingRequestError<sup>18+</sup>
+
+Enumerates the reasons for data loading status changes.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+| Name                | Value  | Description                          |
+| -------------------- | ---- | ------------------------------ |
+| LOADING_ERROR_SUCCESS | 0    | Returned by the client to indicate that the end of the resource.|
+| LOADING_ERROR_NOT_READY | 1    | Returned by the client to indicate that the resource is not ready for access.|
+| LOADING_ERROR_NO_RESOURCE | 2    | Returned by the client to indicate that the requested resource URL does not exist.|
+| LOADING_ERROR_INVAID_HANDLE | 3    | Returned by the client to indicate that the ID of the requested resource handle (specified by **uuid**) is invalid.|
+| LOADING_ERROR_ACCESS_DENIED | 4    | Returned by the client to indicate that the client does not have permission to request the resource.|
+| LOADING_ERROR_ACCESS_TIMEOUT | 5    | Returned by the client to indicate that the access to the resource times out.|
+| LOADING_ERROR_AUTHORIZE_FAILED | 6    | Returned by the client to indicate that authorization fails.|
+
+## AVMimeTypes<sup>12+</sup>
+
+Enumerates the MIME type, which is set by using [setMimeType](#setmimetype12).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Multimedia.Media.Core
+
+
+| Name      | Value  | Description                                                        |
+| ---------- | ---- | ------------------------------------------------------------ |
+| APPLICATION_M3U8       | application/m3u8    | Local M3U8 file.|
+
 
 ## PlaybackStrategy<sup>12+</sup>
 
@@ -6127,21 +8483,28 @@ Describes the playback strategy.
 
 | Name | Type    | Mandatory| Description                |
 | -------- | -------- | ---- | -------------------- |
-| preferredWidth| number | No  | Preferred width, which is of the int type, for example, **1080**.|
-| preferredHeight | number | No  | Preferred height, which is of the int type, for example, **1920**.|
-| preferredBufferDuration | number | No | Preferred buffer duration, in seconds. The value ranges from 1 to 20.|
-| preferredHdr | boolean | No  | Whether HDR is preferred. The value **true** means that HDR is preferred, and **false** means the opposite.|
+| preferredWidth| number | No  | Preferred width, in px. The value is an integer greater than 0, for example, 1080.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferredHeight | number | No  | Preferred height, in px. The value is an integer greater than 0, for example, 1920.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferredBufferDuration | number | No | Preferred buffer duration, in seconds. The value ranges from 1 to 20.<br>For details, see [Minimizing Stuttering in Online Video Playback](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-online-video-playback-lags-practice).<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| preferredHdr | boolean | No  | Whether HDR is preferred. The value **true** means that HDR is preferred, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| enableSuperResolution<sup>18+</sup> | boolean | No  | Whether to enable super resolution. The value **true** means to enable it, and **false** (default) means to disable it.<br>If super resolution is disabled, super resolution APIs cannot be called. If super resolution is enabled, the default target resolution is 1920 x 1080, in px.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| showFirstFrameOnPrepare<sup>17+</sup> | boolean | No  | Whether to show the first frame after **prepare** is called. The value **true** means to show the first frame after **prepare** is called, and **false** means the opposite. The default value is **false**.<br>**Atomic service API**: This API can be used in atomic services since API version 17.|
+| mutedMediaType | [MediaType](#mediatype8) | No| Media type for muted playback. Only **MediaType.MEDIA_TYPE_AUD** can be set.|
+| preferredAudioLanguage<sup>13+</sup> | string | No| Preferred audio track language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not supported, and you are advised to retain the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| preferredSubtitleLanguage<sup>13+</sup> | string | No| Preferred subtitle language. Set this parameter based on service requirements in DASH scenarios. In non-DASH scenarios, this parameter is not supported, and you are advised to retain the default value.<br>**Atomic service API**: This API can be used in atomic services since API version 13.|
+| preferredBufferDurationForPlaying<sup>18+</sup> | number | No| Preferred buffer duration for playback. The playback starts once the buffering time exceeds this value. The value ranges from 0 to 20, in seconds.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| thresholdForAutoQuickPlay<sup>18+</sup> | number | No| Thread for starting smart frame catching, in seconds. The value must be greater than or equal to 2s and greater than **preferredBufferDurationForPlaying**. The default value is 5s.     <br>You can use the playback strategy to maintain the real-time quality of live streams by adjusting the smart frame-catch threshold. For FLV live streams, you can set this parameter based on service requirements. This parameter is not supported for non-FLV live streams yet. Fluctuations in network conditions can cause the player to build up a lot of data over time. The player periodically checks the gap between the current playback time and the timestamp of the latest frame in the cache. If this gap is too big, the player starts catching up at 1.2x speed. Once the gap falls below **preferredBufferDurationForPlaying**, the player stops catching up and resumes the normal playback speed.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 
 ## AVScreenCaptureRecordPreset<sup>12+</sup>
 
-Enumerates the encoding and encapsulation formats used during screen capture.
+Enumerates the encoding and container formats used during screen capture.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
 | Name                             | Value  | Description                                        |
 | --------------------------------- | ---- | -------------------------------------------- |
-| SCREEN_RECORD_PRESET_H264_AAC_MP4 | 0    | The H.264 video encoding format, AAC audio encoding format, and MP4 encapsulation format are used.|
-| SCREEN_RECORD_PRESET_H265_AAC_MP4 | 1    | The H.265 video encoding format, AAC audio encoding format, and MP4 encapsulation format are used.|
+| SCREEN_RECORD_PRESET_H264_AAC_MP4 | 0    | The H.264 video encoding format, AAC audio encoding format, and MP4 container format are used.|
+| SCREEN_RECORD_PRESET_H265_AAC_MP4 | 1    | The H.265 video encoding format, AAC audio encoding format, and MP4 container format are used.|
 
 ## AVScreenCaptureStateCode<sup>12+</sup>
 
@@ -6161,6 +8524,18 @@ Enumerates the screen capture states used in callbacks.
 | SCREENCAPTURE_STATE_MIC_UNMUTED_BY_USER  | 7    | The microphone is unmuted by the user.      |
 | SCREENCAPTURE_STATE_ENTER_PRIVATE_SCENE  | 8    | The system enters a privacy page during screen capture.      |
 | SCREENCAPTURE_STATE_EXIT_PRIVATE_SCENE   | 9    | The system exits a privacy page during screen capture.      |
+| SCREENCAPTURE_STATE_STOPPED_BY_USER_SWITCHES   | 10    | Screen capture is interrupted by system user switchover.      |
+
+## AVScreenCaptureFillMode<sup>18+</sup>
+
+Enumerates the video fill modes during screen capture.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+| Name                             | Value  | Description                                        |
+| --------------------------------- | ---- | -------------------------------------------- |
+| PRESERVE_ASPECT_RATIO | 0    | Keeps the original aspect ratio, matching the aspect ratio of the physical screen.|
+| SCALE_TO_FILL | 1    | Stretches the image to fit the specified dimensions.|
 
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
@@ -6173,15 +8548,17 @@ Defines the screen capture parameters.
 | fd                | number                                                       | Yes  | FD of the file output.                                          |
 | frameWidth        | number                                                       | No  | Video width, in px. The default value varies according to the display in use.|
 | frameHeight       | number                                                       | No  | Video height, in px. The default value varies according to the display in use.|
-| videoBitrate      | number                                                       | No  | Video bit rate . The default value is **10000000**.                            |
+| videoBitrate      | number                                                       | No  | Video bit rate. The default value is **10000000**.                            |
 | audioSampleRate   | number                                                       | No  | Audio sampling rate. This value is used for both internal capture and external capture (using microphones). Only **48000** (default value) and **16000** are supported.|
 | audioChannelCount | number                                                       | No  | Number of audio channels. This value is used for both internal capture and external capture (using microphones). Only **1** and **2** (default) are supported.|
 | audioBitrate      | number                                                       | No  | Audio bit rate. This value is used for both internal capture and external capture (using microphones). The default value is **96000**.|
-| preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | No  | Encoding and encapsulation format used. The default value is **SCREEN_RECORD_PRESET_H264_AAC_MP4**.|
+| preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | No  | Encoding and container format used. The default value is **SCREEN_RECORD_PRESET_H264_AAC_MP4**.|
+| displayId<sup>15+</sup>            | number | No  | ID of the display used for screen capture. By default, the main screen is captured.|
+| fillMode<sup>18+</sup>            | [AVScreenCaptureFillMode](#avscreencapturefillmode18)| No  | Video fill mode during screen capture.|
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 
-Provides APIs to manage screen capture. Before calling any API in **AVScreenCaptureRecorder**, you must use **createAVScreenCaptureRecorder()** to create an **AVScreenCaptureRecorder** instance.
+Provides APIs to manage screen capture. Before calling any API in **AVScreenCaptureRecorder**, you must use [createAVScreenCaptureRecorder()](#mediacreateavscreencapturerecorder12) to create an **AVScreenCaptureRecorder** instance.
 
 ### init<sup>12+</sup>
 
@@ -6201,19 +8578,21 @@ Initializes screen capture and sets screen capture parameters. This API uses a p
 
 | Type          | Description                               |
 | -------------- | ----------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
-| 401      | The parameter check failed. Return by promise. |
+| 401      | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. Return by promise. |
 | 5400103  | IO error. Return by promise.                   |
 | 5400105  | Service died. Return by promise.               |
 
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
     fd: 0, // Before passing in an FD to this parameter, the file must be created by the caller and granted with the write permissions.
     frameWidth: 640,
@@ -6222,9 +8601,9 @@ let avCaptureConfig: media.AVScreenCaptureRecordConfig = {
 }
 
 avScreenCaptureRecorder.init(avCaptureConfig).then(() => {
-    console.info('avScreenCaptureRecorder init success');
-}).catch((err: BussinessError) => {
-    console.info('avScreenCaptureRecorder init failed, error: ' + err.message);
+    console.info('Succeeded in initing avScreenCaptureRecorder');
+}).catch((err: BusinessError) => {
+    console.info('Failed to init avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6240,7 +8619,7 @@ Starts screen capture. This API uses a promise to return the result.
 
 | Type          | Description                            |
 | -------------- | -------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -6252,14 +8631,16 @@ Starts screen capture. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.startRecording().then(() => {
-    console.info('avScreenCaptureRecorder start success');
-}).catch((err: BussinessError) => {
-    console.info('avScreenCaptureRecorder start failed, error: ' + err.message);
+    console.info('Succeeded in starting avScreenCaptureRecorder');
+}).catch((err: BusinessError) => {
+    console.info('Failed to start avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
-### stopRecording+</sup>
+### stopRecording<sup>12+</sup>
 
 stopRecording(): Promise\<void>
 
@@ -6271,7 +8652,7 @@ Stops screen capture. This API uses a promise to return the result.
 
 | Type          | Description                             |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -6283,10 +8664,53 @@ Stops screen capture. This API uses a promise to return the result.
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.stopRecording().then(() => {
-    console.info('avScreenCaptureRecorder stop success');
-}).catch((err: BussinessError) => {
-    console.info('avScreenCaptureRecorder stop failed, error: ' + err.message);
+    console.info('Succeeded in stopping avScreenCaptureRecorder');
+}).catch((err: BusinessError) => {
+    console.info('Failed to stop avScreenCaptureRecorder, error: ' + err.message);
+})
+```
+
+### skipPrivacyMode<sup>12+</sup>
+
+skipPrivacyMode(windowIDs: Array\<number>): Promise\<void>
+
+During screen capture, the application can exempt its privacy windows from security purposes. This API uses a promise to return the result.
+For example, if a user enters a password in this application during screen capture, the application will not display a black screen.
+
+**System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description                                                     |
+| ------ | ------- | ---- | --------------------------------------------------------- |
+| windowIDs | Array\<number> | Yes  | IDs of windows that require privacy exemption, including the main window IDs and subwindow IDs. For details about how to obtain window properties, see [Window API Reference](../apis-arkui/js-apis-window.md#getwindowproperties9).|
+
+**Return value**
+
+| Type          | Description                            |
+| -------------- | -------------------------------- |
+| Promise\<void> | Promise used to return the window IDs.|
+
+**Error codes**
+
+| ID| Error Message                        |
+| -------- | -------------------------------- |
+| 5400103  | IO error. Return by promise.     |
+| 5400105  | Service died. Return by promise. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let windowIDs = [];
+avScreenCaptureRecorder.skipPrivacyMode(windowIDs).then(() => {
+    console.info('Succeeded in skipping privacy mode');
+}).catch((err: BusinessError) => {
+    console.info('Failed to skip privacy mode, error: ' + err.message);
 })
 ```
 
@@ -6308,7 +8732,7 @@ Enables or disables the microphone. This API uses a promise to return the result
 
 | Type          | Description                                   |
 | -------------- | --------------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -6320,14 +8744,16 @@ Enables or disables the microphone. This API uses a promise to return the result
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.setMicEnabled(true).then(() => {
-    console.info('avScreenCaptureRecorder setMicEnabled success');
-}).catch((err: BussinessError) => {
-    console.info('avScreenCaptureRecorder setMicEnabled failed, error: ' + err.message);
+    console.info('Succeeded in setMicEnabled avScreenCaptureRecorder');
+}).catch((err: BusinessError) => {
+    console.info('Failed to setMicEnabled avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
-### release+</sup>
+### release<sup>12+</sup>
 
 release(): Promise\<void>
 
@@ -6339,7 +8765,7 @@ Releases this **AVScreenCaptureRecorder** instance. This API uses a promise to r
 
 | Type          | Description                             |
 | -------------- | --------------------------------- |
-| Promise\<void> | Promise used to return the result.|
+| Promise\<void> | Promise that returns no value.|
 
 **Error codes**
 
@@ -6351,10 +8777,12 @@ Releases this **AVScreenCaptureRecorder** instance. This API uses a promise to r
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 avScreenCaptureRecorder.release().then(() => {
-    console.info('avScreenCaptureRecorder release success');
-}).catch((err: BussinessError) => {
-    console.info('avScreenCaptureRecorder release failed, error: ' + err.message);
+    console.info('Succeeded in releasing avScreenCaptureRecorder');
+}).catch((err: BusinessError) => {
+    console.info('Faile to release avScreenCaptureRecorder, error: ' + err.message);
 })
 ```
 
@@ -6362,7 +8790,7 @@ avScreenCaptureRecorder.release().then(() => {
 
 on(type: 'stateChange', callback: Callback\<AVScreenCaptureStateCode>): void
 
-Subscribes to screen capture state changes. An application can subscribe to only one screen capture state change event. When the application initiates multiple subscriptions to this event, the last subscription prevails.
+Subscribes to screen capture state changes. An application can subscribe to only one screen capture state change event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -6371,7 +8799,7 @@ Subscribes to screen capture state changes. An application can subscribe to only
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'stateChange'** in this case.           |
-| callback | function | Yes  | Callback invoked when the event is triggered. **AVScreenCaptureStateCode** indicates the new state.|
+| callback | function | Yes  | Callback invoked when the event is triggered. [AVScreenCaptureStateCode](#avscreencapturestatecode12) indicates the new state.|
 
 **Example**
 
@@ -6385,7 +8813,7 @@ avScreenCaptureRecorder.on('stateChange', (state: media.AVScreenCaptureStateCode
 
 on(type: 'error', callback: ErrorCallback): void
 
-Subscribes to AVScreenCaptureRecorder errors. You can handle the errors based on the application logic. An application can subscribe to only one AVScreenCaptureRecorder error event. When the application initiates multiple subscriptions to this event, the last subscription prevails.
+Subscribes to AVScreenCaptureRecorder errors. You can handle the errors based on the application logic. An application can subscribe to only one AVScreenCaptureRecorder error event. When the application initiates multiple subscriptions to this event, the last subscription is applied.
 
 **System capability**: SystemCapability.Multimedia.Media.AVScreenCapture
 
@@ -6394,14 +8822,15 @@ Subscribes to AVScreenCaptureRecorder errors. You can handle the errors based on
 | Name  | Type         | Mandatory| Description                                   |
 | -------- | ------------- | ---- | --------------------------------------- |
 | type     | string        | Yes  | Event type, which is **'error'** in this case.|
-| callback | ErrorCallback | Yes  | Callback invoked when the event is triggered.                 |
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | Yes  | Callback invoked when the event is triggered.                 |
 
 **Error codes**
 
 | ID| Error Message                        |
 | -------- | -------------------------------- |
-| 5400103  | IO error. Return by promise.     |
-| 5400105  | Service died. Return by promise. |
+| 201      | permission denied.     |
+| 5400103  | IO error. Return by ErrorCallback. |
+| 5400105  | Service died. Return by ErrorCallback. |
 
 **Example**
 
@@ -6424,7 +8853,7 @@ Unsubscribes from screen capture state changes. You can specify a callback to ca
 | Name  | Type    | Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | Yes  | Event type, which is **'stateChange'** in this case.           |
-| callback | function | No  | Callback used for unsubscription. **AVScreenCaptureStateCode** indicates the new state. If this parameter is not specified, the last subscription is canceled.|
+| callback | function | No  | Callback used for unsubscription. [AVScreenCaptureStateCode](#avscreencapturestatecode12) indicates the new state. If this parameter is not specified, the last subscription is canceled.|
 
 **Example**
 
@@ -6445,7 +8874,7 @@ Unsubscribes from AVScreenCaptureRecorder errors. You can specify a callback to 
 | Name  | Type    | Mandatory| Description                                                      |
 | -------- | -------- | ---- | ---------------------------------------------------------- |
 | type     | string   | Yes  | Event type, which is **'error'** in this case.               |
-| callback | function | No  | Callback used for unsubscription. If this parameter is not specified, the last subscription is canceled.|
+| callback | [ErrorCallback](../apis-basic-services-kit/js-apis-base.md#errorcallback) | No  | Callback used for unsubscription. If this parameter is not specified, the last subscription is canceled.|
 
 **Example**
 

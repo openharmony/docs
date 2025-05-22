@@ -49,6 +49,8 @@ priorityGesture是带优先级的手势绑定方法，可以在组件上绑定�
 
 在默认情况下，当父组件和子组件使用gesture绑定同类型的手势时，子组件优先识别通过gesture绑定的手势。当父组件使用priorityGesture绑定与子组件同类型的手势时，父组件优先识别通过priorityGesture绑定的手势。
 
+长按手势时，设置触发长按的最短时间小的组件会优先响应，会忽略priorityGesture设置。
+
 例如，当父组件Column和子组件Text同时绑定TapGesture手势时，父组件以带优先级手势priorityGesture的形式进行绑定时，优先响应父组件绑定的TapGesture。
 
 
@@ -118,8 +120,3 @@ struct Index {
   }
 }
 ```
-
-
->**说明：**
->
->当父组件和子组件同时绑定单击手势事件和双击手势事件时，父组件和子组件均只响应单击手势事件。

@@ -139,7 +139,6 @@ error(message: string, ...arguments: any[]): void
 | message | string | 是    | 表示要打印的错误信息。 |
 | arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
-
 **示例：**
 
 ```js
@@ -158,14 +157,24 @@ assert(value?: Object, ...arguments: Object[]): void
 
 断言打印。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| value | Object | 否    | 语句结果值。若value为假(false)或者省略，则输出以"Assertion failed"开头。如果 value 为真值(true)，则无打印。|
-| arguments | Object | 否    | value为假(false)的后续错误消息打印。省略则不打印。|
+| value | Object | 否    | 语句结果值。若value为假（false）或者省略，则输出以"Assertion failed"开头。如果value为真值（true），则无打印。|
+| arguments | Object | 否    | value为假（false）的后续错误消息打印。省略则不打印。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -186,6 +195,8 @@ count(label?: string): void
 
 维护一个内部计数器，调用时，打印此标签名以及对应的计数次数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -194,6 +205,13 @@ count(label?: string): void
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计数器标签名。默认值为'default'。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -218,6 +236,8 @@ countReset(label?: string): void
 
 清除指定标签名的计数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -225,6 +245,14 @@ countReset(label?: string): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计数器标签名。默认值为'default'。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -241,6 +269,8 @@ console.count('abc');
 dir(dir?: Object): void
 
 打印对象内容。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -279,6 +309,8 @@ dirxml(...arguments: Object[]): void
 
 此方法通过内部调用console.log()实现。此方法不会产生任何 XML 格式。使用方法与console.log()一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -305,6 +337,8 @@ group(...arguments: Object[]): void
 
 默认将后续行的缩进增加两个空格。
 如果提供需要打印的信息，则首先打印信息，没有额外的缩进。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -335,6 +369,8 @@ groupCollapsed(...arguments: Object[]): void
 
 使用与功能同console.group()一致。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -364,6 +400,8 @@ groupEnd(): void
 
 将后续行的缩进减少两个空格。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 
@@ -386,6 +424,8 @@ console.log("outter");
 table(tableData?: Object): void
 
 以表格形式打印数据。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -424,6 +464,8 @@ time(label?: string): void
 
 启动可用于计算操作持续时间的计时器。可使用console.timeEnd()关闭计时器并打印经过的时间(单位：ms)。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -431,6 +473,14 @@ time(label?: string): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计时器标识。默认值为'default'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -444,13 +494,23 @@ timeEnd(label?: string): void
 
 停止之前通过调用 console.time() 启动的计时器并将打印经过的时间(单位：ms)。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| label | string | 否    | 计时器标识。默认值为'default' |
+| label | string | 否    | 计时器标识。默认值为'default'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -466,14 +526,24 @@ timeLog(label?: string, ...arguments: Object[]): void
 
 对于先前通过调用 console.time() 启动的计时器，打印经过时间和其他data参数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| label | string | 否    | 计时器标识。默认值为'default' |
+| label | string | 否    | 计时器标识。默认值为'default'。 |
 | arguments | Object | 否    | 需要打印的其他日志。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
 
 **示例：**
 
@@ -490,6 +560,8 @@ console.timeEnd('timer1');
 static trace(...arguments: Object[]): void
 
 打印当前堆栈。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -514,7 +586,9 @@ console.trace("Show the trace");
 
 static traceHybridStack(): void
 
-打印当前混合堆栈。
+在主线程/worker线程中可打印当前线程混合堆栈信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -523,5 +597,5 @@ static traceHybridStack(): void
 ```ts
 console.traceHybridStack();
 // TraceHybridStack:
-//     xxxxxxxxxx(当前混合堆栈信息)
+//     xxxxxxxxxx(当前线程混合堆栈信息)
 ```

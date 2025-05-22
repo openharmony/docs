@@ -112,7 +112,7 @@ Authentication service is busy.
 
 **错误信息**
 
-Authentication is lockout.
+Authentication is locked out.
 
 **可能原因**
 
@@ -130,18 +130,17 @@ The type of credential has not been enrolled.
 
 **可能原因**
 
-例如调用userAuth模块的getAvailableStatus接口，传入的authType参数为FACE，但是当前的设备没有录入人脸凭据，则会返回12500010错误码。
-调用start接口发起人脸认证，但是目前的设备没有录入人脸凭据，则会返回12500010错误码。
+例如调用userAuth模块的getAvailableStatus接口，传入的authType参数为FACE，但是当前的设备没有录入人脸凭据，则会返回12500010错误码。调用start接口发起人脸认证，但是目前的设备没有录入人脸凭据，则会返回12500010错误码。
 
 **处理步骤**
 
 检查是否录入该类型的凭据，如果没有录入，则需要成功录入该类型凭据后再调用相关接口。
 
-## 12500011 认证被控件取消
+## 12500011 提示/通知切换自定义认证
 
 **错误信息**
 
-Indicates that this operation is canceled from widget's navigation button.
+Switched to the custom authentication process.
 
 **可能原因**
 
@@ -150,11 +149,55 @@ Indicates that this operation is canceled from widget's navigation button.
 **处理步骤**
 
 重新调用认证接口，发起认证。
-## 12700001 人脸录入过程中的操作失败
+
+## 12500013 密码过期
 
 **错误信息**
 
-The operation is failed.
+Operation failed because of PIN expired.
+
+**可能原因**
+
+由于系统锁屏口令过期，认证操作执行失败。当用户发起口令、指纹或者人脸认证，但是系统锁屏口令过期时，将会返回12500013错误码。
+
+**处理步骤**
+
+用户前往设置更新系统锁屏口令，再次发起认证。
+
+<!--Del-->
+## 12500015 AuthToken完整性校验失败
+
+**错误信息**
+
+Operation failed because of authToken integrity check failed.
+
+**可能原因**
+
+当验证的AuthToken无效时，会返回12500015错误码。
+
+**处理步骤**
+
+重新发起认证，签发有效token。
+
+## 12500016 AuthToken过期
+
+**错误信息**
+
+Operation failed because of authToken has expired.
+
+**可能原因**
+
+当AuthToken的签发时间至发起验证时的时间间隔超过传入的最大有效时长时，会返回12500016错误码。
+
+**处理步骤**
+
+重新发起认证，签发有效token。
+
+## 12700001 人脸服务不可用
+
+**错误信息**
+
+The service is unavailable.
 
 **可能原因**
 
@@ -166,3 +209,4 @@ The operation is failed.
 **处理步骤**
 
 系统服务内部工作异常，请稍后重新调用接口，或者重启设备尝试。
+<!--DelEnd-->

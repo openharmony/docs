@@ -32,15 +32,15 @@ I2C通常用于与各类支持I2C协议的传感器、执行器或输入输出�
 
 ### 接口说明
 
-I2C模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/i2c_if.h。
+I2C模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/i2c_if.h)。
 
 **表 1** I2C驱动API接口功能介绍
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| DevHandle I2cOpen(int16_t number) | 打开I2C控制器 |
-| void I2cClose(DevHandle handle) | 关闭I2C控制器 |
-| int32_t I2cTransfer(DevHandle handle, struct I2cMsg \*msgs, int16_t count) | 自定义传输 |
+| DevHandle I2cOpen(int16_t number) | 打开I2C控制器。 |
+| void I2cClose(DevHandle handle) | 关闭I2C控制器。 |
+| int32_t I2cTransfer(DevHandle handle, struct I2cMsg \*msgs, int16_t count) | 自定义传输。 |
 
 ### 使用流程
 
@@ -63,17 +63,17 @@ DevHandle I2cOpen(int16_t number);
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
-| number | int16_t类型，I2C控制器号 | 
+| number | int16_t类型，I2C控制器号。 | 
 | **返回值** | **返回值描述** | 
-| NULL | 打开I2C控制器失败 | 
-| 设备句柄 | 打开的I2C控制器设备句柄 | 
+| NULL | 打开I2C控制器失败。 | 
+| 设备句柄 | 打开的I2C控制器设备句柄。 | 
 
 假设系统中存在8个I2C控制器，编号从0到7，以下代码示例为获取3号控制器：
 
 ```c
-DevHandle i2cHandle = NULL;  // I2C控制器句柄
+DevHandle i2cHandle = NULL;  // I2C控制器句柄。
 
-// 打开I2C控制器
+// 打开I2C控制器。
 i2cHandle = I2cOpen(3);
 if (i2cHandle == NULL) {
     HDF_LOGE("I2cOpen: i2c open fail.\n");
@@ -83,7 +83,7 @@ if (i2cHandle == NULL) {
 
 #### 进行I2C通信
 
-消息传输
+消息传输。
 
 ```c
 int32_t I2cTransfer(DevHandle handle, struct I2cMsg *msgs, int16_t count);
@@ -93,12 +93,12 @@ int32_t I2cTransfer(DevHandle handle, struct I2cMsg *msgs, int16_t count);
 
 | **参数** | **参数描述** | 
 | -------- | -------- |
-| handle | DevHandle类型，I2C控制器设备句柄 | 
-| msgs | 结构体指针，待传输数据的消息结构体数组 | 
-| count | int16_t类型，消息数组长度 | 
+| handle | DevHandle类型，I2C控制器设备句柄。 | 
+| msgs | 结构体指针，待传输数据的消息结构体数组。 | 
+| count | int16_t类型，消息数组长度。 | 
 | **返回值** | **返回值描述** | 
-| 正整数 | 成功传输的消息结构体数目 | 
-| 负数 | 执行失败 | 
+| 正整数 | 成功传输的消息结构体数目。 | 
+| 负数 | 执行失败。 | 
 
 I2C传输消息类型为I2cMsg，每个传输消息结构体表示一次读或写，通过一个消息数组，可以执行若干次的读写组合操作。组合读写示例：
 
@@ -106,16 +106,16 @@ I2C传输消息类型为I2cMsg，每个传输消息结构体表示一次读或�
 int32_t ret;
 uint8_t wbuff[2] = { 0x12, 0x13 };
 uint8_t rbuff[2] = { 0 };
-struct I2cMsg msgs[2];        // 自定义传输的消息结构体数组
-msgs[0].buf = wbuff;          // 写入的数据
-msgs[0].len = 2;              // 写入数据长度为2
-msgs[0].addr = 0x5A;          // 写入设备地址为0x5A
-msgs[0].flags = 0;            // 传输标记为0，默认为写
-msgs[1].buf = rbuff;          // 要读取的数据
-msgs[1].len = 2;              // 读取数据长度为2
-msgs[1].addr = 0x5A;          // 读取设备地址为0x5A
-msgs[1].flags = I2C_FLAG_READ // I2C_FLAG_READ置位
-// 进行一次自定义传输，传输的消息个数为2 
+struct I2cMsg msgs[2];        // 自定义传输的消息结构体数组。
+msgs[0].buf = wbuff;          // 写入的数据。
+msgs[0].len = 2;              // 写入数据长度为2。
+msgs[0].addr = 0x5A;          // 写入设备地址为0x5A。
+msgs[0].flags = 0;            // 传输标记为0，默认为写。
+msgs[1].buf = rbuff;          // 要读取的数据。
+msgs[1].len = 2;              // 读取数据长度为2。
+msgs[1].addr = 0x5A;          // 读取设备地址为0x5A。
+msgs[1].flags = I2C_FLAG_READ // I2C_FLAG_READ置位。
+// 进行一次自定义传输，传输的消息个数为2。 
 ret = I2cTransfer(i2cHandle, msgs, 2);
 if (ret != 2) {
     HDF_LOGE("I2cTransfer: i2c transfer fail, ret:%d\n", ret);
@@ -130,7 +130,7 @@ if (ret != 2) {
 > 
 > - 本函数也不对每个消息结构体中的数据长度做限制，同样由具体I2C控制器决定。
 > 
-> - 本函数可能会引起系统休眠，不允许在中断上下文调用
+> - 本函数可能会引起系统休眠，不允许在中断上下文调用。
 
 
 #### 关闭I2C控制器
@@ -145,12 +145,12 @@ void I2cClose(DevHandle handle);
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| handle | DevHandle类型，I2C控制器设备句柄 | 
+| handle | DevHandle类型，I2C控制器设备句柄。 | 
 
 关闭I2C控制器示例：
 
 ```c
-I2cClose(i2cHandle); // 关闭I2C控制器
+I2cClose(i2cHandle); // 关闭I2C控制器。
 ```
 
 ### 使用示例

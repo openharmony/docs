@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Parameter invalid, message is ${messageInfo}.
+Invalid Parameter. Error message: ${messageInfo}.
 
 **可能原因**
 
@@ -17,10 +17,18 @@ Parameter invalid, message is ${messageInfo}.
 2. 指定的权限名为空或者权限名长度大于256。
 3. 请求授权/撤销权限的flag取值非法。
 4. 注册监听的参数检查错误。
+5. 指定的Context不属于当前应用。
+6. 请求的权限不属于同一个权限组。
+7. 请求的权限中存在应用未声明的权限。
+8. 请求的全局开关类型非法。
+9. 指定的权限名不是user_grant权限。
+10. 指定的数组成员个数超过1024或成员均为无效值。
+11. 请求查看权限使用记录的起始结束时间不合法。
+12. 指定的权限名未在应用中声明。
 
 **处理步骤**
 
-检查入参，修正参数值为合法值。
+检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
 
 
 ## 12100002 tokenId不存在
@@ -31,12 +39,12 @@ TokenId does not exist.
 
 **可能原因**
 
-1. 指定的tokenid不存在。
+1. 指定的tokenId不存在。
 2. 指定的tokenId对应的进程非应用进程。
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。
+检查入参，修正参数值为有效值，有效值请参考[权限列表](../../security/AccessToken/app-permissions.md)。
 
 
 ## 12100003 权限名不存在
@@ -47,26 +55,26 @@ Permission does not exist.
 
 **可能原因**
 
-1. 指定的permissionName不存在。
-2. 请求授权/撤销权限场景下，指定的应用tokenid未申请过指定的permissionName。
-3. 权限使用记录场景下，指定的permissionName非用户授权的敏感权限。
+1. 系统中不存在指定的权限，包括权限未定义、权限类型不匹配。
+2. 请求授权/撤销权限场景下，指定的应用tokenId未申请过指定的权限名。
+3. 权限使用记录场景下，指定的权限名非用户授权的敏感权限。
 
 **处理步骤**
 
-检查入参，修正参数值为有效值。[权限列表](../../security/AccessToken/permissions-for-all.md)。
+检查入参，修正参数值为有效值。[权限列表](../../security/AccessToken/app-permissions.md)。
 
 
 ## 12100004 接口未配套使用
 
 **错误信息**
 
-The interface is not used together.
+The API is not used in pair with others.
 
 **可能原因**
 
 该错误码表示监听器接口未配套使用，可能原因如下。
-1. 当前接口再未配套使用的情况下，重复调用。
-2. 当前接口再未配套使用的情况下，单独调用。
+1. 当前接口在未配套使用的情况下，重复调用。
+2. 当前接口在未配套使用的情况下，单独调用。
 
 **处理步骤**
 
@@ -82,7 +90,7 @@ The number of listeners exceeds the limit.
 
 **可能原因**
 
-该错误码表示当前监听器数量超过限制200.
+该错误码表示当前监听器数量超过限制200个。
 
 **处理步骤**
 
@@ -97,12 +105,12 @@ The specified application does not support the permissions granted or ungranted 
 
 **可能原因**
 
-1. 输入的tokenid是远端设备的身份标识，尚未支持分布式授权和取消授权。
-2. 入参指定的tokenid为沙箱应用，被禁止申请指定的权限。
+1. 输入的tokenId是远端设备的身份标识，尚未支持分布式授权和取消授权。
+2. 入参指定的tokenId为沙箱应用，被禁止申请指定的权限。
 
 **处理步骤**
 
-1. 请确认tokenid的获取方式是否正确。
+1. 请确认tokenId的获取方式是否正确。
 2. 确认待授权的沙箱应用是否为特殊的受限沙箱应用进程，部分模式下的沙箱应用被禁止授予大部分权限。
 
 
@@ -110,7 +118,7 @@ The specified application does not support the permissions granted or ungranted 
 
 **错误信息**
 
-Service is abnormal.
+The service is abnormal.
 
 **可能原因**
 
@@ -136,3 +144,77 @@ Out of memory.
 **处理步骤**
 
 系统内存不足，请稍后重试，或者重启设备。
+
+
+## 12100009 服务内部错误
+
+**错误信息**
+
+Common inner error.
+
+**可能原因**
+
+系统服务内部错误。
+
+**处理步骤**
+
+系统内部逻辑错误，需要结合故障日志进一步分析。
+
+## 12100010 存在未被处理的请求
+
+**错误信息**
+
+The request already exists.
+
+**可能原因**
+
+上一次请求未被处理。
+
+**处理步骤**
+
+请处理完上次请求。
+
+
+## 12100011 输入的所有权限均已被授权
+
+**错误信息**
+
+All permissions in the permission list have been granted.
+
+**可能原因**
+
+所有权限均已被授权。
+
+**处理步骤**
+
+无需处理，返回此错误码表示申请权限已被授权，不会拉起权限设置弹框。
+
+
+## 12100012 输入的权限中存在未被用户拒绝过的权限
+
+**错误信息**
+
+The permission list contains the permission that has not been revoked by the user.
+
+**可能原因**
+
+存在未被用户拒绝过的权限。
+
+**处理步骤**
+
+请先调用requestPermissionsFromUser向用户申请权限。
+
+
+## 12100013 全局开关已开启
+
+**错误信息**
+
+The specific global switch is already open.
+
+**可能原因**
+
+全局开关已开启。
+
+**处理步骤**
+
+无需处理，返回此错误码表示全局开关已开启，不会拉起全局开关设置弹框。

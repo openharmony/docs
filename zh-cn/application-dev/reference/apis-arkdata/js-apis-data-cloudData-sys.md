@@ -2,9 +2,9 @@
 
 端云服务提供端云协同、端云共享和端云策略。
 
-端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同帐号设备间的数据一致性。
+端云协同提供结构化数据（RDB Store）端云同步的能力。即：云作为数据的中心节点，通过与云的数据同步，实现数据云备份、同账号设备间的数据一致性。
 
-端云共享是在端云协同能力基础上，实现跨帐号的数据共享。其中，端云共享资源标识是指：对于应用发起共享的每一条数据记录，该条数据在进行端云同步时会生成唯一的共享资源标识（字符串类型的值），此标识则作为该条数据记录共享时的识别标识。
+端云共享是在端云协同能力基础上，实现跨账号的数据共享。其中，端云共享资源标识是指：对于应用发起共享的每一条数据记录，该条数据在进行端云同步时会生成唯一的共享资源标识（字符串类型的值），此标识则作为该条数据记录共享时的识别标识。
 
 端云共享参与者是指： 共享发起者根据好友列表选中的参与当前数据共享的所有人员。
 
@@ -13,7 +13,7 @@
 该模块提供以下端云服务相关的常用功能：
 
 - [Config](#config)：提供配置端云协同的方法，包括云同步打开、关闭、清理数据、数据变化通知。
-- [sharing<sup>11+</sup>](#sharing11)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
+- [sharing](#sharing11)：提供端云共享的方法，包括发起共享、取消共享、退出共享、更改共享数据权限、查找共享参与者、确认邀请、更改已确认的邀请、查找共享资源。
 
 > **说明：** 
 >
@@ -26,7 +26,7 @@
 ## 导入模块
 
 ```ts
-import cloudData from '@ohos.data.cloudData';
+import { cloudData } from '@kit.ArkData';
 ```
 
 ## ClearAction
@@ -49,20 +49,28 @@ import cloudData from '@ohos.data.cloudData';
 | 名称      | 类型   | 必填 | 说明                                                         |
 | --------- | ------ | ---- | ------------------------------------------------------------ |
 | eventId   | string | 是   | 如果传值为"cloud_data_change"，表示云数据变更。              |
-| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"header"中是云侧校验应用所需的信息，"data"中是通知变更所需要的信息，包含帐号、应用名、数据库名和数据库表名，其中accountId和bundleName不能为空。 |
+| extraData | string | 是   | 透传数据，extraData是json结构的字符串，其中必须包括"data"字段，"data"中是通知变更所需要的信息，包含账号、应用名、数据库名、数据库类型和数据库表名，所有字段均不能为空。
 
-**样例：**
+**示例：**
 
 ```ts
-//token:用于校验应用信息
-//accountId:用户打开的云帐号ID
-//bundleName:应用包名
-//containerName:云上数据库名称
-//containerName:云上数据库表名
+// accountId:用户打开的云账号ID
+// bundleName:应用包名
+// containerName:云上数据库名称
+// databaseScopes:云上数据库类型
+// recordTypes:云上数据库表名
 
 interface ExtraData {
   eventId: "cloud_data_change",
-  extraData: '{"header": { "token": "bbbbbb" },"data": {"accountId": "aaa","bundleName": "com.bbb.xxx","containerName": "alias","recordTypes": ["xxx", "yyy", "zzz",] }}'
+  extraData: '{
+    "data": "{
+     "accountId": "aaa",
+     "bundleName": "com.bbb.xxx",
+     "containerName": "alias",
+     "databaseScopes": ["private", "shared"],
+     "recordTypes": ["xxx", "yyy", "zzz"]
+    }"
+  }'
 }
 
 ```
@@ -79,6 +87,30 @@ interface ExtraData {
 | inserted   | number | 是   | 本地新增且云端还未同步数据的条数，如返回值为2，表示本地新增2条数据且云端还未同步。          |
 | updated   | number | 是   | 云端同步之后本地或云端修改还未同步的条数，如返回值为2，表示本地或云端修改还有2条数据未同步。     |
 | normal | number | 是   | 端云一致的数据。如返回值为2，表示本地与云端一致的数据为2条。                     |
+
+## SyncStatus<sup>18+</sup>
+
+端云同步任务的状态。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称      | 值   | 说明              |
+| -------- |-----|-----------------|
+| RUNNING | 0  | 表示端云同步任务处于运行状态。 |
+| FINISHED | 1   | 表示端云同步任务处于完成状态。 |
+
+## SyncInfo<sup>12+</sup>
+
+返回数据，最近一次端云同步所需要的信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+| 名称       | 类型                                                         | 必填 | 说明                       |
+| ---------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| startTime  | Date                                                         | 是   | 最近一次端云同步的开始时间。 |
+| finishTime | Date                                                         | 是   | 最近一次端云同步的结束时间。 |
+| code       | [relationalStore.ProgressCode](js-apis-data-relationalStore.md#progresscode10) | 是   | 最近一次端云同步的结果。 |
+| syncStatus<sup>18+</sup> | [SyncStatus](#syncstatus18) | 否 | 最近一次端云同步的状态，默认值cloudData.SyncStatus.RUNNING。 |
 
 ## Config
 
@@ -98,14 +130,25 @@ static enableCloud(accountId: string, switches: Record<string, boolean>, callbac
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId | string                          | 是   | 具体打开的云帐号ID。                                         |
-| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| accountId | string                          | 是   | 具体打开的云账号ID。                                         |
+| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                                                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let switches: Record<string, boolean> = { 'test_bundleName1': true, 'test_bundleName2': false };
@@ -137,8 +180,8 @@ static enableCloud(accountId: string, switches: Record<string, boolean>): Promis
 
 | 参数名    | 类型                            | 必填 | 说明                                                         |
 | --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId | string                          | 是   | 具体打开的云帐号ID。                                         |
-| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| accountId | string                          | 是   | 具体打开的云账号ID。                                         |
+| switches  | Record<string, boolean>         | 是   | 各应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 
@@ -146,10 +189,21 @@ static enableCloud(accountId: string, switches: Record<string, boolean>): Promis
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let switches: Record<string, boolean> = { 'test_bundleName1': true, 'test_bundleName2': false };
@@ -179,13 +233,24 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): voi
 
 | 参数名    | 类型                      | 必填 | 说明                 |
 | --------- | ------------------------- | ---- | -------------------- |
-| accountId | string                    | 是   | 具体打开的云帐号ID。 |
+| accountId | string                    | 是   | 具体打开的云账号ID。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 try {
@@ -216,7 +281,7 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明                 |
 | --------- | ------ | ---- | -------------------- |
-| accountId | string | 是   | 具体打开的云帐号ID。 |
+| accountId | string | 是   | 具体打开的云账号ID。 |
 
 **返回值：**
 
@@ -224,10 +289,21 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 try {
@@ -256,15 +332,26 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | 是   | 具体打开的云帐号ID。 |
+| accountId | string                          | 是   | 具体打开的云账号ID。 |
 | bundleName| string                         | 是   | 应用名。 |
-| status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| status    | boolean                        | 是   | 应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let bundleName: string = 'test_bundleName';
@@ -296,9 +383,9 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 
 | 参数名    | 类型                            | 必填 | 说明                         |
 | --------- | ------------------------------- | ---- | ---------------------------- |
-| accountId | string                          | 是   | 具体打开的云帐号ID。 |
+| accountId | string                          | 是   | 具体打开的云账号ID。 |
 | bundleName| string                         | 是   | 应用名。 |
-| status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| status    | boolean                        | 是   | 应用的端云协同开关信息。true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 
@@ -306,10 +393,21 @@ static changeAppCloudSwitch(accountId: string, bundleName: string, status: boole
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let bundleName: string = 'test_bundleName';
@@ -339,14 +437,25 @@ static notifyDataChange(accountId: string, bundleName: string, callback: AsyncCa
 
 | 参数名     | 类型                      | 必填 | 说明                 |
 | ---------- | ------------------------- | ---- | -------------------- |
-| accountId  | string                    | 是   | 具体打开的云帐号ID。 |
+| accountId  | string                    | 是   | 具体打开的云账号ID。 |
 | bundleName | string                    | 是   | 应用名。             |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let bundleName: string = 'test_bundleName';
@@ -378,7 +487,7 @@ static notifyDataChange(accountId: string,bundleName: string): Promise&lt;void&g
 
 | 参数名     | 类型   | 必填 | 说明                 |
 | ---------- | ------ | ---- | -------------------- |
-| accountId  | string | 是   | 具体打开的云帐号ID。 |
+| accountId  | string | 是   | 具体打开的云账号ID。 |
 | bundleName | string | 是   | 应用名。             |
 
 **返回值：**
@@ -387,10 +496,21 @@ static notifyDataChange(accountId: string,bundleName: string): Promise&lt;void&g
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = 'test_id';
 let bundleName: string = 'test_bundleName';
@@ -408,7 +528,7 @@ try {
 
 ### notifyDataChange<sup>11+</sup>
 
- **static** notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
+ static notifyDataChange(extInfo: ExtraData, callback: AsyncCallback&lt;void&gt;):void
 
 通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，使用callback异步回调。
 
@@ -423,13 +543,24 @@ try {
 | extInfo  | [ExtraData](#extradata11)   | 是   | 透传数据，包含通知数据变更后的应用信息。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据变更通知成功，err为undefined，否则为错误对象。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 try {
   cloudData.Config.notifyDataChange({
     eventId: eventId, extraData: extraData
@@ -464,11 +595,24 @@ static notifyDataChange(extInfo: ExtraData, userId: number,callback: AsyncCallba
 | userId   | number                    | 是   | 用户ID。对应为系统中现有的用户ID。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当数据变更通知成功，err为undefined，否则为错误对象。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
+**示例：**
+
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 let userId: number = 100;
 try {
   cloudData.Config.notifyDataChange({
@@ -488,7 +632,7 @@ try {
 
 ### notifyDataChange<sup>11+</sup>
 
-**static** notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
+static notifyDataChange(extInfo: ExtraData, userId?: number): Promise&lt;void&gt;
 
 通知云端的数据变更，可以通过extInfo中的extraData字段指定变更的数据库名和表名，可通过userId指定用户ID，使用Promise异步回调。
 
@@ -509,13 +653,24 @@ try {
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, which is usually returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let eventId: string = "cloud_data_change";
-let extraData: string = '{header:"bbbbbb",data:"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias","recordTypes":"["xxx","yyy","zzz"]"}"}';
+let extraData: string = '{"data":"{"accountId":"aaa","bundleName":"com.bbb.xxx","containerName":"alias", "databaseScopes": ["private", "shared"],"recordTypes":"["xxx","yyy","zzz"]"}"}';
 let userId: number = 100;
 try {
   cloudData.Config.notifyDataChange({
@@ -545,7 +700,7 @@ static queryStatistics(accountId: string, bundleName: string, storeId?: string):
 
 | 参数名  | 类型      | 必填 | 说明                                |
 | ------- |---------| ---- |-----------------------------------|
-| accountId | string  | 是   | 具体打开的云帐号ID。                       |
+| accountId | string  | 是   | 具体打开的云账号ID。                       |
 | bundleName | string  | 是   | 应用包名。                             |
 | storeId  | string  | 否   | 数据库名称。默认值为空字符串，此时将查询当前应用所有的本地数据库。 |
 
@@ -555,10 +710,21 @@ static queryStatistics(accountId: string, bundleName: string, storeId?: string):
 |--------------------------------------------------------------------------------------| ------------------------ |
 | Promise&lt;Record&lt;string, Array&lt;[StatisticInfo](#statisticinfo12)&gt;&gt;&gt; | 返回表名以及统计信息结果集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const accountId:string = "accountId";
 const bundleName:string = "bundleName";
@@ -571,7 +737,63 @@ cloudData.Config.queryStatistics(accountId, bundleName, storeId).then((result) =
 });
 ```
 
+### queryLastSyncInfo<sup>12+</sup>
+
+static queryLastSyncInfo(accountId: string, bundleName: string, storeId?: string): Promise&lt;Record<string, SyncInfo>>
+
+查询上一次端云同步信息，使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| ---------- | ------ | ---- | ------------------------------------------------------------ |
+| accountId  | string | 是   | 具体打开的云账号ID。                                         |
+| bundleName | string | 是   | 应用包名。                                                   |
+| storeId    | string | 否   | 数据库名称。默认值为空字符串，此时查询当前应用下所有数据库上一次端云同步信息。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                         |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| Promise&lt;Record&lt;string, [SyncInfo](#syncinfo12)&gt;&gt; | 返回数据库名以及上一次端云同步的信息结果集。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const accountId:string = "accountId";
+const bundleName:string = "bundleName";
+const storeId:string = "storeId";
+try {
+    cloudData.Config.queryLastSyncInfo(accountId, bundleName, storeId).then((result) => {
+    	console.info(`Succeeded in querying last syncinfo. Info is ${JSON.stringify(result)}`);
+	}).catch((err: BusinessError) => {
+    	console.error(`Failed to query last syncinfo. Error code is ${err.code}, message is ${err.message}`);
+	});
+} catch(e) {
+    let error = e as BusinessError;
+  	console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ### setGlobalCloudStrategy<sup>12+</sup>
+
 static setGlobalCloudStrategy(strategy: StrategyType, param?: Array&lt;commonType.ValueType&gt;): Promise&lt;void&gt;
 
 设置全局云同步策略，使用Promise异步回调。
@@ -593,10 +815,21 @@ static setGlobalCloudStrategy(strategy: StrategyType, param?: Array&lt;commonTyp
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.Config.setGlobalCloudStrategy(cloudData.StrategyType.NETWORK, [cloudData.NetWorkStrategy.WIFI]).then(() => {
     console.info('Succeeded in setting the global cloud strategy');
@@ -619,14 +852,25 @@ static clear(accountId: string, appActions: Record<string, ClearAction>,  callba
 
 | 参数名     | 类型                                                | 必填 | 说明                             |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
-| accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
+| accountId  | string                                              | 是   | 具体打开的云账号ID。             |
 | appActions | Record<string, [ClearAction](#clearaction)>         | 是   | 要清除数据的应用信息及清除规则。 |
 | callback   | AsyncCallback&lt;void&gt;                           | 是   | 回调函数。                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = "test_id";
 type dataType = Record<string, cloudData.ClearAction>
@@ -662,7 +906,7 @@ static clear(accountId: string, appActions: Record<string, ClearAction>): Promis
 
 | 参数名     | 类型                                                | 必填 | 说明                             |
 | ---------- | --------------------------------------------------- | ---- | -------------------------------- |
-| accountId  | string                                              | 是   | 具体打开的云帐号ID。             |
+| accountId  | string                                              | 是   | 具体打开的云账号ID。             |
 | appActions | Record<string, [ClearAction](#clearaction)>         | 是   | 要清除数据的应用信息及清除规则。 |
 
 **返回值：**
@@ -671,10 +915,21 @@ static clear(accountId: string, appActions: Record<string, ClearAction>): Promis
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 201      | Permission verification failed, usually the result returned by VerifyAccessToken.|
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let account: string = "test_id";
 type dataType = Record<string, cloudData.ClearAction>;
@@ -721,6 +976,7 @@ try {
 | STATE_ACCEPTED   | 1    | 端云共享已接受。请使用枚举名称而非枚举值。 |
 | STATE_REJECTED   | 2    | 端云共享被拒绝。请使用枚举名称而非枚举值。 |
 | STATE_SUSPENDED  | 3    | 端云共享被暂时挂起，未作处理。请使用枚举名称而非枚举值。 |
+| STATE_UNAVAILABLE<sup>12+</sup>   | 4    | 端云共享不可用。请使用枚举名称而非枚举值。 |
 
 ### SharingCode<sup>11+</sup>
 
@@ -734,7 +990,7 @@ try {
 | REPEATED_REQUEST        | 1    | 重复邀请，表示当前参与者已被邀请。请使用枚举名称而非枚举值。 |
 | NOT_INVITER             | 2    | 非端云共享的邀请者，表示当前参与者不是端云共享的邀请者。请使用枚举名称而非枚举值。 |
 | NOT_INVITER_OR_INVITEE  | 3    | 非法参与者，表示当前参与者既不是共享的邀请者，也不是共享的被邀请者。请使用枚举名称而非枚举值。 |
-| OVER_QUOTA              | 4    | 端云共享次数达到上限，表示当前帐号可共享的次数达到上限。请使用枚举名称而非枚举值。   |
+| OVER_QUOTA              | 4    | 端云共享次数达到上限，表示当前账号可共享的次数达到上限。请使用枚举名称而非枚举值。   |
 | TOO_MANY_PARTICIPANTS   | 5    | 端云共享参与者数量达到上限。请使用枚举名称而非枚举值。 |
 | INVALID_ARGS            | 6    | 无效的参数。请使用枚举名称而非枚举值。 |
 | NETWORK_ERROR           | 7    | 网络错误。请使用枚举名称而非枚举值。 |
@@ -808,11 +1064,21 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | ------------------- | ------------------------- |
 | Promise&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt; | Promise对象，返回查询并共享的共享资源标识结果集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
-import relationalStore from '@ohos.data.relationalStore';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { relationalStore } from '@kit.ArkData';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -863,11 +1129,21 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | columns      | Array&lt;string&gt;           | 是   | 表示要查找的列字段名。 |
 | callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | 是  | 回调函数。 返回查询并共享的共享资源标识结果集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import { BusinessError } from '@ohos.base';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -919,11 +1195,21 @@ allocResourceAndShare(storeId: string, predicates: relationalStore.RdbPredicates
 | participants | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | callback     | AsyncCallback&lt;[relationalStore.ResultSet](js-apis-data-relationalStore.md#resultset)&gt;  | 是   | 回调函数。返回查询并共享的共享资源标识结果集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import relationalStore from '@ohos.data.relationalStore';
-import { BusinessError } from '@ohos.base';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -979,10 +1265,20 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;): Promise&
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回端云共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1022,10 +1318,20 @@ share(sharingResource: string, participants: Array&lt;Participant&gt;, callback:
 | participants     | Array&lt;[Participant](#participant11)&gt; | 是   | 端云共享的参与者。 |
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回端云共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1072,10 +1378,20 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;): Promis
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回取消共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1115,10 +1431,20 @@ unshare(sharingResource: string, participants: Array&lt;Participant&gt;, callbac
 | participants     | Array&lt;[Participant](#participant11)&gt; | 是   | 共享参与者。 |
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回取消共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1164,10 +1490,20 @@ exit(sharingResource: string): Promise&lt;Result&lt;void&gt;&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; | Promise对象，返回退出端云共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.exit('sharing_resource_test').then((result) => {
   console.info(`exit share success, result: ${result}`);
@@ -1192,10 +1528,20 @@ exit(sharingResource: string, callback: AsyncCallback&lt;Result&lt;void&gt;&gt;)
 | sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt;  | 是   | 回调函数。返回退出共享的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.exit('sharing_resource_test', ((err: BusinessError, result) => {
   if (err) {
@@ -1228,10 +1574,20 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;)
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt; | Promise对象，返回更改共享参与者权限的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1272,10 +1628,20 @@ changePrivilege(sharingResource: string, participants: Array&lt;Participant&gt;,
 | participants     | Array&lt;[Participant](#participant11)&gt;  | 是   | 端云共享的参与者。 |
 | callback         | callback: AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Result](#resultt11)&lt;[Participant](#participant11)&gt;&gt;&gt;&gt;  | 是   | 回调函数。返回更改权限的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let participants = new Array<cloudData.sharing.Participant>();
 participants.push({
@@ -1322,10 +1688,20 @@ queryParticipants(sharingResource: string): Promise&lt;Result&lt;Array&lt;Partic
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise对象，返回查询共享参与者的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.queryParticipants('sharing_resource_test').then((result) => {
   console.info(`query participants succeeded, result: ${result}`);
@@ -1350,10 +1726,20 @@ queryParticipants(sharingResource: string, callback: AsyncCallback&lt;Result&lt;
 | sharingResource  | string                | 是   | 端云共享数据的资源标识。 |
 | callback         | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt;  | 是   | 回调函数。返回查找共享参与者的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.queryParticipants('sharing_resource_test', ((err: BusinessError, result) => {
   if (err) {
@@ -1385,10 +1771,20 @@ queryParticipantsByInvitation(invitationCode: string): Promise&lt;Result&lt;Arra
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | Promise对象，返回查找共享参与者的结果。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test').then((result) => {
   console.info(`query participants by invitation succeeded, result: ${result}`);
@@ -1413,10 +1809,20 @@ queryParticipantsByInvitation(invitationCode: string, callback: AsyncCallback&lt
 | invitationCode  | string                | 是   | 端云共享的邀请码。 |
 | callback        | AsyncCallback&lt;[Result](#resultt11)&lt;Array&lt;[Participant](#participant11)&gt;&gt;&gt; | 是   | 回调函数。返回查找共享参与者的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.queryParticipantsByInvitation('sharing_invitation_code_test', ((err: BusinessError, result) => {
   if (err) {
@@ -1449,10 +1855,20 @@ confirmInvitation(invitationCode: string, state: State): Promise&lt;Result&lt;st
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;string&gt;&gt; | Promise对象，返回确认共享邀请的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let shareResource: string | undefined;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED).then((result: cloudData.sharing.Result<string>) => {
@@ -1480,10 +1896,20 @@ confirmInvitation(invitationCode: string, state: State, callback: AsyncCallback&
 | state           | [State](#state11)       | 是   | 确认邀请的状态。 |
 | callback        | AsyncCallback&lt;[Result](#resultt11)&lt;string&gt;&gt; | 是   | 回调函数。返回确认邀请的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let shareResource: string;
 cloudData.sharing.confirmInvitation('sharing_invitation_code_test', cloudData.sharing.State.STATE_ACCEPTED, ((err: BusinessError, result) => {
@@ -1518,10 +1944,20 @@ changeConfirmation(sharingResource: string, state: State): Promise&lt;Result&lt;
 | ------------------- | ------------------------- |
 | Promise&lt;[Result](#resultt11)&lt;void&gt;&gt; |  Promise对象，返回更改共享邀请状态的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from "@ohos.base";
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED).then((result) => {
   console.info(`change confirmation succeeded, result: ${result}`);
@@ -1547,10 +1983,20 @@ changeConfirmation(sharingResource: string, state: State, callback: AsyncCallbac
 | state             | [State](#state11)        | 是   | 更改邀请的状态。 |
 | callback          | AsyncCallback&lt;[Result](#resultt11)&lt;void&gt;&gt; | 是   | 回调函数。返回更改邀请状态的结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                             |
+| -------- | ---------------------------------------------------- |
+| 202      | Permission verification failed, application which is not a system application uses system API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
+| 801      | Capability not supported.|
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 cloudData.sharing.changeConfirmation('sharing_resource_test', cloudData.sharing.State.STATE_REJECTED, ((err: BusinessError, result) => {
   if (err) {

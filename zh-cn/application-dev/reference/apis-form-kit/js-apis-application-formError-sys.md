@@ -11,7 +11,7 @@ formError模块提供获取卡片错误码的能力。
 ## 导入模块
 
 ```ts
-import formError from '@ohos.application.formError';
+import { formError } from '@kit.FormKit';
 ```
 
 ## 权限
@@ -20,11 +20,10 @@ import formError from '@ohos.application.formError';
 
 ## FormError
 
-枚举，支持的卡片类型
+枚举，支持的卡片类型。
 
 **系统能力：** SystemCapability.Ability.Form
 
 | 名称        | 值   | 说明         |
 | ----------- | ---- | ------------ |
 | ERR_DISTRIBUTED_SCHEDULE_FAILED<sup>9+</sup> | 37 | 分布式调度失败。<br/>**系统接口**: 此接口为系统接口。  |
-

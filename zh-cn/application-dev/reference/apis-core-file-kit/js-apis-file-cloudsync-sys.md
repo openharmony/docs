@@ -10,67 +10,8 @@
 ## 导入模块
 
 ```ts
-import cloudSync from '@ohos.file.cloudSync';
+import { cloudSync } from '@kit.CoreFileKit';
 ```
-
-## SyncState
-
-端云同步状态，为枚举类型。
-
-> **说明：**
->
-> 以下同步状态发生变更时，如果应用注册了同步过程事件监听，则通过回调通知应用。
-
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-| 名称 |  值|  说明 |
-| ----- |  ---- |  ---- |
-| UPLOADING |  0 | 上行同步中 |
-| UPLOAD_FAILED |  1 | 上行同步失败 |
-| DOWNLOADING |  2 | 下行同步中 |
-| DOWNLOAD_FAILED |  3 | 下行同步失败 |
-| COMPLETED |  4 | 同步成功 |
-| STOPPED |  5 | 同步已停止 |
-
-## ErrorType
-
-端云同步失败类型，为枚举类型。
-
-- 当前阶段，同步过程中，当移动数据网络和WIFI均不可用时，才会返回NETWORK_UNAVAILABLE；若有一种类型网络可用，则能正常同步。
-- 同步过程中，非充电场景下，电量低于15%，完成当前批上行同步后停止同步，返回低电量；电量低于10%，完成当前批上行同步后停止同步，返回告警电量。
-- 触发同步时，非充电场景下，若电量低于15%，则不允许同步，start接口返回对应错误。
-- 上行时，若云端空间不足，则文件上行失败，云端无该文件记录。
-- 下行时，若本地空间不足，则文件下行失败，本地空间释放后再次同步会重新下行。
-
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-| 名称 |  值|  说明 |
-| ----- |  ---- |  ---- |
-| NO_ERROR |  0 | 没有错误 |
-| NETWORK_UNAVAILABLE |  1 | 所有网络不可用 |
-| WIFI_UNAVAILABLE |  2 | WIFI不可用 |
-| BATTERY_LEVEL_LOW |  3 | 低电量（低于15%） |
-| BATTERY_LEVEL_WARNING |  4 | 告警电量（低于10%） |
-| CLOUD_STORAGE_FULL |  5 | 云端空间不足 |
-| LOCAL_STORAGE_FULL |  6 | 本地空间不足 |
-| DEVICE_TEMPERATURE_TOO_HIGH<sup>12+</sup> |  7 | 设备温度过高 |
-
-## SyncProgress
-
-端云同步过程。
-
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| state | [SyncState](#syncstate) | 是   | 枚举值，端云同步状态|
-| error | [ErrorType](#errortype) | 是   | 枚举值，同步失败错误类型|
 
 ## GallerySync
 
@@ -84,7 +25,7 @@ constructor()
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **示例：**
 
@@ -102,14 +43,14 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件） |
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress), 返回值为void|
+| evt | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件）。 |
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12)，返回值为void。|
 
 **错误码：**
 
@@ -119,7 +60,7 @@ on(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -142,14 +83,14 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](#syncprogress), 返回值为void|
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
+| callback | (pg: SyncProgress) => void | 是   | 同步过程事件回调，回调入参为[SyncProgress](./js-apis-file-cloudsync.md#syncprogress12)，返回值为void。|
 
 **错误码：**
 
@@ -159,7 +100,7 @@ off(evt: 'progress', callback: (pg: SyncProgress) => void): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -186,13 +127,13 @@ off(evt: 'progress'): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
 
 **错误码：**
 
@@ -202,7 +143,7 @@ off(evt: 'progress'): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -221,19 +162,19 @@ off(evt: 'progress'): void
 
 start(): Promise&lt;void&gt;
 
-异步方法启动端云同步, 以Promise形式返回结果。
+异步方法启动端云同步，以Promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回启动端云同步的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回启动端云同步的结果。 |
 
 **错误码：**
 
@@ -243,15 +184,15 @@ start(): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 | 22400001 | Cloud status not ready. |
 | 22400002 | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.on('progress', (pg: cloudSync.SyncProgress) => {
@@ -269,19 +210,19 @@ start(): Promise&lt;void&gt;
 
 start(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动端云同步, 以callback形式返回结果。
+异步方法启动端云同步，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动端云同步的回调 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动端云同步的回调。 |
 
 **错误码：**
 
@@ -291,15 +232,15 @@ start(callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 22400001 | Cloud status not ready. |
 | 22400002 | Network unavailable. |
-| 22400003  | Battery level warning. |
+| 22400003  | Low battery level. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.start((err: BusinessError) => {
@@ -315,7 +256,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 stop(): Promise&lt;void&gt;
 
-异步方法停止端云同步, 以Promise形式返回结果。
+异步方法停止端云同步，以Promise形式返回结果。
 
 > **说明：**
 >
@@ -325,13 +266,13 @@ stop(): Promise&lt;void&gt;
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回停止端云同步的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回停止端云同步的结果。 |
 
 **错误码：**
 
@@ -341,12 +282,12 @@ stop(): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes:Incorrect parameter types. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.stop().then(() => {
@@ -360,7 +301,7 @@ stop(): Promise&lt;void&gt;
 
 stop(callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止端云同步, 以callback形式返回结果。
+异步方法停止端云同步，以callback形式返回结果。
 
 > **说明：**
 >
@@ -370,13 +311,13 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止端云同步的回调 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止端云同步的回调。 |
 
 **错误码：**
 
@@ -386,12 +327,12 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let gallerySync = new cloudSync.GallerySync();
 
   gallerySync.stop((err: BusinessError) => {
@@ -415,7 +356,7 @@ constructor()
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **示例：**
 
@@ -433,14 +374,14 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11), 返回值为void|
+| evt | string | 是   | 订阅的事件类型，取值为'progress'（下载过程事件）。|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11)，返回值为void。|
 
 **错误码：**
 
@@ -450,7 +391,7 @@ on(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -473,14 +414,14 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11), 返回值为void|
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）。|
+| callback | (pg: DownloadProgress) => void | 是   | 云文件下载过程事件回调，回调入参为[DownloadProgress](js-apis-file-cloudsync.md#downloadprogress11)，返回值为void。|
 
 **错误码：**
 
@@ -490,7 +431,7 @@ off(evt: 'progress', callback: (pg: DownloadProgress) => void): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -517,13 +458,13 @@ off(evt: 'progress'): void
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（下载过程事件）|
+| evt | string | 是   | 取消订阅的事件类型，取值为'progress'（下载过程事件）。|
 
 **错误码：**
 
@@ -533,7 +474,7 @@ off(evt: 'progress'): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 
 **示例：**
@@ -552,30 +493,30 @@ off(evt: 'progress'): void
 
 start(uri: string): Promise&lt;void&gt;
 
-异步方法启动云文件下载, 以Promise形式返回结果。
+异步方法启动云文件下载，以Promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri |
+| uri | string | 是   | 待下载文件uri。 |
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回启动云文件下载的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回启动云文件下载的结果。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -598,7 +539,7 @@ start(uri: string): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
 
@@ -606,20 +547,20 @@ start(uri: string): Promise&lt;void&gt;
 
 start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法启动云文件下载, 以callback形式返回结果。
+异步方法启动云文件下载，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动云文件下载的回调 |
+| uri | string | 是   | 待下载文件uri。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动云文件下载的回调。 |
 
 **错误码：**
 
@@ -629,14 +570,14 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900002 | No such file or directory. |
 | 13900025 | No space left on device. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -653,29 +594,29 @@ start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 stop(uri: string): Promise&lt;void&gt;
 
-异步方法停止云文件下载, 以Promise形式返回结果。
+异步方法停止云文件下载，以Promise形式返回结果。
 
 > **说明：**
 >
-> 调用stop接口, 当前文件下载流程会终止, 缓存文件会被删除，再次调用start接口会重新开始下载
+> 调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri |
+| uri | string | 是   | 待下载文件uri。 |
 
 **返回值：**
 
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回停止云文件下载的结果 |
+| Promise&lt;void&gt; | 使用Promise形式返回停止云文件下载的结果。 |
 
 **错误码：**
 
@@ -685,12 +626,12 @@ stop(uri: string): Promise&lt;void&gt;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -705,24 +646,24 @@ stop(uri: string): Promise&lt;void&gt;
 
 stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
-异步方法停止云文件下载, 以callback形式返回结果。
+异步方法停止云文件下载，以callback形式返回结果。
 
 > **说明：**
 >
-> 调用stop接口, 当前文件下载流程会终止, 缓存文件会被删除, 再次调用start接口会重新开始下载
+> 调用stop接口，当前文件下载流程会终止，缓存文件会被删除，再次调用start接口会重新开始下载。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止云文件下载的回调 |
+| uri | string | 是   | 待下载文件uri。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止云文件下载的回调。 |
 
 **错误码：**
 
@@ -732,12 +673,12 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed. |
 | 202 | The caller is not a system application. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   let download = new cloudSync.Download();
   let uri: string = "file:///media/Photo/1";
 
@@ -750,34 +691,9 @@ stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
   });
   ```
 
-## FileSync<sup>11+</sup>
+## FileSync<sup>12+</sup>
 
 云盘同步对象，用于支撑文件管理器应用完成云盘文件的端云同步流程。在使用前，需要先创建FileSync实例。
-
-### constructor<sup>11+</sup>
-
-constructor()
-
-端云同步流程的构造函数，用于获取FileSync类的实例。
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-
-**示例：**
-
-  ```ts
-  let fileSync = new cloudSync.FileSync()
-  ```
 
 ### constructor<sup>12+</sup>
 
@@ -787,13 +703,13 @@ constructor(bundleName: string)
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
-| bundleName | string | 是   | 应用包名|
+| bundleName | string | 是   | 应用包名。|
 
 **错误码：**
 
@@ -802,374 +718,12 @@ constructor(bundleName: string)
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
 
   ```ts
   let fileSync = new cloudSync.FileSync("com.ohos.demo")
-  ```
-
-### on<sup>11+</sup>
-
-on(event: 'progress', callback: Callback\<SyncProgress>): void
-
-添加同步过程事件监听。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| event | string | 是   | 订阅的事件类型，取值为'progress'（同步过程事件） |
-| callback | Callback\<[SyncProgress](#syncprogress)> | 是   | 同步过程事件回调。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
-
-**示例：**
-
-  ```ts
-  let fileSync = new cloudSync.FileSync();
-  let callback = (pg: cloudSync.SyncProgress) => {
-    console.info("file sync state：" + pg.state + "error type:" + pg.error);
-  }
-
-  fileSync.on('progress', callback);
-  ```
-
-### off<sup>11+</sup>
-
-off(event: 'progress', callback?: Callback\<SyncProgress>): void
-
-移除同步过程事件监听。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| event | string | 是   | 取消订阅的事件类型，取值为'progress'（同步过程事件）|
-| callback | Callback\<[SyncProgress](#syncprogress)> |  否   | 同步过程事件回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
-
-**示例：**
-
-  ```ts
-  let fileSync = new cloudSync.FileSync();
-
-  let callback = (pg: cloudSync.SyncProgress) => {
-    console.info("file sync state：" + pg.state + "error type:" + pg.error);
-  }
-
-  fileSync.on('progress', callback);
-
-  fileSync.off('progress', callback);
-  ```
-
-### start<sup>11+</sup>
-
-start(): Promise&lt;void&gt;
-
-异步方法启动云盘端云同步, 以Promise形式返回结果。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**返回值：**
-
-| 类型                  | 说明             |
-| --------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise对象，无返回值。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
-| 22400001  | Cloud status not ready. |
-| 22400002  | Network unavailable. |
-| 22400003  | Battery level warning. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
-
-  let callback = (pg: cloudSync.SyncProgress) => {
-    console.info("file sync state：" + pg.state + "error type:" + pg.error);
-  }
-
-  fileSync.on('progress', callback);
-
-  fileSync.start().then(() => {
-	  console.info("start sync successfully");
-  }).catch((err: BusinessError) => {
-	  console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
-  });
-  ```
-
-### start<sup>11+</sup>
-
-start(callback: AsyncCallback&lt;void&gt;): void
-
-异步方法启动云盘端云同步, 以callback形式返回结果。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步启动端云同步的回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
-| 22400001  | Cloud status not ready. |
-| 22400002  | Network unavailable. |
-| 22400003  | Battery level warning. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
-
-  fileSync.start((err: BusinessError) => {
-    if (err) {
-      console.error("start sync failed with error message: " + err.message + ", error code: " + err.code);
-    } else {
-      console.info("start sync successfully");
-    }
-  });
-  ```
-
-### stop<sup>11+</sup>
-
-stop(): Promise&lt;void&gt;
-
-异步方法停止云盘端云同步, 以Promise形式返回结果。
-
-调用stop接口，同步流程会停止。再次调用[start](#start)接口会继续同步。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**返回值：**
-
-| 类型                  | 说明             |
-| --------------------- | ---------------- |
-| Promise&lt;void&gt; | 使用Promise形式返回停止端云同步的结果。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
-
-  fileSync.stop().then(() => {
-	  console.info("stop sync successfully");
-  }).catch((err: BusinessError) => {
-	  console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
-  });
-  ```
-
-### stop<sup>11+</sup>
-
-stop(callback: AsyncCallback&lt;void&gt;): void
-
-异步方法停止云盘端云同步, 以callback形式返回结果。
-
-调用stop接口，同步流程会停止。再次调用[start](#start)接口会继续同步。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| callback | AsyncCallback&lt;void&gt; | 是   | 异步停止端云同步的回调。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
-
-  fileSync.stop((err: BusinessError) => {
-    if (err) {
-      console.error("stop sync failed with error message: " + err.message + ", error code: " + err.code);
-    } else {
-      console.info("stop sync successfully");
-    }
-  });
-  ```
-
-### getLastSyncTime<sup>11+</sup>
-
-getLastSyncTime(): Promise&lt;number&gt;
-
-异步方法获取上次同步时间, 以promise形式返回结果。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**返回值：**
-
-| 类型                  | 说明             |
-| --------------------- | ---------------- |
-| Promise&lt;number&gt; | 使用Promise形式返回上次同步时间。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
-
-  fileSync.getLastSyncTime().then((timeStamp: number) => {
-    let date = new Date(timeStamp);
-    console.info("get last sync time successfully:"+ date);
-  }).catch((err: BusinessError) => {
-	  console.error("get last sync time failed with error message: " + err.message + ", error code: " + err.code);
-  });
-
-  ```
-
-### getLastSyncTime<sup>11+</sup>
-
-getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
-
-异步方法获取上次同步时间, 以callback形式返回结果。
-
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 异步获取上次同步时间的回调。|
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13600001  | IPC error. |
-
-**示例：**
-
-  ```ts
-  import { BusinessError } from '@ohos.base';
-  let fileSync = new cloudSync.FileSync();
-
-  fileSync.getLastSyncTime((err: BusinessError, timeStamp: number) => {
-    if (err) {
-      console.error("get last sync time with error message: " + err.message + ", error code: " + err.code);
-    } else {
-      let date = new Date(timeStamp);
-      console.info("get last sync time successfully:"+ date);
-    }
-  });
   ```
 
 ## CloudFileCache<sup>11+</sup>
@@ -1180,15 +734,15 @@ getLastSyncTime(callback: AsyncCallback&lt;number&gt;): void;
 
 ### cleanCache<sup>11+</sup>
 
-cleanCache(uri: string): void;
+cleanCache(uri: string): void
 
-同步方法删除文件缓存
+同步方法删除文件缓存。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -1204,16 +758,16 @@ cleanCache(uri: string): void;
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let fileCache = new cloudSync.CloudFileCache();
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
@@ -1231,13 +785,13 @@ cleanCache(uri: string): void;
 
 getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt;&gt;
 
-异步方法获取文件同步状态, 以promise形式返回结果。
+异步方法获取文件同步状态，以promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -1259,18 +813,18 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
-  cloudSync.getFileSyncState(uris).then(function(syncStates: Array<cloudSync.FileSyncState>) {
+  cloudSync.getFileSyncState(uris).then((syncStates: Array<cloudSync.FileSyncState>) => {
     for(let i = 0, len = syncStates.length; i < len; i++){
         console.info("get file sync state successfully" + syncStates[i]);
     }
@@ -1284,13 +838,13 @@ getFileSyncState(uri: Array&lt;string&gt;): Promise&lt;Array&lt;FileSyncState&gt
 
 getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;FileSyncState&gt;&gt;): void
 
-异步方法获取文件同步状态, 以callback形式返回结果。
+异步方法获取文件同步状态，以callback形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -1307,15 +861,15 @@ getFileSyncState(uri: Array&lt;string&gt;, callback: AsyncCallback&lt;Array&lt;F
 | ---------------------------- | ---------- |
 | 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13600001  | IPC error. |
 | 13900002  | No such file or directory. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let uris: Array<string> = ["file://uri"];
   cloudSync.getFileSyncState(uris, (err: BusinessError, syncStates: Array<cloudSync.FileSyncState>) => {
@@ -1337,7 +891,7 @@ getFileSyncState(uri: string): FileSyncState
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 **参数：**
 
@@ -1358,169 +912,226 @@ getFileSyncState(uri: string): FileSyncState
 | 错误码ID                     | 错误信息        |
 | ---------------------------- | ---------- |
 | 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 13900002  | No such file or directory. |
 | 13900004  | Interrupted system call. |
 | 13900010  | Try again. |
 | 13900012  | Permission denied by the file system. |
 | 13900031  | Function not implemented. |
 | 13900042  | Unknown error. |
-| 14000002  | Invalid uri. |
+| 14000002  | Invalid URI. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import fileUri from '@ohos.file.fileuri';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { fileUri } from '@kit.CoreFileKit';
   let path = "/data/storage/el2/cloud/1.txt";
   let uri = fileUri.getUriFromPath(path);
   try {
-    let state = fileSync.getFileSyncState(uri)
-  }.catch(err) {
+    let state = cloudSync.getFileSyncState(uri);
+  } catch (err) {
     let error:BusinessError = err as BusinessError;
     console.error("getFileSyncStatefailed with error:" + JSON.stringify(error));
   }
   ```
 
-## cloudSync.registerChange<sup>12+</sup>
-
-registerChange(uri: string, recursion: boolean, callback: Callback&lt;ChangeData&gt;): void
-
-订阅监听指定文件的变化通知。
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri。 |
-| recursion | boolean | 是   | true为监听该uri以及子文件和子目录，false为仅监听该uri文件。|
-| callback | Callback&lt;[ChangeData](#changedata12)&gt; | 是   | 返回更改的数据。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13900001  | Operation not permitted. |
-| 13900002  | No such file or directory. |
-| 13900012  | Permission denied. |
-| 14000002  | Invalid uri. |
-
-**示例：**
-
-  ```ts
-  import fileUri from '@ohos.file.fileuri';
-  let path = "/data/storage/el2/cloud/1.txt";
-  let uri = fileUri.getUriFromPath(path);
-  let onCallback1 = (changeData: ChangeData) => {
-    if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
-      //file had added, do something
-    } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
-      //file had removed, do something
-    }
-	}
-  cloudSync.registerChange(uri, false, onCallback1);
-  // 取消注册监听
-  cloudSync.unRegisterChange(uri);
-  ```
-
-## cloudSync.unregisterChange<sup>12+</sup>
-
-unregisterChange(uri: string): void
-
-取消订阅监听指定文件的变化通知。
-
-**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-**参数：**
-
-| 参数名     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| uri | string | 是   | 待下载文件uri。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](errorcode-filemanagement.md)。
-
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 202 | Permission verification failed, application which is not a system application uses system API. |
-| 401 | The input parameter is invalid. |
-| 13900001  | Operation not permitted. |
-| 13900002  | No such file or directory. |
-| 13900012  | Permission denied. |
-| 14000002  | Invalid uri. |
-
-**示例：**
-
-  ```ts
-  import fileUri from '@ohos.file.fileuri';
-  let path = "/data/storage/el2/cloud/1.txt";
-  let uri = fileUri.getUriFromPath(path);
-  let onCallback1 = (changeData: ChangeData) => {
-    if (changeData.type == cloudSync.NotifyType.NOTIFY_ADDED) {
-      //file had added, do something
-    } else if (changeData.type== cloudSync.NotifyType.NOTIFY_DELETED) {
-      //file had removed, do something
-    }
-	}
-  cloudSync.registerChange(uri, false, onCallback1);
-  // 取消注册监听
-  cloudSync.unRegisterChange(uri);
-  ```
-
-## NotifyType<sup>12+</sup>
-
-数据变更通知类型。
-
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-| 名称 |  值|  说明 |
-| ----- |  ---- |  ---- |
-| NOTIFY_ADDED |  0 | 文件已新建 |
-| NOTIFY_MODIFIED |  1 | 文件已修改 |
-| NOTIFY_DELETED |  2 | 文件已被删除 |
-| NOTIFY_RENAMED |  3 | 文件被重命名或者移动 |
-
-## ChangeData<sup>12+</sup>
-
-定义变更数据。
-
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
-**系统接口：** 该接口为系统接口。
-
-| 名称     | 类型   | 必填 | 说明 |
-| ---------- | ------ | ---- | ---- |
-| type | [NotifyType](#notifytype12) | 是   | 更改的通知类型|
-| isDirectory | Array&lt;boolean&gt; | 是   | 指示更改的uri是否为目录|
-| uris | Array&lt;string&gt; | 是   | 更改的uris|
-
 ## FileSyncState<sup>11+</sup>
 
 端云文件同步状态，为枚举类型。
 
-**系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-**系统接口：** 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
 | 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
-| UPLOADING |  0 | 上行同步中 |
-| DOWNLOADING |  1 | 下行同步中 |
-| COMPLETED |  2 | 同步成功 |
-| STOPPED |  3 | 同步已停止 |
-| TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行 |
-| UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行 |
-| UPLOAD_FAILURE<sup>12+</sup> |  6 | 文件上行失败 |
+| UPLOADING |  0 | 上行同步中。 |
+| DOWNLOADING |  1 | 下行同步中。 |
+| COMPLETED |  2 | 同步成功。 |
+| STOPPED |  3 | 同步已停止。 |
+| TO_BE_UPLOADED<sup>12+</sup> |  4 | 正在等待上行。 |
+| UPLOAD_SUCCESS<sup>12+</sup> |  5 | 文件已成功上行。 |
+| UPLOAD_FAILURE<sup>12+</sup> |  6 | 文件上行失败。 |
+
+## cloudSync.optimizeStorage<sup>17+</sup>
+
+optimizeStorage(): Promise&lt;void&gt;
+
+优化图库已同步云空间的本地资源，按照本地剩余空间执行自动老化策略。使用Promise异步回调。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 13600001  | IPC error. |
+| 13900042  | Unknown error. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  cloudSync.optimizeStorage().then(() => {
+	  console.info("optimize storage successfully");   // 前台UX按需阻塞等待
+  }).catch((err: BusinessError) => {
+	  console.error("optimize storage failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## cloudSync.startOptimizeSpace<sup>17+</sup>
+
+startOptimizeSpace(optimizePara: OptimizeSpaceParam, callback?: Callback\<OptimizeSpaceProgress>): Promise&lt;void&gt;
+
+优化图库已同步云空间的本地资源，执行立即优化空间策略，对老化天数前未访问的本地图片/视频进行优化。使用Promise异步回调。
+
+startOptimizeSpace的使用和stopOptimizeSpace方法调用一一对应，重复开启将返回其他任务正在执行的错误信息（22400006）。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| optimizePara | [OptimizeSpaceParam](#optimizespaceparam17) | 是   | 优化参数。 |
+| callback | Callback&lt;[OptimizeSpaceProgress](#optimizespaceprogress17)&gt; | 否   | 返回优化进度。缺省情况下返回401错误，不执行清理任务 |
+
+**返回值：**
+
+  | 类型                  | 说明                           |
+  | ------------------- | ---------------------------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 401 | The input parameter is invalid. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 13600001  | IPC error. |
+| 22400005  | Inner error. |
+| 22400006  | The same task is already in progress. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let para:cloudSync.OptimizeSpaceParam = {totalSize: 1073741824, agingDays: 30};
+  let callback = (data:cloudSync.OptimizeSpaceProgress) => {
+    if (data.state == cloudSync.OptimizeState.FAILED) {
+      console.info("optimize space failed");
+    } else if (data.state == cloudSync.OptimizeState.COMPLETED && data.progress == 100) {
+      console.info("optimize space successfully");
+    } else if (data.state == cloudSync.OptimizeState.RUNNING) {
+      console.info("optimize space progress:" + data.progress);
+    }
+  }
+  cloudSync.startOptimizeSpace(para, callback).then(() => {
+	  console.info("start optimize space");
+  }).catch((err: BusinessError) => {
+	  console.error("start optimize space failed with error message: " + err.message + ", error code: " + err.code);
+  });
+  ```
+
+## cloudSync.stopOptimizeSpace<sup>17+</sup>
+
+stopOptimizeSpace(): void
+
+同步方法停止图库云图资源空间优化，和startOptimizeSpace配对使用。
+
+**需要权限**：ohos.permission.CLOUDFILE_SYNC
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理子系统错误码](errorcode-filemanagement.md)。
+
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed, usually the result returned by VerifyAccessToken. |
+| 202 | Permission verification failed, application which is not a system application uses system API. |
+| 13600001  | IPC error. |
+| 22400005  | Inner error. |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  let para:cloudSync.OptimizeSpaceParam = {totalSize: 1073741824, agingDays: 30};
+  let callback = (data:cloudSync.OptimizeSpaceProgress) => {
+    if (data.state == cloudSync.OptimizeState.FAILED) {
+      console.info("optimize space failed");
+    } else if (data.state == cloudSync.OptimizeState.RUNNING) {
+      console.info("optimize space progress:" + data.progress);
+    }
+  }
+  cloudSync.startOptimizeSpace(para, callback);
+  cloudSync.stopOptimizeSpace();   // 停止空间优化
+  ```
+
+## OptimizeState<sup>17+</sup>
+
+优化空间状态，为枚举类型。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+| 名称 |  值|  说明 |
+| ----- |  ---- |  ---- |
+| RUNNING |  0 | 正在优化空间。 |
+| COMPLETED |  1 | 优化空间成功结束。 |
+| FAILED |  2 | 优化空间失败。 |
+| STOPPED |  3 | 优化空间停止。 |
+
+## OptimizeSpaceProgress<sup>17+</sup>
+
+立即优化空间状态和当前进度。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| state | [OptimizeState](#optimizestate17) | 是   | 枚举值，优化空间状态。|
+| progress | number | 是   | 优化进度百分比，范围[0,100]。|
+
+## OptimizeSpaceParam<sup>17+</sup>
+
+立即优化空间设置参数，设置优化总空间和老化天数。
+
+**系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**系统接口**：此接口为系统接口。
+
+| 名称     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| totalSize | number | 是   | 优化空间总大小。查询媒体库接口获得需要老化的所有文件总大小，由应用传入，单位byte。|
+| agingDays | number | 是   | 老化天数。系统会以当前时间为基准，优化老化天数前未访问、已同步云空间的本地图片/视频。|

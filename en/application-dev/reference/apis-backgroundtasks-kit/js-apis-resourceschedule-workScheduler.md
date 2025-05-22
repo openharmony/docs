@@ -11,7 +11,7 @@ The **workScheduler** module provides the APIs for registering, canceling, and q
 ## Modules to Import
 
 ```ts
-import workScheduler from '@ohos.resourceschedule.workScheduler';
+import { workScheduler } from '@kit.BackgroundTasksKit';
 ```
 
 ## workScheduler.startWork
@@ -30,20 +30,21 @@ Starts a deferred task.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
-| 9700005 | StartWork failed. |
+| 9700004 | Check on workInfo failed. |
+| 9700005 | Calling startWork failed. |
 
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
@@ -84,19 +85,20 @@ Stops a deferred task.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   let workInfo: workScheduler.WorkInfo = {
       workId: 1,
@@ -137,19 +139,20 @@ Obtains the information a deferred task. This API uses an asynchronous callback 
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.getWorkStatus(50, (error: BusinessError, res: workScheduler.WorkInfo) => {
     if (error) {
@@ -182,19 +185,20 @@ Obtains the information a deferred task. This API uses a promise to return the r
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.getWorkStatus(50).then((res: workScheduler.WorkInfo) => {
     console.info(`workschedulerLog getWorkStatus success, ${JSON.stringify(res)}`);
@@ -220,10 +224,11 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -244,10 +249,11 @@ Obtains all the deferred tasks. This API uses an asynchronous callback to return
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -255,7 +261,7 @@ For details about the error codes, see [workScheduler Error Codes](errorcode-wor
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.obtainAllWorks((error: BusinessError, res: Array<workScheduler.WorkInfo>) =>{
     if (error) {
@@ -282,10 +288,11 @@ Obtains all the deferred tasks. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -293,7 +300,7 @@ For details about the error codes, see [workScheduler Error Codes](errorcode-wor
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.obtainAllWorks().then((res: Array<workScheduler.WorkInfo>) => {
     console.info(`workschedulerLog obtainAllWorks success, data is: ${JSON.stringify(res)}`);
@@ -312,10 +319,11 @@ Stops and clears all the deferred tasks.
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
@@ -323,7 +331,7 @@ For details about the error codes, see [workScheduler Error Codes](errorcode-wor
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try{
     workScheduler.stopAndClearWorks();
@@ -352,14 +360,15 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 ## workScheduler.isLastWorkTimeOut<sup>10+<sup>
 
@@ -378,19 +387,20 @@ Checks whether the last execution of a task timed out. This API uses an asynchro
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.isLastWorkTimeOut(500, (error: BusinessError, res: boolean) =>{
     if (error) {
@@ -423,19 +433,20 @@ Checks whether the last execution of a task timed out. This API uses a promise t
 
 **Error codes**
 
-For details about the error codes, see [workScheduler Error Codes](errorcode-workScheduler.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [workScheduler Error Codes](errorcode-workScheduler.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 401 | Parameter error. Possible causes: Parameter verification failed. |
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Check workInfo failed. |
+| 9700004 | Check on workInfo failed. |
 
 **Example**
 
 ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   workScheduler.isLastWorkTimeOut(500)
     .then((res: boolean) => {
@@ -455,19 +466,19 @@ Defines the information about the deferred task.
 | Name            | Type                               | Mandatory  | Description              |
 | --------------- | --------------------------------- | ---- | ---------------- |
 | workId          | number                            | Yes   | ID of the deferred task.         |
-| bundleName      | string                            | Yes   | Bundle name of the application that requests the task.          |
-| abilityName     | string                            | Yes   | Name of the component to be notified by a deferred task scheduling callback.|
+| bundleName      | string                            | Yes   | Bundle name of the application where the deferred task is located.          |
+| abilityName     | string                            | Yes   | Ability name in the bundle.|
 | networkType     | [NetworkType](#networktype)       | No   | Network type.            |
-| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the charging state to trigger deferred task scheduling, and **false** means the opposite.|
+| isCharging      | boolean                           | No   | Whether the device needs to enter the charging state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the charging state to trigger deferred task scheduling.<br>- **false**: The device does not need to enter the charging state to trigger deferred task scheduling.|
 | chargerType     | [ChargingType](#chargingtype)     | No   | Charging type.            |
 | batteryLevel    | number                            | No   | Battery level.             |
 | batteryStatus   | [BatteryStatus](#batterystatus)   | No   | Battery status.            |
 | storageRequest  | [StorageRequest](#storagerequest) | No   | Storage status.            |
-| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>The value** true** means that the task is repeated, and **false** means the opposite.|
+| isRepeat        | boolean                           | No   | Whether the task is repeated.<br>- **true**: The task is repeated.<br>- **false**: The task is not repeated.|
 | repeatCycleTime | number                            | No   | Repeat interval, in milliseconds.            |
 | repeatCount     | number                            | No   | Number of repeat times.            |
-| isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.<br>The value **true** means to enable persistent storage for the task, and **false** means the opposite.|
-| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>The value **true** means that the device needs to enter the idle state to trigger deferred task scheduling, and **false** means the opposite.  |
+| isPersisted     | boolean                           | No   | Whether the registered deferred task can be saved in the system.<br>- **true**: The task can be saved. That is, the task can be restored after the system restarts.<br>- **false**: The task cannot be saved.|
+| isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state to trigger deferred task scheduling.<br>- **true**: The device needs to enter the idle state to trigger deferred task scheduling.<br>- **false**: The device does not need to enter the idle state to trigger deferred task scheduling.  |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state before triggering deferred task scheduling, in milliseconds.          |
 | parameters      | Record<string, number \| string \| boolean>  | No   | Carried parameters.|
 

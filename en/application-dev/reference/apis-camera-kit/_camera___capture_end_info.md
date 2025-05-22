@@ -3,11 +3,13 @@
 
 ## Overview
 
-The **Camera_CaptureEndInfo** struct defines the capture end information.
+The Camera_CaptureEndInfo struct describes the capture end information.
 
 **Since**: 11
 
 **Related module**: [OH_Camera](_o_h___camera.md)
+
+**Header file**: [camera.h](camera_8h.md)
 
 
 ## Summary

@@ -9,10 +9,12 @@ The **WantAgentInfo** module defines the information required for triggering a *
 ## Modules to Import
 
 ```ts
-import wantAgent from '@ohos.app.ability.wantAgent';
+import { wantAgent as abilityWantAgent } from '@kit.AbilityKit';
 ```
 
 ## Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -24,5 +26,5 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 | requestCode    | number                          | Yes  | Request code defined by the user.|
 | wantAgentFlags<sup>(deprecated)</sup> | Array<[wantAgent.WantAgentFlags](js-apis-wantAgent.md#wantagentflags)> | No  | Array of flags for using the **WantAgent** object.<br>This attribute is supported since API version 7 and deprecated since API version 11. You are advised to use actionFlags<sup>11+</sup> instead.          |
 | actionFlags<sup>11+</sup> | Array<[abilityWantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#wantagentflags)> | No  | Array of flags for using the **WantAgent** object.          |
-| extraInfo      | {[key: string]: any}            | No  | Extra information.              |
+| extraInfo      | { [key: string]: any }            | No  | Extra information.              |
 | extraInfos<sup>11+</sup> | Record\<string, Object>            | No  | Extra information. You are advised to use this attribute to replace **extraInfo**. When this attribute is set, **extraInfo** does not take effect.              |

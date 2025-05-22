@@ -9,12 +9,12 @@ The **huks** module provides keystore capabilities with the user who performs th
 ## Modules to Import
 
 ```ts
-import huks from '@ohos.security.huks'
+import { huks } from '@kit.UniversalKeystoreKit'
 ```
 
-## huks.generateKeyItemAsUser<sup>12+</sup>
+## huks.generateKeyItemAsUser
 
-generateKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+generateKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 Generates a key for the specified user. This API uses a promise to return the result. Because the key is always protected in a trusted environment (such as a TEE), the promise does not return the key content. It returns only the information indicating whether the API is successfully called.
 
@@ -28,7 +28,7 @@ Generates a key for the specified user. This API uses a promise to return the re
 | -------- | --------------------------- | ---- | ------------------------ |
 | userId   | number                      | Yes  | User ID.                |
 | keyAlias | string                      | Yes  | Alias of the key to generate.              |
-| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory.|
+| options  | [HuksOptions](js-apis-huks.md#huksoptions) | Yes  | [Property tags](native__huks__type_8h.md#enums) of the key to generate. The algorithm, key purpose, and key length are mandatory.|
 
 **Error codes**
 
@@ -36,16 +36,16 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
 | 12000014 | memory is insufficient. |
@@ -53,22 +53,15 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. To sign in as the target user, do as follows:
-  
-  On the device, choose **Settings** > **Users & accounts** > **Signed in as** > **Add User**, enter the user name, and click **Add**. After the user is added, click **Switch** to switch to the new user and sign in as the user.
+- Prerequisites:
 
-   Run the **hdc shell acm dump -a** command. The ID of the newly added user is **101**. In the following example, the user ID is **101** and the storage security level is **HUKS_AUTH_STORAGE_LEVEL_CE**.
-
-   > **NOTE**<br>
-   > **HUKS_AUTH_STORAGE_LEVEL_CE** allows the key to be accessed only after the first unlock of the device. If no user is switched, the user space 101 is locked. In this case, assessing the key using **huks** APIs will fail. You need to switch to the user and sign in as the user.
+  The caller must be a system application running under user 0 to user 99 (inclusive) and must have the ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS permission. For details, see [singleton](../../../device-dev/subsystems/subsys-app-privilege-config-guide.md#device-specific-application-privileges).
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
+import { huks } from '@kit.UniversalKeystoreKit';
 
 const aesKeyAlias = 'test_aesKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 
 function GetAesGenerateProperties(): Array<huks.HuksParam> {
@@ -99,28 +92,22 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
     properties: genProperties
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "A key with the alias of "+ keyAlias +" is generated.",
-      duration: 2500,
-    })
-  }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.info("Generated a key with alias of: " + keyAlias + "")
+  }).catch((err: Error) => {
+    console.error("Failed to generate the key. Error: "+ JSON.stringify(err))
   })
 }
 
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   GenerateKey(aesKeyAlias, GetAesGenerateProperties())
 }
 ```
 
-## huks.deleteKeyItemAsUser<sup>12+</sup>
+## huks.deleteKeyItemAsUser
 
-deleteKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+deleteKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 Deletes a key for the specified user. This API uses a promise to return the result.
 
@@ -142,9 +129,9 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
@@ -154,16 +141,14 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
-
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 
 function GetAesGenerateProperties(): Array<huks.HuksParam> {
@@ -195,10 +180,7 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -210,32 +192,26 @@ async function DeleteKey(keyAlias: string) {
     }]
   }
   await huks.deleteKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "Key with the alias of "+ keyAlias +" is deleted.",
-      duration: 6500,
-    })
+    console.info("Deleted the key with alias of: " + keyAlias + ".")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to delete the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to delete the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
 async function TestHuksDelete() {
   await GenerateKey(aesKeyAlias, GetAesGenerateProperties())
-  await  DeleteKey(aesKeyAlias)
+  await DeleteKey(aesKeyAlias)
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   TestHuksDelete()
 }
 ```
 
-## huks.importKeyItemAsUser<sup>12+</sup>
+## huks.importKeyItemAsUser
 
-importKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<void>
+importKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 Imports a plaintext key for the specified user. This API uses a promise to return the result.
 
@@ -257,16 +233,16 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
@@ -275,16 +251,14 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
-
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 const plainAesKey128 = new Uint8Array([
   0xfb, 0x8b, 0x9f, 0x12, 0xa0, 0x83, 0x19, 0xbe, 0x6a, 0x6f, 0x63, 0x2a, 0x7c, 0x86, 0xba, 0xca
@@ -319,29 +293,22 @@ async function ImportPlainKey(keyAlias: string, importProperties: Array<huks.Huk
     inData: plainKey
   }
   await huks.importKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "A key with the alias of "+ keyAlias +" is imported.",
-      duration: 2500,
-    })
+    console.info("Imported the key with the alias of: " + keyAlias + ".")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to import the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
-    return
+    console.error("Failed to import the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   ImportPlainKey(aesKeyAlias, GetAesGenerateProperties(), plainAesKey128)
 }
 ```
 
 
-## huks.attestKeyItemAsUser<sup>12+</sup>
+## huks.attestKeyItemAsUser
 
-attestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+attestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 Attests a key for the specified user. This API uses a promise to return the result.
 
@@ -369,29 +336,27 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
-
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -402,12 +367,12 @@ function StringToUint8Array(str: string) {
 }
 
 const rsaKeyAlias = 'test_rsaKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 
-let securityLevel = StringToUint8Array('sec_level');
-let challenge = StringToUint8Array('challenge_data');
-let versionInfo = StringToUint8Array('version_info');
+const securityLevel = StringToUint8Array('sec_level');
+const challenge = StringToUint8Array('challenge_data');
+const versionInfo = StringToUint8Array('version_info');
 
 function GetRSA4096GenerateProperties(): Array<huks.HuksParam> {
   return [{
@@ -440,15 +405,9 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
     properties: genProperties
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "A key with the alias of "+ keyAlias +" is generated.",
-      duration: 2500,
-    })
+    console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -475,22 +434,16 @@ async function LetKeyAttest(keyAlias: string, keyOptions: Array<huks.HuksParam>)
   let attestOptions: huks.HuksOptions = {
     properties: keyOptions,
   }
-  console.log ('start attestation')
+  console.info ('start attestation')
   await huks.attestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
-    console.log('attestation ok!')
-    console.log(`The obtained certificate chain is ${JSON.stringify(data)}`)
+    console.info('attestation ok!')
+    console.debug(`The obtained certificate chain is ${JSON.stringify(data)}`) // Debugging information. The certificate chain does not need to be printed during the service function development.
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
-      console.log (`Certificate ${i} is ${data.certChains[i]}`)
+      console.debug(`Certificate ${i} is ${data.certChains[i]}`) // Debugging information. The certificate chain does not need to be printed during the service function development.
     }
-    promptAction.showToast({
-      message: "Attestation is successful.",
-      duration: 3000,
-    })
+    console.info ("attest successful")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Attestation failed. Error code: "+ err.code +" Error code: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Attestation failed. Error code: " + err.code +" Error message: "+ err.message)
   })
 }
 
@@ -499,15 +452,15 @@ async function TestHuksAttest() {
   await LetKeyAttest(rsaKeyAlias, GetAttestKeyProperties(rsaKeyAlias))
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   TestHuksAttest()
 }
 ```
 
-## huks.anonAttestKeyItemAsUser<sup>12+</sup>
+## huks.anonAttestKeyItemAsUser
 
-anonAttestKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+anonAttestKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 Performs anonymous key attestation. This API uses a promise to return the result.
 
@@ -537,29 +490,27 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
-
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -570,12 +521,12 @@ function StringToUint8Array(str: string) {
 }
 
 const rsaKeyAlias = 'test_rsaKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 
-let securityLevel = StringToUint8Array('sec_level');
-let challenge = StringToUint8Array('challenge_data');
-let versionInfo = StringToUint8Array('version_info');
+const securityLevel = StringToUint8Array('sec_level');
+const challenge = StringToUint8Array('challenge_data');
+const versionInfo = StringToUint8Array('version_info');
 
 function GetRSA4096GenerateProperties(): Array<huks.HuksParam> {
   return [{
@@ -608,15 +559,9 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
     properties: genProperties
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "A key with the alias of "+ keyAlias +" is generated.",
-      duration: 2500,
-    })
+    console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -643,40 +588,34 @@ async function LetKeyAnonAttest(keyAlias: string, keyOptions: Array<huks.HuksPar
   let attestOptions: huks.HuksOptions = {
     properties: keyOptions,
   }
-  console.log ('Start anonymous attestation')
+  console.info('Start anonymous attestation')
   await huks.anonAttestKeyItemAsUser(userId, keyAlias, attestOptions).then((data) => {
-    console.log ('Anonymous attestation ok!')
-    console.log(`The obtained certificate chain is ${JSON.stringify(data)}`)
+    console.info('Anonymous attestation ok!')
+    console.debug(`The obtained certificate chain is ${JSON.stringify(data)}`)
     for (let i = 0; data?.certChains?.length && i < data?.certChains?.length; ++i) {
-      console.log (`Certificate ${i} is ${data.certChains[i]}`)
+      console.info(`Certificate ${i} is ${data.certChains[i]}`)
     }
-    promptAction.showToast({
-      message: "Anonymous attestation is successful.",
-      duration: 3000,
-    })
+    console.info ("Anonymous attest successful")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Anonymous attestation failed. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Anonymous attestation failed. Error code: "+ err.code +" Error message: "+ err.message)
   })
 }
 
 
 async function TestHuksAnonAttest() {
-  await  GenerateKey(rsaKeyAlias, GetRSA4096GenerateProperties())
+  await GenerateKey(rsaKeyAlias, GetRSA4096GenerateProperties())
   await LetKeyAnonAttest(rsaKeyAlias, GetAttestKeyProperties(rsaKeyAlias))
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   TestHuksAnonAttest()
 }
 ```
 
-## huks.importWrappedKeyItemAsUser<sup>12+</sup>
+## huks.importWrappedKeyItemAsUser
 
-importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: string, options: HuksOptions) : Promise\<void>
+importWrappedKeyItemAsUser(userId: number, keyAlias: string, wrappingKeyAlias: string, huksOptions: HuksOptions) : Promise\<void>
 
 Imports a wrapped (encrypted) key for the specified user. This API uses a promise to return the result.
 
@@ -699,16 +638,16 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000013 | queried credential does not exist. |
@@ -717,37 +656,26 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
-- The values of variables, including but not limited to **IV**, **AAD**, **NONCE**, and **importedAes192PlainKey**, are examples only and cannot be directly used. You need to assign values to your APIs based on actual situation. The length of the variables varies depending on the cryptographic algorithm used. If you need to change the length of the initial values, also change the cryptographic algorithm.
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
+- The values of the following cryptography-related variables (such as **initializationVector**, **associatedData**, and **nonce**) are for reference only and cannot be directly used in the service logic. You need to set them based on actual situation.
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
-let IV = '0000000000000000';
-let AAD = "abababababababab";
-let NONCE = "hahahahahaha";
-let TAG_SIZE = 16;
-let FILED_LENGTH = 4;
-let importedAes192PlainKey = "The aes192 key to import";
-let callerAes256Kek = "The is kek to encrypt aes192 key";
-
-let callerKeyAlias = "test_caller_key_ecdh_aes192";
-let callerKekAliasAes256 = "test_caller_kek_ecdh_aes256";
-let callerAgreeKeyAliasAes256 = "test_caller_agree_key_ecdh_aes256";
-let importedKeyAliasAes192 = "test_import_key_ecdh_aes192";
-
-let huksPubKey: Uint8Array;
-let callerSelfPublicKey: Uint8Array;
-let outSharedKey: Uint8Array;
-let outPlainKeyEncData: Uint8Array;
-let outKekEncData: Uint8Array;
-let outKekEncTag: Uint8Array;
-let outAgreeKeyEncTag: Uint8Array;
-
-let mask = [0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000];
+const initializationVector = '0000000000000000';
+const associatedData = "abababababababab";
+const nonce = "hahahahahaha";
+const tagSize = 16;
+const unsignedInt32Bytes = 4;
+const importedAes192PlainKey = "The aes192 key to import";
+const callerAes256Kek = "The is kek to encrypt aes192 key";
+const callerKeyAlias = "test_caller_key_ecdh_aes192";
+const callerKekAliasAes256 = "test_caller_kek_ecdh_aes256";
+const callerAgreeKeyAliasAes256 = "test_caller_agree_key_ecdh_aes256";
+const importedKeyAliasAes192 = "test_import_key_ecdh_aes192";
+const mask = [0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000];
 
 
 function StringToUint8Array(str: string) {
@@ -758,7 +686,7 @@ function StringToUint8Array(str: string) {
   return new Uint8Array(arr);
 }
 
-function subUint8ArrayOf(arrayBuf: Uint8Array, start: number, end: number) {
+function SubUint8ArrayOf(arrayBuf: Uint8Array, start: number, end: number) {
   let arr: Array<number> = [];
   for (let i = start; i < end && i < arrayBuf.length; ++i) {
     arr.push(arrayBuf[i]);
@@ -766,7 +694,7 @@ function subUint8ArrayOf(arrayBuf: Uint8Array, start: number, end: number) {
   return new Uint8Array(arr);
 }
 
-function assignLength(length: number, arrayBuf: Uint8Array, startIndex: number) {
+function AssignLength(length: number, arrayBuf: Uint8Array, startIndex: number) {
   let index = startIndex;
   for (let i = 0; i < 4; i++) {
     arrayBuf[index++] = (length & mask[i]) >> (i * 8);
@@ -774,7 +702,7 @@ function assignLength(length: number, arrayBuf: Uint8Array, startIndex: number) 
   return 4;
 }
 
-function assignData(data: Uint8Array, arrayBuf: Uint8Array, startIndex: number) {
+function AssignData(data: Uint8Array, arrayBuf: Uint8Array, startIndex: number) {
   let index = startIndex;
   for (let i = 0; i < data.length; i++) {
     arrayBuf[index++] = data[i];
@@ -782,7 +710,7 @@ function assignData(data: Uint8Array, arrayBuf: Uint8Array, startIndex: number) 
   return data.length;
 }
 
-let genWrappingKeyParams: huks.HuksOptions = {
+const genWrappingKeyParams: huks.HuksOptions = {
   properties: [
     {
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -807,7 +735,7 @@ let genWrappingKeyParams: huks.HuksOptions = {
   ]
 }
 
-let genCallerEcdhParams: huks.HuksOptions = {
+const genCallerEcdhParams: huks.HuksOptions = {
   properties: [
     {
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -828,7 +756,7 @@ let genCallerEcdhParams: huks.HuksOptions = {
   ]
 }
 
-let importParamsCallerKek: huks.HuksOptions = {
+const importParamsCallerKek: huks.HuksOptions = {
   properties: [
     {
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -856,7 +784,7 @@ let importParamsCallerKek: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_IV,
-      value: StringToUint8Array(IV)
+      value: StringToUint8Array(initializationVector)
     },
     {
       tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
@@ -866,7 +794,7 @@ let importParamsCallerKek: huks.HuksOptions = {
   inData: StringToUint8Array(callerAes256Kek)
 }
 
-let importParamsAgreeKey: huks.HuksOptions = {
+const importParamsAgreeKey: huks.HuksOptions = {
   properties: [
     {
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -894,7 +822,7 @@ let importParamsAgreeKey: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_IV,
-      value: StringToUint8Array(IV)
+      value: StringToUint8Array(initializationVector)
     },
     {
       tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
@@ -903,7 +831,7 @@ let importParamsAgreeKey: huks.HuksOptions = {
   ]
 }
 
-let callerAgreeParams: huks.HuksOptions = {
+const callerAgreeParams: huks.HuksOptions = {
   properties: [
     {
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -924,7 +852,7 @@ let callerAgreeParams: huks.HuksOptions = {
   ]
 }
 
-let encryptKeyCommonParams: huks.HuksOptions = {
+const encryptKeyCommonParams: huks.HuksOptions = {
   properties: [
     {
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -948,11 +876,11 @@ let encryptKeyCommonParams: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_NONCE,
-      value: StringToUint8Array(NONCE)
+      value: StringToUint8Array(nonce)
     },
     {
       tag: huks.HuksTag.HUKS_TAG_ASSOCIATED_DATA,
-      value: StringToUint8Array(AAD)
+      value: StringToUint8Array(associatedData)
     },
     {
       tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
@@ -961,7 +889,7 @@ let encryptKeyCommonParams: huks.HuksOptions = {
   ]
 }
 
-let importWrappedAes192Params: huks.HuksOptions = {
+const importWrappedAes192Params: huks.HuksOptions = {
   properties: [
     {
       tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
@@ -994,7 +922,7 @@ let importWrappedAes192Params: huks.HuksOptions = {
     },
     {
       tag: huks.HuksTag.HUKS_TAG_IV,
-      value: StringToUint8Array(IV)
+      value: StringToUint8Array(initializationVector)
     },
     {
       tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
@@ -1003,26 +931,9 @@ let importWrappedAes192Params: huks.HuksOptions = {
   ]
 }
 
-async function publicGenerateItemFunc(
-    userId: number,
-    keyAlias: string, huksOptions: huks.HuksOptions) {
-  console.info(`enter promise generateKeyItemAsUser`);
-  try {
-    await huks.generateKeyItemAsUser(userId, keyAlias, huksOptions)
-      .then(data => {
-        console.info(`promise: generateKeyItemAsUser success, data = ${JSON.stringify(data)}`);
-      })
-      .catch((err: BusinessError) => {
-        console.error(`callback: generateKeyItemAsUser failed, code: ${err.code}, msg: ${err.message}`);
-      })
-  } catch (err) {
-    console.error(`callback: generateKeyItemAsUser invalid, code: ${err.code}, msg: ${err.message}`);
-  }
-}
-
-async function publicImportKeyItemFunc(
-    userId: number,
-    keyAlias: string, huksOptions: huks.HuksOptions) {
+async function PublicImportKeyItemFunc(
+  userId: number,
+  keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise importKeyItemAsUser`);
   try {
     await huks.importKeyItemAsUser(userId, keyAlias, huksOptions)
@@ -1036,9 +947,9 @@ async function publicImportKeyItemFunc(
   }
 }
 
-async function publicDeleteKeyItemFunc(
-    userId: number,
-    keyAlias: string, huksOptions: huks.HuksOptions) {
+async function PublicDeleteKeyItemFunc(
+  userId: number,
+  keyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter promise deleteKeyItemAsUser`);
   try {
     await huks.deleteKeyItemAsUser(userId, keyAlias, huksOptions)
@@ -1053,19 +964,16 @@ async function publicDeleteKeyItemFunc(
   }
 }
 
-async function publicImportWrappedKeyFunc(
-    userId: number,
-    keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
+async function PublicImportWrappedKeyFunc(
+  userId: number,
+  keyAlias: string, wrappingKeyAlias: string, huksOptions: huks.HuksOptions) {
   console.info(`enter callback importWrappedKeyItemAsUser`);
-  console.error(`publicImportWrappedKeyFunc huksOptions = ${JSON.stringify(huksOptions)}`);
+  console.info(`publicImportWrappedKeyFunc huksOptions = ${JSON.stringify(huksOptions)}`);
   try {
     await huks.importWrappedKeyItemAsUser(userId, keyAlias, wrappingKeyAlias, huksOptions)
       .then((data) => {
         console.info(`callback: importWrappedKeyItemAsUser success, data = ${JSON.stringify(data)}`);
-        promptAction.showToast({
-          message: `importWrappedKeyItemAsUser successful. data = ${JSON.stringify(data)}`,
-          duration: 3000,
-        })
+        console.info (`importWrappedKeyItemAsUser successful. data = ${JSON.stringify(data)}`)
       })
       .catch((err: BusinessError) => {
         console.error(`callback: importWrappedKeyItemAsUser failed, code: ${err.code}, msg: ${err.message}`);
@@ -1075,9 +983,9 @@ async function publicImportWrappedKeyFunc(
   }
 }
 
-async function publicInitFunc(
-    userId: number,
-    srcKeyAlias: string, huksOptions: huks.HuksOptions) {
+async function PublicInitFunc(
+  userId: number,
+  srcKeyAlias: string, huksOptions: huks.HuksOptions) {
   let handle: number = 0;
   console.info(`enter promise doInit`);
   try {
@@ -1095,7 +1003,7 @@ async function publicInitFunc(
   return handle;
 }
 
-async function publicUpdateSessionFunction(handle: number, huksOptions: huks.HuksOptions) {
+async function PublicUpdateSessionFunction(handle: number, huksOptions: huks.HuksOptions) {
   if (huksOptions?.inData?.length == undefined) {
     return [];
   }
@@ -1111,17 +1019,17 @@ async function publicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
     if (inDataSegPosition + maxUpdateSize > lastInDataPosition) {
       isFinished = true;
       inDataSegSize = lastInDataPosition - inDataSegPosition + 1;
-      console.error(`enter promise doUpdate`);
+      console.info(`enter promise doUpdate`);
       break;
     }
     huksOptions.inData = new Uint8Array(
       Array.from(inData).slice(inDataSegPosition, inDataSegPosition + inDataSegSize)
     );
-    console.error(`enter promise doUpdate`);
+    console.info(`enter promise doUpdate`);
     try {
       await huks.updateSession(handle, huksOptions)
         .then((data) => {
-          console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+          console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
           if (data.outData == undefined) {
             console.error('data.outData is undefined');
             return;
@@ -1135,9 +1043,9 @@ async function publicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
       console.error(`promise: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
     }
     if ((!isFinished) && (inDataSegPosition + maxUpdateSize > lastInDataPosition)) {
-      console.log(`update size invalid isFinished = ${isFinished}`);
-      console.log(`inDataSegPosition = ${inDataSegPosition}`);
-      console.log(`lastInDataPosition = ${lastInDataPosition}`);
+      console.error(`update size invalid isFinished = ${isFinished}`);
+      console.error(`inDataSegPosition = ${inDataSegPosition}`);
+      console.error(`lastInDataPosition = ${lastInDataPosition}`);
       return [];
     }
     inDataSegPosition += maxUpdateSize;
@@ -1145,7 +1053,7 @@ async function publicUpdateSessionFunction(handle: number, huksOptions: huks.Huk
   return outData;
 }
 
-async function publicFinishSession(handle: number, huksOptions: huks.HuksOptions, inData: Array<number>) {
+async function PublicFinishSession(handle: number, huksOptions: huks.HuksOptions, inData: Array<number>) {
   let outData: Array<number> = [];
   console.info(`enter promise doFinish`);
   try {
@@ -1167,26 +1075,26 @@ async function publicFinishSession(handle: number, huksOptions: huks.HuksOptions
   return new Uint8Array(outData);
 }
 
-async function cipherFunction(
-    userId: number,
-    keyAlias: string, huksOptions: huks.HuksOptions) {
-  let handle = await publicInitFunc(userId, keyAlias, huksOptions);
-  let tmpData = await publicUpdateSessionFunction(handle, huksOptions);
-  let outData = await publicFinishSession(handle, huksOptions, tmpData);
+async function CipherFunction(
+  userId: number,
+  keyAlias: string, huksOptions: huks.HuksOptions) {
+  const handle = await PublicInitFunc(userId, keyAlias, huksOptions);
+  const tmpData = await PublicUpdateSessionFunction(handle, huksOptions);
+  const outData = await PublicFinishSession(handle, huksOptions, tmpData);
   return outData;
 }
 
-async function agreeFunction(
-    userId: number,
-    keyAlias: string, huksOptions: huks.HuksOptions, huksPublicKey: Uint8Array) {
-  let handle = await publicInitFunc(userId, keyAlias, huksOptions);
+async function AgreeFunction(
+  userId: number,
+  keyAlias: string, huksOptions: huks.HuksOptions, huksPublicKey: Uint8Array) {
+  const handle = await PublicInitFunc(userId, keyAlias, huksOptions);
   let outSharedKey: Uint8Array = new Uint8Array;
   huksOptions.inData = huksPublicKey;
-  console.error(`enter promise doUpdate`);
+  console.info(`enter promise doUpdate`);
   try {
     await huks.updateSession(handle, huksOptions)
       .then((data) => {
-        console.error(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
+        console.info(`promise: doUpdate success, data = ${JSON.stringify(data)}`);
       })
       .catch((err: BusinessError) => {
         console.error(`promise: doUpdate failed, code: ${err.code}, msg: ${err.message}`);
@@ -1215,19 +1123,33 @@ async function agreeFunction(
 }
 
 async function ImportKekAndAgreeSharedSecret(
-    userId: number,
-    callerKekAlias: string, importKekParams: huks.HuksOptions, callerKeyAlias: string, huksPublicKey: Uint8Array, agreeParams: huks.HuksOptions) {
-  await publicImportKeyItemFunc(userId, callerKekAlias, importKekParams);
-  outSharedKey = await agreeFunction(userId, callerKeyAlias, agreeParams, huksPublicKey);
+  userId: number,
+  callerKekAlias: string, importKekParams: huks.HuksOptions,
+  callerKeyAlias: string, huksPublicKey: Uint8Array, agreeParams: huks.HuksOptions) {
+  await PublicImportKeyItemFunc(userId, callerKekAlias, importKekParams);
 
-  importParamsAgreeKey.inData = outSharedKey;
-  await publicImportKeyItemFunc(userId, callerAgreeKeyAliasAes256, importParamsAgreeKey);
+  importParamsAgreeKey.inData = await AgreeFunction(userId, callerKeyAlias, agreeParams, huksPublicKey);
+
+  await PublicImportKeyItemFunc(userId, callerAgreeKeyAliasAes256, importParamsAgreeKey);
 }
 
-async function generateAndExportPublicKey(
-    userId: number,
-    keyAlias: string, huksOptions: huks.HuksOptions, caller: boolean) {
-  await publicGenerateItemFunc(userId, keyAlias, huksOptions);
+async function GenerateAndExportPublicKey(
+  userId: number,
+  keyAlias: string, huksOptions: huks.HuksOptions): Promise<Uint8Array> {
+  try {
+    await huks.generateKeyItemAsUser(userId, keyAlias, huksOptions)
+      .then(data => {
+        console.info(`promise: generateKeyItemAsUser success, data = ${JSON.stringify(data)}`);
+      })
+      .catch((err: BusinessError) => {
+        console.error(`callback: generateKeyItemAsUser failed, code: ${err.code}, msg: ${err.message}`);
+      })
+  } catch (err) {
+    console.error(`callback: generateKeyItemAsUser invalid, code: ${err.code}, msg: ${err.message}`);
+  }
+
+
+  let result = new Uint8Array([])
   try {
     await huks.exportKeyItemAsUser(userId, keyAlias, huksOptions)
       .then((data) => {
@@ -1236,11 +1158,7 @@ async function generateAndExportPublicKey(
           console.error('data.outData is undefined');
           return;
         }
-        if (caller) {
-          callerSelfPublicKey = data.outData;
-        } else {
-          huksPubKey = data.outData;
-        }
+        result = data.outData;
       })
       .catch((err: BusinessError) => {
         console.error(`promise: exportKeyItemAsUser failed, code: ${err.code}, msg: ${err.message}`);
@@ -1248,96 +1166,112 @@ async function generateAndExportPublicKey(
   } catch (e) {
     console.error(`promise: generate pubKey failed, code: ${e.code}, msg: ${e.message}`);
   }
+  return result
+}
+
+interface KeyEncAndKekEnc {
+  outPlainKeyEncData: Uint8Array,
+  outKekEncData: Uint8Array,
+  outKekEncTag: Uint8Array,
+  outAgreeKeyEncTag: Uint8Array,
 }
 
 async function EncryptImportedPlainKeyAndKek(
-    userId: number,
-    keyAlias: string) {
+  userId: number,
+  keyAlias: string): Promise<KeyEncAndKekEnc> {
   encryptKeyCommonParams.inData = StringToUint8Array(keyAlias)
-  let plainKeyEncData = await cipherFunction(userId, callerKekAliasAes256, encryptKeyCommonParams);
-  outKekEncTag = subUint8ArrayOf(plainKeyEncData, plainKeyEncData.length - TAG_SIZE, plainKeyEncData.length)
-  outPlainKeyEncData = subUint8ArrayOf(plainKeyEncData, 0, plainKeyEncData.length - TAG_SIZE)
+  const plainKeyEncData = await CipherFunction(userId, callerKekAliasAes256, encryptKeyCommonParams);
+  const result: KeyEncAndKekEnc = {
+    outPlainKeyEncData: new Uint8Array([]),
+    outKekEncData: new Uint8Array([]),
+    outKekEncTag: new Uint8Array([]),
+    outAgreeKeyEncTag: new Uint8Array([]),
+  }
+  result.outKekEncTag = SubUint8ArrayOf(plainKeyEncData, plainKeyEncData.length - tagSize, plainKeyEncData.length)
+  result.outPlainKeyEncData = SubUint8ArrayOf(plainKeyEncData, 0, plainKeyEncData.length - tagSize)
 
   encryptKeyCommonParams.inData = StringToUint8Array(callerAes256Kek)
-  let kekEncData = await cipherFunction(userId, callerAgreeKeyAliasAes256, encryptKeyCommonParams)
-  outAgreeKeyEncTag = subUint8ArrayOf(kekEncData, kekEncData.length - TAG_SIZE, kekEncData.length)
-  outKekEncData = subUint8ArrayOf(kekEncData, 0, kekEncData.length - TAG_SIZE)
+  const kekEncData = await CipherFunction(userId, callerAgreeKeyAliasAes256, encryptKeyCommonParams)
+  result.outAgreeKeyEncTag = SubUint8ArrayOf(kekEncData, kekEncData.length - tagSize, kekEncData.length)
+  result.outKekEncData = SubUint8ArrayOf(kekEncData, 0, kekEncData.length - tagSize)
+
+  return result
 }
 
-async function BuildWrappedDataAndImportWrappedKey(plainKey: string) {
-  let plainKeySizeBuff = new Uint8Array(4);
-  assignLength(plainKey.length, plainKeySizeBuff, 0);
+async function BuildWrappedDataAndImportWrappedKey(plainKey: string, huksPubKey: Uint8Array, callerSelfPublicKey: Uint8Array, encData: KeyEncAndKekEnc) {
+  const plainKeySizeBuff = new Uint8Array(4);
+  AssignLength(plainKey.length, plainKeySizeBuff, 0);
 
-  let wrappedData = new Uint8Array(
-    FILED_LENGTH + huksPubKey.length +
-    FILED_LENGTH + AAD.length +
-    FILED_LENGTH + NONCE.length +
-    FILED_LENGTH + TAG_SIZE +
-    FILED_LENGTH + outKekEncData.length +
-    FILED_LENGTH + AAD.length +
-    FILED_LENGTH + NONCE.length +
-    FILED_LENGTH + TAG_SIZE +
-    FILED_LENGTH + plainKeySizeBuff.length +
-    FILED_LENGTH + outPlainKeyEncData.length
+  const wrappedData = new Uint8Array(
+    unsignedInt32Bytes + huksPubKey.length +
+      unsignedInt32Bytes + associatedData.length +
+      unsignedInt32Bytes + nonce.length +
+      unsignedInt32Bytes + tagSize +
+      unsignedInt32Bytes + encData.outKekEncData.length +
+      unsignedInt32Bytes + associatedData.length +
+      unsignedInt32Bytes + nonce.length +
+      unsignedInt32Bytes + tagSize +
+      unsignedInt32Bytes + plainKeySizeBuff.length +
+      unsignedInt32Bytes + encData.outPlainKeyEncData.length
   );
   let index = 0;
-  let AADUint8Array = StringToUint8Array(AAD);
-  let NonceArray = StringToUint8Array(NONCE);
+  const associatedDataArray = StringToUint8Array(associatedData);
+  const nonceArray = StringToUint8Array(nonce);
 
-  index += assignLength(callerSelfPublicKey.length, wrappedData, index); // 4
-  index += assignData(callerSelfPublicKey, wrappedData, index); // 91
-  index += assignLength(AADUint8Array.length, wrappedData, index); // 4
-  index += assignData(AADUint8Array, wrappedData, index); // 16
-  index += assignLength(NonceArray.length, wrappedData, index); // 4
-  index += assignData(NonceArray, wrappedData, index); // 12
-  index += assignLength(outAgreeKeyEncTag.length, wrappedData, index); // 4
-  index += assignData(outAgreeKeyEncTag, wrappedData, index); // 16
-  index += assignLength(outKekEncData.length, wrappedData, index); // 4
-  index += assignData(outKekEncData, wrappedData, index); // 32
-  index += assignLength(AADUint8Array.length, wrappedData, index); // 4
-  index += assignData(AADUint8Array, wrappedData, index); // 16
-  index += assignLength(NonceArray.length, wrappedData, index); // 4
-  index += assignData(NonceArray, wrappedData, index); // 12
-  index += assignLength(outKekEncTag.length, wrappedData, index); // 4
-  index += assignData(outKekEncTag, wrappedData, index); // 16
-  index += assignLength(plainKeySizeBuff.length, wrappedData, index); // 4
-  index += assignData(plainKeySizeBuff, wrappedData, index); // 4
-  index += assignLength(outPlainKeyEncData.length, wrappedData, index); // 4
-  index += assignData(outPlainKeyEncData, wrappedData, index); // 24
+  index += AssignLength(callerSelfPublicKey.length, wrappedData, index); // 4
+  index += AssignData(callerSelfPublicKey, wrappedData, index); // 91
+  index += AssignLength(associatedDataArray.length, wrappedData, index); // 4
+  index += AssignData(associatedDataArray, wrappedData, index); // 16
+  index += AssignLength(nonceArray.length, wrappedData, index); // 4
+  index += AssignData(nonceArray, wrappedData, index); // 12
+  index += AssignLength(encData.outAgreeKeyEncTag.length, wrappedData, index); // 4
+  index += AssignData(encData.outAgreeKeyEncTag, wrappedData, index); // 16
+  index += AssignLength(encData.outKekEncData.length, wrappedData, index); // 4
+  index += AssignData(encData.outKekEncData, wrappedData, index); // 32
+  index += AssignLength(associatedDataArray.length, wrappedData, index); // 4
+  index += AssignData(associatedDataArray, wrappedData, index); // 16
+  index += AssignLength(nonceArray.length, wrappedData, index); // 4
+  index += AssignData(nonceArray, wrappedData, index); // 12
+  index += AssignLength(encData.outKekEncTag.length, wrappedData, index); // 4
+  index += AssignData(encData.outKekEncTag, wrappedData, index); // 16
+  index += AssignLength(plainKeySizeBuff.length, wrappedData, index); // 4
+  index += AssignData(plainKeySizeBuff, wrappedData, index); // 4
+  index += AssignLength(encData.outPlainKeyEncData.length, wrappedData, index); // 4
+  index += AssignData(encData.outPlainKeyEncData, wrappedData, index); // 24
 
   return wrappedData;
 }
 
 export async function HuksSecurityImportTest(userId: number) {
-  const srcKeyAliesWrap = 'HUKS_Basic_Capability_Import_0200';
-  await generateAndExportPublicKey(userId, srcKeyAliesWrap, genWrappingKeyParams, false);
-  await generateAndExportPublicKey(userId, callerKeyAlias, genCallerEcdhParams, true);
+  const srcKeyAliasWrap = 'HUKS_Basic_Capability_Import_0200';
+  const huksPubKey: Uint8Array = await GenerateAndExportPublicKey(userId, srcKeyAliasWrap, genWrappingKeyParams);
+  const callerSelfPublicKey: Uint8Array = await GenerateAndExportPublicKey(userId, callerKeyAlias, genCallerEcdhParams);
 
   await ImportKekAndAgreeSharedSecret(
     userId,
     callerKekAliasAes256, importParamsCallerKek, callerKeyAlias, huksPubKey, callerAgreeParams);
-  await EncryptImportedPlainKeyAndKek(userId, importedAes192PlainKey);
-  let wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey);
+  const encData: KeyEncAndKekEnc = await EncryptImportedPlainKeyAndKek(userId, importedAes192PlainKey);
+  const wrappedData = await BuildWrappedDataAndImportWrappedKey(importedAes192PlainKey, huksPubKey, callerSelfPublicKey, encData);
   importWrappedAes192Params.inData = wrappedData;
-  await publicImportWrappedKeyFunc(userId,
-    importedKeyAliasAes192, srcKeyAliesWrap, importWrappedAes192Params);
-  await publicDeleteKeyItemFunc(userId, srcKeyAliesWrap, genWrappingKeyParams);
-  await publicDeleteKeyItemFunc(userId, callerKeyAlias, genCallerEcdhParams);
-  await publicDeleteKeyItemFunc(userId, importedKeyAliasAes192, importWrappedAes192Params);
-  await publicDeleteKeyItemFunc(userId, callerKekAliasAes256, callerAgreeParams);
+  await PublicImportWrappedKeyFunc(userId,
+    importedKeyAliasAes192, srcKeyAliasWrap, importWrappedAes192Params);
+  await PublicDeleteKeyItemFunc(userId, srcKeyAliasWrap, genWrappingKeyParams);
+  await PublicDeleteKeyItemFunc(userId, callerKeyAlias, genCallerEcdhParams);
+  await PublicDeleteKeyItemFunc(userId, importedKeyAliasAes192, importWrappedAes192Params);
+  await PublicDeleteKeyItemFunc(userId, callerKekAliasAes256, callerAgreeParams);
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
 
-  const userId = 101;
+  const userId = 100;
   HuksSecurityImportTest(userId)
 }
 ```
 
-## huks.exportKeyItemAsUser<sup>12+</sup>
+## huks.exportKeyItemAsUser
 
-exportKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+exportKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 Exports the public key for the specified user. This API uses a promise to return the result.
 
@@ -1365,32 +1299,30 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
-
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const rsaKeyAlias = 'test_rsaKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 
 function GetRSA4096GenerateProperties(): Array<huks.HuksParam> {
@@ -1424,15 +1356,9 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
     properties: genProperties
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "A key with the alias of "+ keyAlias +" is generated.",
-      duration: 2500,
-    })
+    console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1444,15 +1370,9 @@ async function ExportPublicKey(keyAlias: string) {
     }]
   }
   await huks.exportKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "The public key with the alias of " + keyAlias +" is exported. The length of data is "+ data?.outData?.length,
-      duration: 2500,
-    })
+    console.info("Exported the public key with the alias of: " + keyAlias + ". The data length is" + data?.outData?.length)
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to export the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to export the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1461,15 +1381,15 @@ async function ExportHuksTest() {
   await ExportPublicKey(rsaKeyAlias)
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   ExportHuksTest()
 }
 ```
 
-## huks.getKeyItemPropertiesAsUser<sup>12+</sup>
+## huks.getKeyItemPropertiesAsUser
 
-getKeyItemPropertiesAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResult>
+getKeyItemPropertiesAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksReturnResult>
 
 Obtains key properties for the specified user. This API uses a promise to return the result.
 
@@ -1497,32 +1417,30 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
-
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 
 function GetAesGenerateProperties(): Array<huks.HuksParam> {
@@ -1553,15 +1471,9 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
     properties: genProperties
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "A key with the alias of "+ keyAlias +" is generated.",
-      duration: 2500,
-    })
+    console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1573,15 +1485,9 @@ async function GetKeyProperties(keyAlias: string) {
     }]
   }
   await huks.getKeyItemPropertiesAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "Obtained key properties: " + JSON.stringify (data),
-      duration: 6500,
-    })
+    console.info("Obtained key properties: " + JSON.stringify(data))
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to obtain key properties. Error code: "+ err.code +" Error code: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to obtain key properties. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1590,15 +1496,15 @@ async function TestHuksGet() {
   await GetKeyProperties(aesKeyAlias)
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   TestHuksGet()
 }
 ```
 
-## huks.hasKeyItemAsUser<sup>12+</sup>
+## huks.hasKeyItemAsUser
 
-hasKeyItemAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<boolean>
+hasKeyItemAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<boolean>
 
 Checks whether a key exists for the specified user. This API uses a promise to return the result.
 
@@ -1626,29 +1532,27 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000012 | external error. |
 | 12000014 | memory is insufficient. |
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
-
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 const aesKeyAlias = 'test_aesKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
 
 function GetAesGenerateProperties(): Array<huks.HuksParam> {
@@ -1679,15 +1583,9 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
     properties: genProperties
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "A key with the alias of "+ keyAlias +" is generated.",
-      duration: 2500,
-    })
+    console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1699,12 +1597,9 @@ async function HasKey(keyAlias: string) {
     }]
   }
   await huks.hasKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    console.log ("Check result of the key with the alias of "+ keyAlias +" " + JSON.stringify(data))
+    console.info("Check result of the key with the alias of "+ keyAlias +" " + JSON.stringify(data))
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to delete the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to delete the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
@@ -1713,15 +1608,15 @@ async function TestHuksHasKey() {
   await HasKey(aesKeyAlias)
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   TestHuksHasKey()
 }
 ```
 
-## huks.initSessionAsUser<sup>12+</sup>
+## huks.initSessionAsUser
 
-initSessionAsUser(userId: number, keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>
+initSessionAsUser(userId: number, keyAlias: string, huksOptions: HuksOptions) : Promise\<HuksSessionHandle>
 
 Initialize a key session for the specified user. This API uses a promise to return the result. **huks.initSessionAsUser**, **huks.updateSession**, and **huks.finishSession** must be used together.
 
@@ -1749,16 +1644,16 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 | ID| Error Message     |
 | -------- | ------------- |
-| 201 | the application permission is not sufficient, which may be caused by lack of acrossing-account permission, or the system has not been unlocked by user, or the user does not exist. |
+| 201 | the application permission is not sufficient, which may be caused by lack of cross-account permission, or the system has not been unlocked by user, or the user does not exist. |
 | 202 | non-system applications are not allowed to use system APIs. |
-| 401 | argument is invalid. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
 | 801 | api is not supported. |
 | 12000001 | algorithm mode is not supported. |
 | 12000002 | algorithm param is missing. |
 | 12000003 | algorithm param is invalid. |
 | 12000004 | operating file failed. |
 | 12000005 | IPC communication failed. |
-| 12000006 | error occured in crypto engine. |
+| 12000006 | error occurred in crypto engine. |
 | 12000010 | the number of sessions has reached limit. |
 | 12000011 | queried entity does not exist. |
 | 12000012 | external error. |
@@ -1766,21 +1661,18 @@ For details about the error codes, see [HUKS Error Codes](errorcode-huks.md).
 
 **Example**
 
-- Before calling the API in the sample code, ensure that the target user (user whose ID is to set) has signed in to the device. For details, see **Example** in [generateKeyItemAsUser](#huksgeneratekeyitemasuser12).
-- The values of variables, including but not limited to **IV**, are examples only and cannot be directly used. You need to assign values to your APIs based on actual situation. The length of the variables varies depending on the cryptographic algorithm used. If you need to change the length of the initial values, also change the cryptographic algorithm.
+- Prerequisites: see **Example** of [generateKeyItemAsUser](#huksgeneratekeyitemasuser).
+- The values of the following cryptography-related variables (such as **initializationVector**) are for reference only and cannot be directly used in the service logic. You need to set them based on actual situation.
 
 ```ts
-import promptAction from '@ohos.promptAction';
-import huks from '@ohos.security.huks';
-import { BusinessError } from 'basic';
-
+import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from "@kit.BasicServicesKit"
 
 const aesKeyAlias = 'test_aesKeyAlias';
-const userId = 101;
+const userId = 100;
 const userIdStorageLevel = huks.HuksAuthStorageLevel.HUKS_AUTH_STORAGE_LEVEL_CE;
-let IV = '001122334455';
-let plainText = '123456789';
-let cipherData: Uint8Array;
+const initializationVector = '001122334455';
+const plainText = '123456789';
 
 function StringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -1839,7 +1731,7 @@ function GetAesEncryptProperties(): Array<huks.HuksParam> {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: StringToUint8Array(initializationVector)
   }, {
     tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
     value: userIdStorageLevel,
@@ -1864,7 +1756,7 @@ function GetAesDecryptProperties(): Array<huks.HuksParam> {
     value: huks.HuksCipherMode.HUKS_MODE_CBC
   }, {
     tag: huks.HuksTag.HUKS_TAG_IV,
-    value: StringToUint8Array(IV)
+    value: StringToUint8Array(initializationVector)
   }, {
     tag: huks.HuksTag.HUKS_TAG_AUTH_STORAGE_LEVEL,
     value: userIdStorageLevel,
@@ -1876,53 +1768,37 @@ async function GenerateKey(keyAlias: string, genProperties: Array<huks.HuksParam
     properties: genProperties
   }
   await huks.generateKeyItemAsUser(userId, keyAlias, options).then((data) => {
-    promptAction.showToast({
-      message: "A key with the alias of "+ keyAlias +" is generated.",
-      duration: 2500,
-    })
+    console.info("Generated a key with alias of: " + keyAlias + "")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to generate the key. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to generate the key. Error code: " + err.code + " Error message: " + err.message)
   })
 }
 
-async function EncryptData(keyAlias: string, encryptProperties: Array<huks.HuksParam>) {
-  let ret = -1
+async function EncryptData(keyAlias: string, encryptProperties: Array<huks.HuksParam>): Promise<Uint8Array> {
   const options: huks.HuksOptions = {
     properties: encryptProperties,
     inData: StringToUint8Array(plainText)
   }
   let handle: number = 0;
+  let cipherData: Uint8Array = new Uint8Array([]);
   await huks.initSessionAsUser(userId, keyAlias, options).then((data) => {
     handle = data.handle;
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to initialize the key session. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to initialize the key session. Error code: "+ err.code +" Error message: "+ err.message)
   })
   await huks.finishSession(handle, options).then((data) => {
-    promptAction.showToast({
-      message: "Data encrypted successfully. Ciphertext: " + Uint8ArrayToString(data.outData),
-      duration: 1500,
-    })
+    console.info("Data is encrypted. Ciphertext: " + Uint8ArrayToString(data.outData))
     if (data.outData != undefined) {
       cipherData = data.outData
     }
-    console.log("running time result success!")
+    console.info("running time result success!")
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "An exception is captured in the encryption process. Error code: " + err.code +" Error message: "+ err.message,
-      duration: 6500,
-
-    })
+    console.error("An exception is captured in the encryption process. Error code: " + err.code +" Error message: "+ err.message)
   })
-  return ret
+  return cipherData
 }
 
-async function DecryptData(keyAlias: string, decryptProperties: Array<huks.HuksParam>) {
+async function DecryptData(keyAlias: string, decryptProperties: Array<huks.HuksParam>, cipherData: Uint8Array) {
   const options: huks.HuksOptions = {
     properties: decryptProperties,
     inData: cipherData
@@ -1931,32 +1807,23 @@ async function DecryptData(keyAlias: string, decryptProperties: Array<huks.HuksP
   await huks.initSessionAsUser(userId, keyAlias, options).then((data) => {
     handle = data.handle;
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "Failed to initialize the key session. Error code: "+ err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("Failed to initialize the key session. Error code: "+ err.code +" Error message: "+ err.message)
   })
   await huks.finishSession(handle, options).then((data) => {
-    promptAction.showToast({
-      message: "Data is decrypted. Plaintext: " + Uint8ArrayToString(data.outData),
-      duration: 6500,
-    })
+    console.info("Data is decrypted. Plaintext: " + Uint8ArrayToString(data.outData))
   }).catch((err: BusinessError) => {
-    promptAction.showToast({
-      message: "An exception is captured in the decryption process. Error code: " + err.code +" Error message: "+ err.message,
-      duration: 6500,
-    })
+    console.error("An exception is captured in the decryption process. Error code: " + err.code +" Error message: "+ err.message)
   })
 }
 
 async function TestHuksInit() {
   await GenerateKey(aesKeyAlias, GetAesGenerateProperties())
-  await EncryptData(aesKeyAlias, GetAesEncryptProperties())
-  await DecryptData(aesKeyAlias, GetAesDecryptProperties())
+  let cipherData: Uint8Array = await EncryptData(aesKeyAlias, GetAesEncryptProperties())
+  await DecryptData(aesKeyAlias, GetAesDecryptProperties(), cipherData)
 }
 
-export default function DocTest() {
-  console.log('huks doc test')
+export default function HuksAsUserTest() {
+  console.info('begin huks as user test')
   TestHuksInit()
 }
 ```

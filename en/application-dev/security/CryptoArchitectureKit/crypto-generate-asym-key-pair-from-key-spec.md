@@ -1,9 +1,8 @@
-# Generating an Asymmetric Key Pair Based on Key Parameters
+# Generating an Asymmetric Key Pair Based on Key Parameters (ArkTS)
 
 This topic walks you through on how to generate an RSA, an ECC, and an SM2 asymmetric key pair (**KeyPair**) based on the specified key parameters and obtain the key parameter properties.
 
 The **KeyPair** object created can be used for subsequent operations, such as encryption and decryption. The obtained key parameter properties can be used for key storage and transfer.
-
 
 ## Generating an RSA Public Key Based on Key Parameters
 
@@ -19,15 +18,15 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
    
    **RSAPubKeySpec** is a child class of **AsyKeySpec**. Specify the RSA algorithm in the **algName** parameter, and set the key parameter type to **AsyKeySpecType.PUBLIC_KEY_SPEC**, which indicates the parameters of the public key.
 
-3. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **RSAPubKeySpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
+3. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **RSAPubKeySpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
 
-4. Use [AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey-1) to generate the public key (**PubKey**).
+4. Call [AsyKeyGeneratorBySpec.generatePubKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkey-1) to generate the public key (**PubKey**).
 
-5. Use [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the modulus **n** and the public key exponent **pk** (expressed as e in the formula).
+5. Call [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the modulus **n** and the public key exponent **pk** (expressed as e in the formula).
 
 - Example: Generate an RSA public key based on key parameters (using callback-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   // Generate an RSA public key parameter (RsaPubKeySpec).
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -59,10 +58,10 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
       console.error('type is number');
       return false;
     }
-    if (rsaKeySpec.params.n != n) {
+    if (rsaKeySpec.params.n !== n) {
       return false;
     }
-    if (rsaKeySpec.pk != e) {
+    if (rsaKeySpec.pk !== e) {
       return false;
     }
     return true;
@@ -78,7 +77,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
       let pubKey = key;
       let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
       let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
-      if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
+      if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) !== true) {
         console.error('error pub key big number');
       } else {
         console.info('n, e in the pubKey are same as the spec.');
@@ -89,7 +88,7 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 
 - Synchronously return the result ([generatePubKeySync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatepubkeysync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   // Generate an RSA public key parameter (RsaPubKeySpec).
   function genRsaPubKeySpec(nIn: bigint, eIn: bigint): cryptoFramework.RSAPubKeySpec {
     let rsaCommSpec: cryptoFramework.RSACommonParamsSpec = {
@@ -121,10 +120,10 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
       console.error('type is number');
       return false;
     }
-    if (rsaKeySpec.params.n != n) {
+    if (rsaKeySpec.params.n !== n) {
       return false;
     }
-    if (rsaKeySpec.pk != e) {
+    if (rsaKeySpec.pk !== e) {
       return false;
     }
     return true;
@@ -135,10 +134,10 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
     let rsaGeneratorSpec = cryptoFramework.createAsyKeyGeneratorBySpec(rsaPubKeySpec);
     try {
       let pubKey = rsaGeneratorSpec.generatePubKeySync();
-      if (pubKey != null) {
+      if (pubKey !== null) {
         let nBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_N_BN);
         let eBN = pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.RSA_PK_BN);
-        if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) != true) {
+        if (compareRsaPubKeyBySpec(rsaPubKeySpec, nBN, eBN) !== true) {
           console.error('error pub key big number');
         } else {
           console.info('n, e in the pubKey are same as the spec.');
@@ -152,7 +151,6 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
   }
   ```
 
-
 ## Generating an ECC Key Pair Based on Key Parameters
 
 For details about the algorithm specifications, see [ECC](crypto-asym-key-generation-conversion-spec.md#ecc).
@@ -162,16 +160,16 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
    When key parameters are specified for generating a key, the bigint value must be a positive number in big-endian format.
 
-2. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCCommonParamsSpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
+2. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCCommonParamsSpec** object to create an asymmetric key generator (**AsyKeyGeneratorBySpec**) object.
 
-3. Use [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate a key pair (**KeyPair**).
+3. Call [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate a key pair (**KeyPair**).
 
-4. Use [PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain the private key specifications, and use [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the public key specifications of the ECC.
+4. Call [PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain the private key specifications, and call [PubKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10) to obtain the public key specifications of the ECC.
 
 - Example: Generate an ECC key pair based on key parameters (using promise-based APIs).
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   // Print bigint information.
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
@@ -234,10 +232,10 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
       console.warn('--- field size: ' + fieldSize); // key field size: 224
       let curveName = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
       console.warn('--- curve name: ' + curveName); // key curve name: NID_secp224r1
-      if (keyType == 'priKey') {
+      if (keyType === 'priKey') {
         let sk = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
         showBigIntInfo('--- sk', sk);
-      } else if (keyType == 'pubKey') {
+      } else if (keyType === 'pubKey') {
         let pkX = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
         showBigIntInfo('--- pkX', pkX);
         let pkY = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
@@ -274,7 +272,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
 - Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function showBigIntInfo(bnName: string, bnValue: bigint | string | number) {
     if (typeof bnValue === 'string') {
@@ -336,10 +334,10 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
       console.warn('--- field size: ' + fieldSize); // key field size: 224
       let curveName = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
       console.warn('--- curve name: ' + curveName); // key curve name: NID_secp224r1
-      if (keyType == 'priKey') {
+      if (keyType === 'priKey') {
         let sk = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_SK_BN);
         showBigIntInfo('--- sk', sk);
-      } else if (keyType == 'pubKey') {
+      } else if (keyType === 'pubKey') {
         let pkX = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_X_BN);
         showBigIntInfo('--- pkX', pkX);
         let pkY = key.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_PK_Y_BN);
@@ -355,7 +353,7 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
       let commKeySpec = genEccCommonSpec(); // Construct the EccCommonSpec object.
       let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(commKeySpec); // Create an AsyKeyGenerator instance based on the EccCommonSpec object.
       let keyPair = generatorBySpec.generateKeyPairSync(); // Generate an ECC key pair.
-      if (keyPair != null) {
+      if (keyPair !== null) {
         showEccSpecDetailInfo(keyPair.priKey, "priKey"); // Obtain the ECC private key specifications.
         showEccSpecDetailInfo(keyPair.pubKey, "pubKey"); // Obtain the ECC public key specifications.
       } else {
@@ -373,21 +371,21 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 
 For details about the algorithm specifications, see [SM2](crypto-asym-key-generation-conversion-spec.md#sm2).
 
-1. Create an [ECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecccommonparamsspec10) object to specify common parameters of the private and public keys. Use [genECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genecccommonparamsspec11) with an NID string to generate the common parameters for the SM2 key pair.
+1. Create an [ECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecccommonparamsspec10) object to specify common parameters of the private and public keys. Call [genECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genecccommonparamsspec11) with an NID string to generate the common parameters for the SM2 key pair.
 
     When key parameters are specified for generating a key, the bigint value must be a positive number in big-endian format.
 
 2. Create an [ECCKeyPairSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecckeypairspec10) object with **algName** set to **SM2** to specify the SM2 key pair parameters.
 
-3. Use [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCKeyPairSpec** object to create an asymmetric key generator object.
+3. Call [cryptoFramework.createAsyKeyGeneratorBySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygeneratorbyspec10) with the **ECCKeyPairSpec** object to create an asymmetric key generator object.
 
-4. Use [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an SM2 key pair (**KeyPair**).
+4. Call [AsyKeyGeneratorBySpec.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-3) to generate an SM2 key pair (**KeyPair**).
 
-5. Use [PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain elliptic curve parameters of SM2.
+5. Call [PriKey.getAsyKeySpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getasykeyspec10-1) to obtain elliptic curve parameters of SM2.
 
 - Example: Generate an SM2 key based on the elliptic curve name (using promise-based APIs)
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genSM2KeyPairSpec() {
     let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');
@@ -415,7 +413,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
 
 - Synchronously return the result ([generateKeyPairSync](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypairsync12)):
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
 
   function genSM2KeyPairSpec() {
     let sm2CommonParamsSpec = cryptoFramework.ECCKeyUtil.genECCCommonParamsSpec('NID_sm2');
@@ -436,7 +434,7 @@ For details about the algorithm specifications, see [SM2](crypto-asym-key-genera
     let generatorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(sm2KeyPairSpec);
     try {
       let keyPair = generatorBySpec.generateKeyPairSync();
-      if (keyPair != null) {
+      if (keyPair !== null) {
         let sm2CurveName = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_CURVE_NAME_STR);
         console.info('ECC_CURVE_NAME_STR: ' + sm2CurveName); // NID_sm2
       } else {

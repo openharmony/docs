@@ -12,7 +12,7 @@ Memory operation failed.
 
 **错误描述**
 
-内存操作失败
+内存操作失败。
 
 **可能原因**
 
@@ -26,7 +26,7 @@ Memory operation failed.
 
 **错误信息**
 
-Parcel operation failed. Failed to write the parcel.
+Parcel operation failed. Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory.
 
 **错误描述**
 
@@ -34,17 +34,19 @@ Parcel operation failed. Failed to write the parcel.
 
 **可能原因**
 
-写入对象失败。
+1. 参数无效。
+2. 申请内存失败。
 
 **处理步骤**
 
-请检查对象值是否正常。
+1. 请检查参数是否合法，例如字符串是否超长等。
+2. 请重试。
 
 ## 10000003 系统服务操作失败
 
 **错误信息**
 
-System service operation failed.
+Failed to get system ability manager.
 
 **错误描述**
 
@@ -58,19 +60,19 @@ System service operation failed.
 
 系统服务内部工作异常，请稍后重试，或者重启设备尝试。
 
-## 10000004 IPC通信失败
+## 10000004 通信失败
 
 **错误信息**
 
-IPC failed.
+Failed to access the device usage service.
 
 **错误描述**
 
-进程间通信的时候，IPC通信失败。
+进程间通信的时候，通信失败。
 
 **可能原因**
 
-系统服务异常或者IPC通信数据异常。
+系统服务异常或者通信数据异常。
 
 **处理步骤**
 
@@ -88,7 +90,7 @@ The application is not installed.
 
 **可能原因**
 
-应用未安装或者已经卸载
+应用未安装或者已经卸载。
 
 **处理步骤**
 
@@ -140,11 +142,11 @@ Repeated operation on the application group.
 
 **错误描述**
 
-应用分组操作失败，应用分组相同不需要重复设置或者注册和解注册重复操作。
+应用分组操作失败。
 
 **可能原因**
 
-重复设置应用分组或者重复注册分组变化监听和重复取消分组变化监听。
+重复设置应用分组、重复注册分组变化监听、或重复取消分组变化监听。
 
 **处理步骤**
 
@@ -158,12 +160,12 @@ Failed to get the application group information.
 
 **错误描述**
 
-客户端进程获取应用分组信息失败，改信息在数据库中不存在。
+客户端进程获取应用分组信息失败，该信息在数据库中不存在。
 
 **可能原因**
 
 1. 应用输入bundleName错误。
-2. 应用可能没有安装或者已经卸载
+2. 应用可能没有安装或者已经卸载。
 
 **处理步骤**
 

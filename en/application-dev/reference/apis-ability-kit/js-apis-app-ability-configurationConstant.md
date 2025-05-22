@@ -9,12 +9,14 @@ The **ConfigurationConstant** module provides the enumerated values of the envir
 ## Modules to Import
 
 ```ts
-import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import { ConfigurationConstant } from '@kit.AbilityKit';
 ```
 
-## ConfigurationConstant.ColorMode
+## ColorMode
 
-You can obtain the value of this constant by calling the **ConfigurationConstant.ColorMode** API.
+Enumerates the color modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -25,9 +27,11 @@ You can obtain the value of this constant by calling the **ConfigurationConstant
 | COLOR_MODE_LIGHT | 1 | Light mode.| 
 
 
-## ConfigurationConstant.Direction
+## Direction
 
-You can obtain the value of this constant by calling the **ConfigurationConstant.Direction** API.
+Enumerates the display orientations.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 
@@ -38,9 +42,11 @@ You can obtain the value of this constant by calling the **ConfigurationConstant
 | DIRECTION_HORIZONTAL | 1 | Horizontal direction.| 
 
 
-## ConfigurationConstant.ScreenDensity
+## ScreenDensity
 
-You can obtain the value of this constant by calling the **ConfigurationConstant.ScreenDensity** API.
+Enumerates the screen density modes.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.Ability.AbilityBase
 

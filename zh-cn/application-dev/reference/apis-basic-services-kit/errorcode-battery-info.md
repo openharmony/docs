@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Operation failed. Cannot connect to service.
+Failed to connect to the service.
 
 **错误描述**
 
@@ -30,4 +30,4 @@ Operation failed. Cannot connect to service.
     > hdc shell hidumper -ls
     ```
 
-2. 查看系统服务列表中是否包含Battery-info系统服务。
+2. 查看系统服务列表中是否包含BatteryService系统服务。

@@ -6,5 +6,4 @@
 已提供如下方式进行调试和性能分析：
 
   - [通过DevEco Studio调试](debug-ide.md)
-  - [LLDB高性能调试器](debug-lldb.md)
   - [C/C++内存错误检测](debug-asan.md)

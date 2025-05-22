@@ -9,6 +9,8 @@ The motion path animation is used to animate a component along a custom path.
 ## motionPath
 motionPath(value: MotionPathOptions)
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **Parameters**
 
 | Name   | Type                               | Mandatory| Description                                   |
@@ -16,6 +18,9 @@ motionPath(value: MotionPathOptions)
 | value | [MotionPathOptions](#motionpathoptions) | Yes   | Motion path of the component.            |
 
 ## MotionPathOptions
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 | Name| Type| Mandatory| Description|
 | -------- | -------- | ---- | -------- |
 | path                         | string                     | Yes  | Motion path of the translation animation. The **svg** path string is used. In the value, **start** and **end** can be used in place of the start point and end point, for example, **'Mstart.x start.y L50 50 Lend.x end.y Z'**. For details, see [Path Drawing](../../../ui/ui-js-components-svg-path.md).<br>If this parameter is set to an empty string, the path animation is not set.      |
@@ -25,6 +30,8 @@ motionPath(value: MotionPathOptions)
 
 
 ## Example
+
+This example demonstrates how to animate a component along a custom path.
 
 ```ts
 // xxx.ets
@@ -36,8 +43,12 @@ struct MotionPathExample {
   build() {
     Column() {
       Button('click me').margin(50)
-        // Execute the animation: Move from the start point to (300,200), then to (300,500), and finally to the end point.
-        .motionPath({ path: 'Mstart.x start.y L300 200 L300 500 Lend.x end.y', from: 0.0, to: 1.0, rotatable: true })
+        .motionPath({
+          path: 'Mstart.x start.y L300 200 L300 500 Lend.x end.y',
+          from: 0.0,
+          to: 1.0,
+          rotatable: true
+        }) // Execute the animation: Move from the start point to (300,200), then to (300,500), and finally to the end point.
         .onClick(() => {
           animateTo({ duration: 4000, curve: Curve.Linear }, () => {
             this.toggle =! this.toggle // Use this.toggle to change the position of the component.

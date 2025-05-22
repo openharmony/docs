@@ -1,11 +1,12 @@
 # Key Derivation Using PBKDF2
+
 For details about the corresponding algorithm specifications, see [PBKDF2](crypto-key-derivation-overview.md#pbkdf2).
 
 ## How to Develop
 
 1. Create a [PBKDF2Spec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#pbkdf2spec11) object and use it as a parameter for key derivation.
    
-   **PBKDF2Spec** is a child class of **KdfSpec**. You need to specify the following:
+   **PBKDF2Spec** is a child class of [KdfSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#kdfspec11). You need to specify the following:
 
    - **algName**: algorithm to use, which is **'PBKDF2'**.
    - **password**: original password used to generate the derived key.
@@ -14,9 +15,9 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
    - **iterations**: number of iterations. The value must be a positive integer.
    - **keySize**: length of the key to derive, in bytes. The value must be a positive integer.
 
-2. Use [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'PBKDF2|SHA256'** to create a **Kdf** object. The key derivation algorithm is **PBKDF2**, and HMAC algorithm is **SHA256**.
+2. Call [cryptoFramework.createKdf](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekdf11) with the string parameter **'PBKDF2|SHA256'** to create a **Kdf** object. The key derivation algorithm is **PBKDF2**, and HMAC algorithm is **SHA256**.
 
-3. Use [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **PBKDF2Spec** object to generate a derived key.
+3. Call [Kdf.generateSecret](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesecret-2) with the **PBKDF2Spec** object to generate a derived key.
    
    The following table lists how **Kdf.generateSecret** delivers the return value.
    
@@ -24,10 +25,12 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
    | -------- | -------- |
    | generateSecret(params: KdfSpec, callback: AsyncCallback&lt;DataBlob&gt;): void | This API uses an asynchronous callback to return the result.| 
    | generateSecret(params: KdfSpec): Promise&lt;DataBlob&gt; | This API uses a promise to return the result.| 
+   | generateSecretSync(params: KdfSpec): DataBlob | This API returns the result synchronously.| 
 
 - Return the result using **await**:
+
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   
   async function kdfAwait() {
     let spec: cryptoFramework.PBKDF2Spec = {
@@ -44,9 +47,10 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
   ```
 
 - Return the result using a promise:
+
   ```ts
-  import cryptoFramework from '@ohos.security.cryptoFramework';
-  import { BusinessError } from '@ohos.base';
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function kdfPromise() {
     let spec: cryptoFramework.PBKDF2Spec = {
@@ -63,5 +67,25 @@ For details about the corresponding algorithm specifications, see [PBKDF2](crypt
     }).catch((error: BusinessError) => {
       console.error("key derivation error.");
     });
+  }
+  ```
+
+- Return the result synchronously:
+
+  ```ts
+  import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  function kdfSync() {
+    let spec: cryptoFramework.PBKDF2Spec = {
+      algName: 'PBKDF2',
+      password: '123456',
+      salt: new Uint8Array(16),
+      iterations: 10000,
+      keySize: 32
+    };
+    let kdf = cryptoFramework.createKdf('PBKDF2|SHA256');
+    let secret = kdf.generateSecretSync(spec);
+    console.info("[Sync]key derivation output is " + secret.data);
   }
   ```

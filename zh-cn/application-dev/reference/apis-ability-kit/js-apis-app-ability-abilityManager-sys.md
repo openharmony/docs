@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityManager (AbilityManager)(系统接口)
 
-AbilityManager模块提供获取、新增、修改Ability相关信息和状态信息进行的能力。
+AbilityManager模块提供获取、新增、修改Ability相关信息和运行状态信息的能力。
 
 > **说明：**
 >
@@ -10,33 +10,16 @@ AbilityManager模块提供获取、新增、修改Ability相关信息和状态�
 ## 导入模块
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
+import { abilityManager } from '@kit.AbilityKit';
 ```
-
-## AbilityState
-
-Ability的状态，该类型为枚举，可配合[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)返回Ability的状态。
-
-**系统接口**: 该接口为系统接口。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-| 名称 | 值 | 说明 | 
-| -------- | -------- | -------- |
-| INITIAL | 0 | 表示ability为初始化状态。| 
-| FOCUS | 2 | 表示ability为获焦状态。 |
-| FOREGROUND | 9 | 表示ability为前台状态。  | 
-| BACKGROUND | 10 | 表示ability为后台状态。  | 
-| FOREGROUNDING | 11 | 表示ability为前台调度中状态。  | 
-| BACKGROUNDING | 12 | 表示ability为后台调度中状态。  | 
 
 ## UserStatus<sup>12+</sup>
 
 用户操作的断言调试结果，该类型为枚举。
 
-**系统接口**: 该接口为系统接口。
+**系统接口**：该接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
@@ -50,11 +33,11 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 通过传入修改的配置项来更新配置（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.UPDATE_CONFIGURATION
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
  
 **参数**：
 
@@ -65,19 +48,20 @@ updateConfiguration(config: Configuration, callback: AsyncCallback\<void>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { Configuration } from '@ohos.app.ability.Configuration';
-import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
-import { BusinessError } from '@ohos.base';
+import { abilityManager, Configuration, ConfigurationConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
@@ -89,17 +73,17 @@ const config: Configuration = {
 };
 
 try {
-    abilityManager.updateConfiguration(config, (err: BusinessError) => {
-        if (err) {
-            console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
-        } else {
-            console.log('updateConfiguration success.');
-        }
-    });
+  abilityManager.updateConfiguration(config, (err: BusinessError) => {
+    if (err) {
+      console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
+    } else {
+      console.log('updateConfiguration success.');
+    }
+  });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -109,11 +93,11 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 通过修改配置来更新配置（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.UPDATE_CONFIGURATION
+**需要权限**：ohos.permission.UPDATE_CONFIGURATION
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -129,19 +113,20 @@ updateConfiguration(config: Configuration): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { Configuration } from '@ohos.app.ability.Configuration';
-import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
-import { BusinessError } from '@ohos.base';
+import { abilityManager, Configuration, ConfigurationConstant } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';;
 
 const config: Configuration = {
   language: 'Zh-Hans',                 // 简体中文
@@ -153,15 +138,15 @@ const config: Configuration = {
 };
 
 try {
-    abilityManager.updateConfiguration(config).then(() => {
-        console.log('updateConfiguration success.');
-    }).catch((err: BusinessError) => {
-        console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
-    });
+  abilityManager.updateConfiguration(config).then(() => {
+    console.log('updateConfiguration success.');
+  }).catch((err: BusinessError) => {
+    console.error(`updateConfiguration fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -171,89 +156,46 @@ getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): vo
 
 获取UIAbility运行相关信息（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
 | 参数名        | 类型                                       | 必填   | 说明             |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | 是    | 以回调方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。      |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<abilityManager.AbilityRunningInfo>) => {
-        if (err) {
-            console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
-        } else {
-            console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
-        }
-    });
+  abilityManager.getAbilityRunningInfos((err: BusinessError, data: Array<abilityManager.AbilityRunningInfo>) => {
+    if (err) {
+      console.error(`getAbilityRunningInfos fail, error: ${JSON.stringify(err)}`);
+    } else {
+      console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
+    }
+  });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
-}
-```
-
-## getAbilityRunningInfos
-
-getAbilityRunningInfos(): Promise\<Array\<AbilityRunningInfo>>
-
-获取UIAbility运行相关信息（Promise形式）。
-
-**系统接口**：该接口为系统接口。
-
-**需要权限**: ohos.permission.GET_RUNNING_INFO
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**返回值：**
-
-| 类型                                       | 说明      |
-| ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo-sys.md)>> | 以Promise方式返回接口运行结果及运行中的ability信息，可进行错误处理或其他自定义处理。 |
-
-**错误码**：
-
-| 错误码ID | 错误信息 |
-| ------- | -------- |
-| 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
-
-**示例**：
-
-```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
-
-try {
-    abilityManager.getAbilityRunningInfos().then((data: Array<abilityManager.AbilityRunningInfo>) => {
-        console.log(`getAbilityRunningInfos success, data: ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.error(`getAbilityRunningInfos fail, err: ${JSON.stringify(err)}`);
-    });
-} catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -263,11 +205,11 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 获取关于运行扩展能力的信息（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -278,32 +220,34 @@ getExtensionRunningInfos(upperLimit: number, callback: AsyncCallback\<Array\<Ext
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<abilityManager.ExtensionRunningInfo>) => {
-        if (err) {
-            console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
-        } else {
-            console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
-        }
-    });
+  abilityManager.getExtensionRunningInfos(upperLimit, (err: BusinessError, data: Array<abilityManager.ExtensionRunningInfo>) => {
+    if (err) {
+      console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
+    } else {
+      console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
+    }
+  });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -313,11 +257,11 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 获取关于运行扩展能力的信息（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**需要权限**: ohos.permission.GET_RUNNING_INFO
+**需要权限**：ohos.permission.GET_RUNNING_INFO
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -333,30 +277,32 @@ getExtensionRunningInfos(upperLimit: number): Promise\<Array\<ExtensionRunningIn
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
-        console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
-    }).catch((err: BusinessError) => {
-        console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
-    });
+  abilityManager.getExtensionRunningInfos(upperLimit).then((data: Array<abilityManager.ExtensionRunningInfo>) => {
+    console.log(`getExtensionRunningInfos success, data: ${JSON.stringify(data)}`);
+  }).catch((err: BusinessError) => {
+    console.error(`getExtensionRunningInfos fail, err: ${JSON.stringify(err)}`);
+  });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -366,9 +312,9 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 获取窗口焦点的ability接口（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -378,24 +324,26 @@ getTopAbility(callback: AsyncCallback\<ElementName>): void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-abilityManager.getTopAbility((err: BusinessError, data) => { 
-    if (err) {
-        console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
-    }
+abilityManager.getTopAbility((err: BusinessError, data) => {
+  if (err) {
+    console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -405,9 +353,9 @@ getTopAbility(): Promise\<ElementName>
 
 获取窗口焦点的ability接口（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **返回值：**
 
@@ -417,22 +365,23 @@ getTopAbility(): Promise\<ElementName>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 abilityManager.getTopAbility().then((data) => {
-    console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
+  console.log(`getTopAbility success, data: ${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-    console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
+  console.error(`getTopAbility fail, err: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -440,11 +389,11 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Object>>): void
 
-系统弹框通过该接口发起元服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -455,43 +404,44 @@ acquireShareData(missionId: number, callback: AsyncCallback\<Record\<string, Obj
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    abilityManager.acquireShareData(1, (err: BusinessError, wantParam: Record<string, Object>) => { 
-        if (err) {
-            console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
-        } else {
-            console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
-        }
-    });
+  abilityManager.acquireShareData(1, (err: BusinessError, wantParam: Record<string, Object>) => {
+    if (err) {
+      console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
+    } else {
+      console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+    }
+  });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
-
 ```
 
 ## acquireShareData<sup>10+</sup>
 
 acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
-系统弹框通过该接口发起元服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -507,28 +457,30 @@ acquireShareData(missionId: number): Promise\<Record\<string, Object>>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-    abilityManager.acquireShareData(1).then((wantParam: Record<string, Object>) => {
+  abilityManager.acquireShareData(1).then((wantParam: Record<string, Object>) => {
     console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
-    }).catch((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
-    });
+  });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -536,13 +488,13 @@ try {
 
 notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: AsyncCallback\<void>): void
 
-该接口仅供[DLP](../apis-data-loss-prevention-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
+该接口仅供[DLP](../apis-data-protection-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -554,19 +506,21 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number, callback: Asyn
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { abilityManager, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
@@ -574,8 +528,8 @@ let want: Want = {
 let resultCode = 100;
 // 返回给另存为行为发起方AbilityResult信息
 let abilityResult: common.AbilityResult = {
-    want,
-    resultCode
+  want,
+  resultCode
 };
 let requestCode = 1;
 try {
@@ -587,9 +541,9 @@ try {
     }
   });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
@@ -597,13 +551,13 @@ try {
 
 notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void>
 
-该接口仅供[DLP](../apis-data-loss-prevention-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
+该接口仅供[DLP](../apis-data-protection-kit/js-apis-dlppermission.md)（Data Loss Prevention, 数据丢失防护）管理应用使用，其他应用禁止使用，DLP管理应用通过该接口通知沙箱应用另存为结果。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
 **系统接口**：此接口为系统接口。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **参数**：
 
@@ -620,19 +574,21 @@ notifySaveAsResult(parameter: AbilityResult, requestCode: number): Promise\<void
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例**：
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import common from '@ohos.app.ability.common';
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { abilityManager, Want, common } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let want: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility'
@@ -640,30 +596,30 @@ let want: Want = {
 let resultCode = 100;
 // 返回给另存为行为发起方AbilityResult信息
 let abilityResult: common.AbilityResult = {
-    want,
-    resultCode
+  want,
+  resultCode
 };
 let requestCode = 1;
 try {
-  abilityManager.notifySaveAsResult(abilityResult, requestCode).catch((err: BusinessError) => {
-    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
-  }).then(() => {
+  abilityManager.notifySaveAsResult(abilityResult, requestCode).then(() => {
     console.log(`notifySaveAsResult success`);
+  }).catch((err: BusinessError) => {
+    console.error(`notifySaveAsResult fail, err: ${JSON.stringify(err)}`);
   });
 } catch (paramError) {
-    let code: number = (paramError as BusinessError).code;
-    let message: string = (paramError as BusinessError).message;
-    console.error(`error.code: ${code}, error.message: ${message}`);
+  let code: number = (paramError as BusinessError).code;
+  let message: string = (paramError as BusinessError).message;
+  console.error(`error.code: ${code}, error.message: ${message}`);
 }
 ```
 
-## abilityManager.on<sup>11+</sup>
+## abilityManager.on('abilityForegroundState')<sup>11+</sup>
 
 on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): void
 
 注册Ability的启动和退出的观测器。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -674,43 +630,46 @@ on(type: 'abilityForegroundState', observer: AbilityForegroundStateObserver): vo
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | 是 | Ability状态观测器，用于观测Ability的启动和退出。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer: abilityManager.AbilityForegroundStateObserver = {
-    onAbilityStateChanged(abilityStateData) {
-        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
+  onAbilityStateChanged(abilityStateData) {
+    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
 };
 try {
-    abilityManager.on('abilityForegroundState', observer);
+  abilityManager.on('abilityForegroundState', observer);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error: ${code}, ${message} `);
 }
 ```
 
-## abilityManager.off<sup>11+</sup>
+## abilityManager.off('abilityForegroundState')<sup>11+</sup>
 
 off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): void
 
 取消注册Ability启动和退出的观测器。
 
-**系统接口**：该接口为系统接口。
+**系统接口**：此接口为系统接口。
 
 **需要权限**：ohos.permission.RUNNING_STATE_OBSERVER
 
@@ -721,44 +680,48 @@ off(type: 'abilityForegroundState', observer?: AbilityForegroundStateObserver): 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 调用接口类型，固定填'abilityForegroundState'字符串。 |
-| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
+| observer | [AbilityForegroundStateObserver](js-apis-inner-application-abilityForegroundStateObserver-sys.md) | 否 | Ability状态观测器，用于观测Ability的启动和退出。如果未配置该参数，则取消当前应用注册的所有observer。如果配置了该参数，则取消该observer。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
 let observer_: abilityManager.AbilityForegroundStateObserver | undefined;
 // 1.注册应用启动和退出的监听器
 let observer: abilityManager.AbilityForegroundStateObserver = {
-    onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
-        console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
-    },
+  onAbilityStateChanged(abilityStateData: abilityManager.AbilityStateData) {
+    console.log(`onAbilityStateChanged: ${JSON.stringify(abilityStateData)}`);
+  },
 };
 try {
-    abilityManager.on('abilityForegroundState', observer);
-    observer_ = observer;
+  abilityManager.on('abilityForegroundState', observer);
+  observer_ = observer;
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error: ${code}, ${message} `);
 }
 
 // 2.注销监听器
 try {
-    abilityManager.off('abilityForegroundState',  observer_);
+  abilityManager.off('abilityForegroundState',  observer_);
 } catch (paramError) {
-    let code = (paramError as BusinessError).code;
-    let message = (paramError as BusinessError).message;
-    console.error(`error: ${code}, ${message} `);
+  let code = (paramError as BusinessError).code;
+  let message = (paramError as BusinessError).message;
+  console.error(`error: ${code}, ${message} `);
 }
 ```
 
@@ -778,28 +741,31 @@ getForegroundUIAbilities(callback: AsyncCallback\<Array\<AbilityStateData>>): vo
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>>  | 是 |以回调方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。 |
+  | callback | AsyncCallback\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>>  | 是 |以回调方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。 |
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 abilityManager.getForegroundUIAbilities((err: BusinessError, data: Array<abilityManager.AbilityStateData>) => {
-    if (err) {
-        console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
-    }
+  if (err) {
+    console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(err)}`);
+  } else {
+    console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+  }
 });
 ```
 
@@ -819,26 +785,28 @@ getForegroundUIAbilities(): Promise\<Array\<AbilityStateData>>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData-sys.md)>> | 以Promise方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。|
+| Promise\<Array\<[AbilityStateData](js-apis-inner-application-abilityStateData.md)>> | 以Promise方式返回接口运行结果及有关前台Ability的信息，可进行错误处理或其他自定义处理。|
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[errcode-ability](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 abilityManager.getForegroundUIAbilities().then((data: Array<abilityManager.AbilityStateData>) => {
-    console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
+  console.log(`Get foreground ui abilities data is: ${JSON.stringify(data)}`);
 }).catch((error: BusinessError) => {
-    console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
+  console.error(`Get foreground ui abilities failed, error: ${JSON.stringify(error)}`);
 });
 ```
 
@@ -869,27 +837,26 @@ notifyDebugAssertResult(sessionId: string, status: UserStatus): Promise\<void>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
-import UIExtensionAbility from '@ohos.app.ability.UIExtensionAbility';
-import wantConstant from '@ohos.app.ability.wantConstant';
-import type Want from '@ohos.app.ability.Want';
-import type UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import { abilityManager, UIExtensionAbility, wantConstant, Want, UIExtensionContentSession } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class UiExtAbility extends UIExtensionAbility {
   onSessionCreate(want: Want, session: UIExtensionContentSession): void {
-    let sessionId:string = '';
-    if(want.parameters){
-      sessionId  = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string;
+    let sessionId: string = '';
+    if (want.parameters) {
+      sessionId = want.parameters[wantConstant.Params.ASSERT_FAULT_SESSION_ID] as string;
     }
     let status = abilityManager.UserStatus.ASSERT_TERMINATE;
     abilityManager.notifyDebugAssertResult(sessionId, status).then(() => {
@@ -899,10 +866,9 @@ export default class UiExtAbility extends UIExtensionAbility {
     });
   }
 }
-
 ```
 
-## abilityManager.isEmbeddedOpenAllowed<sup>12</sup>
+## abilityManager.isEmbeddedOpenAllowed<sup>12+</sup>
 
 isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
 
@@ -927,33 +893,157 @@ isEmbeddedOpenAllowed(context: Context, appId: string): Promise\<boolean>
 
 **错误码**：
 
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 16000050 | Internal error. |
-
-以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
 **示例：**
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
-import { BusinessError } from '@ohos.base';
-import UIAbility from '@ohos.app.ability.UIAbility';
+import { abilityManager, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
-
   onForeground() {
     let appId: string = '6918661953712445909';
-
     try {
       abilityManager.isEmbeddedOpenAllowed(this.context, appId).then((data) => {
         console.info(`isEmbeddedOpenAllowed data: ${JSON.stringify(data)}`);
-      })
+      }).catch((err: BusinessError) => {
+        console.error(`isEmbeddedOpenAllowed failed, code is ${err.code}, message is ${err.message}`);
+      });
     } catch (err) {
       // 处理入参错误异常
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
-      console.error(`isEmbeddedOpenAllowed failed, code is ${code}, message is ${message}`);
+      console.error(`param is invalid, code is ${err.code}, message is ${err.message}`);
+    }
+  }
+}
+```
+
+## abilityManager.setResidentProcessEnabled<sup>12+</sup>
+
+setResidentProcessEnabled(bundleName: string, enable: boolean): Promise\<void>
+
+常驻进程支持按需启停。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | -------- | -------- | -------- |
+| bundleName | string | 是 | 常驻进程的包名。 |
+| enable | boolean | 是 | 常驻进程的使能状态。 true：表示该进程为常驻进程。 false：表示该进程为普通进程，不会进行保活。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 202 | Not a system application. |
+| 401 | Parameter error. Possible cause: 1.Non empty package name needs to be provided, 2.The second parameter needs to provide a Boolean type setting value |
+| 16000050 | Internal error. |
+| 16200006 | The caller application can only set the resident status of the configured process |
+
+**示例：**
+
+```ts
+import { abilityManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let residentProcessBundleName: string = 'com.xxx.xxxxxx';
+  let enable: boolean = false;
+  abilityManager.setResidentProcessEnabled(residentProcessBundleName, enable)
+    .then(() => {
+      console.log('setResidentProcessEnabled success.');
+    })
+    .catch((err: BusinessError) => {
+      console.error(`setResidentProcessEnabled fail, err: ${JSON.stringify(err)}`);
+    });
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`setResidentProcessEnabled failed, code is ${code}, message is ${message}`);
+}
+```
+
+## AtomicServiceStartupRule<sup>18+</sup>
+
+嵌入式拉起原子化服务的规则。
+
+**系统接口**：该接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+| -------- | ---------| ---- | ---- | --------- |
+| isOpenAllowed | boolean   | 是   | 否   | 是否允许拉起原子化服务。true表示允许拉起原子化服务，false表示不允许拉起原子化服务。 |
+| isEmbeddedAllowed | boolean   | 是   | 否  | 是否允许嵌入式拉起原子化服务。true表示允许嵌入式拉起原子化服务，false表示不允许嵌入式拉起原子化服务。 |
+
+## abilityManager.queryAtomicServiceStartupRule<sup>18+</sup>
+
+queryAtomicServiceStartupRule(context: Context, appId: string): Promise\<AtomicServiceStartupRule>
+
+查询嵌入式拉起[EmbeddableUIAbility](js-apis-app-ability-embeddableUIAbility.md)的规则。使用Promise异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**参数**：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------- | -------- | -------- | -------- |
+| context | [Context](js-apis-inner-application-context.md) | 是 | 嵌入式拉起EmbeddableUIAbility的调用方Context。<br>**说明**：目前仅支持[UIAbilityContext](js-apis-inner-application-uiAbilityContext.md)。 |
+| appId | string | 是 | 应用的唯一标识，由云端统一分配。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<[AtomicServiceStartupRule](#atomicservicestartuprule18)> | Promise对象。返回嵌入式拉起原子化服务的规则。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)和[元能力子系统错误码](errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not support. |
+| 16000050 | Internal error. |
+
+**示例：**
+
+```ts
+import { abilityManager, UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onForeground() {
+    let appId: string = '6918661953712445909';
+    try {
+      abilityManager.queryAtomicServiceStartupRule(this.context, appId).then((data: abilityManager.AtomicServiceStartupRule) => {
+        console.info(`queryAtomicServiceStartupRule data: ${JSON.stringify(data)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`queryAtomicServiceStartupRule failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (err) {
+      // 处理入参错误异常
+      console.error(`param is invalid, code is ${err.code}, message is ${err.message}`);
     }
   }
 }

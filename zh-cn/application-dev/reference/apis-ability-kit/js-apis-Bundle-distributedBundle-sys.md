@@ -6,6 +6,8 @@
 >
 > 本模块首批接口从API version 8 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> 从API Version 9开始，该模块不再维护，建议使用[@ohos.bundle.distributedBundleManager](js-apis-distributedBundleManager-sys.md)替代。
+>
 > 本模块为系统接口。
 
 ## 导入模块
@@ -22,9 +24,9 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 | 权限                                       | 权限等级     | 描述               |
 | ------------------------------------------ | ------------ | ------------------ |
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息 |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | 可查询所有应用信息。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## distributedBundle.getRemoteAbilityInfo<sup>deprecated<sup>
 
@@ -32,7 +34,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfo(elementName: ElementName, callback: AsyncCallback&lt;RemoteAbilityInfo&gt;): void
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息，使用callback形式返回结果。
+根据给定的ElementName获取有关远程设备AbilityInfo信息，使用callback异步回调。
 
 **需要权限：**
 
@@ -61,7 +63,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfo(elementName: ElementName): Promise&lt;RemoteAbilityInfo&gt;
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfo信息，使用Promise形式返回结果。
+根据给定的ElementName获取有关远程设备AbilityInfo信息，使用Promise异步回调。
 
 **需要权限：**
 
@@ -93,7 +95,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;, callback: AsyncCallback&lt;Array&lt;RemoteAbilityInfo&gt;&gt;): void
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfos信息，使用callback形式返回结果。
+根据给定的ElementName获取有关远程设备AbilityInfos信息，使用callback异步回调。
 
 **需要权限：**
 
@@ -122,7 +124,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 getRemoteAbilityInfos(elementNames: Array&lt;ElementName&gt;): Promise&lt;Array&lt;RemoteAbilityInfo&gt;&gt;
 
-以异步方法根据给定的ElementName获取有关远程设备AbilityInfos信息，使用Promise形式返回结果。
+根据给定的ElementName获取有关远程设备AbilityInfos信息，使用Promise异步回调。
 
 **需要权限：**
 

@@ -1,24 +1,26 @@
-# DRM Kit API参考
+# DRM Kit（数字版权保护服务）
 
-- ArkTS API
+- ArkTS API<!--drm-arkts-->
   - [@ohos.multimedia.drm (数字版权保护)](js-apis-drm.md)
-- C API
-  - 模块
+- C API<!--drm-c-->
+  - 模块<!--drm-module-->
     - [Drm](_drm.md)
-  - 头文件
+  - 头文件<!--drm-headerfile-->
     - [native_drm_common.h](native__drm__common_8h.md)
     - [native_drm_err.h](native__drm__err_8h.md)
     - [native_mediakeysession.h](native__mediakeysession_8h.md)
     - [native_mediakeysystem.h](native__mediakeysystem_8h.md)
-  - 结构体
+  - 结构体<!--drm-struct-->
     - [DRM_KeysInfo](_d_r_m___keys_info.md)
     - [DRM_MediaKeyRequest](_d_r_m___media_key_request.md)
     - [DRM_MediaKeyRequestInfo](_d_r_m___media_key_request_info.md)
     - [DRM_MediaKeyStatus](_d_r_m___media_key_status.md)
+    - [DRM_MediaKeySystemDescription](_d_r_m___media_key_system_description.md)
     - [DRM_MediaKeySystemInfo](_d_r_m___media_key_system_info.md)
     - [DRM_OfflineMediakeyIdArray](_d_r_m___offline_mediakey_id_array.md)
     - [DRM_PsshInfo](_d_r_m___pssh_info.md)
     - [DRM_Statistics](_d_r_m___statistics.md)
     - [MediaKeySession_Callback](_media_key_session___callback.md)
-- 错误码
+    - [OH_MediaKeySession_Callback](_o_h___media_key_session___callback.md)
+- 错误码<!--drm-arkts-errcode-->
   - [DRM错误码](errorcode-drm.md)

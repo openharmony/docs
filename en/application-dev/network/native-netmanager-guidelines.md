@@ -20,8 +20,12 @@ The following table lists the common **NetConnection** APIs. For details, see [N
 | OH_NetConn_GetAddrInfo (char \*host, char \*serv, struct addrinfo \*hint, struct addrinfo \*\*res, int32_t netId) | Obtains the DNS result based on the specified **netId**.|
 | OH_NetConn_FreeDnsResult(struct addrinfo \*res) | Releases the DNS query result.|
 | OH_NetConn_GetAllNets(NetConn_NetHandleList \*netHandleList) | Obtains the list of all connected networks.|
-| OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | Registers a custom DNS resolver.|
-| OHOS_NetConn_UnregisterDnsResolver(void) | Unregisters a custom DNS resolver.|
+| OHOS_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | Registers a custom DNS resolver.<br>Note: This API is deprecated since API version 13.<br>You are advised to use **OH_NetConn_RegisterDnsResolver** instead.|
+| OHOS_NetConn_UnregisterDnsResolver(void) | Unregisters a custom DNS resolver.<br>Note: This API is deprecated since API version 13.<br>You are advised to use **OH_NetConn_UnregisterDnsResolver** instead.|
+| OH_NetConn_RegisterDnsResolver(OH_NetConn_CustomDnsResolver resolver) | Registers a custom DNS resolver.|
+| OH_NetConn_UnregisterDnsResolver(void) | Unregisters a custom DNS resolver.|
+| OH_NetConn_SetPacUrl(const char \*pacUrl) | Sets the URL of the system-level proxy auto-config (PAC) script.|
+| OH_NetConn_GetPacUrl(char \*pacUrl) | Obtains the URL of the system-level PAC script.|
 
 ## Development Example
 
@@ -30,6 +34,8 @@ The following table lists the common **NetConnection** APIs. For details, see [N
 To use related APIs to obtain network information, you need to create a Native C++ project, encapsulate the APIs in the source file, and call these APIs at the ArkTs layer. You can use hilog or console.log to print the log information on the console or generate device logs.
 
 This document describes how to obtain the default active data network as an example.
+
+For details about other APIs, see the [Complete Sample Code](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/NetWork_Kit/NetWorkKit_NetManager/NetConnection_Exploitation_case).
 
 ### Adding Dependencies
 

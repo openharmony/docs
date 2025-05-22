@@ -48,13 +48,12 @@
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在UIAbility的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis-arkui/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../../design/ux-design/visual-basis.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
+1. 在UIAbility的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis-arkui/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../reference/apis-arkui/arkui-ts/ts-pixel-units.md)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../ui/state-management/arkts-state.md)记录当前的断点值方便后续使用。
 
    ```ts
    // MainAbility.ts
-   import window from '@ohos.window'
-   import display from '@ohos.display'
-   import UIAbility from '@ohos.app.ability.UIAbility'
+   import { window, display } from '@kit.ArkUI'
+   import { UIAbility } from '@kit.AbilityKit'
    
    export default class MainAbility extends UIAbility {
      private windowObj?: window.Window
@@ -128,7 +127,7 @@
 在实际应用开发过程中，开发者常常需要针对不同类型设备或同一类型设备的不同状态来修改应用的样式。媒体查询提供了丰富的媒体特征监听能力，可以监听应用显示区域变化、横竖屏、深浅色、设备类型等等，因此在应用开发过程中使用的非常广泛。
 
 
-本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/arkts-layout-development-media-query.md)的相关介绍了解更详细的用法。
+本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听[断点](#断点)的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/arkts-layout-development-media-query.md)的相关介绍了解更详细的用法。
 
 
 > **说明：**
@@ -146,17 +145,17 @@
 | ![zh-cn_image_0000001336165712](figures/zh-cn_image_0000001336165712.jpg) | ![zh-cn_image_0000001386485617](figures/zh-cn_image_0000001386485617.jpg) | ![zh-cn_image_0000001386805569](figures/zh-cn_image_0000001386805569.jpg) | 
 
 
-1.对通过媒体查询监听断点的功能做简单的封装，方便后续使用
+1.对通过媒体查询监听[断点](#断点)的功能做简单的封装，方便后续使用
 ```ts
 // common/breakpointsystem.ets
-import mediaQuery from '@ohos.mediaquery'
+import { mediaquery } from '@kit.ArkUI'
 
 export type BreakpointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 
 export interface Breakpoint {
   name: BreakpointType
   size: number
-  mediaQueryListener?: mediaQuery.MediaQueryListener
+  mediaQueryListener?: mediaquery.MediaQueryListener
 }
 
 export class BreakpointSystem {
@@ -196,7 +195,7 @@ export class BreakpointSystem {
       } else {
         condition = `(${breakpoint.size}vp<=width<${this.breakpoints[index + 1].size}vp)`
       }
-      breakpoint.mediaQueryListener = mediaQuery.matchMediaSync(condition)
+      breakpoint.mediaQueryListener = mediaquery.matchMediaSync(condition)
       if (breakpoint.mediaQueryListener.matches) {
         this.updateAllState(breakpoint.name)
       }
@@ -265,7 +264,7 @@ export class BreakpointState<T extends Object> {
 2.在页面中，通过媒体查询，监听应用窗口宽度变化，获取当前应用所处的断点值
 ```ts
 // MediaQuerySample.ets
-import { BreakpointSystem, BreakpointState } from 'common/breakpointsystem'
+import { BreakpointSystem, BreakpointState } from '../common/breakpointsystem'
 
 @Entry
 @Component
@@ -356,7 +355,7 @@ struct MediaQuerySample {
 
 修改默认的断点范围，同时启用xl和xxl断点。
 
-图片右下角显示了当前设备屏幕的尺寸（即应用窗口尺寸），可以看到随着窗口尺寸发生变化，栅格的断点也相应发生了改变。（为了便于理解，下图中将设备的DPI设置为160，此时1vp=1px）
+图片右下角显示了当前设备屏幕的尺寸（即应用窗口尺寸），可以看到随着窗口尺寸发生变化，栅格的断点也相应发生了改变（为了便于理解，下图中将设备的DPI设置为160，此时1vp=1px）。
 
 ![window3](figures/window3.gif)
 
@@ -441,7 +440,7 @@ struct GridRowSample2 {
 栅格组件columns默认为12列，gutter默认为0，同时支持开发者根据实际需要定义不同断点下的columns数量以及gutter长度。特别的，在栅格组件实际使用过程中，常常会发生多个元素占据的列数相加超过总列数而折行的场景。栅格组件还允许开发者分别定义水平方向的gutter（相邻两列之间的间距）和垂直方向的gutter（折行时相邻两行之间的间距）。
 
 
-  考虑到[组件通用属性](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-size.md)中已经有margin和padding，栅格组件不再单独提供额外的margin属性，直接使用通用属性即可。借助margin或者padding属性，均可以控制栅格组件与父容器左右边缘的距离，但是二者也存在一些差异：
+  考虑到[组件通用属性](../../reference/apis-arkui/arkui-ts/ts-component-general-attributes.md)中已经有margin和padding，栅格组件不再单独提供额外的margin属性，直接使用通用属性即可。借助margin或者padding属性，均可以控制栅格组件与父容器左右边缘的距离，但是二者也存在一些差异：
 - margin区域在栅格组件的边界外，padding区域在栅格组件的边界内。
 
 - 栅格组件的backgroundColor会影响padding区域，但不会影响margin区域。
@@ -564,7 +563,7 @@ struct GridRowSample4 {
 **示例5：**
 
 
-通过span参数配置GridCol在不同断点下占据不同的列数。特别的，将md断点下和6的span配置为0，这样在md断点下3和6不会渲染和显示。
+通过span参数配置GridCol在不同断点下占据不同的列数。特别的，将md断点下3和6的span配置为0，这样在md断点下3和6不会渲染和显示。
 
 
   | sm | md | lg | 

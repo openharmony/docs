@@ -12,7 +12,9 @@ fontColor(value: ResourceColor)
 
 Sets the font color.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -28,7 +30,9 @@ fontSize(value: number | string | Resource)
 
 Sets the font size.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -36,7 +40,7 @@ Sets the font size.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| number \| string | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. This attribute cannot be set in percentage.|
+| value  | [Resource](ts-types.md#resource) \| number \| string | Yes  | Font size. If **fontSize** is of the number type, the unit fp is used. The default font size is 16 fp. For the string type, numeric string values with optional units, for example, **"10"** or **"10fp"**, are supported. Percentage values are not supported.|
 
 ## fontStyle
 
@@ -44,7 +48,9 @@ fontStyle(value: FontStyle)
 
 Sets the font style.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +66,9 @@ fontWeight(value: number | FontWeight | string)
 
 Sets the font weight. If the value is too large, the text may be clipped depending on the font.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,7 +84,9 @@ fontFamily(value: string | Resource)
 
 Sets the font family.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -84,7 +94,7 @@ Sets the font family.
 
 | Name| Type                                                | Mandatory| Description                                                        |
 | ------ | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Resource](ts-types.md#resource) \| string | Yes  | Font family. The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported.|
+| value  | [Resource](ts-types.md#resource) \| string | Yes  | Font family. Default font: **'HarmonyOS Sans'**<br>The 'HarmonyOS Sans' font and [registered custom fonts](../js-apis-font.md) are supported for applications.<br>Only the 'HarmonyOS Sans' font is supported for widgets.|
 
 ## lineHeight
 
@@ -92,7 +102,9 @@ lineHeight(value: number | string | Resource)
 
 Sets the text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -104,11 +116,13 @@ Sets the text line height. If the value is less than or equal to **0**, the line
 
 ## decoration
 
-decoration(value: { type: TextDecorationType; color?: ResourceColor })
+decoration(value: DecorationStyleInterface)
 
 Sets the style and color for the text decorative line.
 
-**Widget capability**: Since API version 9, this API is supported in ArkTS widgets.
+**Widget capability**: This API can be used in ArkTS widgets since API version 9.
+
+**Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -116,10 +130,11 @@ Sets the style and color for the text decorative line.
 
 | Name| Type                                                        | Mandatory| Description                                                        |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Yes  | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} |
-
+| value  | [DecorationStyleInterface<sup>12+</sup>](ts-universal-styled-string.md#decorationstyleinterface) | Yes  | Style of the text decorative line.<br>Default value:<br>{<br> type: TextDecorationType.None,<br> color: Color.Black,<br> style: TextDecorationStyle.SOLID <br>}<br>**NOTE**<br>The **style** parameter cannot be used in widgets.|
 
 ## Example
+
+This example showcases various text styles by using the **fontColor**, **fontSize**, **fontStyle**, and **fontWeight** attributes.
 
 ```ts
 // xxx.ets
@@ -127,7 +142,7 @@ Sets the style and color for the text decorative line.
 @Component
 struct TextStyleExample {
   build() {
-    Column({ space: 5 }) {
+    Column({ space: 8 }) {
       Text('default text')
       
       Text('text font color red').fontColor(Color.Red)
@@ -152,6 +167,32 @@ struct TextStyleExample {
         .fontColor(Color.Orange)
         .fontSize(18)
         .fontStyle(FontStyle.Normal)
+
+      Text('text lineHeight 30')
+        .lineHeight(30)
+        .backgroundColor(Color.Gray)
+
+      Text('text fontFamily HarmonyOS Sans')
+        .fontFamily("HarmonyOS Sans")
+
+      Text('Underline Black SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.Underline,
+          color: Color.Black,
+          style: TextDecorationStyle.SOLID
+        })
+      Text('Overline Red DOTTED decoration text')
+        .decoration({
+          type: TextDecorationType.Overline,
+          color: Color.Red,
+          style: TextDecorationStyle.DOTTED
+        })
+      Text('LineThrough Orange SOLID decoration text')
+        .decoration({
+          type: TextDecorationType.LineThrough,
+          color: Color.Orange,
+          style: TextDecorationStyle.WAVY
+        })
     }.width('100%')
   }
 }

@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供基于URI的文件及目录授于持久化权限、权限激活、权限查询等方法。
+提供基于URI的文件及目录授予持久化权限、权限激活、权限查询等方法。
 
 **库：** libohfileshare.so
 
@@ -39,8 +39,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [FileShare_OperationMode](file_share.md#fileshare_operationmode) { [READ_MODE](file_share.md) = 1 &lt;&lt; 0, [WRITE_MODE](file_share.md) = 1 &lt;&lt; 1 } | URI操作模式枚举值。  | 
-| [FileShare_PolicyErrorCode](file_share.md#fileshare_policyerrorcode) { [PERSISTENCE_FORBIDDEN](file_share.md) = 1, [INVALID_MODE](file_share.md) = 2, [INVALID_PATH](file_share.md) = 3, [PERMISSION_NOT_PERSISTED](file_share.md) = 4 } | 授予或使能权限策略失败的URI对应的错误码枚举值。  | 
+| [FileShare_OperationMode](file_share.md#fileshare_operationmode) {<br/>READ_MODE = 1 &lt;&lt; 0,<br/>WRITE_MODE = 1 &lt;&lt; 1<br/>} | URI操作模式枚举值。 | 
+| [FileShare_PolicyErrorCode](file_share.md#枚举类型说明) {<br/>PERSISTENCE_FORBIDDEN = 1,<br/>INVALID_MODE = 2,<br/>INVALID_PATH = 3,<br/>PERMISSION_NOT_PERSISTED = 4<br/>} | 授予或使能权限策略失败的URI对应的错误码枚举值。 | 
 
 
 ### 函数
@@ -48,7 +48,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_PersistPermission](file_share.md#oh_fileshare_persistpermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 对所选择的多个文件或目录URI持久化授权。  | 
-| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_RevokePermission](file_share.md#oh_fileshare_revokepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 对所选择的多个文件或目录uri取消持久化授权。  | 
+| [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_RevokePermission](file_share.md#oh_fileshare_revokepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 对所选择的多个文件或目录URI取消持久化授权。  | 
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_ActivatePermission](file_share.md#oh_fileshare_activatepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 使能多个已经持久化授权的文件或目录。  | 
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_DeactivatePermission](file_share.md#oh_fileshare_deactivatepermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, [FileShare_PolicyErrorResult](_file_share___policy_error_result.md) \*\*result, unsigned int \*resultNum) | 取消使能持久化授权过的多个文件或目录。  | 
 | [FileManagement_ErrCode](_file_i_o.md#filemanagement_errcode) [OH_FileShare_CheckPersistentPermission](file_share.md#oh_fileshare_checkpersistentpermission) (const [FileShare_PolicyInfo](_file_share___policy_info.md) \*policies, unsigned int policyNum, bool \*\*result, unsigned int \*resultNum) | 校验所选择的多个文件或目录URI的持久化授权。  | 

@@ -1,12 +1,12 @@
 # 通过message事件刷新卡片内容
 
-在卡片页面中可以通过**postCardAction**接口触发message事件拉起FormExtensionAbility，然后由FormExtensionAbility刷新卡片内容，下面是这种刷新方式的简单示例。
+在卡片页面中可以通过[postCardAction](../reference/apis-arkui/js-apis-postCardAction.md#postcardaction)接口触发message事件拉起FormExtensionAbility，然后由FormExtensionAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 > **说明：**
 >
 > 本文主要介绍动态卡片的事件开发。对于静态卡片，请参见[FormLink](../reference/apis-arkui/arkui-ts/ts-container-formlink.md)。
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发message事件拉起FormExtensionAbility。卡片页面中使用[LocalStorageProp](../quick-start/arkts-localstorage.md#localstorageprop)装饰需要刷新的卡片数据。
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用postCardAction接口触发message事件拉起FormExtensionAbility。卡片页面中使用[LocalStorageProp](../ui/state-management/arkts-localstorage.md#localstorageprop)装饰需要刷新的卡片数据。
   
   ```ts
   let storageUpdateByMsg = new LocalStorage();
@@ -65,18 +65,16 @@
 - 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis-form-kit/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
   
   ```ts
-  import type Base from '@ohos.base';
-  import formBindingData from '@ohos.app.form.formBindingData';
-  import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import formProvider from '@ohos.app.form.formProvider';
-  import hilog from '@ohos.hilog';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { formBindingData, FormExtensionAbility, formProvider } from '@kit.FormKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
   
   const TAG: string = 'EntryFormAbility';
   const DOMAIN_NUMBER: number = 0xFF00;
   
   export default class EntryFormAbility extends FormExtensionAbility {
     onFormEvent(formId: string, message: string): void {
-      // Called when a specified message event defined by the form provider is triggered.
+      // 当卡片提供方的postCardAction接口的message事件被触发时调用
       hilog.info(DOMAIN_NUMBER, TAG, `FormAbility onFormEvent, formId = ${formId}, message: ${JSON.stringify(message)}`);
   
       class FormDataClass {
@@ -84,15 +82,16 @@
         detail: string = 'Description update success.'; // 和卡片布局中对应
       }
   
+      // 请根据业务替换为实际刷新的卡片数据
       let formData = new FormDataClass();
       let formInfo: formBindingData.FormBindingData = formBindingData.createFormBindingData(formData);
       formProvider.updateForm(formId, formInfo).then(() => {
         hilog.info(DOMAIN_NUMBER, TAG, 'FormAbility updateForm success.');
-      }).catch((error: Base.BusinessError) => {
+      }).catch((error: BusinessError) => {
         hilog.info(DOMAIN_NUMBER, TAG, `Operation updateForm failed. Cause: ${JSON.stringify(error)}`);
       })
     }
-    ...
+    //...
   }
   ```
   

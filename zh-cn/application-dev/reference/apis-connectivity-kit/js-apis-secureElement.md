@@ -1,12 +1,12 @@
 # @ohos.secureElement (安全单元的通道管理)
 
-本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE(Embedded SE)和SIM卡。文档中出现的SE服务为SEService实例，参见[newSEService](#secureelementnewseservice)。
+本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE(Embedded SE)和SIM卡。文档中出现的SE服务为SEService实例，参见[createService]((#omapicreateservice12)。
 
 对于文档中出现以下类型说明：
 
 | 类型    | 说明                                           |
 | ------- | ---------------------------------------------- |
-| Reader  | 此类的实例表示该设备支持的SE，如果支持eSE和SIM，这返回两个实例。 |
+| Reader  | 此类的实例表示该设备支持的SE，如果支持eSE和SIM，则返回两个实例。 |
 | Session | 此类的实例表示在某个SE Reader实例上创建连接会话。 |
 | Channel | 此类的实例表示在某个Session实例上创建通道，可能为基础通道或逻辑通道。   |
 
@@ -17,10 +17,10 @@
 ## **导入模块**
 
 ```js
-import secureElement from '@ohos.secureElement';
+import { omapi } from '@kit.ConnectivityKit';
 ```
 
-## secureElement.ServiceState
+## ServiceState
 
 定义不同的SE服务状态值。
 
@@ -31,13 +31,16 @@ import secureElement from '@ohos.secureElement';
 | DISCONNECTED | 0    | SE服务状态已断开。 |
 | CONNECTED    | 1    | SE服务状态已连接。 |
 
-## secureElement.newSEService
+## omapi.newSEService<sup>(deprecated)</sup>
 
-newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelementservicestate)>): SEService
+newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService
 
-建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。
+建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。使用callback异步回调。
 
 仅当指定的回调或者当[isConnected](#seserviceisconnected)方法返回true时，该返回SEService对象是可用的。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃，建议使用[createService](#omapicreateservice12)替代。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -46,26 +49,35 @@ newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelem
 | **参数名** | **类型**                                             | **必填** | **说明**             |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
 | type       | string                                               | 是      | 固定填'serviceState' 。      |
-| callback   | Callback<[ServiceState](#secureelementservicestate)> | 是      | 返回SE服务状态的回调 。|
+| callback   | Callback<[ServiceState](#servicestate)> | 是      | 返回SE服务状态的回调 。|
 
 **返回值：**
 
 | **类型**  | **说明**   |
-| :-------- | :--------- |
+| -------- | --------- |
 | SEService | SE服务实例。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息|
+| ------- | -------|
+| 401  | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+| 801  | Capability not supported. |
 
 **示例：**
 
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
 function secureElementDemo() {
-    // get the service
+    // 获取 service
     try {
-        seService = secureElement.newSEService("serviceState", (state) => {
+        seService = omapi.newSEService("serviceState", (state) => {
         hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
         });
     } catch (error) {
@@ -78,7 +90,154 @@ function secureElementDemo() {
 }
 ```
 
-## SEService.getReaders
+## omapi.createService<sup>12+</sup>
+
+createService(): Promise\<SEService>;
+
+建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式。使用Promise异步回调。
+
+仅当[isConnected](#seserviceisconnected)方法返回true时，该返回SEService对象是可用的。
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**返回值：**
+
+| **类型**  | **说明**   |
+| :-------- | :--------- |
+| Promise\<[SEService](#seservice)> | 以Promise形式异步返回可用的SE服务实例。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
+**示例：**
+
+```js
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let seService : omapi.SEService;
+
+function secureElementDemo() {
+    omapi.createService().then((data) => {
+        seService = data;
+        if (seService == undefined || !seService.isConnected()) {
+            hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+            return;
+        }
+        hilog.info(0x0000, 'testTag', 'seservice state connected');
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+    });
+}
+```
+
+## omapi.on<sup>18+</sup>
+
+on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
+
+注册监听服务状态变化事件。
+
+调用[omapi.newSEService](#omapinewseservicedeprecated)或[omapi.createService](#omapicreateservice12)创建服务成功后再用on接口注册回调。
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**参数：**
+
+| **参数名** | **类型**                                             | **必填** | **说明**             |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | 是      | 订阅监听的事件类型，固定填'serviceState' 。      |
+| callback   | Callback<[ServiceState](#servicestate)> | 是      | 返回SE服务状态的回调 。|
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
+**示例：**
+
+示例请参见[off](#omapioff18)接口的示例。
+
+## omapi.off<sup>18+</sup>
+
+off(type: 'stateChanged', callback?: Callback\<ServiceState>): void;
+
+取消订阅服务状态更改事件。
+
+**系统能力：**  SystemCapability.Communication.SecureElement
+
+**参数：**
+
+| **参数名** | **类型**                                             | **必填** | **说明**             |
+| ---------- | ---------------------------------------------------- | ------ | -------------------- |
+| type       | string                                               | 是      | 取消订阅监听的事件类型，固定填'serviceState' 。      |
+| callback   | Callback<[ServiceState](#servicestate)> | 否      | 返回SE服务状态的回调 。|
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
+**示例：**
+
+```js
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let seService: omapi.SEService;
+function seStateOnCb(data: omapi.ServiceState) {
+    console.log("omapi.on ServiceState: ", data);
+}
+
+function seStateOffCb(data: omapi.ServiceState) {
+    console.log("omapi.off ServiceState: ", data);
+}
+
+function secureElementDemo() {
+    try{
+        omapi.createService().then((data) => {
+            seService = data;
+            if (seService == undefined || !seService.isConnected()) {
+                hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+                return;
+            }
+            hilog.info(0x0000, 'testTag', 'seservice state connected');
+        }).catch((error : BusinessError)=> {
+            hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+        });
+        omapi.on('stateChanged', seStateOnCb);
+    } catch (error) {
+        if (error as BusinessError) {
+            console.error(`omapi on error catch Code: ${(error as BusinessError).code}, ` + `message: ${(error as BusinessError).message}`);
+        }
+    }
+    try{
+        omapi.off('stateChanged', seStateOffCb);
+    } catch (error) {
+        if (error as BusinessError) {
+            console.error(`omapi off error catch Code: ${(error as BusinessError).code}, ` + `message: ${(error as BusinessError).message}`);
+        }
+    }
+}
+```
+
+## SEService
+
+SEService表示可用于连接到系统中所有可用SE的连接（服务），通过[createService](#omapicreateservice12)获取SEService实例。
+
+### SEService.getReaders
 
 getReaders(): Reader[]
 
@@ -90,20 +249,29 @@ getReaders(): Reader[]
 
 | **类型** | **说明**               |
 | :------- | :--------------------- |
-| Reader[] | 返回可用Reader对象数组。 |
+| [Reader](#reader)[] | 返回可用Reader对象数组。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
-let seReaders : secureElement.Reader[];
+let seService : omapi.SEService;
+let seReaders : omapi.Reader[];
 
-// Before use seService, initialization for seService is required
+// 在使用seService之前，需要对seService进行初始化
 function secureElementDemo() {
-    // get readers
+    // 获取readers
     try {
         seReaders = seService.getReaders();
     } catch (error) {
@@ -116,7 +284,7 @@ function secureElementDemo() {
 }
 ```
 
-## SEService.isConnected
+### SEService.isConnected
 
 isConnected(): boolean
 
@@ -130,31 +298,39 @@ isConnected(): boolean
 | :------- | :--------------------------------------------- |
 | boolean  | true: SE服务状态已连接，false: SE服务状态已断开。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
-```JS
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
 
-let seService : secureElement.SEService;
+```JS
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let seService : omapi.SEService;
 
 function secureElementDemo() {
-    // get the service
-    try {
-        seService = secureElement.newSEService("serviceState", (state) => {
-        hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
-        });
-    } catch (error) {
-        hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
-    }
-    if (seService == undefined || !seService.isConnected()) {
-        hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
-        return;
-    }
+    omapi.createService().then((data) => {
+        seService = data;
+        if (seService == undefined || !seService.isConnected()) {
+            hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+            return;
+        }
+        hilog.info(0x0000, 'testTag', 'seservice state connected');
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+    });
 }
 ```
 
-## SEService.shutdown
+### SEService.shutdown
 
 shutdown(): void
 
@@ -162,15 +338,25 @@ shutdown(): void
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
-// Before use seService, initialization for seService is required
+// 在使用seService之前，需要对seService进行初始化
 
 try {
     seService.shutdown();
@@ -179,7 +365,7 @@ try {
 }
 ```
 
-## SEService.getVersion
+### SEService.getVersion
 
 getVersion(): string
 
@@ -193,15 +379,25 @@ getVersion(): string
 | -------- | -------------------------------------------------- |
 | string   | OMA版本号（例如，“3.3”表示Open Mobile API规范版本3.3） |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```JS
-import secureElement from '@ohos.secureElement';
-import { BusinessError } from '@ohos.base';
+import { omapi } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let seService : secureElement.SEService;
+let seService : omapi.SEService;
 
-// Before use seService, initialization for seService is required
+// 在使用seService之前，需要对seService进行初始化
 
 try {
     let version = seService.getVersion();
@@ -210,12 +406,15 @@ try {
     hilog.error(0x0000, 'testTag', 'getVersion error %{public}s', JSON.stringify(error));
 }
 ```
+## Reader
 
-## Reader.getName
+Reader的实例表示该设备支持的SE，如果支持eSE和SIM，则返回两个实例。通过[SEService.getReaders](#seservicegetreaders)获取Reader实例。
+
+### Reader.getName
 
 getName(): string
 
-返回此Reader的名称。如果此读卡器是SIM Reader，则其名称必须为“SIM[Slot]”。如果读卡器是eSE，则其名称须为“eSE”。
+返回此Reader的名称。如果此读卡器是SIM Reader，则其名称必须为“SIM”。如果读卡器是eSE，则其名称须为“eSE”。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -223,17 +422,29 @@ getName(): string
 
 | **类型** | **说明**   |
 | -------- | ---------- |
-| string   | Reader名称。 |
+| string   | [Reader](#reader)名称。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seReaders : secureElement.Reader[];
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seReaders, initialization for seReaders is required
+let seReaders : omapi.Reader[];
+
+// 在使用seReaders之前，需要对seReaders进行初始化
 
 try {
-    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    let reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
     let name = reader.getName();
     hilog.info(0x0000, 'testTag', 'name %{public}s', JSON.stringify(name));
 } catch (error) {
@@ -241,7 +452,7 @@ try {
 }
 ```
 
-## Reader.isSecureElementPresent
+### Reader.isSecureElementPresent
 
 isSecureElementPresent(): boolean
 
@@ -261,17 +472,22 @@ isSecureElementPresent(): boolean
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seReaders : secureElement.Reader[];
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seReaders, initialization for seReaders is required
+let seReaders : omapi.Reader[];
+
+// 在使用seReaders之前，需要对seReaders进行初始化
 
 try {
-    let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+    let reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
     let isPresent = reader.isSecureElementPresent();
     hilog.info(0x0000, 'testTag', 'isPresent %{public}s', JSON.stringify(isPresent));
 } catch (error) {
@@ -279,7 +495,7 @@ try {
 }
 ```
 
-## Reader.openSession
+### Reader.openSession
 
  openSession(): Session
 
@@ -291,7 +507,7 @@ try {
 
 | **类型** | **说明**                       |
 | -------- | ------------------------------ |
-| Session  | 连接会话Session实例。|
+| [Session](#session)  | 连接会话Session实例。|
 
 **错误码：**
 
@@ -299,19 +515,24 @@ try {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seReaders : secureElement.Reader[];
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seReaders, initialization for seReaders is required
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+
+// 在使用seReaders之前，需要对seReaders进行初始化
 function secureElementDemo() {
     try {
-        let reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        let reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -323,7 +544,7 @@ function secureElementDemo() {
 }
 ```
 
-## Reader.closeSessions
+### Reader.closeSessions
 
  closeSessions(): void
 
@@ -337,19 +558,24 @@ function secureElementDemo() {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seReaders : secureElement.Reader[];
-let seSession : secureElement.Session;
-let reader : secureElement.Reader;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seReaders, initialization for seReaders is required
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+let reader : omapi.Reader;
+
+// 在使用seReaders之前，需要对seReaders进行初始化
 function secureElementDemo() {
     try {
-        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -366,7 +592,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.getReader
+## Session
+
+Session的实例表示在某个SE Reader实例上创建连接会话。通过[Reader.openSession](#readeropensession)获取Session实例。
+
+### Session.getReader
 
 getReader(): Reader
 
@@ -378,19 +608,31 @@ getReader(): Reader
 
 | **类型** | **说明**                    |
 | -------- | --------------------------- |
-| Reader   | 返回此Session的Reader实例。 |
+| [Reader](#reader)   | 返回此Session的Reader实例。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seReaders : secureElement.Reader[];
-let seSession : secureElement.Session;
-let reader : secureElement.Reader;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seReaders, initialization for seReaders is required
+let seReaders : omapi.Reader[];
+let seSession : omapi.Session;
+let reader : omapi.Reader;
+
+// 在使用seReaders之前，需要对seReaders进行初始化
 function secureElementDemo() {
     try {
-        reader = seReaders[0]; // change it to the selected reader, ese or sim.
+        reader = seReaders[0]; // 将其更改为所选的reader：ese 或 sim
         seSession = reader.openSession();
     } catch (error) {
         hilog.error(0x0000, 'testTag', 'openSession error %{public}s', JSON.stringify(error));
@@ -407,7 +649,7 @@ function secureElementDemo() {
 }
 ```
 
-## Session.getATR
+### Session.getATR
 
 getATR(): number[]
 
@@ -427,14 +669,19 @@ getATR(): number[]
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seSession, initialization for seSession is required
+let seSession : omapi.Session;
+
+// 在使用seSession之前，需要对seSession进行初始化
 
 try {
     let atr = seSession.getATR();
@@ -444,7 +691,7 @@ try {
 }
 ```
 
-## Session.close
+### Session.close
 
 close(): void
 
@@ -458,14 +705,19 @@ close(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+| 801  | Capability not supported. |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seSession, initialization for seSession is required
+let seSession : omapi.Session;
+
+// 在使用seSession之前，需要对seSession进行初始化
 
 try {
     seSession.close();
@@ -474,7 +726,7 @@ try {
 }
 ```
 
-## Session. isClosed
+### Session. isClosed
 
 isClosed(): boolean
 
@@ -492,12 +744,20 @@ isClosed(): boolean
 
 错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```Js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seSession, initialization for seSession is required
+let seSession : omapi.Session;
+
+// 在使用seSession之前，需要对seSession进行初始化
 
 try {
     let isClosed = seSession.isClosed();
@@ -507,7 +767,7 @@ try {
 }
 ```
 
-## Session.closeChannels
+### Session.closeChannels
 
 closeChannels(): void
 
@@ -521,14 +781,19 @@ closeChannels(): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, service state exception. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seSession, initialization for seSession is required
+let seSession : omapi.Session;
+
+// 在使用seSession之前，需要对seSession进行初始化
 
 try {
     seSession.closeChannels();
@@ -537,11 +802,11 @@ try {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[]): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -555,7 +820,7 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 | **类型** | **说明**              |
 | -------- | --------------------- |
-| Channel  | 以Promise形式异步返回可用的基础Channel对象实例。 |
+| Promise\<[Channel](#channel)>  | 以Promise形式异步返回可用的基础Channel对象实例。 |
 
 **错误码：**
 
@@ -563,6 +828,8 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -570,15 +837,19 @@ openBasicChannel(aid: number[]): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openBasicChannel(aidArray).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -594,11 +865,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
  openBasicChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -607,7 +878,7 @@ function secureElementDemo() {
 | **参数名** | **类型**               | **必填** | **说明**                                                     |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此Channel上选择的Applet的AID或如果没有Applet被选择时空的数组。 |
-| callback   | AsyncCallback\<Channel> | 是      | 以callback形式异步返回可用的基础Channel对象实例。                            |
+| callback   | AsyncCallback\<[Channel](#channel)> | 是      | 以callback形式异步返回可用的基础Channel对象实例。                            |
 
 **错误码：**
 
@@ -615,6 +886,8 @@ function secureElementDemo() {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -622,15 +895,19 @@ function secureElementDemo() {
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openBasicChannel(aidArray, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
@@ -648,11 +925,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础hannel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -667,7 +944,7 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 | **类型** | **说明**              |
 | -------- | --------------------- |
-| Channel  | 以Promise形式异步返回可用的基础Channel对象实例。 |
+| Promise\<[Channel](#channel)>  | 以Promise形式异步返回可用的基础Channel对象实例。 |
 
 **错误码：**
 
@@ -675,6 +952,8 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -682,16 +961,20 @@ openBasicChannel(aid: number[], p2: number): Promise\<Channel>
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openBasicChannel(aidArray, p2).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -707,11 +990,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openBasicChannel
+### Session.openBasicChannel
 
 openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): void
 
-打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。
+打开基础通道，参考[ISO 7816-4]协议，返回基础Channel实例对象。SE不能提供基础Channel或应用程序没有访问SE的权限时，返回null。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -721,7 +1004,7 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此Channel上选择的Applet的AID或如果没有Applet被选择时空的数组。 |
 | p2         | number                 | 是      | 此Channel上执行SELECT APDU命令的P2参数。                     |
-| callback   | AsyncCallback\<Channel> | 是      | 以callback形式异步返回可用的基础Channel对象实例。                            |
+| callback   | AsyncCallback\<[Channel](#channel)> | 是      | 以callback形式异步返回可用的基础Channel对象实例。                            |
 
 **错误码：**
 
@@ -729,6 +1012,8 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
 | 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
@@ -736,16 +1021,20 @@ openBasicChannel(aid: number[], p2:number, callback: AsyncCallback\<Channel>): v
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openBasicChannel(aidArray, p2, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openBasicChannel error %{public}s', JSON.stringify(error));
@@ -763,11 +1052,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[]): Promise\<Channel>
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -781,7 +1070,7 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 | **类型** | **说明**                                                     |
 | -------- | ------------------------------------------------------------ |
-| Channel  | 以Promise形式异步返回可用的逻辑Channel对象实例。 |
+| Promise\<[Channel](#channel)>  | 以Promise形式异步返回可用的逻辑Channel对象实例。 |
 
 **错误码：**
 
@@ -789,22 +1078,28 @@ openLogicalChannel(aid: number[]): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openLogicalChannel(aidArray).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -820,11 +1115,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
  openLogicalChannel(aid: number[], callback: AsyncCallback\<Channel>): void
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -833,7 +1128,7 @@ function secureElementDemo() {
 | **参数名** | **类型**               | **必填** | **说明**                                                     |
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此Channel上选择的Applet的AID或如果没有Applet被选择时空的数组。 |
-| callback   | AsyncCallback\<Channel> | 是      | 以callback形式异步返回可用的逻辑Channel对象实例。 |
+| callback   | AsyncCallback\<[Channel](#channel)> | 是      | 以callback形式异步返回可用的逻辑Channel对象实例。 |
 
 **错误码：**
 
@@ -841,22 +1136,28 @@ function secureElementDemo() {
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.    |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openLogicalChannel(aidArray, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
@@ -874,11 +1175,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。
+打开逻辑通道，参考[ISO 7816-4]协议，返回逻辑Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -893,7 +1194,7 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 | **类型** | **说明**       |
 | -------- | -------------- |
-| Promise\<Channel> | 以Promise形式异步返回可用的逻辑Channel实例对象。 |
+| Promise\<[Channel](#channel)> | 以Promise形式异步返回可用的逻辑Channel实例对象。 |
 
 **错误码：**
 
@@ -901,23 +1202,29 @@ openLogicalChannel(aid: number[], p2: number): Promise\<Channel>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.      |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.      |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-        // change the aid value for open channel.
+        // 改为在此channel上选择的App的aid
         seSession.openLogicalChannel(aidArray, p2).then((data) => {
             seChannel = data;
         }).catch((error : BusinessError)=> {
@@ -933,11 +1240,11 @@ function secureElementDemo() {
 }
 ```
 
-## Session.openLogicalChannel
+### Session.openLogicalChannel
 
 openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>):void
 
-打开逻辑通道，参考[ISO 7816-4]协议，返回Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。
+打开逻辑通道，参考[ISO 7816-4]协议，返回Channel实例对象。SE不能提供逻辑Channel或应用程序没有访问SE的权限时，返回null。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -947,7 +1254,7 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 | ---------- | ---------------------- | ------ | ------------------------------------------------------------ |
 | aid        | number[]               | 是      | 在此Channel上选择的Applet的AID或如果没有Applet被选择时空的数组。 |
 | p2         | number                 | 是      | 此Channel上执行SELECT APDU命令的P2参数。 |
-| callback   | AsyncCallback\<Channel> | 是      | 以callback形式异步返回可用的逻辑Channel对象实例。 |
+| callback   | AsyncCallback\<[Channel](#channel)> | 是      | 以callback形式异步返回可用的逻辑Channel对象实例。 |
 
 **错误码：**
 
@@ -955,23 +1262,29 @@ openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback\<Channel>)
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session that has been closed. |
-| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected.       |
+| 3300102  | NoSuchElementError, the AID on the SE is not available or cannot be selected or a logical channel is already open to a non-multi-selectable applet.       |
 | 3300103  | SecurityError, the calling application cannot be granted access to this AID or the default applet on this session.   |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
+
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
 let aidArray : number[] = [0xA0, 0x00, 0x00, 0x00, 0x03, 0x10, 0x10];
 let p2 : number = 0x00;
 
-// Before use seSession, initialization for seSession is required
+// 在使用seSession之前，需要对seSession进行初始化
 function secureElementDemo() {
     try {
-    // change the aid value for open channel.
+    // 改为在此channel上选择的App的aid
         seSession.openLogicalChannel(aidArray, p2, (error, data) => {
             if (error) {
                 hilog.error(0x0000, 'testTag', 'openLogicalChannel error %{public}s', JSON.stringify(error));
@@ -988,8 +1301,11 @@ function secureElementDemo() {
     }
 }
 ```
+## Channel
 
-## Channel. getSession
+Channel的实例表示在某个Session实例上创建通道，可能为基础通道或逻辑通道。通过[Session.openBasicChannel](#sessionopenbasicchannel)或[Session.openLogicalChannel](#sessionopenlogicalchannel)获取Channel实例。
+
+### Channel.getSession
 
  getSession(): Session
 
@@ -1001,15 +1317,27 @@ function secureElementDemo() {
 
 | **类型** | **说明**                      |
 | -------- | ----------------------------- |
-| Session  | 该Channel绑定的Session 对象。 |
+| [Session](#session)  | 该Channel绑定的Session 对象。 |
+
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seSession : secureElement.Session;
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seChannel, initialization for seChannel is required
+let seSession : omapi.Session;
+let seChannel : omapi.Channel;
+
+// 在使用seChannel之前，需要对seChannel进行初始化
 
 try {
     seSession = seChannel.getSession();
@@ -1018,7 +1346,7 @@ try {
 }
 ```
 
-## Channel. close
+### Channel.close
 
 close(): void
 
@@ -1026,13 +1354,24 @@ close(): void
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seChannel, initialization for seChannel is required
+let seChannel : omapi.Channel;
 
+// 在使用seChannel之前，需要对seChannel进行初始化
 try {
     seChannel.close();
 } catch (exception) {
@@ -1040,7 +1379,7 @@ try {
 }
 ```
 
-## Channel. isBasicChannel
+### Channel.isBasicChannel
 
 isBasicChannel(): boolean
 
@@ -1054,13 +1393,24 @@ isBasicChannel(): boolean
 | -------- | ------------------------------------------------------------ |
 | boolean  | true: 该Channel是基础Channel, false：该Channel逻辑Channel 。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seChannel, initialization for seChannel is required
+let seChannel : omapi.Channel;
 
+// 在使用seChannel之前，需要对seChannel进行初始化
 try {
     let isBasic = seChannel.isBasicChannel();
     hilog.info(0x0000, 'testTag', 'isBasic = %{public}s', JSON.stringify(isBasic));
@@ -1069,7 +1419,7 @@ try {
 }
 ```
 
-## Channel. isClosed
+### Channel.isClosed
 
 isClosed(): boolean
 
@@ -1083,13 +1433,24 @@ isClosed(): boolean
 | -------- | --------------------------------------------- |
 | boolean  | true: Channel是关闭的，false: 不是关闭的。 |
 
+**错误码：**
+
+错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seChannel, initialization for seChannel is required
+let seChannel : omapi.Channel;
 
+// 在使用seChannel之前，需要对seChannel进行初始化
 try {
     let isClosed = seChannel.isClosed();
     hilog.info(0x0000, 'testTag', 'isClosed = %{public}s', JSON.stringify(isClosed));
@@ -1098,7 +1459,7 @@ try {
 }
 ```
 
-## Channel. getSelectResponse
+### Channel.getSelectResponse
 
 getSelectResponse(): number[]
 
@@ -1116,13 +1477,20 @@ getSelectResponse(): number[]
 
 错误码的详细介绍请参见[SE错误码](errorcode-se.md)。
 
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 801  | Capability not supported. |
+
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seChannel, initialization for seChannel is required
+let seChannel : omapi.Channel;
 
+// 在使用seChannel之前，需要对seChannel进行初始化
 try {
     let response = seChannel.getSelectResponse();
     hilog.info(0x0000, 'testTag', 'response = %{public}s', JSON.stringify(response));
@@ -1131,11 +1499,11 @@ try {
 }
 ```
 
-## Channel. transmit
+### Channel.transmit
 
 transmit(command: number[]): Promise\<number[]>
 
-向SE发送APDU数据，数据符合ISO/IEC 7816规范。
+向SE发送APDU数据，数据符合ISO/IEC 7816规范。使用Promise异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1149,7 +1517,7 @@ transmit(command: number[]): Promise\<number[]>
 
 | **类型** | **说明**       |
 | -------- | -------------- |
-| number[] | 以Promise形式异步返回接收到的响应APDU数据，number数组。 |
+| Promise\<number[]> | 以Promise形式异步返回接收到的响应APDU数据，number数组。 |
 
 **错误码：**
 
@@ -1157,18 +1525,23 @@ transmit(command: number[]): Promise\<number[]>
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
 | 3300103  | SecurityError, the command is filtered by the security policy. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seChannel, initialization for seChannel is required
+let seChannel : omapi.Channel;
 
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+// 在使用seChannel之前，需要对seChannel进行初始化
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // 请更改为正确的data
 try {
     seChannel.transmit(cmdData).then((response) => {
         hilog.info(0x0000, 'testTag', 'transmit response = %{public}s.', JSON.stringify(response));
@@ -1180,11 +1553,11 @@ try {
 }
 ```
 
-## Channel. transmit
+### Channel.transmit
 
 transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
-向SE发送APDU数据，数据符合ISO/IEC 7816规范。
+向SE发送APDU数据，数据符合ISO/IEC 7816规范。使用callback异步回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -1201,18 +1574,23 @@ transmit(command: number[], callback: AsyncCallback\<number[]>): void
 
 | 错误码ID | 错误信息                         |
 | -------- | -------------------------------- |
+|401 | The parameter check failed. Possible causes: <br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameters types.<br>3. Parameter verification failed. |
+|801 | Capability not supported.          |
 | 3300101  | IllegalStateError, an attempt is made to use an SE session or channel that has been closed. |
 | 3300103  | SecurityError, the command is filtered by the security policy. |
 | 3300104  | IOError, there is a communication problem to the reader or the SE.     |
 
 **示例：**
 
+<!--code_no_check-->
 ```js
-let seChannel : secureElement.Channel;
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { omapi } from '@kit.ConnectivityKit';
 
-// Before use seChannel, initialization for seChannel is required
+let seChannel : omapi.Channel;
 
-let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+// 在使用seChannel之前，需要对seChannel进行初始化
+let cmdData = [0x01, 0x02, 0x03, 0x04]; // 请更改为正确的data
 try {
     seChannel.transmit(cmdData, (error, response) => {
     if (error) {

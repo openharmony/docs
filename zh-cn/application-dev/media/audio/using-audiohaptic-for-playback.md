@@ -9,6 +9,7 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 ### 权限申请
 
 如果应用创建的AudioHapticPlayer需要触发振动，则需要校验应用是否拥有该权限：`ohos.permission.VIBRATE`。
+
 1. [声明权限](../../security/AccessToken/declare-permissions.md)。
 2. [向用户申请授权](../../security/AccessToken/request-user-authorization.md)。
 
@@ -17,18 +18,17 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
 1. 获取音振管理器实例，并注册音频及振动资源，资源支持情况可以查看[AudioHapticManager](../../reference/apis-audio-kit/js-apis-audioHaptic.md#audiohapticmanager)。
 
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import audioHaptic from '@ohos.multimedia.audioHaptic';
-   import { BusinessError } from '@ohos.base';
+   import { audio, audioHaptic } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
 
    let audioHapticManagerInstance: audioHaptic.AudioHapticManager = audioHaptic.getAudioHapticManager();
 
-   let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri
-   let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri
+   let audioUri = 'data/audioTest.wav'; // 需更改为目标音频资源的Uri。
+   let hapticUri = 'data/hapticTest.json'; // 需更改为目标振动资源的Uri。
    let id = 0;
 
    audioHapticManagerInstance.registerSource(audioUri, hapticUri).then((value: number) => {
-     console.info(`Promise returned to indicate that the source id of the registerd source ${value}.`);
+     console.info(`Promise returned to indicate that the source id of the registered source ${value}.`);
      id = value;
    }).catch ((err: BusinessError) => {
      console.error(`Failed to register source ${err}`);
@@ -90,13 +90,13 @@ AudioHaptic<sup>11+</sup>提供音频与振动协同播放及管理的方法，�
    });
    ```
 
-7. 将已注册的音频及振动资源移除注册
+7. 将已注册的音频及振动资源移除注册。
 
    ```ts
    audioHapticManagerInstance.unregisterSource(id).then(() => {
      console.info(`Promise returned to indicate that unregister source successfully`);
    }).catch ((err: BusinessError) => {
-     console.error(`Failed to unregistere source ${err}`);
+     console.error(`Failed to unregister source ${err}`);
    });
    ```
 

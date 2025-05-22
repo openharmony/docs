@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从 API version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 方法
 
@@ -16,26 +16,30 @@ setTransform(transform?: Matrix2D): void
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-**元服务API：** 从API version 11开始，该接口支持在元服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
 
-| 参数      | 类型                                                  | 必填 | 默认值 | 描述       |
-| --------- | ----------------------------------------------------- | ---- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否   | null   | 转换矩阵。 |
+| 参数名      | 类型  | 必填 | 说明   |
+| --------- | -------------- | ------ | ---------- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否  | 转换矩阵。<br>默认值：null |
 
-**示例：**
+## 示例
+
+通过setTransform对当前CanvasPattern进行矩阵变换。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct CanvasPatternPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
-  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg")
-  private pattern : CanvasPattern | null = null
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
+  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg");
+  private pattern: CanvasPattern | null = null;
 
   build() {
       Column() {
@@ -76,4 +80,3 @@ struct CanvasPatternPage {
 ```
 
 ![CanvasPattern](./figures/canvas_pattern.gif)
-

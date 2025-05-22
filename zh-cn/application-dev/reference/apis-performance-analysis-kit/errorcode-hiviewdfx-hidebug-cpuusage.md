@@ -1,4 +1,4 @@
-# Hidebug CpuUsage错误码
+# HiDebug CpuUsage错误码
 
 > **说明：**
 >
@@ -8,11 +8,11 @@
 
 **错误信息**
 
-The status of the system cpu usage is abnormal.
+The status of the system CPU usage is abnormal.
 
 **错误描述**
 
-当前cpuUsage的状态是异常的。
+当前CPU使用率状态异常。
 
 **可能原因**
 
@@ -20,4 +20,4 @@ hiview服务进程未正常启动。
 
 **处理步骤**
 
-检查hiview进程运行状态，重启hiview服务或者重启系统。
+检查hiview进程的运行状态，重启hiview服务或系统。

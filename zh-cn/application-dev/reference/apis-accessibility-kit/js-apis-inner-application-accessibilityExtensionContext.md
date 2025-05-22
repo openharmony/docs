@@ -10,10 +10,10 @@ AccessibilityExtensionContext是AccessibilityExtensionAbility上下文环境，�
 
 ## 使用说明
 
-在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContex的实例。
+在使用AccessibilityExtensionContext的功能前，需要通过AccessibilityExtensionAbility子类实例获取AccessibilityExtensionContext的实例。
 
 ```ts
-import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtensionAbility';
+import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 
 class EntryAbility extends AccessibilityExtensionAbility {
   onConnect(): void {
@@ -30,83 +30,94 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ### 属性
 
-| 名称                   | 类型                                                                 | 可读  | 可写  | 说明                  |
-|----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
-| accessibilityFocused | boolean                                                            | 是   | 否   |   accessibility焦点状态。   |
-| accessibilityText<sup>12+</sup> | string                                                  | 是   | 否   | 元素的无障碍文本信息。 |
-| bundleName           | string                                                             | 是   | 否   | 应用包名。 |
-| checkable            | boolean                                                            | 是   | 否   | 元素是否可查。 |
-| checked              | boolean                                                            | 是   | 否   | 元素是否被检查。 |
-| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | 是   | 否   | 所有子元素。 |
-| clickable            | boolean                                                            | 是   | 否   | 是否可点击。 |
-| componentId          | number                                                             | 是   | 否   | 元素所属的组件ID。 |
-| componentType        | string                                                             | 是   | 否   | 元素所属的组件类型。 |
-| contents             | Array&lt;string&gt;                                                | 是   | 否   | 内容。 |
-| currentIndex         | number                                                             | 是   | 否   | 当前项的索引。 |
-| description          | string                                                             | 是   | 否   | 元素的描述信息。 |
-| editable             | boolean                                                            | 是   | 否   | 元素是否可编辑。 |
-| endIndex             | number                                                             | 是   | 否   | 屏幕最后显示项的列表索引。 |
-| error                | string                                                             | 是   | 否   | 错误状态字符串。 |
-| focusable            | boolean                                                            | 是   | 否   | 元素是否可聚焦。 |
-| hintText             | string                                                             | 是   | 否   | 提示文本。 |
-| inputType            | number                                                             | 是   | 否   | 输入文本的类型。 |
-| inspectorKey         | string                                                             | 是   | 否   | 检查键。 |
-| isActive             | boolean                                                            | 是   | 否   | 元素是否处于活动状态。 |
-| isEnable             | boolean                                                            | 是   | 否   | 元素是否启用。 |
-| isHint               | boolean                                                            | 是   | 否   | 元素是否为提示状态。 |
-| isFocused            | boolean                                                            | 是   | 否   | 元素是否聚焦。 |
-| isPassword           | boolean                                                            | 是   | 否   | 元素是否为密码。 |
-| isVisible            | boolean                                                            | 是   | 否   | 元素是否可见。 |
-| itemCount            | number                                                             | 是   | 否   | 项目的总数。 |
-| lastContent          | string                                                             | 是   | 否   | 最后的内容。 |
-| layer                | number                                                             | 是   | 否   | 该元素的显示层。 |
-| longClickable        | boolean                                                            | 是   | 否   | 元素是否可长单击。 |
-| pageId               | number                                                             | 是   | 否   | 页码id。 |
-| parent               | [AccessibilityElement](#accessibilityelement9)                     | 是   | 否   | 元素的父元素。 |
-| pluralLineSupported  | boolean                                                            | 是   | 否   | 元素是否支持多行文本。 |
-| rect                 | [Rect](#rect)                                                      | 是   | 否   | 元素的面积。 |
-| resourceName         | string                                                             | 是   | 否   | 元素的资源名称。 |
-| rootElement          | [AccessibilityElement](#accessibilityelement9)                     | 是   | 否   | 窗口元素的根元素。 |
-| screenRect           | [Rect](#rect)                                                      | 是   | 否   | 元素的显示区域。 |
-| scrollable           | boolean                                                            | 是   | 否   | 元素是否可滚动。 |
-| selected             | boolean                                                            | 是   | 否   | 元素是否被选中。 |
-| startIndex           | number                                                             | 是   | 否   | 在屏幕上的第一个项目的列表索引。 |
-| text                 | string                                                             | 是   | 否   | 元素的文本。 |
-| textLengthLimit      | string                                                             | 是   | 否   | 元素文本的最大长度限制。 |
-| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | 是   | 否   | 文本被读取时的移动单位。 |
-| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | 是   | 否   | 触发元素事件的动作。 |
-| type                 | [WindowType](#windowtype)                                          | 是   | 否   | 元素的窗口类型。 |
-| valueMax             | number                                                             | 是   | 否   | 最大值。 |
-| valueMin             | number                                                             | 是   | 否   | 最小值。|
-| valueNow             | number                                                             | 是   | 否   | 当前值。 |
-| windowId             | number                                                             | 是   | 否   | 窗口id。 |
-| textType<sup>12+</sup>             | string                                                             | 是   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置 |
+| 名称                   | 类型                                                              | 只读 | 可选 | 说明              |
+|----------------------|--------------------------------------------------------------------|------|------|-------------------|
+| accessibilityFocused | boolean                                                            | 否   | 否   | 表示元素是否处于无障碍焦点状态。true表示元素当前处于无障碍焦点状态，false表示元素当前不处于无障碍焦点状态，默认值为false。|
+| accessibilityText<sup>12+</sup> | string                                                  | 否   | 否   | 元素的无障碍文本信息。 |
+| bundleName           | string                                                             | 否   | 否   | 应用包名。 |
+| checkable            | boolean                                                            | 否   | 否   | 表示元素是否支持点击操作。true表示元素支持点击操作，false表示元素不支持点击操作，默认值为false。 |
+| checked              | boolean                                                            | 否   | 否   | 表示元素当前的可点击状态。true表示元素当前是可点击的，false表示元素当前是不可点击的，默认值为false。 |
+| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | 否   | 否   | 所有子元素。 |
+| clickable            | boolean                                                            | 否   | 否   | 表示元素是否可点击。true表示元素可点击，false表示元素不可点击，默认值为false。|
+| componentId          | number                                                             | 否   | 否   | 元素所属的组件ID。默认值为-1。|
+| componentType        | string                                                             | 否   | 否   | 元素所属的组件类型。 |
+| contents             | Array&lt;string&gt;                                                | 否   | 否   | 内容。 |
+| currentIndex         | number                                                             | 否   | 否   | 当前项的索引。默认值为0。|
+| description          | string                                                             | 否   | 否   | 元素的描述信息。 |
+| editable             | boolean                                                            | 否   | 否   | 表示元素是否可编辑。true表示元素可编辑，false表示元素不可编辑，默认值为false。 |
+| endIndex             | number                                                             | 否   | 否   | 屏幕最后显示项的列表索引。默认值为0。 |
+| error                | string                                                             | 否   | 否   | 错误状态字符串。 |
+| focusable            | boolean                                                            | 否   | 否   | 表示元素是否可聚焦。true表示元素可聚焦，false表示元素不可聚焦，默认值为false。 |
+| hintText             | string                                                             | 否   | 否   | 提示文本。 |
+| inputType            | number                                                             | 否   | 否   | 输入文本的类型。默认值为0。 |
+| inspectorKey         | string                                                             | 否   | 否   | 检查键。 |
+| isActive             | boolean                                                            | 否   | 否   | 表示元素是否处于活动状态。true表示元素处于活动状态，false表示元素不处于活动状态，默认值为true。 |
+| isEnable             | boolean                                                            | 否   | 否   | 表示元素是否启用。true表示元素已启用，false表示元素未启用，默认值为false。 |
+| isHint               | boolean                                                            | 否   | 否   | 表示元素是否为提示状态。true表示元素处于提示状态，false表示元素不处于提示状态，默认值为false。 |
+| isFocused            | boolean                                                            | 否   | 否   | 表示元素是否聚焦。true表示元素处于聚焦状态，false表示元素不处于聚焦状态，默认值为false。 |
+| isPassword           | boolean                                                            | 否   | 否   | 表示元素是否为密码。true表示元素为密码，false表示元素不为密码，默认值为false。 |
+| isVisible            | boolean                                                            | 否   | 否   | 表示元素是否可见。true表示元素可见，false表示元素不可见，默认值为false。 |
+| itemCount            | number                                                             | 否   | 否   | 项目的总数。默认值为0。 |
+| lastContent          | string                                                             | 否   | 否   | 最后的内容。 |
+| layer                | number                                                             | 否   | 否   | 该元素的显示层。 |
+| longClickable        | boolean                                                            | 否   | 否   | 表示元素是否可长单击。true表示元素可长单击，false表示元素不可长单击，默认值为false。 |
+| pageId               | number                                                             | 否   | 否   | 页码id。默认值为-1。 |
+| parent               | [AccessibilityElement](#accessibilityelement9)                     | 否   | 否   | 元素的父元素。 |
+| pluralLineSupported  | boolean                                                            | 否   | 否   | 表示元素是否支持多行文本。true表示元素支持多行文本，false表示元素不支持多行文本，默认值为false。|
+| rect                 | [Rect](#rect)                                                      | 否   | 否   | 元素的面积。 |
+| resourceName         | string                                                             | 否   | 否   | 元素的资源名称。 |
+| rootElement          | [AccessibilityElement](#accessibilityelement9)                     | 否   | 否   | 窗口元素的根元素。 |
+| screenRect           | [Rect](#rect)                                                      | 否   | 否   | 元素的显示区域。 |
+| scrollable           | boolean                                                            | 否   | 否   | 表示元素是否可滚动。true表示元素可滚动，false表示元素不可滚动，默认值为false。 |
+| selected             | boolean                                                            | 否   | 否   | 表示元素是否被选中。true表示元素被选中，false表示元素未被选中，默认值为false。 |
+| startIndex           | number                                                             | 否   | 否   | 在屏幕上的第一个项目的列表索引。默认值为0。 |
+| text                 | string                                                             | 否   | 否   | 元素的文本。 |
+| textLengthLimit      | number                                                             | 否   | 否   | 元素文本的最大长度限制。 |
+| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| 否   | 否   | 文本被读取时的移动单位。 |
+| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)            | 否   | 否   | 触发元素事件的动作。 |
+| type                 | [WindowType](#windowtype)                                          | 否   | 否   | 元素的窗口类型。 |
+| valueMax             | number                                                             | 否   | 否   | 最大值。默认值为0。 |
+| valueMin             | number                                                             | 否   | 否   | 最小值。默认值为0。|
+| valueNow             | number                                                             | 否   | 否   | 当前值。默认值为0。 |
+| windowId             | number                                                             | 否   | 否   | 窗口ID。默认值为-1。 |
+| textType<sup>12+</sup>             | string                                                             | 否   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置。 |
+| offset<sup>12+</sup>             | number              | 是   | 否   | 对于可滚动类控件，如List、Grid，内容区相对控件的顶部坐标滚动的像素偏移量。默认值为0。 |
+| hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | 否   | 否   | 元素的可触摸区域。 |
+| customComponentType<sup>18+</sup>             | string                                                             | 否   | 是   | 自定义组件类型。|
+| accessibilityNextFocusId<sup>18+</sup>             | number                | 否   | 是   | 下一个要聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。默认值为-1。 |
+| accessibilityPreviousFocusId<sup>18+</sup>             | number                | 否   | 是   | 上一个聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。默认值为-1。 |
+| extraInfo<sup>18+</sup>             | string     | 否  | 是   | 扩展属性，用于定义一些特定组件的属性，包含：<br>- CheckboxGroupSelectedStatus：表示CheckboxGroup组件的选中状态，其中取值0表示已选中，取值1表示部分选中，取值2表示未选中。<br>- Row：Grid组件中聚焦item的行信息，表示该item在第几行。<br>- Column：Grid组件中聚焦的item的列，表示该item在第几列。<br>- ListItemIndex：List组件中聚焦item的行信息，表示当前该item在第几行。<br>- SideBarContainerStates：表示可展开类组件（SideBarContainer、Select）的展开状态，其中取值0表示收起态，取值1表示展开态。<br>- ToggleType：表示Toggle组件的具体类型，其中取值0表示Checkbox，取值1表示Switch，取值2表示Button。<br>- BindSheet：表示BindSheet组件的状态，其中取值0表示状态高，取值1表示状态中，取值2表示状态低。<br>- hasRegisteredHover：表示组件是否注册了onAccessibilityHover事件回调，取值为1表示组件注册了事件回调，若未注册不会使用该字段。<br>- direction：表示list组件的布局方向，其中取值"vertical"表示竖向，取值"horizontal"表示横向。<br>- expandedState：表示list组件中listItem的展开状态，其中取值"expanded"表示展开态，取值"collapsed"表示收起态。|
+| accessibilityScrollable<sup>18+</sup>             | boolean                 | 否   | 是   | 表示无障碍模式下元素是否滚动，优先级高于scrollable。其中，true表示可滚动，false表示不可滚动，默认值为true。|
 
 ## FocusDirection
+
+type FocusDirection = 'up' | 'down' | 'left' | 'right' | 'forward' | 'backward'
 
 表示查询下一焦点元素的方向。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称       | 说明      |
+| 类型       | 说明      |
 | -------- | ------- |
-| up       | 表示向上查询。 |
-| down     | 表示向下查询。 |
-| left     | 表示向左查询。 |
-| right    | 表示向右查询。 |
-| forward  | 表示向前查询。 |
-| backward | 表示向后查询。 |
+| 'up'       | 表示向上查询。 |
+| 'down'     | 表示向下查询。 |
+| 'left'     | 表示向左查询。 |
+| 'right'    | 表示向右查询。 |
+| 'forward'  | 表示向前查询。 |
+| 'backward' | 表示向后查询。 |
 
 ## FocusType
+
+type FocusType = 'accessibility' | 'normal'
 
 表示查询焦点元素的类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称            | 说明          |
+| 类型            | 说明          |
 | ------------- | ----------- |
-| accessibility | 表示无障碍的焦点类型。 |
-| normal        | 表示普通的焦点类型。  |
+| 'accessibility' | 表示无障碍的焦点类型。 |
+| 'normal'        | 表示普通的焦点类型。  |
 
 ## Rect
 
@@ -123,20 +134,26 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ## WindowType
 
+type WindowType = 'application' | 'system'
+
 表示窗口的类型。
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称          | 说明        |
+| 类型          | 说明        |
 | ----------- | --------- |
-| application | 表示应用窗口类型。 |
-| system      | 表示系统窗口类型。 |
+| 'application' | 表示应用窗口类型。 |
+| 'system'      | 表示系统窗口类型。 |
 
-## AccessibilityExtensionContext.setTargetBundleName
+## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 
 setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 设置关注的目标包名，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -152,10 +169,18 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let targetNames = ['com.ohos.xyz'];
 axContext.setTargetBundleName(targetNames).then(() => {
@@ -165,11 +190,15 @@ axContext.setTargetBundleName(targetNames).then(() => {
 })
 ```
 
-## AccessibilityExtensionContext.setTargetBundleName
+## AccessibilityExtensionContext.setTargetBundleName<sup>(deprecated)</sup>
 
 setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>): void;
 
 设置关注的目标包名，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -180,10 +209,18 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 | targetNames | Array&lt;string&gt;       | 是    | 设置关注应用的包名，服务接收关注应用的无障碍事件，默认接收所有应用的无障碍事件，取消关注应用则传空数组。                                 |
 | callback    | AsyncCallback&lt;void&gt; | 是    | 回调函数，如果设置关注的目标包名失败，则AsyncCallback中err有数据返回。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let targetNames = ['com.ohos.xyz'];
 try {
@@ -199,11 +236,15 @@ try {
 }
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 获取焦点元素, 使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -211,7 +252,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 | 参数名                  | 类型      | 必填   | 说明                  |
 | -------------------- | ------- | ---- | ------------------- |
-| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，True表示是，False表示否，默认为否。 |
+| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，true表示是，false表示否，默认为否。 |
 
 **返回值：**
 | 类型                                  | 说明                     |
@@ -224,13 +265,14 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -242,11 +284,15 @@ axContext.getFocusElement().then((data: AccessibilityElement) => {
 })
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取焦点元素, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -262,13 +308,14 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -282,11 +329,15 @@ axContext.getFocusElement((err: BusinessError, data: AccessibilityElement) => {
 });
 ```
 
-## AccessibilityExtensionContext.getFocusElement
+## AccessibilityExtensionContext.getFocusElement<sup>(deprecated)</sup>
 
 getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取焦点元素, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -303,13 +354,14 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let isAccessibilityFocus = true;
 let rootElement: AccessibilityElement;
@@ -324,11 +376,15 @@ axContext.getFocusElement(isAccessibilityFocus, (err: BusinessError, data: Acces
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 获取指定窗口的根节点元素, 使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -350,13 +406,14 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -368,11 +425,15 @@ axContext.getWindowRootElement().then((data: AccessibilityElement) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取指定窗口的根节点元素, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -388,13 +449,14 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rootElement: AccessibilityElement;
 
@@ -408,11 +470,15 @@ axContext.getWindowRootElement((err: BusinessError, data: AccessibilityElement) 
 });
 ```
 
-## AccessibilityExtensionContext.getWindowRootElement
+## AccessibilityExtensionContext.getWindowRootElement<sup>(deprecated)</sup>
 
 getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityElement>): void;
 
 获取指定窗口的根节点元素, 使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -429,13 +495,14 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowId = 10;
 let rootElement: AccessibilityElement;
@@ -450,11 +517,15 @@ axContext.getWindowRootElement(windowId, (err: BusinessError, data: Accessibilit
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
-获取指定屏幕中的所有窗口, 使用Promise异步回调。
+获取指定屏幕中的所有窗口，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -476,13 +547,14 @@ getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 axContext.getWindows().then((data: AccessibilityElement[]) => {
   console.log(`Succeeded in get windows, ${JSON.stringify(data)}`);
@@ -491,11 +563,15 @@ axContext.getWindows().then((data: AccessibilityElement[]) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定屏幕中的所有窗口，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -511,13 +587,14 @@ getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
   if (err && err.code) {
@@ -528,11 +605,15 @@ axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
 });
 ```
 
-## AccessibilityExtensionContext.getWindows
+## AccessibilityExtensionContext.getWindows<sup>(deprecated)</sup>
 
 getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定屏幕中的所有窗口，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -549,13 +630,14 @@ getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityEleme
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import { AccessibilityElement } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { AccessibilityElement } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let displayId = 10;
 axContext.getWindows(displayId, (err: BusinessError, data: AccessibilityElement[]) => {
@@ -573,9 +655,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 > **说明：**
 >
-> 从API version 10开始废弃。
->
-> 推荐使用[injectGestureSync<sup>10+</sup>](#accessibilityextensioncontextinjectgesturesync10)。
+> 从API version 10开始废弃。系统不再开放相关能力。
 
 注入手势，使用Promise异步回调。
 
@@ -599,19 +679,19 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
-import { BusinessError } from '@ohos.base';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGesture(gesturePath).then(() => {
@@ -626,9 +706,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> 从API version 10开始废弃。
->
-> 推荐使用[injectGestureSync<sup>10+</sup>](#accessibilityextensioncontextinjectgesturesync10)。
+> 从API version 10开始废弃。系统不再开放相关能力。
 
 注入手势，使用callback异步回调。
 
@@ -647,18 +725,18 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 9300003 | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003 | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
-import { BusinessError } from '@ohos.base';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGesture(gesturePath, (err: BusinessError) => {
@@ -669,11 +747,15 @@ axContext.injectGesture(gesturePath, (err: BusinessError) => {
   console.info(`Succeeded in inject gesture,gesturePath is ${gesturePath}`);
 });
 ```
-## AccessibilityExtensionContext.injectGestureSync<sup>10+</sup>
+## AccessibilityExtensionContext.injectGestureSync<sup>(deprecated)</sup>
 
 injectGestureSync(gesturePath: GesturePath): void
 
 注入手势。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -689,17 +771,17 @@ injectGestureSync(gesturePath: GesturePath): void
 
 | 错误码ID | 错误信息                                            |
 | -------- | --------------------------------------------------- |
-| 9300003  | Do not have accessibility right for this operation. |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 9300003  | No accessibility permission to perform the operation. |
 
 **示例：**
 
 ```ts
-import GesturePath from '@ohos.accessibility.GesturePath';
-import GesturePoint from '@ohos.accessibility.GesturePoint';
+import { GesturePath, GesturePoint } from '@kit.AccessibilityKit';
 
-let gesturePath: GesturePath.GesturePath = new GesturePath.GesturePath(100);
+let gesturePath: GesturePath = new GesturePath(100);
 for (let i = 0; i < 10; i++) {
-  let gesturePoint = new GesturePoint.GesturePoint(100, i * 200);
+  let gesturePoint = new GesturePoint(100, i * 200);
   gesturePath.points.push(gesturePoint);
 }
 axContext.injectGestureSync(gesturePath);
@@ -707,15 +789,19 @@ axContext.injectGestureSync(gesturePath);
 
 ## AccessibilityElement<sup>9+</sup>
 
-无障碍节点元素, 在调用AccessibilityElement的方法前，需要先通过[AccessibilityExtensionContext.getFocusElement() ](#accessibilityextensioncontextgetfocuselement)或者[AccessibilityExtensionContext.getWindowRootElement() ](#accessibilityextensioncontextgetwindowrootelement)获取AccessibilityElement实例。
+无障碍节点元素, 在调用AccessibilityElement的方法前，需要先通过[AccessibilityExtensionContext.getFocusElement() ](#accessibilityextensioncontextgetfocuselementdeprecated)或者[AccessibilityExtensionContext.getWindowRootElement() ](#accessibilityextensioncontextgetwindowrootelementdeprecated)获取AccessibilityElement实例。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Core
 
-### attributeNames
+### attributeNames<sup>(deprecated)</sup>
 
 attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 
 获取节点元素的所有属性名称，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -728,8 +814,8 @@ attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
@@ -739,11 +825,15 @@ rootElement.attributeNames().then((data: ElementAttributeKeys[]) => {
 });
 ```
 
-### attributeNames
+### attributeNames<sup>(deprecated)</sup>
 
 attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\<Array\<T>>): void;
 
 获取节点元素的所有属性名称，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -756,8 +846,8 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) => {
@@ -769,11 +859,15 @@ rootElement.attributeNames((err: BusinessError, data: ElementAttributeKeys[]) =>
 });
 ```
 
-### attributeValue
+### attributeValue<sup>(deprecated)</sup>
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
 
 根据属性名称获取属性值，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -796,14 +890,15 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300004 | This property does not exist. |
 
 
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
 
@@ -815,12 +910,16 @@ rootElement.attributeValue(attributeName).then((data: string) => {
 });
 ```
 
-### attributeValue
+### attributeValue<sup>(deprecated)</sup>
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T, 
     callback: AsyncCallback\<ElementAttributeValues[T]>): void;
 
 根据属性名称获取属性值，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -837,13 +936,14 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300004 | This property does not exist. |
 
 **示例：**
 
 ```ts
-import { ElementAttributeKeys } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { ElementAttributeKeys } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let attributeName: ElementAttributeKeys = 'bundleName';
 
@@ -857,11 +957,15 @@ rootElement.attributeValue(attributeName, (err: BusinessError, data: string) => 
 });
 ```
 
-### actionNames
+### actionNames<sup>(deprecated)</sup>
 
 actionNames(): Promise\<Array\<string>>;
 
 获取节点元素支持的所有操作名称，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -874,7 +978,7 @@ actionNames(): Promise\<Array\<string>>;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 rootElement.actionNames().then((data: string[]) => {
@@ -884,11 +988,15 @@ rootElement.actionNames().then((data: string[]) => {
 })
 ```
 
-### actionNames
+### actionNames<sup>(deprecated)</sup>
 
 actionNames(callback: AsyncCallback\<Array\<string>>): void;
 
 获取节点元素支持的所有操作名称，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -911,11 +1019,15 @@ rootElement.actionNames((err: BusinessError, data: string[]) => {
 })
 ```
 
-### performAction
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, parameters?: object): Promise\<void>;
 
 根据操作名称执行某个操作，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -924,7 +1036,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 | 参数名         | 类型                                     | 必填   | 说明                                                       |
 | ----------- | ---------------------------------------- | ---- |----------------------------------------------------------|
 | actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 
-| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                             |
+| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空。                             |
 
 **返回值：**
 
@@ -938,12 +1050,13 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 
@@ -958,7 +1071,7 @@ rootElement.performAction(actionName).then(() => {
 **无参数Action示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 // Action描述中无明确要求的，均为无参数Action
@@ -972,13 +1085,14 @@ rootElement.performAction('click').then(() => {
 **有参数Action示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // rootElement是AccessibilityElement的实例
 // setSelection示例代码
 rootElement.performAction('setSelection', {
   selectTextBegin: '0', // 表示选择起始位置
-  selectTextEnd: '8'    // 表示选择结束位置
+  selectTextEnd: '8',   // 表示选择结束位置
+  selectTextInForWard: true   // true表示为前光标，false表示为后光标
 }).then(() => {
   console.info(`Succeeded in perform action`);
 }).catch((err: BusinessError) => {
@@ -986,11 +1100,29 @@ rootElement.performAction('setSelection', {
 });
 ```
 
-### performAction
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// rootElement是AccessibilityElement的实例
+// setCursorPosition示例代码
+rootElement.performAction('setCursorPosition', {
+  offset: '1'   // 表示光标的设置位置
+}).then(() => {
+  console.info(`Succeeded in perform action`);
+}).catch((err: BusinessError) => {
+  console.error(`failed to perform action, Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 根据操作名称执行某个操作，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1007,12 +1139,13 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 
@@ -1026,11 +1159,15 @@ rootElement.performAction(actionName, (err: BusinessError) => {
 });
 ```
 
-### performAction
+### performAction<sup>(deprecated)</sup>
 
 performAction(actionName: string, parameters: object, callback: AsyncCallback\<void>): void;
 
 根据操作名称执行某个操作，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1039,7 +1176,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 | 参数名        | 类型                        | 必填   | 说明                                                          |
 | ---------- | ------------------------- | ---- |-------------------------------------------------------------|
 | actionName | string                    | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 |
-| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空。当前版本暂不支持。                                |
+| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空。                                |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                                           |
 
 **错误码：**
@@ -1048,12 +1185,13 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 | 错误码ID   | 错误信息                          |
 | ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300005 | This action is not supported. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let actionName = 'action';
 let parameters: object = [];
@@ -1068,11 +1206,15 @@ rootElement.performAction(actionName, parameters, (err: BusinessError) => {
 });
 ```
 
-### findElement('content')
+### findElement('content')<sup>(deprecated)</sup>
 
 findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
 
 根据节点内容查询所有节点元素，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1089,10 +1231,18 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 | ---------------------------------------- | ----------------------------- |
 | Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition = 'keyword';
 
@@ -1104,11 +1254,15 @@ rootElement.findElement('content', condition).then((data: AccessibilityElement[]
 });
 ```
 
-### findElement('content')
+### findElement('content')<sup>(deprecated)</sup>
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
 根据节点内容查询所有节点元素。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1120,10 +1274,18 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 | condition | string                                   | 是    | 表示查找的条件。                     |
 | callback  | AsyncCallback&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | 是    | 回调函数，返回满足指定查询关键字的所有节点元素。     |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition = 'keyword';
 
@@ -1137,11 +1299,15 @@ rootElement.findElement('content', condition, (err: BusinessError, data: Accessi
 });
 ```
 
-### findElement('focusType')
+### findElement('focusType')<sup>(deprecated)</sup>
 
 findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElement>;
 
 根据焦点元素类型查询节点元素，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1149,7 +1315,7 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 | 参数名       | 类型                      | 必填   | 说明                                 |
 | --------- | ----------------------- | ---- | ---------------------------------- |
-| type      | string                  | 是    | 固定为'focusType', 表示查询的类型为节点的焦点元素类型。 |
+| type      | string                  | 是    | 固定为'focusType'，表示查询的类型为节点的焦点元素类型。 |
 | condition | [FocusType](#focustype) | 是    | 表示查询焦点元素的类型。                       |
 
 **返回值：**
@@ -1158,11 +1324,19 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 | ----------------------------------- | ------------------------------ |
 | Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询焦点元素类型的节点元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusType } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusType = 'normal';
 
@@ -1174,11 +1348,15 @@ rootElement.findElement('focusType', condition).then((data: AccessibilityElement
 });
 ```
 
-### findElement('focusType')
+### findElement('focusType')<sup>(deprecated)</sup>
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement>): void;
 
 根据焦点元素类型查询节点元素，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1186,15 +1364,23 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 
 | 参数名       | 类型                                       | 必填   | 说明                                 |
 | --------- | ---------------------------------------- | ---- | ---------------------------------- |
-| type      | string                                   | 是    | 固定为'focusType', 表示查询的类型为节点的焦点元素类型。 |
+| type      | string                                   | 是    | 固定为'focusType'，表示查询的类型为节点的焦点元素类型。 |
 | condition | [FocusType](#focustype)                  | 是    | 表示查询焦点元素的类型。                       |
 | callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询焦点元素类型的节点元素。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { FocusType } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusType } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusType = 'normal';
 
@@ -1208,11 +1394,15 @@ rootElement.findElement('focusType', condition, (err: BusinessError, data: Acces
 });
 ```
 
-### findElement('focusDirection')
+### findElement('focusDirection')<sup>(deprecated)</sup>
 
 findElement(type: 'focusDirection', condition: FocusDirection): Promise\<AccessibilityElement>;
 
 根据下一焦点元素方向查询节点元素，使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1220,7 +1410,7 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 
 | 参数名       | 类型                                | 必填   | 说明                                       |
 | --------- | --------------------------------- | ---- | ---------------------------------------- |
-| type      | string                            | 是    | 固定为'focusDirection', 表示查询的类型为节点的下一焦点元素方向。 |
+| type      | string                            | 是    | 固定为'focusDirection'，表示查询的类型为节点的下一焦点元素方向。 |
 | condition | [FocusDirection](#focusdirection) | 是    | 表示查询下一焦点元素的方向。                           |
 
 **返回值：**
@@ -1229,11 +1419,19 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 | ----------------------------------- | -------------------------------- |
 | Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询下一焦点元素方向的节点元素。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusDirection } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusDirection = 'up';
 
@@ -1245,11 +1443,15 @@ rootElement.findElement('focusDirection', condition).then((data: AccessibilityEl
 });
 ```
 
-### findElement('focusDirection')
+### findElement('focusDirection')<sup>(deprecated)</sup>
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
 
 根据下一焦点元素方向查询节点元素，使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1261,11 +1463,19 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 | condition | [FocusDirection](#focusdirection)        | 是    | 表示下一查询焦点元素的方向。                           |
 | callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询下一焦点元素方向的节点元素。              |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[无障碍子系统错误码](errorcode-accessibility.md)。
+
+| 错误码ID   | 错误信息                          |
+| ------- | ----------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **示例：**
 
 ```ts
-import { FocusDirection } from '@ohos.application.AccessibilityExtensionAbility';
-import { BusinessError } from '@ohos.base';
+import { FocusDirection } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let condition: FocusDirection = 'up';
 
@@ -1276,79 +1486,5 @@ rootElement.findElement('focusDirection', condition, (err: BusinessError, data: 
     return;
   }
   console.info(`Succeeded in find element, ${JSON.stringify(data)}`);
-});
-```
-
-### findElement('elementId')<sup>12+</sup>
-
-findElement(type: 'elementId', condition: number): Promise\<AccessibilityElement>;
-
-根据elementId查询当前活动窗口下的节点元素，使用Promise异步回调。
-
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名       | 类型                                | 必填   | 说明                                       |
-| --------- | --------------------------------- | ---- | ---------------------------------------- |
-| type      | string                            | 是    | 固定为'elementId', 表示根据elementId查询当前活动窗口下的节点元素。 |
-| condition | number | 是    | 表示要查询的节点元素的elementId。                           |
-
-**返回值：**
-
-| 类型                                  | 说明                               |
-| ----------------------------------- | -------------------------------- |
-| Promise&lt;[AccessibilityElement](#accessibilityelement9)&gt; | Promise对象，返回满足指定查询条件的节点元素。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-//elementId为10
-let condition = 10;
-
-// rootElement是AccessibilityElement的实例
-rootElement.findElement('elementId', condition).then((data: AccessibilityElement) => {
-  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
-});
-```
-
-### findElement('textType')<sup>12+</sup>
-
-findElement(type: 'textType', condition: string): Promise\<Array\<AccessibilityElement>>;
-
-根据节点配置的accessibilityTextHint无障碍文本类型查询所有节点元素，使用Promise异步回调。
-
-**系统能力**：SystemCapability.BarrierFree.Accessibility.Core
-
-**参数：**
-
-| 参数名       | 类型     | 必填   | 说明                            |
-| --------- | ------ | ---- | ----------------------------- |
-| type      | string | 是    | 固定为'textType', 表示根据文本类型查找节点元素。 |
-| condition | string | 是    | 表示查找的条件。                      |
-
-**返回值：**
-
-| 类型                                       | 说明                            |
-| ---------------------------------------- | ----------------------------- |
-| Promise&lt;Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;&gt; | Promise对象，返回满足指定查询关键字的所有节点元素。 |
-
-**示例：**
-
-```ts
-import { BusinessError } from '@ohos.base';
-
-// condition的内容需要与目标组件accessibilityTextHint属性的type字段值保持一致
-let condition = 'location'; 
-
-// rootElement是AccessibilityElement的实例
-rootElement.findElement('textType', condition).then((data: AccessibilityElement[]) => {
-  console.log(`Succeeded in find element, ${JSON.stringify(data)}`);
-}).catch((err: BusinessError) => {
-  console.error(`failed to find element, Code is ${err.code}, message is ${err.message}`);
 });
 ```

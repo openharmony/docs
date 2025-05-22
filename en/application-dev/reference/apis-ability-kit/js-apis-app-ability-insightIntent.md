@@ -11,7 +11,7 @@ The **insightIntent** module provides APIs for InsightIntent calls.
 ## Modules to Import
 
 ```ts
-import insightIntent from '@ohos.app.ability.insightIntent';
+import { insightIntent } from '@kit.AbilityKit';
 ```
 
 ## ExecuteMode
@@ -22,8 +22,8 @@ Enumerates the InsightIntent call execution modes.
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| UI_ABILITY_FOREGROUND | 0 | Display a UIAbility in the foreground.|
-| UI_ABILITY_BACKGROUND | 1 | Start a UIAbility in the background.|
+| UI_ABILITY_FOREGROUND | 0 | Display a UIAbility in the foreground.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| UI_ABILITY_BACKGROUND | 1 | Start a UIAbility in the background.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | UI_EXTENSION_ABILITY | 2 | Start a UIExtensionAbility.|
 
 ## ExecuteResult
@@ -32,7 +32,9 @@ Defines the InsightIntent call execution result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-| Name| Type| Read-only| Mandatory| Description|
+| Name| Type| Read-only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| code | number | No| Yes| Error code returned.|
-| result | Record<string, Object> | No| No| Execution result returned.|
+| code | number | No| No| Error code returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| result | Record<string, Object> | No| Yes| Execution result returned.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| uris<sup>18+</sup> | Array&lt;string&gt; | No| Yes| List of URIs authorized by the InsightIntent executor to the InsightIntent caller during the call.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
+| flags<sup>18+</sup> | number | No| Yes| [Flags](js-apis-app-ability-wantConstant.md#flags) of the URIs authorized by the InsightIntent executor to the InsightIntent caller during the call.<br>**Atomic service API**: This API can be used in atomic services since API version 18.<br>**NOTE**<br>This parameter supports only **FLAG_AUTH_READ_URI_PERMISSION**, **FLAG_AUTH_WRITE_URI_PERMISSION**, and FLAG_AUTH_READ_URI_PERMISSION\|FLAG_AUTH_WRITE_URI_PERMISSION.|

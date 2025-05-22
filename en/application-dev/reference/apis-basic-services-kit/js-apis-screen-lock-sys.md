@@ -1,6 +1,6 @@
 # @ohos.screenLock (Screen Lock) (System API)
 
-The **screenlock** module is a system module in OpenHarmony. It provides APIs for screen lock applications to subscribe to screen lock status changes as well as callbacks for them to receive the results. It also provides APIs for third-party applications to unlock the screen, obtain the screen locked status, and check whether a lock screen password has been set.
+The **screenLock** module is a system module in OpenHarmony. It provides APIs for screen lock applications to subscribe to screen lock status changes as well as callbacks for them to receive the results. It also provides APIs for third-party applications to unlock the screen, obtain the screen locked status, and check whether a lock screen password has been set.
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ The **screenlock** module is a system module in OpenHarmony. It provides APIs fo
 ## Modules to Import
 
 ```ts
-import screenLock from '@ohos.screenLock';
+import { screenLock } from '@kit.BasicServicesKit';
 ```
 
 ## EventType<sup>9+</sup>
@@ -68,6 +68,14 @@ Checks whether the screen is locked.
 | ------- | ------------------------------------------------- |
 | boolean | Returns **true** if the screen is locked; returns **false** otherwise.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
+
 **Example**
 
 ```ts
@@ -92,17 +100,19 @@ Unlocks the screen. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Screen Lock Management Error Codes](errorcode-screenlock).
+For details about error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Lock Error Codes](errorcode-screenlock.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 | 13200003  | illegal use.         |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.unlock((err: BusinessError, data: Boolean) => {
     if (err) {
@@ -135,17 +145,18 @@ Unlocks the screen. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Screen Lock Management Error Codes](errorcode-screenlock).
+For details about error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Lock Error Codes](errorcode-screenlock.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 | 13200003  | illegal use.         |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.unlock().then((data: Boolean) => {
     console.info(`Succeeded in unlocking the screen. result: ${data}`);
@@ -178,16 +189,19 @@ Locks the screen. This API uses an asynchronous callback to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Screen Lock Management Error Codes](errorcode-screenlock).
+For details about error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Lock Error Codes](errorcode-screenlock.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.lock((err: BusinessError, data: Boolean) => {
     if (err) {
@@ -218,16 +232,18 @@ Locks the screen. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Screen Lock Management Error Codes](errorcode-screenlock).
+For details about error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Lock Error Codes](errorcode-screenlock.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.lock().then((data: Boolean) => {
     console.info(`Succeeded in locking the screen. result: ${data}`);
@@ -262,15 +278,20 @@ Registers a callback for system events related to screen locking. This API can b
 
 **Error codes**
 
-For details about the error codes, see [Screen Lock Management Error Codes](errorcode-screenlock).
+For details about error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Lock Error Codes](errorcode-screenlock.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
   ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  
   try {
     let isSuccess = screenLock.onSystemEvent((event: screenLock.SystemEvent) => {
       console.log(`Succeeded in Registering the system event which related to screenlock. eventType: ${event.eventType}`)
@@ -285,7 +306,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](erro
 
 sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-Sends an event to the screen lock service. This API can be called only by screen lock applications. It uses an asynchronous callback to return the result.
+Sends an event to the screen lock service. This API can be called only by screen lock applications. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -295,24 +316,27 @@ Sends an event to the screen lock service. This API can be called only by screen
 
 **Parameters**
 
-| Name   | Type           | Mandatory| Description                            |
-| --------- | ------------------------ | ---- | -------------------- |
-| event     | String                   | Yes  | Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
+| Name   | Type           | Mandatory| Description                                                                                                               |
+| --------- | ------------------------ | ---- |-------------------------------------------------------------------------------------------------------------------|
+| event     | String                   | Yes  | Event type. Options are as follows:<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
 | parameter | number                   | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**, the operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled.|
-| callback  | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The **value** true means that the event is sent successfully, and **false** means the opposite.                |
+| callback  | AsyncCallback\<boolean> | Yes  | Callback used to return the result. The **value** true means that the event is sent successfully, and **false** means the opposite.                                                                             |
 
 **Error codes**
 
-For details about the error codes, see [Screen Lock Management Error Codes](errorcode-screenlock).
+For details about error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Lock Error Codes](errorcode-screenlock.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  |the screenlock management service is abnormal.         |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.sendScreenLockEvent('unlockScreenResult', 0, (err: BusinessError, result: Boolean) => {
     if (err) {
@@ -327,7 +351,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](erro
 
 sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
-Sends an event to the screen lock service. This API can be called only by screen lock applications. It uses a promise to return the result.
+Sends an event to the screen lock service. This API can be called only by screen lock applications. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.ScreenLock
 
@@ -337,9 +361,9 @@ Sends an event to the screen lock service. This API can be called only by screen
 
 **Parameters**
 
-| Name   | Type  | Mandatory| Description                                      |
-| --------- | ------ | ---- | --------------------------------------- |
-| event     | String | Yes  | Event type.<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
+| Name   | Type  | Mandatory| Description                                                                                                               |
+| --------- | ------ | ---- |-------------------------------------------------------------------------------------------------------------------|
+| event     | String | Yes  | Event type. Options are as follows:<br>- **"unlockScreenResult"**: Screen unlock result.<br>- **"lockScreenResult"**: Screen lock result.<br>- **"screenDrawDone"**: Screen drawing is complete.|
 | parameter | number | Yes  | Result.<br>- **0**: The operation is successful. For example, the screen is locked or unlocked successfully.<br>- **1**, the operation fails. For example, screen locking or unlocking fails.<br>- **2**: The operation is canceled. For example, screen locking or unlocking is canceled.|
 
 **Return value**
@@ -350,16 +374,19 @@ Sends an event to the screen lock service. This API can be called only by screen
 
 **Error codes**
 
-For details about the error codes, see [Screen Lock Management Error Codes](errorcode-screenlock).
+For details about error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Lock Error Codes](errorcode-screenlock.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 201  | permission denied.         |
+| 202  | permission verification failed, application which is not a system application uses system API.         |
 | 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   screenLock.sendScreenLockEvent('unlockScreenResult', 0).then((result: Boolean) => {
     console.info(`Succeeded in Sending screenlock event. result: ${result}`);

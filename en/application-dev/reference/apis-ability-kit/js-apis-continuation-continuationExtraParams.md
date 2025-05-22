@@ -10,13 +10,15 @@ The ContinuationExtraParams module provides the filter parameters required by th
 
 Describes the extra parameters required by the device selection module in the continuation management entry.
 
+**Atomic service API**: This API can be used in atomic services since API version 11.
+
 **System capability**: SystemCapability.Ability.DistributedAbilityManager
 
-| Name| Type| Readable| Writable| Description|
+| Name| Type| Read Only| Optional| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| deviceType | Array\<string> | Yes| Yes| Device type.|
-| targetBundle | string | Yes| Yes| Name of the target bundle.|
-| description | string | Yes| Yes| Device filtering description.|
-| filter | any | Yes| Yes| Device filtering parameter.|
-| continuationMode | [ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | Yes| Yes| Continuation mode.|
-| authInfo | Record<string, Object> | Yes| Yes| Authentication information.|
+| deviceType | Array\<string> | No| Yes| Device type.|
+| targetBundle | string | No| Yes| Name of the target bundle.|
+| description | string | No| Yes| Device filtering description.|
+| filter | any | No| Yes| Device filtering parameter.|
+| continuationMode | [continuationManager.ContinuationMode](js-apis-continuation-continuationManager.md#continuationmode) | No| Yes| Continuation mode.|
+| authInfo | Record<string, Object> | No| Yes| Authentication information.|

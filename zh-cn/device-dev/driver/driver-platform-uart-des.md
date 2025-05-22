@@ -12,7 +12,7 @@ UART指异步收发传输器（Universal Asynchronous Receiver/Transmitter），
 
 - RX：接收数据端，和对端的TX相连。
 
-- RTS：发送请求信号，用于指示本设备是否准备好，可接受数据，和对端CTS相连。
+- RTS：发送请求信号，用于指示本设备是否准备好，可接收数据，和对端CTS相连。
 
 - CTS：允许发送信号，用于判断是否可以向对端发送数据，和对端RTS相连。
 
@@ -80,7 +80,7 @@ UART模块应用比较广泛，主要用于实现设备之间的低速串行通�
 
 ### 接口说明
 
-UART模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/uart_if.h。
+UART模块提供的主要接口如表1所示，具体API[详见](https://gitee.com/openharmony/drivers_hdf_core/blob/master/framework/include/platform/uart_if.h)。
 
 **表 1** UART驱动API接口功能介绍
 

@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述HUKS向应用提供密钥库能力，包括密钥管理及密钥的密码学操作等功能。 管理的密钥可以由应用导入或者由应用调用HUKS接口生成。
+HUKS向应用提供密钥库能力，支持密钥管理和密钥的密码学操作。应用可以导入密钥或者调用HUKS接口生成密钥。
 
 **系统能力：** SystemCapability.Security.Huks
 
@@ -38,6 +38,7 @@
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_UpdateSession](#oh_huks_updatesession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | 分段添加密钥操作的数据并进行相应的密钥操作，输出处理数据。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_FinishSession](#oh_huks_finishsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*inData, struct [OH_Huks_Blob](_o_h___huks___blob.md) \*outData) | 结束密钥会话并进行相应的密钥操作，输出处理数据。  | 
 | struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_AbortSession](#oh_huks_abortsession) (const struct [OH_Huks_Blob](_o_h___huks___blob.md) \*handle, const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet) | 取消密钥会话。  | 
+| struct [OH_Huks_Result](_o_h___huks___result.md) [OH_Huks_ListAliases](#oh_huks_listaliases) (const struct [OH_Huks_ParamSet](_o_h___huks___param_set.md) \*paramSet, struct [OH_Huks_KeyAliasSet](_o_h___huks___key_alias_set.md) \*\*outData) | 批量查询密钥别名集。  | 
 
 
 ## 函数说明
@@ -62,7 +63,7 @@ struct OH_Huks_Result OH_Huks_AbortSession (const struct OH_Huks_Blob * handle, 
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 **参见：**
 
@@ -81,6 +82,8 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem (const struct OH_Huks_Blob * key
 **描述**
 获取密钥证书链。
 
+<!--RP1--><!--RP1End-->
+
 **起始版本：** 11
 
 **参数:**
@@ -93,7 +96,7 @@ struct OH_Huks_Result OH_Huks_AnonAttestKeyItem (const struct OH_Huks_Blob * key
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时获取成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时获取成功，其他时为错误。
 
 **注解：**
 
@@ -124,7 +127,7 @@ ohos.permission.ATTEST_KEY，该权限仅系统应用可申请。
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时获取成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时获取成功，其他时为错误。
 
 
 ### OH_Huks_DeleteKeyItem()
@@ -142,11 +145,11 @@ struct OH_Huks_Result OH_Huks_DeleteKeyItem (const struct OH_Huks_Blob * keyAlia
 | 名称 | 描述 | 
 | -------- | -------- |
 | keyAlias | 待删除密钥的别名，应与密钥生成时使用的别名相同。  | 
-| paramSet | 删除密钥需要属性参数（默认传空）。  | 
+| paramSet | 删除密钥需要属性参数。 若不指定则默认要删除的密钥存储等级为[OH_HUKS_AUTH_STORAGE_LEVEL_CE](_huks_type_api.md#OH_Huks_AuthStorageLevel)。 | 
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_ExportPublicKeyItem()
@@ -169,7 +172,7 @@ struct OH_Huks_Result OH_Huks_ExportPublicKeyItem (const struct OH_Huks_Blob * k
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_FinishSession()
@@ -193,7 +196,7 @@ struct OH_Huks_Result OH_Huks_FinishSession (const struct OH_Huks_Blob * handle,
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 **参见：**
 
@@ -224,7 +227,7 @@ struct OH_Huks_Result OH_Huks_GenerateKeyItem (const struct OH_Huks_Blob * keyAl
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_GetKeyItemParamSet()
@@ -247,7 +250,7 @@ struct OH_Huks_Result OH_Huks_GetKeyItemParamSet (const struct OH_Huks_Blob * ke
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时获取成功，其他时为失败。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时获取成功，其他时为失败。
 
 
 ### OH_Huks_GetSdkVersion()
@@ -268,7 +271,7 @@ struct OH_Huks_Result OH_Huks_GetSdkVersion (struct OH_Huks_Blob * sdkVersion)
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_ImportKeyItem()
@@ -291,7 +294,7 @@ struct OH_Huks_Result OH_Huks_ImportKeyItem (const struct OH_Huks_Blob * keyAlia
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_ImportWrappedKeyItem()
@@ -311,11 +314,11 @@ struct OH_Huks_Result OH_Huks_ImportWrappedKeyItem (const struct OH_Huks_Blob * 
 | keyAlias | 待导入密钥的别名，需要保证业务所在进程内唯一，否则会发生覆盖。  | 
 | wrappingKeyAlias | 密钥别名，该对应密钥用于密钥协商出密钥解密待导入密钥。  | 
 | paramSet | 待导入加密密钥的属性参数。  | 
-| wrappedKeyData | 需要导入的加密的密钥数据，需要符合Huks定义的格式，具体见[OH_Huks_AlgSuite](_huks_type_api.md#oh_huks_algsuite) | 
+| wrappedKeyData | 需要导入的加密的密钥数据，需要符合Huks定义的格式，具体见[OH_Huks_AlgSuite](_huks_type_api.md#oh_huks_algsuite)。 | 
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_InitSession()
@@ -335,11 +338,11 @@ struct OH_Huks_Result OH_Huks_InitSession (const struct OH_Huks_Blob * keyAlias,
 | keyAlias | 操作的密钥的别名。  | 
 | paramSet | 初始化操作的密钥参数集合。  | 
 | handle | 密钥会话的句柄，后续其他操作时传入该句柄，包括[OH_Huks_UpdateSession](#oh_huks_updatesession), [OH_Huks_FinishSession](#oh_huks_finishsession), [OH_Huks_AbortSession](#oh_huks_abortsession)。  | 
-| token | 存放安全访问控制时传回的token  | 
+| token | 存放安全访问控制时传回的token。  | 
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 **参见：**
 
@@ -369,9 +372,31 @@ struct OH_Huks_Result OH_Huks_IsKeyItemExist (const struct OH_Huks_Blob * keyAli
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时密钥存在，
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时密钥存在，
 
 返回[OH_Huks_ErrCode#OH_HUKS_ERR_CODE_ITEM_NOT_EXIST](_huks_type_api.md#oh_huks_errcode)不存在，返回其他错误在其他情况。
+
+
+### OH_Huks_ListAliases()
+
+```
+struct OH_Huks_Result OH_Huks_ListAliases (const struct OH_Huks_ParamSet * paramSet, struct OH_Huks_KeyAliasSet ** outData )
+```
+**描述**
+批量查询密钥别名集。
+
+**起始版本：** 12
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| paramSet | 查询密钥别名需要的属性TAG（默认传空）。  | 
+| outData | 经过对应的查询操作后输出的密钥别名集数据。  | 
+
+**返回：**
+
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 
 ### OH_Huks_UpdateSession()
@@ -395,7 +420,7 @@ struct OH_Huks_Result OH_Huks_UpdateSession (const struct OH_Huks_Blob * handle,
 
 **返回：**
 
-返回[OH_Huks_ErrCode#OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
+返回[OH_HUKS_SUCCESS](_huks_type_api.md#oh_huks_errcode)时接口使用成功，其他时为错误。
 
 **参见：**
 

@@ -7,12 +7,12 @@ You can set the delay for starting an ability using the shortcut key. An example
 ## Modules to Import
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 ```
 
 ## Available APIs
 
-The following table lists common APIs for event injection. For details about the APIs, see [ohos.multimodalInput.shortKey](../../reference/apis-input-kit/js-apis-shortKey-sys.md).
+The following table lists the common APIs provided by the **shortKey** module. For details, see [ohos.multimodalInput.shortKey](../../reference/apis-input-kit/js-apis-shortKey-sys.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
@@ -23,7 +23,7 @@ The following table lists common APIs for event injection. For details about the
 The following describes how to take a screenshot five seconds after the shortcut key is pressed.
 
 ```js
-import shortKey from '@ohos.multimodalInput.shortKey';
+import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("screenshot", 500, (error) => {// Set the delay to 5 seconds (500 ms)
     if (error) {

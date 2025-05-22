@@ -22,12 +22,10 @@
 1. 导入依赖，需要导入相机框架、媒体库、图片相关领域依赖。
 
    ```ts
-   import camera from '@ohos.multimedia.camera';
-   import image from '@ohos.multimedia.image';
-   import mediaLibrary from '@ohos.multimedia.mediaLibrary';
-   import fs from '@ohos.file.fs';
-   import photoAccessHelper from '@ohos.file.photoAccessHelper';
-   import { BusinessError } from '@ohos.base';
+   import { camera } from '@kit.CameraKit';
+   import { image } from '@kit.ImageKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { photoAccessHelper } from '@kit.MediaLibraryKit';
    ```
 
 2. 确定拍照输出流。
@@ -46,7 +44,7 @@
        photoOutput = cameraManager.createPhotoOutput(photoProfilesArray[0]);
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`Failed to createPhotoOutput. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to createPhotoOutput. error: ${err}`);
      }
      return photoOutput;
    }
@@ -95,19 +93,19 @@
 1. 注册缩略图监听回调。
 
    ```ts
-   function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput): void {
+   function onPhotoOutputDeferredPhotoProxyAvailable(photoOutput: camera.PhotoOutput, context: Context): void {
      photoOutput.on('deferredPhotoProxyAvailable', (err: BusinessError, proxyObj: camera.DeferredPhotoProxy): void => {
        if (err) {
-         console.info(`deferredPhotoProxyAvailable error: ${JSON.stringify(err)}.`);
+         console.error(`deferredPhotoProxyAvailable error: ${err}.`);
          return;
        }
        console.info('photoOutPutCallBack deferredPhotoProxyAvailable');
-       // 获取缩略图 pixelMap
+       // 获取缩略图 pixelMap。
        proxyObj.getThumbnail().then((thumbnail: image.PixelMap) => {
          AppStorage.setOrCreate('proxyThumbnail', thumbnail);
        });
        // 调用媒体库接口落盘缩略图，详细实现见2。
-       saveDeferredPhoto(proxyObj);
+       saveDeferredPhoto(proxyObj, context);
      });
    }
    ```
@@ -119,21 +117,19 @@
    Context获取方式请参考：[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
-   let context = getContext(this);
-   
-   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy) {    
+   async function saveDeferredPhoto(proxyObj: camera.DeferredPhotoProxy, context: Context) {    
      try {
-       // 创建 photoAsset
+       // 创建 photoAsset。
        let accessHelper = photoAccessHelper.getPhotoAccessHelper(context);
        let testFileName = 'testFile' + Date.now() + '.jpg';
        let photoAsset = await accessHelper.createAsset(testFileName);
-       // 将缩略图代理类传递给媒体库
+       // 将缩略图代理类传递给媒体库。
        let mediaRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(photoAsset);
        mediaRequest.addResource(photoAccessHelper.ResourceType.PHOTO_PROXY, proxyObj);
        let res = await accessHelper.applyChanges(mediaRequest);
        console.info('saveDeferredPhoto success.');
      } catch (err) {
-       console.error(`Failed to saveDeferredPhoto. error: ${JSON.stringify(err)}`);
+       console.error(`Failed to saveDeferredPhoto. error: ${err}`);
      }
    }
    ```

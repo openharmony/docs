@@ -1,12 +1,12 @@
 # @ohos.app.businessAbilityRouter (Business Ability Router) (System API)
 
-The **businessAbilityRouter** module provides APIs for you to query the business ability information of applications installed on the device. It provides a unified template for you to register standard services by type. Based on the information, a system application or third-party application can obtain services that meet certain criteria and select a proper service. The module also provides unified rules to manage redirection between applications and services. It prevents arbitrary switching between the foreground and background and avoids the distribution of third-party applications by means of redirection.
+The businessAbilityRouter module provides APIs for you to query the business ability information of applications installed on the device. It provides a unified template for you to register standard services by type. Based on the information, a system application or third-party application can obtain services that meet certain criteria and select a proper service. The module also provides unified rules to manage redirection between applications and services. It prevents arbitrary switching between the foreground and background and avoids the distribution of third-party applications by means of redirection.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The APIs provided by this module are system APIs.
+>The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -20,7 +20,7 @@ import businessAbilityRouter from '@ohos.app.businessAbilityRouter';
 | ------------------------------------------ | ------------ | -------------------- |
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.|
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## BusinessType
 
@@ -68,6 +68,16 @@ Obtains the business ability information based on the specified filter criteria.
 | filter | [BusinessAbilityFilter](#businessabilityfilter) | Yes   | Object used to filter the business abilities.|
 | callback | AsyncCallback\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | Yes| Callback used to return the result. If the operation is successful, the business ability information that meets the filter criteria is returned; otherwise, an error object is returned.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
+
 **Example**
 
 ```ts
@@ -113,6 +123,16 @@ Obtains the business ability information based on the specified filter criteria.
 | Type                                                        | Description                                       |
 | ------------------------------------------------------------ | ------------------------------------------- |
 | Promise\<Array\<[BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo-sys.md#businessabilityinfo)\>\> | Promise used to return the business ability information that meets the filter criteria.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message|
+| ------- | -------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. 3. Parameter verification failed. |
 
 **Example**
 

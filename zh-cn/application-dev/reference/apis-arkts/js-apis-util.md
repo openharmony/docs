@@ -10,13 +10,15 @@
 ## 导入模块
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 ```
 ## util.format<sup>9+</sup>
 
 format(format: string,  ...args: Object[]): string
 
-通过式样化字符串对输入的内容按特定格式输出。
+使用样式化字符串将输入内容按特定格式输出。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -33,6 +35,13 @@ format(format: string,  ...args: Object[]): string
 | ------ | -----------------|
 | string | 格式化后的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **格式说明符：**
 
@@ -41,7 +50,7 @@ format(format: string,  ...args: Object[]): string
 | %s     | 将参数转换为字符串，用于除Object，BigInt和-0之外的所有值。|
 | %d     | 将参数作为十进制整数进行格式化输出，用于除Symbol和BigInt之外的所有值。|
 | %i     | 将字符串转换为十进制整数，用于除BigInt和Symbol之外的所有值。|
-| %f     | 将字符串转换为浮点数，用于除Bigint和Symbol之外的所有值。|
+| %f     | 将字符串转换为浮点数，用于除BigInt和Symbol之外的所有值。|
 | %j     | 将JavaScript对象转换为JSON字符串进行格式化输出。|
 | %o     | 用于将JavaScript对象进行格式化输出，将对象转换为字符串表示，但不包含对象的原型链信息。|
 | %O     | 用于将JavaScript对象进行格式化输出，将对象转换为字符串表示。|
@@ -51,7 +60,7 @@ format(format: string,  ...args: Object[]): string
 **示例：**
 
 ```ts
-import util from '@ohos.util';
+import { util } from '@kit.ArkTS';
 
 interface utilAddresstype {
   city: string;
@@ -120,6 +129,8 @@ errnoToString(errno: number): string
 
 获取系统错误码对应的详细信息。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -134,12 +145,21 @@ errnoToString(errno: number): string
 | ------ | ---------------------- |
 | string | 错误码对应的详细信息。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
 let errnum = -1; // -1 : a system error number
 let result = util.errnoToString(errnum);
 console.info("result = " + result);
+// 输出结果：result = operation not permitted
 ```
 
 **部分错误码及信息示例：**
@@ -160,7 +180,13 @@ console.info("result = " + result);
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
-对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果 Promise 已解决，则为 null），第二个参数将是已解决的值。
+对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
+
+> **说明：**
+>
+> 该接口要求参数original必须是异步函数类型。如果传入的参数不是异步函数，不会进行拦截，但是会输出错误信息："callbackWrapper: The type of Parameter must be AsyncFunction"。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -176,6 +202,14 @@ callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 | -------- | -------- |
 | Function | 返回一个回调函数，该函数第一个参数err是拒绝原因（如果&nbsp;Promise&nbsp;已解决，则为&nbsp;null），第二个参数value是已解决的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -187,13 +221,16 @@ cb(1, (err : Object, ret : string) => {
   if (err) throw new Error;
   console.info(ret);
 });
+// 输出结果：hello world
 ```
 
 ## util.promisify<sup>9+</sup>
 
 promisify(original: (err: Object, value: Object) =&gt; void): Function
 
-对异步函数处理并返回一个promise的函数。
+处理异步函数并返回一个Promise函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -209,6 +246,14 @@ promisify(original: (err: Object, value: Object) =&gt; void): Function
 | -------- | -------- |
 | Function | 返回一个&nbsp;Promise&nbsp;的函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -220,6 +265,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
   try {
     let res: string = await addCall();
     console.info(res);
+    // 输出结果：hello world
   } catch (err) {
     console.info(err);
   }
@@ -230,7 +276,9 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。为了提升性能，此接口会默认使用缓存，即入参为true，最多可缓存128个随机的UUID。当缓存中128个UUID用尽后，会重新生成，以保证UUID的随机性。如需禁用缓存，请将入参设置为false。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -238,13 +286,21 @@ generateRandomUUID(entropyCache?: boolean): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID，true表示使用缓存的UUID，false表示不使用缓存的UUID，默认true。 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
 | string | 表示此UUID的字符串。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -260,13 +316,15 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 
 使用加密安全随机数生成器生成随机的RFC 4122版本4的Uint8Array类型UUID。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| entropyCache | boolean | 否 | 是否使用已缓存的UUID， 默认true。 |
+| entropyCache | boolean | 否 | 是否使用已缓存的UUID，true表示使用缓存的UUID，false表示不使用缓存的UUID，默认true。 |
 
 **返回值：**
 
@@ -274,20 +332,29 @@ generateRandomBinaryUUID(entropyCache?: boolean): Uint8Array
 | -------- | -------- |
 | Uint8Array | 表示此UUID的Uint8Array值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
 let uuid = util.generateRandomBinaryUUID(true);
 console.info(JSON.stringify(uuid));
-// 输出：
-// 138,188,43,243,62,254,70,119,130,20,235,222,199,164,140,150
+// 输出随机生成的UUID
 ```
 
 ## util.parseUUID<sup>9+</sup>
 
 parseUUID(uuid: string): Uint8Array
 
-将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，如RFC 4122版本4中所述。
+将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，符合RFC 4122版本规范。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -303,13 +370,21 @@ parseUUID(uuid: string): Uint8Array
 | -------- | -------- |
 | Uint8Array | 返回表示此UUID的Uint8Array，如果解析失败，则抛出SyntaxError。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+| 10200002 | Invalid uuid string. |
+
 **示例：**
 
 ```ts
 let uuid = util.parseUUID("84bdf796-66cc-4655-9b89-d6218d100f9c");
-console.info(JSON.stringify(uuid));
-// 输出：
-// 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
+console.info("uuid = " + uuid);
+// 输出结果：uuid = 132,189,247,150,102,204,70,85,155,137,214,33,141,16,15,156
 ```
 
 ## util.printf<sup>(deprecated)</sup>
@@ -342,6 +417,7 @@ printf(format: string,  ...args: Object[]): string
 ```ts
 let res = util.printf("%s", "hello world!");
 console.info(res);
+// 输出结果：hello world!
 ```
 
 
@@ -375,13 +451,14 @@ getErrorString(errno: number): string
 let errnum = -1; // -1 : a system error number
 let result = util.getErrorString(errnum);
 console.info("result = " + result);
+// 输出结果：result = operation not permitted
 ```
 
 ## util.promiseWrapper<sup>(deprecated)</sup>
 
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
-对异步函数处理并返回一个promise的版本。
+处理异步函数并返回promise函数。
 
 > **说明：**
 >
@@ -399,41 +476,126 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
+| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将(err, value) => ...回调作为最后一个参数），并返回一个promise的函数。 |
 
+
+## util.getHash<sup>12+</sup>
+
+getHash(object: object): number
+
+获取对象的Hash值。首次获取时，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；后续获取时，直接从Hash域中返回Hash值（同一对象多次返回值保持不变）。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| object | object | 是 | 需要获取Hash值的对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| number | Hash值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+interface Person {
+  name: string,
+  age: number
+}
+let obj: Person = { name: 'Jack', age: 20 };
+let result1 = util.getHash(obj);
+console.info('result1 is ' + result1);
+let result2 = util.getHash(obj);
+console.info('result2 is ' + result2);
+// 输出结果：result1 与 result2 的值相等，且为随机的Hash值。
+```
+
+## util.getMainThreadStackTrace<sup>20+</sup>
+
+getMainThreadStackTrace(): string
+
+获取主线程的栈追踪信息，最多返回64层调用帧。该接口可能会影响到主线程性能，建议谨慎使用。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 主线程的栈追踪信息。若主线程未处于执行JS代码状态，则返回空字符串。|
+
+**示例：**
+
+```ts
+let stack = util.getMainThreadStackTrace();
+console.info(stack);
+// 输出当前主线程的栈追踪信息。
+```
 
 ## TextDecoderOptions<sup>11+</sup>
 
-**系统能力：** SystemCapability.Utils.Lang
+解码相关选项参数，包含两个属性fatal和ignoreBOM。
 
-解码相关选项参数，存在两个属性fatal和ignoreBOM。
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称      | 类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
-| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
+| fatal     | boolean  | 否   | 是否显示致命错误，true表示显示致命错误，false表示不显示致命错误，默认值是false。 |
+| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，true表示忽略待解码数据的BOM标记，false表示会对BOM标记解码，默认值是false。  |
 
+## DecodeToStringOptions<sup>12+</sup>
 
-## DecodeWithStreamOptions<sup>11+</sup>
+解码是否使用流处理方式。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| stream | boolean | 否 | 输入末尾出现的不完整字节序列是否需要追加在下次调用decodeToString的参数中处理。设置为true，则不完整的字节序列会存储在内部缓存区直到下次调用该函数，false则会在当前调用时直接解码。默认为false。 |
+
+## DecodeWithStreamOptions<sup>11+</sup>
+
 解码是否跟随附加数据块相关选项参数。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
-
+| stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据未分块，则设置为false。默认为false。 |
 
 ## Aspect<sup>11+</sup>
 
-Aspect类用于封装提供切面能力（Aspect Oriented Programming，简写AOP）的接口，这些接口可以用来对类方法进行前后插桩或者替换实现。
+Aspect类用于封装提供切面能力（Aspect Oriented Programming，简写AOP）的接口，这些接口可用于对类方法进行前后插桩或替换实现。
 
 ### addBefore<sup>11+</sup>
 
 static addBefore(targetClass: Object, methodName: string, isStatic: boolean, before: Function): void
 
-在指定的类对象的原方法执行前插入一个函数。addBefore接口执行完成后，都会先执行插入的函数逻辑，再执行指定类对象的原方法。
+在指定的类对象的原方法执行前插入一个函数。执行addBefore接口后，先运行插入的函数逻辑，再执行指定类对象的原方法。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -442,9 +604,17 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的方法名。                    |
-| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
+| methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                    |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法。true表示静态方法，false表示实例方法。      |
 | before       | Function | 是   | 要插入的函数对象。函数有参数，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参数，无参时不做处理。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -515,7 +685,9 @@ console.info('MyClass.data is ' + MyClass.data);
 
 static addAfter(targetClass: Object, methodName: string, isStatic: boolean, after: Function): void
 
-在指定的类方法执行后插入一段逻辑。最终返回值是插入函数执行后的返回值。
+在指定的类方法执行后插入一段逻辑。最终返回插入函数执行后的返回值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -524,9 +696,17 @@ static addAfter(targetClass: Object, methodName: string, isStatic: boolean, afte
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的原方法名。                   |
-| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。      |
+| methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                   |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法。true表示静态方法，false表示实例方法。      |
 | after        | Function | 是   | 要插入的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），第二个参数是原方法的返回值（如果原方法没有返回值，则为undefined），其余参数是原方法的参数。函数也可以无参，无参时不做处理。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -588,7 +768,9 @@ util.Aspect.addAfter(AroundTest, 'foo', false, () => {
 
 static replace(targetClass: Object, methodName: string, isStatic: boolean, instead: Function) : void
 
-将指定的类方法的原方法替换为另一个函数。replace接口执行完成后，调用指定的类方法时，只会执行替换后的逻辑。最终返回值为替换函数执行完毕的返回值。
+将指定类的原方法替换为另一个函数。replace接口执行完成后，调用指定的类方法时，仅执行替换后的逻辑。最终返回替换函数执行完毕的返回值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -597,9 +779,17 @@ static replace(targetClass: Object, methodName: string, isStatic: boolean, inste
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的原方法名。                  |
-| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法，true表示静态方法，false表示实例方法。       |
+| methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                  |
+| isStatic     | boolean  | 是   | 指定的原方法是否为静态方法。true表示静态方法，false表示实例方法。       |
 | instead      | Function | 是   | 要用来替换原方法的函数。函数有参数时，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参，无参时不做处理。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -640,17 +830,19 @@ console.info('asp.msg is ' + asp.msg);
 
 ## TextDecoder
 
-TextDecoder用于将字节数组解码为字符串，可以处理多种编码格式，包括utf-8、utf-16le/be、iso-8859和windows-1251等不同的编码格式。
+TextDecoder用于将字节数组解码为字符串，支持utf-8、utf-16le/be、iso-8859和windows-1251等不同的编码格式。
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le。 |
-| fatal | boolean | 是 | 否 | 是否显示致命错误。 |
-| ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte&nbsp;order&nbsp;marker）标记，默认值为false&nbsp;，表示解码结果包含BOM标记。 |
+| encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、UTF-8、GBK、GB2312、gb2312、GB18030、iso-8859-1。 |
+| fatal | boolean | 是 | 否 | 是否显示致命错误，true表示显示，false表示不显示。 |
+| ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte order marker）标记，默认值为false，表示解码结果包含BOM标记。 |
 
 ### constructor<sup>9+</sup>
 
@@ -658,19 +850,25 @@ constructor()
 
 TextDecoder的构造函数。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
 ```ts
-let result = new util.TextDecoder();
-let retStr = result.encoding;
+let textDecoder = new util.TextDecoder();
+let retStr = textDecoder.encoding;
+console.info('retStr = ' + retStr);
+// 输出结果：retStr = utf-8
 ```
 ### create<sup>9+</sup>
 
 static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
-替代有参构造功能。
+替代有参构造函数的功能。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -681,6 +879,14 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -688,15 +894,71 @@ let textDecoderOptions: util.TextDecoderOptions = {
   fatal: false,
   ignoreBOM : true
 }
-let result = util.TextDecoder.create('utf-8', textDecoderOptions)
-let retStr = result.encoding
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let retStr = textDecoder.encoding;
+console.info('retStr = ' + retStr);
+// 输出结果：retStr = utf-8
 ```
 
-### decodeWithStream<sup>9+</sup>
+### decodeToString<sup>12+</sup>
+
+decodeToString(input: Uint8Array, options?: DecodeToStringOptions): string
+
+将输入参数解码后输出对应文本。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| input | Uint8Array | 是 | 需要解码的数组。 |
+| options | [DecodeToStringOptions](#decodetostringoptions12) | 否 | 解码相关选项参数。默认undefined。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 解码后的数据。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
+**示例：**
+
+```ts
+let textDecoderOptions: util.TextDecoderOptions = {
+  fatal: false,
+  ignoreBOM : true
+}
+let decodeToStringOptions: util.DecodeToStringOptions = {
+  stream: false
+}
+let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
+let uint8 = new Uint8Array([0xEF, 0xBB, 0xBF, 0x61, 0x62, 0x63]);
+let retStr = textDecoder.decodeToString(uint8, decodeToStringOptions);
+console.info("retStr = " + retStr);
+// 输出结果：retStr = abc
+```
+
+### decodeWithStream<sup>(deprecated)</sup>
 
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
-通过输入参数解码后输出对应文本。
+将输入参数解码后输出对应文本。当input是一个空数组时，返回undefined。
+
+> **说明：**
+>
+> 从API version 9开始支持，从API version 12开始废弃，建议使用[decodeToString<sup>12+</sup>](#decodetostring12)替代。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -713,6 +975,14 @@ decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 | -------- | -------- |
 | string | 解码后的数据。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
@@ -724,16 +994,17 @@ let decodeWithStreamOptions: util.DecodeWithStreamOptions = {
   stream: false
 }
 let textDecoder = util.TextDecoder.create('utf-8', textDecoderOptions);
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decodeWithStream(result , decodeWithStreamOptions);
+let retStr = textDecoder.decodeWithStream(uint8, decodeWithStreamOptions);
 console.info("retStr = " + retStr);
+// 输出结果：retStr = abc
 ```
 
 ### constructor<sup>(deprecated)</sup>
@@ -759,8 +1030,8 @@ TextDecoder的构造函数。
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | 否 | 是否显示致命错误，默认值是false。 |
-| ignoreBOM | boolean | 否 | 是否忽略BOM标记，默认值是false。 |
+| fatal | boolean | 否 | 是否显示致命错误，true表示显示致命错误，false表示不显示致命错误，默认值是false。 |
+| ignoreBOM | boolean | 否 | 是否忽略BOM标记，true表示忽略待解码数据的BOM标记，false表示会对BOM标记解码，默认值是false。 |
 
 **示例：**
 
@@ -776,7 +1047,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 > **说明：**
 >
-> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeWithStream<sup>9+</sup>](#decodewithstream9)替代。
+> 从API version 7开始支持，从API version 9开始废弃，建议使用[decodeToString<sup>12+</sup>](#decodetostring12)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -791,7 +1062,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
+| stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理数据未分块，则设置为false。默认为false。 |
 
 **返回值：**
 
@@ -803,42 +1074,47 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 ```ts
 let textDecoder = new util.TextDecoder("utf-8",{ignoreBOM: true});
-let result = new Uint8Array(6);
-result[0] = 0xEF;
-result[1] = 0xBB;
-result[2] = 0xBF;
-result[3] = 0x61;
-result[4] = 0x62;
-result[5] = 0x63;
+let uint8 = new Uint8Array(6);
+uint8[0] = 0xEF;
+uint8[1] = 0xBB;
+uint8[2] = 0xBF;
+uint8[3] = 0x61;
+uint8[4] = 0x62;
+uint8[5] = 0x63;
 console.info("input num:");
-let retStr = textDecoder.decode( result , {stream: false});
+let retStr = textDecoder.decode(uint8, {stream: false});
 console.info("retStr = " + retStr);
+// 输出结果：retStr = abc
 ```
 
 ## EncodeIntoUint8ArrayInfo<sup>11+</sup>
 
 **系统能力：** SystemCapability.Utils.Lang
 
-编码后的文本。
+编码后的数据。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
-| read     | number  | 是 | 否 |表示已读取的字符数。 |
-| written | number   | 是 |否 |表示已写入的字节数。  |
+| read     | number  | 是 | 否 |已读取的字符数。 |
+| written | number   | 是 |否 |已写入的字节数。  |
 
 
 ## TextEncoder
 
-TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
-需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
+TextEncoder将字符串编码为字节数组，支持多种编码格式。
+在使用TextEncoder进行编码时，需要注意不同编码格式下字符所占的字节数不同。务必明确指定编码格式，以确保编码结果正确。
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
+| encoding | string | 是 | 否 |  编码格式。<br/>-&nbsp;支持格式：utf-8、UTF-8、GBK、GB2312、gb2312、GB18030、gb18030、ibm866、iso-8859-1、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、gbk、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、x-mac-cyrillic、utf-16be、utf-16le。 <br/>-&nbsp; 默认值是：'utf-8'。 |
 
 
 ### constructor
@@ -846,6 +1122,8 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
 constructor()
 
 TextEncoder的构造函数。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -861,6 +1139,8 @@ constructor(encoding?: string)
 
 TextEncoder的构造函数。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -868,6 +1148,14 @@ TextEncoder的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
 | encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -881,6 +1169,8 @@ static create(encoding?: string): TextEncoder
 
 创建TextEncoder对象的方法。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -888,6 +1178,14 @@ static create(encoding?: string): TextEncoder
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
 | encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -899,7 +1197,9 @@ let textEncoder = util.TextEncoder.create("utf-8");
 
 encodeInto(input?: string): Uint8Array
 
-通过输入参数编码后输出Uint8Array对象。
+将输入参数编码后输出Uint8Array对象。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -907,7 +1207,7 @@ encodeInto(input?: string): Uint8Array
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | 否   | 需要编码的字符串，默认值是空字符串。 |
+| input  | string | 否   | 需要编码的字符串，默认值是空字符串。当入参是空字符串时，返回undefined。 |
 
 **返回值：**
 
@@ -915,20 +1215,30 @@ encodeInto(input?: string): Uint8Array
 | ---------- | ------------------ |
 | Uint8Array | 返回编码后的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
 let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encodeInto("\uD800¥¥");
+let result = textEncoder.encodeInto("\uD800¥¥");
+console.info("result = " + result);
+// 输出结果: result = 237,160,128,194,165,194,165
 ```
 
 ### encodeIntoUint8Array<sup>9+</sup>
 
 encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
-对字符串进行编码，将结果写入dest数组。
+对字符串进行编码，将结果存储到dest数组。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -945,21 +1255,34 @@ encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 | ---------- | ------------------ |
 | [EncodeIntoUint8ArrayInfo](#encodeintouint8arrayinfo11) | 返回一个对象，read表示已编码的字符数，write表示编码字符所占用的字节数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-let that = new util.TextEncoder();
+let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = new Object();
-result = that.encodeIntoUint8Array('abcd', dest);
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeIntoUint8Array('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
+console.info("result.read = " + result.read);
+// 输出结果: result.read = 4
+console.info("result.written = " + result.written);
+// 输出结果: result.written = 4
 ```
 
 ### encodeInto<sup>(deprecated)</sup>
 
 encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
-放置生成的UTF-8编码文本。
+将生成的UTF-8编码文本写入dest数组。
 
 > **说明：**
 >
@@ -978,23 +1301,24 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Uint8Array | 返回编码后的文本。 |
+| Uint8Array | 返回编码后的Uint8Array对象。 |
 
 **示例：**
 
 ```ts
-let that = new util.TextEncoder();
+let textEncoder = new util.TextEncoder();
 let buffer = new ArrayBuffer(4);
-let dest = new Uint8Array(buffer);
-let result = new Object();
-result = that.encodeInto('abcd', dest);
+let uint8 = new Uint8Array(buffer);
+let result = textEncoder.encodeInto('abcd', uint8);
+console.info("uint8 = " + uint8);
+// 输出结果: uint8 = 97,98,99,100
 ```
 
 ### encode<sup>(deprecated)</sup>
 
 encode(input?: string): Uint8Array
 
-通过输入参数编码后输出对应文本。
+将输入参数编码后输出对应文本。
 
 > **说明：**
 >
@@ -1018,20 +1342,22 @@ encode(input?: string): Uint8Array
 
 ```ts
 let textEncoder = new util.TextEncoder();
-let buffer = new ArrayBuffer(20);
-let result = new Uint8Array(buffer);
-result = textEncoder.encode("\uD800¥¥");
+let result = textEncoder.encode("\uD800¥¥");
+console.info("result = " + result);
+// 输出结果: result = 237,160,128,194,165,194,165
 ```
 
 ## RationalNumber<sup>8+</sup>
 
-RationalNumber主要是对有理数进行比较，获取分子分母等方法。例如使用toString()方法可以将有理数转换为字符串形式，使用该类可以方便地进行有理数的各种操作。
+RationalNumber主要用于有理数的比较，并提供获取分子和分母的方法。使用toString()方法可以将有理数转换为字符串形式，使用该类可以方便地进行有理数的各种操作。
 
 ### constructor<sup>9+</sup>
 
 constructor()
 
 RationalNumber的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1043,9 +1369,15 @@ let rationalNumber = new util.RationalNumber();
 
 ### parseRationalNumber<sup>9+</sup>
 
-parseRationalNumber(numerator: number,denominator: number): RationalNumber
+static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
-用于创建具有给定分子和分母的RationalNumber实例。
+创建具有给定分子和分母的RationalNumber实例。
+
+> **说明：**
+>
+> 该接口要求参数numerator和denominator必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："parseRationalNumber: The type of Parameter must be integer"。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1053,8 +1385,22 @@ parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
 | 参数名      | 类型   | 必填 | 说明             |
 | ----------- | ------ | ---- | ---------------- |
-| numerator   | number | 是   | 分子，整数类型。 |
-| denominator | number | 是   | 分母，整数类型。 |
+| numerator   | number | 是   | 分子，整数类型。取值范围：-Number.MAX_VALUE <= numerator <= Number.MAX_VALUE。|
+| denominator | number | 是   | 分母，整数类型。取值范围：-Number.MAX_VALUE <= denominator <= Number.MAX_VALUE。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [RationalNumber](#rationalnumber8) | RationalNumber对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1064,9 +1410,15 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 ### createRationalFromString<sup>8+</sup>
 
-static createRationalFromString​(rationalString: string): RationalNumber​
+static createRationalFromString(rationalString: string): RationalNumber​
 
-基于给定的字符串创建一个RationalNumber对象。
+使用给定的字符串创建RationalNumber对象。
+
+> **说明：**
+>
+> 该接口要求参数rationalString是字符串格式。如果传入的参数是小数类型字符串格式，不会进行拦截，但是会输出错误信息："createRationalFromString: The type of Parameter must be integer string"。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1080,7 +1432,15 @@ static createRationalFromString​(rationalString: string): RationalNumber​
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回RationalNumber对象。 |
+| [RationalNumber](#rationalnumber8)​ | RationalNumber对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | The type of rationalString must be string. |
 
 **示例：**
 
@@ -1090,9 +1450,11 @@ let rational = util.RationalNumber.createRationalFromString("3/4");
 
 ### compare<sup>9+</sup>
 
-compare​(another: RationalNumber): number​
+compare(another: RationalNumber): number​
 
 将当前RationalNumber对象与目标RationalNumber对象进行比较，并返回比较结果。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1106,7 +1468,15 @@ compare​(another: RationalNumber): number​
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 如果两个对象相等，则返回0；如果给定对象小于当前对象，则返回1；如果给定对象大于当前对象，则返回-1。 |
+| number | 两个对象相等时返回0；给定对象小于当前对象时返回1；给定对象大于当前对象时返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1122,7 +1492,9 @@ console.info("result = " + result);
 
 valueOf(): number
 
-以整数形式或者浮点数的形式获取当前RationalNumber对象的值。
+获取当前RationalNumber对象的整数或浮点数值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1150,9 +1522,11 @@ console.info("result = " + result);
 
 ### equals<sup>8+</sup>
 
-equals​(obj: Object): boolean
+equals(obj: Object): boolean
 
-将当前的RationalNumber对象与给定的对象进行比较是否相等。
+比较当前的RationalNumber对象与给定对象是否相等。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1188,9 +1562,15 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number, number2: number): number
 
-获取两个指定整数的最大公约数。
+获取两个整数的最大公约数。
+
+> **说明：**
+>
+> 该接口要求参数number1和number2必须是整数类型。如果传入的参数是小数类型，不会进行拦截，但是会输出错误信息："getCommonFactor: The type of Parameter must be integer"。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1198,14 +1578,22 @@ getCommonFactor(number1: number,number2: number): number
 
 | 参数名  | 类型   | 必填 | 说明       |
 | ------- | ------ | ---- | ---------- |
-| number1 | number | 是   | 整数类型。 |
-| number2 | number | 是   | 整数类型。 |
+| number1 | number | 是   | 整数类型。-Number.MAX_VALUE <= number1 <= Number.MAX_VALUE。|
+| number2 | number | 是   | 整数类型。-Number.MAX_VALUE <= number2 <= Number.MAX_VALUE。|
 
 **返回值：**
 
 | 类型   | 说明                           |
 | ------ | ------------------------------ |
 | number | 返回两个给定数字的最大公约数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1217,9 +1605,11 @@ console.info("result = " + result);
 
 ### getNumerator<sup>8+</sup>
 
-getNumerator​(): number
+getNumerator(): number
 
 获取当前RationalNumber对象的分子。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1227,7 +1617,7 @@ getNumerator​(): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回RationalNumber对象的分子的值。 |
+| number | 返回RationalNumber对象的分子。 |
 
 **示例：**
 
@@ -1247,9 +1637,11 @@ console.info("result = " + result);
 
 ### getDenominator<sup>8+</sup>
 
-getDenominator​(): number
+getDenominator(): number
 
 获取当前RationalNumber对象的分母。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1257,7 +1649,7 @@ getDenominator​(): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回RationalNumber对象的分母的值。 |
+| number | 返回RationalNumber对象的分母。 |
 
 **示例：**
 
@@ -1277,9 +1669,11 @@ console.info("result = " + result);
 
 ### isZero<sup>8+</sup>
 
-isZero​():boolean
+isZero():boolean
 
 检查当前RationalNumber对象是否为0。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1287,7 +1681,7 @@ isZero​():boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 如果当前对象表示的值为0，则返回true；否则返回false。 |
+| boolean | 如果当前对象的值为0，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -1307,9 +1701,11 @@ console.info("result = " + result);
 
 ### isNaN<sup>8+</sup>
 
-isNaN​(): boolean
+isNaN(): boolean
 
 检查当前RationalNumber对象是否表示非数字(NaN)值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1337,9 +1733,11 @@ console.info("result = " + result);
 
 ### isFinite<sup>8+</sup>
 
-isFinite​():boolean
+isFinite():boolean
 
-检查当前RationalNumber对象是否表示一个有限值。
+检查RationalNumber对象是否表示一个有限值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1367,9 +1765,11 @@ console.info("result = " + result);
 
 ### toString<sup>8+</sup>
 
-toString​(): string
+toString(): string
 
-获取当前RationalNumber对象的字符串表示形式。
+获取RationalNumber对象的字符串表示形式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1377,7 +1777,7 @@ toString​(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回Numerator/Denominator格式的字符串，例如3/5，如果当前对象的分子为0，则返回0/1。如果当前对象的分母为0，则返回Infinity。如果当前对象的分子和分母都为0，则返回NaN。|
+| string | 返回Numerator/Denominator格式的字符串，例如3/5，如果分子为0，则返回0/1。如果分母为0，则返回Infinity。如果分子和分母都为0，则返回NaN。|
 
 **示例：**
 
@@ -1403,7 +1803,7 @@ RationalNumber的构造函数。
 
 > **说明：**
 >
-> 从API version 8开始支持，从API version 9开始废弃，建议使用[parserationalnumber<sup>9+</sup>](#parserationalnumber9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[parseRationalNumber<sup>9+</sup>](#parserationalnumber9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1422,9 +1822,9 @@ let rationalNumber = new util.RationalNumber(1,2);
 
 ### compareTo<sup>(deprecated)</sup>
 
-compareTo​(another: RationalNumber): number​
+compareTo(another: RationalNumber): number​
 
-将当前的RationalNumber对象与给定的对象进行比较。
+比较当前的RationalNumber对象与给定的对象。
 
 > **说明：**
 >
@@ -1450,11 +1850,13 @@ compareTo​(another: RationalNumber): number​
 let rationalNumber = new util.RationalNumber(1,2);
 let rational = util.RationalNumber.createRationalFromString("3/4");
 let result = rationalNumber.compareTo(rational);
+console.info("result = " + result);
+// 输出结果：result = -1
 ```
 
 ### getCommonDivisor<sup>(deprecated)</sup>
 
-static getCommonDivisor​(number1: number,number2: number): number
+static getCommonDivisor(number1: number,number2: number): number
 
 获取两个指定整数的最大公约数。
 
@@ -1477,18 +1879,15 @@ static getCommonDivisor​(number1: number,number2: number): number
 | -------- | -------- |
 | number | 返回两个给定数字的最大公约数。 |
 
-**示例：**
 
-```ts
-let rationalNumber = new util.RationalNumber(1,2);
-let result = util.RationalNumber.getCommonDivisor(4,6);
-```
 
 ## LRUCache<sup>9+</sup>
 
-LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替换为新数据。此设计基于资源访问的考虑：近期访问的数据，可能在不久的将来会再次访问。于是最少访问的数据就是价值最小的数据，是最应该踢出缓存空间的数据。
+LRUCache用于在缓存空间不足时，将近期最少使用的数据替换为新数据。此设计基于资源访问的考虑：近期访问的数据，可能在不久的将来会再次访问。因此最少访问的数据被认为价值最低，应当优先从缓存中移除。
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Utils.Lang。
 
@@ -1499,17 +1898,21 @@ LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替
 **示例：**
 
 ```ts
-let  pro : util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(1,8);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(1, 8);
 let result = pro.length;
+console.info('result = ' + result);
+// 输出结果：result = 2
 ```
 
 ### constructor<sup>9+</sup>
 
 constructor(capacity?: number)
 
-默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
+默认构造函数用于创建一个新的LRUCache实例，默认容量为64。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1517,12 +1920,20 @@ constructor(capacity?: number)
 
 | 参数名   | 类型   | 必填 | 说明                         |
 | -------- | ------ | ---- | ---------------------------- |
-| capacity | number | 否   | 指示要为缓冲区自定义的容量，默认值为64。 |
+| capacity | number | 否   | 指示要为缓冲区自定义的容量，不传默认值为64，最大值不能超过2147483647。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1.Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 ```
 
 
@@ -1530,7 +1941,9 @@ let lrubuffer : util.LRUCache<number, number> = new util.LRUCache();
 
 updateCapacity(newCapacity: number): void
 
-将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。
+更新缓冲区容量为指定值，如果newCapacity小于或等于0，则抛出异常。当缓冲区中值的总数大于指定容量时，会执行删除操作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1538,12 +1951,20 @@ updateCapacity(newCapacity: number): void
 
 | 参数名      | 类型   | 必填 | 说明                         |
 | ----------- | ------ | ---- | ---------------------------- |
-| newCapacity | number | 是   | 指示要为缓冲区自定义的容量。 |
+| newCapacity | number | 是   | 指示要为缓冲区自定义的容量，最大值不能超过2147483647。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 pro.updateCapacity(100);
 ```
 
@@ -1551,7 +1972,9 @@ pro.updateCapacity(100);
 
 toString(): string
 
-返回对象的字符串表示形式。
+返回对象的字符串表示。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1564,8 +1987,8 @@ toString(): string
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 pro.get(3);
 console.info(pro.toString());
@@ -1579,6 +2002,8 @@ getCapacity(): number
 
 获取当前缓冲区的容量。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **返回值：**
@@ -1590,32 +2015,43 @@ getCapacity(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.getCapacity();
+console.info('result = ' + result);
+// 输出结果：result = 64
 ```
 
 ### clear<sup>9+</sup>
 
 clear(): void
 
-从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
+清除当前缓冲区中的键值对。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.length;
 pro.clear();
+let res = pro.length;
+console.info('result = ' + result);
+console.info('res = ' + res);
+// 输出结果：result = 1
+// 输出结果：res = 0
 ```
 
 ### getCreateCount<sup>9+</sup>
 
 getCreateCount(): number
 
-获取创建对象的次数。
+获取对象创建的次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1639,10 +2075,12 @@ class ChildLRUCache extends util.LRUCache<number, number> {
   }
 }
 let lru = new ChildLRUCache();
-lru.put(2,10);
+lru.put(2, 10);
 lru.get(3);
 lru.get(5);
 let res = lru.getCreateCount();
+console.info('res = ' + res);
+// 输出结果：res = 2
 ```
 
 ### getMissCount<sup>9+</sup>
@@ -1650,6 +2088,8 @@ let res = lru.getCreateCount();
 getMissCount(): number
 
 获取查询值不匹配的次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1662,17 +2102,21 @@ getMissCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.get(2);
 let result = pro.getMissCount();
+console.info('result = ' + result);
+// 输出结果：result = 0
 ```
 
 ### getRemovalCount<sup>9+</sup>
 
 getRemovalCount(): number
 
-获取缓冲区键值对回收的次数。
+获取缓冲区键值对的回收次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1685,11 +2129,13 @@ getRemovalCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 pro.updateCapacity(2);
-pro.put(50,22);
+pro.put(50, 22);
 let result = pro.getRemovalCount();
+console.info('result = ' + result);
+// 输出结果：result = 0
 ```
 
 ### getMatchCount<sup>9+</sup>
@@ -1697,6 +2143,8 @@ let result = pro.getRemovalCount();
 getMatchCount(): number
 
 获取查询值匹配成功的次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1709,10 +2157,12 @@ getMatchCount(): number
 **示例：**
 
   ```ts
-  let pro: util.LRUCache<number, number> = new util.LRUCache();
-  pro.put(2,10);
+  let pro = new util.LRUCache<number, number>();
+  pro.put(2, 10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info('result = ' + result);
+  // 输出结果：result = 1
   ```
 
 ### getPutCount<sup>9+</sup>
@@ -1720,6 +2170,8 @@ getMatchCount(): number
 getPutCount(): number
 
 获取将值添加到缓冲区的次数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1732,16 +2184,20 @@ getPutCount(): number
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.getPutCount();
+console.info('result = ' + result);
+// 输出结果：result = 1
 ```
 
 ### isEmpty<sup>9+</sup>
 
 isEmpty(): boolean
 
-检查当前缓冲区是否为空。
+检查缓冲区是否为空。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1749,21 +2205,25 @@ isEmpty(): boolean
 
 | 类型    | 说明                                     |
 | ------- | ---------------------------------------- |
-| boolean | 如果当前缓冲区不包含任何值，则返回true。 |
+| boolean | 如果缓冲区不包含任何值，则返回true。 |
 
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.isEmpty();
+console.info('result = ' + result);
+// 输出结果：result = false
 ```
 
 ### get<sup>9+</sup>
 
 get(key: K): V | undefined
 
-表示要查询的键。
+返回键对应的值。当键不在缓冲区中时，通过[createDefault<sup>9+</sup>](#createdefault9)接口创建，若createDefault创建的值不为undefined时，此时会调用[afterRemoval<sup>9+</sup>](#afterremoval9)接口，返回createDefault创建的值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1777,21 +2237,33 @@ get(key: K): V | undefined
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回undefined。 |
+| V \| undefined | 如果指定的键存在于缓冲区中，则返回与键关联的值；否则返回createDefault创建的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result  = pro.get(2);
+console.info('result = ' + result);
+// 输出结果：result = 10
 ```
 
 ### put<sup>9+</sup>
 
 put(key: K,value: V): V
 
-将键值对添加到缓冲区。
+将键值对添加到缓冲区，返回与添加的键关联的值。当缓冲区中值的总数超过容量时，执行删除操作。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1799,27 +2271,39 @@ put(key: K,value: V): V
 
 | 参数名 | 类型 | 必填 | 说明                       |
 | ------ | ---- | ---- | -------------------------- |
-| key    | K    | 是   | 要添加的密钥。             |
+| key    | K    | 是   | 要添加的键。             |
 | value  | V    | 是   | 指示与要添加的键关联的值。 |
 
 **返回值：**
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| V    | 返回与添加的键关联的值；如果要添加的键已经存在，则返回原始值，如果键或值为空，则抛出此异常。 |
+| V    | 返回与添加的键关联的值。如果键或值为空，则抛出此异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-let result = pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+let result = pro.put(2, 10);
+console.info('result = ' + result);
+// 输出结果：result = 10
 ```
 
 ### values<sup>9+</sup>
 
 values(): V[]
 
-获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表 。
+获取当前缓冲区中所有值，从最近访问到最近最少访问的顺序列表。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1827,16 +2311,18 @@ values(): V[]
 
 | 类型      | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| V&nbsp;[] | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有值的列表。 |
+| V[] | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有值的列表。 |
 
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number|string,number|string> = new util.LRUCache();
-pro.put(2,10);
-pro.put(2,"anhu");
-pro.put("afaf","grfb");
+let pro = new util.LRUCache<number|string,number|string>();
+pro.put(2, 10);
+pro.put(2, "anhu");
+pro.put("afaf", "grfb");
 let result = pro.values();
+console.info('result = ' + result);
+// 输出结果：result = anhu,grfb
 ```
 
 ### keys<sup>9+</sup>
@@ -1844,6 +2330,8 @@ let result = pro.values();
 keys(): K[]
 
 获取当前缓冲区中所有键从最近访问到最近最少访问的升序列表。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1856,16 +2344,21 @@ keys(): K[]
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 1);
 let result = pro.keys();
+console.info('result = ' + result);
+// 输出结果：result = 2,3
 ```
 
 ### remove<sup>9+</sup>
 
 remove(key: K): V | undefined
 
-从当前缓冲区中删除指定的键及其关联的值。
+从当前缓冲区中删除指定的键及其关联的值，并返回键关联的值。如果指定的键不存在，则返回undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1881,19 +2374,31 @@ remove(key: K): V | undefined
 | ------------------------ | ------------------------------------------------------------ |
 | V&nbsp;\|&nbsp;undefined | 返回一个包含已删除键值对的Optional对象；如果key不存在，则返回undefined，如果key为null，则抛出异常。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
 let result = pro.remove(20);
+console.info('result = ' + result);
+// 输出结果：result = undefined
 ```
 
 ### afterRemoval<sup>9+</sup>
 
-afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
+afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void
 
-删除值后执行后续操作。
+删除值后执行后续操作，这些操作由开发者自行实现。本接口会在删除操作时被调用，如[get<sup>9+</sup>](#get9)、[put<sup>9+</sup>](#put9)、[remove<sup>9+</sup>](#remove9)、[clear<sup>9+</sup>](#clear9)、[updateCapacity<sup>9+</sup>](#updatecapacity9)接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1901,10 +2406,18 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| isEvict  | boolean | 是   | 因容量不足而调用该方法时，参数值为true，其他情况为false。    |
+| isEvict  | boolean | 是   | 当因容量不足而调用该方法时，参数值设置为true，其他情况设置为false。    |
 | key      | K       | 是   | 表示删除的键。                                               |
 | value    | V       | 是   | 表示删除的值。                                               |
 | newValue | V       | 是   | 如果已调用put方法并且要添加的键已经存在，则参数值是关联的新值。其他情况下参数值为空。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -1916,13 +2429,16 @@ class ChildLRUCache<K, V> extends util.LRUCache<K, V> {
 
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
-      console.info('key: ' + key);
-      console.info('value: ' + value);
-      console.info('newValue: ' + newValue);
+      console.info('key = ' + key);
+      // 输出结果：key = 1
+      console.info('value = ' + value);
+      // 输出结果：value = 1
+      console.info('newValue = ' + newValue);
+      // 输出结果：newValue = null
     }
   }
 }
-let lru: ChildLRUCache<number, number>= new ChildLRUCache(2);
+let lru = new ChildLRUCache<number, number>(2);
 lru.put(1, 1);
 lru.put(2, 2);
 lru.put(3, 3);
@@ -1934,13 +2450,15 @@ contains(key: K): boolean
 
 检查当前缓冲区是否包含指定的键。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| key    | K | 是   | 表示要检查的键。 |
+| key    | K | 是   | 要检查的键。 |
 
 **返回值：**
 
@@ -1948,23 +2466,31 @@ contains(key: K): boolean
 | ------- | ------------------------------------------ |
 | boolean | 如果缓冲区包含指定的键，则返回&nbsp;true。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-let pro : util.LRUCache<number | object, number> = new util.LRUCache();
-pro.put(2,10);
-class Lru{
-s : string = "";
-}
-let obj : Lru = {s : "key" };
-let result = pro.contains(obj);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+let result = pro.contains(2);
+console.info('result = ' + result);
+// 输出结果：result = true
 ```
 
 ### createDefault<sup>9+</sup>
 
 createDefault(key: K): V
 
-如果未计算特定键的值，则执行后续操作，参数表示丢失的键，返回与键关联的值。
+如果在缓冲区未匹配到键，则执行后续操作，参数表示未匹配的键，返回与键关联的值，默认返回undefined。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1972,7 +2498,7 @@ createDefault(key: K): V
 
 | 参数名 | 类型 | 必填 | 说明           |
 | ------ | ---- | ---- | -------------- |
-| key    | K    | 是   | 表示丢失的键。 |
+| key    | K    | 是   | 表示未匹配的键。 |
 
 **返回值：**
 
@@ -1980,18 +2506,30 @@ createDefault(key: K): V
 | ---- | ------------------ |
 | V    | 返回与键关联的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
+let pro = new util.LRUCache<number, number>();
 let result = pro.createDefault(50);
+console.info('result = ' + result);
+// 输出结果：result = undefined
 ```
 
 ### entries<sup>9+</sup>
 
-entries(): IterableIterator&lt;[K,V]&gt;
+entries(): IterableIterator&lt;[K, V]&gt;
 
-允许迭代包含在这个对象中的所有键值对。
+迭代此对象中的所有键值对。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1999,18 +2537,21 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型        | 说明                 |
 | ----------- | -------------------- |
-| [K,&nbsp;V] | 返回一个可迭代数组。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个可迭代数组。 |
 
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro.entries();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // 输出结果：
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -2018,11 +2559,9 @@ for (let value of arrayValue) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-返回一个键值对形式的二维数组。
+返回键值对形式的二维数组。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2030,18 +2569,21 @@ for (let value of arrayValue) {
 
 | 类型        | 说明                           |
 | ----------- | ------------------------------ |
-| [K,&nbsp;V] | 返回一个键值对形式的二维数组。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个键值对形式的二维数组。 |
 
 **示例：**
 
 ```ts
-let pro: util.LRUCache<number, number> = new util.LRUCache();
-pro.put(2,10);
-pro.put(3,15);
+let pro = new util.LRUCache<number, number>();
+pro.put(2, 10);
+pro.put(3, 15);
 let pair:Iterable<Object[]> = pro[Symbol.iterator]();
 let arrayValue = Array.from(pair);
 for (let value of arrayValue) {
   console.info(value[0]+ ', '+ value[1]);
+  // 输出结果：
+  // 2, 10
+  // 3, 15
 }
 ```
 
@@ -2056,6 +2598,8 @@ ScopeComparable类型的值需要实现compareTo方法，确保传入的数据�
 compareTo(other: ScopeComparable): boolean
 
 比较两个值的大小，返回一个布尔值。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2076,18 +2620,22 @@ compareTo(other: ScopeComparable): boolean
 构造新类，实现compareTo方法。后续示例代码中，均以此Temperature类为例。
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2095,7 +2643,11 @@ class Temperature{
 
 ## ScopeType<sup>8+</sup>
 
-用于表示范围中的值的类型。
+type ScopeType = ScopeComparable | number
+
+表示范围中的值的类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2106,13 +2658,15 @@ class Temperature{
 
 ## ScopeHelper<sup>9+</sup>
 
-ScopeHelper接口用于描述一个字段的有效范围。ScopeHelper实例的构造函数用于创建具有指定下限和上限的对象，并要求这些对象必须具有可比性。
+ScopeHelper接口用于描述一个字段的有效范围。构造函数用于创建具有指定下限和上限的对象，并要求这些对象必须具有可比性。
 
 ### constructor<sup>9+</sup>
 
 constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
-用于创建指定下限和上限的作用域实例的构造函数，返回一个ScopeHelper对象。
+创建指定下限和上限的作用域实例，返回一个ScopeHelper对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2123,34 +2677,50 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 | lowerObj | [ScopeType](#scopetype8) | 是   | 指定作用域实例的下限。 |
 | upperObj | [ScopeType](#scopetype8) | 是   | 指定作用域实例的上限。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
 let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
+console.info("range = " + range);
+// 输出结果：range = [30, 40]
 ```
 
 ### toString<sup>9+</sup>
 
 toString(): string
 
-该字符串化方法返回一个包含当前范围的字符串表示形式。
+该字符串化方法返回当前范围的字符串表示形式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2158,23 +2728,27 @@ toString(): string
 
 | 类型   | 说明                                   |
 | ------ | -------------------------------------- |
-| string | 返回包含当前范围对象的字符串表示形式。 |
+| string | 返回当前范围的字符串表示形式。 |
 
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2183,13 +2757,17 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.toString();
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
 ```
 
 ### intersect<sup>9+</sup>
 
 intersect(range: ScopeHelper): ScopeHelper
 
-获取给定范围和当前范围的交集。
+获取给定范围和当前范围的交集。当交集为空集时，抛出异常。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2197,7 +2775,7 @@ intersect(range: ScopeHelper): ScopeHelper
 
 | 参数名 | 类型                         | 必填 | 说明               |
 | ------ | ---------------------------- | ---- | ------------------ |
-| range  | [ScopeHelper](#scopehelper9) | 是   | 传入一个给定范围。 |
+| range  | [ScopeHelper](#scopehelper9) | 是   | 传入给定范围。 |
 
 **返回值：**
 
@@ -2205,21 +2783,33 @@ intersect(range: ScopeHelper): ScopeHelper
 | ------------------------------ | ------------------------------ |
 | [ScopeHelper](#scopehelper9) | 返回给定范围和当前范围的交集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2237,7 +2827,9 @@ range.intersect(rangeFir);
 
 intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
-获取当前范围与给定下限和上限范围的交集。
+获取当前范围与指定下限和上限范围的交集。当交集为空集时，抛出异常。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2254,21 +2846,33 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 | ---------------------------- | ---------------------------------------- |
 | [ScopeHelper](#scopehelper9) | 返回当前范围与给定下限和上限范围的交集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2279,6 +2883,8 @@ let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.intersect(tempMiDF, tempMidS);
+console.info("result = " + result);
+// 输出结果：result = [35, 39]
 ```
 
 ### getUpper<sup>9+</sup>
@@ -2286,6 +2892,8 @@ let result = range.intersect(tempMiDF, tempMidS);
 getUpper(): ScopeType
 
 获取当前范围的上限。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2298,18 +2906,22 @@ getUpper(): ScopeType
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2318,6 +2930,8 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.getUpper();
+console.info("result = " + result);
+// 输出结果：result = 40
 ```
 
 ### getLower<sup>9+</sup>
@@ -2325,6 +2939,8 @@ let result = range.getUpper();
 getLower(): ScopeType
 
 获取当前范围的下限。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2337,18 +2953,22 @@ getLower(): ScopeType
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2357,13 +2977,17 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.getLower();
+console.info("result = " + result);
+// 输出结果：result = 30
 ```
 
 ### expand<sup>9+</sup>
 
 expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
-创建并返回包括当前范围和给定下限和上限的并集。
+创建并返回当前范围与给定下限和上限的并集。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2380,21 +3004,33 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 | ---------------------------- | ------------------------------------ |
 | [ScopeHelper](#scopehelper9) | 返回当前范围和给定下限和上限的并集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2405,13 +3041,17 @@ let tempMiDF = new Temperature(35);
 let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.expand(tempMiDF, tempMidS);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
 ```
 
 ### expand<sup>9+</sup>
 
 expand(range: ScopeHelper): ScopeHelper
 
-创建并返回包括当前范围和给定范围的并集。
+创建并返回当前范围和给定范围的并集。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2427,21 +3067,33 @@ expand(range: ScopeHelper): ScopeHelper
 | ---------------------------- | ---------------------------------- |
 | [ScopeHelper](#scopehelper9) | 返回包括当前范围和给定范围的并集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2453,13 +3105,17 @@ let tempMidS = new Temperature(39);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let rangeFir = new util.ScopeHelper(tempMiDF, tempMidS);
 let result = range.expand(rangeFir);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
 ```
 
 ### expand<sup>9+</sup>
 
 expand(value: ScopeType): ScopeHelper
 
-创建并返回包括当前范围和给定值的并集。
+创建并返回当前范围和给定值的并集。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2475,21 +3131,33 @@ expand(value: ScopeType): ScopeHelper
 | ---------------------------- | -------------------------------- |
 | [ScopeHelper](#scopehelper9) | 返回包括当前范围和给定值的并集。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2499,13 +3167,17 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.expand(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
 ```
 
 ### contains<sup>9+</sup>
 
 contains(value: ScopeType): boolean
 
-检查给定value是否包含在当前范围内。
+检查给定value是否在当前范围内。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2521,21 +3193,33 @@ contains(value: ScopeType): boolean
 | ------- | --------------------------------------------------- |
 | boolean | 如果给定值包含在当前范围内返回true，否则返回false。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2545,6 +3229,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.contains(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = true
 ```
 
 ### contains<sup>9+</sup>
@@ -2552,6 +3238,8 @@ let result = range.contains(tempMiDF);
 contains(range: ScopeHelper): boolean
 
 检查给定range是否在当前范围内。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2565,23 +3253,35 @@ contains(range: ScopeHelper): boolean
 
 | 类型    | 说明                                                  |
 | ------- | ----------------------------------------------------- |
-| boolean | 如果给定范围包含在当前范围内返回true，否则返回false。 |
+| boolean | 如果给定范围在当前范围内则返回true，否则返回false。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2593,13 +3293,17 @@ let tempLess = new Temperature(20);
 let tempMore = new Temperature(45);
 let rangeSec = new util.ScopeHelper(tempLess, tempMore);
 let result = range.contains(rangeSec);
+console.info("result = " + result);
+// 输出结果：result = false
 ```
 
 ### clamp<sup>9+</sup>
 
 clamp(value: ScopeType): ScopeType
 
-将给定值限定到当前范围内。
+将值限定到当前范围内。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2613,23 +3317,35 @@ clamp(value: ScopeType): ScopeType
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| [ScopeType](#scopetype8) | 如果传入的value小于下限，则返回lowerObj；如果大于上限值则返回upperObj；如果在当前范围内，则返回value。 |
+| [ScopeType](#scopetype8) | 如果传入的value小于下限，返回lowerObj；如果大于上限值，返回upperObj；如果在当前范围内，返回value。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
 ```ts
-class Temperature{
+class Temperature implements util.ScopeComparable {
   private readonly _temp: number;
-  constructor(value : number) {
+
+  constructor(value: number) {
     this._temp = value;
   }
-  compareTo(value : Temperature ) {
+
+  compareTo(value: Temperature) {
     return this._temp >= value.getTemp();
   }
+
   getTemp() {
     return this._temp;
   }
-  toString() : string {
+
+  toString(): string {
     return this._temp.toString();
   }
 }
@@ -2639,6 +3355,8 @@ let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
 let result = range.clamp(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = 35
 ```
 
 ## Base64Helper<sup>9+</sup>
@@ -2653,9 +3371,11 @@ Base64Helper的构造函数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **示例：**
 
-  ```ts 
+  ```ts
   let base64 = new util.Base64Helper();
   ```
 
@@ -2665,14 +3385,16 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 通过输入参数编码后输出Uint8Array对象。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
-| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC 表示 Base64编码。<br/>util.Type.BASIC_URL_SAFE 表示 Base64URL编码。 |
+| src    | Uint8Array | 是   | 待编码的Uint8Array对象。 |
+| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC表示Base64编码。<br/>util.Type.BASIC_URL_SAFE表示Base64URL编码。 |
 
 **返回值：**
 
@@ -2680,12 +3402,22 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 | ---------- | ----------------------------- |
 | Uint8Array | 返回编码后的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64Helper.encodeSync(array);
+  console.info("result = " + result);
+  // 输出结果：result = 99,122,69,122
   ```
 
 
@@ -2695,6 +3427,8 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 通过输入参数编码后输出对应文本。
 
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2702,7 +3436,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
 | src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示使用Base64编码。如果返回值超过76个字符，则会在每76个字符处进行换行，并以'\r\n'结束每行。如果返回值少于76个字符，则会抛出异常。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -2710,12 +3444,26 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 | ------ | -------------------- |
 | string | 返回编码后的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  let result = that.encodeToStringSync(array, util.Type.MIME);
+  let result = base64Helper.encodeToStringSync(array, util.Type.MIME);
+  console.info("result = " + result);
+  /*
+  输出结果：result = TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+  aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+  aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+  */
   ```
 
 
@@ -2723,7 +3471,9 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
-通过输入参数解码后输出对应Uint8Array对象。
+将输入参数解码后输出对应Uint8Array对象。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2731,8 +3481,8 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 | 参数名 | 类型                           | 必填 | 说明                          |
 | ------ | ------------------------------ | ---- | ----------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码Uint8Array对象或者字符串。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64解码。<br/>- 当参数取值为util.Type.MIME，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
+| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码的Uint8Array对象或者字符串。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64解码。<br/>- 当参数取值为util.Type.MIME，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
 
 **返回值：**
 
@@ -2740,20 +3490,34 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 | ---------- | ----------------------------- |
 | Uint8Array | 返回解码后新分配的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  let result = that.decodeSync(buff, util.Type.MIME);
+  let result = base64Helper.decodeSync(buff, util.Type.MIME);
+  console.info("result = " + result);
+  /*
+  输出结果：result = 77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
+  */
   ```
 
 
 ### encode<sup>9+</sup>
 
-encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
+encode(src: Uint8Array, options?: Type): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步编码后输出对应Uint8Array对象。
+将输入参数异步编码后输出对应Uint8Array对象。
+
+**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2761,8 +3525,8 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
-| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC 表示 Base64编码。<br/>util.Type.BASIC_URL_SAFE表示 Base64URL编码。 |
+| src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
+| options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC表示Base64编码。<br/>util.Type.BASIC_URL_SAFE表示Base64URL编码。 |
 
 **返回值：**
 
@@ -2770,16 +3534,22 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 | ------------------------- | --------------------------------- |
 | Promise&lt;Uint8Array&gt; | 返回异步编码后新分配的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{
-    for (let i = 0; i < rarray.length; i++) {
-      console.info(val[i].toString());
-    }
+  base64Helper.encode(array).then((val) => {
+    console.info(val.toString());
+    // 输出结果：99,122,69,122
   })
   ```
 
@@ -2788,7 +3558,9 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
-通过输入参数异步编码后输出对应文本。
+将输入参数异步编码后输出对应文本。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2797,7 +3569,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
 | src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME，表示Base64编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL编码，返回值没有回车符、换行符。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL编码，返回值每一行不超过76个字符，而且每行以'\r\n'符结束。 |
 
 **返回值：**
 
@@ -2805,13 +3577,27 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 | --------------------- | ------------------------ |
 | Promise&lt;string&gt; | 返回异步编码后的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-  that.encodeToString(array, util.Type.MIME).then(val=>{
-    // 根据开发者需求进行添加。
+  base64Helper.encodeToString(array, util.Type.MIME).then((val) => {
+    console.info(val);
+    /*
+    输出结果：TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz
+    aW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl
+    aGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=
+    */
+
   })
   ```
 
@@ -2820,7 +3606,9 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步解码后输出对应Uint8Array对象。
+将输入参数异步解码后输出对应Uint8Array对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2829,7 +3617,7 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 | 参数名 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 异步解码输入Uint8Array对象或者字符串。 |
-| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE 和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示Base64解码。<br/>- 当参数取值为util.Type.MIME时，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
+| options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC时，表示Base64解码。<br/>- 当参数取值为util.Type.MIME时，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
 
 **返回值：**
 
@@ -2837,13 +3625,24 @@ decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 | ------------------------- | --------------------------------- |
 | Promise&lt;Uint8Array&gt; | 返回异步解码后新分配的Uint8Array对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
-  let that = new util.Base64Helper();
+  let base64Helper = new util.Base64Helper();
   let array = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNz\r\naW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZl\r\naGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=\r\n';
-  that.decode(array, util.Type.MIME).then(val=>{
-    // 根据开发者需求进行添加。
+  base64Helper.decode(array, util.Type.MIME).then((val) => {
+    console.info(val.toString());
+    /*
+    输出结果：77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101
+    */
   })
   ```
 
@@ -2857,6 +3656,8 @@ constructor(encoding?: string)
 
 StringDecoder的构造函数。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
@@ -2864,6 +3665,14 @@ StringDecoder的构造函数。
 | 参数名 | 类型                           | 必填 | 说明                              |
 | ------ | ------------------------------ | ---- | --------------------------------- |
 | encoding  | string | 否   | 输入数据的编码类型。默认值：'utf-8'。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -2877,13 +3686,15 @@ write(chunk: string | Uint8Array): string
 
 返回一个解码后的字符串，确保Uint8Array末尾的任何不完整的多字节字符从返回的字符串中被过滤，并保存在一个内部的buffer中用于下次调用。
 
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
-| chunk  | string \| Uint8Array | 是   | 需要解码的字符串。会根据输入的编码类型进行解码，参数为Uint8Array时会正常解码，参数为string类型时会原路返回。 |
+| chunk  | string \| Uint8Array | 是   | 需要解码的字符串。会根据输入的编码类型进行解码，参数为Uint8Array时正常解码，参数为string时会将参数直接返回。 |
 
 **返回值：**
 
@@ -2891,20 +3702,33 @@ write(chunk: string | Uint8Array): string
 | ---------- | ----------------------------- |
 | string | 返回解码后的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
   let decoder = new util.StringDecoder('utf-8');
   let input =  new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
   const decoded = decoder.write(input);
-  console.info("decoder:", decoded);// 你好
+  console.info("decoded:", decoded);
+  // 输出结果：decoded: 你好
   ```
 
 ### end<sup>12+</sup>
 
 end(chunk?: string | Uint8Array): string
 
-结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
+结束解码过程，以字符串形式返回存储在内部缓冲区中的所有剩余输入。
+
+**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
 
 **参数：**
 
@@ -2918,15 +3742,25 @@ end(chunk?: string | Uint8Array): string
 | ---------- | ----------------------------- |
 | string | 返回解码后的字符串。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+
 **示例：**
 
   ```ts
   let decoder = new util.StringDecoder('utf-8');
   let input = new Uint8Array([0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD]);
-  const decoded = decoder.write(input.slice(0, 5));
-  const decodedend = decoder.end(input.slice(5));
-  console.info("decoded:", decoded);// 你
-  console.info("decodedend:", decodedend);// 好
+  const writeString = decoder.write(input.slice(0, 5));
+  const endString = decoder.end(input.slice(5));
+  console.info("writeString:", writeString);
+  // 输出结果：writeString: 你
+  console.info("endString:", endString);
+  // 输出结果：endString: 好
   ```
 
 ## Type<sup>10+</sup>
@@ -2935,23 +3769,26 @@ Base64编码格式枚举。
 
 **系统能力：** SystemCapability.Utils.Lang
 
+
 | 名称   |值| 说明               |
 | ----- |---| ----------------- |
-| BASIC | 0 | 表示BASIC编码格式。|
-| MIME  | 1 | 表示MIME编码格式。 |
-| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
-| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。 |
+| BASIC | 0 | 表示BASIC编码格式。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| MIME  | 1 | 表示MIME编码格式。**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。|
+| BASIC_URL_SAFE<sup>12+</sup> | 2 | 表示BASIC_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。|
+| MIME_URL_SAFE<sup>12+</sup> | 3 | 表示MIME_URL_SAFE编码格式。<br/>从API version 12开始支持此枚举。**原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## types<sup>8+</sup>
 
-types为不同类型的内置对象提供类型检查，可以避免由于类型错误导致的异常或崩溃。该模块包含了多个工具函数，用于判断JS对象是否属于各种类型例如：ArrayBuffer、Map、Set等。
+types为不同类型的内置对象提供类型检查，可以避免由于类型错误导致的异常。该模块包含了多个工具函数，用于判断JS对象是否属于各种类型，例如：ArrayBuffer、Map、Set等。
 
 ### constructor<sup>8+</sup>
 
 constructor()
 
 Types的构造函数。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2966,7 +3803,9 @@ Types的构造函数。
 
 isAnyArrayBuffer(value: Object): boolean
 
-检查输入的value是否是ArrayBuffer类型。
+检查value是否为ArrayBuffer或SharedArrayBuffer类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2980,13 +3819,15 @@ isAnyArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是ArrayBuffer类型为true，反之为false。 |
+| boolean | 如果是ArrayBuffer或SharedArrayBuffer类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isAnyArrayBuffer(new ArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isAnyArrayBuffer(new ArrayBuffer(0));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -2994,9 +3835,11 @@ isAnyArrayBuffer(value: Object): boolean
 
 isArrayBufferView(value: Object): boolean
 
-检查输入的value是否是内置ArrayBufferView辅助类型。
+检查value是否为ArrayBufferView类型。
 
-ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint32Array、Float32Array、Float64Array、DataView。
+ArrayBufferView类型包括：Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint32Array、Float32Array、Float64Array、DataView。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3010,13 +3853,15 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的ArrayBufferView辅助类型为true，反之为false。 |
+| boolean | 如果是ArrayBufferView类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isArrayBufferView(new Int8Array([]));
+  let type = new util.types();
+  let result = type.isArrayBufferView(new Int8Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3024,7 +3869,9 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 isArgumentsObject(value: Object): boolean
 
-检查输入的value是否是一个arguments对象类型。
+检查value是否为arguments对象。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3038,16 +3885,18 @@ isArgumentsObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的arguments类型为true，反之为false。 |
+| boolean | 如果是arguments对象则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   function foo() {
-      let result = that.isArgumentsObject(arguments);
+      let result = type.isArgumentsObject(arguments);
+      console.info("result = " + result);
   }
   let f = foo();
+  // 输出结果：result = true
   ```
 
 
@@ -3055,7 +3904,9 @@ isArgumentsObject(value: Object): boolean
 
 isArrayBuffer(value: Object): boolean
 
-检查输入的value是否是ArrayBuffer类型。
+检查value是否为ArrayBuffer类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3069,13 +3920,15 @@ isArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的ArrayBuffer类型为true，反之为false。 |
+| boolean | 如果是ArrayBuffer类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isArrayBuffer(new ArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isArrayBuffer(new ArrayBuffer(0));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3083,7 +3936,9 @@ isArrayBuffer(value: Object): boolean
 
 isAsyncFunction(value: Object): boolean
 
-检查输入的value是否是一个异步函数类型。
+检查value是否为异步函数类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3097,21 +3952,29 @@ isAsyncFunction(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的异步函数类型为true，反之为false。 |
+| boolean | 如果是异步函数则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isAsyncFunction(async () => {});
+  let type = new util.types();
+  let result = type.isAsyncFunction(async () => {});
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
-### isBooleanObject<sup>8+</sup>
+### isBooleanObject<sup>(deprecated)</sup>
 
 isBooleanObject(value: Object): boolean
 
-检查输入的value是否是一个Boolean对象类型。
+检查value是否为Boolean对象。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3125,21 +3988,29 @@ isBooleanObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Boolean对象类型为true，反之为false。 |
+| boolean | 如果是Boolean对象则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBooleanObject(new Boolean(true));
+  let type = new util.types();
+  let result = type.isBooleanObject(new Boolean(true));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
-### isBoxedPrimitive<sup>8+</sup>
+### isBoxedPrimitive<sup>(deprecated)</sup>
 
 isBoxedPrimitive(value: Object): boolean
 
-检查输入的value是否是Boolean或Number或String或Symbol对象类型。
+检查value是否为Boolean、Number、String或Symbol对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3153,13 +4024,15 @@ isBoxedPrimitive(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Boolean或Number或String或Symbol对象类型为true，反之为false。 |
+| boolean | 如果是Boolean、Number、String或Symbol对象则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBoxedPrimitive(new Boolean(false));
+  let type = new util.types();
+  let result = type.isBoxedPrimitive(new Boolean(false));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3167,7 +4040,9 @@ isBoxedPrimitive(value: Object): boolean
 
 isDataView(value: Object): boolean
 
-检查输入的value是否是DataView类型。
+检查value是否为DataView类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3181,14 +4056,16 @@ isDataView(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的DataView对象类型为true，反之为false。 |
+| boolean | 如果是DataView类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const ab = new ArrayBuffer(20);
-  let result = that.isDataView(new DataView(ab));
+  let result = type.isDataView(new DataView(ab));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3196,7 +4073,9 @@ isDataView(value: Object): boolean
 
 isDate(value: Object): boolean
 
-检查输入的value是否是Date类型。
+检查value是否为Date类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3210,13 +4089,15 @@ isDate(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Date对象类型为true，反之为false。 |
+| boolean | 如果是Date类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isDate(new Date());
+  let type = new util.types();
+  let result = type.isDate(new Date());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3224,7 +4105,9 @@ isDate(value: Object): boolean
 
 isExternal(value: Object): boolean
 
-检查输入的value是否是native External类型。
+检查value是否为native External类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3238,13 +4121,55 @@ isExternal(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含native&nbsp;External类型为true，反之为false。 |
+| boolean | 如果是native&nbsp;External类型则返回true，否则返回false。 |
 
 **示例：**
 
+  ```cpp
+  // /entry/src/main/cpp/napi_init.cpp
+  #include "napi/native_api.h"
+  #include <js_native_api.h>
+  #include <stdlib.h>
+
+  napi_value result;
+  static napi_value Testexternal(napi_env env, napi_callback_info info) {
+      int* raw = (int*) malloc(1024);
+      napi_status status = napi_create_external(env, (void*) raw, NULL, NULL, &result);
+      if (status != napi_ok) {
+          napi_throw_error(env, NULL, "create external failed");
+          return NULL;
+      }
+      return result;
+  }
+
+  EXTERN_C_START
+  static napi_value Init(napi_env env, napi_value exports)
+  {
+      napi_property_descriptor desc[] = {
+          {"testexternal", nullptr, Testexternal, nullptr, nullptr, nullptr, napi_default, nullptr},
+      };
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
+  }
+  EXTERN_C_END
+  // 此处已省略模块注册的代码, 你可能需要自行注册Testexternal方法
+  ...
+
+  ```
+
+  <!--code_no_check-->
   ```ts
-  let that = new util.types();
-  let result = that.isExternal(true);
+  import testNapi from 'libentry.so';
+
+  let type = new util.types();
+  const data = testNapi.testexternal();
+  let result = type.isExternal(data);
+
+  let result01 = type.isExternal(true);
+  console.info("result = " + result);
+  console.info("result01 = " + result01);
+  // 输出结果：result = true
+  // 输出结果：result01 = false
   ```
 
 
@@ -3252,7 +4177,9 @@ isExternal(value: Object): boolean
 
 isFloat32Array(value: Object): boolean
 
-检查输入的value是否是Float32Array数组类型。
+检查value是否为Float32Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3266,13 +4193,15 @@ isFloat32Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Float32Array数组类型为true，反之为false。 |
+| boolean | 如果是Float32Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isFloat32Array(new Float32Array());
+  let type = new util.types();
+  let result = type.isFloat32Array(new Float32Array());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3280,7 +4209,9 @@ isFloat32Array(value: Object): boolean
 
 isFloat64Array(value: Object): boolean
 
-检查输入的value是否是Float64Array数组类型。
+检查value是否为Float64Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3294,13 +4225,15 @@ isFloat64Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Float64Array数组类型为true，反之为false。 |
+| boolean | 如果是Float64Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isFloat64Array(new Float64Array());
+  let type = new util.types();
+  let result = type.isFloat64Array(new Float64Array());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3308,11 +4241,9 @@ isFloat64Array(value: Object): boolean
 
 isGeneratorFunction(value: Object): boolean
 
-检查输入的value是否是generator函数类型。
+检查value是否是为generator函数类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3326,13 +4257,23 @@ isGeneratorFunction(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的generator函数类型为true，反之为false。 |
+| boolean | 如果是generator函数类型则返回true，否则返回false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
-  let that = new util.types();
-  let result = that.isGeneratorFunction(function* foo() {});
+  // /entry/src/main/ets/pages/test.ts
+  export function* foo() {}
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { foo } from './test'
+
+  let type = new util.types();
+  let result = type.isGeneratorFunction(foo);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3340,11 +4281,9 @@ isGeneratorFunction(value: Object): boolean
 
 isGeneratorObject(value: Object): boolean
 
-检查输入的value是否是generator对象类型。
+检查value是否为generator对象类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3358,16 +4297,24 @@ isGeneratorObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的generator对象类型为true，反之为false。 |
+| boolean | 如果是generator对象则返回true，否则返回false。 |
 
 **示例：**
-
+<!--code_no_check-->
   ```ts
-  // 本接口不支持在.ets文件中使用。
-  let that = new util.types();
-  function* foo() {};
-  const generator = foo();
-  let result = that.isGeneratorObject(generator);
+  // /entry/src/main/ets/pages/test.ts
+  function* foo() {}
+  export const generator = foo();
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { generator } from './test'
+
+  let type = new util.types();
+  let result = type.isGeneratorObject(generator);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3375,7 +4322,9 @@ isGeneratorObject(value: Object): boolean
 
 isInt8Array(value: Object): boolean
 
-检查输入的value是否是Int8Array数组类型。
+检查value是否为Int8Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3389,13 +4338,15 @@ isInt8Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Int8Array数组类型为true，反之为false。 |
+| boolean | 如果是Int8Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt8Array(new Int8Array([]));
+  let type = new util.types();
+  let result = type.isInt8Array(new Int8Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3403,7 +4354,9 @@ isInt8Array(value: Object): boolean
 
 isInt16Array(value: Object): boolean
 
-检查输入的value是否是Int16Array数组类型。
+检查value是否为Int16Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3417,13 +4370,15 @@ isInt16Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Int16Array数组类型为true，反之为false。 |
+| boolean | 如果是Int16Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt16Array(new Int16Array([]));
+  let type = new util.types();
+  let result = type.isInt16Array(new Int16Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3431,7 +4386,9 @@ isInt16Array(value: Object): boolean
 
 isInt32Array(value: Object): boolean
 
-检查输入的value是否是Int32Array数组类型。
+检查value是否为Int32Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3445,13 +4402,15 @@ isInt32Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Int32Array数组类型为true，反之为false。 |
+| boolean | 如果是Int32Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isInt32Array(new Int32Array([]));
+  let type = new util.types();
+  let result = type.isInt32Array(new Int32Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3459,7 +4418,9 @@ isInt32Array(value: Object): boolean
 
 isMap(value: Object): boolean
 
-检查输入的value是否是Map类型。
+检查value是否为Map类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3473,13 +4434,15 @@ isMap(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Map类型为true，反之为false。 |
+| boolean | 如果是Map类型返回则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isMap(new Map());
+  let type = new util.types();
+  let result = type.isMap(new Map());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3487,7 +4450,9 @@ isMap(value: Object): boolean
 
 isMapIterator(value: Object): boolean
 
-检查输入的value是否是Map的Iterator类型。
+检查value是否为Map的Iterator类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3502,14 +4467,16 @@ isMapIterator(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Map的Iterator类型为true，反之为false。 |
+| boolean | 如果是Map的Iterator类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const map : Map<number,number> = new Map();
-  let result = that.isMapIterator(map.keys());
+  let result = type.isMapIterator(map.keys());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3517,7 +4484,9 @@ isMapIterator(value: Object): boolean
 
 isNativeError(value: Object): boolean
 
-检查输入的value是否是Error类型。
+检查value是否为Error类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3531,21 +4500,29 @@ isNativeError(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Error类型为true，反之为false。 |
+| boolean | 如果是Error类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isNativeError(new TypeError());
+  let type = new util.types();
+  let result = type.isNativeError(new TypeError());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
-### isNumberObject<sup>8+</sup>
+### isNumberObject<sup>(deprecated)</sup>
 
 isNumberObject(value: Object): boolean
 
-检查输入的value是否是Number对象类型。
+检查value是否为Number对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3559,13 +4536,15 @@ isNumberObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Number对象类型为true，反之为false。 |
+| boolean | 如果是Number对象类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isNumberObject(new Number(0));
+  let type = new util.types();
+  let result = type.isNumberObject(new Number(0));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3573,7 +4552,9 @@ isNumberObject(value: Object): boolean
 
 isPromise(value: Object): boolean
 
-检查输入的value是否是Promise类型。
+检查value是否为Promise类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3587,13 +4568,15 @@ isPromise(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Promise类型为true，反之为false。 |
+| boolean | 如果是Promise类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isPromise(Promise.resolve(1));
+  let type = new util.types();
+  let result = type.isPromise(Promise.resolve(1));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3601,7 +4584,9 @@ isPromise(value: Object): boolean
 
 isProxy(value: Object): boolean
 
-检查输入的value是否是Proxy类型。
+检查value是否为Proxy类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3615,17 +4600,19 @@ isProxy(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Proxy类型为true，反之为false。 |
+| boolean | 如果是Proxy类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
   class Target{
   }
-  let that = new util.types();
+  let type = new util.types();
   const target : Target = {};
   const proxy = new Proxy(target, target);
-  let result = that.isProxy(proxy);
+  let result = type.isProxy(proxy);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3633,7 +4620,9 @@ isProxy(value: Object): boolean
 
 isRegExp(value: Object): boolean
 
-检查输入的value是否是RegExp类型。
+检查value是否为RegExp类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3647,13 +4636,15 @@ isRegExp(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的RegExp类型为true，反之为false。 |
+| boolean | 如果是RegExp类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isRegExp(new RegExp('abc'));
+  let type = new util.types();
+  let result = type.isRegExp(new RegExp('abc'));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3661,7 +4652,9 @@ isRegExp(value: Object): boolean
 
 isSet(value: Object): boolean
 
-检查输入的value是否是Set类型。
+检查value是否为Set类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3675,14 +4668,16 @@ isSet(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Set类型为true，反之为false。 |
+| boolean | 如果是Set类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   let set : Set<number> = new Set();
-  let result = that.isSet(set);
+  let result = type.isSet(set);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3690,7 +4685,9 @@ isSet(value: Object): boolean
 
 isSetIterator(value: Object): boolean
 
-检查输入的value是否是Set的Iterator类型。
+检查value是否为Set的Iterator类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3704,54 +4701,30 @@ isSetIterator(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Set的Iterator类型为true，反之为false。 |
+| boolean | 如果是Set的Iterator类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   const set : Set<number> = new Set();
-  let result = that.isSetIterator(set.keys());
+  let result = type.isSetIterator(set.keys());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
-### isStringObject<sup>8+</sup>
+### isStringObject<sup>(deprecated)</sup>
 
 isStringObject(value: Object): boolean
 
-检查输入的value是否是String对象类型。
-
-**系统能力：** SystemCapability.Utils.Lang
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| value | Object | 是 | 待检测对象。 |
-
-**返回值：**
-
-| 类型 | 说明 |
-| -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的String对象类型为true，反之为false。 |
-
-**示例：**
-
-  ```ts
-  let that = new util.types();
-  let result = that.isStringObject(new String('foo'));
-  ```
-
-
-### isSymbolObjec<sup>8+</sup>
-
-isSymbolObject(value: Object): boolean
-
-检查输入的value是否是Symbol对象类型。
+检查value是否为String对象类型。
 
 > **说明：**
 >
-> 本接口不支持在.ets文件中使用
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3765,15 +4738,59 @@ isSymbolObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Symbol对象类型为true，反之为false。 |
+| boolean | 如果是String对象类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  // 本接口不支持在.ets文件中使用。
-  let that = new util.types();
-  const symbols = Symbol('foo');
-  let result = that.isSymbolObject(Object(symbols));
+  let type = new util.types();
+  let result = type.isStringObject(new String('foo'));
+  console.info("result = " + result);
+  // 输出结果：result = true
+  ```
+
+
+### isSymbolObject<sup>(deprecated)</sup>
+
+isSymbolObject(value: Object): boolean
+
+检查value是否为Symbol对象类型。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 14开始废弃，没有替代接口。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| value | Object | 是 | 待检测对象。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| boolean | 如果是Symbol对象类型为则返回true，否则返回false。 |
+
+**示例：**
+<!--code_no_check-->
+  ```ts
+  // /entry/src/main/ets/pages/test.ts
+  export const symbols = Symbol('foo');
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import { symbols } from './test'
+
+  let type = new util.types();
+  let result = type.isSymbolObject(Object(symbols));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3781,9 +4798,11 @@ isSymbolObject(value: Object): boolean
 
 isTypedArray(value: Object): boolean
 
-检查输入的value是否是TypedArray类型的辅助类型。
+检查value是否为TypedArray类型。
 
-TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、DataView。
+TypedArray类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、BigInt64Array、BigUint64Array。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3797,13 +4816,15 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的TypedArray包含的类型为true，反之为false。 |
+| boolean | 如果是TypedArray包含的类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isTypedArray(new Float64Array([]));
+  let type = new util.types();
+  let result = type.isTypedArray(new Float64Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3811,7 +4832,9 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 isUint8Array(value: Object): boolean
 
-检查输入的value是否是Uint8Array数组类型。
+检查value是否为Uint8Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3825,13 +4848,15 @@ isUint8Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Uint8Array数组类型为true，反之为false。 |
+| boolean | 如果是Uint8Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint8Array(new Uint8Array([]));
+  let type = new util.types();
+  let result = type.isUint8Array(new Uint8Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3839,7 +4864,9 @@ isUint8Array(value: Object): boolean
 
 isUint8ClampedArray(value: Object): boolean
 
-检查输入的value是否是Uint8ClampedArray数组类型。
+检查value是否为Uint8ClampedArray数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3853,13 +4880,15 @@ isUint8ClampedArray(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Uint8ClampedArray数组类型为true，反之为false。 |
+| boolean | 如果是Uint8ClampedArray数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint8ClampedArray(new Uint8ClampedArray([]));
+  let type = new util.types();
+  let result = type.isUint8ClampedArray(new Uint8ClampedArray([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3867,7 +4896,9 @@ isUint8ClampedArray(value: Object): boolean
 
 isUint16Array(value: Object): boolean
 
-检查输入的value是否是Uint16Array数组类型。
+检查value是否为Uint16Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3881,13 +4912,15 @@ isUint16Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Uint16Array数组类型为true，反之为false。 |
+| boolean | 如果是Uint16Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint16Array(new Uint16Array([]));
+  let type = new util.types();
+  let result = type.isUint16Array(new Uint16Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3895,7 +4928,9 @@ isUint16Array(value: Object): boolean
 
 isUint32Array(value: Object): boolean
 
-检查输入的value是否是Uint32Array数组类型。
+检查value是否为Uint32Array数组类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3909,13 +4944,15 @@ isUint32Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Uint32Array数组类型为true，反之为false。 |
+| boolean | 如果是Uint32Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isUint32Array(new Uint32Array([]));
+  let type = new util.types();
+  let result = type.isUint32Array(new Uint32Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3923,7 +4960,9 @@ isUint32Array(value: Object): boolean
 
 isWeakMap(value: Object): boolean
 
-检查输入的value是否是WeakMap类型。
+检查value是否为WeakMap类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3937,14 +4976,16 @@ isWeakMap(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的WeakMap类型为true，反之为false。 |
+| boolean | 如果是WeakMap类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
+  let type = new util.types();
   let value : WeakMap<object, number> = new WeakMap();
-  let result = that.isWeakMap(value);
+  let result = type.isWeakMap(value);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3952,7 +4993,9 @@ isWeakMap(value: Object): boolean
 
 isWeakSet(value: Object): boolean
 
-检查输入的value是否是WeakSet类型。
+检查value是否为WeakSet类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3966,13 +5009,15 @@ isWeakSet(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的WeakSet类型为true，反之为false。 |
+| boolean | 如果是WeakSet类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isWeakSet(new WeakSet());
+  let type = new util.types();
+  let result = type.isWeakSet(new WeakSet());
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -3980,7 +5025,9 @@ isWeakSet(value: Object): boolean
 
 isBigInt64Array(value: Object): boolean
 
-检查输入的value是否是BigInt64Array类型。
+检查value是否为BigInt64Array类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -3994,13 +5041,15 @@ isBigInt64Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的BigInt64Array类型为true，反之为false。 |
+| boolean | 如果是BigInt64Array类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBigInt64Array(new BigInt64Array([]));
+  let type = new util.types();
+  let result = type.isBigInt64Array(new BigInt64Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4008,7 +5057,9 @@ isBigInt64Array(value: Object): boolean
 
 isBigUint64Array(value: Object): boolean
 
-检查输入的value是否是BigUint64Array类型。
+检查value是否为BigUint64Array类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4022,13 +5073,15 @@ isBigUint64Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的BigUint64Array类型为true，反之为false。 |
+| boolean | 如果是BigUint64Array类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isBigUint64Array(new BigUint64Array([]));
+  let type = new util.types();
+  let result = type.isBigUint64Array(new BigUint64Array([]));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4036,11 +5089,9 @@ isBigUint64Array(value: Object): boolean
 
 isModuleNamespaceObject(value: Object): boolean
 
-检查输入的value是否是Module Namespace Object类型。
+检查value是否为Module Namespace Object类型。
 
-> **说明：**
->
-> 本接口不支持在.ets文件中使用
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4054,15 +5105,25 @@ isModuleNamespaceObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Module Namespace Object类型为true，反之为false。 |
+| boolean | 如果是Module Namespace Object类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  // 本接口不支持在.ets文件中使用。
-  import url from '@ohos.url'
-  let that = new util.types();
-  let result = that.isModuleNamespaceObject(url);
+  // /entry/src/main/ets/pages/test.ts
+  export function func() {
+    console.info("hello world");
+  }
+  ```
+
+  <!--code_no_check-->
+  ```ts
+  import * as nameSpace from './test';
+
+  let type = new util.types();
+  let result = type.isModuleNamespaceObject(nameSpace);
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 
@@ -4070,7 +5131,9 @@ isModuleNamespaceObject(value: Object): boolean
 
 isSharedArrayBuffer(value: Object): boolean
 
-检查输入的value是否是SharedArrayBuffer类型。
+检查value是否为SharedArrayBuffer类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -4084,13 +5147,15 @@ isSharedArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的SharedArrayBuffer类型为true，反之为false。 |
+| boolean | 如果是SharedArrayBuffer类型则返回true，否则返回false。 |
 
 **示例：**
 
   ```ts
-  let that = new util.types();
-  let result = that.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  let type = new util.types();
+  let result = type.isSharedArrayBuffer(new SharedArrayBuffer(0));
+  console.info("result = " + result);
+  // 输出结果：result = true
   ```
 
 ## LruBuffer<sup>(deprecated)</sup>
@@ -4114,13 +5179,15 @@ isSharedArrayBuffer(value: Object): boolean
   pro.put(2,10);
   pro.put(1,8);
   let result = pro.length;
+  console.info("result = " + result);
+  // 输出结果：result = 2
   ```
 
 ### constructor<sup>(deprecated)</sup>
 
 constructor(capacity?: number)
 
-默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
+构造函数用于创建一个新的LruBuffer实例，默认容量为64。
 
 > **说明：**
 >
@@ -4137,7 +5204,7 @@ constructor(capacity?: number)
 **示例：**
 
   ```ts
-  let lrubuffer : util.LruBuffer<number,number> = new util.LruBuffer();
+  let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   ```
 
 ### updateCapacity<sup>(deprecated)</sup>
@@ -4191,6 +5258,8 @@ toString(): string
   pro.get(2);
   pro.remove(20);
   let result = pro.toString();
+  console.info("result = " + result);
+  // 输出结果：result = Lrubuffer[ maxSize = 64, hits = 1, misses = 0, hitRate = 100% ]
   ```
 
 ### getCapacity<sup>(deprecated)</sup>
@@ -4216,13 +5285,15 @@ getCapacity(): number
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.getCapacity();
+  console.info("result = " + result);
+  // 输出结果：result = 64
   ```
 
 ### clear<sup>(deprecated)</sup>
 
 clear(): void
 
-从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
+清除当前缓冲区中的键值对，后续调用afterRemoval()方法执行操作。
 
 > **说明：**
 >
@@ -4263,6 +5334,8 @@ getCreateCount(): number
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(1,8);
   let result = pro.getCreateCount();
+  console.info("result = " + result);
+  // 输出结果：result = 0
   ```
 
 ### getMissCount<sup>(deprecated)</sup>
@@ -4290,6 +5363,8 @@ getMissCount(): number
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMissCount();
+  console.info("result = " + result);
+  // 输出结果：result = 0
   ```
 
 ### getRemovalCount<sup>(deprecated)</sup>
@@ -4318,6 +5393,8 @@ getRemovalCount(): number
   pro.updateCapacity(2);
   pro.put(50,22);
   let result = pro.getRemovalCount();
+  console.info("result = " + result);
+  // 输出结果：result = 0
   ```
 
 ### getMatchCount<sup>(deprecated)</sup>
@@ -4345,6 +5422,8 @@ getMatchCount(): number
   pro.put(2,10);
   pro.get(2);
   let result = pro.getMatchCount();
+  console.info("result = " + result);
+  // 输出结果：result = 1
   ```
 
 ### getPutCount<sup>(deprecated)</sup>
@@ -4371,6 +5450,8 @@ getPutCount(): number
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.getPutCount();
+  console.info("result = " + result);
+  // 输出结果：result = 1
   ```
 
 ### isEmpty<sup>(deprecated)</sup>
@@ -4397,6 +5478,8 @@ isEmpty(): boolean
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.isEmpty();
+  console.info("result = " + result);
+  // 输出结果：result = false
   ```
 
 ### get<sup>(deprecated)</sup>
@@ -4429,6 +5512,8 @@ get(key: K): V | undefined
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result  = pro.get(2);
+  console.info("result = " + result);
+  // 输出结果：result = 10
   ```
 
 ### put<sup>(deprecated)</sup>
@@ -4461,6 +5546,8 @@ put(key: K,value: V): V
   ```ts
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   let result = pro.put(2,10);
+  console.info("result = " + result);
+  // 输出结果：result = 10
   ```
 
 ### values<sup>(deprecated)</sup>
@@ -4489,6 +5576,8 @@ values(): V[]
   pro.put(2,"anhu");
   pro.put("afaf","grfb");
   let result = pro.values();
+  console.info("result = " + result);
+  // 输出结果：result = anhu,grfb
   ```
 
 ### keys<sup>(deprecated)</sup>
@@ -4515,13 +5604,15 @@ keys(): K[]
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.keys();
+  console.info("result = " + result);
+  // 输出结果：result = 2
   ```
 
 ### remove<sup>(deprecated)</sup>
 
 remove(key: K): V | undefined
 
-从当前缓冲区中删除指定的键及其关联的值。
+删除当前缓冲区中指定的键及其关联的值。
 
 > **说明：**
 >
@@ -4547,6 +5638,8 @@ remove(key: K): V | undefined
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.remove(20);
+  console.info("result = " + result);
+  // 输出结果：result = undefined
   ```
 
 ### afterRemoval<sup>(deprecated)</sup>
@@ -4581,8 +5674,11 @@ class ChildLruBuffer<K, V> extends util.LruBuffer<K, V> {
   afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void {
     if (isEvict === true) {
       console.info('key: ' + key);
+      // 输出结果：key: 11
       console.info('value: ' + value);
+      // 输出结果：value: 1
       console.info('newValue: ' + newValue);
+      // 输出结果：newValue: null
     }
   }
 }
@@ -4623,6 +5719,8 @@ contains(key: K): boolean
   let pro : util.LruBuffer<number,number> = new util.LruBuffer();
   pro.put(2,10);
   let result = pro.contains(20);
+  console.info('result = ' + result);
+  // 输出结果：result = false
   ```
 
 ### createDefault<sup>(deprecated)</sup>
@@ -4658,7 +5756,7 @@ createDefault(key: K): V
 
 ### entries<sup>(deprecated)</sup>
 
-entries(): IterableIterator&lt;[K,V]&gt;
+entries(): IterableIterator&lt;[K, V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
@@ -4672,7 +5770,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [K,&nbsp;V] | 返回一个可迭代数组。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个可迭代数组。 |
 
 **示例：**
 
@@ -4698,7 +5796,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [K,&nbsp;V] | 返回一个键值对形式的二维数组。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个键值对形式的二维数组。 |
 
 **示例：**
 
@@ -4718,7 +5816,7 @@ entries(): IterableIterator&lt;[K,V]&gt;
 
 constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
-用于创建指定下限和上限的作用域实例的构造函数，返回一个Scope对象。
+创建指定下限和上限的作用域实例，并返回一个Scope对象。
 
 > **说明：**
 >
@@ -4735,26 +5833,33 @@ constructor(lowerObj: ScopeType, upperObj: ScopeType)
 | upperObj | [ScopeType](#scopetype8) | 是 | 指定作用域实例的上限。 |
 
 **示例：**
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  ```
+
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+console.info("range = " + range);
+// 输出结果：range = [30, 40]
+```
 
 ### toString<sup>(deprecated)</sup>
 
@@ -4776,28 +5881,34 @@ toString(): string
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.toString();
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.toString();
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
 
 ### intersect<sup>(deprecated)</sup>
 
@@ -4825,30 +5936,36 @@ intersect(range: Scope): Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let rangeFir = new util.Scope(tempMiDF, tempMidS);
-  let result = range.intersect(rangeFir );
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let rangeFir = new util.Scope(tempMiDF, tempMidS);
+let result = range.intersect(rangeFir );
+console.info("result = " + result);
+  // 输出结果：result = [35, 39]
   ```
 
 ### intersect<sup>(deprecated)</sup>
@@ -4878,30 +5995,36 @@ intersect(lowerObj:ScopeType,upperObj:ScopeType):Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.intersect(tempMiDF, tempMidS);
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.intersect(tempMiDF, tempMidS);
+console.info("result = " + result);
+// 输出结果：result = [35, 39]
+```
 
 ### getUpper<sup>(deprecated)</sup>
 
@@ -4923,28 +6046,34 @@ getUpper(): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.getUpper();
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.getUpper();
+console.info("result = " + result);
+// 输出结果：result = 40
+```
 
 ### getLower<sup>(deprecated)</sup>
 
@@ -4966,28 +6095,34 @@ getLower(): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.getLower();
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.getLower();
+console.info("result = " + result);
+// 输出结果：result = 30
+```
 
 ### expand<sup>(deprecated)</sup>
 
@@ -5016,30 +6151,36 @@ expand(lowerObj: ScopeType,upperObj: ScopeType): Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.expand(tempMiDF, tempMidS);
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.expand(tempMiDF, tempMidS);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
 
 ### expand<sup>(deprecated)</sup>
 
@@ -5067,31 +6208,37 @@ expand(range: Scope): Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let tempMidS = new Temperature(39);
-  let range = new util.Scope(tempLower, tempUpper);
-  let rangeFir = new util.Scope(tempMiDF, tempMidS);
-  let result = range.expand(rangeFir);
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let tempMidS = new Temperature(39);
+let range = new util.Scope(tempLower, tempUpper);
+let rangeFir = new util.Scope(tempMiDF, tempMidS);
+let result = range.expand(rangeFir);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
 
 ### expand<sup>(deprecated)</sup>
 
@@ -5119,29 +6266,35 @@ expand(value: ScopeType): Scope
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.expand(tempMiDF);
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.expand(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = [30, 40]
+```
 
 ### contains<sup>(deprecated)</sup>
 
@@ -5169,29 +6322,35 @@ contains(value: ScopeType): boolean
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.contains(tempMiDF);
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.contains(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = true
+```
 
 ### contains<sup>(deprecated)</sup>
 
@@ -5219,31 +6378,37 @@ contains(range: Scope): boolean
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let range = new util.Scope(tempLower, tempUpper);
-  let tempLess = new Temperature(20);
-  let tempMore = new Temperature(45);
-  let rangeSec = new util.Scope(tempLess, tempMore);
-  let result = range.contains(rangeSec);
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let range = new util.Scope(tempLower, tempUpper);
+let tempLess = new Temperature(20);
+let tempMore = new Temperature(45);
+let rangeSec = new util.Scope(tempLess, tempMore);
+let result = range.contains(rangeSec);
+console.info("result = " + result);
+// 输出结果：result = false
+```
 
 ### clamp<sup>(deprecated)</sup>
 
@@ -5272,29 +6437,35 @@ clamp(value: ScopeType): ScopeType
 
 **示例：**
 
-  ```ts
-  class Temperature{
-    private readonly _temp: number;
-    constructor(value : number) {
-      this._temp = value;
-    }
-    compareTo(value : Temperature ) {
-      return this._temp >= value.getTemp();
-    }
-    getTemp() {
-      return this._temp;
-    }
-    toString() : string {
-      return this._temp.toString();
-    }
+```ts
+class Temperature implements util.ScopeComparable {
+  private readonly _temp: number;
+
+  constructor(value: number) {
+    this._temp = value;
   }
 
-  let tempLower = new Temperature(30);
-  let tempUpper = new Temperature(40);
-  let tempMiDF = new Temperature(35);
-  let range = new util.Scope(tempLower, tempUpper);
-  let result = range.clamp(tempMiDF);
-  ```
+  compareTo(value: Temperature) {
+    return this._temp >= value.getTemp();
+  }
+
+  getTemp() {
+    return this._temp;
+  }
+
+  toString(): string {
+    return this._temp.toString();
+  }
+}
+
+let tempLower = new Temperature(30);
+let tempUpper = new Temperature(40);
+let tempMiDF = new Temperature(35);
+let range = new util.Scope(tempLower, tempUpper);
+let result = range.clamp(tempMiDF);
+console.info("result = " + result);
+// 输出结果：result = 35
+```
 
 
 ## Base64<sup>(deprecated)</sup>
@@ -5348,9 +6519,11 @@ encodeSync(src: Uint8Array): Uint8Array
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeSync(array);
+  let result = base64.encodeSync(array);
+  console.info("result = " + result);
+  // 输出结果：result = 99,122,69,122
   ```
 
 ### encodeToStringSync<sup>(deprecated)</sup>
@@ -5380,9 +6553,11 @@ encodeToStringSync(src: Uint8Array): string
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let result = that.encodeToStringSync(array);
+  let result = base64.encodeToStringSync(array);
+  console.info("result = " + result);
+  // 输出结果：result = czEz
   ```
 
 ### decodeSync<sup>(deprecated)</sup>
@@ -5412,9 +6587,11 @@ decodeSync(src: Uint8Array | string): Uint8Array
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let buff = 'czEz';
-  let result = that.decodeSync(buff);
+  let result = base64.decodeSync(buff);
+  console.info("result = " + result);
+  // 输出结果：result = 115,49,51
   ```
 
 ### encode<sup>(deprecated)</sup>
@@ -5444,13 +6621,11 @@ encode(src: Uint8Array): Promise&lt;Uint8Array&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  let rarray = new Uint8Array([99,122,69,122]);
-  that.encode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString())
-      }
+  base64.encode(array).then((val) => {
+    console.info(val.toString());
+    // 输出结果：99,122,69,122
   })
   ```
 
@@ -5481,10 +6656,11 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([115,49,51]);
-  that.encodeToString(array).then(val=>{    
-      console.info(val)
+  base64.encodeToString(array).then((val) => {
+      console.info(val);
+      // 输出结果：czEz
   })
   ```
 
@@ -5493,7 +6669,7 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步解码后输出对应文本。
+将输入参数异步解码后输出对应文本。
 
 > **说明：**
 >
@@ -5516,12 +6692,10 @@ decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 **示例：**
 
   ```ts
-  let that = new util.Base64();
+  let base64 = new util.Base64();
   let array = new Uint8Array([99,122,69,122]);
-  let rarray = new Uint8Array([115,49,51]);
-  that.decode(array).then(val=>{    
-      for (let i = 0; i < rarray.length; i++) {        
-          console.info(val[i].toString());
-      }
+  base64.decode(array).then((val) => {
+    console.info(val.toString());
+    // 输出结果：115,49,51
   })
   ```

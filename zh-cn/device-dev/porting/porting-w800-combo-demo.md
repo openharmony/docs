@@ -1,4 +1,3 @@
-
 # Combo解决方案之W800芯片移植案例
 
 本方案基于OpenHarmony LiteOS-M内核，使用联盛德W800芯片的润和软件海王星系列[Neptune100开发板](https://gitee.com/openharmony-sig/device_board_hihope)，进行开发移植。移植架构采用`Board`与`SoC`分离方案，支持通过Kconfig图形化配置编译选项，增加玄铁`ck804ef`架构移植，实现了`HDF`、`XTS`等子系统及组件的适配。
@@ -54,7 +53,7 @@
 
 ### 单板配置
 
-关联到的<board>目录下，在`device/board/hihope/neptune100/liteos_m`目录下放置`config.gni`文件，该配置文件用于描述该单板信息，包括CPU型号、交叉编译工具链及全局编译、链接参数等重要信息：
+关联到的\<board\>目录下，在`device/board/hihope/neptune100/liteos_m`目录下放置`config.gni`文件，该配置文件用于描述该单板信息，包括CPU型号、交叉编译工具链及全局编译、链接参数等重要信息：
 
 ```
 # Kernel type, e.g. "linux", "liteos_a", "liteos_m".
@@ -212,7 +211,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
      endif #BOARD_NEPTUNE100
      ```
 
-     用于添加 BOARD_NEPTUNE100默认配置
+     用于添加 BOARD_NEPTUNE100默认配置。
 
 5. 在`device/soc/winnermicro`下创建相应的的`Kconfig`文件：
 
@@ -414,7 +413,7 @@ OHOS Which product do you need?  neptune_iotlink_demo
 
 由于Neptune100开发板的芯片架构为OpenHarmony不支持的ck804ef架构，需要进行ck804ef架构移植。适配 `kernel\liteos_m\arch\include`中定义的通用的文件以及函数列表，并放在了 `kernel\liteos_m\arch\csky\v2\ck804\gcc`文件夹下。
 
-内核初始化示例如下:
+内核初始化示例如下：
 
    ```
    osStatus_t ret = osKernelInitialize();                    --- 内核初始化
@@ -752,16 +751,16 @@ HDF驱动框架提供了一套应用访问硬件的统一接口，可以简化�
 
 | 接口名                 | 描述                             |
 | ---------------------- | -------------------------------- |
-| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口 |
-| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口 |
-| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口   |
-| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口   |
+| SYS_SERVICE_INIT(func) | 标识核心系统服务的初始化启动入口。 |
+| SYS_FEATURE_INIT(func) | 标识核心系统功能的初始化启动入口。 |
+| APP_SERVICE_INIT(func) | 标识应用层服务的初始化启动入口。   |
+| APP_FEATURE_INIT(func) | 标识应用层功能的初始化启动入口。   |
 
 
 
 通过上面加载的组件编译出来的lib文件需要手动加入强制链接。
 
-如在 `vendor/hihope/neptune_iotlink_demo/config.json` 中配置了`bootstrap_lite` 部件
+如在 `vendor/hihope/neptune_iotlink_demo/config.json` 中配置了`bootstrap_lite` 部件。
 
    ```
    {

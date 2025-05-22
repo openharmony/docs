@@ -4,7 +4,7 @@
 
 The native drawing module provides APIs for drawing 2D graphics and text.
 
-The graphics and text drawn by using the APIs cannot be directly displayed on the screen. To display the drawn graphics and text, you'll need the capabilities provided by the **\<XComponent>** and native window module.
+The graphics and text drawn by using the APIs cannot be directly displayed on the screen. To display the drawn graphics and text, you'll need the capabilities provided by the **XComponent** and native window module.
 
 ## Available APIs
 
@@ -37,7 +37,7 @@ The table below lists the common native drawing APIs. For details about all the 
 
 ### Development Process
 
-First, use the canvas and pen of the native drawing module to draw a basic 2D graphic, write the graphics content to the buffer provided by the native window module, and flush the buffer to the graphics queue. Then use the **\<XComponent>** to connect the C++ code layer to the ArkTS layer. In this way, the drawing and display logic of the C++ code is called at the ArkTS layer, and the graphic is displayed on the screen.
+First, use the canvas and pen of the native drawing module to draw a basic 2D graphic, write the graphics content to the buffer provided by the native window module, and flush the buffer to the graphics queue. Then use the **XComponent** to connect the C++ code layer to the ArkTS layer. In this way, the drawing and display logic of the C++ code is called at the ArkTS layer, and the graphic is displayed on the screen.
 
 The following walks you through on how to draw and display 2D graphics and text.
 ### Adding Dependencies
@@ -70,9 +70,9 @@ libnative_drawing.so
 #include <sys/mman.h>
 ```
 
-### Building a Drawing Environment Using \<XComponent>
+### Building a Drawing Environment Using XComponent
 
-1. Add the **\<XComponent>** to the **Index.ets** file.
+1. Add the **XComponent** to the **Index.ets** file.
     ```ts
     import XComponentContext from "../interface/XComponentContext";
 
@@ -95,10 +95,10 @@ libnative_drawing.so
       }
     }
     ```
-    The width of the **\<XComponent>** must be a multiple of 64, for example, 640 px.
-2. Obtain the native **\<XComponent>** at the C++ layer. You are advised to save the **\<XComponent>** in a singleton. This step must be performed during napi_init.
+    The width of the **XComponent** must be a multiple of 64, for example, 640 px.
+2. Obtain the native **XComponent** at the C++ layer. You are advised to save the **XComponent** in a singleton. This step must be performed during napi_init.
 
-    Create a **PluginManger** singleton to manage the native **\<XComponent>**.
+    Create a **PluginManger** singleton to manage the native **XComponent**.
     ```c++
     class PluginManager {
     public:
@@ -217,7 +217,7 @@ libnative_drawing.so
         // ...
     }
     ```
-    All callbacks of the **<XComponent>** must be initialized. You can define unnecessary callbacks as null pointers.
+    All callbacks of the **XComponent** must be initialized. You can define unnecessary callbacks as null pointers.
     ```c++
     // OH_NativeXComponent_Callback is a struct.
     OH_NativeXComponent_Callback callback;
@@ -334,11 +334,11 @@ Follow the steps below to draw a 2D graphic by using the canvas and pen of the n
     OH_Drawing_PenSetJoin(cPen_, LINE_ROUND_JOIN);
     // Attach the pen to the canvas.
     OH_Drawing_CanvasAttachPen(cCanvas_, cPen_);
-    
+
     // Create a brush object and set the color.
     cBrush_ = OH_Drawing_BrushCreate();
     OH_Drawing_BrushSetColor(cBrush_, OH_Drawing_ColorSetArgb(0xFF, 0x00, 0xFF, 0x00));
-    
+
     // Attach the brush to the canvas.
     OH_Drawing_CanvasAttachBrush(cCanvas_, cBrush_);
     ```
@@ -398,7 +398,8 @@ The following describes how to use the two types of APIs to implement text drawi
     OH_Drawing_SetTextStyleFontWeight(txtStyle, FONT_WEIGHT_400);
     OH_Drawing_SetTextStyleBaseLine(txtStyle, TEXT_BASELINE_ALPHABETIC);
     OH_Drawing_SetTextStyleFontHeight(txtStyle, 1);
-    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateFontCollection();
+    // If multiple measurements are required, it is recommended that fontCollection be used as a global variable to significantly reduce memory usage.
+    OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateSharedFontCollection();
     // Register the customized font.
     const char* fontFamily = "myFamilyName"; // myFamilyName is the family name of the customized font.
     const char* fontPath = "/data/storage/el2/base/haps/entry/files/myFontFile.ttf"; // Set the sandbox path where the customized font is located.
@@ -438,11 +439,16 @@ The following describes how to use the two types of APIs to implement text drawi
 5. **Release the variables.**
 
     ```c++
+    // Destroy the typography when it is no longer needed.
     OH_Drawing_DestroyTypography(typography);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTypographyHandler(handler);
+    // Destroy the font collection when it is no longer needed.
     OH_Drawing_DestroyFontCollection(fontCollection);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTextStyle(txtStyle);
     OH_Drawing_DestroyTextStyle(txtStyle2);
+    // Destroy the layout when it is no longer needed.
     OH_Drawing_DestroyTypographyStyle(typoStyle);
     ```
 

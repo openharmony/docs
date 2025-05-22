@@ -1,4 +1,4 @@
-# 管理应用窗口（元服务）
+# 管理应用窗口（原子化服务）
 
 ## 场景介绍
 
@@ -14,7 +14,7 @@
 
 ## 接口说明
 
-上述场景涉及的常用接口如下表所示。更多API说明请参见[@ohos.window (窗口)](../reference/apis-as/js-apis-window.md)。
+上述场景涉及的常用接口如下表所示。更多API说明请参见[@ohos.window (窗口)](../reference/apis-arkui/js-apis-window.md)。
 
 | 实例名         | 接口名                                                       | 描述                                                         |
 | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -36,7 +36,7 @@
 
 ### 开发步骤
 
-**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[申请应用权限](../../application-dev/quick-start/module-configuration-file.md#requestpermissions标签)。
+**前提条件：** `setWindowPrivacyMode` 即设置窗口隐私模式，适用于禁止截屏/录屏的场景。该接口使用时需要申请`ohos.permission.PRIVACY_WINDOW`权限，配置方式请参见[配置文件](../quick-start/module-configuration-file.md#配置文件标签)中requestPermissions字段。
 
 1. 获取应用主窗口。
 
@@ -51,9 +51,9 @@
    通过`loadContent`接口加载主窗口的目标页面。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -101,6 +101,12 @@ export default class EntryAbility extends UIAbility {
 
 开发者可以按需创建应用子窗口，如弹窗等，并对其进行属性设置等操作。
 
+> **说明：**  
+> 由于以下几种情况，移动设备场景下不推荐使用子窗口，优先推荐使用控件[overlay](../reference/apis-arkui/arkui-ts/ts-universal-attributes-overlay.md)能力实现。  
+> - 移动设备场景下子窗不能超出主窗口范围，与控件一致。  
+> - 分屏窗口与自由窗口模式下，主窗口位置大小发生改变时控件实时跟随变化能力优于子窗。  
+> - 部分设备平台下根据实际的系统配置限制，子窗只有系统默认的动效和圆角阴影，应用无法设置，自由度低。
+
 ### 开发步骤
 
 1. 创建应用子窗口。
@@ -120,9 +126,9 @@ export default class EntryAbility extends UIAbility {
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
-import { BusinessError } from '@ohos.base';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let windowStage_: window.WindowStage | null = null;
 let sub_windowClass: window.Window | null = null;
@@ -215,8 +221,8 @@ export default class EntryAbility extends UIAbility {
 在创建WindowStage对象后可通过监听`'windowStageEvent'`事件类型，监听到窗口进入前台、后台、前台可交互、前台不可交互等事件，应用可根据这些上报的事件状态进行相应的业务处理。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-import window from '@ohos.window';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {

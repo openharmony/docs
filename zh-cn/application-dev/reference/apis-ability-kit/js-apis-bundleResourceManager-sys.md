@@ -6,6 +6,8 @@
 >
 > 本模块首批接口从API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
+> 本模块从API version 12 开始支持查询被禁用应用和设备上已安装应用(不区用户)的图标和名称资源。
+>
 > 本模块为系统接口。
 
 ## 导入模块
@@ -21,7 +23,7 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 | ohos.permission.GET_BUNDLE_RESOURCES| system_basic | 允许查询应用的资源信息。 |
 | ohos.permission.GET_INSTALLED_BUNDLE_LIST | system_basic | 读取已安装应用列表。 |
 
-权限等级参考[权限等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限apl等级)。
+权限等级参考[权限APL等级说明](../../security/AccessToken/app-permission-mgmt-overview.md#权限机制中的基本概念)。
 
 ## 枚举
 
@@ -31,7 +33,7 @@ import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
 
 **系统接口：** 此接口为系统接口。
 
- **系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Resource。
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Resource。
 
 | 名称                                      | 值         | 说明                                                         |
 | ----------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -72,7 +74,7 @@ getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -116,7 +118,7 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 | 参数名     | 类型   | 必填 | 说明                |
 | ----------- | ------ | ---- | --------------------- |
 | bundleName | string | 是   | 指定查询应用的包名。 |
-| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息。 |
+| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息，默认值为[ResourceFlag](#resourceflag).GET_RESOURCE_INFO_ALL。 |
 
 **返回值：**
 
@@ -126,7 +128,7 @@ getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#res
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -157,7 +159,7 @@ try {
 
 getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>>): void
 
-以异步方法根据给定的resourceFlags获取所有应用的BundleResourceInfo。使用callback异步回调。
+根据给定的resourceFlags获取所有应用的BundleResourceInfo。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -174,7 +176,7 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag), callback: Async
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -192,7 +194,7 @@ let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllBundleResourceInfo(bundleFlags, (err, data) => {
         if (err) {
-            hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
+            hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
             return;
         }
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
@@ -207,7 +209,7 @@ try {
 
 getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<[BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)>>;
 
-以异步方法根据给定的resourceFlags获取所有应用的BundleResourceInfo。使用Promise异步回调。
+根据给定的resourceFlags获取所有应用的BundleResourceInfo。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -229,7 +231,7 @@ getAllBundleResourceInfo(resourceFlags: [number](#resourceflag)): Promise<Array<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -248,7 +250,7 @@ try {
     bundleResourceManager.getAllBundleResourceInfo(bundleFlags).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
     }).catch((err: BusinessError) => {
-        hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
+        hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
     })
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -260,7 +262,7 @@ try {
 
 getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callback: AsyncCallback<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>>): void
 
-以异步方法根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用callback异步回调。
+根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -277,7 +279,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag), callba
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -295,7 +297,7 @@ let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags, (err, data) => {
         if (err) {
-            hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
+            hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
             return;
         }
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
@@ -310,7 +312,7 @@ try {
 
 getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Promise<Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>>
 
-以异步方法根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用Promise异步回调。
+根据给定的resourceFlags获取当前所有应用的LauncherAbilityResourceInfo。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -332,7 +334,7 @@ getAllLauncherAbilityResourceInfo(resourceFlags: [number](#resourceflag)) : Prom
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.bundle错误码](errorcode-bundle.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                              |
 | -------- | ------------------------------------- |
@@ -350,10 +352,181 @@ try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
     }).catch((err: BusinessError) => {
-        hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
+        hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
     })
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed: %{public}s', message);
+}
+```
+
+### bundleResourceManager.getBundleResourceInfo<sup>12+</sup>
+
+getBundleResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag), appIndex?: number): [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md)
+
+以同步方法根据给定的bundleName、resourceFlags和appIndex获取当前应用的BundleResourceInfo。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_RESOURCES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| bundleName | string | 是   | 指定查询应用的包名。 |
+| resourceFlags | [number](#resourceflag) | 否   | 指定返回的BundleResourceInfo所包含的信息。 |
+| appIndex | number | 否   | 指定查询应用分身的ID，默认值为0。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                  |
+| ----------------------------------------------------------- | ------------------------------------- |
+| [BundleResourceInfo](js-apis-bundleManager-BundleResourceInfo-sys.md) | 返回指定应用的BundleResourceInfo。|
+
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700061 | AppIndex not in valid range or not found. |
+
+
+**示例：**
+
+```ts
+import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName = "com.example.myapplication";
+let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let appIndex = 1;
+try {
+    let resourceInfo = bundleResourceManager.getBundleResourceInfo(bundleName, bundleFlags, appIndex);
+    hilog.info(0x0000, 'testTag', 'getBundleResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo.label));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getBundleResourceInfo failed: %{public}s', message);
+}
+```
+
+### bundleResourceManager.getLauncherAbilityResourceInfo<sup>12+</sup>
+
+getLauncherAbilityResourceInfo(bundleName: string, resourceFlags?: [number](#resourceflag), appIndex?: number): Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)>
+
+以同步方法根据给定的bundleName、resourceFlags和appIndex获取当前应用的LauncherAbilityResourceInfo。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_RESOURCES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| bundleName | string | 是   | 指定查询应用的包名。 |
+| resourceFlags | [number](#resourceflag) | 否   | 指定返回的LauncherAbilityResourceInfo所包含的信息，默认值为[ResourceFlag](#resourceflag).GET_RESOURCE_INFO_ALL。 |
+| appIndex | number | 否   | 指定查询应用分身的ID，默认值为0。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                  |
+| ----------------------------------------------------------- | ------------------------------------- |
+| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | 返回指定应用的LauncherAbilityResourceInfo。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 17700001 | The specified bundleName is not found. |
+| 17700061 | AppIndex not in valid range or not found. |
+
+**示例：**
+
+```ts
+import bundleResourceManager from '@ohos.bundle.bundleResourceManager';
+import { BusinessError } from '@ohos.base';
+import hilog from '@ohos.hilog';
+let bundleName = "com.example.myapplication";
+let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+let appIndex = 1;
+try {
+    let resourceInfo = bundleResourceManager.getLauncherAbilityResourceInfo(bundleName, bundleFlags, appIndex);
+    hilog.info(0x0000, 'testTag', 'getLauncherAbilityResourceInfo successfully. Data label: %{public}s', JSON.stringify(resourceInfo[0].label));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getLauncherAbilityResourceInfo failed: %{public}s', message);
+}
+```
+
+### bundleResourceManager.getExtensionAbilityResourceInfo<sup>20+</sup>
+
+getExtensionAbilityResourceInfo(bundleName: string, extensionAbilityType: bundleManager.ExtensionAbilityType, resourceFlags: number, appIndex?: number): Array\<LauncherAbilityResourceInfo>
+
+根据应用包名、扩展组件类型、资源信息标志、应用分身ID获取应用的扩展组件资源。使用同步方式返回。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_RESOURCES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| bundleName | string | 是   | 应用包名。 |
+| extensionAbilityType | [bundleManager.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 应用的扩展组件类型，仅支持ExtensionAbilityType.INPUTMETHOD、ExtensionAbilityType.SHARE、ExtensionAbilityType.ACTION。 |
+| [resourceFlags](#resourceflag) | number | 是   | 资源信息标志，指示需要获取的资源信息的内容。 |
+| appIndex | number | 否   | 应用分身的ID，默认值是0。取值范围0~5，取值为0表示主应用。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                  |
+| ----------------------------------------------------------- | ------------------------------------- |
+| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | 返回指定应用的配置入口图标和名称信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[包管理子系统通用错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied，non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
+| 17700061 | AppIndex not in valid range or not found. |
+
+**示例：**
+
+```ts
+import { bundleManager, bundleResourceManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = "com.example.myapplication";
+let extensionAbilityType = bundleManager.ExtensionAbilityType.INPUT_METHOD;
+let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+try {
+    let resourceInfo = bundleResourceManager.getExtensionAbilityResourceInfo(bundleName, extensionAbilityType, bundleFlags);
+    console.info('getExtensionAbilityResourceInfo successfully. Data label: ' + JSON.stringify(resourceInfo[0].label));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`getExtensionAbilityResourceInfo failed, err code:${code}, err msg: ${message}`);
 }
 ```

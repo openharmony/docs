@@ -1,19 +1,18 @@
-
 # libc++
 
 OpenHarmony uses [libc++](https://libcxx.llvm.org/) of the open-source LLVM project as its C++ runtime library.
 
 ## libc++ Version
 
-From OpenHarmony 4.0, libc++ is upgraded to Clang/LLVM 15.0.4.
+- Clang/LLVM 15.0.4 from OpenHarmony 4.0 to OpenHarmony 5.0
 
-From OpenHarmony 3.2, libc++ is upgraded to Clang/LLVM 12.0.1.
+- Clang/LLVM 12.0.1 from OpenHarmony 3.2
 
-From OpenHarmony 3.0, libc++ uses Clang/LLVM 10.0.1.
+- Clang/LLVM 10.0.1 from OpenHarmony 3.0
 
 ## Support for C++ Capabilities
 
-The C++11 and C++14 standards are supported, and the C++17 and C++20 standards are on the way. For details about the standards supported, see the corresponding Release Notes at [https://libcxx.llvm.org/](https://libcxx.llvm.org/).
+C++11 and C++14 are fully supported. C++17 and C++20 are being improved. You can set the C++ version as required. For details, see [How do I change the C++ version supported by a project?](https://developer.huawei.com/consumer/en/doc/harmonyos-faqs-V5/faqs-ndk-9-V5). For details about the standards supported, see the corresponding Release Notes at [https://libcxx.llvm.org/](https://libcxx.llvm.org/).
 
 
 ## Selecting libc++ in CMake
@@ -29,7 +28,7 @@ In OpenHarmony, both the system library and the application native library use l
     * System library: uses **libc++.so**, which is released with the system image.
     * Application native library: uses **libc++_shared.so**, which is released with the application.
 
-The two libc++ libraries use different namespaces. **libc++_shared.so** uses **__n1** as the namespace for C++ symbols, and **libc++.so** uses **__h** for C++ symbols.
+   The two libc++ libraries use different namespaces. **libc++_shared.so** uses **__n1** as the namespace for C++ symbols, and **libc++.so** uses **__h** for C++ symbols.
 
    > **NOTE**<br>The system library cannot use the libc++ of the application native library, and vice versa. Currently, the Native APIs must be C interfaces only. This also isolates the two libc runtime environments.
 

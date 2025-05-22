@@ -9,7 +9,7 @@ The **ErrorCode** module defines the error codes that may be returned when an ab
 ## Modules to Import
 
 ```ts
-import errorCode from '@ohos.ability.errorCode';
+import { ErrorCode } from '@kit.AbilityKit';
 ```
 
 ## ErrorCode

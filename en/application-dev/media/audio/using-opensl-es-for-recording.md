@@ -1,6 +1,6 @@
 # Using OpenSL ES for Audio Recording (C/C++)
 
-OpenSL ES, short for Open Sound Library for Embedded Systems, is an embedded, cross-platform audio processing library that is free of charge. It provides high-performance and low-latency APIs for you to develop applications running on embedded mobile multimedia devices. OpenHarmony has implemented certain native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications developed by the [Khronos Group](https://www.khronos.org/). You can use these APIs through <OpenSLES.h\> and <OpenSLES_OpenHarmony.h\>.
+OpenSL ES, short for Open Sound Library for Embedded Systems, is an embedded, cross-platform audio processing library that is free of charge. It provides high-performance and low-latency APIs for you to develop applications running on embedded mobile multimedia devices. OpenHarmony has implemented certain native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications developed by the [Khronos Group](https://www.khronos.org/). You can use these APIs through &lt;OpenSLES.h&gt; and &lt;OpenSLES_OpenHarmony.h&gt;.
 
 ## Using OHAudio to Replace OpenSL ES
 OpenHarmony provides the OpenSL ES APIs for audio development at the native layer since SDK8. As the version evolves, these APIs fail to meet the capability expansion requirements of the audio system and therefore are no longer recommended.
@@ -44,7 +44,7 @@ The following lists the OpenSL ES APIs that have been implemented on OpenHarmony
 
 - **BufferQueue APIs implemented on OpenHarmony**
   
-  The APIs listed below can be used only after <OpenSLES_OpenHarmony.h\> is introduced.
+  The APIs listed below can be used only after &lt;OpenSLES_OpenHarmony.h&gt; is introduced.
 
   | API| Description| 
   | -------- | -------- |
@@ -66,7 +66,7 @@ Refer to the sample code below to record an audio file.
 
 1. Add the header files.
 
-   ```c++
+   ```cpp
    #include "SLES/OpenSLES.h"
    #include "SLES/OpenSLES_OpenHarmony.h"
    #include "SLES/OpenSLES_Platform.h"
@@ -74,7 +74,7 @@ Refer to the sample code below to record an audio file.
 
 2. Use the **slCreateEngine** API to create and instantiate an **engine** object.
      
-   ```c++
+   ```cpp
    SLObjectItf engineObject = nullptr;
    slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
    (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
@@ -82,14 +82,14 @@ Refer to the sample code below to record an audio file.
 
 3. Obtain the **engineEngine** instance of the **SL_IID_ENGINE** API.
      
-   ```c++
+   ```cpp
    SLEngineItf engineItf = nullptr;
    (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineItf);
    ```
 
 4. Configure the recorder information (including the input source **audiosource** and output source **audiosink**), and create a **pcmCapturerObject** instance.
      
-   ```c++
+   ```cpp
    SLDataLocator_IODevice io_device = {
        SL_DATALOCATOR_IODEVICE,
        SL_IODEVICE_AUDIOINPUT,
@@ -123,26 +123,25 @@ Refer to the sample code below to record an audio file.
    (*engineItf)->CreateAudioRecorder(engineItf, &pcmCapturerObject,
        &audioSource, &audioSink, 0, nullptr, nullptr);
    (*pcmCapturerObject)->Realize(pcmCapturerObject, SL_BOOLEAN_FALSE);
-   
    ```
 
 5. Obtain the **recordItf** instance of the **SL_IID_RECORD** API.
      
-   ```c++
+   ```cpp
    SLRecordItf  recordItf;
    (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_RECORD, &recordItf);
    ```
 
 6. Obtain the **bufferQueueItf** instance of the **SL_IID_OH_BUFFERQUEUE** API.
      
-   ```c++
+   ```cpp
    SLOHBufferQueueItf bufferQueueItf;
    (*pcmCapturerObject)->GetInterface(pcmCapturerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
    ```
 
 7. Register the **BufferQueueCallback** function.
      
-   ```c++
+   ```cpp
    static void BufferQueueCallback(SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
    {
        // Obtain the user information passed in during the registration from pContext.
@@ -160,13 +159,13 @@ Refer to the sample code below to record an audio file.
 
 8. Start audio recording.
      
-   ```c++
+   ```cpp
    (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_RECORDING);
    ```
 
 9. Stop audio recording.
      
-   ```c++
+   ```cpp
    (*recordItf)->SetRecordState(recordItf, SL_RECORDSTATE_STOPPED);
    (*pcmCapturerObject)->Destroy(pcmCapturerObject);
    (*engineObject)->Destroy(engineObject);

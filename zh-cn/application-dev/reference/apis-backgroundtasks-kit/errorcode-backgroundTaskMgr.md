@@ -32,11 +32,12 @@ Parcel operation failed.
 
 **错误描述**
 
-进程间通信，读写操作失败。
+调用长时任务相关接口时，进程间通信，读写操作失败。
 
 **可能原因**
 
 调用MessageParcel对象读取或写入对象异常。
+<br>在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。
 
 **处理步骤**
 
@@ -46,7 +47,7 @@ Parcel operation failed.
 
 **错误信息**
 
-Inner transact failed.
+Internal transaction failed.
 
 **错误描述**
 
@@ -68,7 +69,7 @@ System service operation failed.
 
 **错误描述**
 
-客户端进程请求系统服务进程，获取系统服务操作失败。
+调用长时任务相关接口时，客户端进程请求系统服务进程，获取系统服务操作失败。
 
 **可能原因**
 
@@ -83,7 +84,7 @@ System service operation failed.
 
 **错误信息**
 
-Background task verification failed.
+Continuous task verification failed.
 
 **错误描述**
 
@@ -94,7 +95,7 @@ Background task verification failed.
 1. 应用重复申请长时任务。
 2. 应用重复取消长时任务。
 3. bgMode无效，应用配置文件属性backgroundModes没有配置任何长时任务类型。
-4. 只有PC设备才能申请长时任务KEEPING_TASK。
+4. 只有<!--RP1-->特定设备<!--RP1End-->才能申请长时任务KEEPING_TASK。
 
 **处理步骤**
 
@@ -107,7 +108,7 @@ Background task verification failed.
 
 **错误信息**
 
-Notification verification failed.
+Notification verification failed for a continuous task.
 
 **错误描述**
 
@@ -127,7 +128,7 @@ Notification verification failed.
 
 **错误信息**
 
-Task storage failed.
+Continuous task storage failed.
 
 **错误描述**
 
@@ -148,7 +149,7 @@ Task storage failed.
 
 **错误信息**
 
-Caller information verification failed.
+Caller information verification failed for a transient task.
 
 **错误描述**
 
@@ -170,7 +171,7 @@ Caller information verification failed.
 
 **错误信息**
 
-Background task verification failed.
+Transient task verification failed.
 
 **错误描述**
 
@@ -193,7 +194,7 @@ Background task verification failed.
 
 **错误信息**
 
-Caller information verification failed.
+Caller information verification failed for an energy resource request.
 
 **错误描述**
 

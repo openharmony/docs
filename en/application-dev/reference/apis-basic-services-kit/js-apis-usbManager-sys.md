@@ -10,20 +10,20 @@ The **usbManager** module provides USB device management functions, including US
 ## Modules to Import
 
 ```ts
-import usb from "@ohos.usbManager";
+import { usbManager } from '@kit.BasicServicesKit';
 ```
 
-## usb.addRight (deprecated)
+## addRight <sup>(deprecated)</sup>
 
 addRight(bundleName: string, deviceName: string): boolean
 
 Adds the device access permission for the application. System applications are granted the device access permission by default, and calling this API will not revoke the permission.
 
-[usb.requestRight](js-apis-usbManager.md#usbrequestright) triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box. 
+**usbManager.requestRight** triggers a dialog box to request for user authorization, whereas **addRight** adds the access permission directly without displaying a dialog box.
 
 **NOTE**
 
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use **addDeviceAccessRight**.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [addDeviceAccessRight](#adddeviceaccessright12).
 
 **System API**: This is a system API.
 
@@ -36,6 +36,15 @@ Adds the device access permission for the application. System applications are g
 | deviceName | string | Yes  | Device name.  |
 | bundleName | string | Yes  | Bundle name of the application.|
 
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+
 **Return value**
 
 | Type   | Description                                                                     |
@@ -47,12 +56,12 @@ Adds the device access permission for the application. System applications are g
 ```ts
 let devicesName: string = "1-1";
 let bundleName: string = "com.example.hello";
-if (usb.addRight(bundleName, devicesName)) {
+if (usbManager.addRight(bundleName, devicesName)) {
   console.log(`Succeed in adding right`);
 }
 ```
 
-## usb.usbFunctionsFromString(deprecated)
+## usbFunctionsFromString<sup>(deprecated)</sup>
 
 usbFunctionsFromString(funcs: string): number
 
@@ -60,7 +69,7 @@ Converts the USB function list in the string format to a numeric mask in Device 
 
 **NOTE**
 
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use **getFunctionsFromString**.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getFunctionsFromString](#getfunctionsfromstring12).
 
 **System API**: This is a system API.
 
@@ -72,6 +81,15 @@ Converts the USB function list in the string format to a numeric mask in Device 
 | ------ | ------ | ---- | ---------------------- |
 | funcs  | string | Yes  | Function list in string format.|
 
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+
 **Return value**
 
 | Type  | Description              |
@@ -82,10 +100,10 @@ Converts the USB function list in the string format to a numeric mask in Device 
 
 ```ts
 let funcs: string = "acm";
-let ret: number = usb.usbFunctionsFromString(funcs);
+let ret: number = usbManager.usbFunctionsFromString(funcs);
 ```
 
-## usb.usbFunctionsToString(deprecated)
+## usbFunctionsToString<sup>(deprecated)</sup>
 
 usbFunctionsToString(funcs: FunctionType): string
 
@@ -93,40 +111,7 @@ Converts the USB function list in the numeric mask format to a string in Device 
 
 **NOTE**
 
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use **getStringFromFunctions**.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.USB.USBManager
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description             |
-| ------ | ----------------------------- | ---- | ----------------- |
-| funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
-
-**Return value**
-
-| Type  | Description                          |
-| ------ | ------------------------------ |
-| string | Function list in string format.|
-
-**Example**
-
-```ts
-let funcs: number = usb.FunctionType.ACM | usb.FunctionType.ECM;
-let ret: string = usb.usbFunctionsToString(funcs);
-```
-
-## usb.setCurrentFunctions(deprecated)
-
-setCurrentFunctions(funcs: FunctionType): Promise\<void\>
-
-Sets the current USB function list in Device mode.
-
-**NOTE**
-
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use **setDeviceFunctions**.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getStringFromFunctions](#getstringfromfunctions12).
 
 **System API**: This is a system API.
 
@@ -142,41 +127,93 @@ Sets the current USB function list in Device mode.
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
 
-| ID| Error Message                                            |
-| -------- | ---------------------------------------------------- |
-| 14400002 | Permission denied.The HDC is disabled by the system. |
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
 
 **Return value**
 
-| Type    | Description         |
-| -------- | ------------- |
-| Promise\<**void**\> | Promise used to return the result.|
+| Type  | Description                          |
+| ------ | ------------------------------ |
+| string | Function list in string format.|
 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
-let funcs: number = usb.FunctionType.HDC;
-usb.setCurrentFunctions(funcs).then(() => {
+let funcs: number = usbManager.FunctionType.ACM | usb.FunctionType.ECM;
+let ret: string = usbManager.usbFunctionsToString(funcs);
+```
+
+## setCurrentFunctions<sup>(deprecated)</sup>
+
+setCurrentFunctions(funcs: FunctionType): Promise\<void\>
+
+Sets the current USB function list in Device mode.
+
+**NOTE**
+
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setDeviceFunctions](#setdevicefunctions12).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description             |
+| ------ | ----------------------------- | ---- | ----------------- |
+| funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
+
+**Return value**
+
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```ts
+import {BusinessError} from '@kit.BasicServicesKit';
+let funcs: number = usbManager.FunctionType.HDC;
+usbManager.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
 }).catch((err: BusinessError) => {
     console.error('usb setCurrentFunctions failed: ' + err.code + ' message: ' + err.message);
 });
 ```
 
-## usb.getCurrentFunctions(deprecated)
+## getCurrentFunctions<sup>(deprecated)</sup>
 
 getCurrentFunctions(): FunctionType
 
-Obtains the numeric mask combination for the USB function list in Device mode.
+Obtains the numeric mask combination for the USB function list in Device mode. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
 
 **NOTE**
 
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use **getDeviceFunctions**.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getDeviceFunctions](#getdevicefunctions12).
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.USB.USBManager
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                       |
+| -------- | ------------------------------------------------------------------------------- |
+| 401      | Parameter error. No parameters are required.                                    |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **Return value**
 
@@ -187,22 +224,31 @@ Obtains the numeric mask combination for the USB function list in Device mode.
 **Example**
 
 ```ts
-let ret: number = usb.getCurrentFunctions();
+let ret: number = usbManager.getCurrentFunctions();
 ```
 
-## usb.getPorts(deprecated)
+## getPorts<sup>(deprecated)</sup>
 
 getPorts(): Array\<USBPort\>
 
-Obtains the list of all physical USB ports.
+Obtains the list of all physical USB ports. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
 
 **NOTE**
 
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use **getPortList**.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getPortList](#getportlist12).
 
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.USB.USBManager
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                       |
+| -------- | ------------------------------------------------------------------------------- |
+| 401      | Parameter error. No parameters are required.                                    |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
 
 **Return value**
 
@@ -213,10 +259,10 @@ Obtains the list of all physical USB ports.
 **Example**
 
 ```ts
-let ret: Array<usb.USBPort> = usb.getPorts();
+let ret: Array<usbManager.USBPort> = usbManager.getPorts();
 ```
 
-## usb.getSupportedModes(deprecated)
+## getSupportedModes(deprecated)
 
 getSupportedModes(portId: number): PortModeType
 
@@ -224,7 +270,7 @@ Obtains the mask combination for the supported mode list of a given USB port.
 
 **NOTE**
 
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use **getPortSupportModes**.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [getPortSupportModes](#getportsupportmodes12) instead.
 
 **System API**: This is a system API.
 
@@ -236,6 +282,15 @@ Obtains the mask combination for the supported mode list of a given USB port.
 | ------ | ------ | ---- | -------- |
 | portId | number | Yes  | Port number.|
 
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+
 **Return value**
 
 | Type                         | Description                      |
@@ -245,10 +300,10 @@ Obtains the mask combination for the supported mode list of a given USB port.
 **Example**
 
 ```ts
-let ret: number = usb.getSupportedModes(0);
+let ret: number = usbManager.getSupportedModes(0);
 ```
 
-## usb.setPortRoles(deprecated)
+## setPortRoles<sup>(deprecated)</sup>
 
 setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
@@ -256,7 +311,7 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 
 **NOTE**
 
-> This API is supported since API version 9 and deprecated since API version 12. You are advised to use **setPortRoleTypes**.
+> This API is supported since API version 9 and deprecated since API version 12. You are advised to use [setPortRoleTypes](#setportroletypes12).
 
 **System API**: This is a system API.
 
@@ -270,35 +325,47 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 | powerRole | [PowerRoleType](#powerroletype) | Yes  | Role for charging.    |
 | dataRole  | [DataRoleType](#dataroletype)   | Yes  | Role for data transfer.|
 
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+
 **Return value**
 
-| Type    | Description         |
-| -------- | ------------- |
-| Promise\<**void**\> | Promise used to return the result.|
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
 ```ts
-import {BusinessError} from '@ohos.base';
+import {BusinessError} from '@kit.BasicServicesKit';
 let portId: number = 1;
-usb.setPortRoles(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+usbManager.setPortRoles(portId, usbManager.PowerRoleType.SOURCE, ususbManagerb.DataRoleType.HOST).then(() => {
     console.info('usb setPortRoles successfully.');
 }).catch((err: BusinessError) => {
     console.error('usb setPortRoles failed: ' + err.code + ' message: ' + err.message);
 });
 ```
 
-## usb.addDeviceAccessRight
+## addDeviceAccessRight<sup>12+</sup>
 
 addDeviceAccessRight(tokenId: string, deviceName: string): boolean
 
 Adds the device access permission for the application. System applications are granted the device access permission by default, and calling this API will not revoke the permission.
 
-[usb.requestRight](js-apis-usbManager.md#usbrequestright) triggers a dialog box to request for user authorization, whereas **addDeviceAccessRight** adds the access permission directly without displaying a dialog box. 
+**usbManager.requestRight** triggers a dialog box to request for user authorization, whereas **addDeviceAccessRight** adds the access permission directly without displaying a dialog box.
+
+**NOTE**
+
+> This API is supported since API version 12.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -309,6 +376,17 @@ Adds the device access permission for the application. System applications are g
 | deviceName | string | Yes  | Device name.     |
 | tokenId    | string | Yes  | Token ID of the software package.|
 
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
+
 **Return value**
 
 | Type   | Description                                                                     |
@@ -318,9 +396,10 @@ Adds the device access permission for the application. System applications are g
 **Example**
 
 ```ts
- import bundleManager from '@ohos.bundle.bundleManager';
- let devicesName: string = "1-1";
- let tokenId: string = "";
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+let devicesName: string = "1-1";
+let tokenId: string = "";
 
   try {
     let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_DEFAULT;
@@ -328,10 +407,10 @@ Adds the device access permission for the application. System applications are g
       console.info('testTag', 'getBundleInfoForSelf successfully. Data: %{public}s', JSON.stringify(bundleInfo));
       let token = bundleInfo.appInfo.accessTokenId;
       tokenId = token.toString();
-      if (usb.addDeviceAccessRight(tokenId, devicesName)) {
+      if (usbManager.addDeviceAccessRight(tokenId, devicesName)) {
         console.log(`Succeed in adding right`);
       }
-    }).catch(err => {
+    }).catch((err : BusinessError) => {
       console.error('testTag getBundleInfoForSelf failed' );
     });
   } catch (err) {
@@ -339,15 +418,19 @@ Adds the device access permission for the application. System applications are g
   }
 ```
 
-## usb.getFunctionsFromString
+## getFunctionsFromString<sup>12+</sup>
 
 getFunctionsFromString(funcs: string): number
 
 Converts the USB function list in the string format to a numeric mask in Device mode.
 
+**NOTE**
+
+> This API is supported since API version 12.
+
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -356,6 +439,17 @@ Converts the USB function list in the string format to a numeric mask in Device 
 | Name| Type  | Mandatory| Description                  |
 | ------ | ------ | ---- | ---------------------- |
 | funcs  | string | Yes  | Function list in string format.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                       |
+| -------- | ------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -367,49 +461,22 @@ Converts the USB function list in the string format to a numeric mask in Device 
 
 ```ts
 let funcs: string = "acm";
-let ret: number = usb.getFunctionsFromString(funcs);
+let ret: number = usbManager.getFunctionsFromString(funcs);
 ```
 
-## usb.getStringFromFunctions
+## getStringFromFunctions<sup>12+</sup>
 
 getStringFromFunctions(funcs: FunctionType): string
 
 Converts the USB function list in the numeric mask format to a string in Device mode.
 
-**System API**: This is a system API.
+**NOTE**
 
-**Required permissions**: ohos.permission.ohos.permission.MANAGE_USB_CONFIG
-
-**System capability**: SystemCapability.USB.USBManager
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description             |
-| ------ | ----------------------------- | ---- | ----------------- |
-| funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
-
-**Return value**
-
-| Type  | Description                          |
-| ------ | ------------------------------ |
-| string | Function list in string format.|
-
-**Example**
-
-```ts
-let funcs: number = usb.FunctionType.ACM | usb.FunctionType.ECM;
-let ret: string = usb.getStringFromFunctions(funcs);
-```
-
-## usb.setDeviceFunctions
-
-setDeviceFunctions(funcs: FunctionType): Promise\<void\>
-
-Sets the current USB function list in Device mode.
+> This API is supported since API version 12.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -423,38 +490,105 @@ Sets the current USB function list in Device mode.
 
 For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
 
-| ID| Error Message                                            |
-| -------- | ---------------------------------------------------- |
-| 201      | Permission denied.The HDC is disabled by the system. |
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
-| Type    | Description         |
-| -------- | ------------- |
-| Promise\<**void**\> | Promise used to return the result.|
+| Type  | Description                          |
+| ------ | ------------------------------ |
+| string | Function list in string format.|
 
 **Example**
 
 ```ts
-let funcs: number = usb.FunctionType.HDC;
-usb.setDeviceFunctions(funcs).then(() => {
+let funcs: number = usbManager.FunctionType.ACM | usbManager.FunctionType.ECM;
+let ret: string = usbManager.getStringFromFunctions(funcs);
+```
+
+## setDeviceFunctions<sup>12+</sup>
+
+setDeviceFunctions(funcs: FunctionType): Promise\<void\>
+
+Sets the current USB function list in Device mode.
+
+**NOTE**
+
+> This API is supported since API version 12.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name| Type                         | Mandatory| Description             |
+| ------ | ----------------------------- | ---- | ----------------- |
+| funcs  | [FunctionType](#functiontype) | Yes  | USB function list in numeric mask format.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
+| 14400002 | Permission denied. The HDC is disabled by the system.                                                   |
+| 14400006 | Unsupported operation. The function is not supported.                                                   |
+
+**Return value**
+
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+let funcs: number = usbManager.FunctionType.HDC;
+usbManager.setDeviceFunctions(funcs).then(() => {
     console.info('usb setDeviceFunctions successfully.');
-}).catch((err) => {
+}).catch((err : BusinessError) => {
     console.error('usb setDeviceFunctions failed: ' + err.code + ' message: ' + err.message);
 });
 ```
 
-## usb.getDeviceFunctions
+## getDeviceFunctions<sup>12+</sup>
 
 getDeviceFunctions(): FunctionType
 
-Obtains the numeric mask combination for the USB function list in Device mode.
+Obtains the numeric mask combination for the USB function list in Device mode. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
+
+**NOTE**
+
+> This API is supported since API version 12.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
 
 **System capability**: SystemCapability.USB.USBManager
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                       |
+| -------- | ------------------------------------------------------------------------------- |
+| 401      | Parameter error. No parameters are required.                                    |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -465,20 +599,34 @@ Obtains the numeric mask combination for the USB function list in Device mode.
 **Example**
 
 ```ts
-let ret: number = usb.getDeviceFunctions();
+let ret: number = usbManager.getDeviceFunctions();
 ```
 
-## usb.getPortList
+## getPortList<sup>12+</sup>
 
 getPortList(): Array\<USBPort\>
 
-Obtains the list of all physical USB ports.
+Obtains the list of all physical USB ports. When the developer mode is disabled, **undefined** may be returned if no device is connected. Check whether the return value of the API is empty.
+
+**NOTE**
+
+> This API is supported since API version 12.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
 
 **System capability**: SystemCapability.USB.USBManager
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -489,10 +637,10 @@ Obtains the list of all physical USB ports.
 **Example**
 
 ```ts
-let ret: Array<usb.USBPort> = usb.getPortList();
+let ret: Array<usbManager.USBPort> = usbManager.getPortList();
 ```
 
-## usb.getPortSupportModes
+## getPortSupportModes<sup>12+</sup>
 
 getPortSupportModes(portId: number): PortModeType
 
@@ -500,7 +648,7 @@ Obtains the mask combination for the supported mode list of a given USB port.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -509,6 +657,17 @@ Obtains the mask combination for the supported mode list of a given USB port.
 | Name| Type  | Mandatory| Description    |
 | ------ | ------ | ---- | -------- |
 | portId | number | Yes  | Port number.|
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
 
 **Return value**
 
@@ -519,18 +678,22 @@ Obtains the mask combination for the supported mode list of a given USB port.
 **Example**
 
 ```ts
-let ret: number = usb.getSupportedModes(0);
+let ret: number = usbManager.getPortSupportModes(0);
 ```
 
-## usb.setPortRoleTypes
+## setPortRoleTypes<sup>12+</sup>
 
 setPortRoleTypes(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise\<void\>
 
 Sets the role types supported by a specified port, which can be **powerRole** (for charging) and **dataRole** (for data transfer).
 
+**NOTE**
+
+> This API is supported since API version 12.
+
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.ohos.permission.MANAGE_USB_CONFIG
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
 
 **System capability**: SystemCapability.USB.USBManager
 
@@ -542,21 +705,85 @@ Sets the role types supported by a specified port, which can be **powerRole** (f
 | powerRole | [PowerRoleType](#powerroletype) | Yes  | Role for charging.    |
 | dataRole  | [DataRoleType](#dataroletype)   | Yes  | Role for data transfer.|
 
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                                                               |
+| -------- | ------------------------------------------------------------------------------------------------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 801      | Capability not supported.                                    |
+| 14400003 | Unsupported operation. The current device does not support port role switching.                         |
+
 **Return value**
 
-| Type    | Description         |
-| -------- | ------------- |
-| Promise\<**void**\> | Promise used to return the result.|
+| Type               | Description         |
+| ------------------- | ------------- |
+| Promise\<void\> | Promise used to return the result.|
 
 **Example**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 let portId: number = 1;
-usb.setPortRoleTypes(portId, usb.PowerRoleType.SOURCE, usb.DataRoleType.HOST).then(() => {
+usbManager.setPortRoleTypes(portId, usbManager.PowerRoleType.SOURCE, usbManager.DataRoleType.HOST).then(() => {
   console.info('usb setPortRoleTypes successfully.');
-}).catch((err) => {
+}).catch((err : BusinessError) => {
   console.error('usb setPortRoleTypes failed: ' + err.code + ' message: ' + err.message);
 });
+```
+
+## addAccessoryRight<sup>14+</sup>
+
+addAccessoryRight(tokenId: number, accessory: USBAccessory): void
+
+Adds the permission to applications for accessing USB accessories.
+
+**usbManager.requestAccessoryRight** triggers a dialog box to request user authorization. **addAccessoryRight** does not trigger a dialog box but directly adds the device access permission for the application.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.MANAGE_USB_CONFIG
+
+**System capability**: SystemCapability.USB.USBManager
+
+**Parameters**
+
+| Name   | Type        | Mandatory| Description                    |
+| --------- | ------------ | ---- | ------------------------ |
+| tokenId   | number       | Yes  | Token ID of the application.|
+| accessory | USBAccessory | Yes  | USB accessory.               |
+
+**Error codes**
+
+For details about the error codes, see [USB Service Error Codes](errorcode-usb.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | The permission check failed.                                 |
+| 202      | Permission denied. Normal application do not have permission to use system api. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801      | Capability not supported.                                    |
+| 14400004 | Service exception. Possible causes: 1. No accessory is plugged in. |
+| 14400005 | Database operation exception.                                |
+
+**Example**
+
+```ts
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { bundleManager } from '@kit.AbilityKit';
+try {
+  let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
+  let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
+  let bundleInfo = await bundleManager.getBundleInfoForSelf(flags)
+  let tokenId: number = bundleInfo.appInfo.accessTokenId
+  usbManager.addAccessoryRight(tokenId, accList[0])
+  hilog.info(0, 'testTag ui', `addAccessoryRight success`)
+} catch (error) {
+  hilog.info(0, 'testTag ui', `addAccessoryRight error ${error.code}, message is ${error.message}`)
+}
 ```
 
 ## USBPort
@@ -601,12 +828,12 @@ Enumerates USB device function types.
 | ACM          | 1   | ACM function. |
 | ECM          | 2   | ECM function. |
 | HDC          | 4   | HDC function. |
-| MTP          | 8   | Not supported currently.|
-| PTP          | 16  | Not supported currently.|
-| RNDIS        | 32  | Not supported currently.|
-| MIDI         | 64  | Not supported currently.|
-| AUDIO_SOURCE | 128 | Not supported currently.|
-| NCM          | 256 | Not supported currently.|
+| MTP          | 8   | Media transmission.|
+| PTP          | 16  | Image transmission.|
+| RNDIS        | 32  | Network sharing (not supported).|
+| MIDI         | 64  | MIDI function (not supported).|
+| AUDIO_SOURCE | 128 | Audio function (not supported).|
+| NCM          | 256 | NCM transmission (not supported). |
 
 ## PortModeType
 
@@ -635,8 +862,8 @@ Enumerates power role types.
 | Name  | Value| Description      |
 | ------ | -- | ---------- |
 | NONE   | 0  | None      |
-| SOURCE | 1  | External power supply.|
-| SINK   | 2  | Internal power supply.|
+| SOURCE | 1  | Power supply for external devices.|
+| SINK   | 2  | External power supply.|
 
 ## DataRoleType
 

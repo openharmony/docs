@@ -6,9 +6,11 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 >
 > 本模块首批接口从API version 11开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
-## AVCastPickerState
+## AVCastPickerState<sup>11+</sup>
 
 投播状态参数选项。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.AVCast
 
@@ -16,3 +18,30 @@ avCastPickerParam提供了[@ohos.multimedia.avCastPicker](ohos-multimedia-avcast
 | --------------------------- | ---- | ----------- |
 | STATE_APPEARING    | 0    | 组件显示。 |
 | STATE_DISAPPEARING    | 1    | 组件消失。 |
+
+## AVCastPickerStyle<sup>12+</sup>
+
+投播样式参数选项。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                        | 值   | 说明         |
+| --------------------------- | ---- | ----------- |
+| STYLE_PANEL    | 0    | 面板样式。 |
+| STYLE_MENU    | 1    | 菜单样式。 |
+
+## AVCastPickerColorMode<sup>12+</sup>
+
+投播显示模式参数选项。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                        | 值   | 说明         |
+| --------------------------- | ---- | ----------- |
+| AUTO    | 0    | 跟随系统模式。 |
+| DARK    | 1    | 深色模式。 |
+| LIGHT    | 2    | 浅色模式。 |

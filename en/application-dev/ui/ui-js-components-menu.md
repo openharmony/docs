@@ -1,7 +1,7 @@
 # &lt;menu&gt; Development
 
 
-The &lt;menu&gt; component serves as a temporary pop-up window to display operations that users can perform. For details, see [menu](../reference/arkui-js/js-components-basic-menu.md).
+The &lt;menu&gt; component serves as a temporary pop-up window to display operations that users can perform. For details, see [menu](../reference/apis-arkui/arkui-js/js-components-basic-menu.md).
 
 
 ## Creating a &lt;menu&gt; Component
@@ -41,7 +41,7 @@ Create a **&lt;menu&gt;** component in the .hml file under **pages/index** and a
 ![en-us_image_0000001232162284](figures/en-us_image_0000001232162284.gif)
 
 > **NOTE**
-> - The **&lt;menu&gt;** component supports only the [option](../reference/arkui-js/js-components-basic-option.md) child component.
+> - The **&lt;menu&gt;** component supports only the [option](../reference/apis-arkui/arkui-js/js-components-basic-option.md) child component.
 > 
 > - The **&lt;menu&gt;** component does not support the **focusable** and **disabled** attributes.
 

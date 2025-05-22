@@ -20,13 +20,13 @@ import bundle from '@ohos.bundle';
 
 | Permission                                        | APL        | Description           |
 |--------------------------------------------|--------------|---------------|
-| ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | Permission to enable or disable an application or ability.|
-| ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle.|
-| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all bundles.    |
+| ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | Permission to enable or disable an application or ability. |
+| ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle. |
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.    |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall bundles.     |
-| ohos.permission.REMOVE_CACHE_FILES | system_basic | Permission to clear cache files of a bundle.|
+| ohos.permission.REMOVE_CACHE_FILES | system_basic | Permission to clear cache files of a bundle. |
 
-For details, see [Permission APL](../../security/AccessToken/app-permission-mgmt-overview.md#permission-apl).
+For details about the APL, see [Basic Concepts in the Permission Mechanism](../../security/AccessToken/app-permission-mgmt-overview.md#basic-concepts-in-the-permission-mechanism).
 
 ## bundle.getBundleInstaller<sup>deprecated<sup>
 
@@ -52,7 +52,7 @@ This is a system API.
 
 | Type                                                        | Description                                        |
 | ------------------------------------------------------------ | -------------------------------------------- |
-| Promise<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Promise used to return the installation package.|
+| Promise<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Promise used to return the installation package. |
 
 **Example**
 
@@ -61,9 +61,9 @@ import bundle from '@ohos.bundle';
 import { BusinessError } from '@ohos.base';
 
 bundle.getBundleInstaller().then((data) => {
-    console.info('getBundleInstaller successfully.');
+  console.info('getBundleInstaller successfully.');
 }).catch((error: BusinessError) => {
-    console.error('getBundleInstaller failed.');
+  console.error('getBundleInstaller failed.');
 });
 ```
 
@@ -89,9 +89,9 @@ This is a system API.
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description            |
+| Name  | Type                                                        | Mandatory | Description            |
 | -------- | ------------------------------------------------------------ | ---- | ---------------- |
-| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Yes  | Callback used to return the installation package.|
+| callback | AsyncCallback<[BundleInstaller](js-apis-bundle-BundleInstaller-sys.md)> | Yes  | Callback used to return the installation package. |
 
 **Example**
 
@@ -99,11 +99,11 @@ This is a system API.
 import bundle from '@ohos.bundle';
 
 bundle.getBundleInstaller((err, data) => {
-    if (err.code == 0) {
-        console.error('getBundleInstaller failed.');
-    } else {
-        console.info('getBundleInstaller successfully');
-    }
+  if (err.code == 0) {
+    console.error('getBundleInstaller failed.');
+  } else {
+    console.info('getBundleInstaller successfully');
+  }
 });
 ```
 ## bundle.cleanBundleCacheFiles<sup>8+</sup> <sup>deprecated<sup>
@@ -128,9 +128,9 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type               | Mandatory| Description                                 |
+| Name     | Type               | Mandatory | Description                                 |
 | ---------- | ------------------- | ---- | ------------------------------------- |
-| bundleName | string              | Yes  | Bundle name.|
+| bundleName | string              | Yes  | Bundle name. |
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.         |
 
 **Example**
@@ -141,11 +141,11 @@ import bundle from '@ohos.bundle';
 let bundleName: string = "com.example.myapplication";
 
 bundle.cleanBundleCacheFiles(bundleName, err => {
-    if (err) {
-        console.error('cleanBundleCacheFiles failed.');
-    } else {
-        console.info('cleanBundleCacheFiles successfully.');
-    }
+  if (err) {
+    console.error('cleanBundleCacheFiles failed.');
+  } else {
+    console.info('cleanBundleCacheFiles successfully.');
+  }
 });
 ```
 
@@ -171,15 +171,15 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type  | Mandatory| Description                                 |
+| Name    | Type  | Mandatory | Description                                 |
 | ---------- | ------ | ---- | ------------------------------------- |
-| bundleName | string | Yes  | Bundle name.|
+| bundleName | string | Yes  | Bundle name. |
 
 **Return value**
 
 | Type         | Description                                |
 | ------------- | ------------------------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -189,10 +189,10 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 
-bundle.cleanBundleCacheFiles(bundleName).then(()=> {
-    console.info('cleanBundleCacheFiles successfully.');
+bundle.cleanBundleCacheFiles(bundleName).then(() => {
+  console.info('cleanBundleCacheFiles successfully.');
 }).catch((error: BusinessError) => {
-    console.error('cleanBundleCacheFiles failed.');
+  console.error('cleanBundleCacheFiles failed.');
 });
 ```
 
@@ -218,10 +218,10 @@ This is a system API.
 
 **Parameters**
 
-| Name     | Type               | Mandatory| Description                            |
+| Name     | Type               | Mandatory | Description                            |
 | ---------- | ------------------- | ---- |--------------------------------|
 | bundleName | string              | Yes  | Bundle name.         |
-| isEnable   | boolean             | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| isEnable   | boolean             | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite. |
 | callback   | AsyncCallback\<void> | Yes  | Callback used to return the result.                         |
 
 **Example**
@@ -232,11 +232,11 @@ import bundle from '@ohos.bundle';
 let bundleName: string = "com.example.myapplication";
 
 bundle.setApplicationEnabled(bundleName, false, err => {
-    if (err) {
-        console.error('setApplicationEnabled failed.');
-    } else {
-        console.info('setApplicationEnabled successfully.');
-    }
+  if (err) {
+    console.error('setApplicationEnabled failed.');
+  } else {
+    console.info('setApplicationEnabled successfully.');
+  }
 });
 ```
 
@@ -262,16 +262,16 @@ This is a system API.
 
 **Parameters**
 
-| Name    | Type   | Mandatory| Description                                           |
+| Name    | Type   | Mandatory | Description                                           |
 | ---------- | ------- | ---- | ----------------------------------------------- |
 | bundleName | string  | Yes  | Bundle name.           |
-| isEnable   | boolean | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| isEnable   | boolean | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite. |
 
 **Return value**
 
 | Type         | Description                                |
 | ------------- | ------------------------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -281,10 +281,10 @@ import { BusinessError } from '@ohos.base';
 
 let bundleName: string = "com.example.myapplication";
 
-bundle.setApplicationEnabled(bundleName, false).then(()=> {
-    console.info('setApplicationEnabled successfully.');
+bundle.setApplicationEnabled(bundleName, false).then(() => {
+  console.info('setApplicationEnabled successfully.');
 }).catch((error: BusinessError) => {
-    console.error('setApplicationEnabled failed.');
+  console.error('setApplicationEnabled failed.');
 });
 ```
 
@@ -310,10 +310,10 @@ This is a system API.
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                           |
+| Name  | Type                                        | Mandatory | Description                                           |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.                                  |
-| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite. |
 | callback | AsyncCallback\<void>                         | Yes  | Callback used to return the result.                   |
 
 ## bundle.setAbilityEnabled<sup>8+</sup> <sup>deprecated<sup>
@@ -338,16 +338,16 @@ This is a system API.
 
 **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                           |
+| Name  | Type                                        | Mandatory | Description                                           |
 | -------- | -------------------------------------------- | ---- | ----------------------------------------------- |
 | info     | [AbilityInfo](js-apis-bundle-AbilityInfo.md) | Yes  | Ability information.                                  |
-| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite.|
+| isEnable | boolean                                      | Yes  | Whether to enable the application. The value **true** means to enable the application, and **false** means the opposite. |
 
 **Return value**
 
 | Type         | Description                                |
 | ------------- | ------------------------------------ |
-| Promise\<void> | Promise that returns no value.|
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -359,15 +359,15 @@ let bundleName: string = "com.example.myapplication";
 let abilityName: string = "EntryAbility";
 
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo) => {
-    console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(abilityInfo));
+  console.info('getAbilityInfo successfully. Data: ' + JSON.stringify(abilityInfo));
 
-    bundle.setAbilityEnabled(abilityInfo, false).then(data => {
-        console.info('setAbilityEnabled successfully.');
-    }).catch((error: BusinessError) => {
-        console.error('setAbilityEnabled failed:' + JSON.stringify(error));
-    })
+  bundle.setAbilityEnabled(abilityInfo, false).then(data => {
+    console.info('setAbilityEnabled successfully.');
+  }).catch((error: BusinessError) => {
+    console.error('setAbilityEnabled failed:' + JSON.stringify(error));
+  })
 }).catch((error: BusinessError) => {
-    console.error('getAbilityInfo failed. Cause: ' + JSON.stringify(error));
+  console.error('getAbilityInfo failed. Cause: ' + JSON.stringify(error));
 });
 ```
 ## bundle.getPermissionDef<sup>8+</sup> <sup>deprecated<sup>
@@ -392,10 +392,10 @@ This is a system API.
 
 **Parameters**
 
-| Name        | Type                                                        | Mandatory| Description                                            |
+| Name        | Type                                                        | Mandatory | Description                                            |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------ |
 | permissionName | string                                                       | Yes  | Name of the permission.                                |
-| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Yes  | Callback used to return the permission details.|
+| callback       | AsyncCallback<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Yes  | Callback used to return the permission details. |
 
 **Example**
 
@@ -404,11 +404,11 @@ import bundle from '@ohos.bundle';
 
 let permission: string = "ohos.permission.GET_BUNDLE_INFO";
 bundle.getPermissionDef(permission, (err, data) => {
-    if (err) {
-        console.error('getPermissionDef failed:' + err.message);
-    } else {
-        console.info('getPermissionDef successfully:' + JSON.stringify(data));
-    }
+  if (err) {
+    console.error('getPermissionDef failed:' + err.message);
+  } else {
+    console.info('getPermissionDef successfully:' + JSON.stringify(data));
+  }
 });
 ```
 
@@ -434,15 +434,15 @@ This is a system API.
 
 **Parameters**
 
-| Name        | Type  | Mandatory| Description            |
+| Name        | Type  | Mandatory | Description            |
 | -------------- | ------ | ---- | ---------------- |
-| permissionName | string | Yes  | Name of the permission.|
+| permissionName | string | Yes  | Name of the permission. |
 
 **Return value**
 
 | Type                                                  | Description                                                  |
 | ------------------------------------------------------ | ------------------------------------------------------ |
-| Promise<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Promise used to return the permission details.|
+| Promise<[PermissionDef](js-apis-bundle-PermissionDef-sys.md)> | Promise used to return the permission details. |
 
 **Example**
 
@@ -452,8 +452,8 @@ import { BusinessError } from '@ohos.base';
 
 let permissionName: string = "ohos.permission.GET_BUNDLE_INFO";
 bundle.getPermissionDef(permissionName).then((data) => {
-    console.info('getPermissionDef successfully. Data: ' + JSON.stringify(data));
+  console.info('getPermissionDef successfully. Data: ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.error('getPermissionDef failed. Cause: ' + error.message);
+  console.error('getPermissionDef failed. Cause: ' + error.message);
 });
 ```

@@ -2,9 +2,7 @@
 
 ## Introduction
 Near Field Communication (NFC) is a high-frequency radio technology that enables communication between devices over a distance less than 10 cm. NFC operates at 13.56 MHz. With NFC technologies, electronic devices can read and write NFC tags.
-
 NFC tags support one or more communications technologies listed as follows:
-
 - NFC-A (also known as ISO 14443-3A)
 - NFC-B (also known as ISO 14443-3B)
 - NFC-F (also known as JIS 6319-4)
@@ -16,17 +14,12 @@ NFC tags support one or more communications technologies listed as follows:
 
 ## When to Use
 An electronic device touches an NFC tag via the NFC antenna to read and write the NFC tag data. NFC tags can be read and written by a started application (foreground mode) on a device or without starting an application (background mode).
-- Reading/Writing an NFC tag by a started application
-
-  An application started on a device reads or writes the NFC tag. That is, the user starts the application to read and write the NFC tag. The user starts the application, opens the application page, and taps the device on the NFC tag. In this case, the tag data read can be distributed only to the foreground application.
-
-- Reading/Writing an NFC tag without starting an application
-
-  The user taps the device on an NFC tag without starting any application. Then, the device selects an application based on the type of the NFC tag technology. If multiple applications are matched, an application selector will be displayed, listing all the available applications for the user to choose. After the user selects an application, the NFC tag read/write page of the application is automatically displayed.
-
-- Constraints
-
-  No natter whether the foreground mode or background mode is used, the NFC tag can be discovered by the device only when the device screen is unlocked and illuminated.
+- Reading/Writing an NFC tag by a started application<br>
+An application started on a device reads or writes the NFC tag. That is, the user starts the application to read and write the NFC tag. The user starts the application, opens the application page, and taps the device on the NFC tag. In this case, the retrieved tag data can be distributed only to the foreground application.
+- Reading/Writing an NFC tag without starting an application<br>
+The user taps the device on an NFC tag without starting any application. Then, the device selects an application based on the type of the NFC tag technology. If multiple applications are matched, an application selector will be displayed, listing all the available applications for the user to choose. After the user selects an application, the NFC tag read/write page of the application is automatically displayed.
+- Constraints<br>
+No matter whether the foreground mode or background mode is used, the NFC tag can be discovered by the device only when the device screen is unlocked and illuminated.
 
 ## Available APIs
 
@@ -49,7 +42,7 @@ The following table describes the APIs for obtaining objects of the tags that us
 
 ### Accessing an NFC Tag by a Started Application
 1. Declare the permission required for NFC tag operations and the action for filtering the application in the **module.json5** file.
-2. Import the **tag** module and other related modules.
+2. Import modules.
 3. Check whether the device supports the NFC feature.
 4. Register a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application.
 5. Obtain an NFC tag object of the specific technology type.
@@ -75,7 +68,7 @@ The following table describes the APIs for obtaining objects of the tags that us
             "actions": [
               "action.system.home",
 
-              // Add the NFC tag action to match this application.
+              // Make sure that ohos.nfc.tag.action.TAG_FOUND is present in actions.
               "ohos.nfc.tag.action.TAG_FOUND"
             ]
           }
@@ -84,7 +77,7 @@ The following table describes the APIs for obtaining objects of the tags that us
     ],
     "requestPermissions": [
       {
-        // Add the permission required for NFC tag operations.
+        // Add the NFC tag operation permission.
         "name": "ohos.permission.NFC_TAG",
         "reason": "$string:app_name",
       }
@@ -92,9 +85,10 @@ The following table describes the APIs for obtaining objects of the tags that us
 ```
 
 ```ts
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
-import bundleManager from '@ohos.bundle.bundleManager'
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
 let nfcTagElementName: bundleManager.ElementName;
 let foregroundRegister: boolean;
@@ -103,21 +97,21 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
   if (!error) {
     // Obtain an NFC tag object of the specific technology type.
     if (tagInfo == null || tagInfo == undefined) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb tagInfo is invaid');
+      hilog.error(0x0000, 'testTag', 'readerModeCb tagInfo is invalid');
       return;
     }
     if (tagInfo.uid == null || tagInfo.uid == undefined) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb uid is invaid');
+      hilog.error(0x0000, 'testTag', 'readerModeCb uid is invalid');
       return;
     }
     if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb technology is invaid');
+      hilog.error(0x0000, 'testTag', 'readerModeCb technology is invalid');
       return;
     }
 
     // Read and write the tag data.
-    // Use ISO-DEP to access this NFC tag.
-    let isoDep : tag.IsoDepTag;
+    // Access the NFC tag using IsoDep.
+    let isoDep : tag.IsoDepTag | null = null;
     for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
         try {
@@ -127,14 +121,14 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
           return;
         }
       }
-      // Use other technologies to access this NFC tag if necessary.
+      // Access the NFC tag using other technologies.
     }
     if (isoDep == undefined) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb getIsoDep is invaid');
+      hilog.error(0x0000, 'testTag', 'readerModeCb getIsoDep is invalid');
       return;
     }
 
-    // Connect to this NFC tag using ISO-DEP.
+    // Connect to the NFC tag using IsoDep.
     try {
         isoDep.connect(); 
     } catch (error) {
@@ -146,8 +140,8 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
       return;
     }
 
-    // Transmit data to the connected tag.
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    // Send an instruction to the connected tag.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // Specify the instruction of the protocol corresponding to the tag type.
     try {
       isoDep.transmit(cmdData).then((response : number[]) => {
         hilog.info(0x0000, 'testTag', 'readerModeCb isoDep.transmit() response = %{public}s.', JSON.stringify(response));
@@ -155,8 +149,8 @@ async function readerModeCb(error : BusinessError, tagInfo : tag.TagInfo) {
         hilog.error(0x0000, 'testTag', 'readerModeCb isoDep.transmit() err = %{public}s.', JSON.stringify(err));
         return;
       });
-    } catch (busiError) {
-      hilog.error(0x0000, 'testTag', 'readerModeCb isoDep.transmit() busiError = %{public}s.', JSON.stringify(busiError));
+    } catch (businessError) {
+      hilog.error(0x0000, 'testTag', 'readerModeCb isoDep.transmit() businessError = %{public}s.', JSON.stringify(businessError));
       return;
     }
   } else {
@@ -169,20 +163,20 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
     // Check whether the device supports the NFC feature.
-    if (!canIUse("System.Capability.Communication.NFC.Core")) {
+    if (!canIUse("SystemCapability.Communication.NFC.Core")) {
       hilog.error(0x0000, 'testTag', 'nfc unavailable.');
       return;
     }
 
     nfcTagElementName = {
-      bundleName: want.bundleName,
-      abilityName: want.abilityName,
+      bundleName: want.bundleName ?? '',
+      abilityName: want.abilityName ?? '',
       moduleName: want.moduleName,
     }
   }
 
   onForeground() {
-    // Ability is brought to foreground.
+    // Switch the application to the foreground.
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     if (nfcTagElementName != undefined) {
       // Register a listener for the NFC tag read event so that the tag can be preferentially dispatched to a foreground application.
@@ -197,7 +191,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onBackground() {
-    // Ability is back to background.
+    // Switch the application to the background.
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
     // When exiting the NFC tag page of the application, call the tag module API to exit the foreground mode.
     if (foregroundRegister) {
@@ -214,7 +208,7 @@ export default class EntryAbility extends UIAbility {
 
 ### Accessing an NFC Tag Without Starting an Application
 1. Declare the permission required for NFC tag operations, the NFC tag action, and the NFC tag technologies used to match the applications in the **module.json5** file.
-2. Import the **tag** module and other related modules.
+2. Import modules.
 3. Obtain an NFC tag object of the specific technology type.
 4. Read and write the tag data.
 
@@ -237,7 +231,7 @@ export default class EntryAbility extends UIAbility {
             "actions": [
               "action.system.home",
 
-              // Add the NFC tag action to match this application.
+              // Make sure that ohos.nfc.tag.action.TAG_FOUND is present in actions.
               "ohos.nfc.tag.action.TAG_FOUND"
             ],
             "uris": [
@@ -247,8 +241,8 @@ export default class EntryAbility extends UIAbility {
               {
                   "type":"tag-tech/IsoDep"
               }
-              // Add other technologies if neccessary,
-              // such as: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
+              // Add other technologies if necessary.
+              // Example: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
             ]
           }
         ]
@@ -256,7 +250,7 @@ export default class EntryAbility extends UIAbility {
     ],
     "requestPermissions": [
       {
-        // Add the permission required for NFC tag operations.
+        // Add NFC tag operation permission.
         "name": "ohos.permission.NFC_TAG",
         "reason": "$string:app_name",
       }
@@ -264,8 +258,10 @@ export default class EntryAbility extends UIAbility {
 ```
 
 ```ts
-import tag from '@ohos.nfc.tag';
-import { BusinessError } from '@ohos.base';
+import { tag } from '@kit.ConnectivityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -281,21 +277,21 @@ export default class EntryAbility extends UIAbility {
     }
 
     if (tagInfo == null || tagInfo == undefined) {
-      hilog.error(0x0000, 'testTag', 'tagInfo is invaid');
+      hilog.error(0x0000, 'testTag', 'tagInfo is invalid');
       return;
     }
     if (tagInfo.uid == null || tagInfo.uid == undefined) {
-      hilog.error(0x0000, 'testTag', 'uid is invaid');
+      hilog.error(0x0000, 'testTag', 'uid is invalid');
       return;
     }
     if (tagInfo.technology == null || tagInfo.technology == undefined || tagInfo.technology.length == 0) {
-      hilog.error(0x0000, 'testTag', 'technology is invaid');
+      hilog.error(0x0000, 'testTag', 'technology is invalid');
       return;
     }
 
     // Read and write the tag data.
-    // Use ISO-DEP to access this NFC tag.
-    let isoDep : tag.IsoDepTag;
+    // Access the NFC tag using IsoDep.
+    let isoDep : tag.IsoDepTag | null = null;
     for (let i = 0; i < tagInfo.technology.length; i++) {
       if (tagInfo.technology[i] == tag.ISO_DEP) {
         try {
@@ -305,14 +301,14 @@ export default class EntryAbility extends UIAbility {
           return;
         }
       }
-      // Use other technologies to access this NFC tag if necessary.
+      // Access the NFC tag using other technologies.
     }
     if (isoDep == undefined) {
-      hilog.error(0x0000, 'testTag', 'getIsoDep is invaid');
+      hilog.error(0x0000, 'testTag', 'getIsoDep is invalid');
       return;
     }
 
-    // Connect to this NFC tag using ISO-DEP.
+    // Connect to the NFC tag using IsoDep.
     try {
         isoDep.connect(); 
     } catch (error) {
@@ -324,8 +320,8 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // Transmit data to the connected tag.
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    // Send an instruction to the connected tag.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // Specify the instruction of the protocol corresponding to the tag type.
     try {
       isoDep.transmit(cmdData).then((response : number[]) => {
         hilog.info(0x0000, 'testTag', 'isoDep.transmit() response = %{public}s.', JSON.stringify(response));
@@ -333,8 +329,8 @@ export default class EntryAbility extends UIAbility {
         hilog.error(0x0000, 'testTag', 'isoDep.transmit() err = %{public}s.', JSON.stringify(err));
         return;
       });
-    } catch (busiError) {
-      hilog.error(0x0000, 'testTag', 'isoDep.transmit() busiError = %{public}s.', JSON.stringify(busiError));
+    } catch (businessError) {
+      hilog.error(0x0000, 'testTag', 'isoDep.transmit() businessError = %{public}s.', JSON.stringify(businessError));
       return;
     }
   }

@@ -17,14 +17,14 @@
 | const.product.software.version | const&nbsp;char\*&nbsp;GetDisplayVersion(void) | 返回当前设备用户可见的软件版本号 |
 | const.product.bootloader.version | const&nbsp;char\*&nbsp;GetBootloaderVersion(void) | 返回当前设备Bootloader版本号 |
 | const.product.udid | int&nbsp;GetDevUdid(char&nbsp;\*udid,&nbsp;int&nbsp;size) | 获取设备udid（先通过参数获取，获取失败通过计算获取） |
-| | const char *AclGetSerial(void); | 返回当前设备序列号（SN号）（带访问权限检查） |
-| | int AclGetDevUdid(char *udid, int size); | 获取设备udid（带访问权限检查） |
+| | const char *AclGetSerial(void) | 返回当前设备序列号（SN号）（带访问权限检查） |
+| | int AclGetDevUdid(char *udid, int size) | 获取设备udid（带访问权限检查） |
 
 ## 设备信息来源
 
 ### OHOS 固定值参数的适配
 
-- OHOS 固定值参数:
+- OHOS 固定值参数：
 
   ```
   const.ohos.version.security_patch

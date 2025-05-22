@@ -11,7 +11,7 @@ The **backgroundTaskManager** module provides APIs to request background tasks. 
 ## Modules to Import
 
 ```ts
-import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
+import { backgroundTaskManager } from '@kit.BackgroundTasksKit';  
 ```
 
 ## backgroundTaskManager.applyEfficiencyResources
@@ -33,20 +33,23 @@ Requests efficiency resources.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameters types; 3. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed for an energy resource request. |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let request: backgroundTaskManager.EfficiencyResourcesRequest = {
     resourceTypes: backgroundTaskManager.ResourceType.CPU,
@@ -76,20 +79,23 @@ Releases all efficiency resources.
 
 **Error codes**
 
-For details about the error codes, see [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
 | ID | Error Message            |
 | ---- | --------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | Inner transact failed. | |
+| 9800003 | Internal transaction failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed. |
+| 18700001 | Caller information verification failed for an energy resource request. |
 
 **Example**
 
 ```js
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
     backgroundTaskManager.resetAllEfficiencyResources();
@@ -107,7 +113,6 @@ Enumerates the continuous task modes.
 | Name                    | Value | Description                   |
 | ----------------------- | ---- | --------------------- |
 | WIFI_INTERACTION        | 7    | WLAN-related.<br>**System API**: This is a system API.|
-| VOIP                    | 8    | Audio and video calls.<br>**System API**: This is a system API.|
 
 ## EfficiencyResourcesRequest
 
@@ -120,10 +125,10 @@ Describes the parameters for requesting efficiency resources.
 | Name            | Type    | Mandatory  | Description                                      |
 | --------------- | ------ | ---- | ---------------------------------------- |
 | resourceTypes   | number  | Yes   | Type of the resource to request.                              |
-| isApply         | boolean | Yes   | Whether the request is used to apply for resources.<br>The value **true** means that the request is used to apply for resources, and **false** means that the request is used to release resources.|
+| isApply         | boolean | Yes   | Whether the request is used to apply for resources.<br>- **true**: The request is used to apply for resources.<br>- **false**: The request is used to release resources.|
 | timeOut         | number  | Yes   | Duration for which the resource will be used, in milliseconds.               |
-| isPersist       | boolean | No   | Whether the resource is permanently held. The default value is **false**.<br>The value **true** means that the resource is permanently held, and **false** means the resource is held within a given period of time.|
-| isProcess       | boolean | No   | Whether the request is initiated by a process. The default value is **false**.<br>The value **true** means that the request is initiated by a process, and **false** means that the request is initiated by an application.        |
+| isPersist       | boolean | No   | Whether the resource is permanently held. The default value is **false**.<br>- **true**: The resource is permanently held.<br>- **false**: The resource is held for a limited period of time.|
+| isProcess       | boolean | No   | Whether the request is initiated by a process. The default value is **false**.<br>- **true**: The request is initiated by a process.<br>- **false**: The request is initiated by an application.        |
 | reason          | string  | Yes   | Reason for requesting the resource.               |
 
 ## ResourceType

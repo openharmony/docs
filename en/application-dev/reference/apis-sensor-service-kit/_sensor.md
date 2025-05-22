@@ -27,12 +27,12 @@ It also provides APIs to define common sensor attributes.
 | -------- | -------- |
 | [Sensor_Type](#sensor_type) | Defines an enum for sensor types. |
 | [Sensor_Result](#sensor_result) | Defines an enum for sensor result codes. |
-| [Sensor_Accuracy](#sensor_accuracy) | Defines an enum for accuracy levels of data reported by a sensor. |
+| [Sensor_Accuracy](#sensor_accuracy) | Defines an enum for accuracy levels of data reported by a sensor.|
 | [Sensor_Info](#sensor_info) | Defines a struct for the sensor information. |
 | [Sensor_Event](#sensor_event) | Defines a struct for the sensor data information. |
 | [Sensor_SubscriptionId](#sensor_subscriptionid) | Defines a struct for the sensor subscription ID, which uniquely identifies a sensor. |
 | [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) | Defines a struct for the sensor subscription attribute.|
-| void ([*Sensor_EventCallback](#sensor_eventcallback)) ([Sensor_Event](#sensor_event) \*event) | Defines the callback function used to report sensor data. |
+| void ([*Sensor_EventCallback](#sensor_eventcallback)) ([Sensor_Event](#sensor_event) \*event) | Defines the callback function used to report sensor data.|
 | [Sensor_Subscriber](#sensor_subscriber) | Defines a struct for the sensor subscriber information. |
 
 
@@ -40,42 +40,42 @@ It also provides APIs to define common sensor attributes.
 
 | Name| Description|
 | -------- | -------- |
-| [Sensor_Type](#sensor_type) {<br>SENSOR_TYPE_ACCELEROMETER = 1, <br>SENSOR_TYPE_GYROSCOPE = 2,<br> SENSOR_TYPE_AMBIENT_LIGHT = 5, <br>SENSOR_TYPE_MAGNETIC_FIELD = 6,<br>SENSOR_TYPE_BAROMETER = 8,<br> SENSOR_TYPE_HALL = 10, <br>SENSOR_TYPE_PROXIMITY = 12,<br> SENSOR_TYPE_ORIENTATION = 256,<br>SENSOR_TYPE_GRAVITY = 257, <br>SENSOR_TYPE_ROTATION_VECTOR = 259, ,<br>SENSOR_TYPE_PEDOMETER_DETECTION = 265,<br> SENSOR_TYPE_PEDOMETER = 266,<br>SENSOR_TYPE_HEART_RATE = 278<br>} | Enumerates the sensor types. |
+| [Sensor_Type](#sensor_type) {<br>SENSOR_TYPE_ACCELEROMETER = 1, <br>SENSOR_TYPE_GYROSCOPE = 2,<br> SENSOR_TYPE_AMBIENT_LIGHT = 5, <br>SENSOR_TYPE_MAGNETIC_FIELD = 6,<br>SENSOR_TYPE_BAROMETER = 8,<br> SENSOR_TYPE_HALL = 10, <br>SENSOR_TYPE_PROXIMITY = 12,<br> SENSOR_TYPE_ORIENTATION = 256,<br>SENSOR_TYPE_GRAVITY = 257, <br>SENSOR_TYPE_LINEAR_ACCELERATION = 258,<br>SENSOR_TYPE_ROTATION_VECTOR = 259,<br>SENSOR_TYPE_GAME_ROTATION_VECTOR = 262,<br>SENSOR_TYPE_PEDOMETER_DETECTION = 265,<br> SENSOR_TYPE_PEDOMETER = 266,<br>SENSOR_TYPE_HEART_RATE = 278<br>} | Enumerates the sensor types. |
 | [Sensor_Result](#sensor_result) { <br>SENSOR_SUCCESS = 0,<br> SENSOR_PERMISSION_DENIED = 201, <br>SENSOR_PARAMETER_ERROR = 401,<br> SENSOR_SERVICE_EXCEPTION = 14500101<br> } | Enumerates the sensor result codes. |
-| [Sensor_Accuracy](#sensor_accuracy) { <br>SENSOR_ACCURACY_UNRELIABLE = 0, <br>SENSOR_ACCURACY_LOW = 1,<br> SENSOR_ACCURACY_MEDIUM = 2, <br>SENSOR_ACCURACY_HIGH = 3 <br>} | Enumerates the accuracy levels of data reported by a sensor. |
+| [Sensor_Accuracy](#sensor_accuracy) { <br>SENSOR_ACCURACY_UNRELIABLE = 0, <br>SENSOR_ACCURACY_LOW = 1,<br> SENSOR_ACCURACY_MEDIUM = 2, <br>SENSOR_ACCURACY_HIGH = 3 <br>} | Defines an enum for accuracy levels of data reported by a sensor.|
 
 
 ### Functions
 
 | Name| Description|
 | -------- | -------- |
-| [OH_Sensor_GetInfos](#oh_sensor_getinfos)([Sensor_Info](#sensor_info) \*\*infos, uint32_t *count) | Obtains information about all sensors on the device.                                |
-| [OH_Sensor_Subscribe](#oh_sensor_subscribe)(const [Sensor_SubscriptionId](#sensor_subscriptionid) \*id, const [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) \*attribute, const [Sensor_Subscriber](#sensor_subscriber) \*subscriber) | Subscribe to sensor data. The system will report sensor data to the subscriber at the specified frequency.<br>To subscribe to data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission.<br>To subscribe to data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission.<br>To subscribe to data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission.<br>To subscribe to data of health-related sensors, such as heart rate sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. Otherwise, the subscription fails.<br>You do not need to request any permission to subscribe to data of other types of sensors.|
-| [OH_Sensor_Unsubscribe](#oh_sensor_unsubscribe)(const [Sensor_SubscriptionId](#sensor_subscriptionid) \*id, const [Sensor_Subscriber](#sensor_subscriber) \*subscriber) | Unsubscribes from sensor data.<br>To unsubscribe from data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission.<br>To unsubscribe from data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission.<br>To unsubscribe from data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission.<br>To unsubscribe from data of health-related sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. Otherwise, the unsubscription fails.<br>You do not need to request any permission to unsubscribe from data of other types of sensors.|
+| [OH_Sensor_GetInfos](#oh_sensor_getinfos)([Sensor_Info](#sensor_info) **infos, uint32_t *count) | Obtains information about all sensors on the device.                                |
+| [OH_Sensor_Subscribe](#oh_sensor_subscribe)(const [Sensor_SubscriptionId](#sensor_subscriptionid) *id, const [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) *attribute, const [Sensor_Subscriber](#sensor_subscriber) *subscriber) | Subscribe to sensor data. The system will report sensor data to the subscriber at the specified frequency.<br>To subscribe to data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission.<br>To subscribe to data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission.<br>To subscribe to data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission.<br>To subscribe to data of health-related sensors, such as heart rate sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. Otherwise, the subscription fails.<br>You do not need to request any permission to subscribe to data of other types of sensors.|
+| [OH_Sensor_Unsubscribe](#oh_sensor_unsubscribe)(const [Sensor_SubscriptionId](#sensor_subscriptionid) *id, const [Sensor_Subscriber](#sensor_subscriber) *subscriber) | Unsubscribes from sensor data.<br>To unsubscribe from data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission.<br>To unsubscribe from data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission.<br>To unsubscribe from data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission.<br>To unsubscribe from data of health-related sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. Otherwise, the unsubscription fails.<br>You do not need to request any permission to unsubscribe from data of other types of sensors.|
 | [OH_Sensor_CreateInfos](#oh_sensor_createinfos)(uint32_t count) | Creates an array of [Sensor_Info](#sensor_info) instances with the given number.|
-| [OH_Sensor_DestroyInfos](#oh_sensor_destroyinfos)([Sensor_Info](#sensor_info) \*\*sensors, uint32_t count) | Destroys an array of [Sensor_Info](#sensor_info) instances and reclaims memory.|
-| [OH_SensorInfo_GetName](#oh_sensorinfo_getname)([Sensor_Info](#sensor_info) \*sensor, char \*sensorName, uint32_t \*length) | Obtains the sensor name. |
-| [OH_SensorInfo_GetVendorName](#oh_sensorinfo_getvendorname)([Sensor_Info](#sensor_info)* sensor, char \*vendorName, uint32_t \*length) | Obtains the sensor's vendor name. |
-| [OH_SensorInfo_GetType](#oh_sensorinfo_gettype)([Sensor_Info](#sensor_info)* sensor, [Sensor_Type](#sensor_type) \*sensorType) | Obtains the sensor type. |
-| [OH_SensorInfo_GetResolution](#oh_sensorinfo_getresolution)([Sensor_Info](#sensor_info)* sensor, float \*resolution) | Obtains the sensor resolution.                                          |
-| [OH_SensorInfo_GetMinSamplingInterval](#oh_sensorinfo_getminsamplinginterval)([Sensor_Info](#sensor_info)* sensor, int64_t \*minSamplingInterval) | Obtains the minimum data reporting interval of a sensor. |
-| [OH_SensorInfo_GetMaxSamplingInterval](#oh_sensorinfo_getmaxsamplinginterval)([Sensor_Info](#sensor_info)* sensor, int64_t \*maxSamplingInterval) | Obtains the maximum data reporting interval of a sensor. |
-| [OH_SensorEvent_GetType](#oh_sensorevent_gettype)([Sensor_Event](#sensor_event)* sensorEvent, [Sensor_Type](#sensor_type) \*sensorType) | Obtains the sensor type. |
-| [OH_SensorEvent_GetTimestamp](#oh_sensorevent_gettimestamp)([Sensor_Event](#sensor_event)* sensorEvent, int64_t \*timestamp) | Obtains the timestamp of sensor data.                                    |
+| [OH_Sensor_DestroyInfos](#oh_sensor_destroyinfos)([Sensor_Info](#sensor_info) **sensors, uint32_t count) | Destroys an array of [Sensor_Info](#sensor_info) instances and reclaims memory.|
+| [OH_SensorInfo_GetName](#oh_sensorinfo_getname)([Sensor_Info](#sensor_info) *sensor, char *sensorName, uint32_t *length) | Obtains the sensor name. |
+| [OH_SensorInfo_GetVendorName](#oh_sensorinfo_getvendorname)([Sensor_Info](#sensor_info)* sensor, char *vendorName, uint32_t *length) | Obtains the sensor's vendor name. |
+| [OH_SensorInfo_GetType](#oh_sensorinfo_gettype)([Sensor_Info](#sensor_info)* sensor, [Sensor_Type](#sensor_type) *sensorType) | Obtains the sensor type. |
+| [OH_SensorInfo_GetResolution](#oh_sensorinfo_getresolution)([Sensor_Info](#sensor_info)* sensor, float *resolution) | Obtains the sensor resolution.                                          |
+| [OH_SensorInfo_GetMinSamplingInterval](#oh_sensorinfo_getminsamplinginterval)([Sensor_Info](#sensor_info)* sensor, int64_t *minSamplingInterval) | Obtains the minimum data reporting interval of a sensor. |
+| [OH_SensorInfo_GetMaxSamplingInterval](#oh_sensorinfo_getmaxsamplinginterval)([Sensor_Info](#sensor_info)* sensor, int64_t *maxSamplingInterval) | Obtains the maximum data reporting interval of a sensor. |
+| [OH_SensorEvent_GetType](#oh_sensorevent_gettype)([Sensor_Event](#sensor_event)* sensorEvent, [Sensor_Type](#sensor_type) *sensorType) | Obtains the sensor type. |
+| [OH_SensorEvent_GetTimestamp](#oh_sensorevent_gettimestamp)([Sensor_Event](#sensor_event)* sensorEvent, int64_t *timestamp) | Obtains the timestamp of sensor data.                                    |
 | [OH_SensorEvent_GetAccuracy](#oh_sensorevent_getaccuracy)([Sensor_Event](#sensor_event)* sensorEvent, Sensor_Accuracy *accuracy) | Obtains the accuracy of sensor data.                                      |
-| [OH_SensorEvent_GetData](#oh_sensorevent_getdata)([Sensor_Event](#sensor_event)* sensorEvent, float \*\*data, uint32_t \*length) | Obtains sensor data.<br>The data length and content depend on the sensor type. The format of the sensor data reported is as follows:<br> - SENSOR_TYPE_ACCELEROMETER: data[0], data[1], and data[2], indicating the acceleration around the x, y, and z axes of a device, respectively, in m/s².<br>- SENSOR_TYPE_GYROSCOPE: data[0], data[1], and data[2], indicating the angular velocity of rotation around the x, y, and z axes of a device, respectively, in rad/s.<br><br>- SENSOR_TYPE_AMBIENT_LIGHT: data[0], indicating the ambient light intensity, in lux.<br> - SENSOR_TYPE_MAGNETIC_FIELD: data[0], data[1], and data[2], indicating the magnetic field strength around the x, y, and z axes of a device, respectively, in μT.<br>- SENSOR_TYPE_BAROMETER: data[0], indicating the atmospheric pressure, in hPa.<br>- SENSOR_TYPE_HALL: data[0], indicating the opening/closing state of the flip cover. The value **0** means that the flip cover is opened, and a value greater than 0 means that the flip cover is closed.<br>- SENSOR_TYPE_PROXIMITY: data[0], indicates the approaching state. The value **0** means the two objects are close to each other, and a value greater than 0 means that they are far away from each other.<br>- SENSOR_TYPE_ORIENTATION: data[0], data[1], and data[2], indicating the rotation angles of a device around the z, x, and y axes, respectively, in degree.<br>- SENSOR_TYPE_GRAVITY: data[0], data[1], and data[2], indicating the gravitational acceleration around the x, y, and z axes of a device, respectively, in m/s².<br>- SENSOR_TYPE_ROTATION_VECTOR: data[0], data[1] and data[2], indicating the rotation angles of a device around the x, y, and z axes, respectively, in degree. data[3] indicates the rotation vector.<br>- SENSOR_TYPE_PEDOMETER_DETECTION: data[0], indicating the pedometer detection status. The value **1** means that the number of detected steps changes.<br>- SENSOR_TYPE_PEDOMETER: data[0], indicating the number of steps a user has walked.<br>- SENSOR_TYPE_HEART_RATE: data[0], indicating the heart rate value.|
+| [OH_SensorEvent_GetData](#oh_sensorevent_getdata)([Sensor_Event](#sensor_event)* sensorEvent, float **data, uint32_t *length) | Obtains sensor data.<br>The data length and content depend on the sensor type. The format of the sensor data reported is as follows:<br>- SENSOR_TYPE_ACCELEROMETER: data[0], data[1], and data[2], indicating the acceleration around the x, y, and z axes of a device, respectively, in m/s².<br>- SENSOR_TYPE_GYROSCOPE: data[0], data[1], and data[2], indicating the angular velocity of rotation around the x, y, and z axes of a device, respectively, in rad/s.<br>- SENSOR_TYPE_AMBIENT_LIGHT: data[0], indicating the ambient light intensity, in lux. Since API version 12, two extra data records are returned, where **data[1]** indicates the color temperature (in kelvin), and **data[2]** indicates the infrared luminance (in cd/m²).<br>4. - SENSOR_TYPE_MAGNETIC_FIELD: data[0], data[1], and data[2], indicating the magnetic field strength around the x, y, and z axes of a device, respectively, in μT.<br>- SENSOR_TYPE_BAROMETER: data[0], indicating the atmospheric pressure, in hPa.<br>- SENSOR_TYPE_HALL: data[0], indicating the opening/closing state of the flip cover. The value **0** means that the flip cover is opened, and a value greater than 0 means that the flip cover is closed.<br>- SENSOR_TYPE_PROXIMITY: data[0], indicates the approaching state. The value **0** means the two objects are close to each other, and a value greater than 0 means that they are far away from each other.<br>- SENSOR_TYPE_ORIENTATION: data[0], data[1], and data[2], indicating the rotation angles of a device around the z, x, and y axes, respectively, in degree.<br>- SENSOR_TYPE_GRAVITY: data[0], data[1], and data[2], indicating the gravitational acceleration around the x, y, and z axes of a device, respectively, in m/s².<br>- SENSOR_TYPE_ROTATION_VECTOR: data[0], data[1] and data[2], indicating the rotation angles of a device around the x, y, and z axes, respectively, in degree. data[3] indicates the rotation vector.<br>- SENSOR_TYPE_PEDOMETER_DETECTION: data[0], indicating the pedometer detection status. The value **1** means that the number of detected steps changes.<br>- SENSOR_TYPE_PEDOMETER: data[0], indicating the number of steps a user has walked.<br>- SENSOR_TYPE_HEART_RATE: data[0], indicating the heart rate value.<br>- SENSOR_TYPE_LINEAR_ACCELERATION: data[0], data[1], and data[2], indicating the acceleration around the x, y, and z axes of a device, respectively, in m/s². This parameter is supported since API version 13.<br>- SENSOR_TYPE_GAME_ROTATION_VECTOR: data[0], data[1] and data[2], indicating the rotation angles of a device around the x, y, and z axes, respectively, in degree; data[3], indicating the rotation vector. This parameter is supported since API version 13.|
 | [OH_Sensor_CreateSubscriptionId](#oh_sensor_createsubscriptionid)(void) | Creates a [Sensor_SubscriptionId](#sensor_subscriptionid) instance.|
-| [OH_Sensor_DestroySubscriptionId](#oh_sensor_destroysubscriptionid)([Sensor_SubscriptionId](#sensor_subscriptionid) \*id) | Destroys a [Sensor_SubscriptionId](#sensor_subscriptionid) instance and reclaims memory.|
-| [OH_SensorSubscriptionId_GetType](#oh_sensorsubscriptionid_gettype)([Sensor_SubscriptionId](#sensor_subscriptionid) \*id, [Sensor_Type](#sensor_type) \*sensorType) | Obtains the sensor type. |
+| [OH_Sensor_DestroySubscriptionId](#oh_sensor_destroysubscriptionid)([Sensor_SubscriptionId](#sensor_subscriptionid) *id) | Destroys a [Sensor_SubscriptionId](#sensor_subscriptionid) instance and reclaims memory.|
+| [OH_SensorSubscriptionId_GetType](#oh_sensorsubscriptionid_gettype)([Sensor_SubscriptionId](#sensor_subscriptionid) *id, [Sensor_Type](#sensor_type) *sensorType) | Obtains the sensor type. |
 | [OH_SensorSubscriptionId_SetType](#oh_sensorsubscriptionid_settype)([Sensor_SubscriptionId](#sensor_subscriptionid)* id, const [Sensor_Type](#sensor_type) sensorType) | Sets the sensor type. |
 | [OH_Sensor_CreateSubscriptionAttribute](#oh_sensor_createsubscriptionattribute)(void) | Creates a [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) instance.|
 | [OH_Sensor_DestroySubscriptionAttribute](#oh_sensor_destroysubscriptionattribute)([Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) *attribute) | Destroys a [Sensor_SubscriptionAttribute](#sensor_subscriptionattribute) instance and reclaims memory.|
-| [OH_SensorSubscriptionAttribute_SetSamplingInterval](#oh_sensorsubscriptionattribute_setsamplinginterval)([Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)* attribute, const int64_t samplingInterval) | Sets the sensor data reporting interval.                                    |
-| [OH_SensorSubscriptionAttribute_GetSamplingInterval](#oh_sensorsubscriptionattribute_getsamplinginterval) ([Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)* attribute, int64_t \*samplingInterval) | Obtains the sensor data reporting interval.                                    |
+| [OH_SensorSubscriptionAttribute_SetSamplingInterval](#oh_sensorsubscriptionattribute_setsamplinginterval)([Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)* attribute, const int64_t samplingInterval) | Sets the interval for reporting sensor data.                                 |
+| [OH_SensorSubscriptionAttribute_GetSamplingInterval](#oh_sensorsubscriptionattribute_getsamplinginterval) ([Sensor_SubscriptionAttribute](#sensor_subscriptionattribute)* attribute, int64_t *samplingInterval) | Obtains the interval for reporting sensor data.                                  |
 | [OH_Sensor_CreateSubscriber](#oh_sensor_createsubscriber)(void) | Creates a [Sensor_Subscriber](#sensor_subscriber) instance.     |
-| [OH_Sensor_DestroySubscriber](#oh_sensor_destroysubscriber)([Sensor_Subscriber](#sensor_subscriber) \*subscriber) | Destroys a [Sensor_Subscriber](#sensor_subscriber) instance and reclaims memory.|
-| [OH_SensorSubscriber_SetCallback](#oh_sensorsubscriber_setcallback)([Sensor_Subscriber](#sensor_subscriber)* subscriber, const [Sensor_EventCallback](#sensor_eventcallback) callback) | Sets a callback function to report sensor data. |
-| [OH_SensorSubscriber_GetCallback](#oh_sensorsubscriber_getcallback)([Sensor_Subscriber](#sensor_subscriber)* subscriber, [Sensor_EventCallback](#sensor_eventcallback) \*callback) | Obtains the callback function used to report sensor data. |
+| [OH_Sensor_DestroySubscriber](#oh_sensor_destroysubscriber)([Sensor_Subscriber](#sensor_subscriber) *subscriber) | Destroys a [Sensor_Subscriber](#sensor_subscriber) instance and reclaims memory.|
+| [OH_SensorSubscriber_SetCallback](#oh_sensorsubscriber_setcallback)([Sensor_Subscriber](#sensor_subscriber)* subscriber, const [Sensor_EventCallback](#sensor_eventcallback) callback) | Sets a callback function to report sensor data.|
+| [OH_SensorSubscriber_GetCallback](#oh_sensorsubscriber_getcallback)([Sensor_Subscriber](#sensor_subscriber)* subscriber, [Sensor_EventCallback](#sensor_eventcallback) *callback) | Obtains the callback function used to report sensor data.|
 
 
 ## Type Description
@@ -148,7 +148,7 @@ typedef struct Sensor_Subscriber Sensor_Subscriber
 ```
 **Description**
 
-Defines a struct the sensor subscriber information.
+Defines a struct for the sensor subscriber information.
 
 **Since**: 11
 
@@ -199,7 +199,7 @@ enum Sensor_Accuracy
 ```
 **Description**
 
-Enumerates the accuracy levels of data reported by a sensor.
+Defines an enum for accuracy levels of data reported by a sensor.
 
 **Since**: 11
 
@@ -218,7 +218,7 @@ enum Sensor_Result
 ```
 **Description**
 
-Enumerates the sensor result codes.
+Defines an enum for sensor result codes.
 
 **Since**: 11
 
@@ -237,7 +237,7 @@ enum Sensor_Type
 ```
 **Description**
 
-Enumerates the sensor types.
+Defines an enum for sensor types.
 
 **Since**: 11
 
@@ -450,14 +450,7 @@ Sensor_Result OH_Sensor_Subscribe(const Sensor_SubscriptionId *id, const Sensor_
 ```
 **Description**
 
-Subscribe to sensor data. The system will report sensor data to the subscriber at the specified frequency.
-
-- To subscribe to data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission.
-- To subscribe to data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission.
-- To subscribe to data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission.
-- To subscribe to data of health-related sensors, such as heart rate sensors, request the **ohos.permission.READ_HEALTH_DATA** permission.
-
-Otherwise, the subscription fails. You do not need to request any permission to subscribe to data of other types of sensors.
+Subscribe to sensor data. The system will report sensor data to the subscriber at the specified frequency. To subscribe to data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission. To subscribe to data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission. To subscribe to data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission. To subscribe to data of health-related sensors, such as heart rate sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. Otherwise, the subscription fails. You do not need to request any permission to subscribe to data of other types of sensors.
 
 **Since**: 11
 
@@ -485,17 +478,7 @@ Sensor_Result OH_Sensor_Unsubscribe(const Sensor_SubscriptionId *id, const Senso
 ```
 **Description**
 
-Unsubscribes from sensor data.
-
-- To unsubscribe from data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission.
-
-- To unsubscribe from data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission.
-
-- To unsubscribe from data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission.
-
-- To unsubscribe from data of health-related sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. 
-
-Otherwise, the unsubscription fails. You do not need to request any permission to unsubscribe from data of other types of sensors.
+Unsubscribes from sensor data. To unsubscribe from data of acceleration sensors, request the **ohos.permission.ACCELEROMETER** permission. To unsubscribe from data of gyroscope sensors, request the **ohos.permission.GYROSCOPE** permission. To unsubscribe from data of pedometer-related sensors, request the **ohos.permission.ACTIVITY_MOTION** permission. To unsubscribe from data of health-related sensors, request the **ohos.permission.READ_HEALTH_DATA** permission. Otherwise, the unsubscription fails. You do not need to request any permission to unsubscribe from data of other types of sensors.
 
 **Since**: 11
 
@@ -545,9 +528,7 @@ int32_t OH_SensorEvent_GetData(Sensor_Event* sensorEvent, float **data, uint32_t
 ```
 **Description**
 
-Obtains sensor data. The data length and content depend on the sensor type.
-
-The format of the sensor data reported is as follows:
+Obtains sensor data. The data length and content depend on the sensor type. The format of the sensor data reported is as follows:
 
 - SENSOR_TYPE_ACCELEROMETER: data[0], data[1], and data[2], indicating the acceleration around the x, y, and z axes of a device, respectively, in m/s².
 
@@ -574,6 +555,10 @@ The format of the sensor data reported is as follows:
 - SENSOR_TYPE_PEDOMETER: data[0], indicating the number of steps a user has walked.
 
 - SENSOR_TYPE_HEART_RATE: data[0], indicating the heart rate value.
+
+- SENSOR_TYPE_LINEAR_ACCELERATION: data[0], data[1], and data[2], indicating the acceleration around the x, y, and z axes of a device, respectively, in m/s². This parameter is supported since API version 13.
+
+- SENSOR_TYPE_GAME_ROTATION_VECTOR: data[0], data[1] and data[2], indicating the rotation angles of a device around the x, y, and z axes, respectively, in degree; data[3], indicating the rotation vector. This parameter is supported since API version 13.
 
 **Since**: 11
 
@@ -829,7 +814,7 @@ int32_t OH_SensorSubscriptionAttribute_GetSamplingInterval (Sensor_SubscriptionA
 ```
 **Description**
 
-Obtains the sensor data reporting interval.
+Obtains the interval for reporting sensor data.
 
 **Since**: 11
 
@@ -852,7 +837,7 @@ int32_t OH_SensorSubscriptionAttribute_SetSamplingInterval(Sensor_SubscriptionAt
 ```
 **Description**
 
-Sets the sensor data reporting interval.
+Sets the interval for reporting sensor data.
 
 **Since**: 11
 

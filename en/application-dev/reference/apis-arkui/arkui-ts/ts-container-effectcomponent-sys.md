@@ -1,6 +1,6 @@
 # EffectComponent (System API)
 
-The **\<EffectComponent>** component defines combined special effects for child components to optimize the special effect drawing performance.
+The **EffectComponent** component defines combined special effects for child components to optimize the special effect drawing performance.
 
 >  **NOTE**
 >
@@ -22,7 +22,7 @@ Supported
 
 EffectComponent()
 
-Creates an **\<EffectComponent>** component.
+Creates an **EffectComponent** component.
 
 ## Events
 
@@ -33,6 +33,8 @@ The universal events are not supported.
 The universal attributes are supported. Currently, this component only works with the **backgroundBlurStyle** attribute.
 
 ## Example
+
+This example demonstrates how to use the **EffectComponent** component.
 
 ```ts
 //Index.ets
@@ -66,7 +68,7 @@ struct Index {
             .height('48')
 
           // Use useEffect to combine drawing of the background blur effect, with blur settings inherited from <EffectComponent>.
-          Text("Normal text with useeffcet blur 1")
+          Text("Normal text with useEffect blur 1")
             .textAlign(TextAlign.Center)
             .useEffect(true)
             .fontSize(16)
@@ -76,7 +78,7 @@ struct Index {
             .height('48')
 
           // Use useEffect to combine drawing of the background blur effect, with blur settings inherited from <EffectComponent>.
-          Text("Normal text with useeffcet blur 2")
+          Text("Normal text with useEffect blur 2")
             .textAlign(TextAlign.Center)
             .useEffect(true)
             .fontSize(16)

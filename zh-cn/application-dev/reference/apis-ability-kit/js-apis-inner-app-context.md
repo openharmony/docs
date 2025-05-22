@@ -1,4 +1,5 @@
 # Context
+<!--deprecated_code_no_check-->
 
 Context模块提供了ability或application的上下文的能力，包括允许访问特定于应用程序的资源、请求和验证权限等。
 
@@ -18,6 +19,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 Context对象是在featureAbility中创建实例，并通过featureAbility的[getContext](js-apis-ability-featureAbility.md#featureabilitygetcontext)接口返回，因此在使用Context时，必须导入@ohos.ability.featureAbility库。示例如下：
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -45,6 +47,7 @@ getOrCreateLocalDir(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -78,6 +81,7 @@ getOrCreateLocalDir(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -105,6 +109,7 @@ verifyPermission(permission: string, options: PermissionOptions, callback: Async
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
@@ -142,6 +147,7 @@ verifyPermission(permission: string, callback: AsyncCallback\<number>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -178,6 +184,7 @@ verifyPermission(permission: string, options?: PermissionOptions): Promise\<numb
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -207,6 +214,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number, res
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -252,6 +260,7 @@ requestPermissionsFromUser(permissions: Array\<string>, requestCode: number): Pr
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -286,6 +295,7 @@ getApplicationInfo(callback: AsyncCallback\<ApplicationInfo>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -317,6 +327,7 @@ getApplicationInfo(): Promise\<ApplicationInfo>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -344,6 +355,7 @@ getBundleName(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -375,6 +387,7 @@ getBundleName(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -400,6 +413,7 @@ getDisplayOrientation(callback: AsyncCallback\<bundle.DisplayOrientation>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -429,6 +443,7 @@ getDisplayOrientation(): Promise\<bundle.DisplayOrientation>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -444,7 +459,7 @@ getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 获取应用程序的外部缓存目录。使用callback异步回调。
 
-**说明：**
+> **说明：**
 >
 > 从API version 7开始不再支持。
 
@@ -458,6 +473,7 @@ getExternalCacheDir(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -477,7 +493,7 @@ getExternalCacheDir(): Promise\<string>
 
 获取应用程序的外部缓存目录。使用Promise异步回调。
 
-**说明：**
+> **说明：**
 >
 > 从API version 7开始不再支持。
 
@@ -491,6 +507,7 @@ getExternalCacheDir(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -517,6 +534,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation, callback: AsyncCal
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import bundleManager from '@ohos.bundle';
@@ -550,6 +568,7 @@ setDisplayOrientation(orientation: bundle.DisplayOrientation): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import bundleManager from '@ohos.bundle';
@@ -567,9 +586,9 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态。使用callback异步回调。
 
-**说明：**
+> **说明：**
 >
-> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9)替代。
+> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -582,6 +601,7 @@ setShowOnLockScreen(show: boolean, callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -598,9 +618,9 @@ setShowOnLockScreen(show: boolean): Promise\<void>
 
 设置每当显示锁屏时是否在锁屏顶部显示此功能，使该功能保持激活状态。使用Promise异步回调。
 
-**说明：**
+> **说明：**
 >
-> 从API version 9开始不再支持。建议使用[window.setShowOnLockScreen](../apis-arkui/js-apis-window-sys.md#setshowonlockscreen9)替代。
+> 从API version 9开始不再支持。建议使用window.setShowOnLockScreen替代，新接口为系统接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -618,6 +638,7 @@ setShowOnLockScreen(show: boolean): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -628,11 +649,15 @@ context.setShowOnLockScreen(show).then((data) => {
 });
 ```
 
-## Context.setWakeUpScreen<sup>7+</sup>
+## Context.setWakeUpScreen<sup>(deprecated)</sup>
 
 setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
 设置恢复此功能时是否唤醒屏幕。使用callback异步回调。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 12开始废弃，替代接口window.setWakeUpScreen仅面向系统应用开放。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -645,6 +670,7 @@ setWakeUpScreen(wakeUp: boolean, callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -655,11 +681,15 @@ context.setWakeUpScreen(wakeUp, (error) => {
 });
 ```
 
-## Context.setWakeUpScreen<sup>7+</sup>
+## Context.setWakeUpScreen<sup>(deprecated)</sup>
 
 setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
 设置恢复此功能时是否唤醒屏幕。使用Promise异步回调。
+
+> **说明：**
+>
+> 从API version 7开始支持，从API version 12开始废弃，替代接口window.setWakeUpScreen仅面向系统应用开放。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -677,6 +707,7 @@ setWakeUpScreen(wakeUp: boolean): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -706,6 +737,7 @@ getProcessInfo(callback: AsyncCallback\<ProcessInfo>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -737,6 +769,7 @@ getProcessInfo(): Promise\<ProcessInfo>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -766,6 +799,7 @@ getElementName(callback: AsyncCallback\<ElementName>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -799,6 +833,7 @@ getElementName(): Promise\<ElementName>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -824,6 +859,7 @@ getProcessName(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -855,6 +891,7 @@ getProcessName(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -882,6 +919,7 @@ getCallingBundle(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -913,6 +951,7 @@ getCallingBundle(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -938,6 +977,7 @@ getCacheDir(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -967,6 +1007,7 @@ getCacheDir(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -992,6 +1033,7 @@ getFilesDir(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1021,6 +1063,7 @@ getFilesDir(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1048,6 +1091,7 @@ getOrCreateDistributedDir(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1079,6 +1123,7 @@ getOrCreateDistributedDir(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1104,6 +1149,7 @@ getAppType(callback: AsyncCallback\<string>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1133,6 +1179,7 @@ getAppType(): Promise\<string>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1158,6 +1205,7 @@ getHapModuleInfo(callback: AsyncCallback\<HapModuleInfo>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1187,6 +1235,7 @@ getHapModuleInfo(): Promise\<HapModuleInfo>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1212,6 +1261,7 @@ getAppVersionInfo(callback: AsyncCallback\<AppVersionInfo>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1241,6 +1291,7 @@ getAppVersionInfo(): Promise\<AppVersionInfo>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1266,6 +1317,7 @@ getAbilityInfo(callback: AsyncCallback\<AbilityInfo>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1295,6 +1347,7 @@ getAbilityInfo(): Promise\<AbilityInfo>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1320,6 +1373,7 @@ getApplicationContext(): Context
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1342,6 +1396,7 @@ isUpdatingConfigurations(callback: AsyncCallback\<boolean>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1371,6 +1426,7 @@ isUpdatingConfigurations(): Promise\<boolean>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1396,6 +1452,7 @@ printDrawnCompleted(callback: AsyncCallback\<void>): void
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1421,6 +1478,7 @@ printDrawnCompleted(): Promise\<void>
 
 **示例：**
 
+<!--code_no_check_fa-->
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
@@ -1433,7 +1491,7 @@ context.printDrawnCompleted().then((data) => {
 
 ## PermissionOptions<sup>7+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称   | 类型     | 必填   | 说明    |
 | ---- | ------ | ---- | ----- |
@@ -1442,7 +1500,7 @@ context.printDrawnCompleted().then((data) => {
 
 ## PermissionRequestResult<sup>7+</sup>
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称         | 类型             | 必填   | 说明         |
 | ----------- |-------------- | ---- | ---------- |

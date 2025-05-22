@@ -9,6 +9,7 @@
 
 **相关模块：**[Drawing](_drawing.md)
 
+**所在头文件：**[drawing_text_typography.h](drawing__text__typography_8h.md)
 
 ## 汇总
 
@@ -17,16 +18,16 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight)[weight](#weight) | 计算支柱时使用的字体粗细  | 
-| [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle)[style](#style) | 计算支柱时使用的字体格式  | 
-| double [size](#size) | 逻辑像素中的上升加下降的大小  | 
-| double [heightScale](#heightscale) | 行高  | 
-| bool [heightOverride](#heightoverride) | 是否启用高度覆盖，true表示启用，false表示不启用  | 
-| bool [halfLeading](#halfleading) | 半行距是否启用，true表示启用，false表示不启用  | 
-| double [leading](#leading) | 以自定义行距应用于支柱的行距  | 
-| bool [forceStrutHeight](#forcestrutheight) | 是否所有行都将使用支柱的高度，true表示使用，false表示不使用  | 
-| size_t [familiesSize](#familiessize) | 字体家族的数量  | 
-| char \*\* [families](#families) | 计算支柱时使用的字体名称  | 
+| [OH_Drawing_FontWeight](_drawing.md#oh_drawing_fontweight) [weight](#weight) | 计算支柱时使用的字体粗细。  | 
+| [OH_Drawing_FontStyle](_drawing.md#oh_drawing_fontstyle) [style](#style) | 计算支柱时使用的字体格式。  | 
+| double [size](#size) | 逻辑像素中的上升加下降的大小。  | 
+| double [heightScale](#heightscale) | 行高缩放系数。  | 
+| bool [heightOverride](#heightoverride) | 是否启用高度覆盖，true表示启用，false表示不启用。  | 
+| bool [halfLeading](#halfleading) | 半行距是否启用，true表示启用，false表示不启用。  | 
+| double [leading](#leading) | 以自定义行距应用于支柱的行距。  | 
+| bool [forceStrutHeight](#forcestrutheight) | 是否所有行都将使用支柱的高度，true表示使用，false表示不使用。  | 
+| size_t [familiesSize](#familiessize) | 字体家族的数量。  | 
+| char \*\* [families](#families) | 计算支柱时使用的字体名称。  | 
 
 
 ## 结构体成员变量说明
@@ -39,7 +40,7 @@ char** OH_Drawing_StrutStyle::families
 ```
 **描述**
 
-计算支柱时使用的字体名称
+计算支柱时使用的字体名称。
 
 
 ### familiesSize
@@ -50,7 +51,7 @@ size_t OH_Drawing_StrutStyle::familiesSize
 
 **描述**
 
-字体家族的数量
+字体家族的数量。
 
 
 ### forceStrutHeight
@@ -60,7 +61,7 @@ bool OH_Drawing_StrutStyle::forceStrutHeight
 ```
 **描述**
 
-是否所有行都将使用支柱的高度，true表示使用，false表示不使用
+是否所有行都将使用支柱的高度，true表示使用，false表示不使用。
 
 
 ### halfLeading
@@ -70,7 +71,7 @@ bool OH_Drawing_StrutStyle::halfLeading
 ```
 **描述**
 
-半行距是否启用，true表示启用，false表示不启用
+半行距是否启用，true表示启用，false表示不启用。
 
 
 ### heightOverride
@@ -81,7 +82,7 @@ bool OH_Drawing_StrutStyle::heightOverride
 
 **描述**
 
-是否启用高度覆盖，true表示启用，false表示不启用
+是否启用高度覆盖，true表示启用，false表示不启用。
 
 
 ### heightScale
@@ -92,7 +93,7 @@ double OH_Drawing_StrutStyle::heightScale
 
 **描述**
 
-行高
+行高缩放系数。
 
 
 ### leading
@@ -103,7 +104,7 @@ double OH_Drawing_StrutStyle::leading
 
 **描述**
 
-以自定义行距应用于支柱的行距
+以自定义行距应用于支柱的行距。
 
 
 ### size
@@ -114,7 +115,7 @@ double OH_Drawing_StrutStyle::size
 
 **描述**
 
-逻辑像素中的上升加下降的大小
+逻辑像素中的上升加下降的大小。
 
 
 ### style
@@ -125,7 +126,7 @@ OH_Drawing_FontStyle OH_Drawing_StrutStyle::style
 
 **描述**
 
-计算支柱时使用的字体格式
+计算支柱时使用的字体格式。
 
 
 ### weight
@@ -136,4 +137,4 @@ OH_Drawing_FontWeight OH_Drawing_StrutStyle::weight
 
 **描述**
 
-计算支柱时使用的字体粗细
+计算支柱时使用的字体粗细。

@@ -9,12 +9,14 @@ The **colorSpaceManager** module provides APIs for creating and managing color s
 ## Modules to Import
 
 ```ts
-import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { colorSpaceManager } from '@kit.ArkGraphics2D';
 ```
 
 ## ColorSpace
 
 Enumerates the color space types.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Graphic.Graphic2D.ColorManager.Core
 
@@ -47,6 +49,7 @@ Enumerates the color space types.
 | LINEAR_SRGB<sup>11+</sup>          | 24     | SRGB.<br>The conversion function is of the Linear type.|
 | LINEAR_BT709<sup>11+</sup>         | 24     | Same as that of LINEAR_SRGB.<br>BT709.<br>The conversion function is of the Linear type.|
 | LINEAR_BT2020<sup>11+</sup>        | 25     | BT2020.<br>The conversion function is of the Linear type.|
+| H_LOG<sup>18+</sup>                | 26     | BT2020.<br>The conversion function is of the LOG type.|
 | DISPLAY_SRGB<sup>11+</sup>         | 4      | Same as that of SRGB.<br>SRGB.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.|
 | DISPLAY_P3_SRGB<sup>11+</sup>      | 3      | Same as that of DISPLAY_P3.<br>Display P3.<br>The conversion function is of the SRGB type.<br>The encoding range is of the Full type.|
 | DISPLAY_P3_HLG<sup>11+</sup>       | 11     | Same as that of P3_HLG.<br>Display P3.<br>The conversion function is of the HLG type.<br>The encoding range is of the Full type.|
@@ -91,11 +94,12 @@ Creates a standard color space object.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
@@ -131,11 +135,12 @@ Creates a custom color space object.
 
 **Error codes**
 
-For details about the error codes, see [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [colorSpaceManager Error Codes](errorcode-colorspace-manager.md).
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 401 | Parameter error. Possible cause: 1.Incorrect parameter type. 2.Parameter verification failed.|
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
@@ -185,13 +190,13 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
 ```ts
 try {
-    colorSpace.getColorSpaceName();
+    let spaceName = colorSpace.getColorSpaceName();
 } catch (err) {
     console.log(`Fail to get colorSpace's name. Cause: ` + JSON.stringify(err));
 }
@@ -217,13 +222,13 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
 ```ts
 try {
-    colorSpace.getWhitePoint();
+    let point = colorSpace.getWhitePoint();
 } catch (err) {
     console.log(`Failed to get white point. Cause: ` + JSON.stringify(err));
 }
@@ -249,13 +254,13 @@ For details about the error codes, see [colorSpaceManager Error Codes](errorcode
 
 | ID| Error Message|
 | ------- | ----------------------- |
-| 18600001 | Parameter value is abnormal. |
+| 18600001 | The parameter value is abnormal. |
 
 **Example**
 
 ```ts
 try {
-    colorSpace.getGamma();
+    let gamma = colorSpace.getGamma();
 } catch (err) {
     console.log(`Failed to get gamma. Cause: ` + JSON.stringify(err));
 }

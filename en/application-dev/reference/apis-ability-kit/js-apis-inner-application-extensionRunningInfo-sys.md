@@ -10,7 +10,7 @@ The **ExtensionRunningInfo** module encapsulates ExtensionAbility running inform
 ## Modules to Import
 
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
+import { abilityManager } from '@kit.AbilityKit';
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ Import the **abilityManager** module and obtain the ExtensionAbility running inf
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
-**System API**: The following APIs are system APIs and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -35,26 +35,27 @@ Import the **abilityManager** module and obtain the ExtensionAbility running inf
 
 **Example**
 ```ts
-import abilityManager from '@ohos.app.ability.abilityManager';
+import { abilityManager } from '@kit.AbilityKit';
 
 let upperLimit = 1;
-function getExtensionInfos() {
-    abilityManager.getExtensionRunningInfos(upperLimit, (error, data) => {
-        if (error) {
-            console.error(`getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
-            return;
-        }
 
-        for (let i = 0; i < data.length; i++) {
-            let extensionRunningInfo = data[i];
-            console.log(`extensionRunningInfo.extension: ${JSON.stringify(extensionRunningInfo.extension)}`);
-            console.log(`extensionRunningInfo.pid: ${JSON.stringify(extensionRunningInfo.pid)}`);
-            console.log(`extensionRunningInfo.uid: ${JSON.stringify(extensionRunningInfo.uid)}`);
-            console.log(`extensionRunningInfo.processName: ${JSON.stringify(extensionRunningInfo.processName)}`);
-            console.log(`extensionRunningInfo.startTime: ${JSON.stringify(extensionRunningInfo.startTime)}`);
-            console.log(`extensionRunningInfo.clientPackage: ${JSON.stringify(extensionRunningInfo.clientPackage)}`);
-            console.log(`extensionRunningInfo.type: ${JSON.stringify(extensionRunningInfo.type)}`);
-        }
-    });
+function getExtensionInfos() {
+  abilityManager.getExtensionRunningInfos(upperLimit, (error, data) => {
+    if (error) {
+      console.error(`getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
+      return;
+    }
+
+    for (let i = 0; i < data.length; i++) {
+      let extensionRunningInfo = data[i];
+      console.log(`extensionRunningInfo.extension: ${JSON.stringify(extensionRunningInfo.extension)}`);
+      console.log(`extensionRunningInfo.pid: ${JSON.stringify(extensionRunningInfo.pid)}`);
+      console.log(`extensionRunningInfo.uid: ${JSON.stringify(extensionRunningInfo.uid)}`);
+      console.log(`extensionRunningInfo.processName: ${JSON.stringify(extensionRunningInfo.processName)}`);
+      console.log(`extensionRunningInfo.startTime: ${JSON.stringify(extensionRunningInfo.startTime)}`);
+      console.log(`extensionRunningInfo.clientPackage: ${JSON.stringify(extensionRunningInfo.clientPackage)}`);
+      console.log(`extensionRunningInfo.type: ${JSON.stringify(extensionRunningInfo.type)}`);
+    }
+  });
 }
 ```

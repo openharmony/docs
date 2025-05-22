@@ -1,87 +1,45 @@
-# 入门
-
-- 快速入门
+# 入门<!--application-getting-started-->
+<!--Del-->
+- 快速入门<!--quick-start-->
   - [开发准备](start-overview.md)
   - [构建第一个ArkTS应用（Stage模型）](start-with-ets-stage.md)
-- 开发基础知识
-  - 应用程序包基础知识
+<!--DelEnd-->
+- 开发基础知识<!--development-fundamentals-->
+  - 应用程序包基础知识<!--application-package-fundamentals-->
     - [应用程序包概述](application-package-overview.md)
-    - 应用程序包结构
+    - 应用程序包结构<!--application-package-structure-->
       - [Stage模型应用程序包结构](application-package-structure-stage.md)
       - [FA模型应用程序包结构](application-package-structure-fa.md)
-    - 应用程序包开发与使用
+    - 应用程序包开发与使用<!--application-package-dev-->
       - [HAP](hap-package.md)
       - [HAR](har-package.md)
       - [HSP](in-app-hsp.md)
-      - [动态import](arkts-dynamic-import.md)
     - [应用程序包安装卸载与更新](application-package-install-uninstall.md)
-  - 应用配置文件（Stage模型）
+  - 应用配置文件（Stage模型）<!--application-configuration-file-stage-->
     - [应用配置文件概述（Stage模型）](application-configuration-file-overview-stage.md)
     - [app.json5配置文件](app-configuration-file.md)
     - [module.json5配置文件](module-configuration-file.md)
-  - 应用配置文件（FA模型）
+  - 应用配置文件（FA模型）<!--application-configuration-file-fa-->
     - [应用配置文件概述（FA模型）](application-configuration-file-overview-fa.md)
     - [app对象内部结构](app-structure.md)
     - [deviceConfig内部结构](deviceconfig-structure.md)
     - [module对象内部结构](module-structure.md)
+  - 典型场景的开发指导<!--application-typical-scenarios-->
+    - [集成态HSP](integrated-hsp.md)
+    - [HAR转HSP指导](har-to-hsp.md)
+    - [HSP转HAR指导](hsp-to-har.md)
+    - [创建应用静态快捷方式](typical-scenario-configuration.md)
+    - [创建应用分身](app-clone.md)
+    - [创建应用多实例](multiInstance.md)
+    - [配置分层图标](layered-image.md)
+  - [应用程序包术语](application-package-glossary.md)
 - [资源分类与访问](resource-categories-and-access.md)
-- 学习ArkTS语言
+- 学习ArkTS语言<!--learning-arkts-->
   - [初识ArkTS语言](arkts-get-started.md)
   - [ArkTS语言介绍](introduction-to-arkts.md)
-  - [方舟字节码文件格式](arkts-bytecode-file-format.md)
-  - [方舟字节码基本原理](arkts-bytecode-fundamentals.md)
-  - 从TypeScript到ArkTS的适配指导
+  - [ArkTS语言规范](arkts-coding-style-guide.md)
+  - 从TypeScript到ArkTS的适配指导<!--typescript-to-arkts-migration-->
     - [ArkTS语法适配背景](arkts-migration-background.md)
     - [从TypeScript到ArkTS的适配规则](typescript-to-arkts-migration-guide.md)
     - [适配指导案例](arkts-more-cases.md)
   - [ArkTS高性能编程实践](arkts-high-performance-programming.md)
-  - UI范式
-    - 基本语法
-      - [基本语法概述](arkts-basic-syntax-overview.md)
-      - [声明式UI描述](arkts-declarative-ui-description.md)
-      - 自定义组件
-        - [创建自定义组件](arkts-create-custom-components.md)
-        - [页面和自定义组件生命周期](arkts-page-custom-components-lifecycle.md)
-        - [自定义组件的自定义布局](arkts-page-custom-components-layout.md)
-        - [自定义组件冻结功能](arkts-custom-components-freeze.md)
-        - [自定义组件成员属性访问限定符使用限制](arkts-custom-components-access-restrictions.md)
-      - [\@Builder装饰器：自定义构建函数](arkts-builder.md)
-      - [\@BuilderParam装饰器：引用\@Builder函数](arkts-builderparam.md)
-      - [wrapBuilder：封装全局@Builder](arkts-wrapBuilder.md)
-      - [\@Styles装饰器：定义组件重用样式](arkts-style.md)
-      - [\@Extend装饰器：定义扩展组件样式](arkts-extend.md)
-      - [stateStyles：多态样式](arkts-statestyles.md)
-      - [@AnimatableExtend装饰器：定义可动画属性](arkts-animatable-extend.md)
-      - [@Require装饰器：校验构造传参](arkts-require.md)
-    - 状态管理
-      - [状态管理概述](arkts-state-management-overview.md)
-      - 管理组件拥有的状态
-        - [\@State装饰器：组件内状态](arkts-state.md)
-        - [\@Prop装饰器：父子单向同步](arkts-prop.md)
-        - [\@Link装饰器：父子双向同步](arkts-link.md)
-        - [\@Provide装饰器和\@Consume装饰器：与后代组件双向同步](arkts-provide-and-consume.md)
-        - [\@Observed装饰器和\@ObjectLink装饰器：嵌套类对象属性变化](arkts-observed-and-objectlink.md)
-      - 管理应用拥有的状态
-        - [管理应用拥有的状态概述](arkts-application-state-management-overview.md)
-        - [LocalStorage：页面级UI状态存储](arkts-localstorage.md)
-        - [AppStorage：应用全局的UI状态存储](arkts-appstorage.md)
-        - [PersistentStorage：持久化存储UI状态](arkts-persiststorage.md)
-        - [Environment：设备环境查询](arkts-environment.md)
-      - 其他状态管理
-        - [其他状态管理概述](arkts-other-state-mgmt-functions-overview.md)
-        - [\@Watch装饰器：状态变量更改通知](arkts-watch.md)
-        - [$$语法：内置组件双向同步](arkts-two-way-sync.md)
-        - [\@Track装饰器：class对象属性级更新](arkts-track.md)
-      - [MVVM模式](arkts-mvvm.md)
-      - [状态管理优秀实践](arkts-state-management-best-practices.md)
-      - [状态管理合理使用开发指导](properly-use-state-management-to-develope.md)
-    - 状态管理（推荐）
-      - [状态管理（推荐）概述](arkts-new-state-management-overview.md)
-      - 状态管理（推荐）所属装饰器
-        - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](arkts-new-ObservedV2-and-Trace.md)
-    - 渲染控制
-      - [渲染控制概述](arkts-rendering-control-overview.md)
-      - [if/else：条件渲染](arkts-rendering-control-ifelse.md)
-      - [ForEach：循环渲染](arkts-rendering-control-foreach.md)
-      - [LazyForEach：数据懒加载](arkts-rendering-control-lazyforeach.md)
-      - [Repeat：循环渲染(推荐)](arkts-rendering-control-repeat.md)

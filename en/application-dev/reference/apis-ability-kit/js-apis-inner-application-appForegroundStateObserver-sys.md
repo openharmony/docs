@@ -1,6 +1,6 @@
 # AppForegroundStateObserver (System API)
 
-The **AppForegroundStateObserver** module defines the listener used to listen for application startup and exit state changes. It can be used as an input parameter of [on()](js-apis-app-ability-appManager-sys.md#appmanageron11) to listen for the state changes of all applications.
+The AppForegroundStateObserver module defines the listener used to listen for application startup and exit state changes. It can be used as an input parameter of [on](js-apis-app-ability-appManager-sys.md#appmanageronappforegroundstate11) to listen for the state changes of all applications.
 
 > **NOTE**
 >
@@ -10,7 +10,7 @@ The **AppForegroundStateObserver** module defines the listener used to listen fo
 ## Modules to Import
 
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 ```
 
 ## Attributes
@@ -21,16 +21,16 @@ import appManager from '@ohos.app.ability.appManager';
 
 | Name                            | Type                   | Readable| Writable| Description  |
 | -------------------------------- | ---------------------- | ---- | ---- | ------------------ |
-| onAppStateChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the startup or exit state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData-sys.md).|
+| onAppStateChanged   | AsyncCallback\<void>   | Yes  | No  | Callback invoked when the startup or exit state of an application changes. The parameter type passed in is [AppStateData](js-apis-inner-application-appStateData.md).|
 
 **Example**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import { appManager } from '@kit.AbilityKit';
 
 let observer: appManager.AppForegroundStateObserver = {
-    onAppStateChanged(appStateData) {
-        console.log(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
-    },
+  onAppStateChanged(appStateData) {
+    console.log(`onAppStateChanged appStateData: ${JSON.stringify(appStateData)}`);
+  },
 };
 appManager.on('appForegroundState', observer);
 ```

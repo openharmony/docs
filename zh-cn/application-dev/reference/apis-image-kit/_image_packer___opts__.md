@@ -1,4 +1,4 @@
-# ImagePacker_Opts_
+# ImagePacker_Opts
 
 
 ## 概述
@@ -11,6 +11,8 @@
 
 **相关模块：** [Image](image.md)
 
+**所在头文件：**[image_packer_mdk.h](image__packer__mdk_8h.md)
+
 
 ## 汇总
 
@@ -19,8 +21,8 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [format](#format) | 编码格式 | 
-| [quality](#quality) | 编码质量 | 
+| const char \* [format](#format) | 编码格式。 |
+| int [quality](#quality) | 编码质量。 |
 
 
 ## 结构体成员变量说明
@@ -29,20 +31,16 @@
 ### format
 
 ```
-const char* ImagePacker_Opts_::format
+const char* ImagePacker_Opts::format
 ```
-
 **描述**
-
-编码格式
+编码格式。
 
 
 ### quality
 
 ```
-int ImagePacker_Opts_::quality
+int ImagePacker_Opts::quality
 ```
-
 **描述**
-
-编码质量
+编码质量。

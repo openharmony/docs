@@ -3,7 +3,7 @@
 
 ## Overview
 
-The **native_audio_channel_layout.h** file declares the audio channel layout, which is used to indicate the appearance and sequence of speakers during recording or playback.
+The **native_audio_channel_layout.h** file declares the functions related to the speaker layout during recording and playback.
 
 **Library**: none
 
@@ -21,9 +21,9 @@ The **native_audio_channel_layout.h** file declares the audio channel layout, wh
 
 | Name| Description| 
 | -------- | -------- |
-| typedef enum [OH_AudioChannelSet](_core.md#oh_audiochannelset-1) [OH_AudioChannelSet](_core.md#oh_audiochannelset) | Defines an enum that enumerates the audio channel sets.| 
-| typedef enum [OH_AmbAttributeSet](_core.md#oh_ambattributeset-1) [OH_AmbAttributeSet](_core.md#oh_ambattributeset) | Defines an enum that enumerates the Hi-Fi stereo reverberation settings.| 
-| typedef enum [OH_AudioChannelLayout](_core.md#oh_audiochannellayout-1) [OH_AudioChannelLayout](_core.md#oh_audiochannellayout) | Defines an enum that enumerates the audio channel layouts.| 
+| typedef enum [OH_AudioChannelSet](_core.md#oh_audiochannelset-1) [OH_AudioChannelSet](_core.md#oh_audiochannelset) | Defines an enum for audio channel sets.| 
+| typedef enum [OH_AmbAttributeSet](_core.md#oh_ambattributeset-1) [OH_AmbAttributeSet](_core.md#oh_ambattributeset) | Defines an enum for Hi-Fi stereo reverberation settings.| 
+| typedef enum [OH_AudioChannelLayout](_core.md#oh_audiochannellayout-1) [OH_AudioChannelLayout](_core.md#oh_audiochannellayout) | Defines an enum for audio channel layouts.| 
 
 
 ### Enums

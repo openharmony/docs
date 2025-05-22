@@ -1,7 +1,7 @@
 # &lt;swiper&gt; Development
 
 
-The **&lt;swiper&gt;** component is a sliding container used to switch between child components. For details, see [swiper](../reference/arkui-js/js-components-container-swiper.md).
+The **&lt;swiper&gt;** component is a sliding container used to switch between child components. For details, see [swiper](../reference/apis-arkui/arkui-js/js-components-container-swiper.md).
 
 
 ## Creating a &lt;swiper&gt; Component

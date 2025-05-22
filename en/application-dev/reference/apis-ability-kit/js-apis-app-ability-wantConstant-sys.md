@@ -11,10 +11,10 @@ The **wantConstant** module provides the actions, entities, and flags used in **
 ## Modules to Import
 
 ```ts
-import wantConstant from '@ohos.app.ability.wantConstant';
+import { wantConstant } from '@kit.AbilityKit';
 ```
 
-## wantConstant.Params
+## Params
 
 Defines **Params** (specifying the action that can be performed) in the Want.
 
@@ -22,9 +22,9 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 
 | Name                   | Value                                | Description                                                                          |
 | ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
-| DLP_PARAMS_SANDBOX      | ohos.dlp.params.sandbox            | Action of obtaining the sandbox flag.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| DLP_PARAMS_BUNDLE_NAME  | ohos.dlp.params.bundleName         | Action of obtaining the DLP bundle name.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| DLP_PARAMS_MODULE_NAME  | ohos.dlp.params.moduleName         | Action of obtaining the DLP module name.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| DLP_PARAMS_ABILITY_NAME | ohos.dlp.params.abilityName        | Action of obtaining the DLP ability name.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| DLP_PARAMS_INDEX        | ohos.dlp.params.index              | Action of obtaining the DLP index.<br>**System API**: This is a system API and cannot be called by third-party applications.|
-| ASSERT_FAULT_SESSION_ID<sup>12+</sup>  | ohos.ability.params.asssertFaultSessionId      | Session ID of the AssertFault.<br>**System API**: This is a system API and cannot be called by third-party applications.|
+| DLP_PARAMS_SANDBOX      | ohos.dlp.params.sandbox            | Action of obtaining the sandbox flag.<br>**System API**: This is a system API.|
+| DLP_PARAMS_BUNDLE_NAME  | ohos.dlp.params.bundleName         | Action of obtaining the DLP bundle name.<br>**System API**: This is a system API.|
+| DLP_PARAMS_MODULE_NAME  | ohos.dlp.params.moduleName         | Action of obtaining the DLP module name.<br>**System API**: This is a system API.|
+| DLP_PARAMS_ABILITY_NAME | ohos.dlp.params.abilityName        | Action of obtaining the DLP ability name.<br>**System API**: This is a system API.|
+| DLP_PARAMS_INDEX        | ohos.dlp.params.index              | Action of obtaining the DLP index.<br>**System API**: This is a system API.|
+| ASSERT_FAULT_SESSION_ID<sup>12+</sup>  | ohos.ability.params.asssertFaultSessionId      | Session ID of the AssertFault.<br>**System API**: This is a system API.|

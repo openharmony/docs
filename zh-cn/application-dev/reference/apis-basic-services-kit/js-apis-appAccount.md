@@ -1,6 +1,6 @@
-# @ohos.account.appAccount (应用帐号管理)
+# @ohos.account.appAccount (应用账号管理)
 
-本模块提供应用帐号信息的添加、删除、修改和查询基础能力，并支持应用间鉴权和分布式数据同步功能。
+本模块提供应用账号信息的添加、删除、修改和查询基础能力，并支持应用间鉴权和分布式数据同步功能。
 
 > **说明：**
 > 
@@ -10,15 +10,15 @@
 ## 导入模块
 
 ```ts
-import account_appAccount from '@ohos.account.appAccount';
+import { appAccount } from '@kit.BasicServicesKit';
 ```
 
 
-## account_appAccount.createAppAccountManager
+## appAccount.createAppAccountManager
 
 createAppAccountManager(): AppAccountManager
 
-创建应用帐号管理器对象。
+创建应用账号管理器对象。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -26,22 +26,22 @@ createAppAccountManager(): AppAccountManager
 
 | 类型                | 说明           |
 | ----------------- | ------------ |
-| AppAccountManager | 应用帐号管理器对象。 |
+| AppAccountManager | 应用账号管理器对象。 |
 
 **示例：**
   ```ts
-  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: appAccount.AppAccountManager = appAccount.createAppAccountManager();
   ```
 
 ## AppAccountManager
 
-应用帐号管理器类。
+应用账号管理器类。
 
 ### createAccount<sup>9+</sup>
 
 createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-根据帐号名创建应用帐号。使用callback异步回调。
+根据账号名创建应用账号。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -49,13 +49,14 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                    | 必填  | 说明               |
 | -------- | ------------------------- | ----- | -------------------- |
-| name     | string                    | 是    | 应用帐号的名称。          |
+| name     | string                    | 是    | 应用账号的名称。          |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当创建成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300004 | Account already exists. |
@@ -64,14 +65,14 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.createAccount('WangWu', (err: BusinessError) => { 
         console.log('createAccount err: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('createAccount err: ' + JSON.stringify(err));
+    console.error('createAccount err: ' + JSON.stringify(err));
   }
   ```
 
@@ -79,7 +80,7 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallback&lt;void&gt;): void
 
-根据帐号名和可选项创建应用帐号。使用callback异步回调。
+根据账号名和可选项创建应用账号。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -87,14 +88,15 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| name      | string                    | 是    | 应用帐号的名称。                              |
-| options | [CreateAccountOptions](#createaccountoptions9) | 是    | 创建应用帐号的选项，可提供自定义数据，但不建议包含敏感数据（如密码、Token等）。 |
+| name      | string                    | 是    | 应用账号的名称。                              |
+| options | [CreateAccountOptions](#createaccountoptions9) | 是    | 创建应用账号的选项，可提供自定义数据，但不建议包含敏感数据（如密码、Token等）。 |
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当创建成功时，err为null，否则为错误对象。             |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or options. |
 | 12300004 | Account already exists. |
@@ -103,9 +105,9 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let options:account_appAccount.CreateAccountOptions  = {
+  let options:appAccount.CreateAccountOptions  = {
     customData: {
       age: '10'
     }
@@ -113,13 +115,13 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
   try {
     appAccountManager.createAccount('LiSi', options, (err: BusinessError) => {
       if (err) {
-        console.log('createAccount failed, error: ' + JSON.stringify(err));
+        console.error('createAccount failed, error: ' + JSON.stringify(err));
       } else {
         console.log('createAccount successfully');
       }
     });
   } catch(err) {
-    console.log('createAccount exception: ' + JSON.stringify(err));
+    console.error('createAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -127,7 +129,7 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
 
 createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 
-根据帐号名和可选项创建应用帐号。使用Promise异步回调。
+根据账号名和可选项创建应用账号。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -135,8 +137,8 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
-| name      | string | 是    | 应用帐号的名称。                              |
-| options | [CreateAccountOptions](#createaccountoptions9) | 否    | 创建应用帐号的选项，可提供自定义数据，但不建议包含敏感数据（如密码、Token等）。不填无影响，默认为空，表示创建的该帐号无额外信息需要添加。 |
+| name      | string | 是    | 应用账号的名称。                              |
+| options | [CreateAccountOptions](#createaccountoptions9) | 否    | 创建应用账号的选项，可提供自定义数据，但不建议包含敏感数据（如密码、Token等）。不填无影响，默认为空，表示创建的该账号无额外信息需要添加。 |
 
 **返回值：**
 
@@ -148,6 +150,7 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or options. |
 | 12300004 | Account already exists. |
@@ -156,9 +159,9 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
-  let options: account_appAccount.CreateAccountOptions = {
+  let options: appAccount.CreateAccountOptions = {
     customData: {
       age: '10'
     }
@@ -167,10 +170,10 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
     appAccountManager.createAccount('LiSi', options).then(() => {
       console.log('createAccount successfully');
     }).catch((err: BusinessError) => {
-      console.log('createAccount failed, error: ' + JSON.stringify(err));
+      console.error('createAccount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
-    console.log('createAccount exception: ' + JSON.stringify(err));
+    console.error('createAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -178,7 +181,7 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 
 createAccountImplicitly(owner: string, callback: AuthCallback): void
 
-根据指定的帐号所有者隐式地创建应用帐号。使用callback异步回调。
+根据指定的账号所有者隐式地创建应用账号。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -186,13 +189,14 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 
 | 参数名      | 类型                | 必填   | 说明                      |
 | -------- | --------------------- | ---- | ----------------------- |
-| owner    | string                | 是    | 应用帐号所有者的包名。          |
+| owner    | string                | 是    | 应用账号所有者的包名。          |
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，返回创建结果。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -203,38 +207,44 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result?: account_appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  try {  
-    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', {
-      onResult: onResultCallback,
-      onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      try {
+        appAccountManager.createAccountImplicitly('com.example.accountjsdemo', {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.error('createAccountImplicitly exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -242,7 +252,7 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 
 createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, callback: AuthCallback): void
 
-根据指定的帐号所有者和可选项隐式地创建应用帐号。使用callback异步回调。
+根据指定的账号所有者和可选项隐式地创建应用账号。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -250,14 +260,15 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 
 | 参数名      | 类型                    | 必填   | 说明                      |
 | -------- | --------------------- | ---- | ----------------------- |
-| owner    | string                | 是    | 应用帐号所有者的包名。          |
-| options    | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)   | 是    | 隐式创建帐号的选项。          |
+| owner    | string                | 是    | 应用账号所有者的包名。          |
+| options    | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)   | 是    | 隐式创建账号的选项。          |
 | callback | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，返回创建结果。         |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner or options. |
 | 12300007 | The number of accounts reaches the upper limit. |
@@ -268,42 +279,48 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result?: account_appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  let options: account_appAccount.CreateAccountImplicitlyOptions = {
-    authType: 'getSocialData',
-    requiredLabels: [ 'student' ]
-  };
-  try {
-    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', options, {
-      onResult: onResultCallback,
-      onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      let options: appAccount.CreateAccountImplicitlyOptions = {
+        authType: 'getSocialData',
+        requiredLabels: [ 'student' ]
+      };
+      try {
+        appAccountManager.createAccountImplicitly('com.example.accountjsdemo', options, {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.error('createAccountImplicitly exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -311,7 +328,7 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 
 removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除应用帐号。使用callback异步回调。
+删除应用账号。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -319,13 +336,14 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明               |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | 是    | 应用帐号的名称。      |
+| name     | string                    | 是    | 应用账号的名称。      |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当删除成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -333,18 +351,18 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.removeAccount('ZhaoLiu', (err: BusinessError) => {
       if (err) {
-        console.log('removeAccount failed, error: ' + JSON.stringify(err));
+        console.error('removeAccount failed, error: ' + JSON.stringify(err));
       } else {
         console.log('removeAccount successfully');
       }
    });
   } catch(err) {
-    console.log('removeAccount exception: ' + JSON.stringify(err));
+    console.error('removeAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -352,7 +370,7 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 removeAccount(name: string): Promise&lt;void&gt;
 
-删除应用帐号。使用Promise异步回调。
+删除应用账号。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -360,7 +378,7 @@ removeAccount(name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| name | string | 是    | 应用帐号的名称。 |
+| name | string | 是    | 应用账号的名称。 |
 
 **返回值：**
 
@@ -372,6 +390,7 @@ removeAccount(name: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -379,16 +398,16 @@ removeAccount(name: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.removeAccount('Lisi').then(() => {
       console.log('removeAccount successfully');
     }).catch((err: BusinessError) => {
-      console.log('removeAccount failed, error: ' + JSON.stringify(err));
+      console.error('removeAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('removeAccount exception: ' + JSON.stringify(err));
+    console.error('removeAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -396,7 +415,7 @@ removeAccount(name: string): Promise&lt;void&gt;
 
 setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定应用对特定帐号的访问权限。使用callback异步回调。
+设置指定应用对特定账号的访问权限。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -404,7 +423,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 
 | 参数名        | 类型                      | 必填   | 说明                                |
 | ------------ | ------------------------- | ---- | --------------------------------- |
-| name         | string                    | 是    | 应用帐号的名称。                           |
+| name         | string                    | 是    | 应用账号的名称。                           |
 | bundleName   | string                    | 是    | 第三方应用的包名。                         |
 | isAccessible | boolean                   | 是    | 是否可访问。true表示允许访问，false表示禁止访问。 |
 | callback     | AsyncCallback&lt;void&gt; | 是    | 回调函数，如果设置成功，err为null，否则为错误对象。 |
@@ -413,26 +432,27 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
+| 12400005 | The size of authorization list reaches the upper limit. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err: BusinessError) => {
       if (err) {
-        console.log('setAppAccess failed: ' + JSON.stringify(err));
+        console.error('setAppAccess failed: ' + JSON.stringify(err));
       } else {
         console.log('setAppAccess successfully');
       }
     });
   } catch (err) {
-    console.log('setAppAccess exception: ' + JSON.stringify(err));
+    console.error('setAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -440,7 +460,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 
 setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&lt;void&gt;
 
-设置指定应用对特定帐号的数据访问权限。使用Promise异步回调。
+设置指定应用对特定账号的数据访问权限。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -448,7 +468,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
 | 参数名        | 类型     | 必填   | 说明        |
 | ---------- | ------ | ---- | --------- |
-| name       | string | 是    | 应用帐号的名称。   |
+| name       | string | 是    | 应用账号的名称。   |
 | bundleName | string | 是    | 第三方应用的包名。 |
 | isAccessible | boolean | 是    | 是否可访问。true表示允许访问，false表示禁止访问。 |
 
@@ -462,24 +482,25 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
+| 12400005 | The size of authorization list reaches the upper limit. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
       console.log('setAppAccess successfully');
     }).catch((err: BusinessError) => {
-      console.log('setAppAccess failed: ' + JSON.stringify(err));
+      console.error('setAppAccess failed: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setAppAccess exception: ' + JSON.stringify(err));
+    console.error('setAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -487,7 +508,7 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
 checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查指定应用对特定帐号的数据是否可访问。使用callback异步回调。
+检查指定应用对特定账号的数据是否可访问。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -495,14 +516,15 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 
 | 参数名        | 类型                        | 必填   | 说明                                |
 | ---------- | ------------------------- | ---- | --------------------------------- |
-| name       | string                    | 是    | 应用帐号的名称。                           |
+| name       | string                    | 是    | 应用账号的名称。                           |
 | bundleName | string                    | 是    | 第三方应用的包名。                         |
-| callback   | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用可访问特定帐号的数据；返回false表示不可访问。 |
+| callback   | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用可访问特定账号的数据；返回false表示不可访问。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
@@ -510,19 +532,19 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo',
       (err: BusinessError, isAccessible: boolean) => {
         if (err) {
-          console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
+          console.error('checkAppAccess failed, error: ' + JSON.stringify(err));
         } else {
           console.log('checkAppAccess successfully');
         }
       });
   } catch (err) {
-    console.log('checkAppAccess exception: ' + JSON.stringify(err));
+    console.error('checkAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -530,7 +552,7 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 
 checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
-检查指定应用对特定帐号的数据是否可访问。使用Promise异步回调。
+检查指定应用对特定账号的数据是否可访问。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -538,19 +560,20 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
 | 参数名        | 类型     | 必填   | 说明        |
 | ---------- | ------ | ---- | --------- |
-| name       | string | 是    | 应用帐号的名称。   |
+| name       | string | 是    | 应用账号的名称。   |
 | bundleName | string | 是    | 第三方应用的包名。 |
 
 **返回值：**
 
 | 类型                  | 说明                    |
 | ------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示指定应用可访问特定帐号的数据；返回false表示不可访问。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示指定应用可访问特定账号的数据；返回false表示不可访问。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
@@ -558,16 +581,16 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible: boolean) => {
       console.log('checkAppAccess successfully, isAccessible: ' + isAccessible);
     }).catch((err: BusinessError) => {
-      console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
+      console.error('checkAppAccess failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkAppAccess exception: ' + JSON.stringify(err));
+    console.error('checkAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -575,7 +598,7 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
 setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-开启或禁止指定应用帐号的数据同步功能。使用callback异步回调。
+开启或禁止指定应用账号的数据同步功能。使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -585,14 +608,16 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 
 | 参数名      | 类型                        | 必填   | 说明                        |
 | -------- | ------------------------- | ---- | ------------------------- |
-| name     | string                    | 是    | 应用帐号的名称。                   |
-| isEnabled | boolean                   | 是    | 是否开启数据同步。               |
+| name     | string                    | 是    | 应用账号的名称。                   |
+| isEnabled | boolean                   | 是    | 是否开启数据同步。true表示开启数据同步，false表示关闭数据同步。       |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当开启或禁止成功时，err为null，否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -600,14 +625,14 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
       appAccountManager.setDataSyncEnabled('ZhangSan', true, (err: BusinessError) => { 
-          console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
+          console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
-      console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
+      console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -615,7 +640,7 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 
 setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
-开启或禁止指定应用帐号的数据同步功能。使用Promise异步回调。
+开启或禁止指定应用账号的数据同步功能。使用Promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -625,8 +650,8 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型      | 必填   | 说明          |
 | -------- | ------- | ---- | ----------- |
-| name     | string  | 是    | 应用帐号的名称。     |
-| isEnabled | boolean | 是    | 是否开启数据同步。 |
+| name     | string  | 是    | 应用账号的名称。     |
+| isEnabled | boolean | 是    | 是否开启数据同步。true表示开启数据同步，false表示关闭数据同步。 |
 
 **返回值：**
 
@@ -638,6 +663,8 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -645,16 +672,16 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
       appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
           console.log('setDataSyncEnabled Success');
       }).catch((err: BusinessError) => {
-          console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
+          console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
-      console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
+      console.error('setDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -662,7 +689,7 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
 checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查指定应用帐号是否开启数据同步功能。使用callback异步回调。
+检查指定应用账号是否开启数据同步功能。使用callback异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -672,13 +699,15 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                           | 必填   | 说明                    |
 | -------- | ---------------------------- | ---- | --------------------- |
-| name     | string                       | 是    | 应用帐号的名称。               |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用帐号已开启数据同步功能；返回false表示未开启。 |
+| name     | string                       | 是    | 应用账号的名称。               |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用账号已开启数据同步功能；返回false表示未开启。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -686,18 +715,18 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.checkDataSyncEnabled('ZhangSan', (err: BusinessError, isEnabled: boolean) => {
       if (err) {
-        console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
+        console.error('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
       } else {
         console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
-    console.log('checkDataSyncEnabled err: ' + JSON.stringify(err));
+    console.error('checkDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -705,7 +734,7 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
 checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
-检查指定应用帐号是否开启数据同步功能。使用Promise异步回调。
+检查指定应用账号是否开启数据同步功能。使用Promise异步回调。
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -715,18 +744,20 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
 | 参数名  | 类型     | 必填   | 说明      |
 | ---- | ------ | ---- | ------- |
-| name | string | 是    | 应用帐号的名称。 |
+| name | string | 是    | 应用账号的名称。 |
 
 **返回值：**
 
 | 类型                     | 说明                    |
 | :--------------------- | :-------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示指定应用帐号已开启数据同步功能；返回false表示未开启。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示指定应用账号已开启数据同步功能；返回false表示未开启。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 201 | Permission denied.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name. |
 | 12300003 | Account not found. |
@@ -734,16 +765,16 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled: boolean) => {
         console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err: BusinessError) => {
-      console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
+      console.error('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkDataSyncEnabled err: ' + JSON.stringify(err));
+    console.error('checkDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -751,7 +782,7 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
 setCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void
 
-设置指定应用帐号的凭据。使用callback异步回调。
+设置指定应用账号的凭据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -759,7 +790,7 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 
 | 参数名            | 类型                        | 必填   | 说明            |
 | -------------- | ------------------------- | ---- | ------------- |
-| name           | string                    | 是    | 应用帐号的名称。     |
+| name           | string                    | 是    | 应用账号的名称。     |
 | credentialType | string                    | 是    | 凭据类型。     |
 | credential     | string                    | 是    | 凭据取值。       |
 | callback       | AsyncCallback&lt;void&gt; | 是    | 回调函数。当凭据设置成功时，err为null，否则为错误对象。 |
@@ -768,6 +799,7 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, credentialType or credential. |
 | 12300003 | Account not found. |
@@ -775,18 +807,18 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err: BusinessError) => {
       if (err) {
-        console.log('setCredential failed, error: ' + JSON.stringify(err));
+        console.error('setCredential failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setCredential successfully');
       }
     });
   } catch (err) {
-    console.log('setCredential exception: ' + JSON.stringify(err));
+    console.error('setCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -794,7 +826,7 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 
 setCredential(name: string, credentialType: string, credential: string): Promise&lt;void&gt;
 
-设置指定应用帐号的凭据。使用Promise异步回调。
+设置指定应用账号的凭据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -802,7 +834,7 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
 | 参数名            | 类型     | 必填   | 说明         |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | 是    | 应用帐号的名称。   |
+| name           | string | 是    | 应用账号的名称。   |
 | credentialType | string | 是    | 凭据类型。 |
 | credential     | string | 是    | 凭据取值。    |
 
@@ -816,6 +848,7 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, credentialType or credential. |
 | 12300003 | Account not found. |
@@ -823,16 +856,16 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
       console.log('setCredential successfully');
     }).catch((err: BusinessError) => {
-      console.log('setCredential failed, error: ' + JSON.stringify(err));
+      console.error('setCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setCredential exception: ' + JSON.stringify(err));
+    console.error('setCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -840,7 +873,7 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
 getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定应用帐号的凭据。使用callback异步回调。
+获取指定应用账号的凭据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -848,14 +881,15 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 
 | 参数名            | 类型                          | 必填   | 说明             |
 | -------------- | --------------------------- | ---- | -------------- |
-| name           | string                      | 是    | 应用帐号的名称。        |
+| name           | string                      | 是    | 应用账号的名称。        |
 | credentialType | string                      | 是    | 凭据类型。 |
-| callback       | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取凭据成功时，err为null，data为指定应用帐号的凭据；否则为错误对象。 |
+| callback       | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取凭据成功时，err为null，data为指定应用账号的凭据；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or credentialType. |
 | 12300003 | Account not found. |
@@ -864,18 +898,18 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
       appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err: BusinessError, result: string) => { 
         if (err) {
-          console.log('getCredential failed, error: ' + JSON.stringify(err));
+          console.error('getCredential failed, error: ' + JSON.stringify(err));
         } else {
           console.log('getCredential successfully, result: ' + result);
         }
       });
   } catch (err) {
-      console.log('getCredential err: ' + JSON.stringify(err));
+      console.error('getCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -883,7 +917,7 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 
 getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
-获取指定应用帐号的凭据。使用Promise异步回调。
+获取指定应用账号的凭据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -891,19 +925,20 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
 | 参数名          | 类型     | 必填   | 说明         |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | 是    | 应用帐号的名称。 |
+| name           | string | 是    | 应用账号的名称。 |
 | credentialType | string | 是    | 凭据类型。 |
 
 **返回值：**
 
 | 类型                    | 说明                    |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise对象，返回指定应用帐号的凭据。 |
+| Promise&lt;string&gt; | Promise对象，返回指定应用账号的凭据。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or credentialType. |
 | 12300003 | Account not found. |
@@ -912,16 +947,16 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential: string) => {
         console.log('getCredential successfully, credential: ' + credential);
     }).catch((err: BusinessError) => {
-        console.log('getCredential failed, error: ' + JSON.stringify(err));
+        console.error('getCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getCredential exception: ' + JSON.stringify(err));
+    console.error('getCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -929,7 +964,7 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
 setCustomData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定应用帐号的自定义数据。使用callback异步回调。
+设置指定应用账号的自定义数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -937,7 +972,7 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 
 | 参数名      | 类型                        | 必填   | 说明                |
 | -------- | ------------------------- | ---- | ----------------- |
-| name     | string                    | 是    | 应用帐号的名称。 |
+| name     | string                    | 是    | 应用账号的名称。 |
 | key      | string                    | 是    | 自定义数据的键名。 |
 | value    | string                    | 是    | 自定义数据的取值。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置自定义数据成功时，err为null，否则为错误对象。 |
@@ -946,6 +981,7 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
@@ -954,18 +990,18 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12', (err: BusinessError) => {
       if (err) {
-        console.log('setCustomData failed, error: ' + JSON.stringify(err));
+        console.error('setCustomData failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setCustomData successfully');
       }
     });
   } catch (err) {
-    console.log('setCustomData exception: ' + JSON.stringify(err));
+    console.error('setCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -973,7 +1009,7 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 
 setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
-设置指定应用帐号的自定义数据。使用Promise异步回调。
+设置指定应用账号的自定义数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -981,7 +1017,7 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 | 参数名   | 类型 | 必填  | 说明              |
 | ----- | ------ | ---- | ----------------- |
-| name  | string | 是    | 应用帐号的名称。   |
+| name  | string | 是    | 应用账号的名称。   |
 | key   | string | 是    | 自定义数据的键名。 |
 | value | string | 是    | 自定义数据的取值。 |
 
@@ -995,6 +1031,7 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, key or value. |
 | 12300003 | Account not found. |
@@ -1003,16 +1040,16 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
       console.log('setCustomData successfully');
     }).catch((err: BusinessError) => {
-      console.log('setCustomData failed, error: ' + JSON.stringify(err));
+      console.error('setCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setCustomData exception: ' + JSON.stringify(err));
+    console.error('setCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1020,7 +1057,7 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定键名获取特定应用帐号的自定义数据。使用callback异步回调。
+根据指定键名获取特定应用账号的自定义数据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1028,7 +1065,7 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 
 | 参数名    | 类型                        | 必填  | 说明                     |
 | -------- | --------------------------- | ----- | ------------------------ |
-| name     | string                      | 是    | 应用帐号的名称。           |
+| name     | string                      | 是    | 应用账号的名称。           |
 | key      | string                      | 是    | 自定义数据的键名。         |
 | callback | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取成功时，err为null，data为自定义数据的取值；否则为错误对象。 |
 
@@ -1036,6 +1073,7 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or key. |
 | 12300003 | Account not found. |
@@ -1044,18 +1082,18 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getCustomData('ZhangSan', 'age', (err: BusinessError, data: string) => {
       if (err) {
-        console.log('getCustomData failed, error: ' + err);
+        console.error('getCustomData failed, error: ' + err);
       } else {
         console.log('getCustomData successfully, data: ' + data);
       }
     });
   } catch (err) {
-    console.log('getCustomData exception: ' + JSON.stringify(err));
+    console.error('getCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1063,7 +1101,7 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 
 getCustomData(name: string, key: string): Promise&lt;string&gt;
 
-根据指定键名获取特定应用帐号的自定义数据。使用Promise异步回调。
+根据指定键名获取特定应用账号的自定义数据。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1071,7 +1109,7 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
 | 参数名  | 类型     | 必填   | 说明        |
 | ---- | ------ | ---- | --------- |
-| name | string | 是    | 应用帐号的名称。   |
+| name | string | 是    | 应用账号的名称。   |
 | key  | string | 是    | 自定义数据的键名。 |
 
 **返回值：**
@@ -1084,6 +1122,7 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or key. |
 | 12300003 | Account not found. |
@@ -1092,16 +1131,16 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.getCustomData('ZhangSan', 'age').then((data: string) => {
       console.log('getCustomData successfully, data: ' + data);
     }).catch((err: BusinessError) => {
-      console.log('getCustomData failed, error: ' + JSON.stringify(err));
+      console.error('getCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getCustomData exception: ' + JSON.stringify(err));
+    console.error('getCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1109,7 +1148,7 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
 getCustomDataSync(name: string, key: string): string;
 
-根据指定键名获取特定应用帐号的自定义数据。使用同步方式返回结果。
+根据指定键名获取特定应用账号的自定义数据。使用同步方式返回结果。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1117,7 +1156,7 @@ getCustomDataSync(name: string, key: string): string;
 
 | 参数名  | 类型     | 必填   | 说明        |
 | ---- | ------ | ---- | --------- |
-| name | string | 是    | 应用帐号的名称。   |
+| name | string | 是    | 应用账号的名称。   |
 | key  | string | 是    | 自定义数据的键名。 |
 
 **返回值：**
@@ -1130,6 +1169,7 @@ getCustomDataSync(name: string, key: string): string;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or key. |
 | 12300003 | Account not found. |
@@ -1150,7 +1190,7 @@ getCustomDataSync(name: string, key: string): string;
 
 getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-获取所有可访问的应用帐号信息。使用callback异步回调。
+获取所有可访问的应用账号信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1158,29 +1198,30 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当查询成功时，err为null，data为获取到的应用帐号信息列表；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当查询成功时，err为null，data为获取到的应用账号信息列表；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
-    appAccountManager.getAllAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[]) => {
+    appAccountManager.getAllAccounts((err: BusinessError, data: appAccount.AppAccountInfo[]) => {
       if (err) {
-        console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
+        console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
       } else {
         console.debug('getAllAccounts successfully');
       }
     });
   } catch (err) {
-      console.debug('getAllAccounts exception: ' + JSON.stringify(err));
+      console.error('getAllAccounts exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1188,7 +1229,7 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
 getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-获取所有可访问的应用帐号信息。使用Promise异步回调。
+获取所有可访问的应用账号信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1196,7 +1237,7 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回全部应用已授权帐号信息对象。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回全部应用已授权账号信息对象。 |
 
 **错误码：**
 
@@ -1207,16 +1248,16 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
-    appAccountManager.getAllAccounts().then((data: account_appAccount.AppAccountInfo[]) => {
+    appAccountManager.getAllAccounts().then((data: appAccount.AppAccountInfo[]) => {
       console.debug('getAllAccounts successfully');
     }).catch((err: BusinessError) => {
-      console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
+      console.error('getAllAccounts failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.debug('getAllAccounts exception: ' + JSON.stringify(err));
+    console.error('getAllAccounts exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1224,7 +1265,7 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-根据应用帐号所有者获取调用方可访问的应用帐号列表。使用callback异步回调。
+根据应用账号所有者获取调用方可访问的应用账号列表。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1232,33 +1273,33 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| owner    | string                                   | 是    | 应用帐号所有者的包名。    |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。如果获取成功，err为null，data为获取到的应用帐号列表；否则为错误对象。 |
+| owner    | string                                   | 是    | 应用账号所有者的包名。    |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。如果获取成功，err为null，data为获取到的应用账号列表；否则为错误对象。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
-| 12400001 | Application not found. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAccountsByOwner('com.example.accountjsdemo2',
-      (err: BusinessError, data: account_appAccount.AppAccountInfo[]) => {
+      (err: BusinessError, data: appAccount.AppAccountInfo[]) => {
         if (err) {
-          console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
+          console.error('getAccountsByOwner failed, error:' + JSON.stringify(err));
         } else {
           console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
         }
       });
   } catch (err) {
-    console.debug('getAccountsByOwner exception:' + JSON.stringify(err));
+    console.error('getAccountsByOwner exception:' + JSON.stringify(err));
   }
   ```
 
@@ -1266,7 +1307,7 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 
 getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-根据应用帐号所有者获取调用方可访问的应用帐号列表。使用Promise异步回调。
+根据应用账号所有者获取调用方可访问的应用账号列表。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1274,36 +1315,36 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 参数名   | 类型     | 必填   | 说明     |
 | ----- | ------ | ---- | ------ |
-| owner | string | 是    | 应用帐号所有者的包名。 |
+| owner | string | 是    | 应用账号所有者的包名。 |
 
 **返回值：**
 
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回获取到的应用帐号列表。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回获取到的应用账号列表。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
-| 12400001 | Application not found. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   try {
     appAccountManager.getAccountsByOwner('com.example.accountjsdemo2').then((
-      data: account_appAccount.AppAccountInfo[]) => {
+      data: appAccount.AppAccountInfo[]) => {
       console.debug('getAccountsByOwner successfully, data: ' + JSON.stringify(data));
     }).catch((err: BusinessError) => {
-      console.debug('getAccountsByOwner failed, error: ' + JSON.stringify(err));
+      console.error('getAccountsByOwner failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.debug('getAccountsByOwner exception: ' + JSON.stringify(err));
+    console.error('getAccountsByOwner exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1311,7 +1352,7 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-订阅指定应用的帐号信息变更事件。
+订阅指定应用的账号信息变更事件。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1319,22 +1360,22 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
 | 参数名      | 类型                                       | 必填   | 说明                             |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | 'accountChange'                          | 是    | 事件回调类型，支持的事件为'accountChange'，当目标应用更新帐号信息时，触发该事件。 |
-| owners   | Array&lt;string&gt;                      | 是    | 应用帐号所有者的包名列表。                      |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 需要注册的回调函数，返回信息为发生变更的应用帐号列表。           |
+| type     | 'accountChange'                          | 是    | 事件回调类型，支持的事件为'accountChange'，当目标应用更新账号信息时，触发该事件。 |
+| owners   | Array&lt;string&gt;                      | 是    | 应用账号所有者的包名列表。                      |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 需要注册的回调函数，返回信息为发生变更的应用账号列表。           |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or owners. |
-| 12400001 | Application not found. |
 
 **示例：**
 
   ```ts
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
+  function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1348,7 +1389,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
 off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-取消订阅帐号信息变更事件。
+取消订阅账号信息变更事件。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1356,20 +1397,21 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
-| type     | 'accountChange'                         | 是    | 事件回调类型，支持的事件为'accountChange'，当帐号所有者更新帐号信息时，触发该事件。    |
+| type     | 'accountChange'                         | 是    | 事件回调类型，支持的事件为'accountChange'，当账号所有者更新账号信息时，触发该事件。    |
 | callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 需要注销的回调函数，默认为空，表示取消该类型事件所有的回调。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
 
 **示例：**
 
   ```ts
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
+  function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
   	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -1389,7 +1431,7 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 
 auth(name: string, owner: string, authType: string, callback: AuthCallback): void
 
-对应用帐号进行鉴权以获取授权令牌。使用callback异步回调。
+对应用账号进行鉴权以获取授权令牌。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1397,8 +1439,8 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 
 | 参数名      | 类型                    | 必填   | 说明              |
 | -------- | --------------------- | ---- | --------------- |
-| name     | string                | 是    | 应用帐号的名称。     |
-| owner    | string                | 是    | 应用帐号所有者的包名。  |
+| name     | string                | 是    | 应用账号的名称。     |
+| owner    | string                | 是    | 应用账号所有者的包名。  |
 | authType | string                | 是    | 鉴权类型。           |
 | callback | [AuthCallback](#authcallback9) | 是    | 回调对象，返回鉴权结果。 |
 
@@ -1406,6 +1448,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
@@ -1416,38 +1459,44 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, authResult?: account_appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('authResult: ' + JSON.stringify(authResult));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('authResult: ' + JSON.stringify(authResult));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  try {
-    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', {
-        onResult: onResultCallback,
-        onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('auth exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      try {
+        appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.error('auth exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -1455,7 +1504,7 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 
 auth(name: string, owner: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
-对应用帐号进行鉴权以获取授权令牌。使用callback异步回调。
+对应用账号进行鉴权以获取授权令牌。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1463,8 +1512,8 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
 
 | 参数名      | 类型                    | 必填   | 说明              |
 | -------- | --------------------- | ---- | --------------- |
-| name     | string                | 是    | 应用帐号的名称。     |
-| owner    | string                | 是    | 应用帐号所有者的包名。  |
+| name     | string                | 是    | 应用账号的名称。     |
+| owner    | string                | 是    | 应用账号所有者的包名。  |
 | authType | string                | 是    | 鉴权类型。           |
 | options  | Record<string, Object>  | 是    | 鉴权所需的可选项。       |
 | callback | [AuthCallback](#authcallback9) | 是    | 回调对象，返回鉴权结果。 |
@@ -1473,6 +1522,7 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner, authType or options. |
 | 12300003 | Account not found. |
@@ -1483,41 +1533,47 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, authResult?: account_appAccount.AuthResult): void {
-    console.log('resultCode: ' + code);
-    console.log('authResult: ' + JSON.stringify(authResult));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, authResult?: appAccount.AuthResult): void {
+      console.log('resultCode: ' + code);
+      console.log('authResult: ' + JSON.stringify(authResult));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  let options: Record<string, Object> = {
-    'password': 'xxxx',
-  };
-  try {
-    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
-        onResult: onResultCallback,
-        onRequestRedirected: onRequestRedirectedCallback
-    });
-  } catch (err) {
-    console.log('auth exception: ' + JSON.stringify(err));
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      let options: Record<string, Object> = {
+        'password': 'xxxx',
+      };
+      try {
+        appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
+          onResult: this.onResultCallback,
+          onRequestRedirected: this.onRequestRedirectedCallback
+        });
+      } catch (err) {
+        console.error('auth exception: ' + JSON.stringify(err));
+      }
+    }
+    build() {}
   }
   ```
 
@@ -1525,7 +1581,7 @@ auth(name: string, owner: string, authType: string, options: Record<string, Obje
 
 getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定应用帐号的特定鉴权类型的授权令牌。使用callback异步回调。
+获取指定应用账号的特定鉴权类型的授权令牌。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1533,8 +1589,8 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 
 | 参数名      | 类型                          | 必填   | 说明          |
 | -------- | --------------------------- | ---- | ----------- |
-| name     | string                      | 是    | 应用帐号的名称。    |
-| owner    | string                      | 是    | 应用帐号所有者的包名。 |
+| name     | string                      | 是    | 应用账号的名称。    |
+| owner    | string                      | 是    | 应用账号所有者的包名。 |
 | authType | string                      | 是    | 鉴权类型。       |
 | callback | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取成功时，err为null，data为授权令牌值；否则为错误对象。    |
 
@@ -1542,6 +1598,7 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
@@ -1550,19 +1607,19 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
       (err: BusinessError, token: string) => {
         if (err) {
-          console.log('getAuthToken failed, error: ' + JSON.stringify(err));
+          console.error('getAuthToken failed, error: ' + JSON.stringify(err));
         } else {
           console.log('getAuthToken successfully, token: ' + token);
         }
       });
   } catch (err) {
-      console.log('getAuthToken exception: ' + JSON.stringify(err));
+      console.error('getAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1570,7 +1627,7 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 
 getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&gt;
 
-获取指定应用帐号的特定鉴权类型的授权令牌。使用Promise异步回调。
+获取指定应用账号的特定鉴权类型的授权令牌。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1578,8 +1635,8 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 
 | 参数名      | 类型     | 必填   | 说明          |
 | -------- | ------ | ---- | ----------- |
-| name     | string | 是    | 应用帐号的名称。    |
-| owner    | string | 是    | 应用帐号所有者的包名。 |
+| name     | string | 是    | 应用账号的名称。    |
+| owner    | string | 是    | 应用账号所有者的包名。 |
 | authType | string | 是    | 鉴权类型。       |
 
 **返回值：**
@@ -1592,6 +1649,7 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or authType. |
 | 12300003 | Account not found. |
@@ -1600,16 +1658,16 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token: string) => {
       console.log('getAuthToken successfully, token: ' + token);
     }).catch((err: BusinessError) => {
-      console.log('getAuthToken failed, error: ' + JSON.stringify(err));
+      console.error('getAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-      console.log('getAuthToken exception: ' + JSON.stringify(err));
+      console.error('getAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1617,7 +1675,7 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 
 setAuthToken(name: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
-为指定应用帐号设置特定鉴权类型的授权令牌。使用callback异步回调。
+为指定应用账号设置特定鉴权类型的授权令牌。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1625,7 +1683,7 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 
 | 参数名      | 类型                        | 必填   | 说明       |
 | -------- | ------------------------- | ---- | -------- |
-| name     | string                    | 是    | 应用帐号的名称。 |
+| name     | string                    | 是    | 应用账号的名称。 |
 | authType | string                    | 是    | 鉴权类型。    |
 | token    | string                    | 是    | 授权令牌。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功时，err为null；否则为错误对象。 |
@@ -1634,6 +1692,7 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
@@ -1642,18 +1701,18 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       if (err) {
-        console.log('setAuthToken failed, error: ' + JSON.stringify(err));
+        console.error('setAuthToken failed, error: ' + JSON.stringify(err));
       } else {
         console.log('setAuthToken successfully');
       }
     });
   } catch (err) {
-    console.log('setAuthToken exception: ' + JSON.stringify(err));
+    console.error('setAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1661,7 +1720,7 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 
 setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
-为指定应用帐号设置特定鉴权类型的授权令牌。使用Promise异步回调。
+为指定应用账号设置特定鉴权类型的授权令牌。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1669,7 +1728,7 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
 | 参数名      | 类型     | 必填   | 说明       |
 | -------- | ------ | ---- | -------- |
-| name     | string | 是    | 应用帐号的名称。 |
+| name     | string | 是    | 应用账号的名称。 |
 | authType | string | 是    | 鉴权类型。    |
 | token    | string | 是    | 授权令牌。 |
 
@@ -1683,6 +1742,7 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or token. |
 | 12300003 | Account not found. |
@@ -1691,16 +1751,16 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
         console.log('setAuthToken successfully');
     }).catch((err: BusinessError) => {
-        console.log('setAuthToken failed, error: ' + JSON.stringify(err));
+        console.error('setAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setAuthToken exception: ' + JSON.stringify(err));
+    console.error('setAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1708,7 +1768,7 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
 deleteAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除指定应用帐号的特定鉴权类型的授权令牌。使用callback异步回调。
+删除指定应用账号的特定鉴权类型的授权令牌。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1716,16 +1776,17 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 
 | 参数名      | 类型                        | 必填   | 说明           |
 | -------- | ------------------------- | ---- | ------------ |
-| name     | string                    | 是    | 应用帐号的名称。     |
-| owner    | string                    | 是    | 应用帐号所有者的包名。  |
+| name     | string                    | 是    | 应用账号的名称。     |
+| owner    | string                    | 是    | 应用账号所有者的包名。  |
 | authType | string                    | 是    | 鉴权类型。        |
-| token    | string                    | 是    | 授权令牌。 |
+| token    | string                    | 是    | 授权令牌。如果授权令牌不存在，则不执行任何操作。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当删除成功时，err为null；否则为错误对象。     |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
@@ -1734,19 +1795,19 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
       (err: BusinessError) => {
         if (err) {
-          console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
+          console.error('deleteAuthToken failed, error: ' + JSON.stringify(err));
         } else {
           console.log('deleteAuthToken successfully');
         }
       });
   } catch (err) {
-    console.log('deleteAuthToken exception: ' + JSON.stringify(err));
+    console.error('deleteAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1754,7 +1815,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 
 deleteAuthToken(name: string, owner: string, authType: string, token: string): Promise&lt;void&gt;
 
-删除指定应用帐号的特定鉴权类型的授权令牌。使用Promise异步回调。
+删除指定应用账号的特定鉴权类型的授权令牌。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1762,10 +1823,10 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 
 | 参数名      | 类型     | 必填   | 说明           |
 | -------- | ------ | ---- | ------------ |
-| name     | string | 是    | 应用帐号的名称。     |
-| owner    | string | 是    | 应用帐号所有者的包名。  |
+| name     | string | 是    | 应用账号的名称。     |
+| owner    | string | 是    | 应用账号所有者的包名。  |
 | authType | string | 是    | 鉴权类型。        |
-| token    | string | 是    | 授权令牌。 |
+| token    | string | 是    | 授权令牌。如果授权令牌不存在，则不执行任何操作。 |
 
 **返回值：**
 
@@ -1777,6 +1838,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner, authType or token. |
 | 12300003 | Account not found. |
@@ -1785,16 +1847,16 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
       console.log('deleteAuthToken successfully');
     }).catch((err: BusinessError) => {
-      console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
+      console.error('deleteAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('deleteAuthToken exception: ' + JSON.stringify(err));
+    console.error('deleteAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1802,7 +1864,7 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 
 setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定帐号的特定鉴权类型的授权令牌对指定应用的可见性。使用callback异步回调。
+设置指定账号的特定鉴权类型的授权令牌对指定应用的可见性。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1810,7 +1872,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 | 参数名        | 类型                        | 必填   | 说明                        |
 | ---------- | ------------------------- | ---- | ------------------------- |
-| name       | string                    | 是    | 应用帐号的名称。                  |
+| name       | string                    | 是    | 应用账号的名称。                  |
 | authType   | string                    | 是    | 鉴权类型。                     |
 | bundleName | string                    | 是    | 被设置可见性的应用包名。              |
 | isVisible  | boolean                   | 是    | 是否可见。true表示可见，false表示不可见。 |
@@ -1820,29 +1882,29 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 | 12400005 | The size of authorization list reaches the upper limit. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
       (err: BusinessError) => {
         if (err) {
-          console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+          console.error('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
           console.log('setAuthTokenVisibility successfully');
         }
       });
   } catch (err) {
-      console.log('setAuthTokenVisibility exception: ' + JSON.stringify(err));
+      console.error('setAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1850,7 +1912,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise&lt;void&gt;
 
-设置指定帐号的特定鉴权类型的授权令牌对指定应用的可见性。使用Promise异步回调。
+设置指定账号的特定鉴权类型的授权令牌对指定应用的可见性。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1858,7 +1920,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 | 参数名      | 类型                        | 必填   | 说明                        |
 | ---------- | ------------------------- | ---- | ------------------------- |
-| name       | string                    | 是    | 应用帐号的名称。                  |
+| name       | string                    | 是    | 应用账号的名称。                  |
 | authType   | string                    | 是    | 鉴权类型。                     |
 | bundleName | string                    | 是    | 被设置可见性的应用包名。              |
 | isVisible  | boolean                   | 是    | 是否可见。true表示可见，false表示不可见。 |
@@ -1873,26 +1935,26 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 | 12400005 | The size of authorization list reaches the upper limit. |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setAuthTokenVisibility successfully');
     }).catch((err: BusinessError) => {
-      console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+      console.error('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setAuthTokenVisibility exception: ' + JSON.stringify(err));
+    console.error('setAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1900,7 +1962,7 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
 checkAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查指定应用帐号的特定鉴权类型的授权令牌对指定应用的可见性。使用callback异步回调。
+检查指定应用账号的特定鉴权类型的授权令牌对指定应用的可见性。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1908,7 +1970,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 
 | 参数名        | 类型                           | 必填   | 说明          |
 | ---------- | ---------------------------- | ---- | ----------- |
-| name       | string                       | 是    | 应用帐号的名称。    |
+| name       | string                       | 是    | 应用账号的名称。    |
 | authType   | string                       | 是    | 鉴权类型。       |
 | bundleName | string                       | 是    | 检查可见性的应用包名。 |
 | callback   | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。当检查成功时，err为null，data为true表示可见，data为false表示不可见；否则为错误对象。    |
@@ -1917,6 +1979,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
@@ -1925,19 +1988,19 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
       (err: BusinessError, isVisible: boolean) => {
         if (err) {
-          console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+          console.error('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
           console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
         }
       });
   } catch (err) {
-    console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
+    console.error('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1945,7 +2008,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 
 checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise&lt;boolean&gt;
 
-检查指定应用帐号的特定鉴权类型的授权令牌对指定应用的可见性。使用Promise异步回调。
+检查指定应用账号的特定鉴权类型的授权令牌对指定应用的可见性。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -1953,7 +2016,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 
 | 参数名        | 类型     | 必填   | 说明            |
 | ---------- | ------ | ---- | ------------- |
-| name       | string | 是    | 应用帐号的名称。      |
+| name       | string | 是    | 应用账号的名称。      |
 | authType   | string | 是    | 鉴权类型。         |
 | bundleName | string | 是    | 用于检查可见性的应用包名。 |
 
@@ -1967,6 +2030,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, authType or bundleName. |
 | 12300003 | Account not found. |
@@ -1975,17 +2039,17 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
       isVisible: boolean) => {
       console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
     }).catch((err: BusinessError) => {
-      console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
+      console.error('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
+    console.error('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1993,7 +2057,7 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 
 getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&lt;AuthTokenInfo&gt;&gt;): void
 
-获取指定帐号对调用方可见的所有授权令牌。使用callback异步回调。
+获取指定账号对调用方可见的所有授权令牌。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2001,14 +2065,15 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 
 | 参数名      | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| name     | string                                   | 是    | 应用帐号的名称。    |
-| owner    | string                                   | 是    | 应用帐号所有者的包名。 |
+| name     | string                                   | 是    | 应用账号的名称。    |
+| owner    | string                                   | 是    | 应用账号所有者的包名。 |
 | callback | AsyncCallback&lt;Array&lt;[AuthTokenInfo](#authtokeninfo9)&gt;&gt; | 是    | 回调函数。当获取成功时，err为null，data为授权令牌数组；否则为错误对象。    |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or owner. |
 | 12300003 | Account not found. |
@@ -2016,19 +2081,19 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo',
-      (err: BusinessError, tokenArr: account_appAccount.AuthTokenInfo[]) => {
+      (err: BusinessError, tokenArr: appAccount.AuthTokenInfo[]) => {
         if (err) {
-          console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+          console.error('getAllAuthTokens failed, error: ' + JSON.stringify(err));
         } else {
           console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
         }
       });
   } catch (err) {
-    console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
+    console.error('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2036,7 +2101,7 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 
 getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo&gt;&gt;
 
-获取指定帐号对调用方可见的所有授权令牌。使用Promise异步回调。
+获取指定账号对调用方可见的所有授权令牌。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2044,8 +2109,8 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 
 | 参数名   | 类型     | 必填   | 说明          |
 | ----- | ------ | ---- | ----------- |
-| name  | string | 是    | 应用帐号的名称。    |
-| owner | string | 是    | 应用帐号所有者的包名。 |
+| name  | string | 是    | 应用账号的名称。    |
+| owner | string | 是    | 应用账号所有者的包名。 |
 
 **返回值：**
 
@@ -2057,6 +2122,7 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or owner. |
 | 12300003 | Account not found. |
@@ -2064,17 +2130,17 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((
-      tokenArr: account_appAccount.AuthTokenInfo[]) => {
+      tokenArr: appAccount.AuthTokenInfo[]) => {
       console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
     }).catch((err: BusinessError) => {
-      console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
+      console.error('getAllAuthTokens failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
+    console.error('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2082,7 +2148,7 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 
 getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-获取指定应用帐号的特定鉴权类型的授权列表，即被授权的包名数组（令牌的授权列表通过[setAuthTokenVisibility](#setauthtokenvisibility9)来设置）。使用callback异步回调。
+获取指定应用账号的特定鉴权类型的授权列表，即被授权的包名数组（令牌的授权列表通过[setAuthTokenVisibility](#setauthtokenvisibility9)来设置）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2090,7 +2156,7 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 
 | 参数名      | 类型                                       | 必填   | 说明                      |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| name     | string                                   | 是    | 应用帐号的名称。                |
+| name     | string                                   | 是    | 应用账号的名称。                |
 | authType | string                                   | 是    | 鉴权类型。 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 回调函数。当获取成功时，err为null，data为被授权的包名数组；否则为错误对象。 |
 
@@ -2098,6 +2164,7 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or authType. |
 | 12300003 | Account not found. |
@@ -2106,18 +2173,18 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAuthList('LiSi', 'getSocialData', (err: BusinessError, authList: string[]) => {
       if (err) {
-        console.log('getAuthList failed, error: ' + JSON.stringify(err));
+        console.error('getAuthList failed, error: ' + JSON.stringify(err));
       } else {
         console.log('getAuthList successfully, authList: ' + authList);
       }
     });
   } catch (err) {
-    console.log('getAuthList exception: ' + JSON.stringify(err));
+    console.error('getAuthList exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2125,7 +2192,7 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 
 getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
-获取指定应用帐号的特定鉴权类型的授权列表，即被授权的包名数组（令牌的授权列表通过[setAuthTokenVisibility](#setauthtokenvisibility9)来设置）。使用Promise异步回调。
+获取指定应用账号的特定鉴权类型的授权列表，即被授权的包名数组（令牌的授权列表通过[setAuthTokenVisibility](#setauthtokenvisibility9)来设置）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2133,7 +2200,7 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名      | 类型     | 必填   | 说明                      |
 | -------- | ------ | ---- | ------------------------------ |
-| name     | string | 是    | 应用帐号的名称。                |
+| name     | string | 是    | 应用账号的名称。                |
 | authType | string | 是    | 鉴权类型。 |
 
 **返回值：**
@@ -2146,6 +2213,7 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or authType. |
 | 12300003 | Account not found. |
@@ -2154,16 +2222,16 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList: string[]) => {
         console.log('getAuthList successfully, authList: ' + authList);
     }).catch((err: BusinessError) => {
-        console.log('getAuthList failed, error: ' + JSON.stringify(err));
+        console.error('getAuthList failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('getAuthList exception: ' + JSON.stringify(err));
+    console.error('getAuthList exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2186,6 +2254,7 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid sessionId. |
 | 12300108 | Session not found. |
@@ -2193,21 +2262,19 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, param: AbilityConstant.LaunchParam) { // ability 生命周期函数
-      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      let sessionId: string = want.parameters![appAccount.Constants.KEY_SESSION_ID] as string;
       try {
-        appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: account_appAccount.AuthCallback) => {
+        appAccountManager.getAuthCallback(sessionId, (err: BusinessError, callback: appAccount.AuthCallback) => {
           if (err != null) {
-              console.log('getAuthCallback err: ' + JSON.stringify(err));
+              console.error('getAuthCallback err: ' + JSON.stringify(err));
               return;
           }
-          let result: account_appAccount.AuthResult = {
+          let result: appAccount.AuthResult = {
             account: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
@@ -2220,7 +2287,7 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
           callback.onResult(0, result);
         });
       } catch (err) {
-          console.log('getAuthCallback exception: ' + JSON.stringify(err));
+          console.error('getAuthCallback exception: ' + JSON.stringify(err));
       }
     }
   }
@@ -2250,6 +2317,7 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid sessionId. |
 | 12300108 | Session not found. |
@@ -2257,17 +2325,15 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, param: AbilityConstant.LaunchParam) { // ability 生命周期函数
-      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      let sessionId: string = want.parameters![appAccount.Constants.KEY_SESSION_ID] as string;
       try {
-        appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
-        let result: account_appAccount.AuthResult = {
+        appAccountManager.getAuthCallback(sessionId).then((callback: appAccount.AuthCallback) => {
+        let result: appAccount.AuthResult = {
           account: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
@@ -2279,10 +2345,10 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
         };
         callback.onResult(0, result);
         }).catch((err: BusinessError) => {
-          console.log('getAuthCallback err: ' + JSON.stringify(err));
+          console.error('getAuthCallback err: ' + JSON.stringify(err));
         });
       } catch (err) {
-        console.log('getAuthCallback exception: ' + JSON.stringify(err));
+        console.error('getAuthCallback exception: ' + JSON.stringify(err));
       }
     }
   }
@@ -2300,13 +2366,14 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 
 | 参数名      | 类型                                     | 必填   | 说明          |
 | -------- | -------------------------------------- | ---- | ----------- |
-| owner    | string                                 | 是    | 应用帐号所有者的包名。 |
+| owner    | string                                 | 是    | 应用账号所有者的包名。 |
 | callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | 是    | 回调函数。当获取成功时，err为null，data为认证器信息对象；否则为错误对象。    |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12300113 | Authenticator service not found. |
@@ -2314,19 +2381,19 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo',
-      (err: BusinessError, info: account_appAccount.AuthenticatorInfo) => {
+      (err: BusinessError, info: appAccount.AuthenticatorInfo) => {
         if (err) {
-          console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+          console.error('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
         } else {
           console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
         }
       });
   } catch (err) {
-    console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
+    console.error('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2342,7 +2409,7 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 参数名   | 类型     | 必填   | 说明          |
 | ----- | ------ | ---- | ----------- |
-| owner | string | 是    | 应用帐号所有者的包名。 |
+| owner | string | 是    | 应用账号所有者的包名。 |
 
 **返回值：**
 
@@ -2354,6 +2421,7 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12300113 | Authenticator service not found. |
@@ -2361,17 +2429,17 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((
-      info: account_appAccount.AuthenticatorInfo) => { 
+      info: appAccount.AuthenticatorInfo) => { 
       console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
     }).catch((err: BusinessError) => {
-      console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
+      console.error('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
+    console.error('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2379,7 +2447,7 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查指定应用帐号是否满足特定的标签集合。使用callback异步回调。该方法依赖目标应用的认证器提供标签检查的能力。
+检查指定应用账号是否满足特定的标签集合。使用callback异步回调。该方法依赖目标应用的认证器提供标签检查的能力。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2387,8 +2455,8 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 
 | 参数名         | 类型                       | 必填  | 说明             |
 | -------------- | ------------------------- | ----- | --------------- |
-| name           | string                    | 是    | 应用帐号的名称。  |
-| owner          | string                    | 是    | 应用帐号所有者的包名。|
+| name           | string                    | 是    | 应用账号的名称。  |
+| owner          | string                    | 是    | 应用账号所有者的包名。|
 | labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
 | callback       | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。当检查成功时，err为null，data为true表示满足特定的标签集合，data为false表示不满足；否则为错误对象。  |
 
@@ -2396,6 +2464,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
@@ -2406,20 +2475,20 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let labels = ['student'];
   try {
     appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels,
       (err: BusinessError, hasAllLabels: boolean) => {
         if (err) {
-          console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
+          console.error('checkAccountLabels failed, error: ' + JSON.stringify(err));
         } else {
           console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
         }
       });
   } catch (err) {
-    console.log('checkAccountLabels exception: ' + JSON.stringify(err));
+    console.error('checkAccountLabels exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2427,7 +2496,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 
 checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Promise&lt;boolean&gt;
 
-检查指定应用帐号是否满足特定的标签集合。使用Promise异步回调。该方法依赖目标应用的认证器提供标签检查的能力。
+检查指定应用账号是否满足特定的标签集合。使用Promise异步回调。该方法依赖目标应用的认证器提供标签检查的能力。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2435,20 +2504,21 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 
 | 参数名         | 类型                       | 必填  | 说明             |
 | -------------- | ------------------------- | ----- | --------------- |
-| name           | string                    | 是    | 应用帐号的名称。  |
-| owner          | string                    | 是    | 应用帐号所有者的包名。|
+| name           | string                    | 是    | 应用账号的名称。  |
+| owner          | string                    | 是    | 应用账号所有者的包名。|
 | labels         | Array&lt;string&gt;       | 是    | 标签数组。       |
 
 **返回值：**
 
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示指定帐号满足特定的标签集合，返回false表示不满足。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示指定账号满足特定的标签集合，返回false表示不满足。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or labels. |
 | 12300003 | Account not found. |
@@ -2459,7 +2529,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let labels = ['student'];
   try {
@@ -2467,10 +2537,10 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
       hasAllLabels: boolean) => {
       console.log('checkAccountLabels successfully: ' + hasAllLabels);
     }).catch((err: BusinessError) => {
-      console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
+      console.error('checkAccountLabels failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkAccountLabels exception: ' + JSON.stringify(err));
+    console.error('checkAccountLabels exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2478,7 +2548,7 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 
 deleteCredential(name: string, credentialType: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除指定应用帐号的特定类型的凭据信息。使用callback异步回调。
+删除指定应用账号的特定类型的凭据信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2486,7 +2556,7 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 
 | 参数名         | 类型                       | 必填  | 说明            |
 | -------------- | ------------------------- | ----- | -------------- |
-| name           | string                    | 是    | 应用帐号的名称。 |
+| name           | string                    | 是    | 应用账号的名称。 |
 | credentialType | string                    | 是    | 凭据类型。      |
 | callback       | AsyncCallback&lt;void&gt; | 是    | 回调函数。当删除成功时，err为null；否则为错误对象。 |
 
@@ -2494,6 +2564,7 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or credentialType. |
 | 12300003 | Account not found. |
@@ -2502,18 +2573,18 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err: BusinessError) => {
       if (err) {
-        console.log('deleteCredential failed, error: ' + JSON.stringify(err));
+        console.error('deleteCredential failed, error: ' + JSON.stringify(err));
       } else {
         console.log('deleteCredential successfully');
       }
     });
   } catch (err) {
-    console.log('deleteCredential exception: ' + JSON.stringify(err));
+    console.error('deleteCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2521,7 +2592,7 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 
 deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
-删除指定应用帐号的特定类型的凭据信息。使用Promise异步回调。
+删除指定应用账号的特定类型的凭据信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2529,7 +2600,7 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
 | 参数名         | 类型   | 必填   | 说明            |
 | -------------- | ------ | ----- | --------------- |
-| name           | string | 是    | 应用帐号的名称。 |
+| name           | string | 是    | 应用账号的名称。 |
 | credentialType | string | 是    | 凭据类型。       |
 
 **返回值：**
@@ -2542,6 +2613,7 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or credentialType. |
 | 12300003 | Account not found. |
@@ -2550,16 +2622,16 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   try {
     appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
       console.log('deleteCredential successfully');
     }).catch((err: BusinessError) => {
-      console.log('deleteCredential failed, error: ' + JSON.stringify(err));
+      console.error('deleteCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('deleteCredential exception: ' + JSON.stringify(err));
+    console.error('deleteCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2567,7 +2639,7 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
 selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-根据选项选择调用方可访问的帐号列表。使用callback异步回调。如果选项中包含标签约束，则该方法依赖目标应用的认证器提供标签检查的能力。
+根据选项选择调用方可访问的账号列表。使用callback异步回调。如果选项中包含标签约束，则该方法依赖目标应用的认证器提供标签检查的能力。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2575,13 +2647,14 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 
 | 参数名         | 类型                                 | 必填  | 说明             |
 | -------------- | ----------------------------------- | ----- | --------------- |
-| options        | [SelectAccountsOptions](#selectaccountsoptions9)               | 是    | 选择帐号的选项。  |
-| callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当根据选项选择请求方可访问的帐号列表时，err为null，data为可访问的帐号信息对象；否则为错误对象。  |
+| options        | [SelectAccountsOptions](#selectaccountsoptions9)               | 是    | 选择账号的选项。  |
+| callback       | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当根据选项选择请求方可访问的账号列表时，err为null，data为可访问的账号信息对象；否则为错误对象。  |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid options. |
 | 12300010 | Account service busy. |
@@ -2590,23 +2663,23 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let options: account_appAccount.SelectAccountsOptions = {
+  let options: appAccount.SelectAccountsOptions = {
     allowedOwners: [ 'com.example.accountjsdemo' ],
     requiredLabels: [ 'student' ]
   };
   try {
     appAccountManager.selectAccountsByOptions(options,
-      (err: BusinessError, accountArr: account_appAccount.AppAccountInfo[]) => {
+      (err: BusinessError, accountArr: appAccount.AppAccountInfo[]) => {
         if (err) {
-          console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
+          console.error('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
         } else {
           console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
         }
       });
   } catch (err) {
-    console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
+    console.error('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2614,7 +2687,7 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 
 selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-根据选项选择调用方可访问的帐号列表。使用Promise异步回调。如果选项中包含标签约束，则该方法依赖目标应用的认证器提供标签检查的能力。
+根据选项选择调用方可访问的账号列表。使用Promise异步回调。如果选项中包含标签约束，则该方法依赖目标应用的认证器提供标签检查的能力。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2622,18 +2695,19 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 
 | 参数名         | 类型                       | 必填  | 说明             |
 | -------------- | ------------------------- | ----- | --------------- |
-| options        | [SelectAccountsOptions](#selectaccountsoptions9)     | 是    | 选择帐号的选项。  |
+| options        | [SelectAccountsOptions](#selectaccountsoptions9)     | 是    | 选择账号的选项。  |
 
 **返回值：**
 
 | 类型                | 说明                              |
 | ------------------- | -------------------------------- |
-| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise对象，返回调用方可访问的帐号列表。 |
+| Promise&lt;[AppAccountInfo](#appaccountinfo)&gt; | Promise对象，返回调用方可访问的账号列表。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid options. |
 | 12300010 | Account service busy. |
@@ -2642,19 +2716,19 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let options: account_appAccount.SelectAccountsOptions = {
+  let options: appAccount.SelectAccountsOptions = {
     allowedOwners: ['com.example.accountjsdemo']
   };
   try {
-    appAccountManager.selectAccountsByOptions(options).then((accountArr: account_appAccount.AppAccountInfo[]) => {
+    appAccountManager.selectAccountsByOptions(options).then((accountArr: appAccount.AppAccountInfo[]) => {
       console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err: BusinessError) => {
-      console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
+      console.error('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
+    console.error('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2662,7 +2736,7 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 
 verifyCredential(name: string, owner: string, callback: AuthCallback): void
 
-验证指定帐号的凭据。使用callback异步回调。
+验证指定账号的凭据。使用callback异步回调。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -2670,14 +2744,15 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void
 
 | 参数名    | 类型                  | 必填  | 说明                     |
 | -------- | --------------------- | ----- | ----------------------- |
-| name     | string                | 是    | 应用帐号的名称。          |
-| owner    | string                | 是    | 应用帐号所有者的包名。        |
+| name     | string                | 是    | 应用账号的名称。          |
+| owner    | string                | 是    | 应用账号所有者的包名。        |
 | callback | [AuthCallback](#authcallback9) | 是    | 回调函数，返回验证结果。 |
 
 **错误码：**
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or owner. |
 | 12300003 | Account not found. |
@@ -2688,11 +2763,11 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
   try {
       appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
-          onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
+          onResult: (resultCode: number, result?: appAccount.AuthResult) => {
               console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
               console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
@@ -2701,7 +2776,7 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void
           }
       });
   } catch (err) {
-      console.log('verifyCredential err: ' + JSON.stringify(err));
+      console.error('verifyCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2717,8 +2792,8 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 
 | 参数名    | 类型                    | 必填  | 说明                     |
 | -------- | ----------------------- | ----- | ----------------------- |
-| name     | string                  | 是    | 应用帐号的名称。          |
-| owner    | string                  | 是    | 应用帐号所有者的包名。        |
+| name     | string                  | 是    | 应用账号的名称。          |
+| owner    | string                  | 是    | 应用账号所有者的包名。        |
 | options  | [VerifyCredentialOptions](#verifycredentialoptions9) | 是    | 验证凭据的选项。          |
 | callback | [AuthCallback](#authcallback9)   | 是    | 回调函数，返回验证结果。 |
 
@@ -2726,6 +2801,7 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 
 | 错误码ID | 错误信息|
 | ------- | -------|
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid name, owner or options. |
 | 12300003 | Account not found. |
@@ -2736,15 +2812,15 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
-  let options: account_appAccount.VerifyCredentialOptions = {
+  let options: appAccount.VerifyCredentialOptions = {
     credentialType: 'pin',
     credential: '123456'
   };
   try {
     appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
-      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: appAccount.AuthResult) => {
         console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
@@ -2753,7 +2829,7 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
       }
     });
   } catch (err) {
-    console.log('verifyCredential err: ' + JSON.stringify(err));
+    console.error('verifyCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2776,6 +2852,7 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner. |
 | 12300010 | Account service busy. |
@@ -2785,11 +2862,11 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
-      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
@@ -2798,7 +2875,7 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void
       }
     });
   } catch (err) {
-    console.log('setAuthenticatorProperties err: ' + JSON.stringify(err));
+    console.error('setAuthenticatorProperties err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2822,6 +2899,7 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 | 错误码ID | 错误信息 |
 | ------- | ------- |
+| 401 |Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 12300001 | System service exception. |
 | 12300002 | Invalid owner or options. |
 | 12300010 | Account service busy. |
@@ -2831,14 +2909,14 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
-  let options: account_appAccount.SetPropertiesOptions = {
+  let options: appAccount.SetPropertiesOptions = {
     properties: {prop1: 'value1'}
   };
   try {
     appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
-      onResult: (resultCode: number, result?: account_appAccount.AuthResult) => {
+      onResult: (resultCode: number, result?: appAccount.AuthResult) => {
         console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
         console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
@@ -2847,7 +2925,7 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
       }
     });
   } catch (err) {
-    console.log('setAuthenticatorProperties err: ' + JSON.stringify(err));
+    console.error('setAuthenticatorProperties err: ' + JSON.stringify(err));
   } 
 
   ```
@@ -2856,7 +2934,7 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
 addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-根据帐号名添加应用帐号。使用callback异步回调。
+根据账号名添加应用账号。使用callback异步回调。
 
 > **说明：** 
 > 
@@ -2869,16 +2947,16 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明                   |
 | -------- | ------------------------- | ---- | -------------------- |
-| name     | string                    | 是    | 应用帐号的名称。          |
+| name     | string                    | 是    | 应用账号的名称。          |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当创建成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('WangWu', (err: BusinessError) => { 
-      console.log('addAccount err: ' + JSON.stringify(err));
+      console.error('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2886,7 +2964,7 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
 
-根据帐号名和额外信息添加应用帐号。使用callback异步回调。
+根据账号名和额外信息添加应用账号。使用callback异步回调。
 
 > **说明：** 
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9-1)替代。
@@ -2897,17 +2975,17 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 | 参数名       | 类型                        | 必填   | 说明                                       |
 | --------- | ------------------------- | ---- | ---------------------------------------- |
-| name      | string                    | 是    | 应用帐号的名称。                              |
-| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
+| name      | string                    | 是    | 应用账号的名称。                              |
+| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用账号的敏感信息（如应用账号密码、token等）。 |
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当创建成功时，err为null，否则为错误对象。             |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('LiSi', 'token101', (err: BusinessError) => { 
-    console.log('addAccount err: ' + JSON.stringify(err));
+    console.error('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2915,7 +2993,7 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 
 addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
-根据帐号名和额外信息添加应用帐号。使用callback异步回调。使用Promise异步回调。
+根据账号名和额外信息添加应用账号。使用callback异步回调。使用Promise异步回调。
 
 > **说明：**  
 > 从 API version 7开始支持，从API version 9开始废弃。建议使用[createAccount](#createaccount9-2)替代。
@@ -2926,8 +3004,8 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
-| name      | string | 是    | 应用帐号的名称。                            |
-| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等），默认为空，表示创建的该帐号无额外信息需要添加。 |
+| name      | string | 是    | 应用账号的名称。                            |
+| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用账号的敏感信息（如应用账号密码、token等），默认为空，表示创建的该账号无额外信息需要添加。 |
 
 **返回值：**
 
@@ -2938,20 +3016,20 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
     console.log('addAccount Success');
   }).catch((err: BusinessError) => {
-    console.log('addAccount err: ' + JSON.stringify(err));
+    console.error('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
 ### addAccountImplicitly<sup>(deprecated)</sup>
 
-addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+addAccountImplicitly(owner: string, authType: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-根据指定的帐号所有者隐式地添加应用帐号。使用callback异步回调。
+根据指定的账号所有者隐式地添加应用账号。使用callback异步回调。
 
 > **说明：**  
 >
@@ -2963,7 +3041,7 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 
 | 参数名      | 类型                    | 必填   | 说明                      |
 | -------- | --------------------- | ---- | ----------------------- |
-| owner    | string                | 是    | 应用帐号所有者的包名。          |
+| owner    | string                | 是    | 应用账号所有者的包名。          |
 | authType | string                | 是    | 鉴权类型。鉴权类型为自定义。  |
 | options  | {[key: string]: any}  | 是    | 鉴权所需要的可选项。可选项可根据自己需要设置。 |
 | callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | 是    | 认证器回调对象，返回添加结果。         |
@@ -2971,42 +3049,48 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result: Record<string, Object>): void {
-    console.log('resultCode: ' + code);
-    console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
+    onResultCallback(code: number, result: Record<string, Object>): void {
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  appAccountManager.addAccountImplicitly('com.example.accountjsdemo', 'getSocialData', {}, {
-    onResult: onResultCallback,
-    onRequestRedirected: onRequestRedirectedCallback
-  });
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      appAccountManager.addAccountImplicitly('com.example.accountjsdemo', 'getSocialData', {}, {
+        onResult: this.onResultCallback,
+        onRequestRedirected: this.onRequestRedirectedCallback
+      });
+    }
+    build() {}
+  }
   ```
 
 ### deleteAccount<sup>(deprecated)</sup>
 
 deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除应用帐号。使用callback异步回调。
+删除应用账号。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3018,16 +3102,16 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型                        | 必填   | 说明               |
 | -------- | ------------------------- | ---- | ---------------- |
-| name     | string                    | 是    | 应用帐号的名称。      |
+| name     | string                    | 是    | 应用账号的名称。      |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当删除成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteAccount('ZhaoLiu', (err: BusinessError) => { 
-      console.log('deleteAccount err: ' + JSON.stringify(err));
+      console.error('deleteAccount err: ' + JSON.stringify(err));
    });
   ```
 
@@ -3035,7 +3119,7 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
 deleteAccount(name: string): Promise&lt;void&gt;
 
-删除应用帐号。使用Promise异步回调。
+删除应用账号。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3047,7 +3131,7 @@ deleteAccount(name: string): Promise&lt;void&gt;
 
 | 参数名  | 类型     | 必填   | 说明          |
 | ---- | ------ | ---- | ----------- |
-| name | string | 是    | 应用帐号的名称。 |
+| name | string | 是    | 应用账号的名称。 |
 
 **返回值：**
 
@@ -3058,19 +3142,19 @@ deleteAccount(name: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
         console.log('deleteAccount Success');
    }).catch((err: BusinessError) => {
-      console.log('deleteAccount err: ' + JSON.stringify(err));
+      console.error('deleteAccount err: ' + JSON.stringify(err));
   });
   ```
 ### disableAppAccess<sup>(deprecated)</sup>
 
 disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-禁止指定第三方应用帐号名称对指定的第三方应用进行访问。使用callback异步回调。
+禁止指定第三方应用账号名称对指定的第三方应用进行访问。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3082,17 +3166,17 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
 | 参数名        | 类型                        | 必填   | 说明                                |
 | ---------- | ------------------------- | ---- | --------------------------------- |
-| name       | string                    | 是    | 应用帐号的名称。                  |
+| name       | string                    | 是    | 应用账号的名称。                  |
 | bundleName | string                    | 是    | 第三方应用的包名。                         |
-| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数。当禁止指定第三方应用帐号名称对指定包名称的第三方应用进行访问设置成功时，err为null，否则为错误对象。 |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数。当禁止指定第三方应用账号名称对指定包名称的第三方应用进行访问设置成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
-      console.log('disableAppAccess err: ' + JSON.stringify(err));
+      console.error('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3100,7 +3184,7 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 
 disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
-禁止指定第三方应用帐号名称对指定包名称的第三方应用进行访问。使用Promise异步回调。
+禁止指定第三方应用账号名称对指定包名称的第三方应用进行访问。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3112,7 +3196,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 | 参数名        | 类型     | 必填   | 说明               |
 | ---------- | ------ | ---- | ---------------- |
-| name       | string | 是    | 要禁用访问的第三方应用帐号的名称。 |
+| name       | string | 是    | 要禁用访问的第三方应用账号的名称。 |
 | bundleName | string | 是    | 第三方应用的包名。        |
 
 **返回值：**
@@ -3124,12 +3208,12 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
 
   appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
       console.log('disableAppAccess Success');
   }).catch((err: BusinessError) => {
-      console.log('disableAppAccess err: ' + JSON.stringify(err));
+      console.error('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3137,7 +3221,7 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 
-允许指定第三方应用帐号名称对指定包名称的第三方应用进行访问。使用callback异步回调。
+允许指定第三方应用账号名称对指定包名称的第三方应用进行访问。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3149,14 +3233,14 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
 | 参数名        | 类型                        | 必填   | 说明                                |
 | ---------- | ------------------------- | ---- | --------------------------------- |
-| name       | string                    | 是    | 应用帐号的名称。                           |
+| name       | string                    | 是    | 应用账号的名称。                           |
 | bundleName | string                    | 是    | 第三方应用的包名。                         |
-| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数。当允许指定第三方应用帐号名称对指定包名称的第三方应用进行访问设置成功时，err为null，否则为错误对象。 |
+| callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数。当允许指定第三方应用账号名称对指定包名称的第三方应用进行访问设置成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err: BusinessError) => { 
       console.log('enableAppAccess: ' + JSON.stringify(err));
@@ -3167,7 +3251,7 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 
 enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
-允许指定第三方应用帐号的名称对指定包名称的第三方应用进行访问。使用Promise异步回调。
+允许指定第三方应用账号的名称对指定包名称的第三方应用进行访问。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3179,7 +3263,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 | 参数名        | 类型     | 必填   | 说明        |
 | ---------- | ------ | ---- | --------- |
-| name       | string | 是    | 应用帐号的名称。   |
+| name       | string | 是    | 应用账号的名称。   |
 | bundleName | string | 是    | 第三方应用的包名。 |
 
 **返回值：**
@@ -3191,12 +3275,12 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err: BusinessError) => {
-      console.log('enableAppAccess err: ' + JSON.stringify(err));
+      console.error('enableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3204,7 +3288,7 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 
 checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查指定应用帐号是否开启数据同步功能。使用callback异步回调。
+检查指定应用账号是否开启数据同步功能。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3218,13 +3302,13 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 | 参数名      | 类型                           | 必填   | 说明                    |
 | -------- | ---------------------------- | ---- | --------------------- |
-| name     | string                       | 是    | 应用帐号的名称。               |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用帐号已开启数据同步功能；返回false表示未开启。 |
+| name     | string                       | 是    | 应用账号的名称。               |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。返回true表示指定应用账号已开启数据同步功能；返回false表示未开启。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err: BusinessError, result: boolean) => { 
       console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
@@ -3236,7 +3320,7 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 
 checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
-检查指定应用帐号是否开启数据同步功能。使用Promise异步回调。
+检查指定应用账号是否开启数据同步功能。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3250,23 +3334,23 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 | 参数名  | 类型     | 必填   | 说明      |
 | ---- | ------ | ---- | ------- |
-| name | string | 是    | 应用帐号的名称。 |
+| name | string | 是    | 应用账号的名称。 |
 
 **返回值：**
 
 | 类型                     | 说明                    |
 | ---------------------- | --------------------- |
-| Promise&lt;boolean&gt; | Promise对象。返回true表示指定应用帐号已开启数据同步功能；返回false表示未开启。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示指定应用账号已开启数据同步功能；返回false表示未开启。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data: boolean) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
+      console.error('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3274,7 +3358,7 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 
 setAccountCredential(name: string, credentialType: string, credential: string,callback: AsyncCallback&lt;void&gt;): void
 
-设置指定应用帐号的凭据。使用callback异步回调。
+设置指定应用账号的凭据。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3286,15 +3370,15 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 
 | 参数名            | 类型                        | 必填   | 说明            |
 | -------------- | ------------------------- | ---- | ------------- |
-| name           | string                    | 是    | 应用帐号的名称。     |
+| name           | string                    | 是    | 应用账号的名称。     |
 | credentialType | string                    | 是    | 凭据类型。     |
 | credential     | string                    | 是    | 凭据取值。      |
-| callback       | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置此应用程序帐号的凭据成功时，err为null，否则为错误对象。 |
+| callback       | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置此应用程序账号的凭据成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err: BusinessError) => { 
       console.log('setAccountCredential err: ' + JSON.stringify(err));
@@ -3305,7 +3389,7 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 
 setAccountCredential(name: string, credentialType: string, credential: string): Promise&lt;void&gt;
 
-设置指定应用帐号的凭据。使用Promise异步回调。
+设置指定应用账号的凭据。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3317,7 +3401,7 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 
 | 参数名            | 类型     | 必填   | 说明         |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | 是    | 应用帐号的名称。   |
+| name           | string | 是    | 应用账号的名称。   |
 | credentialType | string | 是    | 凭据类型。 |
 | credential     | string | 是    | 凭据取值。 |
 
@@ -3330,12 +3414,12 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
       console.log('setAccountCredential Success');
   }).catch((err: BusinessError) => {
-      console.log('setAccountCredential err: ' + JSON.stringify(err));
+      console.error('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3343,7 +3427,7 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 
 setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定应用帐号的额外信息。使用callback异步回调。
+设置指定应用账号的额外信息。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3356,14 +3440,14 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 
 | 参数名       | 类型                        | 必填   | 说明              |
 | --------- | ------------------------- | ---- | --------------- |
-| name      | string                    | 是    | 应用帐号的名称。         |
-| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。       |
+| name      | string                    | 是    | 应用账号的名称。         |
+| extraInfo | string                    | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用账号的敏感信息（如应用账号密码、token等）。       |
 | callback  | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err: BusinessError) => { 
       console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
@@ -3374,7 +3458,7 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 
 setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
-设置此应用程序帐号的额外信息。使用Promise异步回调。
+设置此应用程序账号的额外信息。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3387,8 +3471,8 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 | 参数名       | 类型     | 必填   | 说明        |
 | --------- | ------ | ---- | --------- |
-| name      | string | 是    | 应用帐号的名称。   |
-| extraInfo | string | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
+| name      | string | 是    | 应用账号的名称。   |
+| extraInfo | string | 是    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用账号的敏感信息（如应用账号密码、token等）。 |
 
 **返回值：**
 
@@ -3399,12 +3483,12 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
       console.log('setAccountExtraInfo Success');
   }).catch((err: BusinessError) => {
-      console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
+      console.error('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3412,7 +3496,7 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 
 setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-开启或禁止指定应用帐号的数据同步功能。使用callback异步回调。
+开启或禁止指定应用账号的数据同步功能。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3426,14 +3510,14 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 | 参数名      | 类型                        | 必填   | 说明                        |
 | -------- | ------------------------- | ---- | ------------------------- |
-| name     | string                    | 是    | 应用帐号的名称。                  |
-| isEnable | boolean                   | 是    | 是否开启数据同步。               |
+| name     | string                    | 是    | 应用账号的名称。                  |
+| isEnable | boolean                   | 是    | 是否开启数据同步。true表示开启数据同步，false表示关闭数据同步。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当开启或禁止成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err: BusinessError) => { 
       console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
@@ -3444,7 +3528,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 
 setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
-开启或禁止指定应用帐号的数据同步功能。使用Promise异步回调。
+开启或禁止指定应用账号的数据同步功能。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3458,8 +3542,8 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 | 参数名      | 类型      | 必填   | 说明          |
 | -------- | ------- | ---- | ----------- |
-| name     | string  | 是    | 应用帐号的名称。     |
-| isEnable | boolean | 是    | 是否开启数据同步。 |
+| name     | string  | 是    | 应用账号的名称。     |
+| isEnable | boolean | 是    | 是否开启数据同步。true表示开启数据同步，false表示关闭数据同步。 |
 
 **返回值：**
 
@@ -3470,12 +3554,12 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
   }).catch((err: BusinessError) => {
-      console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
+      console.error('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3483,7 +3567,7 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 
 setAssociatedData(name: string, key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定应用帐号的关联数据。使用callback异步回调。
+设置指定应用账号的关联数据。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3496,15 +3580,15 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 
 | 参数名      | 类型                        | 必填   | 说明                |
 | -------- | ------------------------- | ---- | ----------------- |
-| name     | string                    | 是    | 应用帐号的名称。           |
+| name     | string                    | 是    | 应用账号的名称。           |
 | key      | string                    | 是    | 关联数据的键名。 |
 | value    | string                    | 是    | 关联数据的取值。         |
-| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置与此应用帐号关联的数据成功时，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置与此应用账号关联的数据成功时，err为null，否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err: BusinessError) => { 
       console.log('setAssociatedData err: ' + JSON.stringify(err));
@@ -3515,7 +3599,7 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 
 setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
-设置指定应用帐号的关联数据。使用Promise异步回调。
+设置指定应用账号的关联数据。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3528,7 +3612,7 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 | 参数名   | 类型     | 必填   | 说明                |
 | ----- | ------ | ---- | ----------------- |
-| name  | string | 是    | 应用帐号的名称。           |
+| name  | string | 是    | 应用账号的名称。           |
 | key      | string | 是    | 关联数据的键名。 |
 | value    | string | 是    | 关联数据的取值。 |
 
@@ -3541,12 +3625,12 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
       console.log('setAssociatedData Success');
   }).catch((err: BusinessError) => {
-      console.log('setAssociatedData err: ' + JSON.stringify(err));
+      console.error('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3554,7 +3638,7 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 
 getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-获取所有可访问的应用帐号信息。使用callback异步回调。
+获取所有可访问的应用账号信息。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3568,14 +3652,14 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当查询成功时，err为null，data为获取到的应用帐号信息列表；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数。当查询成功时，err为null，data为获取到的应用账号信息列表；否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
+  appAccountManager.getAllAccessibleAccounts((err: BusinessError, data: appAccount.AppAccountInfo[])=>{
   	console.debug('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   	console.debug('getAllAccessibleAccounts data: ' + JSON.stringify(data));
   });
@@ -3585,7 +3669,7 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
 getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-获取所有可访问的应用帐号信息。使用Promise异步回调。
+获取所有可访问的应用账号信息。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3599,17 +3683,17 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回全部应用已授权帐号信息对象。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回全部应用已授权账号信息对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  appAccountManager.getAllAccessibleAccounts().then((data: account_appAccount.AppAccountInfo[]) => { 
+  appAccountManager.getAllAccessibleAccounts().then((data: appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccessibleAccounts: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAllAccessibleAccounts err: ' + JSON.stringify(err));
+      console.error('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3617,7 +3701,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-根据应用帐号所有者获取调用方可访问的应用帐号列表。使用callback异步回调。
+根据应用账号所有者获取调用方可访问的应用账号列表。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3631,16 +3715,16 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 
 | 参数名      | 类型                                       | 必填   | 说明        |
 | -------- | ---------------------------------------- | ---- | --------- |
-| owner    | string                                   | 是    | 应用帐号所有者的包名。    |
-| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 应用帐号信息列表。 |
+| owner    | string                                   | 是    | 应用账号所有者的包名。    |
+| callback | AsyncCallback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 应用账号信息列表。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   const selfBundle = 'com.example.actsgetallaaccounts';
-  appAccountManager.getAllAccounts(selfBundle, (err: BusinessError, data: account_appAccount.AppAccountInfo[])=>{
+  appAccountManager.getAllAccounts(selfBundle, (err: BusinessError, data: appAccount.AppAccountInfo[])=>{
   	console.debug('getAllAccounts err: ' + JSON.stringify(err));
   	console.debug('getAllAccounts data:' + JSON.stringify(data));
   });
@@ -3650,7 +3734,7 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 
 getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
-根据应用帐号所有者获取调用方可访问的应用帐号列表。使用Promise异步回调。
+根据应用账号所有者获取调用方可访问的应用账号列表。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3664,24 +3748,24 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 | 参数名   | 类型     | 必填   | 说明     |
 | ----- | ------ | ---- | ------ |
-| owner | string | 是    | 应用帐号所有者的包名。 |
+| owner | string | 是    | 应用账号所有者的包名。 |
 
 **返回值：**
 
 | 类型                                       | 说明                    |
 | ---------------------------------------- | --------------------- |
-| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回指定应用全部帐号信息对象。 |
+| Promise&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Promise对象，返回指定应用全部账号信息对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   const selfBundle = 'com.example.actsgetallaaccounts';
-  appAccountManager.getAllAccounts(selfBundle).then((data: account_appAccount.AppAccountInfo[]) => { 
+  appAccountManager.getAllAccounts(selfBundle).then((data: appAccount.AppAccountInfo[]) => { 
        console.log('getAllAccounts: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAllAccounts err: ' + JSON.stringify(err));
+      console.error('getAllAccounts err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3689,7 +3773,7 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
 getAccountCredential(name: string, credentialType: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定应用帐号的凭据。使用callback异步回调。
+获取指定应用账号的凭据。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3701,14 +3785,14 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 
 | 参数名            | 类型                          | 必填   | 说明             |
 | -------------- | --------------------------- | ---- | -------------- |
-| name           | string                      | 是    | 应用帐号的名称。        |
+| name           | string                      | 是    | 应用账号的名称。        |
 | credentialType | string                      | 是    | 凭据类型。 |
-| callback       | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取凭据成功时，err为null，data为指定应用帐号的凭据；否则为错误对象。 |
+| callback       | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取凭据成功时，err为null，data为指定应用账号的凭据；否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err: BusinessError, result: string) => { 
       console.log('getAccountCredential err: ' + JSON.stringify(err));
@@ -3720,7 +3804,7 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 
 getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
-获取指定应用帐号的凭据。使用Promise异步回调。
+获取指定应用账号的凭据。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3732,24 +3816,24 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 
 | 参数名            | 类型     | 必填   | 说明         |
 | -------------- | ------ | ---- | ---------- |
-| name           | string | 是    | 应用帐号的名称。    |
+| name           | string | 是    | 应用账号的名称。    |
 | credentialType | string | 是    | 凭据类型。 |
 
 **返回值：**
 
 | 类型                    | 说明                    |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise对象，返回指定应用帐号的凭据。 |
+| Promise&lt;string&gt; | Promise对象，返回指定应用账号的凭据。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data: string) => { 
       console.log('getAccountCredential, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAccountCredential err: ' + JSON.stringify(err));
+      console.error('getAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3757,7 +3841,7 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 
 getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定应用帐号的额外信息（能转换成string类型的其它信息）。使用callback异步回调。
+获取指定应用账号的额外信息（能转换成string类型的其它信息）。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3769,13 +3853,13 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                          | 必填   | 说明              |
 | -------- | --------------------------- | ---- | --------------- |
-| name     | string                      | 是    | 应用帐号的名称。         |
-| callback | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取此应用帐号的额外信息成功时，err为null，data返回此应用帐号的额外信息对象；否则为错误对象。 |
+| name     | string                      | 是    | 应用账号的名称。         |
+| callback | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取此应用账号的额外信息成功时，err为null，data返回此应用账号的额外信息对象；否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountExtraInfo('ZhangSan', (err: BusinessError, result: string) => { 
       console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
@@ -3787,7 +3871,7 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 
 getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
-获取指定应用帐号的额外信息（能转换成string类型的其它信息）。使用Promise异步回调。
+获取指定应用账号的额外信息（能转换成string类型的其它信息）。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3799,23 +3883,23 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 | 参数名  | 类型     | 必填   | 说明      |
 | ---- | ------ | ---- | ------- |
-| name | string | 是    | 应用帐号的名称。 |
+| name | string | 是    | 应用账号的名称。 |
 
 **返回值：**
 
 | 类型                    | 说明                    |
 | :-------------------- | :-------------------- |
-| Promise&lt;string&gt; | Promise对象，返回此应用程序帐号的额外信息对象。 |
+| Promise&lt;string&gt; | Promise对象，返回此应用程序账号的额外信息对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAccountExtraInfo('ZhangSan').then((data: string) => { 
       console.log('getAccountExtraInfo, result: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
+      console.error('getAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3823,7 +3907,7 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 
 getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&gt;): void
 
-根据指定键名获取特定应用帐号的关联数据。使用callback异步回调。
+根据指定键名获取特定应用账号的关联数据。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3835,14 +3919,14 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 
 | 参数名      | 类型                          | 必填   | 说明                |
 | -------- | --------------------------- | ---- | ----------------- |
-| name     | string                      | 是    | 应用帐号的名称。           |
+| name     | string                      | 是    | 应用账号的名称。           |
 | key      | string                      | 是    | 关联数据的键名。         |
 | callback | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取成功时，err为null，data为关联数据的取值；否则为错误对象。 |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001', (err: BusinessError, result: string) => { 
       console.log('getAssociatedData err: ' + JSON.stringify(err));
@@ -3854,7 +3938,7 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 
 getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
-获取与此应用程序帐号关联的数据。使用Promise异步回调。
+获取与此应用程序账号关联的数据。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -3866,7 +3950,7 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
 | 参数名  | 类型     | 必填   | 说明        |
 | ---- | ------ | ---- | --------- |
-| name | string | 是    | 应用帐号的名称。   |
+| name | string | 是    | 应用账号的名称。   |
 | key  | string | 是    | 关联数据的键名。 |
 
 **返回值：**
@@ -3878,12 +3962,12 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data: string) => { 
        console.log('getAssociatedData: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getAssociatedData err: ' + JSON.stringify(err));
+      console.error('getAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3891,7 +3975,7 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 
 on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-订阅指定应用的帐号信息变更事件。
+订阅指定应用的账号信息变更事件。
 
 > **说明：** 
 >
@@ -3903,14 +3987,14 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 | 参数名      | 类型                                       | 必填   | 说明                             |
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
-| type     | 'change'                                 | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。 |
-| owners   | Array&lt;string&gt;                      | 是    | 应用帐号所有者的包名列表。                      |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 需要注册的回调函数，返回信息发生变更的应用帐号列表。           |
+| type     | 'change'                                 | 是    | 事件回调类型，支持的事件为'change'，当账号所有者更新账号信息时，触发该事件。 |
+| owners   | Array&lt;string&gt;                      | 是    | 应用账号所有者的包名列表。                      |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 需要注册的回调函数，返回信息发生变更的应用账号列表。           |
 
 **示例：**
 
   ```ts
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
+  function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data:' + JSON.stringify(data));
   }
   try{
@@ -3925,7 +4009,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 
 off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
 
-取消订阅帐号信息变更事件。
+取消订阅账号信息变更事件。
 
 > **说明：** 
 >
@@ -3937,13 +4021,13 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
-| type     | 'change'                         | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。    |
+| type     | 'change'                         | 是    | 事件回调类型，支持的事件为'change'，当账号所有者更新账号信息时，触发该事件。    |
 | callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 需要注销的回调函数，默认为空，表示取消该类型事件的所有回调。 |
 
 **示例：**
 
   ```ts
-  function changeOnCallback(data: account_appAccount.AppAccountInfo[]): void {
+  function changeOnCallback(data: appAccount.AppAccountInfo[]): void {
   	console.debug('receive change data: ' + JSON.stringify(data));
   	appAccountManager.off('change', () => {
   		console.debug('off finish');
@@ -3959,9 +4043,9 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 
 ### authenticate<sup>(deprecated)</sup>
 
-authenticate(name: string, owner: string, authType: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+authenticate(name: string, owner: string, authType: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-对应用帐号进行鉴权以获取授权令牌。使用callback异步回调。
+对应用账号进行鉴权以获取授权令牌。使用callback异步回调。
 
 > **说明：** 
 >
@@ -3973,8 +4057,8 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 
 | 参数名      | 类型                    | 必填   | 说明              |
 | -------- | --------------------- | ---- | --------------- |
-| name     | string                | 是    | 应用帐号的名称。     |
-| owner    | string                | 是    | 应用帐号所有者的包名。  |
+| name     | string                | 是    | 应用账号的名称。     |
+| owner    | string                | 是    | 应用账号所有者的包名。  |
 | authType | string                | 是    | 鉴权类型。           |
 | options  | {[key: string]: any}  | 是    | 鉴权所需的可选项。       |
 | callback | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | 是    | 回调对象，返回鉴权结果。 |
@@ -3982,42 +4066,48 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import Want from '@ohos.app.ability.Want';
-  import common from '@ohos.app.ability.common';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, common } from '@kit.AbilityKit';
 
-  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+  @Entry
+  @Component
+  struct Index {
+    context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
 
-  function onResultCallback(code: number, result: Record<string, Object>): void {
+    onResultCallback(code: number, result: Record<string, Object>): void {
       console.log('resultCode: ' + code);
       console.log('result: ' + JSON.stringify(result));
-  }
-
-  function onRequestRedirectedCallback(request: Want): void {
-    let wantInfo: Want = {
-      deviceId: '',
-      bundleName: 'com.example.accountjsdemo',
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.default'],
     }
-    context.startAbility(wantInfo).then(() => {
-      console.log('startAbility successfully');
-    }).catch((err: BusinessError) => {
-      console.log('startAbility err: ' + JSON.stringify(err));
-    })
-  }
 
-  appAccountManager.authenticate('LiSi', 'com.example.accountjsdemo', 'getSocialData', {}, {
-    onResult: onResultCallback,
-    onRequestRedirected: onRequestRedirectedCallback
-  });
+    onRequestRedirectedCallback(request: Want): void {
+      let wantInfo: Want = {
+        deviceId: '',
+        bundleName: 'com.example.accountjsdemo',
+        action: 'ohos.want.action.viewData',
+        entities: ['entity.system.default'],
+      }
+      this.context.startAbility(wantInfo).then(() => {
+        console.log('startAbility successfully');
+      }).catch((err: BusinessError) => {
+        console.error('startAbility err: ' + JSON.stringify(err));
+      })
+    }
+
+    aboutToAppear(): void {
+      appAccountManager.authenticate('LiSi', 'com.example.accountjsdemo', 'getSocialData', {}, {
+        onResult: this.onResultCallback,
+        onRequestRedirected: this.onRequestRedirectedCallback
+      });
+    }
+    build() {}
+  }
   ```
 
 ### getOAuthToken<sup>(deprecated)</sup>
 
 getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定应用帐号的特定鉴权类型的授权令牌。使用callback异步回调。
+获取指定应用账号的特定鉴权类型的授权令牌。使用callback异步回调。
 
 > **说明：** 
 >
@@ -4029,15 +4119,15 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 
 | 参数名      | 类型                          | 必填   | 说明          |
 | -------- | --------------------------- | ---- | ----------- |
-| name     | string                      | 是    | 应用帐号的名称。    |
-| owner    | string                      | 是    | 应用帐号所有者的包名。 |
+| name     | string                      | 是    | 应用账号的名称。    |
+| owner    | string                      | 是    | 应用账号所有者的包名。 |
 | authType | string                      | 是    | 鉴权类型。       |
 | callback | AsyncCallback&lt;string&gt; | 是    | 回调函数。当获取成功时，err为null，data为授权令牌值；否则为错误对象。   |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData',
     (err: BusinessError, data: string) => {
@@ -4050,7 +4140,7 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 
 getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&gt;
 
-获取指定应用帐号的特定鉴权类型的授权令牌。使用Promise异步回调。
+获取指定应用账号的特定鉴权类型的授权令牌。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -4062,8 +4152,8 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 
 | 参数名      | 类型     | 必填   | 说明          |
 | -------- | ------ | ---- | ----------- |
-| name     | string | 是    | 应用帐号的名称。    |
-| owner    | string | 是    | 应用帐号所有者的包名。 |
+| name     | string | 是    | 应用账号的名称。    |
+| owner    | string | 是    | 应用账号所有者的包名。 |
 | authType | string | 是    | 鉴权类型。       |
 
 **返回值：**
@@ -4075,12 +4165,12 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data: string) => {
        console.log('getOAuthToken token: ' + data);
   }).catch((err: BusinessError) => {
-      console.log('getOAuthToken err: ' + JSON.stringify(err));
+      console.error('getOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4088,7 +4178,7 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 
 setOAuthToken(name: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
-为指定应用帐号设置特定鉴权类型的授权令牌。使用callback异步回调。
+为指定应用账号设置特定鉴权类型的授权令牌。使用callback异步回调。
 
 > **说明：** 
 >
@@ -4100,7 +4190,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 
 | 参数名      | 类型                        | 必填   | 说明       |
 | -------- | ------------------------- | ---- | -------- |
-| name     | string                    | 是    | 应用帐号的名称。 |
+| name     | string                    | 是    | 应用账号的名称。 |
 | authType | string                    | 是    | 鉴权类型。    |
 | token    | string                    | 是    | 授权令牌。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当设置成功时，err为null；否则为错误对象。 |
@@ -4108,7 +4198,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err: BusinessError) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
@@ -4119,7 +4209,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 
 setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
-为指定应用帐号设置特定鉴权类型的授权令牌。使用Promise异步回调。
+为指定应用账号设置特定鉴权类型的授权令牌。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -4131,7 +4221,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 
 | 参数名      | 类型     | 必填   | 说明       |
 | -------- | ------ | ---- | -------- |
-| name     | string | 是    | 应用帐号的名称。 |
+| name     | string | 是    | 应用账号的名称。 |
 | authType | string | 是    | 鉴权类型。    |
 | token    | string | 是    | 授权令牌。 |
 
@@ -4144,12 +4234,12 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
       console.log('setOAuthToken successfully');
   }).catch((err: BusinessError) => {
-      console.log('setOAuthToken err: ' + JSON.stringify(err));
+      console.error('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4157,7 +4247,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 
 deleteOAuthToken(name: string, owner: string, authType: string, token: string, callback: AsyncCallback&lt;void&gt;): void
 
-删除指定应用帐号的特定鉴权类型的授权令牌。使用callback异步回调。
+删除指定应用账号的特定鉴权类型的授权令牌。使用callback异步回调。
 
 > **说明：** 
 >
@@ -4169,8 +4259,8 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 
 | 参数名      | 类型                        | 必填   | 说明           |
 | -------- | ------------------------- | ---- | ------------ |
-| name     | string                    | 是    | 应用帐号的名称。     |
-| owner    | string                    | 是    | 应用帐号所有者的包名。  |
+| name     | string                    | 是    | 应用账号的名称。     |
+| owner    | string                    | 是    | 应用账号所有者的包名。  |
 | authType | string                    | 是    | 鉴权类型。        |
 | token    | string                    | 是    | 授权令牌。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当删除成功时，err为null；否则为错误对象。     |
@@ -4178,7 +4268,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx',
     (err: BusinessError) => {
@@ -4190,7 +4280,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 
 deleteOAuthToken(name: string, owner: string, authType: string, token: string): Promise&lt;void&gt;
 
-删除指定应用帐号的特定鉴权类型的授权令牌。使用Promise异步回调。
+删除指定应用账号的特定鉴权类型的授权令牌。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -4202,8 +4292,8 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 
 | 参数名      | 类型     | 必填   | 说明           |
 | -------- | ------ | ---- | ------------ |
-| name     | string | 是    | 应用帐号的名称。     |
-| owner    | string | 是    | 应用帐号所有者的包名。  |
+| name     | string | 是    | 应用账号的名称。     |
+| owner    | string | 是    | 应用账号所有者的包名。  |
 | authType | string | 是    | 鉴权类型。        |
 | token    | string | 是    | 授权令牌。 |
 
@@ -4216,12 +4306,12 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
        console.log('deleteOAuthToken successfully');
   }).catch((err: BusinessError) => {
-      console.log('deleteOAuthToken err: ' + JSON.stringify(err));
+      console.error('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4229,7 +4319,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 
 setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定帐号的特定鉴权类型的授权令牌对指定应用的可见性。使用callback异步回调。
+设置指定账号的特定鉴权类型的授权令牌对指定应用的可见性。使用callback异步回调。
 
 > **说明：** 
 >
@@ -4241,7 +4331,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 | 参数名        | 类型                        | 必填   | 说明                        |
 | ---------- | ------------------------- | ---- | ------------------------- |
-| name       | string                    | 是    | 应用帐号的名称。                  |
+| name       | string                    | 是    | 应用账号的名称。                  |
 | authType   | string                    | 是    | 鉴权类型。                     |
 | bundleName | string                    | 是    | 被设置可见性的应用包名。              |
 | isVisible  | boolean                   | 是    | 是否可见。true表示可见，false表示不可见。 |
@@ -4250,7 +4340,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true,
     (err: BusinessError) => {
@@ -4262,7 +4352,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVisible: boolean): Promise&lt;void&gt;
 
-设置指定帐号的特定鉴权类型的授权令牌对指定应用的可见性。使用Promise异步回调。
+设置指定账号的特定鉴权类型的授权令牌对指定应用的可见性。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -4274,7 +4364,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 | 参数名        | 类型      | 必填   | 说明           |
 | ---------- | ------- | ---- | ------------ |
-| name       | string  | 是    | 应用帐号的名称。     |
+| name       | string  | 是    | 应用账号的名称。     |
 | authType   | string  | 是    | 鉴权类型。        |
 | bundleName | string  | 是    | 被设置可见性的应用包名。 |
 | isVisible  | boolean | 是    | 是否可见。true表示可见，false表示不可见。        |
@@ -4288,12 +4378,12 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
   }).catch((err: BusinessError) => {
-      console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
+      console.error('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4301,7 +4391,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 
 checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-检查指定应用帐号的特定鉴权类型的授权令牌对指定应用的可见性。使用callback异步回调。
+检查指定应用账号的特定鉴权类型的授权令牌对指定应用的可见性。使用callback异步回调。
 
 > **说明：** 
 >
@@ -4313,7 +4403,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 
 | 参数名        | 类型                           | 必填   | 说明          |
 | ---------- | ---------------------------- | ---- | ----------- |
-| name       | string                       | 是    | 应用帐号的名称。    |
+| name       | string                       | 是    | 应用账号的名称。    |
 | authType   | string                       | 是    | 鉴权类型。       |
 | bundleName | string                       | 是    | 检查可见性的应用包名。 |
 | callback   | AsyncCallback&lt;boolean&gt; | 是    | 回调函数。当检查成功时，err为null，data为true表示可见，data为false表示不可见；否则为错误对象。    |
@@ -4321,7 +4411,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo',
     (err: BusinessError, data: boolean) => {
@@ -4334,7 +4424,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 
 checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): Promise&lt;boolean&gt;
 
-检查指定应用帐号的特定鉴权类型的授权令牌对指定应用的可见性。使用Promise异步回调。
+检查指定应用账号的特定鉴权类型的授权令牌对指定应用的可见性。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -4346,7 +4436,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 
 | 参数名        | 类型     | 必填   | 说明            |
 | ---------- | ------ | ---- | ------------- |
-| name       | string | 是    | 应用帐号的名称。      |
+| name       | string | 是    | 应用账号的名称。      |
 | authType   | string | 是    | 鉴权类型。         |
 | bundleName | string | 是    | 用于检查可见性的应用包名。 |
 
@@ -4359,13 +4449,13 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((
     data: boolean) => {
     console.log('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err: BusinessError) => {
-    console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
+    console.error('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4373,7 +4463,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 
 getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&lt;OAuthTokenInfo&gt;&gt;): void
 
-获取指定帐号对调用方可见的所有授权令牌。使用callback异步回调。
+获取指定账号对调用方可见的所有授权令牌。使用callback异步回调。
 
 > **说明：** 
 >
@@ -4385,17 +4475,17 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 
 | 参数名      | 类型                                       | 必填   | 说明          |
 | -------- | ---------------------------------------- | ---- | ----------- |
-| name     | string                                   | 是    | 应用帐号的名称。    |
-| owner    | string                                   | 是    | 应用帐号所有者的包名。 |
+| name     | string                                   | 是    | 应用账号的名称。    |
+| owner    | string                                   | 是    | 应用账号所有者的包名。 |
 | callback | AsyncCallback&lt;Array&lt;[OAuthTokenInfo](#oauthtokeninfodeprecated)&gt;&gt; | 是    | 回调函数。当获取成功时，err为null，data为授权令牌数组；否则为错误对象。    |
 
 **示例：** 
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo',
-    (err: BusinessError, data: account_appAccount.OAuthTokenInfo[]) => {
+    (err: BusinessError, data: appAccount.OAuthTokenInfo[]) => {
       console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
     });
@@ -4405,7 +4495,7 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 
 getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenInfo&gt;&gt;
 
-获取指定帐号对调用方可见的所有授权令牌。使用Promise异步回调。
+获取指定账号对调用方可见的所有授权令牌。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -4417,8 +4507,8 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 
 | 参数名   | 类型     | 必填   | 说明          |
 | ----- | ------ | ---- | ----------- |
-| name  | string | 是    | 应用帐号的名称。    |
-| owner | string | 是    | 应用帐号所有者的包名。 |
+| name  | string | 是    | 应用账号的名称。    |
+| owner | string | 是    | 应用账号所有者的包名。 |
 
 **返回值：**
 
@@ -4429,13 +4519,13 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((
-    data: account_appAccount.OAuthTokenInfo[]) => {
+    data: appAccount.OAuthTokenInfo[]) => {
     console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
+    console.error('getAllOAuthTokens err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4443,7 +4533,7 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 
 getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-获取指定应用帐号的特定鉴权类型的授权列表，即被授权的包名数组（令牌的授权列表通过setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated)来设置）。使用callback异步回调。
+获取指定应用账号的特定鉴权类型的授权列表，即被授权的包名数组（令牌的授权列表通过setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated)来设置）。使用callback异步回调。
 
 > **说明：** 
 >
@@ -4455,14 +4545,14 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 
 | 参数名      | 类型                                       | 必填   | 说明                      |
 | -------- | ---------------------------------------- | ---- | ----------------------- |
-| name     | string                                   | 是    | 应用帐号的名称。                |
+| name     | string                                   | 是    | 应用账号的名称。                |
 | authType | string                                   | 是    | 鉴权类型。 |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 回调函数。当获取成功时，err为null，data为被授权的包名数组；否则为错误对象。               |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData', (err: BusinessError, data: string[]) => {
     console.log('getOAuthList err: ' + JSON.stringify(err));
@@ -4474,7 +4564,7 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 
 getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
-获取指定应用帐号的特定鉴权类型的授权列表，即被授权的包名数组（令牌的授权列表通过setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated)来设置）。使用Promise异步回调。
+获取指定应用账号的特定鉴权类型的授权列表，即被授权的包名数组（令牌的授权列表通过setOAuthTokenVisibility(#setoauthtokenvisibilitydeprecated)来设置）。使用Promise异步回调。
 
 > **说明：** 
 >
@@ -4486,7 +4576,7 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
 | 参数名      | 类型     | 必填   | 说明                      |
 | -------- | ------ | ---- | ----------------------- |
-| name     | string | 是    | 应用帐号的名称。                |
+| name     | string | 是    | 应用账号的名称。                |
 | authType | string | 是    | 鉴权类型。 |
 
 **返回值：**
@@ -4498,12 +4588,12 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data: string[]) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-      console.log('getOAuthList err: ' + JSON.stringify(err));
+      console.error('getOAuthList err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4529,21 +4619,19 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, param: AbilityConstant.LaunchParam) { // ability 生命周期函数
-      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      let sessionId: string = want.parameters![appAccount.Constants.KEY_SESSION_ID] as string;
       appAccountManager.getAuthenticatorCallback(sessionId,
-          (err: BusinessError, callback: account_appAccount.AuthenticatorCallback) => {
-          if (err.code != account_appAccount.ResultCode.SUCCESS) {
-              console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
+          (err: BusinessError, callback: appAccount.AuthenticatorCallback) => {
+          if (err.code != appAccount.ResultCode.SUCCESS) {
+              console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
               return;
           }
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+          callback.onResult(appAccount.ResultCode.SUCCESS, {
             name: 'LiSi',
             owner: 'com.example.accountjsdemo',
             authType: 'getSocialData',
@@ -4581,24 +4669,22 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
-  import UIAbility from '@ohos.app.ability.UIAbility';
-  import Want from '@ohos.app.ability.Want';
-  import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { Want, UIAbility, AbilityConstant } from '@kit.AbilityKit';
 
   export default class EntryAbility extends UIAbility {
     onCreate(want: Want, param: AbilityConstant.LaunchParam) { // ability 生命周期函数
-      let sessionId: string = want.parameters![account_appAccount.Constants.KEY_SESSION_ID] as string;
+      let sessionId: string = want.parameters![appAccount.Constants.KEY_SESSION_ID] as string;
       appAccountManager.getAuthenticatorCallback(sessionId).then((
-        callback: account_appAccount.AuthenticatorCallback) => {
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+        callback: appAccount.AuthenticatorCallback) => {
+        callback.onResult(appAccount.ResultCode.SUCCESS, {
           name: 'LiSi',
           owner: 'com.example.accountjsdemo',
           authType: 'getSocialData',
           token: 'xxxxxx'}
         );
       }).catch((err: BusinessError) => {
-        console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
+        console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
       });
     }
   }
@@ -4620,16 +4706,16 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 
 | 参数名      | 类型                                     | 必填   | 说明          |
 | -------- | -------------------------------------- | ---- | ----------- |
-| owner    | string                                 | 是    | 应用帐号所有者的包名。 |
+| owner    | string                                 | 是    | 应用账号所有者的包名。 |
 | callback | AsyncCallback&lt;[AuthenticatorInfo](#authenticatorinfo8)&gt; | 是    | 回调函数。当获取成功时，err为null，data为认证器信息对象；否则为错误对象。    |
 
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo',
-    (err: BusinessError, data: account_appAccount.AuthenticatorInfo) => {
+    (err: BusinessError, data: appAccount.AuthenticatorInfo) => {
       console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
       console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
     });
@@ -4651,7 +4737,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 参数名   | 类型     | 必填   | 说明          |
 | ----- | ------ | ---- | ----------- |
-| owner | string | 是    | 应用帐号所有者的包名。 |
+| owner | string | 是    | 应用账号所有者的包名。 |
 
 **返回值：**
 
@@ -4662,26 +4748,26 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((
-    data: account_appAccount.AuthenticatorInfo) => { 
+    data: appAccount.AuthenticatorInfo) => { 
     console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err: BusinessError) => {
-    console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
+    console.error('getAuthenticatorInfo err: ' + JSON.stringify(err));
   });
   ```
 
 ## AppAccountInfo
 
-表示应用帐号信息。
+表示应用账号信息。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
 | 名称   | 类型     | 必填   | 说明          |
 | ----- | ------ | ---- | ----------- |
-| owner | string | 是    | 应用帐号所有者的包名。 |
-| name  | string | 是    | 应用帐号的名称。    |
+| owner | string | 是    | 应用账号所有者的包名。 |
+| name  | string | 是    | 应用账号的名称。    |
 
 ## AuthTokenInfo<sup>9+</sup>
 
@@ -4693,7 +4779,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------------- | -------------- | ----- | ---------------- |
 | authType<sup>9+</sup>             | string         | 是    | 令牌的鉴权类型。   |
 | token<sup>9+</sup>                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的账号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -4709,7 +4795,6 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------------- | -------------- | ----- | ---------------- |
 | authType             | string         | 是    | 令牌的鉴权类型。   |
 | token                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -4731,22 +4816,22 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。 |
+| account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的账号信息，默认为空。 |
 | tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否    | 令牌信息，默认为空。  |
 
 ## CreateAccountOptions<sup>9+</sup>
 
-表示创建帐号的选项。
+表示创建账号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| customData   | Record<string, Object> | 否    | 自定义数据，默认为空。 |
+| customData   | Record<string, string> | 否    | 自定义数据，默认为空。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
-表示隐式创建帐号的选项。
+表示隐式创建账号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
@@ -4757,14 +4842,14 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | parameters   | Record<string, Object> | 否    | 自定义参数对象，默认为空。 |
 ## SelectAccountsOptions<sup>9+</sup>
 
-表示用于选择帐号的选项。
+表示用于选择账号的选项。
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.AppAccount。
 
 | 名称          | 类型                         | 必填  | 说明                |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的帐号数组，默认为空。     |
-| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组，默认为空。 |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的账号数组，默认为空。     |
+| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的账号所有者数组，默认为空。 |
 | requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识，默认为空。  |
 
 ## VerifyCredentialOptions<sup>9+</sup>
@@ -4799,14 +4884,14 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称                            | 值                    | 说明                   |
 | -------------------------------- | ---------------------- | ----------------------- |
-| ACTION_ADD_ACCOUNT_IMPLICITLY<sup>(deprecated)</sup>    | 'addAccountImplicitly' | 表示操作，隐式添加帐号。  |
+| ACTION_ADD_ACCOUNT_IMPLICITLY<sup>(deprecated)</sup>    | 'addAccountImplicitly' | 表示操作，隐式添加账号。  |
 | ACTION_AUTHENTICATE<sup>(deprecated)</sup>              | 'authenticate'         | 表示操作，鉴权。         |
-| ACTION_CREATE_ACCOUNT_IMPLICITLY<sup>9+</sup>    | 'createAccountImplicitly' | 表示操作，隐式创建帐号。  |
+| ACTION_CREATE_ACCOUNT_IMPLICITLY<sup>9+</sup>    | 'createAccountImplicitly' | 表示操作，隐式创建账号。  |
 | ACTION_AUTH<sup>9+</sup>              | 'auth'         | 表示操作，鉴权。         |
 | ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | 'verifyCredential' | 表示操作，验证凭据。  |
 | ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | 'setAuthenticatorProperties' | 表示操作，设置认证器属性。      |
-| KEY_NAME                         | 'name'                 | 表示键名，应用帐号的名称。  |
-| KEY_OWNER                        | 'owner'                | 表示键名，应用帐号所有者的包名。|
+| KEY_NAME                         | 'name'                 | 表示键名，应用账号的名称。  |
+| KEY_OWNER                        | 'owner'                | 表示键名，应用账号所有者的包名。|
 | KEY_TOKEN                        | 'token'                | 表示键名，令牌。         |
 | KEY_ACTION                       | 'action'               | 表示键名，操作。         |
 | KEY_AUTH_TYPE                    | 'authType'             | 表示键名，鉴权类型。     |
@@ -4829,8 +4914,8 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | 名称                                  | 值   | 说明           |
 | ----------------------------------- | ----- | ------------ |
 | SUCCESS                             | 0     | 表示操作成功。      |
-| ERROR_ACCOUNT_NOT_EXIST             | 10001 | 表示应用帐号不存在。   |
-| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002 | 表示应用帐号服务异常。  |
+| ERROR_ACCOUNT_NOT_EXIST             | 10001 | 表示应用账号不存在。   |
+| ERROR_APP_ACCOUNT_SERVICE_EXCEPTION | 10002 | 表示应用账号服务异常。  |
 | ERROR_INVALID_PASSWORD              | 10003 | 表示密码无效。      |
 | ERROR_INVALID_REQUEST               | 10004 | 表示请求无效。      |
 | ERROR_INVALID_RESPONSE              | 10005 | 表示响应无效。      |
@@ -4870,12 +4955,12 @@ onResult: (code: number, result?: AuthResult) =&gt; void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: appAccount.AppAccountManager = appAccount.createAppAccountManager();
   let sessionId = '1234';
-  appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
-      let result: account_appAccount.AuthResult = {
+  appAccountManager.getAuthCallback(sessionId).then((callback: appAccount.AuthCallback) => {
+      let result: appAccount.AuthResult = {
           account: {
             name: 'Lisi',
             owner: 'com.example.accountjsdemo',
@@ -4885,9 +4970,9 @@ onResult: (code: number, result?: AuthResult) =&gt; void
             authType: 'getSocialData'
           }
       };
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+      callback.onResult(appAccount.ResultCode.SUCCESS, result);
   }).catch((err: BusinessError) => {
-      console.log('getAuthCallback err: ' + JSON.stringify(err));
+      console.error('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4903,16 +4988,16 @@ onRequestRedirected: (request: Want) =&gt; void
 
 | 参数名     | 类型   | 必填   | 说明         |
 | ------- | ---- | ---- | ---------- |
-| request | Want | 是    | 用于跳转的请求信息。 |
+| request | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 用于跳转的请求信息。 |
 
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
-  class MyAuthenticator extends account_appAccount.Authenticator {
+  class MyAuthenticator extends appAccount.Authenticator {
       createAccountImplicitly(
-        options: account_appAccount.CreateAccountImplicitlyOptions, callback: account_appAccount.AuthCallback) {
+        options: appAccount.CreateAccountImplicitlyOptions, callback: appAccount.AuthCallback) {
           let want: Want = {
             bundleName: 'com.example.accountjsdemo',
             abilityName: 'com.example.accountjsdemo.LoginAbility',
@@ -4921,8 +5006,8 @@ onRequestRedirected: (request: Want) =&gt; void
       }
 
       auth(name: string, authType: string,
-        options: Record<string, Object>, callback: account_appAccount.AuthCallback) {
-          let result: account_appAccount.AuthResult = {
+        options: Record<string, Object>, callback: appAccount.AuthCallback) {
+          let result: appAccount.AuthResult = {
             account: {
               name: 'Lisi',
               owner: 'com.example.accountjsdemo',
@@ -4932,7 +5017,7 @@ onRequestRedirected: (request: Want) =&gt; void
               authType: 'getSocialData'
             }
           };
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+          callback.onResult(appAccount.ResultCode.SUCCESS, result);
       }
   }
   ```
@@ -4948,16 +5033,16 @@ onRequestContinued?: () =&gt; void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: appAccount.AppAccountManager = appAccount.createAppAccountManager();
   let sessionId = '1234';
-  appAccountManager.getAuthCallback(sessionId).then((callback: account_appAccount.AuthCallback) => {
+  appAccountManager.getAuthCallback(sessionId).then((callback: appAccount.AuthCallback) => {
     if (callback.onRequestContinued != undefined) {
       callback.onRequestContinued();
     }
   }).catch((err: BusinessError) => {
-    console.log('getAuthCallback err: ' + JSON.stringify(err));
+    console.error('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4971,7 +5056,7 @@ OAuth认证器回调接口。
 
 ### onResult<sup>8+</sup>
 
-onResult: (code: number, result: {[key: string]: any}) =&gt; void
+onResult: (code: number, result: {[key: string]: any;}) =&gt; void
 
 通知请求结果。
 
@@ -4987,19 +5072,19 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
 **示例：**
 
   ```ts
-  import { BusinessError } from '@ohos.base';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
-  let appAccountManager: account_appAccount.AppAccountManager = account_appAccount.createAppAccountManager();
+  let appAccountManager: appAccount.AppAccountManager = appAccount.createAppAccountManager();
   let sessionId = '1234';
-  appAccountManager.getAuthenticatorCallback(sessionId).then((callback: account_appAccount.AuthenticatorCallback) => {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+  appAccountManager.getAuthenticatorCallback(sessionId).then((callback: appAccount.AuthenticatorCallback) => {
+      callback.onResult(appAccount.ResultCode.SUCCESS, {
         name: 'LiSi',
         owner: 'com.example.accountjsdemo',
         authType: 'getSocialData',
         token: 'xxxxxx'}
       );
   }).catch((err: BusinessError) => {
-      console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
+      console.error('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -5015,16 +5100,16 @@ onRequestRedirected: (request: Want) =&gt; void
 
 | 参数名     | 类型   | 必填   | 说明         |
 | ------- | ---- | ---- | ---------- |
-| request | Want | 是    | 用于跳转的请求信息。 |
+| request | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 用于跳转的请求信息。 |
 
 **示例：**
 
   ```ts
-  import Want from '@ohos.app.ability.Want';
+  import { Want } from '@kit.AbilityKit';
 
-  class MyAuthenticator extends account_appAccount.Authenticator {
+  class MyAuthenticator extends appAccount.Authenticator {
       addAccountImplicitly(authType: string, callerBundleName: string,
-        options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
+        options: Record<string, Object>, callback: appAccount.AuthenticatorCallback) {
           let want: Want = {
             bundleName: 'com.example.accountjsdemo',
             abilityName: 'com.example.accountjsdemo.LoginAbility',
@@ -5033,8 +5118,8 @@ onRequestRedirected: (request: Want) =&gt; void
       }
 
       authenticate(name: string, authType: string, callerBundleName: string,
-        options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, {
+        options: Record<string, Object>, callback: appAccount.AuthenticatorCallback) {
+          callback.onResult(appAccount.ResultCode.SUCCESS, {
             name: name,
             authType: authType,
             token: 'xxxxxx'}
@@ -5051,7 +5136,7 @@ onRequestRedirected: (request: Want) =&gt; void
 
 createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthCallback): void
 
-根据指定的帐号所有者隐式地创建应用帐号，并使用callback异步回调返回结果。
+根据指定的账号所有者隐式地创建应用账号，并使用callback异步回调返回结果。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5059,14 +5144,14 @@ createAccountImplicitly(options: CreateAccountImplicitlyOptions, callback: AuthC
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | 是    | 隐式创建帐号的选项。      |
+| options          | [CreateAccountImplicitlyOptions](#createaccountimplicitlyoptions9)  | 是    | 隐式创建账号的选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 认证器回调对象，用于返回创建结果。 |
 
 ### addAccountImplicitly<sup>(deprecated)</sup>
 
-addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+addAccountImplicitly(authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-根据指定的鉴权类型和可选项，隐式地添加应用帐号，并使用callback异步回调返回结果。
+根据指定的鉴权类型和可选项，隐式地添加应用账号，并使用callback异步回调返回结果。
 
 > **说明：** 
 >
@@ -5078,7 +5163,7 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| authType         | string                | 是    | 应用帐号的鉴权类型。      |
+| authType         | string                | 是    | 应用账号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权请求方的包名。       |
 | options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | 是    | 认证器回调，用于返回鉴权结果。 |
@@ -5087,7 +5172,7 @@ addAccountImplicitly(authType: string, callerBundleName: string, options: {[key:
 
 auth(name: string, authType: string, options: Record<string, Object>, callback: AuthCallback): void
 
-对应用帐号进行鉴权以获取授权令牌，并使用callback异步回调返回结果。
+对应用账号进行鉴权以获取授权令牌，并使用callback异步回调返回结果。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5095,17 +5180,16 @@ auth(name: string, authType: string, options: Record<string, Object>, callback: 
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| name             | string                | 是    | 应用帐号的名称。        |
-| authType         | string                | 是    | 应用帐号的鉴权类型。      |
-| callerBundleName | string                | 是    | 鉴权类型。       |
+| name             | string                | 是    | 应用账号的名称。        |
+| authType         | string                | 是    | 应用账号的鉴权类型。      |
 | options          | Record<string, Object>  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthCallback](#authcallback9) | 是    | 回调对象，用于返回鉴权结果。 |
 
 ### authenticate<sup>(deprecated)</sup>
 
-authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any}, callback: AuthenticatorCallback): void
+authenticate(name: string, authType: string, callerBundleName: string, options: {[key: string]: any;}, callback: AuthenticatorCallback): void
 
-对应用帐号进行鉴权，获取OAuth令牌，并使用callback异步回调返回结果。
+对应用账号进行鉴权，获取OAuth令牌，并使用callback异步回调返回结果。
 
 > **说明：** 
 >
@@ -5117,8 +5201,8 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| name             | string                | 是    | 应用帐号的名称。        |
-| authType         | string                | 是    | 应用帐号的鉴权类型。      |
+| name             | string                | 是    | 应用账号的名称。        |
+| authType         | string                | 是    | 应用账号的鉴权类型。      |
 | callerBundleName | string                | 是    | 鉴权请求方的包名。       |
 | options          | {[key: string]: any}  | 是    | 鉴权所需要的可选项。      |
 | callback         | [AuthenticatorCallback](#authenticatorcallbackdeprecated) | 是    | 认证器回调，用于返回鉴权结果。 |
@@ -5127,7 +5211,7 @@ authenticate(name: string, authType: string, callerBundleName: string, options: 
 
 verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthCallback): void
 
-验证应用帐号的凭据，并使用callback异步回调返回结果。
+验证应用账号的凭据，并使用callback异步回调返回结果。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5135,7 +5219,7 @@ verifyCredential(name: string, options: VerifyCredentialOptions, callback: AuthC
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| name      | string                   | 是    | 应用帐号的名称。              |
+| name      | string                   | 是    | 应用账号的名称。              |
 | options   | [VerifyCredentialOptions](#verifycredentialoptions9)  | 是    | 验证凭据的可选项。            |
 | callback  | [AuthCallback](#authcallback9)    | 是    | 认证器回调，用于返回验证结果。 |
 
@@ -5158,7 +5242,7 @@ setProperties(options: SetPropertiesOptions, callback: AuthCallback): void
 
 checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCallback): void
 
-检查帐号标签，并使用callback异步回调返回结果。
+检查账号标签，并使用callback异步回调返回结果。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5166,7 +5250,7 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| name      | string                | 是    | 应用帐号的名称。              |
+| name      | string                | 是    | 应用账号的名称。              |
 | labels    | Array&lt;string&gt;          | 是    | 标签数组。                   |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回检查结果。 |
 
@@ -5174,7 +5258,7 @@ checkAccountLabels(name: string, labels: Array&lt;string&gt;, callback: AuthCall
 
 checkAccountRemovable(name: string, callback: AuthCallback): void
 
-判断帐号是否可以删除，并使用callback异步回调返回结果。
+判断账号是否可以删除，并使用callback异步回调返回结果。
 
 **系统能力：** SystemCapability.Account.AppAccount
 
@@ -5182,7 +5266,7 @@ checkAccountRemovable(name: string, callback: AuthCallback): void
 
 | 参数名              | 类型                    | 必填   | 说明              |
 | ---------------- | --------------------- | ---- | --------------- |
-| name      | string                | 是    | 应用帐号的名称。              |
+| name      | string                | 是    | 应用账号的名称。              |
 | callback  | [AuthCallback](#authcallback9) | 是    | 认证器回调，用于返回判断结果。 |
 
 ### getRemoteObject<sup>9+</sup>
@@ -5193,33 +5277,22 @@ getRemoteObject(): rpc.RemoteObject;
 
 **系统能力：** SystemCapability.Account.AppAccount
 
+**返回值：**
+
+| 类型             | 说明                                                   |
+| ---------------- | ----------------------------------------------------- |
+| rpc.RemoteObject | 认证器Authenticator的远程对象。用于跨进程通信。          |
+
 **示例：**
 
+  <!--code_no_check-->
   ```ts
-  import rpc from '@ohos.rpc';
-  import Want from '@ohos.app.ability.Want';
+  import { rpc } from '@kit.IPCKit';
+  import { Want } from '@kit.AbilityKit';
   
-  class MyAuthenticator extends account_appAccount.Authenticator {
-    addAccountImplicitly(authType: string, callerBundleName: string,
-      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
-        let want: Want = {
-          bundleName: 'com.example.accountjsdemo',
-          abilityName: 'com.example.accountjsdemo.LoginAbility',
-        };
-        callback.onRequestRedirected(want);
-    }
-
-    authenticate(name: string, authType: string, callerBundleName: string,
-      options: Record<string, Object>, callback: account_appAccount.AuthenticatorCallback) {
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, {
-          name: name,
-          authType: authType,
-          token: 'xxxxxx'}
-        );
-    }
-
+  class MyAuthenticator extends appAccount.Authenticator {
     verifyCredential(name: string,
-      options: account_appAccount.VerifyCredentialOptions, callback: account_appAccount.AuthCallback) {
+      options: appAccount.VerifyCredentialOptions, callback: appAccount.AuthCallback) {
         let want: Want = {
           bundleName: 'com.example.accountjsdemo',
           abilityName: 'com.example.accountjsdemo.VerifyAbility',
@@ -5230,7 +5303,7 @@ getRemoteObject(): rpc.RemoteObject;
         callback.onRequestRedirected(want);
     }
 
-    setProperties(options: account_appAccount.SetPropertiesOptions, callback: account_appAccount.AuthCallback) {
+    setProperties(options: appAccount.SetPropertiesOptions, callback: appAccount.AuthCallback) {
       let want: Want = {
           bundleName: 'com.example.accountjsdemo',
           abilityName: 'com.example.accountjsdemo.SetPropertiesAbility',
@@ -5241,17 +5314,17 @@ getRemoteObject(): rpc.RemoteObject;
         callback.onRequestRedirected(want);
     }
 
-    checkAccountLabels(name: string, labels: string[], callback: account_appAccount.AuthCallback) {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS);
+    checkAccountLabels(name: string, labels: string[], callback: appAccount.AuthCallback) {
+      callback.onResult(0);
     }
   
-    checkAccountRemovable(name: string, callback: account_appAccount.AuthCallback) {
-      callback.onResult(account_appAccount.ResultCode.SUCCESS);
+    checkAccountRemovable(name: string, callback: appAccount.AuthCallback) {
+      callback.onResult(0);
     }
   }
 
   export default {
-    onConnect(want: Want): rpc.RemoteObject { // serviceAbility 生命周期函数
+    onConnect(want: Want): rpc.RemoteObject { // serviceAbility 生命周期函数, 需要放在serviceAbility中
       let authenticator = new MyAuthenticator();
       return authenticator.getRemoteObject();
     }

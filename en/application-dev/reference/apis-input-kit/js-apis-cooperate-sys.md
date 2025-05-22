@@ -4,7 +4,7 @@ The **inputDeviceCooperate** module implements screen hopping for two or more ne
 
 > **NOTE**
 >
->- The APIs provided by this module are no longer maintained since API Version 10. You are advised to use [@ohos.cooperate (Screen Hopping)](../apis-distributedservice-kit/js-apis-devicestatus-cooperate.md).
+>- The APIs provided by this module are no longer maintained since API Version 10. You are advised to use [@ohos.cooperate (Screen Hopping)](../apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md).
 > 
 >- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
@@ -13,7 +13,7 @@ The **inputDeviceCooperate** module implements screen hopping for two or more ne
 ## Modules to Import
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 ```
 
 ## inputDeviceCooperate.enable
@@ -31,24 +31,31 @@ Specifies whether to enable screen hopping. This API uses an asynchronous callba
 | enable   | boolean                   | Yes  | Whether to enable screen hopping.|
 | callback | AsyncCallback&lt;void&gt;  | Yes |Callback used to return the result.  |
 
+**Error codes**
+
+For details about the following error codes, see [Screen Hopping Error Codes](../apis-distributedservice-kit/errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | -----------------|
+| 401 | Parameter error.      |
 
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.enable(true, (error: BusinessError) => {
     if (error) {
-      console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Keyboard mouse crossing enable success.`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -58,7 +65,6 @@ enable(enable: boolean): Promise&lt;void&gt;
 
 Specifies whether to enable screen hopping. This API uses a promise to return the result.
 
-
 **System capability**: SystemCapability.MultimodalInput.Input.Cooperator
 
 **Parameters**
@@ -67,30 +73,34 @@ Specifies whether to enable screen hopping. This API uses a promise to return th
 | --------- | ------- | ---- | -------------------------------------------------------------------                 |
 | enable    | boolean | Yes  | Whether to enable screen hopping.                  |
 
-
-
 **Return value**
 
 | Parameters                | Description                    |
 | ------------------- | ------------------------------- |
 | Promise&lt;void&gt;      | Promise used to return the result.       |
 
+**Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | -----------------|
+| 401 | Parameter error.      |
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.enable(true).then(() => {
     console.log(`Keyboard mouse crossing enable success.`);
   }, (error: BusinessError) => {
-    console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Keyboard mouse crossing enable failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -112,31 +122,32 @@ Starts screen hopping. This API uses an asynchronous callback to return the resu
 
 **Error codes**
 
-For details about the error codes, see [Screen Hopping Error Codes](errorcode-multimodalinput.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Screen Hopping Error Codes](errorcode-multimodalinput.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.                |
-| 4400002  | Screen hop failed.    |
+| 4400002  | Screen hop failed.   |
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
 try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId, (error: BusinessError) => {
     if (error) {
-      console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Start Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -169,14 +180,15 @@ For details about the error codes, see [Screen Hopping Error Codes](errorcode-mu
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
+| 401      | Parameter error.    |
 | 4400001  | Incorrect descriptor for the target device.          |
-| 4400002  | Screen hop failed.               |
+| 4400002  | Screen hop failed.              |
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let sinkDeviceDescriptor = "descriptor";
 let srcInputDeviceId = 0;
@@ -184,10 +196,10 @@ try {
   inputDeviceCooperate.start(sinkDeviceDescriptor, srcInputDeviceId).then(() => {
     console.log(`Start Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Start Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -205,24 +217,30 @@ Stops screen hopping. This API uses an asynchronous callback to return the resul
 | --------             | ---------------------------- | ----  | ----------------------------   |
 | callback             | AsyncCallback\<void>         |  Yes  | Callback used to return the result.       |
 
+**Error codes**
 
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message          |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.stop((error: BusinessError) => {
     if (error) {
-      console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Stop Keyboard mouse crossing success.`);
   });
 } catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -243,17 +261,17 @@ Stops screen hopping. This API uses a promise to return the result.
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputDeviceCooperate.stop().then(() => {
     console.log(`Stop Keyboard mouse crossing success.`);
   }, (error: BusinessError) => {
-    console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Stop Keyboard mouse crossing failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -272,23 +290,32 @@ Checks whether screen hopping is enabled. This API uses an asynchronous callback
 | deviceDescriptor     | string                       |  Yes   | Descriptor of the target device for screen hopping.            |
 | callback             | AsyncCallback<{ state: boolean }> |  Yes   | Callback used to return the result.       |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
+
+
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor, (error: BusinessError, data: object) => {
     if (error) {
-      console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   });
 } catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -306,31 +333,36 @@ Checks whether screen hopping is enabled. This API uses a promise to return the 
 | --------             | ---------                    | ----  | ----------------------------    |
 | deviceDescriptor     | string                       |  Yes   | Descriptor of the target device for screen hopping.           |
 
-
-
 **Return value**
 
 | Parameters                       | Description                    |
 | -------------------        | ------------------------------- |
-| Promise<{ state: boolean }>| Promise used to return the result.       |
+| Promise<{ state: boolean }>| Promise used to return the result. The value **true** indicates that screen hopping is enabled, and the **false** indicates the opposite.      |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
-import { BusinessError } from '@ohos.base'
+import { inputDeviceCooperate } from '@kit.InputKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let deviceDescriptor = "descriptor";
 try {
   inputDeviceCooperate.getState(deviceDescriptor).then((data: object) => {
     console.log(`Get the status success, data: ${JSON.stringify(data)}`);
   }, (error: BusinessError) => {
-    console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   });
 } catch (error) {
-  console.log(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -349,21 +381,28 @@ Enables listening for screen hopping status change events.
 | type                 | string                                                          |  Yes | Event type. The value is **cooperation**.        |
 | callback             | AsyncCallback<{ deviceDescriptor: string, eventMsg: [EventMsg](#eventmsg) }> |  Yes | Callback used to return the result.   |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
-function callback(msg: object) {
+let callback = (msg: object) => {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
 try {
   inputDeviceCooperate.on('cooperation', callback);
 } catch (error) {
-  console.log(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Register failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -382,19 +421,26 @@ Disables listening for screen hopping status change events.
 | type                 | string                                                           |  Yes   | Event type. The value is **cooperation**.        |
 | callback             | AsyncCallback\<void> |  No | Callback to be unregistered. If this parameter is not specified, all callbacks registered by the current application will be unregistered.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401      | Parameter error.  |
 
 
 **Example**
 
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 // Unregister a single callback.
-function callbackOn(msg: object) {
+let callbackOn = (msg: object) => {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
-function callbackOff() {
+let callbackOff = () => {
   console.log(`Keyboard mouse crossing event`);
   return false;
 }
@@ -402,14 +448,14 @@ try {
   inputDeviceCooperate.on('cooperation', callbackOn);
   inputDeviceCooperate.off("cooperation", callbackOff);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```ts
-import inputDeviceCooperate from '@ohos.multimodalInput.inputDeviceCooperate'
+import { inputDeviceCooperate } from '@kit.InputKit';
 
 // Unregister all callbacks.
-function callback(msg: object) {
+let callback = (msg: object) => {
   console.log(`Keyboard mouse crossing event: ${JSON.stringify(msg)}`);
   return false;
 }
@@ -417,7 +463,7 @@ try {
   inputDeviceCooperate.on('cooperation', callback);
   inputDeviceCooperate.off("cooperation");
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

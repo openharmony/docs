@@ -85,11 +85,11 @@
 
 目前支持开启的Sanitizer：
 
-- 整数溢出排错：unsigned_integer_overflow/signed_integer_overflow/integer_overflow(同时包括无符号和有符号整数溢出两种检查)
-- 控制流完整性：cfi、cfi_cross_dso（跨so的cfi检查）
-- 边界检测：boundary_sanitize
-- 部分未定义行为检测：ubsan(bool,integer-divide-by-zero,return,returns-nonnull-attribute,shift-exponent,unreachable,vla-bound等编译选项)
-- 全量未定义行为检测：all_ubsan(全量undefined behavior sanitizer编译选项)
+- 整数溢出排错：unsigned_integer_overflow/signed_integer_overflow/integer_overflow（同时包括无符号和有符号整数溢出两种检查）。
+- 控制流完整性：cfi、cfi_cross_dso（跨so的cfi检查）。
+- 边界检测：boundary_sanitize。
+- 部分未定义行为检测：ubsan（bool,integer-divide-by-zero,return,returns-nonnull-attribute,shift-exponent,unreachable,vla-bound等编译选项）。
+- 全量未定义行为检测：all_ubsan（全量undefined behavior sanitizer编译选项）。
 
 **发布、调测模式**
 
@@ -189,7 +189,7 @@ out/rk3568/.ninja_log文件记录了每个模块编译的开始和结束时间(m
   解压out/rk3568/build.trace.gz，将build.trace拖到chrome的trace链接chrome://tracing/打开即可。
 - 在CI网站ci.openharmony.cn/events上打开ninja trace：
   CI上每个编译的输出里面有build.trace.html可直接打开，具体方法是：
-  1. 点击静态检查下的“成功”；
+  1. 点击静态检查下的“成功”。
 
   2. 点击输出列的“输出”即可在左侧的build_trace列看到build.trace.html文件，单击该文件即可打开。
 
@@ -239,12 +239,12 @@ out/rk3568/.ninja_log文件记录了每个模块编译的开始和结束时间(m
    }
    ```
 
-3.编译命令
-```shell
-./build.sh --product-name {product_name} --build-target chip_prod_image
-```
+3. 编译命令：
+  ```shell
+  ./build.sh --product-name {product_name} --build-target chip_prod_image
+  ```
 
-4. 打包结果:<br>
+4. 打包结果：<br>
    如果定义了子产品productA和productB，即`chip_product_list = ["productA", "productB"],`并且有模块安装到了该产品下，则打包后镜像输出路径如下：
    ```
    images/productA/chip_prod.img

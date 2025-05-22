@@ -1,6 +1,6 @@
 # @ohos.app.appstartup.StartupTask
 
-本模块提供组件初始化的相关能力。
+本模块提供启动任务的相关能力。
 
 > **说明：**
 >
@@ -11,33 +11,44 @@
 ## 导入模块
 
 ```js
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask } from '@kit.AbilityKit';
 ```
 
 ## StartupTask.onDependencyCompleted
 
-onDependencyCompleted(dependency: string, result: ESObject): void
+onDependencyCompleted?(dependency: string, result: ESObject): void
 
-在特定的依赖组件完成初始化时调用。
+当依赖的启动任务执行完成时该方法将会被调用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| dependency | string | 是 | 依赖的组件名称。 |
-| result | ESObject | 是 | 依赖组件初始化的结果。 |
+| dependency | string | 是 | 依赖的启动任务名称。 |
+| result | Object | 是 | 依赖启动任务执行的结果。 |
 
-**示例：**：
+**示例：**
 
 ```ts
 import StartupTask from '@ohos.app.appstartup.StartupTask';
+import common from '@ohos.app.ability.common';
+import hilog from '@ohos.hilog';
 
-export default class Sample_001 extends StartupTask {
-  onDependencyCompleted(dependence: string, result) {
-    console.info("StartupTest Sample_001 onDependencyCompleted dependence=" + dependence);
-    ...
+@Sendable
+export default class StartupTask_001 extends StartupTask {
+  constructor() {
+    super();
+  }
+  async init(context: common.AbilityStageContext) {
+    // ...
+  }
+
+  onDependencyCompleted(dependence: string, result: Object): void {
+    hilog.info(0x0000, 'testTag', 'StartupTask_001 onDependencyCompleted, dependence: %{public}s, result: %{public}s',
+      dependence, JSON.stringify(result));
+    // ...
   }
 }
 ```
@@ -47,9 +58,9 @@ export default class Sample_001 extends StartupTask {
 
 init(context: AbilityStageContext): Promise\<ESObject\>
 
-初始化组件
+启动任务执行的初始化业务。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AppStartup
+**系统能力**：SystemCapability.Ability.AppStartup
 
 **参数：**
 
@@ -61,17 +72,28 @@ init(context: AbilityStageContext): Promise\<ESObject\>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<ESObject\> | Promise对象，返回组件初始化结果对象。 |
+| Promise\<Object \| void\> | Promise对象，返回启动任务执行结果对象。 |
 
-**示例：**：
+**示例：**
 
 ```ts
-import StartupTask from '@ohos.app.appstartup.StartupTask';
+import { StartupTask, common } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 
-export default class Sample_001 extends StartupTask {
-  async init(context) {
-    console.info("StartupTest Sample_001 init");
-    ...
+@Sendable
+export default class StartupTask_001 extends StartupTask {
+  constructor() {
+    super();
+  }
+  async init(context: common.AbilityStageContext) {
+    hilog.info(0x0000, 'testTag', 'StartupTask_001 init.');
+    // ...
+    
+    return "StartupTask_001";
+  }
+
+  onDependencyCompleted(dependence: string, result: Object): void {
+    // ...
   }
 }
 ```

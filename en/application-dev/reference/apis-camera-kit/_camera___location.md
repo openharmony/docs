@@ -3,11 +3,13 @@
 
 ## Overview
 
-The Camera_Location struct defines the location where a photo is taken.
+The Camera_Location struct describes the location where a photo is taken.
 
 **Since**: 11
 
 **Related module**: [OH_Camera](_o_h___camera.md)
+
+**Header file**: [camera.h](camera_8h.md)
 
 
 ## Summary

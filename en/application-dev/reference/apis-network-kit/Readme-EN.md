@@ -1,4 +1,4 @@
-# Network Kit API Reference
+# Network Kit
 
 - ArkTS API
   - [@ohos.net.connection (Network Connection Management)](js-apis-net-connection.md)
@@ -11,13 +11,16 @@
   - [@ohos.net.networkSecurity (Network Security)](js-apis-networkSecurity.md)
   - [@ohos.app.ability.VpnExtensionAbility (Enhanced VPN Management)](js-apis-VpnExtensionAbility.md)
   - [VpnExtensionContext](js-apis-inner-application-VpnExtensionContext.md)
+  <!--Del-->
   - [@ohos.net.connection (Network Connection Management) (System API)](js-apis-net-connection-sys.md)
   - [@ohos.net.ethernet (Ethernet Connection Management) (System API)](js-apis-net-ethernet-sys.md)
   - [@ohos.net.policy (Network Policy Management) (System API)](js-apis-net-policy-sys.md)
   - [@ohos.net.sharing (Network Sharing Management) (System API)](js-apis-net-sharing-sys.md)
   - [@ohos.net.statistics (Traffic Management) (System API)](js-apis-net-statistics-sys.md)
-  - [@ohos.net.vpn (VPN Management) (System API)] (js-apis-net-vpn-sys.md)
+  - [@ohos.net.vpn (VPN Management) (System API)](js-apis-net-vpn-sys.md)
   - [@ohos.net.vpnExtension (Enhanced VPN Management) (System API)](js-apis-net-vpnExtension-sys.md)
+  - [@ohos.net.netFirewall (Network Firewall)](js-apis-net-netfirewall.md)
+  <!--DelEnd-->
 - C API
   - Module
     - [Netstack](netstack.md)
@@ -37,7 +40,11 @@
     - [NetConn_NetHandle](_net_conn___net_handle.md)
     - [NetConn_NetHandleList](_net_conn___net_handle_list.md)
     - [NetConn_Route](_net_conn___route.md)
+    - [NetConn_NetConnCallback](_net_conn___net_conn_callback.md)
+    - [NetConn_NetSpecifier](_net_conn___net_specifier.md)
     - [NetStack_CertBlob](_net_stack___cert_blob.md)
+    - [NetStack_CertificatePinning](_net_stack___certificate_pinning.md)
+    - [NetStack_Certificates](_net_stack___certificates.md)
     - [WebSocket](_web_socket.md)
     - [WebSocket_CloseOption](_web_socket___close_option.md)
     - [WebSocket_CloseResult](_web_socket___close_result.md)
@@ -51,6 +58,7 @@
 - Error Codes
   - [HTTP Error Codes](errorcode-net-http.md)
   - [Socket Error Codes](errorcode-net-socket.md)
+  - [WebSocket Error Codes](errorcode-net-webSocket.md)
   - [Network Connection Management Error Codes](errorcode-net-connection.md)
   - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)

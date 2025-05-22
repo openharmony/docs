@@ -3,12 +3,26 @@
 如果需要在页面中获得当前Ability的Context，可调用getContext接口获取当前页面关联的UIAbilityContext或ExtensionContext。
 
 > **说明：**
-> - 该接口从API version 9开始支持。
+> - 该接口从API version 9开始支持，从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)替代。
 > - 该接口仅限Stage模型使用。
+
+## getContext<sup>(deprecated)</sup>
 
 getContext(component?: Object):Context
 
-**参数：**
+获取与页面上下文组件关联的Context对象。
+
+> **说明：**
+> 
+> 从API version 18开始废弃，建议使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)替代。
+>
+> 从API version 12开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)来明确UI的执行上下文。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
 
 | 参数名 | 类型          | 必填 | 说明                             |
 | ------ | ----------- | ---- | ------------------------------- |
@@ -24,13 +38,15 @@ getContext(component?: Object):Context
 
 在UIAbility中通过windowStage.loadContent加载具体页面。
 
+> **说明：**
+> 
+> 直接使用getContext可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，建议使用[getUIContext](js-apis-arkui-UIContext.md#uicontext)获取UIContext实例，并使用[getHostContext](js-apis-arkui-UIContext.md#gethostcontext12)调用绑定实例的getContext。
+
 ```ts
 // EntryAbility.ets
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
-import UIAbility from '@ohos.app.ability.UIAbility';
-import Want from '@ohos.app.ability.Want';
-import window from '@ohos.window';
+import { UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -82,8 +98,9 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            let context : Context = getContext(this) as Context
-            console.info("CacheDir:" + context.cacheDir)
+            // 建议使用this.getUIContext().getHostContext()
+            let context: Context = getContext(this) as Context;
+            console.info("CacheDir:" + context.cacheDir);
           })
       }
       .width('100%')

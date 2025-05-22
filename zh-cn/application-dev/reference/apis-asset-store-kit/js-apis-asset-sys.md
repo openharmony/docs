@@ -19,13 +19,17 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 
 在指定用户空间中新增一条关键资产，使用Promise方式异步返回结果。
 
+设置[IS_PERSISTENT](js-apis-asset.md#tag)属性，需申请ohos.permission.STORE_PERSISTENT_DATA权限。
+
 **需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力：** SystemCapability.Security.Asset
 
+**参数：**
+
 | 参数名     | 类型     | 必填 | 说明                                                         |
 | ---------- | -------- | ---- | ------------------------------------------------------------ |
-| userId     | number                                | 是   | 用户ID。                                                           |
+| userId     | number                                | 是   | 用户ID。取值范围大于等于100。                           |
 | attributes | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待新增关键资产的属性集合，包括关键资产明文、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -42,22 +46,22 @@ addAsUser(userId: number, attributes: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000003 | The Asset already exists.                                  |
-| 24000005 | The screen lock status mismatches.                         |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000003 | The asset already exists.                                  |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000014 | The operation of file is failed.                           |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000014 | The file operation failed.                           |
+| 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -93,11 +97,15 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 
 从指定用户空间中删除符合条件的一条或多条关键资产，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
+
+**参数：**
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                                  |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                         |
 | query  | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待删除关键资产的搜索条件，如别名、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -114,19 +122,19 @@ removeAsUser(userId: number, query: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -159,13 +167,17 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 
 在指定用户空间中更新符合条件的一条关键资产，使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
+
+**参数：**
 
 | 参数名             | 类型     | 必填 | 说明                                                         |
 | ------------------ | -------- | ---- | ------------------------------------------------------------ |
-| userId             | number                                | 是   | 用户ID。                                                         |
+| userId             | number                                | 是   | 用户ID。取值范围大于等于100。                              |
 | query              | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的搜索条件，如关键资产别名、访问控制属性、自定义数据等。 |
-| attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文、自定义数据等。              |
+| attributesToUpdate | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待更新关键资产的属性集合，如关键资产明文和自定义数据等。              |
 
 **返回值：**
 
@@ -181,21 +193,21 @@ updateAsUser(userId: number, query: AssetMap, attributesToUpdate: AssetMap): Pro
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000005 | The screen lock status mismatches.                         |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
-| 24000015 | The operation of getting system time is failed.            |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
+| 24000015 | Getting the system time failed.            |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -207,7 +219,7 @@ function stringToArray(str: string): Uint8Array {
   return textEncoder.encodeInto(str);
 }
 
-let userId: number = 100; 
+let userId: number = 100;
 let query: asset.AssetMap = new Map();
 query.set(asset.Tag.ALIAS, stringToArray('demo_alias'));
 let attrsToUpdate: asset.AssetMap = new Map();
@@ -230,11 +242,15 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 
 在指定用户空间中查询的预处理，用于需要用户认证的关键资产。在用户认证成功后，应当随后调用[asset.queryAsUser](#assetqueryasuser)、[asset.postQueryAsUser](#assetpostqueryasuser)。使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
+
+**参数：**
 
 | 参数名 | 类型     | 必填 | 说明                                                   |
 | ------ | -------- | ---- | ------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                            |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                        |
 | query  | [AssetMap](js-apis-asset.md#assetmap) | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。 |
 
 **返回值：**
@@ -251,22 +267,22 @@ preQueryAsUser(userId: number, query: AssetMap): Promise\<Uint8Array>
 | -------- | ------------------------------------------------------------ |
 | 201      | The caller doesn't have the permission.                      |
 | 202      | Non-system applications use system APIs.                     |
-| 401      | The argument is invalid.                                     |
-| 24000001 | The ASSET Service is unavailable.                            |
-| 24000002 | The queried Asset can not be found.                          |
-| 24000005 | The screen lock status mismatches.                           |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 24000001 | The ASSET service is unavailable.                            |
+| 24000002 | The asset is not found.                          |
+| 24000005 | The screen lock status does not match.                           |
 | 24000006 | Insufficient memory.                                         |
-| 24000007 | The Asset is corrupted.                                      |
-| 24000008 | The database operation is failed.                            |
-| 24000009 | The cryptography operation is failed.                        |
-| 24000010 | IPC communication is failed                                  |
-| 24000011 | The operation of calling Bundle Manager Service is failed.   |
-| 24000012 | The operation of calling OS Account Service is failed.       |
-| 24000013 | The operation of calling Access Token Service is failed.     |
+| 24000007 | The asset is corrupted.                                      |
+| 24000008 | The database operation failed.                            |
+| 24000009 | The cryptography operation failed.                        |
+| 24000010 | IPC failed.                                  |
+| 24000011 | Calling the Bundle Manager service failed.   |
+| 24000012 | Calling the OS Account service failed.       |
+| 24000013 | Calling the Access Token service failed.     |
 | 24000016 | The cache exceeds the limit.                                 |
 | 24000017 | The capability is not supported.                             |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -299,11 +315,15 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 
 在指定用户空间中查询一条或多条符合条件的关键资产。若查询需要用户认证的关键资产，则需要在本函数前调用[asset.preQueryAsUser](#assetprequeryasuser)，在本函数后调用[asset.postQueryAsUser](#assetpostqueryasuser)，开发步骤请参考[开发指导](../../security/AssetStoreKit/asset-js-query-auth.md)。使用Promise回调异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
+
+**参数：**
 
 | 参数名   | 类型                            | 必填 | 说明                                                         |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| userId   | number                                          | 是   | 用户ID。                                                  |
+| userId   | number                                          | 是   | 用户ID。取值范围大于等于100。                          |
 | query    | [AssetMap](js-apis-asset.md#assetmap)           | 是   | 关键资产的查询条件，如别名、访问控制属性、自定义数据等。       |
 
 **返回值：**
@@ -320,22 +340,22 @@ queryAsUser(userId: number, query: AssetMap): Promise\<Array\<AssetMap>>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
-| 24000002 | The queried Asset can not be found.                        |
-| 24000004 | The access to Asset is denied.                             |
-| 24000005 | The screen lock status mismatches.                         |
+| 401      | Parameter error. Possible causes: <br> 1. Incorrect parameter types.  <br> 2. Parameter verification failed. |
+| 24000001 | The ASSET service is unavailable.                          |
+| 24000002 | The asset is not found.                        |
+| 24000004 | Access denied.                             |
+| 24000005 | The screen lock status does not match.                         |
 | 24000006 | Insufficient memory.                                       |
-| 24000007 | The Asset is corrupted.                                    |
-| 24000008 | The database operation is failed.                          |
-| 24000009 | The cryptography operation is failed.                      |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000007 | The asset is corrupted.                                    |
+| 24000008 | The database operation failed.                          |
+| 24000009 | The cryptography operation failed.                      |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 | 24000017 | The capability is not supported.                           |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';
@@ -372,11 +392,15 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 
 在指定用户空间中查询的后置处理，用于需要用户认证的关键资产。需与[asset.preQueryAsUser](#assetprequeryasuser)函数成对出现。使用Promise方式异步返回结果。
 
+**需要权限：** ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力：** SystemCapability.Security.Asset
+
+**参数：**
 
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| userId | number                                | 是   | 用户ID。                                                                     |
+| userId | number                                | 是   | 用户ID。取值范围大于等于100。                                      |
 | handle | [AssetMap](js-apis-asset.md#assetmap) | 是   | 待处理的查询句柄，当前包含[asset.preQueryAsUser](#assetprequeryasuser)执行成功返回的挑战值。 |
 
 **返回值：**
@@ -393,15 +417,15 @@ postQueryAsUser(userId: number, handle: AssetMap): Promise\<void>
 | -------- | ---------------------------------------------------------- |
 | 201      | The caller doesn't have the permission.                    |
 | 202      | Non-system applications use system APIs.                   |
-| 401      | The argument is invalid.                                   |
-| 24000001 | The ASSET Service is unavailable.                          |
+| 401      | Parameter error. Possible causes: <br> 1. Mandatory parameters are left unspecified. <br> 2. Incorrect parameter types. <br> 3. Parameter verification failed.           |
+| 24000001 | The ASSET service is unavailable.                          |
 | 24000006 | Insufficient memory.                                       |
-| 24000010 | IPC communication is failed                                |
-| 24000011 | The operation of calling Bundle Manager Service is failed. |
-| 24000012 | The operation of calling OS Account Service is failed.     |
-| 24000013 | The operation of calling Access Token Service is failed.   |
+| 24000010 | IPC failed.                                |
+| 24000011 | Calling the Bundle Manager service failed. |
+| 24000012 | Calling the OS Account service failed.     |
+| 24000013 | Calling the Access Token service failed.   |
 
-**示例代码：**
+**示例：**
 
 ```typescript
 import { asset } from '@kit.AssetStoreKit';

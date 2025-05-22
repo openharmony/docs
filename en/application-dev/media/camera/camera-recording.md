@@ -1,16 +1,19 @@
-# Camera Recording (ArkTS)
+# Video Recording (ArkTS)
 
-As another important function of the camera application, video recording is the process of cyclic frame capture. To smooth video recording, you can follow step 4 in [Camera Photographing](camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
+As another important function of the camera application, video recording is the process of cyclic frame capture. To smooth video recording, you can follow step 4 in [Photo Capture](camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
 
 ## How to Develop
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
-1. Import the media module. The [APIs](../../reference/apis-media-kit/js-apis-media.md) provided by this module are used to obtain the surface ID and create a photo output stream.
+1. Import the media module.
+
+   The [APIs](../../reference/apis-media-kit/js-apis-media.md) provided by this module are used to obtain the surface ID and create a video output stream.
      
    ```ts
-   import { BusinessError } from '@ohos.base';
-   import media from '@ohos.multimedia.media';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { camera } from '@kit.CameraKit';
+   import { media } from '@kit.MediaKit';
    ```
 
 2. Create a surface.
@@ -48,6 +51,8 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
    > **NOTE**
    >
    > The preview stream and video output stream must have the same aspect ratio of the resolution. For example, the aspect ratio in the code snippet below is 640:480 (which is equal to 4:3), then the aspect ratio of the resolution of the preview stream must also be 4:3. This means that the resolution can be 640:480, 960:720, 1440:1080, or the like.
+   >
+   > To obtain the video rotation angle (specified by **rotation**), call [getVideoRotation](../../reference/apis-camera-kit/js-apis-camera.md#getvideorotation12) in the [VideoOutput](../../reference/apis-camera-kit/js-apis-camera.md#videooutput) class.
 
    ```ts
    async function getVideoOutput(cameraManager: camera.CameraManager, videoSurfaceId: string, cameraOutputCapability: camera.CameraOutputCapability): Promise<camera.VideoOutput | undefined> {
@@ -56,9 +61,9 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        console.error("createOutput videoProfilesArray == null || undefined");
        return undefined;
      }
-     // AVRecorderProfile
+     // AVRecorderProfile.
      let aVRecorderProfile: media.AVRecorderProfile = {
-       fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file encapsulation format. Only MP4 is supported.
+       fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
        videoBitrate: 100000, // Video bit rate.
        videoCodec: media.CodecMimeType.VIDEO_AVC, // Video file encoding format. AVC is supported.
        videoFrameWidth: 640, // Video frame width.
@@ -70,7 +75,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
        profile: aVRecorderProfile,
        url: 'fd://35',
-       rotation: 90 // 90° is the default vertical display angle. You can use other values based on project requirements.
+       rotation: 90 // The value of rotation is 90, which is obtained through getPhotoRotation.
      };
      // Create an AVRecorder instance.
      let avRecorder: media.AVRecorder | undefined = undefined;
@@ -122,7 +127,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        await avRecorder.start();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`avRecorder start error: ${JSON.stringify(err)}`);
+       console.error(`avRecorder start error: ${err}`);
      }
    }
    ```
@@ -137,7 +142,7 @@ Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API ref
        await avRecorder.stop();
      } catch (error) {
        let err = error as BusinessError;
-       console.error(`avRecorder stop error: ${JSON.stringify(err)}`);
+       console.error(`avRecorder stop error: ${err}`);
      }
      videoOutput.stop((err: BusinessError) => {
        if (err) {
@@ -158,7 +163,10 @@ During camera application development, you can listen for the status of the vide
     
   ```ts
   function onVideoOutputFrameStart(videoOutput: camera.VideoOutput): void {
-    videoOutput.on('frameStart', () => {
+    videoOutput.on('frameStart', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Video frame started');
     });
   }
@@ -168,7 +176,10 @@ During camera application development, you can listen for the status of the vide
     
   ```ts
   function onVideoOutputFrameEnd(videoOutput: camera.VideoOutput): void {
-    videoOutput.on('frameEnd', () => {
+    videoOutput.on('frameEnd', (err: BusinessError) => {
+      if (err !== undefined && err.code !== 0) {
+        return;
+      }
       console.info('Video frame ended');
     });
   }
@@ -183,3 +194,6 @@ During camera application development, you can listen for the status of the vide
     });
   }
   ```
+
+<!--RP1-->
+<!--RP1End-->

@@ -1,6 +1,6 @@
 # @ohos.graphics.hdrCapability (HDR能力)
 
-本模块提供HDR（高动态显示范围）能力涉及到的的相关枚举类型。
+本模块提供HDR（高动态显示范围）能力涉及到的相关枚举类型。
 
 > **说明：**
 >
@@ -9,12 +9,14 @@
 ## 导入模块
 
 ```ts
-import hdrCapability from '@ohos.graphics.hdrCapability';
+import { hdrCapability } from '@kit.ArkGraphics2D';
 ```
 
 ## HDRFormat
 
 HDR格式枚举。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.ColorManager.Core
 

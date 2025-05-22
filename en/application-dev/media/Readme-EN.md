@@ -7,4 +7,5 @@
 - [DRM Kit](drm/Readme-EN.md)
 - [Image Kit](image/Readme-EN.md)
 - [Media Kit](media/Readme-EN.md)
+- [Media Libraray Kit](medialibrary/Readme-EN.md)
 

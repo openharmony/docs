@@ -10,8 +10,18 @@ The **userIAM.userAuth** module provides user authentication capabilities in ide
 ## Modules to Import
 
 ```ts
-import userIAM_userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 ```
+
+## AuthParam<sup>10+</sup>
+
+Represents the user authentication parameters.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name          | Type                              | Mandatory| Description                                                        |
+| -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
+| userId<sup>18+</sup> | number | No  |ID of the user to be authenticated. The value is a positive integer greater than or equal to 0. The default value is the ID of the current user.|
 
 ## WindowModeType<sup>10+</sup>
 
@@ -65,7 +75,7 @@ Sends a notification from the user authentication widget.
 | Name    | Type                       | Mandatory| Description      |
 | ---------- | --------------------------- | ---- | ---------- |
 | noticeType | [NoticeType](#noticetype10) | Yes  | Notification type.|
-| eventData  | string                      | Yes  | Event data.|
+| eventData  | string                | Yes  | Event data. The data cannot exceed 65536 bytes.   |
 
 **Error codes**
 
@@ -75,13 +85,13 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 | -------- | --------------------------------------- |
 | 201      | Permission verification failed.         |
 | 202      | The caller is not a system application. |
-| 401      | Incorrect parameters.                   |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed.    |
 | 12500002 | General operation error.                |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 interface  EventData {
   widgetContextId: number;
@@ -104,9 +114,9 @@ try {
   const jsonEventData = JSON.stringify(eventData);
   let noticeType = userAuth.NoticeType.WIDGET_NOTICE;
   userAuth.sendNotice(noticeType, jsonEventData);
-  console.log('sendNotice success');
+  console.info('sendNotice success');
 } catch (error) {
-  console.error('sendNotice catch error: ' + JSON.stringify(error));
+  console.error(`sendNotice catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -129,7 +139,7 @@ Subscribes to commands from the user authentication framework for the user authe
 | Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'command'                                     | Yes  | Event type. The vlaue is **command**, which indicates the command sent from the user authentication framework to the user authentication widget. |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | Yes  | Callback invoked to return the command from the user authentication framework to the user authentication widget.|
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | Yes  | Callback used to return the command from the user authentication framework to the user authentication widget.|
 
 **Error codes**
 
@@ -137,26 +147,26 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message                |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('subscribe authentication event success');
+  console.info('subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -175,7 +185,7 @@ Unsubscribes from commands sent from the user authentication framework.
 | Name  | Type                                         | Mandatory| Description                                                        |
 | -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'command'                                     | Yes  | Event type. The value is **command**, which indicates the command sent from the user authentication framework to the user authentication widget. |
-| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | No  | Callback for the command sent from the user authentication framework to the user authentication widget.|
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | No  | Callback to unregister.|
 
 **Error codes**
 
@@ -183,26 +193,26 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 
 | ID| Error Message                |
 | -------- | ------------------------ |
-| 401      | Incorrect parameters.    |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. 3.Parameter verification failed. |
 | 12500002 | General operation error. |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.off('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('cancel subscribe authentication event success');
+  console.info('cancel subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -241,20 +251,20 @@ For details about the error codes, see [User Authentication Error Codes](errorco
 | -------- | --------------------------------------- |
 | 201      | Permission verification failed.         |
 | 202      | The caller is not a system application. |
-| 401      | Incorrect parameters.                   |
+| 401      | Incorrect parameters. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.                                     |
 | 12500002 | General operation error.                |
 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 let userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
 
@@ -281,19 +291,77 @@ Called to return the command sent from the user authentication framework to the 
 **Example**
 
 ```ts
-import userAuth from '@ohos.userIAM.userAuth';
+import { userAuth } from '@kit.UserAuthenticationKit';
 
 const userAuthWidgetMgrVersion = 1;
 try {
   let userAuthWidgetMgr = userAuth.getUserAuthWidgetMgr(userAuthWidgetMgrVersion);
-  console.log('get userAuthWidgetMgr instance success');
+  console.info('get userAuthWidgetMgr instance success');
   userAuthWidgetMgr.on('command', {
     sendCommand(cmdData) {
-      console.log('The cmdData is ' + cmdData);
+      console.info(`The cmdData is ${cmdData}`);
     }
   })
-  console.log('subscribe authentication event success');
+  console.info('subscribe authentication event success');
 } catch (error) {
-  console.error('userAuth widgetMgr catch error: ' + JSON.stringify(error));
+  console.error(`userAuth widgetMgr catch error: ${JSON.stringify(error)}`);
 }
 ```
+
+## UserAuthType<sup>8+</sup>
+
+Enumerates the identity authentication types.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name       | Value  | Description      |
+| ----------- | ---- | ---------- |
+| PRIVATE_PIN<sup>14+</sup>  | 16   | Private password authentication. |
+
+**Example**
+
+Initiate private password authentication with the authentication trust level greater than or equal to ATL3.
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+import { userAuth } from '@kit.UserAuthenticationKit';
+
+try {
+  const rand = cryptoFramework.createRandom();
+  const len: number = 16;
+  const randData: Uint8Array = rand?.generateRandomSync(len)?.data;
+  const authParam: userAuth.AuthParam = {
+    challenge: randData,
+    authType: [userAuth.UserAuthType.PRIVATE_PIN],
+    authTrustLevel: userAuth.AuthTrustLevel.ATL3,
+  };
+  const widgetParam: userAuth.WidgetParam = {
+    title: 'Enter password',
+  };
+
+  const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
+  console.info('get userAuth instance success');
+  // The authentication result is returned by onResult() only after the authentication is started by start() of UserAuthInstance.
+  userAuthInstance.on('result', {
+    onResult (result) {
+      console.info(`userAuthInstance callback result = ${JSON.stringify(result)}`);
+    }
+  });
+  console.info('auth on success');
+} catch (error) {
+  const err: BusinessError = error as BusinessError;
+  console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
+}
+```
+
+## UserAuthResultCode<sup>18+</sup>
+
+Enumerates the authentication result codes.
+
+**System capability**: SystemCapability.UserIAM.UserAuth.Core
+
+| Name                   |   Value  | Description                |
+| ----------------------- | ------ | -------------------- |
+| AUTH_TOKEN_CHECK_FAILED | 12500015      | The AuthToken is invalid.|
+| AUTH_TOKEN_EXPIRED      | 12500016      | The interval between the AuthToken issuance time and the AuthToken verification time exceeds the maximum validity period.|

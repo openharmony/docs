@@ -1,5 +1,4 @@
-# 基于设备分类和数据分级的访问控制
-
+# 基于设备分类和数据分级的访问控制（ArkTS）
 
 ## 基本概念
 
@@ -21,17 +20,18 @@
 
 
 ### 设备安全等级
+<!--RP1-->
+根据设备安全能力（例如是否有TEE、是否有安全存储芯片等），将设备安全等级分为SL1、SL2、SL3、SL4、SL5五个等级。例如，开发板rk3568、hi3516为安全等级低的SL1设备，平板为安全等级高的SL4设备。
 
-根据设备安全能力，比如是否有TEE、是否有安全存储芯片等，将设备安全等级分为SL1、SL2、SL3、SL4、SL5五个等级。例如，开发板rk3568、hi3516为低安全的SL1设备，平板通常为高安全的SL4设备。
-
-在设备组网时可以通过`hidumper -s 3511`查看设备安全等级，例如，rk3568设备的安全等级查询如下：
-
+在设备组网时，可以通过`hidumper -s 3511`命令查看设备的安全等级。如果查询无结果可以通过service_control start dslm_service主动拉起对应进程，之后再使用hidumper命令查询。例如，rk3568设备的安全等级查询如下：
+<!--RP1End-->
+<!--Del-->
 ![zh-cn_image_0000001542496993](figures/zh-cn_image_0000001542496993.png)
-
+<!--DelEnd-->
 
 ## 跨设备同步访问控制机制
 
-数据跨设备同步时，数据管理基于数据安全标签和设备安全等级进行访问控制。规则为，在本设备的数据安全标签不高于对端设备的设备安全等级时，数据才能从本设备同步到对端设备，否则不能同步。具体访问控制矩阵如下：
+数据跨设备同步时，基于数据安全标签和设备安全等级进行访问控制。数据库的数据安全标签不高于对端设备的设备安全等级时，数据才能同步。具体访问控制矩阵如下：
 
 |设备安全级别|可同步的数据安全标签|
 |---|---|
@@ -40,9 +40,9 @@
 |SL3|S1~S3|
 |SL4|S1~S4|
 |SL5|S1~S4| 
-
+<!--RP2-->
 例如，对于类似rk3568、hi3516的开发板设备，设备安全等级为SL1。若创建数据安全标签为S1的数据库，则此数据库数据可以在这些设备间同步；若创建的数据库标签为S2-S4，则不能在这些设备间同步。
-
+<!--RP2End-->
 
 ## 场景介绍
 
@@ -51,76 +51,95 @@
 
 ## 使用键值型数据库实现数据分级
 
-键值型数据库，通过securityLevel参数设置数据库的安全等级。此处以创建安全等级为S1的数据库为例。
+键值型数据库，通过securityLevel参数设置数据库的安全等级。此处以创建安全等级为S3的数据库为例。
 
 具体接口及功能，可见[分布式键值数据库](../reference/apis-arkdata/js-apis-distributedKVStore.md)。
+> **说明**：
+>
+> 在单设备使用场景下，KV数据库支持修改securityLevel开库参数进行安全等级升级。数据库安全等级升级操作需要注意以下几点：
+> * 该操作不支持需要进行跨设备同步的数据库，不同安全等级的数据库之间不能进行数据同步，需要跨设备同步的数据库如果要升级安全等级，建议重新创建更高安全等级的数据库。
+> * 该操作需在关闭当前数据库之后，通过修改securityLevel开库参数重新设置数据库的安全等级，再进行开库操作。
+> * 该操作只支持升级，不支持降级。例如支持S2->S3的升级，不支持S3->S2的降级。
 
 
-  
 ```ts
-import distributedKVStore from '@ohos.data.distributedKVStore';
-import { BusinessError } from '@ohos.base';
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+import { distributedKVStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvManager: distributedKVStore.KVManager;
-let kvStore: distributedKVStore.SingleKVStore;
-let context = getContext(this);
-const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-  context: context,
-  bundleName: 'com.example.datamanagertest'
-}
-try {
-  kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-  console.info('Succeeded in creating KVManager.');
-  try {
-    const options: distributedKVStore.Options = {
-      createIfMissing: true,
-      encrypt: true,
-      backup: false,
-      autoSync: true,
-      kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-      securityLevel: distributedKVStore.SecurityLevel.S1
-    };
-    kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
-      if (err) {
-        console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
-        return;
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let kvManager: distributedKVStore.KVManager;
+    let kvStore: distributedKVStore.SingleKVStore;
+    let context = this.context;
+    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+      context: context,
+      bundleName: 'com.example.datamanagertest'
+    }
+    try {
+      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+      console.info('Succeeded in creating KVManager.');
+      try {
+        const options: distributedKVStore.Options = {
+          createIfMissing: true,
+          encrypt: true,
+          backup: false,
+          autoSync: false,
+          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+          securityLevel: distributedKVStore.SecurityLevel.S3
+        };
+        kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+          if (err) {
+            console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+            return;
+          }
+          console.info('Succeeded in getting KVStore.');
+          kvStore = store;
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
       }
-      console.info('Succeeded in getting KVStore.');
-      kvStore = store;
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+    }
   }
-} catch (e) {
-  let error = e as BusinessError;
-  console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
 }
 ```
 
-
 ## 使用关系型数据库实现数据分级
 
-关系型数据库，通过securityLevel参数设置数据库的安全等级。此处以创建安全等级为S1的数据库为例。
+关系型数据库，通过securityLevel参数设置数据库的安全等级。此处以创建安全等级为S3的数据库为例。
 
 具体接口及功能，可见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md)。
 
 
   
 ```ts
-import { BusinessError } from '@ohos.base';
-import relationalStore from '@ohos.data.relationalStore';
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let store: relationalStore.RdbStore;
-const STORE_CONFIG: relationalStore.StoreConfig = {
-  name: 'RdbTest.db',
-  securityLevel: relationalStore.SecurityLevel.S1
-};
-let promise = relationalStore.getRdbStore(this.context, STORE_CONFIG);
-promise.then(async (rdbStore) => {
-  store = rdbStore;
-  console.info('Succeeded in getting RdbStore.')
-}).catch((err: BusinessError) => {
-  console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
-})
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db',
+        securityLevel: relationalStore.SecurityLevel.S3
+      };
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      console.info('Succeeded in getting RdbStore.')
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
 ```

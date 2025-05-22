@@ -4,14 +4,45 @@ id为组件的唯一标识，在整个应用内唯一。本模块提供组件标
 
 >  **说明：**
 >
-> 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
-
+> - 从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> - 若同一个组件设置了多个id或者key，最后设置的生效。
 
 ## 属性
 
-| 名称   | 类型    | 说明                       |
-| -----| -------- | ----------------------------- |
-| id   | string   | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+### id
+
+id(value: string): T
+
+组件的唯一标识，唯一性由使用者保证。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称   | 类型      | 必填 | 说明                       |
+| ------ | -------- | -----|---------------------- |
+| value  | string   |  是  | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
+
+### key<sup>12+</sup>
+
+key(value: string): T
+
+组件的唯一标识，唯一性由使用者保证。
+
+此接口仅用于对应用的测试。与id同时使用时，后赋值的属性会覆盖先赋值的属性，建议仅设置id。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 名称   | 类型      | 必填 | 说明                       |
+| ------ | -------- | -----|---------------------- |
+| value   | string   | 是 | 组件的唯一标识，唯一性由使用者保证。<br>默认值：''<br/> |
 
 
 ## 接口
@@ -24,6 +55,8 @@ getInspectorByKey(id: string): string
 获取指定id的组件的所有属性，不包括子组件信息。
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -45,6 +78,8 @@ getInspectorTree(): Object
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **返回值:**
 
 | 类型     | 说明                            |
@@ -59,12 +94,14 @@ sendEventByKey(id: string, action: number, params: string): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数:**
 
 | 参数名       | 类型      | 必填       | 说明                         |
 | ------ | -------| ---- | -------------------------- |
 | id     | string | 是    | 要触发事件的组件的id。                      |
-| action | number | 是    | 要触发的事件类型，目前支持取值：<br/>-&nbsp;点击事件Click:&nbsp;10<br/>-&nbsp;长按事件LongClick:&nbsp;11。 |
+| action | number | 是    | 要触发的事件类型，目前支持取值：<br/>-&nbsp;点击事件Click:&nbsp;10。<br/>-&nbsp;长按事件LongClick:&nbsp;11。 |
 | params | string | 是    | 事件参数，无参数传空字符串&nbsp;""。            |
 
 **返回值:**
@@ -80,6 +117,8 @@ sendTouchEvent(event: TouchObject): boolean
 发送触摸事件。
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **参数:**
 
@@ -101,6 +140,8 @@ sendKeyEvent(event: KeyEvent): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数:**
 
 | 参数名    | 类型     | 必填      | 说明                                                         |
@@ -121,6 +162,8 @@ sendMouseEvent(event: MouseEvent): boolean
 
 此接口仅用于对应用的测试。由于耗时长，不建议使用。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名     | 类型       | 必填       | 说明                                     |
@@ -135,38 +178,40 @@ sendMouseEvent(event: MouseEvent): boolean
 
 ## 示例
 
+该示例主要展示如何通过组件标识接口，获取特定id组件的属性，以及如何向该id的组件触发事件。
+
 ```ts
 // xxx.ets
-import { IntentionCode } from '@ohos.multimodalInput.intentionCode'
+import { IntentionCode } from '@kit.InputKit';
 
 class Utils {
-  static rect_left: number
-  static rect_top: number
-  static rect_right: number
-  static rect_bottom: number
-  static rect_value: Record<string, number>
+  static rect_left: number;
+  static rect_top: number;
+  static rect_right: number;
+  static rect_bottom: number;
+  static rect_value: Record<string, number>;
 
   //获取组件所占矩形区域坐标
   static getComponentRect(key:string):Record<string, number> {
-    let strJson = getInspectorByKey(key)
-    let obj:Record<string, string> = JSON.parse(strJson)
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj))
-    let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']')
-    console.info("[getInspectorByKey] rectInfo is: " + rectInfo)
-    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0]
-    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1]
-    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0]
-    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1]
+    let strJson = getInspectorByKey(key);
+    let obj:Record<string, string> = JSON.parse(strJson);
+    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(obj));
+    let rectInfo:string[] = JSON.parse('[' + obj.$rect + ']');
+    console.info("[getInspectorByKey] rectInfo is: " + rectInfo);
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];     // 相对于组件左上角的水平方向坐标
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];     // 相对于组件左上角的垂直方向坐标
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];    // 相对于组件右下角的水平方向坐标
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];   // 相对于组件右下角的垂直方向坐标
     return Utils.rect_value = {
       "left": Utils.rect_left, "top": Utils.rect_top, "right": Utils.rect_right, "bottom": Utils.rect_bottom
-    }
-  }
+    };
+  };
 }
 
 @Entry
 @Component
 struct IdExample {
-  @State text: string = ''
+  @State text: string = '';
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -175,18 +220,18 @@ struct IdExample {
         Text('onKeyTab').fontSize(25).fontWeight(FontWeight.Bold)
       }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .onKeyEvent(() => {
-        this.text = "onKeyTab"
+        this.text = "onKeyTab";
       })
 
       Button() {
         Text('click to start').fontSize(25).fontWeight(FontWeight.Bold)
       }.margin({ top: 20 })
       .onClick(() => {
-        console.info(getInspectorByKey("click"))
-        console.info(JSON.stringify(getInspectorTree()))
-        this.text = "Button 'click to start' is clicked"
+        console.info(getInspectorByKey("click"));
+        console.info(JSON.stringify(getInspectorTree()));
+        this.text = "Button 'click to start' is clicked";
         setTimeout(() => {
-          sendEventByKey("longClick", 11, "") // 向id为"longClick"的组件发送长按事件
+          sendEventByKey("longClick", 11, ""); // 向id为"longClick"的组件发送长按事件
         }, 2000)
       }).id('click')
 
@@ -195,10 +240,10 @@ struct IdExample {
       }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .gesture(
       LongPressGesture().onActionEnd(() => {
-        console.info('long clicked')
-        this.text = "Button 'longClick' is longclicked"
+        console.info('long clicked');
+        this.text = "Button 'longClick' is longclicked";
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onTouch') // 获取id为"onTouch"组件的矩形区域坐标
+          let rect = Utils.getComponentRect('onTouch'); // 获取id为"onTouch"组件的矩形区域坐标
           let touchPoint: TouchObject = {
             id: 1,
             type: TouchType.Down,
@@ -210,10 +255,10 @@ struct IdExample {
             windowY: rect.left + (rect.right - rect.left) / 2, // 相对于应用窗口左上角的垂直方向坐标
             displayX: rect.left + (rect.right - rect.left) / 2, // 相对于设备屏幕左上角的水平方向坐标
             displayY: rect.left + (rect.right - rect.left) / 2, // 相对于设备屏幕左上角的垂直方向坐标
-          }
-          sendTouchEvent(touchPoint) // 发送触摸事件
-          touchPoint.type = TouchType.Up
-          sendTouchEvent(touchPoint) // 发送触摸事件
+          };
+          sendTouchEvent(touchPoint); // 发送触摸事件
+          touchPoint.type = TouchType.Up;
+          sendTouchEvent(touchPoint); // 发送触摸事件
         }, 2000)
       })).id('longClick')
 
@@ -221,10 +266,10 @@ struct IdExample {
         Text('onTouch').fontSize(25).fontWeight(FontWeight.Bold)
       }.type(ButtonType.Capsule).margin({ top: 20 })
       .onClick(() => {
-        console.info('onTouch is clicked')
-        this.text = "Button 'onTouch' is clicked"
+        console.info('onTouch is clicked');
+        this.text = "Button 'onTouch' is clicked";
         setTimeout(() => {
-          let rect = Utils.getComponentRect('onMouse') // 获取id为"onMouse"组件的矩形区域坐标
+          let rect = Utils.getComponentRect('onMouse'); // 获取id为"onMouse"组件的矩形区域坐标
           let mouseEvent: MouseEvent = {
             button: MouseButton.Left,
             action: MouseAction.Press,
@@ -258,8 +303,8 @@ struct IdExample {
             tiltX: 1,
             tiltY: 1,
             sourceTool: SourceTool.Unknown
-          }
-          sendMouseEvent(mouseEvent) // 发送鼠标事件
+          };
+          sendMouseEvent(mouseEvent); // 发送鼠标事件
         }, 2000)
       }).id('onTouch')
 
@@ -267,8 +312,8 @@ struct IdExample {
         Text('onMouse').fontSize(25).fontWeight(FontWeight.Bold)
       }.margin({ top: 20 }).backgroundColor('#0D9FFB')
       .onMouse(() => {
-        console.info('onMouse')
-        this.text = "Button 'onMouse' in onMouse"
+        console.info('onMouse');
+        this.text = "Button 'onMouse' in onMouse";
         setTimeout(() => {
           let keyEvent: KeyEvent = {
             type: KeyType.Down,
@@ -281,8 +326,8 @@ struct IdExample {
             stopPropagation: () => {
             },
             intentionCode: IntentionCode.INTENTION_DOWN
-          }
-          sendKeyEvent(keyEvent) // 发送按键事件
+          };
+          sendKeyEvent(keyEvent); // 发送按键事件
         }, 2000)
       }).id('onMouse')
 

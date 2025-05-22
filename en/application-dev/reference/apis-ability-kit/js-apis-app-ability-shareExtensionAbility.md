@@ -1,6 +1,6 @@
 # @ohos.app.ability.ShareExtensionAbility (ExtensionAbility for Sharing)
 
-The **ShareExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a share service template. The ShareExtensionAbility provides a convenient way for people to share current contextual information through applications, social media accounts, and other services.
+The **ShareExtensionAbility** module, inherited from [UIExtensionAbility](js-apis-app-ability-uiExtensionAbility.md), provides a share service template. The ShareExtensionAbility provides a convenient way for people to share current contextual information through applications, social media accounts, and other services. For details about the inheritance relationship of each ability, see [Inheritance Relationship](./js-apis-app-ability-ability.md#ability-inheritance-relationship).
 
 > **NOTE**
 > 
@@ -15,16 +15,16 @@ The following uses text sharing as an example. A user selects a piece of text an
 ## Modules to Import
 
 ```ts
-import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
+import { ShareExtensionAbility } from '@kit.AbilityKit';
 ```
 
-## Attributes
+## Properties
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | Name| Type| Read-only| Mandatory| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| No| Context.|
+| context | [UIExtensionContext](js-apis-inner-application-uiExtensionContext.md) | No| Yes| Context.|
 
 ## ShareExtensionAbility.onCreate
 
@@ -135,54 +135,47 @@ To manually create a ShareExtensionAbility in the DevEco Studio project, perform
 
 3. In the **ShareExtAbility.ets** file, import the ShareExtensionAbility module. Customize a class that inherits from **ShareExtensionAbility** and implement the lifecycle callbacks.
 
-  ```ts
-  import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
-  import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-  import Want from '@ohos.app.ability.Want';
+    ```ts
+    import { ShareExtensionAbility, UIExtensionContentSession, Want } from '@kit.AbilityKit';
 
-  const TAG: string = "[ShareExtAbility]";
+    const TAG: string = "[ShareExtAbility]";
 
-  export default class ShareExtAbility extends ShareExtensionAbility {
-    onCreate() {
-      console.info(TAG, `onCreate`);
-    }
-
-    onSessionCreate(want: Want, session: UIExtensionContentSession) {
-      console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
-      if (want.parameters) {
-        let obj: Record<string, UIExtensionContentSession | object> = {
-          'session': session,
-          'messages': want.parameters.shareMessages
+    export default class ShareExtAbility extends ShareExtensionAbility {
+      onCreate() {
+        console.info(TAG, `onCreate`);
+      }
+      onSessionCreate(want: Want, session: UIExtensionContentSession) {
+        console.info(TAG, `onSessionCreate, want: ${want.abilityName}`);
+        if (want.parameters) {
+          let obj: Record<string, UIExtensionContentSession | object> = {
+            'session': session,
+            'messages': want.parameters.shareMessages
+          }
+          let storage: LocalStorage = new LocalStorage(obj);
+          session.loadContent('pages/Index', storage);
         }
-        let storage: LocalStorage = new LocalStorage(obj);
-        session.loadContent('pages/Index', storage);
+      }
+      onForeground() {
+        console.info(TAG, `ononForeground`);
+      }
+      onBackground() {
+        console.info(TAG, `onBackground`);
+      }
+      onSessionDestroy(session: UIExtensionContentSession) {
+        console.info(TAG, `onSessionDestroy`);
+      }
+      onDestroy() {
+        console.info(TAG, `onDestroy`);
       }
     }
-
-    onForeground() {
-      console.info(TAG, `ononForeground`);
-    }
-
-    onBackground() {
-      console.info(TAG, `onBackground`);
-    }
-
-    onSessionDestroy(session: UIExtensionContentSession) {
-      console.info(TAG, `onSessionDestroy`);
-    }
-
-    onDestroy() {
-      console.info(TAG, `onDestroy`);
-    }
-  }
-  ```
+    ```
 
 4. Register the ShareExtensionAbility in the [**module.json5** file](../../quick-start/module-configuration-file.md) of the module in the project. Set **type** to **share** and **srcEntry** to the code path of the ShareExtensionAbility component.
 
    ```json
    {
      "module": {
-       ...
+       // ...
        "extensionAbilities": [
          {
            "name": "ShareExtAbility",

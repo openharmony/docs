@@ -4,25 +4,25 @@ The **usbManager** module provides APIs for USB management.
 
 > **NOTE**
 > 
-> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> - The APIs of this module can be used only in the stage model.
+> The APIs of this module can be used only in the stage model.
 >
-> - The APIs provided by this module can be called only by a [device administrator application](enterpriseDeviceManagement-overview.md#basic-concepts) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
+> The APIs of this module can be called only by a [device administrator application](../../mdm/mdm-kit-guide.md#introduction) that is [enabled](js-apis-enterprise-adminManager-sys.md#adminmanagerenableadmin).
 > 
-> - The APIs provided by this module are system APIs.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.enterprise.usbManager](js-apis-enterprise-usbManager.md).
 
 ## Modules to Import
 
 ```ts
-import usbManager from '@ohos.enterprise.usbManager';
+import { usbManager } from '@kit.MDMKit';
 ```
 
 ## usbManager.setUsbPolicy
 
 setUsbPolicy(admin: Want, usbPolicy: UsbPolicy, callback: AsyncCallback\<void>): void
 
-Sets the USB access policy through the specified device administrator application. This API uses an asynchronous callback to return the result.
+Sets the USB read/write policy. This API uses an asynchronous callback to return the result.
 
 Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -34,26 +34,29 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| usbPolicy  | [UsbPolicy](#usbpolicy) | Yes| USB access policy. This API supports **READ_WRITE** and **READ_ONLY** only.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| usbPolicy  | [UsbPolicy](js-apis-enterprise-usbManager.md#usbpolicy) | Yes| USB access policy. This API supports **READ_WRITE** and **READ_ONLY** only.|
 | callback | AsyncCallback\<void> | Yes| Callback invoked to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                       |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.           |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE
 
@@ -70,7 +73,7 @@ usbManager.setUsbPolicy(wantTemp, policy, (err) => {
 
 setUsbPolicy(admin: Want, usbPolicy: UsbPolicy): Promise\<void>
 
-Sets the USB access policy through the specified device administrator application. This API uses a promise to return the result.
+Sets the USB read/write policy. This API uses a promise to return the result.
 
 Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -82,32 +85,35 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | Device administrator application.|
-| usbPolicy  | [UsbPolicy](#usbpolicy) | Yes| USB access policy. This API supports **READ_WRITE** and **READ_ONLY** only.|
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes   | EnterpriseAdminExtensionAbility.|
+| usbPolicy  | [UsbPolicy](js-apis-enterprise-usbManager.md#usbpolicy) | Yes| USB access policy. This API supports **READ_WRITE** and **READ_ONLY** only.|
 
 **Return value**
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. An error object will be thrown if the operation fails.|
+| Promise\<void> | Promise that returns no value. An error object is thrown when the USB policy fails to be set.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
-| 9200001 | the application is not an administrator of the device.                        |
-| 9200002 | the administrator application does not have permission to manage the device. |
+| 9200001 | The application is not an administrator application of the device.            |
+| 9200002 | The administrator application does not have permission to manage the device. |
+| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
-import { BusinessError } from '@ohos.base';
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 let wantTemp: Want = {
-  bundleName: 'bundleName',
-  abilityName: 'abilityName',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.READ_WRITE
 
@@ -118,38 +124,11 @@ usbManager.setUsbPolicy(wantTemp, policy).then(() => {
 })
 ```
 
-## UsbPolicy
-
-Enumerates the USB access policies.
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| READ_WRITE | 0 | Read and write.|
-| READ_ONLY | 1 | Read only.|
-| DISABLED<sup>11+</sup> | 2 | Disabled.|
-
-## UsbDeviceId<sup>11+</sup>
-
-Represents the USB device identity information.
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-| Name     | Type  | Mandatory| Description    |
-| --------- | ------ | ---- | -------- |
-| vendorId  | number | Yes  | Vendor ID.|
-| productId | number | Yes  | Product ID.|
-
 ## usbManager.disableUsb<sup>11+</sup>
 
 disableUsb(admin: Want, disable: boolean): void
 
-Enables or disables USB through the specified device administrator application.
+Enables or disables USB.
 
 Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -159,25 +138,28 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name | Type                               | Mandatory| Description                                            |
-| ------- | ----------------------------------- | ---- | ------------------------------------------------ |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.                                  |
-| disable | boolean                             | Yes  | Whether to disable USB. The value **true** means to disable USB; the value **false** means the opposite.|
+| Name | Type                                                   | Mandatory| Description                                            |
+| ------- | ------------------------------------------------------- | ---- | ------------------------------------------------ |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.          |
+| disable | boolean                                                 | Yes  | Whether to disable USB. The value **true** means to disable USB; the value **false** means the opposite.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200002  | the administrator application does not have permission to manage the device. |
-| 9200010  | a conflicting policy has been configured.                    |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200010  | A conflict policy has been configured.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -194,7 +176,7 @@ try {
 
 isUsbDisabled(admin: Want): boolean
 
-Checks whether USB is disabled through the specified device administrator application.
+Queries whether the USB is disabled.
 
 Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
@@ -204,29 +186,32 @@ Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
 
 **Parameters**
 
-| Name| Type                               | Mandatory| Description          |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
+| Name| Type                                                   | Mandatory| Description                                  |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility.|
 
 **Return value**
 
 | Type   | Description                                                  |
 | ------- | ------------------------------------------------------ |
-| boolean | Returns **true** if USB is disabled; returns **false** otherwise.|
+| boolean | Returns **true** if USB is disabled;<br>returns **false** otherwise.|
 
 **Error codes**
 
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200002  | the administrator application does not have permission to manage the device. |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
 ```ts
-import Want from '@ohos.app.ability.Want';
+import { Want } from '@kit.AbilityKit';
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -236,246 +221,5 @@ try {
   console.info(`Succeeded in querying if USB is disabled: ${isDisabled}`);
 } catch (err) {
   console.error(`Failed to query if USB is disabled. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## usbManager.addAllowedUsbDevices<sup>11+</sup>
-
-addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
-
-Adds allowed USB devices through the specified device administrator application.
-
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-**Parameters**
-
-| Name      | Type                                | Mandatory| Description                                       |
-| ------------ | ------------------------------------ | ---- | ------------------------------------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes  | Device administrator application.                             |
-| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid11)> | Yes  | IDs of the allowed USB devices to add. This array can hold a maximum of 1000 device IDs.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200002  | the administrator application does not have permission to manage the device. |
-| 9200010  | a conflicting policy has been configured.                    |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-try {
-  let usbDeviceIds: Array<usbManager.UsbDeviceId> = [{
-      vendorId: 1,
-      productId: 1
-  }];
-  usbManager.addAllowedUsbDevices(wantTemp, usbDeviceIds);
-  console.info(`Succeeded in adding allowed USB devices`);
-} catch (err) {
-  console.error(`Failed to adding allowed USB devices. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## usbManager.removeAllowedUsbDevices<sup>11+</sup>
-
-removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
-
-Removes allowed USB devices through the specified device administrator application.
-
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-**Parameters**
-
-| Name      | Type                                | Mandatory| Description           |
-| ------------ | ------------------------------------ | ---- | --------------- |
-| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)  | Yes  | Device administrator application. |
-| usbDeviceIds | Array<[UsbDeviceId](#usbdeviceid11)> | Yes  | IDs of the allowed USB devices to remove.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200002  | the administrator application does not have permission to manage the device. |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-try {
-  let usbDeviceIds: Array<usbManager.UsbDeviceId> = [{
-      vendorId: 1,
-      productId: 1
-  }];
-  usbManager.removeAllowedUsbDevices(wantTemp, usbDeviceIds);
-  console.info(`Succeeded in removing allowed USB devices`);
-} catch (err) {
-  console.error(`Failed to removing allowed USB devices. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## usbManager.getAllowedUsbDevices<sup>11+</sup>
-
-getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
-
-Obtains allowed USB devices through the specified device administrator application.
-
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-**Parameters**
-
-| Name| Type                               | Mandatory| Description          |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
-
-**Return value**
-
-| Type                                | Description                     |
-| ------------------------------------ | ------------------------- |
-| Array<[UsbDeviceId](#usbdeviceid11)> | Allowed USB devices obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200002  | the administrator application does not have permission to manage the device. |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-try {
-  let result: Array<usbManager.UsbDeviceId> = usbManager.getAllowedUsbDevices(wantTemp);
-  console.info(`Succeeded in removing allowed USB devices. Result: ${JSON.stringify(result)}`);
-} catch (err) {
-  console.error(`Failed to removing allowed USB devices. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## usbManager.setUsbStorageDeviceAccessPolicy<sup>11+</sup>
-
-setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
-
-Sets the USB storage device access policy through the specified device administrator application.
-
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-**Parameters**
-
-| Name   | Type                               | Mandatory| Description                 |
-| --------- | ----------------------------------- | ---- | --------------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.       |
-| usbPolicy | [UsbPolicy](#usbpolicy)             | Yes  | USB storage device access policy.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200002  | the administrator application does not have permission to manage the device. |
-| 9200010  | a conflicting policy has been configured.                    |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-try {
-  let policy: usbManager.UsbPolicy = usbManager.UsbPolicy.DISABLED;
-  usbManager.setUsbStorageDeviceAccessPolicy(wantTemp, policy);
-  console.info(`Succeeded in setting USB storage device access policy`);
-} catch (err) {
-  console.error(`Failed to setting USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
-}
-```
-
-## usbManager.getUsbStorageDeviceAccessPolicy<sup>11+</sup>
-
-getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
-
-Obtains the USB storage device access policy through the specified device administrator application.
-
-Required permissions: ohos.permission.ENTERPRISE_MANAGE_USB
-
-**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
-
-
-
-**Parameters**
-
-| Name| Type                               | Mandatory| Description          |
-| ------ | ----------------------------------- | ---- | -------------- |
-| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | Device administrator application.|
-
-**Return value**
-
-| Type                   | Description                 |
-| ----------------------- | --------------------- |
-| [UsbPolicy](#usbpolicy) | USB storage device access policy.|
-
-**Error codes**
-
-For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md).
-
-| ID| Error Message                                                    |
-| -------- | ------------------------------------------------------------ |
-| 9200001  | the application is not an administrator of the device.       |
-| 9200002  | the administrator application does not have permission to manage the device. |
-
-**Example**
-
-```ts
-import Want from '@ohos.app.ability.Want';
-let wantTemp: Want = {
-  bundleName: 'com.example.myapplication',
-  abilityName: 'EntryAbility',
-};
-try {
-  let result: usbManager.UsbPolicy = usbManager.getUsbStorageDeviceAccessPolicy(wantTemp);
-  console.info(`Succeeded in getting USB storage device access policy. Result: ${JSON.stringify(result)}`);
-} catch (err) {
-  console.error(`Failed togetting USB storage device access policy. Code: ${err.code}, message: ${err.message}`);
 }
 ```

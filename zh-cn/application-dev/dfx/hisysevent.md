@@ -1,6 +1,14 @@
 # hisysevent
 
-hisysevent是系统的预置工具，主要用来帮助开发者订阅实时系统事件，查询历史系统事件。开发者使用[hdc工具](hdc.md)进入设备之后，在终端使用执行"hisysevent"命令完成相关能力的调用。
+hisysevent是系统的预置工具，主要用来帮助开发者订阅实时系统事件，查询历史系统事件。
+
+## 环境要求
+
+- 根据hdc命令行工具指导，完成[环境准备](hdc.md#环境准备)。
+
+- 确保设备已正常连接，并执行hdc shell。
+
+- 在终端使用执行"hisysevent"命令完成相关能力的调用。
 
 ## 订阅实时系统事件
 
@@ -22,7 +30,7 @@ hisysevent是系统的预置工具，主要用来帮助开发者订阅实时系�
 - 使用"-o"指定事件域，"-n"指定事件名，以及"-c"指定事件域和事件名称的匹配规则，完成系统事件更高精确度的订阅。
 
   > **说明：**
-  > 订阅实时系统事件时，使用"-c"可以指定**WHOLE_WORD**(全词匹配)、**PREFIX**（前缀匹配）以及**REGULAR**（正则匹配）三种匹配规则。
+  > 订阅实时系统事件时，使用"-c"可以指定**WHOLE_WORD**（全词匹配）、**PREFIX**（前缀匹配）以及**REGULAR**（正则匹配）三种匹配规则。
   >
   > 如果开发者没有使用"-c"指定匹配规则，hisysevent命令行工具将默认使用**WHOLE_WORD**匹配规则进行订阅匹配。
 
@@ -120,6 +128,6 @@ hisysevent是系统的预置工具，主要用来帮助开发者订阅实时系�
 > 1. 未配置的自定义参数键。
 > 2. 类型和定义的类型不匹配的值。
 
-样例：事件域为"ACE"，事件名称为"INTERACTION_APP_JANK"的[系统事件配置](../../device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)中不包含"DURITION"、"DISPLAY_ANIMATOR"自定义参数，但是实际落盘的系统事件却包含此字符串类型的键值对，合法性检查模式开启的情况下，此键值对的键被红色高亮标注。
+样例：事件域为"ACE"，事件名称为"INTERACTION_APP_JANK"的<!--RP1-->[系统事件配置](../../device-dev/subsystems/subsys-dfx-hisysevent-logging-config.md)<!--RP1End-->中不包含"DURITION"、"DISPLAY_ANIMATOR"自定义参数，但是实际落盘的系统事件却包含此字符串类型的键值对，合法性检查模式开启的情况下，此键值对的键被红色高亮标注。
 
 ![](figures/hisysevent-v.png)

@@ -5,92 +5,57 @@
 
 HiTraceMeter模块打点接口定义，通过这些接口实现性能打点相关功能。
 
-使用示例:
 
-同步时间片跟踪事件：
+用户态tarce格式使用竖线 | 作为分隔符，所以通过HiTraceMeter接口传递的字符串类型参数应避免包含该字符，防止trace解析异常。
 
-  
-```
-OH_HiTrace_StartTrace("hitraceTest");
-OH_HiTrace_FinishTrace();
-```
+用户态trace总长度限制512字符，超过的部分将会被截断。
 
-结果输出：
+**库：** libhitrace_ndk.z.so
 
-  
-```
-<...>-1668 (----—) [003] .... 135.059377: tracing_mark_write: B|1668|H:hitraceTest
-<...>-1668 (----—) [003] .... 135.059415: tracing_mark_write: E|1668|
-```
+**引用文件：**
 
-异步时间片跟踪事件：
+&lt;hitrace/trace.h&gt;
 
-  
-```
-OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
-OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
-```
+**系统能力：** SystemCapability.HiviewDFX.HiTrace
 
-结果输出：
+**起始版本：** 10
 
-  
-```
-<...>-2477 (----—) [001] .... 396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
-<...>-2477 (----—) [001] .... 396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
-```
-
-整数值跟踪事件：
-
-  
-```
-OH_HiTrace_CountTrace("hitraceTest", 500);
-```
-
-结果输出：
-
-  
-```
-<...>-2638 (----—) [002] .... 458.904382: tracing_mark_write: C|2638|H:hitraceTest 500
-```
-
-**起始版本：**
-
-10
-
-**相关模块:**
-
-[Hitrace](_hitrace.md)
+**相关模块：**[Hitrace](_hitrace.md)
 
 
 ## 汇总
+
 
 ### 结构体
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[HiTraceId](_hi_trace_id.md) | HiTraceId定义  | 
+| struct&nbsp;&nbsp;[HiTraceId](_hi_trace_id.md) | HiTraceId定义。  | 
+
 
 ### 类型定义
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | HiTraceId是否有效标志  | 
-| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | HiTrace版本号  | 
-| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | HiTrace标志位  | 
-| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | HiTrace打点类型  | 
-| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) |  | 
-|  typedef struct [HiTraceId](_hi_trace_id.md)**HiTraceId** |  | 
+| typedef enum [HiTraceId_Valid](_hitrace.md#hitraceid_valid) [HiTraceId_Valid](_hitrace.md#hitraceid_valid) | HiTraceId是否有效标志。  | 
+| typedef enum [HiTrace_Version](_hitrace.md#hitrace_version) [HiTrace_Version](_hitrace.md#hitrace_version) | HiTrace版本号。  | 
+| typedef enum [HiTrace_Flag](_hitrace.md#hitrace_flag) [HiTrace_Flag](_hitrace.md#hitrace_flag) | HiTrace标志位。  | 
+| typedef enum [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) | HiTrace打点类型。  | 
+| typedef enum [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) | HiTrace通信模式枚举。  | 
+| typedef struct [HiTraceId](_hi_trace_id.md) [HiTraceId](_hi_trace_id.md) | 系统跟踪Id。 | 
+| typedef enum [HiTrace_Output_Level](_hitrace.md#hitrace_output_level) [HiTrace_Output_Level](_hitrace.md#hitrace_output_level) | HiTrace输出级别。  | 
 
 
 ### 枚举
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { [HITRACE_ID_INVALID](_hitrace.md) = 0, [HITRACE_ID_VALID](_hitrace.md) = 1 } | HiTraceId是否有效标志  | 
-| [HiTrace_Version](_hitrace.md#hitrace_version) { [HITRACE_VER_1](_hitrace.md) = 0 } | HiTrace版本号  | 
-| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>[HITRACE_FLAG_DEFAULT](_hitrace.md) = 0, [HITRACE_FLAG_INCLUDE_ASYNC](_hitrace.md) = 1 &lt;&lt; 0, [HITRACE_FLAG_DONOT_CREATE_SPAN](_hitrace.md) = 1 &lt;&lt; 1, [HITRACE_FLAG_TP_INFO](_hitrace.md) = 1 &lt;&lt; 2,<br/>[HITRACE_FLAG_NO_BE_INFO](_hitrace.md) = 1 &lt;&lt; 3, [HITRACE_FLAG_DONOT_ENABLE_LOG](_hitrace.md) = 1 &lt;&lt; 4, [HITRACE_FLAG_FAULT_TRIGGER](_hitrace.md) = 1 &lt;&lt; 5, [HITRACE_FLAG_D2D_TP_INFO](_hitrace.md) = 1 &lt;&lt; 6<br/>} | HiTrace标志位  | 
-| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>[HITRACE_TP_CS](_hitrace.md) = 0, [HITRACE_TP_CR](_hitrace.md) = 1, [HITRACE_TP_SS](_hitrace.md) = 2, [HITRACE_TP_SR](_hitrace.md) = 3,<br/>[HITRACE_TP_GENERAL](_hitrace.md) = 4<br/>} | HiTrace打点类型  | 
-| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { [HITRACE_CM_DEFAULT](_hitrace.md) = 0, [HITRACE_CM_THREAD](_hitrace.md) = 1, [HITRACE_CM_PROCESS](_hitrace.md) = 2, [HITRACE_CM_DEVICE](_hitrace.md) = 3 } |  | 
+| [HiTraceId_Valid](_hitrace.md#hitraceid_valid) { HITRACE_ID_INVALID = 0, HITRACE_ID_VALID = 1 } | HiTraceId是否有效标志。  | 
+| [HiTrace_Version](_hitrace.md#hitrace_version) { HITRACE_VER_1 = 0 } | HiTrace版本号。  | 
+| [HiTrace_Flag](_hitrace.md#hitrace_flag) {<br/>HITRACE_FLAG_DEFAULT = 0, HITRACE_FLAG_INCLUDE_ASYNC = 1 &lt;&lt; 0, HITRACE_FLAG_DONOT_CREATE_SPAN = 1 &lt;&lt; 1, HITRACE_FLAG_TP_INFO = 1 &lt;&lt; 2,<br/>HITRACE_FLAG_NO_BE_INFO = 1 &lt;&lt; 3, HITRACE_FLAG_DONOT_ENABLE_LOG = 1 &lt;&lt; 4, HITRACE_FLAG_FAULT_TRIGGER = 1 &lt;&lt; 5, HITRACE_FLAG_D2D_TP_INFO = 1 &lt;&lt; 6<br/>} | HiTrace标志位。  | 
+| [HiTrace_Tracepoint_Type](_hitrace.md#hitrace_tracepoint_type) {<br/>HITRACE_TP_CS = 0, HITRACE_TP_CR = 1, HITRACE_TP_SS = 2, HITRACE_TP_SR = 3,<br/>HITRACE_TP_GENERAL = 4<br/>} | HiTrace打点类型。  | 
+| [HiTrace_Communication_Mode](_hitrace.md#hitrace_communication_mode) { HITRACE_CM_DEFAULT = 0, HITRACE_CM_THREAD = 1, HITRACE_CM_PROCESS = 2, HITRACE_CM_DEVICE = 3 } | HiTrace通信模式枚举。  | 
+| [HiTrace_Output_Level](_hitrace.md#hitrace_output_level) {<br/>HITRACE_LEVEL_DEBUG = 0, HITRACE_LEVEL_INFO = 1, HITRACE_LEVEL_CRITICAL = 2, HITRACE_LEVEL_COMMERCIAL = 3,<br/>HITRACE_LEVEL_MAX = HITRACE_LEVEL_COMMERCIAL} | HiTrace输出级别。  | 
 
 
 ### 函数
@@ -99,7 +64,7 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 | -------- | -------- |
 | [HiTraceId](_hi_trace_id.md) [OH_HiTrace_BeginChain](_hitrace.md#oh_hitrace_beginchain) (const char \*name, int flags) | 开始跟踪进程实现。  | 
 | void [OH_HiTrace_EndChain](_hitrace.md#oh_hitrace_endchain) () | 如果给定的跟踪ID有效，则停止进程跟踪并清除当前线程的跟踪ID，否则不执行任何操作。  | 
-| [HiTraceId](_hi_trace_id.md) [OH_HiTrace_GetId](_hitrace.md#oh_hitrace_getid) () | 获取当前线程的跟踪ID，如果没有属于当前线程的跟踪ID，则返回一个无效的跟踪ID  | 
+| [HiTraceId](_hi_trace_id.md) [OH_HiTrace_GetId](_hitrace.md#oh_hitrace_getid) () | 获取当前线程的跟踪ID，如果没有属于当前线程的跟踪ID，则返回一个无效的跟踪ID。  | 
 | void [OH_HiTrace_SetId](_hitrace.md#oh_hitrace_setid) (const [HiTraceId](_hi_trace_id.md) \*id) | 将id设置为当前线程的跟踪id。如果ID无效，则不执行任何操作。  | 
 | void [OH_HiTrace_ClearId](_hitrace.md#oh_hitrace_clearid) (void) | 清除当前线程的跟踪ID并将其设置为无效。  | 
 | [HiTraceId](_hi_trace_id.md) [OH_HiTrace_CreateSpan](_hitrace.md#oh_hitrace_createspan) (void) | 根据当前线程的跟踪id创建一个新的span id。  | 
@@ -109,7 +74,7 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 | bool [OH_HiTrace_IsIdValid](_hitrace.md#oh_hitrace_isidvalid) (const [HiTraceId](_hi_trace_id.md) \*id) | 判断trace id是否有效。  | 
 | bool [OH_HiTrace_IsFlagEnabled](_hitrace.md#oh_hitrace_isflagenabled) (const [HiTraceId](_hi_trace_id.md) \*id, [HiTrace_Flag](_hitrace.md#hitrace_flag) flag) | 判断跟踪id是否启用了跟踪标志。  | 
 | void [OH_HiTrace_EnableFlag](_hitrace.md#oh_hitrace_enableflag) (const [HiTraceId](_hi_trace_id.md) \*id, [HiTrace_Flag](_hitrace.md#hitrace_flag) flag) | 启用跟踪ID的指定跟踪标志。  | 
-| int [OH_HiTrace_GetFlags](_hitrace.md#oh_hitrace_getflags) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取HiTraceId结构体中设置的的标志位。  | 
+| int [OH_HiTrace_GetFlags](_hitrace.md#oh_hitrace_getflags) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取HiTraceId结构体中设置的标志位。  | 
 | void [OH_HiTrace_SetFlags](_hitrace.md#oh_hitrace_setflags) ([HiTraceId](_hi_trace_id.md) \*id, int flags) | 设置跟踪标志位到HiTraceId结构体中。  | 
 | uint64_t [OH_HiTrace_GetChainId](_hitrace.md#oh_hitrace_getchainid) (const [HiTraceId](_hi_trace_id.md) \*id) | 获取跟踪链ID。  | 
 | void [OH_HiTrace_SetChainId](_hitrace.md#oh_hitrace_setchainid) ([HiTraceId](_hi_trace_id.md) \*id, uint64_t chainId) | 设置跟踪链ID到HiTraceId结构体中。  | 
@@ -123,3 +88,9 @@ OH_HiTrace_CountTrace("hitraceTest", 500);
 | void [OH_HiTrace_StartAsyncTrace](_hitrace.md#oh_hitrace_startasynctrace) (const char \*name, int32_t taskId) | 标记一个异步跟踪耗时任务的开始。  | 
 | void [OH_HiTrace_FinishAsyncTrace](_hitrace.md#oh_hitrace_finishasynctrace) (const char \*name, int32_t taskId) | 标记一个异步跟踪耗时任务的结束。  | 
 | void [OH_HiTrace_CountTrace](_hitrace.md#oh_hitrace_counttrace) (const char \*name, int64_t count) | 用于跟踪给定整数变量名和整数值。  | 
+| void [OH_HiTrace_StartTraceEx](_hitrace.md#oh_hitrace_starttraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, const char \*customArgs) | 标记一个同步跟踪耗时任务的开始，分级控制跟踪输出。  | 
+| void [OH_HiTrace_FinishTraceEx](_hitrace.md#oh_hitrace_finishtraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level) | 标记一个同步跟踪耗时任务的结束，分级控制跟踪输出。  | 
+| void [OH_HiTrace_StartAsyncTraceEx](_hitrace.md#oh_hitrace_startasynctraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int32_t taskId, const char \*customCategory, const char \*customArgs) | 标记一个异步跟踪耗时任务的开始，分级控制跟踪输出。  | 
+| void [OH_HiTrace_FinishAsyncTraceEx](_hitrace.md#oh_hitrace_finishasynctraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int32_t taskId) | 标记一个异步跟踪耗时任务的结束，分级控制跟踪输出。  | 
+| void [OH_HiTrace_CountTraceEx](_hitrace.md#oh_hitrace_counttraceex) ([HiTrace_Output_Level](_hitrace.md#hitrace_output_level) level, const char \*name, int64_t count) | 标记一个跟踪的整数变量，分级控制跟踪输出。  | 
+| bool [OH_HiTrace_IsTraceEnabled](_hitrace.md#oh_hitrace_istraceenabled) (void) | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。  | 

@@ -20,12 +20,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import HashMap from '@ohos.util.HashMap'; 
+import { HashMap } from '@kit.ArkTS';
 ```
 
 ## HashMap
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -39,6 +41,8 @@ import HashMap from '@ohos.util.HashMap';
 constructor()
 
 A constructor used to create a **HashMap** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -62,6 +66,8 @@ let hashMap: HashMap<string, number> = new HashMap();
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -92,6 +98,8 @@ let result = hashMap.isEmpty();
 hasKey(key: K): boolean
 
 Checks whether this container contains the specified key.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -130,6 +138,8 @@ hasValue(value: V): boolean
 
 Checks whether this container contains the specified value.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -166,6 +176,8 @@ let result = hashMap.hasValue(123);
 get(key: K): V
 
 Obtains the value of the specified key in this container. If nothing is obtained, **undefined** is returned.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -205,6 +217,8 @@ setAll(map: HashMap<K, V>): void
 
 Adds all elements in a **HashMap** instance to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -215,10 +229,11 @@ Adds all elements in a **HashMap** instance to this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The setAll method cannot be bound. |
 
 **Example**
@@ -239,6 +254,8 @@ set(key: K, value: V): Object
 
 Adds or updates an element in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -256,10 +273,11 @@ Adds or updates an element in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
 | 10200011 | The set method cannot be bound. |
 
 **Example**
@@ -275,6 +293,8 @@ let result = hashMap.set("squirrel", 123);
 remove(key: K): V
 
 Removes an element with the specified key from this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -314,6 +334,8 @@ clear(): void
 
 Clears this container and sets its length to **0**.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Error codes**
@@ -339,6 +361,8 @@ hashMap.clear();
 keys(): IterableIterator&lt;K&gt;
 
 Obtains an iterator that contains all the keys in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -377,6 +401,8 @@ values(): IterableIterator&lt;V&gt;
 
 Obtains an iterator that contains all the values in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -413,6 +439,8 @@ while(!temp.done) {
 replace(key: K, newValue: V): boolean
 
 Replaces an element in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -452,6 +480,8 @@ forEach(callbackFn: (value?: V, key?: K, map?: HashMap<K, V>) => void, thisArg?:
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -470,10 +500,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -486,13 +517,25 @@ hashMap.forEach((value?: number, key?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
+```ts
+// You are not advised to use the set or remove APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 
 ### entries
 
 entries(): IterableIterator&lt;[K, V]&gt;
 
 Obtains an iterator that contains all the elements in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -524,17 +567,24 @@ while(!temp.done) {
   temp = iter.next();
 }
 ```
+```ts
+// You are not advised to use the set or remove APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
 
-
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
+```
 ### [Symbol.iterator]
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -573,4 +623,16 @@ for (let key of keys) {
    console.log("value:" + temp.value[1]);
    temp = iter.next();
  }
+```
+
+```ts
+// You are not advised to use the set or remove APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let hashMap: HashMap<string, number> = new HashMap();
+for(let i = 0; i < 10; i++) {
+  hashMap.set("sparrow" + i, 123);
+}
+
+for(let i = 0; i < 10; i++) {
+  hashMap.remove("sparrow" + i);
+}
 ```

@@ -1,7 +1,7 @@
 # &lt;text&gt; Development
 
 
-The **&lt;text&gt;** component is used to display a piece of textual information. For details, see [text](../reference/arkui-js/js-components-basic-text.md).
+The **&lt;text&gt;** component is used to display a piece of textual information. For details, see [text](../reference/apis-arkui/arkui-js/js-components-basic-text.md).
 
 
 ## Creating a &lt;text&gt; Component
@@ -65,7 +65,7 @@ Create a **&lt;text&gt;** component in the .hml file under **pages/index**.
 
 - Adding a text modifier
   
-  Set the **text-decoration** and **text-decoration-color** attributes to add an underline, overline, line-through, or a combination of lines in the specified color to selected text. For values of **text-decoration**, see [Text Styles](../reference/arkui-js/js-components-basic-text.md).
+  Set the **text-decoration** and **text-decoration-color** attributes to add an underline, overline, line-through, or a combination of lines in the specified color to selected text. For values of **text-decoration**, see [Text Styles](../reference/apis-arkui/arkui-js/js-components-basic-text.md).
 
 
   ```html
@@ -139,7 +139,7 @@ Set the **text-overflow** attribute to **ellipsis** so that overflowed text is d
 - Setting the text line breaking mode
   
 
-Set the **word-break** attribute to specify how to break lines of text. For values of **word-break**, see [Text Styles](../reference/arkui-js/js-components-basic-text.md).
+Set the **word-break** attribute to specify how to break lines of text. For values of **word-break**, see [Text Styles](../reference/apis-arkui/arkui-js/js-components-basic-text.md).
 
 
   ```html
@@ -194,7 +194,7 @@ Set the **word-break** attribute to specify how to break lines of text. For valu
     ![en-us_image_0000001267767865](figures/en-us_image_0000001267767865.png)
 
 
-- Setting the [&lt;span&gt;](../reference/arkui-js/js-components-basic-span.md) child component
+- Setting the [&lt;span&gt;](../reference/apis-arkui/arkui-js/js-components-basic-span.md) child component
   
   ```html
   <!-- xxx.hml -->

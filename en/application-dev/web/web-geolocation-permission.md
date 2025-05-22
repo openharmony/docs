@@ -1,8 +1,23 @@
 # Managing Location Permissions
 
 
-The **Web** component provides the location permission management capability. You can use [onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web.md#ongeolocationshow) to manage the location permission specific to a website. Based on the API response, the **Web** component determines whether to grant the location permission to the frontend page. To obtain the device location, you need to declare the [ohos.permission.LOCATION](../security/AccessToken/request-user-authorization.md) permission, and enable on the device the location permission for the application and the location information for the control panel.
+The **Web** component provides the location permission management capability. You can use [onGeolocationShow()](../reference/apis-arkweb/ts-basic-components-web.md#ongeolocationshow) to manage the location permission specific to a website. Based on the API response, the **Web** component determines whether to grant the location permission to the frontend page.
 
+- To obtain the device geolocation, add location-related permissions to the **module.json5** file. For details, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
+
+   ```
+   "requestPermissions":[
+      {
+        "name" : "ohos.permission.LOCATION"
+      },
+      {
+        "name" : "ohos.permission.APPROXIMATELY_LOCATION"
+      },
+      {
+        "name" : "ohos.permission.LOCATION_IN_BACKGROUND"
+      }
+    ]
+   ```
 
 In the following example, when a user clicks the **Get Location** button on the frontend page, the **Web** component notifies the application of the location permission request in a dialog box.
 
@@ -36,45 +51,32 @@ In the following example, when a user clicks the **Get Location** button on the 
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview';
-  import { abilityAccessCtrl, common }from '@kit.AbilityKit';
-  import {geoLocationManager} from '@kit.LocationKit';
+  import { webview } from '@kit.ArkWeb';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { abilityAccessCtrl, common } from '@kit.AbilityKit';
 
   let context = getContext(this) as common.UIAbilityContext;
   let atManager = abilityAccessCtrl.createAtManager();
 
-  try{
-    atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"], (err, data) => {
-      let requestInfo: geoLocationManager.LocationRequest = {
-        'priority': 0x203,
-        'scenario': 0x300,
-        'maxAccuracy': 0
-      };
-      let locationChange = (location: geoLocationManager.Location):void => {
-        if(location){
-          console.log('locationChanger: location=' + JSON.stringify(location));
-        }
-      };
-      try{
-        geoLocationManager.on('locationChange', requestInfo, locationChange);
-        geoLocationManager.off('locationChange', locationChange);
-      } catch (err) {
-        console.error("errCode:" + err.code + ", errMessage:" + err.message);
-      }
-    })
-  } catch (err) {
-    console.error("err:", err);
-  }
+  // Request the location permission from the user.
+  atManager.requestPermissionsFromUser(context, ["ohos.permission.APPROXIMATELY_LOCATION"]).then((data) => {
+    console.info('data:' + JSON.stringify(data));
+    console.info('data permissions:' + data.permissions);
+    console.info('data authResults:' + data.authResults);
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to request permissions from user. Code is ${error.code}, message is ${error.message}`);
+  })
 
   @Entry
   @Component
   struct WebComponent {
-    controller: web_webview.WebviewController = new web_webview.WebviewController();
+    controller: webview.WebviewController = new webview.WebviewController();
+
     build() {
       Column() {
-        Web({ src:$rawfile('getLocation.html'), controller:this.controller })
+        Web({ src: $rawfile('getLocation.html'), controller: this.controller })
           .geolocationAccess(true)
-          .onGeolocationShow((event) => {  // Notification of the location permission request
+          .onGeolocationShow((event) => { // Notification of the location permission request
             AlertDialog.show({
               title: 'Location Permission',
               message:'Grant access to the device location?',
@@ -90,7 +92,7 @@ In the following example, when a user clicks the **Get Location** button on the 
                 value: 'ok',
                 action: () => {
                   if (event) {
-                    event.geolocation.invoke(event.origin, true, false);    // Allow access to the device location.
+                    event.geolocation.invoke(event.origin, true, false); // Allow access to the device location.
                   }
                 }
               },

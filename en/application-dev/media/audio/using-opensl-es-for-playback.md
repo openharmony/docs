@@ -1,6 +1,6 @@
 # Using OpenSL ES for Audio Playback (C/C++)
 
-OpenSL ES, short for Open Sound Library for Embedded Systems, is an embedded, cross-platform audio processing library that is free of charge. It provides high-performance and low-latency APIs for you to develop applications running on embedded mobile multimedia devices. OpenHarmony have implemented certain native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications developed by the [Khronos Group](https://www.khronos.org/). You can use these APIs through <OpenSLES.h\> and <OpenSLES_OpenHarmony.h\>.
+OpenSL ES, short for Open Sound Library for Embedded Systems, is an embedded, cross-platform audio processing library that is free of charge. It provides high-performance and low-latency APIs for you to develop applications running on embedded mobile multimedia devices. OpenHarmony has implemented certain native APIs based on [OpenSL ES](https://www.khronos.org/opensles/) 1.0.1 API specifications developed by the [Khronos Group](https://www.khronos.org/). You can use these APIs through <OpenSLES.h\> and <OpenSLES_OpenHarmony.h\>.
 
 ## Using OHAudio to Replace OpenSL ES
 
@@ -73,7 +73,7 @@ Refer to the sample code below to play an audio file.
 
 1. Add the header files.
      
-   ```c++
+   ```cpp
    #include "SLES/OpenSLES.h"
    #include "SLES/OpenSLES_OpenHarmony.h"
    #include "SLES/OpenSLES_Platform.h"
@@ -81,7 +81,7 @@ Refer to the sample code below to play an audio file.
 
 2. Use the **slCreateEngine** API to obtain an **engine** instance.
      
-   ```c++
+   ```cpp
    SLObjectItf engineObject = nullptr;
    slCreateEngine(&engineObject, 0, nullptr, 0, nullptr, nullptr);
    (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
@@ -89,14 +89,14 @@ Refer to the sample code below to play an audio file.
 
 3. Obtain the **engineEngine** instance of the **SL_IID_ENGINE** API.
      
-   ```c++
+   ```cpp
    SLEngineItf engineEngine = nullptr;
    (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE, &engineEngine);
    ```
 
 4. Configure the player and create an **AudioPlayer** instance.
      
-   ```c++
+   ```cpp
    SLDataLocator_BufferQueue slBufferQueue = {
        SL_DATALOCATOR_BUFFERQUEUE,
        1
@@ -129,14 +129,14 @@ Refer to the sample code below to play an audio file.
 
 5. Obtain the **bufferQueueItf** instance of the **SL_IID_OH_BUFFERQUEUE** API.
      
-   ```c++
+   ```cpp
    SLOHBufferQueueItf bufferQueueItf;
    (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_OH_BUFFERQUEUE, &bufferQueueItf);
    ```
 
 6. Open an audio file and register the **BufferQueueCallback** function.
      
-   ```c++
+   ```cpp
    static void BufferQueueCallback (SLOHBufferQueueItf bufferQueueItf, void *pContext, SLuint32 size)
    {
        SLuint8 *buffer = nullptr;
@@ -151,7 +151,7 @@ Refer to the sample code below to play an audio file.
 
 7. Obtain the **playItf** instance of the **SL_PLAYSTATE_PLAYING** API and start playing.
      
-   ```c++
+   ```cpp
    SLPlayItf playItf = nullptr;
    (*pcmPlayerObject)->GetInterface(pcmPlayerObject, SL_IID_PLAY, &playItf);
    (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_PLAYING);
@@ -159,7 +159,7 @@ Refer to the sample code below to play an audio file.
 
 8. Stop playing.
      
-   ```c++
+   ```cpp
    (*playItf)->SetPlayState(playItf, SL_PLAYSTATE_STOPPED);
    (*pcmPlayerObject)->Destroy(pcmPlayerObject);
    (*engineObject)->Destroy(engineObject);

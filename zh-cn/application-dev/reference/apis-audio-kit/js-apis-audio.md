@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 ```
 
 ## 常量
@@ -27,7 +27,7 @@ import audio from '@ohos.multimedia.audio';
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 const defaultVolumeGroupId = audio.DEFAULT_VOLUME_GROUP_ID;
 const defaultInterruptGroupId = audio.DEFAULT_INTERRUPT_GROUP_ID;
@@ -49,7 +49,7 @@ getAudioManager(): AudioManager
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioManager = audio.getAudioManager();
 ```
@@ -58,7 +58,7 @@ let audioManager = audio.getAudioManager();
 
 createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<AudioRenderer>): void
 
-获取音频渲染器。使用callback方式异步返回结果。
+获取音频渲染器。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -72,24 +72,24 @@ createAudioRenderer(options: AudioRendererOptions, callback: AsyncCallback\<Audi
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
+};
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-}
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
+};
 
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
 
 audio.createAudioRenderer(audioRendererOptions,(err, data) => {
   if (err) {
@@ -105,7 +105,7 @@ audio.createAudioRenderer(audioRendererOptions,(err, data) => {
 
 createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 
-获取音频渲染器。使用Promise方式异步返回结果。
+获取音频渲染器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -124,27 +124,28 @@ createAudioRenderer(options: AudioRendererOptions): Promise<AudioRenderer\>
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_1,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
+};
 
 let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION,
-  rendererFlags: 0
-}
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
+};
 
 let audioRendererOptions: audio.AudioRendererOptions = {
   streamInfo: audioStreamInfo,
   rendererInfo: audioRendererInfo
-}
+};
 
 let audioRenderer: audio.AudioRenderer;
+
 audio.createAudioRenderer(audioRendererOptions).then((data) => {
   audioRenderer = data;
   console.info('AudioFrameworkRenderLog: AudioRenderer Created : Success : Stream Type: SUCCESS');
@@ -157,42 +158,42 @@ audio.createAudioRenderer(audioRendererOptions).then((data) => {
 
 createAudioCapturer(options: AudioCapturerOptions, callback: AsyncCallback<AudioCapturer\>): void
 
-获取音频采集器。使用callback方式异步返回结果。
+获取音频采集器。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_CAMCORDER）时需要该权限。
 
 **参数：**
 
 | 参数名   | 类型                                            | 必填 | 说明             |
 | :------- | :---------------------------------------------- | :--- | :--------------- |
 | options  | [AudioCapturerOptions](#audiocaptureroptions8)  | 是   | 配置音频采集器。 |
-| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | 回调函数。当获取音频采集器成功，err为undefined，data为获取到的音频采集器对象；否则为错误对象。 |
+| callback | AsyncCallback<[AudioCapturer](#audiocapturer8)> | 是   | 回调函数。当获取音频采集器成功，err为undefined，data为获取到的音频采集器对象；否则为错误对象。异常将返回error对象：<br>错误码6800301，表示包含参数校验异常、权限校验异常、系统处理异常（具体错误查看系统日志）。<br>错误码6800101，表示包含必选参数为空、参数类型错误。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
+};
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-}
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
+};
 
 let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
+};
 
 audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
   if (err) {
@@ -208,13 +209,13 @@ audio.createAudioCapturer(audioCapturerOptions, (err, data) => {
 
 createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
-获取音频采集器。使用Promise 方式异步返回结果。
+获取音频采集器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **需要权限：** ohos.permission.MICROPHONE
 
-仅设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC）时需要该权限。
+当设置Mic音频源（即[SourceType](#sourcetype8)为SOURCE_TYPE_MIC、SOURCE_TYPE_VOICE_RECOGNITION、SOURCE_TYPE_VOICE_COMMUNICATION、SOURCE_TYPE_VOICE_MESSAGE、SOURCE_TYPE_CAMCORDER）时需要该权限。
 
 **参数：**
 
@@ -224,34 +225,35 @@ createAudioCapturer(options: AudioCapturerOptions): Promise<AudioCapturer\>
 
 **返回值：**
 
-| 类型                                      | 说明           |
-| ----------------------------------------- | -------------- |
-| Promise<[AudioCapturer](#audiocapturer8)> | Promise对象，返回音频采集器对象。 |
+| 类型                                      | 说明                   |
+| ----------------------------------------- |----------------------|
+| Promise<[AudioCapturer](#audiocapturer8)> | Promise对象，成功将返回音频采集器对象，异常将返回error对象：<br>错误码6800301，表示包含参数校验异常、权限校验异常、系统处理异常（具体错误查看系统日志）。<br>错误码6800101，表示包含必选参数为空、参数类型错误。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let audioStreamInfo: audio.AudioStreamInfo = {
-  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
-  channels: audio.AudioChannel.CHANNEL_2,
-  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
-  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
-}
+  samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_48000, // 采样率。
+  channels: audio.AudioChannel.CHANNEL_2, // 通道。
+  sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE, // 采样格式。
+  encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW // 编码格式。
+};
 
 let audioCapturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-}
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
+};
 
 let audioCapturerOptions:audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
-}
+};
 
 let audioCapturer: audio.AudioCapturer;
+
 audio.createAudioCapturer(audioCapturerOptions).then((data) => {
   audioCapturer = data;
   console.info('AudioCapturer Created : Success : Stream Type: SUCCESS');
@@ -279,6 +281,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，焦点模型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
 | 名称                         | 值      | 说明       |
@@ -298,9 +302,26 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | INPUT_DEVICES_FLAG              | 2      | 输入设备。                     |
 | ALL_DEVICES_FLAG                | 3      | 所有设备。                     |
 
+## DeviceUsage<sup>12+</sup>
+
+枚举，可获取的设备种类。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称                            |  值     | 说明                        |
+| ------------------------------- | ------ |---------------------------|
+| MEDIA_OUTPUT_DEVICES | 1      | 媒体输出设备。|
+| MEDIA_INPUT_DEVICES  | 2      | 媒体输入设备。|
+| ALL_MEDIA_DEVICES    | 3      | 所有媒体设备。|
+| CALL_OUTPUT_DEVICES  | 4      | 通话输出设备。|
+| CALL_INPUT_DEVICES   | 8      | 通话输入设备。|
+| ALL_CALL_DEVICES     | 12     | 所有通话设备。|
+
 ## DeviceRole
 
 枚举，设备角色。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -317,17 +338,22 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称                 | 值     | 说明                                                      |
 | ---------------------| ------ | --------------------------------------------------------- |
-| INVALID              | 0      | 无效设备。                                                |
-| EARPIECE             | 1      | 听筒。                                                    |
-| SPEAKER              | 2      | 扬声器。                                                  |
-| WIRED_HEADSET        | 3      | 有线耳机，带麦克风。                                      |
-| WIRED_HEADPHONES     | 4      | 有线耳机，无麦克风。                                      |
-| BLUETOOTH_SCO        | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。      |
-| BLUETOOTH_A2DP       | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。 |
-| MIC                  | 15     | 麦克风。                                                  |
-| USB_HEADSET          | 22     | USB耳机，带麦克风。                                       |
-| DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。           |
-| DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。                                            |
+| INVALID              | 0      | 无效设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| EARPIECE             | 1      | 听筒。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| SPEAKER              | 2      | 扬声器。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| WIRED_HEADSET        | 3      | 有线耳机，带麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| WIRED_HEADPHONES     | 4      | 有线耳机，无麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BLUETOOTH_SCO        | 7      | 蓝牙设备SCO（Synchronous Connection Oriented）连接。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| BLUETOOTH_A2DP       | 8      | 蓝牙设备A2DP（Advanced Audio Distribution Profile）连接。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| MIC                  | 15     | 麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| USB_HEADSET          | 22     | USB耳机，带麦克风。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| DISPLAY_PORT<sup>12+</sup>        | 23     | DisplayPort（显示接口，简称DP），用于外接扩展设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| REMOTE_CAST<sup>12+</sup>        | 24     | 音频被系统应用投送到其他远程的设备。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| USB_DEVICE<sup>18+</sup>        | 25 | USB设备（不包含USB耳机）。           |
+| HDMI<sup>19+</sup>        | 27 | HDMI设备（例如HDMI、ARC、eARC等）。           |
+| LINE_DIGITAL<sup>19+</sup>        | 28 | 有线数字设备（例如S/PDIF等）。           |
+| REMOTE_DAUDIO<sup>18+</sup>        | 29 | 分布式设备。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| DEFAULT<sup>9+</sup> | 1000   | 默认设备类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## CommunicationDeviceType<sup>9+</sup>
 
@@ -390,8 +416,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称      |  值       | 说明   |
 | --------- | -------- |------|
-| CHANNEL_1 | 0x1 << 0 | 单声道。 |
-| CHANNEL_2 | 0x1 << 1 | 双声道。 |
+| CHANNEL_1 | 1 | 单声道。 |
+| CHANNEL_2 | 2 | 双声道。 |
 | CHANNEL_3<sup>11+</sup> | 3 | 三声道。 |
 | CHANNEL_4<sup>11+</sup> | 4 | 四声道。 |
 | CHANNEL_5<sup>11+</sup> | 5 | 五声道。 |
@@ -430,6 +456,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioEncodingType<sup>8+</sup>
 
 枚举，音频编码类型。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -501,7 +529,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 枚举，音频内容类型。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 10 开始废弃。建议使用[StreamUsage](#streamusage)替代。
+> 从 API version 7 开始支持，从 API version 10 开始废弃。建议使用[StreamUsage](#streamusage)声明音频流使用类型即可。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
@@ -520,24 +548,24 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
-| 名称                                      |  值    | 说明                                                                                                                                          |
-| ------------------------------------------| ------ |---------------------------------------------------------------------------------------------------------------------------------------------|
-| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。                                                                                                                                       |
-| STREAM_USAGE_MEDIA<sup>(deprecated)</sup>                        | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
-| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。                                                                                                                                         |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | 语音通信。                                                                                                                                       | 
-| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。                                                                                                                                       |
-| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。                                                                                                                                         |
-| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。                                                                                                                                       |
-| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup>        | 6      | 通知铃声。<br/> 从 API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_RINGTONE替代。                                                                          |
-| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。                                                                                                                                         |
-| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。                                                                                                                                         |
-| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。                                                                                                                                        |
-| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。                                                                                                                                      |
-| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏音效。                                                                                                                                       |
-| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物。                                                                                                                                       |
-| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。                                                                                                                                         |
-| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | 视频通话。                                                                                                                                         |
+| 名称                                      |  值    | 说明                                                                             |
+| ------------------------------------------| ------ |--------------------------------------------------------------------------------|
+| STREAM_USAGE_UNKNOWN                      | 0      | 未知类型。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_MEDIA<sup>(deprecated)</sup> | 1      | 媒体。<br/> 从API version 7开始支持，从API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME或STREAM_USAGE_AUDIOBOOK替代。 |
+| STREAM_USAGE_MUSIC<sup>10+</sup>          | 1      | 音乐。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | VoIP语音通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。| 
+| STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | 语音播报。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | 闹钟。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_VOICE_MESSAGE<sup>10+</sup>  | 5      | 语音消息。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_NOTIFICATION_RINGTONE<sup>(deprecated)</sup> | 6      | 通知铃声。<br/> 从 API version 10 开始废弃。建议使用该枚举中的STREAM_USAGE_RINGTONE替代。 |
+| STREAM_USAGE_RINGTONE<sup>10+</sup>       | 6      | 铃声。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_NOTIFICATION<sup>10+</sup>   | 7      | 通知。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8      | 无障碍。    <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_MOVIE<sup>10+</sup>          | 10     | 电影或视频。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_GAME<sup>10+</sup>           | 11     | 游戏。  <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_AUDIOBOOK<sup>10+</sup>      | 12     | 有声读物（包括听书、相声、评书）、听新闻、播客等。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_NAVIGATION<sup>10+</sup>     | 13     | 导航。   <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| STREAM_USAGE_VIDEO_COMMUNICATION<sup>12+</sup>     | 17     | VoIP视频通话。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 ## AudioState<sup>8+</sup>
 
@@ -558,6 +586,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioEffectMode<sup>10+</sup>
 
 枚举，音效模式。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -582,6 +612,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，中断类型。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称                 |  值     | 说明                   |
@@ -591,29 +623,54 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 ## InterruptForceType<sup>9+</sup>
 
-枚举，强制打断类型。
+枚举，音频打断类型。
+
+当用户监听到音频中断（即收到[InterruptEvent](#interruptevent9)事件）时，将获取此信息。
+
+此类型表示本次音频打断的操作是否已由系统强制执行，具体操作信息（如音频暂停、停止等）可通过[InterruptHint](#interrupthint)获取。关于音频打断策略的详细说明可参考文档[处理音频焦点事件](../../media/audio/audio-playback-concurrency.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称            |  值    | 说明                                 |
 | --------------- | ------ | ------------------------------------ |
-| INTERRUPT_FORCE | 0      | 由系统进行操作，强制打断音频播放。   |
-| INTERRUPT_SHARE | 1      | 由应用进行操作，可以选择打断或忽略。 |
+| INTERRUPT_FORCE | 0      | 强制打断类型，即具体操作已由系统强制执行。   |
+| INTERRUPT_SHARE | 1      | 共享打断类型，即系统不执行具体操作，通过[InterruptHint](#interrupthint)提示并建议应用操作，应用可自行决策下一步处理方式。 |
 
 ## InterruptHint
 
 枚举，中断提示。
 
+当用户监听到音频中断（即收到[InterruptEvent](#interruptevent9)事件）时，将获取此信息。
+
+此类型表示根据焦点策略，当前需要对音频流的具体操作（如暂停、调整音量等）。
+
+可以结合InterruptEvent中的[InterruptForceType](#interruptforcetype9)信息，判断该操作是否已由系统强制执行。关于音频打断策略的详细说明可参考文档[处理音频焦点事件](../../media/audio/audio-playback-concurrency.md)。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称                               |  值     | 说明                                         |
 | ---------------------------------- | ------ | -------------------------------------------- |
-| INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | 无提示。                                     |
-| INTERRUPT_HINT_RESUME              | 1      | 提示音频恢复。                               |
-| INTERRUPT_HINT_PAUSE               | 2      | 提示音频暂停。                               |
-| INTERRUPT_HINT_STOP                | 3      | 提示音频停止。                               |
-| INTERRUPT_HINT_DUCK                | 4      | 提示音频躲避。（躲避：音量减弱，而不会停止） |
-| INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | 提示音量恢复。                               |
+| INTERRUPT_HINT_NONE<sup>8+</sup>   | 0      | 无提示。                                      |
+| INTERRUPT_HINT_RESUME              | 1      | 提示音频恢复，应用可主动触发开始渲染或开始采集的相关操作。<br>此操作无法由系统强制执行，其对应的[InterruptForceType](#interruptforcetype9)一定为INTERRUPT_SHARE类型。 |
+| INTERRUPT_HINT_PAUSE               | 2      | 提示音频暂停，暂时失去音频焦点。<br>后续待焦点可用时，会出现INTERRUPT_HINT_RESUME事件。  |
+| INTERRUPT_HINT_STOP                | 3      | 提示音频停止，彻底失去音频焦点。                |
+| INTERRUPT_HINT_DUCK                | 4      | 提示音频躲避开始，音频降低音量播放，而不会停止。 |
+| INTERRUPT_HINT_UNDUCK<sup>8+</sup> | 5      | 提示音量躲避结束，音频恢复正常音量。            |
+
+## AudioVolumeMode<sup>18+</sup>
+
+枚举，音量模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+| 名称           | 值     | 说明           |
+| -------------- | ------ |--------------|
+| SYSTEM_GLOBAL  | 0 | 系统级音量（默认模式）。 |
+| APP_INDIVIDUAL | 1 | 应用级音量。       |
 
 ## AudioStreamInfo<sup>8+</sup>
 
@@ -627,7 +684,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | channels     | [AudioChannel](#audiochannel8)                    | 是   | 音频文件的通道数。 |
 | sampleFormat | [AudioSampleFormat](#audiosampleformat8)          | 是   | 音频采样格式。     |
 | encodingType | [AudioEncodingType](#audioencodingtype8)          | 是   | 音频编码格式。     |
-| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | 否   | 音频声道布局。     |
+| channelLayout<sup>11+</sup> | [AudioChannelLayout](#audiochannellayout11)  | 否   | 音频声道布局，默认值为0x0。 |
 
 ## AudioRendererInfo<sup>8+</sup>
 
@@ -635,11 +692,12 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
-| 名称          | 类型                        | 必填  | 说明             |
-| ------------- | --------------------------- | ---- | ---------------- |
-| content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数。 |
-| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 |
-| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表普通音频渲染器，1代表低时延音频渲染器。ArkTS接口暂不支持低时延音频渲染器。 |
+| 名称          | 类型                        | 必填  | 说明            |
+| ------------- | --------------------------- | ---- | --------------- |
+| content       | [ContentType](#contenttypedeprecated) | 否   | 音频内容类型。<br>API version 8、9为必填参数，从API version 10开始，变更为可选参数，默认值为CONTENT_TYPE_UNKNOWN。同时，[ContentType](#contenttypedeprecated)废弃，建议直接使用[StreamUsage](#streamusage)声明音频流使用类型即可。 |
+| usage         | [StreamUsage](#streamusage) | 是   | 音频流使用类型。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| rendererFlags | number                      | 是   | 音频渲染器标志。<br>0代表音频渲染器。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| volumeMode<sup>18+</sup> | [AudioVolumeMode](#audiovolumemode18) | 否 | 音频的音量模式。默认值为SYSTEM_GLOBAL。|
 
 ## AudioRendererOptions<sup>8+</sup>
 
@@ -666,6 +724,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 播放中断时，应用接收的中断事件。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称      | 类型                                       |必填   | 说明                                 |
@@ -685,6 +745,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                    |
 | volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。  |
 | updateUi   | boolean                             | 是   | 在UI中显示音量变化，true为显示，false为不显示。             |
+| volumeMode<sup>18+</sup> | [AudioVolumeMode](#audiovolumemode18) | 否 | 音频的音量模式。默认值为SYSTEM_GLOBAL。|
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -707,6 +768,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | type              | [DeviceChangeType](#devicechangetype)             | 是   | 设备连接状态变化。 |
 | deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
 
+## DeviceBlockStatusInfo<sup>13+</sup>
+
+描述音频设备被堵塞状态和设备信息。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称              | 类型                                              | 必填 | 说明               |
+| :---------------- | :------------------------------------------------ | :--- | :----------------- |
+| blockStatus       | [DeviceBlockStatus](#deviceblockstatus13)           | 是   | 音频设备堵塞状态。 |
+| devices | [AudioDeviceDescriptors](#audiodevicedescriptors) | 是   | 设备信息。         |
+
 ## ChannelBlendMode<sup>11+</sup>
 
 枚举，声道混合模式类型。
@@ -724,6 +796,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 枚举，流设备变更原因。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
 | 名称                                        |  值     | 说明              |
@@ -736,6 +810,8 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 ## AudioStreamDeviceChangeInfo<sup>11+</sup>
 
 流设备变更时，应用接收的事件。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -755,6 +831,17 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | CONNECT    | 0    | 设备连接。     |
 | DISCONNECT | 1    | 断开设备连接。 |
 
+## DeviceBlockStatus<sup>13+</sup>
+
+枚举，表示音频设备是否被堵塞。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 名称       | 值   | 说明           |
+| :--------- | :--- | :------------- |
+| UNBLOCKED  | 0    | 音频设备正常。    |
+| BLOCKED    | 1    | 音频设备被堵塞。 |
+
 ## AudioCapturerOptions<sup>8+</sup>
 
 音频采集器选项信息。
@@ -763,7 +850,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | ----------------------------------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | streamInfo                          | [AudioStreamInfo](#audiostreaminfo8)                      | 是   | 表示音频流信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer   |
 | capturerInfo                        | [AudioCapturerInfo](#audiocapturerinfo8)                   | 是   | 表示采集器信息。 <br/>**系统能力：** SystemCapability.Multimedia.Audio.Capturer        |
-| playbackCaptureConfig<sup>10+</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfig10) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| playbackCaptureConfig<sup>(deprecated)</sup> | [AudioPlaybackCaptureConfig](#audioplaybackcaptureconfigdeprecated) | 否   | 音频内录的配置信息。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 
 ## AudioCapturerInfo<sup>8+</sup>
 
@@ -774,7 +861,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | 名称          | 类型                      | 必填 | 说明             |
 | :------------ | :------------------------ | :--- | :--------------- |
 | source        | [SourceType](#sourcetype8) | 是   | 音源类型。       |
-| capturerFlags | number                    | 是   | 音频采集器标志。<br>0代表普通音频采集器，1代表低时延音频采集器。ArkTS接口暂不支持低时延音频采集器。 |
+| capturerFlags | number                    | 是   | 音频采集器标志。<br>0代表音频采集器。 |
 
 ## SourceType<sup>8+</sup>
 
@@ -785,35 +872,38 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 | SOURCE_TYPE_INVALID                          | -1     | 无效的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
 | SOURCE_TYPE_MIC                              | 0      | Mic音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_RECOGNITION<sup>9+</sup>   | 1      | 语音识别源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core  |
-| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>10+</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture |
+| SOURCE_TYPE_PLAYBACK_CAPTURE<sup>(deprecated)</sup>   | 2 | 播放音频流（内录）录制音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture。<br/> 从API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。 |
 | SOURCE_TYPE_VOICE_COMMUNICATION              | 7      | 语音通话场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 | SOURCE_TYPE_VOICE_MESSAGE<sup>12+</sup>      | 10     | 短语音消息的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_CAMCORDER<sup>13+</sup>          | 13     | 录像的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+| SOURCE_TYPE_UNPROCESSED<sup>14+</sup>     | 14 |  麦克风纯净录音的音频源（系统不做任何算法处理）。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
+|  SOURCE_TYPE_LIVE<sup>20+</sup>     | 17 |  直播场景的音频源。<br/>**系统能力：** SystemCapability.Multimedia.Audio.Core |
 
-## AudioPlaybackCaptureConfig<sup>10+</sup>
+## AudioPlaybackCaptureConfig<sup>(deprecated)</sup>
 
 播放音频流录制（内录）的配置信息。
+
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称          | 类型                                          | 必填 | 说明                             |
 | ------------- | --------------------------------------------- | ---- | -------------------------------- |
-| filterOptions | [CaptureFilterOptions](#capturefilteroptions10) | 是   | 需要录制的播放音频流的筛选信息。 |
+| filterOptions | [CaptureFilterOptions](#capturefilteroptionsdeprecated) | 是   | 需要录制的播放音频流的筛选信息。 |
 
-## CaptureFilterOptions<sup>10+</sup>
+## CaptureFilterOptions<sup>(deprecated)</sup>
 
 待录制的播放音频流的筛选信息。
 
-**需要权限：**
-
-- 在API version 10时，CaptureFilterOptions支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，使用时需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，该权限仅系统应用可申请。
-
-- 从API version 11开始，CaptureFilterOptions不再支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，所以当前接口不再涉及此权限。
+> **说明：**
+> 从 API version 10 开始支持，从 API version 12 开始废弃。Audio不再提供内录接口，请通过[录屏接口AVScreenCapture](../apis-media-kit/_a_v_screen_capture.md)进行内录。
 
 **系统能力：** SystemCapability.Multimedia.Audio.PlaybackCapture
 
 | 名称   | 类型                               | 必填 | 说明                                                         |
 | ------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的音频播放流的StreamUsage类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME和STREAM_USAGE_AUDIOBOOK的音频播放流。 |
+| usages | Array<[StreamUsage](#streamusage)> | 是   | 指定需要录制的音频播放流的StreamUsage类型。可同时指定0个或多个StreamUsage。Array为空时，默认录制StreamUsage为STREAM_USAGE_MUSIC、STREAM_USAGE_MOVIE、STREAM_USAGE_GAME和STREAM_USAGE_AUDIOBOOK的音频播放流。<br>在API version 10时，CaptureFilterOptions支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，使用时需要申请权限ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO，该权限仅系统应用可申请。<br>从API version 11开始，CaptureFilterOptions不再支持使用StreamUsage.STREAM_USAGE_VOICE_COMMUNICATION，所以当前接口不再涉及此权限。 |
 
 ## AudioScene<sup>8+</sup>
 
@@ -823,8 +913,54 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 | 名称                   |  值     | 说明                                          |
 | :--------------------- | :----- | :-------------------------------------------- |
-| AUDIO_SCENE_DEFAULT    | 0      | 默认音频场景。                                |
-| AUDIO_SCENE_VOICE_CHAT | 3      | 语音聊天模式。                                |
+| AUDIO_SCENE_DEFAULT                  | 0      | 默认音频场景。                                |
+| AUDIO_SCENE_RINGING<sup>12+</sup>    | 1      | 响铃模式。 |
+| AUDIO_SCENE_PHONE_CALL<sup>12+</sup> | 2      | 电话模式。 |
+| AUDIO_SCENE_VOICE_CHAT               | 3      | 语音聊天模式。                                |
+
+## AudioConcurrencyMode<sup>12+</sup>
+
+枚举，音频并发模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                   | 值 | 说明      |
+| :--------------------- |:--|:--------|
+| CONCURRENCY_DEFAULT | 0 | 默认使用系统策略。     |
+| CONCURRENCY_MIX_WITH_OTHERS | 1 | 和其它音频并发。     |
+| CONCURRENCY_DUCK_OTHERS | 2 | 压低其他音频的音量。 |
+| CONCURRENCY_PAUSE_OTHERS | 3 | 暂停其他音频。 |
+
+## AudioSessionDeactivatedReason<sup>12+</sup>
+
+枚举，音频会话停用原因。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                   | 值 | 说明     |
+| :--------------------- |:--|:-------|
+| DEACTIVATED_LOWER_PRIORITY | 0 | 应用焦点被抢占。 |
+| DEACTIVATED_TIMEOUT | 1 | 音频会话等待超时。    |
+
+## AudioSessionStrategy<sup>12+</sup>
+
+音频会话策略。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称          | 类型                                              | 必填 | 说明             |
+| :------------ |:------------------------------------------------| :--- | :--------------- |
+| concurrencyMode        | [AudioConcurrencyMode](#audioconcurrencymode12) | 是   | 音频并发模式。       |
+
+## AudioSessionDeactivatedEvent<sup>12+</sup>
+
+音频会话已停用事件。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称          | 类型                                                                | 必填 | 说明             |
+| :------------ |:------------------------------------------------------------------| :--- | :--------------- |
+| reason        | [AudioSessionDeactivatedReason](#audiosessiondeactivatedreason12) | 是   | 音频会话停用原因。       |
 
 ## AudioManager
 
@@ -834,7 +970,7 @@ audio.createAudioCapturer(audioCapturerOptions).then((data) => {
 
 setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt;): void
 
-音频参数设置，使用callback方式异步返回结果。
+音频参数设置。使用callback异步回调。
 
 接口用于为根据硬件设备支持能力扩展音频配置。支持的参数与产品、设备强相关，非通用参数，示例代码内使用样例参数。
 
@@ -856,7 +992,7 @@ setAudioParameter(key: string, value: string, callback: AsyncCallback&lt;void&gt
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setAudioParameter('key_example', 'value_example', (err: BusinessError) => {
   if (err) {
@@ -871,7 +1007,7 @@ audioManager.setAudioParameter('key_example', 'value_example', (err: BusinessErr
 
 setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
-音频参数设置，使用Promise方式异步返回结果。
+音频参数设置。使用Promise异步回调。
 
 接口用于为根据硬件设备支持能力扩展音频配置。支持的参数与产品、设备强相关，非通用参数，示例代码内使用样例参数。
 
@@ -893,7 +1029,7 @@ setAudioParameter(key: string, value: string): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -907,7 +1043,7 @@ audioManager.setAudioParameter('key_example', 'value_example').then(() => {
 
 getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 
-获取指定音频参数值，使用callback方式异步返回结果。
+获取指定音频参数值。使用callback异步回调。
 
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
@@ -926,7 +1062,7 @@ getAudioParameter(key: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getAudioParameter('key_example', (err: BusinessError, value: string) => {
   if (err) {
@@ -941,7 +1077,7 @@ audioManager.getAudioParameter('key_example', (err: BusinessError, value: string
 
 getAudioParameter(key: string): Promise&lt;string&gt;
 
-获取指定音频参数值，使用Promise方式异步返回结果。
+获取指定音频参数值。使用Promise异步回调。
 
 本接口的使用场景为根据硬件设备支持能力扩展音频配置。在不同的设备平台上，所支持的音频参数会存在差异。示例代码内使用样例参数，实际支持的音频配置参数见具体设备平台的资料描述。
 
@@ -960,7 +1096,7 @@ getAudioParameter(key: string): Promise&lt;string&gt;
 
 | 类型                  | 说明                                |
 | --------------------- | ----------------------------------- |
-| Promise&lt;string&gt; | Promise对象，返回获取的音频参数的值。 |
+| Promise&lt;string&gt; | Promise对象，返回获取的音频参数值。 |
 
 **示例：**
 
@@ -974,7 +1110,7 @@ audioManager.getAudioParameter('key_example').then((value: string) => {
 
 getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 
-获取音频场景模式，使用callback方式返回异步结果。
+获取音频场景模式。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -987,7 +1123,7 @@ getAudioScene\(callback: AsyncCallback<AudioScene\>\): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getAudioScene((err: BusinessError, value: audio.AudioScene) => {
   if (err) {
@@ -1002,7 +1138,7 @@ audioManager.getAudioScene((err: BusinessError, value: audio.AudioScene) => {
 
 getAudioScene\(\): Promise<AudioScene\>
 
-获取音频场景模式，使用Promise方式返回异步结果。
+获取音频场景模式。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -1015,7 +1151,7 @@ getAudioScene\(\): Promise<AudioScene\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getAudioScene().then((value: audio.AudioScene) => {
   console.info(`Promise returned to indicate that the audio scene mode is obtained ${value}.`);
@@ -1041,7 +1177,7 @@ getAudioSceneSync\(\): AudioScene
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: audio.AudioScene = audioManager.getAudioSceneSync();
@@ -1064,12 +1200,12 @@ getVolumeManager(): AudioVolumeManager
 
 | 类型                                      | 说明                          |
 |-----------------------------------------| ----------------------------- |
-| [AudioVolumeManager](#audiovolumemanager9) | AudioVolumeManager实例 |
+| [AudioVolumeManager](#audiovolumemanager9) | AudioVolumeManager实例。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioVolumeManager: audio.AudioVolumeManager = audioManager.getVolumeManager();
 ```
@@ -1086,12 +1222,12 @@ getStreamManager(): AudioStreamManager
 
 | 类型                                         | 说明                          |
 |--------------------------------------------| ----------------------------- |
-| [AudioStreamManager](#audiostreammanager9) | AudioStreamManager实例 |
+| [AudioStreamManager](#audiostreammanager9) | AudioStreamManager实例。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioStreamManager: audio.AudioStreamManager = audioManager.getStreamManager();
 ```
@@ -1108,24 +1244,70 @@ getRoutingManager(): AudioRoutingManager
 
 | 类型                                       | 说明                          |
 |------------------------------------------| ----------------------------- |
-| [AudioRoutingManager](#audioroutingmanager9) | AudioRoutingManager实例 |
+| [AudioRoutingManager](#audioroutingmanager9) | AudioRoutingManager实例。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let audioRoutingManager: audio.AudioRoutingManager = audioManager.getRoutingManager();
+```
+
+### getSessionManager<sup>12+</sup>
+
+getSessionManager(): AudioSessionManager
+
+获取音频会话管理器。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                           | 说明                          |
+|----------------------------------------------| ----------------------------- |
+| [AudioSessionManager](#audiosessionmanager12) | AudioSessionManager实例。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
+```
+
+### getSpatializationManager<sup>18+</sup>
+
+getSpatializationManager(): AudioSpatializationManager
+
+获取空间音频管理器。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                                       | 说明                          |
+|------------------------------------------| ----------------------------- |
+| [AudioSpatializationManager](#audiospatializationmanager18) | AudioSpatializationManager实例。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+let audioSpatializationManager: audio.AudioSpatializationManager = audioManager.getSpatializationManager();
 ```
 
 ### setVolume<sup>(deprecated)</sup>
 
 setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定流的音量，使用callback方式异步返回结果。
+设置指定流的音量。使用callback异步回调。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
+> 
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
+> 
+> 应用无法直接调节系统音量，建议应用通过系统音量面板组件，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。具体样例和介绍请查看[AVVolumePanel参考文档](ohos-multimedia-avvolumepanel.md)。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1138,13 +1320,13 @@ setVolume(volumeType: AudioVolumeType, volume: number, callback: AsyncCallback&l
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 | callback   | AsyncCallback&lt;void&gt;           | 是   | 回调函数。当设置指定流的音量成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => {
   if (err) {
@@ -1159,10 +1341,13 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10, (err: BusinessError) => 
 
 setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 
-设置指定流的音量，使用Promise方式异步返回结果。
+设置指定流的音量。使用Promise异步回调。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用AudioVolumeGroupManager中的[setVolume](#setvolume9)替代，替代接口能力仅对系统应用开放。
+>
+> 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
+>
+> 应用无法直接调节系统音量，建议应用通过系统音量面板组件，让用户通过界面操作来调节音量。当用户通过应用内音量面板调节音量时，系统会展示音量提示界面，显性地提示用户系统音量发生改变。具体样例和介绍请查看[AVVolumePanel参考文档](ohos-multimedia-avvolumepanel.md)。
 
 **需要权限：** ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1175,13 +1360,13 @@ setVolume(volumeType: AudioVolumeType, volume: number): Promise&lt;void&gt;
 | 参数名     | 类型                                | 必填 | 说明                                                     |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。                                             |
-| volume     | number                              | 是   | 音量等级，可设置范围通过getMinVolume和getMaxVolume获取。 |
+| volume     | number                              | 是   | 音量等级，可设置范围通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **返回值：**
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1195,7 +1380,7 @@ audioManager.setVolume(audio.AudioVolumeType.MEDIA, 10).then(() => {
 
 getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的音量，使用callback方式异步返回结果。
+获取指定流的音量。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
@@ -1207,12 +1392,12 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 | 参数名     | 类型                                | 必填 | 说明               |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。 |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -1227,7 +1412,7 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: 
 
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的音量，使用Promise方式异步返回结果。
+获取指定流的音量。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getVolume](#getvolume9)替代。
@@ -1244,7 +1429,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回音量大小。 |
+| Promise&lt;number&gt; | Promise对象，返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolumedeprecated)和[getMaxVolume](#getmaxvolumedeprecated)获取。 |
 
 **示例：**
 
@@ -1258,7 +1443,7 @@ audioManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: number) => {
 
 getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的最小音量，使用callback方式异步返回结果。
+获取指定流的最小音量。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
@@ -1275,7 +1460,7 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -1290,7 +1475,7 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, valu
 
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的最小音量，使用Promise方式异步返回结果。
+获取指定流的最小音量。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMinVolume](#getminvolume9)替代。
@@ -1321,7 +1506,7 @@ audioManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: number) => {
 
 getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的最大音量，使用callback方式异步返回结果。
+获取指定流的最大音量。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
@@ -1338,7 +1523,7 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -1353,7 +1538,7 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, valu
 
 getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的最大音量，使用Promise方式异步返回结果。
+获取指定流的最大音量。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getMaxVolume](#getmaxvolume9)替代。
@@ -1384,7 +1569,9 @@ audioManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: number) => {
 
 mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置指定音量流静音，使用callback方式异步返回结果。
+设置指定音量流静音。使用callback异步回调。
+
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -1402,7 +1589,7 @@ mute(volumeType: AudioVolumeType, mute: boolean, callback: AsyncCallback&lt;void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
   if (err) {
@@ -1417,7 +1604,9 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true, (err: BusinessError) => {
 
 mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
-设置指定音量流静音，使用Promise方式异步返回结果。
+设置指定音量流静音。使用Promise异步回调。
+
+当该音量流可设置的最小音量不能为0时，不支持静音操作，例如：闹钟、通话。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -1435,7 +1624,7 @@ mute(volumeType: AudioVolumeType, mute: boolean): Promise&lt;void&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1450,7 +1639,7 @@ audioManager.mute(audio.AudioVolumeType.MEDIA, true).then(() => {
 
 isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定音量流是否被静音，使用callback方式异步返回结果。
+获取指定音量流是否被静音。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
@@ -1467,7 +1656,7 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -1482,7 +1671,7 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boo
 
 isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-获取指定音量流是否被静音，使用Promise方式异步返回结果。
+获取指定音量流是否被静音。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMute](#ismute9)替代。
@@ -1499,7 +1688,7 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                   |
 | ---------------------- | ------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象，返回流静音状态，true为静音，false为非静音。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示静音；返回false表示非静音。 |
 
 **示例：**
 
@@ -1513,7 +1702,7 @@ audioManager.isMute(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定音量流是否为活跃状态，使用callback方式异步返回结果。
+获取指定音量流是否为活跃状态。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
@@ -1530,7 +1719,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -1545,7 +1734,7 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: b
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-获取指定音量流是否为活跃状态，使用Promise方式异步返回结果。
+获取指定音量流是否为活跃状态。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioStreamManager中的[isActive](#isactive9)替代。
@@ -1562,7 +1751,7 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                     |
 | ---------------------- | -------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回流的活跃状态，true为活跃，false为不活跃。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示流状态为活跃；返回false表示流状态不活跃。 |
 
 **示例：**
 
@@ -1576,7 +1765,7 @@ audioManager.isActive(audio.AudioVolumeType.MEDIA).then((value: boolean) => {
 
 setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 
-设置铃声模式，使用callback方式异步返回结果。
+设置铃声模式。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -1597,7 +1786,7 @@ setRingerMode(mode: AudioRingMode, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: BusinessError) => {
   if (err) {
@@ -1612,7 +1801,7 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL, (err: Busines
 
 setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
-设置铃声模式，使用Promise方式异步返回结果。
+设置铃声模式。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -1634,7 +1823,7 @@ setRingerMode(mode: AudioRingMode): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1648,7 +1837,7 @@ audioManager.setRingerMode(audio.AudioRingMode.RINGER_MODE_NORMAL).then(() => {
 
 getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 
-获取铃声模式，使用callback方式异步返回结果。
+获取铃声模式。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
@@ -1664,7 +1853,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
@@ -1679,7 +1868,7 @@ audioManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
 
 getRingerMode(): Promise&lt;AudioRingMode&gt;
 
-获取铃声模式，使用Promise方式异步返回结果。
+获取铃声模式。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[getRingerMode](#getringermode9)替代。
@@ -1704,7 +1893,7 @@ audioManager.getRingerMode().then((value: audio.AudioRingMode) => {
 
 getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
-获取音频设备列表，使用callback方式异步返回结果。
+获取音频设备列表。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
@@ -1720,7 +1909,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 
 **示例：**
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
   if (err) {
@@ -1735,7 +1924,7 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessErro
 
 getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 
-获取音频设备列表，使用Promise方式异步返回结果。
+获取音频设备列表。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[getDevices](#getdevices9)替代。
@@ -1766,7 +1955,7 @@ audioManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data: audio.
 
 setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置设备激活状态，使用callback方式异步返回结果。
+设置设备激活状态。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
@@ -1778,13 +1967,13 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean, callback: AsyncCa
 | 参数名     | 类型                                  | 必填 | 说明          |
 | ---------- | ------------------------------------- | ---- |-------------|
 | deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | 是   | 活跃音频设备类型。   |
-| active     | boolean                               | 是   | 设备激活状态。     |
+| active     | boolean                               | 是   | 表示设备是否为激活状态。true表示已激活，false表示未激活。 |
 | callback   | AsyncCallback&lt;void&gt;             | 是   | 回调函数。当设置设备激活状态成功，err为undefined，否则为错误对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err: BusinessError) => {
   if (err) {
@@ -1799,7 +1988,7 @@ audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true, (err: Busines
 
 setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&gt;
 
-设置设备激活状态，使用Promise方式异步返回结果。
+设置设备激活状态。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[setCommunicationDevice](#setcommunicationdevice9)替代。
@@ -1811,13 +2000,13 @@ setDeviceActive(deviceType: ActiveDeviceType, active: boolean): Promise&lt;void&
 | 参数名     | 类型                                  | 必填 | 说明               |
 | ---------- | ------------------------------------- | ---- | ------------------ |
 | deviceType | [ActiveDeviceType](#activedevicetypedeprecated) | 是   | 活跃音频设备类型。 |
-| active     | boolean                               | 是   | 设备激活状态。     |
+| active     | boolean                               | 是   | 表示设备是否为激活状态。true表示已激活，false表示未激活。 |
 
 **返回值：**
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1832,7 +2021,7 @@ audioManager.setDeviceActive(audio.ActiveDeviceType.SPEAKER, true).then(() => {
 
 isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定设备的激活状态，使用callback方式异步返回结果。
+获取指定设备的激活状态。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
@@ -1849,7 +2038,7 @@ isDeviceActive(deviceType: ActiveDeviceType, callback: AsyncCallback&lt;boolean&
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -1864,7 +2053,7 @@ audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER, (err: BusinessError,
 
 isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 
-获取指定设备的激活状态，使用Promise方式异步返回结果。
+获取指定设备的激活状态。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[isCommunicationDeviceActive](#iscommunicationdeviceactive9)替代。
@@ -1881,7 +2070,7 @@ isDeviceActive(deviceType: ActiveDeviceType): Promise&lt;boolean&gt;
 
 | Type                   | Description                           |
 | ---------------------- |---------------------------------------|
-| Promise&lt;boolean&gt; | Promise对象，返回设备的激活状态，true激活，false未激活。  |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示设备已激活；返回false表示设备未激活。 |
 
 **示例：**
 
@@ -1895,7 +2084,7 @@ audioManager.isDeviceActive(audio.ActiveDeviceType.SPEAKER).then((value: boolean
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置麦克风静音状态，使用callback方式异步返回结果。
+设置麦克风静音状态。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -1914,7 +2103,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.setMicrophoneMute(true, (err: BusinessError) => {
   if (err) {
@@ -1929,7 +2118,7 @@ audioManager.setMicrophoneMute(true, (err: BusinessError) => {
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
-设置麦克风静音状态，使用Promise方式异步返回结果。
+设置麦克风静音状态。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃。替代接口仅面向系统应用开放。
@@ -1948,7 +2137,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -1962,7 +2151,7 @@ audioManager.setMicrophoneMute(true).then(() => {
 
 isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
-获取麦克风静音状态，使用callback方式异步返回结果。
+获取麦克风静音状态。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
@@ -1980,7 +2169,7 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
   if (err) {
@@ -1995,7 +2184,7 @@ audioManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
 
 isMicrophoneMute(): Promise&lt;boolean&gt;
 
-获取麦克风静音状态，使用Promise方式异步返回结果。
+获取麦克风静音状态。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioVolumeGroupManager中的[isMicrophoneMute](#ismicrophonemute9)替代。
@@ -2008,7 +2197,7 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象，返回系统麦克风静音状态，true为静音，false为非静音。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示麦克风被静音；返回false表示麦克风未被静音。 |
 
 **示例：**
 
@@ -2022,7 +2211,7 @@ audioManager.isMicrophoneMute().then((value: boolean) => {
 
 on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
-设备更改。音频设备连接状态变化，使用callback方式返回结果。
+监听音频设备连接变化事件（当音频设备连接状态发生变化时触发）。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[on('deviceChange')](#ondevicechange9)替代。
@@ -2033,7 +2222,7 @@ on(type: 'deviceChange', callback: Callback<DeviceChangeAction\>): void
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| type     | string                                               | 是   | 事件回调类型，支持的事件为'deviceChange'，当音频设备连接状态发生变化时，触发该事件。 |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
 
 **示例：**
@@ -2051,7 +2240,7 @@ audioManager.on('deviceChange', (deviceChanged: audio.DeviceChangeAction) => {
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-取消订阅音频设备连接变化事件，使用callback方式返回结果。
+取消监听音频设备连接变化事件。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 9 开始废弃，建议使用AudioRoutingManager中的[off('deviceChange')](#offdevicechange9)替代。
@@ -2062,20 +2251,33 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| type     | string | 是   | 事件回调类型，支持的事件为'deviceChange'，当取消监听音频设备连接变化事件时，触发该事件。 |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回设备更新详情。 |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioManager.off('deviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let deviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
+  console.info(`device change type : ${deviceChanged.type} `);
+  console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length} `);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole} `);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType} `);
+};
+
+audioManager.on('deviceChange', deviceChangeCallback);
+
+audioManager.off('deviceChange', deviceChangeCallback);
 ```
 
 ### on('interrupt')<sup>(deprecated)</sup>
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
-请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序），使用callback方式返回结果。
+监听音频打断事件（当音频焦点发生变化时触发）。使用callback异步回调。
 
 与[on('audioInterrupt')](#onaudiointerrupt9)作用一致，均用于监听焦点变化。为无音频流的场景（未曾创建AudioRenderer对象），比如FM、语音唤醒等提供焦点变化监听功能。
 
@@ -2088,28 +2290,29 @@ on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAc
 
 | 参数名    | 类型                                                      | 必填 | 说明                                                         |
 | --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                                                  | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| type      | string                                                  | 是   | 事件回调类型，支持的事件为'interrupt'，当音频焦点状态发生变化时，触发该事件。 |
 | interrupt | [AudioInterrupt](#audiointerruptdeprecated)             | 是   | 音频打断事件类型的参数。                                     |
-| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | 是   | 回调函数，返回音频打断时，应用接收的中断事件信息。 |
+| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | 是   | 回调函数，返回打断事件信息。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let interAudioInterrupt: audio.AudioInterrupt = {
   streamUsage:2,
   contentType:0,
   pauseWhenDucked:true
 };
-audioManager.on('interrupt', interAudioInterrupt, (InterruptAction: audio.InterruptAction) => {
-  if (InterruptAction.actionType === 0) {
+
+audioManager.on('interrupt', interAudioInterrupt, (interruptAction: audio.InterruptAction) => {
+  if (interruptAction.actionType === 0) {
     console.info('An event to gain the audio focus starts.');
-    console.info(`Focus gain event: ${InterruptAction} `);
+    console.info(`Focus gain event: ${interruptAction} `);
   }
-  if (InterruptAction.actionType === 1) {
+  if (interruptAction.actionType === 1) {
     console.info('An audio interruption event starts.');
-    console.info(`Audio interruption event: ${InterruptAction} `);
+    console.info(`Audio interruption event: ${interruptAction} `);
   }
 });
 ```
@@ -2118,7 +2321,7 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction: audio.Interr
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
-取消监听音频打断事件（删除监听事件，取消打断），使用callback方式返回结果。
+取消监听音频打断事件。使用callback异步回调。
 
 > **说明：**
 > 从 API version 7 开始支持，从 API version 11 开始废弃，建议使用AudioCapturer中的[off('audioInterrupt')](#offaudiointerrupt10)替代。
@@ -2129,26 +2332,39 @@ off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<Interrupt
 
 | 参数名    | 类型                                                      | 必填 | 说明                                                         |
 | --------- |---------------------------------------------------------| ---- | ------------------------------------------------------------ |
-| type      | string                                                  | 是   | 音频打断事件回调类型，支持的事件为：'interrupt'（多应用之间第二个应用会打断第一个应用，触发该事件）。 |
+| type      | string                                                  | 是   | 事件回调类型，支持的事件为'interrupt'，当取消监听音频打断事件时，触发该事件。 |
 | interrupt | [AudioInterrupt](#audiointerruptdeprecated)                       | 是   | 音频打断事件类型的参数。                                     |
-| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | 否   | 回调函数，返回删除监听事件，取消打断时，应用接收的中断事件信息。 |
+| callback  | Callback<[InterruptAction](#interruptactiondeprecated)> | 否   | 回调函数，返回打断事件信息。 |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let interAudioInterrupt: audio.AudioInterrupt = {
   streamUsage:2,
   contentType:0,
   pauseWhenDucked:true
 };
-audioManager.off('interrupt', interAudioInterrupt, (InterruptAction: audio.InterruptAction) => {
-  if (InterruptAction.actionType === 0) {
-    console.info('An event to release the audio focus starts.');
-    console.info(`Focus release event: ${InterruptAction} `);
+
+// 取消该事件的所有监听。
+audioManager.off('interrupt', interAudioInterrupt);
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let interruptCallback = (interruptAction: audio.InterruptAction) => {
+  if (interruptAction.actionType === 0) {
+    console.info('An event to gain the audio focus starts.');
+    console.info(`Focus gain event: ${interruptAction} `);
   }
-});
+  if (interruptAction.actionType === 1) {
+    console.info('An audio interruption event starts.');
+    console.info(`Audio interruption event: ${interruptAction} `);
+  }
+};
+
+audioManager.on('interrupt', interAudioInterrupt, interruptCallback);
+
+audioManager.off('interrupt', interAudioInterrupt, interruptCallback);
 ```
 
 ## AudioVolumeManager<sup>9+</sup>
@@ -2159,7 +2375,7 @@ audioManager.off('interrupt', interAudioInterrupt, (InterruptAction: audio.Inter
 
 getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupManager\>\): void
 
-获取音频组管理器，使用callback方式异步返回结果。
+获取音频组管理器。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2173,9 +2389,10 @@ getVolumeGroupManager(groupId: number, callback: AsyncCallback<AudioVolumeGroupM
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
+
 audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: audio.AudioVolumeGroupManager) => {
   if (err) {
     console.error(`Failed to obtain the volume group infos list. ${err}`);
@@ -2190,7 +2407,7 @@ audioVolumeManager.getVolumeGroupManager(groupId, (err: BusinessError, value: au
 
 getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 
-获取音频组管理器，使用Promise方式异步返回结果。
+获取音频组管理器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2209,10 +2426,11 @@ getVolumeGroupManager(groupId: number\): Promise<AudioVolumeGroupManager\>
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let groupId: number = audio.DEFAULT_VOLUME_GROUP_ID;
 let audioVolumeGroupManager: audio.AudioVolumeGroupManager | undefined = undefined;
+
 async function getVolumeGroupManager(){
   audioVolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(groupId);
   console.info('Promise returned to indicate that the volume group infos list is obtained.');
@@ -2245,12 +2463,13 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioVolumeGroupManager: audio.AudioVolumeGroupManager = audioVolumeManager.getVolumeGroupManagerSync(audio.DEFAULT_VOLUME_GROUP_ID);
@@ -2261,11 +2480,77 @@ try {
 }
 ```
 
+### getAppVolumePercentage<sup>18+</sup>
+
+getAppVolumePercentage(): Promise<number\>
+
+获取应用的音量（范围为0到100）。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**返回值：**
+
+| 类型                | 说明                 |
+| ------------------- |--------------------|
+| Promise&lt;number&gt; | Promise对象，返回应用的音量。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioVolumeManager.getAppVolumePercentage().then((value: number) => {
+  console.info(`app volume is ${value}.`);
+});
+```
+
+### setAppVolumePercentage<sup>18+</sup>
+
+setAppVolumePercentage(volume: number\): Promise<void\>
+
+设置应用的音量（范围为0到100）。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名     | 类型                                      | 必填 | 说明       |
+| ---------- | ---------------------------------------- | ---- |----------|
+| volume    | number                                   | 是   | 要设置的音量值。 |
+
+**返回值：**
+
+| 类型                | 说明                            |
+| ------------------- | ------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201 | Permission denied. |
+| 202 | Not system App. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | Crash or blocking occurs in system process. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioVolumeManager.setAppVolumePercentage(20).then(() => {
+  console.info(`set app volume success.`);
+});
+```
+
 ### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
-监听系统音量变化事件，使用callback方式返回结果。
+监听系统音量变化事件（当系统音量发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2273,7 +2558,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为：'volumeChange'。 |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'volumeChange'，当系统音量发生变化时，触发该事件。 |
 | callback | Callback<[VolumeEvent](#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
 
 **错误码：**
@@ -2282,7 +2567,8 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2294,6 +2580,124 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 });
 ```
 
+### off('volumeChange')<sup>12+</sup>
+
+off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
+
+取消监听系统音量变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'volumeChange'，当取消监听系统音量变化事件时，触发该事件。 |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeManager.off('volumeChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let volumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+};
+
+audioVolumeManager.on('volumeChange', volumeChangeCallback);
+
+audioVolumeManager.off('volumeChange', volumeChangeCallback);
+```
+
+### on('appVolumeChange')<sup>18+</sup>
+
+on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
+
+监听当前应用应用级音量变化事件（当应用级音量发生变化时触发）。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChange'，当应用级音量发生变化时，触发该事件。 |
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 是   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioVolumeManager.on('appVolumeChange', (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+});
+```
+
+### off('appVolumeChange')<sup>18+</sup>
+
+off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
+
+取消监听当前应用应用级音量变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'appVolumeChange'，当取消监听当前应用应用级音量变化事件时，触发该事件。 |
+| callback | Callback<[VolumeEvent](js-apis-audio.md#volumeevent9)> | 否   | 回调函数，返回变化后的音量信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeManager.off('appVolumeChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let appVolumeChangeCallback = (volumeEvent: audio.VolumeEvent) => {
+  console.info(`VolumeType of stream: ${volumeEvent.volumeType} `);
+  console.info(`Volume level: ${volumeEvent.volume} `);
+  console.info(`Whether to updateUI: ${volumeEvent.updateUi} `);
+};
+
+audioVolumeManager.on('appVolumeChange', appVolumeChangeCallback);
+
+audioVolumeManager.off('appVolumeChange', appVolumeChangeCallback);
+```
+
 ## AudioVolumeGroupManager<sup>9+</sup>
 
 管理音频组音量。在调用AudioVolumeGroupManager的接口前，需要先通过 [getVolumeGroupManager](#getvolumegroupmanager9) 创建实例。
@@ -2302,7 +2706,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的音量，使用callback方式异步返回结果。
+获取指定流的音量。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2311,12 +2715,12 @@ getVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): v
 | 参数名     | 类型                                | 必填 | 说明               |
 | ---------- | ----------------------------------- | ---- | ------------------ |
 | volumeType | [AudioVolumeType](#audiovolumetype) | 是   | 音量流类型。       |
-| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。 |
+| callback   | AsyncCallback&lt;number&gt;         | 是   | 回调函数。当获取指定流的音量成功，err为undefined，data为获取到的指定流的音量；否则为错误对象。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -2331,7 +2735,7 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA, (err: BusinessErr
 
 getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的音量，使用Promise方式异步返回结果。
+获取指定流的音量。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2345,7 +2749,7 @@ getVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;number&gt; | Promise对象，返回音量大小。 |
+| Promise&lt;number&gt; | Promise对象，返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
 
 **示例：**
 
@@ -2357,7 +2761,7 @@ audioVolumeGroupManager.getVolume(audio.AudioVolumeType.MEDIA).then((value: numb
 
 ### getVolumeSync<sup>10+</sup>
 
-getVolumeSync(volumeType: AudioVolumeType): number;
+getVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的音量，同步返回结果。
 
@@ -2373,7 +2777,7 @@ getVolumeSync(volumeType: AudioVolumeType): number;
 
 | 类型                  | 说明                      |
 | --------------------- | ------------------------- |
-| number | 返回音量大小。 |
+| number | 返回指定流的音量。指定流的音量等级范围可通过[getMinVolume](#getminvolume9)和[getMaxVolume](#getmaxvolume9)获取。 |
 
 **错误码：**
 
@@ -2381,12 +2785,13 @@ getVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioVolumeGroupManager.getVolumeSync(audio.AudioVolumeType.MEDIA);
@@ -2401,7 +2806,7 @@ try {
 
 getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的最小音量，使用callback方式异步返回结果。
+获取指定流的最小音量。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2415,7 +2820,7 @@ getMinVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -2430,7 +2835,7 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA, (err: Business
 
 getMinVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的最小音量，使用Promise方式异步返回结果。
+获取指定流的最小音量。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2456,7 +2861,7 @@ audioVolumeGroupManager.getMinVolume(audio.AudioVolumeType.MEDIA).then((value: n
 
 ### getMinVolumeSync<sup>10+</sup>
 
-getMinVolumeSync(volumeType: AudioVolumeType): number;
+getMinVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的最小音量，同步返回结果。
 
@@ -2480,12 +2885,13 @@ getMinVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioVolumeGroupManager.getMinVolumeSync(audio.AudioVolumeType.MEDIA);
@@ -2500,7 +2906,7 @@ try {
 
 getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;): void
 
-获取指定流的最大音量，使用callback方式异步返回结果。
+获取指定流的最大音量。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2514,7 +2920,7 @@ getMaxVolume(volumeType: AudioVolumeType, callback: AsyncCallback&lt;number&gt;)
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: number) => {
   if (err) {
@@ -2529,7 +2935,7 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA, (err: Business
 
 getMaxVolume(volumeType: AudioVolumeType): Promise&lt;number&gt;
 
-获取指定流的最大音量，使用Promise方式异步返回结果。
+获取指定流的最大音量。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2555,7 +2961,7 @@ audioVolumeGroupManager.getMaxVolume(audio.AudioVolumeType.MEDIA).then((data: nu
 
 ### getMaxVolumeSync<sup>10+</sup>
 
-getMaxVolumeSync(volumeType: AudioVolumeType): number;
+getMaxVolumeSync(volumeType: AudioVolumeType): number
 
 获取指定流的最大音量，同步返回结果。
 
@@ -2579,12 +2985,13 @@ getMaxVolumeSync(volumeType: AudioVolumeType): number;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioVolumeGroupManager.getMaxVolumeSync(audio.AudioVolumeType.MEDIA);
@@ -2599,7 +3006,7 @@ try {
 
 isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定音量流是否被静音，使用callback方式异步返回结果。
+获取指定音量流是否被静音。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2613,7 +3020,7 @@ isMute(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): voi
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -2628,7 +3035,7 @@ audioVolumeGroupManager.isMute(audio.AudioVolumeType.MEDIA, (err: BusinessError,
 
 isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-获取指定音量流是否被静音，使用Promise方式异步返回结果。
+获取指定音量流是否被静音。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2642,7 +3049,7 @@ isMute(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                   |
 | ---------------------- | ------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象，返回流静音状态，true为静音，false为非静音。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示静音；返回false表示非静音。 |
 
 **示例：**
 
@@ -2678,12 +3085,13 @@ isMuteSync(volumeType: AudioVolumeType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioVolumeGroupManager.isMuteSync(audio.AudioVolumeType.MEDIA);
@@ -2698,7 +3106,7 @@ try {
 
 getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 
-获取铃声模式，使用callback方式异步返回结果。
+获取铃声模式。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2711,7 +3119,7 @@ getRingerMode(callback: AsyncCallback&lt;AudioRingMode&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getRingerMode((err: BusinessError, value: audio.AudioRingMode) => {
   if (err) {
@@ -2726,7 +3134,7 @@ audioVolumeGroupManager.getRingerMode((err: BusinessError, value: audio.AudioRin
 
 getRingerMode(): Promise&lt;AudioRingMode&gt;
 
-获取铃声模式，使用Promise方式异步返回结果。
+获取铃声模式。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2761,7 +3169,7 @@ getRingerModeSync(): AudioRingMode
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: audio.AudioRingMode = audioVolumeGroupManager.getRingerModeSync();
@@ -2776,7 +3184,7 @@ try {
 
 on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
-监听铃声模式变化事件，使用callback方式返回结果。
+监听铃声模式变化事件（当[铃声模式](#audioringmode)发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2784,7 +3192,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 参数名   | 类型                                      | 必填 | 说明                                                         |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | 是   | 事件回调类型，支持的事件为：'ringerModeChange'（铃声模式变化事件，检测到铃声模式改变时，触发该事件）。 |
+| type     | string                                    | 是   | 事件回调类型，支持的事件为'ringerModeChange'，当铃声模式发生变化时，触发该事件。 |
 | callback | Callback<[AudioRingMode](#audioringmode)> | 是   | 回调函数，返回变化后的铃音模式。 |
 
 **错误码：**
@@ -2793,7 +3201,8 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2803,11 +3212,50 @@ audioVolumeGroupManager.on('ringerModeChange', (ringerMode: audio.AudioRingMode)
 });
 ```
 
+### off('ringerModeChange')<sup>18+</sup>
+
+off(type: 'ringerModeChange', callback?: Callback&lt;AudioRingMode&gt;): void
+
+取消监听铃声模式变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- |----| ------------------------------------------------------------ |
+| type     | string                                 | 是  | 事件回调类型，支持的事件为'ringerModeChange'，当取消监听铃声模式变化事件时，触发该事件。 |
+| callback |Callback&lt;[AudioRingMode](#audioringmode)&gt; | 否  | 回调函数，返回变化后的铃音模式。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeGroupManager.off('ringerModeChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let ringerModeChangeCallback = (ringerMode: audio.AudioRingMode) => {
+  console.info(`Updated ringermode: ${ringerMode}`);
+};
+
+audioVolumeGroupManager.on('ringerModeChange', ringerModeChangeCallback);
+
+audioVolumeGroupManager.off('ringerModeChange', ringerModeChangeCallback);
+```
+
 ### setMicrophoneMute<sup>(deprecated)</sup>
 
 setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置麦克风静音状态，使用callback方式异步返回结果。
+设置麦克风静音状态。使用callback异步回调。
 
 > **说明：**
 >
@@ -2827,7 +3275,7 @@ setMicrophoneMute(mute: boolean, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
   if (err) {
@@ -2842,7 +3290,7 @@ audioVolumeGroupManager.setMicrophoneMute(true, (err: BusinessError) => {
 
 setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
-设置麦克风静音状态，使用Promise方式异步返回结果。
+设置麦克风静音状态。使用Promise异步回调。
 
 > **说明：**
 >
@@ -2862,7 +3310,7 @@ setMicrophoneMute(mute: boolean): Promise&lt;void&gt;
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -2876,7 +3324,7 @@ audioVolumeGroupManager.setMicrophoneMute(true).then(() => {
 
 isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 
-获取麦克风静音状态，使用callback方式异步返回结果。
+获取麦克风静音状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2889,7 +3337,7 @@ isMicrophoneMute(callback: AsyncCallback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.isMicrophoneMute((err: BusinessError, value: boolean) => {
   if (err) {
@@ -2904,7 +3352,7 @@ audioVolumeGroupManager.isMicrophoneMute((err: BusinessError, value: boolean) =>
 
 isMicrophoneMute(): Promise&lt;boolean&gt;
 
-获取麦克风静音状态，使用Promise方式异步返回结果。
+获取麦克风静音状态。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -2912,7 +3360,7 @@ isMicrophoneMute(): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Promise&lt;boolean&gt; | Promise对象，返回系统麦克风静音状态，true为静音，false为非静音。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示麦克风被静音；返回false表示麦克风未被静音。 |
 
 **示例：**
 
@@ -2939,7 +3387,7 @@ isMicrophoneMuteSync(): boolean
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioVolumeGroupManager.isMicrophoneMuteSync();
@@ -2954,7 +3402,7 @@ try {
 
 on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
-监听系统麦克风状态更改事件，使用callback方式返回结果。
+监听系统麦克风状态更改事件（当检测到系统麦克风状态发生改变时触发）。使用callback异步回调。
 
 目前此订阅接口在单进程多AudioManager实例的使用场景下，仅最后一个实例的订阅生效，其他实例的订阅会被覆盖（即使最后一个实例没有进行订阅），因此推荐使用单一AudioManager实例进行开发。
 
@@ -2964,7 +3412,7 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 | 参数名   | 类型                                   | 必填 | 说明                                                         |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | 是   | 事件回调类型，支持的事件为：'micStateChange'（系统麦克风状态变化事件，检测到系统麦克风状态改变时，触发该事件）。 |
+| type     | string                                 | 是   | 事件回调类型，支持的事件为'micStateChange'，当检测到系统麦克风状态发生改变时，触发该事件。 |
 | callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | 是   | 回调函数，返回变更后的麦克风状态。 |
 
 **错误码：**
@@ -2973,7 +3421,8 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2981,6 +3430,46 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 audioVolumeGroupManager.on('micStateChange', (micStateChange: audio.MicStateChangeEvent) => {
   console.info(`Current microphone status is: ${micStateChange.mute} `);
 });
+```
+
+### off('micStateChange')<sup>12+</sup>
+
+off(type: 'micStateChange', callback?: Callback&lt;MicStateChangeEvent&gt;): void
+
+取消监听系统麦克风状态更改事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Volume
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- |----| ------------------------------------------------------------ |
+| type     | string                                 | 是  | 事件回调类型，支持的事件为'micStateChange'，当取消监听系统麦克风状态更改事件时，触发该事件。 |
+| callback | Callback<[MicStateChangeEvent](#micstatechangeevent9)> | 否  | 回调函数，返回变更后的麦克风状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioVolumeGroupManager.off('micStateChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let micStateChangeCallback = (micStateChange: audio.MicStateChangeEvent) => {
+  console.info(`Current microphone status is: ${micStateChange.mute} `);
+};
+
+audioVolumeGroupManager.on('micStateChange', micStateChangeCallback);
+
+audioVolumeGroupManager.off('micStateChange', micStateChangeCallback);
 ```
 
 ### isVolumeUnadjustable<sup>10+</sup>
@@ -3008,7 +3497,7 @@ console.info(`Whether it is volume unadjustable: ${volumeAdjustSwitch}.`);
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType, callback: AsyncCallback&lt;number&gt;): void
 
-获取音量增益dB值，使用callback方式异步返回结果。
+获取音量增益dB值。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3027,13 +3516,14 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.                     |
 | 6800301 | System error. Return by callback.                                |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER, (err: BusinessError, dB: number) => {
   if (err) {
@@ -3047,7 +3537,7 @@ audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audi
 
 getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: DeviceType): Promise&lt;number&gt;
 
-获取音量增益dB值，使用Promise方式异步返回结果。
+获取音量增益dB值。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3071,13 +3561,14 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise.                     |
 | 6800301 | System error. Return by promise.                                |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioVolumeGroupManager.getSystemVolumeInDb(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER).then((value: number) => {
   console.info(`Success to get the volume DB. ${value}`);
@@ -3114,12 +3605,13 @@ getSystemVolumeInDbSync(volumeType: AudioVolumeType, volumeLevel: number, device
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioVolumeGroupManager.getSystemVolumeInDbSync(audio.AudioVolumeType.MEDIA, 3, audio.DeviceType.SPEAKER);
@@ -3134,7 +3626,7 @@ try {
 
 getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输入设备音频流的最大电平值，大小取值在0-1之间，最小为0。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3156,38 +3648,36 @@ getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;nu
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
-| 6800301 | system error                                |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let inputDeviceDesc: audio.AudioDeviceDescriptor;
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
+};
 
-let capturerInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  capturerFlags : 0 }
-
-audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then(
-  (desc) => {
-    inputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-audioVolumeGroupManager.getMaxAmplitudeForInputDevice(inputDeviceDesc).then(value: number) {
-  console.info(`mic volatileume amplitude is: ${value}`);
-}
+audio.getAudioManager().getRoutingManager().getPreferredInputDeviceForCapturerInfo(capturerInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForInputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForInputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("get outputDeviceId error" + JSON.stringify(err));
+})
 ```
 
 ### getMaxAmplitudeForOutputDevice<sup>12+</sup>
 
 getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;number&gt;
 
-获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0。
+获取输出设备音频流的最大电平值，大小取值在0-1之间，最小为0。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Volume
 
@@ -3209,32 +3699,29 @@ getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error                     |
-| 6800301 | system error                                |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let outputDeviceDesc: audio.AudioDeviceDescriptor;
+let rendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
+};
 
-let rendererInfo = {
-  content : audio.ContentType.CONTENT_TYPE_MUSIC,
-  usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
-  rendererFlags : 0 }
-
-audioRoutingManager.getPreferredOutputDeviceForRendererInfo(rendererInfo).then(
-  (desc) => {
-    outputDeviceDesc = desc;
-  }).catch((err) => {
-    console.error("get outputDeviceId error" + JSON.stringify(err));
-    return;
-  });
-
-audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(outputDeviceDesc).then(value: number) {
-  console.info(`speaker volatileume amplitude is: ${value}`);
-}
+audio.getAudioManager().getRoutingManager().getPreferOutputDeviceForRendererInfo(rendererInfo).then((data) => {
+  audioVolumeGroupManager.getMaxAmplitudeForOutputDevice(data[0]).then((value) => {
+    console.info(`mic volatileume amplitude is: ${value}`);
+  }).catch((err: BusinessError) => {
+    console.error("getMaxAmplitudeForOutputDevice error" + JSON.stringify(err));
+  })
+}).catch((err: BusinessError) => {
+  console.error("getPreferOutputDeviceForRendererInfo error" + JSON.stringify(err));
+})
 ```
 
 ## AudioStreamManager<sup>9+</sup>
@@ -3258,7 +3745,7 @@ getCurrentAudioRendererInfoArray(callback: AsyncCallback&lt;AudioRendererChangeI
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.getCurrentAudioRendererInfoArray(async (err: BusinessError, AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
   console.info('getCurrentAudioRendererInfoArray **** Get Callback Called ****');
@@ -3305,7 +3792,7 @@ getCurrentAudioRendererInfoArray(): Promise&lt;AudioRendererChangeInfoArray&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function getCurrentAudioRendererInfoArray(){
   await audioStreamManager.getCurrentAudioRendererInfoArray().then((AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
@@ -3351,7 +3838,7 @@ getCurrentAudioRendererInfoArraySync(): AudioRendererChangeInfoArray
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray = audioStreamManager.getCurrentAudioRendererInfoArraySync();
@@ -3398,7 +3885,7 @@ getCurrentAudioCapturerInfoArray(callback: AsyncCallback&lt;AudioCapturerChangeI
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.getCurrentAudioCapturerInfoArray(async (err: BusinessError, AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
   console.info('getCurrentAudioCapturerInfoArray **** Get Callback Called ****');
@@ -3443,7 +3930,7 @@ getCurrentAudioCapturerInfoArray(): Promise&lt;AudioCapturerChangeInfoArray&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 async function getCurrentAudioCapturerInfoArray(){
   await audioStreamManager.getCurrentAudioCapturerInfoArray().then((AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) => {
@@ -3487,7 +3974,7 @@ getCurrentAudioCapturerInfoArraySync(): AudioCapturerChangeInfoArray
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray = audioStreamManager.getCurrentAudioCapturerInfoArraySync();
@@ -3519,7 +4006,7 @@ try {
 
 on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
-监听音频渲染器更改事件，使用callback方式返回结果。
+监听音频渲染器更改事件（当音频播放流状态变化、设备变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -3527,7 +4014,7 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 
 | 参数名      | 类型        | 必填      | 说明                                                                     |
 | -------- | ---------- | --------- | ------------------------------------------------------------------------ |
-| type     | string     | 是        | 事件类型，支持的事件`'audioRendererChange'`：当音频渲染器发生更改时触发。     |
+| type     | string     | 是        | 事件回调类型，支持的事件为'audioRendererChange'，当音频播放流状态变化、设备变化时，触发该事件。 |
 | callback | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | 是  |  回调函数，返回当前音频渲染器信息。 |
 
 **错误码：**
@@ -3536,28 +4023,29 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
-  for (let i = 0; i < AudioRendererChangeInfoArray.length; i++) {
-    let AudioRendererChangeInfo: audio.AudioRendererChangeInfo = AudioRendererChangeInfoArray[i];
+audioStreamManager.on('audioRendererChange',  (audioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
+  for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
+    let audioRendererChangeInfo: audio.AudioRendererChangeInfo = audioRendererChangeInfoArray[i];
     console.info(`## RendererChange on is called for ${i} ##`);
-    console.info(`StreamId for ${i} is: ${AudioRendererChangeInfo.streamId}`);
-    console.info(`Content ${i} is: ${AudioRendererChangeInfo.rendererInfo.content}`);
-    console.info(`Stream ${i} is: ${AudioRendererChangeInfo.rendererInfo.usage}`);
-    console.info(`Flag ${i} is: ${AudioRendererChangeInfo.rendererInfo.rendererFlags}`);
-    for (let j = 0;j < AudioRendererChangeInfo.deviceDescriptors.length; j++) {
-      console.info(`Id: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].id}`);
-      console.info(`Type: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
-      console.info(`Role: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
-      console.info(`Name: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].name}`);
-      console.info(`Address: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].address}`);
-      console.info(`SampleRate: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
-      console.info(`ChannelCount: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
-      console.info(`ChannelMask: ${i} : ${AudioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
+    console.info(`StreamId for ${i} is: ${audioRendererChangeInfo.streamId}`);
+    console.info(`Content ${i} is: ${audioRendererChangeInfo.rendererInfo.content}`);
+    console.info(`Stream ${i} is: ${audioRendererChangeInfo.rendererInfo.usage}`);
+    console.info(`Flag ${i} is: ${audioRendererChangeInfo.rendererInfo.rendererFlags}`);
+    for (let j = 0;j < audioRendererChangeInfo.deviceDescriptors.length; j++) {
+      console.info(`Id: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].id}`);
+      console.info(`Type: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
+      console.info(`Role: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
+      console.info(`Name: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].name}`);
+      console.info(`Address: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].address}`);
+      console.info(`SampleRate: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+      console.info(`ChannelCount: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+      console.info(`ChannelMask: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
     }
   }
 });
@@ -3565,46 +4053,74 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray: aud
 
 ### off('audioRendererChange')<sup>9+</sup>
 
-off(type: 'audioRendererChange'): void
+off(type: 'audioRendererChange', callback?: Callback&lt;AudioRendererChangeInfoArray&gt;): void
 
-取消监听音频渲染器更改事件。
+取消监听音频渲染器更改事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
 | 参数名     | 类型     | 必填 | 说明              |
-| -------- | ------- | ---- | ---------------- |
-| type     | string  | 是   | 事件类型，支持的事件`'audioRendererChange'`：音频渲染器更改事件。 |
+| -------- | ------- |----| ---------------- |
+| type     | string  | 是  | 事件回调类型，支持的事件为'audioRendererChange'，当取消监听音频渲染器更改事件时，触发该事件。 |
+| callback<sup>18+</sup> | Callback<[AudioRendererChangeInfoArray](#audiorendererchangeinfoarray9)> | 否  |  回调函数，返回当前音频渲染器信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioStreamManager.off('audioRendererChange');
-console.info('######### RendererChange Off is called #########');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let audioRendererChangeCallback = (audioRendererChangeInfoArray: audio.AudioRendererChangeInfoArray) => {
+  for (let i = 0; i < audioRendererChangeInfoArray.length; i++) {
+    let audioRendererChangeInfo: audio.AudioRendererChangeInfo = audioRendererChangeInfoArray[i];
+    console.info(`## RendererChange on is called for ${i} ##`);
+    console.info(`StreamId for ${i} is: ${audioRendererChangeInfo.streamId}`);
+    console.info(`Content ${i} is: ${audioRendererChangeInfo.rendererInfo.content}`);
+    console.info(`Stream ${i} is: ${audioRendererChangeInfo.rendererInfo.usage}`);
+    console.info(`Flag ${i} is: ${audioRendererChangeInfo.rendererInfo.rendererFlags}`);
+    for (let j = 0;j < audioRendererChangeInfo.deviceDescriptors.length; j++) {
+      console.info(`Id: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].id}`);
+      console.info(`Type: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceType}`);
+      console.info(`Role: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].deviceRole}`);
+      console.info(`Name: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].name}`);
+      console.info(`Address: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].address}`);
+      console.info(`SampleRate: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].sampleRates[0]}`);
+      console.info(`ChannelCount: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelCounts[0]}`);
+      console.info(`ChannelMask: ${i} : ${audioRendererChangeInfo.deviceDescriptors[j].channelMasks[0]}`);
+    }
+  }
+};
+
+audioStreamManager.on('audioRendererChange', audioRendererChangeCallback);
+
+audioStreamManager.off('audioRendererChange', audioRendererChangeCallback);
 ```
 
 ### on('audioCapturerChange')<sup>9+</sup>
 
 on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
-监听音频采集器更改事件，使用callback方式返回结果。
+监听音频采集器更改事件（当音频录制流状态变化、设备变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **参数：**
 
-| 参数名     | 类型     | 必填      | 说明                                                                                           |
-| -------- | ------- | --------- | ----------------------------------------------------------------------- |
-| type     | string  | 是        | 事件类型，支持的事件`'audioCapturerChange'`：当音频采集器发生更改时触发。     |
+| 参数名     | 类型     | 必填      | 说明                                                                                          |
+| -------- | ------- | --------- | ---------------------------------------------------------------------- |
+| type     | string  | 是        | 事件回调类型，支持的事件为'audioCapturerChange'，当音频录制流状态变化、设备变化时，触发该事件。 |
 | callback | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 是     | 回调函数，返回当前音频采集器信息。 |
 
 **错误码：**
@@ -3613,7 +4129,8 @@ on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArr
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -3640,9 +4157,9 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray: audi
 
 ### off('audioCapturerChange')<sup>9+</sup>
 
-off(type: 'audioCapturerChange'): void
+off(type: 'audioCapturerChange', callback?: Callback&lt;AudioCapturerChangeInfoArray&gt;): void
 
-取消监听音频采集器更改事件。
+取消监听音频采集器更改事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -3650,29 +4167,55 @@ off(type: 'audioCapturerChange'): void
 
 | 参数名       | 类型     | 必填 | 说明                                                          |
 | -------- | -------- | --- | ------------------------------------------------------------- |
-| type     | string   |是   | 事件类型，支持的事件`'audioCapturerChange'`：音频采集器更改事件。 |
+| type     | string   |是   | 事件回调类型，支持的事件为'audioCapturerChange'，当取消监听音频采集器更改事件时，触发该事件。 |
+| callback<sup>18+</sup> | Callback<[AudioCapturerChangeInfoArray](#audiocapturerchangeinfoarray9)> | 否 | 回调函数，返回当前音频采集器信息。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
 audioStreamManager.off('audioCapturerChange');
-console.info('######### CapturerChange Off is called #########');
+// 取消该事件的所有监听。
+audioStreamManager.off('audioCapturerChange');
 
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let audioCapturerChangeCallback = (AudioCapturerChangeInfoArray: audio.AudioCapturerChangeInfoArray) =>  {
+  for (let i = 0; i < AudioCapturerChangeInfoArray.length; i++) {
+    console.info(`## CapChange on is called for element ${i} ##`);
+    console.info(`StreamId for ${i} is: ${AudioCapturerChangeInfoArray[i].streamId}`);
+    console.info(`Source for ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.source}`);
+    console.info(`Flag  ${i} is: ${AudioCapturerChangeInfoArray[i].capturerInfo.capturerFlags}`);
+    for (let j = 0; j < AudioCapturerChangeInfoArray[i].deviceDescriptors.length; j++) {
+      console.info(`Id: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].id}`);
+      console.info(`Type: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceType}`);
+      console.info(`Role: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].deviceRole}`);
+      console.info(`Name: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].name}`);
+      console.info(`Address: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].address}`);
+      console.info(`SampleRate: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].sampleRates[0]}`);
+      console.info(`ChannelCount: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0]}`);
+      console.info(`ChannelMask: ${i} : ${AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks[0]}`);
+    }
+  }
+};
+
+audioStreamManager.on('audioCapturerChange', audioCapturerChangeCallback);
+
+audioStreamManager.off('audioCapturerChange', audioCapturerChangeCallback);
 ```
 
 ### isActive<sup>9+</sup>
 
 isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定音频流是否为活跃状态，使用callback方式异步返回结果。
+获取指定音频流是否为活跃状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -3686,7 +4229,7 @@ isActive(volumeType: AudioVolumeType, callback: AsyncCallback&lt;boolean&gt;): v
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.isActive(audio.AudioVolumeType.MEDIA, (err: BusinessError, value: boolean) => {
 if (err) {
@@ -3701,7 +4244,7 @@ if (err) {
 
 isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
-获取指定音频流是否为活跃状态，使用Promise方式异步返回结果。
+获取指定音频流是否为活跃状态。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -3715,7 +4258,7 @@ isActive(volumeType: AudioVolumeType): Promise&lt;boolean&gt;
 
 | 类型                   | 说明                                                     |
 | ---------------------- | -------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回流的活跃状态，true为活跃，false为不活跃。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示流状态为活跃；返回false表示流状态不活跃。 |
 
 **示例：**
 
@@ -3751,12 +4294,13 @@ isActiveSync(volumeType: AudioVolumeType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioStreamManager.isActiveSync(audio.AudioVolumeType.MEDIA);
@@ -3788,12 +4332,13 @@ getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.|
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC, async (err: BusinessError, audioEffectInfoArray: audio.AudioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray **** Get Callback Called ****');
@@ -3832,12 +4377,13 @@ getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_MUSIC).then((audioEffectInfoArray: audio.AudioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray ######### Get Promise is called ##########');
@@ -3873,12 +4419,13 @@ getAudioEffectInfoArraySync(usage: StreamUsage): AudioEffectInfoArray
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioEffectInfoArray: audio.AudioEffectInfoArray = audioStreamManager.getAudioEffectInfoArraySync(audio.StreamUsage.STREAM_USAGE_MUSIC);
@@ -3886,6 +4433,48 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`getAudioEffectInfoArraySync ERROR: ${error}`);
+}
+```
+
+### isAcousticEchoCancelerSupported<sup>20+</sup>
+
+isAcousticEchoCancelerSupported(sourceType: SourceType): boolean
+
+查询指定的source type是否支持回声消除。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| sourceType    | [SourceType](#sourcetype8)         | 是     |  音源类型。               |
+
+**返回值：**
+
+| 类型                                                                      | 说明                                    |
+| --------------------------------------------------------------------------| --------------------------------------- |
+|  boolean     | 表示是否支持回声消除。true表示支持回声消除，false表示不支持回声消除。        |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let isSupportAEC = audioStreamManager.isAcousticEchoCancelerSupported(audio.SourceType.SOURCE_TYPE_LIVE);
+  console.info(`[AEC Support] SourceType: ${audio.SourceType.SOURCE_TYPE_LIVE}, Status: ${isSupportAEC}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`isAcousticEchoCancelerSupported ERROR: ${error}`);
 }
 ```
 
@@ -3897,7 +4486,7 @@ try {
 
 getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
-获取音频设备列表，使用callback方式异步返回结果。
+获取音频设备列表。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3911,7 +4500,7 @@ getDevices(deviceFlag: DeviceFlag, callback: AsyncCallback&lt;AudioDeviceDescrip
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: BusinessError, value: audio.AudioDeviceDescriptors) => {
   if (err) {
@@ -3926,7 +4515,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (err: Busin
 
 getDevices(deviceFlag: DeviceFlag): Promise&lt;AudioDeviceDescriptors&gt;
 
-获取音频设备列表，使用Promise方式异步返回结果。
+获取音频设备列表。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -3976,12 +4565,13 @@ getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let data: audio.AudioDeviceDescriptors = audioRoutingManager.getDevicesSync(audio.DeviceFlag.OUTPUT_DEVICES_FLAG);
@@ -3992,11 +4582,34 @@ try {
 }
 ```
 
-### on('deviceChange')<sup>9+</sup>
+### isMicBlockDetectionSupported<sup>13+</sup>
 
-on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
+isMicBlockDetectionSupported(): Promise&lt;boolean&gt;
 
-设备更改。音频设备连接状态变化，使用callback方式返回结果。
+获取当前设备是否支持麦克风状态检测。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示支持；返回false表示不支持。 |
+
+**示例：**
+
+```ts
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+});
+```
+
+### on('micBlockStatusChanged')<sup>13+</sup>
+
+on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): void
+
+监听音频麦克风是否被堵塞变化事件。在使用此功能之前，用户应查询当前设备是否支持检测，应用只有在使用麦克风录音时，并且所使用的麦克风的堵塞状态发生改变，
+才会收到回调，目前此检测功能仅支持麦克风位于本地设备上。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4004,9 +4617,8 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
-| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。     |
-| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+| type     | string                                               | 是   | 事件回调类型，支持的事件为'micBlockStatusChanged'，当麦克风的堵塞状态发生改变时，触发该事件。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 是   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。 |
 
 **错误码：**
 
@@ -4014,7 +4626,87 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 在使用此功能之前，应先查询当前设备是否支持检测。
+audioRoutingManager.isMicBlockDetectionSupported().then((value: boolean) => {
+  console.info(`Query whether microphone block detection is supported on current device result is ${value}.`);
+  if (value) {
+    audioRoutingManager.on('micBlockStatusChanged', (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+      console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+    });
+  }
+});
+```
+
+### off('micBlockStatusChanged')<sup>13+</sup>
+
+off(type: 'micBlockStatusChanged', callback?: Callback<DeviceBlockStatusInfo\>): void
+
+取消监听音频麦克风是否被堵塞变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 事件回调类型，支持的事件为'micBlockStatusChanged'，当取消监听音频麦克风是否被堵塞变化事件时，触发该事件。 |
+| callback | Callback<[DeviceBlockStatusInfo](#deviceblockstatusinfo13)\> | 否   | 回调函数，返回设备麦克风是否被堵塞状态更新详情。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioRoutingManager.off('micBlockStatusChanged');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let micBlockStatusCallback = (micBlockStatusChanged: audio.DeviceBlockStatusInfo) => {
+  console.info(`block status : ${micBlockStatusChanged.blockStatus} `);
+};
+
+audioRoutingManager.on('micBlockStatusChanged', micBlockStatusCallback);
+
+audioRoutingManager.off('micBlockStatusChanged', micBlockStatusCallback);
+```
+
+### on('deviceChange')<sup>9+</sup>
+
+on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
+
+监听音频设备连接变化事件（当音频设备连接状态发生变化时触发）。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                      |
+| :------- | :--------------------------------------------------- | :--- |:------------------------|
+| type     | string                                               | 是   | 事件回调类型，支持的事件为'deviceChange'，当音频设备连接状态发生变化时，触发该事件。 |
+| deviceFlag | [DeviceFlag](#deviceflag)                                    | 是   | 设备类型的flag。              |
+| callback | Callback<[DeviceChangeAction](#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。          |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -4031,7 +4723,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
-取消订阅音频设备连接变化事件，使用callback方式返回结果。
+取消监听音频设备连接变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4039,7 +4731,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'deviceChange' |
+| type     | string                                              | 是   | 事件回调类型，支持的事件为'deviceChange'，当取消监听音频设备连接变化事件时，触发该事件。 |
 | callback | Callback<[DeviceChangeAction](#devicechangeaction)> | 否   | 回调函数，返回设备更新详情。 |
 
 **错误码：**
@@ -4048,21 +4740,37 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioRoutingManager.off('deviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let deviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+};
+
+audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, deviceChangeCallback);
+
+audioRoutingManager.off('deviceChange', deviceChangeCallback);
 ```
 
 ### setCommunicationDevice<sup>9+</sup>
 
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置通信设备激活状态，使用callback方式异步返回结果。
+设置通信设备激活状态。使用callback异步回调。
 
 该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
+
+推荐开发者使用AVSession提供的[设备切换组件](../../media/avsession/using-switch-call-devices.md)，实现通话设备切换。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -4077,7 +4785,7 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean, cal
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER, true, (err: BusinessError) => {
   if (err) {
@@ -4088,13 +4796,137 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
 });
 ```
 
+### getAvailableDevices<sup>12+</sup>
+
+getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
+
+获取音频可选设备列表，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明             |
+| ---------- | ------------------------- | ---- | ---------------- |
+| deviceUsage| [DeviceUsage](#deviceusage12) | 是   | 设备的usage。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                      |
+| ------------------------------------------------------------ | ------------------------- |
+| [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 返回设备列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let data: audio.AudioDeviceDescriptors = audioRoutingManager.getAvailableDevices(audio.DeviceUsage.MEDIA_OUTPUT_DEVICES);
+  console.info(`Indicate that the device list is obtained ${data}`);
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`Failed to obtain the device list. ${error}`);
+}
+```
+
+### on('availableDeviceChange')<sup>12+</sup>
+
+on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<DeviceChangeAction\>): void
+
+监听音频可选设备连接变化事件（当音频可选设备连接状态发生变化时触发）。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                       |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | 是   | 事件回调类型，支持的事件为'availableDeviceChange'，当音频可选设备连接状态发生变化时，触发该事件。 |
+| deviceUsage | [DeviceUsage](#deviceusage12)                       | 是   | 设备的usage。     |
+| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)\> | 是   | 回调函数，返回设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+});
+```
+
+### off('availableDeviceChange')<sup>12+</sup>
+
+off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): void
+
+取消监听音频可选设备连接变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | 是   | 事件回调类型，支持的事件为'availableDeviceChange'，当取消监听音频可选设备连接变化事件时，触发该事件。 |
+| callback | Callback<[DeviceChangeAction](js-apis-audio.md#devicechangeaction)> | 否   | 回调函数，返回可选设备更新详情。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioRoutingManager.off('availableDeviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let availableDeviceChangeCallback = (deviceChanged: audio.DeviceChangeAction) => {
+  console.info('device change type : ' + deviceChanged.type);
+  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);
+  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);
+};
+
+audioRoutingManager.on('availableDeviceChange', audio.DeviceUsage.MEDIA_OUTPUT_DEVICES, availableDeviceChangeCallback);
+
+audioRoutingManager.off('availableDeviceChange', availableDeviceChangeCallback);
+```
+
 ### setCommunicationDevice<sup>9+</sup>
 
 setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Promise&lt;void&gt;
 
-设置通信设备激活状态，使用Promise方式异步返回结果。
+设置通信设备激活状态。使用Promise异步回调。
 
 该接口由于功能设计变化，将在后续版本废弃，不建议开发者使用。
+
+推荐开发者使用AVSession提供的[设备切换组件](../../media/avsession/using-switch-call-devices.md)，实现通话设备切换。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -4109,7 +4941,7 @@ setCommunicationDevice(deviceType: CommunicationDeviceType, active: boolean): Pr
 
 | 类型                | 说明                            |
 | ------------------- | ------------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
@@ -4123,7 +4955,7 @@ audioRoutingManager.setCommunicationDevice(audio.CommunicationDeviceType.SPEAKER
 
 isCommunicationDeviceActive(deviceType: CommunicationDeviceType, callback: AsyncCallback&lt;boolean&gt;): void
 
-获取指定通信设备的激活状态，使用callback方式异步返回结果。
+获取指定通信设备的激活状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -4137,7 +4969,7 @@ isCommunicationDeviceActive(deviceType: CommunicationDeviceType, callback: Async
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SPEAKER, (err: BusinessError, value: boolean) => {
   if (err) {
@@ -4152,7 +4984,7 @@ audioRoutingManager.isCommunicationDeviceActive(audio.CommunicationDeviceType.SP
 
 isCommunicationDeviceActive(deviceType: CommunicationDeviceType): Promise&lt;boolean&gt;
 
-获取指定通信设备的激活状态，使用Promise方式异步返回结果。
+获取指定通信设备的激活状态。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Communication
 
@@ -4166,7 +4998,7 @@ isCommunicationDeviceActive(deviceType: CommunicationDeviceType): Promise&lt;boo
 
 | Type                   | Description                     |
 | ---------------------- | ------------------------------- |
-| Promise&lt;boolean&gt; | Promise对象，返回设备的激活状态，true激活，false未激活。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示设备已激活；返回false表示设备未激活。 |
 
 **示例：**
 
@@ -4202,12 +5034,13 @@ isCommunicationDeviceActiveSync(deviceType: CommunicationDeviceType): boolean
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: boolean = audioRoutingManager.isCommunicationDeviceActiveSync(audio.CommunicationDeviceType.SPEAKER);
@@ -4222,7 +5055,7 @@ try {
 
 getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
-根据音频信息，返回优先级最高的输出设备，使用callback方式异步返回结果。
+根据音频信息，返回优先级最高的输出设备。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4239,18 +5072,19 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 
 | 错误码ID | 错误信息                                           |
 | ------- |--------------------------------------------------|
-| 6800101 | Input parameter value error. Return by callback. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback. |
 | 6800301 | System error. Return by callback.                |
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
-}
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
+};
 
 async function getPreferOutputDevice() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
@@ -4266,7 +5100,7 @@ async function getPreferOutputDevice() {
 ### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
 getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
-根据音频信息，返回优先级最高的输出设备，使用Promise方式异步返回结果。
+根据音频信息，返回优先级最高的输出设备。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4288,19 +5122,20 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 
 | 错误码ID | 错误信息                                          |
 | ------- |-------------------------------------------------|
-| 6800101 | Input parameter value error. Return by promise. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 | 6800301 | System error. Return by promise.                |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
-}
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
+};
 
 async function getPreferOutputDevice() {
   audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc: audio.AudioDeviceDescriptors) => {
@@ -4336,18 +5171,19 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
-}
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
+};
 
 try {
   let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredOutputDeviceForRendererInfoSync(rendererInfo);
@@ -4362,7 +5198,7 @@ try {
 
 on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
-订阅最高优先级输出设备变化事件，使用callback方式返回结果。
+监听最高优先级输出设备变化事件（当最高优先级输出设备发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4370,7 +5206,7 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 | 参数名   | 类型                                                 | 必填 | 说明                                                      |
 | :------- | :--------------------------------------------------- | :--- |:--------------------------------------------------------|
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string | 是   | 事件回调类型，支持的事件为'preferOutputDeviceChangeForRendererInfo'，当最高优先级输出设备发生变化时，触发该事件。|
 | rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | 是   | 表示渲染器信息。                                                |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输出设备信息。 |
 
@@ -4380,17 +5216,18 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let rendererInfo: audio.AudioRendererInfo = {
-  usage : audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags : 0
-}
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
+};
 
 audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
@@ -4401,7 +5238,7 @@ audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, 
 
 off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
-取消订阅最高优先级输出音频设备变化事件，使用callback方式返回结果。
+取消监听最高优先级输出音频设备变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4409,7 +5246,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferOutputDeviceChangeForRendererInfo' |
+| type     | string | 是   | 事件回调类型，支持的事件为'preferOutputDeviceChangeForRendererInfo'，当取消监听最高优先级输出音频设备变化事件时，触发该事件。 |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回优先级最高的输出设备信息。 |
 
 **错误码：**
@@ -4418,19 +5255,34 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let preferOutputDeviceChangeForRendererInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
+  console.info(`device descriptor: ${desc}`);
+};
+let rendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // 音频流使用类型：音乐。根据业务场景配置，参考StreamUsage。
+  rendererFlags: 0 // 音频渲染器标志。
+};
+
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, preferOutputDeviceChangeForRendererInfoCallback);
+
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', preferOutputDeviceChangeForRendererInfoCallback);
 ```
 
 ### getPreferredInputDeviceForCapturerInfo<sup>10+</sup>
 
 getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
 
-根据音频信息，返回优先级最高的输入设备，使用callback方式异步返回结果。
+根据音频信息，返回优先级最高的输入设备。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4447,18 +5299,19 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.|
-| 6800301 | System error. Return by callback.           |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.|
+| 6800301 | System error. Return by callback. |
 
 **示例：**
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-}
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
+};
 
 audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: BusinessError, desc: audio.AudioDeviceDescriptors) => {
   if (err) {
@@ -4473,7 +5326,7 @@ audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo, (err: B
 
 getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise&lt;AudioDeviceDescriptors&gt;
 
-根据音频信息，返回优先级最高的输入设备，使用Promise方式异步返回结果。
+根据音频信息，返回优先级最高的输入设备。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4495,19 +5348,20 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise. |
-| 6800301 | System error. Return by promise.            |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
+| 6800301 | System error. Return by promise. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-}
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
+};
 
 audioRoutingManager.getPreferredInputDeviceForCapturerInfo(capturerInfo).then((desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
@@ -4542,18 +5396,19 @@ getPreferredInputDeviceForCapturerInfoSync(capturerInfo: AudioCapturerInfo): Aud
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
-import { BusinessError } from '@ohos.base';
+import { audio } from '@kit.AudioKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-}
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
+};
 
 try {
   let desc: audio.AudioDeviceDescriptors = audioRoutingManager.getPreferredInputDeviceForCapturerInfoSync(capturerInfo);
@@ -4568,7 +5423,7 @@ try {
 
 on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapturerInfo, callback: Callback<AudioDeviceDescriptors\>): void
 
-订阅最高优先级输入设备变化事件，使用callback方式返回结果。
+监听最高优先级输入设备变化事件（当最高优先级输入设备发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4576,7 +5431,7 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 
 | 参数名   | 类型                                                 | 必填 | 说明                                       |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | 是   | 订阅的事件的类型。支持事件：'preferredInputDeviceChangeForCapturerInfo' |
+| type     | string | 是   | 事件回调类型，支持的事件为'preferredInputDeviceChangeForCapturerInfo'，当最高优先级输入设备发生变化时，触发该事件。 |
 | capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8)        | 是   | 表示采集器信息。              |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | 是   | 回调函数，返回优先级最高的输入设备信息。 |
 
@@ -4586,17 +5441,18 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let capturerInfo: audio.AudioCapturerInfo = {
-  source: audio.SourceType.SOURCE_TYPE_MIC,
-  capturerFlags: 0
-}
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
+};
 
 audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, (desc: audio.AudioDeviceDescriptors) => {
   console.info(`device descriptor: ${desc}`);
@@ -4607,7 +5463,7 @@ audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo
 
 off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<AudioDeviceDescriptors\>): void
 
-取消订阅最高优先级输入音频设备变化事件，使用callback方式返回结果。
+取消监听最高优先级输入音频设备变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -4615,7 +5471,7 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 | 参数名   | 类型                                                | 必填 | 说明                                       |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | 是   | 订阅的事件的类型。支持事件：'preferredInputDeviceChangeForCapturerInfo' |
+| type     | string | 是   | 事件回调类型，支持的事件为'preferredInputDeviceChangeForCapturerInfo'，当取消监听最高优先级输入音频设备变化事件时，触发该事件。 |
 | callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回优先级最高的输入设备信息。 |
 
 **错误码：**
@@ -4624,19 +5480,309 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let preferredInputDeviceChangeForCapturerInfoCallback = (desc: audio.AudioDeviceDescriptors) => {
+  console.info(`device descriptor: ${desc}`);
+};
+let capturerInfo: audio.AudioCapturerInfo = {
+  source: audio.SourceType.SOURCE_TYPE_MIC, // 音源类型：Mic音频源。根据业务场景配置，参考SourceType。
+  capturerFlags: 0 // 音频采集器标志。
+};
+
+audioRoutingManager.on('preferredInputDeviceChangeForCapturerInfo', capturerInfo, preferredInputDeviceChangeForCapturerInfoCallback);
+
+audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo', preferredInputDeviceChangeForCapturerInfoCallback);
+```
+
+## AudioSessionManager<sup>12+</sup>
+
+音频会话管理。在使用AudioSessionManager的接口前，需要使用[getSessionManager](#getsessionmanager12)获取AudioSessionManager实例。
+
+### activateAudioSession<sup>12+</sup>
+
+activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>
+
+激活音频会话。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名 | 类型                                              | 必填 | 说明         |
+| ------ |-------------------------------------------------| ---- | ------------ |
+| strategy | [AudioSessionStrategy](#audiosessionstrategy12) | 是   | 音频会话策略。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters unspecified. 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed.|
+| 6800301 | System error. Returned by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let strategy: audio.AudioSessionStrategy = {
+  concurrencyMode: audio.AudioConcurrencyMode.CONCURRENCY_MIX_WITH_OTHERS
+};
+
+audioSessionManager.activateAudioSession(strategy).then(() => {
+  console.info('activateAudioSession SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### deactivateAudioSession<sup>12+</sup>
+
+deactivateAudioSession(): Promise\<void>
+
+停用音频会话。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ---------------------------------------------|
+| 6800301 | System error. Returned by promise. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+audioSessionManager.deactivateAudioSession().then(() => {
+  console.info('deactivateAudioSession SUCCESS');
+}).catch((err: BusinessError) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### isAudioSessionActivated<sup>12+</sup>
+
+isAudioSessionActivated(): boolean
+
+检查音频会话是否已激活。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**返回值：**
+
+| 类型                                              | 说明                                    |
+| ------------------------------------------------- |---------------------------------------|
+| boolean | 返回当前pid应用程序的音频会话是否已激活，true表示已激活，false表示已停用。 |
+
+**示例：**
+
+```ts
+let isActivated = audioSessionManager.isAudioSessionActivated();
+```
+
+### on('audioSessionDeactivated')<sup>12+</sup>
+
+on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedEvent>): void
+
+监听音频会话停用事件（当音频会话停用时触发）。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名   | 类型                                                                        | 必填 | 说明                                                         |
+| -------- |---------------------------------------------------------------------------| ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 事件回调类型，支持的事件为'audioSessionDeactivated'，当音频会话停用时，触发该事件。 |
+| callback | Callback<[AudioSessionDeactivatedEvent](#audiosessiondeactivatedevent12)> | 是   | 回调函数，返回音频会话停用原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters unspecified. 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+audioSessionManager.on('audioSessionDeactivated', (audioSessionDeactivatedEvent: audio.AudioSessionDeactivatedEvent) => {
+  console.info(`reason of audioSessionDeactivated: ${audioSessionDeactivatedEvent.reason} `);
+});
+```
+
+### off('audioSessionDeactivated')<sup>12+</sup>
+
+off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivatedEvent>): void
+
+取消监听音频会话停用事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 事件回调类型，支持的事件为'audioSessionDeactivated'，当取消监听音频会话停用事件时，触发该事件。 |
+| callback |Callback<[AudioSessionDeactivatedEvent](#audiosessiondeactivatedevent12)> | 否   | 回调函数，返回音频会话停用原因。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioSessionManager.off('audioSessionDeactivated');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let audioSessionDeactivatedCallback = (audioSessionDeactivatedEvent: audio.AudioSessionDeactivatedEvent) => {
+  console.info(`reason of audioSessionDeactivated: ${audioSessionDeactivatedEvent.reason} `);
+};
+
+audioSessionManager.on('audioSessionDeactivated', audioSessionDeactivatedCallback);
+
+audioSessionManager.off('audioSessionDeactivated', audioSessionDeactivatedCallback);
+```
+
+## AudioSpatializationManager<sup>18+</sup>
+
+空间音频管理。<br>
+在使用AudioSpatializationManager接口前，需要先用[getSpatializationManager](#getspatializationmanager18)获取AudioSpatializationManager实例。
+
+### isSpatializationEnabledForCurrentDevice<sup>18+</sup>
+
+isSpatializationEnabledForCurrentDevice(): boolean
+
+获取当前设备空间音频渲染是否开启，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**返回值：**
+
+| 类型                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| boolean | 返回当前设备空间音频渲染是否开启，true为开启，false为未开启。 |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let isSpatializationEnabledForCurrentDevice: boolean = audioSpatializationManager.isSpatializationEnabledForCurrentDevice();
+console.info(`AudioSpatializationManager isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
+```
+
+### on('spatializationEnabledChangeForCurrentDevice')<sup>18+</sup>
+
+on(type: 'spatializationEnabledChangeForCurrentDevice', callback: Callback<boolean\>): void
+
+订阅当前设备空间音频渲染开关状态变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                 | 必填 | 说明                                           |
+| :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
+| type     | string | 是   | 事件回调类型，支持的事件为'spatializationEnabledChangeForCurrentDevice'，当空间音频渲染开关状态变化时，触发该事件。 |
+| callback | Callback<boolean\> | 是   | 回调函数。返回true表示打开空间音频渲染状态；返回false表示关闭空间音频渲染状态。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+audioSpatializationManager.on('spatializationEnabledChangeForCurrentDevice', (isSpatializationEnabledForCurrentDevice: boolean) => {
+  console.info(`isSpatializationEnabledForCurrentDevice: ${isSpatializationEnabledForCurrentDevice}`);
+});
+```
+
+### off('spatializationEnabledChangeForCurrentDevice')<sup>18+</sup>
+
+off(type: 'spatializationEnabledChangeForCurrentDevice', callback?: Callback<boolean\>): void
+
+取消订阅当前设备空间音频渲染开关状态变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Spatialization
+
+**参数：**
+
+| 参数名   | 类型                                                | 必填 | 说明                                       |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string | 是   | 事件回调类型，支持的事件为'spatializationEnabledChangeForCurrentDevice'，当取消订阅当前设备空间音频渲染开关状态变化事件时，触发该事件。 |
+| callback | Callback<boolean\> | 否   | 回调函数。返回true表示打开空间音频渲染状态；返回false表示关闭空间音频渲染状态。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+audioSpatializationManager.off('spatializationEnabledChangeForCurrentDevice');
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
+type AudioRendererChangeInfoArray = Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt;
+
 数组类型，AudioRenderChangeInfo数组，只读。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioRendererChangeInfo&gt;&gt; | 数组类型，[AudioRenderChangeInfo](#audiorendererchangeinfo9)数组，只读。 |
 
 ## AudioRendererChangeInfo<sup>9+</sup>
 
@@ -4653,7 +5799,7 @@ audioRoutingManager.off('preferredInputDeviceChangeForCapturerInfo');
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
@@ -4683,9 +5829,15 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 
 ## AudioCapturerChangeInfoArray<sup>9+</sup>
 
+type AudioCapturerChangeInfoArray = Array&lt;Readonly&lt;AudioCapturerChangeInfo&gt;&gt;
+
 数组类型，AudioCapturerChangeInfo数组，只读。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+| 类型      | 说明                                                              |
+|---------|-----------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioCapturerChangeInfo&gt;&gt; | 数组类型，[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)数组，只读。 |
 
 ## AudioCapturerChangeInfo<sup>9+</sup>
 
@@ -4703,7 +5855,7 @@ audioStreamManager.on('audioRendererChange',  (AudioRendererChangeInfoArray) => 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 const audioManager = audio.getAudioManager();
 let audioStreamManager = audioManager.getStreamManager();
@@ -4731,11 +5883,29 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ## AudioEffectInfoArray<sup>10+</sup>
 
+type AudioEffectInfoArray = Array&lt;Readonly&lt;AudioEffectMode&gt;&gt;
+
 待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode10)数组，只读。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioEffectMode&gt;&gt; | 待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode10)数组，只读。 |
 
 ## AudioDeviceDescriptors
 
+type AudioDeviceDescriptors = Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt;
+
 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Device
+
+| 类型      | 说明                                                            |
+|---------|---------------------------------------------------------------|
+| Array&lt;Readonly&lt;AudioDeviceDescriptor&gt;&gt; | 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。 |
 
 ## AudioDeviceDescriptor
 
@@ -4743,30 +5913,31 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 | 名称                          | 类型                       | 可读 | 可写 | 说明       |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id，唯一。  <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| name<sup>9+</sup>             | string                     | 是   | 否   | 设备名称。<br>如果是蓝牙设备，需要申请权限ohos.permission.USE_BLUETOOTH。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| address<sup>9+</sup>          | string                     | 是   | 否   | 设备地址。<br>如果是蓝牙设备，需要申请权限ohos.permission.USE_BLUETOOTH。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| displayName<sup>10+</sup>     | string                     | 是   | 否   | 设备显示名。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device|
-| encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 否   | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core|
+| deviceRole                    | [DeviceRole](#devicerole)  | 是   | 否   | 设备角色。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| deviceType                    | [DeviceType](#devicetype)  | 是   | 否   | 设备类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| id<sup>9+</sup>               | number                     | 是   | 否   | 设备id，唯一。  <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| name<sup>9+</sup>             | string                     | 是   | 否   | 设备名称。<br>如果是蓝牙设备，需要申请权限ohos.permission.USE_BLUETOOTH。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| address<sup>9+</sup>          | string                     | 是   | 否   | 设备地址。<br>如果是蓝牙设备，需要申请权限ohos.permission.USE_BLUETOOTH。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| sampleRates<sup>9+</sup>      | Array&lt;number&gt;        | 是   | 否   | 支持的采样率。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| channelCounts<sup>9+</sup>    | Array&lt;number&gt;        | 是   | 否   | 支持的通道数。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| channelMasks<sup>9+</sup>     | Array&lt;number&gt;        | 是   | 否   | 支持的通道掩码。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| displayName<sup>10+</sup>     | string                     | 是   | 否   | 设备显示名。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Device <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| encodingTypes<sup>11+</sup>    | Array&lt;[AudioEncodingType](#audioencodingtype8)&gt;                     | 是   | 否   | 支持的编码类型。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Core <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| spatializationSupported<sup>18+</sup>     | boolean                     | 是   | 否   | 表示设备是否支持空间音频。true表示支持空间音频，false表示不支持空间音频。 <br> **系统能力：** SystemCapability.Multimedia.Audio.Spatialization|
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 function displayDeviceProp(value: audio.AudioDeviceDescriptor) {
   deviceRoleValue = value.deviceRole;
   deviceTypeValue = value.deviceType;
 }
 
-let deviceRoleValue: audio.DeviceRole | undefined = undefined;;
-let deviceTypeValue: audio.DeviceType | undefined = undefined;;
-audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors) => {
+let deviceRoleValue: audio.DeviceRole | undefined = undefined;
+let deviceTypeValue: audio.DeviceType | undefined = undefined;
+audio.getAudioManager().getRoutingManager().getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((value: audio.AudioDeviceDescriptors) => {
   console.info('AudioFrameworkTest: Promise: getDevices OUTPUT_DEVICES_FLAG');
   value.forEach(displayDeviceProp);
   if (deviceTypeValue != undefined && deviceRoleValue != undefined){
@@ -4776,6 +5947,36 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
   }
 });
 ```
+## AudioDataCallbackResult<sup>12+</sup>
+
+枚举，表示音频数据回调的结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                 | 值      | 说明         |
+| ---------------------| --------| ----------------- |
+| INVALID  | -1 | 表示该回调数据无效。      |
+| VALID      | 0 | 表示该回调数据有效。     |
+
+## AudioRendererWriteDataCallback<sup>12+</sup>
+
+type AudioRendererWriteDataCallback = (data: ArrayBuffer) => AudioDataCallbackResult | void
+
+回调函数类型，用于音频渲染器的数据写入，回调函数结束后，音频服务会把data指针数据放入队列里等待播放，因此请勿在回调外再次更改data指向的数据, 且务必保证往data填满待播放数据, 否则会导致音频服务播放杂音。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名          | 类型      |必填   | 说明         |
+| :--------------| :--------| :----- | :------------ |
+| data           | ArrayBuffer  | 是 | 待写入缓冲区的数据。 |
+
+**返回值：** 
+
+| 类型                                                           | 说明                                                                                                          |
+|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| [AudioDataCallbackResult](#audiodatacallbackresult12) \| void | 如果返回 void 或 AudioDataCallbackResult.VALID：表示数据有效，将播放音频数据；如果返回 AudioDataCallbackResult.INVALID：表示数据无效，且音频数据不播放。 |
 
 ## AudioRenderer<sup>8+</sup>
 
@@ -4792,7 +5993,7 @@ audio.getAudioManager().getDevices(1).then((value: audio.AudioDeviceDescriptors)
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let state: audio.AudioState = audioRenderer.state;
 ```
@@ -4801,7 +6002,7 @@ let state: audio.AudioState = audioRenderer.state;
 
 getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 
-获取当前被创建的音频渲染器的信息，使用callback方式异步返回结果。
+获取当前被创建的音频渲染器的信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -4814,7 +6015,7 @@ getRendererInfo(callback: AsyncCallback<AudioRendererInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRendererInfo) => {
   console.info('Renderer GetRendererInfo:');
@@ -4828,7 +6029,7 @@ audioRenderer.getRendererInfo((err: BusinessError, rendererInfo: audio.AudioRend
 
 getRendererInfo(): Promise<AudioRendererInfo\>
 
-获取当前被创建的音频渲染器的信息，使用Promise方式异步返回结果。
+获取当前被创建的音频渲染器的信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -4841,7 +6042,7 @@ getRendererInfo(): Promise<AudioRendererInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRendererInfo().then((rendererInfo: audio.AudioRendererInfo) => {
   console.info('Renderer GetRendererInfo:');
@@ -4870,7 +6071,7 @@ getRendererInfoSync(): AudioRendererInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let rendererInfo: audio.AudioRendererInfo = audioRenderer.getRendererInfoSync();
@@ -4887,7 +6088,7 @@ try {
 
 getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
-获取音频流信息，使用callback方式异步返回结果。
+获取音频流信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -4900,7 +6101,7 @@ getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamInfo) => {
   console.info('Renderer GetStreamInfo:');
@@ -4915,7 +6116,7 @@ audioRenderer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamIn
 
 getStreamInfo(): Promise<AudioStreamInfo\>
 
-获取音频流信息，使用Promise方式异步返回结果。
+获取音频流信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -4923,12 +6124,12 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise对象，返回音频流信息. |
+| Promise<[AudioStreamInfo](#audiostreaminfo8)\> | Promise对象，返回音频流信息。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getStreamInfo().then((streamInfo: audio.AudioStreamInfo) => {
   console.info('Renderer GetStreamInfo:');
@@ -4953,12 +6154,12 @@ getStreamInfoSync(): AudioStreamInfo
 
 | 类型                                           | 说明                   |
 | :--------------------------------------------- | :--------------------- |
-| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息. |
+| [AudioStreamInfo](#audiostreaminfo8) | 返回音频流信息。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let streamInfo: audio.AudioStreamInfo = audioRenderer.getStreamInfoSync();
@@ -4976,7 +6177,7 @@ try {
 
 getAudioStreamId(callback: AsyncCallback<number\>): void
 
-获取音频流id，使用callback方式异步返回结果。
+获取音频流id。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -4989,7 +6190,7 @@ getAudioStreamId(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioStreamId((err: BusinessError, streamId: number) => {
   console.info(`Renderer GetStreamId: ${streamId}`);
@@ -5000,7 +6201,7 @@ audioRenderer.getAudioStreamId((err: BusinessError, streamId: number) => {
 
 getAudioStreamId(): Promise<number\>
 
-获取音频流id，使用Promise方式异步返回结果。
+获取音频流id。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5013,7 +6214,7 @@ getAudioStreamId(): Promise<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioStreamId().then((streamId: number) => {
   console.info(`Renderer getAudioStreamId: ${streamId}`);
@@ -5039,7 +6240,7 @@ getAudioStreamIdSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let streamId: number = audioRenderer.getAudioStreamIdSync();
@@ -5054,7 +6255,7 @@ try {
 
 setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
-设置当前音效模式。使用callback方式异步返回结果。
+设置当前音效模式。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5071,12 +6272,13 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------|
-| 6800101 | Invalid parameter error. Return by callback.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by callback.  |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: BusinessError) => {
   if (err) {
@@ -5091,7 +6293,7 @@ audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err: Bus
 
 setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
-设置当前音效模式。使用Promise方式异步返回结果。
+设置当前音效模式。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5105,7 +6307,7 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5113,12 +6315,13 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
-| 6800101 | Invalid parameter error. Return by promise.  |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. Return by promise. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() => {
   console.info('setAudioEffectMode SUCCESS');
@@ -5131,7 +6334,7 @@ audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() =
 
 getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
 
-获取当前音效模式。使用callback方式异步返回结果。
+获取当前音效模式。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5144,7 +6347,7 @@ getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEffectMode) => {
   if (err) {
@@ -5159,7 +6362,7 @@ audioRenderer.getAudioEffectMode((err: BusinessError, effectMode: audio.AudioEff
 
 getAudioEffectMode(): Promise\<AudioEffectMode>
 
-获取当前音效模式。使用Promise方式异步返回结果。
+获取当前音效模式。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5172,7 +6375,7 @@ getAudioEffectMode(): Promise\<AudioEffectMode>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioEffectMode().then((effectMode: audio.AudioEffectMode) => {
   console.info(`getAudioEffectMode: ${effectMode}`);
@@ -5185,7 +6388,7 @@ audioRenderer.getAudioEffectMode().then((effectMode: audio.AudioEffectMode) => {
 
 start(callback: AsyncCallback<void\>): void
 
-启动音频渲染器。使用callback方式异步返回结果。
+启动音频渲染器。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5193,12 +6396,12 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频渲染器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当启动音频采集器成功，err为undefined，否则为错误对象。异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.start((err: BusinessError) => {
   if (err) {
@@ -5213,7 +6416,7 @@ audioRenderer.start((err: BusinessError) => {
 
 start(): Promise<void\>
 
-启动音频渲染器。使用Promise方式异步返回结果。
+启动音频渲染器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5221,12 +6424,12 @@ start(): Promise<void\>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.start().then(() => {
   console.info('Renderer started');
@@ -5239,7 +6442,7 @@ audioRenderer.start().then(() => {
 
 pause(callback: AsyncCallback\<void>): void
 
-暂停渲染。使用callback方式异步返回结果。
+暂停渲染。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5252,7 +6455,7 @@ pause(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.pause((err: BusinessError) => {
   if (err) {
@@ -5267,7 +6470,7 @@ audioRenderer.pause((err: BusinessError) => {
 
 pause(): Promise\<void>
 
-暂停渲染。使用Promise方式异步返回结果。
+暂停渲染。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5275,12 +6478,12 @@ pause(): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.pause().then(() => {
   console.info('Renderer paused');
@@ -5293,7 +6496,7 @@ audioRenderer.pause().then(() => {
 
 drain(callback: AsyncCallback\<void>): void
 
-检查缓冲区是否已被耗尽。使用callback方式异步返回结果。
+检查缓冲区是否已被耗尽。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5306,7 +6509,7 @@ drain(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.drain((err: BusinessError) => {
   if (err) {
@@ -5321,7 +6524,7 @@ audioRenderer.drain((err: BusinessError) => {
 
 drain(): Promise\<void>
 
-检查缓冲区是否已被耗尽。使用Promise方式异步返回结果。
+检查缓冲区是否已被耗尽。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5329,12 +6532,12 @@ drain(): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.drain().then(() => {
   console.info('Renderer drained successfully');
@@ -5347,7 +6550,7 @@ audioRenderer.drain().then(() => {
 
 flush(): Promise\<void>
 
-清空缓冲区（[AudioState](#audiostate8)为STATE_RUNNING、STATE_PAUSED、STATE_STOPPED状态下可用）。使用Promise方式异步返回结果。
+清空缓冲区（[AudioState](#audiostate8)为STATE_RUNNING、STATE_PAUSED、STATE_STOPPED状态下可用）。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5355,7 +6558,7 @@ flush(): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -5368,7 +6571,7 @@ flush(): Promise\<void>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.flush().then(() => {
   console.info('Renderer flushed successfully');
@@ -5381,7 +6584,7 @@ audioRenderer.flush().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-停止渲染。使用callback方式异步返回结果。
+停止渲染。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5394,7 +6597,7 @@ stop(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.stop((err: BusinessError) => {
   if (err) {
@@ -5409,7 +6612,7 @@ audioRenderer.stop((err: BusinessError) => {
 
 stop(): Promise\<void>
 
-停止渲染。使用Promise方式异步返回结果。
+停止渲染。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5417,12 +6620,12 @@ stop(): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.stop().then(() => {
   console.info('Renderer stopped successfully');
@@ -5435,7 +6638,7 @@ audioRenderer.stop().then(() => {
 
 release(callback: AsyncCallback\<void>): void
 
-释放音频渲染器。使用callback方式异步返回结果。
+释放音频渲染器。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5448,7 +6651,7 @@ release(callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.release((err: BusinessError) => {
   if (err) {
@@ -5463,7 +6666,7 @@ audioRenderer.release((err: BusinessError) => {
 
 release(): Promise\<void>
 
-释放渲染器。使用Promise方式异步返回结果。
+释放渲染器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5471,12 +6674,12 @@ release(): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.release().then(() => {
   console.info('Renderer released successfully');
@@ -5489,7 +6692,7 @@ audioRenderer.release().then(() => {
 
 write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 
-写入缓冲区。使用callback方式异步返回结果。
+写入缓冲区。使用callback异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
@@ -5506,8 +6709,9 @@ write(buffer: ArrayBuffer, callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 let bufferSize: number;
 class Options {
@@ -5518,7 +6722,9 @@ audioRenderer.getBufferSize().then((data: number)=> {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   console.info(`Buffer size: ${bufferSize}`);
-  let path = getContext().cacheDir;
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let path = context.cacheDir;
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
@@ -5528,8 +6734,8 @@ audioRenderer.getBufferSize().then((data: number)=> {
       let options: Options = {
         offset: i * bufferSize,
         length: bufferSize
-      }
-      let readsize: number = await fs.read(file.fd, buf, options)
+      };
+      let readSize: number = await fs.read(file.fd, buf, options);
       let writeSize: number = await new Promise((resolve,reject)=>{
         audioRenderer.write(buf,(err: BusinessError, writeSize: number)=>{
           if(err){
@@ -5544,15 +6750,13 @@ audioRenderer.getBufferSize().then((data: number)=> {
   }).catch((err: BusinessError) => {
     console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
-
-
 ```
 
 ### write<sup>8+(deprecated)</sup>
 
 write(buffer: ArrayBuffer): Promise\<number>
 
-写入缓冲区。使用Promise方式异步返回结果。
+写入缓冲区。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioRenderer中的[on('writeData')](#onwritedata11)替代。
@@ -5574,8 +6778,9 @@ write(buffer: ArrayBuffer): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 let bufferSize: number;
 class Options {
@@ -5586,7 +6791,9 @@ audioRenderer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
   console.info(`BufferSize: ${bufferSize}`);
-  let path = getContext().cacheDir;
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let path = context.cacheDir;
   let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
   let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   fs.stat(filePath).then(async (stat: fs.Stat) => {
@@ -5596,8 +6803,8 @@ audioRenderer.getBufferSize().then((data: number) => {
       let options: Options = {
         offset: i * bufferSize,
         length: bufferSize
-      }
-      let readsize: number = await fs.read(file.fd, buf, options)
+      };
+      let readSize: number = await fs.read(file.fd, buf, options);
       try{
         let writeSize: number = await audioRenderer.write(buf);
       } catch(err) {
@@ -5615,7 +6822,7 @@ audioRenderer.getBufferSize().then((data: number) => {
 
 getAudioTime(callback: AsyncCallback\<number>): void
 
-获取时间戳（从 1970 年 1 月 1 日开始）。使用callback方式异步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5628,7 +6835,7 @@ getAudioTime(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
@@ -5639,7 +6846,7 @@ audioRenderer.getAudioTime((err: BusinessError, timestamp: number) => {
 
 getAudioTime(): Promise\<number>
 
-获取时间戳（从 1970 年 1 月 1 日开始）。使用Promise方式异步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5652,7 +6859,7 @@ getAudioTime(): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getAudioTime().then((timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
@@ -5665,7 +6872,7 @@ audioRenderer.getAudioTime().then((timestamp: number) => {
 
 getAudioTimeSync(): number
 
-获取时间戳（从 1970 年 1 月 1 日开始），同步返回结果。
+获取播放到当前位置时的时间戳（从 1970 年 1 月 1 日开始），单位为纳秒。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5678,7 +6885,7 @@ getAudioTimeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let timestamp: number = audioRenderer.getAudioTimeSync();
@@ -5693,7 +6900,7 @@ try {
 
 getBufferSize(callback: AsyncCallback\<number>): void
 
-获取音频渲染器的最小缓冲区大小。使用callback方式异步返回结果。
+获取音频渲染器的最小缓冲区大小。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5706,9 +6913,10 @@ getBufferSize(callback: AsyncCallback\<number>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number;
+
 audioRenderer.getBufferSize((err: BusinessError, data: number) => {
   if (err) {
     console.error('getBufferSize error');
@@ -5723,7 +6931,7 @@ audioRenderer.getBufferSize((err: BusinessError, data: number) => {
 
 getBufferSize(): Promise\<number>
 
-获取音频渲染器的最小缓冲区大小。使用Promise方式异步返回结果。
+获取音频渲染器的最小缓冲区大小。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -5736,9 +6944,10 @@ getBufferSize(): Promise\<number>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number;
+
 audioRenderer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -5764,9 +6973,10 @@ getBufferSizeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 try {
   bufferSize = audioRenderer.getBufferSizeSync();
   console.info(`AudioFrameworkRenderLog: getBufferSize: SUCCESS ${bufferSize}`);
@@ -5780,7 +6990,7 @@ try {
 
 setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 
-设置音频渲染速率。使用callback方式异步返回结果。
+设置音频渲染速率。使用callback异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[setSpeed](#setspeed11)替代。
@@ -5797,7 +7007,7 @@ setRenderRate(rate: AudioRendererRate, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: BusinessError) => {
   if (err) {
@@ -5812,7 +7022,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err: Bu
 
 setRenderRate(rate: AudioRendererRate): Promise\<void>
 
-设置音频渲染速率。使用Promise方式异步返回结果。
+设置音频渲染速率。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[setSpeed](#setspeed11)替代。
@@ -5829,12 +7039,12 @@ setRenderRate(rate: AudioRendererRate): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | Promise对象，无返回结果。 |
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() => {
   console.info('setRenderRate SUCCESS');
@@ -5855,7 +7065,7 @@ setSpeed(speed: number): void
 
 | 参数名 | 类型                                     | 必填 | 说明                   |
 | ------ | ---------------------------------------- | ---- |----------------------|
-| speed | number | 是   | 设置播放的倍速值（倍速范围：0.25-4.0）。 |
+| speed | number | 是   | 设置播放的倍速值（倍速范围：0.125-4.0）。 |
 
 **错误码：**
 
@@ -5863,7 +7073,8 @@ setSpeed(speed: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -5875,7 +7086,7 @@ audioRenderer.setSpeed(1.5);
 
 getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 
-获取当前渲染速率。使用callback方式异步返回结果。
+获取当前渲染速率。使用callback异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[getSpeed](#getspeed11)替代。
@@ -5891,7 +7102,7 @@ getRenderRate(callback: AsyncCallback\<AudioRendererRate>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderRate}`);
@@ -5902,7 +7113,7 @@ audioRenderer.getRenderRate((err: BusinessError, renderRate: audio.AudioRenderer
 
 getRenderRate(): Promise\<AudioRendererRate>
 
-获取当前渲染速率。使用Promise方式异步返回结果。
+获取当前渲染速率。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 11 开始废弃。建议使用AudioRenderer中的[getSpeed](#getspeed11)替代。
@@ -5918,7 +7129,7 @@ getRenderRate(): Promise\<AudioRendererRate>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getRenderRate().then((renderRate: audio.AudioRendererRate) => {
   console.info(`getRenderRate: ${renderRate}`);
@@ -5947,7 +7158,7 @@ getRenderRateSync(): AudioRendererRate
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let renderRate: audio.AudioRendererRate = audioRenderer.getRenderRateSync();
@@ -5996,14 +7207,15 @@ setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mode = 0;
+
 audioRenderer.setInterruptMode(mode).then(() => {
   console.info('setInterruptMode Success!');
 }).catch((err: BusinessError) => {
@@ -6028,9 +7240,10 @@ setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let mode = 1;
+
 audioRenderer.setInterruptMode(mode, (err: BusinessError) => {
   if(err){
     console.error(`setInterruptMode Fail: ${err}`);
@@ -6059,12 +7272,13 @@ setInterruptModeSync(mode: InterruptMode): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | invalid parameter error              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   audioRenderer.setInterruptModeSync(0);
@@ -6093,12 +7307,12 @@ setVolume(volume: number): Promise&lt;void&gt;
 
 | 类型                | 说明                          |
 | ------------------- | ----------------------------- |
-| Promise&lt;void&gt; | Promise对象，无返回结果。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setVolume(0.5).then(() => {
   console.info('setVolume Success!');
@@ -6124,7 +7338,7 @@ setVolume(volume: number, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.setVolume(0.5, (err: BusinessError) => {
   if(err){
@@ -6151,7 +7365,7 @@ getVolume(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioRenderer.getVolume();
@@ -6179,7 +7393,7 @@ getMinStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getMinStreamVolume((err: BusinessError, minVolume: number) => {
   if (err) {
@@ -6206,7 +7420,7 @@ getMinStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getMinStreamVolume().then((value: number) => {
   console.info(`Get min stream volume Success! ${value}`);
@@ -6232,7 +7446,7 @@ getMinStreamVolumeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioRenderer.getMinStreamVolumeSync();
@@ -6260,7 +7474,7 @@ getMaxStreamVolume(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getMaxStreamVolume((err: BusinessError, maxVolume: number) => {
   if (err) {
@@ -6287,7 +7501,7 @@ getMaxStreamVolume(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getMaxStreamVolume().then((value: number) => {
   console.info(`Get max stream volume Success! ${value}`);
@@ -6313,7 +7527,7 @@ getMaxStreamVolumeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioRenderer.getMaxStreamVolumeSync();
@@ -6341,7 +7555,7 @@ getUnderflowCount(callback: AsyncCallback&lt;number&gt;): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getUnderflowCount((err: BusinessError, underflowCount: number) => {
   if (err) {
@@ -6368,7 +7582,7 @@ getUnderflowCount(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getUnderflowCount().then((value: number) => {
   console.info(`Get underflow count Success! ${value}`);
@@ -6394,7 +7608,7 @@ getUnderflowCountSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioRenderer.getUnderflowCountSync();
@@ -6422,7 +7636,7 @@ getCurrentOutputDevices(callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getCurrentOutputDevices((err: BusinessError, deviceInfo: audio.AudioDeviceDescriptors) => {
   if (err) {
@@ -6458,7 +7672,7 @@ getCurrentOutputDevices(): Promise&lt;AudioDeviceDescriptors&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioRenderer.getCurrentOutputDevices().then((deviceInfo: audio.AudioDeviceDescriptors) => {
   for (let i = 0; i < deviceInfo.length; i++) {
@@ -6493,7 +7707,7 @@ getCurrentOutputDevicesSync(): AudioDeviceDescriptors
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let deviceInfo: audio.AudioDeviceDescriptors = audioRenderer.getCurrentOutputDevicesSync();
@@ -6532,7 +7746,8 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 | 6800103 | Operation not permit at current state.    |
 
 **示例：**
@@ -6564,8 +7779,8 @@ setVolumeWithRamp(volume: number, duration: number): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
-| 401 | Input parameter type or number mismatch.    |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6577,22 +7792,75 @@ audioRenderer.setVolumeWithRamp(volume, duration);
 console.info(`setVolumeWithRamp: ${volume}`);
 ```
 
-### on('audioInterrupt')<sup>9+</sup>
+### setSilentModeAndMixWithOthers<sup>12+</sup>
 
-on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
+setSilentModeAndMixWithOthers(on: boolean): void
 
-监听音频中断事件，使用callback方式返回结果。
+设置静音并发播放模式。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+当设置为true，打开静音并发播放模式，系统将让此音频流静音播放，并且不会打断其它音频流。设置为false，将关闭静音并发播放，音频流可根据系统焦点策略抢占焦点。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频渲染被中断。） |
-| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
+| 参数名 | 类型                                     | 必填 | 说明                   |
+| ------ | ---------------------------------------- | ---- |----------------------|
+| on | boolean | 是   | 打开/关闭静音并发播放模式，true打开，false关闭。 |
+
+**示例：**
+
+```ts
+audioRenderer.setSilentModeAndMixWithOthers(true);
+```
+
+### getSilentModeAndMixWithOthers<sup>12+</sup>
+
+getSilentModeAndMixWithOthers(): boolean
+
+获取静音并发播放模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明        |
+| ------------------------------------------------- |-----------|
+| boolean | 返回静音并发播放模式状态，true打开，false关闭。 |
+
+**示例：**
+
+```ts
+let on = audioRenderer.getSilentModeAndMixWithOthers();
+```
+
+### setDefaultOutputDevice<sup>12+</sup>
+
+setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
+
+设置默认本机内置发声设备。使用Promise异步回调。
+
+> **说明：**
+>
+> - 本接口仅适用于[音频流类型](#streamusage)为语音消息、VoIP语音通话或者VoIP视频通话的场景使用，可选的设备类型为听筒、扬声器和系统默认设备。
+>
+> - 本接口允许在AudioRenderer创建以后的任何时间被调用，系统会记录应用设置的默认本机内置发声设备。在应用启动播放时，若有外接设备如蓝牙耳机/有线耳机接入，系统优先从外接设备发声；否则系统遵循应用设置的默认本机内置发声设备发声。
+>
+> - 本接口优先级低于[AVCastPicker](../apis-avsession-kit/ohos-multimedia-avcastpicker.md#avcastpicker)。如果使用AVCastPicker切换过发声设备，再调用本接口切换设备不生效。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名     | 类型             | 必填   | 说明                                                      |
+| ---------- |----------------| ------ |---------------------------------------------------------|
+| deviceType | [DeviceType](#devicetype) | 是     | 设备类型。<br>只支持：EARPIECE（听筒）、SPEAKER（扬声器）和DEFAULT（系统默认设备）。 |
+
+**返回值：**
+
+| 类型                | 说明                          |
+| ------------------- | ----------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -6600,75 +7868,106 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+| 6800103 | Operation not permit at current state.    |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let isPlaying: boolean; // 标识符，表示是否正在渲染
-let isDucked: boolean; // 标识符，表示是否被降低音量
+// 本接口允许在AudioRenderer创建以后的任何时间被调用。
+// 未播放时调用，系统会记录应用设置的默认本机内置发声设备，当应用启动播放时从设置的默认本机内置发声设备发声。
+// 正在播放时调用，在没有外接设备如蓝牙耳机/有线耳机，系统会立即切换到设置的默认本机内置发声设备发声；否则系统会先记录应用设置的默认本机内置发声设备，等外接设备移除后再切换到设置的默认本机内置发声设备发声。
+audioRenderer.setDefaultOutputDevice(audio.DeviceType.SPEAKER).then(() => {
+  console.info('setDefaultOutputDevice Success!');
+}).catch((err: BusinessError) => {
+  console.error(`setDefaultOutputDevice Fail: ${err}`);
+});
+```
+
+### on('audioInterrupt')<sup>9+</sup>
+
+on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
+
+监听音频中断事件（当音频焦点发生变化时触发）。使用callback异步回调。
+
+AudioRenderer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+
+调用此方法，在AudioRenderer对象获取焦点失败或发生中断事件（如被其他音频打断等）时，会收到[InterruptEvent](#interruptevent9)。建议应用可根据InterruptEvent的信息完成进一步处理，更多信息可参考文档[处理音频焦点事件](../../media/audio/audio-playback-concurrency.md)。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                                        |
+| -------- | -------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | string                                       | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当音频焦点状态发生变化时，触发该事件。 |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回中断事件信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+let isPlaying: boolean; // 标识符，表示是否正在渲染。
+let isDucked: boolean; // 标识符，表示是否被降低音量。
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioRenderer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+    // 在发生音频打断事件时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理。
+    // 1. 可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+    // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+    // 2. 必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 由系统进行操作，强制打断音频渲染，应用需更新自身状态及显示内容等
+      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
+          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent。
           console.info('Force paused. Update playing status and stop writing');
-          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 音频流已被停止，永久失去焦点，若想恢复渲染，需用户主动触发
+          // 音频流已被停止，永久失去焦点，若想恢复渲染，需用户主动触发。
           console.info('Force stopped. Update playing status and stop writing');
-          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-          // 音频流已被降低音量渲染
+          // 音频流已被降低音量渲染。
           console.info('Force ducked. Update volume status');
-          isDucked = true; // 简化处理，代表应用更新音量状态的若干操作
+          isDucked = true; // 简化处理，代表应用更新音量状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-          // 音频流已被恢复正常音量渲染
+          // 音频流已被恢复正常音量渲染。
           console.info('Force ducked. Update volume status');
-          isDucked = false; // 简化处理，代表应用更新音量状态的若干操作
+          isDucked = false; // 简化处理，代表应用更新音量状态的若干操作。
           break;
         default:
           console.info('Invalid interruptEvent');
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 由应用进行操作，应用可以自主选择打断或忽略
+      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-          // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）
+          // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）。
+          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型。
           console.info('Resume force paused renderer or ignore');
-          // 若选择继续渲染，需在此处主动执行开始渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 建议应用暂停渲染
-          console.info('Choose to pause or ignore');
-          // 若选择暂停渲染，需在此处主动执行暂停渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 建议应用停止渲染
-          console.info('Choose to stop or ignore');
-          // 若选择停止渲染，需在此处主动执行停止渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
-          // 建议应用降低音量渲染
-          console.info('Choose to duck or ignore');
-          // 若选择降低音量渲染，需在此处主动执行降低音量渲染的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
-          // 建议应用恢复正常音量渲染
-          console.info('Choose to unduck or ignore');
-          // 若选择恢复正常音量渲染，需在此处主动执行恢复正常音量渲染的若干操作
+          // 若选择继续渲染，需在此处主动执行开始渲染的若干操作。
           break;
         default:
+          console.info('Invalid interruptEvent');
           break;
       }
     }
@@ -6676,11 +7975,100 @@ async function onAudioInterrupt(){
 }
 ```
 
+### off('audioInterrupt')<sup>18+</sup>
+
+off(type: 'audioInterrupt', callback?: Callback&lt;InterruptEvent&gt;): void
+
+取消监听音频中断事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Interrupt
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当取消监听音频中断事件时，触发该事件。 |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 否 |  回调函数，返回中断事件信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioRenderer.off('audioInterrupt');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let isPlaying: boolean; // 标识符，表示是否正在渲染。
+let isDucked: boolean; // 标识符，表示是否被降低音量。
+
+let audioInterruptCallback = (interruptEvent: audio.InterruptEvent) => {
+  // 在发生音频打断事件时，audioRenderer收到interruptEvent回调，此处根据其内容做相应处理。
+  // 1. 可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+  // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+  // 2. 必选：读取interruptEvent.hintType的类型，做出相应的处理。
+  if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+    // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等。
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+        // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent。
+        console.info('Force paused. Update playing status and stop writing');
+        isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作。
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_STOP:
+        // 音频流已被停止，永久失去焦点，若想恢复渲染，需用户主动触发。
+        console.info('Force stopped. Update playing status and stop writing');
+        isPlaying = false; // 简化处理，代表应用切换至暂停状态的若干操作。
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+        // 音频流已被降低音量渲染。
+        console.info('Force ducked. Update volume status');
+        isDucked = true; // 简化处理，代表应用更新音量状态的若干操作。
+        break;
+      case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+        // 音频流已被恢复正常音量渲染。
+        console.info('Force ducked. Update volume status');
+        isDucked = false; // 简化处理，代表应用更新音量状态的若干操作。
+        break;
+      default:
+        console.info('Invalid interruptEvent');
+        break;
+    }  
+  } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+    // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理。
+    switch (interruptEvent.hintType) {
+      case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+        // 建议应用继续渲染（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复渲染）。
+        // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型。
+        console.info('Resume force paused renderer or ignore');
+        // 若选择继续渲染，需在此处主动执行开始渲染的若干操作。
+        break;
+      default:
+        console.info('Invalid interruptEvent');
+        break;
+    }
+  }
+};
+
+audioRenderer.on('audioInterrupt', audioInterruptCallback);
+
+audioRenderer.off('audioInterrupt', audioInterruptCallback);
+```
+
 ### on('markReach')<sup>8+</sup>
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，回调被调用，使用callback方式返回结果。
+监听标记到达事件（当渲染的帧数到达frame参数的值时触发，仅调用一次）。使用callback异步回调。
+
+举例说明，如果frame设置为100，当渲染帧数到达第100帧时，将上报信息。
 
 **系统能力:** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6688,9 +8076,9 @@ on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                      |
 | :------- | :----------------------- | :--- | :---------------------------------------- |
-| type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。 |
-| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。         |
-| callback | Callback\<number>         | 是   | 回调函数，返回frame 参数的值 |
+| type     | string                   | 是   | 事件回调类型，支持的事件为'markReach'，当渲染的帧数到达frame参数的值时，触发该事件。 |
+| frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。         |
+| callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
@@ -6703,11 +8091,11 @@ audioRenderer.on('markReach', 1000, (position: number) => {
 ```
 
 
-### off('markReach') <sup>8+</sup>
+### off('markReach')<sup>8+</sup>
 
-off(type: 'markReach'): void
+off(type: 'markReach', callback?: Callback&lt;number&gt;): void
 
-取消订阅标记事件。
+取消监听标记到达事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6715,19 +8103,34 @@ off(type: 'markReach'): void
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | :----- | :----- | :--- | :------------------------------------------------ |
-| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'markReach'。 |
+| type   | string | 是   | 事件回调类型，支持的事件为'markReach'，当取消监听标记到达事件时，触发该事件。 |
+| callback<sup>18+</sup> | Callback\<number>         | 否  | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioRenderer.off('markReach');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let markReachCallback = (position: number) => {
+  if (position == 1000) {
+    console.info('ON Triggered successfully');
+  }
+};
+
+audioRenderer.on('markReach', markReachCallback);
+
+audioRenderer.off('markReach', markReachCallback);
 ```
 
-### on('periodReach') <sup>8+</sup>
+### on('periodReach')<sup>8+</sup>
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当渲染的帧数达到 frame 参数的值时，触发回调并返回设定的值，使用callback方式返回结果。
+监听标记到达事件（每当渲染的帧数达到frame参数的值时触发，即按周期上报信息）。使用callback异步回调。
+
+举例说明，如果frame设置为10，每当渲染10帧数据时将上报信息，例如在第10帧、20帧、30帧，均会上报信息。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6735,9 +8138,9 @@ on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                        |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
-| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于 0。           |
-| callback | Callback\<number>         | 是   | 回调函数，返回frame 参数的值 |
+| type     | string                   | 是   | 事件回调类型，支持的事件为'periodReach'，当渲染的帧数达到frame参数的值时，触发该事件。 |
+| frame    | number                   | 是   | 触发事件的帧数。该值必须大于 0。           |
+| callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
@@ -6749,11 +8152,11 @@ audioRenderer.on('periodReach', 1000, (position: number) => {
 });
 ```
 
-### off('periodReach') <sup>8+</sup>
+### off('periodReach')<sup>8+</sup>
 
-off(type: 'periodReach'): void
+off(type: 'periodReach', callback?: Callback&lt;number&gt;): void
 
-取消订阅标记事件。
+取消监听标记到达事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6761,19 +8164,32 @@ off(type: 'periodReach'): void
 
 | 参数名 | 类型   | 必填 | 说明                                                |
 | :----- | :----- | :--- | :-------------------------------------------------- |
-| type   | string | 是   | 要取消订阅事件的类型。支持的事件为：'periodReach'。 |
+| type   | string | 是   | 事件回调类型，支持的事件为'periodReach'，当取消监听标记到达事件时，触发该事件。 |
+| callback<sup>18+</sup> | Callback\<number>         | 否  | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioRenderer.off('periodReach');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let periodReachCallback = (position: number) => {
+  if (position == 1000) {
+    console.info('ON Triggered successfully');
+  }
+};
+
+audioRenderer.on('periodReach', periodReachCallback);
+
+audioRenderer.off('periodReach', periodReachCallback);
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
-订阅监听状态变化，使用callback方式返回结果。
+监听状态变化事件（当AudioRenderer的状态发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -6781,7 +8197,7 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'stateChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'stateChange'，当AudioRenderer的状态发生变化时，触发该事件。 |
 | callback | Callback\<[AudioState](#audiostate8)> | 是   | 回调函数，返回当前音频的状态。 |
 
 **示例：**
@@ -6797,11 +8213,56 @@ audioRenderer.on('stateChange', (state: audio.AudioState) => {
 });
 ```
 
-### on('outputDeviceChange') <sup>10+</sup>
+### off('stateChange')<sup>18+</sup>
+
+off(type: 'stateChange', callback?: Callback&lt;AudioState&gt;): void
+
+取消监听到达标记事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| type   | string | 是   | 事件回调类型，支持的事件为'stateChange'，当取消监听到达标记事件时，触发该事件。 |
+| callback | Callback\<[AudioState](#audiostate8)> | 否 | 回调函数，返回当前音频的状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioRenderer.off('stateChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let stateChangeCallback = (state: audio.AudioState) => {
+  if (state == 1) {
+    console.info('audio renderer state is: STATE_PREPARED');
+  }
+  if (state == 2) {
+    console.info('audio renderer state is: STATE_RUNNING');
+  }
+};
+
+audioRenderer.on('stateChange', stateChangeCallback);
+
+audioRenderer.off('stateChange', stateChangeCallback);
+```
+
+### on('outputDeviceChange')<sup>10+</sup>
 
 on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
-订阅监听音频输出设备变化，使用callback方式返回结果。
+监听音频输出设备变化事件（当音频输出设备发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -6809,7 +8270,7 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'outputDeviceChange'，当音频输出设备发生变化时，触发该事件。 |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 回调函数，返回当前音频流的输出设备描述信息。 |
 
 **错误码：**
@@ -6818,7 +8279,8 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6830,11 +8292,11 @@ audioRenderer.on('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors
 });
 ```
 
-### off('outputDeviceChange') <sup>10+</sup>
+### off('outputDeviceChange')<sup>10+</sup>
 
 off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
-取消订阅监听音频输出设备变化，使用callback方式返回结果。
+取消监听音频输出设备变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -6842,7 +8304,7 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'outputDeviceChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'outputDeviceChange'，当取消监听音频输出设备变化事件时，触发该事件。 |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回当前音频流的输出设备描述信息。 |
 
 **错误码：**
@@ -6851,23 +8313,32 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-audioRenderer.off('outputDeviceChange', (deviceInfo: audio.AudioDeviceDescriptors) => {
+// 取消该事件的所有监听。
+audioRenderer.off('outputDeviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let outputDeviceChangeCallback = (deviceInfo: audio.AudioDeviceDescriptors) => {
   console.info(`DeviceInfo id: ${deviceInfo[0].id}`);
   console.info(`DeviceInfo name: ${deviceInfo[0].name}`);
   console.info(`DeviceInfo address: ${deviceInfo[0].address}`);
-});
+};
+
+audioRenderer.on('outputDeviceChange', outputDeviceChangeCallback);
+
+audioRenderer.off('outputDeviceChange', outputDeviceChangeCallback);
 ```
 
-### on('outputDeviceChangeWithInfo') <sup>11+</sup>
+### on('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChangeInfo>): void
 
-订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+监听音频流输出设备变化及原因事件（当音频输出设备发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -6875,7 +8346,7 @@ on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChan
 
 | 参数名   | 类型                                                                       | 必填 | 说明                                          |
 | :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
-| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| type     | string                                                                   | 是   | 事件回调类型，支持的事件为'outputDeviceChangeWithInfo'，当音频输出设备发生变化时，触发该事件。 |
 | callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 是   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -6884,7 +8355,8 @@ on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChan
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -6897,11 +8369,11 @@ audioRenderer.on('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStr
 });
 ```
 
-### off('outputDeviceChangeWithInfo') <sup>11+</sup>
+### off('outputDeviceChangeWithInfo')<sup>11+</sup>
 
 off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceChangeInfo>): void
 
-取消订阅监听音频流输出设备变化及原因，使用callback方式返回结果。
+取消监听音频流输出设备变化及原因事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -6909,7 +8381,7 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 
 | 参数名   | 类型                                                                       | 必填 | 说明                                          |
 | :------- |:-------------------------------------------------------------------------| :--- |:--------------------------------------------|
-| type     | string                                                                   | 是   | 事件回调类型，支持的事件为：'outputDeviceChangeWithInfo'。 |
+| type     | string | 是   | 事件回调类型，支持的事件为'outputDeviceChangeWithInfo'，当取消监听音频流输出设备变化及原因事件时，触发该事件。 |
 | callback | Callback\<[AudioStreamDeviceChangeInfo](#audiostreamdevicechangeinfo11)> | 否   | 回调函数，返回当前音频流的输出设备描述信息及变化原因。 |
 
 **错误码：**
@@ -6918,66 +8390,90 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | if input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-audioRenderer.off('outputDeviceChangeWithInfo', (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
+// 取消该事件的所有监听。
+audioRenderer.off('outputDeviceChangeWithInfo');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let outputDeviceChangeWithInfoCallback = (deviceChangeInfo: audio.AudioStreamDeviceChangeInfo) => {
   console.info(`DeviceInfo id: ${deviceChangeInfo.devices[0].id}`);
   console.info(`DeviceInfo name: ${deviceChangeInfo.devices[0].name}`);
   console.info(`DeviceInfo address: ${deviceChangeInfo.devices[0].address}`);
   console.info(`Device change reason: ${deviceChangeInfo.changeReason}`);
-});
+};
+
+audioRenderer.on('outputDeviceChangeWithInfo', outputDeviceChangeWithInfoCallback);
+
+audioRenderer.off('outputDeviceChangeWithInfo', outputDeviceChangeWithInfoCallback);
 ```
 
 ### on('writeData')<sup>11+</sup>
 
-on(type: 'writeData', callback: Callback\<ArrayBuffer>): void
+on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
-订阅监听音频数据写入回调，使用callback方式返回结果。
+监听音频数据写入回调事件（当需要写入音频数据时触发），使用 callback 方式返回结果。
+
+回调函数仅用来写入音频数据，请勿在回调函数中调用AudioRenderer相关接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                         |
-| :------- |:-----------------------| :--- |:---------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'writeData'。 |
-| callback | Callback\<ArrayBuffer> | 是   | 回调函数，返回待写入的数据缓冲区。            |
+| 参数名   | 类型                             | 必填 | 说明                                  |
+| :------- |:--------------------------------| :--- |:--------------------------------------|
+| type     | string                           | 是   | 事件回调类型，支持的事件为'writeData'，当需要写入音频数据时，触发该事件。 |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 是   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。        |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+import {fileIo as fs} from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
-let bufferSize: number = 0;
 class Options {
   offset?: number;
   length?: number;
 }
 
+let bufferSize: number = 0;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
+// 确保该沙箱路径下存在该资源。
+let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
 let writeDataCallback = (buffer: ArrayBuffer) => {
-  let path = getContext().cacheDir;
-  //确保该路径下存在该资源
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
+  };
+
+  try {
+    fs.readSync(file.fd, buffer, options);
+    bufferSize += buffer.byteLength;
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果。
+    return audio.AudioDataCallbackResult.VALID;
+  } catch (error) {
+    console.error('Error reading file:', error);
+    // API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果。
+    return audio.AudioDataCallbackResult.INVALID;
   }
-  fs.readSync(file.fd, buffer, options);
-  bufferSize += buffer.byteLength;
-}
+};
 
 audioRenderer.on('writeData', writeDataCallback);
 audioRenderer.start().then(() => {
@@ -6989,33 +8485,42 @@ audioRenderer.start().then(() => {
 
 ### off('writeData')<sup>11+</sup>
 
-off(type: 'writeData', callback?: Callback\<ArrayBuffer>): void
+off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 
-取消订阅监听音频数据写入回调，使用callback方式返回结果。
+取消监听音频数据写入回调事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 **参数：**
 
-| 参数名   | 类型                     | 必填 | 说明                                         |
-| :------- |:-----------------------| :--- |:-------------------------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'writeData'。                 |
-| callback | Callback\<ArrayBuffer> | 否   | 回调函数，返回待写入的数据缓冲区。                            |
+| 参数名   | 类型                             | 必填 | 说明                                  |
+| :------- |:--------------------------------| :--- |:--------------------------------------|
+| type     | string                           | 是   | 事件回调类型，支持的事件为'writeData'，当取消监听音频数据写入回调事件时，触发该事件。 |
+| callback | [AudioRendererWriteDataCallback](#audiorendererwritedatacallback12)   | 否   | 回调函数，入参代表应用接收待写入的数据缓冲区。<br>API version 11 不支持返回回调结果，从 API version 12 开始支持返回回调结果[AudioDataCallbackResult](#audiodatacallbackresult12)。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-audioRenderer.off('writeData', (data: ArrayBuffer) => {
+// 取消该事件的所有监听。
+audioRenderer.off('writeData');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let writeDataCallback = (data: ArrayBuffer) => {
     console.info(`write data: ${data}`);
-});
+};
+
+audioRenderer.on('writeData', writeDataCallback);
+
+audioRenderer.off('writeData', writeDataCallback);
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -7033,7 +8538,7 @@ audioRenderer.off('writeData', (data: ArrayBuffer) => {
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
 let state: audio.AudioState = audioCapturer.state;
 ```
@@ -7042,7 +8547,7 @@ let state: audio.AudioState = audioCapturer.state;
 
 getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 
-获取采集器信息。使用callback方式异步返回结果。
+获取采集器信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7055,7 +8560,7 @@ getCapturerInfo(callback: AsyncCallback<AudioCapturerInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapturerInfo) => {
   if (err) {
@@ -7073,7 +8578,7 @@ audioCapturer.getCapturerInfo((err: BusinessError, capturerInfo: audio.AudioCapt
 
 getCapturerInfo(): Promise<AudioCapturerInfo\>
 
-获取采集器信息。使用Promise方式异步返回结果。
+获取采集器信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7086,7 +8591,7 @@ getCapturerInfo(): Promise<AudioCapturerInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getCapturerInfo().then((audioParamsGet: audio.AudioCapturerInfo) => {
   if (audioParamsGet != undefined) {
@@ -7119,7 +8624,7 @@ getCapturerInfoSync(): AudioCapturerInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioParamsGet: audio.AudioCapturerInfo = audioCapturer.getCapturerInfoSync();
@@ -7135,7 +8640,7 @@ try {
 
 getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 
-获取采集器流信息。使用callback方式异步返回结果。
+获取采集器流信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7148,7 +8653,7 @@ getStreamInfo(callback: AsyncCallback<AudioStreamInfo\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamInfo) => {
   if (err) {
@@ -7167,7 +8672,7 @@ audioCapturer.getStreamInfo((err: BusinessError, streamInfo: audio.AudioStreamIn
 
 getStreamInfo(): Promise<AudioStreamInfo\>
 
-获取采集器流信息。使用Promise方式异步返回结果。
+获取采集器流信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7180,7 +8685,7 @@ getStreamInfo(): Promise<AudioStreamInfo\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getStreamInfo().then((audioParamsGet: audio.AudioStreamInfo) => {
   console.info('getStreamInfo:');
@@ -7210,7 +8715,7 @@ getStreamInfoSync(): AudioStreamInfo
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioParamsGet: audio.AudioStreamInfo = audioCapturer.getStreamInfoSync();
@@ -7228,7 +8733,7 @@ try {
 
 getAudioStreamId(callback: AsyncCallback<number\>): void
 
-获取音频流id，使用callback方式异步返回结果。
+获取音频流id。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7241,7 +8746,7 @@ getAudioStreamId(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioStreamId((err: BusinessError, streamId: number) => {
   console.info(`audioCapturer GetStreamId: ${streamId}`);
@@ -7252,7 +8757,7 @@ audioCapturer.getAudioStreamId((err: BusinessError, streamId: number) => {
 
 getAudioStreamId(): Promise<number\>
 
-获取音频流id，使用Promise方式异步返回结果。
+获取音频流id。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7265,7 +8770,7 @@ getAudioStreamId(): Promise<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioStreamId().then((streamId: number) => {
   console.info(`audioCapturer getAudioStreamId: ${streamId}`);
@@ -7291,7 +8796,7 @@ getAudioStreamIdSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let streamId: number = audioCapturer.getAudioStreamIdSync();
@@ -7306,7 +8811,7 @@ try {
 
 start(callback: AsyncCallback<void\>): void
 
-启动音频采集器。使用callback方式异步返回结果。
+启动音频采集器。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7314,12 +8819,12 @@ start(callback: AsyncCallback<void\>): void
 
 | 参数名   | 类型                 | 必填 | 说明                           |
 | :------- | :------------------- | :--- | :----------------------------- |
-| callback | AsyncCallback<void\> | 是   | 回调函数。当启动音频采集器成功，err为undefined，否则为错误对象。 |
+| callback | AsyncCallback<void\> | 是   | 回调函数。当启动音频采集器成功，err为undefined，否则为错误对象。异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.start((err: BusinessError) => {
   if (err) {
@@ -7335,7 +8840,7 @@ audioCapturer.start((err: BusinessError) => {
 
 start(): Promise<void\>
 
-启动音频采集器。使用Promise方式异步返回结果。
+启动音频采集器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7343,12 +8848,12 @@ start(): Promise<void\>
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象，成功表示启动音频采集器成功，异常将返回error对象：<br>错误码6800301，表示包含状态检查异常、焦点抢占失败、系统处理异常（具体错误查看系统日志）。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.start().then(() => {
   console.info('AudioFrameworkRecLog: ---------START---------');
@@ -7367,7 +8872,7 @@ audioCapturer.start().then(() => {
 
 stop(callback: AsyncCallback<void\>): void
 
-停止采集。使用callback方式异步返回结果。
+停止采集。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7380,7 +8885,7 @@ stop(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.stop((err: BusinessError) => {
   if (err) {
@@ -7396,7 +8901,7 @@ audioCapturer.stop((err: BusinessError) => {
 
 stop(): Promise<void\>
 
-停止采集。使用Promise方式异步返回结果。
+停止采集。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7404,12 +8909,12 @@ stop(): Promise<void\>
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.stop().then(() => {
   console.info('AudioFrameworkRecLog: ---------STOP RECORD---------');
@@ -7426,7 +8931,7 @@ audioCapturer.stop().then(() => {
 
 release(callback: AsyncCallback<void\>): void
 
-释放采集器。使用callback方式异步返回结果。
+释放采集器。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7439,7 +8944,7 @@ release(callback: AsyncCallback<void\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.release((err: BusinessError) => {
   if (err) {
@@ -7455,7 +8960,7 @@ audioCapturer.release((err: BusinessError) => {
 
 release(): Promise<void\>
 
-释放采集器。使用Promise方式异步返回结果。
+释放采集器。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7463,12 +8968,12 @@ release(): Promise<void\>
 
 | 类型           | 说明                          |
 | :------------- | :---------------------------- |
-| Promise<void\> | Promise对象，无返回结果。 |
+| Promise<void\> | Promise对象。无返回结果的Promise对象。 |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.release().then(() => {
   console.info('AudioFrameworkRecLog: ---------RELEASE RECORD---------');
@@ -7483,7 +8988,7 @@ audioCapturer.release().then(() => {
 
 read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\>): void
 
-读入缓冲区。使用callback方式异步返回结果。
+读入缓冲区。使用callback异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioCapturer中的[on('readData')](#onreaddata11)替代。
@@ -7501,15 +9006,17 @@ read(size: number, isBlockingRead: boolean, callback: AsyncCallback<ArrayBuffer\
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
 }).catch((err: BusinessError) => {
   console.error(`AudioFrameworkRecLog: getBufferSize: ERROR: ${err}`);
 });
+
 audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) => {
   if (!err) {
     console.info('Success in reading the buffer data');
@@ -7521,7 +9028,7 @@ audioCapturer.read(bufferSize, true, (err: BusinessError, buffer: ArrayBuffer) =
 
 read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 
-读入缓冲区。使用Promise方式异步返回结果。
+读入缓冲区。使用Promise异步回调。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 11 开始废弃，建议使用AudioCapturer中的[on('readData')](#onreaddata11)替代。
@@ -7544,9 +9051,10 @@ read(size: number, isBlockingRead: boolean): Promise<ArrayBuffer\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize: SUCCESS ${data}`);
   bufferSize = data;
@@ -7554,6 +9062,7 @@ audioCapturer.getBufferSize().then((data: number) => {
   console.error(`AudioFrameworkRecLog: getBufferSize: ERROR ${err}`);
 });
 console.info(`Buffer size: ${bufferSize}`);
+
 audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
   console.info('buffer read successfully');
 }).catch((err: BusinessError) => {
@@ -7565,7 +9074,7 @@ audioCapturer.read(bufferSize, true).then((buffer: ArrayBuffer) => {
 
 getAudioTime(callback: AsyncCallback<number\>): void
 
-获取时间戳（从1970年1月1日开始），单位为纳秒。使用callback方式异步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7578,7 +9087,7 @@ getAudioTime(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
   console.info(`Current timestamp: ${timestamp}`);
@@ -7589,7 +9098,7 @@ audioCapturer.getAudioTime((err: BusinessError, timestamp: number) => {
 
 getAudioTime(): Promise<number\>
 
-获取时间戳（从1970年1月1日开始），单位为纳秒。使用Promise方式异步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7602,7 +9111,7 @@ getAudioTime(): Promise<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getAudioTime().then((audioTime: number) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer getAudioTime : Success ${audioTime}`);
@@ -7615,7 +9124,7 @@ audioCapturer.getAudioTime().then((audioTime: number) => {
 
 getAudioTimeSync(): number
 
-获取时间戳（从1970年1月1日开始），单位为纳秒，同步返回结果。
+获取录制到当前位置时的时间戳（从1970年1月1日开始），单位为纳秒。同步返回结果。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7628,7 +9137,7 @@ getAudioTimeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let audioTime: number = audioCapturer.getAudioTimeSync();
@@ -7643,7 +9152,7 @@ try {
 
 getBufferSize(callback: AsyncCallback<number\>): void
 
-获取采集器合理的最小缓冲区大小。使用callback方式异步返回结果。
+获取采集器合理的最小缓冲区大小。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7656,7 +9165,7 @@ getBufferSize(callback: AsyncCallback<number\>): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
   if (!err) {
@@ -7674,7 +9183,7 @@ audioCapturer.getBufferSize((err: BusinessError, bufferSize: number) => {
 
 getBufferSize(): Promise<number\>
 
-获取采集器合理的最小缓冲区大小。使用Promise方式异步返回结果。
+获取采集器合理的最小缓冲区大小。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7687,9 +9196,10 @@ getBufferSize(): Promise<number\>
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 audioCapturer.getBufferSize().then((data: number) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :SUCCESS ${data}`);
   bufferSize = data;
@@ -7715,9 +9225,10 @@ getBufferSizeSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let bufferSize: number = 0;
+
 try {
   bufferSize = audioCapturer.getBufferSizeSync();
   console.info(`AudioFrameworkRecLog: getBufferSizeSync :SUCCESS ${bufferSize}`);
@@ -7796,9 +9307,11 @@ if (info.deviceDescriptors[0].encodingTypes) {
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-监听音频中断事件，使用callback方式返回结果。
+监听音频中断事件（当音频焦点发生变化时触发）。使用callback异步回调。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，均用于监听焦点变化。AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+AudioCapturer对象在start事件发生时会主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
+
+调用此方法，在AudioCapturer对象获取焦点失败或发生中断事件（如被其他音频打断等）时，会收到[InterruptEvent](#interruptevent9)。建议应用可根据InterruptEvent的信息完成进一步处理，更多信息可参考文档[处理音频焦点事件](../../media/audio/audio-playback-concurrency.md)。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -7806,8 +9319,8 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt'（中断事件被触发，音频采集被中断。） |
-| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回播放中断时，应用接收的中断事件信息。 |
+| type     | string                                       | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当音频焦点状态发生变化时，触发该事件。 |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | 是   | 回调函数，返回中断事件信息。 |
 
 **错误码：**
 
@@ -7815,54 +9328,51 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import audio from '@ohos.multimedia.audio';
+import { audio } from '@kit.AudioKit';
 
-let isCapturing: boolean; // 标识符，表示是否正在采集
+let isCapturing: boolean; // 标识符，表示是否正在采集。
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioCapturer.on('audioInterrupt', (interruptEvent: audio.InterruptEvent) => {
+    // 在发生音频打断事件时，audioCapturer收到interruptEvent回调，此处根据其内容做相应处理。
+    // 1、可选：读取interruptEvent.forceType的类型，判断系统是否已强制执行相应操作。
+    // 注：默认焦点策略下，INTERRUPT_HINT_RESUME为INTERRUPT_SHARE类型，其余hintType均为INTERRUPT_FORCE类型。因此对forceType可不做判断。
+    // 2、必选：读取interruptEvent.hintType的类型，做出相应的处理。
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
-      // 由系统进行操作，强制打断音频采集，应用需更新自身状态及显示内容等
+      // 音频焦点事件已由系统强制执行，应用需更新自身状态及显示内容等。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent
+          // 音频流已被暂停，临时失去焦点，待可重获焦点时会收到resume对应的interruptEvent。
           console.info('Force paused. Update capturing status and stop reading');
-          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作。
           break;
         case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 音频流已被停止，永久失去焦点，若想恢复采集，需用户主动触发
+          // 音频流已被停止，永久失去焦点，若想恢复采集，需用户主动触发。
           console.info('Force stopped. Update capturing status and stop reading');
-          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作
+          isCapturing = false; // 简化处理，代表应用切换至暂停状态的若干操作。
           break;
         default:
           console.info('Invalid interruptEvent');
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
-      // 由应用进行操作，应用可以自主选择打断或忽略
+      // 音频焦点事件需由应用进行操作，应用可以自主选择如何处理该事件，建议应用遵从InterruptHint提示处理。
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
-          // 建议应用继续采集（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复采集）
+          // 建议应用继续采集（说明音频流此前被强制暂停，临时失去焦点，现在可以恢复采集）。
+          // 由于INTERRUPT_HINT_RESUME操作需要应用主动执行，系统无法强制，故INTERRUPT_HINT_RESUME事件一定为INTERRUPT_SHARE类型。
           console.info('Resume force paused renderer or ignore');
-          // 若选择继续采集，需在此处主动执行开始采集的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          // 建议应用暂停采集
-          console.info('Choose to pause or ignore');
-          // 若选择暂停采集，需在此处主动执行暂停采集的若干操作
-          break;
-        case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          // 建议应用停止采集
-          console.info('Choose to stop or ignore');
-          // 若选择停止采集，需在此处主动执行停止采集的若干操作
+          // 若选择继续采集，需在此处主动执行开始采集的若干操作。
           break;
         default:
+          console.info('Invalid interruptEvent');
           break;
       }
     }
@@ -7874,7 +9384,7 @@ async function onAudioInterrupt(){
 
 off(type: 'audioInterrupt'): void
 
-取消订阅音频中断事件。
+取消监听音频中断事件。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -7882,7 +9392,7 @@ off(type: 'audioInterrupt'): void
 
 | 参数名   | 类型                                         | 必填 | 说明                                                         |
 | -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 事件回调类型，支持的事件为：'audioInterrupt' |
+| type     | string                                       | 是   | 事件回调类型，支持的事件为'audioInterrupt'，当取消监听音频中断事件时，触发该事件。 |
 
 **错误码：**
 
@@ -7890,7 +9400,8 @@ off(type: 'audioInterrupt'): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Invalid parameter error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7902,7 +9413,7 @@ audioCapturer.off('audioInterrupt');
 
 on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
-订阅监听音频输入设备变化，使用callback方式返回结果。
+监听音频输入设备变化事件（当音频输入设备发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -7910,7 +9421,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'inputDeviceChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'inputDeviceChange'，当音频输入设备发生变化时，触发该事件。 |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 是   | 回调函数，返回监听的音频输入设备变化(返回数据为切换后的设备信息)。 |
 
 **错误码：**
@@ -7919,7 +9430,8 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7934,7 +9446,7 @@ audioCapturer.on('inputDeviceChange', (deviceChangeInfo: audio.AudioDeviceDescri
 
 off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): void
 
-取消订阅音频输入设备更改事件，使用callback方式返回结果。
+取消监听音频输入设备更改事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Device
 
@@ -7942,7 +9454,7 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 | 参数名   | 类型                       | 必填 | 说明                                       |
 | :------- | :------------------------- | :--- |:-----------------------------------------|
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'inputDeviceChange'。       |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'inputDeviceChange'，当取消监听音频输入设备更改事件时，触发该事件。 |
 | callback | Callback\<[AudioDeviceDescriptors](#audiodevicedescriptors)> | 否   | 回调函数，返回监听的音频输入设备信息。 |
 
 **错误码：**
@@ -7951,19 +9463,32 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioCapturer.off('inputDeviceChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let inputDeviceChangeCallback = (deviceChangeInfo: audio.AudioDeviceDescriptors) => {
+  console.info(`inputDevice id: ${deviceChangeInfo[0].id}`);
+  console.info(`inputDevice deviceRole: ${deviceChangeInfo[0].deviceRole}`);
+  console.info(`inputDevice deviceType: ${deviceChangeInfo[0].deviceType}`);
+};
+
+audioCapturer.on('inputDeviceChange', inputDeviceChangeCallback);
+
+audioCapturer.off('inputDeviceChange', inputDeviceChangeCallback);
 ```
 
 ### on('audioCapturerChange')<sup>11+</sup>
 
 on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): void
 
-订阅监听录音流配置变化，使用callback方式返回结果。订阅内部是异步实现，是非精确回调，在录音流配置变化的同时注册回调，收到的返回结果存在变化可能性。
+监听录音流配置变化事件（当音频录制流状态变化、设备变化时触发）。使用callback异步回调。订阅内部是异步实现，是非精确回调，在录音流配置变化的同时注册回调，收到的返回结果存在变化可能性。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -7971,7 +9496,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'audioCapturerChange'，当音频录制流状态变化、设备变化时，触发该事件。 |
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 是   | 回调函数，录音流配置或状态变化时返回监听的录音流当前配置和状态信息。 |
 
 **错误码：**
@@ -7980,7 +9505,8 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -7996,7 +9522,7 @@ audioCapturer.on('audioCapturerChange', (capturerChangeInfo: audio.AudioCapturer
 
 off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>): void
 
-取消订阅音频输入设备更改事件，使用callback方式返回结果。
+取消监听录音流配置变化事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8004,28 +9530,43 @@ off(type: 'audioCapturerChange', callback?: Callback\<AudioCapturerChangeInfo>):
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'audioCapturerChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'audioCapturerChange'，当取消监听录音流配置变化事件时，触发该事件。 |
 | callback | Callback\<[AudioCapturerChangeInfo](#audiocapturerchangeinfo9)> | 否   | 回调函数，返回取消监听的录音流配置或状态变化。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error.              |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioCapturer.off('audioCapturerChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let audioCapturerChangeCallback = (capturerChangeInfo: audio.AudioCapturerChangeInfo) => {
+  console.info(`audioCapturerChange id: ${capturerChangeInfo[0].id}`);
+  console.info(`audioCapturerChange deviceRole: ${capturerChangeInfo[0].deviceRole}`);
+  console.info(`audioCapturerChange deviceType: ${capturerChangeInfo[0].deviceType}`);
+};
+
+audioCapturer.on('audioCapturerChange', audioCapturerChangeCallback);
+
+audioCapturer.off('audioCapturerChange', audioCapturerChangeCallback);
 ```
 
 ### on('markReach')<sup>8+</sup>
 
 on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅标记到达的事件。 当采集的帧数达到 frame 参数的值时，回调被触发，使用callback方式返回结果。
+监听标记到达事件（当采集的帧数达到frame参数的值时触发，仅调用一次）。使用callback异步回调。
+
+举例说明，如果frame设置为100，当采集帧数到达第100帧时，将上报信息。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8033,9 +9574,9 @@ on(type: 'markReach', frame: number, callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                       |
 | :------- | :----------------------  | :--- | :----------------------------------------- |
-| type     | string                   | 是   | 事件回调类型，支持的事件为：'markReach'。  |
-| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。           |
-| callback | Callback\<number>         | 是   | 回调函数，返回frame 参数的值 |
+| type     | string                   | 是   | 事件回调类型，支持的事件为'markReach'，当采集的帧数达到frame参数的值时，触发该事件。 |
+| frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。           |
+| callback | Callback\<number>         | 是   | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
@@ -8049,29 +9590,44 @@ audioCapturer.on('markReach', 1000, (position: number) => {
 
 ### off('markReach')<sup>8+</sup>
 
-off(type: 'markReach'): void
+off(type: 'markReach', callback?: Callback&lt;number&gt;): void
 
-取消订阅标记到达的事件。
+取消监听标记到达事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                          |
-| :----- | :----- | :--- | :-------------------------------------------- |
-| type   | string | 是   | 取消事件回调类型，支持的事件为：'markReach'。 |
+| 参数名 | 类型   | 必填 | 说明                                              |
+| :----- | :----- | :--- | :------------------------------------------------ |
+| type   | string | 是   | 事件回调类型，支持的事件为'markReach'，当取消监听标记到达事件时，触发该事件。 |
+| callback<sup>18+</sup> | Callback\<number>         | 否  | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioCapturer.off('markReach');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let markReachCallback = (position: number) => {
+  if (position == 1000) {
+    console.info('ON Triggered successfully');
+  }
+};
+
+audioCapturer.on('markReach', markReachCallback);
+
+audioCapturer.off('markReach', markReachCallback);
 ```
 
 ### on('periodReach')<sup>8+</sup>
 
 on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
-订阅到达标记的事件。 当采集的帧数达到 frame 参数的值时，触发回调并返回设定的值，使用callback方式返回结果。
+监听标记到达事件（当采集的帧数达到frame参数的值时触发，即按周期上报信息）。使用callback异步回调。
+
+举例说明，如果frame设置为10，每当采集10帧数据时将上报信息，例如在第10帧、20帧、30帧，均会上报信息。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8079,9 +9635,9 @@ on(type: 'periodReach', frame: number, callback: Callback&lt;number&gt;): void
 
 | 参数名   | 类型                     | 必填 | 说明                                        |
 | :------- | :----------------------- | :--- | :------------------------------------------ |
-| type     | string                   | 是   | 事件回调类型，支持的事件为：'periodReach'。 |
-| frame    | number                   | 是   | 触发事件的帧数。 该值必须大于0。            |
-| callback | Callback\<number>         | 是   |回调函数，返回frame 参数的值。    |
+| type     | string                   | 是   | 事件回调类型，支持的事件为'periodReach'，当采集的帧数达到frame参数的值时，触发该事件。 |
+| frame    | number                   | 是   | 触发事件的帧数。该值必须大于0。            |
+| callback | Callback\<number>         | 是   |回调函数，返回frame参数的值。    |
 
 **示例：**
 
@@ -8095,29 +9651,42 @@ audioCapturer.on('periodReach', 1000, (position: number) => {
 
 ### off('periodReach')<sup>8+</sup>
 
-off(type: 'periodReach'): void
+off(type: 'periodReach', callback?: Callback&lt;number&gt;): void
 
-取消订阅标记到达的事件。
+取消监听标记到达事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                            |
-| :----- | :----- | :--- | :---------------------------------------------- |
-| type   | string | 是  | 取消事件回调类型，支持的事件为：'periodReach'。 |
+| 参数名 | 类型   | 必填 | 说明                                                |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| type   | string | 是   | 事件回调类型，支持的事件为'periodReach'，当取消监听标记到达事件时，触发该事件。 |
+| callback<sup>18+</sup> | Callback\<number>         | 否  | 回调函数，返回frame参数的值。 |
 
 **示例：**
 
 ```ts
+// 取消该事件的所有监听。
 audioCapturer.off('periodReach');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let periodReachCallback = (position: number) => {
+  if (position == 1000) {
+    console.info('ON Triggered successfully');
+  }
+};
+
+audioCapturer.on('periodReach', periodReachCallback);
+
+audioCapturer.off('periodReach', periodReachCallback);
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
-订阅监听状态变化，使用callback方式返回结果。
+监听状态变化事件（当AudioCapturer状态发生变化时触发）。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8125,7 +9694,7 @@ on(type: 'stateChange', callback: Callback<AudioState\>): void
 
 | 参数名   | 类型                       | 必填 | 说明                                        |
 | :------- | :------------------------- | :--- | :------------------------------------------ |
-| type     | string                     | 是   | 事件回调类型，支持的事件为：'stateChange'。 |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'stateChange'，当AudioCapturer状态发生变化时，触发该事件。 |
 | callback | Callback\<[AudioState](#audiostate8)> | 是   | 回调函数，返回当前音频的状态。 |
 
 **示例：**
@@ -8141,11 +9710,58 @@ audioCapturer.on('stateChange', (state: audio.AudioState) => {
 });
 ```
 
+### off('stateChange')<sup>18+</sup>
+
+off(type: 'stateChange', callback?: Callback&lt;AudioState&gt;): void
+
+取消监听到达标记事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Capturer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                |
+| :----- | :----- | :--- | :-------------------------------------------------- |
+| type   | string | 是   | 事件回调类型，支持的事件为'stateChange'，当取消监听到达标记事件时，触发该事件。 |
+| callback | Callback\<[AudioState](#audiostate8)> | 否 | 回调函数，返回当前音频的状态。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioCapturer.off('stateChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let stateChangeCallback = (state: audio.AudioState) => {
+  if (state == 1) {
+    console.info('audio renderer state is: STATE_PREPARED');
+  }
+  if (state == 2) {
+    console.info('audio renderer state is: STATE_RUNNING');
+  }
+};
+
+audioCapturer.on('stateChange', stateChangeCallback);
+
+audioCapturer.off('stateChange', stateChangeCallback);
+```
+
 ### on('readData')<sup>11+</sup>
 
 on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
-订阅监听音频数据读入回调，使用callback方式返回结果。
+监听音频数据读取回调事件（当需要读取音频流数据时触发）。使用callback异步回调。
+
+回调函数仅用来读取音频数据，请勿在回调函数中调用AudioCapturer相关接口。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8153,7 +9769,7 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 | 参数名   | 类型                     | 必填 | 说明                        |
 | :------- |:-----------------------| :--- |:--------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'readData'。 |
+| type     | string                 | 是   | 事件回调类型，支持的事件为'readData'，当需要读取音频流数据时，触发该事件。 |
 | callback | Callback\<ArrayBuffer> | 是   | 回调函数，返回读到的数据缓冲区。            |
 
 **错误码：**
@@ -8162,32 +9778,39 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
-let bufferSize: number = 0;
 class Options {
   offset?: number;
   length?: number;
 }
 
+let bufferSize: number = 0;
+// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext。
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
+// 确保该沙箱路径下存在该资源。
+let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
+let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
 let readDataCallback = (buffer: ArrayBuffer) => {
-  let path = getContext().cacheDir;
-  let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
-  let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
   let options: Options = {
     offset: bufferSize,
     length: buffer.byteLength
-  }
+  };
   fs.writeSync(file.fd, buffer, options);
   bufferSize += buffer.byteLength;
 }
+
 audioCapturer.on('readData', readDataCallback);
+
 audioCapturer.start((err: BusinessError) => {
   if (err) {
     console.error('Capturer start failed.');
@@ -8201,7 +9824,7 @@ audioCapturer.start((err: BusinessError) => {
 
 off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
-取消订阅监听音频数据读入回调，使用callback方式返回结果。
+取消监听音频数据读取回调事件。使用callback异步回调。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Capturer
 
@@ -8209,7 +9832,7 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
 | 参数名   | 类型                     | 必填 | 说明                                         |
 | :------- |:-----------------------| :--- |:-------------------------------------------|
-| type     | string                 | 是   | 事件回调类型，支持的事件为：'readData'。                 |
+| type     | string                 | 是   | 事件回调类型，支持的事件为'readData'，当取消监听音频数据读取回调事件时，触发该事件。 |
 | callback | Callback\<ArrayBuffer> | 否   | 回调函数，返回读到的数据缓冲区。                            |
 
 **错误码：**
@@ -8218,14 +9841,23 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 6800101 | Input parameter value error. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
 ```ts
-audioCapturer.off('readData', (data: ArrayBuffer) => {
+// 取消该事件的所有监听。
+audioCapturer.off('readData');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let readDataCallback = (data: ArrayBuffer) => {
     console.info(`read data: ${data}`);
-});
+};
+
+audioCapturer.on('readData', readDataCallback);
+
+audioCapturer.off('readData', readDataCallback);
 ```
 
 ### getOverflowCount<sup>12+</sup>
@@ -8245,7 +9877,7 @@ getOverflowCount(): Promise&lt;number&gt;
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 audioCapturer.getOverflowCount().then((value: number) => {
   console.info(`Get overflow count Success! ${value}`);
@@ -8271,7 +9903,7 @@ getOverflowCountSync(): number
 **示例：**
 
 ```ts
-import { BusinessError } from '@ohos.base';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   let value: number = audioCapturer.getOverflowCountSync();

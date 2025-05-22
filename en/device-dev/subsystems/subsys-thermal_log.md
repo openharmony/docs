@@ -36,7 +36,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ├── thermal_hdi_config.xml
     ```
 
-3. Create a target folder by referring to the [default thermal log parameter configuration folder] (https://gitee.com/openharmony/drivers_peripheral/tree/master/thermal/etc) and install it in `//vendor/hihope/rk3568/thermal`. The file format is as follows:
+3. Create a target folder by referring to the [default thermal log parameter configuration folder](https://gitee.com/openharmony/drivers_peripheral/tree/master/thermal/etc) and install it in `//vendor/hihope/rk3568/thermal`. The file format is as follows:
     ```text
     etc
     ├── BUILD.gn

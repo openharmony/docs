@@ -21,12 +21,14 @@ This topic uses the following to identify the use of generics:
 ## Modules to Import
 
 ```ts
-import LightWeightSet from '@ohos.util.LightWeightSet';  
+import { LightWeightSet } from '@kit.ArkTS';
 ```
 
 ## LightWeightSet
 
 ### Attributes
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -40,6 +42,8 @@ import LightWeightSet from '@ohos.util.LightWeightSet';
 constructor()
 
 A constructor used to create a **LightWeightSet** instance.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -63,6 +67,8 @@ let lightWeightSet: LightWeightSet<number | string> = new LightWeightSet();
 isEmpty(): boolean
 
 Checks whether this container is empty (contains no element).
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -93,6 +99,8 @@ add(obj: T): boolean
 
 Adds an element to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -105,7 +113,7 @@ Adds an element to this container.
 
 | Type| Description|
 | -------- | -------- |
-| boolean | Returns **true** if the element is added successfully; returns **false** otherwise.|
+| boolean | Returns **true** if the element is added; returns **false** otherwise.|
 
 **Error codes**
 
@@ -129,6 +137,8 @@ addAll(set: LightWeightSet&lt;T&gt;): boolean
 
 Adds all elements in a **LightWeightSet** instance to this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -145,10 +155,11 @@ Adds all elements in a **LightWeightSet** instance to this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The addAll method cannot be bound. |
 
 **Example**
@@ -169,6 +180,8 @@ hasAll(set: LightWeightSet&lt;T&gt;): boolean
 
 Checks whether this container contains all elements of the specified **LightWeightSet** instance.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -185,10 +198,11 @@ Checks whether this container contains all elements of the specified **LightWeig
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The hasAll method cannot be bound. |
 
 **Example**
@@ -208,6 +222,8 @@ let result = lightWeightSet.hasAll(set);
 has(key: T): boolean
 
 Checks whether this container has the specified key.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -240,67 +256,33 @@ let result = lightWeightSet.has(123);
 ```
 
 
-### equal
-
-equal(obj: Object): boolean
-
-Checks whether this container contains objects of the same type as the specified **obj**.
-
-**System capability**: SystemCapability.Utils.Lang
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| obj | Object | Yes| **LightWeightSet** instance to be used for comparison.|
-
-**Return value**
-
-| Type| Description|
-| -------- | -------- |
-| boolean | Returns **true** if the container contains objects of the same type as the specified **obj**; returns **false** otherwise.|
-
-**Error codes**
-
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
-
-| ID| Error Message|
-| -------- | -------- |
-| 10200011 | The equal method cannot be bound. |
-
-**Example**
-
-```ts
-let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
-lightWeightSet.add("squirrel");
-lightWeightSet.add("sparrow");
-let obj = ["sparrow", "squirrel"];
-let result = lightWeightSet.equal(obj);
-```
-
-
 ### increaseCapacityTo
 
 increaseCapacityTo(minimumCapacity: number): void
 
 Increases the capacity of this container.
 
+If the passed-in capacity is greater than or equal to the number of elements in this container, the container capacity is changed to the new capacity. If the passed-in capacity is less than the number of elements in this container, the capacity is not changed.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| minimumCapacity | number | Yes| Minimum number of elements to accommodate in the container.|
+| minimumCapacity | number | Yes| Minimum number of elements to accommodate in this container.|
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
-| 10200011 | The increaseCapacityTo method cannot be bound. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 10200001 | The value of minimumCapacity is out of range. |
+| 10200011 | The increaseCapacityTo method cannot be bound. |
 
 **Example**
 
@@ -315,6 +297,8 @@ lightWeightSet.increaseCapacityTo(10);
 getIndexOf(key: T): number
 
 Obtains the position index of the element with the specified key in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -354,6 +338,8 @@ remove(key: T): T
 
 Removes an element of the specified key from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -392,13 +378,15 @@ removeAt(index: number): boolean
 
 Removes the element at the specified position from this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -408,10 +396,11 @@ Removes the element at the specified position from this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The removeAt method cannot be bound. |
 
 **Example**
@@ -430,13 +419,15 @@ getValueAt(index: number): T
 
 Obtains the value of the element at the specified position in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| index | number | Yes| Position index of the element.|
+| index | number | Yes| Position index of the element. The value must be less than or equal to int32_max, that is, 2147483647.|
 
 **Return value**
 
@@ -446,10 +437,11 @@ Obtains the value of the element at the specified position in this container.
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The getValueAt method cannot be bound. |
 
 **Parameters**
@@ -467,6 +459,8 @@ let result = lightWeightSet.getValueAt(1);
 clear(): void
 
 Clears this container and sets its length to **0**.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -494,6 +488,8 @@ toString(): String
 
 Obtains a string that contains all elements in this container.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Return value**
@@ -517,6 +513,8 @@ let result = lightWeightSet.toString();
 toArray(): Array&lt;T&gt;
 
 Obtains an array that contains all objects in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -549,6 +547,8 @@ let result = lightWeightSet.toArray();
 values(): IterableIterator&lt;T&gt;
 
 Obtains an iterator that contains all the values in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -587,6 +587,8 @@ forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void,
 
 Uses a callback to traverse the elements in this container and obtain their position indexes.
 
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
@@ -605,10 +607,11 @@ callbackFn
 
 **Error codes**
 
-For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Utils Error Codes](errorcode-utils.md).
 
 | ID| Error Message|
 | -------- | -------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 10200011 | The forEach method cannot be bound. |
 
 **Example**
@@ -621,13 +624,24 @@ lightWeightSet.forEach((value ?: string, key ?: string) => {
   console.log("value:" + value, "key:" + key);
 });
 ```
-
+```ts
+// You are not advised to use the add, remove, or removeAt APIs in forEach because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
 
 ### entries
 
 entries(): IterableIterator<[T, T]>
 
 Obtains an iterator that contains all the elements in this container.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -658,7 +672,16 @@ while(index < lightWeightSet.length) {
   index++;
 }
 ```
-
+```ts
+// You are not advised to use the add, remove, or removeAt APIs in entries because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
 
 ### [Symbol.iterator]
 
@@ -666,9 +689,7 @@ while(index < lightWeightSet.length) {
 
 Obtains an iterator, each item of which is a JavaScript object.
 
-> **NOTE**
->
-> This API cannot be used in .ets files.
+**Atomic service API**: This API can be used in atomic services since API version 12.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -706,4 +727,57 @@ while(!temp.done) {
   console.log("value:" + temp.value);
   temp = iter.next();
 }
+```
+```ts
+// You are not advised to use the add, remove, or removeAt APIs in Symbol.iterator because they may cause unpredictable risks such as infinite loops. You can use the for loop when inserting or deleting data.
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.add(i + "123");
+}
+for(let i = 0; i < 10; i++) {
+  lightWeightSet.remove(i + "123");
+}
+```
+
+
+### equal<sup>(deprecated)</sup>
+
+equal(obj: Object): boolean
+
+Checks whether the elements of this container are the same as those of **obj**.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 12. There is no substitute API.
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| obj | Object | Yes| **LightWeightSet** instance to be used for comparison.|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| boolean | Returns **true** if **obj** is a **LightWeightSet** container or array containing only strings or numbers and the elements in them are the same; returns **false** in other cases.|
+
+**Error codes**
+
+For details about the error codes, see [Utils Error Codes](errorcode-utils.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 10200011 | The equal method cannot be bound. |
+
+**Example**
+
+```ts
+let lightWeightSet: LightWeightSet<string> = new LightWeightSet();
+lightWeightSet.add("squirrel");
+lightWeightSet.add("sparrow");
+let obj = ["sparrow", "squirrel"];
+let result = lightWeightSet.equal(obj);
 ```

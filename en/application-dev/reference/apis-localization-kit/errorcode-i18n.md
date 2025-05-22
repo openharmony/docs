@@ -4,20 +4,20 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-## 890001 Incorrect Parameter Type
+## 890001 Parameter Error
 
 **Error Message**
 
-param value not valid
+Invalid parameter. Possible causes: Parameter verification failed.
 
 **Description**
 
-This error code is reported if an I18N API is called with invalid parameter values specified.
+This error code is reported if an invalid parameter value is passed to the API.
 
 **Possible Causes**
 
-Invalid parameter values are probably due to incorrect parameter types.
+Parameter verification ha failed. The probable cause is that the value of an input parameter is invalid.
  
 **Solution**
 
-Check whether the parameter types are correct.
+Check whether the values of input parameters are correct.

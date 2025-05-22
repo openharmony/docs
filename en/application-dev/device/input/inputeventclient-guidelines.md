@@ -7,7 +7,7 @@ The **inputEventClient** module provides the function of injecting input events,
 ## Modules to Import
 
 ```js
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## Available APIs

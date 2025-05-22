@@ -1,9 +1,6 @@
 # 编译
 
 
-OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.sh脚本编译方式请参考[使用build.sh脚本编译源码](quickstart-pkg-common-build.md#使用buildsh脚本编译源码)。
-
-
 想要详细了解OpenHarmony编译构建模块功能的开发者可参考[编译构建指南](../subsystems/subsys-build-all.md)。
 
 
@@ -19,6 +16,8 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
 
 
 ## 操作步骤
+
+方法一：hb编译(请先[安装编译工具](quickstart-pkg-install-tool.md))
 
 请进入源码根目录，执行如下命令进行编译：
 
@@ -65,3 +64,7 @@ OpenHarmony支持hb和build.sh两种编译方式。此处介绍hb方式，build.
    > - 编译结果文件及日志文件：out/hispark_taurus/ipcamera_hispark_taurus。
    > 
    > - U-boot文件：device/board/hisilicon/hispark_taurus/uboot/out/boot/u-boot-hi3516dv300.bin。
+
+方法二：build.sh脚本编译
+
+build.sh脚本编译方式请参考[使用build.sh脚本编译源码](quickstart-pkg-common-build.md#使用buildsh脚本编译源码)。

@@ -1,11 +1,11 @@
-# VPN Management
+# VPN Management (For System Applications Only)
 
 ## Overview
 
 A virtual private network (VPN) is a dedicated network established on a public network. On a VPN, the connection between any two nodes does not have an end-to-end physical link required by the traditional private network. Instead, user data is transmitted over a logical link because a VPN is a logical network deployed over the network platform (such as the Internet) provided by the public network service provider.
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-vpn-sys.md).
+> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-vpn-sys.md).
 
 The following describes the development procedure specific to each application scenario.
 
@@ -27,7 +27,7 @@ For the complete list of APIs and example code, see [API Reference](../reference
 4. Process data of the virtual network interface card (vNIC), such as reading or writing data.
 5. Destroy the VPN.
 
-This example shows how to develop an application using native C++ code. For details, see [Simple Native C++ Example (ArkTS) (API9)] (https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo).
+This example shows how to develop an application using native C++ code. For details, see [Simple Native C++ Example (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo).
 
 The sample application consists of two parts: JS code and C++ code.
 
@@ -36,92 +36,133 @@ The sample application consists of two parts: JS code and C++ code.
 The JS code is used to implement the service logic, such as creating a tunnel, establishing a VPN, enabling VPN protection, and destroying a VPN.
 
 ```js
-import vpn from '@ohos.net.vpn';
+import Want from '@ohos.app.ability.Want';
+import VpnExtensionAbility from '@ohos.app.ability.VpnExtensionAbility';
+import vpnExt from '@ohos.net.vpnExtension';
+import hilog from '@ohos.hilog';
 import common from '@ohos.app.ability.common';
-import vpn_client from "libvpn_client.so";
-import { BusinessError } from '@ohos.base';
 
-let TunnelFd: number = -1;
+// vpn_client is a portable .so file in C language, for example, import vpn_client from 'libvpn_client.so'.
 
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Test VPN';
+import socket from '@ohos.net.socket';
 
-  private context = getContext(this) as common.UIAbilityContext;
-  private VpnConnection: vpn.VpnConnection = vpn.createVpnConnection(this.context);
+const TAG: string = "[MyVpnExtAbility]";
+let g_tunFd = -1;
+let g_tunnelFd = -1;
 
-  //1. Establish a VPN tunnel. The following uses the UDP tunnel as an example.
-  CreateTunnel() {
-    TunnelFd = vpn_client.udpConnect("192.168.43.208", 8888);
+export default class MyVpnExtAbility extends VpnExtensionAbility {
+  private VpnConnection: vpnExt.VpnConnection = vpnExt.createVpnConnection(this.context);
+  private vpnServerIp: string = '192.168.85.185';
+  private tunIp: string = '10.0.0.8';
+  private blockedAppName: string = 'com.example.testvpn';
+
+  onCreate(want: Want) {
+    console.info(TAG, `xdw onCreate, want: ${want.abilityName}`);
+    // this.context.stopVpnExtensionAbility(want);
+    this.VpnConnection = vpnExt.createVpnConnection(this.context);
+    console.info("wmw createVpnConnection success")
+    this.CreateTunnel();
+    this.Protect();
+    console.info("xdw step4");
   }
 
-  // 2. Enable protection for the UDP tunnel.
+  onRequest(want: Want, startId: number) {
+    console.info(TAG, `xdw onRequest, want: ${want.abilityName}`);
+  }
+
+  onConnect(want: Want) {
+    console.info(TAG, `xdw onConnect, want: ${want.abilityName}`);
+    // Return a ServiceExtImpl object, through which the client can communicate with the ServiceExtensionAbility.
+    let abilityName  = want.parameters?.abilityName.toString();
+    let bundleName = want.parameters?.bundleName.toString();
+    return null;
+  }
+
+  onDisconnect(want: Want) {
+    console.info(TAG, `xdw onDisconnect, want: ${want.abilityName}`);
+  }
+
+  onDestroy() {
+    console.info(TAG, `xdw onDestroy`);
+    this.Destroy();
+  }
+
+  Destroy() {
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy');
+    // Disable the VPN.
+    this.VpnConnection.destroy().then(() => {
+      hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Destroy Success');
+    }).catch((err: Error) => {
+      hilog.error(0x0000, 'developTag', 'vpn Destroy Failed: %{public}s', JSON.stringify(err) ?? '');
+    })
+  }
+
+  CreateTunnel() {
+    console.info("xdw step1")
+    // Connect to the VPN server.
+  }
+
   Protect() {
-    this.VpnConnection.protect(TunnelFd).then(() => {
-      console.info("vpn Protect Success.");
-    }).catch((err: BusinessError) => {
-      console.info("vpn Protect Failed " + JSON.stringify(err));
+    console.info("xdw step2")
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect');
+    this.VpnConnection.protect(g_tunnelFd).then(() => {
+      hilog.info(0x0000, 'developTag', '%{public}s', 'vpn Protect Success');
+      this.SetupVpn();
+    }).catch((err: Error) => {
+      hilog.error(0x0000, 'developTag', 'vpn Protect Failed %{public}s', JSON.stringify(err) ?? '');
     })
   }
 
   SetupVpn() {
-    let tunAddr : vpn.LinkAddress = {} as vpn.LinkAddress;
-    tunAddr.address.address = "10.0.0.5";
-    tunAddr.address.family = 1;
+    console.info("xdw step3")
+    hilog.info(0x0000, 'developTag', '%{public}s', 'vpn SetupVpn');
 
-    let config : vpn.VpnConfig = {} as vpn.VpnConfig;
-    config.addresses.push(tunAddr);
-    config.mtu = 1400;
-    config.dnsAddresses = ["114.114.114.114"];
+    class Address {
+      address: string;
+      family: number;
+
+      constructor(address: string, family: number) {
+        this.address = address;
+        this.family = family;
+      }
+    }
+
+    class AddressWithPrefix {
+      address: Address;
+      prefixLength: number;
+
+      constructor(address: Address, prefixLength: number) {
+        this.address = address;
+        this.prefixLength = prefixLength;
+      }
+    }
+
+    class Config {
+      addresses: AddressWithPrefix[];
+      dnsAddresses: string[];
+      trustedApplications: string[];
+      blockedApplications: string[];
+
+      constructor(
+        tunIp: string,
+        blockedAppName: string
+      ) {
+        this.addresses = [
+          new AddressWithPrefix(new Address(tunIp, 1), 24)
+        ];
+        this.dnsAddresses = ["114.114.114.114"];
+        this.trustedApplications = [];
+        this.blockedApplications = [];
+      }
+    }
+
+    let config = new Config(this.tunIp, this.blockedAppName);
 
     try {
-      // 3. Create a VPN.
-      this.VpnConnection.setUp(config, (error: BusinessError, data: number) => {
-        console.info("tunfd: " + JSON.stringify(data));
-        // 4. Process data of the virtual vNIC, such as reading or writing data.
-        vpn_client.startVpn(data, TunnelFd)
-      })
+      this.VpnConnection.create(config);
     } catch (error) {
-      console.info("vpn setUp fail " + JSON.stringify(error));
+      hilog.error(0x0000, 'developTag', 'vpn setUp fail: %{public}s', JSON.stringify(error) ?? '');
     }
-  }
-
-  // 5. Destroy the VPN.
-  Destroy() {
-    vpn_client.stopVpn(TunnelFd);
-    this.VpnConnection.destroy().then(() => {
-      console.info("vpn Destroy Success.");
-    }).catch((err: BusinessError) => {
-      console.info("vpn Destroy Failed " + JSON.stringify(err));
-    })
-  }
-
-  build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-          .onClick(() => {
-            console.info("vpn Client")
-          })
-        Button('CreateTunnel').onClick(() => {
-          this.CreateTunnel()
-        }).fontSize(50)
-        Button('Protect').onClick(() => {
-          this.Protect()
-        }).fontSize(50)
-        Button('SetupVpn').onClick(() => {
-          this.SetupVpn()
-        }).fontSize(50)
-        Button('Destroy').onClick(() => {
-          this.Destroy()
-        }).fontSize(50)
-      }
-      .width('100%')
-    }
-    .height('100%')
   }
 }
 ```

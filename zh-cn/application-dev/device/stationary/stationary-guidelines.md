@@ -31,11 +31,11 @@
 
 ## 接口说明
 
-| 模块          | 接口名                                                       | 描述                                                         |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ohos.stationary | on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void | 订阅设备状态，结果通过callback返回。 |
-| ohos.stationary | once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void | 查询设备状态，结果通过callback返回。 |
-| ohos.stationary | off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void | 取消订阅设备状态。                                 |
+| 接口名                                                       | 描述                                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| on(activity: ActivityType, event: ActivityEvent, reportLatencyNs: number, callback: Callback&lt;ActivityResponse&gt;): void | 订阅设备状态，结果通过callback返回。 |
+| once(activity: ActivityType, callback: Callback&lt;ActivityResponse&gt;): void | 查询设备状态，结果通过callback返回。 |
+| off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;ActivityResponse&gt;): void | 取消订阅设备状态。                                 |
 
 ## 约束与限制
 
@@ -69,8 +69,8 @@
 1. 订阅绝对静止的进入事件，1秒上报一次。
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    let reportLatencyNs = 1000000000;
    try {
       stationary.on('still', stationary.ActivityEvent.ENTER, reportLatencyNs, (data) => {
@@ -85,8 +85,8 @@
 2. 查询绝对静止状态的进入事件。
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.once('still', (data) => {
          console.log('data='+ JSON.stringify(data));
@@ -100,8 +100,8 @@
 3. 取消订阅绝对静止状态的进入事件。
 
    ```ts
-   import stationary from '@ohos.stationary';
-   import { BusinessError } from '@ohos.base';
+   import { stationary } from '@kit.MultimodalAwarenessKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    try {
       stationary.off('still', stationary.ActivityEvent.ENTER, (data) => {
          console.log('data='+ JSON.stringify(data));

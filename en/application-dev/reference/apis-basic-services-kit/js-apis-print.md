@@ -2,17 +2,16 @@
 
 The **print** module provides APIs for basic print operations.
 
-> **NOTE**
->
+> **NOTE** 
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 ```
 
-## PrintTask
+## print.PrintTask
 
 Implements event listeners for print tasks.
 
@@ -29,13 +28,22 @@ Registers a listener for the print task blocking event. This API uses a callback
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'block'**,<br>indicating blocking of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -53,7 +61,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 on(type: 'succeed', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task success event. This API uses a callback to return the result.
+Registers a listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -62,13 +70,22 @@ Registers a listener for the print task success event. This API uses a callback 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**,<br>indicating success of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -86,7 +103,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 on(type: 'fail', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task failure event. This API uses a callback to return the result.
+Registers a listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -95,13 +112,22 @@ Registers a listener for the print task failure event. This API uses a callback 
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**,<br>indicating failure of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -119,7 +145,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 on(type: 'cancel', callback: Callback&lt;void&gt;): void
 
-Registers a listener for the print task cancel event. This API uses a callback to return the result.
+Registers a listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -128,13 +154,22 @@ Registers a listener for the print task cancel event. This API uses a callback t
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating canceling of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating canceling of the print task.|
 | callback | Callback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -161,13 +196,22 @@ Unregisters the listener for the print task blocking event. This API uses a call
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'block'**, indicating blocking of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'block'**,<br>indicating blocking of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -185,7 +229,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 off(type: 'succeed', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task success event. This API uses a callback to return the result.
+Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -194,13 +238,22 @@ Unregisters the listener for the print task success event. This API uses a callb
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**, indicating success of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'succeed'**,<br>indicating success of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -218,7 +271,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 off(type: 'fail', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task failure event. This API uses a callback to return the result.
+Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -227,13 +280,22 @@ Unregisters the listener for the print task failure event. This API uses a callb
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**, indicating failure of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'fail'**,<br>indicating failure of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -251,7 +313,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 
 off(type: 'cancel', callback?: Callback&lt;void&gt;): void
 
-Unregisters the listener for the print task cancel event. This API uses a callback to return the result.
+Unregisters the listener for the print task blocking event. This API uses a callback to return the result.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -260,13 +322,22 @@ Unregisters the listener for the print task cancel event. This API uses a callba
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**, indicating canceling of the print task.|
+| type | string | Yes| Listening type.<br>The value is fixed at **'cancel'**,<br>indicating canceling of the print task.|
 | callback | Callback&lt;void&gt; | No| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let file = ['file://data/print/a.png', 'file://data/print/b.png'];
@@ -280,7 +351,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-## PrintDocumentAdapter<sup>11+</sup>
+## print.PrintDocumentAdapter<sup>11+</sup>
 
 Provides information about the document to print. This API must be implemented by a third-party application.
 
@@ -288,7 +359,7 @@ Provides information about the document to print. This API must be implemented b
 
 onStartLayoutWrite(jobId: string, oldAttrs: PrintAttributes, newAttrs: PrintAttributes, fd: number, writeResultCallback: (jobId: string, writeResult: PrintFileCreationState) => void): void
 
-Updates the file to be printed. This API uses **writeResultCallback** as the callback.
+Sends an empty PDF file descriptor to a third-party application. The third-party application updates the file with the new print attributes and then calls **writeResultCallback** to print the file.
 
 **Required permissions**: ohos.permission.PRINT
 
@@ -298,15 +369,24 @@ Updates the file to be printed. This API uses **writeResultCallback** as the cal
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| oldAttrs | PrintAttributes | Yes| Old print attributes.|
-| newAttrs | PrintAttributes | Yes| New print attributes.|
-| fd | number | Yes| File descriptor.|
-| writeResultCallback | (jobId: string, writeResult: PrintFileCreationState) | Yes| Callback used to return the result.|
+| oldAttrs | [PrintAttributes](#printprintattributes11) | Yes| Old print attributes.|
+| newAttrs | [PrintAttributes](#printprintattributes11) | Yes| New print attributes.|
+| fd | number | Yes| PDF file descriptor sent to the API caller.|
+| writeResultCallback | (jobId: string, writeResult: [PrintFileCreationState](#printprintfilecreationstate11)) | Yes| Callback used to print the updated file.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
@@ -344,12 +424,21 @@ Registers a listener for print job state changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | jobId | string | Yes| ID of the print job.|
-| state | PrintDocumentAdapterState | Yes| New state of the print job.|
+| state | [PrintDocumentAdapterState](#printprintdocumentadapterstate11) | Yes| New state of the print job.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
@@ -373,7 +462,7 @@ class MyPrintDocumentAdapter implements print.PrintDocumentAdapter {
 }
 ```
 
-## print
+## print.print
 
 print(files: Array&lt;string&gt;, callback: AsyncCallback&lt;PrintTask&gt;): void
 
@@ -386,20 +475,29 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
-| callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
+| callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 // Pass in the URIs of the files.
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the file IDs.
-//let file = ['fd://1', 'fd://2'];
-print.print(file, (err: BusinessError, printTask: print.PrintTask) => {
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the fd.
+//let files = ['fd://1', 'fd://2'];
+print.print(files, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -411,7 +509,7 @@ print.print(file, (err: BusinessError, printTask: print.PrintTask) => {
 })
 ```
 
-## print
+## print.print
 
 print(files: Array&lt;string&gt;): Promise&lt;PrintTask&gt;
 
@@ -424,24 +522,33 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | Print result.|
+| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 // Pass in the URIs of the files.
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the file IDs.
-//let file = ['fd://1', 'fd://2'];
-print.print(file).then((printTask: print.PrintTask) => {
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the fd.
+//let files = ['fd://1', 'fd://2'];
+print.print(files).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -451,7 +558,7 @@ print.print(file).then((printTask: print.PrintTask) => {
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(files: Array&lt;string&gt;, context: Context, callback: AsyncCallback&lt;PrintTask&gt;): void
 
@@ -464,22 +571,31 @@ Prints files. This API uses an asynchronous callback to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
-| context | Context | Yes| UIAbility context used to start printing.|
-| callback | AsyncCallback&lt;PrintTask&gt; | Yes| Callback used to return the result.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
+| context | Context | Yes| UIAbilityContext used to start the system print UI.|
+| callback | AsyncCallback&lt;[PrintTask](#printprinttask)&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 // Pass in the URIs of the files.
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the file IDs.
-//let file = ['fd://1', 'fd://2'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the fd.
+//let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
-print.print(file, context, (err: BusinessError, printTask: print.PrintTask) => {
+print.print(files, context, (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
         console.log('print err ' + JSON.stringify(err));
     } else {
@@ -491,7 +607,7 @@ print.print(file, context, (err: BusinessError, printTask: print.PrintTask) => {
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(files: Array&lt;string&gt;, context: Context): Promise&lt;PrintTask&gt;
 
@@ -504,26 +620,35 @@ Prints files. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| file | Array&lt;string&gt; | Yes| List of files to print. Images in .jpg, .png, .gif, .bmp, or .webp format are supported.|
-| context | Context | Yes| UIAbility context used to start printing.|
+| files | Array&lt;string&gt; | Yes| List of files to print. Images (in .jpg, .png, .gif, .bmp, or .webp format) and PDF files are supported. Before a system application passes in the URI, it needs to call **uriPermissionManager.grantUriPermission()** to authorize the print application. This API is a system API. [print](#printprint11-2) is recommended for third-party application.|
+| context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | Print result.|
+| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 // Pass in the URIs of the files.
-let file = ['file://data/print/a.png', 'file://data/print/b.png'];
-// Alternatively, pass in the file IDs.
-//let file = ['fd://1', 'fd://2'];
+let files = ['file://data/print/a.png', 'file://data/print/b.png'];
+// Alternatively, pass in the fd.
+//let files = ['fd://1', 'fd://2'];
 let context = getContext(this);
-print.print(file, context).then((printTask: print.PrintTask) => {
+print.print(files, context).then((printTask: print.PrintTask) => {
     printTask.on('succeed', () => {
         console.log('print state is succeed');
     })
@@ -533,7 +658,7 @@ print.print(file, context).then((printTask: print.PrintTask) => {
 })
 ```
 
-## print<sup>11+</sup>
+## print.print<sup>11+</sup>
 
 print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: PrintAttributes, context: Context): Promise&lt;PrintTask&gt;
 
@@ -546,20 +671,29 @@ Prints a file. This API uses a promise to return the result.
 **Parameters**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| jobName | string | Yes| Name of the file to print.|
-| printAdapter | PrintDocumentAdapter | Yes| Feature implemented by a third-party application.|
-| printAttributes | PrintAttributes | Yes| Print attributes.|
-| context | Context | Yes| UIAbility context used to start printing.|
+| jobName | string | Yes| Name of the file to print, for example, **test.pdf**. The printer uses the [onStartLayoutWrite](#onstartlayoutwrite) API to send the **fd** of the empty PDF file to the API caller. The API caller uses the new print attributes to update the file to print.|
+| printAdapter | [PrintDocumentAdapter](#printprintdocumentadapter11) | Yes| [PrintDocumentAdapter](#printprintdocumentadapter11) API instance implemented by a third-party application.|
+| printAttributes | [PrintAttributes](#printprintattributes11) | Yes| Print attributes.|
+| context | Context | Yes| UIAbilityContext used to start the system print UI.|
 
 **Return value**
 | **Type**| **Description**|
 | -------- | -------- |
-| Promise&lt;PrintTask&gt; | Print result.|
+| Promise&lt;[PrintTask](#printprinttask)&gt; | Print result.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 
 **Example**
 
 ```ts
-import print from '@ohos.print';
+import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
 let jobName : string = "jobName";
@@ -588,7 +722,7 @@ print.print(jobName, printAdapter, printAttributes, context).then((printTask: pr
 })
 ```
 
-## PrintAttributes<sup>11+</sup>
+## print.PrintAttributes<sup>11+</sup>
 
 Defines the print attributes.
 
@@ -597,14 +731,14 @@ Defines the print attributes.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| copyNumber | number | No| Copy of the file list.|
-| pageRange | PrintPageRange | No| Range of pages to print.|
-| pageSize | PrintPageSize \| PrintPageType | No| Page size of the files to print.|
-| directionMode | PrintDirectionMode | No| Print direction mode.|
-| colorMode | PrintColorMode | No| Color mode of the files to print.|
-| duplexMode | PrintDuplexMode | No| Duplex mode of the files to print.|
+| copyNumber | number | No| Number of printed file copies.|
+| pageRange | [PrintPageRange](#printprintpagerange11) | No| Page range of the file to print.|
+| pageSize | [PrintPageSize](#printprintpagesize11) \| [PrintPageType](#printprintpagetype11) | No| Page size of the file to print.|
+| directionMode | [PrintDirectionMode](#printprintdirectionmode11) | No| Print direction mode.|
+| colorMode | [PrintColorMode](#printprintcolormode11) | No| Color mode of the files to print.|
+| duplexMode | [PrintDuplexMode](#printprintduplexmode11) | No| Duplex mode of the files to print.|
 
-## PrintPageRange<sup>11+</sup>
+## print.PrintPageRange<sup>11+</sup>
 
 Defines the print range.
 
@@ -615,10 +749,10 @@ Defines the print range.
 | -------- | -------- | -------- | -------- |
 | startPage | number | No| Start page.|
 | endPage | number | No| End page.|
-| pages | Array&lt;number&gt; | No| Discrete pages.|
+| pages | Array&lt;number&gt; | No| Page range set of the file to print.|
 
 
-## PrintPageSize<sup>11+</sup>
+## print.PrintPageSize<sup>11+</sup>
 
 Defines the size of the printed page.
 
@@ -627,14 +761,14 @@ Defines the size of the printed page.
 **Attributes**
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| id | string | Yes| Page size ID.|
-| name | string | Yes| Page size name.|
+| id | string | Yes| Paper size ID.|
+| name | string | Yes| Paper size name.|
 | width | number | Yes| Page width, in millimeters.|
 | height | number | Yes| Page height, in millimeters.|
 
 
 
-## PrintDirectionMode<sup>11+</sup>
+## print.PrintDirectionMode<sup>11+</sup>
 
 Enumerates the print direction modes.
 
@@ -646,7 +780,7 @@ Enumerates the print direction modes.
 | DIRECTION_MODE_PORTRAIT | 1 | Portrait mode.|
 | DIRECTION_MODE_LANDSCAPE | 2 | Landscape mode.|
 
-## PrintColorMode<sup>11+</sup>
+## print.PrintColorMode<sup>11+</sup>
 
 Enumerates the color modes.
 
@@ -657,7 +791,7 @@ Enumerates the color modes.
 | COLOR_MODE_MONOCHROME | 0 | Black and white.|
 | COLOR_MODE_COLOR | 1 | Color.|
 
-## PrintDuplexMode<sup>11+</sup>
+## print.PrintDuplexMode<sup>11+</sup>
 
 Enumerates the duplex modes.
 
@@ -669,7 +803,7 @@ Enumerates the duplex modes.
 | DUPLEX_MODE_LONG_EDGE | 1 | Duplex (double-sided) with flipping on long edge.|
 | DUPLEX_MODE_SHORT_EDGE | 2 | Duplex (double-sided) with flipping on short edge.|
 
-## PrintPageType<sup>11+</sup>
+## print.PrintPageType<sup>11+</sup>
 
 Enumerates the print page types.
 
@@ -690,7 +824,7 @@ Enumerates the print page types.
 | PAGE_INT_DL_ENVELOPE | 10 | International envelope DL.|
 | PAGE_B_TABLOID | 11 | B Tabloid.|
 
-## PrintDocumentAdapterState<sup>11+</sup>
+## print.PrintDocumentAdapterState<sup>11+</sup>
 
 Enumerates the print job states.
 
@@ -700,11 +834,11 @@ Enumerates the print job states.
 | -------- | -------- | -------- |
 | PREVIEW_DESTROY | 0 | The preview fails.|
 | PRINT_TASK_SUCCEED | 1 | The print job is successful.|
-| PRINT_TASK_FAIL | 2 | The print job failed.|
+| PRINT_TASK_FAIL | 2 | The print job is failed.|
 | PRINT_TASK_CANCEL | 3 | The print job is canceled.|
 | PRINT_TASK_BLOCK | 4 | The print job is blocked.|
 
-## PrintFileCreationState<sup>11+</sup>
+## print.PrintFileCreationState<sup>11+</sup>
 
 Enumerates the print file creation status.
 
@@ -715,3 +849,379 @@ Enumerates the print file creation status.
 | PRINT_FILE_CREATED | 0 | The print file is created successfully.|
 | PRINT_FILE_CREATION_FAILED | 1 | The print file fails to be created.|
 | PRINT_FILE_CREATED_UNRENDERED | 2 | The print file is successfully created but not rendered.|
+
+## print.PrinterState<sup>14+</sup>
+
+Enumerates the printer states.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| PRINTER_ADDED | 0 | A new printer is added.|
+| PRINTER_REMOVED | 1 | The printer is removed.|
+| PRINTER_CAPABILITY_UPDATED | 2 | The printer is updated.|
+| PRINTER_CONNECTED | 3 | The printer is connected.|
+| PRINTER_DISCONNECTED | 4 | The printer is disconnected.|
+| PRINTER_RUNNING | 5 | The printer is running.|
+
+## print.PrintJobState<sup>14+</sup>
+
+Enumerates the print job states.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| PRINT_JOB_PREPARE | 0 | The printer is prepared for the print job.|
+| PRINT_JOB_QUEUED | 1 | The print job is on the print queue of the printer.|
+| PRINT_JOB_RUNNING | 2 | The print job is being executed.|
+| PRINT_JOB_BLOCKED | 3 | The print job is blocked.|
+| PRINT_JOB_COMPLETED | 4 | The print job is complete.|
+
+## print.PrintJobSubState<sup>14+</sup>
+
+Enumerates the print job substates.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| PRINT_JOB_COMPLETED_SUCCESS | 0 | The print job is successful.|
+| PRINT_JOB_COMPLETED_FAILED | 1 | The print job is failed.|
+| PRINT_JOB_COMPLETED_CANCELLED | 2 | The print job is canceled by user.|
+| PRINT_JOB_COMPLETED_FILE_CORRUPTED | 3 | The print job is corrupted.|
+| PRINT_JOB_BLOCK_OFFLINE | 4 | The printer is offline.|
+| PRINT_JOB_BLOCK_BUSY | 5 | The printer is occupied by another process.|
+| PRINT_JOB_BLOCK_CANCELLED | 6 | The print job is canceled due to a block.|
+| PRINT_JOB_BLOCK_OUT_OF_PAPER | 7 | The printer is out of paper.|
+| PRINT_JOB_BLOCK_OUT_OF_INK | 8 | The printer is out of ink.|
+| PRINT_JOB_BLOCK_OUT_OF_TONER | 9 | The printer is out of toner.|
+| PRINT_JOB_BLOCK_JAMMED | 10 | The printer is in a paper jam.|
+| PRINT_JOB_BLOCK_DOOR_OPEN | 11 | The printer door is open.|
+| PRINT_JOB_BLOCK_SERVICE_REQUEST | 12 | Print service request.|
+| PRINT_JOB_BLOCK_LOW_ON_INK | 13 | The printer is low on ink.|
+| PRINT_JOB_BLOCK_LOW_ON_TONER | 14 | The printer is low on toner.|
+| PRINT_JOB_BLOCK_REALLY_LOW_ON_INK | 15 | The printer is extremely low on ink.|
+| PRINT_JOB_BLOCK_BAD_CERTIFICATE | 16 | The print certificate is incorrect.|
+| PRINT_JOB_BLOCK_ACCOUNT_ERROR | 18 | There is an error with the printer account.|
+| PRINT_JOB_BLOCK_PRINT_PERMISSION_ERROR | 19 | There is an error with the printer permission.|
+| PRINT_JOB_BLOCK_PRINT_COLOR_PERMISSION_ERROR | 20 | There is an error with the color printing permission.|
+| PRINT_JOB_BLOCK_NETWORK_ERROR | 21 | The printer fails to connect to the network.|
+| PRINT_JOB_BLOCK_SERVER_CONNECTION_ERROR | 22 | The printer fails to connect to the server.|
+| PRINT_JOB_BLOCK_LARGE_FILE_ERROR | 23 | There is an error with a large file printing.|
+| PRINT_JOB_BLOCK_FILE_PARSING_ERROR | 24 | There is an error with file parsing.|
+| PRINT_JOB_BLOCK_SLOW_FILE_CONVERSION | 25 | The file conversion is slow.|
+| PRINT_JOB_RUNNING_UPLOADING_FILES | 26 | The file is uploading.|
+| PRINT_JOB_RUNNING_CONVERTING_FILES | 27 | The file is converting.|
+| PRINT_JOB_BLOCK_UNKNOWN | 99 | There is an unknown error with the printer.|
+
+## print.PrintErrorCode<sup>14+</sup>
+
+Enumerates the print error codes.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| E_PRINT_NONE | 0 | No error.|
+| E_PRINT_NO_PERMISSION | 201 | No permission.|
+| E_PRINT_INVALID_PARAMETER | 401 | Invalid parameters.|
+| E_PRINT_GENERIC_FAILURE | 13100001 | Printing failure.|
+| E_PRINT_RPC_FAILURE | 13100002 | RPC failure.|
+| E_PRINT_SERVER_FAILURE | 13100003 | Print service failure.|
+| E_PRINT_INVALID_EXTENSION | 13100004 | Invalid printer extension.|
+| E_PRINT_INVALID_PRINTER | 13100005 | Invalid printer.|
+| E_PRINT_INVALID_PRINT_JOB | 13100006 | Invalid print job.|
+| E_PRINT_FILE_IO | 13100007 | Incorrect file input/output.|
+
+## print.ApplicationEvent<sup>14+</sup>
+
+Enumerates print application events.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| APPLICATION_CREATED | 0 | Starts the print application.|
+| APPLICATION_CLOSED_FOR_STARTED | 1 | Closes the print application by clicking **Start**.|
+| APPLICATION_CLOSED_FOR_CANCELED | 2 | Closes the print application by clicking **Cancel**.|
+
+## print.addPrinterToDiscovery<sup>14+</sup>
+
+addPrinterToDiscovery(printerInformation: PrinterInformation): Promise&lt;void&gt;
+
+Adds a printer to the printer discovery list. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerInformation | [PrinterInformation](#printprinterinformation14) | Yes| The added printer.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Result of adding a printer to the printer discovery list.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerInformation : print.PrinterInformation = {
+    printerId : 'testPrinterId',
+    printerName : 'testPrinterName',
+    printerStatus : 0,
+    description : 'testDesc',
+    uri : 'testUri',
+    printerMake : 'testPrinterMake',
+    options : 'testOps'
+};
+print.addPrinterToDiscovery(printerInformation).then((data : void) => {
+    console.log('addPrinterToDiscovery data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('addPrinterToDiscovery error : ' + JSON.stringify(error));
+})
+```
+
+## print.updatePrinterInDiscovery<sup>14+</sup>
+
+updatePrinterInDiscovery(printerInformation: PrinterInformation): Promise&lt;void&gt;
+
+Updates the printer capabilities to the printer discovery list. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerInformation | [PrinterInformation](#printprinterinformation14) | Yes| Printer whose capability is to be updated.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Result of updating the printer capabilities to the printer discovery list.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let testPageSize : print.PrintPageSize = {
+    id : 'ISO_A4',
+    name : 'iso_a4_210x297mm',
+    width : 8268,
+    height : 11692
+};
+
+let testCapability : print.PrinterCapabilities = {
+    supportedPageSizes : [testPageSize],
+    supportedColorModes : [print.PrintColorMode.COLOR_MODE_MONOCHROME],
+    supportedDuplexModes : [print.PrintDuplexMode.DUPLEX_MODE_NONE],
+    supportedMediaTypes : ['stationery'],
+    supportedQualities : [print.PrintQuality.QUALITY_NORMAL],
+    supportedOrientations : [print.PrintOrientationMode.ORIENTATION_MODE_PORTRAIT],
+    options : 'testOptions'
+};
+
+let printerInformation : print.PrinterInformation = {
+    printerId : 'testPrinterId',
+    printerName : 'testPrinterName',
+    printerStatus : 0,
+    description : 'testDesc',
+    capability : testCapability,
+    uri : 'testUri',
+    printerMake : 'testPrinterMake',
+    options : 'testOptions'
+};
+print.updatePrinterInDiscovery(printerInformation).then((data : void) => {
+    console.log('updatePrinterInDiscovery data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('updatePrinterInDiscovery error : ' + JSON.stringify(error));
+})
+```
+
+## print.removePrinterFromDiscovery<sup>14+</sup>
+
+removePrinterFromDiscovery(printerId: string): Promise&lt;void&gt;
+
+Removes a printer from the printer discovery list. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerId | string | Yes| Printer to remove.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Result of removing a printer from the printer discovery list.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId : string = 'testPrinterId';
+print.removePrinterFromDiscovery(printerId).then((data : void) => {
+    console.log('removePrinterFromDiscovery data : ' + JSON.stringify(data));
+}).catch((error: BusinessError) => {
+    console.log('removePrinterFromDiscovery error : ' + JSON.stringify(error));
+})
+```
+
+## print.getPrinterInformationById<sup>14+</sup>
+
+getPrinterInformationById(printerId: string): Promise&lt;PrinterInformation&gt;
+
+Obtains printer information based on the printer ID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.PRINT
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Parameters**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerId | string | Yes| Printer ID used to obtain information.|
+
+**Return value**
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;[PrinterInformation](#printprinterinformation14)&gt; | Printer information obtained based on the printer ID.|
+
+**Error codes**
+
+For details about the error codes, see [Error Codes of the Print Service](./errorcode-print.md).
+
+| ID| Error Message                                   |
+| -------- | ------------------------------------------- |
+| 201 | the application does not have permission to call this function. |
+| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
+
+**Example**
+
+```ts
+import { print } from '@kit.BasicServicesKit';
+import { BusinessError } from '@ohos.base';
+
+let printerId : string = 'testPrinterId';
+print.getPrinterInformationById(printerId).then((printerInformation : print.PrinterInformation) => {
+    console.log('getPrinterInformationById data : ' + JSON.stringify(printerInformation));
+}).catch((error: BusinessError) => {
+    console.log('getPrinterInformationById error : ' + JSON.stringify(error));
+})
+```
+
+## print.PrinterInformation<sup>14+</sup>
+
+Defines the printer information.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Attributes**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| printerId | string | Yes| Printer ID.|
+| printerName | string | Yes| Printer name.|
+| printerStatus | [PrinterStatus](#printprinterstatus14) | Yes| Printer state.|
+| description | string | No| Printer description.|
+| capability | [PrinterCapabilities](#printprintercapabilities14) | No| Printer capabilities.|
+| uri | string | No| Printer URI.|
+| printerMake | string | No| Printer model.|
+| options | string | No| Printer details.|
+
+## print.PrinterCapabilities<sup>14+</sup>
+
+Defines the printer capabilities.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+**Attributes**
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| supportedPageSizes | Array&lt;[PrintPageSize](#printprintpagesize11)&gt; | Yes| List of paper sizes supported by the printer.|
+| supportedColorModes | Array&lt;[PrintColorMode](#printprintcolormode11)&gt; | Yes| List of color modes supported by the printer.|
+| supportedDuplexModes | Array&lt;[PrintDuplexMode](#printprintduplexmode11)&gt; | Yes| List of single- and double-sided modes supported by the printer.|
+| supportedMediaTypes | Array&lt;string&gt; | No| List of paper types supported by the printer.|
+| supportedQualities | Array&lt;[PrintQuality](#printprintquality14)&gt; | No| List of print quality supported by the printer.|
+| supportedOrientations | Array&lt;[PrintOrientationMode](#printprintorientationmode14)&gt; | No| List of print directions supported by the printer.|
+| options | string | No| Printer capability details.|
+
+## print.PrintQuality<sup>14+</sup>
+
+Enumerates the print qualities.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| QUALITY_DRAFT | 3 | Draft|
+| QUALITY_NORMAL | 4 | Standard|
+| QUALITY_HIGH | 5 | High|
+
+## print.PrintOrientationMode<sup>14+</sup>
+
+Enumerates the print directions.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| ORIENTATION_MODE_PORTRAIT | 0 | Portrait mode.|
+| ORIENTATION_MODE_LANDSCAPE | 1 | Landscape mode.|
+| ORIENTATION_MODE_REVERSE_LANDSCAPE | 2 | Reverse landscape mode.|
+| ORIENTATION_MODE_REVERSE_PORTRAIT | 3 | Reverse portrait mode.|
+| ORIENTATION_MODE_NONE | 4 | Adaptive mode.|
+
+## print.PrinterStatus<sup>14+</sup>
+
+Enumerates the printer states.
+
+**System capability**: SystemCapability.Print.PrintFramework
+
+| **Name**| **Value**| **Description**|
+| -------- | -------- | -------- |
+| PRINTER_IDLE | 0 | The printer is idle.|
+| PRINTER_BUSY | 1 | The printer is busy.|
+| PRINTER_UNAVAILABLE | 2 | The printer is unavailable.|

@@ -11,7 +11,7 @@ The **pointer** module provides APIs related to pointer attribute management.
 ## Modules to Import
 
 ```js
-import pointer from '@ohos.multimodalInput.pointer';
+import { pointer } from '@kit.InputKit';
 ```
 
 ## pointer.setPointerSpeed
@@ -28,8 +28,17 @@ Sets the moving speed of the mouse pointer. This API uses an asynchronous callba
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.  |
+| speed    | number                    | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **20**. The default value is **10**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **Example**
 
@@ -37,13 +46,13 @@ Sets the moving speed of the mouse pointer. This API uses an asynchronous callba
 try {
   pointer.setPointerSpeed(5, (error: Error) => {
     if (error) {
-      console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set pointer speed success`);
   });
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -61,13 +70,22 @@ Sets the moving speed of the mouse pointer. This API uses a promise to return th
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **20**. The default value is **10**.|
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Screen Hopping Error Codes](../apis-distributedservice-kit/errorcode-devicestatus.md).
+
+| ID| Error Message         |
+| -------- | ----------------- |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified.2.Incorrect parameter types.3.Parameter verification failed. |
+
 
 **Example**
 
@@ -77,7 +95,7 @@ try {
     console.log(`Set pointer speed success`);
   });
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -95,7 +113,16 @@ Sets the moving speed of the mouse pointer. This API returns the result synchron
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **11**. The default value is **5**.|
+| speed | number | Yes   | Moving speed of the mouse pointer. The value ranges from **1** to **20**. The default value is **10**.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -104,7 +131,7 @@ try {
   let speed = pointer.setPointerSpeedSync(5);
   console.log(`Set pointer speed success`);
 } catch (error) {
-  console.log(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -124,19 +151,28 @@ Obtains the moving speed of the mouse pointer. This API uses an asynchronous cal
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+
 **Example**
 
 ```js
 try {
   pointer.getPointerSpeed((error: Error, speed: number) => {
     if (error) {
-      console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -164,7 +200,7 @@ try {
     console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -184,6 +220,15 @@ Obtains the moving speed of the mouse pointer. This API returns the result synch
 | --------------------- | ------------------- |
 | number | Moving speed of the mouse pointer.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -191,7 +236,7 @@ try {
   let speed = pointer.getPointerSpeedSync();
   console.log(`Get pointer speed success, speed: ${JSON.stringify(speed)}`);
 } catch (error) {
-  console.log(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer speed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -212,19 +257,28 @@ Sets the status of the mouse hover scroll switch. This API uses an asynchronous 
 | state    | boolean                    | Yes   | Status of the mouse hover scroll switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setHoverScrollState(true, (error: Error) => {
     if (error) {
-      console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set the mouse hover scroll success`);
   });
 } catch (error) {
-  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -250,6 +304,15 @@ Sets the status of the mouse hover scroll switch. This API uses a promise to ret
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -258,7 +321,7 @@ try {
     console.log(`Set the mouse hover scroll success`);
   });
 } catch (error) {
-  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -278,6 +341,15 @@ Obtains the status of the mouse hover scroll switch. This API uses an asynchrono
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -286,7 +358,7 @@ try {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -306,6 +378,15 @@ Obtains the status of the mouse hover scroll switch. This API uses a promise to 
 | --------------------- | ------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -314,7 +395,7 @@ try {
     console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -335,19 +416,28 @@ Sets the primary button of the mouse. This API uses an asynchronous callback to 
 | primary  | [PrimaryButton](js-apis-pointer.md#primarybutton10)   | Yes   | ID of the primary mouse button.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error: Error) => {
     if (error) {
-      console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set mouse primary button success`);
   });
 } catch (error) {
-  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -373,6 +463,15 @@ Sets the primary button of the mouse. This API uses a promise to return the resu
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -381,7 +480,7 @@ try {
     console.log(`Set mouse primary button success`);
   });
 } catch (error) {
-  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -401,6 +500,15 @@ Obtains the primary button of the mouse. This API uses an asynchronous callback 
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -409,7 +517,7 @@ try {
     console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
   });
 } catch (error) {
-  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -429,6 +537,15 @@ Obtains the primary button of the mouse. This API uses a promise to return the r
 | --------------------- | ------------------- |
 | Promise&lt;[PrimaryButton](js-apis-pointer.md#primarybutton10)&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -437,7 +554,7 @@ try {
     console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
   });
 } catch (error) {
-  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -458,19 +575,28 @@ Sets the number of mouse scroll rows. This API uses an asynchronous callback to 
 | rows     | number                    | Yes   | Number of mouse scroll rows. The value ranges from 1 to 100. The default value is **3**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setMouseScrollRows(1, (error: Error) => {
     if (error) {
-      console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setMouseScrollRows success`);
   });
 } catch (error) {
-  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -496,6 +622,15 @@ Sets the number of mouse scroll rows. This API uses a promise to return the resu
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -504,7 +639,7 @@ try {
     console.log(`setMouseScrollRows success`);
   });
 } catch (error) {
-  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -524,6 +659,15 @@ Obtains the number of mouse scroll rows. This API uses an asynchronous callback 
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -532,7 +676,7 @@ try {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
-  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -552,6 +696,15 @@ Obtains the moving speed of the mouse pointer. This API uses a promise to return
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -560,7 +713,7 @@ try {
     console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
   });
 } catch (error) {
-  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -581,19 +734,28 @@ Sets the scroll switch of the touchpad. This API uses an asynchronous callback t
 | state | boolean | Yes   | Scroll switch status. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setTouchpadScrollSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadScrollSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -619,6 +781,15 @@ Sets the scroll switch of the touchpad. This API uses a promise to return the re
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -627,7 +798,7 @@ try {
     console.log(`setTouchpadScrollSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -647,6 +818,15 @@ Obtains the scroll switch status of the touchpad. This API uses an asynchronous 
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -655,7 +835,7 @@ try {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -675,6 +855,15 @@ Obtains the scroll switch status of the touchpad. This API uses a promise to ret
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -683,7 +872,7 @@ try {
     console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -704,19 +893,28 @@ Sets the scroll direction of the touchpad. This API uses an asynchronous callbac
 | state | boolean | Yes   | Scroll direction of the touchpad.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setTouchpadScrollDirection(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadScrollDirection success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -742,6 +940,15 @@ Sets the scroll direction of the touchpad. This API uses a promise to return the
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -750,7 +957,7 @@ try {
     console.log(`setTouchpadScrollDirection success`);
   });
 } catch (error) {
-  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -770,6 +977,15 @@ Obtains the scroll direction of the touchpad. This API uses an asynchronous call
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -778,7 +994,7 @@ try {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -798,6 +1014,15 @@ Obtains the scroll direction of the touchpad. This API uses a promise to return 
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result.<br>The value **true** indicates that the scroll direction is the same as the finger moving direction, and the value **false** indicates the opposite.<br>The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -806,7 +1031,7 @@ try {
     console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -827,19 +1052,28 @@ Sets the tap switch of the touchpad. This API uses an asynchronous callback to r
 | state | boolean | Yes   |Tap switch status of the touchpad The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadTapSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -865,6 +1099,15 @@ Sets the tap switch of the touchpad. This API uses a promise to return the resul
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -873,7 +1116,7 @@ try {
     console.log(`setTouchpadTapSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -893,6 +1136,15 @@ Obtains the tap switch status of the touchpad. This API uses an asynchronous cal
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -901,7 +1153,7 @@ try {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -921,6 +1173,15 @@ Obtains the tap switch status of the touchpad. This API uses a promise to return
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -929,7 +1190,7 @@ try {
     console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -947,8 +1208,17 @@ Sets the mouse pointer moving speed of the touchpad. This API uses an asynchrono
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed | number                    | Yes   |Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **5**. |
+| speed | number                    | Yes   |Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **6**. |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -956,13 +1226,13 @@ Sets the mouse pointer moving speed of the touchpad. This API uses an asynchrono
 try {
   pointer.setTouchpadPointerSpeed(1, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadPointerSpeed success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -980,13 +1250,22 @@ Sets the mouse pointer moving speed of the touchpad. This API uses a promise to 
 
 | Name   | Type    | Mandatory  | Description                                 |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed| number | Yes   | Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **5**.   |
+| speed| number | Yes   | Mouse pointer moving speed of the touchpad. The value range is [1,11]. The default value is **6**.   |
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -996,7 +1275,7 @@ try {
     console.log(`setTouchpadPointerSpeed success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1016,6 +1295,15 @@ Obtains the mouse pointer moving speed of the touchpad. This API uses an asynchr
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<number> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1024,7 +1312,7 @@ try {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1044,6 +1332,15 @@ Obtains the mouse pointer moving speed of the touchpad. This API uses a promise 
 | --------------------- | ------------------- |
 | Promise\<number> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1052,7 +1349,7 @@ try {
     console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1073,19 +1370,28 @@ Sets the pinch switch of the touchpad. This API uses an asynchronous callback to
 | state | boolean | Yes   |Pinch switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setTouchpadTapSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadPinchSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1111,6 +1417,15 @@ Sets the pinch switch of the touchpad. This API uses a promise to return the res
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1119,7 +1434,7 @@ try {
     console.log(`setTouchpadPinchSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1139,6 +1454,15 @@ Obtains the pinch switch status of the touchpad. This API uses an asynchronous c
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1147,7 +1471,7 @@ try {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1167,6 +1491,15 @@ Obtains the pinch switch status of the touchpad. This API uses a promise to retu
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1175,7 +1508,7 @@ try {
     console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1196,19 +1529,28 @@ Sets the multi-finger swipe switch of the touchpad. This API uses an asynchronou
 | state | boolean | Yes   |Swipe switch status of the touchpad. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.  |
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setTouchpadSwipeSwitch(true, (error: Error) => {
     if (error) {
-      console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadSwipeSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1234,6 +1576,15 @@ Sets the swipe switch of the touchpad. This API uses a promise to return the res
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1242,7 +1593,7 @@ try {
     console.log(`setTouchpadSwipeSwitch success`);
   });
 } catch (error) {
-  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1262,6 +1613,15 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses an a
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<boolean> | Yes   | Callback used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1270,7 +1630,7 @@ try {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1290,6 +1650,15 @@ Obtains the multi-finger swipe switch status of the touchpad. This API uses a pr
 | --------------------- | ------------------- |
 | Promise\<boolean> | Promise used to return the result. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite. The default value is **true**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1298,7 +1667,7 @@ try {
     console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1316,8 +1685,17 @@ Sets the shortcut menu type of the touchpad. This API uses an asynchronous callb
 
 | Name      | Type                       | Mandatory  | Description                                   |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**. |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: Tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: Tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: Tapping or pressing the touchpad with two fingers.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the right-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.<br>The default value is **TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON**.|
 | callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1325,13 +1703,13 @@ Sets the shortcut menu type of the touchpad. This API uses an asynchronous callb
 try {
   pointer.setTouchpadRightClickType(pointer.RightClickType.TOUCHPAD_RIGHT_BUTTON , (error: Error) => {
     if (error) {
-      console.log(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setTouchpadRightClickType success`);
   });
 } catch (error) {
-  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1347,15 +1725,24 @@ Sets the shortcut menu type of the touchpad. This API uses a promise to return t
 
 **Parameters**
 
-| Name   | Type    | Mandatory  | Description                                 |
-| ----- | ------ | ---- | ----------------------------------- |
-| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   | Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: tapping or pressing the touchpad with two fingers.<br>The default value is **TOUCHPAD_RIGHT_BUTTON**.|
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| type| [RightClickType](js-apis-pointer.md#rightclicktype10)| Yes   |Shortcut menu type of the touchpad.<br>- TOUCHPAD_RIGHT_BUTTON: Tapping the right-button area of the touchpad.<br>- TOUCHPAD_LEFT_BUTTON: Tapping the left-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP: Tapping or pressing the touchpad with two fingers.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the right-button area of the touchpad.<br>- TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>: Tapping or pressing the touchpad with two fingers, or tapping the left-button area of the touchpad.<br>The default value is **TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON**.|
 
 **Return value**
 
 | Name                 | Description              |
 | ------------------- | ---------------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Example**
 
@@ -1365,7 +1752,7 @@ try {
     console.log(`setTouchpadRightClickType success`);
   });
 } catch (error) {
-  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1385,6 +1772,15 @@ Obtains the shortcut menu type of the touchpad. This API uses an asynchronous ca
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback\<[RightClickType](js-apis-pointer.md#rightclicktype10)> | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1393,7 +1789,7 @@ try {
     console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1413,6 +1809,15 @@ Obtains the shortcut menu type of the touchpad. This API uses a promise to retur
 | --------------------- | ------------------- |
 | Promise\<[RightClickType](js-apis-pointer.md#rightclicktype10) > | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1421,7 +1826,7 @@ try {
     console.log(`getTouchpadRightClickType success, typeed: ${JSON.stringify(type)}`);
   });
 } catch (error) {
-  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1442,19 +1847,28 @@ Sets the pointer size. This API uses an asynchronous callback to return the resu
 | size     | number                    | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setPointerSize(1, (error: Error) => {
     if (error) {
-      console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setPointerSize success`);
   });
 } catch (error) {
-  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1480,6 +1894,15 @@ Sets the pointer size. This API uses a promise to return the result.
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1488,13 +1911,13 @@ try {
     console.log(`setPointerSize success`);
   });
 } catch (error) {
-  console.log(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## pointer.setPointerSizeSync<sup>10+</sup>
 
-setPointerSizeSync(size: number): void;
+setPointerSizeSync(size: number): void
 
 Sets the pointer size. This API returns the result synchronously.
 
@@ -1508,6 +1931,15 @@ Sets the pointer size. This API returns the result synchronously.
 | ----- | ------ | ---- | ----------------------------------- |
 | size  | number | Yes   | Pointer size. The value ranges from **1** to **7**. The default value is **1**.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1515,7 +1947,7 @@ try {
   pointer.setPointerSizeSync(5);
   console.log(`setPointerSizeSync success`);
 } catch (error) {
-  console.log(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1535,6 +1967,15 @@ Obtains the pointer size. This API uses an asynchronous callback to return the r
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1543,7 +1984,7 @@ try {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
-  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1563,6 +2004,15 @@ Obtains the pointer size. This API uses a promise to return the result.
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **Example**
 
 ```js
@@ -1571,7 +2021,7 @@ try {
     console.log(`getPointerSize success, size: ${JSON.stringify(size)}`);
   });
 } catch (error) {
-  console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1591,6 +2041,15 @@ Obtains the pointer size. This API returns the result synchronously.
 | --------------------- | ------------------- |
 | number | Pointer size. |
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **Example**
 
 ```js
@@ -1598,7 +2057,7 @@ try {
   let pointerSize = pointer.getPointerSizeSync();
   console.log(`getPointerSizeSync success, pointerSize: ${JSON.stringify(pointerSize)}`);
 } catch (error) {
-  console.log(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerSizeSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1623,19 +2082,28 @@ Sets the pointer color. This API uses an asynchronous callback to return the res
 | color     | number                    | Yes   | Pointer color. The default value is **black** (0x000000).  |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
 try {
   pointer.setPointerColor(0xF6C800, (error: Error) => {
     if (error) {
-      console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`setPointerColor success`);
   });
 } catch (error) {
-  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1665,6 +2133,15 @@ Sets the pointer color. This API uses a promise to return the result.
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1673,13 +2150,13 @@ try {
     console.log(`setPointerColor success`);
   });
 } catch (error) {
-  console.log(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ## pointer.setPointerColorSync<sup>10+</sup>
 
-setPointerColorSync(color: number): void;
+setPointerColorSync(color: number): void
 
 Sets the pointer color. This API returns the result synchronously.
 
@@ -1697,6 +2174,15 @@ Sets the pointer color. This API returns the result synchronously.
 | ----- | ------ | ---- | ----------------------------------- |
 | color  | number | Yes   | Pointer color. The default value is **black** (0x000000).|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1704,7 +2190,7 @@ try {
   pointer.setPointerColorSync(0xF6C800);
   console.log(`setPointerColorSync success`);
 } catch (error) {
-  console.log(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`setPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1724,6 +2210,15 @@ Obtains the pointer color. This API uses an asynchronous callback to return the 
 | -------- | --------------------------- | ---- | -------------- |
 | callback | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
 **Example**
 
 ```js
@@ -1732,7 +2227,7 @@ try {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {
-  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1752,6 +2247,15 @@ Obtains the pointer color. This API uses a promise to return the result.
 | --------------------- | ------------------- |
 | Promise&lt;number&gt; | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **Example**
 
 ```js
@@ -1760,7 +2264,7 @@ try {
     console.log(`getPointerColor success, color: ${JSON.stringify(color)}`);
   });
 } catch (error) {
-  console.log(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1780,6 +2284,15 @@ Obtains the pointer color. This API returns the result synchronously.
 | --------------------- | ------------------- |
 | number | Pointer color.|
 
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+
 **Example**
 
 ```js
@@ -1787,6 +2300,164 @@ try {
   let pointerColor = pointer.getPointerColorSync();
   console.log(`getPointerColorSync success, pointerColor: ${JSON.stringify(pointerColor)}`);
 } catch (error) {
-  console.log(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`getPointerColorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+setTouchpadDoubleTapAndDragState(isOpen: boolean, callback: AsyncCallback\<void>): void
+
+Sets the double-tap and drag switch for the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                       | Mandatory  | Description                                   |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| isOpen | boolean | Yes   | Status of the double-tap and drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+| callback | AsyncCallback\<void> | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadDoubleTapAndDragState(true, (error: Error) => {
+    if (error) {
+      console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadDoubleTapAndDragState success`);
+  });
+} catch (error) {
+  console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+setTouchpadDoubleTapAndDragState(isOpen: boolean): Promise\<void>
+
+Sets the double-tap and drag switch for the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description                                 |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| Yes   |  Status of the double-tap and drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+
+**Return value**
+
+| Name                 | Description              |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+try {
+  pointer.setTouchpadDoubleTapAndDragState(false).then(() => {
+    console.log(`setTouchpadDoubleTapAndDragState success`);
+  });
+} catch (error) {
+  console.error(`setTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+getTouchpadDoubleTapAndDragState(callback: AsyncCallback\<boolean>): void
+
+Obtains the status of the double-tap and drag switch for the touchpad. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name      | Type                         | Mandatory  | Description            |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | Yes   | Callback used to return the status of the double-tap drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+| 401  | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadDoubleTapAndDragState((error: Error, state: boolean) => {
+    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.error(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadDoubleTapAndDragState<sup>14+</sup>
+
+getTouchpadDoubleTapAndDragState(): Promise\<boolean>
+
+Obtains the status of the double-tap and drag switch for the touchpad. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MultimodalInput.Input.Pointer
+
+**System API**: This is a system API.
+
+**Return value**
+
+| Name                   | Description                 |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise used to return the status of the touchpad double-tap drag switch. The value **true** indicates that the switch is enabled, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID | Error Message            |
+| ---- | --------------------- |
+| 202  | SystemAPI permission error.  |
+
+**Example**
+
+```js
+try {
+  pointer.getTouchpadDoubleTapAndDragState().then((state) => {
+    console.log(`getTouchpadDoubleTapAndDragState success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.error(`getTouchpadDoubleTapAndDragState failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

@@ -2,12 +2,12 @@
 
 ## 场景介绍
 
-注入事件提供注入输入事件功能，比如注入鼠标点击事件，键盘组合键等。使用场景例如：当用户需要验证应用的组合键功能时，开发者可以通过注入组合键事件判断功能是否生效。
+注入事件提供注入输入事件功能，比如注入鼠标点击事件、键盘组合键等。使用场景例如：当用户需要验证应用的组合键功能时，开发者可以通过注入组合键事件判断功能是否生效。
 
 ## 导入模块
 
 ```js
-import inputEventClient from '@ohos.multimodalInput.inputEventClient';
+import { inputEventClient } from '@kit.InputKit';
 ```
 
 ## 接口说明
@@ -16,13 +16,13 @@ import inputEventClient from '@ohos.multimodalInput.inputEventClient';
 
 | 接口名称  | 描述 |
 | -------------------------------------------- | -------------------------- |
-| injectEvent({KeyEvent: KeyEvent}): void |按键(包括单个按键和组合键)注入。 |
+| injectEvent({KeyEvent: KeyEvent}): void |按键（包括单个按键和组合键）注入。 |
 | injectMouseEvent(mouseEvent: MouseEventData): void |鼠标/触摸板事件注入。 |
 | injectTouchEvent(touchEvent: TouchEventData): void |触摸屏事件注入。|
 
 ## 开发步骤
 
-应用调用Home键返回桌面，测试是可以调用[injectEvent](../../reference/apis-input-kit/js-apis-inputeventclient-sys.md#inputeventclientinjectevent)注入Home按键，查看应用中Home按键功能是否生效。
+应用调用Home键返回桌面，调用[injectEvent](../../reference/apis-input-kit/js-apis-inputeventclient-sys.md#inputeventclientinjectevent)注入Home按键，查看应用中Home按键功能是否生效。
 
 ```js
 try {

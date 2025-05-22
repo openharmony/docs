@@ -12,7 +12,7 @@ module对象包含HAP的配置信息。
 | name | 标识HAP的类名。采用反向域名方式标识，前缀要与同级的package标签指定的包名一致，也可采用"."开头的命名方式。字符串长度不超过255字节。 | 字符串 | 可缺省，缺省值为空。 |
 | description | 标识HAP的描述信息。字符串长度不超过255字节。如果字符串超出长度或者需要支持多语言，可以采用资源索引的方式添加描述内容。 | 字符串 | 可缺省，缺省值为空。 |
 | supportedModes | 标识应用支持的运行模式，当前只定义了驾驶模式（drive）。该标签只适用于车机。 | 字符串数组 | 可缺省，缺省值为空。 |
-|deviceType | 标识允许Ability运行的设备类型。系统预定义的设备类型包括：tablet(平板)、tv（智慧屏）、car(车机)、wearable(智能穿戴)等。 | 字符串数组 | 不可缺省。 |
+|deviceType | <!--RP1-->标识允许Ability运行的设备类型。系统预定义的设备类型包括：tablet(平板)、tv（智慧屏）、car(车机)、wearable(智能穿戴)等。<!--RP1End--> | 字符串数组 | 不可缺省。 |
 |distro | 标识HAP发布的具体描述。 | 对象 | 不可缺省。 |
 |metaData | 标识HAP的元信息。 | 对象 | 可缺省，缺省值为空。 |
 | abilities | 标识当前模块内的所有Ability。采用对象数据格式。 | 对象数组 | 可缺省，缺省值为空。 |
@@ -24,7 +24,7 @@ module对象包含HAP的配置信息。
 |commonEvents | 定义了公共事件静态订阅者的信息，该字段中需要声明静态订阅者的名称、权限要求及订阅事件列表信息，当订阅的公共事件发送时，该公共事件静态订阅者将被拉起。这里的静态订阅者区分于常用的动态订阅者，前者无需在业务代码中主动调用订阅事件的接口，在公共事件发布时可能未被拉起，而动态订阅者则在业务代码中主动调用公共事件订阅的相关API，因此需要应用处于活动状态。 | 对象数组 | 可缺省，缺省为空。 |
 | entryTheme | 此标签标识系统内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 |testRunner | 此标签用于支持对测试框架的配置。 | 对象 | 可缺省，缺省值为空。 |
-|generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的[version下的code](./app-structure.md#version对象内部结构)保持不变时，可根据哈希值判断应用是否需要升级。**<br/>注：该字段仅对预置应用生效。**|布尔值|该标签可缺省, 缺省值为false。|
+|generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。<br/>该字段配置为true时，当前HAP/HSP会由打包工具生成对应的哈希值。系统OTA升级时，若应用的[version下的code](./app-structure.md#version对象内部结构)保持不变时，可根据哈希值判断应用是否需要升级。<br/>-&nbsp;true：表示当前HAP/HSP是由打包工具生成对应的哈希值。<br/>-&nbsp;false：表示当前HAP/HSP不会由打包工具生成对应的哈希值。<br/>**说明：**<br/>该字段仅对预置应用生效。 |布尔值|该标签可缺省，缺省值为false。|
 |libIsolation |用于区分同应用不同hap下的so文件，以防止so冲突。<br/>-&nbsp;true：当前hap的so会储存在libs目录中以Module名命名的路径下。<br/>-&nbsp;false：当前hap的so会直接储存在libs目录中。|布尔值|该标签可缺省, 缺省值为false。|
 
 module示例：
@@ -120,7 +120,7 @@ distro示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| parameters | 标识调用Ability时所有调用参数的元信息。每个调用参数的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空 |
+| parameters | 标识调用Ability时所有调用参数的元信息。每个调用参数的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空。 |
 | results | 标识Ability返回值的元信息。每个返回值的元信息由以下三个标签组成：description、name、type。 | 对象数组 | 可缺省，缺省值为空。 |
 | customizeData | 该标签标识父级组件的自定义元信息，Parameters和results在application不可配。 | 对象数组 | 可缺省，缺省值为空。 |
 
@@ -142,7 +142,7 @@ distro示例：
 | -------- | -------- | -------- | -------- |
 | description | 标识对返回值的描述，可以是表示描述内容的字符串，也可以是对描述内容的资源索引以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | name | 标识返回值的名字。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
-| type | 标识返回值的类型，如Integer。 | 字符串 | 不可缺省 |
+| type | 标识返回值的类型，如Integer。 | 字符串 | 不可缺省。 |
 
 ## customizeData对象的内部结构
 
@@ -182,13 +182,16 @@ metadata对象示例：
 
 **表7** **deviceType标签配置说明**
 
+<!--RP2-->
 | 设备类型 | 枚举值 | 说明 |
 | -------- | -------- | -------- |
 | 平板 | tablet | - |
 | 智慧屏 | tv | - |
 | 智能手表 | wearable | 系统能力较丰富的手表，具备电话功能。 |
+| 运动表 | litewearable | - |
 | 车机 | car | - |
 | 默认设备 | default | 能够使用全部系统能力的设备。 |
+<!--RP2End-->
 
 ## abilities对象的内部结构
 
@@ -197,7 +200,7 @@ metadata对象示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | process | 运行应用程序或Ability的进程名称。如果在deviceConfig标记中配置了进程，则应用程序的所有能力都在此进程中运行。您还可以为特定能力设置流程属性，以便该能力可以在此流程中运行。如果此属性设置为与其他应用程序相同的进程名称，则所有这些应用程序可以在同一进程中运行，前提是他们具有相同的联合用户ID和相同的签名。该标签最大字节数为31个字节。 | 字符串 | 可缺省，缺省值为空。 |
-| name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省 |
+| name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省。 |
 | description | 标识对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
 | label | 标识Ability对用户显示的名称。取值是对该名称的资源索引，支持多语言，例：$string:ability_label。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
@@ -211,7 +214,7 @@ metadata对象示例：
 | type | 标识Ability的类型。取值范围如下：<br/>page：表示基于Page模板开发的FA，用于提供与用户交互的能力。<br/>service：表示基于Service模板开发的PA，用于提供后台运行任务的能力。<br/>data：表示基于Data模板开发的PA，用于对外部提供统一的数据访问对象。<br/>CA：表示支持其他应用以窗口方式调起该Ability。 | 字符串 | 不可缺省。 |
 | orientation | 标识该Ability的显示模式。该标签仅适用于page类型的Ability。取值范围如下：<br/>unspecified：由系统自动判断显示方向。<br/>landscape：横屏模式。<br/>portrait：竖屏模式。<br/>followRecent：跟随栈中最近的应用。 | 字符串 | 可缺省，缺省值为"unspecified"。 |
 | backgroundModes | 标识后台服务的类型，可以为一个服务配置多个后台服务类型。该标签仅适用于service类型的Ability。取值范围如下：<br/>dataTransfer：通过网络/对端设备进行数据下载、备份、分享、传输等。<br/>audioPlayback：音频播放。<br/>audioRecording：录音。<br/>pictureInPicture：画中画、小窗口播放视频。<br/>voip：音视频电话、VOIP。<br/>location：定位、导航。<br/>bluetoothInteraction：蓝牙扫描、连接、传输。<br/>wifiInteraction：Wi-Fi扫描、连接、传输。<br/>screenFetch：录屏、截屏。<br/>multiDeviceConnection：多设备互联。 | 字符串数组 | 可缺省，缺省值为空。 |
-| grantPermission | 指定是否可以向Ability内任何数据授予权限。 | 布尔值 | 可缺省，缺省值为空。 |
+| grantPermission | 指定是否可以向Ability内任何数据授予权限。<br/>-&nbsp;true：表示可以向Ability内任何数据授予权限。<br/>-&nbsp;false：表示不可以向Ability内任何数据授予权限。 | 布尔值 | 可缺省，缺省值为空。 |
 | readPermission | 标识读取Ability的数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省为空。 |
 | writePermission | 标识向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省为空。 |
 | configChanges | 标识Ability关注的系统配置集合。当已关注的配置发生变更后，Ability会收到onConfigurationUpdated回调。取值范围：<br/>mcc：表示IMSI移动设备国家/地区代码（MCC）发生变更。典型场景：检测到SIM并更新MCC。<br/>mnc：IMSI移动设备网络代码（MNC）发生变更。典型场景：检测到SIM并更新MNC。<br/>locale：表示语言区域发生变更。典型场景：用户已为设备文本的文本显示选择新的语言类型。<br/>layout：表示屏幕布局发生变更。典型场景：当前有不同的显示形态都处于活跃状态。<br/>fontSize：表示字号发生变更。典型场景：用户已设置新的全局字号。<br/>orientation：表示屏幕方向发生变更。典型场景：用户旋转设备。<br/>density：表示显示密度发生变更。典型场景：用户可能指定不同的显示比例，或当前有不同的显示形态同时处于活跃状态。<br/>size：显示窗口大小发生变更。<br/>smallestSize：显示窗口较短边的边长发生变更。<br/>colorMode：颜色模式发生变更。 | 字符串数组 | 可缺省，缺省为空。 |
@@ -236,7 +239,7 @@ metadata对象示例：
 {
   "module":{
 
-    ...
+    // ...
 
     "abilities": [{
       "icon": "$media:icon",
@@ -248,13 +251,13 @@ metadata对象示例：
       }]
     }],
 
-    ...
+    // ...
 
   }
 }
 ```
 
-如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
+如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权<!--Del-->，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->。详细的入口图标及入口标签的显示规则如下。
 * HAP中包含Page类型的PageAbility
   * 配置文件（config.json）中abilities配置中设置了入口图标
     * 该应用没有隐藏图标的特权
@@ -380,7 +383,7 @@ abilities示例：
 | pathStartWith | 标识uri的pathStartWith值。 | 字符串 | 可缺省，缺省值为空。 |
 | path | 标识uri的path值。 | 字符串 | 可缺省，缺省值为空。 |
 | pathRegx | 标识uri的pathRegx值。 | 字符串 | 可缺省，缺省值为空。 |
-| type | 标识uri的type值。type为MIME-TYPE属性，为资源的媒体类型，常见的类型有"audio/aac"，"text/css"等。 | 字符串 | 可缺省，缺省值为空。 |
+| type | 标识uri的type值。type为MIME-TYPE属性，为资源的媒体类型，常见的类型有"audio/aac"，"text/css"等。<br/>注意：只支持*/*、mainType/*的通配符格式，不支持mainType/subType.*的通配符格式，mainType为标准媒体类型。| 字符串 | 可缺省，缺省值为空。 |
 
 
 skills示例：
@@ -414,8 +417,8 @@ skills示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | name | 需要使用的权限名称。 | 字符串 | 否 |
-| reason | 描述申请权限的原因。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其他权限可缺省，缺省为空 |
-| usedScene | 描述权限使用的场景和时机。场景类型如下两种：<br/>-&nbsp;ability：ability的名称，可配置多个。<br/>-&nbsp;when：调用时机，可填的值有inuse（使用时）、always（始终）。 | 对象 | 可缺省，缺省值为空。<br/>when可缺省，缺省值为"inuse" |
+| reason | 描述申请权限的原因。需要做多语种适配。 | 字符串 | 分情况：当申请的权限为user_grant时，必须填写此字段，否则不允许在应用市场上架；其他权限可缺省，缺省为空。 |
+| usedScene | 描述权限使用的场景和时机。场景类型如下两种：<br/>-&nbsp;ability：ability的名称，可配置多个。<br/>-&nbsp;when：调用时机，可填的值有inuse（使用时）、always（始终）。 | 对象 | 可缺省，缺省值为空。<br/>when可缺省，缺省值为"inuse"。 |
 
 ## usedScene对象内部结构
 
@@ -445,7 +448,7 @@ skills示例：
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | designWidth | 标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。 | 数值 | 可缺省，缺省值为720px。 |
-| autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值 | 可缺省，缺省值为false。 |
+| autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。当配置为false时，设计基准宽度为designWidth。 | 布尔值 | 可缺省，缺省值为false。 |
 
 ## mode对象的内部结构
 
@@ -748,7 +751,7 @@ definePermission仅支持系统应用配置，三方应用配置不生效。
 | name | 标识权限的名称，该标签最大长度为255字节。 | 字符串 | 不可缺省。 |
 | grantMode | 标识权限的授予方式，支持如下两种授予模式如下：<br/>-&nbsp;system_grant：安装后系统自动授予该权限。<br/>-&nbsp;user_grant：使用时动态申请，用户授权后才可使用。 | 字符串 | 可缺省，缺省值为system_grant。 |
 | availableLevel | 标识权限限制类别，可选值如下：<br/>-&nbsp;system_core：系统核心权限。<br/>-&nbsp;system_basic：系统基础权限。<br/>-&nbsp;normal：普通权限。所有应用允许申请的权限。 | 字符串 | 可缺省，缺省值为normal。 |
-| provisionEnable | 标识权限是否支持证书方式申请权限，包括高级别的权限。配置为true标识开发者可以通过provision方式申请权限。 | 布尔值 | 可缺省，缺省值为true。 |
+| provisionEnable | 标识权限是否支持[证书方式申请权限](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugprofile-0000001914423102)，包括高级别的权限。<br/>-&nbsp;true：表示开发者可以通过证书方式申请权限。<br/>-&nbsp;false：表示开发者不可以通过证书方式申请权限。 | 布尔值 | 可缺省，缺省值为true。 |
 | distributedSceneEnabled | 标识权限是否支持分布式场景下使用该权限。 | 布尔值 | 可缺省，缺省值为false。 |
 | label | 标识权限的简短描述，配置为对描述内容的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 | description | 标识权限的详细描述，可以是字符串（最大长度为255字节），或者为对描述内容的资源索引。 | 字符串 | 可缺省，缺省值为空。 |

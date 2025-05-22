@@ -3,10 +3,13 @@
 
 ## 概述
 
-FFRT条件变量属性结构.
+FFRT条件变量属性结构。
 
-**相关模块：**[FFRT](_f_f_r_t.md)
+**起始版本：** 10
 
+**相关模块：** [FFRT](_f_f_r_t.md)
+
+**所在头文件：** [type_def.h](type__def_8h.md)
 
 ## 汇总
 
@@ -15,4 +18,16 @@ FFRT条件变量属性结构.
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| long [storage](_f_f_r_t.md#storage-56) | FFRT条件变量属性所占空间 | 
+| long [storage](#storage) | FFRT条件变量属性所占空间  | 
+
+
+## 结构体成员变量说明
+
+
+### storage
+
+```
+long ffrt_condattr_t::storage
+```
+**描述**
+FFRT条件变量属性所占空间

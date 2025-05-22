@@ -2,47 +2,13 @@
 The **WLAN** module provides basic wireless local area network (WLAN) functions, peer-to-peer (P2P) functions, and WLAN message notification services. It allows applications to communicate with devices over WLAN.
 
 > **NOTE**
->
-> - The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
+> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> This topic describes only the system APIs provided by the module. For details about its public APIs, see [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md).
 
 ## Modules to Import
 
 ```ts
-import wifiManager from '@ohos.wifiManager';
-```
-
-## wifiManager.enableWifi<sup>9+</sup>
-
-enableWifi(): void
-
-Enables WLAN. This is an asynchronous API. You need to register a callback for the **wifiStateChange** event to check whether WLAN is successfully enabled.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 2501000  | Operation failed.|
-| 2501003  | Failed for wifi is closing.|
-
-**Example**
-
-```ts
-	import wifiManager from '@ohos.wifiManager';
-
-	try {
-		wifiManager.enableWifi();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
+import { wifiManager } from '@kit.ConnectivityKit';
 ```
 
 ## wifiManager.disableWifi<sup>9+</sup>
@@ -63,17 +29,56 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501004  | Failed for wifi is opening.|
+| 2501004  | Operation failed because the service is being opened. |
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.disableWifi();
 	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## wifiManager.enableSemiWifi<sup>12+</sup>
+
+enableSemiWifi(): void
+
+Enables WLAN partially, that is, enables P2P and Huawei Magneto Link (HML) while disabling STA. You need to register a callback for the **wifiStateChange** event to return the operation result.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          | 
+| 2501000  | Operation failed.|
+| 2501004  | Operation failed because the service is being opened. |
+
+**Example**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		wifiManager.enableSemiWifi();
+	} catch(error) {
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
@@ -96,12 +101,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startScan();
@@ -133,11 +141,15 @@ Sets whether scan is always allowed.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
+  | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types.|
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isScanAlwaysAllowed = true;
@@ -163,7 +175,7 @@ Obtains whether scan is always allowed.
 
 | **Type**| **Description**|
 | -------- | -------- |
-| boolean| Whether scan is always allowed. The value **true** means scan is allowed; the value **false** means the opposite.|
+| boolean| Whether scan is always allowed. The value **true** means scan is allowed, and the value **false** means the opposite.|
 
 **Error codes**
 
@@ -171,69 +183,19 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let isScanAlwaysAllowed = wifiManager.getScanAlwaysAllowed();
 		console.info("isScanAlwaysAllowed:" + isScanAlwaysAllowed);
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-## wifiManager.addDeviceConfig<sup>9+</sup>
-
-addDeviceConfig(config: WifiDeviceConfig): Promise&lt;number&gt;
-
-Adds network configuration. This API uses a promise to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-
-**Return value**
-
-| **Type**| **Description**|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the ID of the added network configuration. If **-1** is returned, the network configuration fails to be added.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 2501000  | Operation failed.|
-
-**Example**
-
-```ts
-	import wifiManager from '@ohos.wifiManager';
-
-	try {
-		let config:wifiManager.WifiDeviceConfig = {
-			ssid : "****",
-			preSharedKey : "****",
-			securityType : 0
-		}
-		wifiManager.addDeviceConfig(config).then(result => {
-			console.info("result:" + JSON.stringify(result));
-		}).catch((err:number) => {
-			console.error("failed:" + JSON.stringify(err));
-		});
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -248,14 +210,15 @@ Represents the WLAN configuration.
 
 | **Name**| **Type**| **Readable**| **Writable**| **Description**|
 | -------- | -------- | -------- | -------- | -------- |
-| creatorUid | number | Yes| No| ID of the creator.<br>**System API**: This is a system API.|
-| disableReason | number | Yes| No| Reason for disabling WLAN.<br>**System API**: This is a system API.|
-| netId | number | Yes| No| Network ID.<br>**System API**: This is a system API.|
-| randomMacType | number | Yes| No| MAC address type. <br>The value **0** indicates random MAC address, and **1** indicates device MAC address.<br>**System API**: This is a system API.|
-| randomMacAddr | string | Yes| No| MAC address.<br>**System API**: This is a system API.|
-| ipType | [IpType](#iptype9) | Yes| No| IP address type.<br>**System API**: This is a system API.|
-| staticIp | [IpConfig](#ipconfig9) | Yes| No| Static IP address information.<br>**System API**: This is a system API.|
-| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | Yes| No| Proxy configuration.<br>**System API**: This is a system API.|
+| creatorUid | number | Yes| No| ID of the creator.<br> **System API**: This is a system API.|
+| disableReason | number | Yes| No| Reason for disabling Wi-Fi.<br> **-1**: unknown reason<br>**0**: not disabled<br>**1**: association refused<br>**2**: authentication failed<br> **3**: DHCP failure<br>**4**: no Internet connection<br> **5**: no authentication credentials<br>**6**: no Internet connection permanently<br> **7**: disabled by Wi-Fi manager<br>**8**: disabled due to incorrect password<br> **9**: authentication without subscription<br>**10**: private EAP authentication error<br> **11**: network not found<br>**12**: consecutive failures<br> **13**: disabled by the system<br>**14**: EAP-AKA authentication failed<br> **15**: association removed<br>**16**: maximum number of forbidden network selections<br> **System API**: This is a system API.|
+| netId | number | Yes| No| Network ID.<br> **System API**: This is a system API.|
+| randomMacType | number | Yes| No| MAC address type. <br>The value **0** indicates a random MAC address, and the value **1** indicates a device MAC address.<br> **System API**: This is a system API.|
+| randomMacAddr | string | Yes| No| MAC address.<br> **System API**: This is a system API.|
+| ipType | [IpType](#iptype9) | Yes| No| IP address type.<br> **System API**: This is a system API.|
+| staticIp | [IpConfig](#ipconfig9) | Yes| No| Static IP address information.<br> **System API**: This is a system API.|
+| proxyConfig<sup>10+</sup> | [WifiProxyConfig](#wifiproxyconfig10) | Yes| No| Proxy configuration.<br> **System API**: This is a system API.|
+| configStatus<sup>12+</sup> | number | Yes| No| Status indicating whether the current network can be selected.<br>  **1**: network selection allowed<br>**2**: network selection forbidden<br> **3**: network selection permanently forbidden<br>4: unknown<br> **System API**: This is a system API.|
 
 ## IpType<sup>9+</sup>
 
@@ -303,7 +266,7 @@ Represents the Wi-Fi proxy configuration.
 | proxyMethod | ProxyMethod | Yes| No| Proxy method.|
 | pacWebAddress | string | Yes| No| PAC web address of the proxy automatically configured.|
 | serverHostName | string | Yes| No| Server host name of the proxy manually configured.|
-| serverPort | string | Yes| No| Server port of the proxy manually configured.|
+| serverPort | number | Yes| No| Server port of the proxy manually configured.|
 | exclusionObjects | string | Yes| No| Excluded objects of the manually configured proxy. Multiple objects are separated by commas (,).|
 
 ## ProxyMethod<sup>10+</sup>
@@ -319,93 +282,6 @@ Enumerates the Wi-Fi proxy methods.
 | METHOD_NONE  | 0 | No proxy.|
 | METHOD_AUTO  | 1 | Use an automatically configured proxy.|
 | METHOD_MANUAL  | 2 | Use a manually configured proxy.|
-
-## wifiManager.addDeviceConfig<sup>9+</sup>
-
-addDeviceConfig(config: WifiDeviceConfig, callback: AsyncCallback&lt;number&gt;): void
-
-Adds network configuration. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.SET_WIFI_CONFIG
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If the operation fails, **error** is not **0**.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 2501000  | Operation failed.|
-
-**Example**
-
-```ts
-	import wifiManager from '@ohos.wifiManager';
-
-	try {
-		let config:wifiManager.WifiDeviceConfig = {
-			ssid : "****",
-			preSharedKey : "****",
-			securityType : 0
-		}
-		wifiManager.addDeviceConfig(config,(error,result) => {
-			console.info("result:" + JSON.stringify(result));
-		});	
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-
-## wifiManager.connectToNetwork<sup>9+</sup>
-
-connectToNetwork(networkId: number): void
-
-Connects to the specified network. If the device is already connected to a hotspot, use **disconnect()** to disconnect it from the hotspot first.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| networkId | number | Yes| Network configuration ID.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
-
-**Example**
-
-```ts
-	import wifiManager from '@ohos.wifiManager';
-
-	try {
-		let networkId = 0;
-		wifiManager.connectToNetwork(networkId);
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}	
-```
 
 ## wifiManager.connectToDevice<sup>9+</sup>
 
@@ -424,7 +300,7 @@ Connects to the specified network. If the device is already connected to a hotsp
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| Configuration of the WLAN to connect. The default **bssidType** is random device address.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration to add. The default **bssidType** is random device address.|
 
 **Error codes**
 
@@ -432,12 +308,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -452,39 +332,6 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
-## wifiManager.disconnect<sup>9+</sup>
-
-disconnect(): void
-
-Disconnects the network.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
-
-**System capability**:
-  SystemCapability.Communication.WiFi.STA
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 2501000  | Operation failed.|
-
-**Example**
-```ts
-	import wifiManager from '@ohos.wifiManager';
-
-	try {
-		wifiManager.disconnect();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-
 ## WifiLinkedInfo<sup>9+</sup>
 
 Represents the WLAN connection information.
@@ -493,10 +340,10 @@ Represents the WLAN connection information.
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| networkId | number | Yes| No| Network configuration ID.<br>**System API**: This is a system API.|
-| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br>**System API**: This is a system API.|
-| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br>**System API**: This is a system API.|
-| suppState | [SuppState](#suppstate9) | Yes| No| Supplicant state.<br>**System API**: This is a system API.|
+| networkId | number | Yes| No| Network configuration ID.<br> **System API**: This is a system API.|
+| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br> **System API**: This is a system API.|
+| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br> **System API**: This is a system API.|
+| suppState | [SuppState](#suppstate9) | Yes| No| Supplicant state.<br> **System API**: This is a system API.|
 
 
 
@@ -538,9 +385,9 @@ Obtains the features supported by this device.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| number | Feature value. |
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | number | Feature value. |
 
 **Feature IDs**
 
@@ -563,11 +410,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2401000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.getSupportedFeatures();
@@ -579,7 +429,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 ```
 
 
-## wifiManager.getDeviceMacAddress<sup>9+</sup>
+## wifiManager.getDeviceMacAddress<sup>15+</sup>
 
 getDeviceMacAddress(): string[]
 
@@ -593,9 +443,9 @@ Obtains the device MAC address.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| string[] | MAC address obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | string[] | MAC address obtained.|
 
 **Error codes**
 
@@ -603,12 +453,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.getDeviceMacAddress();
@@ -618,6 +471,67 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 
 ```
+
+## wifiManager.getWifiDetailState<sup>12+</sup>
+
+getWifiDetailState(): WifiDetailState
+
+Obtains the Wi-Fi state.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Return value**
+
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | [WifiDetailState](#wifidetailstate12) | Wi-Fi state obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+
+**Example**
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+
+	try {
+		let ret = wifiManager.getWifiDetailState();
+		console.info("wifiDetailState:" + ret);
+	} catch(error) {
+		console.error("failed:" + JSON.stringify(error));
+	}
+
+```
+
+## WifiDetailState<sup>12+</sup>
+
+Enumerates Wi-Fi states.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+| Name| Value| Description|
+| -------- | -------- | -------- |
+| UNKNOWN | -1 | Unidentified.|
+| INACTIVE | 0 | Inactive.|
+| ACTIVATED | 1 | Activated.|
+| ACTIVATING | 2 | Activating.|
+| DEACTIVATING | 3 | Deactivating|
+| SEMI_ACTIVATING | 4 | Partially activating.|
+| SEMI_ACTIVE | 5 | partially activated.|
+
 
 ## wifiManager.reassociate<sup>9+</sup>
 
@@ -637,12 +551,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.reassociate();
@@ -669,57 +586,18 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
-| 2501001  | Wifi is closed.|
+| 2501001  | Wi-Fi STA disabled.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.reconnect();
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-## wifiManager.getDeviceConfigs<sup>9+</sup>
-
-getDeviceConfigs(): &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt;
-
-Obtains network configuration.
-
-**System API**: This is a system API.
-
-**Required permissions**:
-
-API version 9: ohos.permission.GET_WIFI_INFO, ohos.permission.LOCATION, ohos.permission.APPROXIMATELY_LOCATION, and ohos.permission.GET_WIFI_CONFIG
-
-API version 10 and later: ohos.permission.GET_WIFI_INFO and ohos.permission.GET_WIFI_CONFIG
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Return value**
-
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig9)&gt; | Array of network configuration obtained.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 2501000  | Operation failed.|
-
-**Example**
-```ts
-	import wifiManager from '@ohos.wifiManager';
-
-	try {
-		let configs = wifiManager.getDeviceConfigs();
-		console.info("configs:" + JSON.stringify(configs));
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -739,15 +617,15 @@ Updates network configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| New WLAN configuration.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| New WLAN configuration.|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
 
 **Error codes**
 
@@ -755,11 +633,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.WifiDeviceConfig = {
@@ -788,9 +671,9 @@ Disables network configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| netId | number | Yes| ID of the network configuration to disable.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | netId | number | Yes| ID of the network configuration to disable.|
 
 **Error codes**
 
@@ -798,11 +681,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let netId = 0;
@@ -830,52 +718,18 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.removeAllNetwork();		
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
-```
-
-## wifiManager.removeDevice<sup>9+</sup>
-
-removeDevice(id: number): void
-
-Removes the specified network configuration.
-
-**System API**: This is a system API.
-
-**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION (available only to system applications)
-
-**System capability**: SystemCapability.Communication.WiFi.STA
-
-**Parameters**
-
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| id | number | Yes| ID of the network configuration to remove.|
-
-**Error codes**
-
-For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
-
-| **ID**| **Error Message**|
-| -------- | -------- |
-| 2501000  | Operation failed.|
-
-**Example**
-```ts
-	import wifiManager from '@ohos.wifiManager';
-
-	try {
-		let id = 0;
-		wifiManager.removeDevice(id);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -895,9 +749,9 @@ Obtains the list of 5 GHz channels supported by this device.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| &nbsp;Array&lt;number&gt; | List of 5 GHz channels supported by the device.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | &nbsp;Array&lt;number&gt; | List of 5 GHz channels supported by the device.|
 
 **Error codes**
 
@@ -905,11 +759,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let channelList = wifiManager.get5GChannelList();
@@ -936,6 +793,8 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Return value**
@@ -946,7 +805,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let disconnectedReason = wifiManager.getDisconnectedReason();	
@@ -988,12 +847,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.startPortalCertification();
@@ -1002,6 +865,58 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
+## wifiManager.enableHiLinkHandshake<sup>12+</sup>
+
+enableHiLinkHandshake(isHiLinkEnable: boolean, bssid: string, config: WifiDeviceConfig): void
+
+**System API**: This is a system API.
+
+Enables or disables HiLink.
+
+**Required permissions**: ohos.permission.SET_WIFI_INFO and ohos.permission.MANAGE_WIFI_CONNECTION
+
+**System capability**: SystemCapability.Communication.WiFi.STA
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| isHiLinkEnable | boolean | Yes| Whether to enable hiLink. The value **true** means to enable HiLink, and the value **false** means the opposite.|
+| bssid | string | Yes| MAC address of the hotspot, for example, **00:11:22:33:44:55**.|
+| config | [WifiDeviceConfig](#wifideviceconfig9) | Yes| WLAN configuration information. The value of **config.bssid** must be the same as that of the second parameter **bssid**. The default **bssidType** is random device address.|
+
+**Error codes**
+
+For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
+
+| **ID**| **Error Message**|
+| -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2501000  | Operation failed.|
+| 2501001  | Wi-Fi STA disabled. |
+
+**Example**
+
+```ts
+	import { wifiManager } from '@kit.ConnectivityKit';
+	// You can obtain config data by using getScanInfoList, which can be used only when WifiScanInfo.isHiLinkNetwork is true.
+	let config:wifiManager.WifiDeviceConfig = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 0,
+		bssid : "38:37:8b:80:bf:cc",
+		bssidType : 1,
+		isHiddenSsid : false
+	}	
+	try {
+		wifiManager.enableHiLinkHandshake(true, config.bssid, config);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifiManager.factoryReset<sup>11+</sup>
 
@@ -1021,12 +936,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.factoryReset();
@@ -1052,11 +970,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.enableHotspot();	
@@ -1083,11 +1004,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		wifiManager.disableHotspot();	
@@ -1110,9 +1034,9 @@ Checks whether the hotspot supports dual band.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the hotspot supports dual band; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Whether the hotspot supports dual band. The value **true** indicates dual band is supported, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1120,11 +1044,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let ret = wifiManager.isHotspotDualBandSupported();
@@ -1134,23 +1061,23 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 	}
 ```
 
-## wifiManager.isHotspotActive<sup>9+</sup>
+## wifiManager.isOpenSoftApAllowed<sup>18+</sup>
 
-isHotspotActive(): boolean
+isOpenSoftApAllowed(): boolean
 
-Checks whether this hotspot is active.
+Checks whether the hotspot supports dual band.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.GET_WIFI_INFO
+**Required permissions**: ohos.permission.GET_WIFI_INFO and ohos.permission.MANAGE_WIFI_HOTSPOT (available only to system applications)
 
 **System capability**: SystemCapability.Communication.WiFi.AP.Core
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | boolean | Whether the hotspot supports dual band. The value **true** indicates dual band is supported, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -1158,15 +1085,18 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
-		let ret = wifiManager.isHotspotActive();
-		console.info("result:" + ret);		
+		let ret = wifiManager.isOpenSoftApAllowed();
+		console.info("result:" + ret);
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1186,9 +1116,9 @@ Sets hotspot configuration.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| config | [HotspotConfig](#hotspotconfig9) | Yes| Hotspot configuration to set.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | config | [HotspotConfig](#hotspotconfig9) | Yes| Hotspot configuration to set.|
 
 **Error codes**
 
@@ -1196,11 +1126,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.HotspotConfig = {
@@ -1231,7 +1165,7 @@ Represents the hotspot configuration.
 | ssid | string | Yes| Yes| SSID of the hotspot, in UTF-8 format.|
 | securityType | [WifiSecurityType](js-apis-wifiManager.md#wifisecuritytype9)| Yes| Yes| Security type.|
 | band | number | Yes| Yes| Hotspot band. The value **1** stands for 2.4 GHz, the value **2** for 5 GHz, and the value **3** for dual band.|
-| channel<sup>10+</sup> | number | Yes| Yes| Hotspot channel (2.4 GHz: 1 to 14; 5 GHz: 7 to 196; Dual-band: not supported currently) |
+| channel<sup>10+</sup> | number | Yes| Yes| Hotspot channel (channels 1 to 14 for 2.4 GHz, and channels 7 to 196 for 5 GHz)|
 | preSharedKey | string | Yes| Yes| PSK of the hotspot.|
 | maxConn | number | Yes| Yes| Maximum number of connections allowed.|
 
@@ -1249,9 +1183,9 @@ Obtains hotspot configuration.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
-| [HotspotConfig](#hotspotconfig9) | Hotspot configuration obtained.|
+  | **Type**| **Description**|
+  | -------- | -------- |
+  | [HotspotConfig](#hotspotconfig9) | Hotspot configuration obtained.|
 
 **Error codes**
 
@@ -1259,11 +1193,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config = wifiManager.getHotspotConfig();
@@ -1301,11 +1238,14 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let stations = wifiManager.getStations();
@@ -1354,12 +1294,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.StationInfo = {
@@ -1378,7 +1322,7 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 delHotspotBlockList(stationInfo: StationInfo)
 
-Delets a device from the list of blocked devices of the hotspot.
+Deletes a device from the list of blocked devices of the hotspot.
 
 **System API**: This is a system API.
 
@@ -1398,12 +1342,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Incorrect parameter types.<br>2. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let config:wifiManager.StationInfo = {
@@ -1440,13 +1388,17 @@ Obtains the list of blocked devices of the hotspot.
 For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
-| -------- | -------- |
-| 2601000  | Operation failed.|
+  | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let data = wifiManager.getHotspotBlockList();
@@ -1471,9 +1423,9 @@ Deletes a persistent group.
 **Parameters**
 
 
-| **Name**| **Type**| Mandatory| **Description**|
-| -------- | -------- | -------- | -------- |
-| netId | number | Yes| ID of the group to delete.|
+  | **Name**| **Type**| Mandatory| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | netId | number | Yes| ID of the group to delete.|
 
 **Error codes**
 
@@ -1481,11 +1433,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1.Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let netId = 0;
@@ -1523,13 +1480,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2801000  | Operation failed. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
-	wifiManager.getP2pGroups((err, data) => {
+	wifiManager.getP2pGroups((err, data:wifiManager.WifiP2pGroupInfo) => {
     if (err) {
         console.error("get P2P groups error");
         return;
@@ -1564,7 +1524,7 @@ API version 10 and later : ohos.permission.GET_WIFI_INFO
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](js-apis-wifiManager.md#wifip2pgroupinfo9)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **error** is **0** and **data** is the group information obtained. If the operation fails, **error** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
+| callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiP2pGroupInfo](js-apis-wifiManager.md#wifip2pgroupinfo9)&gt;&gt; | Yes| Callback used to return the result. If the operation is successful, **error** is **0** and **data** is the group information obtained. If the operation fails, **error** is not **0**. If the application has the **ohos.permission.GET_WIFI_PEERS_MAC** permission, **deviceAddress** in the return value is a real device address; otherwise, **deviceAddress** is a random device address.|
 
 **Error codes**
 
@@ -1572,7 +1532,11 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 801 | Capability not supported.          |
+| 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 ## wifiManager.setDeviceName<sup>9+</sup>
 
@@ -1588,9 +1552,9 @@ Sets the device name.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| devName | string | Yes| Device name to set.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | devName | string | Yes| Device name to set.|
 
 **Error codes**
 
@@ -1598,11 +1562,16 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2801000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types. 3. Parameter verification failed. |
+| 801 | Capability not supported.          |
+| 2801000  | Operation failed. |
+| 2801001  | Wi-Fi STA disabled. |
 
 **Example**
 ```ts
-	import wifiManager from '@ohos.wifiManager';
+	import { wifiManager } from '@kit.ConnectivityKit';
 
 	try {
 		let name = "****";
@@ -1615,9 +1584,9 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 ## wifiManager.on('streamChange')<sup>9+</sup>
 
-on(type: "streamChange", callback: Callback&lt;number&gt;): void
+on(type: 'streamChange', callback: Callback&lt;number&gt;): void
 
-Subscribes to Wi-Fi stream changes.
+Subscribes to Wi-Fi stream changes. When the service exits, call off(type: 'streamChange', callback?: Callback&lt;number&gt;) to unregister the callback registered.
 
 **System API**: This is a system API.
 
@@ -1630,7 +1599,7 @@ Subscribes to Wi-Fi stream changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
+| callback | Callback&lt;number&gt; | Yes| Callback used to return the Wi-Fi stream change, which can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
 
 **Error codes**
 
@@ -1638,11 +1607,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('streamChange')<sup>9+</sup>
 
-off(type: "streamChange", callback?: Callback&lt;number&gt;): void
+off(type: 'streamChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from Wi-Fi stream changes.
 
@@ -1657,7 +1630,7 @@ Unsubscribes from Wi-Fi stream changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **streamChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. The stream change can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional. |
+| callback | Callback&lt;number&gt; | No| Callback to unregister. The stream change can be any of the following values:<br>- **0**: No stream.<br>- **1**: Downward.<br>- **2**: Upward.<br>- **3**: Bidirectional.|
 
 **Error codes**
 
@@ -1665,11 +1638,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-import wifi from '@ohos.wifi';
+import { wifi } from '@kit.ConnectivityKit';
 
 let recvStreamChangeFunc = (result:number) => {
     console.info("Receive stream change event: " + result);
@@ -1684,9 +1661,9 @@ wifi.off("streamChange", recvStreamChangeFunc);
 ```
 ## wifiManager.on('deviceConfigChange')<sup>9+</sup>
 
-on(type: "deviceConfigChange", callback: Callback&lt;number&gt;): void
+on(type: 'deviceConfigChange', callback: Callback&lt;number&gt;): void
 
-Subscribes to Wi-Fi device configuration changes.
+Subscribes to Wi-Fi device configuration changes. When the service exits, call off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;) to unregister the callback registered.
 
 **System API**: This is a system API.
 
@@ -1699,7 +1676,7 @@ Subscribes to Wi-Fi device configuration changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
-| callback | Callback&lt;number&gt; | Yes| Callback invoked to return the device configuration change, which can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
+| callback | Callback&lt;number&gt; | Yes| Callback for device configuration changes.<br>**0**: Configuration is added. **1**: Configuration is modified. **2**: Configuration is deleted.|
 
 **Error codes**
 
@@ -1707,11 +1684,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 ## wifiManager.off('deviceConfigChange')<sup>9+</sup>
 
-off(type: "deviceConfigChange", callback?: Callback&lt;number&gt;): void
+off(type: 'deviceConfigChange', callback?: Callback&lt;number&gt;): void
 
 Unsubscribes from Wi-Fi device configuration changes.
 
@@ -1726,7 +1707,7 @@ Unsubscribes from Wi-Fi device configuration changes.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **deviceConfigChange**.|
-| callback | Callback&lt;number&gt; | No| Callback to unregister. The device configuration change can be any of the following values:<br>- **0**: device configuration added.<br>- **1**: device configuration changed.<br>- **2**: device configuration deleted.|
+| callback | Callback&lt;number&gt; | No| Callback for device configuration changes.<br>**0**: Configuration is added. **1**: Configuration is modified. **2**: Configuration is deleted.|
 
 **Error codes**
 
@@ -1734,11 +1715,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
 | 2501000  | Operation failed.|
 
 **Example**
 ```ts
-import wifi from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvDeviceConfigChangeFunc = (result:number) => {
     console.info("Receive device config change event: " + result);
@@ -1754,9 +1739,9 @@ wifi.off("deviceConfigChange", recvDeviceConfigChangeFunc);
 
 ## wifiManager.on('hotspotStaJoin')<sup>9+</sup>
 
-on(type: "hotspotStaJoin", callback: Callback&lt;StationInfo&gt;): void
+on(type: 'hotspotStaJoin', callback: Callback&lt;StationInfo&gt;): void
 
-Subscribes to the event of an STA joining a Wi-Fi hotspot.
+Subscribes to the event of an STA joining a Wi-Fi hotspot. When the service exits, call off(type: 'hotspotStaJoin', callback?: Callback&lt;StationInfo&gt;) to unregister the callback registered.
 
 **System API**: This is a system API.
 
@@ -1769,7 +1754,7 @@ Subscribes to the event of an STA joining a Wi-Fi hotspot.
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type, which has a fixed value of **hotspotStaJoin**.|
-| callback | Callback&lt;StationInfo&gt; | Yes| Callback invoked immediately after an STA is connected to a Wi-Fi hotspot.|
+| callback | Callback&lt;StationInfo&gt; | Yes| Callback used to return the event.|
 
 **Error codes**
 
@@ -1777,11 +1762,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 ## wifiManager.off('hotspotStaJoin')<sup>9+</sup>
 
-off(type: "hotspotStaJoin", callback?: Callback&lt;StationInfo&gt;): void
+off(type: 'hotspotStaJoin', callback?: Callback&lt;StationInfo&gt;): void
 
 Unsubscribes from the event of an STA joining a Wi-Fi hotspot.
 
@@ -1804,11 +1793,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvHotspotStaJoinFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta join event: " + result);
@@ -1824,9 +1817,9 @@ wifiManager.off("hotspotStaJoin", recvHotspotStaJoinFunc);
 
 ## wifiManager.on('hotspotStaLeave')<sup>9+</sup>
 
-on(type: "hotspotStaLeave", callback: Callback&lt;StationInfo&gt;): void
+on(type: 'hotspotStaLeave', callback: Callback&lt;StationInfo&gt;): void
 
-Subscribes to the event of an STA leaving a Wi-Fi hotspot.
+Subscribes to the event of an STA leaving a Wi-Fi hotspot. When the service exits, call off(type: 'hotspotStaLeave', callback?: Callback&lt;StationInfo&gt;) to unregister the callback registered.
 
 **System API**: This is a system API.
 
@@ -1836,10 +1829,10 @@ Subscribes to the event of an STA leaving a Wi-Fi hotspot.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
-| callback | Callback&lt;StationInf]&gt; | Yes| Callback invoked immediately after an STA is disconnected from a Wi-Fi hotspot.|
+  | **Name**| **Type**| **Mandatory**| **Description**|
+  | -------- | -------- | -------- | -------- |
+  | type | string | Yes| Event type, which has a fixed value of **hotspotStaLeave**.|
+  | callback | Callback&lt;StationInf]&gt; | Yes| Callback used to return the event.|
 
 **Error codes**
 
@@ -1847,11 +1840,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 ## wifiManager.off('hotspotStaLeave')<sup>9+</sup>
 
-off(type: "hotspotStaLeave", callback?: Callback&lt;StationInfo&gt;): void
+off(type: 'hotspotStaLeave', callback?: Callback&lt;StationInfo&gt;): void
 
 Unsubscribes from the event of an STA leaving a Wi-Fi hotspot.
 
@@ -1874,11 +1871,15 @@ For details about the error codes, see [Wi-Fi Error Codes](errorcode-wifi.md).
 
 | **ID**| **Error Message**|
 | -------- | -------- |
-| 2601000  | Operation failed.|
+| 201 | Permission denied.                 |
+| 202 | System API is not allowed called by Non-system application. |
+| 401 | Invalid parameters. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
+| 801 | Capability not supported.          |
+| 2601000  | Operation failed. |
 
 **Example**
 ```ts
-import wifiManager from '@ohos.wifiManager';
+import { wifiManager } from '@kit.ConnectivityKit';
 
 let recvHotspotStaLeaveFunc = (result:wifiManager.StationInfo) => {
     console.info("Receive hotspot sta leave event: " + result);

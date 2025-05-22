@@ -27,9 +27,11 @@ The application then performs an operation, for example, displays a message indi
 
 If an application needs to obtain the change information about all audio streams, it can use **AudioStreamManager** to read or listen for the changes of all audio streams.
 
+<!--Del-->
 > **NOTE**
 > 
 > The audio stream change information marked as the system API can be viewed only by system applications.
+<!--DelEnd-->
 
 The figure below shows the call relationship of audio stream management.
 
@@ -39,16 +41,15 @@ During application development, first use **getStreamManager()** to create an **
 
 For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-kit/js-apis-audio.md#audiostreammanager9).
 
-
 ## How to Develop
 
 1. Create an **AudioStreamManager** instance.
    
-     Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
+   Before using **AudioStreamManager** APIs, you must use **getStreamManager()** to create an **AudioStreamManager** instance.
      
    ```ts
-   import audio from '@ohos.multimedia.audio';
-   import { BusinessError } from '@ohos.base';
+   import { audio } from '@kit.AudioKit';
+   import { BusinessError } from '@kit.BasicServicesKit';
    
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -87,7 +88,8 @@ For details about the APIs, see [AudioStreamManager](../../reference/apis-audio-
 
 4. (Optional) Call **getCurrentAudioCapturerInfoArray()** to obtain information about the current audio recording stream.
    
-     This API can be used to obtain the unique ID of the audio recording stream, UID of the audio recording client, audio status, and other information about the AudioCapturer.
+   This API can be used to obtain the unique ID of the audio recording stream, UID of the audio recording client, audio status, and other information about the AudioCapturer.
+
    > **NOTE**
    > 
    > Before listening for state changes of all audio streams, the application must [declare the ohos.permission.USE_BLUETOOTH permission](../../security/AccessToken/declare-permissions.md), for the device name and device address (Bluetooth related attributes) to be displayed correctly.

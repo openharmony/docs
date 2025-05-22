@@ -7,19 +7,19 @@
 **表1** 模态转场接口
 | 接口                                       | 说明                | 使用场景                                     |
 | ---------------------------------------- | ----------------- | ---------------------------------------- |
-| [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | 弹出全屏的模态组件。        | 用于自定义全屏的模态展示界面，结合转场动画和共享元素动画可实现复杂转场动画效果，如缩略图片点击后查看大图。 |
-| [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md) | 弹出半模态组件。          | 用于半模态展示界面，如分享框。                          |
-| [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) | 弹出菜单，点击组件后弹出。     | 需要Menu菜单的场景，如一般应用的“+”号键。                 |
-| [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md) | 弹出菜单，长按或者右键点击后弹出。 | 长按浮起效果，一般结合拖拽框架使用，如桌面图标长按浮起。             |
-| [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md) | 弹出Popup弹框。        | Popup弹框场景，如点击后对某个组件进行临时说明。               |
-| if                                       | 通过if新增或删除组件。      | 用来在某个状态下临时显示一个界面，这种方式的返回导航需要由开发者监听接口实现。  |
+| [bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover) | 弹出全屏的模态组件。        | 用于自定义全屏的模态展示界面，结合转场动画和共享元素动画可实现复杂转场动画效果，如缩略图片点击后查看大图。 |
+| [bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet) | 弹出半模态组件。          | 用于半模态展示界面，如分享框。                          |
+| [bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu11) | 弹出菜单，点击组件后弹出。     | 需要Menu菜单的场景，如一般应用的“+”号键。                 |
+| [bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu12) | 弹出菜单，长按或者右键点击后弹出。 | 长按浮起效果，一般结合拖拽框架使用，如桌面图标长按浮起。             |
+| [bindPopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup) | 弹出Popup弹框。        | Popup弹框场景，如点击后对某个组件进行临时说明。               |
+| [if](../ui/state-management/arkts-rendering-control-ifelse.md)                                       | 通过if新增或删除组件。      | 用来在某个状态下临时显示一个界面，这种方式的返回导航需要由开发者监听接口实现。  |
 
 
 ## 使用bindContentCover构建全屏模态转场效果
 
-[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)接口用于为组件绑定全屏模态页面，在组件出现和消失时可通过设置转场参数ModalTransition添加过渡动效。
+[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)接口用于为组件绑定全屏模态页面，在组件出现和消失时可通过设置转场参数ModalTransition添加过渡动效。
 
-1. 定义全屏模态转场效果[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md)。
+1. 定义全屏模态转场效果[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)。
 
 2. 定义模态展示界面。
 
@@ -45,7 +45,9 @@
      .bindContentCover(this.isPresent, this.MyBuilder(), {
                modalTransition: ModalTransition.NONE,
                onDisappear: () => {
-                 this.isPresent = !this.isPresent;
+                 if (this.isPresent) {
+                   this.isPresent = !this.isPresent;
+                 }
                }
              })
      .onClick(() => {
@@ -57,10 +59,8 @@
 
 完整示例代码和效果如下。
 
-
-
 ```ts
-import curves from '@ohos.curves';
+import { curves } from '@kit.ArkUI';
 
 interface PersonList {
   name: string,
@@ -221,7 +221,9 @@ struct BindContentCoverDemo {
           .bindContentCover(this.isPresent, this.MyBuilder(), {
             modalTransition: ModalTransition.DEFAULT,
             onDisappear: () => {
-              this.isPresent = !this.isPresent;
+              if (this.isPresent) {
+                this.isPresent = !this.isPresent;
+              }
             }
           })
           .onClick(() => {
@@ -244,7 +246,7 @@ struct BindContentCoverDemo {
 
 ## 使用bindSheet构建半模态转场效果
 
-[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md)属性可为组件绑定半模态页面，在组件出现时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用bindContentCover构建全屏模态转场动效相同。
+[bindSheet](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#bindsheet)属性可为组件绑定半模态页面，在组件出现时可通过设置自定义或默认的内置高度确定半模态大小。构建半模态转场动效的步骤基本与使用[bindContentCover](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md#bindcontentcover)构建全屏模态转场动效相同。
 
 完整示例和效果如下。
 
@@ -344,7 +346,7 @@ struct BindSheetDemo {
 
 ## 使用bindMenu实现菜单弹出效果
 
-[bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)为组件绑定弹出式菜单，通过点击触发。完整示例和效果如下。
+[bindMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindmenu)为组件绑定弹出式菜单，通过点击触发。完整示例和效果如下。
 
 
 ```ts
@@ -392,7 +394,7 @@ struct BindMenuDemo {
 
 ## 使用bindContextMenu实现菜单弹出效果
 
-[bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md)为组件绑定弹出式菜单，通过长按或右键点击触发。完整示例和效果如下。
+[bindContextMenu](../reference/apis-arkui/arkui-ts/ts-universal-attributes-menu.md#bindcontextmenu8)为组件绑定弹出式菜单，通过长按或右键点击触发。
 
 完整示例和效果如下。
 
@@ -441,6 +443,7 @@ struct BindContextMenuDemo {
           Row(){
             Image(item)
               .width('100%')
+              .draggable(false)
           }
           .padding({ top: 20, bottom: 20, left: 10, right: 10 })
           .bindContextMenu(this.myMenu, ResponseType.LongPress)
@@ -458,7 +461,7 @@ struct BindContextMenuDemo {
 
 ## 使用bindPopUp实现气泡弹窗效果
 
-[bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md)属性可为组件绑定弹窗，并设置弹窗内容，交互逻辑和显示状态。
+[bindpopup](../reference/apis-arkui/arkui-ts/ts-universal-attributes-popup.md#bindpopup)属性可为组件绑定弹窗，并设置弹窗内容，交互逻辑和显示状态。
 
 完整示例和代码如下。
 
@@ -538,7 +541,7 @@ struct ModalTransitionWithIf {
   // 第一步：定义状态变量控制页面显示
   @State isShowShare: boolean = false;
   private shareFunc(): void {
-    animateTo({ duration: 500 }, () => {
+    this.getUIContext()?.animateTo({ duration: 500 }, () => {
       this.isShowShare = !this.isShowShare;
     })
   }

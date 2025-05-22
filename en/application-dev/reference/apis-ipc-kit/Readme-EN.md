@@ -1,6 +1,21 @@
-# IPC Kit API Reference
+# IPC Kit<!--ipc-api-->
 
-- ArkTS APIs
+- ArkTS APIs<!--ipc-arkts-->
   - [@ohos.rpc (RPC)](js-apis-rpc.md)
-- Error Codes
+- C APIs<!--ipc-c-->
+  - Modules<!--ipc-moudle-->
+    - [OHIPCParcel](_o_h_i_p_c_parcel.md)
+    - [OHIPCRemoteObject](_o_h_i_p_c_remote_object.md)
+    - [OHIPCSkeleton](_o_h_i_p_c_skeleton.md)
+    - [OHIPCErrorCode](_o_h_i_p_c_error_code.md)
+    - [IPCKit](_i_p_c_kit.md)
+  - Header Files<!--ipc-headerfile-->
+    - [ipc_cparcel.h](ipc__cparcel_8h.md)
+    - [ipc_cremote_object.h](ipc__cremote__object_8h.md)
+    - [ipc_cskeleton.h](ipc__cskeleton_8h.md)
+    - [ipc_error_code.h](ipc__error__code_8h.md)
+    - [ipc_kit.h](ipc__kit_8h.md)
+  - Structs<!--ipc-struct-->
+    - [OH_IPC_MessageOption](_o_h___i_p_c___message_option.md)
+- Error Codes<!--ipc-arkts-errcode-->
   - [RPC Error Codes](errorcode-rpc.md)

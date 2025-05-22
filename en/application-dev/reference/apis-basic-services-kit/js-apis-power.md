@@ -9,7 +9,7 @@ The **power** module provides APIs for rebooting and shutting down the system, a
 ## Modules to Import
 
 ```js
-import power from '@ohos.power';
+import {power} from '@kit.BasicServicesKit';
 ```
 
 ## power.isActive<sup>9+</sup>
@@ -26,7 +26,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **Example**
 
@@ -37,6 +37,31 @@ try {
 } catch(err) {
     console.error('check active status failed, err: ' + err);
 }
+```
+
+## power.rebootDevice<sup>(deprecated)</sup>
+
+rebootDevice(reason: string): void
+
+> **NOTE**<br>This API is supported since API version 7 and is deprecated since API version 9. The substitute API is available only for system applications.
+
+Reboots a device.
+
+**Required permissions**: ohos.permission.REBOOT (available only for system applications)
+
+**System capability:** SystemCapability.PowerManager.PowerManager.Core
+
+
+**Parameters**
+
+| Name   | Type    | Mandatory  | Description   |
+| ------ | ------ | ---- | ----- |
+| reason | string | Yes   | Reason for system reboot.|
+
+**Example**
+
+```js
+power.rebootDevice('reboot_test');
 ```
 
 ## power.getPowerMode<sup>9+</sup>
@@ -59,7 +84,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **Example**
 
@@ -92,7 +117,7 @@ For details about the error codes, see [Power Manager Error Codes](errorcode-pow
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | If connecting to the service failed. |
+| 4900101 | Failed to connect to the service. |
 
 **Example**
 
@@ -103,30 +128,6 @@ try {
 } catch(err) {
     console.error('check isStandby failed, err: ' + err);
 }
-```
-
-## power.rebootDevice<sup>(deprecated)</sup>
-
-rebootDevice(reason: string): void
-
-> **NOTE**<br>This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [power.reboot](js-apis-power-sys.md#powerreboot9). The substitute API is available only for system applications.
-
-Reboots the system.
-
-**Required permissions**: ohos.permission.REBOOT  (for system applications only)
-
-**System capability:** SystemCapability.PowerManager.PowerManager.Core
-
-**Parameters**
-
-| Name   | Type    | Mandatory  | Description   |
-| ------ | ------ | ---- | ----- |
-| reason | string | Yes   | Reason for system reboot.|
-
-**Example**
-
-```js
-power.rebootDevice('reboot_test');
 ```
 
 ## power.isScreenOn<sup>(deprecated)</sup>

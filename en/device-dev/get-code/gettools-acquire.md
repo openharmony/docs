@@ -33,6 +33,7 @@ Before using the Docker environment, you need to make necessary preparations. Th
 2. Obtain the OpenHarmony source code.
 
    For details, see [Source Code Acquisition](sourcecode-acquire.md).
+
    > **NOTE**<br>
    > You do not need to obtain the source code for the HPM-based Docker environment.
 
@@ -213,7 +214,7 @@ Start building. Docker can be automatically installed only in Ubuntu. If you are
       export solution={product}
       ```
 
-      **{product}** indicates the solution, for example, **\@ohos/hispark_taurus**, **\@ohos/hispark_aries**, and **\@ohos/hispark_pegasus**.
+      **{product}** indicates the solution, for example, **\@ohos/hispark_taurus**, **\@ohos/hispark_aries**, or **\@ohos/hispark_pegasus**.
   2. Obtain and build the source code.
         
       ```

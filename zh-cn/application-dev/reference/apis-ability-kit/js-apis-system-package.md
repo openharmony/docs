@@ -55,7 +55,7 @@ export default {
 
 指示应用包是否已安装。
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework。
+**系统能力:** SystemCapability.BundleManager.BundleFramework
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

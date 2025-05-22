@@ -13,11 +13,11 @@ ArkUI（方舟UI框架）为应用的UI开发提供了完整的基础设施，�
 
 ## 两种开发范式
 
-针对不同的应用场景及技术背景，方舟UI框架提供了两种开发范式，分别是[基于ArkTS的声明式开发范式](arkts-ui-development-overview.md)（简称“声明式开发范式”）和[兼容JS的类Web开发范式](../ui/ui-js-overview.md)（简称“类Web开发范式”）。
+针对不同的应用场景及技术背景，方舟UI框架提供了两种开发范式，分别是[基于ArkTS的声明式开发范式](arkts-ui-development-overview.md)（简称“声明式开发范式”）和[兼容JS的类Web开发范式](ui-js-overview.md)（简称“类Web开发范式”）。
 
 - **声明式开发范式**：采用基于TypeScript声明式UI语法扩展而来的[ArkTS语言](../quick-start/arkts-get-started.md)，从组件、动画和状态管理三个维度提供UI绘制能力。
 
-- **类Web开发范式**：采用经典的HML、CSS、JavaScript三段式开发方式，即使用HML标签文件搭建布局、使用CSS文件描述样式、使用JavaScript文件处理逻辑。该范式更符合于Web前端开发者的使用习惯，便于快速将已有的Web应用改造成方舟UI框架应用。
+- **类Web开发范式**：采用经典的<!--RP1-->HML<!--RP1End-->、CSS、JavaScript三段式开发方式，即使用HML标签文件搭建布局、使用CSS文件描述样式、使用JavaScript文件处理逻辑。该范式更符合于Web前端开发者的使用习惯，便于快速将已有的Web应用改造成方舟UI框架应用。
 
 在开发一款新应用时，推荐采用声明式开发范式来构建UI，主要基于以下几点考虑：
 

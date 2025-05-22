@@ -1,34 +1,48 @@
 # HSP
 
-A Harmony Shared Package (HSP) is a dynamic shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles) and allows for code and resource sharing within an application (called the host application). An HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
+A Harmony Shared Package (HSP) is a dynamic shared package that can contain code, C++ libraries, resource files, and configuration files (also called profiles) and allows for code and resource sharing. An HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
 > **NOTE**
 > 
-> As the inter-application HSP is not supported yet, unless otherwise specified, the HSP refers to the intra-application HSP.
+> In-app HSP: a type of HSP that is closely coupled with an application bundle name (**bundleName**) during compilation and can be used only by the specified application.
+> 
+> [Integrated HSP](integrated-hsp.md): a type of HSP that is not coupled with specific application bundle names during building and publishing. The toolchain can automatically replace the bundle name of the integrated HSP with that of the host application and generate a new HSP as the installation package of the host application. The new HSP package also belongs to the in-app HSP.
 
-## When to Use
+## Use Scenarios
 - By storing code and resource files shared by multiple HAPs/HSPs in one place, the HSP significantly improves the reusability and maintainability of the code and resource files. Better yet, because only one copy of the HSP code and resource files is retained during building and packaging, the size of the application package is effectively controlled.
 
 - The HSP is loaded on demand during application running, which helps improve application performance.
 
+- The integrated HSP allows for code and resource sharing across applications in the same organization.
+
 ## Constraints
 
-- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The version of an HSP must be the same as that of the HAP.
-- No [UIAbility](../application-models/uiability-overview.md) or [ExtensionAbility](../application-models/extensionability-overview.md) can be declared in the configuration file of an HSP.
+- An HSP must be installed and run with the HAP that depends on it. It cannot be installed or run independently on a device. The HAP version must be later than or equal to the HSP version.
+- HSP supports the declaration of the [ExtensionAbility](../application-models/extensionability-overview.md) and [UIAbility](../application-models/uiability-overview.md) components in the configuration file, however, ExtensionAbility or UIAbility with entry capabilities (that is, entity.system.home and ohos.want.action.home are configured for the **skill** tag) is not supported.
 - An HSP can depend on other HARs or HSPs, but does not support cyclic dependency or dependency transfer.
+
+> **NOTE**
+> 
+> Cyclic dependency: For example, there are three HSPs. HSP-A depends on HSP-B, HSP-B depends on HSP-C, and HSP-C depends on HSP-A.
+>
+> Dependency transfer: For example, there are three HSPs. HSP-A depends on HSP-B, and HSP-B depends on HSP-C. Dependency transfer is not supported indicating that HSP-A can use the methods and components of HSP-B, but cannot directly use that of HSP-C.
 
 
 ## Creating an HSP
-Create an HSP module in DevEco Studio. In this example, an HSP module named **library** is created. The basic project directory structure is as follows:
+Create an HSP module in DevEco Studio. For details, see [Creating an HSP Module](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V13/ide-hsp-V13#section7717162312546). The following describes how to create an HSP module named **library**. The basic project directory structure is as follows:
 ```
-library
-├── src
-│   └── main
-│       ├── ets
-│       │   ├── pages
-│       │   └── index.ets
-│       ├── resources
-│       └── module.json5
-└── oh-package.json5
+MyApplication
+├── library
+│   ├── src
+│   │   └── main
+│   │       ├── ets
+│   │       │   └── pages
+│   │       │       └── index.ets     // Page file of the library module
+│   │       ├── resources             // Resources of the library module
+│   │       └── module.json5          // Configuration file of the library module
+│   ├── oh-package.json5              // Module-level configuration file
+│   ├── index.ets                     // Entry file
+│   └── build-profile.json5           // Module-level configuration file
+└── build-profile.json5               // Project-level configuration file
 ```
 
 ## Developing an HSP
@@ -57,15 +71,15 @@ export struct MyTitleBar {
 ```
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { MyTitleBar } from './components/MyTitleBar';
+// library/index.ets
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
 ```
 
 
 ### Exporting TS Classes and Methods
 Use **export** to export TS classes and methods. The sample code is as follows:
 ```ts
-// library/src/main/ets/utils/test.ts
+// library/src/main/ets/utils/test.ets
 export class Log {
   static info(msg: string): void {
     console.info(msg);
@@ -82,13 +96,13 @@ export function minus(a: number, b: number): number {
 ```
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test';
+// library/index.ets
+export { Log, add, minus } from './src/main/ets/utils/test';
 ```
 ### Exporting Native Methods
 The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **liblibrary.so** file is exported.
 ```ts
-// library/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ets
 import native from 'liblibrary.so';
 
 export function nativeMulti(a: number, b: number): number {
@@ -99,8 +113,8 @@ export function nativeMulti(a: number, b: number): number {
 
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { nativeMulti } from './utils/nativeTest';
+// library/index.ets
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 
 ### Accessing Resources in an HSP Through $r
@@ -130,7 +144,7 @@ When resources in an HSP need to be exported for cross-package access, it is rec
 
 The implementation is as follows:
 
-The implementation is as follows:  
+Encapsulate the resources that need to be published into a resource management class.  
 ```ts
 // library/src/main/ets/ResManager.ets
 export class ResManager{
@@ -145,33 +159,30 @@ export class ResManager{
 
 In the entry point file **index.ets**, declare the APIs to be exposed.
 ```ts
-// library/src/main/ets/index.ets
-export { ResManager } from './ResManager';
+// library/index.ets
+export { ResManager } from './src/main/ets/ResManager';
 ```
-
-
 
 ## Using an HSP
 
-You can reference APIs in an HSP and and implement page redirection in the HSP through page routing.
+You can reference APIs in an HSP and implement page redirection in the HSP through page routing.
 
 ### Referencing APIs
-To use APIs in the HSP, first configure the dependency on the HSP in the **oh-package.json5** file of the module that needs to call the APIs (called the invoking module).
+To use HSP APIs, you need to configure the dependency on them in the **oh-package.json5** file. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V13/ide-har-import-V13).
 You can then call the external APIs of the HSP in the same way as calling the APIs in the HAR. In this example, the external APIs are the following ones exported from **library**:
 
 ```ts
-// library/src/main/ets/index.ets
-export { Log, add, minus } from './utils/test';
-export { MyTitleBar } from './components/MyTitleBar';
-export { ResManager } from './ResManager';
-export { nativeMulti } from './utils/nativeTest';
+// library/index.ets
+export { Log, add, minus } from './src/main/ets/utils/test';
+export { MyTitleBar } from './src/main/ets/components/MyTitleBar';
+export { ResManager } from './src/main/ets/ResManager';
+export { nativeMulti } from './src/main/ets/utils/nativeTest';
 ```
 The APIs can be used as follows in the code of the invoking module:
 ```ts
 // entry/src/main/ets/pages/index.ets
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -252,11 +263,11 @@ struct Index {
             .resourceManager
             .getStringValue(ResManager.getDesc())
             .then(value => {
-              Logger.info(TAG, `getStringValue is ${value}`);
+              console.log('getStringValue is ' + value);
               this.message = 'getStringValue is ' + value;
             })
             .catch((err: BusinessError) => {
-              Logger.info(TAG, `getStringValue promise error is ${err}`);
+              console.error('getStringValue promise error is ' + err);
             });
         })
 
@@ -295,7 +306,6 @@ If you want to add a button in the **entry** module to jump to the menu page (**
 ```ts
 import { Log, add, MyTitleBar, ResManager, nativeMulti } from 'library';
 import { BusinessError } from '@ohos.base';
-import Logger from '../logger/Logger';
 import router from '@ohos.router';
 
 const TAG = 'Index';
@@ -328,9 +338,8 @@ struct Index {
             url: '@bundle:com.samples.hspsample/library/ets/pages/Menu'
           }).then(() => {
             console.log('push page success');
-            Logger.info(TAG, 'push page success');
           }).catch((err: BusinessError) => {
-            Logger.error(TAG, `pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            console.error('pushUrl failed, code is' + err.code + ', message is' + err.message);
           })
         })
       }
@@ -350,7 +359,7 @@ The **url** content template is as follows:
 ```ets
 '@bundle:bundleName/moduleName/path/page file name (without the extension .ets)'
 ```
-### Going Back to Previous Page with Router
+### Going Back to the Previous Page Using router.back()
 You can use the **router.back** method to go back, from a page in the HSP, to the previous page, under the prerequisite that the target page is in the redirection path of the source page.
 ```ts
 import router from '@ohos.router';

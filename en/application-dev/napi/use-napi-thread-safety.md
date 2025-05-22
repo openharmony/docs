@@ -17,28 +17,33 @@
 
 1. Define a thread-safe function at the native entry.
    ```c++
+   #include "napi/native_api.h"
+   #include "hilog/log.h"
+   #include <future>
+
    struct CallbackData {
        napi_threadsafe_function tsfn;
        napi_async_work work;
    };
-   
+
    static napi_value StartThread(napi_env env, napi_callback_info info)
    {
        size_t argc = 1;
        napi_value jsCb = nullptr;
        CallbackData *callbackData = nullptr;
        napi_get_cb_info(env, info, &argc, &jsCb, nullptr, reinterpret_cast<void **>(&callbackData));
-   
+
        // Create a thread-safe function.
        napi_value resourceName = nullptr;
        napi_create_string_utf8(env, "Thread-safe Function Demo", NAPI_AUTO_LENGTH, &resourceName);
-       napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr, 
+       napi_create_threadsafe_function(env, jsCb, nullptr, resourceName, 0, 1, callbackData, nullptr,
            callbackData, CallJs, &callbackData->tsfn);
-   
+
        // Create an asynchronous work object.
+       // ExecuteWork is executed on a non-JS thread created by libuv. The napi_create_async_work is used to simulate the scenario, in which napi_call_threadsafe_function is used to submit tasks to a JS thread from a non-JS thread.
        napi_create_async_work(env, nullptr, resourceName, ExecuteWork, WorkComplete, callbackData,
            &callbackData->work);
-   
+
        // Add the asynchronous work object to the asynchronous task queue.
        napi_queue_async_work(env, callbackData->work);
        return nullptr;
@@ -78,7 +83,7 @@
        reinterpret_cast<std::promise<std::string> *>(data)->set_value(std::string(buf));
        return nullptr;
    }
-   
+
    static napi_value RejectedCallback(napi_env env, napi_callback_info info)
    {
        void *data = nullptr;
@@ -89,11 +94,11 @@
            std::make_exception_ptr(std::runtime_error("Error in jsCallback")));
        return nullptr;
    }
-   
+
    static void CallJs(napi_env env, napi_value jsCb, void *context, void *data)
    {
        if (env == nullptr) {
-           return;	
+           return;
        }
        napi_value undefined = nullptr;
        napi_value promise = nullptr;
@@ -127,7 +132,7 @@
    ```
 
 5. Initialize the module and call the API from ArkTS.
-   ```
+   ```c++
    // Initialize the module.
    static napi_value Init(napi_env env, napi_value exports) {
        CallbackData *callbackData = new CallbackData(); // Release when the thread exits.
@@ -137,9 +142,14 @@
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
    }
-   
+   ```
+
+   ``` ts
+   // Description of the interface in the .d.ts file.
+    export const startThread: (callback: () => Promise<string>) => void;
+
    // Call the API of ArkTS.
-   import nativeModule from'libentry.so'; // Import native capabilities.
+   import nativeModule from 'libentry.so'; // Import native capabilities.
 
    let callback = (): Promise<string> => {
      return new Promise((resolve) => {
