@@ -156,7 +156,7 @@
     ```
 3. 通过注释、解注释/entry/src/main/ets/pages/Index.ets中的上文示例的各种情况，编译并运行。
 
-4. 在安装应用后，可将示例工程的/entry/src/main/resources/rawfile/test.m3u8通过以下命令加入[应用沙箱](../../file-management/app-sandbox-directory.md)，从而运行应用沙箱相关示例（示例工程的```<PACKAGENAME>```为com.samples.media.AVPlayerArkTSURL）。
+4. 在安装应用后，可将示例工程的/entry/src/main/resources/rawfile/test.m3u8通过以下命令加入[应用沙箱](../../file-management/app-sandbox-directory.md)，从而运行应用沙箱相关示例（示例工程的```<PACKAGENAME>```为com.samples.AVPlayerArkTSURL）。
     ```
     hdc file send "[目录]\test.m3u8" /data/app/el1/bundle/public/<PACKAGENAME>
     hdc file send "[目录]\test_01.mp3" /data/app/el1/bundle/public/<PACKAGENAME>
