@@ -228,7 +228,7 @@ soundpool支持的格式与底层一致，支持的格式可以参考文档：[�
 
 **参考资料**
 
-1. [ohaudio](../reference/apis-audio-kit/_o_h_audio.md)
+1. [OHAudio](../reference/apis-audio-kit/capi-ohaudio.md)
 2. [Audio](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/Audio)
 
 ## 如何实现实时视频流传输？如何实现直播场景？(API 10)
