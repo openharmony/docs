@@ -2379,7 +2379,7 @@ async function demo() {
 
 pressBack(displayId): Promise\<void>
 
-Driver对象对指定屏幕进行点击BACK键的操作。
+Driver对象对指定屏幕进行点击BACK键的操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2455,7 +2455,7 @@ async function demo() {
 
 triggerKey(keyCode: number, displayId: number): Promise\<void>
 
-Driver对象采取如下操作：在指定屏幕传入key值实现模拟点击对应按键的效果。
+Driver对象采取如下操作：在指定屏幕传入key值实现模拟点击对应按键的效果，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2535,7 +2535,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2?: number, displayId: number): Promise\<void>
 
-Driver对象通过给定的key值，找到对应组合键，并在指定屏幕下进行点击。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
+Driver对象通过给定的key值，找到对应组合键，并在指定屏幕下进行点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2616,7 +2616,7 @@ async function demo() {
 
 clickAt(point: Point): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标点单击。
+Driver对象采取如下操作：在目标坐标点单击，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2694,7 +2694,7 @@ async function demo() {
 
 doubleClickAt(point: Point): Promise\<void>
 
-Driver对象采取如下操作：对目标坐标进行双击。
+Driver对象采取如下操作：对目标坐标进行双击，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2772,7 +2772,7 @@ async function demo() {
 
 longClickAt(point: Point, duration?: number): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标进行双击击。
+Driver对象采取如下操作：在目标坐标进行双击，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2854,7 +2854,7 @@ async function demo() {
 
 swipeBetween(from: Point, to: Point, speed?: number): Promise\<void>
 
-Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
+Driver对象采取如下操作：从起始坐标点滑向目的坐标点，使用Promise异步回调。
 
 > **说明**
 >
@@ -2946,11 +2946,12 @@ async function demo() {
 
 dragBetween(from: Point, to: Point, speed?: number, duration?: number): Promise\<void>
 
-Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
+Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点，使用Promise异步回调。
 
 > **说明**
 >
 > 该接口仅在手机、平板、2in1设备上生效。
+> 起止点应属于同一个屏幕，当入参中起止坐标所属屏幕id不同时，将抛出17000007异常。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3036,7 +3037,7 @@ async function demo() {
 
 screenCap(savePath: string, displayId: number): Promise\<boolean>
 
-Driver对象采取如下操作：捕获指定屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
+Driver对象采取如下操作：捕获指定屏幕，并保存为PNG格式的图片至给出的保存路径中，使用Promise异步回调。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3152,7 +3153,7 @@ async function demo() {
 
 getDisplayRotation(displayId: number): Promise\<DisplayRotation>
 
-获取当前设备指定屏幕的显示方向。
+获取当前设备指定屏幕的显示方向，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3168,7 +3169,7 @@ getDisplayRotation(displayId: number): Promise\<DisplayRotation>
 
 | 类型                                           | 说明                                    |
 | ---------------------------------------------- | --------------------------------------- |
-| Promise\<[DisplayRotation](#displayrotation9)> | Promise对象，返回当前设备的显示方向。 |
+| Promise\<[DisplayRotation](#displayrotation9)> | Promise对象，返回指定屏幕的显示方向。 |
 
 **错误码：**
 
@@ -3268,7 +3269,7 @@ async function demo() {
 
 getDisplaySize(displayId: number): Promise\<Point>
 
-获取当前设备的屏幕大小。
+获取当前设备的屏幕大小，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3298,7 +3299,7 @@ getDisplaySize(displayId: number): Promise\<Point>
 **示例：**
 
 ```ts
-import { Driver, } from '@kit.TestKit';
+import { Driver } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
@@ -3344,7 +3345,7 @@ async function demo() {
 
 getDisplayDensity(displayId: number): Promise\<Point>
 
-获取当前设备屏幕的分辨率。
+获取当前设备指定屏幕的分辨率，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3360,7 +3361,7 @@ getDisplayDensity(displayId: number): Promise\<Point>
 
 | 类型                       | 说明                                      |
 | -------------------------- | ----------------------------------------- |
-| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备屏幕的分辨率。 |
+| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备指定屏幕的分辨率。 |
 
 **错误码：**
 
@@ -3446,7 +3447,7 @@ async function demo() {
 
 pressHome(displayId: number): Promise\<void>
 
-设备指定屏幕上注入返回桌面操作。
+设备指定屏幕上注入返回桌面操作，使用Promise异步回调。
 
 > **说明**
 >
@@ -3663,7 +3664,7 @@ async function demo() {
 
 fling(direction: UiDirection, speed: number, displayId: number): Promise\<void>
 
-指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作。
+指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -5147,6 +5148,43 @@ async function demo() {
 }
 ```
 
+### getDisplayId<sup>20+</sup>
+
+getDisplayId(): Promise\<number>
+
+获取窗口所属的屏幕ID，使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型             | 说明                   |
+| ---------------- |----------------------|
+| Promise\<number> | Promise对象，返回窗口所属的屏幕ID。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | The async function is not called with await. |
+| 17000004 | The window or component is invisible or destroyed.           |
+
+**示例：**
+
+```ts
+import { Component, Driver, ON } from '@kit.TestKit';
+
+async function demo() {
+  let driver: Driver = Driver.create();
+  let button: Component = await driver.findComponent(ON.type('TextInput'));
+  let displayId = await button.getDisplayId();
+}
+```
+
 ## UIEventObserver<sup>10+</sup>
 
 UI事件监听器。
@@ -6191,133 +6229,4 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
 | x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.click(100, 100);
-}
-```
-
-### doubleClick<sup>(deprecated)</sup>
-
-doubleClick(x: number, y: number): Promise\<void>
-
-UiDriver对象采取如下操作：在目标坐标点双击。
-
-从API version 9开始不再维护，建议使用[doubleClick<sup>9+</sup>](#doubleclick9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.doubleClick(100, 100);
-}
-```
-
-### longClick<sup>(deprecated)</sup>
-
-longClick(x: number, y: number): Promise\<void>
-
-UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
-
-从API version 9开始不再维护，建议使用[longClick<sup>9+</sup>](#longclick9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@kit.TestKit';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.longClick(100, 100);
-}
-```
-
-### swipe<sup>(deprecated)</sup>
-
-swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void>
-
-UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目的坐标点。
-
-从API version 9开始不再维护，建议使用[swipe<sup>9+</sup>](#swipe9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名 | 类型   | 必填 | 说明                                   |
-| ------ | ------ | ---- | -------------------------------------- |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0的整数。 |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0的整数。 |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0的整数。 |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0的整数。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@kit.TestKit';
-
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.swipe(100, 100, 200, 200);
-}
-```
-
-### screenCap<sup>(deprecated)</sup>
-
-screenCap(savePath: string): Promise\<boolean>
-
-UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。
-
-从API version 9开始不再维护，建议使用[screenCap<sup>9+</sup>](#screencap9)。
-
-**系统能力**：SystemCapability.Test.UiTest
-
-**参数：**
-
-| 参数名   | 类型   | 必填 | 说明           |
-| -------- | ------ | ---- | -------------- |
-| savePath | string | 是   | 文件保存路径。 |
-
-**返回值：**
-
-
-| 类型              | 说明                                            |
-| ----------------- |-----------------------------------------------|
-| Promise\<boolean> | Promise对象，返回截图操作是否成功完成。true：成功完成，false：未成功完成。 |
-
-**示例：**
-
-```ts
-import { UiDriver } from '@kit.TestKit';
-async function demo() {
-  let driver: UiDriver = UiDriver.create();
-  await driver.screenCap('/data/storage/el2/base/cache/1.png');
-}
-```
+| y      | number | 是   | 以number的形式传入目标点的�
