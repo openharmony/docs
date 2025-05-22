@@ -940,7 +940,7 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                         |
 | -------- | ----------------------- | ---- | ---------------------------- |
-| type     | string                 | 是   | 事件名称。                   |
+| type     | string                  | 是   | 事件名称。                   |
 | callback | AsyncCallback\<boolean> | 是   | 回调函数，返回网络共享状态。 |
 
 **错误码：**
