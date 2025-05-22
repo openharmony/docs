@@ -4073,7 +4073,7 @@ bind(address: LocalAddress): Promise\<void\>;
 
 | 类型            | 说明                                       |
 | :-------------- | :---------------------------------------- |
-| Promise\<void\> | 以Promise形式返回LocalSocket绑定本端的结果。 |
+| Promise\<void\> | Promise<void>：Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
 
