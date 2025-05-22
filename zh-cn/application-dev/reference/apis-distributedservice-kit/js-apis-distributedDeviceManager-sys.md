@@ -46,6 +46,22 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | isCloud      | boolean    |   是           | 是否向云端请求数据。       |
 | deviceIdList  | Array&lt;string&gt;  | 否    | 设备Id列表。       |
 
+
+## ServiceProfileInfo<sup>15+</sup>
+
+业务模板信息。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**系统API**： 此接口为系统接口。
+
+| 名称           | 类型  | 必填              |  说明    |
+| -------------- | ---- | --------------- | --------|
+| deviceId       | string  | 是   |  设备ID。          |
+| serviceId       | string  | 是   | 业务ID。           |
+| serviceType     | string   | 是   | 业务类型。           |
+| data       | string  | 否   |  业务数据。          |
+
 ## DeviceProfileInfo<sup>15+</sup>
 
 设备配置文件信息。
