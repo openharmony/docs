@@ -150,7 +150,9 @@ class MyAbilityStage extends AbilityStage {
 
 onMemoryLevel(level: AbilityConstant.MemoryLevel): void
 
-Called when the system has decided to adjust the memory level. For example, this API can be used when there is not enough memory to run as many background processes as possible. This API returns the result synchronously and does not support asynchronous callbacks.
+Listens for changes in the system memory level status. When the system detects low memory resources, it will proactively invoke this callback. You can implement this callback to promptly release non-essential resources (such as cached data or temporary objects) upon receiving a memory shortage event, thereby preventing the application process from being forcibly terminated by the system.
+
+This API returns the result synchronously and does not support asynchronous callbacks.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
