@@ -2844,10 +2844,6 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 获取指定相机的并发信息。
 
-cameraConcurrentInfo为获取到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)，作为入参应当默认设置为空。infoSize 为查询到的相机并发能力数组长度，作为入参应当默认设置为0。  
-如果相机支持并发，cameraConcurrentInfo会被赋值为查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)，infoSize会被赋值为查询到的相机并发能力数组长度。  
-如果相机不支持并发，cameraConcurrentInfo与infoSize不会进行更改，并且返回错误码[Camera_ErrorCode](#camera_errorcode-1)中的CAMERA_SERVICE_FATAL_ERROR。
-
 **起始版本：** 18
 
 **参数:**
