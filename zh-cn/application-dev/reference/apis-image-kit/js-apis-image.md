@@ -4258,6 +4258,7 @@ CreateIncrementalSource(buf: ArrayBuffer): ImageSource
 - 获取图片信息：指定序号-[getImageInfo](#getimageinfo)、直接获取-[getImageInfo](#getimageinfo-1)
 - 获取图片中给定索引处图像的指定属性键的值：[getImageProperty](#getimageproperty11)
 - 批量获取图片中的指定属性键的值：[getImageProperties](#getimageproperties12)
+- 使用同步接口获取图片指定的属性键的值：[getImagePropertySync](#getimageproperty)
 - 更新增量数据：[updateData](#updatedata9)
 - 创建PixelMap对象：通过图片解码参数创建-[createPixelMap](#createpixelmap7)、通过默认参数创建-[createPixelMap](#createpixelmap7-1) 、通过图片解码参数-[createPixelMap](#createpixelmap7-2)
 - 释放ImageSource实例：[release](#release)
@@ -4706,6 +4707,48 @@ imageSourceApi.getImageProperties(key).then((data) => {
 }).catch((err: BusinessError) => {
   console.error(JSON.stringify(err));
 });
+```
+
+### getImagePropertySync<sup>20+</sup>
+
+getImagePropertySync(key:PropertyKey): string
+
+获取图片中给定索引处图像的指定属性键的值，用String形式返回结果，仅支持JPEG、PNG和HEIF<sup>20+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                 |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | [PropertyKey](#propertykey7)                                               | 是   | 图片属性名。                         |
+
+**返回值：**
+
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
+| string | 返回图片属性值，如获取失败则返回属性默认值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed.|
+| 7700102 | Unsupported MIME type.|
+| 7700202 | Unsupported metadata. For example, key is not supported.|
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+imageSourceApi.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE)
+.then((data: string) => {
+  console.info('Succeeded in getting the value of the specified attribute key of the image.');
+}).catch((error: BusinessError) => {
+  console.error('Failed to get the value of the specified attribute key of the image.');
+})
 ```
 
 ### modifyImageProperty<sup>11+</sup>
