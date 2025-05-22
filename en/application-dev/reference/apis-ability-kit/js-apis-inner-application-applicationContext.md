@@ -427,7 +427,7 @@ export default class MyAbility extends UIAbility {
     } catch (paramError) {
       console.error(`error: ${(paramError as BusinessError).code}, ${(paramError as BusinessError).message}`);
     }
-    console.log('Resgiter applicationStateChangeCallback');
+    console.log('Register applicationStateChangeCallback');
   }
 }
 ```
@@ -466,8 +466,17 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 Assume that [ApplicationContext.on('applicationStateChange')](#applicationcontextonapplicationstatechange10) is used to register a callback named **applicationStateChangeCallback**. The following example shows how to unregister the corresponding listener.
 
 ```ts
-import { UIAbility } from '@kit.AbilityKit';
+import { UIAbility, ApplicationStateChangeCallback } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+let applicationStateChangeCallback: ApplicationStateChangeCallback = {
+  onApplicationForeground() {
+    console.info('applicationStateChangeCallback onApplicationForeground');
+  },
+  onApplicationBackground() {
+    console.info('applicationStateChangeCallback onApplicationBackground');
+  }
+};
 
 export default class MyAbility extends UIAbility {
   onDestroy() {
@@ -993,11 +1002,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { font } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
+  context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear() {
     font.registerFont({
@@ -1005,7 +1016,7 @@ struct Index {
       familySrc: $rawfile('font/medium.ttf')
     })
 
-    getContext().getApplicationContext().setFont("fontName");
+    this.context.getApplicationContext().setFont("fontName");
   }
 
   build() {

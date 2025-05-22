@@ -1,7 +1,7 @@
 # Ability Kit
 
-- ArkTS APIs
-  - Stage Model
+- ArkTS APIs<!--ability-arkts-->
+  - Stage Model<!--stage-model-->
     - [@ohos.app.ability.Ability (Ability Base Class)](js-apis-app-ability-ability.md)
     - [@ohos.app.ability.AbilityConstant (AbilityConstant)](js-apis-app-ability-abilityConstant.md)
     - [@ohos.app.ability.abilityLifecycleCallback (AbilityLifecycleCallback)](js-apis-app-ability-abilityLifecycleCallback.md)
@@ -41,6 +41,7 @@
     - [@ohos.app.ability.AbilityConstant (AbilityConstant) (System API)](js-apis-app-ability-abilityConstant-sys.md)
     - [@ohos.app.ability.application (Application) (System API)](js-apis-app-ability-application-sys.md)
     - [@ohos.app.ability.AutoFillExtensionAbility (AutoFillExtensionAbility) (System API)](js-apis-app-ability-autoFillExtensionAbility-sys.md)
+    - [@ohos.app.ability.autoFillManager (autoFillManager) (System API)](js-apis-app-ability-autoFillManager-sys.md)
     - [@ohos.app.ability.autoStartupManager (autoStartupManager) (System API)](js-apis-app-ability-autoStartupManager-sys.md)
     - [@ohos.app.ability.common (Context) (System API)](js-apis-app-ability-common-sys.md)
     - [@ohos.app.ability.dialogSession (dialogSession) (System API)](js-apis-app-ability-dialogSession-sys.md)
@@ -51,7 +52,7 @@
     - [@ohos.app.ability.UIServiceExtensionAbility (UIServiceExtensionAbility) (System API)](js-apis-app-ability-uiServiceExtensionAbility-sys.md)
     - [@ohos.app.ability.UIExtensionContentSession (UI Operation Class for ExtensionAbilities with UI) (System API)](js-apis-app-ability-uiExtensionContentSession-sys.md)
     <!--DelEnd-->
-  - FA Model
+  - FA Model<!--fa-model-->
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility)](js-apis-ability-featureAbility.md)
     - [@ohos.ability.particleAbility (ParticleAbility)](js-apis-ability-particleAbility.md)
@@ -95,14 +96,14 @@
     - [@ohos.bundle.distributedBundleManager (distributedBundleManager) (System API)](js-apis-distributedBundleManager-sys.md)
     - [@ohos.bundle.freeInstall (freeInstall) (System API)](js-apis-freeInstall-sys.md)
     - [@ohos.bundle.installer (installer) (System API)](js-apis-installer-sys.md)
-    - [@ohos.bundle.launcherBundleManager (launcherBundleManager module) (System API)](js-apis-launcherBundleManager-sys.md)
+    - [@ohos.bundle.launcherBundleManager (launcherBundleManager) (System API)](js-apis-launcherBundleManager-sys.md)
     - [@ohos.bundle.overlay (overlay) (System API)](js-apis-overlay-sys.md)
     - [@ohos.bundle.shortcutManager (shortcutManager) (System API)](js-apis-shortcutManager-sys.md)
     - [@ohos.distributedMissionManager (Distributed Mission Management) (System API)](js-apis-distributedMissionManager-sys.md)
     - [@ohos.privacyManager (Privacy Management) (System API)](js-apis-privacyManager-sys.md)
     <!--DelEnd-->
-  - Dependent Elements and Definitions
-    - ability
+  - Dependent Elements and Definitions<!--ability-api-interface-depend-->
+    - ability<!--ability-->
       - [abilityResult](js-apis-inner-ability-abilityResult.md)
       - [connectOptions](js-apis-inner-ability-connectOptions.md)
       - [dataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)
@@ -110,11 +111,11 @@
       - [dataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)
       - [startAbilityParameter](js-apis-inner-ability-startAbilityParameter.md)
       - [want](js-apis-inner-ability-want.md)
-    - app
+    - app<!--app-->
       - [appVersionInfo](js-apis-inner-app-appVersionInfo.md)
       - [context](js-apis-inner-app-context.md)
       - [processInfo](js-apis-inner-app-processInfo.md)
-    - application
+    - application<!--ability-arkts-application-->
       - [abilityMonitor](js-apis-inner-application-abilityMonitor.md)
       - [AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)
       - [AbilityStageContext](js-apis-inner-application-abilityStageContext.md)
@@ -195,7 +196,7 @@
       - [BundleResourceInfo (System API)](js-apis-bundleManager-BundleResourceInfo-sys.md)
       - [BusinessAbilityInfo (System API)](js-apis-bundleManager-businessAbilityInfo-sys.md)
       - [dispatchInfo (System API)](js-apis-bundleManager-dispatchInfo-sys.md)
-      - [launcherAbilityInfo (System API)](js-apis-bundleManager-launcherAbilityInfo-sys.md)
+      - [launcherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)
       - [LauncherAbilityResourceInfo (System API)](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)
       - [permissionDef (System API)](js-apis-bundleManager-permissionDef-sys.md)
       - [recoverableApplicationInfo (System API)](js-apis-bundleManager-recoverableApplicationInfo-sys.md)

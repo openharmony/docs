@@ -73,7 +73,7 @@ Called when an auto-fill request is successfully processed.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | ------------------------------ |
-| response | [FillResponse](#fillresponse)  | Yes| Information about the response to the auto-fill response.|
+| response | [FillResponse](#fillresponse)  | Yes| Information about the response to the auto-fill request.|
 
 **Error codes**
 
@@ -122,14 +122,14 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let fillCallback: autoFillManager.FillRequestCallback | undefined =
-  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
-
 @Entry
 @Component
 struct AutoFillPage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  fillCallback: autoFillManager.FillRequestCallback | undefined =
+    this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
+  viewData: autoFillManager.ViewData | undefined = this.storage?.get<autoFillManager.ViewData>('viewData');
+
   build() {
     Row() {
       Column() {
@@ -140,13 +140,13 @@ struct AutoFillPage {
 
       Button('onSuccess')
         .onClick(() => {
-          if (viewData) {
-            viewData.pageNodeInfos[0].value = 'user1';
-            viewData.pageNodeInfos[1].value = 'user1 password';
-            viewData.pageNodeInfos[2].value = 'user1 generate new password';
-            hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(viewData));
+          if (this.viewData) {
+            this.viewData.pageNodeInfos[0].value = 'user1';
+            this.viewData.pageNodeInfos[1].value = 'user1 password';
+            this.viewData.pageNodeInfos[2].value = 'user1 generate new password';
+            hilog.info(0x0000, 'testTag', 'autofill success with viewData: %{public}s', JSON.stringify(this.viewData));
             try {
-              fillCallback?.onSuccess({ viewData: viewData });
+              this.fillCallback?.onSuccess({ viewData: this.viewData });
             } catch (error) {
               console.error(`catch error, code: ${(error as BusinessError).code},
                   message: ${(error as BusinessError).message}`);
@@ -214,13 +214,13 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let fillCallback: autoFillManager.FillRequestCallback | undefined =
-  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-
 @Entry
 @Component
 struct AutoFillPage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  fillCallback: autoFillManager.FillRequestCallback | undefined =
+    this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
+  
   build() {
     Row() {
       Column() {
@@ -233,7 +233,7 @@ struct AutoFillPage {
         .onClick(() => {
           hilog.info(0x0000, 'testTag', 'autofill failure');
           try {
-            fillCallback?.onFailure();
+            this.fillCallback?.onFailure();
           } catch (error) {
             console.error(`catch error, code: ${(error as BusinessError).code},
               message: ${(error as BusinessError).message}`);
@@ -307,13 +307,13 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let fillCallback: autoFillManager.FillRequestCallback | undefined =
-  storage.get<autoFillManager.FillRequestCallback>('fillCallback');
-
 @Entry
 @Component
 struct AutoFillPage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  fillCallback: autoFillManager.FillRequestCallback | undefined =
+    this.storage?.get<autoFillManager.FillRequestCallback>('fillCallback');
+  
   build() {
     Row() {
       Column() {
@@ -326,7 +326,7 @@ struct AutoFillPage {
         .onClick(() => {
           hilog.info(0x0000, 'testTag', 'autofill cancel');
           try {
-            fillCallback?.onCancel();
+            this.fillCallback?.onCancel();
           } catch (error) {
             console.error(`catch error, code: ${(error as BusinessError).code},
                 message: ${(error as BusinessError).message}`);
@@ -367,10 +367,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 // MyAutoFillExtensionAbility.ts
+// MyAutoFillExtensionAbility.ts
 import { AutoFillExtensionAbility, UIExtensionContentSession, autoFillManager } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
 export default class AutoFillAbility extends AutoFillExtensionAbility {
+  storage: LocalStorage = new LocalStorage();
+
   onCreate(): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onCreate');
   }
@@ -395,8 +398,7 @@ export default class AutoFillAbility extends AutoFillExtensionAbility {
   onUpdateRequest(request: autoFillManager.UpdateRequest): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'autofill onUpdateRequest');
     console.log(`get fill request viewData: ${JSON.stringify(request.viewData)}.`);
-    let storage = LocalStorage.getShared();
-    let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
+    let fillCallback = this.storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 
     if (fillCallback) {
       try {
@@ -519,13 +521,13 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let saveCallback: autoFillManager.SaveRequestCallback | undefined =
-  storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
-
 @Entry
 @Component
 struct SavePage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  saveCallback: autoFillManager.SaveRequestCallback | undefined =
+    this.storage?.get<autoFillManager.SaveRequestCallback>('saveCallback');
+
   build() {
     Row() {
       Column() {
@@ -538,7 +540,7 @@ struct SavePage {
         .onClick(() => {
           hilog.info(0x0000, 'testTag', 'autosave success');
           try {
-            saveCallback?.onSuccess();
+            this.saveCallback?.onSuccess();
           } catch (error) {
             console.error(`catch error, code: ${(error as BusinessError).code},
                 message: ${(error as BusinessError).message}`);
@@ -605,13 +607,13 @@ import { autoFillManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 
-let storage: LocalStorage = LocalStorage.getShared();
-let saveCallback: autoFillManager.SaveRequestCallback | undefined =
-  storage.get<autoFillManager.SaveRequestCallback>('saveCallback');
-
 @Entry
 @Component
 struct SavePage {
+  storage: LocalStorage | undefined = this.getUIContext().getSharedLocalStorage();
+  saveCallback: autoFillManager.SaveRequestCallback | undefined =
+    this.storage?.get<autoFillManager.SaveRequestCallback>('saveCallback');
+  
   build() {
     Row() {
       Column() {
@@ -624,7 +626,7 @@ struct SavePage {
         .onClick(() => {
           hilog.info(0x0000, 'testTag', 'autofill failure');
           try {
-            saveCallback?.onFailure();
+            this.saveCallback?.onFailure();
           } catch (error) {
             console.error(`catch error, code: ${(error as BusinessError).code},
               message: ${(error as BusinessError).message}`);

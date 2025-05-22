@@ -66,7 +66,7 @@ If the **type** field in **startAbilityByType** is set to **navigation**, three 
           1:'1111', // Key 1 indicates Petal Maps, and the value must be a POI in Petal Maps.
           2:'2222' // Key 2 indicates AutoNavi Map, and the value must be a POI in AutoNavi Map.
       } as Record<number, string>,
-      'originName': 'xx Park in xx City',
+          'originName': 'xx Park in xx City',
       'originLatitude': 31.060844,
       'originLongitude': 120.78315,
       'originPoiIds': {

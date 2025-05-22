@@ -34,7 +34,7 @@ Registers a listener to observe the mission status.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | type     | string   | Yes      | Name of the target mission.|
+  | type     | string   | Yes      | Name of the target mission. |
   | listener | [MissionListener](js-apis-inner-application-missionListener-sys.md) | Yes| Mission status listener to register.|
 
 **Error codes**

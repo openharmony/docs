@@ -1,5 +1,5 @@
 # Context (FA Model)
-
+<!--deprecated_code_no_check-->
 
 There is only one context in the FA model. All capabilities in the context are provided through methods. The context uses these methods to extend the capabilities of the **featureAbility** class.
 

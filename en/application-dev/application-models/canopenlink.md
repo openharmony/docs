@@ -1,6 +1,11 @@
 # (Optional) Using canOpenLink to Check Application Accessibility
 ## When to Use
 Before starting application B, application A can call **canOpenLink** to check whether application B is accessible.
+
+> **NOTE**
+> 
+> The **canOpenLink** API cannot be used to determine whether the application navigated to via App Linking is installed.
+
 ## Constraints
 A maximum of 50 URL schemes can be configured in the [querySchemes](../quick-start/module-configuration-file.md) field in the **module.json5** file of the entry module.
 ## Available APIs
@@ -53,6 +58,8 @@ Configure the [uris](../quick-start/module-configuration-file.md#skills) field i
         //...
         "skills": [
           {
+            // actions cannot be empty. Otherwise, matching the target application fails.
+            "actions": ["ohos.want.action.home"],             
             "uris": [
               {
                 "scheme": "app1Scheme",

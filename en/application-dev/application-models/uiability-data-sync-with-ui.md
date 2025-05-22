@@ -4,7 +4,7 @@
 Based on the application model, you can use any of the following ways to implement data synchronization between [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) components and UI pages:
 
 - [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The [EventHub](../reference/apis-ability-kit/js-apis-inner-application-eventHub.md) object is provided by the [base class Context](application-context-stage.md). It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
-- [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: [AppStorage](../quick-start/arkts-appstorage.md) and [LocalStorage](../quick-start/arkts-localstorage.md), which implement application- and UIAbility-level data synchronization, respectively.
+- [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: [AppStorage](../ui/state-management/arkts-appstorage.md) and [LocalStorage](../ui/state-management/arkts-localstorage.md), which implement application- and UIAbility-level data synchronization, respectively.
 
 
 ## Using EventHub for Data Synchronization
@@ -46,12 +46,11 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
     ```ts
     import { common } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
 
     @Entry
     @Component
     struct Page_EventHub {
-      private context = getContext(this) as common.UIAbilityContext;
+      private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
       eventHubFunc(): void {
         // Trigger the event without parameters.
@@ -73,7 +72,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
               }
               .onClick(() => {
                 this.eventHubFunc();
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: 'EventHubFuncA'
                 });
               })
@@ -86,7 +85,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
               }
               .onClick(() => {
                 this.context.eventHub.off('event1');
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: 'EventHubFuncB'
                 });
               })
@@ -123,4 +122,5 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
-ArkUI provides two application-level state management solutions: [AppStorage](../quick-start/arkts-appstorage.md) and [LocalStorage](../quick-start/arkts-localstorage.md), which implement data synchronization at the application or [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) level, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager that manages state data shared among multiple UIAbility components. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
+ArkUI provides two application-level state management solutions: [AppStorage](../ui/state-management/arkts-appstorage.md) and [LocalStorage](../ui/state-management/arkts-localstorage.md), which implement data synchronization at the application or [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) level, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager that manages state data shared among multiple UIAbility components. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../ui/state-management/arkts-application-state-management-overview.md).
+<!--no_check-->

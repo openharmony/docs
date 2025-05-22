@@ -61,7 +61,9 @@ Converts a **Context** object to a **SendableContext** object.
 
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
-| context | common.Context | Yes| **Context** object, which supports the base class **Context** and the child classes **ApplicationContext**, **AbilityStageContext**, and **UIAbilityContext**.|
+| context | common.Context | Yes| Context object. The Context base class, and its child classes ApplicationContext, AbilityStageContext, and UIAbilityContext are supported.|
+
+
 
 **Error codes**
 
@@ -122,6 +124,8 @@ Converts a **SendableContext** object to a **Context** object.
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+
+
 
 **Error codes**
 
@@ -228,6 +232,8 @@ Converts a **SendableContext** object to an **ApplicationContext** object.
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+
+
 
 **Error codes**
 
@@ -336,6 +342,8 @@ Converts a **SendableContext** object to an **AbilityStageContext** object.
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
 
+
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
@@ -440,6 +448,8 @@ Converts a **SendableContext** object to a **UIAbilityContext** object.
 | Name| Type| Mandatory| Description|
 | ------- | ------- | ------- | ------- |
 | sendableContext | [SendableContext](js-apis-inner-application-sendableContext.md) | Yes| **SendableContext** object.|
+
+
 
 **Error codes**
 
