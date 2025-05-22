@@ -1552,48 +1552,56 @@ wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>;
 import { huks } from '@kit.UniversalKeystoreKit';
 
 let keyAlias = "testWrapKey";
-let properties: Array<huks.HuksParam> = [];
+let properties: Array<huks.HuksParam> = [
+  {
+    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+    value: huks.HuksKeyAlg.HUKS_ALG_AES
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_PADDING,
+    value: huks.HuksKeyPadding.HUKS_PADDING_NONE
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_DIGEST,
+    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
+  },
+  {
+    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+    value: huks.HuksCipherMode.HUKS_MODE_ECB
+  },
+  /* 生成密钥时指定允许加密导出 */
+  {
+    tag: huks.HuksTag.HUKS_TAG_IS_ALLOWED_WRAP,
+    value: true
+  }
+];
+
 let options: huks.HuksOptions = {
   properties: properties,
 };
 
-let wrapKeyProperties: Array<huks.HuksParam> = [];
+let wrapKeyProperties: Array<huks.HuksParam> = [
+  {
+    tag: huks.HuksTag.HUKS_TAG_KEY_WRAP_TYPE,
+    value: huks.HuksKeyWrapType.HUKS_KEY_WRAP_TYPE_HUK_BASED
+  }
+];
+
 let wrapKeyOptions: huks.HuksOptions = {
   properties: wrapKeyProperties,
 };
+
 let wrappedKey: Uint8Array;
 
 async function testGenerateKey() {
-  properties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-    value: huks.HuksKeyAlg.HUKS_ALG_AES
-  };
-  properties[1] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-    value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256
-  };
-  properties[2] = {
-    tag: huks.HuksTag.HUKS_TAG_PURPOSE,
-    value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_ENCRYPT | huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_DECRYPT
-  };
-  properties[3] = {
-    tag: huks.HuksTag.HUKS_TAG_PADDING,
-    value: huks.HuksKeyPadding.HUKS_PADDING_NONE
-  };
-  properties[4] = {
-    tag: huks.HuksTag.HUKS_TAG_DIGEST,
-    value: huks.HuksKeyDigest.HUKS_DIGEST_SHA256
-  };
-  properties[5] = {
-    tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
-    value: huks.HuksCipherMode.HUKS_MODE_ECB
-  };
-  /* 生成密钥时指定允许加密导出 */
-  properties[6] = {
-    tag: huks.HuksTag.HUKS_TAG_IS_ALLOWED_WRAP,
-    value: true
-  };
-
   await huks.generateKeyItem(keyAlias, options)
     .then((data) => {
       console.info(`promise: generateKeyItem success`);
@@ -1605,10 +1613,7 @@ async function testGenerateKey() {
 
 async function testWrapKey(){
   await testGenerateKey();
-  wrapKeyProperties[0] = {
-    tag: huks.HuksTag.HUKS_TAG_KEY_WRAP_TYPE,
-    value: huks.HuksKeyWrapType.HUKS_KEY_WRAP_TYPE_HUK_BASED
-  };
+
   await huks.wrapKeyItem(keyAlias, wrapKeyOptions)
     .then((data) => {
       wrappedKey = data.outData as Uint8Array;
@@ -1671,7 +1676,13 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 ```ts
 import { huks } from '@kit.UniversalKeystoreKit';
 
-let wrapKeyProperties: Array<huks.HuksParam> = [];
+let wrapKeyProperties: Array<huks.HuksParam> = [
+  {
+    tag: huks.HuksTag.HUKS_TAG_KEY_WRAP_TYPE,
+    value: huks.HuksKeyWrapType.HUKS_KEY_WRAP_TYPE_HUK_BASED
+  }
+];
+
 let wrapKeyOptions: huks.HuksOptions = {
   properties: wrapKeyProperties,
 };
