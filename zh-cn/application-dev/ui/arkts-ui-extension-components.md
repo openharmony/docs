@@ -59,7 +59,7 @@ UIExtension为了实现跨应用的能力共享，存在较开放的灵活性，
 | 属性                                                         | 能力规格 | 功能说明                                                     | 规格补充说明                                                 |
 | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [组件标识](../reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md) | 不支持   | id为组件的唯一标识，在整个应用内唯一。本模块提供组件标识相关接口，可以获取指定id组件的属性，也提供向指定id组件发送事件的功能。 | UIExtensionComponent自身可以使用组件标识，提供方也可以正常设置组件标识。但针对宿主方和提供方并未实现统一的标识管理，宿主方无法通过组件标识查询提供方内组件的信息，所以提供方内部设置组件标识无效。 |
-| [背景模糊设置](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md) | 不支持   | 设置组件的模糊、阴影、球面效果以及设置图片的图像效果。       | —                                                            |
+| [图像效果](../reference/apis-arkui/arkui-ts/ts-universal-attributes-image-effect.md) | 不支持   | 设置组件的模糊、阴影、球面效果以及设置图片的图像效果。       | —                                                            |
 | [分布式迁移标识](../reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md) | 不支持   | 组件的分布式迁移标识，指明了该组件在分布式迁移场景下可以将特定状态恢复到对端设备。 | —                                                            |
 | [拖拽控制](../reference/apis-arkui/arkui-ts/ts-universal-attributes-drag-drop.md) | 不支持   | 设置组件是否可以响应拖拽事件。                               | —                                                            |
 | [全屏模态转场](../reference/apis-arkui/arkui-ts/ts-universal-attributes-modal-transition.md) | 部分支持 | 通过bindContentCover属性为组件绑定全屏模态页面，在组件插入和删除时可通过设置转场参数ModalTransition显示过渡动效。 | 在UIExtension内的提供方产生的页面无法超出UIExtension组件的范围，不能像其他组件一样直接达到效果，需要应用开发者设置UIExtension的全屏模式。 |
