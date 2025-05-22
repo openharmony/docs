@@ -943,7 +943,7 @@ hint(val: string, pattern?: MatchPattern): On
 
 ### belongingDisplay<sup>20+</sup>
 
-belongingDisplay(displayId: number): On;
+belongingDisplay(displayId: number): On
 
 获取指定屏幕内的控件对象，返回On对象自身。
 
@@ -3614,7 +3614,7 @@ async function demo() {
 
 ### fling<sup>20+</sup>
 
-fling(direction: UiDirection, speed: number, displayId: number): Promise\<void>;
+fling(direction: UiDirection, speed: number, displayId: number): Promise\<void>
 
 指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作。
 
