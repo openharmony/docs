@@ -433,7 +433,7 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;):
 
   | 类型                                                       | 说明                               |
   | ---------------------------------------------------------- | ---------------------------------- |
-  | number | 更新结果，0成功。  |
+  | number | 操作结果，0表示本次调用成功。  |
 
 **错误码：**
 
@@ -609,7 +609,7 @@ setLocalDeviceName(deviceName: string): Promise&lt;number&gt;
 
   | 类型                                                       | 说明                               |
   | ---------------------------------------------------------- | ---------------------------------- |
-  | number | 执行结果，0成功。 |
+  | number | 操作结果，0表示本次调用成功。 |
 
 **错误码：**
 
@@ -665,7 +665,7 @@ setRemoteDeviceName(deviceId: string, deviceName: string): Promise&lt;number&gt;
 
   | 类型                                                       | 说明                               |
   | ---------------------------------------------------------- | ---------------------------------- |
-  | number | 执行结果，0成功。 |
+  | number | 操作结果，0表示本次调用成功。 |
 
 **错误码：**
 
@@ -704,7 +704,7 @@ setRemoteDeviceName(deviceId: string, deviceName: string): Promise&lt;number&gt;
 
 restoreLocalDeivceName(): void
 
-还原网络时，还原本机设备名。
+系统重置还原网络设置时，还原本机设备名。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
