@@ -1,8 +1,6 @@
 # Canceling User Authentication
 
-
-This topic walks you through the process of canceling an authentication in process.
-
+Use **cancel()** to terminate the authentication process when needed.
 
 ## Available APIs
 
@@ -10,21 +8,19 @@ For details about the parameters, return value, and error codes, see [cancel](..
 
 This topic describes only the API for canceling authentication. For details about the APIs for initiating authentication, see [Initiating Authentication](start-authentication.md) and [User Authentication](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| cancel(): void | Cancels this user authentication.| 
-
+| cancel(): void | Cancels this user authentication.|
 
 ## How to Develop
 
 1. Check that the application has the ohos.permission.ACCESS_BIOMETRIC permission. For details about how to request permissions, see [Requesting Permissions](prerequisites.md#requesting-permissions).
 
-2. Set [AuthParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authparam10) (including the challenge value, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8), and [AuthTrustLevel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authtrustlevel8)), obtain a [UserAuthInstance](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthinstance10) instance, and call [UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10) to start authentication.
-   For details, see [Initiating Authentication](start-authentication.md).
+2. Set [AuthParam](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authparam10) (including the challenge value, [UserAuthType](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthtype8), and [AuthTrustLevel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#authtrustlevel8)), obtain a [UserAuthInstance](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#userauthinstance10) instance, and call [UserAuthInstance.start](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#start10) to start authentication. For details, see [Initiating Authentication](start-authentication.md).
 
-3. Use [UserAuthInstance.cancel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#cancel10) with the **UserAuthInstance** instance that has initiated the authentication to cancel the authentication.
+3. Call [UserAuthInstance.cancel](../../reference/apis-user-authentication-kit/js-apis-useriam-userauth.md#cancel10) with the **UserAuthInstance** instance that has initiated the authentication to terminate the authentication process.
 
-Example: Initiate the facial and lock screen password authentication with the authentication trust level greater than or equal to ATL3 and cancel it.
+Example: Initiate facial and lock screen password authentication at ATL3 or higher and then cancel it.
 
 ```ts
 import { BusinessError } from  '@kit.BasicServicesKit';

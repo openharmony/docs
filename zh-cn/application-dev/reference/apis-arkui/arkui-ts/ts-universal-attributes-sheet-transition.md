@@ -22,7 +22,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。|
+| isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>true：显示半模态页面。<br/>false：隐藏半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置半模态页面内容。                                         |
 | options | [SheetOptions](#sheetoptions)               | 否   | 配置半模态页面的可选属性。                                   |
 
@@ -571,7 +571,7 @@ struct ListenKeyboardHeightChange {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)

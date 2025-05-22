@@ -188,7 +188,7 @@ maskShape(shape: Optional\<CircleShape | EllipseShape | PathShape | RectShape>)
 
 ## ProgressMask<sup>10+</sup>
 
-ProgressMask设置遮罩的进度、最大值和遮罩颜色。
+ProgressMask设置遮罩的进度、最大值和颜色。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -267,7 +267,7 @@ enableBreathingAnimation(value: boolean): void
 
 ```ts
 // xxx.ets
-import { CircleShape, RectShape } from '@kit.ArkUI'
+import { CircleShape, RectShape } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -311,7 +311,7 @@ struct ClipAndMaskExample {
 @Entry
 @Component
 struct ProgressMaskExample {
-  @State progressflag1: boolean = true;
+  @State progressFlag1: boolean = true;
   @State color: Color = 0x01006CDE;
   @State value: number = 10.0;
   @State enableBreathingAnimation: boolean = false;
@@ -342,18 +342,18 @@ struct ProgressMaskExample {
       // 更新进度遮罩的颜色
       Button('updateColor')
         .onClick((event?: ClickEvent) => {
-          if (this.progressflag1) {
+          if (this.progressFlag1) {
             this.progress.updateColor(0x9fff0000);
           } else {
             this.progress.updateColor(0x9f0000ff);
           }
-          this.progressflag1 = !this.progressflag1
+          this.progressFlag1 = !this.progressFlag1
         }).width(200).height(50).margin(20)
 
       // 开关呼吸光晕动画
       Button('enableBreathingAnimation:' + this.enableBreathingAnimation)
         .onClick((event?: ClickEvent) => {
-          this.enableBreathingAnimation = !this.enableBreathingAnimation
+          this.enableBreathingAnimation = !this.enableBreathingAnimation;
           this.progress.enableBreathingAnimation(this.enableBreathingAnimation);
         }).width(200).height(50).margin(20)
 

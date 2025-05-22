@@ -69,6 +69,7 @@
       - [使用JSVM-API接口操作bigint类型值](use-jsvm-about-bigint.md)
       - [使用JSVM进行class相关开发](use-jsvm-about-class.md)
       - [使用JSVM-API接口进行Date相关开发](use-jsvm-about-date.md)
+      - [使用JSVM-API接口进行debug操作](use-jsvm-about-debug-option.md)
       - [使用JSVM-API接口进行object相关开发](use-jsvm-about-object.md)
       - [使用JSVM-API接口进行primitive类相关开发](use-jsvm-about-primitive.md)
       - [使用JSVM-API接口处理异步操作](use-jsvm-about-promise.md)
@@ -92,6 +93,7 @@
       - [JSVM-API调试&定位](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
       - [JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)
+      - [JSVM 定位内存泄漏问题指导](jsvm-locate-memory-leak.md)
       - JSVM-API调优&高性能使用示例<!--jsvm-usage-examples-->
         - [使用JSVM-API接口创建多个引擎执行JS代码并销毁](use-jsvm-runtime-task.md)
         - [使用 code cache 加速编译](use-jsvm-about-code-cache.md)

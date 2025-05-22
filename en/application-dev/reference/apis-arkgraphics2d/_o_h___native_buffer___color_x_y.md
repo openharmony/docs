@@ -11,6 +11,7 @@ The OH_NativeBuffer_ColorXY struct describes the X and Y coordinates of the prim
 
 **Related module**: [OH_NativeBuffer](_o_h___native_buffer.md)
 
+**Header file**: [buffer_common.h](buffer__common_8h.md)
 
 ## Summary
 

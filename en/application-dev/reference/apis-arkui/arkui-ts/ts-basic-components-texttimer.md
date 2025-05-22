@@ -38,13 +38,13 @@ TextTimer(options?: TextTimerOptions)
 
 | Name  | Type    | Mandatory | Description                  |
 | ----------- | -------- | -------- | -------- |
-| isCountDown | boolean  | No  | Whether the timer is a countdown. The value **true** means that the timer counts up, and **false** means that the timer counts down.<br>Default value: **false**|
+| isCountDown | boolean  | No  | Whether the timer is a countdown. The value **true** means that the timer counts down (for example, from 30 seconds to 0 seconds), and **false** means that the timer counts up (for example, from 0 seconds to 30 seconds).<br>Default value: **false**|
 | count       | number   | No  | Timer duration, in milliseconds. It is effective only when **isCountDown** is **true**. The maximum value is 86400000 ms (24 hours). If 0 < **count** < 86400000, **count** is the initial value of the timer. Otherwise, the default value is used as the initial value.<br>Default value: **60000**|
 | controller  | [TextTimerController](#texttimercontroller) | No | **TextTimer** controller.|
 
 ## Attributes
 
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+In addition to the [universal attributes](ts-component-general-attributes.md), the following attributes are supported.
 
 ### format
 
@@ -282,7 +282,7 @@ You need a custom class to implement the **ContentModifier** API.
 | Name| Type   |    Mandatory     |  Description             |
 | ------ | ------ | ------ |-------------------------------- |
 | count | number | Yes| Timer duration, in milliseconds. It is effective only when **isCountDown** is **true**. The maximum value is 86400000 ms (24 hours). If the value is between 0 and 86,400,000, it is used as the initial countdown time. Otherwise, the default value is used as the initial countdown time.<br> Default value: **60000**|
-| isCountDown | boolean| Yes| Whether the timer is a countdown. The value **true** means that the timer counts up, and **false** means that the timer counts down.<br> Default value: **false**|
+| isCountDown | boolean| Yes| Whether the timer is a countdown. The value **true** means that the timer counts down (for example, from 30 seconds to 0 seconds), and **false** means that the timer counts up (for example, from 0 seconds to 30 seconds).<br> Default value: **false**|
 | started | boolean | Yes| Whether the timer has already started.|
 | elapsedTime | number | Yes| Elapsed time of the timer, in the minimum unit of the format.|
 

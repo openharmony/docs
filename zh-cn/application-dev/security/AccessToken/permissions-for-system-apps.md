@@ -936,6 +936,18 @@
 
 **起始版本**：10
 
+## ohos.permission.UNLOCK_DEVELOPER_MODE
+
+允许应用解锁开发者模式。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**起始版本**：18
+
 ## ohos.permission.CAPTURE_VOICE_DOWNLINK_AUDIO
 
 允许应用采集语音下行音频。
@@ -2666,7 +2678,7 @@
 
 **ACL使能**：true
 
-**起始版本**：18
+**起始版本**：19
 
 ## ohos.permission.ACCESS_ADVANCED_SECURITY_MODE
 
@@ -4561,6 +4573,20 @@
 
 **起始版本**：19
 
+## ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
+
+允许应用调用企业空间访问DLP文件的接口。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：PC/2in1
+
+**起始版本**：20
+
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
 允许应用调用卸载插件的接口。
@@ -4685,6 +4711,34 @@
 
 **起始版本**：20
 
+## ohos.permission.READ_SOUND_RECORD_IN_FILE_MANAGER
+
+允许应用从文件管理目录读取录音文件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.WRITE_SOUND_RECORD_IN_FILE_MANAGER
+
+允许应用向文件管理目录写入录音文件。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
 ## ohos.permission.SANDBOX_ACCESS_MANAGER
 
 允许应用访问其它应用的沙箱目录。
@@ -4696,3 +4750,59 @@
 **ACL使能**：true
 
 **起始版本**：17
+
+## ohos.permission.REQUEST_DISABLE_NOTIFICATION
+
+允许应用运行的后台上传下载任务不在通知栏显示。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.RESTORE_APP
+
+允许系统应用拉起恢复弹窗以恢复应用。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone | PC/2in1 | Tablet
+
+**起始版本**：20
+
+## ohos.permission.ALLOW_IOURING
+
+允许系统应用调用io_uring相关系统调用实现异步IO操作。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20
+
+## ohos.permission.NFC_NOTIFICATION
+
+允许应用发布NFC通知相关的公共事件。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：Phone
+
+**起始版本**：20

@@ -39,8 +39,8 @@ Ellipse(options?: EllipseOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | [Length](ts-types.md#length) | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | [Length](ts-types.md#length) | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -206,7 +206,7 @@ strokeOpacity(value: number | string | Resource)
 
 | 参数名 | 类型                                                         | 必填 | 说明                       |
 | ------ | ------------------------------------------------------------ | ---- | -------------------------- |
-| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 区域透明度。<br/>默认值：1 |
+| value  | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 边框透明度。<br/>默认值：1 |
 
 ### strokeWidth
 
@@ -246,7 +246,9 @@ antiAlias(value: boolean)
 
 ## 示例
 
-使用fillOpacity、stroke分别绘制椭圆的透明度、边框颜色。
+### 示例1（组件属性绘制）
+
+通过fillOpacity、stroke属性分别绘制椭圆的透明度、边框颜色。
 
 ```ts
 // xxx.ets
@@ -270,3 +272,27 @@ struct EllipseExample {
 ```
 
 ![zh-cn_image_0000001174104394](figures/zh-cn_image_0000001174104394.png)
+
+### 示例2（宽和高使用不同参数类型绘制椭圆）
+
+width、height属性分别使用不同的长度类型绘制椭圆。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct EllipseTypeExample {
+  build() {
+    Column({ space: 10 }) {
+      // 绘制一个 150 * 80 的椭圆
+      Ellipse({ width: '150', height: '80' }) // 使用string类型
+      // 绘制一个 80 * 150 的椭圆
+      Ellipse({ width: 80, height: 150 }) // 使用number类型
+      // 绘制一个 150 * 150 的椭圆
+      Ellipse({ width: $r('app.string.EllipseWidth'), height: $r('app.string.EllipseHeight') }) // 使用Resource类型，需用户自定义
+    }.width('100%')
+  }
+}
+```
+
+![ellipseDemo2](figures/ellipseDemo2.png)

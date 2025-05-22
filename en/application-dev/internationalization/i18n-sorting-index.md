@@ -15,7 +15,7 @@ For details about how to use related APIs, see [IndexUtil](../reference/apis-loc
 
 2. Create an **IndexUtil** object.
    ```ts
-   let indexUtil: i18n.IndexUtil = i18n.getInstance(locale?: string); // The default value of locale is the current system locale.
+   let indexUtil: i18n.IndexUtil = i18n.getInstance(locale?: string); // locale is a string that indicates the locale ID. The default value is the current system locale ID.
    ```
 
 3. Obtain the index list.

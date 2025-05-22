@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```ts
-import { NavPushPathHelper } from '@kit.ArkUI'
+import { NavPushPathHelper } from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -56,7 +56,7 @@ pushPath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\<vo
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -121,7 +121,7 @@ pushPathByName(moduleName: string, name: string, param: Object, animated?: boole
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
 | param | Object | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -155,7 +155,7 @@ pushPathByName(moduleName: string, name: string, param: Object, onPop: Callback\
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
 | param | Object | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
 | onPop | Callback\<[PopInfo](ts-basic-components-navigation.md#popinfo11)> | 是 | Callback回调，用于页面出栈时触发该回调处理返回结果。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -187,7 +187,7 @@ pushDestination(moduleName: string, info: NavPathInfo, animated?: boolean): Prom
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | [NavDestination](ts-basic-components-navdestination.md)页面的信息。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -260,7 +260,7 @@ pushDestinationByName(moduleName: string, name: string, param: Object, animated?
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
 | param | Object | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -298,7 +298,7 @@ pushDestinationByName(moduleName: string, name: string, param: Object, onPop: Ca
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
 | param | Object | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
 | onPop | Callback\<[PopInfo](ts-basic-components-navigation.md#popinfo11)> | 是    | Callback回调，用于页面出栈时处理返回结果。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -334,7 +334,7 @@ replacePath(moduleName: string, info: NavPathInfo, animated?: boolean): Promise\
 | ---- | ----------------------------- | ---- | -------------------- |
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | info | [NavPathInfo](ts-basic-components-navigation.md#navpathinfo10) | 是    | 新栈顶页面参数信息 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -399,7 +399,7 @@ replacePathByName(moduleName: string, name: string, param: Object, animated?: bo
 | moduleName | string | 是    | 目标[NavDestination](ts-basic-components-navdestination.md)所在分包的moduleName。 |
 | name  | string  | 是    | [NavDestination](ts-basic-components-navdestination.md)页面名称。   |
 | param | Object | 是    | [NavDestination](ts-basic-components-navdestination.md)页面详细参数。 |
-| animated | boolean | 否    | 是否支持转场动画，默认值：true。 |
+| animated | boolean | 否    | 是否支持转场动画。<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 **返回值：**
 
@@ -424,13 +424,13 @@ replacePathByName(moduleName: string, name: string, param: Object, animated?: bo
 主包：
 ```ts
 // Index.ets
-import { NavPushPathHelper } from '@kit.ArkUI'
+import { NavPushPathHelper } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 @Entry
 @Component
 struct NavigationExample {
-  pageInfo: NavPathStack = new NavPathStack()
-  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo)
+  pageInfo: NavPathStack = new NavPathStack();
+  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo);
 
   build() {
     Navigation(this.pageInfo) {
@@ -455,28 +455,28 @@ struct NavigationExample {
 分包hsptest1：
 ```ts
 // PageOne.ets
-import { NavPushPathHelper } from '@kit.ArkUI'
+import { NavPushPathHelper } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 class TmpClass {
-  count: number = 10
+  count: number = 10;
 }
 
 class ParamWithOp {
-  operation: number = 1
-  count: number = 10
+  operation: number = 1;
+  count: number = 10;
 }
 
 @Builder
 export function PageOneBuilder(name: string, param: Object) {
-  PageOne()
+  PageOne();
 }
 
 @Component
 export struct PageOne {
   pageInfo: NavPathStack = new NavPathStack();
-  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo)
-  @State message: string = 'Hello World'
+  helper: NavPushPathHelper = new NavPushPathHelper(this.pageInfo);
+  @State message: string = 'Hello World';
 
   build() {
     NavDestination() {
@@ -519,7 +519,7 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, (popInfo) => {
               this.message = '[pushPathByName]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }).catch((error: BusinessError) => {
@@ -534,7 +534,7 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushPathByName('hsptest2', 'pageTwo', tmp, true)
             .catch((error: BusinessError) => {
               console.error(`[pushPathByNameWithoutOnPop]failed, error code = ${error.code}, error.message = ${error.message}.`);
@@ -563,7 +563,7 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.pushDestination('hsptest2', { name: 'pageTwo', param: new ParamWithOp(), onPop: (popInfo: PopInfo) => {
               this.message = '[pushDestination with NavigationOptions]last page is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result);
             }}, {launchMode:0, animated:true}).catch((error: BusinessError) => {
@@ -635,7 +635,7 @@ export struct PageOne {
           .height(35)
           .margin(10)
           .onClick(() => {
-            let tmp = new TmpClass()
+            let tmp = new TmpClass();
             this.helper.replacePathByName('hsptest2', 'pageTwo', tmp)
               .catch((error: BusinessError) => {
               console.error(`[replacePathByName]failed, error code = ${error.code}, error.message = ${error.message}.`);
@@ -648,7 +648,7 @@ export struct PageOne {
     }.title('pageOne')
     .onBackPressed(() => {
       this.pageInfo.pop({ number: 1 }) // 弹出路由栈栈顶元素。
-      return true
+      return true;
     }).onReady((context: NavDestinationContext) => {
       this.pageInfo = context.pathStack;
       this.helper = new NavPushPathHelper(this.pageInfo);

@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  该组件从API version 20开始支持使用[AttributeUpdater](../js-apis-arkui-AttributeUpdater.md)类的[updateConstructorParams](../js-apis-arkui-AttributeUpdater.md#updateconstructorparams)接口更新构造参数。
 
 
 ## 子组件
@@ -39,8 +41,8 @@ Polygon(options?: PolygonOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | [Length](ts-types.md#length) | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | [Length](ts-types.md#length) | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -277,7 +279,9 @@ antiAlias(value: boolean)
 
 ## 示例
 
-使用points、fill、fillOpacity、stroke属性分别绘制多边形的经过坐标、填充颜色、透明度、边框颜色。
+### 示例1（组件属性绘制）
+
+通过points、fill、fillOpacity、stroke属性分别绘制多边形的经过坐标、填充颜色、透明度、边框颜色。
 
 ```ts
 // xxx.ets
@@ -311,3 +315,34 @@ struct PolygonExample {
 ```
 
 ![zh-cn_image_0000001174582856](figures/zh-cn_image_0000001174582856.png)
+
+### 示例2（宽和高使用不同参数类型绘制多边形）
+
+width、height属性分别使用不同的长度类型绘制图形。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PolygonTypeExample {
+  build() {
+    Column({ space: 10 }) {
+      // 在 100 * 100 的矩形框中绘制一个三角形，起点(0, 0)，经过(50, 100)，终点(100, 0)
+      Polygon({ width: '100', height: '100' })//使用string类型
+        .points([[0, 0], [50, 100], [100, 0]])
+      // 在 100 * 100 的矩形框中绘制一个四边形，起点(0, 0)，经过(0, 100)和(100, 100)，终点(100, 0)
+      Polygon({ width: 100, height: 100 })// 使用number类型
+        .points([[0, 0], [0, 100], [100, 100], [100, 0]])
+        .fillOpacity(0)
+        .strokeWidth(5)
+        .stroke(Color.Blue)
+      // 在 100 * 100 的矩形框中绘制一个五边形，起点(50, 0)，依次经过(0, 50)、(20, 100)和(80, 100)，终点(100, 50)
+      Polygon({ width: $r('app.string.PolygonWidth'), height: $r('app.string.PolygonHeight') })// 使用Resource类型，需用户自定义
+        .points([[50, 0], [0, 50], [20, 100], [80, 100], [100, 50]])
+        .fillOpacity(0.6)
+    }.width('100%').margin({ top: 10 })
+  }
+}
+```
+
+![polygonDemo2](figures/polygonDemo2.png)

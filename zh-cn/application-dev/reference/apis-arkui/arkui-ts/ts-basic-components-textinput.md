@@ -5,6 +5,8 @@
 >  **说明：**
 >
 >  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  该组件仅支持单文本样式，若需实现富文本样式，建议使用[RichEditor](ts-basic-components-richeditor.md)组件。
 
 
 ## 子组件
@@ -451,7 +453,7 @@ enableKeyboardOnFocus(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                        |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>默认值：true |
+| value  | boolean | 是   | 通过点击以外的方式获焦时，是否主动拉起软键盘。<br/>true表示主动拉起软键盘，false表示不主动拉起。<br/>默认值：true |
 
 ### selectionMenuHidden<sup>10+</sup>
 
@@ -594,7 +596,7 @@ selectAll(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| value  | boolean | 是   | 是否全选文本。<br />默认值：false |
+| value  | boolean | 是   | 是否全选文本。<br/>true表示会全选文本，false表示不会全选文本。<br />默认值：false |
 
 ### showCounter<sup>11+</sup>
 
@@ -756,7 +758,7 @@ textOverflow(value: TextOverflow)
 
 设置文本超长时的显示方式。仅在内联模式的编辑态、非编辑态下支持。
 
-文本截断是按字截断。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，wordBreak属性可设置为WordBreak.BREAK_ALL。
+文本截断是按字进行。例如，英文以单词为最小单位进行截断，若需要以字母为单位进行截断，可将wordBreak属性设置为WordBreak.BREAK_ALL。
 
 当overflow设置TextOverflow.None与TextOverflow.Clip效果一样。
 
@@ -875,7 +877,7 @@ showPassword(visible: boolean)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| visible  | boolean | 是  | 是否显示密码。<br/>默认值：false |
+| visible  | boolean | 是  | 是否显示密码。<br/>true表示会显示密码，false表示不会显示密码。<br/>默认值：false |
 
 ### lineBreakStrategy<sup>12+</sup>
 
@@ -925,7 +927,7 @@ enablePreviewText(enable: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| enable | boolean | 是   | 是否开启输入预上屏。<br/>默认值：true |
+| enable | boolean | 是   | 是否开启输入预上屏。<br/>true表示开启输入预上屏，false表示不开启输入预上屏。<br/>默认值：true |
 
 ### enableHapticFeedback<sup>13+</sup>
 
@@ -941,7 +943,7 @@ enableHapticFeedback(isEnabled: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ---------------------------------- |
-| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>默认值：true |
+| isEnabled | boolean | 是   | 是否开启触控反馈。<br/>true表示开启触控反馈，false表示不开启触控反馈。<br/>默认值：true |
 
 >  **说明：**
 >
@@ -970,6 +972,38 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
+### strokeWidth<sup>20+</sup>
+
+strokeWidth(width: Optional\<LengthMetrics>)
+
+设置文本描边的宽度。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| width  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
+
+### strokeColor<sup>20+</sup>
+
+strokeColor(color: Optional\<ResourceColor>)
+
+设置文本描边的颜色。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明       |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| color  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。 |
+
 ### stopBackPress<sup>15+<sup>
 
 stopBackPress(isStopped: Optional\<boolean>)
@@ -984,7 +1018,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否消费返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ### halfLeading<sup>18+</sup>
 
@@ -1067,6 +1101,22 @@ ellipsisMode(mode: Optional\<EllipsisMode>)
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
 | mode  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[EllipsisMode](ts-appendix-enums.md#ellipsismode11)> | 是   | 省略位置。 <br />默认值：EllipsisMode.END |
+
+### enableAutoFillAnimation<sup>20+</sup>
+
+enableAutoFillAnimation(enabled: Optional\<boolean>)
+
+设置是否启用自动填充动效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                                         |
+| ------ | ------- | ---- | ------------------------------------------------------------ |
+| enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否启用自动填充动效。<br/>true表示启用，false表示不启用。<br/>默认值：true <br/>**说明：**<br/>启用之后，仅[输入模式](#inputtype枚举说明)设置为Password、NEW_PASSWORD或NUMBER_PASSWORD的输入框在进行自动填充时动效可生效。  |
 
 ## InputType枚举说明
 
@@ -1165,7 +1215,6 @@ ellipsisMode(mode: Optional\<EllipsisMode>)
 | Done                   | 6 | 显示为完成样式。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | PREVIOUS<sup>11+</sup> | 7 | 显示为上一步样式。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | NEW_LINE<sup>11+</sup> | 8 | 显示为换行样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-
 
 ## 事件
 
@@ -1423,8 +1472,8 @@ TextInput组件的控制器继承自[TextContentControllerBase](ts-types.md#text
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 导入对象
-```
-controller: TextInputController = new TextInputController()
+```ts
+controller: TextInputController = new TextInputController();
 ```
 
 ### constructor<sup>8+</sup>
@@ -1608,10 +1657,10 @@ type OnContentScrollCallback = (totalOffsetX: number, totalOffsetY: number) => v
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  @State passwordState: boolean = false
-  controller: TextInputController = new TextInputController()
+  @State text: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  @State passwordState: boolean = false;
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
@@ -1626,19 +1675,19 @@ struct TextInputExample {
         .fontSize(14)
         .fontColor(Color.Black)
         .inputFilter('[a-z]', (e) => {
-          console.log(JSON.stringify(e))
+          console.log(JSON.stringify(e));
         })
       Text(this.text)
       Button('Set caretPosition 1')
         .margin(15)
         .onClick(() => {
           // 将光标移动至第一个字符后
-          this.controller.caretPosition(1)
+          this.controller.caretPosition(1);
         })
       Button('Get CaretOffset')
         .margin(15)
         .onClick(() => {
-          this.positionInfo = this.controller.getCaretOffset()
+          this.positionInfo = this.controller.getCaretOffset();
         })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
@@ -1651,8 +1700,8 @@ struct TextInputExample {
         .showPassword(this.passwordState)
         .onSecurityStateChange(((isShowPassword: boolean) => {
           // 更新密码显示状态
-          console.info('isShowPassword', isShowPassword)
-          this.passwordState = isShowPassword
+          console.info('isShowPassword', isShowPassword);
+          this.passwordState = isShowPassword;
         }))
       // 邮箱地址自动填充类型
       TextInput({ placeholder: 'input your email...' })
@@ -1740,7 +1789,7 @@ struct TextInputExample {
         .width(350)
         .showError(this.textError)
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType, event: SubmitEvent) => {
           // 用户名不正确会清空输入框和用户名并提示错误文本
@@ -2403,7 +2452,7 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = 'TextInput editMenuOptions'
+  @State text: string = 'TextInput editMenuOptions';
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
@@ -2436,7 +2485,7 @@ struct TextInputExample {
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -2495,16 +2544,16 @@ struct EllipsisModeExample {
   @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
     "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
     " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
-    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
-  @State ellipsisModeIndex: number = 0
-  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER]
-  @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER']
-  @State textOverflowIndex: number = 0
-  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
-  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
-  @State styleInputIndex: number = 0
-  @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default]
-  @State styleInputStr: string[] = ['Inline', 'Default']
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil.";
+  @State ellipsisModeIndex: number = 0;
+  @State ellipsisMode: (EllipsisMode | undefined | null)[] = [EllipsisMode.END, EllipsisMode.START, EllipsisMode.CENTER];
+  @State ellipsisModeStr: string[] = ['END ', 'START', 'CENTER'];
+  @State textOverflowIndex: number = 0;
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip];
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip'];
+  @State styleInputIndex: number = 0;
+  @State styleInput: TextInputStyle[] = [TextInputStyle.Inline, TextInputStyle.Default];
+  @State styleInputStr: string[] = ['Inline', 'Default'];
   build() {
     Row() {
       Column({ space: 20 }) {
@@ -2516,21 +2565,21 @@ struct EllipsisModeExample {
           .fontSize(30)
           .margin(30)
         Button('更改ellipsisMode模式：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-          this.ellipsisModeIndex++
+          this.ellipsisModeIndex++;
           if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-            this.ellipsisModeIndex = 0
+            this.ellipsisModeIndex = 0;
           }
         }).fontSize(20)
         Button('更改textOverflow模式：' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
-          this.textOverflowIndex++
+          this.textOverflowIndex++;
           if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
-            this.textOverflowIndex = 0
+            this.textOverflowIndex = 0;
           }
         }).fontSize(20)
         Button('更改Style大小：' + this.styleInputStr[this.styleInputIndex]).onClick(() => {
-          this.styleInputIndex++
+          this.styleInputIndex++;
           if (this.styleInputIndex > (this.styleInputStr.length - 1)) {
-            this.styleInputIndex = 0
+            this.styleInputIndex = 0;
           }
         }).fontSize(20)
       }
@@ -2715,9 +2764,9 @@ struct TextInputExample {
 @Entry
 @Component
 struct TextInputExample {
-  controller: TextInputController = new TextInputController()
-  @State startIndex: number = 0
-  @State endIndex: number = 0
+  controller: TextInputController = new TextInputController();
+  @State startIndex: number = 0;
+  @State endIndex: number = 0;
 
   build() {
     Column({ space: 3 }) {
@@ -2728,13 +2777,13 @@ struct TextInputExample {
         .defaultFocus(true)
         .enableKeyboardOnFocus(true)
         .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-          this.startIndex = selectionStart
-          this.endIndex = selectionEnd
+          this.startIndex = selectionStart;
+          this.endIndex = selectionEnd;
         })
 
       Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
         .onClick(() => {
-          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW });
         })
     }
     .width('100%')

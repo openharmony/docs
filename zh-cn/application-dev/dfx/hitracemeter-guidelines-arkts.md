@@ -19,12 +19,12 @@ HiTraceMeter提供系统性能打点接口。开发者通过在关键代码位�
 
 | 接口名                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): void | 开启一个同步时间片跟踪事件，分级控制跟踪输出。               |
-| finishSyncTrace(level: HiTraceOutputLevel): void             | 结束一个同步时间片跟踪事件，分级控制跟踪输出。level必须与流程开始的startSyncTrace对应参数值保持一致。 |
-| startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customCategory: string, customArgs?: string): void | 开启一个异步时间片跟踪事件，分级控制跟踪输出。taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用startAsyncTrace时传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。 |
-| finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void | 结束一个异步时间片跟踪事件，分级控制跟踪输出。level、name和taskId必须与流程开始的startAsyncTrace对应参数值保持一致。 |
-| traceByValue(level: HiTraceOutputLevel, name: string, count: number): void | 整数跟踪事件，分级控制跟踪输出。name、count两个参数分别用来标记一个预跟踪的整数变量名及整数值。 |
-| isTraceEnabled(): boolean                                    | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。 |
+| startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): void | 开启一个同步时间片跟踪事件，分级控制跟踪输出。<br>**说明**：从API version 19开始，支持该接口。 |
+| finishSyncTrace(level: HiTraceOutputLevel): void             | 结束一个同步时间片跟踪事件，分级控制跟踪输出。level必须与流程开始的startSyncTrace对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
+| startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customCategory: string, customArgs?: string): void | 开启一个异步时间片跟踪事件，分级控制跟踪输出。taskId是trace中用来表示关联的ID，如果有多个name相同的任务并行执行，则开发者每次调用startAsyncTrace时传入的taskId需不同；如果具有相同name的任务是串行执行的，则taskId可以相同。<br/>**说明**：从API version 19开始，支持该接口。 |
+| finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void | 结束一个异步时间片跟踪事件，分级控制跟踪输出。level、name和taskId必须与流程开始的startAsyncTrace对应参数值保持一致。<br/>**说明**：从API version 19开始，支持该接口。 |
+| traceByValue(level: HiTraceOutputLevel, name: string, count: number): void | 整数跟踪事件，分级控制跟踪输出。name、count两个参数分别用来标记一个预跟踪的整数变量名及整数值。<br/>**说明**：从API version 19开始，支持该接口。 |
+| isTraceEnabled(): boolean                                    | 判断当前是否开启应用trace捕获。应用trace捕获未开启时，HiTraceMeter性能跟踪打点无效。<br/>**说明**：从API version 19开始，支持该接口。 |
 
 > **注意：**
 >

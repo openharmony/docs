@@ -332,7 +332,7 @@ selectionMenuHidden(value: boolean)
 
 barState(value: BarState)
 
-设置输入框编辑态时滚动条的显示模式。
+设置输入框滚动条的显示模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -364,7 +364,7 @@ maxLines(value: number)
 
 maxLines(value: number, options?: MaxLinesOptions)
 
-配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)一起使用时，maxlines为可显示行数，超出可配置为截断或滚动。配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示。内联模式非获焦状态下不生效maxlines，非内联模式按行截断。
+配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)一起使用时，maxlines为可显示行数，超出可配置为截断或滚动。未配置[textOverflow](ts-basic-components-textarea.md#textoverflow12)时，内联模式获焦状态下内容超出maxlines时，文本可滚动显示。内联模式非获焦状态下不生效maxlines。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -376,6 +376,22 @@ maxLines(value: number, options?: MaxLinesOptions)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | value  | number | 是   | 内联输入风格编辑态时文本可显示的最大行数。<br/>默认值：3，非内联模式下，默认值为+∞，不限制最大行数。 <br/>取值范围：(0, +∞) |
 |options | [MaxLinesOptions](ts-types.md#maxlinesoptions20对象说明) | 否   | 文本超长时显示效果。<br/>默认值：MaxLinesMode.CLIP |
+
+### minLines<sup>20+</sup>
+
+minLines(lines: Optional\<number>)
+
+设置节点显示的最小行数，若传入值小于1，则自动取值为1。如果节点设置了[constraintSize](ts-universal-attributes-size.md#constraintsize)，那么组件最后显示高度会在[constraintSize](ts-universal-attributes-size.md#constraintsize)约束内。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| lines  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<number> | 是   | 节点最小行数。 |
 
 ### customKeyboard<sup>10+</sup>
 
@@ -727,7 +743,7 @@ lineSpacing(value: LengthMetrics)
 
 lineSpacing(value: LengthMetrics, options?: LineSpacingOptions)
 
-设置文本的行间距。当不配置LineSpacingOptions时，首行上方默认会有行间距。
+设置文本的行间距。当不配置LineSpacingOptions时，首行上方和尾行下方默认会有行间距。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -833,6 +849,38 @@ keyboardAppearance(appearance: Optional\<KeyboardAppearance>)
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------ |
 | appearance | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[KeyboardAppearance](ts-text-common.md#keyboardappearance15枚举说明)> | 是   | 键盘样式。<br/>默认值：KeyboardAppearance.NONE_IMMERSIVE |
 
+### strokeWidth<sup>20+</sup>
+
+strokeWidth(width: Optional\<LengthMetrics>)
+
+设置文本描边的宽度。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                         | 必填 | 说明             |
+| ------ | ------------------------------------------------------------ | ---- | ---------------- |
+| width  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)> | 是   | 文本描边的宽度。当LengthMetrics的单位为px时，<br/>若设置值小于0，显示实心字；若大于0，显示空心字。<br/>默认值为0，不做描边处理。 |
+
+### strokeColor<sup>20+</sup>
+
+strokeColor(color: Optional\<ResourceColor>)
+
+设置文本描边的颜色。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                       | 必填 | 说明       |
+| ------ | ------------------------------------------ | ---- | ---------- |
+| color  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ResourceColor](ts-types.md#resourcecolor)> | 是   | 描边颜色。 |
+
 ### stopBackPress<sup>15+</sup>
 
 stopBackPress(isStopped: Optional\<boolean>)
@@ -847,7 +895,7 @@ stopBackPress(isStopped: Optional\<boolean>)
 
 | 参数名 | 类型                                                | 必填 | 说明                                      |
 | ------ | --------------------------------------------------- | ---- | ----------------------------------------- |
-| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。 <br />默认值：true |
+| isStopped  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否阻止返回键。<br/>true表示阻止返回键向其它组件或应用侧传递，false表示不阻止。<br />默认值：true |
 
 ### halfLeading<sup>18+</sup>
 
@@ -1266,9 +1314,9 @@ type TextAreaSubmitCallback = (enterKeyType: EnterKeyType, event?: SubmitEvent) 
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  controller: TextAreaController = new TextAreaController()
+  @State text: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  controller: TextAreaController = new TextAreaController();
 
   build() {
     Column() {
@@ -1285,7 +1333,7 @@ struct TextAreaExample {
         .fontColor('#182431')
         .backgroundColor('#FFFFFF')
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
       Text(this.text)
       Button('Set caretPosition 1')
@@ -1293,13 +1341,13 @@ struct TextAreaExample {
         .margin(15)
         .onClick(() => {
           // 设置光标位置到第一个字符后
-          this.controller.caretPosition(1)
+          this.controller.caretPosition(1);
         })
       Button('Get CaretOffset')
         .backgroundColor('#007DFF')
         .margin(15)
         .onClick(() => {
-          this.positionInfo = this.controller.getCaretOffset()
+          this.positionInfo = this.controller.getCaretOffset();
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -1317,8 +1365,8 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
+  @State text: string = '';
+  controller: TextAreaController = new TextAreaController();
 
   build() {
     Column() {
@@ -1340,7 +1388,7 @@ struct TextAreaExample {
           //如果用户当前输入字符数达到最大字符限制乘50%（thresholdPercentage）。字符计数器显示。
           //用户设置highlightBorder为false时，配置取消红色边框。不设置此参数时，默认为true。
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -1359,22 +1407,22 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  controller: TextAreaController = new TextAreaController()
-  @State inputValue: string = ""
+  controller: TextAreaController = new TextAreaController();
+  @State inputValue: string = "";
 
   // 自定义键盘组件
   @Builder CustomKeyboardBuilder() {
     Column() {
       Button('x').onClick(() => {
         // 关闭自定义键盘
-        this.controller.stopEditing()
+        this.controller.stopEditing();
       })
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: number | string) => {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1384,7 +1432,7 @@ struct TextAreaExample {
 
   build() {
     Column() {
-      TextArea({ controller: this.controller, text: this.inputValue})
+      TextArea({ controller: this.controller, text: this.inputValue })
         // 绑定自定义键盘
         .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
         .height(200)
@@ -1404,11 +1452,11 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
+  @State text: string = '';
   @State enterTypes: Array<EnterKeyType> =
     [EnterKeyType.Go, EnterKeyType.Search, EnterKeyType.Send, EnterKeyType.Done, EnterKeyType.Next,
-      EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE]
-  @State index: number = 0
+      EnterKeyType.PREVIOUS, EnterKeyType.NEW_LINE];
+  @State index: number = 0;
 
   build() {
     Column({ space: 20 }) {
@@ -1416,7 +1464,7 @@ struct TextAreaExample {
         .width(380)
         .enterKeyType(this.enterTypes[this.index])
         .onChange((value: string) => {
-          this.text = value
+          this.text = value;
         })
         .onSubmit((enterKey: EnterKeyType) => {
           console.log("trigger area onsubmit" + enterKey);
@@ -1536,8 +1584,8 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text1: string = 'This is ss01 on : 0123456789'
-  @State text2: string = 'This is ss01 off: 0123456789'
+  @State text1: string = 'This is ss01 on : 0123456789';
+  @State text2: string = 'This is ss01 off: 0123456789';
 
   build() {
     Column() {
@@ -1566,10 +1614,10 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  controller: TextAreaController = new TextAreaController()
-  @State inputValue: string = ""
-  @State height1: string | number = '80%'
-  @State height2: number = 100
+  controller: TextAreaController = new TextAreaController();
+  @State inputValue: string = "";
+  @State height1: string | number = '80%';
+  @State height2: number = 100;
   @State supportAvoidance: boolean = true;
 
   // 自定义键盘组件
@@ -1579,7 +1627,7 @@ struct TextAreaExample {
       Row() {
         Button('x').onClick(() => {
           // 关闭自定义键盘
-          this.controller.stopEditing()
+          this.controller.stopEditing();
         }).margin(10)
       }
 
@@ -1588,7 +1636,7 @@ struct TextAreaExample {
           GridItem() {
             Button(item + "")
               .width(110).onClick(() => {
-              this.inputValue += item
+              this.inputValue += item;
             })
           }
         })
@@ -1602,13 +1650,13 @@ struct TextAreaExample {
         Button("20%")
           .fontSize(24)
           .onClick(() => {
-            this.height1 = "20%"
+            this.height1 = "20%";
           })
         Button("80%")
           .fontSize(24)
           .margin({ left: 20 })
           .onClick(() => {
-            this.height1 = "80%"
+            this.height1 = "80%";
           })
       }
       .justifyContent(FlexAlign.Center)
@@ -1675,7 +1723,7 @@ struct TextAreaExample {
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -1719,7 +1767,7 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
+  @State text: string = '';
 
   build() {
     Column() {
@@ -1758,11 +1806,11 @@ struct TextAreaExample {
   @State message1: string =
     "They can be classified as built-in components–those directly provided by the ArkUI framework and custom components – those defined by developers" +
       "The built-in components include buttons radio buttonsprogress indicators and text You can set the rendering effectof thesecomponents in method chaining mode," +
-      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented."
-  @State lineBreakStrategyIndex: number = 0
+      "page components are divided into independent UI units to implementindependent creation development and reuse of different units on pages making pages more engineering-oriented.";
+  @State lineBreakStrategyIndex: number = 0;
   @State lineBreakStrategy: LineBreakStrategy[] =
-    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED]
-  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED']
+    [LineBreakStrategy.GREEDY, LineBreakStrategy.HIGH_QUALITY, LineBreakStrategy.BALANCED];
+  @State lineBreakStrategyStr: string[] = ['GREEDY', 'HIGH_QUALITY', 'BALANCED'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start }) {
@@ -1775,9 +1823,9 @@ struct TextAreaExample {
         .lineBreakStrategy(this.lineBreakStrategy[this.lineBreakStrategyIndex])
       Row() {
         Button('当前lineBreakStrategy模式：' + this.lineBreakStrategyStr[this.lineBreakStrategyIndex]).onClick(() => {
-          this.lineBreakStrategyIndex++
+          this.lineBreakStrategyIndex++;
           if (this.lineBreakStrategyIndex > (this.lineBreakStrategyStr.length - 1)) {
-            this.lineBreakStrategyIndex = 0
+            this.lineBreakStrategyIndex = 0;
           }
         })
       }.padding({ top: 10 })
@@ -1797,11 +1845,11 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State insertValue: string = ""
-  @State deleteValue: string = ""
-  @State insertOffset: number = 0
-  @State deleteOffset: number = 0
-  @State deleteDirection: number = 0
+  @State insertValue: string = "";
+  @State deleteValue: string = "";
+  @State insertOffset: number = 0;
+  @State deleteOffset: number = 0;
+  @State deleteDirection: number = 0;
 
   build() {
     Row() {
@@ -1810,11 +1858,11 @@ struct TextAreaExample {
           .width(300)
           .height(60)
           .onWillInsert((info: InsertValue) => {
-            this.insertValue = info.insertValue
+            this.insertValue = info.insertValue;
             return true;
           })
           .onDidInsert((info: InsertValue) => {
-            this.insertOffset = info.insertOffset
+            this.insertOffset = info.insertOffset;
           })
 
         Text("insertValue:" + this.insertValue + "  insertOffset:" + this.insertOffset).height(30)
@@ -1823,13 +1871,13 @@ struct TextAreaExample {
           .width(300)
           .height(60)
           .onWillDelete((info: DeleteValue) => {
-            this.deleteValue = info.deleteValue
-            info.direction
+            this.deleteValue = info.deleteValue;
+            info.direction;
             return true;
           })
           .onDidDelete((info: DeleteValue) => {
-            this.deleteOffset = info.deleteOffset
-            this.deleteDirection = info.direction
+            this.deleteOffset = info.deleteOffset;
+            this.deleteDirection = info.direction;
           })
 
         Text("deleteValue:" + this.deleteValue + "  deleteOffset:" + this.deleteOffset).height(30)
@@ -1853,40 +1901,40 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = 'TextArea editMenuOptions'
+  @State text: string = 'TextArea editMenuOptions';
   onCreateMenu = (menuItems: Array<TextMenuItem>) => {
     let item1: TextMenuItem = {
       content: 'custom1',
       icon: $r('app.media.startIcon'),
       id: TextMenuItemId.of('custom1'),
-    }
+    };
     let item2: TextMenuItem = {
       content: 'custom2',
       id: TextMenuItemId.of('custom2'),
       icon: $r('app.media.startIcon'),
-    }
+    };
     menuItems.push(item1)
     menuItems.unshift(item2)
     return menuItems
-  }
+  };
   onMenuItemClick = (menuItem: TextMenuItem, textRange: TextRange) => {
     if (menuItem.id.equals(TextMenuItemId.of("custom2"))) {
-      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 id: custom2 start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.COPY)) {
-      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end)
-      return true
+      console.log("拦截 COPY start:" + textRange.start + "; end:" + textRange.end);
+      return true;
     }
     if (menuItem.id.equals(TextMenuItemId.SELECT_ALL)) {
-      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end)
-      return false
+      console.log("不拦截 SELECT_ALL start:" + textRange.start + "; end:" + textRange.end);
+      return false;
     }
-    return false
+    return false;
   }
   @State editMenuOptions: EditMenuOptions = {
     onCreateMenu: this.onCreateMenu, onMenuItemClick: this.onMenuItemClick
-  }
+  };
 
   build() {
     Column() {
@@ -1913,24 +1961,24 @@ struct TextAreaExample {
 @Entry
 @Component
 struct EllipsisModeExample {
-  @State textIndex: number = 0
+  @State textIndex: number = 0;
   @State text: string = "As the sun begins to set, casting a warm golden hue across the sky," +
     "the world seems to slow down and breathe a sigh of relief. The sky is painted with hues of orange, " +
     " pink, and lavender, creating a breath taking tapestry that stretches as far as the eye can see." +
-    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil."
-  @State ellipsisModeIndex: number = 0
+    "The air is filled with the sweet scent of blooming flowers, mingling with the earthy aroma of freshly turned soil.";
+  @State ellipsisModeIndex: number = 0;
   @State ellipsisMode: (EllipsisMode | undefined | null)[] =
-    [EllipsisMode.START, EllipsisMode.END, EllipsisMode.CENTER, undefined, null]
-  @State ellipsisModeStr: string[] = ['START ', 'END', 'CENTER', 'undefined', 'null']
-  @State textOverflowIndex: number = 0
-  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip]
-  @State textOverflowStr: string[] = ['Ellipsis', 'Clip']
-  @State maxLinesIndex: number = 0
-  @State maxLines: number[] = [1, 2, 3]
-  @State maxLinesStr: string[] = ['1', '2', '3']
-  @State styleAreaIndex: number = 0
-  @State styleArea: TextContentStyle[] = [TextContentStyle.INLINE, TextContentStyle.DEFAULT]
-  @State styleAreaStr: string[] = ['Inline', 'Default']
+    [EllipsisMode.START, EllipsisMode.END, EllipsisMode.CENTER, undefined, null];
+  @State ellipsisModeStr: string[] = ['START ', 'END', 'CENTER', 'undefined', 'null'];
+  @State textOverflowIndex: number = 0;
+  @State textOverflow: TextOverflow[] = [TextOverflow.Ellipsis, TextOverflow.Clip];
+  @State textOverflowStr: string[] = ['Ellipsis', 'Clip'];
+  @State maxLinesIndex: number = 0;
+  @State maxLines: number[] = [1, 2, 3];
+  @State maxLinesStr: string[] = ['1', '2', '3'];
+  @State styleAreaIndex: number = 0;
+  @State styleArea: TextContentStyle[] = [TextContentStyle.INLINE, TextContentStyle.DEFAULT];
+  @State styleAreaStr: string[] = ['Inline', 'Default'];
 
   build() {
     Column() {
@@ -1943,28 +1991,27 @@ struct EllipsisModeExample {
         .margin(30)
 
       Button('更改ellipsisMode模式：' + this.ellipsisModeStr[this.ellipsisModeIndex]).onClick(() => {
-        this.ellipsisModeIndex++
+        this.ellipsisModeIndex++;
         if (this.ellipsisModeIndex > (this.ellipsisModeStr.length - 1)) {
-          this.ellipsisModeIndex = 0
+          this.ellipsisModeIndex = 0;
         }
       }).fontSize(20)
       Button('更改textOverflow模式：' + this.textOverflowStr[this.textOverflowIndex]).onClick(() => {
-        this.textOverflowIndex++
+        this.textOverflowIndex++;
         if (this.textOverflowIndex > (this.textOverflowStr.length - 1)) {
-          this.textOverflowIndex = 0
+          this.textOverflowIndex = 0;
         }
       }).fontSize(20)
       Button('更改maxLines大小：' + this.maxLinesStr[this.maxLinesIndex]).onClick(() => {
-        this.maxLinesIndex++
+        this.maxLinesIndex++;
         if (this.maxLinesIndex > (this.maxLinesStr.length - 1)) {
-          this.maxLinesIndex = 0
+          this.maxLinesIndex = 0;
         }
       }).fontSize(20)
       Button('更改Style大小：' + this.styleAreaStr[this.styleAreaIndex]).onClick(() => {
-
-        this.styleAreaIndex++
+        this.styleAreaIndex++;
         if (this.styleAreaIndex > (this.styleAreaStr.length - 1)) {
-          this.styleAreaIndex = 0
+          this.styleAreaIndex = 0;
         }
       }).fontSize(20)
     }.height(600).width('100%').padding({ left: 35, right: 35, top: 35 })
@@ -1983,8 +2030,8 @@ struct EllipsisModeExample {
 @Entry
 @Component
 struct TextAreaExample {
-  @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
+  @State text: string = '';
+  controller: TextAreaController = new TextAreaController();
 
   build() {
     Column() {
@@ -2001,7 +2048,7 @@ struct TextAreaExample {
         .fontWeight(FontWeight.Bold)
         .fontFamily('HarmonyOS Sans')
         .inputFilter('[a-zA-Z]+', (value) => { // 只允许字母输入
-          console.error(`unsupport char ${value}`)
+          console.error(`unsupport char ${value}`);
         })
         .copyOption(CopyOptions.LocalDevice)
         .enableKeyboardOnFocus(false)
@@ -2021,27 +2068,27 @@ struct TextAreaExample {
         .margin(20)
         .fontSize(16)
         .onEditChange((isEditing: boolean) => {
-          console.log(`isEditing ${isEditing}`)
+          console.log(`isEditing ${isEditing}`);
         })
         .onCopy((value) => {
-          console.log(`copy ${value}`)
+          console.log(`copy ${value}`);
         })
         .onCut((value) => {
-          console.log(`cut ${value}`)
+          console.log(`cut ${value}`);
         })
         .onPaste((value, event) => {
           // 阻止系统粘贴功能，开发者可自行实现
           if (event.preventDefault) {
-            event.preventDefault()
+            event.preventDefault();
           }
-          console.log(`paste:${value}`)
-          this.text = value
+          console.log(`paste:${value}`);
+          this.text = value;
         })
         .onTextSelectionChange((start: number, end: number) => {
-          console.log(`onTextSelectionChange start ${start}, end ${end}`)
+          console.log(`onTextSelectionChange start ${start}, end ${end}`);
         })
         .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
-          console.log(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`)
+          console.log(`onContentScroll offsetX ${totalOffsetX}, offsetY ${totalOffsetY}`);
         })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
@@ -2114,9 +2161,9 @@ struct TextAreaExample {
 @Entry
 @Component
 struct TextAreaExample {
-  controller: TextAreaController = new TextAreaController()
-  @State startIndex: number = 0
-  @State endIndex: number = 0
+  controller: TextAreaController = new TextAreaController();
+  @State startIndex: number = 0;
+  @State endIndex: number = 0;
 
   build() {
     Column({ space: 3 }) {
@@ -2128,13 +2175,13 @@ struct TextAreaExample {
         .defaultFocus(true)
         .enableKeyboardOnFocus(true)
         .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
-          this.startIndex = selectionStart
-          this.endIndex = selectionEnd
+          this.startIndex = selectionStart;
+          this.endIndex = selectionEnd;
         })
 
       Button('setTextSelection [0,3], set menuPolicy is MenuPolicy.SHOW')
         .onClick(() => {
-          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW })
+          this.controller.setTextSelection(0, 3, { menuPolicy: MenuPolicy.SHOW });
         })
     }
     .width('100%')

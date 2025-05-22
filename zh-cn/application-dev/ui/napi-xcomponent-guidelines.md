@@ -965,7 +965,7 @@ Native侧
     ```
     
     ```typescript
-    import nativeRender from 'libnativerender.so'
+    import nativeRender from 'libnativerender.so';
     
     // 重写XComponentController，设置生命周期回调
     class MyXComponentController extends XComponentController {

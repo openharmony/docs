@@ -44,7 +44,7 @@ aa help
 
 ```bash
 # 显示启动Ability
-aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [-W] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 
 # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
 aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [-R] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
@@ -75,6 +75,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
+  | -W | 可选参数，调优命令。打印启动耗时。<br>**说明：** 从API version 20开始，支持该参数。        |
 
   **返回值**：
 
@@ -128,7 +129,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
                 "scheme": "myscheme",
                 "host": "www.test.com",
                 "port": "8080",
-                "path": "path",
+                "path": "path"
               }
             ]
           }
@@ -137,7 +138,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
       ```
 
 
-  - **拉起方应用**: 隐式启动Ability。
+  - **拉起方应用**：隐式启动Ability。
 
     - 如果需要拉起应用的页面，可以使用-U命令，示例如下：
 
@@ -154,17 +155,16 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
       UIAbility获取传入参数示例如下：
   
         ```ts
-        import UIAbility from '@ohos.app.ability.UIAbility';
-        import hilog from '@ohos.hilog';
-        import Want from '@ohos.app.ability.Want';
+        import { UIAbility, Want, AbilityConstant } from '@kit.AbilityKit';
+        import { hilog } from '@kit.PerformanceAnalysisKit';
 
         export default class TargetAbility extends UIAbility {
-          onCreate(want:Want, launchParam) {
+          onCreate(want:Want, launchParam: AbilityConstant.LaunchParam) {
             hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-            let paramNumber = want.parameters.paramNumber
-            let paramBoolean = want.parameters.paramBoolean
-            let paramString = want.parameters.paramString
-            let paramNullString = want.parameters.paramNullString
+            let paramNumber = want.parameters?.paramNumber;
+            let paramBoolean = want.parameters?.paramBoolean;
+            let paramString = want.parameters?.paramString;
+            let paramNullString = want.parameters?.paramNullString;
           }
         }
         ```

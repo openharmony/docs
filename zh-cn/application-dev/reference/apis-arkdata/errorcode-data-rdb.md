@@ -29,15 +29,33 @@ Inner error.
 3. 开发者排查是否按接口文档正确使用接口。
 4. 尝试重试，如果依然无法解决，可以提示用户重启应用、升级应用或升级设备版本。
 
+##  14800001 无效的参数
+
+**错误信息**
+
+Invalid args.
+
+**错误描述**
+
+无效的参数。
+
+**可能原因**
+
+入参不符合接口要求，如取值范围、长度、格式等。
+
+**处理步骤**
+
+参考接口参数说明修改参数符合要求。
+
 ## 14800010 数据库路径不合法
 
 **错误信息**
 
-Invalid database path.
+Failed to open or delete the database by an invalid database path.
 
 **错误描述**
 
-数据库路径不合法。
+数据库路径不合法，打开或删除数据库失败。
 
 **可能原因**
 
@@ -51,11 +69,11 @@ Invalid database path.
 
 **错误信息**
 
-Database corrupted.
+Failed to open the database because it is corrupted.
 
 **错误描述**
 
-数据库出现异常。
+数据库异常，打开失败。
 
 **可能原因**
 
@@ -69,7 +87,7 @@ Database corrupted.
 
 **错误信息**
 
-Row out of bounds.
+ResultSet is empty or pointer index is out of bounds.
 
 **错误描述**
 
@@ -87,7 +105,7 @@ Row out of bounds.
 
 **错误信息**
 
-Column out of bounds.
+Resultset is empty or column index is out of bounds.
 
 **错误描述**
 
@@ -110,7 +128,7 @@ Column out of bounds.
 
 **错误信息**
 
-Already closed.
+The RdbStore or ResultSet is already closed.
 
 **错误描述**
 
@@ -165,7 +183,7 @@ The database alias already exists.
 
 **错误信息**
 
-Config changed.
+StoreConfig is changed.
 
 **错误描述**
 
@@ -196,7 +214,7 @@ SQL语句有误，未查询到符合条件的数据。
 **处理步骤**
 
 编写正确的查询语句或者添加数据库数据之后再做查询。
- 
+
 ## 14800019 SQL必须是查询语句
 
 **错误信息**
@@ -238,7 +256,7 @@ The secret key is corrupted or lost.
 
 **错误信息**
 
-SQLite: Generic error.
+SQLite: Generic error. Possible causes: Insert failed or the updated data does not exist.
 
 **错误描述**
 
@@ -351,7 +369,7 @@ SQLite: The database is out of memory.
 SQLite：数据库内存不足。
 
 **可能原因**
- 
+
 数据库内存不足，可能是由于数据量过大或内存分配不足导致的。
 
 **处理步骤**

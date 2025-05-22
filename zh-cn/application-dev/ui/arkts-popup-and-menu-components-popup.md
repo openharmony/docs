@@ -7,21 +7,21 @@ Popup属性可绑定在组件上显示气泡弹窗提示，设置弹窗内容、
 
 ## 文本提示气泡
 
-文本提示气泡常用于只展示带有文本的信息提示，不带有任何交互的场景。Popup属性需绑定组件，当bindPopup属性中参数show为true时会弹出气泡提示。
+文本提示气泡常用于展示带有文本的信息提示，适用于无交互的场景。Popup属性需绑定组件，当bindPopup属性的参数show为true时，会弹出气泡提示。
 
-在Button组件上绑定Popup属性，每次点击Button按钮，handlePopup会切换布尔值，当值为true时，触发bindPopup弹出气泡。
+在Button组件上绑定Popup属性，每次点击Button按钮时，handlePopup会切换布尔值。当值为true时，触发bindPopup弹出气泡。
 
 ```ts
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
@@ -35,25 +35,25 @@ struct PopupExample {
 
 ## 添加气泡状态变化的事件
 
-通过onStateChange参数为气泡添加状态变化的事件回调，可以判断当前气泡的显示状态。
+通过onStateChange参数为气泡添加状态变化的事件回调，可以判断气泡的当前显示状态。
 
 ```ts
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
           onStateChange: (e)=> { // 返回当前的气泡状态
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -72,32 +72,32 @@ struct PopupExample {
 @Entry
 @Component
 struct PopupExample22 {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column() {
       Button('PopupOptions').margin({ top: 200 })
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with PopupOptions',
           primaryButton: {
             value: 'Confirm',
             action: () => {
-              this.handlePopup = !this.handlePopup
-              console.info('confirm Button click')
+              this.handlePopup = !this.handlePopup;
+              console.info('confirm Button click');
             }
           },
           secondaryButton: {
             value: 'Cancel',
             action: () => {
-              this.handlePopup = !this.handlePopup
+              this.handlePopup = !this.handlePopup;
             }
           },
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           }
         })
@@ -110,15 +110,15 @@ struct PopupExample22 {
 
 ## 气泡的动画
 
-气泡通过定义transition控制气泡的进场和出场动画效果。
+通过定义transition，可以控制气泡的进场和出场动画效果。
 
 ```ts
 // xxx.ets
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
-  @State customPopup: boolean = false
+  @State handlePopup: boolean = false;
+  @State customPopup: boolean = false;
 
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
@@ -132,7 +132,7 @@ struct PopupExample {
       // PopupOptions 类型设置弹框内容
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           message: 'This is a popup with transitionEffect',
@@ -140,7 +140,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.handlePopup = false
+              this.handlePopup = false;
             }
           },
           // 设置弹窗显示动效为透明度动效与平移动效的组合效果，无退出动效
@@ -154,7 +154,7 @@ struct PopupExample {
       // CustomPopupOptions 类型设置弹框内容
       Button('CustomPopupOptions')
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
@@ -162,7 +162,7 @@ struct PopupExample {
           showInSubWindow: false,
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           },
           // 设置弹窗显示动效与退出动效为缩放动效
@@ -184,7 +184,7 @@ struct PopupExample {
 @Entry
 @Component
 struct Index {
-  @State customPopup: boolean = false
+  @State customPopup: boolean = false;
   // popup构造器定义弹框内容
   @Builder popupBuilder() {
     Row({ space: 2 }) {
@@ -197,7 +197,7 @@ struct Index {
       Button('CustomPopupOptions')
         .position({x:100,y:200})
         .onClick(() => {
-          this.customPopup = !this.customPopup
+          this.customPopup = !this.customPopup;
         })
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder, // 气泡的内容
@@ -205,7 +205,7 @@ struct Index {
           popupColor:Color.Pink, // 气泡的背景色
           onStateChange: (e) => {
             if (!e.isVisible) {
-              this.customPopup = false
+              this.customPopup = false;
             }
           }
         })
@@ -225,7 +225,7 @@ struct Index {
 
 背景颜色：气泡的背景色默认为透明，但是会有一个默认的模糊效果，手机上为COMPONENT\_ULTRA\_THICK。
 蒙层样式：气泡默认有蒙层，且蒙层的颜色为透明。
-显示大小：气泡大小有内部的builder大小或者message的长度决定的。
+显示大小：气泡大小由内部的builder大小或者message的长度决定的。
 显示位置：气泡默认显示在宿主组件的下方，可以通过Placement接口来配置其显示位置以及对齐方向。
 以下示例通过设置popupColor（背景颜色）、mask（蒙层样式）、width（气泡宽度）、placement（显示位置）实现气泡的样式。
 
@@ -235,13 +235,13 @@ struct Index {
 @Entry
 @Component
 struct PopupExample {
-  @State handlePopup: boolean = false
+  @State handlePopup: boolean = false;
 
   build() {
     Column({ space: 100 }) {
       Button('PopupOptions')
         .onClick(() => {
-          this.handlePopup = !this.handlePopup
+          this.handlePopup = !this.handlePopup;
         })
         .bindPopup(this.handlePopup, {
           width: 200,
@@ -260,5 +260,49 @@ struct PopupExample {
 ```
 
 ![image](figures/UIpopupStyle.gif)
+
+## 气泡避让软键盘
+
+当软键盘弹出时，气泡默认不会对其避让，可能导致气泡被软键盘覆盖，这时需要设置keyboardAvoidMode为KeyboardAvoidMode.DEFAULT，来使气泡避让键盘。这时如果当前没有位置放下气泡时，气泡会从预设位置平移覆盖宿主组件。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false;
+
+  @Builder popupBuilder() {
+    Column({ space: 2 }) {
+      Text('Custom Popup').fontSize(20)
+        .borderWidth(2)
+      TextInput()
+    }.width(200).padding(5)
+  }
+
+  build() {
+    Column({ space: 100 }) {
+      TextInput()
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup;
+        })
+        .bindPopup(this.handlePopup!!, {
+          width: 200,
+          builder: this.popupBuilder(),
+          placement: Placement.Bottom,
+          mask: false,
+          autoCancel: false,
+          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT
+        })
+        .position({x: 100, y: 300})
+    }
+    .width('100%')
+  }
+}
+```
+
+![image](figures/avoidKeyboard.gif)
 
 

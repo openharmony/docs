@@ -55,7 +55,7 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 | colorMode     | [ThemeColorMode](ts-container-with-theme.md#themecolormode10枚举说明) | 否   | 内容模糊效果使用的深浅色模式。<br/>默认值：ThemeColorMode.SYSTEM<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | adaptiveColor | [AdaptiveColor](#adaptivecolor10枚举说明)   | 否   | 内容模糊效果使用的取色模式。<br/>默认值：AdaptiveColor.DEFAULT<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | blurOptions<sup>11+</sup> | [BlurOptions](#bluroptions11)         | 否    | 灰阶模糊参数。<br/>默认值：grayscale: [0,0] <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
-| scale<sup>12+</sup> | number   | 否   | 内容模糊效果程度。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0] <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| scale<sup>12+</sup> | number   | 否   | 内容模糊效果程度。<br/>默认值：1.0 <br/>取值范围：[0.0, 1.0] <br/>1.0表示模糊程度最高。 <br/>0.0表示模糊程度最低。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## AdaptiveColor<sup>10+</sup>枚举说明
 
@@ -84,7 +84,7 @@ foregroundBlurStyle(style: Optional\<BlurStyle>, options?: ForegroundBlurStyleOp
 
 ## 示例
 
-该示例主要演示通过foregroundBlurStyle给图片设置内容模糊。
+该示例主要演示通过foregroundBlurStyle为图片设置内容模糊。
 
 ```ts
 // xxx.ets

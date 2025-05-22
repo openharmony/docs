@@ -632,6 +632,7 @@ getPortList(): Array\<USBPort\>
 | -------- | ------------------------------------------------------------------------------------------------------- |
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 | 801      | Capability not supported.                                    |
 
 **示例：**
@@ -674,6 +675,7 @@ getPortSupportModes(portId: number): PortModeType
 | 201      | Permission verification failed. The application does not have the permission required to call the API. |
 | 202      | Permission denied. Normal application do not have permission to use system api.                         |
 | 801      | Capability not supported.                                    |
+| 14400003 | Unsupported operation. The current device does not support port role switching.                         |
 
 **示例：**
 
@@ -776,7 +778,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { bundleManager } from '@kit.AbilityKit';
 try {
   let accList: usbManager.USBAccessory[] = usbManager.getAccessoryList()
-  let flags = bundleManager.BundleFlah.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
+  let flags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION | bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
   let bundleInfo = await bundleManager.getBundleInfoForSelf(flags)
   let tokenId: number = bundleInfo.appInfo.accessTokenId
   usbManager.addAccessoryRight(tokenId, accList[0])

@@ -72,8 +72,8 @@ export const isPromise: <T>(value: T) => boolean;
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = Promise.resolve();
 // 传入的对象为Promise时，返回true，否则返回false
@@ -180,8 +180,8 @@ export const resolveRejectDeferred: (resolve: string, reject: string, status: bo
 ArkTS侧示例代码
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // 创建promise如果创建成功返回true，创建失败返回false
 hilog.info(0x0000, 'Node-API', 'napi_create_promise %{public}s', testNapi.createPromise());

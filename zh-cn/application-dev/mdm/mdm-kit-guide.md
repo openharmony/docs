@@ -47,7 +47,7 @@
 
 ### MDM功能开发
 
-1. 导包。MDM Kit目前包含应用管理、通信管理、安全管理、限制策略、系统内管理、设备设置和查询、设备控制等多种类型的API。请根据业务需求。以下为导入adminManager和restrictions的示例。
+1. 导包。MDM Kit目前包含应用管理、通信管理、安全管理、限制策略、系统内管理、设备设置和查询、设备控制等多种类型的API，请根据业务需求导入使用。以下为导入adminManager和restrictions的示例。
 
    ```ts
    import { adminManager, restrictions } from '@kit.MDMKit';

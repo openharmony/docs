@@ -46,23 +46,23 @@ addContact(context: Context, contact: Contact, callback: AsyncCallback&lt;number
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  contact.addContact(
-    context,
-    {
-	  name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
-    }, (err: BusinessError, data) => {
-      if (err) {
-        console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
+  contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
+  }, (err: BusinessError, data) => {
+    if (err) {
+      console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
 ```
 
@@ -91,19 +91,20 @@ addContact(contact: Contact, callback: AsyncCallback&lt;number&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  contact.addContact({
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+
+  contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to add Contact. Code:${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   });
   ```
 
@@ -145,17 +146,17 @@ addContact(context: Context, contact: Contact): Promise<number&gt;
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  let promise = contact.addContact(
-    context,
-    {
-	  name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+  let promise = contact.addContact(context, {
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   });
   promise.then((data) => {
     console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
@@ -194,18 +195,19 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.addContact({
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   });
   promise.then((data) => {
-      console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in adding Contact. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to add Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -238,14 +240,16 @@ deleteContact(context: Context, key: string, callback: AsyncCallback&lt;void&gt;
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in deleting Contact.');
+    if (err) {
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in deleting Contact.');
   });
 ```
 
@@ -274,12 +278,13 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.deleteContact('xxx', (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in deleting Contact.');
+    if (err) {
+      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in deleting Contact.');
   });
   ```
 
@@ -317,13 +322,15 @@ deleteContact(context: Context,  key: string): Promise&lt;void&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleting Contact.`);
+    console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -357,11 +364,12 @@ deleteContact(key: string): Promise&lt;void&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.deleteContact('xxx');
   promise.then(() => {
-      console.info(`Succeeded in deleting Contact.`);
+    console.info(`Succeeded in deleting Contact.`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -394,22 +402,24 @@ updateContact(context: Context, contact: Contact, callback: AsyncCallback&lt;voi
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updating Contact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -438,20 +448,21 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
-  contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+
+  contact.updateContact(context, {
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updating Contact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -485,24 +496,26 @@ updateContact(context: Context,  contact: Contact, attrs: ContactAttributes, cal
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updating Contact.');
+    if (err) {
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -532,22 +545,23 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError) => {
-      if (err) {
-          console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info('Succeeded in updating Contact.');
+    if (err) {
+      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info('Succeeded in updating Contact.');
   });
   ```
 
@@ -586,23 +600,25 @@ updateContact(context: Context,  contact: Contact, attrs?: ContactAttributes): P
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.updateContact(context, {
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updating Contact.');
+    console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -637,21 +653,22 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.updateContact({
-      id: 1,
-      name: {
-	    fullName: 'xxx'
-	  },
-      phoneNumbers: [{
-	    phoneNumber: '138xxxxxxxx'
-	  }]
+    id: 1,
+    name: {
+      fullName: 'xxx'
+    },
+    phoneNumbers: [{
+      phoneNumber: '138xxxxxxxx'
+    }]
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then(() => {
-      console.info('Succeeded in updating Contact.');
+    console.info('Succeeded in updating Contact.');
   }).catch((err: BusinessError) => {
-      console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to update Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -686,14 +703,16 @@ isLocalContact(context: Context,  id: number, callback: AsyncCallback&lt;boolean
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isLocalContact.`);
+    if (err) {
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
@@ -722,12 +741,13 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.isLocalContact(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isLocalContact.`);
+    if (err) {
+      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isLocalContact.`);
   });
   ```
 
@@ -767,13 +787,15 @@ isLocalContact(context: Context,  id: number): Promise&lt;boolean&gt;
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -807,11 +829,12 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.isLocalContact(/*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -846,14 +869,16 @@ isMyCard(context: Context,  id: number, callback: AsyncCallback&lt;boolean&gt;):
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -882,12 +907,13 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.isMyCard(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -927,13 +953,15 @@ isMyCard(context: Context,  id: number): Promise&lt;boolean&gt;
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -967,11 +995,12 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.isMyCard(/*id*/1);
   promise.then((data) => {
-      console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1005,14 +1034,16 @@ queryMyCard(context: Context,  callback: AsyncCallback&lt;Contact&gt;): void
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1040,12 +1071,13 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryMyCard((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1080,16 +1112,18 @@ queryMyCard(context: Context,  attrs: ContactAttributes, callback: AsyncCallback
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1118,14 +1152,15 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryMyCard({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1165,15 +1200,17 @@ queryMyCard(context: Context,  attrs?: ContactAttributes): Promise&lt;Contact&gt
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryMyCard(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -1207,13 +1244,14 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryMyCard({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying My Card. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1239,12 +1277,13 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContact((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1270,11 +1309,12 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContact();
   promise.then((data) => {
-      console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1306,12 +1346,13 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContacts((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1336,11 +1377,12 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContacts();
   promise.then((data) => {
-      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1373,14 +1415,15 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.selectContacts({
     isMultiSelect:false
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1418,11 +1461,12 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.selectContacts({isMultiSelect:false});
   promise.then((data) => {
-      console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in selecting Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to select Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1457,14 +1501,16 @@ queryContact(context: Context,  key: string,  callback: AsyncCallback&lt;Contact
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1493,12 +1539,13 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1534,18 +1581,20 @@ queryContact(context: Context,  key: string, holder: Holder, callback: AsyncCall
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1575,16 +1624,17 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1620,16 +1670,18 @@ queryContact(context: Context,  key: string,  attrs: ContactAttributes, callback
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1659,14 +1711,15 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1703,20 +1756,22 @@ queryContact(context: Context,  key: string, holder: Holder, attrs: ContactAttri
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
 ```
 
@@ -1747,18 +1802,19 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1800,19 +1856,21 @@ queryContact(context: Context,  key: string, holder?: Holder, attrs?: ContactAtt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContact(context, 'xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1848,17 +1906,18 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContact('xxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contact. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1892,14 +1951,16 @@ queryContacts(context: Context,  callback: AsyncCallback&lt;Array&lt;Contact&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1927,12 +1988,13 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -1967,18 +2029,20 @@ queryContacts(context: Context,  holder: Holder, callback: AsyncCallback&lt;Arra
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2007,16 +2071,17 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2051,16 +2116,18 @@ queryContacts(context: Context,  attrs: ContactAttributes, callback: AsyncCallba
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2089,14 +2156,15 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2132,20 +2200,22 @@ queryContacts(context: Context,  holder: Holder, attrs: ContactAttributes, callb
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2175,18 +2245,19 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2227,19 +2298,21 @@ queryContacts(context: Context,  holder?: Holder, attrs?: ContactAttributes): Pr
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContacts(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts. data: ${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2274,17 +2347,18 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContacts({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
   });
 ```
 
@@ -2319,14 +2393,16 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, callback: Asy
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2355,12 +2431,13 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2396,18 +2473,20 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2437,16 +2516,17 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2482,16 +2562,18 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, attrs: Contac
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2521,14 +2603,15 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2565,20 +2648,22 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder: Holde
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2609,18 +2694,19 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2662,19 +2748,21 @@ queryContactsByPhoneNumber(context: Context,  phoneNumber: string, holder?: Hold
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2710,17 +2798,18 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContactsByPhoneNumber('138xxxxxxxx', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
+    attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By PhoneNumber. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2755,14 +2844,16 @@ queryContactsByEmail(context: Context,  email: string, callback: AsyncCallback&l
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2791,12 +2882,13 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2832,18 +2924,20 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, callback:
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2873,16 +2967,17 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2918,16 +3013,18 @@ queryContactsByEmail(context: Context,  email: string, attrs: ContactAttributes,
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -2957,14 +3054,15 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3001,20 +3099,22 @@ queryContactsByEmail(context: Context,  email: string, holder: Holder, attrs: Co
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3045,18 +3145,19 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3098,19 +3199,21 @@ queryContactsByEmail(context: Context,  email: string, holder?: Holder, attrs?: 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3146,17 +3249,18 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryContactsByEmail('xxx@email.com', {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, {
-      attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
+    attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Contacts By Email. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3188,14 +3292,16 @@ queryGroups(context: Context,  callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3223,12 +3329,13 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryGroups((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups.. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3263,18 +3370,20 @@ queryGroups(context: Context,  holder: Holder, callback: AsyncCallback&lt;Array&
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3303,16 +3412,17 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryGroups({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3352,17 +3462,19 @@ queryGroups(context: Context,  holder?: Holder): Promise&lt;Array&lt;Group&gt;&g
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryGroups(context, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3396,15 +3508,16 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryGroups({
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Groups. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3438,14 +3551,16 @@ queryHolders(context: Context, callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryHolders(context, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3473,12 +3588,13 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryHolders((err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3517,13 +3633,15 @@ queryHolders(context: Context): Promise&lt;Array&lt;Holder&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
-      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3551,11 +3669,12 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryHolders();
   promise.then((data) => {
-      console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3590,14 +3709,16 @@ queryKey(context: Context,  id: number, callback: AsyncCallback&lt;string&gt;): 
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3626,12 +3747,13 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryKey(/*id*/1, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3667,18 +3789,20 @@ queryKey(context: Context,  id: number, holder: Holder, callback: AsyncCallback&
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3708,16 +3832,17 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   contact.queryKey(/*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   }, (err: BusinessError, data) => {
-      if (err) {
-          console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
-          return;
-      }
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    if (err) {
+      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   });
   ```
 
@@ -3758,17 +3883,19 @@ queryKey(context: Context,  id: number, holder?: Holder): Promise&lt;string&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+
   // 获取context。
   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryKey(context, /*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3803,15 +3930,16 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
+
   let promise = contact.queryKey(/*id*/1, {
-      holderId: 1,
-      bundleName: "",
-      displayName: ""
+    holderId: 1,
+    bundleName: "",
+    displayName: ""
   });
   promise.then((data) => {
-      console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
+    console.info(`Succeeded in querying Key. data->${JSON.stringify(data)}`);
   }).catch((err: BusinessError) => {
-      console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -3854,14 +3982,16 @@ addContactViaUI(context: Context, contact: Contact): Promise&lt;number&gt;
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
 // 获取context。
 let contactInfo: contact.Contact = {
-    name: {
-        fullName: 'xxx'
-    },
-    phoneNumbers: [{
-        phoneNumber: '138xxxxxx'
-    }]
+  name: {
+    fullName: 'xxx'
+  },
+  phoneNumbers: [{
+    phoneNumber: '138xxxxxx'
+  }]
 }
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let promise = contact.addContactViaUI(context, contactInfo);
@@ -3907,15 +4037,17 @@ saveToExistingContactViaUI(context: Context, contact: Contact): Promise&lt;numbe
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
+
 // 获取context。
 let contactInfo: contact.Contact = {
-    id: 1,
-    name: {
-        fullName: 'xxx'
-    },
-    phoneNumbers: [{
-        phoneNumber: '138xxxxxx'
-    }]
+  id: 1,
+  name: {
+    fullName: 'xxx'
+  },
+  phoneNumbers: [{
+    phoneNumber: '138xxxxxx'
+  }]
 }
 let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let promise = contact.saveToExistingContactViaUI(context, contactInfo);
@@ -3957,11 +4089,11 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-| 名称                  | 类型 | 值 | 说明                               |
-| --------------------- | ---- | ---- | ---------------------------------- |
-| SHOW_FILTER    | number  | 0 | 仅展示符合过滤条件的联系人。 |
-| DEFAULT_SELECT            | number  | 1 | 默认勾选符合过滤条件的联系人。                 |
-| SHOW_FILTER_AND_DEFAULT_SELECT | number  | 2 | 默认勾选仅展示符合过滤条件的联系人。                     |
+| 名称                  | 值 | 说明                               |
+| --------------------- | ---- | ---------------------------------- |
+| SHOW_FILTER    | 0 | 仅展示符合过滤条件的联系人。 |
+| DEFAULT_SELECT            | 1 | 默认勾选符合过滤条件的联系人。                 |
+| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | 默认勾选仅展示符合过滤条件的联系人。                     |
 
 ## FilterClause<sup>15+</sup>
 
@@ -3999,14 +4131,14 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-| 名称                  | 类型 | 值 | 说明                               |
-| --------------------- | ---- | ---- | ---------------------------------- |
-| IS_NOT_NULL    | number  | 0 | 对应字段不为空。 |
-| EQUAL_TO            | number  | 1 | 对应字段等于某值。                 |
-| NOT_EQUAL_TO | number  | 2 | 对应字段不等于某值。                     |
-| IN | number  | 3 | 对应字段值在某数组中。                     |
-| NOT_IN | number  | 4 | 对应字段值不在某数组中。                     |
-| CONTAINS | number  | 5 | 对应字段值包含某值。                     |
+| 名称                  | 值 | 说明                               |
+| --------------------- | ---- | ---------------------------------- |
+| IS_NOT_NULL    | 0 | 对应字段不为空。 |
+| EQUAL_TO            | 1 | 对应字段等于某值。                 |
+| NOT_EQUAL_TO | 2 | 对应字段不等于某值。                     |
+| IN | 3 | 对应字段值在某数组中。                     |
+| NOT_IN | 4 | 对应字段值不在某数组中。                     |
+| CONTAINS | 5 | 对应字段值包含某值。                     |
 
 ## DataFilter<sup>15+</sup>
 
@@ -4029,11 +4161,11 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 **系统能力**：SystemCapability.Applications.Contacts
 
-| 名称                  | 类型 | 值 | 说明                               |
-| --------------------- | ---- | --- | ---------------------------------- |
-| EMAIL    | number | 0 | 联系人邮箱。 |
-| PHONE            | number | 1 | 联系人电话。                 |
-| ORGANIZATION | number | 2 | 联系人单位。                     |
+| 名称                  | 值 | 说明                               |
+| --------------------- | --- | ---------------------------------- |
+| EMAIL    | 0 | 联系人邮箱。 |
+| PHONE            | 1 | 联系人电话。                 |
+| ORGANIZATION | 2 | 联系人单位。                     |
 
 ## Contact
 
@@ -4377,7 +4509,7 @@ let name: contact.Name = {
 
 | 名称     |   类型   | 只读 | 可选 | 说明           |
 | -------- | -------- | ---- | ---- | -------------- |
-| nickName | string   | 否   | 是   | 联系人的昵称。 |
+| nickName | string   | 否   | 否   | 联系人的昵称。 |
 
 **对象创建示例：**
 

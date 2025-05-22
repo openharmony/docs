@@ -21,7 +21,7 @@ Represents the user authentication parameters.
 
 | Name          | Type                              | Mandatory| Description                                                        |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| userId<sup>16+</sup> | number | No  |ID of the user to be authenticated. The value is a positive integer greater than or equal to 0.|
+| userId<sup>18+</sup> | number | No  |ID of the user to be authenticated. The value is a positive integer greater than or equal to 0. The default value is the ID of the current user.|
 
 ## WindowModeType<sup>10+</sup>
 
@@ -75,7 +75,7 @@ Sends a notification from the user authentication widget.
 | Name    | Type                       | Mandatory| Description      |
 | ---------- | --------------------------- | ---- | ---------- |
 | noticeType | [NoticeType](#noticetype10) | Yes  | Notification type.|
-| eventData  | string                      | Yes  | Event data.|
+| eventData  | string                | Yes  | Event data. The data cannot exceed 65536 bytes.   |
 
 **Error codes**
 
@@ -310,17 +310,17 @@ try {
 
 ## UserAuthType<sup>8+</sup>
 
-Enumerates the types of credentials for identity authentication.
+Enumerates the identity authentication types.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PRIVATE_PIN<sup>14+</sup>  | 16   | Privacy password.|
+| PRIVATE_PIN<sup>14+</sup>  | 16   | Private password authentication. |
 
 **Example**
 
-Initiate privacy PIN authentication with the authentication trust level greater than or equal to ATL3.
+Initiate private password authentication with the authentication trust level greater than or equal to ATL3.
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -354,14 +354,14 @@ try {
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
 }
 ```
-## UserAuthResultCode<sup>16+</sup>
+
+## UserAuthResultCode<sup>18+</sup>
 
 Enumerates the authentication result codes.
 
 **System capability**: SystemCapability.UserIAM.UserAuth.Core
 
-| Name | Value | Description |
+| Name                   |   Value  | Description                |
 | ----------------------- | ------ | -------------------- |
-| AUTH_TOKEN_CHECK_FAILED | 12500015 | The authentication token is invalid. |
-| AUTH_TOKEN_EXPIRED | 12500016 | The authentication token has expired. |
-
+| AUTH_TOKEN_CHECK_FAILED | 12500015      | The AuthToken is invalid.|
+| AUTH_TOKEN_EXPIRED      | 12500016      | The interval between the AuthToken issuance time and the AuthToken verification time exceeds the maximum validity period.|

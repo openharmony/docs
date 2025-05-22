@@ -6,9 +6,7 @@ The **font** module provides APIs for registering custom fonts.
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
-> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where the UI context is unclear. For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
->
-> Since API version 10, you can use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+> The functionality of this module depends on UI context. This means that the APIs of this module cannot be used where [the UI context is unclear](../../ui/arkts-global-interface.md). For details, see [UIContext](./js-apis-arkui-UIContext.md#uicontext).
 
 ## Modules to Import
 
@@ -16,11 +14,17 @@ The **font** module provides APIs for registering custom fonts.
 import { font } from '@kit.ArkUI'
 ```
 
-## font.registerFont
+## font.registerFont<sup>(deprecated)</sup>
 
 registerFont(options: FontOptions): void
 
 Registers a custom font with the font manager.
+
+> **NOTE**
+>
+> This API is deprecated since API version 18. You are advised to use [registerFont](js-apis-arkui-UIContext.md#registerfont) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+>
+> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -51,8 +55,6 @@ Registers a custom font with the font manager.
 
 ```ts
 // xxx.ets
-import { font } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct FontExample {
@@ -60,29 +62,30 @@ struct FontExample {
   // iconFont example, where 0000 is the Unicode character of the specified icon. You need to obtain the Unicode character from the TTF file of the registered iconFont.
   @State unicode: string = '\u0000';
   @State codePoint: string = String.fromCharCode(0x0000);
+  private uiContext: UIContext = this.getUIContext();
 
   aboutToAppear() {
     // Both familyName and familySrc support the Resource type.
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       // You are advised to use this.getUIContext().getFont().registerFont().
       familyName: $r('app.string.font_name'),
       familySrc: $r('app.string.font_src')
     })
 
     // familySrc supports the $rawfile type.
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'mediumRawFile',
       familySrc: $rawfile('font/medium.ttf')
     })
 
     // Register iconFont.
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'iconFont',
       familySrc: '/font/iconFont.ttf'
     })
 
     // Both familyName and familySrc support the string type.
-    font.registerFont({
+    this.uiContext.getFont().registerFont({
       familyName: 'medium',
       familySrc: '/font/medium.ttf' // The font folder is at the same level as the pages folder.
     })
@@ -114,11 +117,17 @@ struct FontExample {
 >
 > In HSP projects, avoid using relative paths to register custom fonts. For details, see [Accessing Resources in an HSP Through $r](../../quick-start/in-app-hsp.md).
 
-## font.getSystemFontList<sup>10+</sup>
+## font.getSystemFontList<sup>(deprecated)</sup>
 
 getSystemFontList(): Array\<string>
 
 Obtains the system font list.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getSystemFontList](js-apis-arkui-UIContext.md#getsystemfontlist) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+>
+> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -139,6 +148,8 @@ Obtains the system font list.
 > **NOTE**
 >
 > You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets
@@ -162,11 +173,17 @@ struct FontExample {
 }
 ```
 
-## font.getFontByName<sup>10+</sup>
+## font.getFontByName<sup>(deprecated)</sup>
 
 getFontByName(fontName: string): FontInfo
 
 Obtains information about a system font based on the font name.
+
+> **NOTE**
+>
+> This API is supported since API version 10 and deprecated since API version 18. You are advised to use [getFontByName](js-apis-arkui-UIContext.md#getfontbyname) instead on the obtained [Font](js-apis-arkui-UIContext.md#font) object.
+>
+> Since API version 10, you can use the [getFont](js-apis-arkui-UIContext.md#getfont) API in [UIContext](js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](js-apis-arkui-UIContext.md#font) object associated with the current UI context.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -208,6 +225,8 @@ Obtains information about a system font based on the font name.
 > **NOTE**
 >
 > You are advised to use the [getFont](./js-apis-arkui-UIContext.md#getfont) API in [UIContext](./js-apis-arkui-UIContext.md#uicontext) to obtain the [Font](./js-apis-arkui-UIContext.md#font) object associated with the current UI context.
+
+<!--deprecated_code_no_check-->
 
 ```ts
 // xxx.ets

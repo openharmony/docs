@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述HUKS类型定义的头文件，声明了HUKS API需要的各种宏、枚举、数据结构、错误码等。
+定义HUKS类型的头文件，声明各种宏、枚举、数据结构、错误码等。
 
 **系统能力：** SystemCapability.Security.Huks
 

@@ -813,7 +813,7 @@ screen.setVirtualScreenSurface(screenId, surfaceId, (err: BusinessError) => {
   console.info('Succeeded in setting the surface for the virtual screen.');
 });
 ```
-## screen.setScreenPrivacyMaskImage<sup>18+</sup>
+## screen.setScreenPrivacyMaskImage<sup>19+</sup>
 
 setScreenPrivacyMaskImage(screenId:number, image?: image.PixelMap): Promise&lt;void&gt;
 
@@ -989,7 +989,7 @@ console.info('Succeeded in getting the screen rotation lock status. isLocked:' +
 
 setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 
-设置自动转屏开关是否锁定，使用Promise异步回调。
+设置自动转屏开关是否锁定，使用Promise异步回调，不适用于2in1设备。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1031,7 +1031,7 @@ screen.setScreenRotationLocked(isLocked).then(() => {
 
 setScreenRotationLocked(isLocked: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置自动转屏开关是否锁定，使用callback异步回调。
+设置自动转屏开关是否锁定，使用callback异步回调，不适用于2in1设备。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1218,7 +1218,7 @@ screen.setMultiScreenRelativePosition(mainScreenOptions, secondaryScreenOptions)
 | density   | number   | 是   | 是   | 指定虚拟屏幕的密度，单位为px，该参数为浮点数。 |
 | surfaceId | string   | 是   | 是   | 指定虚拟屏幕的surfaceId。        |
 
-## screen.makeMirrorWithRegion<sup>15+</sup>
+## screen.makeMirrorWithRegion<sup>19+</sup>
 
 makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainScreenRegion:Rect): Promise&lt;number&gt;
 
@@ -1226,15 +1226,13 @@ makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainSc
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
-
 **参数：**
 
 | 参数名       | 类型                | 必填 | 说明                 |
 | ------------ | ------------------- | ---- |--------------------|
 | mainScreen   | number              | 是   | 主屏幕id，该参数仅支持正整数输入。  |
 | mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。其中id应为正整数。  |
-| mainScreenRegion | [Rect](#rect15) | 是   | 主屏创建镜像的矩形区域。         |
+| mainScreenRegion | [Rect](#rect19) | 是   | 主屏创建镜像的矩形区域。         |
 
 **返回值：**
 
@@ -1249,7 +1247,6 @@ makeMirrorWithRegion(mainScreen:number, mirrorScreen:Array&lt;number&gt;, mainSc
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
 | 202     | Permission verification failed. A non-system application calls a system API.|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types.|
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -1703,13 +1700,11 @@ screen.createVirtualScreen(option).then((data: screen.Screen) => {
 | height      | number   | 是   | 是   | 屏幕的高度，单位为px，该参数应为整数。                                |
 | refreshRate | number   | 是   | 是   | 屏幕的刷新率，单位为hz，该参数应为整数。                                     |
 
-## Rect<sup>15+</sup>
+## Rect<sup>19+</sup>
 
 矩形信息。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
-
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
 | 名称        | 类型 | 可读 | 可写 | 说明                                               |
 | ----------- | -------- | ---- | ---- | -------------------------------------------------- |

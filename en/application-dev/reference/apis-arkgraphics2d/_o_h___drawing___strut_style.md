@@ -9,6 +9,7 @@ The OH_Drawing_StrutStyle struct describes a strut style. The strut style determ
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_text_typography.h](drawing__text__typography_8h.md)
 
 ## Summary
 

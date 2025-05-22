@@ -1,8 +1,6 @@
 # Encryption and Decryption with an AES Symmetric Key (CBC Mode) (C/C++)
 
-
 For details about the algorithm specifications, see [AES](crypto-sym-encrypt-decrypt-spec.md#aes).
-
 
 ## Adding the Dynamic Library in the CMake Script
 ```txt
@@ -14,8 +12,8 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 **Creating an Object**
 
 Call [OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_create) and [OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/_crypto_sym_key_api.md#oh_cryptosymkeygenerator_generate) to generate a 128-bit AES symmetric key (**OH_CryptoSymKey**).
-
-In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly-ndk.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
+   
+   In addition to the example in this topic, [AES](crypto-sym-key-generation-conversion-spec.md#aes) and [Randomly Generating a Symmetric Key](crypto-generate-sym-key-randomly-ndk.md) may help you better understand how to generate an AES symmetric key. Note that the input parameters in the reference documents may be different from those in the example below.
 
 **Encrypting a Message**
 
@@ -25,7 +23,7 @@ In addition to the example in this topic, [AES](crypto-sym-key-generation-conver
 
 3. Call [OH_CryptoSymCipher_Init](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_init) to initialize the **Cipher** instance. Specifically, set **mode** to **CRYPTO_ENCRYPT_MODE**, and specify the key for encryption (**OH_CryptoSymKey**) and the encryption parameter instance (**OH_CryptoSymCipherParams**) corresponding to the CBC mode.
 
-4. If a small amount of data is to be encrypted, use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the encrypted data. If a large amount of data is to be encrypted, you can call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) multiple times to pass in the data by segment, and then use **OH_CryptoSymCipher_Final** to generate the ciphertext.
+4. If a small amount of data is to be encrypted, use [OH_CryptoSymCipher_Final](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_final) to generate the encrypted data. If a large amount of data is to be encrypted, you can call [OH_CryptoSymCipher_Update](../../reference/apis-crypto-architecture-kit/_crypto_sym_cipher_api.md#oh_cryptosymcipher_update) multiple times to pass in the data by segment, and then use **OH_CryptoSymCipher_Final** to generate the ciphertext. 
 
 **Decrypting a Message**
 
@@ -55,7 +53,7 @@ static OH_Crypto_ErrCode doTestAesCbc()
     Crypto_DataBlob decData = {.data = nullptr, .len = 0};
     char *plainText = const_cast<char *>("this is test!");
     Crypto_DataBlob msgBlob = {.data = (uint8_t *)(plainText), .len = strlen(plainText)};
-    uint8_t iv[16] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4, 3, 1, 0, 10}; // The iv value here is for reference only. You can use a secure random number to generate the iv value.
+    uint8_t iv[16] = {1, 2, 4, 12, 3, 4, 2, 3, 3, 2, 0, 4, 3, 1, 0, 10}; // The iv value here is for reference only. You can use secure random numbers to generate it.
     Crypto_DataBlob ivBlob = {.data = iv, .len = sizeof(iv)};
     // Generate a symmetric key.
     OH_Crypto_ErrCode ret;
@@ -68,7 +66,7 @@ static OH_Crypto_ErrCode doTestAesCbc()
         goto end;
     }
     
-    // Create a ciper parameter object.
+    // Create a cipher parameter object.
     ret = OH_CryptoSymCipherParams_Create(&params);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -79,7 +77,7 @@ static OH_Crypto_ErrCode doTestAesCbc()
         goto end;
     }
     
-    // Encrypt data.
+    // Encrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|CBC|PKCS7", &encCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
@@ -93,12 +91,12 @@ static OH_Crypto_ErrCode doTestAesCbc()
         goto end;
     }
     
-    // Decrypt data.
+    // Decrypt the message.
     ret = OH_CryptoSymCipher_Create("AES128|CBC|PKCS7", &decCtx);
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }
-    ret = OH_CryptoSymCipher_Init(decCtx, CRYPTO_DECRYPT_MODE, keyCtx, params); // The params value be the same as that used in encryption.
+    ret = OH_CryptoSymCipher_Init(decCtx, CRYPTO_DECRYPT_MODE, keyCtx, params); // The params value must be the same as that used in encryption.
     if (ret != CRYPTO_SUCCESS) {
         goto end;
     }

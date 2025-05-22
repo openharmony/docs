@@ -1,4 +1,4 @@
-# Native子进程开发指导（C/C++）
+# 创建Native子进程（C/C++）
 
 本模块提供了两种创建子进程的方式，开发者可根据需要进行选择。
 - [创建支持IPC回调的子进程](#创建支持ipc回调的子进程)：创建子进程，并在父子进程间建立IPC通道，适用于父子进程需要IPC通信的场景。对[IPCKit](../ipc/ipc-capi-development-guideline.md)存在依赖。

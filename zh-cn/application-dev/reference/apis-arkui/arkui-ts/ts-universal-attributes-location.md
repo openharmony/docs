@@ -1,10 +1,10 @@
 # 位置设置
 
-设置组件的对齐方式、布局方向和显示位置。
+设置组件对齐方式、布局方向及显示位置。
 
 >  **说明：**
 >
->  从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## align
 
@@ -22,7 +22,25 @@ align(value: Alignment)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                         |
 | ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、Button、Marquee、StepperItem、Text、TextArea、TextInput、FolderStack中生效，其中和文本相关的组件Marquee、Text、TextArea、TextInput的align结果参考[textAlign](ts-basic-components-text.md#textalign)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>该属性不支持镜像能力。<br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
+| value  | [Alignment](ts-appendix-enums.md#alignment) | 是   | 设置容器元素绘制区域内的子元素的对齐方式。<br/>只在Stack、FolderStack、Shape、Button、Marquee、StepperItem、Text、TextArea、TextInput、[RichEditor](ts-basic-components-richeditor.md)、Hyperlink、SymbolGlyph、ListItem、GridItem、Scroll、FlowItem、ImageAnimator、LoadingProgress、PatternLock、Progress、QRCode、TextClock、TextTimer、MenuItem、Toggle、Checkbox、NodeContainer中生效，其中和文本相关的组件Marquee、Text、TextArea、TextInput、RichEditor、Hyperlink的align结果参考[textAlign](ts-basic-components-text.md#textalign)。<br/>不支持textAlign属性的组件则无法设置水平方向的文字对齐。<br/>默认值：Alignment.Center<br/>**说明：** <br/>该属性不支持镜像能力。<br/>在Stack中该属性与alignContent效果一致，只能设置子组件在容器内的对齐方式。 |
+
+## align<sup>20+</sup>
+
+align(alignment: Alignment | LocalizedAlignment)
+
+设置容器元素绘制区域内的子元素的对齐方式，增加支持镜像的能力。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                                                         |
+| ------ | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| alignment  | [Alignment](ts-appendix-enums.md#alignment) \| [LocalizedAlignment](ts-appendix-enums.md#localizedalignment20) | 是   | 设置容器元素绘制区域内的子元素的对齐方式，增加支持镜像的能力。<br/>LocalizedAlignment只在[Stack](ts-container-stack.md)、[Shape](ts-drawing-components-shape.md)、[ListItem](ts-container-listitem.md)、[Button](ts-basic-components-button.md)、[GridItem](ts-container-griditem.md)、[FlowItem](ts-container-flowitem.md)、[ImageAnimator](ts-basic-components-imageanimator.md)、[LoadingProgress](ts-basic-components-loadingprogress.md)、[PatternLock](ts-basic-components-patternlock.md)、[Progress](ts-basic-components-progress.md)、[QRCode](ts-basic-components-qrcode.md)、[TextClock](ts-basic-components-textclock.md)、[TextTimer](ts-basic-components-texttimer.md)、[StepperItem](ts-basic-components-stepperitem.md)、[MenuItem](ts-basic-components-menuitem.md)、[Toggle](ts-basic-components-toggle.md)、[Checkbox](ts-basic-components-checkbox.md)、[RichEditor](ts-basic-components-richeditor.md)中生效。<br/>默认值：Alignment.Center、LocalizedAlignment.CENTER<br/>**说明：** <br/>Alignment类型不支持镜像能力；LocalizedAlignment类型支持镜像能力，选择LocalizedAlignment中的泛化方向词，根据direction或系统语言方向的改变实现镜像切换。其中direction的优先级高于系统语言方向，当设置direction且不为auto时，LocalizedAlignment的镜像按照direction进行布局；当设置direction为auto或未设置时，LocalizedAlignment的镜像按照系统语言方向进行布局。<br/>align取undefined或null时按默认值处理，效果为居中显示。 |
 
 ## direction
 
@@ -40,7 +58,7 @@ direction(value: Direction)
 
 | 参数名 | 类型                                        | 必填 | 说明                                                |
 | ------ | ------------------------------------------- | ---- | --------------------------------------------------- |
-| value  | [Direction](ts-appendix-enums.md#direction) | 是   | 设置容器元素内主轴方向上的布局。<br/>属性配置为auto的时候，按照系统语言方向进行布局。<br/>该属性在Column组件上不生效。<br/>默认值：Direction.Auto |
+| value  | [Direction](ts-appendix-enums.md#direction) | 是   | 设置容器元素内主轴方向上的布局。<br/>属性配置为auto的时候，按照系统语言方向进行布局。<br/>该属性在Column组件上不生效。<br/>默认值：Direction.Auto <br/>direction取undefined或null时按默认值处理。 |
 
 ## position
 
@@ -58,7 +76,7 @@ position(value: Position | Edges | LocalizedEdges)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | 是   | 绝对定位，确定子组件相对父组件的位置。当父容器为Row/Column/Flex时，设置position的子组件不占位。<br/>Position类型基于父组件左上角确定位置;Edges类型基于父组件四边确定位置，top/left/right/bottom分别为组件各边距离父组件相应边的边距，通过边距来确定组件相对于父组件的位置;LocalizedEdges类型基于父组件四边确定位置，支持镜像模式。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>不支持在宽高为零的布局容器上设置。<br/>当父容器为[RelativeContainer](ts-container-relativecontainer.md), 且子组件设置了alignRules属性, 则子组件的position属性不生效。 |
+| value  | [Position](ts-types.md#position) \| [Edges<sup>12+</sup>](ts-types.md#edges12) \| [LocalizedEdges<sup>12+</sup>](ts-types.md#localizededges12) | 是   | 绝对定位，确定子组件相对父组件的位置。当父容器为Row/Column/Flex时，设置position的子组件不占位。<br/>Position类型基于父组件左上角确定位置;Edges类型基于父组件四边确定位置，top/left/right/bottom分别为组件各边距离父组件相应边的边距，通过边距来确定组件相对于父组件的位置；LocalizedEdges类型基于父组件四边确定位置，支持镜像模式。<br/>适用于置顶显示、悬浮按钮等组件在父容器中位置固定的场景。<br/>不支持在宽高为零的布局容器上设置。<br/>当父容器为[RelativeContainer](ts-container-relativecontainer.md)，且子组件设置了alignRules属性，则子组件的position属性不生效。 |
 
 ## markAnchor
 
@@ -513,4 +531,99 @@ struct Example4 {
   }
 }
 ```
+
 ![position.png](figures/position3.png)
+
+### 示例5（align属性适配镜像特性）
+
+设置内容在元素内的对齐方式和子元素在父容器主轴方向上的布局。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct buttonTestDemo {
+  @State isLocalizedAlignment: LocalizedAlignment[] =
+    [LocalizedAlignment.TOP_START, LocalizedAlignment.TOP, LocalizedAlignment.TOP_END, LocalizedAlignment.START,
+      LocalizedAlignment.CENTER, LocalizedAlignment.END, LocalizedAlignment.BOTTOM_START, LocalizedAlignment.BOTTOM,
+      LocalizedAlignment.BOTTOM_END]
+  @State isLocalizedAlignmentIndex: number = 4
+  @State isDirection: Direction[] = [Direction.Ltr, Direction.Rtl, Direction.Auto]
+  @State isDirectionIndex: number = 0
+
+  build() {
+    Row() {
+      Column() {
+        Row() {
+          Button('TOP_START')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 0
+            })
+          Button('TOP')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 1
+            })
+          Button('TOP_END')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 2
+            })
+        }
+
+        Row() {
+          Button('START')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 3
+            })
+          Button('CENTER')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 4
+            })
+          Button('END')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 5
+            })
+        }
+
+        Row() {
+          Button('BOTTOM_START')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 6
+            })
+          Button('BOTTOM')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 7
+            })
+          Button('BOTTOM_END')
+            .onClick(() => {
+              this.isLocalizedAlignmentIndex = 8
+            })
+        }
+
+        Row() {
+          Button('Ltr')
+            .onClick(() => {
+              this.isDirectionIndex = 0
+            })
+          Button('Rtl')
+            .onClick(() => {
+              this.isDirectionIndex = 1
+            })
+          Button('Auto')
+            .onClick(() => {
+              this.isDirectionIndex = 2
+            })
+        }
+        Button('OK', { type: ButtonType.Capsule, stateEffect: true })
+          .backgroundColor(0x317aff)
+          .width(210)
+          .height(100)
+          .direction(this.isDirection[this.isDirectionIndex])
+          .align(this.isLocalizedAlignment[this.isLocalizedAlignmentIndex])
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![position.png](figures/position4.png)

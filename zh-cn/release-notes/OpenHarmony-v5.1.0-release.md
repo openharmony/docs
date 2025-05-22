@@ -128,8 +128,6 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - RelationalStore新增rootDir配置，支持打开非database目录下的数据库。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)）
 
-- ArkData RDB向量数据管理新增提供向量数据存近似查询解决方案。（[指南-ArkTS](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/database/data-persistence-by-vector-store.md)、[指南-C/C++](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/database/native-vector-store-guidelines.md)）
-
 - 关系型数据库新增支持根据指定的列索引或列名称获取列数据类型。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-relationalStore.md#getcolumntype18)）
 
 - UDMF新增支持将传入的data转换成多样式数据结构的能力。若原data使用多个record去承载同一份数据的不同样式，则可以使用此接口将原data转换为多样式数据结构。（[API参考](https://gitee.com/openharmony/docs/blob/OpenHarmony-5.1.0-Release/zh-cn/application-dev/reference/apis-arkdata/js-apis-data-unifiedDataChannel.md#unifieddatachannelconvertrecordstoentries17)）
@@ -303,7 +301,7 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 | 软件 | 版本 | 备注 | 
 | -------- | -------- | -------- |
 | OpenHarmony | 5.1.0 Release | NA | 
-| Public SDK | Ohos_sdk_public 5.1.0.165 (API Version 15 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
+| Public SDK | Ohos_sdk_public 5.1.0.107 (API Version 18 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 | 
 | HUAWEI DevEco Studio（可选） | 5.1.0 Release | OpenHarmony应用开发推荐使用。<br/>*待发布* | 
 | HUAWEI DevEco Device Tool（可选） | 4.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 | 
 
@@ -339,7 +337,7 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 - 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
    ```
-   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.1.o-Release --no-repo-verify
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-5.1.0-Release --no-repo-verify
    repo sync -c
    repo forall -c 'git lfs pull'
    ```
@@ -377,14 +375,14 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 5.1.0 Release    | *上传中* | *上传中* | *上传中* |
+| 全量代码（标准、轻量和小型系统）        | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/code-v5.1.0-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/code-v5.1.0-Release.tar.gz.sha256) | 49.1 GB |
 | Hi3861解决方案（二进制）        | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_pegasus.tar.gz.sha256) | 28.4 MB |
 | Hi3516解决方案-LiteOS（二进制） | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 350.0 MB |
 | Hi3516解决方案-Linux（二进制）  | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/hispark_taurus_Linux.tar.gz.sha256) | 223.6 MB |
 | RK3568标准系统解决方案（二进制）        | 5.1.0 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/dayu200_standard_arm32.tar.gz.sha256) | 	9.7 GB |
-| 标准系统Public SDK包（Mac）             | 5.1.0.165 | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
-| 标准系统Public SDK包（Mac-M1）             | 5.1.0.165  | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
-| 标准系统Public SDK包（Windows/Linux）   | 5.1.0.165   | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 3.2 GB |
+| 标准系统Public SDK包（Mac）             | 5.1.0.107 | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-mac-public.tar.gz.sha256) | 1.3 GB |
+| 标准系统Public SDK包（Mac-M1）             | 5.1.0.107  | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 1.2 GB |
+| 标准系统Public SDK包（Windows/Linux）   | 5.1.0.107   | [站点](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/5.1.0-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 3.2 GB |
 
 
 ## 修复缺陷列表
@@ -403,8 +401,19 @@ OpenHarmony 5.1.0 Release版本正式推出API 18。相比前一个Release版本
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 | 
 | -------- | -------- | -------- | -------- |
-| IBTCKR | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 | 轻微影响使用体验。 | 2025年4月30日 |
-| IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年4月30日 | 
-| IBE36X</br>IBO3MF | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年4月30日 |
+| IBTCKR | SystemUI状态栏下拉到内容渲染耗完成时的完整用时可能稍长（160+ ms）。 | 轻微影响使用体验。 | 2025年5月30日 |
+| IBBZPS | 进程com.ohos.systemui下的OS_IPC_0_1067线程小概率出现cppcrash，崩溃栈：ld-musl-arm.so.1(__libc_free+172) | 系统异常，用户无感知。 | 2025年5月30日 | 
+| IBE36X</br>IBO3MF | 进程render_service小概率出现因SERVICE_BLOCK导致的的sysfreeze问题。 | 桌面无响应后黑屏，自动恢复后回到桌面。 | 2025年5月30日 |
+| IC313T | 图库缩略图列表滑动的动画帧率未达到基线要求。 | 轻微影响使用体验。预计5月10日解决后评估回合5.1.0版本。 | 2025年5月10日 | 
+| IC32I0 | 浏览器微博首页滑动、浏览器天猫界面缩放的动画帧率未达到基线要求。 | 轻微影响使用体验。 | 2025年5月30日 | 
+| IC32SL | 首次启动浏览器到启动完成的耗时稍长，未达到基线要求。 | 轻微影响使用体验。 | 2025年6月23日 | 
+| IBUCOT | com.ohos.settingsdata进程的常驻内存实测值为16MB，远超基线要求。  | 内存占用不符合预期，对实际使用无影响。 | 2025年5月30日 | 
+| IC4UFM | 通话拨号盘按键的按键响应时延稍长，未达到基线要求。  | 轻微影响使用体验。 | 2025年5月16日 | 
+| IC04TG | 进程com.ohos.note下的com.ohos.note线程有一定概率出现因libarkweb_engine.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月8日 | 
+| IBZYWM | 进程com.ohos.note下的CompositorGpuTh线程有一定概率出现因libmali-bifrost-g52-g7p0-ohos.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月8日 | 
+| IC22OQ | 进程com.ohos.note下的RSRenderThread线程小概率出现因libskia_canvaskit.z.so导致的cppcrash。  | 备忘录应用异常，重启可恢复。 | 2025年5月15日 | 
+| IC4ZPS | 执行XTS测试时，ActslocationErrorCodeApiTest测试套因RK3568开发板位置服务不支持Geofence能力导致执行结果出现失败项。  | 该问题已在master解决，可通过增加配置项处理。<br/>配置方式可参考https://gitee.com/openharmony/vendor_hihope/pulls/1505 | 2025年4月30日 | 
+| IC57IO | 桌面->右上角下划进入控制中心->点击控制中心飞行模式，该操作按钮功能失效。  | 该问题已在master解决，可手动修改代码规避。<br/>处理方式可参考https://gitee.com/openharmony/distributeddatamgr_datamgr_service/pulls/2967 | 2025年4月30日 | 
+
 
 <!--no_check-->

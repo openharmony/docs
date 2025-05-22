@@ -1,4 +1,4 @@
-# @ohos.abilityConnectionManager (应用多端协同管理)
+# @ohos.distributedsched.abilityConnectionManager (应用多端协同管理)
 
 abilityConnectionManager模块提供了应用协同接口管理能力。设备组网成功（需登录同账号、双端打开蓝牙）后，系统应用和三方应用可以跨设备拉起同应用的一个[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)，拉起并连接成功后可实现跨设备数据传输（文本信息）。
 
@@ -336,7 +336,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
       abilityConnectionManager.acceptConnect(sessionId, collabToken).then(() => {
         hilog.info(0x0000, 'testTag', 'acceptConnect success');
       }).catch(() => {
-        hilog.error("failed");
+        hilog.error(0x0000, 'testTag', 'failed'); 
       })
     }
 

@@ -6,7 +6,7 @@
 >
 > 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](../js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > 该组件不支持在Wearable设备上使用。
 
@@ -58,8 +58,8 @@ static show(options?: TextPickerDialogOptions)
 | onScrollStop<sup>14+</sup> | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 | 滑动弹窗中的选择器的选择列停止触发该回调。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | backgroundColor<sup>11+</sup> | [ResourceColor](ts-types.md#resourcecolor)  | 否 | 弹窗背板颜色。<br/>默认值：Color.Transparent<br/>**说明：** <br/>当设置了backgroundColor为非透明色时，backgroundBlurStyle需要设置为BlurStyle.NONE，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyle<sup>11+</sup> | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 否 | 弹窗背板模糊材质。<br/>默认值：BlurStyle.COMPONENT_ULTRA_THICK<br/>**说明：** <br/>设置为BlurStyle.NONE即可关闭背景虚化。当设置了backgroundBlurStyle为非NONE值时，则不要设置backgroundColor，否则颜色显示将不符合预期效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| backgroundBlurStyleOptions<sup>18+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
-| backgroundEffect<sup>18+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyleOptions<sup>19+</sup> | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明) | 否 | 背景模糊效果。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
+| backgroundEffect<sup>19+</sup> | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11) | 否 | 背景效果参数。<br />**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | onDidAppear<sup>12+</sup> | () => void | 否 | 弹窗弹出时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange/onScrollStop)>>onWillDisappear>>onDidDisappear。<br />2.在onDidAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br />3.快速点击弹出，消失弹窗时，存在onWillDisappear在onDidAppear前生效。<br />4. 当弹窗入场动效未完成时关闭弹窗，该回调不会触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onDidDisappear<sup>12+</sup> | () => void | 否 | 弹窗消失时的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange/onScrollStop)>>onWillDisappear>>onDidDisappear。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | onWillAppear<sup>12+</sup> | () => void | 否 | 弹窗显示动效前的事件回调。<br />**说明：**<br />1.正常时序依次为：onWillAppear>>onDidAppear>>(onAccept/onCancel/onChange/onScrollStop)>>onWillDisappear>>onDidDisappear。<br />2.在onWillAppear内设置改变弹窗显示效果的回调事件，二次弹出生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
@@ -98,8 +98,8 @@ static show(options?: TextPickerDialogOptions)
 @Entry
 @Component
 struct TextPickerDialogExample {
-  private select: number | number[] = 0
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select: number | number[] = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
   @State v: string = '';
 
   build() {
@@ -115,34 +115,34 @@ struct TextPickerDialogExample {
               defaultPickerItemHeight: 40,
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-                this.select = value.index
-                console.log(this.select + '')
+                this.select = value.index;
+                console.log(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
-                this.v = value.value as string
-                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+                this.v = value.value as string;
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
               },
               onCancel: () => {
-                console.info("TextPickerDialog:onCancel()")
+                console.info("TextPickerDialog:onCancel()");
               },
               onChange: (value: TextPickerResult) => {
-                console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+                console.info("TextPickerDialog:onChange()" + JSON.stringify(value));
               },
               onScrollStop: (value: TextPickerResult) => {
-                console.info("TextPickerDialog:onScrollStop()" + JSON.stringify(value))
+                console.info("TextPickerDialog:onScrollStop()" + JSON.stringify(value));
               },
               onDidAppear: () => {
-                console.info("TextPickerDialog:onDidAppear()")
+                console.info("TextPickerDialog:onDidAppear()");
               },
               onDidDisappear: () => {
-                console.info("TextPickerDialog:onDidDisappear()")
+                console.info("TextPickerDialog:onDidDisappear()");
               },
               onWillAppear: () => {
-                console.info("TextPickerDialog:onWillAppear()")
+                console.info("TextPickerDialog:onWillAppear()");
               },
               onWillDisappear: () => {
-                console.info("TextPickerDialog:onWillDisappear()")
+                console.info("TextPickerDialog:onWillDisappear()");
               }
-            })
+            });
           })
       }.width('100%')
     }.height('100%')
@@ -162,8 +162,8 @@ struct TextPickerDialogExample {
 @Entry
 @Component
 struct TextPickerDialogExample {
-  private select: number | number[] = 0
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select: number | number[] = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
   @State v: string = '';
 
   build() {
@@ -204,34 +204,34 @@ struct TextPickerDialogExample {
               },
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-                this.select = value.index
-                console.log(this.select + '')
+                this.select = value.index;
+                console.log(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
-                this.v = value.value as string
-                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+                this.v = value.value as string;
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
               },
               onCancel: () => {
-                console.info("TextPickerDialog:onCancel()")
+                console.info("TextPickerDialog:onCancel()");
               },
               onChange: (value: TextPickerResult) => {
-                console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+                console.info("TextPickerDialog:onChange()" + JSON.stringify(value));
               },
               onScrollStop: (value: TextPickerResult) => {
-                console.info("TextPickerDialog:onScrollStop()" + JSON.stringify(value))
+                console.info("TextPickerDialog:onScrollStop()" + JSON.stringify(value));
               },
               onDidAppear: () => {
-                console.info("TextPickerDialog:onDidAppear()")
+                console.info("TextPickerDialog:onDidAppear()");
               },
               onDidDisappear: () => {
-                console.info("TextPickerDialog:onDidDisappear()")
+                console.info("TextPickerDialog:onDidDisappear()");
               },
               onWillAppear: () => {
-                console.info("TextPickerDialog:onWillAppear()")
+                console.info("TextPickerDialog:onWillAppear()");
               },
               onWillDisappear: () => {
-                console.info("TextPickerDialog:onWillDisappear()")
+                console.info("TextPickerDialog:onWillDisappear()");
               }
-            })
+            });
           })
       }.width('100%')
     }.height('100%')
@@ -296,7 +296,7 @@ struct TextPickerDialogExample {
               },
               enableHoverMode: true,
               hoverModeArea: HoverModeAreaType.TOP_SCREEN
-            })
+            });
           })
       }.width('100%')
     }.height('100%')
@@ -315,8 +315,8 @@ struct TextPickerDialogExample {
 @Entry
 @Component
 struct TextPickerDialogExample {
-  private select: number | number[] = 0
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select: number | number[] = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
   @State v: string = '';
 
   build() {
@@ -332,13 +332,13 @@ struct TextPickerDialogExample {
               offset: { dx: 20, dy: 0 },
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-                this.select = value.index
-                console.log(this.select + '')
+                this.select = value.index;
+                console.log(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
-                this.v = value.value as string
-                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+                this.v = value.value as string;
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
               }
-            })
+            });
           })
       }.width('100%')
     }.height('100%')
@@ -357,8 +357,8 @@ struct TextPickerDialogExample {
 @Entry
 @Component
 struct TextPickerDialogExample {
-  private select: number | number[] = 0
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select: number | number[] = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
   @State v: string = '';
 
   build() {
@@ -378,13 +378,13 @@ struct TextPickerDialogExample {
               },
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-                this.select = value.index
-                console.log(this.select + '')
+                this.select = value.index;
+                console.log(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
-                this.v = value.value as string
-                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+                this.v = value.value as string;
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
               }
-            })
+            });
           })
       }.width('100%')
     }.height('100%')
@@ -403,8 +403,8 @@ struct TextPickerDialogExample {
 @Entry
 @Component
 struct TextPickerDialogExample {
-  private select: number | number[] = 0
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select: number | number[] = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
   @State v: string = '';
 
   build() {
@@ -421,13 +421,13 @@ struct TextPickerDialogExample {
               shadow: ShadowStyle.OUTER_FLOATING_SM,
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-                this.select = value.index
-                console.log(this.select + '')
+                this.select = value.index;
+                console.log(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
-                this.v = value.value as string
-                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+                this.v = value.value as string;
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
               }
-            })
+            });
           })
       }.width('100%')
     }.height('100%')
@@ -447,8 +447,8 @@ struct TextPickerDialogExample {
 @Entry
 @Component
 struct TextPickerDialogExample {
-  private select: number | number[] = 0
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select: number | number[] = 0;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
   @State v: string = '';
 
   build() {
@@ -464,13 +464,13 @@ struct TextPickerDialogExample {
               canLoop: false,
               onAccept: (value: TextPickerResult) => {
                 // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-                this.select = value.index
-                console.log(this.select + '')
+                this.select = value.index;
+                console.log(this.select + '');
                 // 点击确定后，被选到的文本数据展示到页面
-                this.v = value.value as string
-                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+                this.v = value.value as string;
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value));
               }
-            })
+            });
           })
       }.width('100%')
     }.height('100%')

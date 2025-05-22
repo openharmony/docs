@@ -268,32 +268,34 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Create a SoundPool instance.
-let soundPool: media.SoundPool;
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
-}
-let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
-  if (error) {
-    console.error(`Failed to createSoundPool`)
-    return;
-  } else {
-    soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
-    // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
-    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
-      if (error) {
-        console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
-      } else {
-        soundID = soundId_;
-        console.info('Succeeded in loading soundId:' + soundId_);
-      }
-    });
+function create(context: Context) {
+  // Create a SoundPool instance.
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
   }
-});
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      // The test_01.mp3 file is an audio file in the rawfile directory.
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length, (error: BusinessError, soundId_: number) => {
+        if (error) {
+          console.error(`Failed to load soundPool: errCode is ${error.code}, errMessage is ${error.message}`)
+        } else {
+          soundID = soundId_;
+          console.info('Succeeded in loading soundId:' + soundId_);
+        }
+      });
+    }
+  });
+}
 
 ```
 
@@ -381,30 +383,32 @@ import { media } from '@kit.MediaKit';
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Create a SoundPool instance.
-let soundPool: media.SoundPool;
-let audioRendererInfo: audio.AudioRendererInfo = {
-  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-  rendererFlags: 1
-}
-let soundID: number = 0;
-media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
-  if (error) {
-    console.error(`Failed to createSoundPool`)
-    return;
-  } else {
-    soundPool = soundPool_;
-    console.info(`Succeeded in createSoundPool`)
-    // The test_01.mp3 file is an audio file in the rawfile directory.
-    let fileDescriptor = await getContext().resourceManager.getRawFd('test_01.mp3');
-    soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
-      console.info('Succeeded in loading soundpool');
-      soundID = soundId;
-    }, (err: BusinessError) => {
-      console.error('Failed to load soundpool and catch error is ' + err.message);
-    });
+function create(context: Context) {
+  // Create a SoundPool instance.
+  let soundPool: media.SoundPool;
+  let audioRendererInfo: audio.AudioRendererInfo = {
+    usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+    rendererFlags: 1
   }
-});
+  let soundID: number = 0;
+  media.createSoundPool(5, audioRendererInfo, async (error: BusinessError, soundPool_: media.SoundPool) => {
+    if (error) {
+      console.error(`Failed to createSoundPool`)
+      return;
+    } else {
+      soundPool = soundPool_;
+      console.info(`Succeeded in createSoundPool`)
+      // The test_01.mp3 file is an audio file in the rawfile directory.
+      let fileDescriptor = await context.resourceManager.getRawFd('test_01.mp3');
+      soundPool.load(fileDescriptor.fd, fileDescriptor.offset, fileDescriptor.length).then((soundId: number) => {
+        console.info('Succeeded in loading soundpool');
+        soundID = soundId;
+      }, (err: BusinessError) => {
+        console.error('Failed to load soundpool and catch error is ' + err.message);
+      });
+    }
+  });
+}
 
 ```
 
