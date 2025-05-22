@@ -9,6 +9,8 @@ The Camera_FrameShutterEndInfo struct describes the frame shutter end informatio
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera.h](camera_8h.md)
+
 
 ## Summary
 

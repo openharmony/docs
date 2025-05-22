@@ -5,11 +5,13 @@
   - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - [@ohos.inputMethod.Panel (输入法面板)](js-apis-inputmethod-panel.md)
   - [@ohos.InputMethodSubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
-  - [@ohos.inputMethod (输入法框架)(系统接口)](js-apis-inputmethod-sys.md)
   - [@ohos.inputMethod (输入法框架)](js-apis-inputmethod.md)
   - [@ohos.inputMethodEngine (输入法服务)](js-apis-inputmethodengine.md)
-  - [@ohos.inputMethodEngine (输入法服务)(系统接口)](js-apis-inputmethodengine-sys.md)
   - [@ohos.inputMethodList (输入法切换列表控件)](js-apis-inputmethodlist.md)
+  <!--Del-->
+  - [@ohos.inputMethodEngine (输入法服务)(系统接口)](js-apis-inputmethodengine-sys.md)
+  - [@ohos.inputMethod (输入法框架)(系统接口)](js-apis-inputmethod-sys.md)
+  <!--EndDel-->
 - C API<!--ime-c-->
   - 模块<!--ime-module-->
     - [InputMethod](_input_method.md)

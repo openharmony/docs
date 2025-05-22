@@ -2,7 +2,7 @@
 
 Buffer对象用于表示固定长度的字节序列，是专门存放二进制数据的缓存区。
 
-**推荐使用场景：** 可用于处理大量二进制数据，图片处理、文件接收上传等。
+**推荐使用场景：** 适用于处理大量二进制数据，如图片处理和文件接收上传等。
 
 > **说明：**
 >
@@ -40,7 +40,7 @@ import { buffer } from '@kit.ArkTS';
 
 alloc(size: number, fill?: string | Buffer | number, encoding?: BufferEncoding): Buffer
 
-创建一定字节长度的Buffer对象，并初始化。
+创建指定字节长度的Buffer对象并初始化。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -82,8 +82,8 @@ let buf3 = buffer.alloc(11, 'aGVsbG8gd29ybGQ=', 'base64');
 
 allocUninitializedFromPool(size: number): Buffer
 
-创建指定大小未被初始化的Buffer对象。内存从缓冲池分配。
-创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
+创建指定大小未初始化的Buffer对象。内存从缓冲池分配。
+创建的Buffer内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -122,7 +122,7 @@ buf.fill(0);
 
 allocUninitialized(size: number): Buffer
 
-创建指定大小未被初始化的Buffer实例。内存不从缓冲池分配。
+创建指定大小未初始化的Buffer对象。内存不从缓冲池分配。
 创建的Buffer的内容未知，需要使用[fill](#fill)函数来初始化Buffer对象。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
@@ -162,7 +162,7 @@ buf.fill(0);
 
 byteLength(string: string | Buffer | TypedArray | DataView | ArrayBuffer | SharedArrayBuffer, encoding?: BufferEncoding): number
 
-根据不同的编码方法，返回指定字符串的字节数。
+根据不同的编码格式，返回指定字符串的字节数。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -203,7 +203,7 @@ console.info(`${str}: ${str.length} characters, ${buffer.byteLength(str, 'utf-8'
 
 compare(buf1: Buffer | Uint8Array, buf2: Buffer | Uint8Array): -1 | 0 | 1
 
-返回两个数组的比较结果，通常用于对Buffer对象数组进行排序。
+返回两个Buffer对象的比较结果，通常用于对Buffer对象数组进行排序。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -331,7 +331,7 @@ console.info(buf.toString('hex'));
 
 from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?: number): Buffer
 
-创建指定长度的与`arrayBuffer`共享内存的Buffer对象。
+创建与`arrayBuffer`共享内存的指定长度的Buffer对象。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -349,7 +349,7 @@ from(arrayBuffer: ArrayBuffer | SharedArrayBuffer, byteOffset?: number, length?:
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回一个Buffer对象，与入参对象保持内存共享。 |
+| Buffer | 返回一个Buffer对象，该对象与入参对象`arrayBuffer`共享相同的内存区域。 |
 
 **错误码：**
 
@@ -373,8 +373,8 @@ let buf = buffer.from(ab, 0, 2);
 
 from(buffer: Buffer | Uint8Array): Buffer
 
-当入参为Buffer对象时，创建并复制入参Buffer对象数据到新的Buffer对象并返回。</br>
-当入参为Uint8Array对象时，创建的Buffer对象持有Uint8Array对象的内存并返回，保持数据的内存关联。
+当入参为Buffer对象时，创建新的Buffer对象并复制入参Buffer对象的数据，然后返回新对象。
+当入参为Uint8Array对象时，基于Uint8Array对象的内存创建新的Buffer对象并返回，保持数据的内存关联。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -588,7 +588,7 @@ console.info(buffer.isEncoding('').toString());
 
 transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
-将给定的Buffer或Uint8Array对象从一种字符编码重新编码为另一种。
+将Buffer或Uint8Array对象从一种字符编码重新编码为另一种。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -606,7 +606,7 @@ transcode(source: Buffer | Uint8Array, fromEnc: string, toEnc: string): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 根据当前编码转换成目标编码，并返回一个新的buffer实例。 |
+| Buffer | 将当前编码转换成目标编码，并返回一个新的Buffer对象。 |
 
 **错误码：**
 
@@ -667,7 +667,7 @@ console.info(JSON.stringify(buf.byteOffset));
 
 compare(target: Buffer | Uint8Array, targetStart?: number, targetEnd?: number, sourceStart?: number, sourceEnd?: number): -1 | 0 | 1
 
-当前Buffer对象与目标Buffer对象进行比较，并返回Buffer在排序中的顺序结果。
+比较当前Buffer对象与目标Buffer对象，并返回Buffer在排序中的结果。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -852,7 +852,7 @@ console.info(buf1.equals(buf3).toString());
 
 fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number, encoding?: BufferEncoding): Buffer
 
-用`value`填充当前对象指定位置的数据，默认为循环填充，并返回填充后的Buffer对象。
+使用`value`填充当前对象指定位置的数据，默认为循环填充，并返回填充后的Buffer对象。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -871,7 +871,7 @@ fill(value: string | Buffer | Uint8Array | number, offset?: number, end?: number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回一个填充后的Buffer对象。 |
+| Buffer | 返回填充后的Buffer对象。 |
 
 **错误码：**
 
@@ -941,7 +941,7 @@ console.info(buf.includes('be').toString());
 
 indexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
-查找当前对象中第一次出现`value`的索引，如果不包含`value`，则为-1。
+返回当前对象中首次出现`value`的索引，如果不包含`value`，则返回-1。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -985,7 +985,7 @@ console.info(buf.indexOf('is').toString());
 
 keys(): IterableIterator&lt;number&gt;
 
-返回一个包含key值的迭代器。
+返回包含key值的迭代器。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1021,7 +1021,7 @@ for (const key of numbers) {
 
 lastIndexOf(value: string | number | Buffer | Uint8Array, byteOffset?: number, encoding?: BufferEncoding): number
 
-返回`this`实例中最后一次出现`value`的索引，如果对象不包含，则为-1。
+返回`this`实例中最后一次出现`value`的索引，如果对象不包含`value`，则返回-1。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1253,7 +1253,7 @@ console.info("result = " + result);
 
 readDoubleBE(offset?: number): number
 
-从指定`offset`处读取64位大端序双精度值。
+从指定的`offset`处读取64位大端序双精度值。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1298,7 +1298,7 @@ console.info("result = " + result);
 
 readDoubleLE(offset?: number): number
 
-从指定`offset`处读取64位小端序双精度值。
+从指定的`offset`处读取64位小端序双精度值。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1343,7 +1343,7 @@ console.info("result = " + result);
 
 readFloatBE(offset?: number): number
 
-从指定`offset`处读取32位大端序浮点数。
+从指定的`offset`处读取32位大端序浮点数。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1388,7 +1388,7 @@ console.info("result = " + result);
 
 readFloatLE(offset?: number): number
 
-从指定`offset`处读取32位小端序浮点数。
+从指定的`offset`处读取32位小端序浮点数。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1660,7 +1660,7 @@ console.info("result = " + result);
 
 readIntBE(offset: number, byteLength: number): number
 
-从指定的`offset`处的buf读取byteLength个字节，并将结果解释为支持最高48位精度的大端序、二进制补码有符号值。
+从指定的`offset`处读取byteLength个字节，并将结果解释为支持最高48位精度的大端序、二进制补码有符号值。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1709,7 +1709,7 @@ console.info("result = " + result);
 
 readIntLE(offset: number, byteLength: number): number
 
-从指定的`offset`处的buf读取`byteLength`个字节，并将结果解释为支持最高48位精度的小端序、二进制补码有符号值。
+从指定的`offset`处读取`byteLength`个字节，并将结果解释为支持最高48位精度的小端序、二进制补码有符号值。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1804,7 +1804,7 @@ console.info("result = " + result);
 
 readUInt16BE(offset?: number): number
 
-从指定的`offset`处的buf读取无符号的大端序16位整数。
+从指定的`offset`处读取无符号的大端序16位整数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2103,7 +2103,7 @@ subarray(start?: number, end?: number): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 返回新的Buffer对象。当start < 0或end < 0时返回一个空Buffer。 |
+| Buffer | 返回新的Buffer对象。当start < 0或end < 0时返回空Buffer。 |
 
 **示例：**
 
@@ -2124,7 +2124,7 @@ console.info(buf2.toString('ascii', 0, buf2.length));
 
 swap16(): Buffer
 
-将当前对象解释为无符号的16位整数数组，并交换字节顺序。
+将当前对象转换为无符号的16位整数数组，并交换字节顺序。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2135,7 +2135,7 @@ swap16(): Buffer
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Buffer | 交换之后的Buffer实例。 |
+| Buffer | 交换之后的Buffer对象。 |
 
 **错误码：**
 
@@ -2162,7 +2162,7 @@ console.info(buf1.toString('hex'));
 
 swap32(): Buffer
 
-将当前对象解释为无符号的32位整数数组，并交换字节顺序。
+将当前对象转换为无符号的32位整数数组，并交换字节顺序。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2200,7 +2200,7 @@ console.info(buf1.toString('hex'));
 
 swap64(): Buffer
 
-将当前对象解释为无符号的64位整数数组，并交换字节顺序。
+将当前对象转换为无符号的64位整数数组，并交换字节顺序。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2266,7 +2266,7 @@ console.info(JSON.stringify(obj));
 
 toString(encoding?: string, start?: number, end?: number): string
 
-将当前对象中指定位置数据转成指定编码格式字符串并返回。
+将当前对象中指定位置的数据转成指定编码格式的字符串并返回。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2349,7 +2349,7 @@ while (!next.done) {
 
 write(str: string, offset?: number, length?: number, encoding?: string): number
 
-从Buffer对象的offset偏移写入指定编码的字符串str，写入的字节长度为length。
+在Buffer对象的offset偏移处写入指定编码的字符串，写入的字节长度为length。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2400,7 +2400,7 @@ console.info("length = " + length);
 
 writeBigInt64BE(value: bigint, offset?: number): number
 
-从Buffer对象的offset偏移写入有符号的大端序64位BigInt型数据value。
+在Buffer对象的offset偏移处写入有符号的大端序64位BigInt型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2444,7 +2444,7 @@ console.info("result = " + result);
 
 writeBigInt64LE(value: bigint, offset?: number): number
 
-从Buffer对象的offset偏移写入有符号的小端序64位BigInt型数据value。
+在Buffer对象的offset偏移处写入有符号的小端序64位BigInt型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2490,7 +2490,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
-从Buffer对象的offset偏移写入无符号的大端序64位BigUInt型数据value。
+在Buffer对象的offset偏移处写入无符号的大端序64位BigUInt型数据。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -2532,7 +2532,7 @@ console.info("result = " + result);
 
 writeBigUInt64LE(value: bigint, offset?: number): number
 
-从Buffer对象的offset偏移写入无符号的小端序64位BigUInt型数据value。
+在Buffer对象的offset偏移处写入无符号的小端序64位BigUInt型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2576,7 +2576,7 @@ console.info("result = " + result);
 
 writeDoubleBE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入大端序的64位双浮点型数据value。
+在Buffer对象的offset偏移处写入大端序的64位双浮点型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2620,7 +2620,7 @@ console.info("result = " + result);
 
 writeDoubleLE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入小端序的64位双浮点型数据value。
+在Buffer对象的offset偏移处写入小端序的64位双浮点型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2664,7 +2664,7 @@ console.info("result = " + result);
 
 writeFloatBE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入大端序的32位浮点型数据value。
+在Buffer对象的offset偏移处写入大端序的32位浮点型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2709,7 +2709,7 @@ console.info("result = " + result);
 
 writeFloatLE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入小端序的32位浮点型数据value。
+在Buffer对象的offset偏移处写入小端序的32位浮点型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2753,7 +2753,7 @@ console.info("result = " + result);
 
 writeInt8(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入8位有符号整型数据value。
+在Buffer对象的offset偏移处写入8位有符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2801,7 +2801,7 @@ console.info("result1 = " + result1);
 
 writeInt16BE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入大端序的16位有符号整型数据value。
+在Buffer对象的offset偏移处写入大端序的16位有符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2846,7 +2846,7 @@ console.info("result = " + result);
 
 writeInt16LE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入小端序的16位有符号整型数据value。
+在Buffer对象的offset偏移处写入小端序的16位有符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2890,7 +2890,7 @@ console.info("result = " + result);
 
 writeInt32BE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入大端序的32位有符号整型数据value。
+在Buffer对象的offset偏移处写入大端序的32位有符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2935,7 +2935,7 @@ console.info("result = " + result);
 
 writeInt32LE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入小端序的32位有符号整型数据value。
+在Buffer对象的offset偏移处写入小端序的32位有符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2979,7 +2979,7 @@ console.info("result = " + result);
 
 writeIntBE(value: number, offset: number, byteLength: number): number
 
-从Buffer对象的offset偏移写入大端序的有符号value数据，value字节长度为byteLength。
+在Buffer对象的offset偏移处写入大端序的有符号数据，字节长度为byteLength。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3025,7 +3025,7 @@ console.info("result = " + result);
 
 writeIntLE(value: number, offset: number, byteLength: number): number
 
-从Buffer对象的offset偏移写入小端序的有符号value数据，value字节长度为byteLength。
+在Buffer对象的offset偏移处写入小端序的有符号数据，字节长度为byteLength。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3070,7 +3070,7 @@ console.info("result = " + result);
 
 writeUInt8(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入8位无符号整型数据value。
+在Buffer对象的offset偏移处写入8位无符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3123,7 +3123,7 @@ console.info("result3 = " + result3);
 
 writeUInt16BE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入大端序的16位无符号整型数据value。
+在Buffer对象的offset偏移处写入大端序的16位无符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3170,7 +3170,7 @@ console.info("result1 = " + result1);
 
 writeUInt16LE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入小端序的16位无符号整型数据value。
+在Buffer对象的offset偏移处写入小端序的16位无符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3217,7 +3217,7 @@ console.info("result1 = " + result1);
 
 writeUInt32BE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入大端序的32位无符号整型数据value。
+在Buffer对象的offset偏移处写入大端序的32位无符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3261,7 +3261,7 @@ console.info("result = " + result);
 
 writeUInt32LE(value: number, offset?: number): number
 
-从Buffer对象的offset偏移写入小端序的32位无符号整型数据value。
+在Buffer对象的offset偏移处写入小端序的32位无符号整型数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3271,7 +3271,7 @@ writeUInt32LE(value: number, offset?: number): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | number | 是 | 写入Buffer对象的数字。 |
+| value | number | 是 | 写入Buffer对象的数据。 |
 | offset | number | 否 | 偏移量。默认值：0。取值范围：0 <= offset <= Buffer.length - 4。 |
 
 
@@ -3305,7 +3305,7 @@ console.info("result = " + result);
 
 writeUIntBE(value: number, offset: number, byteLength: number): number
 
-从Buffer对象的offset偏移写入大端序的无符号value数据，value字节长度为byteLength。
+在Buffer对象的offset偏移处写入大端序的无符号数据，字节长度为byteLength。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3350,7 +3350,7 @@ console.info("result = " + result);
 
 writeUIntLE(value: number, offset: number, byteLength: number): number
 
-从Buffer对象的offset偏移写入小端序的无符号value数据，value字节长度为byteLength。
+在Buffer对象的offset偏移处写入小端序的无符号数据，字节长度为byteLength。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3447,7 +3447,7 @@ let blob1: buffer.Blob = new buffer.Blob(['a', 'b', 'c'], o1);
 
 arrayBuffer(): Promise&lt;ArrayBuffer&gt;
 
-将Blob中的数据放入到ArrayBuffer中，并返回一个Promise。
+将Blob数据放入ArrayBuffer中，并返回一个Promise。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3474,7 +3474,7 @@ pro.then((val: ArrayBuffer) => {
 
 slice(start?: number, end?: number, type?: string): Blob
 
-创建并返回一个复制原Blob对象中指定数据长度的Blob新对象。
+创建并返回一个包含原Blob对象中指定长度数据的新Blob对象。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3506,7 +3506,7 @@ let blob3 = blob.slice(0, 2, "MIME");
 
 text(): Promise&lt;string&gt;
 
-使用UTF8进行解码并返回一个文本。使用Promise异步回调。
+使用UTF8解码并返回文本。使用Promise进行异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -18,7 +18,7 @@ HiAppEvent提供接口用于订阅系统卡死事件。
 | process_name | string | 应用的进程名称。 |
 | pid | number | 应用的进程id。|
 | uid | number | 应用的用户id。 |
-| uuid | string | 故障id。 |
+| uuid | string | 根据故障信息生成的故障特征码，用于标识特征相同的崩溃故障。 |
 | exception | object | 异常信息，详见exception属性。 |
 | hilog | string[] | 日志信息。|
 | event_handler | string[] | 主线程未处理消息。 |

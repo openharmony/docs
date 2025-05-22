@@ -1,17 +1,14 @@
 # \@Reusable装饰器：组件复用
 
+## 概述
 
-\@Reusable装饰器装饰任意自定义组件时，表示该自定义组件可以复用。
+使用\@Reusable装饰器时，表示该自定义组件可以复用。与\@Component结合使用，标记为\@Reusable的自定义组件在从组件树中移除时，组件及其对应的JS对象将被放入复用缓存中。后续创建新自定义组件节点时，将复用缓存中的节点，从而节约组件重新创建的时间。
 
 > **说明：**
 >
-> 从API version 10开始，对\@Reusable进行支持，支持在ArkTS中使用。
-
-
-
-## 概述
-
-- \@Reusable适用自定义组件，与\@Component结合使用，标记为\@Reusable的自定义组件从组件树上被移除时，组件和其对应的JSView对象都会被放入复用缓存中，后续创建新自定义组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
+> API version 10开始支持@Reusable，支持在ArkTS中使用。
+>
+> 关于组件复用的原理与使用、优化方法、适用场景，请参考最佳实践[组件复用最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-component-reuse)。
 
 ## 限制条件
 
@@ -20,7 +17,7 @@
 ```ts
 import { ComponentContent } from "@kit.ArkUI";
 
-// @Builder加上@Reusable编译报错,不适用于builder
+// @Builder加上@Reusable编译报错,不适用于builder。
 // @Reusable
 @Builder
 function buildCreativeLoadingDialog(closedClick: () => void) {
@@ -82,7 +79,7 @@ function buildCreativeLoadingDialog(closedClick: () => void) {
   Crash()
 }
 
-// 如果注释掉就可以正常弹出弹窗，如果加上@Reusable就直接crash
+// 如果注释掉就可以正常弹出弹窗，如果加上@Reusable就直接crash。
 @Reusable
 @Component
 export struct Crash {
@@ -118,7 +115,7 @@ struct Index {
           middle: { anchor: '__container__', align: HorizontalAlign.Center }
         })
         .onClick(() => {
-          // ComponentContent底层是buildNode，buildNode不支持传入@Reusable注解的自定义组件
+          // ComponentContent底层是buildNode，buildNode不支持传入@Reusable注解的自定义组件。
           let contentNode = new ComponentContent(this.uicontext, wrapBuilder(buildCreativeLoadingDialog), () => {
           });
           this.uicontext.getPromptAction().openCustomDialog(contentNode);
@@ -130,22 +127,12 @@ struct Index {
 }
 ```
 
-- \@Reusable装饰器不支持嵌套使用，存在增加内存和不方便维护的问题；
-
-
-> **说明：**
->
-> 不支持嵌套使用，只是标记，会多增加一个缓存池，各自的复用缓存池存在相同树状结构，复用效率低，引发复用内存增加;
-> 
-> 嵌套使用形成各自独立的复用缓存池之后，生命周期的传递存在问题，资源和变量管理无法共享，并不方便维护，容易引发问题;
->
-> 示例中PlayButton形成的复用缓存池，并不能在PlayButton02的复用缓存池使用，但PlayButton02自己形成复用缓存相互可以使用;
-> 在PlayButton隐藏时已经触发PlayButton02的aboutToRecycle，但是在PlayButton02单独显示时却无法执行aboutToReuse，组件复用的生命周期方法存在无法成对调用问题;
-> 
-> 综上，不建议嵌套使用。
-
+- \@Reusable装饰器不建议嵌套使用，会增加内存，降低复用效率，加大维护难度。嵌套使用会导致额外缓存池的生成，各缓存池拥有相同树状结构，复用效率低下。此外，嵌套使用会使生命周期管理复杂，资源和变量共享困难。
 
 ```ts
+
+// 以下示例中PlayButton形成的复用缓存池，并不能在PlayButton02的复用缓存池中使用。而PlayButton02自己形成的复用缓存可以相互使用。
+// 在PlayButton隐藏时已经触发PlayButton02的aboutToRecycle，但是在PlayButton02单独显示时却无法执行aboutToReuse，组件复用的生命周期方法存在无法成对调用问题。
 @Entry
 @Component
 struct Index {
@@ -157,30 +144,27 @@ struct Index {
     Column() {
       if (this.isPlaying02) {
 
-        // 初始态是显示的按钮
+        // 初始态是显示的按钮。
         Text("Default shown childbutton")
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying02 })
       }
-      Text(`------------------------`)
 
-      // 初始态是隐藏的按钮
+      // 初始态是隐藏的按钮。
       if (this.isPlaying01) {
         Text("Default hidden childbutton")
           .fontSize(14)
         PlayButton02({ isPlaying02: $isPlaying01 })
       }
-      Text(`------------------------`)
 
-      // 父子嵌套
+      // 父子嵌套。
       if (this.isPlaying) {
         Text("parent child 嵌套")
           .fontSize(14)
         PlayButton({ buttonPlaying: $isPlaying })
       }
-      Text(`------------------------`)
 
-      // 父子嵌套控制
+      // 父子嵌套控制。
       Text(`Parent=child==is ${this.isPlaying ? '' : 'not'} playing`).fontSize(14)
       Button('Parent=child===controll=' + this.isPlaying)
         .margin(14)
@@ -188,18 +172,15 @@ struct Index {
           this.isPlaying = !this.isPlaying;
         })
 
-      Text(`------------------------`)
-
-      //  默认隐藏按钮控制
+      //  默认隐藏按钮控制。
       Text(`Hiddenchild==is ${this.isPlaying01 ? '' : 'not'} playing`).fontSize(14)
       Button('Button===hiddenchild==control==' + this.isPlaying01)
         .margin(14)
         .onClick(() => {
           this.isPlaying01 = !this.isPlaying01;
         })
-      Text(`------------------------`)
 
-      // 默认显示按钮控制
+      // 默认显示按钮控制。
       Text(`shownchid==is ${this.isPlaying02 ? '' : 'not'} playing`).fontSize(14)
       Button('Button===shownchid==control==:' + this.isPlaying02)
         .margin(15)
@@ -210,7 +191,6 @@ struct Index {
   }
 }
 
-// 复用1
 @Reusable
 @Component
 struct PlayButton {
@@ -230,7 +210,7 @@ struct PlayButton {
   }
 }
 
-//  复用2 不建议嵌套使用
+//  不建议嵌套使用
 @Reusable
 @Component
 struct PlayButton02 {
@@ -240,6 +220,7 @@ struct PlayButton02 {
     console.log("=====aboutToRecycle====PlayButton02====");
   }
 
+// 当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
   aboutToReuse(params: ESObject): void {
     console.log("=====aboutToReuse====PlayButton02====");
   }
@@ -255,20 +236,10 @@ struct PlayButton02 {
 
 ## 使用场景
 
-- 列表滚动：当应用需要展示大量数据的列表，并且用户进行滚动操作时，频繁创建和销毁列表项的视图可能导致卡顿和性能问题。在这种情况下，使用列表组件的组件复用机制可以重用已经创建的列表项视图，提高滚动的流畅度。
-
-- 动态布局更新：如果应用中的界面需要频繁地进行布局更新，例如根据用户的操作或数据变化动态改变视图结构和样式，重复创建和销毁视图可能导致频繁的布局计算，影响帧率。在这种情况下，使用组件复用可以避免不必要的视图创建和布局计算，提高性能。
-
-- 频繁创建和销毁数据项的视图场景下。使用组件复用可以重用已创建的视图，只更新数据的内容，减少视图的创建和销毁，能有效提高性能。
-
-
-## 使用场景举例
-
 ### 动态布局更新
 
-- 示例代码将Child自定义组件标记为复用组件，通过Button点击更新Child，触发Child复用;
-- \@Reusable：自定义组件被\@Reusable装饰器修饰，即表示其具备组件复用的能力;
-- aboutToReuse：当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发aboutToReuse生命周期回调，并将组件的构造参数传递给aboutToReuse。
+重复创建与移除视图可能引起频繁的布局计算，从而影响帧率。采用组件复用可以避免不必要的视图创建与布局计算，提升性能。
+以下示例中，将Child自定义组件标记为复用组件，通过Button点击更新Child，触发复用。
 
 ```ts
 // xxx.ets
@@ -294,7 +265,7 @@ struct Index {
           this.switch = !this.switch;
         })
       if (this.switch) {
-        // 如果只有一个复用的组件，可以不用设置reuseId
+        // 如果只有一个复用的组件，可以不用设置reuseId。
         Child({ message: new Message('Child') })
           .reuseId('Child')
       }
@@ -310,7 +281,7 @@ struct Child {
   @State message: Message = new Message('AboutToReuse');
 
   aboutToReuse(params: Record<string, ESObject>) {
-    console.info("Recycle ====Child==");
+    console.info("Recycle====Child==");
     this.message = params.message as Message;
   }
 
@@ -327,8 +298,9 @@ struct Child {
 
 ### 列表滚动配合LazyForEach使用
 
-- 示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用;
-- 被\@State修饰的变量item才能更新，未被\@State修饰的变量不会更新。
+当应用展示大量数据的列表并进行滚动操作时，频繁创建和销毁列表项视图可能导致卡顿和性能问题。使用列表组件的组件复用机制可以重用已创建的列表项视图，提高滚动流畅度。
+
+以下示例代码将CardView自定义组件标记为复用组件，List上下滑动，触发CardView复用。
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -389,6 +361,7 @@ struct ReuseDemo {
 @Reusable
 @Component
 export struct CardView {
+  // 被\@State修饰的变量item才能更新，未被\@State修饰的变量不会更新。
   @State item: string = '';
 
   aboutToReuse(params: Record<string, Object>): void {
@@ -408,9 +381,7 @@ export struct CardView {
 
 ### if使用场景
 
-- 示例代码将OneMoment自定义组件标记为复用组件，List上下滑动，触发OneMoment复用;
-- 可以使用reuseId为复用组件分配复用组，相同reuseId的组件会在同一个复用组中复用，如果只有一个复用的组件，可以不用设置reuseId;
-- 通过reuseId来标识需要复用的组件，省去重复执行if的删除重创逻辑，提高组件复用的效率和性能。
+以下示例代码将OneMoment自定义组件标记为复用组件。当List上下滑动时，会触发OneMoment的复用。设置reuseId可为复用组件分配复用组，相同reuseId的组件将在同一复用组中复用。单个复用组件无需设置reuseId。使用reuseId标识复用组件，可避免重复执行if语句的删除和重新创建逻辑，提高复用效率和性能。
 
 ```ts
 @Entry
@@ -436,7 +407,7 @@ struct Index {
       List({ space: 3 }) {
         LazyForEach(this.dataSource, (moment: FriendMoment) => {
           ListItem() {
-            // 使用reuseId进行组件复用的控制
+            // 使用reuseId进行组件复用的控制。
             OneMoment({ moment: moment })
               .reuseId((moment.image !== '') ? 'withImage' : 'noImage')
           }
@@ -466,7 +437,7 @@ class FriendMoment {
 export struct OneMoment {
   @Prop moment: FriendMoment;
 
-  // 复用id相同的同才能触发复用
+  // 复用id相同的组件才能触发复用。
   aboutToReuse(params: ESObject): void {
     console.log("=====aboutToReuse====OneMoment==复用了==" + this.moment.text);
   }
@@ -474,7 +445,7 @@ export struct OneMoment {
   build() {
     Column() {
       Text(this.moment.text)
-      // if分支判断
+      // if分支判断。
       if (this.moment.image !== '') {
         Flex({ wrap: FlexWrap.Wrap }) {
           Image($r(this.moment.image)).height(50).width(50)
@@ -539,8 +510,7 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 
 ### Foreach使用场景
 
-- 使用Foreach创建可复用的自定义组件，由于Foreach渲染控制语法的全展开属性，导致复用组件无法复用；如下示例点击update，数据刷新成功，但是滑动列表，ListItemView无法复用;
-- 点击clear，再次点击update，ListItemView复用成功，因为一帧内重复创建多个已被销毁的自定义组件。
+使用Foreach创建可复用的自定义组件，由于Foreach渲染控制语法的全展开属性，导致复用组件无法复用。示例中点击update，数据刷新成功，但滑动列表时，ListItemView无法复用。点击clear，再次点击update，ListItemView复用成功，因为一帧内重复创建多个已被销毁的自定义组件。
 
 ```ts
 // xxx.ets
@@ -589,10 +559,6 @@ struct Index {
       Row() {
         Button('clear').onClick(() => {
           for (let i = 1; i < 50; i++) {
-            let obj = new ListItemObject();
-            obj.id = i;
-            obj.uuid = Math.random().toString();
-            obj.isExpand = false;
             this.dataSource.pop();
           }
         }).height(40)
@@ -633,14 +599,14 @@ struct ListItemView {
   @State item: string = '';
 
   aboutToAppear(): void {
-    // 点击 update，首次进入，上下滑动，由于Foreach折叠展开属性，无法复用
+    // 点击 update，首次进入，上下滑动，由于Foreach折叠展开属性，无法复用。
     console.log("=====aboutToAppear=====ListItemView==创建了==" + this.item);
   }
 
   aboutToReuse(params: ESObject) {
     this.item = params.item;
-    // 点击 clear，再次update，复用成功
-    // 符合一帧内重复创建多个已被销毁的自定义组件
+    // 点击clear，再次update，复用成功。
+    // 符合一帧内重复创建多个已被销毁的自定义组件。
     console.log("=====aboutToReuse====ListItemView==复用了==" + this.item);
   }
 
@@ -680,12 +646,12 @@ class ListItemObject {
 
 ### Grid使用场景
 
-- 示例中使用\@Reusable装饰器修饰GridItem中的自定义组件ReusableChildComponent，即表示其具备组件复用的能力;
-- 使用aboutToReuse是为了让Grid在滑动时从复用缓存中加入到组件树之前触发，用于更新组件的状态变量以展示正确的内容;
-- 需要注意的是无需在aboutToReuse中对\@Link、\@StorageLink、\@ObjectLink、\@Consume等自动更新值的状态变量进行更新，可能触发不必要的组件刷新。
+示例中使用\@Reusable装饰器修饰GridItem中的自定义组件ReusableChildComponent，即表示其具备组件复用的能力。
+使用aboutToReuse可以在 Grid 滑动时，从复用缓存中加入到组件树之前触发，从而更新组件状态变量，展示正确内容。
+需要注意的是无需在aboutToReuse中对\@Link、\@StorageLink、\@ObjectLink、\@Consume等自动更新值的状态变量进行更新，可能触发不必要的组件刷新。
 
 ```ts
-// MyDataSource类实现IDataSource接口
+// MyDataSource类实现IDataSource接口。
 class MyDataSource implements IDataSource {
   private dataArray: number[] = [];
 
@@ -693,12 +659,12 @@ class MyDataSource implements IDataSource {
     this.dataArray.push(data);
   }
 
-  // 数据源的数据总量
+  // 数据源的数据总量。
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  // 返回指定索引位置的数据
+  // 返回指定索引位置的数据。
   public getData(index: number): number {
     return this.dataArray[index];
   }
@@ -713,7 +679,7 @@ class MyDataSource implements IDataSource {
 @Entry
 @Component
 struct MyComponent {
-  // 数据源
+  // 数据源。
   private data: MyDataSource = new MyDataSource();
 
   aboutToAppear() {
@@ -727,12 +693,12 @@ struct MyComponent {
       Grid() {
         LazyForEach(this.data, (item: number) => {
           GridItem() {
-            // 使用可复用自定义组件
+            // 使用可复用自定义组件。
             ReusableChildComponent({ item: item })
           }
         }, (item: string) => item)
       }
-      .cachedCount(2) // 设置GridItem的缓存数量
+      .cachedCount(2) // 设置GridItem的缓存数量。
       .columnsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
       .rowsGap(10)
@@ -748,15 +714,15 @@ struct MyComponent {
 struct ReusableChildComponent {
   @State item: number = 0;
 
-  // aboutToReuse从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
-  // aboutToReuse参数类型已不支持any，这里使用Record指定明确的数据类型。Record用于构造一个对象类型，其属性键为Keys，属性值为Type
+  // aboutToReuse从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容。
+  // aboutToReuse参数类型已不支持any，这里使用Record指定明确的数据类型。Record用于构造一个对象类型，其属性键为Keys，属性值为Type。
   aboutToReuse(params: Record<string, number>) {
     this.item = params.item;
   }
 
   build() {
     Column() {
-      // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错。
       Image($r('app.media.app_icon'))
         .objectFit(ImageFit.Fill)
         .layoutWeight(1)
@@ -773,7 +739,7 @@ struct ReusableChildComponent {
 
 ### WaterFlow使用场景
 
-- WaterFlow滑动场景存在FlowItem及其子组件的频繁创建和销毁，可以将FlowItem中的组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
+- 在WaterFlow滑动场景中，FlowItem及其子组件频繁创建和销毁。可以将FlowItem中的组件封装成自定义组件，并使用\@Reusable装饰器修饰，实现组件复用。
 
 ```ts
 class WaterFlowDataSource implements IDataSource {
@@ -786,31 +752,31 @@ class WaterFlowDataSource implements IDataSource {
     }
   }
 
-  // 获取索引对应的数据
+  // 获取索引对应的数据。
   public getData(index: number): number {
     return this.dataArray[index];
   }
 
-  // 通知控制器增加数据
+  // 通知控制器增加数据。
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     });
   }
 
-  // 获取数据总数
+  // 获取数据总数。
   public totalCount(): number {
     return this.dataArray.length;
   }
 
-  // 注册改变数据的控制器
+  // 注册改变数据的控制器。
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       this.listeners.push(listener);
     }
   }
 
-  // 注销改变数据的控制器
+  // 注销改变数据的控制器。
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -818,7 +784,7 @@ class WaterFlowDataSource implements IDataSource {
     }
   }
 
-  // 在数据尾部增加一个元素
+  // 在数据尾部增加一个元素。
   public addLastItem(): void {
     this.dataArray.splice(this.dataArray.length, 0, this.dataArray.length);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -830,7 +796,7 @@ class WaterFlowDataSource implements IDataSource {
 struct ReusableFlowItem {
   @State item: number = 0;
 
-  // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容
+  // 从复用缓存中加入到组件树之前调用，可在此处更新组件的状态变量以展示正确的内容。
   aboutToReuse(params: ESObject) {
     this.item = params.item;
     console.log("=====aboutToReuse====FlowItem==复用了==" + this.item);
@@ -841,7 +807,7 @@ struct ReusableFlowItem {
   }
 
   build() {
-    // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错
+    // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错。
     Column() {
       Text("N" + this.item).fontSize(24).height('26').margin(10)
       Image($r('app.media.app_icon'))
@@ -864,13 +830,13 @@ struct Index {
   private itemWidthArray: number[] = [];
   private itemHeightArray: number[] = [];
 
-  // 计算flow item宽/高
+  // 计算flow item宽/高。
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize);
     return (ret > this.minSize ? ret : this.minSize);
   }
 
-  // 保存flow item宽/高
+  // 保存flow item宽/高。
   getItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize());
@@ -887,7 +853,9 @@ struct Index {
       Column({ space: 2 }) {
         Button('back top')
           .height('5%')
-          .onClick(() => { // 点击后回到顶部
+          .onClick(() => { 
+            
+            // 点击后回到顶部。
             this.scroller.scrollEdge(Edge.Top);
           })
         WaterFlow({ scroller: this.scroller }) {
@@ -907,25 +875,12 @@ struct Index {
       }
     }
   }
-
-  @Builder
-  itemFoot() {
-    Column() {
-      Text(`Footer`)
-        .fontSize(10)
-        .backgroundColor(Color.Red)
-        .width(50)
-        .height(50)
-        .align(Alignment.Center)
-        .margin({ top: 2 })
-    }
-  }
 }
 ```
 
 ### Swiper使用场景
 
-- Swiper滑动场景，条目中存在子组件的频繁创建和销毁，可以将条目中的子组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
+- 在Swiper滑动场景中，条目中的子组件频繁创建和销毁。可以将这些子组件封装成自定义组件，并使用\@Reusable装饰器修饰，以实现组件复用。
 
 ```ts
 @Entry
@@ -938,7 +893,7 @@ struct Index {
       let title = i + 1 + "test_swiper";
       let answers = ["test1", "test2", "test3",
         "test4"];
-      // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错
+      // 请开发者自行在src/main/resources/base/media路径下添加app.media.app_icon图片，否则运行时会因资源缺失而报错。
       this.dataSource.pushData(new Question(i.toString(), title, $r('app.media.app_icon'), answers));
     }
   }
@@ -977,7 +932,7 @@ struct QuestionSwiperItem {
 
   aboutToReuse(params: Record<string, Object>): void {
     this.itemData = params.itemData as Question;
-    console.info("===test===aboutToReuse====QuestionSwiperItem==");
+    console.info("===aboutToReuse====QuestionSwiperItem==");
   }
 
   build() {
@@ -1070,7 +1025,7 @@ export class MyDataSource<T> extends BasicDataSource<T> {
 
 ### ListItemGroup使用场景
 
-- 可以视作特殊List滑动场景，将ListItem需要销毁重建的子组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
+- 可以视作特殊List滑动场景，将ListItem需要移除重建的子组件封装成自定义组件，并使用\@Reusable装饰器修饰，使其具备组件复用能力。
 
 ```ts
 @Entry
@@ -1144,14 +1099,14 @@ class DataSrc1 implements IDataSource {
     return this.Data[index];
   }
 
-  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听。
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       this.listeners.push(listener);
     }
   }
 
-  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听。
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -1159,35 +1114,35 @@ class DataSrc1 implements IDataSource {
     }
   }
 
-  // 通知LazyForEach组件需要重载所有子组件
+  // 通知LazyForEach组件需要重载所有子组件。
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
     });
   }
 
-  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  // 通知LazyForEach组件需要在index对应索引处添加子组件。
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     });
   }
 
-  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件。
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
     });
   }
 
-  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件。
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
     });
   }
 
-  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换。
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
@@ -1207,14 +1162,14 @@ class DataSrc2 implements IDataSource {
     return this.Data[index];
   }
 
-  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
+  // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听。
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
       this.listeners.push(listener);
     }
   }
 
-  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
+  // 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听。
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
@@ -1222,35 +1177,35 @@ class DataSrc2 implements IDataSource {
     }
   }
 
-  // 通知LazyForEach组件需要重载所有子组件
+  // 通知LazyForEach组件需要重载所有子组件。
   notifyDataReload(): void {
     this.listeners.forEach(listener => {
       listener.onDataReloaded();
     });
   }
 
-  // 通知LazyForEach组件需要在index对应索引处添加子组件
+  // 通知LazyForEach组件需要在index对应索引处添加子组件。
   notifyDataAdd(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataAdd(index);
     });
   }
 
-  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件
+  // 通知LazyForEach组件在index对应索引处数据有变化，需要重建该子组件。
   notifyDataChange(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataChange(index);
     });
   }
 
-  // 通知LazyForEach组件需要在index对应索引处删除该子组件
+  // 通知LazyForEach组件需要在index对应索引处删除该子组件。
   notifyDataDelete(index: number): void {
     this.listeners.forEach(listener => {
       listener.onDataDelete(index);
     });
   }
 
-  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换
+  // 通知LazyForEach组件将from索引和to索引处的子组件进行交换。
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
@@ -1264,13 +1219,11 @@ class DataSrc2 implements IDataSource {
 
 #### 标准型
 
-- 复用组件之间布局完全相同;
-- 示例同列表滚动中描述;
+复用组件的布局相同，示例参见本文列表滚动部分的描述。
 
 #### 有限变化型
 
-- 复用组件之间有不同，但是类型有限;
-- 示例为复用组件显式设置两个reuseId与使用两个自定义组件进行复用;
+复用组件间存在差异，但类型有限。例如，可以通过显式设置两个reuseId或使用两个自定义组件来实现复用。
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -1357,9 +1310,7 @@ struct ReusableComponent {
 
 #### 组合型
 
-- 复用组件之间有不同，情况非常多，但是拥有共同的子组件;
-- 示例按照组合型的组件复用方式，将三种复用组件转变为Builder函数后，内部共同的子组件就处于同一个父组件MyComponent下;
-- 对这些子组件使用组件复用时，它们的缓存池也会在父组件上共享，节省组件创建时的消耗。
+复用组件间存在多种差异，但通常具备共同的子组件。将三种复用组件以组合型方式转换为Builder函数后，内部的共享子组件将统一置于父组件MyComponent之下。复用这些子组件时，缓存池在父组件层面实现共享，减少组件创建过程中的资源消耗。
 
 ```ts
 class MyDataSource implements IDataSource {
@@ -1402,7 +1353,7 @@ struct MyComponent {
     }
   }
 
-  // itemBuilderOne作为复用组件的写法未展示，以下为转为Builder之后的写法
+  // itemBuilderOne作为复用组件的写法未展示，以下为转为Builder之后的写法。
   @Builder
   itemBuilderOne(item: string) {
     Column() {
@@ -1412,7 +1363,7 @@ struct MyComponent {
     }
   }
 
-  // itemBuilderTwo转为Builder之后的写法
+  // itemBuilderTwo转为Builder之后的写法。
   @Builder
   itemBuilderTwo(item: string) {
     Column() {
@@ -1422,7 +1373,7 @@ struct MyComponent {
     }
   }
 
-  // itemBuilderThree转为Builder之后的写法
+  // itemBuilderThree转为Builder之后的写法。
   @Builder
   itemBuilderThree(item: string) {
     Column() {
@@ -1480,7 +1431,7 @@ struct ChildComponentA {
       Grid() {
         ForEach((new Array(20)).fill(''), (item: string, index: number) => {
           GridItem() {
-            // 请开发者自行在src/main/resources/base/media路径下添加app.media.startIcon图片，否则运行时会因资源缺失而报错
+            // 请开发者自行在src/main/resources/base/media路径下添加app.media.startIcon图片，否则运行时会因资源缺失而报错。
             Image($r('app.media.startIcon'))
               .height(20)
           }

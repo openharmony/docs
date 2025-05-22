@@ -33,7 +33,7 @@
     - [@ohos.data.rdb (关系型数据库)](js-apis-data-rdb.md)
     - [@ohos.data.storage (轻量级存储)](js-apis-data-storage.md)
     - [@system.storage数据存储](js-apis-system-storage.md)
-    - data/rdb
+    - data/rdb<!--data-rdb-->
       - [resultSet结果集](js-apis-data-resultset.md)
 - C API<!--arkdata-c-->
   - 模块<!--arkdata-module-->

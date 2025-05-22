@@ -4,13 +4,13 @@ The **DriverExtensionAbility** module provides the ExtensionAbility related to d
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
-> The APIs of this module can be used only in the stage model.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
 
 ```ts
-import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
+import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
 ```
 
 ## Attributes
@@ -40,9 +40,9 @@ Called when a DriverExtensionAbility is created to initialize the service logic.
 **Example**
 
   ```ts
-  import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
-  import { Want } from '@kit.AbilityKit';
-  class DriverExt extends DriverExtensionAbility {
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+  class DriverExt extends DriverExtension {
     onInit(want : Want) {
       console.log('onInit, want: ${want.abilityName}');
     }
@@ -61,7 +61,7 @@ Called when this DriverExtensionAbility is destroyed to clear resources.
 **Example**
 
   ```ts
-  class DriverExt extends DriverExtensionAbility {
+  class DriverExt extends DriverExtension {
     onRelease() {
       console.log('onRelease');
     }
@@ -92,9 +92,9 @@ Called following **onCreate()** when a DriverExtensionAbility is started by call
 **Example**
 
   ```ts
-  import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
-  import { rpc } from '@kit.IPCKit';
-  import { Want } from '@kit.AbilityKit';
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+  import rpc from '@ohos.rpc';
+  import Want from '@ohos.app.ability.Want';
   class StubTest extends rpc.RemoteObject{
       constructor(des : string) {
           super(des);
@@ -104,7 +104,7 @@ Called following **onCreate()** when a DriverExtensionAbility is started by call
         return true;
       }
   }
-  class DriverExt extends DriverExtensionAbility {
+  class DriverExt extends DriverExtension {
     onConnect(want : Want) {
       console.log('onConnect , want: ${want.abilityName}');
       return new StubTest('test');
@@ -115,29 +115,29 @@ Called following **onCreate()** when a DriverExtensionAbility is started by call
 If the returned **RemoteObject** object depends on an asynchronous API, you can use the asynchronous lifecycle.
 
   ```ts
-  import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
-  import { rpc } from '@kit.IPCKit';
-  import { Want } from '@kit.AbilityKit';
-  class StubTest extends rpc.RemoteObject{
-      constructor(des : string) {
-          super(des);
-      }
-      onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
-        // This interface must be overridden.
-        return true;
-      }
-  }
-  async function getDescriptor() {
-      // Call the asynchronous function.
-      return "asyncTest"
-  }
-  class DriverExt extends DriverExtensionAbility {
-    async onConnect(want : Want) {
-      console.log(`onConnect , want: ${want.abilityName}`);
-      let descriptor = await getDescriptor();
-      return new StubTest(descriptor);
+import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+import rpc from '@ohos.rpc';
+import Want from '@ohos.app.ability.Want';
+class StubTest extends rpc.RemoteObject{
+    constructor(des : string) {
+        super(des);
     }
+    onRemoteMessageRequest(code : number, data : rpc.MessageSequence, reply : rpc.MessageSequence, option : rpc.MessageOption) {
+      // This interface must be overridden.
+      return true;
+    }
+}
+async function getDescriptor() {
+    // Call the asynchronous function.
+    return "asyncTest"
+}
+class DriverExt extends DriverExtension {
+  async onConnect(want : Want) {
+    console.log(`onConnect , want: ${want.abilityName}`);
+    let descriptor = await getDescriptor();
+    return new StubTest(descriptor);
   }
+}
   ```
 
 ## DriverExtensionAbility.onDisconnect
@@ -157,9 +157,9 @@ Called when a client is disconnected from this DriverExtensionAbility.
 **Example**
 
   ```ts
-  import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
-  import { Want } from '@kit.AbilityKit';
-  class DriverExt extends DriverExtensionAbility {
+  import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+  import Want from '@ohos.app.ability.Want';
+  class DriverExt extends DriverExtension {
     onDisconnect(want : Want) {
       console.log('onDisconnect, want: ${want.abilityName}');
     }
@@ -169,14 +169,14 @@ Called when a client is disconnected from this DriverExtensionAbility.
 After the **onDisconnect** lifecycle callback is executed, the application may exit. As a result, the asynchronous function in **onDisconnect** may fail to be executed correctly, for example, asynchronously writing data to the database. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDisconnect** is complete.
 
   ```ts
-  import { DriverExtensionAbility } from '@kit.DriverDevelopmentKit';
-  import { Want } from '@kit.AbilityKit';
-  class DriverExt extends DriverExtensionAbility {
-    async onDisconnect(want : Want) {
-      console.log('onDisconnect, want: ${want.abilityName}');
-      // Call the asynchronous function.
-    }
+import DriverExtension from '@ohos.app.ability.DriverExtensionAbility';
+import Want from '@ohos.app.ability.Want';
+class DriverExt extends DriverExtension {
+  async onDisconnect(want : Want) {
+    console.log('onDisconnect, want: ${want.abilityName}');
+    // Call the asynchronous function.
   }
+}
   ```
 
 
@@ -197,23 +197,10 @@ Dumps client information.
 **Example**
     
   ```ts
-  class DriverExt extends DriverExtensionAbility {
+  class DriverExt extends DriverExtension {
       onDump(params : Array<string>) {
           console.log(`dump, params: ${JSON.stringify(params)}`);
           return ['params'];
       }
   }
   ```
-
-## DriverExtensionContext
-
-type DriverExtensionContext = _DriverExtensionContext;
-
-**DriverExtensionAbility** context.
-
-**System capability**: SystemCapability.Driver.ExternalDevice
-
-
-| Type| Description|
-| -------- | -------- | 
-| _DriverExtensionContext | **DriverExtensionAbility** context, which is inherited from **ExtensionContext**. For details about how to use the context, see [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md).|

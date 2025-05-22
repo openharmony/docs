@@ -24,7 +24,7 @@ Through the VideoDecoder module, your application can implement the following ke
 - Due to limited hardware decoder resources, you must call **OH_VideoDecoder_Destroy** to destroy every decoder instance when it is no longer needed.
 - The input streams for video decoding support only the AnnexB format, and the supported AnnexB format supports multiple slices. However, the slices of the same frame must be sent to the decoder at a time.
 - When **flush()**, **reset()**, or **stop()** is called, do not continue to operate the OH_AVBuffer obtained through the previous callback function.
-- The DRM decryption capability supports both non-secure and secure video channels in [surface mode](#surface-output), but only non-secure video channels in buffer mode (#buffer-output).
+- The DRM decryption capability supports both non-secure and secure video channels in [surface mode](#surface-output), but only non-secure video channels in buffer mode(#buffer-output).
 - The buffer mode and surface mode use the same APIs. Therefore, the surface mode is described as an example.
 - In buffer mode, after obtaining the pointer to an OH_AVBuffer instance through the callback function **OH_AVCodecOnNewOutputBuffer**, call **OH_VideoDecoder_FreeOutputBuffer** to notify the system that the buffer has been fully utilized. In this way, the system can write the subsequently decoded data to the corresponding location. If the OH_NativeBuffer instance is obtained through **OH_AVBuffer_GetNativeBuffer** and its lifecycle extends beyond that of the OH_AVBuffer pointer instance, you mut perform data duplication. In this case, you should manage the lifecycle of the newly generated OH_NativeBuffer object to ensure that the object can be correctly used and released.
 <!--RP6--><!--RP6End-->
@@ -40,6 +40,7 @@ Through the VideoDecoder module, your application can implement the following ke
   - In surface mode, the caller can choose to call **OH_VideoDecoder_FreeOutputBuffer** to free the output buffer (without rendering the data). In buffer mode, the caller must call **OH_VideoDecoder_FreeOutputBuffer** to free the output buffer.
   - In surface mode, the caller must call **OH_VideoDecoder_SetSurface** to set an OHNativeWindow before the decoder is ready and call **OH_VideoDecoder_RenderOutputBuffer** to render the decoded data after the decoder is started.
   - In buffer mode, an application can obtain the shared memory address and data from the output buffer. In surface mode, an application can obtain the data from the output buffer.
+- Data transfer performance in surface mode is better than that in buffer mode.
 
 For details about the development procedure, see [Surface Output](#surface-output) and [Buffer Output](#buffer-output).
 
@@ -166,7 +167,7 @@ The sample code provided in this section adheres to the C++17 standard and is fo
     };
     ```
 
-4. Define global variables.
+4. Configure global variables.
 
     These global variables are for reference only. They can be encapsulated into an object based on service requirements.
 
@@ -301,7 +302,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     >
     > In surface mode of video decoding, the internal data is processed by using High Efficiency Bandwidth Compression (HEBC) by default, and the values of **widthStride** and **heightStride** cannot be obtained.
 
-4. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained and a media key is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 4 in [Media Data Demuxing](audio-video-demuxer.md).  In surface mode, the DRM decryption capability supports both secure and non-secure video channels. For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
+4. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained and a media key is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 4 in [Media Data Demultiplexing](audio-video-demuxer.md).  In surface mode, the DRM decryption capability supports both secure and non-secure video channels. For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
 
     Add the header files.
 
@@ -312,7 +313,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     #include <multimedia/drm_framework/native_drm_common.h>
     ```
 
-    Linking the Dynamic Libraries in the CMake Script
+    Link the dynamic library in the CMake script.
 
     ``` cmake
     target_link_libraries(sample PUBLIC libnative_drm.so)
@@ -371,6 +372,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_HEIGHT, height); // Mandatory.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_PIXEL_FORMAT, pixelFormat);
     // (Optional) Configure low-latency decoding.
+    // If supported by the platform, the video decoder outputs frames in the decoding sequence when OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY is enabled.
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_VIDEO_ENABLE_LOW_LATENCY, 1);
     // Configure the decoder.
     int32_t ret = OH_VideoDecoder_Configure(videoDec, format);
@@ -382,15 +384,40 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
 6. Set the surface.
 
-    You can obtain the native window in either of the following ways:
-    - If the image is directly displayed after being decoded, obtain the native window from the **XComponent**. For details about the operation, see [XComponent](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md).
-    - If OpenGL post-processing is performed after decoding, obtain the native window from NativeImage. For details about the operation, see [NativeImage](../../graphics/native-image-guidelines.md).
+    You can obtain NativeWindow in either of the following ways:
+
+    6.1 If the image is directly displayed after being decoded, obtain NativeWindow from the **XComponent**.
+
+    Add the header files.
+
+    ```c++
+    #include <native_window/external_window.h>
+    ```
+
+    Link the dynamic library in the CMake script.
+
+    ``` cmake
+    target_link_libraries(sample PUBLIC libnative_window.so)
+    ```
+
+    6.1.1 On ArkTS, call **getXComponentSurfaceId** of the xComponentController to obtain the surface ID of the XComponent. For details about the operation, see [Custom Rendering (XComponent)](../../ui/napi-xcomponent-guidelines.md#arkts-xcomponent-scenario).
+
+    6.1.2 On the native side, call **OH_NativeWindow_CreateNativeWindowFromSurfaceId** to create a **NativeWindow** instance.
+
+    ```c++
+    OHNativeWindow* nativeWindow;
+    // Create a NativeWindow instance based on the surface ID obtained in step 1.1.
+    OH_NativeWindow_CreateNativeWindowFromSurfaceId(surfaceId, nativeWindow);
+    ```
+
+    6.2 If OpenGL post-processing is performed after decoding, obtain NativeWindow from NativeImage. For details about the operation, see [NativeImage](../../graphics/native-image-guidelines.md).
 
     You perform this step during decoding, that is, dynamically switch the surface.
 
     ```c++
+    // Set the surface.
     // Set the window parameters.
-    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow);    // Obtain the native window from the XComponent.
+    int32_t ret = OH_VideoDecoder_SetSurface(videoDec, nativeWindow); // Obtain a NativeWindow instance using either of the preceding methods.
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
     }
@@ -398,27 +425,26 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     OH_NativeWindow_NativeWindowSetScalingModeV2(nativeWindow, OH_SCALING_MODE_SCALE_CROP_V2);
     ```
 
-7. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the surface parameters of the decoder.
-    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+    > **NOTE**
+    >
+    > If both decoder 1 and decoder 2 are bound to the same NativeWindow using the **OH_VideoDecoder_SetSurface** function, and decoder 2 is running, destroying decoder 1 with **OH_VideoDecoder_Destroy** will cause decoder 2's video playback to freeze.
+    >
+    > Consider the following approaches:
+    > 1. Wait for decoder 1 to be fully released before starting decoder 2 with **OH_VideoDecoder_Start**.
+    > 2. Use surface 1 for decoder 1, and create a temporary surface for decoder 2 using **OH_ConsumerSurface_Create**. Once decoder 1 is released, bind decoder 2 to surface 1 using **OH_VideoDecoder_SetSurface**. For details, see [Concurrently Creating a Video Decoder and Initializing NativeWindow](../../media/avcodec/parallel-decoding-nativeWindow.md).
+
+7. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
+
+     
 
     ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // Configure the display rotation angle.
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
-    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
-    OH_AVFormat_Destroy(format);
-    ```
-
-8. Call **OH_VideoDecoder_Prepare()** to prepare internal resources for the decoder.
-
-    ```c++
-    ret = OH_VideoDecoder_Prepare(videoDec);
+    int32_t ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
     }
     ```
 
-9. Call **OH_VideoDecoder_Start()** to start the decoder.
+8. Call **OH_VideoDecoder_Start()** to start the decoder.
 
     ```c++
     // Start the decoder.
@@ -428,9 +454,24 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
+9. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the surface parameters of the decoder.
+
+    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // Configure the display rotation angle.
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // Handle exceptions.
+    }
+    OH_AVFormat_Destroy(format);
+    ```
+
 10. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the Common Encryption Scheme (CENC) information.
 
-    If the program to play is DRM encrypted and the application implements media demuxing instead of using the system's [demuxer](audio-video-demuxer.md), you must call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer. In this way, the AVBuffer carries the data to be decrypted and CENC information, so that the media data in the AVBuffer can be decrypted. You do not need to call this API when the application uses the system's [demuxer](audio-video-demuxer.md).
+    If the program to play is DRM encrypted and the application implements media demultiplexing instead of using the system's [demuxer](audio-video-demuxer.md), you must call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information to the AVBuffer. In this way, the AVBuffer carries the data to be decrypted and CENC information, so that the media data in the AVBuffer can be decrypted. You do not need to call this API when the application uses the system's [demuxer](audio-video-demuxer.md).
 
     Add the header files.
 
@@ -504,7 +545,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     - **buffer**: parameter passed by the callback function **OnNeedInputBuffer**. You can obtain the virtual address of the input stream by calling [OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr).
     - **index**: parameter passed by the callback function **OnNeedInputBuffer**, which uniquely corresponds to the buffer.
-    - **size**, **offset**, **pts**, and **frameData**: size, offset, timestamp, and frame data. For details about how to obtain such information, see step 9 in [Media Data Demuxing](./audio-video-demuxer.md).
+    - **size**, **offset**, **pts**, and **frameData**: size, offset, timestamp, and frame data. For details about how to obtain such information, see step 9 in [Media Data Demultiplexing](./audio-video-demuxer.md).
     - **flags**: type of the buffer flag. For details, see [OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags).
 
     ```c++
@@ -593,7 +634,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     
     In the code snippet below, the following variables are used:
 
-    - **xpsData** and **xpsSize**: PPS/SPS information. For details about how to obtain such information, see [Media Data Demuxing](./audio-video-demuxer.md).
+    - **xpsData** and **xpsSize**: PPS/SPS information. For details about how to obtain such information, see [Media Data Demultiplexing](./audio-video-demuxer.md).
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
@@ -640,7 +681,6 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     > **NOTE**
     >
     > When **OH_VideoDecoder_Start** s called again after the flush operation, the PPS/SPS must be retransferred.
-
 
 14. (Optional) Call **OH_VideoDecoder_Reset()** to reset the decoder.
 
@@ -697,6 +737,11 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
+    // Release the nativeWindow instance.
+    if(nativeWindow != nullptr){
+        OH_NativeWindow_DestroyNativeWindow(nativeWindow);
+        nativeWindow = nullptr;
+    }
     // Call OH_VideoDecoder_Destroy to destroy the decoder.
     int32_t ret = AV_ERR_OK;
     if (videoDec != nullptr) {
@@ -839,7 +884,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     > In the callback functions, pay attention to multi-thread synchronization for operations on the data queue.
     >
 
-4. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained and a media key is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 4 in [Media Data Demuxing](audio-video-demuxer.md).  In buffer mode, the DRM decryption capability supports only non-secure video channels. For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
+4. (Optional) Call **OH_VideoDecoder_SetDecryptionConfig** to set the decryption configuration. Call this API after the media key system information is obtained and a media key is obtained but before **Prepare()** is called. For details about how to obtain such information, see step 4 in [Media Data Demultiplexing](audio-video-demuxer.md).  In buffer mode, the DRM decryption capability supports only non-secure video channels. For details about DRM APIs, see [DRM](../../reference/apis-drm-kit/_drm.md).
 
     Add the header files.
 
@@ -926,7 +971,21 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
-8. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information.
+8. (Optional) Call **OH_VideoDecoder_SetParameter()** to set the decoder parameters.
+    For details about the configurable options, see [Video Dedicated Key-Value Paris](../../reference/apis-avcodec-kit/_codec_base.md#media-data-key-value-pairs).
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // Set the frame rate.
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 30.0);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // Handle exceptions.
+    }
+    OH_AVFormat_Destroy(format);
+    ```
+
+9. (Optional) Call **OH_AVCencInfo_SetAVBuffer()** to set the CENC information.
 
     The procedure is the same as that in surface mode and is not described here.
 
@@ -984,7 +1043,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
-9. Call **OH_VideoDecoder_PushInputBuffer()** to push the stream to the input buffer for decoding.
+10. Call **OH_VideoDecoder_PushInputBuffer()** to push the stream to the input buffer for decoding.
 
     The procedure is the same as that in surface mode and is not described here.
 
@@ -1019,7 +1078,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     }
     ```
 
-10. Call **OH_VideoDecoder_FreeOutputBuffer()** to release decoded frames.
+11. Call **OH_VideoDecoder_FreeOutputBuffer()** to release decoded frames.
 
     In the code snippet below, the following variables are used:
 
@@ -1056,7 +1115,7 @@ Currently, the VideoDecoder module supports only data rotation in asynchronous m
     - **OH_MD_KEY_VIDEO_STRIDE** corresponds to **wStride**.
     - **OH_MD_KEY_VIDEO_SLICE_HEIGHT** corresponds to **hStride**.
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-decoder.png)
 
     Add the header files.
 

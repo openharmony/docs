@@ -1,6 +1,6 @@
 # Using AVPlayer to Play Streaming Media (ArkTS)
 
-In this topic, you will learn how to use the [AVPlayer](media-kit-intro.md#avplayer) to develop a service for streaming media playback, enabling the complete playback of a streaming video from beginning to end.
+In this topic, you will learn how to use the [AVPlayer](media-kit-intro.md#avplayer) to develop live streaming and Video on Demand (VOD) features, enabling the complete playback of a streaming video from beginning to end.
 
 This topic describes only how to implement streaming media playback. For details about other scenarios such as local playback, see [Video Playback](using-avplayer-for-playback.md).
 
@@ -114,7 +114,7 @@ avPlayer.setMediaSource(mediaSource, playbackStrategy);
 
 ### DASH Audio and Video Track Switching
 
-DASH streaming media generally include multiple audio, video, and subtitle tracks, each with distinct parameters like resolution, bit rate, sampling rate, and encoding format. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
+DASH streaming media generally includes multiple audio, video, and subtitle tracks, each with distinct parameters like resolution, bit rate, sampling rate, and encoding format. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
 
 1. Set the [trackChange](../../reference/apis-media-kit/js-apis-media.md#ontrackchange12) event.
 

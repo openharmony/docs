@@ -387,7 +387,7 @@
                resultSet.close();
              } catch (e) {
                  if (e.code !== 14800014) {
-                   console.info(`Code:${err.code}, message:${err.message}`);
+                   console.error(`Code:${e.code}, message:${e.message}`);
                  }
              }
            }
@@ -400,7 +400,7 @@
              console.info(`Succeeded in restoring RdbStore.`);
            })
          }
-         console.info(`Code:${err.code}, message:${err.message}`);
+         console.error(`Code:${err.code}, message:${err.message}`);
      }
    }
    ```

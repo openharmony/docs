@@ -2,11 +2,11 @@
 
 Stack基于数组的数据结构实现，特点是先进后出，只能在一端进行数据的插入和删除。
 
-Stack和[Queue](js-apis-queue.md)相比，Queue基于循环队列实现，只能在一端删除，另一端插入，而Stack都在一端操作。
+Stack和[Queue](js-apis-queue.md)相比，Queue基于循环队列实现，只能在一端删除另一端插入，而Stack都在一端操作。
 
 **推荐使用场景：** 一般符合先进后出的场景可以使用Stack。
 
-文档中存在泛型的使用，涉及以下泛型标记符：<br>
+文档中使用了泛型，涉及以下泛型标记符：
 - T：Type，类
 
 > **说明：**
@@ -106,7 +106,7 @@ let result2 = stack.push(c);
 
 pop(): T
 
-删除栈顶元素并返回该元素，栈为空时返回undefined。
+删除栈顶元素并返回，栈为空时返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -142,7 +142,7 @@ let result = stack.pop();
 
 peek(): T
 
-获取并返回栈顶元素。
+返回栈顶元素。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -177,7 +177,7 @@ let result = stack.peek();
 
 locate(element: T): number
 
-返回指定元素第一次出现时的下标值，查找失败返回-1。
+查找指定元素首次出现的下标值，查找失败则返回-1。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -193,7 +193,7 @@ locate(element: T): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 找到就返回下标值，没有该值时返回-1。 |
+| number | 对应元素下标值，查找失败则返回-1。 |
 
 **错误码：**
 
@@ -219,7 +219,7 @@ let result = stack.locate(2);
 forEach(callbackFn: (value: T, index?: number, stack?: Stack&lt;T&gt;) => void,
 thisArg?: Object): void
 
-通过回调函数来遍历Stack实例对象上的元素以及元素对应的下标。
+通过回调函数来遍历Stack实例对象上的元素及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -230,9 +230,9 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
-callbackfn的参数说明：
+callbackFn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -266,7 +266,7 @@ stack.forEach((value : number, index ?: number) :void => {
 
 isEmpty(): boolean
 
-判断该栈是否为空。
+判断栈是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -301,7 +301,7 @@ let result = stack.isEmpty();
 
 [Symbol.iterator]\(): IterableIterator&lt;T&gt;
 
-返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

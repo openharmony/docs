@@ -4,6 +4,7 @@
     - [HdiUsbfnMtp](_hdi_usbfn_mtp.md)
     - [HdiUsb](_hdi_usb.md)
     - [USB (V1_0)](_u_s_b_v10.md)
+    - [HdiUsb（V1_1）](_hdi_usb_v1_1.md)
     - [USB](_u_s_b.md)
 - 头文件
     - HdiUsbfnMtp
@@ -17,6 +18,9 @@
         - [IUsbdSubscriber.idl](_i_usbd_subscriber_8idl_v10.md)
         - [IUsbInterface.idl](_i_usb_interface_8idl_v10.md)
         - [UsbTypes.idl](_usb_types_8idl_v10.md)
+    - HdiUsb模块头文件（V1_1）
+        - [IUsbInterface.idl](_i_usb_interface_8idl_v11.md)
+        - [UsbTypes.idl](_usb_types_8idl_v11.md)
     - USB
         - [usb_info.h](usb__info_8h.md)
         - [usbd_client.h](usbd__client_8h.md)
@@ -38,6 +42,9 @@
         - [UsbDev](_usb_dev_v10.md)
         - [USBDeviceInfo](_u_s_b_device_info_v10.md)
         - [UsbPipe](_usb_pipe_v10.md)
+    - HdiUsb模块结构体（V1_1）
+        - [IUsbInterface](interface_i_usb_interface_v11.md)
+        - [UsbCtrlTransferParams](_usb_ctrl_transfer_params_v11.md)
     - USB
         - [UsbCtrlTransfer](_o_h_o_s_1_1_u_s_b_1_1_usb_ctrl_transfer.md)
         - [UsbdClient](_o_h_o_s_1_1_u_s_b_1_1_usbd_client.md)

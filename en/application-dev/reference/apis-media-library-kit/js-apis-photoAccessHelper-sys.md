@@ -5341,6 +5341,8 @@ Submits cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Parameters**
 
 | Name  | Type                     | Mandatory| Description      |
@@ -5394,6 +5396,8 @@ Prioritizes a cloud enhancement task.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
 
 **Parameters**
 
@@ -5450,6 +5454,8 @@ Cancels cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Parameters**
 
 | Name  | Type                     | Mandatory| Description      |
@@ -5504,6 +5510,8 @@ Cancels all cloud enhancement tasks.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.WRITE_IMAGEVIDEO
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5540,6 +5548,8 @@ Queries information about a cloud enhancement task.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **Parameters**
 
@@ -5622,6 +5632,8 @@ Synchronizes the cloud enhancement task status.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -5658,6 +5670,8 @@ Obtains the photo after cloud enhancement.
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
 **Parameters**
 

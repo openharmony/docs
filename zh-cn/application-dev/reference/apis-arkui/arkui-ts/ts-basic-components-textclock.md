@@ -373,9 +373,9 @@ stop()
 @Entry
 @Component
 struct Second {
-  @State accumulateTime: number = 0
+  @State accumulateTime: number = 0;
   // 导入对象
-  controller: TextClockController = new TextClockController()
+  controller: TextClockController = new TextClockController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -385,7 +385,7 @@ struct Second {
       TextClock({ timeZoneOffset: -8, controller: this.controller })
         .format('aa hh:mm:ss')
         .onDateChange((value: number) => {
-          this.accumulateTime = value
+          this.accumulateTime = value;
         })
         .margin(20)
         .fontSize(30)
@@ -393,12 +393,12 @@ struct Second {
         .margin({ bottom: 10 })
         .onClick(() => {
           // 启动文本时钟
-          this.controller.start()
+          this.controller.start();
         })
       Button("stop TextClock")
         .onClick(() => {
           // 停止文本时钟
-          this.controller.stop()
+          this.controller.stop();
         })
     }
     .width('100%')
@@ -441,7 +441,7 @@ struct TextClockExample {
     color: Color.Yellow,
     offsetX: 100,
     offsetY: 0
-  }]
+  }];
 
   build() {
     Column({ space: 8 }) {
@@ -457,15 +457,15 @@ struct TextClockExample {
 
 ``` ts
 class MyTextClockStyle implements ContentModifier<TextClockConfiguration> {
-  currentTimeZoneOffset: number = new Date().getTimezoneOffset() / 60
-  title: string = ''
+  currentTimeZoneOffset: number = new Date().getTimezoneOffset() / 60;
+  title: string = '';
 
   constructor(title: string) {
-    this.title = title
+    this.title = title;
   }
 
   applyContent(): WrappedBuilder<[TextClockConfiguration]> {
-    return wrapBuilder(buildTextClock)
+    return wrapBuilder(buildTextClock);
   }
 }
 
@@ -490,10 +490,10 @@ function buildTextClock(config: TextClockConfiguration) {
 @Entry
 @Component
 struct TextClockExample {
-  @State accumulateTime1: number = 0
-  @State timeZoneOffset: number = -8
-  controller1: TextClockController = new TextClockController()
-  controller2: TextClockController = new TextClockController()
+  @State accumulateTime1: number = 0;
+  @State timeZoneOffset: number = -8;
+  controller1: TextClockController = new TextClockController();
+  controller2: TextClockController = new TextClockController();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -503,7 +503,7 @@ struct TextClockExample {
       TextClock({ timeZoneOffset: this.timeZoneOffset, controller: this.controller1 })
         .format('aa hh:mm:ss')
         .onDateChange((value: number) => {
-          this.accumulateTime1 = value
+          this.accumulateTime1 = value;
         })
         .margin(20)
         .fontSize(30)
@@ -515,15 +515,15 @@ struct TextClockExample {
         .margin({ top: 20, bottom: 10 })
         .onClick(() => {
           // 启动文本时钟
-          this.controller1.start()
-          this.controller2.start()
+          this.controller1.start();
+          this.controller2.start();
         })
       Button("stop TextClock")
         .margin({ bottom: 30 })
         .onClick(() => {
           // 停止文本时钟
-          this.controller1.stop()
-          this.controller2.stop()
+          this.controller1.stop();
+          this.controller2.stop();
         })
 
     }

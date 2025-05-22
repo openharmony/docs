@@ -67,7 +67,7 @@ export default class EntryAbility extends UIAbility {
       return;
     });
 
-    // get readers
+    // Obtain readers.
     try {
       seReaders = seService.getReaders();
     } catch (error) {
@@ -92,7 +92,7 @@ export default class EntryAbility extends UIAbility {
     }
     hilog.info(0x0000, 'testTag', 'reader is %{public}s', reader?.getName());
 
-    // get session
+    // Obtain the session.
     try {
       seSession = reader?.openSession() as omapi.Session;
     } catch (error) {
@@ -104,9 +104,10 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // get channel
+    // Obtain the channel.
     try {
-      // change the aid value for open logical channel.
+      // change the aid value for open logical channel
+      // Change the value to the AID of the application for which the logical channel is opened.
       seChannel = await seSession.openLogicalChannel(aidArray, p2);
     } catch (exception) {
       hilog.error(0x0000, 'testTag', 'openLogicalChannel exception %{public}s', JSON.stringify(exception));
@@ -117,8 +118,8 @@ export default class EntryAbility extends UIAbility {
       return;
     }
 
-    // transmit data
-    let cmdData = [0x01, 0x02, 0x03, 0x04]; // please change the raw data to be correct.
+    // Send data.
+    let cmdData = [0x01, 0x02, 0x03, 0x04]; // Set command data correctly.
     try {
       let response: number[] = await seChannel.transmit(cmdData)
       hilog.info(0x0000, 'testTag', 'seChannel.transmit() response = %{public}s.', JSON.stringify(response));
@@ -126,7 +127,7 @@ export default class EntryAbility extends UIAbility {
       hilog.error(0x0000, 'testTag', 'seChannel.transmit() exception = %{public}s.', JSON.stringify(exception));
     }
 
-    // close channel. must make sure the channel is closed at last.
+    // Close the channel. After performing the operation, make sure that the channel is truly closed.
     try {
       seChannel.close();
     } catch (exception) {

@@ -20,10 +20,10 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 ## Working Principles
 
-**RelationalStore** provides APIs for applications to perform data operations. With SQLite as the underlying persistent storage engine, **RelationalStore** provides SQLite database features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
+**RelationalStore** provides APIs for data operations. With SQLite as the underlying persistent storage engine, **RelationalStore** provides SQLite database features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
 
 **Figure 1** Working mechanism
- 
+
 ![relationStore_local](figures/relationStore_local.jpg)
 
 
@@ -31,13 +31,13 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 - The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL** mode.
 
-- The RDB store supports a maximum of four read connections and one write connection. A thread performs the read operation when acquiring a read connection. When there is no read connection available but the write connection is idle, the write connection can be used to perform the read operation.
+- The RDB store supports a maximum of four read connections and one write connection. A thread performs the read operation when acquiring a read connection. When there is no read connection available but the write connection is idle, the write connection can be used to read data.
 
 - To ensure data accuracy, only one write operation is allowed at a time.
 
 - Once an application is uninstalled, related database files and temporary files on the device are automatically deleted.
 
-- ArkTS supports the following basic data types: number, string, binary data, and boolean.
+- ArkTS supports the following basic data types: number, string, binary, and boolean.
 
 - The maximum size of a data record is 2 MB. If a data record exceeds 2 MB, it can be inserted successfully but cannot be read.
 
@@ -59,7 +59,7 @@ The following table lists the APIs used for RDB data persistence. Most of the AP
 ## How to Develop
 Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
 
-If error code 14800011 is reported, the RDB store is corrupted and needs to be rebuilt. For details, see [Rebuilding an RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
+If error 14800011 is thrown, you need to rebuild the database and restore data to ensure normal application development. For details, see [Rebuilding an RDB Store](data-backup-and-restore.md#rebuilding-an-rdb-store).
 
 1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store. <br>Example:
 
@@ -80,6 +80,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
          encrypt: false, // Whether to encrypt the database. This parameter is optional. By default, the database is not encrypted.
          customDir: 'customDir/subCustomDir' // (Optional) Customized database path. The database is created in the context.databaseDir + '/rdb/' + customDir directory, where context.databaseDir indicates the application sandbox path, '/rdb/' indicates a relational database, and customDir indicates the customized path. If this parameter is not specified, an RdbStore instance is created in the sandbox directory of the application.
          isReadOnly: false // (Optional) Specify whether the RDB store is opened in read-only mode. The default value is false, which means the RDB store is readable and writable. If this parameter is true, data can only be read from the RDB store. If write operation is performed, error code 801 is returned.
+         tokenizer: tokenType // (Optional) Type of the tokenizer used in full-text search (FTS). If this parameter is left blank, only English word segmentation is supported in FTS.
        };
 
        // Check the RDB store version. If the version is incorrect, upgrade or downgrade the RDB store.
@@ -95,7 +96,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
          // When the RDB store is created, the default version is 0.
          if (store.version === 0) {
-           store.executeSql(SQL_CREATE_TABLE); // Create a data table.
+           store.executeSql(SQL_CREATE_TABLE); // Create a table.
            // Set the RDB store version, which must be an integer greater than 0.
            store.version = 3;
          }
@@ -114,9 +115,8 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
            (store as relationalStore.RdbStore).executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
            store.version = 3;
          }
+         // Before adding, deleting, modifying, and querying data in an RDB store, obtain an RdbStore instance and create a table.
        });
-
-       // Before performing data operations on the database, obtain an RdbStore instance.
      }
    }
    ```
@@ -147,7 +147,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
      // When the RDB store is created, the default version is 0.
      if (store.version === 0) {
-       store.executeSql(SQL_CREATE_TABLE); // Create a data table.
+       store.executeSql(SQL_CREATE_TABLE); // Create a table.
        // Set the RDB store version, which must be an integer greater than 0.
        store.version = 3;
      }
@@ -166,9 +166,9 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
        store.executeSql('ALTER TABLE EMPLOYEE DROP COLUMN ADDRESS TEXT');
        store.version = 3;
      }
+     // Before adding, deleting, modifying, and querying data in an RDB store, obtain an RdbStore instance and create a table.
    });
 
-   // Before performing data operations on the database, obtain an RdbStore instance.
    ```
 
    > **NOTE**
@@ -179,8 +179,8 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
    > 
    > - For details about the error codes, see [Universal Error Codes](../reference/errorcode-universal.md) and [RDB Store Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
 
-2. Use **insert()** to insert data to the RDB store. <br>Example:
-     
+2. Call **insert()** to insert data. <br>Example:
+   
    ```ts
    let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -229,7 +229,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 3. Modify or delete data based on the specified **Predicates** instance.
 
-   Use **update()** to modify data and **delete()** to delete data. <br>Example:
+   Call **update()** to modify data and **delete()** to delete data. <br>Example:
 
    ```ts
    let value6 = 'Rose';
@@ -289,7 +289,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 4. Query data based on the conditions specified by **Predicates**.
 
-   Use **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
+   Call **query()** to query data. The data obtained is returned in a **ResultSet** object. <br>Example:
 
    ```ts
    let predicates2 = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -359,7 +359,7 @@ If error code 14800011 is reported, the RDB store is corrupted and needs to be r
 
 7. Delete the RDB store.
 
-   Use **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
+   Call **deleteRdbStore()** to delete the RDB store and related database files. <br>Example:
 
    Stage model:
 

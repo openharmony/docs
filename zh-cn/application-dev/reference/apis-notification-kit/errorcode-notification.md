@@ -384,4 +384,4 @@ The specified bundle name was not found.
 
 **处理步骤**
 
-1. 检查应用是否存在。
+检查应用是否存在。

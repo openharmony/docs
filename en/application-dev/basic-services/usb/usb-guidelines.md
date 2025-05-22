@@ -20,8 +20,8 @@ The following table lists the USB APIs currently available. For details, see the
 | hasRight(deviceName: string): boolean                         | Checks whether the user has the device access permissions.|
 | requestRight(deviceName: string): Promise&lt;boolean&gt;       | Requests the device access permissions for the application. This API uses a promise to return the result.                       |
 | removeRight(deviceName: string): boolean | Revokes the device access permissions of the application.|
-| connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | Connects to the USB device based on the device information returned by `getDevices()`.               |
-| getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | Obtains the list of USB devices connected to the host. If no device is connected, an empty list is returned.                                           |
+| connectDevice(device: USBDevice): Readonly&lt;USBDevicePipe&gt; | Connects to the USB device based on the device information returned by `getDevices()`. If the USB service is abnormal, `undefined` may be returned. Check whether the return value of the API is empty.               |
+| getDevices(): Array&lt;Readonly&lt;USBDevice&gt;&gt;          | Obtains the list of USB devices connected to the host. If no device is connected, an empty list is returned. When the developer mode is disabled, `undefined` may be returned if no device is connected. Check whether the return value of the API is empty.                                           |
 | setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number | Sets the USB device configuration.                                            |
 | setInterface(pipe: USBDevicePipe, iface: USBInterface): number   | Sets a USB interface.                                            |
 | claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): number | Claims a USB interface.                                                  |
@@ -29,7 +29,7 @@ The following table lists the USB APIs currently available. For details, see the
 | closePipe(pipe: USBDevicePipe): number                         | Closes a USB device pipe.                                      |
 | releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number | Releases a USB interface.                                                  |
 | getFileDescriptor(pipe: USBDevicePipe): number                 | Obtains the file descriptor.                                              |
-| getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | Obtains the raw USB descriptor.                                       |
+| getRawDescriptor(pipe: USBDevicePipe): Uint8Array              | Obtains the raw USB descriptor. If the USB service is abnormal, `undefined` may be returned. Check whether the return value of the API is empty.                                       |
 | usbControlTransfer(pipe: USBDevicePipe, requestparam: USBDeviceRequestParams, timeout?: number): Promise&lt;number&gt; | Performs control transfer.                                                  |
 
 

@@ -1,4 +1,4 @@
-# Motion Sensing Error Codes
+# Motion Awareness Error Codes
 
 > **NOTE**
 >

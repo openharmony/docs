@@ -5,7 +5,7 @@
 
 If complex services are involved in cross-application data access, you can use **DataShareExtensionAbility** to start the application of the data provider to implement data access.
 
-You need to implement flexible service logics via callbacks of the service provider.  
+You need to implement flexible service logics via callbacks of the service provider.
 
 
 ## Working Principles
@@ -26,7 +26,6 @@ There are two roles in **DataShare**:
 - The data consumer communicates with the data provider via inter-process communication (IPC). The data provider can be implemented through a database or other data storage.
 
 - The **ResultSet** module is implemented through shared memory. Shared memory stores the result sets, and interfaces are provided to traverse result sets.
-
 
 ## How to Develop
 
@@ -153,15 +152,19 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    **module.json5 example**
    
    ```json
+   // The following uses settingsdata as an example.
    "extensionAbilities": [
      {
-       "srcEntry": "./ets/DataShareExtAbility/DataShareExtAbility.ets",
-       "name": "DataShareExtAbility",
+       "srcEntry": "./ets/DataAbility/DataExtAbility.ets",
+       "name": "DataExtAbility",
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
        "type": "dataShare",
-       "uri": "datashare://com.samples.datasharetest.DataShare",
+       "uri": "datashare://com.ohos.settingsdata.DataAbility",
        "exported": true,
+       // Configure permissions based on actual situation. The permissions configured here are examples only.
+       "readPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+       "writePermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
        "metadata": [{"name": "ohos.extension.dataShare", "resource": "$profile:data_share_config"}]
      }
    ]
@@ -172,8 +175,8 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    | Field           | Description                                                    | Mandatory|
    | ------------------- | ------------------------------------------------------------ | ---- |
    | tableConfig         | Configuration label, which includes **uri** and **crossUserMode**.<br>- **uri**: specifies the range for which the configuration takes effect. The URI supports the following formats in descending order by priority:<br> 1. *****: indicates all databases and tables.<br> 2. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}**: specifies a database.<br> 3. **datashare:///{*bundleName*}/{*moduleName*}/{*storeName*}/{*tableName*}**: specifies a table.<br>If URIs of different formats are configured, only the URI with the higher priority takes effect.<br>- **crossUserMode**: Whether to share data between multiple users.<br>The value **1** means to share data between multiple users, and the value **2** means the opposite.| Yes  |
-   | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>The value **true** means to enable silent access, and the value **false** means the opposite.<br>The default  value is **true**.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect.| No  |
-   | launchInfos         | Launch information, which includes **storeId** and **tableNames**.<br>If the data in a table involved in the configuration changes, an extensionAbility will be started based on the URI in **extensionAbilities**. You need to set this parameter only when the service needs to start an extensionAbility to process data that is not actively changed by the service.<br>- **storeId**: database name, excluding the file name extension. For example, if the database name is **test.db**, set this parameter to **test**.<br>- **tableNames**: names of the database tables. Any change in a table will start an an extensionAbility. | No  |
+   | isSilentProxyEnable | Whether to enable silent access for this ExtensionAbility.<br>The value **true** means to enable silent access, and the value **false** means the opposite.<br>The default value is **true**.<br>If an application has multiple ExtensionAbilities and this field is set to **false** for one of them, silent access is disabled for the application.<br>If the data provider has called **enableSilentProxy** or **disableSilentProxy**, silent access is enabled or disabled based on the API settings. Otherwise, the setting here takes effect.| No  |
+   | launchInfos         | Launch information, which includes **storeId** and **tableNames**.<br>If the data in a table involved in the configuration changes, an extensionAbility will be started based on the URI in **extensionAbilities**. You need to set this parameter only when the service needs to start an extensionAbility to process data that is not actively changed by the service.<br>- **storeId**: database name, excluding the file name extension. For example, if the database name is **test.db**, set this parameter to **test**.<br>- **tableNames**: names of the database tables. Any change in a table will start an extensionAbility.| No  |
    
    **data_share_config.json Example**
    
@@ -185,7 +188,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
                "crossUserMode":1
            },
            {
-               "uri":"datashare:///com.acts.datasharetest/entry/DB00",
+               "uri":"datashare:///com.ohos.settingsdata/entry/DB00",
                "crossUserMode":1
            },
            {
@@ -219,7 +222,7 @@ Before implementing a **DataShare** service, you need to create a **DataShareExt
    
    ```ts
    // Different from the URI defined in the module.json5 file, the URI passed in the parameter has an extra slash (/), because there is a DeviceID parameter between the second and the third slash (/).
-   let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
+   let dseUri = ('datashare:///com.ohos.settingsdata.DataAbility');
    ```
 
 3. Create a **DataShareHelper** instance.

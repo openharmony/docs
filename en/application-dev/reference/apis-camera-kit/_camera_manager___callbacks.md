@@ -11,6 +11,8 @@ For details, see [OH_CameraManager_RegisterCallback](_o_h___camera.md#oh_cameram
 
 **Related module**: [OH_Camera](_o_h___camera.md)
 
+**Header file**: [camera_manager.h](camera__manager_8h.md)
+
 
 ## Summary
 

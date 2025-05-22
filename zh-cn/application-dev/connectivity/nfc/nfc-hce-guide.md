@@ -87,9 +87,9 @@ const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceComman
       hilog.error(0x0000, 'testTag', 'hceCommandCb has invalid hceCommand.');
       return;
     }
-    // check the command, then transmit the response.
+    // 检查指令，发送response
     hilog.info(0x0000, 'testTag', 'hceCommand = %{public}s', JSON.stringify(hceCommand));
-    let responseData = [0x90, 0x00]; // change the response depend on different received command.
+    let responseData = [0x90, 0x00]; // 根据接收到的不同命令更改response
     hceService.transmit(responseData).then(() => {
       hilog.info(0x0000, 'testTag', 'hceService transmit Promise success.');
     }).catch((err: BusinessError) => {
@@ -123,12 +123,12 @@ export default class EntryAbility extends UIAbility {
   }
 
   onForeground() {
-    // Ability has brought to foreground
+    // 应用进入前台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     if (hceElementName != undefined) {
       try {
         // 调用接口使能前台HCE应用程序优先处理NFC刷卡功能
-        let aidList = ["A0000000031010", "A0000000031011"]; // change aid tobe correct.
+        let aidList = ["A0000000031010", "A0000000031011"]; // 修改为正确的aid
         hceService.start(hceElementName, aidList);
 
         // 订阅HCE APDU数据的接收
@@ -140,7 +140,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onBackground() {
-    // Ability has back to background
+    // 应用退到后台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
     // 退出应用程序NFC标签页面时，调用tag模块退出前台优先功能
     if (hceElementName != undefined) {
@@ -181,7 +181,7 @@ export default class EntryAbility extends UIAbility {
             "actions": [
               "action.system.home",
 
-              // Add the nfc card emulation action to filter out for this application.
+              // actions须包含"ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
               "ohos.nfc.cardemulation.action.HOST_APDU_SERVICE"
             ]
           }
@@ -189,18 +189,18 @@ export default class EntryAbility extends UIAbility {
         "metadata": [
           {
             "name": "payment-aid",
-            "value": "A0000000031010" // change it tobe correct
+            "value": "A0000000031010" // 修改为正确的aid
           },
           {
             "name": "other-aid",
-            "value": "A0000000031011" // change it tobe correct
+            "value": "A0000000031011" // 修改为正确的aid
           }
         ]
       }
     ],
     "requestPermissions": [
       {
-        // Add the permission for nfc card emulation.
+        // 添加使用nfc卡模拟需要的权限
         "name": "ohos.permission.NFC_CARD_EMULATION",
         "reason": "$string:app_name",
       }
@@ -224,7 +224,7 @@ const hceCommandCb : AsyncCallback<number[]> = (error : BusinessError, hceComman
       return;
     }
 
-    // check the command, then transmit the response.
+    // 检查指令，发送response
     hilog.info(0x0000, 'testTag', 'hceCommand = %{public}s', JSON.stringify(hceCommand));
     let responseData = [0x90, 0x00]; // change the response depend on different received command.
     hceService.transmit(responseData).then(() => {
@@ -261,12 +261,12 @@ export default class EntryAbility extends UIAbility {
   }
 
   onForeground() {
-    // Ability has brought to foreground
+    // 应用进入前台
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
   }
 
   onDestroy() {
-    // Ability has back to destroy
+    // 退出应用
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
     // 退出应用程序NFC标签页面时，调用tag模块退出前台优先功能
     if (hceElementName != undefined) {

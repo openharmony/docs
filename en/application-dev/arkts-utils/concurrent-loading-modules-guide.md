@@ -63,10 +63,10 @@ Define the calculator service module as follows:
        this.totalCount = this.history!.unshift(newRecord)
      }
    }
-```
-   
-Define the timer service module as follows:
-   
+   ```
+
+   Define the timer service module as follows:
+
    ```ts
    // sdk/TimerSdk.ets
    @Sendable
@@ -84,9 +84,9 @@ Define the timer service module as follows:
        })
      }
    }
-```
-   
-2. In the UI main thread, trigger the distribution of service modules to child threads, and use them in the UI main thread after loading is complete.
+   ```
+
+2. In the UI main thread, trigger the distribution of service modules to child threads, and use them in the UI main thread after loading is complete. The following is an example:
 
    ```ts
    // Index.ets

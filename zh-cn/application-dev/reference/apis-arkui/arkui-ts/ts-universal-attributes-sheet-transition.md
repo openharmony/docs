@@ -22,7 +22,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
+| isShow  | Optional\<boolean\>                          | 是   | 是否显示半模态页面。<br/>true：显示半模态页面。<br/>false：隐藏半模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。 |
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置半模态页面内容。                                         |
 | options | [SheetOptions](#sheetoptions)               | 否   | 配置半模态页面的可选属性。                                   |
 
@@ -83,7 +83,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 | ------------------------- | ---- | -------------------------------- |
 | MEDIUM                    | 0    | 指定半模态高度为屏幕高度一半。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | LARGE                     | 1    | 指定半模态高度几乎为屏幕高度。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| FIT_CONTENT<sup>11+</sup> | 2    | 指定半模态高度为适应内容的高度。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| FIT_CONTENT<sup>11+</sup> | 2    | 指定半模态高度为适应内容的高度。<br />**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。<br />**说明：**<br />FIT_CONTENT是半模态容器高度去适应孩子builder根节点的布局。此场景下builder根节点的高度不能使用百分比，两者不能相互依赖彼此的布局。 |
 
 ## BindOptions
 
@@ -188,7 +188,7 @@ bindSheet(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: SheetOp
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
   @State sheetHeight: number = 300;
 
   @Builder
@@ -223,7 +223,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -231,16 +231,16 @@ struct SheetTransitionExample {
           height: this.sheetHeight,
           backgroundColor: Color.Green,
           onWillAppear: () => {
-            console.log("BindSheet onWillAppear.")
+            console.log("BindSheet onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindSheet onAppear.")
+            console.log("BindSheet onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindSheet onWillDisappear.")
+            console.log("BindSheet onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindSheet onDisappear.")
+            console.log("BindSheet onDisappear.");
           }
         })
     }
@@ -265,7 +265,7 @@ struct SheetTransitionExample {
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -285,13 +285,12 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
         .bindSheet($$this.isShow, this.myBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 200],
-          backgroundColor: Color.Gray,
           blurStyle: BlurStyle.Thick,
           showClose: true,
           title: { title: "title", subtitle: "subtitle" },
@@ -312,12 +311,12 @@ bindSheet属性的borderWidth、borderColor属性值使用LocalizedEdgeWidths类
 
 ```ts
 // xxx.ets
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -337,7 +336,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -380,9 +379,9 @@ struct bindSheetExample {
   @Builder
   myBuilder() {
     Column() {
-      Button() {
-        Text("CONTEXT")
-      }.height(50)
+      Button("CONTEXT")
+        .margin(10)
+        .fontSize(20)
     }
   }
 
@@ -390,7 +389,7 @@ struct bindSheetExample {
     Column() {
       Button("NoRegisterSpringback")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -401,16 +400,15 @@ struct bindSheetExample {
           title: { title: "title", subtitle: "subtitle" },
           preferType: SheetType.CENTER,
 
-
           onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
             if (DismissSheetAction.reason == DismissReason.SLIDE_DOWN) {
-              DismissSheetAction.dismiss() //注册dismiss行为
+              DismissSheetAction.dismiss(); //注册dismiss行为
             }
           }),
 
           onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
-            //没有注册springBack, 下拉半模态页面无回弹行为
-            //SpringBackAction.springBack()
+            //没有注册springBack，下拉半模态页面无回弹行为
+            //SpringBackAction.springBack();
           }),
         })
     }
@@ -569,7 +567,7 @@ struct ListenKeyboardHeightChange {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -602,7 +600,7 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @Component
 struct SheetTransitionExample {
-  @State isShow: boolean = false
+  @State isShow: boolean = false;
 
   @Builder
   myBuilder() {
@@ -622,7 +620,7 @@ struct SheetTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)

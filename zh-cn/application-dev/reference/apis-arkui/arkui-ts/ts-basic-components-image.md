@@ -4,7 +4,7 @@ Image为图片组件，常用于在应用中显示图片。Image支持加载[Pix
 
 > **说明：**
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 使用快捷组合键对Image组件复制时，Image组件必须处于[获焦状态](../../../ui/arkts-common-events-focus-event.md#设置组件是否可获焦)。Image组件默认不获焦，需将[focusable](ts-universal-attributes-focus.md#focusable)属性设置为true，即可使用TAB键将焦点切换到组件上，再将[focusOnTouch](ts-universal-attributes-focus.md#focusontouch9)属性设置为true，即可实现点击获焦。
 >
@@ -50,7 +50,7 @@ Image加载成功且组件不设置宽高时，其显示大小自适应父组件
 
 >**说明：**
 >
-> Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多；不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
+> Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多。不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
 >
 > src由有效切换为无效时，图片保持不动。
 >
@@ -119,7 +119,7 @@ alt(value:&nbsp;string&nbsp;|&nbsp;Resource &nbsp;|&nbsp;PixelMap)
 
 | 参数名 | 类型                                                     | 必填 | 说明                                                         |
 | ------ | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型）,支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型图片，不支持网络图片。<br/>默认值：null |
+| value  | string&nbsp;\|&nbsp;[Resource](ts-types.md#resource)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)<sup>12+</sup> | 是   | 加载时显示的占位图，支持本地图片（png、jpg、bmp、svg、gif和heif类型），支持[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型图片，不支持网络图片。<br/>默认值：null |
 
 ### objectFit
 
@@ -364,7 +364,7 @@ syncLoad(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，fasle表示异步加载图片，true表示同步加载图片。 |
+| value  | boolean | 是   | 是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false，false表示异步加载图片，true表示同步加载图片。 |
 
 ### copyOption<sup>9+</sup>
 
@@ -404,7 +404,7 @@ colorFilter(value: ColorFilter | DrawingColorFilter)
 
 | 参数名 | 类型                                    | 必填 | 说明                                                         |
 | ------ | --------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵如下（其中矩阵值的范围[0, 1]）：<br/>![image-matrix-1](figures/image_matrix_1.png) <br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 从API Version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>API Version 11及之前，svg类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，svg类型的图源只对stroke属性生效。|
+| value  | [ColorFilter](ts-types.md#colorfilter9) \| [DrawingColorFilter](#drawingcolorfilter12) | 是   | 1. 给图像设置颜色滤镜效果，入参为一个的4x5的RGBA转换矩阵。<br/>矩阵第一行表示R（红色）的向量值，第二行表示G（绿色）的向量值，第三行表示B（蓝色）的向量值，第四行表示A（透明度）的向量值，4行分别代表不同的RGBA的向量值。<br/>当矩阵对角线值为1，其余值为0时，保持图片原有色彩。<br/> **计算规则：**<br/>如果输入的滤镜矩阵如下（其中矩阵值的范围[0, 1]）：<br/>![image-matrix-1](figures/image_matrix_1.png) <br/>像素点为[R, G, B, A]，色值的范围[0, 255]<br/>则过滤后的颜色为 [R’, G’, B’, A’]<br/>![image-matrix-2](figures/image_matrix_2.png)<br/>2. 从API version12开始支持@ohos.graphics.drawing的ColorFilter类型作为入参。<br/>**说明：** <br/>API version 11及之前，svg类型图源不支持该属性。<br/>从API version 12开始，该接口中的DrawingColorfilter类型支持在原子化服务中使用。其中，svg类型的图源只对stroke属性生效。|
 ### draggable<sup>9+</sup>
 
 draggable(value: boolean)
@@ -489,7 +489,7 @@ privacySensitive(supported: boolean)
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，表示不支持卡片敏感隐私信息，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
 
 ### dynamicRangeMode<sup>12+</sup>
 
@@ -523,7 +523,7 @@ orientation(orientation: ImageRotateOrientation)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>如果需要显示携带旋转角度信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
 
 ## ImageContent<sup>12+</sup>
 
@@ -625,7 +625,7 @@ orientation(orientation: ImageRotateOrientation)
 | DOWN | 3| 将当前图片旋转180度后显示。         |
 | LEFT | 4 | 将当前图片向左旋转90度后显示。         |
 
-## DrawableDescriptor<sup>10+<sup>
+## DrawableDescriptor<sup>10+</sup>
 
 type DrawableDescriptor = DrawableDescriptor
 
@@ -639,7 +639,7 @@ type DrawableDescriptor = DrawableDescriptor
 | ------ | ---------- |
 | [DrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#drawabledescriptor)  | 返回一个DrawableDescriptor对象。 |
 
-## DrawingColorFilter<sup>12+<sup>
+## DrawingColorFilter<sup>12+</sup>
 
 type DrawingColorFilter = ColorFilter
 
@@ -689,9 +689,9 @@ type ImageMatrix = Matrix4Transit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型       | 必填 | 说明           |
-| ------ | --------- | --- | ------------- |
-| ORIGIN  | ColorContent | 是 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
+| 名称 | 类型       | 只读 | 可选 | 说明           |
+| ------ | --------- | --- | --- | ------------- |
+| ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
@@ -763,7 +763,7 @@ onFinish(event: () =&gt; void)
 
 type ImageErrorCallback = (error: ImageError) => void
 
-图片加载异常时触发的回调。
+图片加载异常时触发此回调。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
@@ -782,6 +782,8 @@ type ImageErrorCallback = (error: ImageError) => void
 图片加载异常时触发回调的返回对象。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -851,7 +853,7 @@ struct ImageExample2 {
   @State pixelMapImg: PixelMap | undefined = undefined;
 
   aboutToAppear() {
-    this.requestImageUrl('https://www.example.com/xxx.png');// 请填写一个具体的网络图片地址
+    this.requestImageUrl('https://www.example.com/xxx.png'); // 请填写一个具体的网络图片地址
   }
 
   requestImageUrl(url: string) {
@@ -863,8 +865,8 @@ struct ImageExample2 {
         console.info(`request image success, size: ${imgData.byteLength}`);
         let imgSource: image.ImageSource = image.createImageSource(imgData);
         class sizeTmp {
-          height: number = 100
-          width: number = 100
+          height: number = 100;
+          width: number = 100;
         }
         let options: Record<string, number | boolean | sizeTmp> = {
           'alphaType': 0,
@@ -907,8 +909,8 @@ struct ImageExample3 {
   private imageOne: Resource = $r('app.media.earth');
   private imageTwo: Resource = $r('app.media.star');
   private imageThree: Resource = $r('app.media.moveStar');
-  @State src: Resource = this.imageOne
-  @State src2: Resource = this.imageThree
+  @State src: Resource = this.imageOne;
+  @State src2: Resource = this.imageThree;
   build(){
     Column(){
       // 为图片添加点击事件，点击完成后加载特定图片
@@ -916,7 +918,7 @@ struct ImageExample3 {
         .width(100)
         .height(100)
         .onClick(() => {
-          this.src = this.imageTwo
+          this.src = this.imageTwo;
         })
 
       // 当加载图片为SVG格式时
@@ -925,7 +927,7 @@ struct ImageExample3 {
         .height(100)
         .onFinish(() => {
           // SVG动效播放完成时加载另一张图片
-          this.src2 = this.imageOne
+          this.src2 = this.imageOne;
         })
     }.width('100%').height('100%')
   }
@@ -939,20 +941,20 @@ struct ImageExample3 {
 使用enableAnalyzer接口开启图像AI分析。
 
 ```ts
-import { image } from '@kit.ImageKit'
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct ImageExample4 {
-  @State imagePixelMap: image.PixelMap | undefined = undefined
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  @State imagePixelMap: image.PixelMap | undefined = undefined;
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
   private options: ImageAIOptions = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
-  }
+  };
 
   async aboutToAppear() {
-    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'))
+    this.imagePixelMap = await this.getPixmapFromMedia($r('app.media.app_icon'));
   }
 
   build() {
@@ -966,7 +968,7 @@ struct ImageExample4 {
         .width(80)
         .height(80)
         .onClick(() => {
-          this.aiController.getImageAnalyzerSupportTypes()
+          this.aiController.getImageAnalyzerSupportTypes();
         })
     }
   }
@@ -976,12 +978,12 @@ struct ImageExample4 {
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 }
 ```
@@ -996,10 +998,10 @@ struct ImageExample4 {
 @Entry
 @Component
 struct Index {
-  @State top: number = 10
-  @State bottom: number = 10
-  @State left: number = 10
-  @State right: number = 10
+  @State top: number = 10;
+  @State bottom: number = 10;
+  @State left: number = 10;
+  @State right: number = 10;
 
   build() {
     Column({ space: 5 }) {
@@ -1027,22 +1029,22 @@ struct Index {
       Row() {
         Button("add top to " + this.top).fontSize(10)
           .onClick(() => {
-            this.top += 10
+            this.top += 10;
           })
         Button("add bottom to " + this.bottom).fontSize(10)
           .onClick(() => {
-            this.bottom += 10
+            this.bottom += 10;
           })
       }
 
       Row() {
         Button("add left to " + this.left).fontSize(10)
           .onClick(() => {
-            this.left += 10
+            this.left += 10;
           })
         Button("add right to " + this.right).fontSize(10)
           .onClick(() => {
-            this.right += 10
+            this.right += 10;
           })
       }
 
@@ -1059,17 +1061,17 @@ struct Index {
 使用矩形网格对象对图片进行拉伸。
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
+import { drawing } from '@kit.ArkGraphics2D';
 
 @Entry
 @Component
 struct drawingLatticeTest {
-  private xDivs: Array<number> = [1, 2, 200]
-  private yDivs: Array<number> = [1, 2, 200]
-  private fXCount: number = 3
-  private fYCount: number = 3
+  private xDivs: Array<number> = [1, 2, 200];
+  private yDivs: Array<number> = [1, 2, 200];
+  private fXCount: number = 3;
+  private fYCount: number = 3;
   private DrawingLatticeFirst: DrawingLattice =
-    drawing.Lattice.createImageLattice(this.xDivs, this.yDivs, this.fXCount, this.fYCount)
+    drawing.Lattice.createImageLattice(this.xDivs, this.yDivs, this.fXCount, this.fYCount);
 
   build() {
     Scroll() {
@@ -1103,19 +1105,19 @@ struct drawingLatticeTest {
 该示例通过[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)播放PixelMap数组动画。
 
 ```ts
-import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI'
-import { image } from '@kit.ImageKit'
+import {AnimationOptions, AnimatedDrawableDescriptor} from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct ImageExample {
-  pixelmaps: Array<PixelMap>  = [];
+  pixelMaps: Array<PixelMap>  = [];
   options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
   async aboutToAppear() {
-    this.pixelmaps = await this.getPixelMaps();
-    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+    this.pixelMaps = await this.getPixelMaps();
+    this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
   }
 
   build() {
@@ -1124,17 +1126,17 @@ struct ImageExample {
         Image(this.animated)
           .width('500px').height('500px')
           .onFinish(() => {
-            console.info("finish")
+            console.info("finish");
           })
       }.height('50%')
       Row() {
         Button('once').width(100).padding(5).onClick(() => {
           this.options = { iterations: 1 };
-          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+          this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
           this.options = { iterations: -1 };
-          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+          this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
         }).margin(5)
       }
     }.width('50%')
@@ -1146,12 +1148,12 @@ struct ImageExample {
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: Array<image.PixelMap> = await imageSource.createPixelMapList({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 
   private async getPixmapFromMedia(resource: Resource) {
@@ -1160,20 +1162,20 @@ struct ImageExample {
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain'))//添加图片
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.sky')))
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.clouds')))
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.landscape')))
-    return Mypixelmaps;
+    let myPixelMaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
+    return myPixelMaps;
   }
 }
 ```
@@ -1192,13 +1194,13 @@ import { drawing, common2D } from '@kit.ArkGraphics2D';
 struct ImageExample3 {
   private imageOne: Resource = $r('app.media.1');
   private imageTwo: Resource = $r('app.media.2');
-  @State src: Resource = this.imageOne
-  @State src2: Resource = this.imageTwo
-  private ColorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]
+  @State src: Resource = this.imageOne;
+  @State src2: Resource = this.imageTwo;
+  private ColorFilterMatrix: number[] = [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0];
   private color: common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
-  @State DrawingColorFilterFirst: ColorFilter | undefined = undefined
-  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined
-  @State DrawingColorFilterThird: ColorFilter | undefined = undefined
+  @State DrawingColorFilterFirst: ColorFilter | undefined = undefined;
+  @State DrawingColorFilterSecond: ColorFilter | undefined = undefined;
+  @State DrawingColorFilterThird: ColorFilter | undefined = undefined;
 
   build() {
     Column() {
@@ -1287,7 +1289,7 @@ struct ImageExample{
 @Component
 struct ImageContentExample {
   @State imageSrcIndex: number = 0;
-  @State imageSrcList: (ResourceStr | ImageContent)[] = [$r('app.media.app_icon'), ImageContent.EMPTY]
+  @State imageSrcList: (ResourceStr | ImageContent)[] = [$r('app.media.app_icon'), ImageContent.EMPTY];
 
   build() {
     Column({ space: 10 }) {
@@ -1297,7 +1299,7 @@ struct ImageContentExample {
       Button('点击切换Image的src')
         .padding(20)
         .onClick(() => {
-          this.imageSrcIndex = (this.imageSrcIndex + 1) % this.imageSrcList.length
+          this.imageSrcIndex = (this.imageSrcIndex + 1) % this.imageSrcList.length;
         })
     }.width('100%')
     .padding(20)
@@ -1554,7 +1556,7 @@ struct Index {
 该示例通过[imageMatrix](#imagematrix15)和[objectFit](#objectfit)属性，为图片添加旋转和平移的效果。
 
 ```ts
-import { matrix4 } from '@kit.ArkUI'
+import { matrix4 } from '@kit.ArkUI';
 
 @Entry
 @Component

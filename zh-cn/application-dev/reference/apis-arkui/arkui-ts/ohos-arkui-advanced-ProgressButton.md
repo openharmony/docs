@@ -6,13 +6,13 @@
 
 > **说明：**
 >
-> 该组件从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 导入模块
 
 ```
-import { ProgressButton } from '@kit.ArkUI'
+import { ProgressButton } from '@kit.ArkUI';
 ```
 
 ## 属性
@@ -43,16 +43,16 @@ ProgressButton({progress: number, content: string, progressButtonWidth?: Length,
 
 该示例实现了一个简单的带加载进度的文本下载按钮。
 ```ts
-import { ProgressButton } from '@kit.ArkUI'
+import { ProgressButton } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State progressIndex: number = 0
-  @State textState: string = '下载'
-  @State ButtonWidth: number = 200
-  @State isRunning: boolean = false
-  @State enableState: boolean = true
+  @State progressIndex: number = 0;
+  @State textState: string = '下载';
+  @State ButtonWidth: number = 200;
+  @State isRunning: boolean = false;
+  @State enableState: boolean = true;
 
   build() {
     Column() {
@@ -65,22 +65,21 @@ struct Index {
             enable: this.enableState,
             clickCallback: () => {
               if (this.textState && !this.isRunning && this.progressIndex < 100) {
-                this.textState = '继续'
+                this.textState = '继续';
               }
-              this.isRunning = !this.isRunning
+              this.isRunning = !this.isRunning;
               let timer = setInterval(() => {
                 if (this.isRunning) {
                   if (this.progressIndex === 100) {
-
                   } else {
-                    this.progressIndex++
+                    this.progressIndex++;
                     if (this.progressIndex === 100) {
-                      this.textState = '已完成'
-                      this.enableState = false
+                      this.textState = '已完成';
+                      this.enableState = false;
                     }
                   }
                 } else {
-                  clearInterval(timer)
+                  clearInterval(timer);
                 }
               }, 20)
             }

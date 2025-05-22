@@ -120,5 +120,8 @@ order(value: number | GridColColumnOption)
 | xl  | number | 否    | 在栅格大小为xl的设备上，栅格容器组件的栅格列数。    |
 | xxl | number | 否    | 在栅格大小为xxl的设备上，栅格容器组件的栅格列数。    |
 
+## 事件
+支持[通用事件](ts-component-general-events.md)。
+
 ## 示例
 请参考栅格容器示例代码([GridRow](ts-container-gridrow.md#示例))。

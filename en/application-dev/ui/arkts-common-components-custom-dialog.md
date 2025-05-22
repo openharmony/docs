@@ -3,7 +3,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 
 > **NOTE**
 > 
-> In ArkUI, dialog boxes do not close automatically when you switch pages unless you manually call **close**. To enable a dialog box to be dismissed during page navigation, consider using the **Navigation** component. For details, see the [page display mode: dialog mode](arkts-navigation-navigation.md#page-display-mode).
+> In ArkUI, dialog boxes do not close automatically when you switch pages unless you manually call **close**. To enable a dialog box to be dismissed during page navigation, consider using the [navigation page displayed in dialog mode](arkts-navigation-navigation.md#page-display-mode) or [page-level dialog box](arkts-embedded-dialog.md).
 
 You can specify the modality of a dialog box by setting [isModal](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions). A dialog box is modal if **isModal** is set to **true** and non-modal otherwise.
 
@@ -236,15 +236,17 @@ Custom dialog boxes can be used for data interactions to complete a series of op
    @Component
    struct Index2 {
      @State message: string =' Back';
+
      build() {
        Column() {
          Button(this.message)
-           .fontWeight(FontWeight.Bold).onClick(() => {
-           this.getUIContext().getRouter().back({
-             url: 'pages/Index',
-             params: {
-               info: 'Hello World'
-             }
+           .type(ButtonType.Capsule)
+           .onClick(() => {
+              this.getUIContext().getRouter().back({
+                url: 'pages/Index',
+                params: {
+                info: 'Hello World'
+              }
            });
          })
        }.width('100%').height('100%').margin({ top: 20 })

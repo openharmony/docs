@@ -61,7 +61,6 @@ You can refer to the corresponding development guide and samples based on your d
 | typedef struct [OH_ImageNative](#oh_imagenative) [OH_ImageNative](#oh_imagenative) | Defines the alias for an image object at the native layer. | 
 | typedef struct [OH_ImagePackerNative](#oh_imagepackernative) [OH_ImagePackerNative](#oh_imagepackernative) | Defines a struct for the image packer, which is used to perform operations related to an image packer. | 
 | typedef struct [OH_PackingOptions](#oh_packingoptions) [OH_PackingOptions](#oh_packingoptions) | Defines a struct for image encoding parameters. | 
-| typedef struct [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) | Defines a struct for image sequence encoding parameters. | 
 | typedef struct [OH_ImageReceiverNative](#oh_imagereceivernative) [OH_ImageReceiverNative](#oh_imagereceivernative) | Defines the data type name of the image receiver at the native layer. | 
 | typedef struct [OH_ImageReceiverOptions](#oh_imagereceiveroptions) [OH_ImageReceiverOptions](#oh_imagereceiveroptions) | Defines the data type name of the image receiver options. | 
 | typedef void(\* [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback)) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver) | Defines the callbacks for the image receiver at the native layer. | 
@@ -93,7 +92,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) {<br>IMAGE_ALLOCATOR_TYPE_AUTO = 0,<br>IMAGE_ALLOCATOR_TYPE_DMA = 1,<br>IMAGE_ALLOCATOR_TYPE_SHARE_MEMORY = 2 } | Enumerates the types of allocators used to allocate PixelMap memory.| 
 | [Image_AuxiliaryPictureType](#image_auxiliarypicturetype) {<br>AUXILIARY_PICTURE_TYPE_GAINMAP = 1, AUXILIARY_PICTURE_TYPE_DEPTH_MAP = 2, AUXILIARY_PICTURE_TYPE_UNREFOCUS_MAP = 3, AUXILIARY_PICTURE_TYPE_LINEAR_MAP = 4,<br>AUXILIARY_PICTURE_TYPE_FRAGMENT_MAP = 5<br>} | Enumerates the auxiliary picture types. | 
 | [PIXELMAP_ALPHA_TYPE](#pixelmap_alpha_type) {<br>PIXELMAP_ALPHA_TYPE_UNKNOWN = 0,<br>PIXELMAP_ALPHA_TYPE_OPAQUE = 1,<br>PIXELMAP_ALPHA_TYPE_PREMULTIPLIED = 2, <br>PIXELMAP_ALPHA_TYPE_UNPREMULTIPLIED = 3 } | Enumerates the alpha types of a PixelMap.| 
-| [PIXEL_FORMAT](#pixel_format) {<br>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br>PIXEL_FORMAT_NV12 = 9, <br>PIXEL_FORMAT_RGBA_1010102 = 10, <br>PIXEL_FORMAT_YCBCR_P010 = 11, <br>PIXEL_FORMAT_YCRCB_P010 = 12<br>} | Enumerates the image pixel formats.| 
+| [PIXEL_FORMAT](#pixel_format) {<br/>PIXEL_FORMAT_UNKNOWN = 0, PIXEL_FORMAT_RGB_565 = 2,<br/>PIXEL_FORMAT_RGBA_8888 = 3, PIXEL_FORMAT_BGRA_8888 = 4,<br/>PIXEL_FORMAT_RGB_888 = 5, PIXEL_FORMAT_ALPHA_8 = 6,<br/>PIXEL_FORMAT_RGBA_F16 = 7, PIXEL_FORMAT_NV21 = 8,<br/>PIXEL_FORMAT_NV12 = 9, <br/>PIXEL_FORMAT_RGBA_1010102 = 10, <br/>PIXEL_FORMAT_YCBCR_P010 = 11, <br/>PIXEL_FORMAT_YCRCB_P010 = 12<br/>} | Enumerates the image pixel formats. | 
 | [OH_PixelmapNative_AntiAliasingLevel](#oh_pixelmapnative_antialiasinglevel) { <br>OH_PixelmapNative_AntiAliasing_NONE = 0, <br>OH_PixelmapNative_AntiAliasing_LOW = 1, <br>OH_PixelmapNative_AntiAliasing_MEDIUM = 2, <br>OH_PixelmapNative_AntiAliasing_HIGH = 3 <br>} | Enumerates the anti-aliasing levels used for scaling PixelMaps. | 
 | [OH_Pixelmap_HdrMetadataKey](#oh_pixelmap_hdrmetadatakey) { <br>HDR_METADATA_TYPE = 0, <br>HDR_STATIC_METADATA = 1, <br>HDR_DYNAMIC_METADATA = 2, <br>HDR_GAINMAP_METADATA = 3 } | Enumerates the keys of the HDR related metadata information used by the PixelMap. It is used in [OH_PixelmapNative_SetMetadata](#oh_pixelmapnative_setmetadata) and [OH_PixelmapNative_GetMetadata](#oh_pixelmapnative_getmetadata). | 
 | [OH_Pixelmap_HdrMetadataType](#oh_pixelmap_hdrmetadatatype) { <br>HDR_METADATA_TYPE_NONE = 0, <br>HDR_METADATA_TYPE_BASE = 1, <br>HDR_METADATA_TYPE_GAINMAP = 2, <br>HDR_METADATA_TYPE_ALTERNATE = 3 } | Enumerates the HDR metadata types, which are the values of **HDR_METADATA_TYPE**. | 
@@ -124,25 +123,13 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_GetDesiredDynamicRange](#oh_packingoptions_getdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t \*desiredDynamicRange) | Obtains the desired dynamic range during encoding. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_SetDesiredDynamicRange](#oh_packingoptions_setdesireddynamicrange) ([OH_PackingOptions](#oh_packingoptions) \*options, int32_t desiredDynamicRange) | Sets the desired dynamic range during encoding. | 
 | [Image_ErrorCode](#image_errorcode) [OH_PackingOptions_Release](#oh_packingoptions_release) ([OH_PackingOptions](#oh_packingoptions) \*options) | Releases the pointer to an **OH_PackingOptions** struct. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_Create](#oh_packingoptionsforsequence_create) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*\*options) | Creates the pointer to an **OH_PackingOptionsForSequence** struct. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetFrameCount](#oh_packingoptionsforsequence_setframecount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t frameCount) | Sets the number of frames for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetFrameCount](#oh_packingoptionsforsequence_getframecount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*frameCount) | Obtains the number of frames for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetDelayTimeList](#oh_packingoptionsforsequence_setdelaytimelist) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, int32_t \*delayTimeList, size_t delayTimeListLength) | Sets the delay time array for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetDelayTimeList](#oh_packingoptionsforsequence_getdelaytimelist) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, int32_t \*delayTimeList, size_t delayTimeListLength) | Obtains the delay time array for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetDisposalTypes](#oh_packingoptionsforsequence_setdisposaltypes) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*disposalTypes, size_t disposalTypesLength) | Sets the disposal type array for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetDisposalTypes](#oh_packingoptionsforsequence_getdisposaltypes) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*disposalTypes, size_t disposalTypesLength) | Obtains the disposal type array for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_SetLoopCount](#oh_packingoptionsforsequence_setloopcount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t loopCount) | Sets the number of loops for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_GetLoopCount](#oh_packingoptionsforsequence_getloopcount) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, uint32_t \*loopCount) | Obtains the number of loops for image sequence encoding. | 
-| [Image_ErrorCode](#image_errorcode) [OH_PackingOptionsForSequence_Release](#oh_packingoptionsforsequence_release) ([OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options) | Releases the pointer to an **OH_PackingOptionsForSequence** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Create](#oh_imagepackernative_create) ([OH_ImagePackerNative](#oh_imagepackernative) \*\*imagePacker) | Creates the pointer to an **OH_ImagePackerNative** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromImageSource](#oh_imagepackernative_packtodatafromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, uint8_t \*outData, size_t \*size) | Encodes an image source into data in a given format. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPixelmap](#oh_imagepackernative_packtodatafrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, uint8_t \*outData, size_t \*size) | Encodes a PixelMap into data in a given format. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPicture](#oh_imagepackernative_packtodatafrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, uint8_t \*outData, size_t \*size) | Encodes a picture into data in a given format. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToDataFromPixelmapSequence](#oh_imagepackernative_packtodatafrompixelmapsequence) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, [OH_ImagePackerNative](#oh_imagepackernative) \*\*pixelmapSequence, size_t sequenceLength, uint8_t \*outData, size_t \*outDataSize) | Encodes a PixelMap sequence into data. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromImageSource](#oh_imagepackernative_packtofilefromimagesource) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_ImageSourceNative](#oh_imagesourcenative) \*imageSource, int32_t fd) | Encodes an image source into a file. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPixelmap](#oh_imagepackernative_packtofilefrompixelmap) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*pixelmap, int32_t fd) | Encodes a PixelMap into a file. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPicture](#oh_imagepackernative_packtofilefrompicture) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptions](#oh_packingoptions) \*options, [OH_PictureNative](#oh_picturenative) \*picture, int32_t fd) | Encodes a picture into a file. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_PackToFileFromPixelmapSequence](#oh_imagepackernative_packtofilefrompixelmapsequence) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker, [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) \*options, [OH_ImagePackerNative](#oh_imagepackernative) \*\*pixelmapSequence, size_t sequenceLength, int32_t fd) | Encodes a PixelMap sequence into a file. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImagePackerNative_Release](#oh_imagepackernative_release) ([OH_ImagePackerNative](#oh_imagepackernative) \*imagePacker) | Releases the pointer to an **OH_ImagePackerNative** object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Create](#oh_imagereceiveroptions_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*\*options) | Creates an **OH_ImageReceiverOptions** object at the application layer. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_GetSize](#oh_imagereceiveroptions_getsize) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [Image_Size](_image___size.md) \*size) | Obtains the [Image_Size](_image___size.md) information of an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
@@ -151,7 +138,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t capacity) | Sets the capacity for an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options) | Releases an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [OH_ImageReceiverNative](#oh_imagereceivernative) \*\*receiver) | Creates an **OH_ImageReceiverNative** object at the application layer. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | Obtains the receiver ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | Obtains the surface ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | Obtains the latest image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | Obtains the next image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback) | Registers the callback defined in [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback). | 
@@ -183,7 +170,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata) (uint8_t \*data, size_t dataSize, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object based on buffer data. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile) (RawFileDescriptor \*rawFile, [OH_ImageSourceNative](#oh_imagesourcenative) \*\*res) | Creates the pointer to an **OH_ImageSourceNative** object by using the raw file descriptor of an image resource file. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates the pointer to an **OH_PixelmapNative** object based on decoding options. | 
-| [Image_ErrorCode](#image_errorcode)[OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an **OH_PixelmapNative** object based on decoding options and memory type, where **allocatorType** specifies the memory type of the PixelMap.<br>By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.| 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapUsingAllocator](#oh_imagesourcenative_createpixelmapusingallocator) (OH_ImageSourceNative \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, [IMAGE_ALLOCATOR_TYPE](#image_allocator_type) allocator, [OH_PixelmapNative](#oh_pixelmapnative) \*\*pixelmap) | Creates an **OH_PixelmapNative** object based on decoding options and memory type, where **allocatorType** specifies the memory type of the PixelMap.<br>By default, the system selects an appropriate memory type based on the image type, image size, and platform capability. When processing the returned PixelMap object, consider the impact of stride.| 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, [OH_DecodingOptions](#oh_decodingoptions) \*options, OH_PixelmapNative \*resVecPixMap[], size_t size) | Creates an array of **OH_PixelmapNative** objects based on decoding options. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_CreatePicture](#oh_imagesourcenative_createpicture) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, OH_DecodingOptionsForPicture \*options, [OH_PictureNative](#oh_picturenative) \*\*picture) | Creates the pointer to an **OH_PictureNative** object based on decoding options. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist) ([OH_ImageSourceNative](#oh_imagesourcenative) \*source, int32_t \*delayTimeList, size_t size) | Obtains the image delay time list. | 
@@ -408,7 +395,7 @@ You can refer to the corresponding development guide and samples based on your d
 | static const char \*[OHOS_IMAGE_PROPERTY_PHOTOGRAPHIC_SENSITIVITY](#ohos_image_property_photographic_sensitivity) = "PhotographicSensitivity" | Sensitivity of the camera or input device when the image was captured.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_BURST_NUMBER](#ohos_image_property_burst_number) = "HwMnoteBurstNumber" | Number of burst shooting times.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_CONF](#ohos_image_property_face_conf) = "HwMnoteFaceConf" | Face confidence.| 
-| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | Left eye centered. It is used in [OH_ImageSource_GetImageProperty](#oh_imagesourcenative_getimageproperty) and [OH_ImageSource_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty).| 
+| static const char \*[OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER](#ohos_image_property_face_leye_center) = "HwMnoteFaceLeyeCenter" | Left eye centered. |
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_MOUTH_CENTER](#ohos_image_property_face_mouth_center) = "HwMnoteFaceMouthCenter" | Mouth centered.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_POINTER](#ohos_image_property_face_pointer) = "HwMnoteFacePointer" | Face pointer.| 
 | static const char \*[OHOS_IMAGE_PROPERTY_FACE_RECT](#ohos_image_property_face_rect) = "HwMnoteFaceRect" | Face rectangle.| 
@@ -513,9 +500,30 @@ typedef struct OH_DecodingOptions OH_DecodingOptions
 
 **Description**
 
-Defines a struct for decoding options, which are used in [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap).
+Defines a struct for decoding options, which is encapsulated at the native layer. The struct is used to set decoding options and is passed in as an input parameter for creating a PixelMap. For details, see [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap).
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_DecodingOptions Struct](../../media/image/image-structure-c.md#oh_decodingoptions-struct).
+The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
+
+To create an **OH_DecodingOptions** object, call [OH_DecodingOptions_Create](#oh_decodingoptions_create).
+
+To release an **OH_DecodingOptions** object, call [OH_DecodingOptions_Release](#oh_decodingoptions_release).
+
+The table below describes the content and operation mode of the OH_DecodingOptions struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| int32_t | pixelFormat | Pixel format.| [OH_DecodingOptions_GetPixelFormat](#oh_decodingoptions_getpixelformat)	|Obtains the pixel format.|
+| int32_t | pixelFormat | Pixel format.| [OH_DecodingOptions_SetPixelFormat](#oh_decodingoptions_setpixelformat)	| Sets the pixel format.|
+| uint32_t | index | Index of the image to decode.| [OH_DecodingOptions_GetIndex](#oh_decodingoptions_getindex)	| Obtains the index of an image.|
+| uint32_t | index | Index of the image to decode.| [OH_DecodingOptions_SetIndex](#oh_decodingoptions_setindex)	| Sets the index for an image.|
+| float | rotate | Rotation angle.| [OH_DecodingOptions_GetRotate](#oh_decodingoptions_getrotate)	| Obtains the rotation degree.|
+| float | rotate | Rotation angle.| [OH_DecodingOptions_SetRotate](#oh_decodingoptions_setrotate)	| Sets the rotation angle.|
+| Image_Size | desiredSize | Desired output size.| [OH_DecodingOptions_GetDesiredSize](#oh_decodingoptions_getdesiredsize)	| Obtains the desired output size.|
+| Image_Size | desiredSize | Desired output size.| [OH_DecodingOptions_SetDesiredSize](#oh_decodingoptions_setdesiredsize)	| Sets the desired output size.|
+| Image_Region | desiredRegion | Region to decode.| [OH_DecodingOptions_GetDesiredRegion](#oh_decodingoptions_getdesiredregion) | Obtains the region to decode.|
+| Image_Region | desiredRegion | Region to decode.| [OH_DecodingOptions_SetDesiredRegion](#oh_decodingoptions_setdesiredregion) | Sets the region to decode.|
+| int32_t | desiredDynamicRange | Desired dynamic range.| [OH_DecodingOptions_GetDesiredDynamicRange](#oh_decodingoptions_getdesireddynamicrange)	|Obtains the desired dynamic range configured during decoding.|
+| int32_t | desiredDynamicRange | Desired dynamic range.| [OH_DecodingOptions_SetDesiredDynamicRange](#oh_decodingoptions_setdesireddynamicrange)|Sets the desired dynamic range during decoding.|
 
 **Since**: 12
 
@@ -530,7 +538,18 @@ typedef struct OH_ImageNative OH_ImageNative
 
 Defines the alias for an image object at the native layer.
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageNative Struct](../../media/image/image-structure-c.md#oh_imagenative-struct).
+The struct cannot be directly operated. Instead, its fields must be operated by calling functions. The table below describes the content and operation mode of the OH_ImageNative struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| Image_Size| imageSize | Image size.|[OH_ImageNative_GetImageSize](#oh_imagenative_getimagesize) | Obtains the image size of an **OH_ImageNative** object.|
+| uint32_t | types |Component type, which is used to describe the image's color component.|[OH_ImageNative_GetComponentTypes](#oh_imagenative_getcomponenttypes) | Obtains the component types of an **OH_ImageNative** object.|
+| OH_NativeBuffer | nativeBuffer | Component buffer.|[OH_ImageNative_GetByteBuffer](#oh_imagenative_getbytebuffer) | Obtains the buffer corresponding to a component type in an **OH_ImageNative** object.|
+| size_t | bufferSize | Buffer size.| [OH_ImageNative_GetBufferSize](#oh_imagenative_getbuffersize) | Obtains the size of the buffer corresponding to a component type in an **OH_ImageNative** object.|
+| int32_t | rowStride | Row stride.| [OH_ImageNative_GetRowStride](#oh_imagenative_getrowstride) | Obtains the row stride corresponding to a component type in an **OH_ImageNative** object.|
+| int32_t | pixelStride | Pixel stride.| [OH_ImageNative_GetPixelStride](#oh_imagenative_getpixelstride) | Obtains the pixel stride corresponding to a component type in an **OH_ImageNative** object.|
+
+To release an **OH_ImageNative** object, call [OH_ImageNative_Release](#oh_imagenative_release).
 
 **Since**: 12
 
@@ -545,7 +564,18 @@ typedef struct OH_ImagePackerNative OH_ImagePackerNative
 
 Defines a struct for the image packer, which is used to perform operations related to an image packer.
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImagePackerNative Struct](../../media/image/image-structure-c.md#oh_imagepackernative-struct).
+The struct cannot be directly operated. Instead, its fields must be operated by calling functions. The table below describes the content and operation mode of the OH_ImageNative struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| OH_ImageSourceNative | imageSource | Image source.| [OH_ImagePackerNative_PackToDataFromImageSource](#oh_imagepackernative_packtodatafromimagesource) | Encodes an image source into data in a given format.|
+|OH_PixelmapNative | pixelmap | PixelMap at the native layer.| [OH_ImagePackerNative_PackToDataFromPixelmap](#oh_imagepackernative_packtodatafrompixelmap) | Encodes a PixelMap into data in a given format.|
+|int32_t | imagesourceFd | File descriptor of an image source.| [OH_ImagePackerNative_PackToFileFromImageSource](#oh_imagepackernative_packtofilefromimagesource) | Encodes an image source into a file.|
+|int32_t | pixelmapFd | File descriptor of a PixelMap.| [OH_ImagePackerNative_PackToFileFromPixelmap](#oh_imagepackernative_packtofilefrompixelmap) | Encodes a PixelMap into a file.|
+
+To create an **OH_ImagePackerNative** object, call [OH_ImagePackerNative_Create](#oh_imagepackernative_create).
+
+To release an **OH_ImagePackerNative** object, call [OH_ImagePackerNative_Release](#oh_imagepackernative_release).
 
 **Since**: 12
 
@@ -571,9 +601,23 @@ typedef struct OH_ImageReceiverNative OH_ImageReceiverNative
 
 **Description**
 
-Defines the data type name of the image receiver at the native layer.
+Defines a struct for the image receiver, which is encapsulated at the native layer. The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageReceiverNative Struct](../../media/image/image-structure-c.md#oh_imagereceivernative-struct).
+To create an **OH_ImageReceiverNative** object, call [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create).
+
+To release an **OH_ImageReceiverNative** object, call [OH_ImageReceiverNative_Release](#oh_imagereceivernative_release).
+
+The table below describes the content and operation mode of the OH_ImageReceiverNative struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| uint64_t | surfaceId | Surface ID of the receiver.| [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |Obtains the surface ID of an **OH_ImageReceiverNative** object.|
+| OH_ImageNative | image | Image at the native layer.| [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) | Obtains the latest image through an **OH_ImageReceiverNative** object.|
+| OH_ImageNative | image | Image at the native layer.| [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) |Obtains the next image through an **OH_ImageReceiverNative** object.|
+| OH_ImageReceiver_OnCallback | callback| Callback function of the image receiver.| [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) |Registers an **OH_ImageReceiver_OnCallback**.|
+| OH_ImageReceiver_OnCallback | callback| Callback function of the image receiver.| [OH_ImageReceiverNative_Off](#oh_imagereceivernative_off) |Unregisters an **OH_ImageReceiver_OnCallback**.|
+| Image_Size | size | Size of an image receiver.| [OH_ImageReceiverNative_GetSize](#oh_imagereceivernative_getsize) |Obtains the size of an **OH_ImageReceiverNative**.|
+|int32_t | capacity| Capacity of an image receiver.| [OH_ImageReceiverNative_GetCapacity](#oh_imagereceivernative_getcapacity) |Obtains the capacity of an **OH_ImageReceiverNative**.|
 
 **Since**: 12
 
@@ -588,7 +632,22 @@ typedef struct OH_ImageReceiverOptionsOH_ImageReceiverOptions
 
 Defines the data type name of the image receiver options.
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageReceiverOptions Struct](../../media/image/image-structure-c.md#oh_imagereceiveroptions-struct).
+OH_ImageReceiverOptions is the image receiver option setter struct encapsulated at the native layer. It is used to pass parameters during the creation of an **OH_ImageReceiverNative** object.
+
+The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
+
+To create an **OH_ImageReceiverOptions** object, run [OH_ImageReceiverOptions_Create](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_create).
+
+To release an **OH_ImageReceiverOptions** object, run [OH_ImageReceiverOptions_Release](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_release).
+
+The table below describes the content and operation mode of the OH_ImageReceiverOptions struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| Image_Size | size | Image size.| [OH_ImageReceiverOptions_GetSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_getsize)	|Obtains the image size of an **OH_ImageReceiverOptions** object.|
+| Image_Size | size | Image size.| [OH_ImageReceiverOptions_SetSize](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_setsize)	|Sets the image size for an **OH_ImageReceiverOptions** object.|
+| int32_t | capacity | Capacity of the image buffer.| [OH_ImageReceiverOptions_GetCapacity](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_getcapacity)	|Obtains the capacity of an **OH_ImageReceiverOptions** object.|
+| int32_t | capacity | Capacity of the image buffer.| [OH_ImageReceiverOptions_SetCapacity](../../reference/apis-image-kit/_image___native_module.md#oh_imagereceiveroptions_setcapacity)	|Sets the capacity for an **OH_ImageReceiverOptions** object.|
 
 **Since**: 12
 
@@ -601,9 +660,18 @@ typedef struct OH_ImageSource_Info OH_ImageSource_Info
 
 **Description**
 
-Defines a struct for the image source information, which is created by calling [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).
+Defines a struct for the image source information, which is encapsulated at the native layer. The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageSource_Info Struct](../../media/image/image-structure-c.md#oh_imagesource_info-struct).
+To create an **OH_ImageSource_Info** object, call [OH_ImageSourceInfo_Create](#oh_imagesourceinfo_create).
+
+To release an **OH_ImageSource_Info** object, call [OH_ImageSourceInfo_Release](#oh_imagesourceinfo_release).
+
+The table below describes the content and operation mode of the OH_ImageSource_Info struct.
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| uint32_t | width | Photo width.| [OH_ImageSourceInfo_GetWidth](#oh_imagesourceinfo_getwidth)	|Obtains the image width.|
+| uint32_t | height | Photo height.| [OH_ImageSourceInfo_GetHeight](#oh_imagesourceinfo_getheight)	|Obtains the image height.|
+| bool | isHdr | Dynamic range.| [OH_ImageSourceInfo_GetDynamicRange](#oh_imagesourceinfo_getdynamicrange)	|Obtains the dynamic range of an image.|
 
 **Since**: 12
 
@@ -616,9 +684,30 @@ typedef struct OH_ImageSourceNative OH_ImageSourceNative
 
 **Description**
 
-Defines a struct for the image source, which is used to perform operations related to an image source.
+Defines a struct for the image source, which is encapsulated at the native layer and is used to create image data. The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_ImageSourceNative Struct](../../media/image/image-structure-c.md#oh_imagesourcenative-struct).
+You can create an **OH_ImageSourceNative** object in multiple ways, as described below.
+
+| Functions| Description|
+| -------- | -------- |
+| [OH_ImageSourceNative_CreateFromUri](#oh_imagesourcenative_createfromuri)	|Creates an **OH_ImageSourceNative** object based on a URI.|
+| [OH_ImageSourceNative_CreateFromFd](#oh_imagesourcenative_createfromfd)	|Creates an **OH_ImageSourceNative** object based on a file descriptor.|
+| [OH_ImageSourceNative_CreateFromData](#oh_imagesourcenative_createfromdata)	|Creates an **OH_ImageSourceNative** object based on buffer data.|
+| [OH_ImageSourceNative_CreateFromRawFile](#oh_imagesourcenative_createfromrawfile)	|Creates an **OH_ImageSourceNative** object by using the raw file descriptor of an image resource file.|
+| [OH_ImageSourceNative_CreatePixelmap](#oh_imagesourcenative_createpixelmap)	|Creates an **OH_PixelmapNative** object based on image decoding parameters.|
+| [OH_ImageSourceNative_CreatePixelmapList](#oh_imagesourcenative_createpixelmaplist)	|Creates an array of **OH_PixelmapNative** objects based on decoding options.|
+
+To release an **OH_ImageSourceNative** object, call [OH_ImageSourceNative_Release](#oh_imagesourcenative_release).
+
+The table below describes the content and operation mode of the OH_ImageSourceNative struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| int32_t | delayTimeList | Image delay time list.| [OH_ImageSourceNative_GetDelayTimeList](#oh_imagesourcenative_getdelaytimelist)	|Obtains the image delay time list.|
+| OH_ImageSource_Info | info | Image source information.| [OH_ImageSourceNative_GetImageInfo](#oh_imagesourcenative_getimageinfo)	|Obtains the information about an image with a given index.|
+| Image_String | value | Configuration item.| [OH_ImageSourceNative_GetImageProperty](#oh_imagesourcenative_getimageproperty)	|Obtains the value of an image property.|
+| Image_String | value | Configuration item.| [OH_ImageSourceNative_ModifyImageProperty](#oh_imagesourcenative_modifyimageproperty)	|Modifies the value of an image property.|
+| uint32_t | frameCount | Number of frames.| [OH_ImageSourceNative_GetFrameCount](#oh_imagesourcenative_getframecount)	|Obtains the number of image frames.|
 
 **Since**: 12
 
@@ -643,25 +732,23 @@ typedef struct OH_PackingOptions OH_PackingOptions
 ```
 
 **Description**
+Defines a struct for the image packing options, which is encapsulated at the native layer. The struct cannot be directly operated. Instead, functions must be called to create and release the struct and operate the fields in the struct.
 
-Defines a struct for image encoding parameters.
+To create an **OH_PackingOptions** object, call [OH_PackingOptions_Create](#oh_packingoptions_create).
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_PackingOptions Struct](../../media/image/image-structure-c.md#oh_packingoptions-struct).
+To release an **OH_PackingOptions** object, call [OH_PackingOptions_Release](#oh_packingoptions_release).
+
+The table below describes the content and operation mode of the OH_PackingOptions struct.
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| Image_MimeType | mimeType | MIME type.| [OH_PackingOptions_GetMimeType](#oh_packingoptions_getmimetype) | Obtains the MIME type.|
+| Image_MimeType | mimeType | MIME type.| [OH_PackingOptions_SetMimeType](#oh_packingoptions_setmimetype) | Sets the MIME type.|
+| uint32_t | quality | Encoding quality.| [OH_PackingOptions_GetQuality](#oh_packingoptions_getquality) | Obtains the encoding quality.|
+| uint32_t | quality | Encoding quality.| [OH_PackingOptions_SetQuality](#oh_packingoptions_setquality) | Sets the encoding quality.|
+| int32_t | desiredDynamicRange | Desired dynamic range.| [OH_PackingOptions_GetDesiredDynamicRange](#oh_packingoptions_getdesireddynamicrange) | Obtains the desired dynamic range during encoding.|
+| int32_t | desiredDynamicRange | Desired dynamic range.| [OH_PackingOptions_SetDesiredDynamicRange](#oh_packingoptions_setdesireddynamicrange) | Sets the desired dynamic range during encoding.|
 
 **Since**: 12
-
-
-### OH_PackingOptionsForSequence
-
-```
-typedef struct OH_PackingOptionsForSequence OH_PackingOptionsForSequence
-```
-
-**Description**
-
-Defines a struct for image sequence encoding parameters.
-
-**Since**: 13
 
 
 ### OH_PictureMetadata
@@ -751,10 +838,22 @@ typedef struct OH_Pixelmap_ImageInfo OH_Pixelmap_ImageInfo
 ```
 
 **Description**
+Defines a struct for the image information, which is encapsulated at the native layer. The struct stores the width, height, row stride, pixel format, and HDR of an image.
 
-Defines a struct for the image information.
+To create an **OH_Pixelmap_ImageInfo** object, call [OH_PixelmapImageInfo_Create](#oh_pixelmapimageinfo_create).
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_Pixelmap_ImageInfo Struct](../../media/image/image-structure-c.md#oh_pixelmap_imageinfo-struct).
+To release an **OH_Pixelmap_ImageInfo** object, call [OH_PixelmapImageInfo_Release](#oh_pixelmapimageinfo_release).
+
+The table below describes the content and operation mode of the OH_Pixelmap_ImageInfo struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| uint32_t | width | Image width.| [OH_PixelmapImageInfo_GetWidth](#oh_pixelmapimageinfo_getwidth)	| Obtains the image width.|
+| uint32_t | height | Image height.| [OH_PixelmapImageInfo_GetHeight](#oh_pixelmapimageinfo_getheight)	| Obtains the image height.|
+| uint32_t | rowStride | Row stride.| [OH_PixelmapImageInfo_GetRowStride](#oh_pixelmapimageinfo_getrowstride)	| Obtains the row stride.|
+| int32_t | pixelFormat| Pixel format.| [OH_PixelmapImageInfo_GetPixelFormat](#oh_pixelmapimageinfo_getpixelformat)	|Obtains the pixel format.|
+| int32_t | alphaType | Alpha type.| [OH_PixelmapImageInfo_GetAlphaType](#oh_pixelmapimageinfo_getalphatype)	|Obtains the alpha type.|
+| bool | isHdr | Dynamic range.| [OH_PixelmapImageInfo_GetDynamicRange](#oh_pixelmapimageinfo_getdynamicrange)	|Obtains the dynamic range of a PixelMap.|
 
 **Since**: 12
 
@@ -766,10 +865,24 @@ typedef struct OH_Pixelmap_InitializationOptions OH_Pixelmap_InitializationOptio
 ```
 
 **Description**
+Defines a struct for the initialization options, which is encapsulated at the native layer. The struct is used to set the initialization parameters for a PixelMap.
 
-Defines a struct for the initialization parameters.
+To create an **OH_Pixelmap_InitializationOptions** object, call [OH_PixelmapInitializationOptions_Create](#oh_pixelmapinitializationoptions_create).
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_Pixelmap_InitializationOptions Struct](../../media/image/image-structure-c.md#oh_pixelmap_initializationoptions-struct).
+To release an **OH_Pixelmap_InitializationOptions** object, call [OH_PixelmapInitializationOptions_Release](#oh_pixelmapinitializationoptions_release).
+
+The table below describes the content and operation mode of the OH_Pixelmap_InitializationOptions struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| uint32_t | width | Image width.| [OH_PixelmapInitializationOptions_GetWidth](#oh_pixelmapinitializationoptions_getwidth)	|Obtains the image width.|
+| uint32_t | width | Image width.| [OH_PixelmapInitializationOptions_SetWidth](#oh_pixelmapinitializationoptions_setwidth)	|Sets the image width.|
+| uint32_t | height | Image height.| [OH_PixelmapInitializationOptions_GetHeight](#oh_pixelmapinitializationoptions_getheight)	|Obtains the image height.|
+| uint32_t | height | Image height.| [OH_PixelmapInitializationOptions_SetHeight](#oh_pixelmapinitializationoptions_setheight)	|Sets the image height.|
+| int32_t | pixelFormat | Pixel format.| [OH_PixelmapInitializationOptions_GetPixelFormat](#oh_pixelmapinitializationoptions_getpixelformat)	|Obtains the pixel format.|
+| int32_t | pixelFormat | Pixel format.| [OH_PixelmapInitializationOptions_SetPixelFormat](#oh_pixelmapinitializationoptions_setpixelformat)	|Sets the pixel format.|
+| int32_t | alphaType | Alpha type.| [OH_PixelmapInitializationOptions_GetAlphaType](#oh_pixelmapinitializationoptions_getalphatype)	|Obtains the alpha type.|
+| int32_t | alphaType | Alpha type.| [OH_PixelmapInitializationOptions_SetAlphaType](#oh_pixelmapinitializationoptions_setalphatype)	|Sets the alpha type.|
 
 **Since**: 12
 
@@ -782,9 +895,25 @@ typedef struct OH_PixelmapNative OH_PixelmapNative
 
 **Description**
 
-Defines a struct for the PixelMap, which is used to perform operations related to a PixelMap.
+Defines a struct for an uncompressed PixelMap format, which is encapsulated at the native layer after images are decoded.
 
-The fields in this struct cannot be directly operated. Instead, they must be manipulated via function calls. For details about the struct content and operation mode, see [OH_PixelmapNative Struct](../../media/image/image-structure-c.md#oh_pixelmapnative-struct).
+To create an **OH_PixelmapNative** object, call [OH_PixelmapNative_CreatePixelmap](#oh_pixelmapnative_createpixelmap). By default, BGRA_8888 is used for data processing.
+
+To release an **OH_PixelmapNative** object, call [OH_PixelmapNative_Release](#oh_pixelmapnative_release).
+
+The table below describes the content and operation mode of the OH_PixelmapNative struct.
+
+| Field Type| Field Name| Field Description|Operation Function| Function Description|
+| -------- | -------- | -------- | -------- | -------- |
+| uint8_t | data | Image pixel data.| [OH_PixelmapNative_ReadPixels](#oh_pixelmapnative_readpixels)	| Reads the pixels of a PixelMap and writes the result to an ArrayBuffer.|
+| uint8_t | data | Image pixel data.| [OH_PixelmapNative_WritePixels](#oh_pixelmapnative_writepixels)	| Reads the image pixel data in the buffer and writes the data to a PixelMap.|
+| OH_Pixelmap_ImageInfo | imageInfo | Image information.| [OH_PixelmapNative_GetImageInfo](#oh_pixelmapnative_getimageinfo)	| Obtains the image information of a PixelMap.|
+| float | alphaRate | Opacity.| [OH_PixelmapNative_Opacity](#oh_pixelmapnative_opacity)	| Sets the opacity rate to enable the PixelMap to achieve the corresponding opacity effect.|
+|float, float, | scaleX, scaleY | Scale ratios along the X axis and Y axis, respectively.|[OH_PixelmapNative_Scale](#oh_pixelmapnative_scale)	| Scales a PixelMap based on a given width and height.|
+| float, float| x, y | Distances to translate along the X axis and Y axis, respectively.| [OH_PixelmapNative_Translate](#oh_pixelmapnative_translate)	| Translates a PixelMap based on given coordinates.|
+| float | angle | Rotation angle.|[OH_PixelmapNative_Rotate](#oh_pixelmapnative_rotate) | Rotates a PixelMap based on a given angle.|
+| bool, bool | shouldFilpHorizontally, shouldFilpVertically | Whether to flip horizontally or vertically.| [OH_PixelmapNative_Flip](#oh_pixelmapnative_flip)	| Flips a PixelMap based on a given angle.|
+| Image_Region | region | Cropping region.| [OH_PixelmapNative_Crop](#oh_pixelmapnative_crop)	| Crops a PixelMap based on a given size.|
 
 **Since**: 12
 
@@ -1702,7 +1831,6 @@ Releases the pointer to an **OH_DecodingOptions** struct.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
 
-
 ### OH_DecodingOptions_SetDesiredDynamicRange()
 
 ```
@@ -2249,34 +2377,6 @@ Encodes a PixelMap into data in a given format.
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DECODE_FAILED** if image decoding fails; returns **IMAGE_ALLOC_FAILED** if memory allocation fails; returns **IMAGE_TOO_LARGE** if the data or image is too large; returns **IMAGE_UNKNOWN_ERROR** if an unknown error occurs. For details, see [Image_ErrorCode](#image_errorcode).
 
 
-### OH_ImagePackerNative_PackToDataFromPixelmapSequence()
-
-```
-Image_ErrorCode OH_ImagePackerNative_PackToDataFromPixelmapSequence(OH_ImagePackerNative *imagePacker, OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, uint8_t *outData, size_t *outDataSize)
-```
-
-**Description**
-
-Encodes a PixelMap sequence into data.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
-| options | Pointer to an [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) struct. | 
-| pixelmapSequence | Double pointer to the PixelMap sequence to encode. | 
-| sequenceLength | Length of the PixelMap sequence. | 
-| outData | Pointer to the buffer used to store the output data. | 
-| outDataSize | Pointer to the size of the buffer. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DECODE_FAILED** if decoding fails. For details, see [Image_ErrorCode](#image_errorcode).
-
-
 ### OH_ImagePackerNative_PackToFileFromImageSource()
 
 ```
@@ -2353,33 +2453,6 @@ Encodes a PixelMap into a file.
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DECODE_FAILED** if image decoding fails; returns **IMAGE_UNKNOWN_ERROR** if an unknown error occurs. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_ImagePackerNative_PackToFileFromPixelmapSequence()
-
-```
-Image_ErrorCode OH_ImagePackerNative_PackToFileFromPixelmapSequence(OH_ImagePackerNative *imagePacker, OH_PackingOptionsForSequence *options, OH_PixelmapNative **pixelmapSequence, size_t sequenceLength, int32_t fd)
-```
-
-**Description**
-
-Encodes a PixelMap sequence into a file.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| imagePacker | Pointer to an **OH_ImagePackerNative** object. | 
-| options | Pointer to an [OH_PackingOptionsForSequence](#oh_packingoptionsforsequence) struct. | 
-| pixelmapSequence | Double pointer to the PixelMap sequence to encode. | 
-| sequenceLength | Length of the PixelMap sequence. | 
-| fd | File descriptor, which is writable. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_DECODE_FAILED** if decoding fails. For details, see [Image_ErrorCode](#image_errorcode).
 
 
 ### OH_ImagePackerNative_Release()
@@ -2465,7 +2538,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNat
 
 **Description**
 
-Obtains the receiver ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
+Obtains the surface ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
 
 **Since**: 12
 
@@ -3055,7 +3128,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageSourceNative_CreatePixelmap()
 
 ```
-Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **resPixMap)
 ```
 
 **Description**
@@ -3126,7 +3199,7 @@ By default, the system selects an appropriate memory type based on the image typ
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object.| 
-| options | Pointer to the decoding options. For details, see **OH_DecodingOptions**.| 
+| options | Pointer to the decoding options. For details, see [OH_DecodingOptions](#oh_decodingoptions).|
 | allocator | Memory type used by the returned PixelMap.| 
 | pixelmap | Double pointer to the **OH_PixelmapNative** object created at the C++ local layer.| 
 
@@ -3246,7 +3319,7 @@ Obtains the value of an image property.
 | Name| Description| 
 | -------- | -------- |
 | source | Pointer to an **OH_ImageSourceNative** object. | 
-| key | Pointer to the property key. For details, see [Image_String](_image___string.md). For details about the value range of **key**, see the definition of **OHOS_IMAGE_PROPERTY_XXX**. The memory must be released after the image source is used. For details, see [OH_ImageSourceNative_Release](#oh_imagesourcenative_release). | 
+| key | Pointer to the property key. For details, see [Image_String](_image___string.md). For details about the value range of **key**, see the definition of [OHOS_IMAGE_PROPERTY_XXX](#variables). The memory must be released after the image source is used. For details, see [OH_ImageSourceNative_Release](#oh_imagesourcenative_release). |
 | value | Pointer to the value obtained. You can pass in a null pointer with the size set to zero. In this case, the system will allocate memory, but you must release the memory after use. | 
 
 **Returns**
@@ -3486,248 +3559,6 @@ Sets the encoding quality.
 | -------- | -------- |
 | options | Pointer to an **OH_PackingOptions** struct. | 
 | quality | Encoding quality. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_Create()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_Create(OH_PackingOptionsForSequence **options)
-```
-
-**Description**
-
-Creates the pointer to an **OH_PackingOptionsForSequence** struct.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Double pointer to the **OH_PackingOptionsForSequence** struct created. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_GetDelayTimeList()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetDelayTimeList(OH_PackingOptionsForSequence *options, int32_t *delayTimeList, size_t delayTimeListLength)
-```
-
-**Description**
-
-Obtains the delay time array for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| delayTimeList | Pointer to the delay time array. | 
-| delayTimeListLength | Length of the delay time array. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_GetDisposalTypes()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetDisposalTypes(OH_PackingOptionsForSequence *options, uint32_t *disposalTypes, size_t disposalTypesLength)
-```
-
-**Description**
-
-Obtains the disposal type array for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| disposalTypes | Pointer to the disposal type array. | 
-| disposalTypesLength | Length of the disposal type array. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_GetFrameCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetFrameCount(OH_PackingOptionsForSequence *options, uint32_t *frameCount)
-```
-
-**Description**
-
-Obtains the number of frames for packing.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| frameCount | Pointer to the number of frames. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_GetLoopCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_GetLoopCount(OH_PackingOptionsForSequence *options, uint32_t *loopCount)
-```
-
-**Description**
-
-Obtains the number of loops for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| loopCount | Pointer to the number of loops. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_Release()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_Release(OH_PackingOptionsForSequence *options)
-```
-
-**Description**
-
-Releases the pointer to an **OH_PackingOptionsForSequence** object.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_SetDelayTimeList()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetDelayTimeList(OH_PackingOptionsForSequence *options, int32_t *delayTimeList, size_t delayTimeListLength)
-```
-
-**Description**
-
-Sets the delay time array of images for encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| delayTimeList | Pointer to the delay time array. | 
-| delayTimeListLength | Length of the delay time array. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_SetDisposalTypes()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetDisposalTypes(OH_PackingOptionsForSequence *options, uint32_t *disposalTypes, size_t disposalTypesLength)
-```
-
-**Description**
-
-Sets the disposal type array for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| disposalTypes | Pointer to the disposal type array. | 
-| disposalTypesLength | Length of the disposal type array. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_SetFrameCount()
-
-```
-mage_ErrorCode OH_PackingOptionsForSequence_SetFrameCount(OH_PackingOptionsForSequence *options, uint32_t frameCount)
-```
-
-**Description**
-
-Sets the number of frames for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| frameCount | Number of frames. | 
-
-**Returns**
-
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
-
-### OH_PackingOptionsForSequence_SetLoopCount()
-
-```
-Image_ErrorCode OH_PackingOptionsForSequence_SetLoopCount(OH_PackingOptionsForSequence *options, uint32_t loopCount)
-```
-
-**Description**
-
-Sets the number of loops for image sequence encoding.
-
-**Since**: 13
-
-**Parameters**
-
-| Name| Description| 
-| -------- | -------- |
-| options | Pointer to an **OH_PackingOptionsForSequence** struct. | 
-| loopCount | Number of loops. | 
 
 **Returns**
 
@@ -4310,7 +4141,6 @@ Obtains the alpha type.
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
-
 ### OH_PixelmapInitializationOptions_GetHeight()
 
 ```
@@ -4478,7 +4308,6 @@ Sets the alpha type.
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
 
 ### OH_PixelmapInitializationOptions_SetHeight()
 
@@ -4752,7 +4581,6 @@ Creates a PixelMap based on properties. By default, the BGRA_8888 format is used
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_OPERATION** if the operation is not supported. For details, see [Image_ErrorCode](#image_errorcode).
 
-
 ### OH_PixelmapNative_Crop()
 
 ```
@@ -4775,7 +4603,6 @@ Crops a PixelMap based on a given size.
 **Returns**
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
-
 
 ### OH_PixelmapNative_Flip()
 
@@ -4801,7 +4628,6 @@ Flips a PixelMap based on a given angle.
 
 Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect. For details, see [Image_ErrorCode](#image_errorcode).
 
-
 ### OH_PixelmapNative_GetArgbPixels()
 
 ```
@@ -4824,9 +4650,7 @@ Reads data in ARGB format from a PixelMap.
 
 **Returns**
 
-Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_CONVERSION** if the PixelMap format does not support ARGB data reading; returns **IMAGE_ALLOC_FAILED** if the memory allocation fails; returns **IMAGE_COPY_FAILED** if the memory data fails to be copied, read, or operated. For details, see [Image_ErrorCode](#image_errorcode). For details, see [Image_ErrorCode](#image_errorcode).
-
-
+Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PARAMETER** if a parameter is incorrect; returns **IMAGE_UNSUPPORTED_CONVERSION** if the PixelMap format does not support ARGB data reading; returns **IMAGE_ALLOC_FAILED** if the memory allocation fails; returns **IMAGE_COPY_FAILED** if the memory data fails to be copied, read, or operated. For details, see [Image_ErrorCode](#image_errorcode).
 
 ### OH_PixelmapNative_GetColorSpaceNative()
 
@@ -5710,7 +5534,7 @@ static const char* OHOS_IMAGE_PROPERTY_FACE_LEYE_CENTER = "HwMnoteFaceLeyeCenter
 
 **Description**
 
-Left eye centered. It is used in **OH_ImageSource_GetImageProperty** and **OH_ImageSource_ModifyImageProperty**.
+Left eye centered.
 
 **Since**: 12
 

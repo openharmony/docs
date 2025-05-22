@@ -58,8 +58,21 @@
 
 ```ts
 // 从@kit.NetworkKit中导入netFirewall命名空间
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+interface IpType{
+      family:number;
+      type:number;
+      address?:string;
+      mask?:number;
+      startIp?:string;
+      endIp?:string;
+}
+interface IpPort{
+    startPort:number;
+    endPort:number;
+}
 
 // 定义防火墙策略：打开，入站阻止，出站允许
 let policy: netFirewall.NetFirewallPolicy = {
@@ -94,7 +107,7 @@ let ipRule: netFirewall.NetFirewallRule = {
       type: 2,
       startIp: "10.20.1.1",
       endIp: "10.20.1.10"
-    }],
+    }] as IpType[],
   remoteIps:[
     {
       family: 1,
@@ -106,7 +119,7 @@ let ipRule: netFirewall.NetFirewallRule = {
       type: 2,
       startIp: "20.20.1.1",
       endIp: "20.20.1.10"
-    }],
+    }] as IpType[],
   protocol: 6,
   localPorts: [
     {
@@ -115,12 +128,12 @@ let ipRule: netFirewall.NetFirewallRule = {
     },{
       startPort: 2000,
       endPort: 2001
-    }],
+    }] as IpPort[],
   remotePorts: [
     {
       startPort: 443,
       endPort: 443
-    }],
+    }] as IpPort[],
   userId: 100
 };
 // 添加防火墙规则
@@ -140,8 +153,13 @@ netFirewall.addNetFirewallRule(ipRule).then((result: number) => {
 
 ```ts
 // 从@kit.NetworkKit中导入netFirewall命名空间
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
+interface domain{
+    isWildcard: boolean;
+    domain: string;
+}
 
 // 定义防火墙策略：打开，入站阻止，出站允许
 let policy: netFirewall.NetFirewallPolicy = {
@@ -172,7 +190,7 @@ let domainRule: netFirewall.NetFirewallRule = {
     },{
       isWildcard: true,
       domain: "*.openharmony.cn"
-    }],
+    }] as domain[],
   userId: 100
 };
 // 添加防火墙规则
@@ -192,7 +210,7 @@ netFirewall.addNetFirewallRule(domainRule).then((result: number) => {
 
 ```ts
 // 从@kit.NetworkKit中导入netFirewall命名空间
-import { netFirewall } '@kit.NetworkKit';
+import { netFirewall } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 // 通过getInterceptedRecords方法分页查询拦截记录

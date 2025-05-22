@@ -20,7 +20,7 @@ init(): boolean
 
 > **说明：**
 >
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
+> 从API version 8开始支持，从API version 9开始废弃，建议使用[initialize](#connectedtaginitialize9)替代。
 
 **需要权限**：ohos.permission.NFC_TAG
 
@@ -30,7 +30,7 @@ init(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean | true:初始化成功。&nbsp;<br>false:初始化失败。 |
+| boolean | true：初始化成功。&nbsp;<br>false：初始化失败。 |
 
 ## connectedTag.initialize<sup>9+</sup>
 
@@ -66,7 +66,7 @@ uninit(): boolean
 
 | **类型** | **说明** |
 | -------- | -------- |
-| boolean | true:卸载操作成功。&nbsp;<br>false:卸载操作失败。 |
+| boolean | true：卸载操作成功。&nbsp;<br>false：卸载操作失败。 |
 
 ## connectedTag.uninitialize<sup>9+</sup>
 

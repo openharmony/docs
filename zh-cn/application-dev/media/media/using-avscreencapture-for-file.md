@@ -159,7 +159,9 @@ void OnDisplaySelected(struct OH_AVScreenCapture *capture, uint64_t displayId, v
     (void)userData;
 }
 
-static napi_value Screencapture(napi_env env, napi_callback_info info) {
+struct OH_AVScreenCapture *capture;
+// 开始录屏时调用StartScreenCapture。
+static napi_value StartScreenCapture(napi_env env, napi_callback_info info) {
     OH_AVScreenCaptureConfig config;
     OH_AudioCaptureInfo micCapInfo = {
         .audioSampleRate = 48000, 
@@ -208,7 +210,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
         .videoInfo = videoInfo,
     };
 
-    struct OH_AVScreenCapture *capture = OH_AVScreenCapture_Create();
+    // 实例化ScreenCapture。
+    capture = OH_AVScreenCapture_Create();
 
     // 初始化录屏参数，传入配置信息OH_AVScreenRecorderConfig。
     OH_RecorderInfo recorderInfo;
@@ -234,15 +237,25 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
     // 开始录屏。
     int32_t retStart = OH_AVScreenCapture_StartScreenRecording(capture);
 
-    // 录制10s。
-    sleep(10);
+    // 结束录屏见StopScreenCapture。
 
-    // 结束录屏。
-    int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
+    // 返回调用结果，示例仅返回随意值。
+    napi_value sum;
+    napi_create_double(env, 5, &sum);
 
-    // 释放ScreenCapture。
-    int32_t retRelease = OH_AVScreenCapture_Release(capture);
+    return sum;
+}
 
+// 结束录屏时调用StopScreenCapture。
+static napi_value StopScreenCapture(napi_env env, napi_callback_info info) {
+    if (capture != nullptr) {
+        // 结束录屏。
+        int32_t retStop = OH_AVScreenCapture_StopScreenRecording(capture);
+
+        // 释放ScreenCapture。
+        int32_t retRelease = OH_AVScreenCapture_Release(capture);
+        capture = nullptr;
+    }
     // 返回调用结果，示例仅返回随意值。
     napi_value sum;
     napi_create_double(env, 5, &sum);
@@ -253,7 +266,8 @@ static napi_value Screencapture(napi_env env, napi_callback_info info) {
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-        {"screencapture", nullptr, Screencapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"startScreenCapture", nullptr, StartScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"stopScreenCapture", nullptr, StopScreenCapture, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

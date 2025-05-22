@@ -7,6 +7,9 @@ This topic describes how to use the AVTranscoder to implement video transcoding,
 ## How to Develop
 
 Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder12) for the API reference.
+> **NOTE**
+>
+> To forward, upload, or save the transcoded file, the application must call the system API **await avTranscoder.release()** after receiving the complete event. This ensures the integrity of the video file.
 
 1. Create an **avTranscoder** instance.
 
@@ -14,7 +17,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
    
-   let avTranscoder: media.AVTranscoder;
+   let avTranscoder: media.AVTranscoder | undefined = undefined;
    media.createAVTranscoder().then((transcoder: media.AVTranscoder) => {
      avTranscoder = transcoder;
      // Perform other operations after avTranscoder is assigned a value.
@@ -25,18 +28,21 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 
 2. Set the events to listen for.
 
-   | Event Type| Description| 
+   | Event Type| Description|
    | -------- | -------- |
-   | complete | Mandatory; used to listen for the completion of transcoding.| 
+   | complete | Mandatory; used to listen for the completion of transcoding.|
    | error | Mandatory; used to listen for AVTranscoder errors.|
 
    ```ts
    import { BusinessError } from '@kit.BasicServicesKit';
    
    // Callback function for the completion of transcoding.
-   avTranscoder.on('complete', () => {
+   avTranscoder.on('complete', async () => {
      console.log(`transcoder is completed`);
-     // Listen for transcoding completion events.
+     // Listen for the transcoding completion event and call release.
+     // Wait until avTranscoder.release() is complete before forwarding, uploading, or saving the transcoded file.
+     await avTranscoder.release();
+     avTranscoder = undefined;
    });
    
    // Callback function for errors.
@@ -52,14 +58,39 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    > 
    > - If local files are used for transcoding, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining Application File Paths](../../application-models/application-context-stage.md#obtaining-application-file-paths). For details about the application sandbox and how to push files to the application sandbox directory, see [File Management](../../file-management/app-sandbox-directory.md).
    > 
+   > - To obtain the application file path, you should use the Context property. You are advised to use **getUIContext** to obtain a UIContext instance and use **getHostContext** to call **getContext** of the bound instance. For details, see [Obtaining Context](../../reference/apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12).
+   >
    > - You can also use **ResourceManager.getRawFd()** to obtain the FD of a file packed in the HAP file. For details, see [ResourceManager API Reference](../../reference/apis-localization-kit/js-apis-resource-manager.md#getrawfd9).
+
+   ```ts
+   import {AVTranscoderDemo} from '../transcoder/AVTranscoderManager'
+
+   @Entry
+   @Component
+   struct Index {
+     private context:Context | undefined = this.getUIContext().getHostContext();
+     private avTranscoder: AVTranscoderDemo = new AVTranscoderDemo(this.context);
+     build() {
+       Column() {
+        Button('Transcode').onClick(() => {
+          this.avTranscoder.avTranscoderDemo();
+        })
+      }
+     }
+   }
+   ```
 
    ```ts
    import resourceManager from '@ohos.resourceManager';
    import { common } from '@kit.AbilityKit';
 
-   let context = getContext(this) as common.UIAbilityContext;
-   let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+   private context: Context | undefined;
+    constructor(context: Context) {
+      if (context != undefined) {
+        this.context = context; // this.getUIContext().getHostContext();
+      }
+   }
+   let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
    // Set fdSrc used for transcoding.
    this.avTranscoder.fdSrc = fileDescriptor;
    ```
@@ -70,7 +101,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    > **fdDst** specifies the FD of the output file after transcoding. The value is a number. You must call [ohos.file.fs of Core File Kit](../../reference/apis-core-file-kit/js-apis-file-fs.md) to implement access to the application file. For details, see [Application File Access and Management](../../file-management/app-file-access.md).
    
    ```ts
-   // Set fdDst of the output file.
+   // Set the sandbox path of the output target file.
    this.avTranscoder.fdDst = 55; // Obtain the file descriptor of the created video file by referring to the sample code in Application File Access and Management.
    ```
 
@@ -80,7 +111,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
    >
    > Only transcoding-related parameters are set in the input parameter **avConfig** of the **prepare()** API.
    >
-   > Only the supported [transcoding formats](media-kit-intro.md#avtranscoder) can be used due to the limited demuxing, muxing, encoding, and decoding capabilities.
+   > Only the supported [transcoding formats](media-kit-intro.md#avtranscoder) can be used due to the limited demultiplexing, multiplexing, encoding, and decoding capabilities.
 
    ```ts
    import { media } from '@kit.MediaKit';
@@ -140,7 +171,7 @@ Read [AVTranscoder](../../reference/apis-media-kit/js-apis-media.md#avtranscoder
 ## Sample Code
 
   Refer to the sample code below to implement transcoding, covering the process of starting, pausing, resuming, and exiting transcoding.
-  
+
 ```ts
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -148,14 +179,20 @@ import { common } from '@kit.AbilityKit';
 
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
+  private context: Context | undefined;
+  constructor(context: Context) {
+    if (context != undefined) {
+      this.context = context;
+    }
+  }
   private avConfig: media.AVTranscoderConfig = {
     audioBitrate: 100000, // Audio bit rate.
     audioCodec: media.CodecMimeType.AUDIO_AAC, // Audio encoding format.
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Container format.
     videoBitrate: 200000, // Video bit rate.
     videoCodec: media.CodecMimeType.VIDEO_AVC, // Video encoding format.
-    videoFrameWidth: 640, // Video frame width.
-    videoFrameHeight: 480, // Video frame height.
+     videoFrameWidth: 640, // Video frame width: 640.
+     videoFrameHeight: 480, // Video frame height: 480.
   };
 
   // Set AVTranscoder callback functions.
@@ -186,10 +223,11 @@ export class AVTranscoderDemo {
       this.avTranscoder = await media.createAVTranscoder();
       this.setAVTranscoderCallback();
       // 2. Obtain the source file FD and output file FD and assign them to avTranscoder. For details, see the FilePicker document.
-      let context = getContext(this) as common.UIAbilityContext;
-      let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
-      this.avTranscoder.fdSrc = fileDescriptor;
-      this.avTranscoder.fdDst = 55;
+      if (this.context != undefined) {
+        let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
+        this.avTranscoder.fdSrc = fileDescriptor;
+        this.avTranscoder.fdDst = 55;
+      }
       // 3. Set transcoding parameters to complete the preparations.
       await this.avTranscoder.prepare(this.avConfig);
       // 4. Start transcoding.

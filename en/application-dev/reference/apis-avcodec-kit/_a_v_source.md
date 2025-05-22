@@ -107,7 +107,7 @@ Creates an **OH_AVSource** instance based on an FD.
 
 You can release the instance by calling **OH_AVSource_Destroy**.
 
-If **offset** is not the start position of the file or **size** is not the file size, undefined errors such as creation failure and demuxing failure may occur due to incomplete data obtained.
+If **offset** is not the start position of the file or **size** is not the file size, undefined errors such as creation failure and demultiplexing failure may occur due to incomplete data obtained.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 

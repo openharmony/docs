@@ -15,7 +15,8 @@ External storage devices are managed by the StorageManager and StorageDaemon ser
   - If the check fails, the volume state changes to **UNMOUNTED**.
 
 - For a volume in the **MOUNTED** state:
-  - If the user chooses **Eject device**, the volume state changes to **EJECTING** and COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.<br>For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
+  - If the user chooses **Eject device**, the volume state changes to **EJECTING** and COMMON_EVENT_VOLUME_EJECT is broadcast. After StorageDaemon unmounts the volume, the volume state changes to **UNMOUNTED** and COMMON_EVENT_VOLUME_UNMOUNTED is broadcast.
+    <br>For a volume in the **UNMOUNTED** state, removing the device will delete the volume information and broadcast COMMON_EVENT_VOLUME_REMOVED.
   - If the user removes the device, the volume state changes to **EJECTING** and then to **UNMOUNTED**, and the broadcasts of the corresponding states are sent. After the device is removed, the volume information is deleted and the COMMON_EVENT_VOLUME_BAD_REMOVAL broadcast is sent.
 
 ## Available APIs
@@ -26,23 +27,23 @@ The following table describes the broadcast related parameters.
 
 **Table 1** Broadcast parameters
 
-| Broadcast| Parameter|
+| Broadcast| Parameter| 
 | -------- | -------- |
-| usual.event.data.VOLUME_REMOVED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.|
-| usual.event.data.VOLUME_UNMOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.|
-| usual.event.data.VOLUME_MOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.<br>**fsUuid**: universally unique identifier (UUID) of the volume.<br>**path**: path where the volume is mounted.|
-| usual.event.data.VOLUME_BAD_REMOVAL | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.|
-| usual.event.data.VOLUME_EJECT | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.|
+| usual.event.data.VOLUME_REMOVED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.| 
+| usual.event.data.VOLUME_UNMOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.| 
+| usual.event.data.VOLUME_MOUNTED | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.<br>**fsUuid**: universally unique identifier (UUID) of the volume.<br>**path**: path where the volume is mounted.| 
+| usual.event.data.VOLUME_BAD_REMOVAL | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.| 
+| usual.event.data.VOLUME_EJECT | **id**: ID of the volume.<br>**diskId**: ID of the disk to which the volume belongs.<br>**volumeState**: state of the volume.| 
 
 ## How to Develop
 
 You can subscribe to broadcast events to observe the insertion and removal of external storage devices, and query or manage volumes based on the volume information obtained from the broadcast.
 
-1. Apply for permissions.<br>
-   Apply for the ohos.permission.STORAGE_MANAGER permission if your application needs to subscribe to volume broadcast events. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
+1. Apply for permissions.<br> 
+  Apply for the ohos.permission.STORAGE_MANAGER permission if your application needs to subscribe to volume broadcast events. For details, see [Requesting Permissions for system_basic Applications](../security/AccessToken/determine-application-mode.md#requesting-permissions-for-system_basic-applications).
 
-2. Subscribe to broadcast events.<br>
-   You can subscribe to the following events:
+2. Subscribe to broadcast events.<br> 
+  You can subscribe to the following events:
 
    - "usual.event.data.VOLUME_REMOVED": The device is removed.
    - "usual.event.data.VOLUME_UNMOUNTED": The volume is unmounted.

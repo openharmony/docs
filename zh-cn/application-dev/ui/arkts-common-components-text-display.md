@@ -1,7 +1,7 @@
 # 文本显示 (Text/Span)
 
 
-Text是文本组件，通常用于展示用户视图，如显示文章的文字内容，支持绑定自定义文本选择菜单，用户可根据需要选择不同功能，同时还可以扩展自定义菜单，丰富可用选项，进一步提升用户体验。Span则用于呈现显示行内文本。  
+Text是文本组件，用于展示用户视图，如显示文章的文字内容。该组件支持绑定自定义文本选择菜单，用户可根据需要选择不同功能。此外，还可以扩展自定义菜单，丰富可用选项，进一步提升用户体验。Span则用于展示行内文本。  
 
 具体用法请参考[Text](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md)和[Span](../reference/apis-arkui/arkui-ts/ts-basic-components-span.md)组件的使用说明。
 
@@ -54,7 +54,7 @@ Text可通过以下两种方式来创建：
 
 - 创建Span。
 
-  Span组件必须嵌入在Text组件中才能显示，单独的Span组件不会呈现任何内容。Text与Span同时配置文本内容时，Span内容覆盖Text内容。
+  Span组件需嵌入在Text组件中才能显示，单独使用时不会显示任何内容。Text与Span同时配置文本内容时，Span内容将覆盖Text内容。
 
 
   ```ts
@@ -103,7 +103,7 @@ Text可通过以下两种方式来创建：
 
 - 添加事件。
 
-  由于Span组件无尺寸信息，事件仅支持添加点击事件[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)。
+  由于Span组件无尺寸信息，仅支持添加点击事件[onClick](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md#onclick)。
 
 
   ```ts
@@ -117,7 +117,7 @@ Text可通过以下两种方式来创建：
   ```
 
 
-## 自定义文本样式
+## 创建自定义文本样式
 
 - 通过[textAlign](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#textalign)属性设置文本对齐样式。
 
@@ -151,7 +151,7 @@ Text可通过以下两种方式来创建：
     .fontSize(12)
     .border({ width: 1 })
     .padding(10)
-  Text('我是超长文本，超出的部分显示省略号。I am an extra long text, with ellipses displayed for any excess。')
+  Text('我是超长文本，超出的部分显示省略号。I am an extra long text, with ellipses displayed for any excess.')
     .width(250)
     .textOverflow({ overflow: TextOverflow.Ellipsis })
     .maxLines(1)
@@ -349,9 +349,9 @@ Text('点我')
       console.info('我是Text的点击响应事件');
    })
 ```
-## 选中菜单
+## 设置选中菜单
 
-- Text被选中时会弹出包含复制、翻译的菜单。
+- 设置Text被选中时，会弹出包含复制、翻译的菜单。
 
   Text组件需要设置[copyOption](../reference/apis-arkui/arkui-ts/ts-basic-components-text.md#copyoption9)属性才可以被选中。
 

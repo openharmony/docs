@@ -11,7 +11,7 @@ GC（全称 Garbage Collection），即垃圾回收。在计算机领域，GC是
 当对象B指向对象A时，A的引用计数加1；当该指向断开时，A的引用计数减1。如果A的引用计数为0，回收对象A。  
 
 - 优点：引用计数算法设计简单，内存回收及时，在对象成为垃圾时立即回收，因此无需引入单独的暂停业务代码（Stop The World，STW）阶段。
-- 缺点：对对象操作时插入计数环节，增加了内存分配和赋值的开销，影响程序性能。更严重的是存在循环引用问题。
+- 缺点：对对象操作时插入计数环节，增加了内存分配和赋值的开销，影响程序性能。更严重的是存在由循环引用导致的内存泄漏问题。
 ```
 class Parent {
   constructor() {
@@ -43,7 +43,7 @@ function main() {
 - 优点：对象追踪算法可以解决循环引用的问题，且对内存的分配和赋值没有额外的开销。
 - 缺点：和引用计数算法相反，对象追踪算法较为复杂，且有短暂的STW阶段。此外，回收会有延迟，导致比较多的浮动垃圾。
 
-引用计数和对象追踪算法各有优劣。由于引用计数存在循环引用的性能问题，ArkTS运行时选择基于对象追踪（即Tracing GC）算法设计GC。
+引用计数和对象追踪算法各有优劣。由于引用计数存在内存泄漏问题，ArkTS运行时选择基于对象追踪（即Tracing GC）算法设计GC。
 
 ### 对象追踪的三种类型
 
@@ -79,7 +79,7 @@ ArkTS运行时采用传统的分代模型，将对象进行分类。考虑到大
 
 ![image](./figures/generational-model.png)
 
-ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会移动到To空间，然后会交换from和to空间的类型。而经过再次GC后依然存活的对象，会被复制到老年代（Old Space）。
+ArkTS运行时将新分配的对象直接分配到年轻代（Young Space）的From空间。经过一次GC后依然存活的对象，会移动到To空间。而经过再次GC后依然存活的对象，会被移动到老年代（Old Space）。
 
 #### 混合算法
 
@@ -111,7 +111,7 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 ![image](./figures/gc-heap-space.png)
 
 - SemiSpace：年轻代（Young Generation），存放新创建出来的对象，存活率低，主要使用copying算法进行内存回收。
-- OldSpace：老年代（Old Generation），存放年轻代多次回收仍存活的对象会被复制到该空间，根据场景混合多种算法进行内存回收。
+- OldSpace：老年代（Old Generation），存放年轻代多次回收仍存活的对象会被移动到该空间，根据场景混合多种算法进行内存回收。
 - HugeObjectSpace：大对象空间，使用单独的Region存放一个大对象的空间。
 - ReadOnlySpace：只读空间，存放运行期间的只读数据。
 - NonMovableSpace：不可移动空间，存放不可移动的对象。
@@ -133,8 +133,8 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
 | HeapSize | 448MB | 主线程默认堆空间总大小，小内存设备会依据实际内存池大小修正。 |
-| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | Semispace空间大小。 |
-| NonmovableSpaceSize | 2MB/6MB/64MB | nonmovableSpace空间大小。 |
+| SemiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | SemiSpace空间大小。 |
+| NonmovableSpaceSize | 2MB/6MB/64MB | NonmovableSpace空间大小。 |
 | SnapshotSpaceSize | 512KB | 快照空间大小。 |
 | MachineCodeSpaceSize | 2MB | 机器码空间大小。 |
 
@@ -142,13 +142,13 @@ HPP GC流程中引入了大量的并发和并行优化，以减少对应用性�
 
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| HeapSize  | 768 MB | work类型线程堆空间大小。 |
+| HeapSize  | 768 MB | worker类型线程堆空间大小。 |
 
 #### Semi Space
 heap中生成两个Semi Space供copying使用。
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | Semispace空间大小，会根据堆总大小有不同的范围限制。 |
+| semiSpaceSize | 2MB-4MB/2MB-8MB/2MB-16MB | SemiSpace空间大小，会根据堆总大小有不同的范围限制。 |
 | semiSpaceTriggerConcurrentMark | 1M/1.5M/1.5M| 首次单独触发Semi Space的并发mark的界限值，超过该值则触发。 |
 | semiSpaceStepOvershootSize| 2MB | 允许过冲最大大小。 |
 
@@ -172,7 +172,7 @@ heap中生成两个Semi Space供copying使用。
 
 | 参数名 | 范围 | 作用 |
 | --- | --- | --- |
-| maxStackSize | 128KB | 控制解释器栈帧大小。 |
+| maxStackSize | 128KB | 控制解释器栈大小。 |
 
 #### 并发参数
 
@@ -182,7 +182,7 @@ heap中生成两个Semi Space供copying使用。
 | MIN_TASKPOOL_THREAD_NUM | 3 | 线程池最小线程数。 |
 | MAX_TASKPOOL_THREAD_NUM | 7 | 线程池最大线程数。 |
 
-注：该线程池主要用于执行GC流程中的并发任务。线程池初始化时，会综合参考gcThreadNum和线程上下限。如果gcThreadNum为负值，线程池的线程数将初始化为CPU核心数的一半。
+注：该线程池主要用于执行GC流程中的并发任务。线程池初始化时，会综合参考gcThreadNum和线程数的上下限。如果gcThreadNum为负值，线程池的线程数将初始化为CPU核心数的一半。
 
 #### 其他参数
 
@@ -191,8 +191,6 @@ heap中生成两个Semi Space供copying使用。
 | minAllocLimitGrowingStep | 2M/4M/8M | heap整体重新计算空间大小限制时，控制oldSpace、heapObject和globalNative的最小增长步长。 |
 | minGrowingStep | 4M/8M/16M | 调整oldSpace的最小增长步长。 |
 | longPauseTime | 40ms | 判断是否为超长GC界限，超长GC会触发完整GC日志信息打印，方便开发者定位分析。可通过`gc-long-paused-time`进行配置。 |
-
-### 其他：新增单VM内ArrayBuffer的native总内存上限为4GB
 
 ## GC流程
 
@@ -271,7 +269,7 @@ heap中生成两个Semi Space供copying使用。
 - 说明：根据当前GC统计的数据变化，重新计算并调整`newOldSpaceLimit`、`newGlobalSpaceLimit`、`globalSpaceNativeLimit`和增长因子。
 - 日志关键词：`RecomputeLimits`。
 
-#### PartialGC的Cset 选择策略
+#### PartialGC的CSet 选择策略
 
 - 函数方法：`OldSpace::SelectCSet()`
 - 说明：PartialGC执行时采用该策略，优先选择存活对象数量少、回收代价小的Region进行GC。

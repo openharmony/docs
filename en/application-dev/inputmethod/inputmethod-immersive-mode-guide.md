@@ -12,7 +12,7 @@ To implement consistent immersive experience, a communication mechanism between 
 - The input method application determines the final immersive mode for the input method framework based on the immersive mode of the foreground application.
 
 ## Access Guide
-1. The foreground application sets the immersive mode for the text box. The sample code is as follows:
+1. The foreground application [sets the immersive mode for the text box](../reference/apis-arkui/arkui-ts/ts-basic-components-textarea.md#keyboardappearance15). The sample code is as follows:
    ```ts
    TextArea({text: "hello world"})
       .keyboardAppearance(KeyboardAppearance.IMMERSIVE)

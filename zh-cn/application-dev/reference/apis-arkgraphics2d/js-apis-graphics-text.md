@@ -1,16 +1,17 @@
 # @ohos.graphics.text (文本模块)
 
-本模块允许开发者创建复杂的文本段落，包括多样的文本样式、段落样式、换行规则等，并最终将这些信息转换为能在屏幕上高效渲染的布局数据，本模块采用屏幕物理像素单位px。
+本模块提供一系列用于文本布局和字体管理的编程接口。文本布局相关的接口旨在提供高质量的排版，包括字符到字形的转换、字距调整、换行、对齐、文本测量等。字体管理接口提供字体注册、字体描述符、字体集管理等功能。
 
-该模块提供以下创建复杂的文本段落的常用功能：
+该模块提供以下创建复杂样式的文本段落的常用类：
 
 - [TextStyle](#textstyle)：文本样式，控制文本的字体类型、大小、间距等属性。
-- [FontCollection](#fontcollection)：字体管理器，控制各种不同的字体。
-- [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的显示样式。
-- [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
+- [FontCollection](#fontcollection)：字体集，控制各种不同的字体。
+- [FontDescriptor](#fontdescriptor14)：字体描述符信息。
+- [ParagraphStyle](#paragraphstyle)：段落样式，控制整个段落的断行策略、断词策略等属性。
 - [ParagraphBuilder](#paragraphbuilder)：段落生成器，控制生成不同的段落对象。
-- [TextLine](#textline)：以行为单位的段落文本的载体，由段落类调用[getTextLines()](#gettextlines)接口获取。
-- [Run](#run)：文本排版的渲染单元，由行文本类调用[getGlyphRuns()](#getglyphruns)接口获取。
+- [Paragraph](#paragraph)：段落，由ParagraphBuilder类调用[build()](#build)接口构建而成。
+- [TextLine](#textline)：以行为单位的段落文本的载体，由Paragraph类调用[getTextLines()](#gettextlines)接口获取。
+- [Run](#run)：文本排版单元，由TextLine类调用[getGlyphRuns()](#getglyphruns)接口获取。
 
 > **说明：**
 >
@@ -40,7 +41,7 @@ getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;stri
 
 | 类型 | 说明 |
 | - | - |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回相应字体类型的所有字体的字体名称。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回相应字体类型的所有字体的fullName。 |
 
 **错误码：**
 
@@ -91,8 +92,9 @@ struct Index {
 
 getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise&lt;FontDescriptor&gt;
 
-根据字体名称和字体类型获取对应的字体描述符，使用Promise异步回调。
-字体描述符是描述字体特征的一种数据结构，它包含了定义字体外观和属性的详细信息。
+根据字体名称和类型获取字体描述符，使用Promise异步回调。
+
+字体描述符是描述字体特征的数据结构，包含字体外观和属性的详细信息。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -100,7 +102,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 | 参数名 | 类型 | 必填 | 说明 |
 | - | - | - | - |
-| fullName | string | 是 | 指定的字体名称。是从字体文件的name表中解析出来的一个字段。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取指定类型对应的所有字体的字体名称。 |
+| fullName | string | 是 | 指定的字体名称。对应字体文件的name表中的fullName。可以使用[getSystemFontFullNamesByType](#textgetsystemfontfullnamesbytype14)获取。 |
 | fontType | [SystemFontType](#systemfonttype14) | 是 | 指定的字体类型。 |
 
 **返回值：**
@@ -195,11 +197,11 @@ struct Index {
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
-| 名称        | 值   | 说明                                                                                                                  |
-| ----------- | ---- | -------------------------------------------------------------------------------------------------------------------- |
-| NORMAL      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
-| BREAK_ALL   | 1    | 对于Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
-| BREAK_WORD  | 2    | 与`BREAK_ALL`基本相同，不同的地方在于它要求一个没有断行破发点的词必须保持为一个整体单位。                                   |
+| 名称                          | 值   | 说明                                                                                                                  |
+|-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
+| NORMAL                      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
+| BREAK_ALL                   | 1    | 对于Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
+| BREAK_WORD                  | 2    | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
 
 ## Decoration
 
@@ -212,7 +214,7 @@ struct Index {
 | textDecoration            | [TextDecorationType](#textdecorationtype)           | 是   | 是   | 装饰线类型，默认为NONE。                       |
 | color                     | [common2D.Color](js-apis-graphics-common2D.md#color)| 是   | 是   | 装饰线颜色，默认为透明。                       |
 | decorationStyle           | [TextDecorationStyle](#textdecorationstyle)         | 是   | 是   | 装饰线样式，默认为SOLID。                      |
-| decorationThicknessScale  | number                                              | 是   | 是   | 装饰线粗细相对于默认值的比例，浮点数，默认为1.0。|
+| decorationThicknessScale  | number                                              | 是   | 是   | 装饰线粗细系数，浮点数，默认为1.0。|
 
 ## TextDecorationType
 
@@ -222,10 +224,10 @@ struct Index {
 
 | 名称           | 值 | 说明        |
 | -------------- | - | ----------- |
-| NONE           | 0 | 装饰线不生效。|
+| NONE           | 0 | 无装饰线。|
 | UNDERLINE      | 1 | 下划线。      |
 | OVERLINE       | 2 | 上划线。     |
-| LINE_THROUGH   | 3 | 删除线。      |
+| LINE_THROUGH   | 4 | 删除线。      |
 
 ## TextDecorationStyle
 
@@ -286,8 +288,8 @@ struct Index {
 | 名称    | 值 | 说明                                                 |
 | ------- | - | ---------------------------------------------------- |
 | NORMAL  | 0 | 常规样式。                                            |
-| ITALIC  | 1 | 斜体，如果当前字体没有可用的斜体版本，会选用倾斜体替代。  |
-| OBLIQUE | 2 | 倾斜体，如果当前字体没有可用的倾斜体版本，会选用斜体替代。|
+| ITALIC  | 1 | 斜体。如果当前字体没有可用的斜体版本，会选用倾斜体替代。  |
+| OBLIQUE | 2 | 倾斜体。如果当前字体没有可用的倾斜体版本，会选用斜体替代。|
 
 ## TextHeightBehavior
 
@@ -297,10 +299,10 @@ struct Index {
 
 | 名称                  |  值 | 说明                                                  |
 | --------------------- | --- | ---------------------------------------------------- |
-| ALL                   | 0x0 | 高度修饰符设置为段落中第一行和最后一行都上升。            |
+| ALL                   | 0x0 | 高度修饰符设置为段落中第一行上升、最后一行下降。            |
 | DISABLE_FIRST_ASCENT  | 0x1 | 高度修饰符设置为禁止段落中第一行上升。                   |
-| DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行上升。                 |
-| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为段落中第一行和最后一行都不上升。          |
+| DISABLE_LAST_ASCENT   | 0x2 | 高度修饰符设置为禁止段落中最后一行下降。                 |
+| DISABLE_ALL           | 0x1 \| 0x2 | 高度修饰符设置为禁止段落中第一行上升、最后一行下降。          |
 
 ## TextBaseline
 
@@ -310,8 +312,8 @@ struct Index {
 
 | 名称        | 值 | 说明 |
 | ----------- | - | ---- |
-| ALPHABETIC  | 0 | 通常用于拉丁字母的文本基线对齐。|
-| IDEOGRAPHIC | 1 | 通常用于CJK（中文，日文，韩文）的文本基线对齐。|
+| ALPHABETIC  | 0 | 用于拉丁字母的文本基线对齐。|
+| IDEOGRAPHIC | 1 | 用于CJK（中文，日文，韩文）的文本基线对齐。|
 
 ## EllipsisMode
 
@@ -323,8 +325,8 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称   | 值 | 说明      |
 | ------ | - | --------- |
-| START  | 0 | 开头省略号。|
-| MIDDLE | 1 | 中间省略号。|
+| START  | 0 | 开头省略号，只在[ParagraphStyle](#paragraphstyle)中设置maxLines为1时生效。|
+| MIDDLE | 1 | 中间省略号，只在[ParagraphStyle](#paragraphstyle)中设置maxLines为1时生效。|
 | END    | 2 | 末尾省略号。|
 
 ## TextShadow
@@ -361,7 +363,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| name      | string                                               | 是  |  否   | 字体特征键值对中关键字所标识的字符串。       |
+| name      | string                                               | 是  |  否   | 字体特征键值对中的关键字标识的字符串。       |
 | value     | number                                               | 是  |  否   | 字体特征键值对的值。                        |
 
 ## FontVariation
@@ -372,7 +374,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| axis      | string                                               | 是  |  否   | 可变字体属性键值对中关键字所标识的字符串。       |
+| axis      | string                                               | 是  |  否   | 可变字体属性键值对中的关键字标识的字符串。       |
 | value     | number                                               | 是  |  否   | 可变字体属性键值对的值。                        |
 
 ## TextStyle
@@ -383,25 +385,25 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                     | 只读 | 可选 | 说明                                                   |
 | ------------- | ---------------------------------------------------- | -- | -- | --------------------------------------------------------- |
-| decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线置，默认初始的Decoration。             |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 字体色，默认为白色。                         |
+| decoration    | [Decoration](#decoration)                            | 是 | 是 | 装饰线设置，默认不使用装饰线。             |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 文字颜色，默认为白色。                         |
 | fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。 目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
-| fontFamilies  | Array\<string>                                       | 是 | 是 | 字体族名称列表，默认为系统字体。                    |
+| fontFamilies  | Array\<string>                                       | 是 | 是 | 字体家族名称列表，默认为空，匹配系统字体。                    |
 | fontSize      | number                                               | 是 | 是 | 字体大小，浮点数，默认为14.0，单位为px。  |
 | letterSpacing | number                                               | 是 | 是 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为物理像素px。|
 | wordSpacing   | number                                               | 是 | 是 | 单词间距，浮点数，默认为0.0，单位为px。                 |
 | heightScale   | number                                               | 是 | 是 | 行高缩放倍数，浮点数，默认为1.0，heightOnly为true时生效。              |
 | heightOnly    | boolean                                              | 是 | 是 | true表示根据字体大小和heightScale设置文本框的高度，false表示根据行高和行距，默认为false。|
 | halfLeading   | boolean                                              | 是 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
-| ellipsis      | string                                               | 是 | 是 | 省略号样式，表示省略号生效后使用该字段值替换省略号部分。       |
-| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。                        |
+| ellipsis      | string                                               | 是 | 是 | 省略号文本，表示省略号生效后使用该字段值替换省略号部分。       |
+| ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 是 | 是 | 省略号类型，默认为END，行尾省略号。                       |
 | locale        | string                                               | 是 | 是 | 语言类型，如字段为'en'代表英文，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。具体请参照ISO 639-1规范，默认为空字符串。|
 | baselineShift | number                                               | 是 | 是 | 文本下划线的偏移距离，浮点数，默认为0.0px。                 |
 | fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 是 | 是 | 文本字体特征数组。|
 | fontVariations| Array\<[FontVariation](#fontvariation)>              | 是 | 是 | 可变字体属性数组。|
-| textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本字体阴影数组。|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | 是 | 是 | 文本阴影数组。|
 | backgroundRect| [RectStyle](#rectstyle)                              | 是 | 是 | 文本矩形框样式。|
 
 ## StrutStyle
@@ -412,11 +414,11 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称                      | 类型                                       | 只读 | 可选 | 说明                                                                 |
 | -------------  | ---------------------------------------------------- | ---- | -- | --------------------------------------------------------------------- |
-| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体类型，默认为系统字体。                                               |
+| fontFamilies   | Array\<string>                                       | 是   | 是 | 字体族名称列表，默认为空，匹配系统字体。                                               |
 | fontStyle      | [FontStyle](#fontstyle)                              | 是   | 是 | 字体样式，默认为常规样式。                                               |
 | fontWidth      | [FontWidth](#fontwidth)                              | 是   | 是 | 字体宽度，默认为NORMAL。                                                |
-| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                             |
-| fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认为14.0，单位为物理像素px。                             |
+| fontWeight     | [FontWeight](#fontweight)                            | 是   | 是 | 字重，默认为W400。系统默认字体支持字重调节，其他字体设置字重值小于W600时无变化，大于等于W600时可能触发伪加粗效果。                             |
+| fontSize       | number                                               | 是   | 是 | 字体大小，浮点数，默认14.0，单位物理像素px。                             |
 | height         | number                                               | 是   | 是 | 行高缩放倍数，浮点数，默认为1.0。                                         |
 | leading        | number                                               | 是   | 是 | 以自定义行距应用于支柱的行距，浮点数，默认为-1.0。                          |
 | forceHeight    | boolean                                              | 是   | 是 | 是否所有行都将使用支柱的高度，true表示使用，false表示不使用，默认为false。     |
@@ -432,26 +434,26 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | - | - | -  | - | - |
-| path | string | 否 | 是 | 字体绝对路径，可取任意值，默认值为空字符串。 |
-| postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意值，默认值为空字符串。 |
-| fullName | string | 否 | 是 | 字体名称，可取任意值，默认值为空字符串。 |
-| fontFamily | string | 否 | 是 | 字体家族，可取任意值，默认值为空字符串。 |
-| fontSubfamily | string | 否 | 是 | 子字体家族，可取任意值，默认值为空字符串。 |
-| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为FontWeight.W100的取值，即0。 |
-| width | number | 否 | 是 | 字体宽度，取值范围是1-9整数，默认值为0。 |
-| italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体字体，默认值为0。 |
-| monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽字体，false表示非等宽字体，默认值为false。 |
+| path | string | 否 | 是 | 字体绝对路径，可取遵循系统限制的任意字符串，默认为空字符串。 |
+| postScriptName | string | 否 | 是 | 字体唯一标识名称，可取任意字符串，默认为空字符串。 |
+| fullName | string | 否 | 是 | 字体名称，可取任意字符串，默认为空字符串。 |
+| fontFamily | string | 否 | 是 | 字体家族，可取任意字符串，默认为空字符串。 |
+| fontSubfamily | string | 否 | 是 | 子字体家族，可取任意字符串，默认为空字符串。 |
+| weight | [FontWeight](#fontweight) | 否 | 是 | 字体字重，默认值为0。 |
+| width | number | 否 | 是 | 字体宽度，取值范围1-9整数，默认值为0。 |
+| italic | number | 否 | 是 | 是否是斜体字体，0表示非斜体，1表示斜体，默认值为0。 |
+| monoSpace | boolean | 否 | 是 | 是否是等宽字体，true表示等宽，false表示非等宽，默认值为false。 |
 | symbolic | boolean | 否 | 是 | 是否支持符号，true表示支持，false表示不支持，默认值为false。 |
 
 ## FontCollection
 
-字体管理器。
+字体集。
 
 ### getGlobalInstance
 
 static getGlobalInstance(): FontCollection
 
-获取应用全局FontCollection的实例。
+获取应用全局FontCollection实例。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -488,7 +490,7 @@ struct Index {
 
 loadFontSync(name: string, path: string | Resource): void
 
-同步接口，将路径对应的文件，以name作为使用的别名，加载成自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义的字体效果。支持的字体文件格式包含：ttf、otf。
+同步接口，加载自定义字体。其中参数name对应的值需要在[TextStyle](#textstyle)中的fontFamilies属性配置，才能显示自定义字体效果。支持的字体文件格式包含：ttf、otf。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -496,7 +498,7 @@ loadFontSync(name: string, path: string | Resource): void
 
 | 参数名 | 类型               | 必填 | 说明                              |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
-| name  | string             | 是   | 加载成字体后，调用该字体所使用的命名。                                                |
+| name  | string             | 是   | 加载成字体后，调用该字体所使用的名称。                                                |
 | path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要导入的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 "rawfile/目录or文件名"。 |
 
 **示例：**
@@ -571,7 +573,7 @@ struct Index {
 | -------------------- | ------------------------------------------ | ---- | ---- | -------------------------------------------- |
 | textStyle            | [TextStyle](#textstyle)                    | 是   | 是   | 作用于整个段落的文本样式，默认为初始的文本样式。|
 | textDirection        | [TextDirection](#textdirection)            | 是   | 是   | 文本方向，默认为LTR。                          |
-| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。当与制表符对齐方式同时配置时（即同时配置tab属性时），制表符对齐方式不生效。|
+| align                | [TextAlign](#textalign)                    | 是   | 是   | 文本对齐方式，默认为START。若同时配置tab属性，制表符对齐方式将失效。|
 | wordBreak            | [WordBreak](#wordbreak)                    | 是   | 是   | 断词类型，默认为BREAK_WORD。                    |
 | maxLines             | number                                     | 是   | 是   | 最大行数限制，整数，默认为1e9。                  |
 | breakStrategy        | [BreakStrategy](#breakstrategy)            | 是   | 是   | 断行策略，默认为GREEDY。                        |
@@ -581,30 +583,30 @@ struct Index {
 
 ## PlaceholderAlignment
 
-占位符相对于周围文本的纵向的对齐方式。
+占位符相对于周围文本的纵向对齐方式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
 | 名称                | 值 | 说明                   |
 | ------------------- | - | ---------------------- |
 | OFFSET_AT_BASELINE  | 0 | 基线与文本基线对齐。     |
-| ABOVE_BASELINE      | 1 | 将底部与文本基线对齐。   |
-| BELOW_BASELINE      | 2 | 将顶部与文本基线对齐。   |
-| TOP_OF_ROW_BOX      | 3 | 将顶部与文本顶部对齐。   |
-| BOTTOM_OF_ROW_BOX   | 4 | 将底部与文本底部对齐。   |
-| CENTER_OF_ROW_BOX   | 5 | 中线与文本的中线位置对齐。|
+| ABOVE_BASELINE      | 1 | 底部与文本基线对齐。   |
+| BELOW_BASELINE      | 2 | 顶部与文本基线对齐。   |
+| TOP_OF_ROW_BOX      | 3 | 顶部与文本顶部对齐。   |
+| BOTTOM_OF_ROW_BOX   | 4 | 底部与文本底部对齐。   |
+| CENTER_OF_ROW_BOX   | 5 | 居中对齐。|
 
 ![zh-ch_image_PlaceholderAlignment.png](figures/zh-ch_image_PlaceholderAlignment.png)
 
 > **说明：**
 >
-> 示意图只展示了后三种，前三种与其类似，只不过比较位置变成了文本基线位置，即绿色线条部分。
+> 示意图展示了后三种对齐方式，前三种对齐方式类似，比较位置是文本基线，即绿色线条部分。
 >
 >![zh-ch_image_Baseline.png](figures/zh-ch_image_Baseline.png)
 
 ## PlaceholderSpan
 
-描述占位符样式的载体。
+描述占位符样式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -612,13 +614,13 @@ struct Index {
 | -------------- | --------------------------------------------- | ---- | --- | --------------------------- |
 | width          | number                                        | 是   | 否   | 占位符的宽度，浮点数，单位为物理像素px。|
 | height         | number                                        | 是   | 否   | 占位符的高度，浮点数，单位为物理像素px。|
-| align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 否   | 相对于周围文本的纵向的对齐方式。|
+| align          | [PlaceholderAlignment](#placeholderalignment) | 是   | 否   | 相对于周围文本的纵向对齐方式。|
 | baseline       | [TextBaseline](#textbaseline)                 | 是   | 否   | 基线类型。                   |
 | baselineOffset | number                                        | 是   | 否   | 基线偏移量，浮点数，单位为物理像素px。  |
 
 ## Range
 
-描述一个左闭右开的区间。
+描述左闭右开区间。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -629,7 +631,7 @@ struct Index {
 
 ## Paragraph
 
-保存着文本内容以及样式的载体，可以进行排版绘制等操作。
+保存文本内容及样式的载体，支持排版与绘制操作。
 
 下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[build()](#build)接口获取到Paragraph对象实例，再通过此实例调用对应方法。
 
@@ -637,7 +639,7 @@ struct Index {
 
 layoutSync(width: number): void
 
-进行排版，计算所有字形的位置。
+进行排版并计算所有字形位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -657,7 +659,7 @@ paragraph.layoutSync(100);
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以坐标点 (x, y) 为左上角位置绘制文本。
+在画布上以 (x, y) 为左上角绘制文本。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -712,7 +714,7 @@ paragraph.paintOnPath(canvas, path, 0, 0);
 
 getMaxWidth(): number
 
-获取文本最大的行宽。
+获取文本最大行宽。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -752,7 +754,7 @@ let height = paragraph.getHeight();
 
 getLongestLine(): number
 
-获取文本最长一行的宽度。
+获取文本最长行宽。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -772,7 +774,7 @@ let longestLine = paragraph.getLongestLine();
 
 getLongestLineWithIndent(): number
 
-获取文本最长一行的宽度（该宽度包含当前行缩进的宽度），建议实际使用时将返回值向上取整。当文本内容为空时，返回0。
+获取文本最长一行的宽度（包含缩进），建议向上取整。文本内容为空时返回0。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -792,7 +794,7 @@ let longestLineWithIndent = paragraph.getLongestLineWithIndent();
 
 getMinIntrinsicWidth(): number
 
-获取该段落所占水平空间的最小固有宽度。
+获取段落最小固有宽度。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -812,7 +814,7 @@ let minIntrinsicWidth = paragraph.getMinIntrinsicWidth();
 
 getMaxIntrinsicWidth(): number
 
-获取该段落所占水平空间的最大固有宽度。
+获取段落最大固有宽度。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -832,7 +834,7 @@ let maxIntrinsicWidth = paragraph.getMaxIntrinsicWidth();
 
 getAlphabeticBaseline(): number
 
-获取拉丁字母下的基线位置。
+获取拉丁字母基线位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -872,7 +874,7 @@ let ideographicBaseline = paragraph.getIdeographicBaseline();
 
 getRectsForRange(range: Range, widthStyle: RectWidthStyle, heightStyle: RectHeightStyle): Array\<TextBox>
 
-获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中该区间范围内的字符的所占的矩形区域。
+获取给定的矩形区域宽度以及矩形区域高度的规格下，文本中该区间范围内的字符所占的矩形区域。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -921,7 +923,7 @@ let placeholderRects = paragraph.getRectsForPlaceholders();
 
 getGlyphPositionAtCoordinate(x: number, y: number): PositionWithAffinity
 
-获取较为接近给定坐标的字形的位置信息。
+获取与给定坐标最接近的字形位置信息。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -948,7 +950,7 @@ let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(0, 0);
 
 getWordBoundary(offset: number): Range
 
-返回给定的 offset 的字形所处的单词的索引区间。
+返回给定offset的字形所在单词的索引区间。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -974,7 +976,7 @@ let wordRange = paragraph.getWordBoundary(0);
 
 getLineCount(): number
 
-返回文本行数量。
+返回文本行数。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -994,7 +996,7 @@ let lineCount = paragraph.getLineCount();
 
 getLineHeight(line: number): number
 
-返回指定行索引的行高。
+返回指定行的行高。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1002,7 +1004,7 @@ getLineHeight(line: number): number
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| line  | number | 是   | 文本行索引，整数。|
+| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()-1。|
 
 **返回值：**
 
@@ -1020,7 +1022,7 @@ let lineHeight = paragraph.getLineHeight(0);
 
 getLineWidth(line: number): number
 
-返回指定行索引的行宽。
+返回指定行的行宽。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1028,7 +1030,7 @@ getLineWidth(line: number): number
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| line  | number | 是   | 文本行索引，整数。|
+| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()-1。|
 
 **返回值：**
 
@@ -1046,7 +1048,7 @@ let lineWidth = paragraph.getLineWidth(0);
 
 didExceedMaxLines(): boolean
 
-返回段落是否超过最大行限制。
+返回段落是否超过最大行数。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1066,7 +1068,7 @@ let didExceed = paragraph.didExceedMaxLines();
 
 getTextLines(): Array\<TextLine>
 
-返回所有的文本行载体。
+返回所有的文本行。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1086,7 +1088,7 @@ let lines = paragraph.getTextLines();
 
 getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 
-获取指定行号上的实际可见文本范围，这不包括由于文本溢出而显示的省略号。
+获取指定行的实际可见文本范围，不包括溢出的省略号。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1094,14 +1096,14 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | 是   | 要获取文本范围的行号，行号从0开始。该接口只能获取已有行的边界，即输入行索引从0开始。最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。|
+| lineNumber  | number | 是   | 要获取文本范围的行索引，行索引从0开始。该接口只能获取已有行的边界，即输入行索引从0开始。最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。|
 | includeSpaces  | boolean | 是   | 指示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
 
 **返回值：**
 
 | 类型             | 说明                                              |
 | ---------------- | ------------------------------------------------ |
-| [Range](#range)  | 表明了对应行数的实际文本范围。如果输入的行索引是非法的行索引，则返回的实际文本范围的start和end都为0。 |
+| [Range](#range)  | 返回对应行数的实际文本范围。如果行索引非法，返回的start和end均为0。 |
 
 **示例：**
 
@@ -1169,7 +1171,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 ## LineMetrics
 
-用于描述文本布局中单行文字的度量信息。
+描述文本布局中单行文字的度量信息。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -1200,7 +1202,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 ## PositionWithAffinity
 
-位置以及亲和度。
+位置和亲和度。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -1217,7 +1219,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 | 名称  | 值 | 说明                                   |
 | ----- | - | -------------------------------------- |
-| TIGHT | 0 | 不设置letterSpacing时，与字形紧贴，否则包含letterSpacing。                            |
+| TIGHT | 0 | 不设置letterSpacing时，与字形紧贴，否则包含letterSpacing的宽度。|
 | MAX   | 1 | 扩展宽度，以匹配所有行上最宽矩形的位置。   |
 
 ## RectHeightStyle
@@ -1263,7 +1265,7 @@ ParagraphBuilder对象的构造函数。
 | 参数名         | 类型                               | 必填 | 说明        |
 | -------------- | --------------------------------- | ---- | ----------- |
 | paragraphStyle | [ParagraphStyle](#paragraphstyle) | 是   | 段落样式。   |
-| fontCollection | [FontCollection](#fontcollection) | 是   | 字体管理器。 |
+| fontCollection | [FontCollection](#fontcollection) | 是   | 字体集。 |
 
 **示例：**
 
@@ -1280,7 +1282,7 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
 }
 
 @Entry
@@ -1301,11 +1303,11 @@ struct Index {
 
  pushStyle(textStyle: TextStyle): void
 
-更新文本样式。
+更新当前文本块的样式。
 
 > **说明：**
 >
-> 更新当前文本块的样式 ，直到对应的 [popStyle](#popstyle) 操作被执行，会还原到上一个文本样式。
+> 更新当前文本块的样式，之后添加文字均采用该样式。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1333,8 +1335,8 @@ function textFunc() {
     align: text.TextAlign.CENTER,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.pushStyle(myTextStyle);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.pushStyle(myTextStyle);
 }
 
 @Entry
@@ -1355,7 +1357,7 @@ struct Index {
 
 popStyle(): void
 
-还原至上一个文本样式。
+弹出当前文本样式。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1377,9 +1379,9 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.pushStyle(myTextStyle);
-  ParagraphGraphBuilder.popStyle();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.pushStyle(myTextStyle);
+  paragraphBuilder.popStyle();
 }
 
 @Entry
@@ -1400,7 +1402,7 @@ struct Index {
 
 addText(text: string): void
 
-用于向正在构建的文本段落中插入具体的文本字符串。
+向正在构建的文本段落中插入具体的文本字符串。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1408,7 +1410,7 @@ addText(text: string): void
 
 | 参数名   | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
-| text    | string  | 是   | 段落中插入的具体文本字符串。 |
+| text    | string  | 是   | 段落中插入的具体文本字符串，传入非法Unicode时会显示�。 |
 
 **示例：**
 
@@ -1428,8 +1430,8 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123666");
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123666");
 }
 
 @Entry
@@ -1450,7 +1452,7 @@ struct Index {
 
 addPlaceholder(placeholderSpan: PlaceholderSpan): void
 
-用于在构建文本段落时插入占位符。
+用于构建文本段落时插入占位符。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1480,8 +1482,8 @@ function textFunc() {
     baselineOffset: 100000
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addPlaceholder(myPlaceholderSpan);
 }
 
 @Entry
@@ -1502,7 +1504,7 @@ struct Index {
 
 build(): Paragraph
 
-用于完成段落的构建过程，生成一个可用于后续排版渲染的段落对象。
+用于构建段落，生成可用于后续排版渲染的段落对象。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1527,9 +1529,9 @@ function textFunc() {
     textStyle : myTextStyle,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addText("123456789");
-  let paragraph = ParagraphGraphBuilder.build();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addText("123456789");
+  let paragraph = paragraphBuilder.build();
   paragraph.layoutSync(200);
 }
 
@@ -1551,7 +1553,7 @@ struct Index {
 
 addSymbol(symbolId: number): void
 
-用于向正在构建的文本段落中插入具体的符号。
+向正在构建的文本段落中插入具体符号。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1576,9 +1578,9 @@ function textFunc() {
     align: text.TextAlign.END,
   };
   let fontCollection = new text.FontCollection();
-  let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
-  ParagraphGraphBuilder.addSymbol(0xF0000);
-  let paragraph = ParagraphGraphBuilder.build();
+  let paragraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+  paragraphBuilder.addSymbol(0xF0000);
+  let paragraph = paragraphBuilder.build();
 }
 
 @Entry
@@ -1604,7 +1606,7 @@ struct Index {
 
 getGlyphCount(): number
 
-获取该文本行中字形的数量。
+获取文本行中字形的数量。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1617,14 +1619,14 @@ getGlyphCount(): number
 **示例：**
 
 ```ts
-let GlyphCount = lines[0].getGlyphCount();
+let glyphCount = lines[0].getGlyphCount();
 ```
 
 ### getTextRange
 
 getTextRange(): Range
 
-获取该文本行中的文本在整个段落文本中的索引区间。
+获取该行文本在整个段落文本中的索引区间。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1632,7 +1634,7 @@ getTextRange(): Range
 
 | 类型             | 说明                                              |
 | ---------------- | ------------------------------------------------ |
-| [Range](#range)  | 该文本行中的文本在整个段落文本中的索引区间。|
+| [Range](#range)  | 该行文本在整个段落文本中的索引区间。|
 
 **示例：**
 
@@ -1644,7 +1646,7 @@ let textRange = lines[0].getTextRange();
 
 getGlyphRuns(): Array\<Run>
 
-获取该文本行中的文本渲染单位数组。
+获取文本行的排版单元数组。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1652,7 +1654,7 @@ getGlyphRuns(): Array\<Run>
 
 | 类型         | 说明                         |
 | ------------ | --------------------------- |
-| Array\<[Run](#run)>  | 该文本行中的文本渲染单位数组。|
+| Array\<[Run](#run)>  | 该文本行中的文本排版单元数组。|
 
 **示例：**
 
@@ -1664,7 +1666,7 @@ let runs = lines[0].getGlyphRuns();
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以坐标点 (x, y) 为左上角位置绘制该文本行。
+在画布上以坐标点(x, y)为左上角位置绘制该文本行。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1713,15 +1715,15 @@ struct Index {
 
 ## Run
 
-文本排版的渲染单元。
+文本排版单元。
 
-下列API示例中都需先使用[TextLine](#textline)类的[getGlyphRuns()](#getglyphruns)接口获取到Run对象实例，再通过此实例调用对应方法。
+下列API示例中都需先使用[TextLine](#textline)类的[getGlyphRuns()](#getglyphruns)接口获取Run对象实例，再通过此实例调用对应方法。
 
 ### getGlyphCount
 
 getGlyphCount(): number
 
-获取该渲染单元中字形的数量。
+获取该排版单元中字形的数量。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1729,7 +1731,7 @@ getGlyphCount(): number
 
 | 类型     | 说明                |
 | ------- | -------------------- |
-| number  | 该渲染单元中字形数量，整数。 |
+| number  | 该排版单元中字形数量，整数。 |
 
 **示例：**
 
@@ -1741,7 +1743,7 @@ let glyphs = runs[0].getGlyphCount();
 
 getGlyphs(): Array\<number>
 
-获取该渲染单元中每个字符对应的字形序号。
+获取该排版单元中每个字符的字形序号。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1749,7 +1751,7 @@ getGlyphs(): Array\<number>
 
 | 类型            | 说明                             |
 | --------------- | -------------------------------- |
-| Array\<number>  | 该渲染单元中每个字符对应的字形序号。|
+| Array\<number>  | 该排版单元中每个字符对应的字形序号。|
 
 **示例：**
 
@@ -1761,7 +1763,7 @@ let glyph = runs[0].getGlyphs();
 
 getPositions(): Array<common2D.Point>
 
-获取该渲染单元中每个字形相对于每行的字形位置。
+获取该排版单元中每个字形相对于每行的字形位置。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1769,7 +1771,7 @@ getPositions(): Array<common2D.Point>
 
 | 类型                   | 说明                                   |
 | ---------------------- | ------------------------------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该渲染单元中每个字形相对于每行的字形位置。 |
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该排版单元中每个字形相对于每行的字形位置。 |
 
 **示例：**
 
@@ -1781,7 +1783,7 @@ let positions = runs[0].getPositions();
 
 getOffsets(): Array<common2D.Point>
 
-获取该渲染单元中每个字形相对于其索引的偏移量。
+获取该排版单元中每个字形的索引偏移量。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1789,7 +1791,7 @@ getOffsets(): Array<common2D.Point>
 
 | 类型                   | 说明           |
 | ---------------------- | -------------- |
-| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该渲染单元中每个字形相对于其索引的偏移量。|
+| Array<[common2D.Point](js-apis-graphics-common2D.md#point12)>  | 该排版单元中每个字形相对于其索引的偏移量。|
 
 **示例：**
 
@@ -1801,7 +1803,7 @@ let offsets = runs[0].getOffsets();
 
 getFont(): drawing.Font
 
-获取该渲染单元的字体属性对象实例。
+获取排版单元的字体属性对象。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1809,7 +1811,7 @@ getFont(): drawing.Font
 
 | 类型                   | 说明           |
 | ------------------------------------------------- | -------------------------- |
-| [drawing.Font](js-apis-graphics-drawing.md#font)  | 该渲染单元的字体属性对象实例。|
+| [drawing.Font](js-apis-graphics-drawing.md#font)  | 该排版单元的字体属性对象实例。|
 
 **示例：**
 
@@ -1821,7 +1823,7 @@ let font = runs[0].getFont();
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以坐标点 (x, y) 为左上角位置绘制该渲染单元。
+在画布上以(x, y)为左上角位置绘制排版单元。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 

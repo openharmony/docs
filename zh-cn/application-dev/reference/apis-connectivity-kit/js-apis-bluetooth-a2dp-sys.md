@@ -224,7 +224,7 @@ isAbsoluteVolumeEnabled(deviceId: string, callback: AsyncCallback&lt;boolean&gt;
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
 | deviceId | string | 是    | 远端设备地址。 |
-| callback | AsyncCallback&lt;boolean&gt; | 是 | 通过注册回调函数获取设备绝对音量是否开启。如果成功，值在enabled中返回。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当接口调用返回成功，err为undefined，data为获取到的绝对音量能力开启结果，true表示设备支持绝对音量能力，返回false表示设备不支持绝对音量能力；否则为错误对象。 |
 
 
 **错误码**：
@@ -277,7 +277,7 @@ isAbsoluteVolumeEnabled(deviceId: string): Promise&lt;boolean&gt;
 
 | 类型                            | 说明         |
 | ----------------------------- | ---------- |
-| Promise&lt;boolean&gt; | 通过promise形式获取设备绝对音量是否开启。如果成功，值在enabled中返回。 |
+| Promise&lt;boolean&gt; | Promise对象。返回true表示设备绝对音量能力开启；返回false表示设备绝对音量能力未开启。 |
 
 **错误码**：
 

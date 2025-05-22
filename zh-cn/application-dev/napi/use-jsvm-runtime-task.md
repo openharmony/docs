@@ -328,4 +328,38 @@ static int32_t TestJSVM() {
 
     return 0;
 }
-  ```
+```
+预计的输出结果：
+```
+JSVM CreateJsCore START
+JSVM CreateJsCore END
+TEST coreId: 0
+JSVM EvaluateJS START
+JSVM API TEST: hello World
+JSVM API TEST: CreatePromise start
+JSVM API TEST: CreatePromise end
+JSVM API TEST type: 4
+JSVM API TEST: CreatePromise 0
+JSVM API TEST RESULT: PASS
+JSVM EvaluateJS END
+TEST evaluateJS: hello World
+JSVM CreateJsCore START
+JSVM CreateJsCore END
+TEST coreId: 1
+JSVM EvaluateJS START
+JSVM API TEST: second hello
+JSVM API TEST RESULT: PASS
+JSVM API TEST RESULT: PASS
+JSVM API TEST: CreatePromise start
+JSVM API TEST: CreatePromise end
+JSVM API TEST type: 4
+JSVM API TEST: CreatePromise 1
+JSVM API TEST RESULT: PASS
+JSVM EvaluateJS END
+TEST evaluateJS: second hello
+JSVM ReleaseJsCore START
+JSVM ReleaseJsCore END
+JSVM ReleaseJsCore START
+JSVM ReleaseJsCore END
+Test NAPI end
+```

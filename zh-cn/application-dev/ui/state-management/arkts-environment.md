@@ -15,12 +15,12 @@ Environment提供了读取系统某些环境变量的能力，具体见[Environm
 
 | 键 | 数据类型 | 描述                                      |
 | ------------------ | ------------------ | ------------------ |
-| accessibilityEnabled              | boolean                  | 获取无障碍屏幕读取是否启用。                 |
-| colorMode              | ColorMode                  | 色彩模型类型：选项为ColorMode.LIGHT: 浅色，ColorMode.DARK: 深色。                 |
-| fontScale              | number                  | 字体大小比例。开发者需要配置[configuration](../../quick-start/app-configuration-file.md#configuration标签)使fontScale跟随系统变化。                |
-| fontWeightScale              | number                  | 字体粗细程度。                |
-| layoutDirection              | LayoutDirection                  | 布局方向类型：包括LayoutDirection.LTR: 从左到右，LayoutDirection.RTL: 从右到左。                 |
-| languageCode              | string                  | 当前系统语言值，取值必须为小写字母，例如zh。                 |
+| accessibilityEnabled              | boolean                  | 是否启用获取无障碍屏幕读取。true表示启用，false表示不启用。|
+| colorMode              | ColorMode                  | 色彩模型类型。<br>- ColorMode.LIGHT：浅色。<br>- ColorMode.DARK：深色。                 |
+| fontScale              | number                  | 字体大小比例。开发者需要配置configuration，设置fontSizeScale为"followSystem"，具体配置步骤可参考[configuration](../../quick-start/app-configuration-file.md#configuration标签)使fontScale跟随系统变化。<br>默认值跟随系统默认参数。                |
+| fontWeightScale              | number                  | 字体粗细程度。在不同的系统或者机型中，fontWeightScale的取值范围可能会有所不同。<br>默认值跟随系统默认参数。                |
+| layoutDirection              | LayoutDirection                  | 布局方向类型：<br>- LayoutDirection.LTR：从左到右。<br>- LayoutDirection.RTL：从右到左。                 |
+| languageCode              | string                  | 当前系统语言值，取值必须为小写字母（例如：zh）。<br>默认值跟随系统默认参数。            |
 
 
 ## 使用场景

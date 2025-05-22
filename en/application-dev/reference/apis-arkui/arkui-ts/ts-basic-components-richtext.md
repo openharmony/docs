@@ -63,7 +63,7 @@ Triggered when web page loading is completed.
 
 ## Attributes
 
-Among the [universal attributes](ts-universal-attributes-size.md), only the **width**, **height**, **size**, and **layoutWeight** attributes are supported.  
+Among the [universal attributes](ts-component-general-attributes.md), only the **width**, **height**, **size**, and **layoutWeight** attributes are supported.  
 
 ## Supported Tags
 

@@ -1,10 +1,12 @@
 # Notification Kit（用户通知服务）
 
-- ArkTS API
+- ArkTS API<!--notification-arkts-->
   - [@ohos.notificationManager (NotificationManager模块)](js-apis-notificationManager.md)
+  <!--Del-->
   - [@ohos.notificationManager (NotificationManager模块)(系统接口)](js-apis-notificationManager-sys.md)
   - [@ohos.notificationSubscribe (NotificationSubscribe模块)(系统接口)](js-apis-notificationSubscribe-sys.md)
-  - notification
+  <!--EndDel-->
+  - notification<!--notification-->
     - [NotificationActionButton](js-apis-inner-notification-notificationActionButton.md)
     - [NotificationCommonDef](js-apis-inner-notification-notificationCommonDef.md)
     - [NotificationContent](js-apis-inner-notification-notificationContent.md)
@@ -23,16 +25,16 @@
     - [NotificationSubscriber (系统接口)](js-apis-inner-notification-notificationSubscriber-sys.md)
     - [NotificationSubscribeInfo (系统接口)](js-apis-inner-notification-notificationSubscribeInfo-sys.md)
     <!--DelEnd-->
-  - 已停止维护的接口
+  - 已停止维护的接口<!--notification-arkts-dep-->
     - [@ohos.notification (Notification模块)](js-apis-notification.md)
     - [@system.notification (Notification模块)](js-apis-system-notification.md)
     <!--Del-->
     - [@ohos.notification (Notification模块)(系统接口)](js-apis-notification-sys.md)
     <!--DelEnd-->
-- C API
-  - 模块
+- C API<!--notification-c-->
+  - 模块<!--notification-module-->
     - [Notification](capi-notification.md)
-  - 头文件
+  - 头文件<!--notification-struct-->
     - [notification.h](notification_8h.md)
-- 错误码
+- 错误码<!--notification-arkts-errcode-->
   - [通知错误码](errorcode-notification.md)

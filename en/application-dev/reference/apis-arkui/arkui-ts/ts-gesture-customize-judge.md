@@ -43,7 +43,7 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | ---------------  | -------------------------   | -----------|
 | tag              | string                      | Gesture tag.<br>**NOTE**<br>If the event tag is not set, **undefined** or no gesture tag is returned. |
 | type             | [GestureControl.GestureType](#gesturetype12)  | Gesture type.<br>**NOTE**<br> When the gesture is a built-in gesture event of an unexposed type, the value of **type** is **-1**.|
-| isSystemGesture  | boolean                     | Whether the current gesture is system gesture, that is, a built-in gesture of the component.<br>Default value: **false**|
+| isSystemGesture  | boolean                     | Whether the current gesture is a system gesture, that is, a built-in gesture of the component. **true**: The gesture is a system gesture.<br>**false**: The gesture is not a system gesture.<br>Default value: **false**|
 
 ## GestureType<sup>12+</sup>
 
@@ -73,11 +73,13 @@ onGestureJudgeBegin(callback: (gestureInfo: GestureInfo, event: BaseGestureEvent
 | pressure<sup>9+</sup> | number | Press pressure.<br>Default value: **0**<br>Value range: [0, 1], typical value 0.913168, where higher values indicate greater pressure.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | tiltX<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the x-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | tiltY<sup>9+</sup> | number | Angle between the projection of the stylus on the device plane and the y-axis.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| rollAngle<sup>18+</sup> | number | Angle between the stylus and the device's surface.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 18.<br>**Atomic service API**: This API can be used in atomic services since API version 18.|
 | sourceTool<sup>9+</sup> | [SourceTool](ts-gesture-settings.md#sourcetool9) | Event input source.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 9.<br>**Atomic service API**: This API can be used in atomic services since API version 11. |
 | axisHorizontal<sup>12+</sup> | number | Horizontal axis value.<br>**NOTE**<br>The value can only be obtained in the pan gesture initiated by mouse wheel scrolling or two-finger swipes on a touchpad.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | axisVertical<sup>12+</sup> | number | Vertical axis value.<br>**NOTE**<br>The value can only be obtained in the pan gesture initiated by mouse wheel scrolling or two-finger swipes on a touchpad.<br>**Widget capability**: This API can be used in ArkTS widgets since API version 12.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | getModifierKeyState<sup>12+</sup> | (Array&lt;string&gt;) => bool | Obtains the pressed status of modifier keys. For details about the error message, see the following error codes. The following modifier keys are supported: 'Ctrl'\|'Alt'\|'Shift'\|'Fn'. This API does not work for the Fn key on an externally connected keyboard.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | deviceId<sup>12+</sup> | number | ID of the input device that triggers the event.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| targetDisplayId<sup>15+</sup> | number | ID of the screen where the event occurs.<br>Default value: **0**<br>Value range: [0, +∞).<br>**Atomic service API**: This API can be used in atomic services since API version 15.|
 
 **Error codes**
 
@@ -102,16 +104,16 @@ Extended from [BaseGestureEvent](#basegestureevent). This object can be passed i
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 ## LongPressGestureEvent
-Extended from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
+Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
 | Name     | Type                                     | Description        |
 | ---------  | ----------------------------------------  | -----------|
-| repeat     | boolean | Whether the event is triggered repeatedly. |
+| repeat     | boolean | Whether the event is repeated. <br>**true**: The event is repeated.<br>**false**: The event is not repeated. |
 
 ## PanGestureEvent
-Extended from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
+Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -127,7 +129,7 @@ Extended from [BaseGestureEvent](#basegestureevent). This object can be passed i
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-Extended from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
+Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 | Name        | Type                                     | Description        |
 | ------------  | ----------------------------------------  | -----------|
 | scale         | number | Scale factor. |
@@ -138,13 +140,13 @@ Extended from [BaseGestureEvent](#basegestureevent). This object can be passed i
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
-Extended from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
+Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 | Name        | Type                                     | Description        |
 | ------------  | ----------------------------------------  | -----------|
 | angle         | number | Rotation angle, in deg.<br>**NOTE**<br>Angle calculation method: After a swipe gesture is recognized, a line connecting the two fingers is identified as the initial line. As the fingers swipe, the line between the fingers rotates. Based on the coordinates of the initial line's and current line's end points, the arc tangent function is used to calculate the respective included angle of the points relative to the horizontal direction by using the following formula: Rotation angle = arctan2(cy2-cy1,cx2-cx1) - arctan2(y2-y1,x2-x1). The initial line is used as the coordinate system. Values from 0 to 180 degrees represent clockwise rotation, while values from –180 to 0 degrees represent counterclockwise rotation. |
 
 ## SwipeGestureEvent
-Extended from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
+Inherits from [BaseGestureEvent](#basegestureevent). This object can be passed in as the **event** parameter of [onGestureJudgeBegin](#ongesturejudgebegin).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -282,7 +284,7 @@ struct Index {
             }
             console.log("gestureInfo Type " + gestureInfo.type.toString() + " isSystemGesture " + gestureInfo.isSystemGesture);
             console.log("pressure " + event.pressure + " fingerList.length " + event.fingerList.length
-            + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " sourcePool " + event.sourceTool.toString());
+            + " timeStamp " + event.timestamp + " sourceType " + event.source.toString() + " titleX " + event.tiltX + " titleY " + event.tiltY + " rollAngle " + event.rollAngle + " sourcePool " + event.sourceTool.toString());
             // If the gesture is a long press gesture, check whether the touch position is in the upper half area.
             if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
               if (event.fingerList.length > 0 && event.fingerList[0].localY < 100) {

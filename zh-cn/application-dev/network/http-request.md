@@ -4,6 +4,10 @@
 
 应用通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
+<!--RP1-->
+
+<!--RP1End-->
+
 ## 接口说明
 
 HTTP数据请求功能主要由http模块提供。
@@ -32,7 +36,7 @@ HTTP数据请求功能主要由http模块提供。
 | on\('dataSendProgress'\)<sup>11+</sup>        | 订阅HTTP网络请求数据发送进度事件。  |
 | off\('dataSendProgress'\)<sup>11+</sup>       | 取消订阅HTTP网络请求数据发送进度事件。 |
 
-## request接口开发步骤
+## 发起HTTP一般数据请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -42,11 +46,17 @@ HTTP数据请求功能主要由http模块提供。
 6. 调用该对象的off()方法，取消订阅http响应头事件。
 7. 当该请求使用完毕时，调用destroy()方法主动销毁。
 
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ```ts
 // 引入包名
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { common } from '@kit.AbilityKit';
 
+let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 // 每一个httpRequest对应一个HTTP请求任务，不可复用
 let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
@@ -89,7 +99,7 @@ httpRequest.request(
         name: "Part2", // 数据名，自API 11开始支持该属性
         contentType: 'text/plain', // 数据类型，自API 11开始支持该属性
         // data/app/el2/100/base/com.example.myapplication/haps/entry/files/fileName.txt
-        filePath: `${getContext(this).filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
+        filePath: `${context.filesDir}/fileName.txt`, // 可选，传入文件路径，自API 11开始支持该属性
         remoteFileName: 'fileName.txt' // 可选，自API 11开始支持该属性
       }
     ]
@@ -114,7 +124,7 @@ httpRequest.request(
 );
 ```
 
-## requestInStream接口开发步骤
+## 发起HTTP流式传输请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -237,7 +247,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 
 ### JSON配置文件示例
 
-预置应用级证书的配置例子如下：
+预置应用级证书的配置例子如下（具体配置路径可参考[网络连接安全配置](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-network-ca-security#section5454123841911)）：
 
 ```json
 {

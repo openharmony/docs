@@ -14,7 +14,7 @@
 
 CheckboxGroup(options?: CheckboxGroupOptions)
 
-创建多选框群组，可以控制群组内的Checkbox全选或者不全选，group值相同的Checkbox和CheckboxGroup为同一群组。
+创建多选框群组，用于控制群组内Checkbox的全选或取消全选状态，group值相同的Checkbox和CheckboxGroup属于同一群组。
 
 在结合带缓存组件使用时(如List)，未被创建的Checkbox选中状态需要应用手动控制。
 
@@ -64,7 +64,7 @@ selectAll(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| value  | boolean | 是   | 是否全选。<br/>默认值：false<br/>值为true时，多选框群组都被选中。值为false时，多选框群组都不被选中。 |
+| value  | boolean | 是   | 是否全选。<br/>默认值：false<br/>值为true时，多选框群组将全部被选中；值为false时，多选框群组将全部取消选中。 |
 
 ### selectedColor
 

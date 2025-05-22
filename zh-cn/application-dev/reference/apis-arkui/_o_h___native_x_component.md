@@ -99,8 +99,8 @@
 
 | 名称                                       | 描述                             |
 | ---------------------------------------- | ------------------------------ |
-| **OH_XCOMPONENT_ID_LEN_MAX**&nbsp;=&nbsp;128 | ArkUI&nbsp;XComponent的id最大长度。  |
-| **OH_MAX_TOUCH_POINTS_NUMBER**&nbsp;=&nbsp;10 | 触摸事件中的可识别的触摸点个数最大值。            |
+| [OH_XCOMPONENT_ID_LEN_MAX](#oh_xcomponent_id_len_max)&nbsp;=&nbsp;128 | ArkUI&nbsp;XComponent的id最大长度。  |
+| [OH_MAX_TOUCH_POINTS_NUMBER](#oh_max_touch_points_number)&nbsp;=&nbsp;10 | 触摸事件中的可识别的触摸点个数最大值。            |
 | [OH_NativeXComponent_TouchPoint::id](#id-12)&nbsp;=&nbsp;0 | 手指的唯一标识符。                      |
 | [OH_NativeXComponent_TouchPoint::screenX](#screenx-13)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的x坐标。 |
 | [OH_NativeXComponent_TouchPoint::screenY](#screeny-13)&nbsp;=&nbsp;0.0 | 触摸点相对于XComponent所在应用窗口左上角的y坐标。 |
@@ -361,7 +361,7 @@ enum OH_NativeXComponent_KeyCode
 | KEY_EQUALS                   | 按键'='                       |
 | KEY_LEFT_BRACKET             | 按键'['                       |
 | KEY_RIGHT_BRACKET            | 按键']'                       |
-| KEY_BACKSLASH                | 按键'\'                       |
+| KEY_BACKSLASH                | 按键'\\'                       |
 | KEY_SEMICOLON                | 按键';'                       |
 | KEY_APOSTROPHE               | 按键'''&nbsp;(单引号)            |
 | KEY_SLASH                    | 按键'/'                       |

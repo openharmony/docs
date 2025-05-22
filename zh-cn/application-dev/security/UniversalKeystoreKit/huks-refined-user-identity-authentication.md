@@ -268,7 +268,7 @@
     ```ts
     import { huks } from "@kit.UniversalKeystoreKit";
     import { userAuth } from '@kit.UserAuthenticationKit';
-    import { BusinessError } from "@kit.BasicServicesKit"
+    import { BusinessError } from "@kit.BasicServicesKit";
     
     let keyAlias = 'test_sm4_key_alias';
     let IV = '1234567890123456'; // 此处为样例代码，实际使用需采用随机值。

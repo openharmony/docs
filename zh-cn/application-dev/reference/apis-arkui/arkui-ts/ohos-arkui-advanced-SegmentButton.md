@@ -50,7 +50,7 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 | 名称                  | 类型                                                         | 必填                                                     | 说明                                                       |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | type                    | 'tab' \| 'capsule'                                       | 是                                        | 分段按钮的类型。                                             |
-| multiply                | boolean                                                      | 是                                                   | 是否可以多选。<br/>**说明：**<br/>默认值：false。<br>true:可多选；false:不可多选。页签类分段按钮只支持单选，设置`multiply`为`true`不生效。 |
+| multiply                | boolean                                                      | 是                                                   | 是否可以多选。true表示可以多选，false表示不可以多选。默认为false。<br>**说明：** 页签类分段按钮只支持单选，设置`multiply`为`true`时不生效。 |
 | buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | 是 | 按钮信息，包括图标和文本信息。                               |
 | fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 是                | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary') |
 | selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 是                | 按钮选中态的文本颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_text_primary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。 |
@@ -202,7 +202,7 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 | 名称      | 类型                                              | 必填 | 说明                        |
 | -------- | ------------------------------------------------- | ---- | ----------------------------- |
 | buttons  | [SegmentButtonItemTuple](#segmentbuttonitemtuple) | 是   | 按钮信息。                    |
-| multiply | boolean                                           | 否   | 是否可以多选，默认值：false。 |
+| multiply | boolean                                           | 否   | 是否可以多选。true表示可以多选，false表示不可以多选。默认为false。 |
 
 ## ItemRestriction
 
@@ -767,6 +767,24 @@ import {
 
 @Entry
 @Component
+struct Gallery {
+  // 此处'app.media.icon'仅作示例，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
+  dataList: Array<ViewData> = [new ViewData('flower', $r('app.media.icon')), new ViewData('OMG', $r('app.media.icon')),
+    new ViewData('OMG', $r('app.media.icon'))]
+  scroller: Scroller = new Scroller();
+  private preIndex: number = -1;
+
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        ForEach(this.dataList, (item: ViewData) => {
+          GridItem() {
+            TapImage({
+              uri: item.uri,
+              index: item.id
+            })
+          }.aspectRatio(1)@Entry
+@Component
 struct Index {
   @State singleSelectCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [{ text: '1' }, { text: '2' }, { text: '3' },
@@ -815,6 +833,38 @@ struct Index {
     }.height('100%')
   }
 }
+          .onClick(() => {
+            if (this.preIndex === item.id) {
+              return;
+            }
+            let innerEvent: emitter.InnerEvent = { eventId: item.id }
+            // 选中态：黑变红
+            let eventData: emitter.EventData = {
+              data: {
+                "colorTag": 1;
+              }
+            }
+            emitter.emit(innerEvent, eventData);
+
+            if (this.preIndex != -1) {
+              console.info(`preIndex: ${this.preIndex}, index: ${item.id}, black`)
+              let innerEvent: emitter.InnerEvent = { eventId: this.preIndex }
+              // 取消选中态：红变黑
+              let eventData: emitter.EventData = {
+                data: {
+                  "colorTag": 0
+                }
+              }
+              emitter.emit(innerEvent, eventData);
+            }
+            this.preIndex = item.id;
+          })
+        }, (item: ViewData) => JSON.stringify(item))
+      }.columnsTemplate('1fr 1fr')
+    }
+
+  }
+}
 ```
 
 ![segmentbutton-sample3](figures/segmentbutton-sample3.gif)
@@ -824,7 +874,7 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI'
+import { LengthMetrics, SegmentButton, SegmentButtonOptions } from '@kit.ArkUI';
 
 
 @Entry
@@ -944,42 +994,87 @@ struct Index {
   @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
     buttons: [{ text: '页签按钮1', accessibilityLevel: 'yes', accessibilityDescription: '页签按钮1 新手提醒' },
       { text: '页签按钮2', accessibilityLevel: 'yes', accessibilityDescription: '页签按钮2 新手提醒' },
-      { text: '页签按钮3', accessibilityLevel: 'yes', accessibilityDescription: '页签按钮3 新手提醒'
-    }] as ItemRestriction<SegmentButtonTextItem>,
+      {
+        text: '页签按钮3', accessibilityLevel: 'yes', accessibilityDescription: '页签按钮3 新手提醒'
+      }] as ItemRestriction<SegmentButtonTextItem>,
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
-      accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem 新手提醒'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem 新手提醒'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem 新手提醒'},
-      { icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconItem 新手提醒'}
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem 新手提醒'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem 新手提醒'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem 新手提醒'
+      },
+      {
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconItem 新手提醒'
+      }
     ] as SegmentButtonItemTuple,
     multiply: false,
     backgroundBlurStyle: BlurStyle.BACKGROUND_THICK
   })
   @State iconTextCapsuleOptions: SegmentButtonOptions = SegmentButtonOptions.capsule({
     buttons: [
-      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'},
-      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'},
-      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'},
-      { text: '图标1', icon: $r('sys.media.ohos_ic_public_email'), iconAccessibilityText: '未选中图标无障碍文本',
-        selectedIcon: $r('sys.media.ohos_ic_public_clock'), selectedIconAccessibilityText: '选中图标无障碍文本',
-        accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'}
+      {
+        text: '图标1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'
+      },
+      {
+        text: '图标1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'
+      },
+      {
+        text: '图标1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'
+      },
+      {
+        text: '图标1',
+        icon: $r('sys.media.ohos_ic_public_email'),
+        iconAccessibilityText: '未选中图标无障碍文本',
+        selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+        selectedIconAccessibilityText: '选中图标无障碍文本',
+        accessibilityLevel: 'yes',
+        accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'
+      }
     ] as SegmentButtonItemTuple,
     multiply: true
   })
@@ -991,20 +1086,31 @@ struct Index {
     Row() {
       Column() {
         Column({ space: 25 }) {
-          SegmentButton({ options: this.tabOptions,
-            selectedIndexes: $tabSelectedIndexes })
-          SegmentButton({ options: this.iconCapsuleOptions,
-            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes })
-          SegmentButton({ options: this.iconTextCapsuleOptions,
-            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes })
+          SegmentButton({
+            options: this.tabOptions,
+            selectedIndexes: $tabSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconCapsuleOptions,
+            selectedIndexes: $singleSelectIconCapsuleSelectedIndexes
+          })
+          SegmentButton({
+            options: this.iconTextCapsuleOptions,
+            selectedIndexes: $multiplySelectIconTextCapsuleSelectedIndexes
+          })
           Button("将按钮2、3替换为splice1、splice2")
             .onClick(() => {
               this.iconTextCapsuleOptions.buttons.splice(1, 2, new SegmentButtonItemOptions({
                 text: 'splice1', accessibilityLevel: 'yes', accessibilityDescription: 'SegmentButtonItemOptions 新手提醒'
-              }), new SegmentButtonItemOptions({ text: 'splice2', icon: $r('sys.media.ohos_ic_public_email'),
-                iconAccessibilityText: '未选中图标无障碍文本', selectedIcon: $r('sys.media.ohos_ic_public_clock'),
-                selectedIconAccessibilityText: '选中图标无障碍文本', accessibilityLevel: 'yes',
-                accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒' }))
+              }), new SegmentButtonItemOptions({
+                text: 'splice2',
+                icon: $r('sys.media.ohos_ic_public_email'),
+                iconAccessibilityText: '未选中图标无障碍文本',
+                selectedIcon: $r('sys.media.ohos_ic_public_clock'),
+                selectedIconAccessibilityText: '选中图标无障碍文本',
+                accessibilityLevel: 'yes',
+                accessibilityDescription: 'SegmentButtonIconTextItem 新手提醒'
+              }))
             })
         }.width('90%')
       }.width('100%')

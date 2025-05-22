@@ -10,10 +10,10 @@ The **PrintExtensionAbility** module provides operation APIs of the print extens
 ## Modules to Import
 
 ```ts
-import PrintExtensionAbility from '@ohos.app.ability.PrintExtensionAbility';
+import { PrintExtensionAbility } from '@kit.BasicServicesKit';
 ```
 
-## onStartPrintJob
+## PrintExtensionAbility.onStartPrintJob
 
 onStartPrintJob(jobInfo: print.PrintJob): void
 
@@ -48,7 +48,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onCancelPrintJob
+## PrintExtensionAbility.onCancelPrintJob
 
 onCancelPrintJob(jobInfo: print.PrintJob): void
 
@@ -83,7 +83,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onRequestPrinterCapability
+## PrintExtensionAbility.onRequestPrinterCapability
 
 onRequestPrinterCapability(printerId: number): print.PrinterCapability
 
@@ -129,7 +129,7 @@ export default class HWPrintExtension extends PrintExtensionAbility {
 }
 ```
 
-## onRequestPreview
+## PrintExtensionAbility.onRequestPreview
 
 onRequestPreview(jobInfo: print.PrintJob): string
 

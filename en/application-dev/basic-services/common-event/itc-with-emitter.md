@@ -28,7 +28,7 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
 1. Import the Emitter module.
    
    ```ts
-   import { emitter } from '@kit.BasicServicesKit';
+   import { emitter, Callback } from '@kit.BasicServicesKit';
    ```
 
 2. Subscribe to an event.
@@ -39,19 +39,18 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
     let event: emitter.InnerEvent = {
       eventId: 1
     };
-    
-    // Use on() to subscribe to the event. After the event whose eventId is 1 is received, the callback function is executed.
-    emitter.on(event, () => {
-      console.info('on callback');
-    });
+    let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+      console.info(`eventData: ${JSON.stringify(eventData)}`);
+    }
+
+    // Execute the callback after receiving the event whose eventId is 1.
+    emitter.on(innerEvent, callback);
    ```
 
    ```ts
    // Execute the callback after receiving the event whose eventId is 1.
    // Note that the event is received only once using once(), while the event is received until the subscription is canceled using on().
-   emitter.once(event, () => {
-     console.info('once callback');
-   });
+    emitter.once(innerEvent, callback);
    ```
 
 3. Emit the event.
@@ -64,12 +63,11 @@ To enable Emitter's capabilities mentioned above, perform the following steps:
      priority: emitter.EventPriority.LOW
    };
 
+   let callback: Callback<emitter.EventData> = (eventData: emitter.EventData) => {
+     console.info(`eventData: ${JSON.stringify(eventData)}`);
+   }
    // Subscribes to the event and receive eventData.
-   emitter.once(event, (eventData : emitter.EventData) => {
-     console.info('enter callback, eventData-content:' + eventData?.data?.content);
-     console.info('enter callback, eventData-id:' + eventData?.data?.id);
-     console.info('enter callback, eventData-isEmpty:' + eventData?.data?.isEmpty);
-   });
+   emitter.once(event, callback);
 
    let eventData: emitter.EventData = {
      data: {

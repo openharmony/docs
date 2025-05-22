@@ -4,6 +4,8 @@
 开发者使用Web组件将应用侧代码注册到前端页面中，注册完成之后，前端页面中使用注册的对象名称就可以调用应用侧的函数，实现在前端页面中调用应用侧方法。
 
 
+## 如何建立应用侧与H5侧的交互通道
+
 注册应用侧代码有两种方式，一种在Web组件初始化调用，使用[javaScriptProxy()](../reference/apis-arkweb/ts-basic-components-web.md#javascriptproxy)接口。另外一种在Web组件初始化完成后调用，使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口。两种方式都需要和[deleteJavaScriptRegister](../reference/apis-arkweb/js-apis-webview.md#deletejavascriptregister)接口配合使用，防止内存泄漏。
 
 
@@ -17,7 +19,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -31,7 +33,7 @@
   struct WebComponent {
     webviewController: webview.WebviewController = new webview.WebviewController();
     // 声明需要注册的对象
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -65,14 +67,14 @@
   ```
 
 
-- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册。
+- 应用侧使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册示例如下。
 
   ```ts
   // xxx.ets
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -89,7 +91,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -134,7 +136,7 @@
 
   > **说明：**
   >
-  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)接口注册方法时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)接口生效。
+  > - 使用[registerJavaScriptProxy()](../reference/apis-arkweb/js-apis-webview.md#registerjavascriptproxy)方法注册时，注册后需调用[refresh()](../reference/apis-arkweb/js-apis-webview.md#refresh)方法生效。
 
 - 可选参数permission是一个json字符串，示例如下：
   ```json
@@ -220,7 +222,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -237,7 +239,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -292,12 +294,12 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class student {
+  class Student {
     name: string = '';
     age: string = '';
   }
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -316,7 +318,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -372,7 +374,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -389,7 +391,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -445,7 +447,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -462,7 +464,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -554,7 +556,7 @@
     }
   }
 
-  class testClass {
+  class TestClass {
     ObjReturn: ObjOther
 
     constructor() {
@@ -574,7 +576,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -631,7 +633,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -654,7 +656,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -709,7 +711,7 @@
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  class testClass {
+  class TestClass {
     constructor() {
     }
 
@@ -726,7 +728,7 @@
   @Component
   struct Index {
     webviewController: webview.WebviewController = new webview.WebviewController();
-    @State testObj: testClass = new testClass();
+    @State testObj: testClass = new TestClass();
 
     build() {
       Column() {
@@ -778,3 +780,14 @@
   </body>
   </html>
   ```
+## 验证通道是否建立成功
+
+1. 打开web调试。
+
+   开启web调试请参考[使用DevTools工具调试前端页面](web-debugging-with-devtools.md)。
+
+2. 举例说明通道是否建立成功。
+
+   使用[复杂类型使用方法](#复杂类型使用方法)中应用侧和前端页面之间传递Array作为示例，调试结果如下图所示：
+
+   ![DevTools工具验证成功示例](figures/webtoolstest.png)

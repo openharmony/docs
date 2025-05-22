@@ -30,7 +30,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string } | 是 | 配置跑马灯组件的参数。<br/>-&nbsp;start：控制跑马灯是否进入播放状态。<br/>**说明：**<br/>有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。<br/>-&nbsp;step：滚动动画文本滚动步长，当step大于Marquee的文本宽度时，取默认值。<br/>默认值：6，单位vp<br/>-&nbsp;loop：设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。<br/>-&nbsp;fromStart：设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true<br/>-&nbsp;src：需要滚动的文本。 |
+| value | { start: boolean, step?: number, loop?: number, fromStart?: boolean, src: string } | 是 | 配置跑马灯组件的参数。<br/>-&nbsp;start：控制跑马灯是否进入播放状态。<br/>**说明：**<br/>有限的滚动次数播放完毕后，不可以通过改变start重置滚动次数重新开始播放。<br/>-&nbsp;step：滚动动画文本滚动步长，当step大于Marquee的文本宽度时，取默认值。<br/>默认值：6，单位：[vp](ts-pixel-units.md#像素单位)<br/>-&nbsp;loop：设置重复滚动的次数，小于等于零时无限循环。<br/>默认值：-1<br/>**说明：**<br/>ArkTS卡片上该参数设置任意值都仅在可见时滚动一次。<br/>-&nbsp;fromStart：设置文本从头开始滚动或反向滚动。<br/>true表示从头开始滚动，false表示反向滚动。<br/>默认值：true<br/>-&nbsp;src：需要滚动的文本。 |
 
 ## 属性
 
@@ -124,7 +124,7 @@ allowScale(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 是否允许文本缩放。<br/>默认值：false<br/>**说明：**<br/>仅当fontSize为fp单位时生效。 |
+| value  | boolean | 是   | 是否允许文本缩放。<br/>true表示允许文本缩放，false表示不允许文本缩放。<br/>默认值：false<br/>**说明：**<br/>仅当fontSize为fp单位时生效。 |
 
 ### marqueeUpdateStrategy<sup>12+</sup>
 

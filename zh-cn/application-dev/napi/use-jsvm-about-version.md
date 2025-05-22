@@ -25,15 +25,6 @@ cpp部分代码
 // hello.cpp
 #include <string.h>
 
-// 待执行的js代码
-static const char *STR_TASK = R"JS(getVersion();getVMInfo();)JS";
-
-// GetVersion, GetVMInfo注册回调
-static JSVM_CallbackStruct param[] = {
-    {.data = nullptr, .callback = GetVersion},
-    {.data = nullptr, .callback = GetVMInfo},
-};
-static JSVM_CallbackStruct *method = param;
 // GetVersion, GetVMInfo方法别名，供JS调用
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getVersion", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
@@ -68,4 +59,14 @@ static JSVM_Value GetVMInfo(JSVM_Env env, JSVM_CallbackInfo info)
     PrintVmInfo(result);
     return nullptr;
 }
+
+// GetVersion, GetVMInfo注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = GetVersion},
+    {.data = nullptr, .callback = GetVMInfo},
+};
+static JSVM_CallbackStruct *method = param;
+
+// 待执行的js代码
+static const char *srcCallNative = R"JS(getVersion();getVMInfo();)JS";
 ```

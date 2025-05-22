@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 为了实现更好的转场效果，推荐使用[Navigation组件](../../../ui/arkts-navigation-navigation.md)和[模态转场](../../../ui/arkts-modal-transition.md)。
 
@@ -201,13 +201,13 @@ opacity(value: number): T
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value   | number | 是   | 设置入场的起点透明度值或者退场的终点透明度值。<br/>取值范围：[0, 1] |
 
-## PageTransitionCallback<sup>14+</sup>
+## PageTransitionCallback<sup>18+</sup>
 
 type PageTransitionCallback = (type: RouteType, progress: number) => void
 
 页面转场事件回调。
 
-**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -257,8 +257,8 @@ import { router } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
@@ -277,15 +277,15 @@ struct Index {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
         if (type == RouteType.Push || type == RouteType.Pop) {
-          this.scale1 = progress
-          this.opacity1 = progress
+          this.scale1 = progress;
+          this.opacity1 = progress;
         }
       })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
         if (type == RouteType.Push) {
-          this.scale1 = 1 - progress
-          this.opacity1 = 1 - progress
+          this.scale1 = 1 - progress;
+          this.opacity1 = 1 - progress;
         }
       })
   }
@@ -299,8 +299,8 @@ import { router } from '@kit.ArkUI';
 @Entry
 @Component
 struct Page1 {
-  @State scale2: number = 1
-  @State opacity2: number = 1
+  @State scale2: number = 1;
+  @State opacity2: number = 1;
 
   build() {
     Column() {
@@ -319,15 +319,15 @@ struct Page1 {
     PageTransitionEnter({ duration: 1200, curve: Curve.Linear })
       .onEnter((type: RouteType, progress: number) => {
         if (type == RouteType.Push || type == RouteType.Pop) {
-          this.scale2 = progress
+          this.scale2 = progress;
         }
-        this.opacity2 = progress
+        this.opacity2 = progress;
       })
     PageTransitionExit({ duration: 1200, curve: Curve.Ease })
       .onExit((type: RouteType, progress: number) => {
         if (type == RouteType.Pop) {
-          this.scale2 = 1 - progress
-          this.opacity2 = 1 - progress
+          this.scale2 = 1 - progress;
+          this.opacity2 = 1 - progress;
         }
       })
   }
@@ -403,14 +403,14 @@ import { router } from '@kit.ArkUI'
 @Entry
 @Component
 struct PageTransitionExample {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("页面1").onClick(() => {
         router.pushUrl({
-          url: "pages/page1"
+          url: "pages/page1";
         })
       })
         .width(200)
@@ -446,15 +446,15 @@ import { router } from '@kit.ArkUI'
 @Entry
 @Component
 struct PageTransitionExample {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("页面2").onClick(() => {
         router.pushUrl({
           url: "pages/Index"
-        })
+        });
       })
         .width(200)
         .height(60)
@@ -492,8 +492,8 @@ import { router } from '@kit.ArkUI'
 @Entry
 @Component
 struct PageTransitionExample {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
@@ -522,15 +522,15 @@ import { router } from '@kit.ArkUI'
 @Entry
 @Component
 struct PageTransitionExample {
-  @State scale1: number = 1
-  @State opacity1: number = 1
+  @State scale1: number = 1;
+  @State opacity1: number = 1;
 
   build() {
     Column() {
       Button("页面2").onClick(() => {
         router.pushUrl({
           url: "pages/Index"
-        })
+        });
       })
         .width(200)
         .height(60)

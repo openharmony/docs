@@ -38,6 +38,8 @@ The following table lists the video encoding capabilities supported:
   - In buffer mode, the caller calls **OH_VideoEncoder_PushInputBuffer** to input data. In surface mode, the caller, before the encoder is ready, calls **OH_VideoEncoder_GetSurface** to obtain the OHNativeWindow for video data transmission.
   - In buffer mode, you can use **attr** in **OH_AVBuffer** to pass in the End of Stream (EOS) flag, and the encoder stops when it reads the last frame. In surface mode, the caller calls **OH_VideoEncoder_NotifyEndOfStream** to notify the encoder of EOS.
 
+- Data transfer performance in surface mode is better than that in buffer mode.
+
 For details about the development procedure, see [Surface Input](#surface-input) and [Buffer Input](#buffer-input).
 
 ## State Machine Interaction
@@ -166,7 +168,7 @@ The sample code provided in this section adheres to the C++17 standard and is fo
     };
     ```
 
-4. Define global variables.
+4. Configure global variables.
 
     These global variables are for reference only. They can be encapsulated into an object based on service requirements.
 
@@ -246,7 +248,6 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
     The following is an example:
 
-    <!--RP5-->
     ```c++
     // Set the OH_AVCodecOnError callback function, which is used to report a codec operation error.
     static void OnError(OH_AVCodec *codec, int32_t errorCode, void *userData)
@@ -257,8 +258,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         (void)userData;
     }
     ```
-    <!--RP5End-->
-
+    
     <!--RP12-->
     ```c++
     // Set the OH_AVCodecOnStreamChanged callback function, which is used to report an encoding stream change.
@@ -284,7 +284,6 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     }
     ```
 
-    <!--RP6-->
     ```c++
     // Set the OH_AVCodecOnNewOutputBuffer callback function, which is used to send an encoded frame to the output queue.
     static void OnNewOutputBuffer(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *buffer, void *userData)
@@ -295,7 +294,6 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         outQueue.Enqueue(std::make_shared<CodecBufferInfo>(index, buffer));
     }
     ```
-    <!--RP6End-->
 
     ```c++
     // Call OH_VideoEncoder_RegisterCallback() to register the callback functions.
@@ -496,6 +494,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     - **index**: parameter passed by the callback function **OnNewOutputBuffer**, which uniquely corresponds to the buffer.
     - **buffer**: parameter passed by the callback function **OnNewOutputBuffer**. You can obtain the pointer to the shared memory address by calling [OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr).
 
+    <!--RP6-->
     ```c++
     std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
     std::shared_lock<std::shared_mutex> lock(codecMutex);
@@ -516,6 +515,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         // Handle exceptions.
     }
     ```
+    <!--RP6End-->
 
 14. (Optional) Call **OH_VideoEncoder_Flush()** to refresh the encoder.
 
@@ -568,9 +568,7 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
 16. (Optional) Call **OH_VideoEncoder_Stop()** to stop the encoder.
 
-    After **OH_VideoEncoder_Stop** is called, the encoder retains the encoding instance and releases the input and output buffers. You can directly call **OH_VideoEncoder_Start** to continue encoding.
-
-    The first **buffer** passed must carry the parameter set, starting from the IDR frame.
+    After **OH_VideoEncoder_Stop** is called, the encoder retains the encoding instance and releases the input and output buffers. You can directly call **OH_VideoEncoder_Start** to continue encoding. The first **buffer** passed must carry the parameter set, starting from the IDR frame.
 
     ```c++
     std::unique_lock<std::shared_mutex> lock(codecMutex);
@@ -798,7 +796,6 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
 
     - **buffer**: parameter passed by the callback function **OnNeedInputBuffer**. You can obtain the pointer to the shared memory address by calling [OH_AVBuffer_GetAddr](../../reference/apis-avcodec-kit/_core.md#oh_avbuffer_getaddr).
     - **index**: parameter passed by the callback function **OnNeedInputBuffer**, which uniquely corresponds to the buffer.
-    - **flags**: type of the buffer flag. For details, see [OH_AVCodecBufferFlags](../../reference/apis-avcodec-kit/_core.md#oh_avcodecbufferflags).
     - **widthStride**: stride of the obtained buffer data.
 
     ```c++
@@ -820,7 +817,6 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
     info.size = frameSize;
     info.offset = 0;
     info.pts = 0;
-    info.flags = flags;
     int32_t ret = OH_AVBuffer_SetBufferAttr(bufferInfo->buffer, &info);
     if (ret != AV_ERR_OK) {
         // Handle exceptions.
@@ -841,14 +837,15 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         // Handle exceptions.
     }
     ```
+
     Offset the stride. The following uses an NV12 image as an example, presenting the image layout of **width**, **height**, **wStride**, and **hStride**.
 
-    - **OH_MD_KEY_VIDEO_PIC_WIDTH** corresponds to **width**.
-    - **OH_MD_KEY_VIDEO_PIC_HEIGHT** corresponds to **height**.
+    - **OH_MD_KEY_WIDTH** corresponds to **width**.
+    - **OH_MD_KEY_HEIGHT** corresponds to **height**.
     - **OH_MD_KEY_VIDEO_STRIDE** corresponds to **wStride**.
     - **OH_MD_KEY_VIDEO_SLICE_HEIGHT** corresponds to **hStride**.
 
-    ![copy by line](figures/copy-by-line.png)
+    ![copy by line](figures/copy-by-line-encoder.png)
 
     Add the header file.
 

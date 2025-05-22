@@ -1,10 +1,10 @@
 # @ohos.inputMethod (Input Method Framework) (System API)
 
-The **inputMethod** module is oriented to common foreground applications (third-party applications and system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
+The **inputMethod** module is oriented to common foreground applications (system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 6. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 
 ## Modules to Import
@@ -169,7 +169,7 @@ Unsubscribes from the soft keyboard show event of the [input method panel](js-ap
 
 | Name  | Type| Mandatory| Description  |
 | -------- | ---- | ---- | ------ |
-| type     | string | Yes| Event type, which is **'imeShow'**.|
+| type     | string | Yes| Event type, which is `imeShow`.|
 | callback | (info: Array<[InputWindowInfo](js-apis-inputmethod.md#inputwindowinfo10)>) => void  | No| Callback to unregister.<br>If this parameter is not specified, this API unregisters all callbacks for the specified event type.|
 
 **Example**

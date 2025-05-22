@@ -19,7 +19,7 @@ This error code is reported if the specified device cannot be found in the multi
 1. The ID of the input device has changed.
 2. The physical connection of the input device is disconnected.
 
-**Solution**
+**Procedure**
 
 1. Use [inputDevice.getDeviceList](js-apis-inputdevice.md#inputdevicegetdevicelist9) to query the device ID, and then pass in the correct device ID.
 2. Check whether the keyboard cable is disconnected.
@@ -38,7 +38,7 @@ No keyboard is connected.
 
 The physical connection of the input device is disconnected.
 
-**Solution**
+**Procedure**
 
 Check whether the keyboard cable is disconnected.
 
@@ -56,7 +56,7 @@ Non-input applications are not allowed to call this API.
 
 This API is not supported for a third-party application or a non-input system application.
 
-**Solution**
+**Procedure**
 
 Use an input application to call this API.
 
@@ -74,6 +74,6 @@ This error code is reported if the window ID is invalid.
 
 The window ID does not belong to the current application.
 
-**Solution**
+**Procedure**
 
 Pass in the window ID of the current application. You can obtain the attributes of the current window by calling [getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9). The window attributes contain the window ID.

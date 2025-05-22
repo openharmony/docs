@@ -35,6 +35,8 @@ target_link_libraries(sample PUBLIC libohfileio.so)
 **添加头文件**
 
 ```c++
+#include <cstdio>
+#include <cstring>
 #include <filemanagement/fileio/oh_fileio.h>
 ```
 
@@ -55,5 +57,5 @@ target_link_libraries(sample PUBLIC libohfileio.so)
         } else {
             printf("GetFileLocation failed, error code is %d", ret);
         }
-    }    
+    }
    ```

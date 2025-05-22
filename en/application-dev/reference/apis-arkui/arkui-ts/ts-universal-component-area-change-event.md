@@ -16,6 +16,10 @@ Triggered when the component area changes in size or position due to layout upda
 
 This event is not triggered for changes in render attributes caused by re-rendering, such as changes in [translate](ts-universal-attributes-transformation.md#translate) and [offset](ts-types.md#offset). In addition, if the component position is altered due to drawing changes, for example, through [bindSheet](ts-universal-attributes-sheet-transition.md#bindsheet), this event is also not triggered.
 
+>  **NOTE**
+>
+> When a component is bound to both the **onAreaChange** event and the [position](ts-universal-attributes-location.md#position) attribute, the **onAreaChange** event responds to changes in the **position** attribute of type [Position](ts-types.md#position), but does not respond to changes in the **position** attribute of type Edges](ts-types.md#edges12) or [LocalizedEdges](ts-types.md#localizededges12).
+
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full

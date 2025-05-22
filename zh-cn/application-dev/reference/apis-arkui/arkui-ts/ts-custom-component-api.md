@@ -92,7 +92,7 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 export struct NavDestinationExample {
@@ -110,7 +110,7 @@ struct MyComponent {
   aboutToAppear() {
     // this指代MyComponent自定义节点，并从该节点向上查找其最近的一个类型为NavDestination的父亲节点
     this.navDesInfo = this.queryNavDestinationInfo();
-    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
+    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo));
   }
 
   build() {
@@ -139,12 +139,12 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 ```ts
 // index.ets
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct MainPage {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -156,14 +156,14 @@ struct MainPage {
 
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     // this指代PageOne自定义节点，并从该节点向上查找其最近的一个类型为Navigation的父亲节点
-    let navigationInfo: uiObserver.NavigationInfo | undefined = this.queryNavigationInfo()
-    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
+    let navigationInfo: uiObserver.NavigationInfo | undefined = this.queryNavigationInfo();
+    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo));
     if (navigationInfo !== undefined) {
-      this.pathStack = navigationInfo.pathStack
+      this.pathStack = navigationInfo.pathStack;
     }
   }
 
@@ -194,7 +194,7 @@ queryRouterPageInfo(): RouterPageInfo | undefined;
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component

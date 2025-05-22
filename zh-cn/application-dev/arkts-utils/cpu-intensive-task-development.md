@@ -85,7 +85,7 @@ struct Index {
     // Index.ets
     import { worker } from '@kit.ArkTS';
 
-    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ts');
+    const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/MyWorker.ets');
     ```
 
 3. 在宿主线程中通过调用[onmessage()](../reference/apis-arkts/js-apis-worker.md#onmessage9)方法接收Worker线程发送过来的消息，并通过调用[postMessage()](../reference/apis-arkts/js-apis-worker.md#postmessage9)方法向Worker线程发送消息。
@@ -97,7 +97,7 @@ struct Index {
 
     // 接收Worker子线程的结果
     workerInstance.onmessage = (() => {
-      console.info('MyWorker.ts onmessage');
+      console.info('MyWorker.ets onmessage');
       if (!done) {
         workerInstance.postMessage({ 'type': 1, 'value': 0 });
         done = true;
@@ -112,10 +112,10 @@ struct Index {
     workerInstance.postMessage({ 'type': 0 });
     ```
 
-4. 在MyWorker.ts文件中绑定Worker对象，当前线程即为Worker线程。
+4. 在MyWorker.ets文件中绑定Worker对象，当前线程即为Worker线程。
 
    ```ts
-   // MyWorker.ts
+   // MyWorker.ets
    import { worker, ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@kit.ArkTS';
 
    let workerPort: ThreadWorkerGlobalScope = worker.workerPort;
@@ -125,7 +125,7 @@ struct Index {
     例如，在Worker线程中定义预测模型及其训练过程，并与宿主线程进行信息交互。
 
     ```ts
-    // MyWorker.ts
+    // MyWorker.ets
     // 定义训练模型及结果
     let result: Array<number>;
     // 定义预测函数
@@ -182,7 +182,7 @@ struct Index {
     方式二：在Worker线程中通过调用[close()](../reference/apis-arkts/js-apis-worker.md#close9)方法主动销毁Worker线程，并终止Worker接收消息。
 
     ```ts
-    // MyWorker.ts
+    // MyWorker.ets
     // 销毁线程
     workerPort.close();
     ```

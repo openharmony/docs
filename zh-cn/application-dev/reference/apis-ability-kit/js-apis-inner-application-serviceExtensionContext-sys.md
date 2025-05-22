@@ -84,7 +84,6 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -172,7 +171,6 @@ startAbility(want: Want, options?: StartOptions): Promise\<void>
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -258,7 +256,6 @@ startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -352,7 +349,6 @@ startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -445,7 +441,6 @@ startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, ca
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -547,7 +542,6 @@ startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): 
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -950,7 +944,6 @@ startAbilityAsCaller(want: Want, callback: AsyncCallback\<void>): void
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1029,7 +1022,6 @@ startAbilityAsCaller(want: Want, options: StartOptions, callback: AsyncCallback\
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -1119,7 +1111,6 @@ startAbilityAsCaller(want: Want, options?: StartOptions): Promise\<void>
 | 16000078 | The multi-instance is not supported. |
 | 16000079 | The APP_INSTANCE_KEY cannot be specified. |
 | 16000080 | Creating an instance is not supported. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2014,7 +2005,6 @@ startRecentAbility(want: Want, callback: AsyncCallback\<void>): void
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2093,7 +2083,6 @@ startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback\<v
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2173,7 +2162,6 @@ startRecentAbility(want: Want, options?: StartOptions): Promise\<void>
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
-| 16000082 | The UIAbility is being started. |
 | 16200001 | The caller has been released. |
 
 **示例：**
@@ -2511,7 +2499,6 @@ openLink(link:string, options?: OpenLinkOptions): Promise&lt;void&gt;
 | 16000013 | The application is controlled by EDM.       |
 | 16000019 | No matching ability is found. |
 | 16200001 | The caller has been released. |
-| 16000082 | The UIAbility is being started. |
 
 **示例：**
 

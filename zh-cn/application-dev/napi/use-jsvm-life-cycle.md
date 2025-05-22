@@ -252,7 +252,7 @@ JSVM UseReference success
 为 JavaScript 对象添加 JSVM_Finalize 回调，当 JavaScript 对象被垃圾回收时执行函数回调，该接口通常被用于释放与 JavaScript 对象相关的原生对象。如果传入的参数类型不是 JavaScript 对象，该接口调用失败并返回错误码。
 Finalizer 方法被注册后无法取消，如果在调用 OH_JSVM_DestroyEnv 前均未被执行，则在 OH_JVSM_DestroyEnv 时执行。
 
-以下仅对 cpp 部分代码进行展示，其余框架代码如 `TestJSVM` 函数参考 [使用JSVM-API接口进行任务队列相关开发](use-jsvm-execute_tasks.md) OH_JSVM_SetMicrotaskPolicy 段落中的实现。
+cpp 部分代码
 
 ```cpp
 static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
@@ -279,15 +279,32 @@ static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
     return 0;
 }
 
-static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info) {
+    JSVM_VM vm;
+    OH_JSVM_GetVM(env, &vm);
     if (AddFinalizer(vm, env) != 0) {
         OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
     }
+
+    return nullptr;
 }
+
+// RunDemo注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = RunDemo},
+};
+static JSVM_CallbackStruct *method = param;
+// RunDemo方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"RunDemo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
 
 预期结果
-```
+```ts
 JSVM: finalizer added.
 JSVM: before call gc.
 JSVM: finalizer called.

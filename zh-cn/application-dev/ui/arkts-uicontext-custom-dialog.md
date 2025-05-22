@@ -5,7 +5,7 @@
 > **说明：**
 > 
 > 弹出框（openCustomDialog）存在两种入参方式创建自定义弹出框：
-> - openCustomDialog（传参为ComponentContent形式）：通过ComponentContent封装内容可以与UI界面解耦，调用更加灵活，可以满足开发者的封装诉求。拥有更强的灵活性，弹出框样式是完全自定义的，且在弹出框打开之后可以使用updateCustomDialog方法动态更新弹出框的一些参数。
+> - openCustomDialog（传参为ComponentContent形式）：通过ComponentContent封装内容可以与UI界面解耦，调用更加灵活，可以满足开发者的封装诉求。具有较高的灵活性，弹出框样式完全自定义，并且在弹出框打开后可以使用updateCustomDialog方法动态更新弹出框的参数。
 > - openCustomDialog（传builder的形式）：相对于ComponentContent，builder必须要与上下文做绑定，与UI存在一定耦合。此方法有用默认的弹出框样式，适合于开发者想要实现与系统弹窗默认风格一致的效果。
 > 
 > 本文介绍通过入参形式为ComponentContent创建自定义弹出框，传builder形式的弹出框使用方法可参考[openCustomDialog](../reference/apis-arkui/js-apis-arkui-UIContext.md#opencustomdialog12-1)。
@@ -43,7 +43,7 @@
    ```ts
    PromptActionClass.ctx.getPromptAction().openCustomDialog(PromptActionClass.contentNode, PromptActionClass.options)
      .then(() => {
-       console.info('OpenCustomDialog complete.')
+       console.info('OpenCustomDialog complete.');
      })
      .catch((error: BusinessError) => {
        let message = (error as BusinessError).message;
@@ -61,7 +61,7 @@
 
    PromptActionClass.ctx.getPromptAction().closeCustomDialog(PromptActionClass.contentNode)
      .then(() => {
-       console.info('CloseCustomDialog complete.')
+       console.info('CloseCustomDialog complete.');
        if (this.contentNode !== null) {
             this.contentNode.dispose();   // 释放contentNode
         }
@@ -84,12 +84,13 @@ this.contentNode.update(new Params('update'))
 ## 更新自定义弹出框的属性
 
 通过updateCustomDialog可以动态更新弹出框的属性。目前支持的属性包括alignment、offset、autoCancel、maskColor。
+
 需要注意的是，更新属性时，未设置的属性会恢复为默认值。例如，初始设置{ alignment: DialogAlignment.Top, offset: { dx: 0, dy: 50 } }，更新时设置{ alignment: DialogAlignment.Bottom }，则初始设置的offset: { dx: 0, dy: 50 }不会保留，会恢复为默认值。
 
 ```ts
 PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.contentNode, options)
   .then(() => {
-    console.info('UpdateCustomDialog complete.')
+    console.info('UpdateCustomDialog complete.');
   })
   .catch((error: BusinessError) => {
     let message = (error as BusinessError).message;
@@ -126,7 +127,7 @@ export class PromptActionClass {
     if (PromptActionClass.contentNode !== null) {
       PromptActionClass.ctx.getPromptAction().openCustomDialog(PromptActionClass.contentNode, PromptActionClass.options)
         .then(() => {
-          console.info('OpenCustomDialog complete.')
+          console.info('OpenCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
@@ -140,7 +141,7 @@ export class PromptActionClass {
     if (PromptActionClass.contentNode !== null) {
       PromptActionClass.ctx.getPromptAction().closeCustomDialog(PromptActionClass.contentNode)
         .then(() => {
-          console.info('CloseCustomDialog complete.')
+          console.info('CloseCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
@@ -154,7 +155,7 @@ export class PromptActionClass {
     if (PromptActionClass.contentNode !== null) {
       PromptActionClass.ctx.getPromptAction().updateCustomDialog(PromptActionClass.contentNode, options)
         .then(() => {
-          console.info('UpdateCustomDialog complete.')
+          console.info('UpdateCustomDialog complete.');
         })
         .catch((error: BusinessError) => {
           let message = (error as BusinessError).message;
@@ -172,7 +173,7 @@ import { ComponentContent } from '@kit.ArkUI';
 import { PromptActionClass } from './PromptActionClass';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -188,7 +189,7 @@ function buildText(params: Params) {
       .margin({ bottom: 36 })
     Button('Close')
       .onClick(() => {
-        PromptActionClass.closeDialog()
+        PromptActionClass.closeDialog();
       })
   }.backgroundColor('#FFF0F0F0')
 }
@@ -196,7 +197,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
   private ctx: UIContext = this.getUIContext();
   private contentNode: ComponentContent<Object> =
     new ComponentContent(this.ctx, wrapBuilder(buildText), new Params(this.message));
@@ -213,22 +214,22 @@ struct Index {
         Button("open dialog and update options")
           .margin({ top: 50 })
           .onClick(() => {
-            PromptActionClass.openDialog()
+            PromptActionClass.openDialog();
 
             setTimeout(() => {
               PromptActionClass.updateDialog({
                 alignment: DialogAlignment.Bottom,
                 offset: { dx: 0, dy: -50 }
-              })
+              });
             }, 1500)
           })
         Button("open dialog and update content")
           .margin({ top: 50 })
           .onClick(() => {
-            PromptActionClass.openDialog()
+            PromptActionClass.openDialog();
 
             setTimeout(() => {
-              this.contentNode.update(new Params('update'))
+              this.contentNode.update(new Params('update'));
             }, 1500)
           })
       }

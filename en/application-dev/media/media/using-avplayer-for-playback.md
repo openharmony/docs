@@ -102,8 +102,8 @@ export class AVPlayerDemo {
         case 'initialized': // This state is reported when the AVPlayer sets the playback source.
           console.info('AVPlayer state initialized called.');
           avPlayer.audioRendererInfo = {
-            usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
-            rendererFlags: 0
+            usage: audio.StreamUsage.STREAM_USAGE_MUSIC, // Audio stream usage type: music. Set this parameter based on the service scenario.
+            rendererFlags: 0 // AudioRenderer flag.
           };
           avPlayer.prepare();
           break;

@@ -25,11 +25,11 @@ These parameters are used to control the playback volume, number of loops, and p
 
 | Name           | Type                                    | Mandatory| Description                                                        |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| loop | number   | No | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever. Default value: **0**                  |
+| loop | number   | No | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.<br>The default value is **0**, indicating that the content is played only once.                  |
 | rate | number    | No | Playback rate. For details, see [AudioRendererRate](../apis-audio-kit/js-apis-audio.md#audiorendererrate8). Default value: **0**|
 | leftVolume  | number | No | Volume of the left channel. The value ranges from 0.0 to 1.0. Default value: **1.0**                                   |
-| rightVolume | number  | No | Volume of the right channel. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.) Default value: **1.0**|
-| priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority. Default value: **0**     |
+| rightVolume | number  | No | Volume of the right channel. The value ranges from 0.0 to 1.0. (Currently, the volume cannot be set separately for the left and right channels. The volume set for the left channel is used.) Default value: **1.0**|
+| priority  | number  | No | Playback priority. The value **0** means the lowest priority. A larger value indicates a higher priority. The value is an integer greater than or equal to 0. Default value: **0**     |
 
 ## SoundPool
 
@@ -585,8 +585,8 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     let playParameters: media.PlayParameters = {
       loop: 3, // The sound is played four times (three loops).
       rate: audio.AudioRendererRate.RENDER_RATE_NORMAL, // The sound is played at the original frequency.
-      leftVolume: 0.5, // range = 0.0-1.0
-      rightVolume: 0.5, // range = 0.0-1.0
+      leftVolume: 0.5, // range = 0.0-1.0.
+      rightVolume: 0.5, // range = 0.0-1.0.
       priority: 0, // The sound playback has the lowest priority.
     }
 
@@ -730,7 +730,7 @@ Sets the loop mode for an audio stream. This API uses an asynchronous callback t
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| loop | number | Yes  | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever.|
+| loop | number | Yes  | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -789,7 +789,7 @@ Sets the loop mode for an audio stream. This API uses a promise to return the re
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| loop | number | Yes  | Number of loops. The value **0** means that the sound does not loop (the sound is played once), and **-1** means that the sound loops forever.|
+| loop | number | Yes  | Number of loops.<br>If this parameter is set to a value greater than or equal to 0, the number of times the content is actually played is the value of **loop** plus 1.<br> If this parameter is set to a value less than 0, the content is played repeatedly.|
 
 **Return value**
 
@@ -851,7 +851,7 @@ Sets the priority for an audio stream. This API uses an asynchronous callback to
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| priority | number | Yes  | Priority. The value **0** means the lowest priority.|
+| priority | number | Yes  | Priority. The value **0** means the lowest priority. The value is an integer greater than or equal to 0.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -910,7 +910,7 @@ Sets the priority for an audio stream. This API uses a promise to return the res
 | Name  | Type                  | Mandatory| Description                       |
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
-| priority | number | Yes  | Priority. The value **0** means the lowest priority.|
+| priority | number | Yes  | Priority. The value **0** means the lowest priority. The value is an integer greater than or equal to 0.|
 
 **Return value**
 
@@ -1095,7 +1095,7 @@ Sets the volume for an audio stream. This API uses an asynchronous callback to r
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
 | leftVolume | number | Yes  | Volume of the left channel. The value ranges from 0.0 to 1.0.|
-| rightVolume | number | Yes  | Volume of the right channel. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
+| rightVolume | number | Yes  | Volume of the right channel. The value ranges from 0.0 to 1.0. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -1155,7 +1155,7 @@ Sets the volume for an audio stream. This API uses a promise to return the resul
 | -------- | ---------------------- | ---- | --------------------------- |
 | streamID | number | Yes  | Audio stream ID, which is obtained by calling **play()**.|
 | leftVolume | number | Yes  | Volume of the left channel. The value ranges from 0.0 to 1.0.|
-| rightVolume | number | Yes  | Volume of the right channel. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
+| rightVolume | number | Yes  | Volume of the right channel. The value ranges from 0.0 to 1.0. Currently, setting the volume for the right channel does not take effect. The volume set for the left channel is used.|
 
 **Return value**
 

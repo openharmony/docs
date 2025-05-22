@@ -73,7 +73,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-2. Use **put()** to insert data to the KV store.
+2. Call **put()** to insert data to the KV store.
      
    ```ts
    const KEY_TEST_STRING_ELEMENT = 'key_test_string';
@@ -92,7 +92,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-3. Use **backup()** to back up the KV store.
+3. Call **backup()** to back up the KV store.
      
    ```ts
    let backupFile = 'BK001';
@@ -110,7 +110,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-4. Use **delete()** to delete data to simulate unexpected deletion or data tampering.
+4. Call **delete()** to delete data to simulate unexpected deletion or data tampering.
      
    ```ts
    try {
@@ -127,7 +127,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-5. Use **restore()** to restore the KV store.
+5. Call **restore()** to restore the KV store.
      
    ```ts
    try {
@@ -144,7 +144,7 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
    }
    ```
 
-6. Use **deleteBackup()** to delete the backup file to release storage space.
+6. Call **deleteBackup()** to delete the backup file to release storage space.
      
    ```ts
    let files = [backupFile];
@@ -162,13 +162,13 @@ You can use **backup()** to back up a KV store, use **restore()** to restore a K
 
 ## Backing Up an RDB Store
 
-A database backup can be used to quickly restore a corrupted RDB store.
+A database backup can be used to quickly restore an RDB store in abnormal state.
 
 Two backup modes are available: manual backup and automatic backup. Automatic backup is available only for system applications.
 
 ### Manual Backup
 
-Use [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup) to manually back up an RDB store. <br>Example:
+Call [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup) to manually back up an RDB store. <br>Example:
 
    ```ts
    import { relationalStore } from '@kit.ArkData';
@@ -190,17 +190,19 @@ Use [backup()](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup)
        console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
        return;
      }
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-     })
      console.info('Succeeded in getting RdbStore.');
-
-     // Backup.db indicates the name of the database backup file. By default, it is in the same directory as the RdbStore file. You can also specify the directory in the customDir + backup.db format.
+     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
+     /**
+      * Backup.db specifies the database backup file. By default, it is in the same directory as the RDB store.
+      * You can also specify an absolute path, for example, /data/storage/el2/database/Backup.db. The file path must exist and will not be automatically created.
+      */
      (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
        if (err) {
          console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
            return;
         }
         console.info(`Succeeded in backing up RdbStore.`);
+      })
      })
    })
    ```
@@ -214,13 +216,13 @@ To implement hot backup of an RDB store, set **haMode** in [StoreConfig](../refe
    ```ts
    // Set haMode to MAIN_REPLICA.
    const AUTO_BACKUP_CONFIG :relationalStore.StoreConfig = {
-     name: "BackupResotreTest.db",
+     name: "BackupRestoreTest.db",
      securityLevel: relationalStore.SecurityLevel.S3,
      haMode: relationalStore.HAMode.MAIN_REPLICA, // Data is written to the main and replica stores on a real-time basis.
      allowRebuild: true
    }
 
-   // Use getRdbStore() to create an RDB store instance.
+   // Call getRdbStore() to create an RDB store instance.
    relationalStore.getRdbStore(context, AUTO_BACKUP_CONFIG, (err, store) => {
      if (err) {
        console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
@@ -234,11 +236,11 @@ To implement hot backup of an RDB store, set **haMode** in [StoreConfig](../refe
 
 ## Rebuilding an RDB Store
 
-If error code 14800011 is reported during the creation or use of an RDB store, the database is corrupted. If this occurs, you can rebuild the RDB store and restore data from a backup.
+If error 14800011 is displayed when an RDB store is created or used, an exception occurs in the database. You can delete the database and restore data.
 
-To enable automatic rebuild of an RDB store, set **allowRebuild** in [StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig) to **true**. The newly rebuilt RDB store is empty. You need to create tables and restore data from the database backup. For details about how to back up RDB store data, see [Backing Up an RDB Store](#backing-up-an-rdb-store). For details about how to restore RDB store data, see [Restoring RDB Store Data](#restoring-rdb-store-data).
+You can set **allowRebuild** in [StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig) to **true**, which allows the database to be automatically deleted when an exception occurs. The newly rebuilt RDB store is empty. You need to create tables and restore data from the database backup. For details about how to back up RDB store data, see [Backing Up an RDB Store](#backing-up-an-rdb-store). For details about how to restore RDB store data, see [Restoring RDB Store Data](#restoring-rdb-store-data).
 
-If **allowRebuild** in **StoreConfig** is set to **true** before the database is corrupted, the database will be automatically rebuilt when corrupted.
+If **allowRebuild** in **StoreConfig** is set to **true** before the database is abnormal, the database will be automatically deleted when an exception occurs.
 
 If **allowRebuild** in **StoreConfig** is not set or is set to **false**, set **allowRebuild** to **true** and open the rebuilt RDB store. <br>Example:
 
@@ -269,7 +271,7 @@ If **allowRebuild** in **StoreConfig** is not set or is set to **false**, set **
 
 ## Restoring RDB Store Data
 
-If an RDB store is corrupted, you can restore it by using the database backup.
+If an RDB store is abnormal, you can restore it by using the database backup.
 
 You can restore data from either the manual backup data or automatic backup data. The latter is available only for system applications.
 
@@ -279,7 +281,7 @@ You can use **backup()** to [perform manual backup](#manual-backup) and use **re
 
 The following example contains only the code snippet for the restore process. The complete code must also contain the code for backing up data and rebuilding an RDB store.
 
-1. Throw an exception that indicates database corruption.
+1. Throws an error code to indicate a database exception.
 
    ```ts
    let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
@@ -332,12 +334,15 @@ The following example contains only the code snippet for the restore process. Th
    ```ts
    try {
      let context = getContext();
-     // Backup.db indicates the name of the database backup file. By default, it is in the same directory as the RdbStore file. You can also specify the directory in the customDir + backup.db format.
-     let backup = context.databaseDir + '/backup/test_backup.db';
-     if(!fileIo.access(backup)) {
+     /**
+      * Backup.db specifies the database backup file. By default, it is in the same directory as the current database.
+      * If an absolute path is specified for the database backup file, for example, /data/storage/el2/database/Backup.db, pass in the absolute path.
+      */
+     let backup = context.databaseDir + '/entry/rdb/Backup.db';
+     if (!fileIo.access(backup)) {
        console.info("no backup file");
        try {
-         (store as relationalStore.RdbStore).close;
+         (store as relationalStore.RdbStore).close();
          store = undefined;
        } catch (e) {
            if (e.code != 14800014) {
@@ -345,7 +350,7 @@ The following example contains only the code snippet for the restore process. Th
            }
        }
        let storeConfig: relationalStore.StoreConfig = {
-         name: "BackupResotreTest.db",
+         name: "BackupRestoreTest.db",
          securityLevel: relationalStore.SecurityLevel.S3,
          allowRebuild: true
        }
@@ -354,7 +359,7 @@ The following example contains only the code snippet for the restore process. Th
        return
      }
      // Call restore() to restore data.
-     (store as relationalStore.RdbStore).restore(backup);
+     (store as relationalStore.RdbStore).restore("Backup.db");
    } catch (e) {
        console.error(`Code:${e.code}, message:${e.message}`);
    }
@@ -364,7 +369,7 @@ The following example contains only the code snippet for the restore process. Th
 
 ### Restoring from Automatic Backup Data (for System Applications Only)
 
-Use [restore()](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#restore12) to restore data from the [automatic backup data](#automatic-backup-for-system-applications-only). Only system applications support this operation.
+Call [restore()](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#restore12) to restore data from the [automatic backup data](#automatic-backup-for-system-applications-only). Only system applications support this operation.
 
 The following example contains only the code snippet for the restore process. The complete code must also contain the code for backing up data and rebuilding an RDB store.
 

@@ -10,8 +10,7 @@ HiChecker is provided to check issues that may be easily ignored during applicat
 
 ## Working Principles
 
-1. The application calls HiChecker APIs to add, remove, query, and modify rules. 
-
+1. The application calls HiChecker APIs to add, remove, query, and modify rules. \n
 2. When a time-consuming call or ability resource leakage occurs, HiChecker reports an event based on the rule triggered.
 
 ## Constraints

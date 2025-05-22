@@ -12,12 +12,12 @@
 >
 > 如需更多测算文本参数，建议使用图形对应测算接口[Paragraph](../apis-arkgraphics2d/js-apis-graphics-text.md#paragraph)接口。
 >
-> 为保障时序正确，推荐需要测算文本的开发者自行监听字体缩放变化，保证测算结果的准确性。
+> 为确保时序正确性，建议开发者自行监听字体缩放变化，以保证测算结果的准确性。
 
 ## 导入模块
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 ```
 
 ## MeasureText.measureText
@@ -47,10 +47,10 @@ static measureText(options: MeasureOptions): number
 
 > **说明**
 >
->推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
+> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -59,7 +59,7 @@ struct Index {
     // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {
@@ -100,19 +100,19 @@ static measureTextSize(options: MeasureOptions): SizeOptions
 
 > **说明**
 >
->推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例
+> 直接使用MeasureText可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，推荐通过[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[getMeasureUtils](./js-apis-arkui-UIContext.md#getmeasureutils12)方法获取当前UI上下文关联的[MeasureUtils](js-apis-arkui-UIContext.md#measureutils12)实例。
 
 ```ts
-import { MeasureText } from '@kit.ArkUI'
+import { MeasureText } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
   textSize: SizeOptions = MeasureText.measureTextSize({
-    // 建议使用 this.getUIContext().getMeasureUtils().measureText()接口
+    // 建议使用 this.getUIContext().getMeasureUtils().measureTextSize()接口
     textContent: "Hello World",
     fontSize: '50px'
-  })
+  });
 
   build() {
     Row() {

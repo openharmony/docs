@@ -89,7 +89,7 @@ No such file or access mode error.
 
 **错误信息**
 
-ZStream error.
+Compression or decompression stream error, which may be caused by an initialization error in the zlib stream structure or a modified structure.
 
 **错误描述**
 
@@ -111,7 +111,7 @@ ZStream error.
 
 **错误信息**
 
-Data error.
+The input data is incorrect. For example, the data does not conform to the zlib compression format, the compressed data is corrupted, or the data is not compressed.
 
 **错误描述**
 
@@ -147,7 +147,7 @@ Memory allocation failed.
 
 **错误信息**
 
-Buffer error.
+The input buffer is incorrect, and the output buffer is too small to accommodate the compressed or decompressed data.
 
 **错误描述**
 

@@ -21,7 +21,7 @@ Keycode value.
 | Name                              | Value  |  Description       |
 | -------------------------------- | ------ | --------------------------- |
 | KEYCODE_FN                       |  0 | Function (Fn) key                    |
-| KEYCODE_UNKNOWN                  |  -1 |  Unknown key                       |
+| KEYCODE_UNKNOWN                  |  -1 | Unknown key                       |
 | KEYCODE_HOME                     |  1 | Function (Home) key                 |
 | KEYCODE_BACK                     |  2 | Back key                        |
 | KEYCODE_SEARCH<sup>13+</sup> | 9 | Search key|
@@ -30,10 +30,10 @@ Keycode value.
 | KEYCODE_MEDIA_NEXT               |  12 | Next key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
 | KEYCODE_MEDIA_PREVIOUS           |  13 | Previous key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                   |
 | KEYCODE_MEDIA_REWIND            |  14 | Rewind key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
-| KEYCODE_MEDIA_FAST_FORWARD       |  15 | Fast Forward key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
+| KEYCODE_MEDIA_FAST_FORWARD       |  15 | Fast forward key<br>**Atomic service API**: This API can be used in atomic services since API version 12.                    |
 | KEYCODE_VOLUME_UP                |  16 | Volume Up key                      |
 | KEYCODE_VOLUME_DOWN              |  17 | Volume Down key                      |
-| KEYCODE_POWER                    |  18 | Power key                        |
+| KEYCODE_POWER                    |  18 | Power key                       |
 | KEYCODE_CAMERA                   |  19 | Camera key                        |
 | KEYCODE_VOLUME_MUTE              |  22 | Speaker Mute key                     |
 | KEYCODE_MUTE                     |  23 | Mute key                      |
@@ -49,10 +49,10 @@ Keycode value.
 | KEYCODE_7                        |  2007 | Key 7                      |
 | KEYCODE_8                        |  2008 | Key 8                      |
 | KEYCODE_9                        |  2009 | Key 9                      |
-| KEYCODE_STAR                     |  2010 | Key *                      |
-| KEYCODE_POUND                    |  2011 | Key #                      |
-| KEYCODE_DPAD_UP                  |  2012 |  Up key on D-pad                     |
-| KEYCODE_DPAD_DOWN                |  2013 |  Down key on D-pad                     |
+| KEYCODE_STAR                     |  2010 | Key /                      |
+| KEYCODE_POUND                    |  2011 | Key /                      |
+| KEYCODE_DPAD_UP                  |  2012 | Up key on D-pad                     |
+| KEYCODE_DPAD_DOWN                |  2013 | Down key on D-pad                     |
 | KEYCODE_DPAD_LEFT                |  2014 | Left key on D-pad                     |
 | KEYCODE_DPAD_RIGHT               |  2015 | Right key on D-pad                     |
 | KEYCODE_DPAD_CENTER              |  2016 | Center key on D-pad                    |
@@ -85,32 +85,32 @@ Keycode value.
 | KEYCODE_COMMA                    |  2043 | Key ,                      |
 | KEYCODE_PERIOD                   |  2044 | Key .                      |
 | KEYCODE_ALT_LEFT                 |  2045 | Left Alt key                   |
-| KEYCODE_ALT_RIGHT                |  2046 | Right Alt key                 |
+| KEYCODE_ALT_RIGHT                |  2046 | Right Alt key                |
 | KEYCODE_SHIFT_LEFT               |  2047 | Left Shift key               |
 | KEYCODE_SHIFT_RIGHT              |  2048 | Right Shift key                |
 | KEYCODE_TAB                      |  2049 | Tab key                       |
 | KEYCODE_SPACE                    |  2050 | Space key                        |
 | KEYCODE_SYM                      |  2051 | Symbol key                    |
-| KEYCODE_EXPLORER                 |  2052 | Explorer key, used to start the explorer application     |
-| KEYCODE_ENVELOPE                 |  2053 | Email key, used to start the email application   |
+| KEYCODE_EXPLORER                 |  2052 | Explorer key, which is used to start the explorer application     |
+| KEYCODE_ENVELOPE                 |  2053 | Email key, which is used to start the email application   |
 | KEYCODE_ENTER                    |  2054 | Enter key                        |
 | KEYCODE_DEL                      |  2055 | Delete key                        |
-| KEYCODE_GRAVE                    |  2056 | Key `                      |
+| KEYCODE_GRAVE                    |  2056 | Key /                      |
 | KEYCODE_MINUS                    |  2057 | Key -                      |
 | KEYCODE_EQUALS                   |  2058 | Key =                      |
 | KEYCODE_LEFT_BRACKET             |  2059 | Key [                      |
 | KEYCODE_RIGHT_BRACKET            |  2060 | Key ]                      |
-| KEYCODE_BACKSLASH                |  2061 | Key \\                      |
+| KEYCODE_BACKSLASH                |  2061 | Key \                      |
 | KEYCODE_SEMICOLON                |  2062 | Key ;                      |
-| KEYCODE_APOSTROPHE               |  2063 | Key '                 |
+| KEYCODE_APOSTROPHE               |  2063 | Key '                |
 | KEYCODE_SLASH                    |  2064 | Key /                      |
-| KEYCODE_AT                       |  2065 | Key @                      |
+| KEYCODE_AT                       |  2065 | Key /                      |
 | KEYCODE_PLUS                     |  2066 | Key +                      |
 | KEYCODE_MENU                     |  2067 | Menu key                        |
-| KEYCODE_PAGE_UP                  |  2068 |  Page Up key                      |
+| KEYCODE_PAGE_UP                  |  2068 | Page Up key                      |
 | KEYCODE_PAGE_DOWN                |  2069 | Page Down key                      |
 | KEYCODE_ESCAPE                   |  2070 | ESC key                       |
-| KEYCODE_FORWARD_DEL              |  2071 | Delete key                        |
+| KEYCODE_FORWARD_DEL              |  2071 | Forward Delete key                        |
 | KEYCODE_CTRL_LEFT                |  2072 | Left Ctrl key               |
 | KEYCODE_CTRL_RIGHT               |  2073 | Right Ctrl key              |
 | KEYCODE_CAPS_LOCK                |  2074 | Caps Lock key                      |
@@ -141,7 +141,7 @@ Keycode value.
 | KEYCODE_F10                      |  2099 | F10 key                    |
 | KEYCODE_F11                      |  2100 | F11 key                    |
 | KEYCODE_F12                      |  2101 | F12 key                    |
-| KEYCODE_NUM_LOCK                 |  2102 | Number Lock key                       |
+| KEYCODE_NUM_LOCK                 |  2102 | Number Lock key on numeric keypad                       |
 | KEYCODE_NUMPAD_0                 |  2103 | Key 0 on numeric keypad                   |
 | KEYCODE_NUMPAD_1                 |  2104 | Key 1 on numeric keypad                   |
 | KEYCODE_NUMPAD_2                 |  2105 | Key 2 on numeric keypad                   |
@@ -153,7 +153,7 @@ Keycode value.
 | KEYCODE_NUMPAD_8                 |  2111 | Key 8 on numeric keypad                   |
 | KEYCODE_NUMPAD_9                 |  2112 | Key 9 on numeric keypad                   |
 | KEYCODE_NUMPAD_DIVIDE            |  2113 | Key / on numeric keypad                   |
-| KEYCODE_NUMPAD_MULTIPLY          |  2114 | Key * on numeric keypad                   |
+| KEYCODE_NUMPAD_MULTIPLY          |  2114 | Key ) on numeric keypad                   |
 | KEYCODE_NUMPAD_SUBTRACT          |  2115 | Key - on numeric keypad                   |
 | KEYCODE_NUMPAD_ADD               |  2116 | Key + on numeric keypad                   |
 | KEYCODE_NUMPAD_DOT               |  2117 | Key . on numeric keypad                   |
@@ -163,6 +163,19 @@ Keycode value.
 | KEYCODE_NUMPAD_LEFT_PAREN        |  2121 | Key ( on numeric keypad                   |
 | KEYCODE_NUMPAD_RIGHT_PAREN       |  2122 | Key ) on numeric keypad                   |
 | KEYCODE_VIRTUAL_MULTITASK        |  2210 | Multi-task key                     |
+| KEYCODE_BUTTON_A<sup>15+</sup>  |  2301 | Joystick key A           |
+| KEYCODE_BUTTON_B<sup>15+</sup>  |  2302 | Joystick key B           |
+| KEYCODE_BUTTON_X<sup>15+</sup>  |  2304 | Joystick key X           |
+| KEYCODE_BUTTON_Y<sup>15+</sup>  |  2305 | Joystick key Y           |
+| KEYCODE_BUTTON_L1<sup>15+</sup> |  2307 | Joystick key L1          |
+| KEYCODE_BUTTON_R1<sup>15+</sup> |  2308 | Joystick key R1          |
+| KEYCODE_BUTTON_L2<sup>15+</sup> |  2309 | Joystick key L2          |
+| KEYCODE_BUTTON_R2<sup>15+</sup> |  2310 | Joystick key R2          |
+| KEYCODE_BUTTON_SELECT<sup>15+</sup>  |  2311 | Joystick key Select      |
+| KEYCODE_BUTTON_START<sup>15+</sup>   |  2312 | Joystick key Start       |
+| KEYCODE_BUTTON_MODE<sup>15+</sup>    |  2313 | Joystick key Mode        |
+| KEYCODE_BUTTON_THUMBL<sup>15+</sup>  |  2314 | Joystick key THUMBL      |
+| KEYCODE_BUTTON_THUMBR<sup>15+</sup>  |  2315 | Joystick key THUMBR      |
 | KEYCODE_SLEEP                    |  2600 | Sleep key                        |
 | KEYCODE_ZENKAKU_HANKAKU          |  2601 | Zenkaku/Hankaku key                   |
 | KEYCODE_102ND                    |  2602 | 102nd key                    |
@@ -189,7 +202,7 @@ Keycode value.
 | KEYCODE_FIND                     |  2623 | Find key                        |
 | KEYCODE_CUT                      |  2624 | Cut key                        |
 | KEYCODE_HELP                     |  2625 | Help key                        |
-| KEYCODE_CALC                     |  2626 | Calc key, used to start the calculator application       |
+| KEYCODE_CALC                     |  2626 | Calc key, which is used to start the calculator application       |
 | KEYCODE_FILE                     |  2627 | File key                       |
 | KEYCODE_BOOKMARKS                |  2628 | Bookmarks key                        |
 | KEYCODE_NEXT                     |  2629 | Next key                      |
@@ -215,7 +228,7 @@ Keycode value.
 | KEYCODE_KBDILLUM_DOWN            |  2650 | Keyboard Illumination Down key                    |
 | KEYCODE_KBDILLUM_UP              |  2651 | Keyboard Illumination Up key                    |
 | KEYCODE_SEND                     |  2652 | Send key                        |
-| KEYCODE_REPLY                    |  2653 | Reply key                        |
+| KEYCODE_REPLY                    |  2653 | Reply key                       |
 | KEYCODE_FORWARDMAIL              |  2654 | Forward Mail key                      |
 | KEYCODE_SAVE                     |  2655 | Save key                        |
 | KEYCODE_DOCUMENTS                |  2656 | Documents key                        |
@@ -223,7 +236,7 @@ Keycode value.
 | KEYCODE_VIDEO_PREV               |  2658 | Previous Video key                     |
 | KEYCODE_BRIGHTNESS_CYCLE         |  2659 | Brightness Cycle key                      |
 | KEYCODE_BRIGHTNESS_ZERO          |  2660 | Brightness Zero key                    |
-| KEYCODE_DISPLAY_OFF              |  2661 | Display Off Key                      |
+| KEYCODE_DISPLAY_OFF              |  2661 | Display Off key                      |
 | KEYCODE_BTN_MISC                 |  2662 | Misc Button key                 |
 | KEYCODE_GOTO                     |  2663 | Goto key                        |
 | KEYCODE_INFO                     |  2664 | Info key                      |
@@ -231,10 +244,10 @@ Keycode value.
 | KEYCODE_PVR                      |  2666 | PVR key                |
 | KEYCODE_SUBTITLE                 |  2667 | Subtitle key                        |
 | KEYCODE_FULL_SCREEN              |  2668 | Full Screen key                        |
-| KEYCODE_KEYBOARD                 |  2669 | Keyboard                         |
+| KEYCODE_KEYBOARD                 |  2669 | Keyboard.                         |
 | KEYCODE_ASPECT_RATIO             |  2670 | Aspect Ratio key                   |
 | KEYCODE_PC                       |  2671 | Port Control key                      |
-| KEYCODE_TV                       |  2672 | TV key                        |
+| KEYCODE_TV                       |  2672 | TV key                       |
 | KEYCODE_TV2                      |  2673 | TV key 2                       |
 | KEYCODE_VCR                      |  2674 | VCR key                     |
 | KEYCODE_VCR2                     |  2675 | VCR key 2                    |
@@ -248,10 +261,10 @@ Keycode value.
 | KEYCODE_VIDEO                    |  2683 | Video key                        |
 | KEYCODE_MEMO                     |  2684 | Memo key                       |
 | KEYCODE_CALENDAR                 |  2685 | Calendar key                        |
-| KEYCODE_RED                      |  2686 | Red indicator                      |
-| KEYCODE_GREEN                    |  2687 | Green indicator                      |
-| KEYCODE_YELLOW                   |  2688 | Yellow indicator                      |
-| KEYCODE_BLUE                     |  2689 | Blue indicator                      |
+| KEYCODE_RED                      |  2686 | Red indicator.                      |
+| KEYCODE_GREEN                    |  2687 | Green indicator.                      |
+| KEYCODE_YELLOW                   |  2688 | Yellow indicator.                      |
+| KEYCODE_BLUE                     |  2689 | Blue indicator.                      |
 | KEYCODE_CHANNELUP                |  2690 | Channel Up key                      |
 | KEYCODE_CHANNELDOWN              |  2691 | Channel Down key                      |
 | KEYCODE_LAST                     |  2692 | Last key                        |
@@ -260,8 +273,8 @@ Keycode value.
 | KEYCODE_SHUFFLE                  |  2695 | Shuffle key                      |
 | KEYCODE_VIDEOPHONE               |  2696 | Videophone key                      |
 | KEYCODE_GAMES                    |  2697 | Games key                        |
-| KEYCODE_ZOOMIN                   |  2698 | Zoom-in key                        |
-| KEYCODE_ZOOMOUT                  |  2699 | Zoom-out key                        |
+| KEYCODE_ZOOMIN                   |  2698 | Zoom in                        |
+| KEYCODE_ZOOMOUT                  |  2699 | Zoom out                        |
 | KEYCODE_ZOOMRESET                |  2700 | Zoom Reset key                      |
 | KEYCODE_WORDPROCESSOR            |  2701 | Word Processor key                      |
 | KEYCODE_EDITOR                   |  2702 | Editor key                       |
@@ -271,11 +284,11 @@ Keycode value.
 | KEYCODE_DATABASE                 |  2706 | Database key                      |
 | KEYCODE_NEWS                     |  2707 | News key                        |
 | KEYCODE_VOICEMAIL                |  2708 | Voicemail key                       |
-| KEYCODE_ADDRESSBOOK              |  2709 | Addressbook key                        |
+| KEYCODE_ADDRESSBOOK              |  2709 | Address book key                        |
 | KEYCODE_MESSENGER                |  2710 | Messenger key                        |
 | KEYCODE_BRIGHTNESS_TOGGLE        |  2711 | Brightness Toggle key                      |
 | KEYCODE_SPELLCHECK               |  2712 | Spell Check key                     |
-| KEYCODE_COFFEE                   |  2713 | Coffee key, used to launch screen lock or screen saver                 |
+| KEYCODE_COFFEE                   |  2713 | Coffee key, which is used to launch screen lock or screen saver                 |
 | KEYCODE_MEDIA_REPEAT             |  2714 | Media Repeat key                      |
 | KEYCODE_IMAGES                   |  2715 | Images key                        |
 | KEYCODE_BUTTONCONFIG             |  2716 | Button Configuration key                      |
@@ -288,26 +301,26 @@ Keycode value.
 | KEYCODE_KBD_LAYOUT_NEXT          |  2723 | Next Keyboard Layout key                   |
 | KEYCODE_BRIGHTNESS_MIN           |  2724 | Min Brightness key                      |
 | KEYCODE_BRIGHTNESS_MAX           |  2725 | Max Brightness key                      |
-| KEYCODE_KBDINPUTASSIST_PREV      |  2726 | Assist_Previous key, used to view historical inputs.        |
-| KEYCODE_KBDINPUTASSIST_NEXT      |  2727 | Assist_Next key, used to view predictive inputs.          |
-| KEYCODE_KBDINPUTASSIST_PREVGROUP |  2728 | Assist_Previous_Group key, used to switch to the previous input method in the input group.        |
-| KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | Assist_Next_Group key, used to switch to the next input method in the input group.              |
+| KEYCODE_KBDINPUTASSIST_PREV      |  2726 | Assist_Previous key, used to view historical inputs        |
+| KEYCODE_KBDINPUTASSIST_NEXT      |  2727 | Assist_Next key, used to view predictive inputs          |
+| KEYCODE_KBDINPUTASSIST_PREVGROUP |  2728 | Assist_Previous_Group key, used to switch to the previous input method in the input group        |
+| KEYCODE_KBDINPUTASSIST_NEXTGROUP |  2729 | Assist_Next_Group key, used to switch to the next input method in the input group              |
 | KEYCODE_KBDINPUTASSIST_ACCEPT    |  2730 | Keyboard Input-assisted Accept key          |
-| KEYCODE_KBDINPUTASSIST_CANCEL    |  2731 | Keyboard Input-assisted Cancel key          |
-| KEYCODE_FRONT                    |  2800 | Front key, used to launch the windshield defogger                  |
+| KEYCODE_KBDINPUTASSIST_CANCEL    |  2731 | Keyboard Input-assisted Cancel key         |
+| KEYCODE_FRONT                    |  2800 | Front key, which is used to launch the windshield defogger                  |
 | KEYCODE_SETUP                    |  2801 | Setup key                        |
 | KEYCODE_WAKEUP                   |  2802 | Wakeup key                        |
 | KEYCODE_SENDFILE                 |  2803 | Send File key                     |
 | KEYCODE_DELETEFILE               |  2804 | Delete File key                     |
-| KEYCODE_XFER                     |  2805 | XFER key, used to start file transfer               |
+| KEYCODE_XFER                     |  2805 | XFER key, which is used to start file transfer               |
 | KEYCODE_PROG1                    |  2806 | Program key 1                       |
-| KEYCODE_PROG2                    |  2807 | Program key 2                       |
+| KEYCODE_PROG2                    |  2807 | Program key 2                      |
 | KEYCODE_MSDOS                    |  2808 | MS-DOS key           |
 | KEYCODE_SCREENLOCK               |  2809 | Screen Lock key                      |
 | KEYCODE_DIRECTION_ROTATE_DISPLAY |  2810 | Directional Rotation Display key                    |
 | KEYCODE_CYCLEWINDOWS             |  2811 | Windows Cycle key                 |
-| KEYCODE_COMPUTER                 |  2812 | Keys                         |
-| KEYCODE_EJECTCLOSECD             |  2813 | Eject CD key                      |
+| KEYCODE_COMPUTER                 |  2812 | Key                         |
+| KEYCODE_EJECTCLOSECD             |  2813 | Eject CD key                     |
 | KEYCODE_ISO                      |  2814 | ISO key                       |
 | KEYCODE_MOVE                     |  2815 | Move key                        |
 | KEYCODE_F13                      |  2816 | F13 key                    |
@@ -324,7 +337,7 @@ Keycode value.
 | KEYCODE_F24                      |  2827 | F24 key                    |
 | KEYCODE_PROG3                    |  2828 | Program key 3                       |
 | KEYCODE_PROG4                    |  2829 | Program key 4                       |
-| KEYCODE_DASHBOARD                |  2830 | Dashboard                        |
+| KEYCODE_DASHBOARD                |  2830 | Dashboard key                        |
 | KEYCODE_SUSPEND                  |  2831 | Suspend key                        |
 | KEYCODE_HP                       |  2832 | HP key                      |
 | KEYCODE_SOUND                    |  2833 | Sound key                        |

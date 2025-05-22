@@ -20,7 +20,7 @@ ContainerSpan()
 
 ## 属性
 
-仅支持以下属性:
+仅支持以下属性：
 
 ### textBackgroundStyle
 
@@ -92,19 +92,19 @@ struct Index {
 
 ```ts
 // xxx.ets
-import { ContainerSpanModifier } from '@kit.ArkUI'
+import { ContainerSpanModifier } from '@kit.ArkUI';
 
 class MyContainerSpanModifier extends ContainerSpanModifier {
   applyNormalAttribute(instance: ContainerSpanAttribute): void {
     super.applyNormalAttribute?.(instance);
-    this.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" })
+    this.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" });
   }
 }
 
 @Entry
 @Component
 struct ContainerSpanModifierExample {
-  @State containerSpanModifier: ContainerSpanModifier = new MyContainerSpanModifier()
+  @State containerSpanModifier: ContainerSpanModifier = new MyContainerSpanModifier();
 
   build() {
     Column() {

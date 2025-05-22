@@ -10,7 +10,7 @@
 >
 > 该模块不支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)的文件声明处使用，即不能在UIAbility的生命周期中调用，需要在创建组件实例后使用。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](js-apis-arkui-UIContext.md#uicontext)说明。
 >
 > 从API version 10开始，可以通过使用[UIContext](js-apis-arkui-UIContext.md#uicontext)中的[createAnimator](js-apis-arkui-UIContext.md#createanimator)来明确UI的执行上下文。
 
@@ -671,7 +671,7 @@ struct AnimatorTest {
     })
     this.backAnimator.onFinish = () => {
       this.flag = true
-      console.info(this.TAG, 'backAnimator onfinish')
+      console.info(this.TAG, 'backAnimator onFinish')
     }
     this.backAnimator.onRepeat = () => {
       console.info(this.TAG, 'backAnimator repeat')
@@ -686,8 +686,10 @@ struct AnimatorTest {
   }
 
   aboutToDisappear() {
+    // 自定义组件消失时调用finish使未完成的动画结束，避免动画继续运行。
     // 由于backAnimator在onframe中引用了this, this中保存了backAnimator，
     // 在自定义组件消失时应该将保存在组件中的backAnimator置空，避免内存泄漏
+    this.backAnimator?.finish();
     this.backAnimator = undefined;
   }
 

@@ -227,7 +227,7 @@ If `"hello"` is filled in `%{public}s` and `3` in `%{private}d`, the output log 
 
 ## hilog.setMinLogLevel<sup>15+</sup>
 
-setMinLogLevel(level: LogLevel): void;
+setMinLogLevel(level: LogLevel): void
 
 Sets the minimum log level. When a process prints logs, both the minimum log level and the global log level are verified. Therefore, the minimum log level cannot be lower than the global log level. The default value of [global log level](../../dfx/hilog.md#displaying-and-setting-log-levels) is **Info**.
 
@@ -296,7 +296,7 @@ hilog.info(0x0001, "jsHilogTest", "print bigNum: %{public}d %{public}i", bigNum,
 hilog.info(0x0001, "jsHilogTest", "print boolean: %{public}s", isBol);
 ```
 
-Log printing result:
+**Log printing result**:
 ```
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: print object: {"name":"Jack","age":22}
 08-09 13:26:29.094  2266  2266 I A00001/jsHilogTest: private flag: <private> <private>, print null: null

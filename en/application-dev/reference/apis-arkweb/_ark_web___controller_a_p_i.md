@@ -27,6 +27,8 @@ Defines a native API struct of the Web controller. Before calling the API, you a
 | void(\* [destroyWebMessagePorts](#destroywebmessageports) )([ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) \*\*ports, size_t [size](#size)) | Pointer to the function used to destroy message ports. | 
 | [ArkWeb_ErrorCode](_web.md#arkweb_errorcode)(\* [postWebMessage](#postwebmessage) )(const char \*webTag, const char \*name, [ArkWeb_WebMessagePortPtr](_web.md#arkweb_webmessageportptr) \*webMessagePorts, size_t [size](#size), const char \*url) | Pointer to the function used to send the message port to the HTML page. | 
 | const char \*(\* [getLastJavascriptProxyCallingFrameUrl](#getlastjavascriptproxycallingframeurl) )() | Pointer to the function used to obtain the URL of the last frame that calls **JavaScriptProxy**. This function is invoked on the thread invoked by the **JavaScriptProxy**. You can use **registerJavaScriptProxy** or **JavaScriptProxy** to inject a JavaScript object to a window object.   You need to save the URL obtained from the invoked function. | 
+| void(\* [registerJavaScriptProxyEx](#registerjavascriptproxyex) )(const char \*webTag, const [ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md) \*proxyObject, const char \*permission) | Pointer to the function used to register a JavaScript object with the window. APIs of this object can then be invoked in the window. The synchronization method of this object can contain return values. | 
+| void(\* [registerAsyncJavaScriptProxyEx](#registerasyncjavascriptproxyex) )(const char \*webTag, const [ArkWeb_ProxyObject](_ark_web___proxy_object.md) \*proxyObject, const char \*permission) | Pointer to the function used to register a JavaScript proxy with the window. Asynchronous APIs of this object can then be invoked in the window. | 
 
 
 ## Member Variable Description
@@ -140,6 +142,26 @@ void(* ArkWeb_ControllerAPI::registerAsyncJavaScriptProxy) (const char *webTag, 
 Pointer to the function used to register a JavaScript proxy with the window. Asynchronous APIs of this object can then be invoked in the window.
 
 
+### registerAsyncJavaScriptProxyEx
+
+```
+void(* ArkWeb_ControllerAPI::registerAsyncJavaScriptProxyEx) (const char *webTag, const ArkWeb_ProxyObject *proxyObject, const char *permission)
+```
+**Description**
+
+Pointer to the function used to register a JavaScript proxy with the window. Asynchronous APIs of this object can then be invoked in the window.
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| webTag | Name of a **Web** component. | 
+| proxyObject | The proxy object to be registered. | 
+| permission |  A JSON string used to configure the object and method levels of the JSBridge permission. This value is empty by default.| 
+
+
 ### registerJavaScriptProxy
 
 ```
@@ -147,7 +169,27 @@ void(* ArkWeb_ControllerAPI::registerJavaScriptProxy) (const char *webTag, const
 ```
 **Description**
 
-Pointer to the function used to register a JavaScript proxy with the window. APIs of this object can then be invoked in the window.
+Pointer to the function used to register a JavaScript object with the window. APIs of this object can then be invoked in the window.
+
+
+### registerJavaScriptProxyEx
+
+```
+void(* ArkWeb_ControllerAPI::registerJavaScriptProxyEx) (const char *webTag, const ArkWeb_ProxyObjectWithResult *proxyObject, const char *permission)
+```
+**Description**
+
+Pointer to the function used to register a JavaScript object with the window. APIs of this object can then be invoked in the window. The synchronization method of this object can contain return values.
+
+**Since**: 14
+
+**Parameters**
+
+| Name| Description| 
+| -------- | -------- |
+| webTag | Name of a **Web** component. | 
+| proxyObject | The proxy object to be registered. | 
+| permission |  A JSON string used to configure the object and method levels of the JSBridge permission. This value is empty by default.| 
 
 
 ### runJavaScript

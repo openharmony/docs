@@ -223,7 +223,7 @@ antiAlias(value: boolean)
 
 ## 示例
 
-使用fillOpacity、stroke、strokeDashArray分别绘制圆的透明度、边框颜色、边框间隙。
+通过fillOpacity、stroke、strokeDashArray属性可分别设置圆的透明度、边框颜色和边框间隙样式。
 
 ```ts
 // xxx.ets

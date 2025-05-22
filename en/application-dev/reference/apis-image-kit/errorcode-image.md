@@ -440,7 +440,7 @@ The image does not support EXIF decoding.
 
 Use another image.
 
-## 62980124 Missing Image Attribute
+## 62980124 Missing Image Property
 
 **Error Message**
 
@@ -448,14 +448,14 @@ The image property does not exist.
 
 **Possible Cause**
 
-1. The image attribute is missing.
+1. The image property is missing.
 2. The image is modified improperly.
 
 **Solution**
 
 Use another image.
 
-## 62980133 Image Attribute Value Out of Range
+## 62980133 Image Property Value Out of Range
 
 **Error Message**
 
@@ -463,13 +463,13 @@ The EXIF data is out of range.
 
 **Possible Cause**
 
-The value of the image attribute is out of range.
+The value of the image property is out of range.
 
 **Solution**
 
-Change the image or check the length of the image attribute value.
+Change the image or check the length of the image property value.
 
-## 62980135 Invalid Image Attribute Value
+## 62980135 Invalid Image Property Value
 
 **Error Message**
 
@@ -477,7 +477,7 @@ The EXIF value is invalid.
 
 **Possible Cause**
 
-The image attribute is missing.
+The image property is missing.
 
 **Solution**
 
@@ -497,6 +497,20 @@ The current image format does not support this operation.
 
 Use another image.
 
+## 62980146 Failed to Write Image Property Values to the File
+
+**Error Message**
+
+The EXIF data failed to be written to the file.
+
+**Possible Cause**
+
+The property values of the image are abnormal.
+
+**Solution**
+
+Use another image.
+
 ## 62980149 Invalid Image Parameter
 
 **Error Message**
@@ -510,6 +524,66 @@ The current image format does not support this operation.
 **Solution**
 
 Use another image.
+
+## 62980172 Failed to Encode ICC
+
+**Error Message**
+
+Failed to encode icc.
+
+**Possible Cause**
+
+The image ICC information is incorrect.
+
+**Solution**
+
+Check the image data or use another image.
+
+## 62980173 DMA Memory Space Error
+
+**Error Message**
+
+The DMA memory does not exist.
+
+**Possible Cause**
+
+1. The size of the shared memory is insufficient.
+2. Out-of-bounds memory access occurs.
+3. An invalid pointer is used.
+
+**Solution**
+
+Check the memory usage or restart the device.
+
+## 62980174 Abnormal DMA Memory Data
+
+**Error Message**
+
+The DMA memory data is abnormal.
+
+**Possible Cause**
+
+1. The synchronization operation is not correctly performed when data is read from or written to the shared memory.
+2. Out-of-bounds memory access occurs.
+3. An invalid pointer is used.
+
+**Solution**
+
+Restart the device.
+
+## 62980177 Abnormal API Environment
+
+**Error Message**
+
+Abnormal API environment.
+
+**Possible Cause**
+
+The environment where the API is used is incorrect.
+
+**Solution**
+
+Check the SDK version.
 
 ## 62980178 Failure in Creating a PixelMap
 
@@ -526,6 +600,34 @@ Failed to create the PixelMap.
 
 Check whether the input parameters are correct and whether the instance is released in advance.
 
+## 62980179 Abnormal Buffer Size
+
+**Error Message**
+
+Abnormal buffer size.
+
+**Possible Cause**
+
+Input parameters are incorrect. For example, the region size exceeds the upper limit or an invalid value is passed in.
+
+**Solution**
+
+Check the input parameters.
+
+## 62980180 Failure in Mapping the File Descriptor
+
+**Error Message**
+
+FD mapping failed.
+
+**Possible Cause**
+
+The input file descriptor is incorrect.
+
+**Solution**
+
+Pass a correct file descriptor.
+
 ## 62980246 Failure in Reading the PixelMap
 
 **Error Message**
@@ -535,11 +637,11 @@ Failed to read the pixel map.
 **Possible Cause**
 
 1. The PixelMap data is incorrect.
-2. You do not have the permission to read the PixelMap.
+2. You do not have the permission to read data from the PixelMap.
 
 **Solution**
 
-Re-create the PixelMap or change the read permission.
+Create another PixelMap or request the read permission.
 
 ## 62980247 Failure in Writing the PixelMap
 
@@ -550,11 +652,11 @@ Failed to write the pixel map.
 **Possible Cause**
 
 1. The PixelMap data is incorrect.
-2. You do not have the permission to write the PixelMap.
+2. You do not have the permission to write data to the PixelMap.
 
 **Solution**
 
-Re-create the PixelMap or change the read permission.
+Create another PixelMap or request the write permission.
 
 ## 62980248 No Modification to the PixelMap
 
@@ -570,6 +672,20 @@ Users try to modify a PixelMap.
 
 Do not modify the PixelMap.
 
+## 62980252 Failed to Create a Surface
+
+**Error Message**
+
+Failed to create surface.
+
+**Possible Cause**
+
+An error occurred when requesting memory for image encoding.
+
+**Solution**
+
+Try again or use another image.
+
 ## 62980259 Incorrect Configuration
 
 **Error Message**
@@ -583,6 +699,35 @@ The configuration is incorrect.
 **Solution**
 
 Correct the configuration.
+
+## 62980274 Failed to Convert Images
+
+**Error Message**
+
+The conversion failed.
+
+**Possible Cause**
+
+1. Image conversion stops unexpectedly.
+2. Encoding parameters are incorrectly set.
+
+**Solution**
+
+Correct the encoding parameters or use another image.
+
+## 62980276 Unsupported Image Conversion Target Type
+
+**Error Message**
+
+The type to be converted is an unsupported target pixel format.
+
+**Possible Cause**
+
+The conversion to the target type is not supported.
+
+**Solution**
+
+Use another image or change the target type.
 
 ## 62980286 Failed to Set a Memory Identifier for a PixelMap
 
@@ -599,6 +744,22 @@ Memory format not supported.
 **Solution**
 
 Check whether the PixelMap instance has been released. Check whether the memory type matches.
+
+## 62980302 Memory Copy Failed
+
+**Error Message**
+
+Memory copy failed.
+
+**Possible Cause**
+
+1. The memory type does not match.
+2. The FD is invalid.
+3. Unknown kernel error.
+
+**Solution**
+
+Check whether the instance to be copied has been released. Check whether the memory type matches.
 
 ## 7600201 Unsupported Operation
 
@@ -670,6 +831,77 @@ Errors caused by unknown reasons.
 
 Locate the cause based on logs.
 
+## 7700101 Abnormal Image Source
+
+**Error Message**
+
+Bad source.
+
+**Possible Cause**
+
+1. The device does not support the image type.
+2. Image decoding is not performed as instructed.
+
+**Solution**
+
+Check the image data or use another image.
+
+## 7700102 Unsupported MIME Type
+
+**Error Message**
+
+Unsupported mimetype.
+
+**Possible Cause**
+
+The device does not support the image type.
+
+**Solution**
+
+Check the image data or use another image.
+
+## 7700103 Image Oversized
+
+**Error Message**
+
+Image too large.
+
+**Possible Cause**
+
+The image size exceeds the upper limit.
+
+**Solution**
+
+Check the image data or use another image.
+
+## 7700201 Unsupported Memory Allocation Type
+
+**Error Message**
+
+Unsupported allocator type, e.g., use share memory to decode a HDR image as only DMA supported hdr metadata.
+
+**Possible Cause**
+
+No memory allocation type is specified, or an incorrect memory allocation type is specified. For example, an error occurs when an HDR image is decoded in shared memory mode, because only the DMA mode supports HDR metadata.
+
+**Solution**
+
+Use a correct memory allocation type.
+
+## 7700203 Unsupported Options
+
+**Error Message**
+
+Unsupported options, e.g, cannot convert image into desired pixel format.
+
+**Possible Cause**
+
+Some parameters are incorrectly configured, or the operation required by the options is not supported.
+
+**Solution**
+
+Check the parameter settings.
+
 ## 7700301 Decoding Failure
 
 **Error Message**
@@ -684,7 +916,36 @@ Decode failed.
 
 **Solution**
 
-Check the image data or replace the image.
+Check the image data or use another image.
+
+## 7700302 Memory Allocation Failed
+
+**Error Message**
+
+Memory allocation failed.
+
+**Possible Cause**
+
+1. The memory of the device is insufficient.
+2. Image decoding is not performed as instructed.
+
+**Solution**
+
+Check the device memory or input data.
+
+## 7800201 Unsupported Options
+
+**Error Message**
+
+Unsupported options.
+
+**Possible Cause**
+
+Some parameters are incorrectly configured, or the operation required by the options is not supported.
+
+**Solution**
+
+Check the parameter settings.
 
 ## 7800301 Encoding Failure
 

@@ -3,7 +3,7 @@
 
 ## 概述
 
-提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能C接口。
+提供远端对象创建、销毁、数据发送、远端对象死亡状态监听等功能的C接口。
 
 **库：** libipc_capi.so
 
@@ -39,7 +39,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| OH_IPC_RequestMode {<br/>[OH_IPC_REQUEST_MODE_SYNC](_o_h_i_p_c_remote_object.md) = 0,<br/>[OH_IPC_REQUEST_MODE_ASYNC](_o_h_i_p_c_remote_object.md) = 1<br/>} | IPC请求模式定义。 | 
+| [OH_IPC_RequestMode](_o_h_i_p_c_remote_object.md#oh_ipc_requestmode) {<br/>OH_IPC_REQUEST_MODE_SYNC = 0,<br/>OH_IPC_REQUEST_MODE_ASYNC = 1<br/>} | IPC请求模式定义。 | 
 
 
 ### 函数

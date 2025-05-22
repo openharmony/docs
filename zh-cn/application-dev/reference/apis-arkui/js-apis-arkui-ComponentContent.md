@@ -73,7 +73,7 @@ ComponentContent的构造函数。
 
 **示例：**
 ``` ts
-import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI"
+import { ComponentContent, NodeContent, typeNode } from "@kit.ArkUI";
 
 interface ParamsInterface {
   text: string;
@@ -102,7 +102,7 @@ function buildText(params: ParamsInterface) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "HELLO"
+  @State message: string = "HELLO";
   private content: NodeContent = new NodeContent();
 
   build() {
@@ -117,7 +117,7 @@ struct Index {
                 text: this.message, func: () => {
                   return "FUNCTION"
                 }
-              }, { nestingBuilderSupported: true }))
+              }, { nestingBuilderSupported: true }));
             this.content.addFrameNode(column);
           })
         ContentSlot(this.content)
@@ -154,7 +154,7 @@ update(args: T): void
 import { ComponentContent } from "@kit.ArkUI";
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -173,7 +173,7 @@ function buildText(params: Params) {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -228,7 +228,7 @@ recycle(): void
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
 
   constructor(text: string) {
     this.text = text;
@@ -265,7 +265,7 @@ struct ReusableChildComponent2 {
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -308,7 +308,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -320,14 +320,14 @@ function buildText(params: Params) {
     Text(params.text)
       .fontSize(50)
       .fontWeight(FontWeight.Bold)
-      .margin({bottom: 36})
+      .margin({ bottom: 36 })
   }.backgroundColor('#FFF0F0F0')
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = "hello"
+  @State message: string = "hello";
 
   build() {
     Row() {
@@ -342,7 +342,7 @@ struct Index {
                 setTimeout(() => {
                   promptAction.closeCustomDialog(contentNode)
                     .then(() => {
-                      console.info('customdialog closed.')
+                      console.info('customdialog closed.');
                       if (contentNode !== null) {
                         contentNode.dispose();   //释放contentNode
                       }

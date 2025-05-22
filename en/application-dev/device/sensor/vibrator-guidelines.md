@@ -97,7 +97,7 @@ The custom vibration configuration file is in JSON format. An example file is as
 }
 ```
 
-This JSON file contains two attributes: **MetaData** and **Channels**.
+This JSON file contains three attributes: **MetaData**, **Channels**, and **Parameters**.
 1. **MetaData** contains information about the file header. You can add the following attributes under **MetaData**.
 
      | Name         | Mandatory| Description                                         |

@@ -1,13 +1,19 @@
-# Adapting to Camera Changes in Different Folding States (ArkTS)
+# Adapting Camera Changes in Different Fold States (ArkTS)
+Foldable devices come in various forms. When developing camera applications, a consistent camera switching solution is necessary to enhance user experience during photo and video capture.
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+A single foldable device can use different cameras depending on its fold state. The system identifies each camera and associates it with a specific fold state, indicating which cameras are available in those states. Applications can call [CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) or [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for fold state changes of the device, call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) to obtain the available cameras in the current state, and make adaptations accordingly.
 
-Cameras that a foldable device can use vary according to its folding states. To deliver a smooth user experience during transitions between folded and unfolded states, an application can call [CameraManager.on('foldStatusChange')](../../reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) or [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for folding state changes of the device, call [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) to obtain the available cameras in the current state, and make adaptations accordingly.
+The number of supported cameras can differ among foldable devices in various fold states.
+
+For example, foldable device A has three cameras: B (rear), C (front), and D (front). In the unfolded state, calling [CameraManager.getSupportedCameras](../../reference/apis-camera-kit/js-apis-camera.md#getsupportedcameras) returns both cameras B (rear) and C (front). However, in the folded state, only camera D (front) is accessible. Therefore, when using the rear camera or switching between cameras, it is crucial to first verify the existence of the rear camera.
 
 Read [Camera](../../reference/apis-camera-kit/js-apis-camera.md) for the API reference.
 
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](../../application-models/uiability-usage.md#obtaining-the-context-of-uiability).
+
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 ## Creating an XComponent
-Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) to present the folded and unfolded states, respectively. This prevents the previous camera feed from lingering on the screen if the camera is not properly closed during folding state transition.
+Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md) to present the folded and unfolded states, respectively. This prevents the previous camera feed from lingering on the screen if the camera is not properly closed during fold state transition.
 
    ```ts
     @Entry
@@ -52,11 +58,11 @@ Use two [XComponents](../../reference/apis-arkui/arkui-ts/ts-basic-components-xc
       }
     }
    ```
-## Obtaining the Device Folding State
+## Obtaining the Device Fold State
 
 You can use either of the following solutions.
 
-- Solution 1: Call [CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) provided by the camera framework to listen for device folding state changes.
+- Solution 1: Call [CameraManager.on('foldStatusChange')](../../../application-dev/reference/apis-camera-kit/js-apis-camera.md#onfoldstatuschange12) provided by the camera framework to listen for fold state changes.
     ```ts
     import { camera } from '@kit.CameraKit';
     import { BusinessError } from '@kit.BasicServicesKit';
@@ -71,7 +77,7 @@ You can use either of the following solutions.
     cameraManager.on('foldStatusChange', registerFoldStatusChanged);
     //cameraManager.off('foldStatusChange', registerFoldStatusChanged);
     ```
-- Solution 2: Call [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for device folding state changes.
+- Solution 2: Call [display.on('foldStatusChange')](../../reference/apis-arkui/js-apis-display.md#displayonfoldstatuschange10) to listen for fold state changes.
     ```ts
     import { display } from '@kit.ArkUI';
     let preFoldStatus: display.FoldStatus = display.getFoldStatus();
@@ -297,6 +303,7 @@ struct Index {
     let deviceIndex = cameraArray.findIndex((cameraDevice: camera.CameraDevice) => {
       return cameraDevice.cameraPosition === cameraPosition;
     })
+    // If no camera is found at the specified position, you can select another camera. Handle the situation based on the specific scenario.
     if (deviceIndex === -1) {
       deviceIndex = 0;
       console.error(TAG + 'not found camera');

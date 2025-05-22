@@ -41,7 +41,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
                // 在BackupExtension.ets文件里自定义继承BackupExtensionAbility，重写其中的onBackup/onBackupEx和
                // onRestore/onRestoreEx方法，推荐使用onBackupEx/onRestoreEx。
                // 如果没有特殊要求可以空实现，则备份恢复服务会按照统一的备份恢复数据规则进行备份恢复。
-               "srcEntry": "./ets/BackupExtension/BackupExtension.ets", 
+               "srcEntry": "./ets/BackupExtension/BackupExtension.ets"
            }      
        ]
    }
@@ -86,7 +86,6 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
       }
       //onRestore
       async onRestore (bundleVersion : BundleVersion) {
-        hilog.info(0x0000, TAG, `onRestore ok ${JSON.stringify(bundleVersion)}`);
         hilog.info(0x0000, TAG, `onRestore end`);
       }
     }
@@ -105,7 +104,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
     class BackupExt extends BackupExtensionAbility {
       //onBackupEx
       async onBackupEx(backupInfo: string): Promise<string> {
-        console.log(`onBackupEx ok`);
+        console.info(`onBackupEx ok`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,
@@ -116,7 +115,7 @@ BackupExtensionAbility，是[Stage模型](../application-models/stage-model-deve
 
       // onRestoreEx
       async onRestoreEx(bundleVersion : BundleVersion, restoreInfo: string): Promise<string> {
-        console.log(`onRestoreEx ok ${JSON.stringify(bundleVersion)}`);
+        console.info(`onRestoreEx begin`);
         let errorInfo: ErrorInfo = {
           type: "ErrorInfo",
           errorCode: 0,

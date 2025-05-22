@@ -11,6 +11,8 @@ You can use this struct to set options related to the media asset quality, deliv
 
 **Related module**: [MediaAssetManager](_media_asset_manager.md)
 
+**Header file**: [media_asset_base_capi.h](media__asset__base__capi_8h.md)
+
 
 ## Summary
 

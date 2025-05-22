@@ -38,7 +38,7 @@
 uint32_t OhosPixelMapInfo::height
 ```
 **描述**
-图片的高, 用pixels表示。
+图片的高，用pixels表示。
 
 
 ### pixelFormat

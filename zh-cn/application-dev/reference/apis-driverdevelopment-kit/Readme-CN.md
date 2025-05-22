@@ -6,7 +6,7 @@
   <!--Del-->
   - [@ohos.driver.deviceManager (外设管理)(系统接口)](js-apis-driver-deviceManager-sys.md)
   <!--DelEnd-->
-  - application
+  - application<!--driver-development-arkts-application-->
     - [DriverExtensionContext](js-apis-inner-application-driverExtensionContext.md)
 - C API<!--driver-development-c-->
   - 模块<!--driver-development-module-->

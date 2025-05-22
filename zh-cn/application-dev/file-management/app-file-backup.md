@@ -49,7 +49,7 @@ async function getLocalCapabilities(): Promise<void> {
    fs.closeSync(fileData.fd);
  } catch (error) {
    let err: BusinessError = error as BusinessError;
-   console.error('getLocalCapabilities failed with err: ' + JSON.stringify(err));
+   console.error(`getLocalCapabilities failed with err, code is ${err.code}, message is ${err.message}`);
  }
 }
 ```
@@ -59,11 +59,10 @@ async function getLocalCapabilities(): Promise<void> {
 | 属性名称       | 数据类型 | 必填 | 含义                   |
 | -------------- | -------- | ---- | ---------------------- |
 | bundleInfos    | 数组     | 是   | 应用信息列表。           |
-| allToBackup    | 布尔值   | 是   | 是否允许备份恢复。       |
+| allToBackup    | 布尔值   | 是   | 是否允许备份恢复。true表示允许，false表示不允许。       |
 | extensionName  | 字符串   | 是   | 应用的扩展名。           |
 | name           | 字符串   | 是   | 应用的包名。             |
-| needToInstall  | 布尔值   | 是   | 应用恢复时是否需要安装。 |
-| spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小。 |
+| spaceOccupied  | 数值     | 是   | 应用数据占用的空间大小（单位为Byte）。 |
 | versionCode    | 数值     | 是   | 应用的版本号。           |
 | versionName    | 字符串   | 是   | 应用的版本名称。         |
 | deviceType     | 字符串   | 是   | 设备类型。               |
@@ -111,7 +110,7 @@ async function getLocalCapabilities(): Promise<void> {
       // onFileReady为服务回调给应用侧数据完成的通知，建议开发者在该接口内不要进行过多的耗时实现，可以通过异步线程实现file.fd数据的处理
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + JSON.stringify(err));
+          console.error(`onFileReady err, code is ${err.code}, message is ${err.message}`);
         }
         try {
           let bundlePath = filesDir + '/' + file.bundleName;
@@ -128,21 +127,21 @@ async function getLocalCapabilities(): Promise<void> {
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.info('onBundleBegin err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onBundleBegin bundleName: ' + bundleName);
         }
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.info('onBundleEnd err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onBundleEnd bundleName: ' + bundleName);
         }
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.info('onAllBundlesEnd err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd err, code is ${err.code}, message is ${err.message}`);
         } else {
           console.info('onAllBundlesEnd');
         }
@@ -208,7 +207,7 @@ async function getLocalCapabilities(): Promise<void> {
     let generalCallbacks: backup.GeneralCallbacks = {
       onFileReady: (err: BusinessError, file: backup.File) => {
         if (err) {
-          console.info('onFileReady err: ' + JSON.stringify(err));
+          console.error(`onFileReady err, code is ${err.code}, message is ${err.message}`);
         }
         // 此处开发者请根据实际场景待恢复文件存放位置进行调整 bundlePath
         let bundlePath: string = '';
@@ -226,19 +225,19 @@ async function getLocalCapabilities(): Promise<void> {
       },
       onBundleBegin: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleBegin failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleBegin failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onBundleBegin success');
       },
       onBundleEnd: (err: BusinessError<string|void>, bundleName: string) => {
         if (err) {
-          console.error('onBundleEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onBundleEnd failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onBundleEnd success');
       },
       onAllBundlesEnd: (err: BusinessError) => {
         if (err) {
-          console.error('onAllBundlesEnd failed with err: ' + JSON.stringify(err));
+          console.error(`onAllBundlesEnd failed with err, code is ${err.code}, message is ${err.message}`);
         }
         console.info('onAllBundlesEnd success');
       },

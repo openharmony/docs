@@ -8,7 +8,7 @@
   <!--Del-->
   - [@ohos.i18n (Internationalization) (System API)](js-apis-i18n-sys.md)
   <!--DelEnd-->
-  - Globalization<!--localization-global-arkts-->
+  - global<!--localization-global-arkts-->
     - [RawFileDescriptor](js-apis-rawFileDescriptor.md) 
     - [Resource](js-apis-resource.md)
     - [SendableResource](js-apis-sendableResource.md)

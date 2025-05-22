@@ -903,26 +903,26 @@ error: signature verification failed due to not trusted app source.
 **处理步骤**
 
 * 场景一：
-	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 
-        1. 获取当前设备的UDID。
+    1. 获取当前设备的UDID。
 
-        ```
-          //UDID获取命令
-          hdc shell bm get -u
-        ```
+    ```
+    //UDID获取命令
+    hdc shell bm get -u
+    ```
 
-        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+    2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
-        ```
-          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+    ```
+    IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
 
-          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
-          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
-        ```
+    例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+    例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+    ```
 
-        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
+    3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
 
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
@@ -1253,19 +1253,19 @@ error: install failed due to zero user can only install singleton app.
 
 **错误描述**
 
-UserID 0用户只允许安装singleton权限应用，singleton权限应用只允许被UserID 0用户安装。
-
+UserID 0用户只允许安装singleton权限应用。
+ 
 **可能原因**
-
-singleton权限应用安装未指定UserID 0。
-
+ 
+UserID 0用户安装了非singleton权限的应用。
+ 
 **处理步骤**
+ 
+1. 应用是非singleton权限的，不需要指定用户，直接安装。
 
-1. 应用是singleton权限，安装时指定UserID 0。
-	```
-	//指定userId安装命令
-	hdc install -p hap名.hap -u 0
-	```
+  ```bash
+  hdc shell bm install -p /data/hap名.hap
+  ```
 
 
 ### 9568263 无法降级安装
@@ -1463,28 +1463,6 @@ error: isolationMode does not match the system.
 	```
 
 
-### 9568315 数据代理的uri属性错误
-**错误信息**
-
-error: uri in proxy data is wrong.
-
-**错误描述**
-
-应用module.json文件中proxyData标签的uri属性验证失败。
-
-**可能原因**
-
-uri不满足格式规范。
-
-**处理步骤**
-
-1. 确认uri满足格式规范。
-	```
-	//uri格式规范
-	不同数据代理的uri不可重复，且需要满足datashareproxy://当前应用包名/xxx的格式
-	```
-
-
 ### 9568310 兼容策略不同
 **错误信息**
 
@@ -1522,16 +1500,19 @@ error: bundle manager service is died.
 1. 重启手机后再次尝试安装应用。
 
 2. 重复上述步骤3到5次后依旧安装失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+  ```
+  hdc shell
+  cd /data/log/faultlog/faultlogger/
+  ls -ls
+  ```
+
 3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+  ```
+  hdc file recv /data/log/faultlog/faultlogger/
+  hdc file recv /data/log/hilog/
+  ```
 
 ### 9568393 验证代码签名失败
 **错误信息**
@@ -1689,6 +1670,25 @@ error: Failed to uninstall the HAP because the uninstall is forbidden by enterpr
 **处理步骤**
 
 1. 由设置方取消该应用的卸载管控。
+
+### 9568389 未知错误导致安装失败
+**错误信息**
+
+error: unknown.
+
+**错误描述**
+
+未知的错误。
+
+**可能原因**
+
+系统未知的错误导致安装失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
 
 ### 9568284 安装版本不匹配
 **错误信息**
@@ -2127,15 +2127,16 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 
 **错误描述**
 
-签名校验失败。
+预置应用卸载后安装同bundleName的应用，由于应用的签名信息不一致禁止安装。
 
 **可能原因**
 
-安装的应用与已经预置的同包名应用签名不一致。
+安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)与已卸载的预置应用都不一致。
 
 **处理步骤**
 
-1. 如果安装的应用是预置应用，需要保证安装应用的签名与预置应用的一致。
+1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
+2. 修改安装应用的[bundleName](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-configuration-file.md)，确保与预置应用的不一致。
 
 ### 9568278 安装包的版本号不一致
 **错误信息**
@@ -2311,7 +2312,7 @@ error: Install parse profile prop type error.
 ### 9568345 配置文件中的字符串长度或者数组大小过大
 **错误信息**
 
-error: Too large size of string or array type element in the profile.
+error: too large size of string or array type element in the profile.
 
 **错误描述**
 
@@ -2347,8 +2348,10 @@ error: install parse native so failed.
 
 **处理步骤**
 
-1. 将设备与DevEco Studio进行连接。
-2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
+
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+
     ```
     hdc shell
     param get const.product.cpu.abilist

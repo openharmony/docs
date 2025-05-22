@@ -45,8 +45,8 @@
 - 错误码<!--performance-analysis-errcode-->
   - [Faultlogger错误码](errorcode-faultlogger.md)
   - [应用事件打点错误码](errorcode-hiappevent.md)
-  - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
-  - [Hidebug CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)
+  - [HiDebug错误码](errorcode-hiviewdfx-hidebug.md)
+  - [HiDebug CpuUsage错误码](errorcode-hiviewdfx-hidebug-cpuusage.md)
   - [HiCollie错误码](errorcode-hiviewdfx-hicollie.md)
   <!--Del-->
   - [系统事件错误码](errorcode-hisysevent-sys.md)

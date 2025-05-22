@@ -10,10 +10,12 @@
       - [页面和自定义组件生命周期](state-management/arkts-page-custom-components-lifecycle.md)
       - [自定义组件的自定义布局](state-management/arkts-page-custom-components-layout.md)
       - [自定义组件成员属性访问限定符使用限制](state-management/arkts-custom-components-access-restrictions.md)
-    - [\@Builder装饰器：自定义构建函数](state-management/arkts-builder.md)
-    - [\@LocalBuilder装饰器：维持组件关系](state-management/arkts-localBuilder.md)
-    - [\@BuilderParam装饰器：引用\@Builder函数](state-management/arkts-builderparam.md)
-    - [wrapBuilder：封装全局@Builder](state-management/arkts-wrapBuilder.md)
+    - 组件扩展<!--arkts-extend-components-->
+      - [组件扩展概述](state-management/arkts-extend-components-overview.md)
+      - [\@Builder装饰器：自定义构建函数](state-management/arkts-builder.md)
+      - [\@LocalBuilder装饰器：维持组件关系](state-management/arkts-localBuilder.md)
+      - [\@BuilderParam装饰器：引用\@Builder函数](state-management/arkts-builderparam.md)
+      - [wrapBuilder：封装全局@Builder](state-management/arkts-wrapBuilder.md)
     - [\@Styles装饰器：定义组件重用样式](state-management/arkts-style.md)
     - [\@Extend装饰器：定义扩展组件样式](state-management/arkts-extend.md)
     - [stateStyles：多态样式](state-management/arkts-statestyles.md)
@@ -42,8 +44,10 @@
         - [\@Track装饰器：class对象属性级更新](state-management/arkts-track.md)
         - [自定义组件冻结功能](state-management/arkts-custom-components-freeze.md)
       - [MVVM模式](state-management/arkts-mvvm.md)
+      <!--Del-->
       - [状态管理优秀实践](state-management/arkts-state-management-best-practices.md)
       - [状态管理合理使用开发指导](state-management/properly-use-state-management-to-develope.md)
+      <!--DelEnd-->
     - 状态管理（V2）<!--arkts-state-management-v2-->
       - V2所属装饰器<!--arkts-v2-decorators-->
         - [\@ObservedV2装饰器和\@Trace装饰器：类属性变化观测](state-management/arkts-new-observedV2-and-trace.md)
@@ -110,21 +114,21 @@
     - [图标小符号 (SymbolGlyph/SymbolSpan)](arkts-common-components-symbol.md)
     - [属性字符串 (StyledString/MutableStyledString)](arkts-styled-string.md)
   - 使用弹窗<!--arkts-use-dialog-->
-     - [弹窗概述](arkts-dialog-overview.md)
-     - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
-       - [弹出框概述](arkts-base-dialog-overview.md)
-       - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
-       - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
-       - [固定样式弹出框](arkts-fixes-style-dialog.md)
-       - [页面级弹出框](arkts-embedded-dialog.md)
-     - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
-     - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
-     - 绑定模态页面<!--arkts-bind-modal-->
-        - [绑定模态页面概述](arkts-modal-overview.md)
-        - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
-        - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
-     - [即时反馈 (Toast)](arkts-create-toast.md)
-     - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
+    - [弹窗概述](arkts-dialog-overview.md)
+    - 使用弹出框 (Dialog)<!--arkts-use-dialogs-->
+      - [弹出框概述](arkts-base-dialog-overview.md)
+      - [不依赖UI组件的全局自定义弹出框 (openCustomDialog) (推荐)](arkts-uicontext-custom-dialog.md)
+      - [基础自定义弹出框 (CustomDialog) (不推荐)](arkts-common-components-custom-dialog.md)
+      - [固定样式弹出框](arkts-fixes-style-dialog.md)
+      - [页面级弹出框](arkts-embedded-dialog.md)
+    - [菜单控制 (Menu)](arkts-popup-and-menu-components-menu.md)
+    - [气泡提示 (Popup)](arkts-popup-and-menu-components-popup.md)
+    - 绑定模态页面<!--arkts-bind-modal-->
+      - [绑定模态页面概述](arkts-modal-overview.md)
+      - [绑定半模态页面 (bindSheet)](arkts-sheet-page.md)
+      - [绑定全模态页面 (bindContentCover)](arkts-contentcover-page.md)
+    - [即时反馈 (Toast)](arkts-create-toast.md)
+    - [设置浮层 (OverlayManager)](arkts-create-overlaymanager.md)
   - 显示图形<!--arkts-draw-graphics-->
     - [绘制几何图形 (Shape)](arkts-geometric-shape-drawing.md)
     - [使用画布绘制自定义图形 (Canvas)](arkts-drawing-customization-on-canvas.md)
@@ -180,15 +184,19 @@
       - [属性修改器 (AttributeModifier)](arkts-user-defined-extension-attributeModifier.md)
       - [属性更新器 (AttributeUpdater)](arkts-user-defined-extension-attributeUpdater.md)
   - [使用镜像能力](arkts-mirroring-display.md)
-  - [支持适老化](arkui-support-for-aging-adaptation.md)
+  - 无障碍与适老化<!--arkts-support-accessibility-friendliness-->
+    - [支持无障碍](arkts-universal-attributes-accessibility.md)
+    - [支持适老化](arkui-support-for-aging-adaptation.md)
   - 主题设置<!--arkts-theme-->
     - [应用深浅色适配](ui-dark-light-color-adaptation.md)
     - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
-  - 跨进程拉起页面<!--arkts-ui-cross-process-->
+  - 嵌入式组件<!--arkts-ui-cross-process-->
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
+    - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
     <!--Del-->
     - [跨进程应用能力扩展（UIExtension，仅对系统应用开放）](arkts-ui-extension-components.md)
+    - [跨线程嵌入式组件 (IsolatedComponent，仅对系统应用开放)](arkts-isolated-components.md)
     <!--DelEnd-->
   - 使用NDK接口构建UI<!--arkts-use-ndk-->
     - [NDK接口概述](ndk-build-ui-overview.md)
@@ -197,11 +205,17 @@
       - [监听组件事件](ndk-listen-to-component-events.md)
       - [绑定手势事件](ndk-bind-gesture-events.md)
     - [使用动画](ndk-use-animation.md)
-    - [使用列表](ndk-loading-long-list.md)
+    - 构建布局<!--arkts-build-layout-ndk-->
+      - [使用列表](ndk-loading-long-list.md)
+      - [使用瀑布流](ndk-waterflow.md)
+    - 使用文本<!--arkts-build-text-ndk-->
+      - [Text组件的文本绘制与显示](ndk-styled-string.md)
+      - [输入框文本事件监听](ndk-textarea-event.md)
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
+    - [自定义绘制](arkts-user-defined-draw.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->
@@ -274,6 +288,6 @@
         - [动画动效](ui-js-animate-dynamic-effects.md)
         - [动画帧](ui-js-animate-frame.md)
   - [自定义组件](ui-js-custom-components.md)
-  - [WebGL](../webgl/Readme-CN.md)
-- [窗口管理](../windowmanager/Readme-CN.md)
-- [屏幕管理](../displaymanager/Readme-CN.md)
+  - [WebGL](../webgl/Readme-CN.md)<!--ui-js-webgl-->
+- [窗口管理](../windowmanager/Readme-CN.md)<!--window-manager-->
+- [屏幕管理](../displaymanager/Readme-CN.md)<!--display-manager-->

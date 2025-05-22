@@ -85,10 +85,10 @@ async function example() {
         if (!fileUri) {
           console.error("createFile return undefined object");
         }
-        console.log("createFile success, fileUri: " + JSON.stringify(fileUri));
+        console.info("createFile success, fileUri: " + JSON.stringify(fileUri));
         // 将刚创建的文件进行重命名，返回新文件的uri
         let renameUri = await fileAccessHelper.rename(fileUri, "renameFile.txt");
-        console.log("rename success, renameUri: " + JSON.stringify(renameUri));
+        console.info("rename success, renameUri: " + JSON.stringify(renameUri));
       } catch (err) {
         let error: BusinessError = err as BusinessError;
         console.error("createFile failed, errCode:" + error.code + ", errMessage:" + error.message);
@@ -191,11 +191,11 @@ async function photoPickerGetUri() {
       console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
       uris = PhotoSelectResult.photoUris;
     }).catch((err: BusinessError) => {
-      console.error('PhotoViewPicker.select failed with err: ' + JSON.stringify(err));
+      console.error(`PhotoViewPicker.select failed with err, code is ${err.code}, message is ${err.message}`);
     });
   } catch (error) {
     let err: BusinessError = error as BusinessError;
-    console.error('PhotoViewPicker failed with err: ' + JSON.stringify(err));
+    console.error(`PhotoViewPicker failed with err, code is ${err.code}, message is ${err.message}`);
   }
 }
 
@@ -227,7 +227,7 @@ try {
       }
     });
   } catch (error){
-    console.error('uriGetAssets failed with err: ' + JSON.stringify(error));
+    console.error(`uriGetAssets failed with err, code is ${error.code}, message is ${error.message}`);
   }
 }
 ```
@@ -248,7 +248,7 @@ try {
 
 复制文件代码示例：
 
-```
+```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
@@ -286,7 +286,7 @@ async function example() {
         if (!fileUri) {
           console.error("copyFile return undefined object");
         }
-        console.log("copyFile success, fileUri: " + JSON.stringify(fileUri));
+        console.info("copyFile success, fileUri: " + JSON.stringify(fileUri));
       } catch (err) {
         let error: BusinessError = err as BusinessError;
         console.error("copyFile failed, errCode:" + error.code + ", errMessage:" + error.message);

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ``` ts
-import appControl from '@ohos.bundle.appControl'
+import appControl from '@ohos.bundle.appControl';
 ```
 
 ## appControl.setDisposedStatus

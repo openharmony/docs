@@ -272,9 +272,9 @@ onFinish(event:&nbsp;()&nbsp;=&gt;&nbsp;void)
 @Entry
 @Component
 struct ImageAnimatorExample {
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
 
   build() {
     Column({ space: 10 }) {
@@ -347,19 +347,19 @@ struct ImageAnimatorExample {
 
 ```ts
 // xxx.ets
-import { image } from '@kit.ImageKit'
+import { image } from '@kit.ImageKit';
 
 @Entry
 @Component
 struct ImageAnimatorExample {
-  imagePixelMap: Array<PixelMap> = []
-  @State state: AnimationStatus = AnimationStatus.Initial
-  @State reverse: boolean = false
-  @State iterations: number = 1
-  @State images:Array<ImageFrameInfo> = []
+  imagePixelMap: Array<PixelMap> = [];
+  @State state: AnimationStatus = AnimationStatus.Initial;
+  @State reverse: boolean = false;
+  @State iterations: number = 1;
+  @State images:Array<ImageFrameInfo> = [];
   async aboutToAppear() {
-    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')))
-    this.images.push({src:this.imagePixelMap[0]})
+    this.imagePixelMap.push(await this.getPixmapFromMedia($r('app.media.icon')));
+    this.images.push({src:this.imagePixelMap[0]});
   }
   build() {
     Column({ space: 10 }) {
@@ -370,41 +370,41 @@ struct ImageAnimatorExample {
         .fillMode(FillMode.None).iterations(this.iterations).width(340).height(240)
         .margin({ top: 100 })
         .onStart(() => {
-          console.info('Start')
+          console.info('Start');
         })
         .onPause(() => {
-          console.info('Pause')
+          console.info('Pause');
         })
         .onRepeat(() => {
-          console.info('Repeat')
+          console.info('Repeat');
         })
         .onCancel(() => {
-          console.info('Cancel')
+          console.info('Cancel');
         })
         .onFinish(() => {
-          console.info('Finish')
-          this.state = AnimationStatus.Stopped
+          console.info('Finish');
+          this.state = AnimationStatus.Stopped;
         })
       Row() {
         Button('start').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Running
+          this.state = AnimationStatus.Running;
         }).margin(5)
         Button('pause').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Paused     // 显示当前帧图片
+          this.state = AnimationStatus.Paused;    // 显示当前帧图片
         }).margin(5)
         Button('stop').width(100).padding(5).onClick(() => {
-          this.state = AnimationStatus.Stopped    // 显示动画的起始帧图片
+          this.state = AnimationStatus.Stopped;   // 显示动画的起始帧图片
         }).margin(5)
       }
       Row() {
         Button('reverse').width(100).padding(5).onClick(() => {
-          this.reverse = !this.reverse
+          this.reverse = !this.reverse;
         }).margin(5)
         Button('once').width(100).padding(5).onClick(() => {
-          this.iterations = 1
+          this.iterations = 1;
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
-          this.iterations = -1 // 无限循环播放
+          this.iterations = -1; // 无限循环播放
         }).margin(5)
       }
     }.width('100%').height('100%')
@@ -416,12 +416,12 @@ struct ImageAnimatorExample {
       moduleName: resource.moduleName,
       id: resource.id
     })
-    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength))
+    let imageSource = image.createImageSource(unit8Array.buffer.slice(0, unit8Array.buffer.byteLength));
     let createPixelMap: image.PixelMap = await imageSource.createPixelMap({
       desiredPixelFormat: image.PixelMapFormat.RGBA_8888
-    })
-    await imageSource.release()
-    return createPixelMap
+    });
+    await imageSource.release();
+    return createPixelMap;
   }
 }
 ```
@@ -440,7 +440,7 @@ struct ImageAnimatorAutoPauseTest {
   @State state: AnimationStatus = AnimationStatus.Running
   @State reverse: boolean = false
   @State iterations: number = 100
-  @State preCallBack: string = "Null"
+  @State preCallBack: string = 'Null'
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
   build() {

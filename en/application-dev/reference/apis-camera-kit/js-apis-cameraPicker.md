@@ -1,6 +1,6 @@
 # @ohos.multimedia.cameraPicker (Camera Picker)
 
-The cameraPicker module provides APIs for an application to select the system camera to take photos or record videos, depending on the media type specified by the application. The APIs of this module must be called in a UIAbility of the page type. Otherwise, the camera picker cannot be started.
+The cameraPicker module provides APIs for an application to use the system camera to take photos or record videos, depending on the media type specified by the application. The application must call these APIs within a UIAbility. Otherwise, the camera picker cannot be started.
 
 > **NOTE**
 >
@@ -85,8 +85,8 @@ Defines the configuration information about the camera picker.
 | Name          | Type                              | Mandatory  | Description        |
 | -------------- | --------------------------------- | ----- | ------------ |
 | cameraPosition       | [camera.CameraPosition](js-apis-camera.md#cameraposition) | Yes   | Camera position.  |
-| saveUri        | string                            | No   | URI for saving the configuration information.|
-| videoDuration  | number                            | No   | Maximum recording duration.|
+| saveUri        | string                            | No   | URI for saving the configuration information. For details about the default value, see [File URI](../apis-core-file-kit/js-apis-file-fileuri.md#constructor10).|
+| videoDuration  | number                            | No   | Maximum video duration, in seconds.|
 
 
 ## PickerResult

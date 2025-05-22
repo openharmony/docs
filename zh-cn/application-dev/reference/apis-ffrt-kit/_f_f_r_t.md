@@ -909,7 +909,7 @@ FFRT_C_API int ffrt_mutexattr_settype(ffrt_mutexattr_t* attr, int type)
 
 **返回：**
 
-mutex属性类型设置成功返回ffrt_success，mutex属性指针是空或者，mutex类型不是ffrt_mutex_normal或ffrt_mutex_recursive返回ffrt_error_inval。
+mutex属性类型设置成功返回ffrt_success，mutex属性指针是空或者mutex类型不是ffrt_mutex_normal或ffrt_mutex_recursive返回ffrt_error_inval。
 
 
 ### ffrt_queue_attr_destroy()

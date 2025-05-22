@@ -1,4 +1,4 @@
-# Using the Camera Picker (ArkTS)
+# Using the System Camera to Take Photos and Record Videos (CameraPicker)
 
 Applications can invoke the camera picker to take photos or record videos without applying for the camera permission.
 
@@ -14,8 +14,8 @@ Read [CameraPicker](../../reference/apis-camera-kit/js-apis-cameraPicker.md) for
 
 1. Import the module.
    ```ts
-   import { camera, cameraPicker as picker } from '@kit.CameraKit'
-   import { fileIo, fileUri } from '@kit.CoreFileKit'
+   import { camera, cameraPicker as picker } from '@kit.CameraKit';
+   import { fileIo, fileUri } from '@kit.CoreFileKit';
    ```
 
 2. Configure [PickerProfile](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pickerprofile).

@@ -111,7 +111,7 @@ try {
 
 ## KVManagerConfig
 
-Defines the configuration of the **KVManager** object, including the bundle name and user information of the caller.
+Represents the configuration of a **KVManager** instance, including the bundle name and user information of the caller.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1223,7 +1223,7 @@ try {
 
 equalTo(field: string, value: number|string|boolean): Query
 
-Creates a **Query** object to match the specified field whose value is equal to the given value.
+Creates a **Query** object to search for the records with the specified field that are equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1231,8 +1231,8 @@ Creates a **Query** object to match the specified field whose value is equal to 
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string\|boolean  | Yes   | Value specified.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| value  | number\|string\|boolean  | Yes   | Value to match.|
 
 **Return value**
 
@@ -1258,7 +1258,7 @@ try {
 
 notEqualTo(field: string, value: number|string|boolean): Query
 
-Creates a **Query** object to match the specified field whose value is not equal to the specified value.
+Creates a **Query** object to search for the records with the specified field that are not equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1266,8 +1266,8 @@ Creates a **Query** object to match the specified field whose value is not equal
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string\|boolean  | Yes   | Value specified.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| value  | number\|string\|boolean  | Yes   | Value to match.|
 
 **Return value**
 
@@ -1293,7 +1293,7 @@ try {
 
 greaterThan(field: string, value: number|string|boolean): Query
 
-Creates a **Query** object to match the specified field whose value is greater than the specified value.
+Creates a **Query** object to search for the records with the specified field that are greater than the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1301,8 +1301,8 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string\|boolean  | Yes   | Value specified.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| value  | number\|string\|boolean  | Yes   | Value to match.|
 
 **Return value**
 
@@ -1328,7 +1328,7 @@ try {
 
 lessThan(field: string, value: number|string): Query
 
-Creates a **Query** object to match the specified field whose value is less than the specified value.
+Creates a **Query** object to search for the records with the specified field that are less than the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1336,8 +1336,8 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string  | Yes   | Value specified.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| value  | number\|string  | Yes   | Value to match.|
 
 **Return value**
 
@@ -1363,7 +1363,7 @@ try {
 
 greaterThanOrEqualTo(field: string, value: number|string): Query
 
-Creates a **Query** object to match the specified field whose value is greater than or equal to the specified value.
+Creates a **Query** object to search for the records with the specified field that are greater than or equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1371,8 +1371,8 @@ Creates a **Query** object to match the specified field whose value is greater t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string  | Yes   | Value specified.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| value  | number\|string  | Yes   | Value to match.|
 
 **Return value**
 
@@ -1398,7 +1398,7 @@ try {
 
 lessThanOrEqualTo(field: string, value: number|string): Query
 
-Creates a **Query** object to match the specified field whose value is less than or equal to the specified value.
+Creates a **Query** object to search for the records with the specified field that are less than or equal to the given value.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1406,8 +1406,8 @@ Creates a **Query** object to match the specified field whose value is less than
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | number\|string  | Yes   | Value specified.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| value  | number\|string  | Yes   | Value to match.|
 
 **Return value**
 
@@ -1433,7 +1433,7 @@ try {
 
 isNull(field: string): Query
 
-Creates a **Query** object to match the specified field whose value is **null**.
+Creates a **Query** object to search for the records with the specified field that are **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1441,7 +1441,7 @@ Creates a **Query** object to match the specified field whose value is **null**.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
 
 **Return value**
 
@@ -1467,7 +1467,7 @@ try {
 
 inNumber(field: string, valueList: number[]): Query
 
-Creates a **Query** object to match the specified field whose value is within the specified list of numbers.
+Creates a **Query** object to search for the records with the specified field that are within the given number list.
 
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
@@ -1476,8 +1476,8 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| valueList  | number[]  | Yes   | List of numbers.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| valueList  | number[]  | Yes   | List of numbers to match.|
 
 **Return value**
 
@@ -1503,7 +1503,7 @@ try {
 
 inString(field: string, valueList: string[]): Query
 
-Creates a **Query** object to match the specified field whose value is within the specified list of strings.
+Creates a **Query** object to search for the records with the specified field that are within the given string list.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1511,8 +1511,8 @@ Creates a **Query** object to match the specified field whose value is within th
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| valueList  | string[]  | Yes   | List of strings.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| valueList  | string[]  | Yes   | List of strings to match.|
 
 **Return value**
 
@@ -1538,7 +1538,7 @@ try {
 
 notInNumber(field: string, valueList: number[]): Query
 
-Creates a **Query** object to match the specified field whose value is not within the specified list of numbers.
+Creates a **Query** object to search for the records with the specified field that are not within the given number list.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1546,8 +1546,8 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| valueList  | number[]  | Yes   | List of numbers.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| valueList  | number[]  | Yes   | List of numbers to match.|
 
 **Return value**
 
@@ -1573,7 +1573,7 @@ try {
 
 notInString(field: string, valueList: string[]): Query
 
-Creates a **Query** object to match the specified field whose value is not within the specified list of strings.
+Creates a **Query** object to search for the records with the specified field that are not within the given string list.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1581,8 +1581,8 @@ Creates a **Query** object to match the specified field whose value is not withi
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| valueList  | string[]  | Yes   | List of strings.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| valueList  | string[]  | Yes   | List of strings to match.|
 
 **Return value**
 
@@ -1608,7 +1608,7 @@ try {
 
 like(field: string, value: string): Query
 
-Creates a **Query** object to match the specified field whose value is similar to the specified string.
+Creates a **Query** object to search for the records with the specified field that are similar to the given string.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1616,8 +1616,8 @@ Creates a **Query** object to match the specified field whose value is similar t
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | string  | Yes   | String specified.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| value  | string  | Yes   | String to match.|
 
 **Return value**
 
@@ -1643,7 +1643,7 @@ try {
 
 unlike(field: string, value: string): Query
 
-Creates a **Query** object to match the specified field whose value is not similar to the specified string.
+Creates a **Query** object to search for the records with the specified field that are not similar to the given string.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1651,8 +1651,8 @@ Creates a **Query** object to match the specified field whose value is not simil
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
-| value  | string  | Yes   | String specified.|
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
+| value  | string  | Yes   | String to match.|
 
 **Return value**
 
@@ -1746,7 +1746,7 @@ Creates a **Query** object to sort the query results in ascending order.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
 
 **Return value**
 
@@ -1781,7 +1781,7 @@ Creates a **Query** object to sort the query results in descending order.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'. |
+| field  | string  | Yes   |Field to query. It cannot contain '^'. |
 
 **Return value**
 
@@ -1808,7 +1808,7 @@ try {
 
 limit(total: number, offset: number): Query
 
-Creates a **Query** object to specify the number of results and where to start.
+Creates a **Query** object to specify the number of records in the query result and the start position.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1816,8 +1816,8 @@ Creates a **Query** object to specify the number of results and where to start.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| total  | number  | Yes   |Number of results to query. |
-| offset | number  | Yes   |Start position for query. |
+| total  | number  | Yes   |Number of records in the query result. |
+| offset | number  | Yes   |Start position. |
 
 **Return value**
 
@@ -1846,7 +1846,7 @@ try {
 
 isNotNull(field: string): Query
 
-Creates a **Query** object to match the specified field whose value is not **null**.
+Creates a **Query** object to search for the records whose value is not **null**.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -1854,7 +1854,7 @@ Creates a **Query** object to match the specified field whose value is not **nul
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| field  | string  | Yes   |Field to match. It cannot contain '^'.     |
+| field  | string  | Yes   |Field to query. It cannot contain '^'.     |
 
 **Return value**
 
@@ -2056,7 +2056,7 @@ Obtains the query statement of the **Query** object.
 
 | Type   | Description      |
 | ------  | -------   |
-| string |Returns the query statement obtained.|
+| string |Query statement obtained.|
 
 **Example**
 
@@ -2262,7 +2262,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to sync complete events.
+Subscribes to sync completion events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2270,8 +2270,8 @@ Subscribes to sync complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync completion event.            |
 
 **Example**
 
@@ -2324,7 +2324,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from sync complete events.
+Unsubscribes from sync completion events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2332,8 +2332,8 @@ Unsubscribes from sync complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered.|
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync completion event will be unregistered.|
 
 **Example**
 
@@ -3851,7 +3851,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to sync complete events.
+Subscribes to sync completion events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3859,8 +3859,8 @@ Subscribes to sync complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync completion event.            |
 
 **Example**
 
@@ -3922,7 +3922,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from sync complete events.
+Unsubscribes from sync completion events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3930,8 +3930,8 @@ Unsubscribes from sync complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync completion event will be unregistered. |
 
 **Example**
 
@@ -5329,7 +5329,7 @@ kvStore.on('dataChange', distributedData.SubscribeType.SUBSCRIBE_TYPE_LOCAL, fun
 
 on(event: 'syncComplete', syncCallback: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Subscribes to sync complete events.
+Subscribes to sync completion events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5337,8 +5337,8 @@ Subscribes to sync complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync complete event.            |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback used to return a sync completion event.            |
 
 **Example**
 
@@ -5400,7 +5400,7 @@ class KvstoreModel {
 
 off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&gt;&gt;): void
 
-Unsubscribes from sync complete events.
+Unsubscribes from sync completion events.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -5408,8 +5408,8 @@ Unsubscribes from sync complete events.
 
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
-| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync complete event will be unregistered. |
+| event        | string                                        | Yes  | Event type. The value is **syncComplete**, which indicates a sync completion event.|
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback to unregister. If this parameter is not specified, all callbacks for the sync completion event will be unregistered. |
 
 **Example**
 

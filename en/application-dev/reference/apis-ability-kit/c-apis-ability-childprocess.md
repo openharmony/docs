@@ -299,3 +299,15 @@ The specified dynamic library must implement and export the entry parameters of 
 **Returns**
 
 Returns **NCP_NO_ERROR** if the operation is successful; returns an error code defined in [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) otherwise.
+### OH_Ability_GetCurrentChildProcessArgs
+```
+NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
+```
+**Description**
+After starting a child process using [OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess), the child process can retrieve the startup arguments [NativeChildProcess_Args](#nativechildprocess_args) from any shared object (.so) file and any thread.
+> **NOTE**
+>
+> This function is valid only for 2-in-1 devices and tablets.
+**Since**: 17
+**Returns**
+Returns the pointer to [NativeChildProcess_Args](#nativechildprocess_args) if the operation is successful; returns a null pointer otherwise.

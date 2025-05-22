@@ -56,6 +56,46 @@ Since API version 10, this API supports the calc calculation feature.
 >
 >  In the [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [RelativeContainer](./ts-container-relativecontainer.md) components, setting **width** and **height** to **auto** means that the size adapts to the size of their child components.
 
+## width<sup>15+</sup>
+
+width(widthValue: Length | LayoutPolicy)
+
+Sets the width of the component or its horizontal layout policy. By default, the component uses the width required for its content. If the width of the component is greater than that of the parent container, the component will be drawn beyond the parent container scope.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 15.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                          | Mandatory  | Description                 |
+| ----- | ---------------------------- | ---- | ------------------- |
+| widthValue | [Length](ts-types.md#length) \|  [LayoutPolicy](ts-types.md#layoutpolicy15) | Yes   | Width of the component to set.<br>Unit: vp|
+
+## height<sup>15+</sup>
+
+height(heightValue: Length | LayoutPolicy)
+
+Sets the height of the component or its vertical layout policy. By default, the component uses the height required for its content. If the height of the component is greater than that of the parent container, the component will be drawn beyond the parent container scope.
+
+**Widget capability**: This API can be used in ArkTS widgets since API version 15.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name  | Type                          | Mandatory  | Description                 |
+| ----- | ---------------------------- | ---- | ------------------- |
+| heightValue | [Length](ts-types.md#length) \|  [LayoutPolicy](ts-types.md#layoutpolicy15) | Yes   | Height of the component to set.<br>Unit: vp|
+
+>  **NOTE**
+> 
+>  In the [Row](./ts-container-row.md) and [Column](./ts-container-column.md) components, **width** and **height** can be set to parameters of the [LayoutPolicy](ts-types.md#layoutpolicy15) type.
+
 ## size
 
 size(value: SizeOptions)
@@ -215,7 +255,10 @@ Since API version 10, this API supports the calc calculation feature.
 >  In the [Row](./ts-container-row.md), [Column](./ts-container-column.md), and [RelativeContainer](./ts-container-relativecontainer.md) components, setting **width** and **height** to **auto** means that the size adapts to the size of their child components. In the [TextInput](./ts-basic-components-textinput.md) component, setting **width** to **auto** means that the width adapts to the width of the text content.
 
 ## Example
-### Example 1
+
+### Example 1: Setting the Component Width, Height, Margin, and Padding
+
+This example demonstrates how to set the width, height, margin, and padding of a component.
 
 ```ts
 // xxx.ets
@@ -274,8 +317,10 @@ struct SizeExample {
 
 ![size](figures/size.png)
 
-### Example 2
-This example demonstrates how to use the **padding** and **margin** attributes of the LocalizedPadding and LocalizedMargin types, respectively.
+### Example 2: Using LocalizedPadding and LocalizedMargin Types
+
+This example demonstrates how to use **LocalizedPadding** and **LocalizedMargin** types to set the padding and margin.
+
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI'
@@ -320,8 +365,10 @@ The following shows how the example is represented with right-to-left scripts.
 
 ![size](figures/size-rtl.png)
 
-### Example 3
-This example sets a component-level safe area for a container.
+### Example 3: Setting Safe Area
+
+This example demonstrates how to set a component-level safe area for a container.
+
 ```ts
 // xxx.ets
 import { LengthMetrics } from '@kit.ArkUI';

@@ -14,16 +14,16 @@
 ```json
 {
     "module": {
-        // other declared attributes.
+        //其他已声明的属性
 
         "abilities": [
             {
                 "skills": [
                     {
                         "actions": [
-                            // other declared actions,
+                            // 其它已经声明的actions
 
-                            // add the nfc tag action
+                            // 添加nfc tag的 action
                             "ohos.nfc.tag.action.TAG_FOUND"
                         ],
                         "uris": [
@@ -33,8 +33,8 @@
                             {
                                 "type":"tag-tech/IsoDep"
                             }
-                            // Add other technology if neccessary,
-                            // such as: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
+                            // 有必要可添加其他技术
+                            // 比如: NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable
                         ]
                     }
                 ]
@@ -55,6 +55,7 @@
 >2. 声明技术时"uris"中"type"字段的内容填写，前缀必须是"tag-tech/"，后面接着NfcA/NfcB/NfcF/NfcV/IsoDep/Ndef/MifareClassic/MifareUL/NdefFormatable"中的一个。如果存在多个"type"时，需要分行填写。填写错误会造成解析失败。
 >3. 声明权限时"requestPermissions"中的"name"字段的内容填写，必须是"ohos.permission.NFC_TAG"，不能更改。
 >4. 调用本模块接口和常量时请使用canIUse("SystemCapability.Communication.NFC.Tag")判断设备是否支持NFC能力，否则可能导致应用运行稳定性问题，参考[nfc-tag开发指南](../../connectivity/nfc/nfc-tag-access-guide.md)。
+>5. 导入tag模块编辑器报错，在某个具体设备型号上能力可能超出工程默认设备定义的能力集范围，如需要使用此部分能力需额外配置自定义syscap，参考[syscap开发指南](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/syscap#syscap开发指导)。
 
 ## **导入模块**
 
@@ -71,9 +72,9 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 
 export default class EntryAbility extends UIAbility {
     onCreate(want : Want, launchParam: AbilityConstant.LaunchParam) {
-        // add other code here...
+        // 添加其他功能代码...
 
-        // want is initialized by nfc service, contains tag info for this found tag
+        // want由nfc服务初始化，包含找到的tag
         let tagInfo : tag.TagInfo | null = null;
         try {
             tagInfo = tag.getTagInfo(want);
@@ -85,7 +86,7 @@ export default class EntryAbility extends UIAbility {
             return;
         }
 
-        // get the supported technologies for this found tag.
+        // 获取发现标签的支持技术
         let isNfcATag =  false;
         let isIsoDepTag =  false;
         for (let i = 0; i < tagInfo.technology.length; i++) {
@@ -95,10 +96,10 @@ export default class EntryAbility extends UIAbility {
             if (tagInfo.technology[i] == tag.ISO_DEP) {
                 isIsoDepTag = true;
             }
-        // also check for technology: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
+        // 检查其他技术类型: tag.NFC_B/NFC_F/NFC_V/NDEF/MIFARE_CLASSIC/MIFARE_ULTRALIGHT/NDEF_FORMATABLE
         }
 
-        // use NfcA APIs to access the found tag.
+        // 使用 NfcA APIs 去访问发现的标签
         if (isNfcATag) {
             let nfcA : tag.NfcATag | null = null;
             try {
@@ -106,10 +107,10 @@ export default class EntryAbility extends UIAbility {
             } catch (error) {
                 console.error("tag.getNfcA catch error: " + error);
             }
-            // other code to read or write this found tag.
+            // 其他代码：对发现的标签执行读取或写入
         }
 
-        // use getIsoDep APIs to access the found tag.
+        // 使用 IsoDep APIs 去访问发现的标签
         if (isIsoDepTag) {
             let isoDep : tag.IsoDepTag | null = null;
             try {
@@ -117,9 +118,9 @@ export default class EntryAbility extends UIAbility {
             } catch (error) {
                 console.error("tag.getIsoDep catch error: " + error);
             }
-            // other code to read or write this found tag.
+            // 其他代码：对发现的标签执行读取或写入
         }
-        // use the same code to handle for "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
+        // 使用相同的代码来处理 "NfcA/NfcB/NfcF/NfcV/Ndef/MifareClassic/MifareUL/NdefFormatable".
     }
 }
 ```
@@ -610,7 +611,7 @@ import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
-let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // 用前台ability时所需要的技术代替
 let elementName : bundleManager.ElementName;
 function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
     if (!err) {
@@ -619,7 +620,7 @@ function foregroundCb(err : BusinessError, tagInfo : tag.TagInfo) {
         console.log("foreground callback err: " + err.message);
         return;
     }
-  // other Operations of taginfo
+  // taginfo的其他操作
 }
 
 export default class MainAbility extends UIAbility {
@@ -659,7 +660,7 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // override other lifecycle functions
+  // ability生命周期内的其他功能
 }
 ```
 
@@ -739,7 +740,7 @@ import { tag } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { AbilityConstant, UIAbility, Want, bundleManager } from '@kit.AbilityKit';
 
-let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // replace with the tech(s) that is needed by foreground ability
+let discTech : number[] = [tag.NFC_A, tag.NFC_B]; // 用前台ability时所需要的技术代替
 let elementName : bundleManager.ElementName;
 
 function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
@@ -749,7 +750,7 @@ function readerModeCb(err : BusinessError, tagInfo : tag.TagInfo) {
         console.error("offCallback err: " + err.message);
         return;
     }
-  // other Operations of taginfo
+  // taginfo的其他操作
 }
 
 export default class MainAbility extends UIAbility {
@@ -789,13 +790,13 @@ export default class MainAbility extends UIAbility {
         }
     }
 
-  // override other lifecycle functions
+  // ability生命周期内的其他功能
 }
 ```
 
 ## tag.ndef.makeUriRecord<sup>9+</sup>
 
-makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
+makeUriRecord(uri: string): NdefRecord
 
 根据输入的URI，构建NDEF标签的Record数据对象。
 
@@ -829,7 +830,7 @@ makeUriRecord(uri: string): [NdefRecord](#ndefrecord9)
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let uri = "https://www.example.com"; // change it to be correct.
+    let uri = "https://www.example.com"; // 修改为正确可用的uri
     let ndefRecord : tag.NdefRecord = tag.ndef.makeUriRecord(uri);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeUriRecord rtdType: " + ndefRecord.rtdType);
@@ -844,7 +845,7 @@ try {
 
 ## tag.ndef.makeTextRecord<sup>9+</sup>
 
-makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
+makeTextRecord(text: string, locale: string): NdefRecord
 
 根据输入的文本数据和编码类型，构建NDEF标签的Record。
 
@@ -879,8 +880,8 @@ makeTextRecord(text: string, locale: string): [NdefRecord](#ndefrecord9)
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let text = "Hello World";   // change it to be correct.
-    let locale = "en"; // change it to be correct.
+    let text = "Hello World";   // 修改为想要写入的文本
+    let locale = "en"; // 修改为预期的编码格式
     let ndefRecord : tag.NdefRecord = tag.ndef.makeTextRecord(text, locale);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeTextRecord rtdType: " + ndefRecord.rtdType);
@@ -896,7 +897,7 @@ try {
 
 ## tag.ndef.makeMimeRecord<sup>9+</sup>
 
-makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
+makeMimeRecord(mimeType: string, mimeData: number[]): NdefRecord
 
 根据输入的MIME数据和类型，构建NDEF标签的Record。
 
@@ -931,8 +932,8 @@ makeMimeRecord(mimeType: string, mimeData: number[]): [NdefRecord](#ndefrecord9)
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let mimeType = "text/plain";   // change it to be correct.
-    let mimeData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
+    let mimeType = "text/plain";   // 修改为预期的符合规则的MIME类型
+    let mimeData = [0x01, 0x02, 0x03, 0x04]; // 修改为预期的符合格式的数据
     let ndefRecord : tag.NdefRecord = tag.ndef.makeMimeRecord(mimeType, mimeData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeMimeRecord rtdType: " + ndefRecord.rtdType);
@@ -946,7 +947,7 @@ try {
 ```
 ## tag.ndef.makeExternalRecord<sup>9+</sup>
 
-makeExternalRecord(domainName: string, type: string, externalData: number[]): [NdefRecord](#ndefrecord9)
+makeExternalRecord(domainName: string, type: string, externalData: number[]): NdefRecord
 
 根据应用程序特定的外部数据，构建NDEF标签的Record。
 
@@ -982,9 +983,9 @@ makeExternalRecord(domainName: string, type: string, externalData: number[]): [N
 import { tag } from '@kit.ConnectivityKit';
 
 try {
-    let domainName = "ohos.nfc.application"; // change it to be correct.
-    let type = "test"; // change it to be correct.
-    let externalData = [0x01, 0x02, 0x03, 0x04]; // change it to be correct.
+    let domainName = "ohos.nfc.application"; // 修改为符合规范的包名
+    let type = "test"; // 修改为正确的数据类型
+    let externalData = [0x01, 0x02, 0x03, 0x04]; // 修改为正确的外部数据内容
     let ndefRecord : tag.NdefRecord = tag.ndef.makeExternalRecord(domainName, type, externalData);
     if (ndefRecord != undefined) {
         console.log("ndefMessage makeExternalRecord rtdType: " + ndefRecord.rtdType);
@@ -1032,7 +1033,7 @@ messageToBytes(ndefMessage: [NdefMessage](js-apis-nfctech.md#ndefmessage9)): num
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // MUST can be parsed as NDEF Record.
+let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43]; // 必须符合NDEF格式的数据
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);
@@ -1076,7 +1077,7 @@ createNdefMessage(data: number[]): [NdefMessage](js-apis-nfctech.md#ndefmessage9
 ```js
 import { tag } from '@kit.ConnectivityKit';
 
-let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  // MUST can be parsed as NDEF Record.
+let rawData = [0xD1, 0x01, 0x03, 0x54, 0x4E, 0x46, 0x43];  //必须是可以被解析的NDEF记录
 try {
     let ndefMessage : tag.NdefMessage = tag.ndef.createNdefMessage(rawData);
     console.log("ndef createNdefMessage, ndefMessage: " + ndefMessage);

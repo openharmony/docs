@@ -40,17 +40,17 @@ Creates a **DeviceManager** instance.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **Parameters**
 
-| Name    | Type                                                | Mandatory| Description                                                       |
+| Name    | Type                                                | Mandatory | Description                                                       |
 | ---------- | ---------------------------------------------------- | ---- | ----------------------------------------------------------- |
 | bundleName | string                                               | Yes  | Bundle name of the application.                                 |
-| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback used to return the **DeviceManager** instance created.|
+| callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | Yes  | Callback used to return the **DeviceManager** instance created. |
 
 **Example**
 
@@ -84,7 +84,7 @@ Defines device information.
 
 | Name                    | Type                       | Mandatory  | Description      |
 | ---------------------- | ------------------------- | ---- | -------- |
-| deviceId               | string                    | Yes   | Unique identifier of the device.|
+| deviceId               | string                    | Yes   | Unique identifier of the device. |
 | deviceName             | string                    | Yes   | Device name.   |
 | deviceType             | [DeviceType](#devicetype) | Yes   | Device type.   |
 | networkId<sup>8+</sup> | string                    | Yes   | Network ID of the device. |
@@ -101,13 +101,13 @@ Enumerates the device types.
 
 | Name          | Value | Description  |
 | ------------ | ---- | ---- |
-| SPEAKER      | 0x0A | Smart speaker.|
+| SPEAKER      | 0x0A | Smart speaker. |
 | PHONE        | 0x0E | Phone.  |
-| TABLET       | 0x11 | Tablet  |
-| WEARABLE     | 0x6D | Wearable|
-| TV           | 0x9C | Smart TV |
+| TABLET       | 0x11 | Tablet.  |
+| WEARABLE     | 0x6D | Wearable.|
+| TV           | 0x9C | Smart TV. |
 | CAR          | 0x83 | Car.   |
-| UNKNOWN_TYPE | 0    | Unknown device type.|
+| UNKNOWN_TYPE | 0    | Unknown device type. |
 
 ## AuthForm<sup>10+</sup>
 
@@ -119,10 +119,10 @@ Enumerates the device authentication types.
 
 | Name                | Value | Description            |
 | ------------------- | ---- | --------------- |
-| INVALID_TYPE        | -1   | No authentication.|
+| INVALID_TYPE        | -1   | No authentication. |
 | PEER_TO_PEER        | 0    | Point-to-point authentication for devices without accounts.  |
 | IDENTICAL_ACCOUNT   | 1    | Authentication for devices using the same account.  |
-| ACROSS_ACCOUNT      | 2    | Authentication for devices using different accounts.|
+| ACROSS_ACCOUNT      | 2    | Authentication for devices using different accounts. |
 
 ## DeviceStateChangeAction
 
@@ -135,7 +135,7 @@ Enumerates the device states.
 | Name     | Value | Description             |
 | ------- | ---- | --------------- |
 | ONLINE  | 0    | The device is physically online.          |
-| READY   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services.|
+| READY   | 1    | The information between devices has been synchronized in the Distributed Data Service (DDS) module, and the device is ready for running distributed services. |
 | OFFLINE | 2    | The device is physically offline.          |
 | CHANGE  | 3    | The device information is changed.        |
 
@@ -149,7 +149,7 @@ Defines subscription information.
 
 | Name           | Type                               | Mandatory  | Description               |
 | ------------- | --------------------------------- | ---- | ----------------- |
-| subscribeId   | number                            | Yes   | Subscription ID, used to identify a device discovery period.|
+| subscribeId   | number                            | Yes   | Subscription ID, used to identify a device discovery period. |
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
 | medium        | [ExchangeMedium](#exchangemedium) | Yes   | Medium used for device discovery.            |
 | freq          | [ExchangeFreq](#exchangefreq)     | Yes   | Frequency of device discovery.            |
@@ -168,8 +168,8 @@ Enumerates the device discovery modes.
 
 | Name                   | Value | Description   |
 | --------------------- | ---- | ----- |
-| DISCOVER_MODE_PASSIVE | 0x55 | Passive discovery.|
-| DISCOVER_MODE_ACTIVE  | 0xAA | Active discovery.|
+| DISCOVER_MODE_PASSIVE | 0x55 | Passive discovery. |
+| DISCOVER_MODE_ACTIVE  | 0xAA | Active discovery. |
 
 
 ## ExchangeMedium 
@@ -184,7 +184,7 @@ Enumerates the media used for device discovery.
 | ---- | ---- | --------- |
 | AUTO | 0    | Automatic.  |
 | BLE  | 1    | Bluetooth.  |
-| COAP | 2    | Wi-Fi.|
+| COAP | 2    | Wi-Fi. |
 | USB  | 3    | USB. |
 
 ## ExchangeFreq 
@@ -200,7 +200,7 @@ Enumerates the device discovery frequencies.
 | LOW        | 0    | Low frequency. |
 | MID        | 1    | Medium frequency. |
 | HIGH       | 2    | High frequency. |
-| SUPER_HIGH | 3    | Ultra-high frequency.|
+| SUPER_HIGH | 3    | Ultra-high frequency. |
 
 
 ## SubscribeCap 
@@ -213,7 +213,7 @@ Enumerates the discovery capabilities.
 
 | Name                       | Value | Description            |
 | ------------------------- | ---- | -------------- |
-| SUBSCRIBE_CAPABILITY_DDMP | 0    | DDMP capability. This will be deprecated later.|
+| SUBSCRIBE_CAPABILITY_DDMP | 0    | DDMP capability. This will be deprecated later. |
 | SUBSCRIBE_CAPABILITY_OSD  | 1    | OSD capability.        |
 
 
@@ -228,7 +228,7 @@ Defines the authentication parameters.
 | Name       | Type                  | Mandatory  | Description        |
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. Optional. The default value is **undefined**.|
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. The default value is **undefined**.|
 
 ## AuthInfo
 
@@ -242,7 +242,7 @@ Defines authentication information.
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
 | token     | number               | Yes   | Authentication token.  |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. Optional. The default value is **undefined**.|
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | No   | Extended field. The default value is **undefined**.|
 
 ## PublishInfo<sup>9+</sup>
 
@@ -254,7 +254,7 @@ Defines published device information.
 
 | Name         | Type                             | Mandatory  | Description               |
 | ------------- | --------------------------------- | ---- | ----------------- |
-| publishId     | number                            | Yes   | ID used to identify a publication period.|
+| publishId     | number                            | Yes   | ID used to identify a publication period. |
 | mode          | [DiscoverMode ](#discovermode)    | Yes   | Device discovery mode.            |
 | freq          | [ExchangeFreq](#exchangefreq)     | Yes   | Frequency of device discovery.            |
 | ranging       | boolean                           | Yes   | Whether the device supports distance reporting.            |
@@ -279,7 +279,7 @@ Releases this **DeviceManager** instance when it is no longer used.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -315,13 +315,13 @@ Obtains all trusted devices synchronously.
 
   | Name                                    | Description       |
   | -------------------------------------- | --------- |
-  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+  | Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -356,7 +356,7 @@ Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices onl
 
 **Parameters**
 
-| Name       | Type                              | Mandatory| Description                               |
+| Name       | Type                              | Mandatory | Description                               |
 | ------------- | --------------------------------- | ---- | ---------------------------------- |
 |   isRefresh   | boolean                           | Yes  | Whether to enable the heartbeat mode and update the list of online trusted devices.     |
 
@@ -364,13 +364,13 @@ Enables the DSoftBus heartbeat mode to quickly bring offline trusted devices onl
 
 | Name                                    | Description           |
 | -------------------------------------- | ---------------- |
-| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained.|
+| Array&lt;[DeviceInfo](#deviceinfo)&gt; | List of trusted devices obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -408,13 +408,13 @@ Obtains all trusted devices. This API uses an asynchronous callback to return th
 
   | Name      | Type                                    | Mandatory  | Description                   |
   | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices.|
+  | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Yes   | Callback used to return the list of trusted devices. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
@@ -456,13 +456,13 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
+  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 
@@ -496,13 +496,13 @@ Obtains local device information synchronously.
 
   | Name                     | Description             |
   | ------------------------- | ---------------- |
-  | [DeviceInfo](#deviceinfo) | List of local devices obtained.|
+  | [DeviceInfo](#deviceinfo) | List of local devices obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -539,13 +539,13 @@ Obtains local device information. This API uses an asynchronous callback to retu
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information.|
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the local device information. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
@@ -588,13 +588,13 @@ Obtains local device information. This API uses a promise to return the result.
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 
@@ -628,14 +628,14 @@ Obtains the information about a specific device based on the network ID. This AP
 
   | Name      | Type                                    | Mandatory  | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
-  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the information about the specified device.|
+  | networkId| string                                   | Yes  | Network ID of the device. |
+  | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | Yes   | Callback used to return the information about the specified device. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
@@ -677,21 +677,21 @@ Obtains the information about a specific device based on the network ID. This AP
 
 **Parameters**
 
-  | Name  | Type                                    | Mandatory| Description       |
+  | Name  | Type                                    | Mandatory | Description       |
   | -------- | ---------------------------------------- | ---- | --------- |
-  | networkId| string                                   | Yes  | Network ID of the device.|
+  | networkId| string                                   | Yes  | Network ID of the device. |
   
 **Return value**
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                        |
+| ID | Error Message                                                        |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified networkId is greater than 255. |
@@ -726,7 +726,7 @@ Starts to discover peripheral devices. The discovery process lasts 2 minutes. A 
 
 **Parameters**
 
-  | Name           | Type                      | Mandatory| Description   |
+  | Name           | Type                      | Mandatory | Description   |
   | ------------- | ------------------------------- | ---- | ----- |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
 
@@ -734,7 +734,7 @@ Starts to discover peripheral devices. The discovery process lasts 2 minutes. A 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -793,14 +793,14 @@ Starts to discover peripheral devices and filters discovered devices. The discov
 
   | Name           | Type                      | Mandatory  | Description   |
   | ------------- | ------------------------------- | ---- | -----  |
-  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
-  | filterOptions | string                          | No  | Options for filtering discovered devices. Optional. The default value is **undefined**, indicating that discovery of offline devices.|
+  | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information. |
+  | filterOptions | string                          | No  | Options for filtering discovered devices. The default value is **undefined**, which indicates discovery of offline devices.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -881,13 +881,13 @@ Stops device discovery.
 
   | Name         | Type  | Mandatory  | Description   |
   | ----------- | ------ | ---- | ----- |
-  | subscribeId | number | Yes   | Subscription ID.|
+  | subscribeId | number | Yes   | Subscription ID. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -924,15 +924,15 @@ Publishes device information for discovery purposes. The publish process lasts 2
 
 **Parameters**
 
-  | Name         | Type                       | Mandatory| Description   |
+  | Name         | Type                       | Mandatory | Description   |
   | ------------- | ------------------------------- | ---- | ----- |
-  | publishInfo   | [PublishInfo](#publishinfo9)     | Yes  | Device information to publish.|
+  | publishInfo   | [PublishInfo](#publishinfo9)     | Yes  | Device information to publish. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -984,15 +984,15 @@ Stops publishing device information.
 
 **Parameters**
 
-  | Name       | Type| Mandatory| Description |
+  | Name       | Type | Mandatory | Description |
   | ----------- | -------- | ---- | ----- |
-  | publishId   | number   | Yes  | Publish ID.|
+  | publishId   | number   | Yes  | Publish ID. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -1033,13 +1033,13 @@ Authenticates a device.
   | ---------- | ---------------------------------------- | ---- | ------- |
   | deviceInfo | [DeviceInfo](#deviceinfo)                | Yes   | Device information.  |
   | authParam  | [AuthParam](#authparam)                  | Yes   | Authentication parameter.  |
-  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback used to return the authentication result.|
+  | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | Yes   | Callback used to return the authentication result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
@@ -1071,7 +1071,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
   }
 
   interface AuthParam {
-    authType: number; // Authentication type. The value 1 means no account PIN authentication.
+    authType: number,// Authentication type. The value 1 means PIN authentication.
     extraInfo: ExtraInfo;
   }
 
@@ -1091,7 +1091,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
     business: '0'
   };
   let authParam: AuthParam = {
-    authType: 1, // Authentication type. The value 1 means no account PIN authentication.
+    authType: 1,// Authentication type. The value 1 means no account PIN authentication.
     extraInfo: extraInfo
   };
 
@@ -1126,13 +1126,13 @@ Deauthenticates a device.
 
   | Name        | Type                     | Mandatory  | Description   |
   | ---------- | ------------------------- | ---- | ----- |
-  | deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information.|
+  | deviceInfo | [DeviceInfo](#deviceinfo) | Yes   | Device information. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Device Management Error Codes](errorcode-device-manager.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -1186,13 +1186,13 @@ Verifies authentication information.
   | Name      | Type                                    | Mandatory  | Description     |
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | Yes   | Authentication information.  |
-  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback used to return the verification result.|
+  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | Yes   | Callback used to return the verification result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. |
@@ -1260,13 +1260,13 @@ Sets a user operation.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | operateAction | number          | Yes   | User operation.      |
-  | params        | string          | Yes   | Input parameters of the user.|
+  | params        | string          | Yes   | Input parameters of the user. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.    |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
@@ -1312,13 +1312,13 @@ Obtains the registration information of the credential.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | requestInfo   | string          | Yes   | Request credential information.      |
-  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback used to return the credential registration information.|
+  | callback      | AsyncCallback<{registerInfo: string}>         | Yes   | Callback used to return the credential registration information. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified params is greater than 255.    |
@@ -1374,13 +1374,13 @@ Imports credential information.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | credentialInfo| string          | Yes   | Credential information to import.      |
-  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
@@ -1469,13 +1469,13 @@ Deletes credential information.
   | Name      | Type           | Mandatory | Description               |
   | ------------- | --------------- | ---- | ------------------- |
   | queryInfo     | string          | Yes   | Credential information to delete.      |
-  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result.|
+  | callback      | AsyncCallback<{resultInfo: string}>           | Yes   | Callback used to return the result. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified credentialInfo is greater than 5999. |
@@ -1521,7 +1521,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
-Subscribes to UI status changes.
+Subscribes to UI state changes.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [on('replyResult')](js-apis-distributedDeviceManager-sys.md#onreplyresult) instead.
 
@@ -1531,16 +1531,16 @@ Subscribes to UI status changes.
 
 **Parameters**
 
-  | Name     | Type                            | Mandatory| Description                           |
+  | Name     | Type                            | Mandatory | Description                           |
   | -------- | ------------------------------------ | ---- | ------------------------------ |
-  | type     | string                                | Yes | Event type, which has a fixed value of **uiStateChange**.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback used to return the UI status.       |
+| type     | string                                | Yes | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | Yes | Callback used to return the UI status change.       |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -1576,7 +1576,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
-Unsubscribes from UI status changes.
+Unsubscribes from UI state changes.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [off('replyResult')](js-apis-distributedDeviceManager-sys.md#offreplyresult) instead.
 
@@ -1586,16 +1586,16 @@ Unsubscribes from UI status changes.
 
 **Parameters**
 
-  | Name     | Type                             | Mandatory| Description                           |
+  | Name     | Type                             | Mandatory | Description                           |
   | -------- | ------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                | Yes  | Event type, which has a fixed value of **uiStateChange**.|
-  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback used to return the UI status.|
+| type     | string                                | Yes  | Event type. The value is **'uiStateChange'**, which indicates UI status changes.|
+  | callback | Callback&lt;{&nbsp;param:&nbsp;string}&gt; | No  | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -1618,7 +1618,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'deviceStateChange',  callback: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
-Subscribes to changes in the device state.
+Subscribes to device state changes.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [on('deviceStateChange')](js-apis-distributedDeviceManager.md#ondevicestatechange) instead.
 
@@ -1630,14 +1630,14 @@ Subscribes to changes in the device state.
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type. The value is **deviceStateChange**, which indicates a device state change event.|
+  | type     | string                                   | Yes   | Event type. The value is **deviceStateChange**, which indicates the device state change.|
   | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback used to return the device information and state.     |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -1675,7 +1675,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 off(type: 'deviceStateChange', callback?: Callback&lt;{ action: DeviceStateChangeAction, device: DeviceInfo }&gt;): void
 
-Unsubscribes from changes in the device state.
+Unsubscribes from device state changes.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [off('deviceStateChange')](js-apis-distributedDeviceManager.md#offdevicestatechange) instead.
 
@@ -1687,14 +1687,14 @@ Unsubscribes from changes in the device state.
 
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceStateChange**.       |
-  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback used to return the device information and state.|
+| type     | string                                   | Yes   | Event type. The value is **'deviceStateChange'**, which indicates device state changes.       |
+  | callback | Callback&lt;{&nbsp;action:&nbsp;[DeviceStateChangeAction](#devicestatechangeaction),&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -1744,14 +1744,14 @@ Subscribes to device discovery events.
 
   | Name      | Type                                    | Mandatory  | Description                        |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceFound**.|
+| type     | string                                   | Yes   | Event type. The value is **'deviceFound'**, which indicates discovery of a device.|
   | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | Yes   | Callback used for device discovery.              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -1801,14 +1801,14 @@ Unsubscribes from device discovery events.
 
   | Name      | Type                                    | Mandatory  | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **deviceFound**.               |
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback used to return the device information and state.|
+| type     | string                                   | Yes   | Event type. The value is **'deviceFound'**, which indicates discovery of a device.                |
+| callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;device:&nbsp;[DeviceInfo](#deviceinfo)&nbsp;}&gt; | No   | Callback to unregister. |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -1858,14 +1858,14 @@ Subscribes to device discovery failures.
 
   | Name      | Type                                    | Mandatory  | Description                            |
   | -------- | ---------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **discoverFail**.|
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback used for the device discovery failure.                |
+| type     | string                                   | Yes   | Event type. The value is **'discoverFail'**, which indicates a failure in discovering devices.|
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes   | Callback used to return a device discovery failure.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -1907,14 +1907,14 @@ Unsubscribes from device discovery failures.
 
   | Name      | Type                                    | Mandatory  | Description               |
   | -------- | ---------------------------------------- | ---- | ----------------- |
-  | type     | string                                   | Yes   | Event type, which has a fixed value of **discoverFail**.    |
-  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback used for the device discovery failure.|
+| type     | string                                   | Yes   | Event type. The value is **'discoverFail'**, which indicates a failure in discovering devices.    |
+  | callback | Callback&lt;{&nbsp;subscribeId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No   | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -1944,7 +1944,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
-Subscribes to device information publication success events.
+Subscribes to the **'publishSuccess'** event. The application will be notified when the information of a device is published.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -1954,16 +1954,16 @@ Subscribes to device information publication success events.
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                      |
+  | Name    | Type                                | Mandatory | Description                      |
   | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | Yes  | Event type, which has a fixed value of **publishSuccess**.|
+| type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.|
   | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | Yes  | Callback used to return the publish ID.              |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -2002,16 +2002,16 @@ Unsubscribes from device information publication success events.
 
 **Parameters**
 
-  | Name    | Type                                | Mandatory| Description                         |
+  | Name    | Type                                | Mandatory | Description                         |
   | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | Yes  | Event type, which has a fixed value of **publishSuccess**.                |
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback used to return the publish ID.|
+| type     | string                                   | Yes  | Event type. The value is **'publishSuccess'**, which indicates an event of the success in publishing device information.                |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | No  | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -2050,16 +2050,16 @@ Subscribes to device information publication failures.
 
 **Parameters**
 
-  | Name    | Type                                             | Mandatory| Description                            |
+  | Name    | Type                                             | Mandatory | Description                            |
   | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                                | Yes  | Event type, which has a fixed value of **publishFail**.|
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback used for the publication failure.                |
+| type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.|
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | Yes  | Callback used to return a failure in publishing device information.                |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -2089,7 +2089,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
-Unsubscribes from device information publication failures.
+Unsubscribes from the **'publishFail'** event.
 
 > **NOTE**<br>This API is deprecated since API version 11. There is no substitute API.
 
@@ -2099,16 +2099,16 @@ Unsubscribes from device information publication failures.
 
 **Parameters**
 
-  | Name    | Type                                             | Mandatory| Description               |
+  | Name    | Type                                             | Mandatory | Description               |
   | -------- | ----------------------------------------------------- | ---- | ----------------- |
-  | type     | string                                                | Yes  | Event type, which has a fixed value of **publishFail**.    |
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback used for the device discovery failure.|
+| type     | string                                                | Yes  | Event type. The value is **'publishFail'**, which indicates a failure in publishing device information.    |
+  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | No  | Callback to unregister.|
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -2138,7 +2138,7 @@ For details about how to initialize **dmInstance** in the example, see [deviceMa
 
 on(type: 'serviceDie', callback: () =&gt; void): void
 
-Subscribes to dead events of the **DeviceManager** service.
+Subscribes to dead events of the **DeviceManager** service. The application will be notified when the **DeviceManager** service is terminated unexpectedly.
 
 > **NOTE**<br>This API is deprecated since API version 11. Use [on('serviceDie')](js-apis-distributedDeviceManager.md#onservicedie) instead.
 
@@ -2150,14 +2150,14 @@ Subscribes to dead events of the **DeviceManager** service.
 
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type, which has a fixed value of **serviceDie**.|
-  | callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when a dead event of the **DeviceManager** service occurs.                      |
+| type     | string                  | Yes   | Event type. The value is **'serviceDie'**, which indicates unexpected termination of the **DeviceManager** service.|
+  | callback | ()&nbsp;=&gt;&nbsp;void | Yes   | Callback invoked when the **DeviceManager** service is unexpectedly terminated.                      |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |
@@ -2194,14 +2194,14 @@ Unsubscribes from dead events of the **DeviceManager** service.
 
   | Name      | Type                   | Mandatory  | Description                                      |
   | -------- | ----------------------- | ---- | ---------------------------------------- |
-  | type     | string                  | Yes   | Event type, which has a fixed value of **serviceDie**.|
-  | callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback used to return the dead event of the **DeviceManager** service.                    |
+| type     | string                  | Yes   | Event type. The value is **'serviceDie'**, which indicates unexpected termination of the **DeviceManager** service.|
+  | callback | ()&nbsp;=&gt;&nbsp;void | No   | Callback to unregister.                    |
 
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
 
-| ID| Error Message                                                       |
+| ID | Error Message                                                       |
 | -------- | --------------------------------------------------------------- |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed. 4. The size of specified eventType is greater than 255. |

@@ -39,8 +39,8 @@ DrawingRenderingContext(unit?: LengthMetricsUnit)
 
 | Name| Type| Read Only| Optional| Description|
 | ---------- | -------------- | ------ | ---------------- | ------------------------ |
-| width | number | No| No| Width of the **DrawingRenderingContext** object.|
-| height | number | No| No| Height of the **DrawingRenderingContext** object.|
+| width | number | No| No| Width of the **DrawingRenderingContext** object, which corresponds to the width of the associated **Canvas** component.|
+| height | number | No| No| Height of the **DrawingRenderingContext** object, which corresponds to the height of the associated **Canvas** component.|
 
 ## Methods
 

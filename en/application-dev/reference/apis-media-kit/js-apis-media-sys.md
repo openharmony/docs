@@ -367,7 +367,7 @@ This API can be called only after the [prepare()](js-apis-media.md#prepare9-3) e
 
 | Name  | Type                 | Mandatory| Description                        |
 | -------- | -------------------- | ---- | --------------------------- |
-| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8 KB, the watermark resolution is 3072 x 288; if the original image is 4 KB, the watermark resolution is 1536 x 144.|
+| watermark | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)      | Yes  | PixelMap data.<br>Currently, the following specifications are supported:<br>- Only RGBA8888 is supported.<br>- If the original image is 8K, the watermark resolution should be limited to a size of 3072 x 288; if the original image is 4K, the watermark resolution should be limited to a size of 1536 x 144.|
 | config    | [WatermarkConfig](#watermarkconfig13)   | Yes  | Watermark configuration.|
 
 **Return value**
@@ -408,7 +408,7 @@ avRecorder.setWatermark(watermark, watermarkConfig).then(() => {
 
 Implements video recording. Before calling any API in the **VideoRecorder** class, you must use [createVideoRecorder()](#mediacreatevideorecorder9) to create a [VideoRecorder](#videorecorder9) instance.
 
-### Attributes
+### Properties
 
 **System capability**: SystemCapability.Multimedia.Media.VideoRecorder
 

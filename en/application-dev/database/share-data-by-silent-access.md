@@ -24,7 +24,7 @@ If the service processing is too complex to be encapsulated, use [DataShareExten
 - Process data: process data, in the JSON or byte format, managed by **DatamgrService**. It is stored in the **DatamgrService** sandbox directory, and is automatically deleted 10 days after no subscription.
 
 
-- Dynamic data: data stored in the memory of a device. It is automatically deleted after the device is restarted. Currently, the dynamic data refers to only the data set by **enableSilentProxy** and **disableSilentProxy**.
+- Dynamic data: data stored in the memory of a device. It is automatically deleted after the device is restarted. The dynamic data refers to only the data set by **enableSilentProxy** and **disableSilentProxy**.
 
 
 | Data Type | Location     | Data Format       | Validity Period         | Usage                             |
@@ -49,13 +49,14 @@ If the service processing is too complex to be encapsulated, use [DataShareExten
 
 - You can add parameters to the URI to specify the access mode and target object. When adding parameters to a URI, note that the URI must be in the **datashareproxy://{*bundleName*}/{*dataPath*}?{*arg1*}&{*arg2*}** format. Otherwise, the parameters do not take effect.
 
-  The parameters to add start with a question mark (?) and separated by an ampersand (&). Consecutive symbols (for example, ???? or &&&) are considered as one. Currently, only **Proxy** and **appIndex** can be added. If the URI contains multiple question marks (?), the parameter following the question mark (?) must be **Proxy**. Otherwise, this parameter does not take effect.
+  The parameters to add start with a question mark (?) and separated by an ampersand (&). Consecutive symbols (for example, ???? or &&&) are considered as one. Currently, only the **Proxy**, **appIndex**, and **user** parameters are supported. If the URI contains multiple question marks (?), the parameter following the question mark (?) must be **Proxy**. Otherwise, this parameter does not take effect.
 
   - **Proxy** specifies the data access mode used by the data consumer. The value can be **true** or **false**. The value **true** indicates the silent access mode, and **false** indicates the non-silent access mode.
 
-  - **appIndex** specifies the index of an application clone. The value must be an integer starting from 1. This parameter takes effect only for cloned applications. For details about **appIndex**, see [BundleInfo](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md). If **appIndex** is **0** or left empty, the data consumer accesses the data provider application.
+  - **appIndex** specifies the index of an application clone. The value must be an integer starting from 1. This parameter takes effect only for cloned applications. For details about **appIndex**, see [BundleInfo](../reference/apis-ability-kit/js-apis-bundleManager-bundleInfo.md). If **appIndex** is **0** or left empty, the data consumer accesses the application of the data provider.
 
-    Currently, cloned applications can be accessed only in silent mode. When setting the URI and parameters for accessing an application clone, both **Proxy** and **appIndex** are mandatory. For example, **datashareproxy://{bundleName}/{dataPath}?Proxy=true&appIndex=1** indicates that the data consumer accesses the first clone of the application in silent access mode.
+    Currently, cloned applications are supported only in silent access mode. When setting the URI and parameters for accessing an application clone, both **Proxy** and **appIndex** must be set. For example, **datashareproxy://{bundleName}/{dataPath}?Proxy=true&appIndex=1** indicates that the data consumer will access the first clone of the application in silent access mode.
+
 
 ## Constraints
 
@@ -84,7 +85,7 @@ Most of the APIs for silent access are executed asynchronously in callback or pr
 | query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;DataShareResultSet&gt;): void | Queries data in the database.          |
 | update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void | Updates data in the database.        |
 | addTemplate(uri: string, subscriberId: string, template: Template): void | Adds a data template with the specified subscriber.     |
-| on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult | Subscribes to the changes of the data corresponding to the specified URI and template.|
+| on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, callback: AsyncCallback&lt;RdbDataChangeNode&gt;): Array&lt;OperationResult&gt; | Subscribes to the changes of the data corresponding to the specified URI and template.|
 
 ### APIs for Accessing Process Data
 
@@ -106,7 +107,7 @@ Most of the APIs for silent access are executed asynchronously in callback or pr
 
 The following walks you through on how to share an RDB store.
 
-### Data Provider Application
+### Data Provider Application Development
 
 1. In the **module.json5** file, set the data to be shared in **proxyData**. For details about the configuration, see [module.json5 Configuration File](../quick-start/module-configuration-file.md).
 
@@ -122,11 +123,13 @@ The following walks you through on how to share an RDB store.
    **module.json5 example**
 
    ```json
-   "proxyData":[
+   // The following uses settingsdata as an example.
+   "proxyData": [
      {
-       "uri": "datashareproxy://com.acts.ohos.data.datasharetest/test",
-       "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
-       "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+       "uri": "datashareproxy://com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE",
+       // Configure permissions based on actual situation. The permissions configured here are examples only.
+       "requiredReadPermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
+       "requiredWritePermission": "ohos.permission.MANAGE_SECURE_SETTINGS",
        "metadata": {
          "name": "dataProperties",
          "resource": "$profile:my_config"
@@ -140,7 +143,7 @@ The following walks you through on how to share an RDB store.
    | ----- | ---------------------------------------- | ---- |
    | path  | Data source path, in the **Database_name/Table_name** format. Currently, only RDB stores are supported.             | Yes   |
    | type  | Database type. Currently, only **rdb** is supported.            | Yes   |
-   | scope | Scope of the database.<br>- **module** indicates that the database is located in this module.<br>- **application** indicates that the database is located in this application.| No   |
+   | scope | Scope of the database.<br>1. **module** indicates that the database is located in this module.<br>2. **application** indicates that the database is located in this application.| No   |
 
    **my_config.json example**
 
@@ -152,7 +155,7 @@ The following walks you through on how to share an RDB store.
    }
    ```
 
-### Data Consumer Application
+### Data Consumer Application Development
 
 
 1. Import dependencies.
@@ -167,7 +170,7 @@ The following walks you through on how to share an RDB store.
 2. Define the URI string for communicating with the data provider.
 
    ```ts
-   let dseUri = ('datashareproxy://com.acts.ohos.data.datasharetest/test');
+   let dseUri = ('datashareproxy://com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE');
    ```
 
 3. Create a **DataShareHelper** instance.
@@ -256,7 +259,7 @@ The following walks you through on how to share an RDB store.
    }
    let templateId: dataShare.TemplateId = {
      subscriberId: "111",
-     bundleNameOfOwner: "com.acts.ohos.data.datasharetestclient"
+     bundleNameOfOwner: "com.ohos.settingsdata"
    }
    if(dsHelper != undefined) {
      // When DatamgrService modifies data, onCallback is invoked to return the data queried based on the rules in the template.
@@ -268,7 +271,7 @@ The following walks you through on how to share an RDB store.
 
 The following walks you through on how to host process data.
 
-### (Optional) Data Provider Application
+### (Optional) Data Provider Application Development
 
 In the **module.json5** file, set the data to be hosted in **proxyData**. For details about the configuration, see [module.json5 Configuration File](../quick-start/module-configuration-file.md).
 
@@ -289,16 +292,18 @@ In the **module.json5** file, set the data to be hosted in **proxyData**. For de
 **module.json5 example**
 
 ```json
+// The following is an example only. Configure it as required.
 "proxyData": [
   {
     "uri": "datashareproxy://com.acts.ohos.data.datasharetest/weather",
-    "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+    // Configure permissions based on actual situation. The permissions configured here are examples only.
+    "requiredReadPermission": "ohos.permission.READ_WEATHER_DATA",
     "requiredWritePermission": "ohos.permission.KEEP_BACKGROUND_RUNNING"
   }
 ]
 ```
 
-### Data Consumer Application
+### Data Consumer Application Development
 
 1. Import dependencies.
 
@@ -360,7 +365,7 @@ In the **module.json5** file, set the data to be hosted in **proxyData**. For de
 
 Only the data provider is involved. The following walks you through on how to dynamically enable silent access.
 
-### Data Provider Application
+### Data Provider Application Development
 
 The data provider calls the **enableSilentProxy** API to dynamically enable silent access. This API must be used with the **isSilentProxyEnable** field in the **data_share_config.json** file. For details, see [**data_share_config.json** configuration](./share-data-by-datashareextensionability.md).
 
@@ -382,7 +387,7 @@ The data provider calls the **enableSilentProxy** API to dynamically enable sile
 2. Define the URI string for communicating with the data provider.
 
    ```ts
-   let dseUri = ('datashare:///com.acts.datasharetest/entry/DB00/TBL00');
+   let dseUri = ('datashare:///com.ohos.settingsdata/entry/DB00/TBL00');
    ```
 
 3. Create a **DataShareHelper** instance.

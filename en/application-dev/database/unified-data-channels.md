@@ -13,6 +13,8 @@ The unified data channel provides cross-application data access for various serv
 
 The unified data channel is implemented by the system ability provided by the UDMF. When an application (data provider) needs to share data, it calls the **insertData()** method provided by the UDMF to write the data to the UDMF data channel, and calls UDMF **updateData()** or **deleteData()** to update or delete the data saved by the application. The target application (data consumer) can access the data by the APIs provided by the UDMF. The UDMF manages the data lifecycle in a unified manner and deletes the data that has been stored for more than one hour every hour.
 
+Avoid using **unifiedDataChannel** APIs in multi-threaded calls.
+
 The unified data object (**UnifiedData**) is uniquely identified by a URI in the UDMF data channel. The URI is in the **udmf://*intention*/*bundleName*/*groupId*** format, where:
 
 + **udmf**: protocol used to provide the data channel.

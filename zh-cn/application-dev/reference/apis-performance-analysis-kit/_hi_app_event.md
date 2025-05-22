@@ -5,8 +5,6 @@
 
 HiAppEvent模块提供应用事件打点功能。
 
-为应用程序提供事件打点功能，记录运行过程中上报的故障事件、统计事件、安全事件和用户行为事件。基于事件信息，您可以分析应用的运行状态。
-
 为应用程序提供事件打点功能，记录运行过程中上报的故障事件、统计事件、安全事件和用户行为事件。基于事件信息，开发者可以分析应用的运行状态。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
@@ -22,9 +20,9 @@ HiAppEvent模块提供应用事件打点功能。
 | 名称 | 描述 | 
 | -------- | -------- |
 | [hiappevent.h](hiappevent_8h.md) | HiAppEvent模块的应用事件打点函数定义。<br/>**引用文件**：<hiappevent/hiappevent.h><br/>**库**：libhiappevent_ndk.z.so | 
-| [hiappevent_cfg.h](hiappevent__cfg_8h.md) | 定义事件打点配置函数的所有配置项名称。<br/>**引用文件**：<hiappevent/hiappevent_event.h><br/>**库**：libhiappevent_ndk.z.so | 
-| [hiappevent_event.h](hiappevent__event_8h.md) | 定义所有预定义事件的事件名称。<br/>**引用文件**：<hiappevent/hiappevent_param.h><br/>**库**：libhiappevent_ndk.z.so | 
-| [hiappevent_param.h](hiappevent__param_8h.md) | 定义所有预定义事件的参数名称。<br/>**引用文件**：<hiappevent/hiappevent_cfg.h><br/>**库**：libhiappevent_ndk.z.so | 
+| [hiappevent_cfg.h](hiappevent__cfg_8h.md) | 定义事件打点配置函数的所有配置项名称。<br/>**引用文件**：<hiappevent/hiappevent_cfg.h><br/>**库**：libhiappevent_ndk.z.so | 
+| [hiappevent_event.h](hiappevent__event_8h.md) | 定义所有预定义事件的事件名称。<br/>**引用文件**：<hiappevent/hiappevent_event.h><br/>**库**：libhiappevent_ndk.z.so | 
+| [hiappevent_param.h](hiappevent__param_8h.md) | 定义所有预定义事件的参数名称。<br/>**引用文件**：<hiappevent/hiappevent_param.h><br/>**库**：libhiappevent_ndk.z.so | 
 
 
 ### 结构体

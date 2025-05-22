@@ -1,6 +1,6 @@
-# Video Recording Sample (ArkTS)
+# Video Recording Practices (ArkTS)
 
-Before developing a camera application, request permissions by following the instructions provided in [Camera Development Preparations](camera-preparation.md).
+Before developing a camera application, request permissions by following the instructions provided in [Requesting Camera Development Permissions](camera-preparation.md).
 
 This topic provides sample code that covers the complete recording process to help you understand the complete API calling sequence.
 

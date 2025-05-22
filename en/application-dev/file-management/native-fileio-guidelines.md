@@ -20,7 +20,7 @@ For details about the APIs, see [FileIO](../reference/apis-core-file-kit/_file_i
 | -------- | -------- |
 | FileManagement_ErrCode OH_FileIO_GetFileLocation(char *uri, int uriLength, FileIO_FileLocation *location)| Obtains the location of a file.|
 | enum FileIO_FileLocation FileIO_FileLocation| Enumerates the file locations.|
-| enum enum FileManagement_ErrCode FileManagement_ErrCode| Enumerates the error codes used in the **FileIO** module.|
+| enum FileManagement_ErrCode FileManagement_ErrCode| Enumerates the error codes used in the **FileIO** module.|
 
 ## How to Develop
 

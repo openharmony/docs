@@ -4,7 +4,7 @@
 
 > **说明：**
 > 
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ArkUI框架对以下组件实现了默认的拖拽能力，支持对数据的拖出或拖入响应。开发者也可以通过实现通用拖拽事件来自定义拖拽响应。
 
@@ -437,7 +437,7 @@ struct Example {
 
 ```ts
 // xxx.ets
-import { ImageModifier } from '@kit.ArkUI'
+import { ImageModifier } from '@kit.ArkUI';
 
 @Entry
 @Component

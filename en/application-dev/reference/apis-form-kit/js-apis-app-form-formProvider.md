@@ -12,7 +12,7 @@ The **FormProvider** module provides APIs related to the widget provider. You ca
 import { formProvider } from '@kit.FormKit';
 ```
 
-## setFormNextRefreshTime
+## formProvider.setFormNextRefreshTime
 
 setFormNextRefreshTime(formId: string, minute: number, callback: AsyncCallback&lt;void&gt;): void
 
@@ -65,7 +65,7 @@ try {
 }
 ```
 
-## setFormNextRefreshTime
+## formProvider.setFormNextRefreshTime
 
 setFormNextRefreshTime(formId: string, minute: number): Promise&lt;void&gt;
 
@@ -121,7 +121,7 @@ try {
 }
 ```
 
-## updateForm
+## formProvider.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData,callback: AsyncCallback&lt;void&gt;): void
 
@@ -178,7 +178,7 @@ try {
 }
 ```
 
-## updateForm
+## formProvider.updateForm
 
 updateForm(formId: string, formBindingData: formBindingData.FormBindingData): Promise&lt;void&gt;
 
@@ -238,7 +238,7 @@ try {
 }
 ```
 
-## getFormsInfo
+## formProvider.getFormsInfo
 
 getFormsInfo(callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
@@ -283,7 +283,7 @@ try {
   console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message})`);
 }
 ```
-## getFormsInfo
+## formProvider.getFormsInfo
 
 getFormsInfo(filter: formInfo.FormInfoFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
@@ -334,7 +334,7 @@ try {
 }
 ```
 
-## getFormsInfo
+## formProvider.getFormsInfo
 
 getFormsInfo(filter?: formInfo.FormInfoFilter): Promise&lt;Array&lt;formInfo.FormInfo&gt;&gt;
 

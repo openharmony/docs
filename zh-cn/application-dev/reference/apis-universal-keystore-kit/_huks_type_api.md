@@ -3,7 +3,7 @@
 
 ## 概述
 
-描述HUKS类型定义的头文件，声明了HUKS API需要的各种宏、枚举、数据结构、错误码等。
+定义HUKS类型的头文件，声明各种宏、枚举、数据结构、错误码等。
 
 **系统能力：** SystemCapability.Security.Huks
 
@@ -543,7 +543,7 @@ enum OH_Huks_Tag
 | OH_HUKS_TAG_NO_AUTH_REQUIRED | 表示是否需要密钥访问控制。 | 
 | OH_HUKS_TAG_USER_AUTH_TYPE | 表示密钥访问控制中用户认证类型。 | 
 | OH_HUKS_TAG_AUTH_TIMEOUT | 表示密钥访问控制类型中密钥访问的超时时间。 | 
-| OH_HUKS_TAG_AUTH_TOKEN | 表示密钥访问控制中使用密钥时传入的authtoken的类型 | 
+| OH_HUKS_TAG_AUTH_TOKEN | 表示密钥访问控制中使用密钥时传入的authtoken的类型。 | 
 | OH_HUKS_TAG_KEY_AUTH_ACCESS_TYPE | 表示安全访问控制类型，需要和用户认证类型同时设置，类型可在枚举[OH_Huks_AuthAccessType](#oh_huks_authaccesstype)中选择。 | 
 | OH_HUKS_TAG_KEY_SECURE_SIGN_TYPE | 表示生成或导入密钥时，指定该密钥的签名类型。 | 
 | OH_HUKS_TAG_CHALLENGE_TYPE | 表示密钥使用时生成的challenge类型，类型可在枚举[OH_Huks_ChallengeType](#oh_huks_challengetype)中选择。 | 

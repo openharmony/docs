@@ -1,24 +1,24 @@
-# Media Data Demuxing
+# Media Data Demultiplexing
 
-You can call the native APIs provided by the AVDemuxer module to demux media data. The demuxing involves extracting media samples such as audio, video, and subtitles from bit stream data, and obtaining information related to Digital Rights Management (DRM).
+You can call the native APIs provided by the AVDemuxer module to demultiplex media data. The demultiplexing involves extracting media samples such as audio, video, and subtitles from bit stream data, and obtaining information related to Digital Rights Management (DRM).
 
 Currently, two data input types are supported: remote connection (over HTTP) and File Descriptor (FD).
 
-For details about the supported demuxing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-demuxing).
+For details about the supported demultiplexing formats, see [AVCodec Supported Formats](avcodec-support-formats.md#media-data-demultiplexing).
 
 **Usage Scenario**
 
 - Audio and video playback
   
-  Demux media streams, decode the samples obtained through demuxing, and play the samples.
+  Demultiplex media streams, decode the samples obtained through demultiplexing, and play the samples.
 
 - Audio and video editing
   
-  Demux media streams, and edit the specified samples.
+  Demultiplex media streams, and edit the specified samples.
 
 - Media file format conversion
 
-  Demux media streams, and encapsulate them into a new file format.
+  Demultiplex media streams, and encapsulate them into a new file format.
 
 ## How to Develop
 
@@ -63,7 +63,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    When using **open** to obtain the FD, convert the value of **filepath** to a [sandbox path](../../file-management/app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths) to obtain sandbox resources.
 
    ```c++
-   // Create the FD. You must have the read permission on the file instance to open the file. (filePath indicates the path of the file to be demuxed. The file must exist.)
+   // Create the FD. You must have the read permission on the file instance to open the file. (filePath indicates the path of the file to be demultiplexed. The file must exist.)
    std::string filePath = "test.mp4";
    int fd = open(filePath.c_str(), O_RDONLY);
    struct stat fileStatus {};
@@ -74,7 +74,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
       printf("get stat failed");
       return;
    }
-   // Create a source resource instance for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demuxing may fail.
+   // Create a source resource instance for the FD resource file. If offset is not the start position of the file or size is not the actual file size, the data obtained may be incomplete. Consequently, the source resource object may fail to create or subsequent demultiplexing may fail.
    OH_AVSource *source = OH_AVSource_CreateWithFD(fd, 0, fileSize);
    if (source == nullptr) {
       printf("create source failed");
@@ -174,7 +174,7 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    DRM_MediaKeySystemInfo mediaKeySystemInfo;
    OH_AVDemuxer_GetMediaKeySystemInfo(demuxer, &mediaKeySystemInfo);
    ```
-   After obtaining and parsing DRM information, create [MediaKeySystem](../drm/native-drm-mediakeysystem-management.md) and [MediaKeySession](../drm/native-drm-mediakeysession-management.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](./audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 in [Surface Output in Video Decoding](./video-decoding.md#surface-mode) or step 4 in [Buffer Output in Video Decoding](./video-decoding.md#buffer-mode).
+   After obtaining and parsing DRM information, create [MediaKeySystem](../drm/native-drm-mediakeysystem-management.md) and [MediaKeySession](../drm/native-drm-mediakeysession-management.md) instances of the corresponding DRM scheme to obtain a media key. If required, set the audio decryption configuration by following step 4 in [Audio Decoding](./audio-decoding.md#how-to-develop), and set the video decryption configuration by following step 5 in [Surface Output in Video Decoding](./video-decoding.md#surface-output) or step 4 in [Buffer Output in Video Decoding](./video-decoding.md#buffer-output).
 
 5. (Optional) Obtain the number of tracks. If you know the track information, skip this step.
 
@@ -246,19 +246,20 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
 8. (Optional) Seek to the specified time for the selected track.
 
    ```c++
-   // Demuxing is performed from this time.
+   // Demultiplexing is performed from this time.
    // Note:
-   // 1. If OH_AVDemuxer_SeekToTime is called for an MPEG TS file, the target position may be a non-key frame. You can then call OH_AVDemuxer_ReadSampleBuffer to check whether the current frame is a key frame based on the obtained OH_AVCodecBufferAttr. If it is a non-key frame, which causes display issues on the application side, cyclically read the frames until you reach the first key frame, where you can perform processing such as decoding.
+   // 1. If OH_AVDemuxer_SeekToTime is called for an MPEG TS or MPG file, the target position may be a non-key frame. You can then call OH_AVDemuxer_ReadSampleBuffer to check whether the current frame is a key frame based on the obtained OH_AVCodecBufferAttr. If it is a non-key frame, which causes display issues on the application side, cyclically read the frames until you reach the first key frame, where you can perform processing such as decoding.
    // 2. If OH_AVDemuxer_SeekToTime is called for an OGG file, the file seeks to the start of the time interval (second) where the input parameter millisecond is located, which may cause a certain number of frame errors.
+   // 3. The seek operation of the demuxer is performed only on streams with consistent decoding behavior. If a stream requires the decoder to reconfigure or re-input parameter data after seeking to decode correctly, it may result in artifacts or decoder freezing.
    OH_AVDemuxer_SeekToTime(demuxer, 0, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
    ```
 
-9. Start demuxing and cyclically obtain samples. The code snippet below uses a file that contains audio and video tracks as an example.
+9. Start demultiplexing and cyclically obtain samples. The code snippet below uses a file that contains audio and video tracks as an example.
 
    A **BufferAttr** object contains the following attributes.
    - **size**: sample size.
    - **offset**: offset of the data in the AVBuffer. The value is generally 0.
-   - **pts**: timestamp when the file is muxed.
+   - **pts**: timestamp when the file is multiplexed.
    - **flags**: sample attributes.
 
    | flag | Description|
@@ -270,45 +271,57 @@ target_link_libraries(sample PUBLIC libnative_media_core.so)
    | AVCODEC_BUFFER_FLAGS_CODEC_DATA | Frame containing parameter set information.|
    | AVCODEC_BUFFER_FLAGS_DISCARD  | Frames that can be discarded.|
 
+   The **OH_AVDemuxer_ReadSampleBuffer** function can be time-consuming, particularly due to file I/O operations. You are advised to call this function in asynchronous mode.
    ```c++
-   // Create a buffer based on the specified size to store the data obtained after demuxing.
-   // It is recommended that the buffer size be greater than the size of the stream to be obtained. In the example, the buffer size is set to the size of a single frame.
-   OH_AVBuffer *buffer = OH_AVBuffer_Create(w * h * 3 >> 1);
-   if (buffer == nullptr) {
-      printf("build buffer failed");
-      return;
-   }
-   OH_AVCodecBufferAttr info;
-   bool videoIsEnd = false;
-   bool audioIsEnd = false;
-   int32_t ret;
-   while (!audioIsEnd || !videoIsEnd) {
-      // Before calling OH_AVDemuxer_ReadSampleBuffer, call OH_AVDemuxer_SelectTrackByID to select the track from which the demuxer reads data.
-      // Obtain the audio sample.
-      if(!audioIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer);
-         if (ret == AV_ERR_OK) {
-            // Obtain and process the audio sample in the buffer.
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("audio info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               audioIsEnd = true;
-            }
-         }
+   // Define a processing function for each thread.
+   void ReadTrackSamples(OH_AVFormatDemuxer *demuxer, int trackIndex, int buffer_size, 
+                         std::atomic<bool>& isEnd, std::atomic<bool>& threadFinished)
+   {
+      // Create a buffer.
+      OH_AVBuffer *buffer = OH_AVBuffer_Create(buffer_size);
+      if (buffer == nullptr) {
+         printf("Create buffer failed for track %d\n", trackIndex);
+         threadFinished.store(true);
+         return;
       }
-      if(!videoIsEnd) {
-         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, videoTrackIndex, buffer);
+      OH_AVCodecBufferAttr info;
+      int32_t ret;
+
+      while (!isEnd.load()) {
+         ret = OH_AVDemuxer_ReadSampleBuffer(demuxer, trackIndex, buffer);
          if (ret == AV_ERR_OK) {
-            // Obtain and process the video sample in the buffer.
-            OH_AVBuffer_GetBufferAttr(buffer, &info);
-            printf("video info.size: %d\n", info.size);
-            if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
-               videoIsEnd = true;
-            }
+               OH_AVBuffer_GetBufferAttr(buffer, &info);
+               printf("Track %d sample size: %d\n", trackIndex, info.size);
+               // Check the EOS flag.
+               if (info.flags == OH_AVCodecBufferFlags::AVCODEC_BUFFER_FLAGS_EOS) {
+                  isEnd.store(true);
+               }
+               // Process the buffer data (decode the data as required).
+         } else {
+               printf("Read sample failed for track %d\n", trackIndex);
          }
+         // Destroy the buffer.
+         OH_AVBuffer_Destroy(buffer);
+         buffer = nullptr;
       }
+      threadFinished.store(true);
    }
-   OH_AVBuffer_Destroy(buffer);
+
+   // Calculate the buffer size based on your requirements.
+   int audioBufferSize = 4096; // Typical audio buffer size.
+   int videoBufferSize = w * h * 3 >> 1; // Raw video buffer size.
+
+   // Create atomic variables for thread communication.
+   std::atomic<bool> audioIsEnd{false}, videoIsEnd{false}; // Specify whether the stream ends.
+   std::atomic<bool> audioThreadFinished{false}, videoThreadFinished{false}; // Specify whether the thread is paused.
+
+   // Create a thread.
+   std::thread audioThread(ReadTrackSamples, demuxer, audioTrackIndex, audioBufferSize, 
+                           std::ref(audioIsEnd), std::ref(audioThreadFinished));
+   std::thread videoThread(ReadTrackSamples, demuxer, videoTrackIndex, videoBufferSize, 
+                           std::ref(videoIsEnd), std::ref(videoThreadFinished));
+   audioThread.join();
+   videoThread.join();
    ```
 
 10. Destroy the demuxer instance.

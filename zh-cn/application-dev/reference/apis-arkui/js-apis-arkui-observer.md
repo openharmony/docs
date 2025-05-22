@@ -120,7 +120,7 @@ ScrollEvent滚动信息。
 | id           | string                                             | 是   | 滚动组件的id。                               |
 | uniqueId           | number                                             | 是   | 滚动组件的uniqueId。                               |
 | scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
-| offset       | number                                             | 是   | 滚动组件的当前偏移量。                        |
+| offset       | number                                             | 是   | 滚动组件的当前偏移量。                   |
 
 ## ObserverOptions<sup>12+</sup>
 
@@ -935,7 +935,7 @@ on(type: 'navDestinationSwitch', context: UIAbilityContext | UIContext, callback
 // uiObserver.off('navDestinationSwitch', UIAbilityContext, callback)
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { uiObserver, window } from '@kit.ArkUI';
-import { hilog } from "@kit.PerformanceAnalysisKit"
+import { hilog } from "@kit.PerformanceAnalysisKit";
 
 function callBackFunc(info: uiObserver.NavDestinationSwitchInfo) {
   console.info(`testTag navDestinationSwitch from: ${JSON.stringify(info.from)} to: ${JSON.stringify(info.to)}`)

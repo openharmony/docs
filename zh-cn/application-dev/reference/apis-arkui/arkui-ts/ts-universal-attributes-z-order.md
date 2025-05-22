@@ -53,11 +53,11 @@ struct ZIndexExample {
   }
 }
 ```
-Stack容器内子组件不设置zIndex的效果
+Stack容器内子组件不设置zIndex的效果。
 
 ![nozindex.png](figures/nozindex.png)
 
-Stack容器子组件设置zIndex后效果
+Stack容器子组件设置zIndex后的效果。
 
 ![zindex.png](figures/zindex.png)
 
@@ -99,6 +99,6 @@ struct ZIndexExample {
 
 ![zIndex_1.png](figures/zIndex_1.png)
 
-点击Button动态修改zIndex，使Text1的zIndex大于Text2，层级发生改变。
+点击Button动态修改zIndex，使Text1的zIndex大于Text2，层级顺序发生改变。
 
 ![zIndex_2.png](figures/zIndex_2.png)

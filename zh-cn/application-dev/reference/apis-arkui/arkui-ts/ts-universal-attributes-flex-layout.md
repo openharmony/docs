@@ -1,7 +1,7 @@
 # Flex布局
 
 >  **说明：**
->  - 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 >  - 仅当父组件是 [Flex](ts-container-flex.md)、[Column](ts-container-column.md)、[Row](ts-container-row.md)、[GridRow](ts-container-gridrow.md)（仅针对[alignSelf](#alignself)）时生效。
 

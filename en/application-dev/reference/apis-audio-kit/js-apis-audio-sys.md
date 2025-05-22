@@ -653,7 +653,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                 | Yes  | Event type. The value is fixed at **'volumeChange'**.|
+| type     | string                                 | Yes  | Event type. The event **'volumeChange'** is triggered when the system volume is changed.|
 | callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the changed volume.|
 
 **Example**
@@ -684,7 +684,7 @@ Subscribes to the ringer mode change event, which is triggered when [audioringmo
 
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | Yes  | Event type. The value is fixed at **'ringerModeChange'**.|
+| type     | string                                    | Yes  | Event type. The event **'ringerModeChange'** is triggered when the ringer mode is changed.|
 | callback | Callback<[AudioRingMode](js-apis-audio.md#audioringmode)> | Yes  | Callback used to return the changed ringer mode.                                                  |
 
 **Example**
@@ -1919,7 +1919,7 @@ Enables or disables spatial audio rendering. This API uses an asynchronous callb
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | enable                      | boolean                                                      | Yes  | Whether to enable or disable spatial audio rendering. The value **true** means to enable spatial audio rendering, and **false** means the opposite. |
-| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback that returns no value.|
+| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2189,8 +2189,8 @@ Subscribes to the spatial audio rendering status change event, which is triggere
 
 | Name  | Type                                                | Mandatory| Description                                          |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | Yes  | Event type. The value is fixed at **'spatializationEnabledChange'**.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the status of spatial audio rendering. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.   |
+| type     | string | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the spatial audio rendering status is changed.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2226,7 +2226,7 @@ Subscribes to the spatial audio rendering status change event, which is triggere
 
 | Name  | Type                                                | Mandatory| Description                                          |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | Yes  | Event type. The value is fixed at **'spatializationEnabledChangeForAnyDevice'**.|
+| type     | string | Yes  | Event type. The event **'spatializationEnabledChangeForAnyDevice'** is triggered when the spatial audio rendering status is changed.|
 | callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of spatial audio rendering.   |
 
 **Error codes**
@@ -2268,8 +2268,8 @@ Unsubscribes from the spatial audio rendering status change event. This API uses
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The value is fixed at **'spatializationEnabledChange'**.|
-| callback | Callback<boolean\> | No  | Callback used to return the status of spatial audio rendering. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
+| type     | string | Yes  | Event type. The event **'spatializationEnabledChange'** is triggered when the spatial audio rendering status is changed.|
+| callback | Callback<boolean\> | No  | Callback used to return the result. The value **true** means that spatial audio rendering is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2311,7 +2311,7 @@ Unsubscribes from the spatial audio rendering status change event. This API uses
 
 | Name  | Type                                                | Mandatory| Description                                          |
 | :------- | :--------------------------------------------------- | :--- |:---------------------------------------------|
-| type     | string                                               | Yes  | Event type. The value is fixed at **'spatializationEnabledChangeForAnyDevice'**.|
+| type     | string | Yes  | Event type. The event **'spatializationEnabledChangeForAnyDevice'** is triggered when the spatial audio rendering status is changed.|
 | callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of spatial audio rendering.|
 
 **Error codes**
@@ -2364,7 +2364,7 @@ Enables or disables head tracking. This API uses an asynchronous callback to ret
 | Name                      | Type                                                        | Mandatory| Description                     |
 | --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
 | enable                      | boolean                                                      | Yes  | Whether to enable or disable head tracking. The value **true** means to enable head tracking, and **false** means the opposite. |
-| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback that returns no value.|
+| callback                    | AsyncCallback&lt;void&gt;                                    | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -2634,8 +2634,8 @@ Subscribes to the head tracking status change event, which is triggered when the
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The value is fixed at **'headTrackingEnabledChange'**.|
-| callback | Callback<boolean\> | Yes  | Callback used to return the status of head tracking. The value **true** means that head tracking is enabled, and **false** means the opposite.|
+| type     | string | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the head tracking status is changed.|
+| callback | Callback<boolean\> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2671,8 +2671,8 @@ Subscribes to the head tracking status change event, which is triggered when the
 
 | Name  | Type                                                | Mandatory| Description                                      |
 | :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
-| type     | string                                               | Yes  | Event type. The value is fixed at **'headTrackingEnabledChangeForAnyDevice'**.|
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of head tracking.   |
+| type     | string | Yes  | Event type. The event **'headTrackingEnabledChangeForAnyDevice'** is triggered when the head tracking status is changed.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2713,8 +2713,8 @@ Unsubscribes from the head tracking status change event. This API uses an asynch
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The value is fixed at **'headTrackingEnabledChange'**.|
-| callback | Callback<boolean\> | No  | Callback used to return the status of head tracking. The value **true** means that head tracking is enabled, and **false** means the opposite.|
+| type     | string | Yes  | Event type. The event **'headTrackingEnabledChange'** is triggered when the head tracking status is changed.|
+| callback | Callback<boolean\> | No  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2758,8 +2758,8 @@ Unsubscribes from the head tracking status change event. This API uses an asynch
 
 | Name  | Type                                               | Mandatory| Description                                      |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
-| type     | string                                              | Yes  | Event type. The value is fixed at **'headTrackingEnabledChangeForAnyDevice'**.|
-| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the device information and the enabled status of head tracking.|
+| type     | string | Yes  | Event type. The event **'headTrackingEnabledChangeForAnyDevice'** is triggered when the head tracking status is changed.|
+| callback | Callback\<[AudioSpatialEnabledStateForDevice](#audiospatialenabledstatefordevice12)> | Yes  | Callback used to return the result. The value **true** means that head tracking is enabled, and **false** means the opposite.|
 
 **Error codes**
 
@@ -2934,10 +2934,10 @@ Defines the state information of a spatial device.
 
 | Name                         | Type                      | Readable| Writable| Description      |
 | ----------------------------- | -------------------------- | ---- | ---- | ---------- |
-| address<sup>11+</sup>                    | string         | Yes  | Yes  | Address of the spatial device.|
-| isSpatializationSupported<sup>11+</sup>  | boolean        | Yes  | Yes  | Whether the spatial device supports spatial audio rendering.|
-| isHeadTrackingSupported<sup>11+</sup>    | boolean        | Yes  | Yes  | Whether the spatial device supports head tracking.|
-| spatialDeviceType<sup>11+</sup>          | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | Yes  | Yes  | Type of the spatial device.|
+| address | string         | Yes  | Yes  | Address of the spatial device.|
+| isSpatializationSupported | boolean        | Yes  | Yes  | Whether the spatial device supports spatial audio rendering. The value **true** means that spatial audio rendering is supported, and **false** means the opposite.|
+| isHeadTrackingSupported | boolean        | Yes  | Yes  | Whether the spatial device supports head tracking. The value **true** means that head tracking is supported, and **false** means the opposite.|
+| spatialDeviceType | [AudioSpatialDeviceType](#audiospatialdevicetype11)   | Yes  | Yes  | Type of the spatial device.|
 
 **Example**
 
@@ -3531,13 +3531,13 @@ Sets an ASR voice control mode of the uplink channel for reporting modem and cal
 | Name | Type                 | Mandatory| Description    |
 |------|---------------------|-------|--------|
 | mode | [AsrVoiceControlMode](#asrvoicecontrolmode12) | Yes| ASR voice control mode.|
-| enable   | boolean             | Yes| Switch status.  |
+| enable   | boolean             | Yes| Whether to enable the ASR voice control mode. The value **true** means to enable the ASR voice control mode, and **false** means the opposite.  |
 
 **Return value**
 
-| Type| Description                                                            |
-|-------|----------------------------------------------------------------|
-| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+| Type| Description                                                           |
+|-------|---------------------------------------------------------------|
+| boolean | Operation result. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -3571,13 +3571,13 @@ Sets an ASR voice mute mode.
 | Name | Type                                   | Mandatory| Description      |
 |------|---------------------------------------|-------|----------|
 | mode | [AsrVoiceMuteMode](#asrvoicemutemode12) | Yes| ASR voice mute mode.|
-| enable   | boolean                               | Yes| Switch status.    |
+| enable   | boolean                               | Yes| Whether to enable the ASR voice mute mode. The value **true** means to enable the ASR voice mute mode, and **false** means the opposite.|
 
 **Return value**
 
 | Type| Description                                              |
 |-------|--------------------------------------------------|
-| boolean | **true**: The setting is successful.<br>**false**: The setting fails.|
+| boolean | Operation result. The value **true** means that the setting is successful, and **false** means the opposite.|
 
 **Error codes**
 

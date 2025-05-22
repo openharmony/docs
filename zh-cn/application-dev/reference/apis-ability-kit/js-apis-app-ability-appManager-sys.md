@@ -1802,7 +1802,7 @@ setKeepAliveForBundle(bundleName: string, userId: number, enable: boolean): Prom
 | -------- | -------- | -------- | -------- |
 | bundleName    | string   | 是    | 表示要设置保活的应用包名。 |
 | userId    | number   | 是    | 表示要设置保活应用所属的用户ID。 |
-| enable    | boolean   | 是    | 表示对应用保活或者取消保活。 |
+| enable    | boolean   | 是    | 表示对应用保活或者取消保活。true表示对应用保活，false表示对应用取消保活。 |
 
 **返回值：**
 
