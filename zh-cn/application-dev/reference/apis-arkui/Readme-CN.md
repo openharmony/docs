@@ -514,7 +514,6 @@
     - [动画错误码](errorcode-animator.md)
     - [弹窗错误码](errorcode-promptAction.md)
     - [页面路由错误码](errorcode-router.md)
-    - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [拖拽事件错误码](errorcode-drag-event.md)
     - [图像AI分析错误码](errorcode-image-analyzer.md)
     - [焦点错误码](errorcode-focus.md)
@@ -528,6 +527,7 @@
     - [交互事件错误码](errorcode-event.md)
     - [Canvas错误码](errorcode-canvas.md)
     <!--Del-->
+    - [用户界面外观服务错误码](errorcode-uiappearance.md)
     - [UIExtension错误码](errorcode-uiextension.md)
     <!--DelEnd-->
   - 图形图像<!--arkui-graphics-images-arkts-errcode-->
