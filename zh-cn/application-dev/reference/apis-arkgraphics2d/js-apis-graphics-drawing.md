@@ -3821,7 +3821,121 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
 ```
+### createFromImage<sup>20+</sup>
 
+static createFromImage(pixelmap: image.PixelMap, srcRect?: common2D.Rect | null, dstRect?: common2D.Rect | null): ImageFilter
+
+基于给定的图像创建一个图像滤波器。此接口不建议用于录制类型的画布，会影响性能。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| pixelmap | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 图片对象。 |
+| srcRect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) \| null           | 否   | 可选参数，默认为空。图片要被此滤波器使用的像素区域，如果为空，则使用pixelmap全部区域。 |
+| dstRect      | [common2D.Rect](js-apis-graphics-common2D.md#rect) \| null           | 否   | 可选参数，默认为空。要进行渲染的区域，如果为空，则和srcRect保持一致。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  pixelMap: image.PixelMap | null = null;
+
+  async draw(context : DrawContext) {
+    const canvas = context.canvas;
+    let srcRect: common2D.Rect = { left: 10, top: 10, right: 80, bottom: 80 };
+    let dstRect: common2D.Rect = { left: 200, top: 200, right: 400, bottom: 400 };
+    if (this.pixelMap != null) {
+      let filter = drawing.ImageFilter.createFromImage(this.pixelMap, srcRect, dstRect);
+    }
+  }
+}
+```
+### createBlendImageFilter<sup>20+</sup>
+
+static createBlendImageFilter(mode: BlendMode, background: ImageFilter, foreground: ImageFilter): ImageFilter
+
+按照指定的混合模式对两个滤波器进行叠加，生成一个新的滤波器。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| mode   | [BlendMode](#blendmode)                              | 是   | 颜色混合模式。 |
+| background | [ImageFilter](#imagefilter12) | 是   | 在混合模式中作为目标色的滤波器。|
+| foreground | [ImageFilter](#imagefilter12) | 是   | 在混合模式中作为源色的滤波器。 |
+
+**返回值：**
+
+| 类型                  | 说明            |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let dx = 15.0;
+let dy = 10.0;
+let offsetFilter1 = drawing.ImageFilter.createOffsetImageFilter(dx, dy, null);
+let x = 15.0;
+let y = 30.0;
+let offsetFilter2 = drawing.ImageFilter.createOffsetImageFilter(x, y, null);
+let blendImageFilter = drawing.ImageFilter.createBlendImageFilter(drawing.BlendMode.SRC_IN, offsetFilter1, offsetFilter2);
+```
+### createComposeImageFilter<sup>20+</sup>
+
+static createComposeImageFilter(cOuter: ImageFilter, cInner: ImageFilter): ImageFilter
+
+将两个图像滤波器进行级联生成新的图像滤波器，级联时会将第一级滤波器的输出作为第二级滤波器的输入，经过第二级滤波器处理后，输出最终的滤波结果。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| cOuter | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第二级的滤波器，处理第一级滤波器的输出。 |
+| cInner | [ImageFilter](#imagefilter12) | 是   | 在级联中，作为第一级的滤波器，直接处理图像的原始内容。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let blurSigmaX = 10.0;
+let blurSigmaY = 10.0;
+let blurFilter = drawing.ImageFilter.createBlurImageFilter(blurSigmaX, blurSigmaY, drawing.TileMode.CLAMP, null);
+let colorMatrix:Array<number> = [
+  0, 0, 0, 0, 0,
+  0, 1, 0, 0, 0,
+  0, 0, 1, 0, 0,
+  0, 0, 0, 1, 0
+];
+let redRemovalFilter = drawing.ColorFilter.createMatrixColorFilter(colorMatrix);
+let colorFilter = drawing.ImageFilter.createFromColorFilter(redRemovalFilter, null);
+let composedImageFilter = drawing.ImageFilter.createComposeImageFilter(colorFilter, blurFilter);
+```
 ### createFromColorFilter<sup>12+</sup>
 
 static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter | null): ImageFilter
@@ -3843,6 +3957,36 @@ static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter
 | --------------------- | -------------- |
 | [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
 
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
+let clolorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
+let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilter);
+```
+### createOffsetImageFilter<sup>20+</sup>
+
+static createOffsetImageFilter(dx: number, dy: number, input?: ImageFilter | null): ImageFilter
+
+创建一个偏移滤波器，将输入的滤波器按照指定向量进行平移。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| dx | number | 是   | 水平方向的平移距离， 该参数为浮点数。 |
+| dy | number | 是   | 竖直方向的平移距离， 该参数为浮点数。 |
+| input | [ImageFilter](#imagefilter12) \| null | 否   | 需进行平移的滤波器。默认为空，如果为空，则将无滤波效果的绘制结果进行平移。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
@@ -3856,11 +4000,39 @@ static createFromColorFilter(colorFilter: ColorFilter, imageFilter?: ImageFilter
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 
-let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
-let clolorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
-let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilter);
+let dx = 15.0;
+let dy = 10.0;
+let offsetFilter = drawing.ImageFilter.createOffsetImageFilter(dx, dy, null);
 ```
 
+### createFromShaderEffect<sup>20+</sup>
+
+static createFromShaderEffect(shader: ShaderEffect): ImageFilter
+
+基于着色器创建一个图像滤波器。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名          | 类型    | 必填 | 说明                                                        |
+| --------------- | ------- | ---- | ----------------------------------------------------------- |
+| shader   | [ShaderEffect](#shadereffect12) | 是   | 表示应用于图像的着色器效果。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| [ImageFilter](#imagefilter12) | 返回创建的图像滤波器。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let shaderEffect = drawing.ShaderEffect.createColorShader(0xFF00FF00);
+let renderEffect = drawing.ImageFilter.createFromShaderEffect(shaderEffect);
+```
 ## TextBlobRunBuffer
 
 描述一行文字中具有相同属性的连续字形。
@@ -5845,7 +6017,35 @@ let matrix: Array<number> = [
 ];
 let colorFilter = drawing.ColorFilter.createMatrixColorFilter(matrix);
 ```
+### createLightingColorFilter<sup>20+</sup>
 
+static createLightingColorFilter(mutColor: common2D.Color | number, addColor: common2D.Color | number): ColorFilter
+
+创建一个光照颜色滤波器，此滤波器会将RGB通道的颜色值乘以一种颜色值并加上另一种颜色值，计算结果会被限制在0到255范围内。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| mutColor | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是   | 用来进行乘法运算的颜色，ARGB格式的颜色，每个颜色通道是0到255之间的整数。为number类型时必须是16进制ARGB格式的无符号整数。 |
+| addColor | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | 是   | 用来进行加法运算的颜色，ARGB格式的颜色，每个颜色通道是0到255之间的整数。为number类型时必须是16进制ARGB格式的无符号整数。 |
+
+**返回值：**
+
+| 类型                        | 说明                |
+| --------------------------- | ------------------ |
+| [ColorFilter](#colorfilter) | 返回一个颜色滤波器。 |
+
+**示例：**
+
+```ts
+import { common2D, drawing } from '@kit.ArkGraphics2D';
+let mulColor : common2D.Color = { alpha: 0, red: 0, green: 0, blue: 20 };
+let addColor : common2D.Color = { alpha: 0, red: 0, green: 0, blue: 125 };
+let colorFilter = drawing.ColorFilter.createLightingColorFilter(mulColor, addColor);
+```
 ## JoinStyle<sup>12+</sup>
 
 定义线条转角样式的枚举，即画笔在绘制折线段时，在折线转角处的样式。
@@ -9283,6 +9483,81 @@ class DrawingRenderNode extends RenderNode {
 ## ShaderEffect<sup>12+</sup>
 
 着色器。画刷和画笔设置着色器后，会使用着色器效果而不是颜色属性去绘制，但此时画笔和画刷的透明度属性仍然生效。
+
+### createComposeShader<sup>20+</sup>
+
+static createComposeShader(dstShaderEffect: ShaderEffect, srcShaderEffect: ShaderEffect, blendMode: BlendMode): ShaderEffect
+
+按照指定的混合模式对两个着色器进行叠加，生成一个新的着色器。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| dstShaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 在混合模式中作为目标色的着色器。 |
+| srcShaderEffect  | [ShaderEffect](#shadereffect12) | 是   | 在混合模式中作为源色的着色器。   |
+| blendMode  | [BlendMode](#blendmode) | 是   | 混合模式。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let dstShader = drawing.ShaderEffect.createColorShader(0xFF0000FF);
+let srcShader = drawing.ShaderEffect.createColorShader(0xFFFF0000);
+let shader = drawing.ShaderEffect.createComposeShader(dstShader, srcShader, drawing.BlendMode.SRC);
+```
+
+### createImageShader<sup>20+</sup>
+
+static createImageShader(pixelmap: image.PixelMap, tileX: TileMode, tileY: TileMode, samplingOptions: SamplingOptions, matrix?: Matrix | null): ShaderEffect
+
+基于图片创建一个着色器。此接口不建议用于录制类型的画布，会影响性能。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                               | 必填 | 说明           |
+| ------ | -------------------------------------------------- | ---- | -------------- |
+| pixelmap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)  | 是   | 进行采样的图片对象。 |
+| tileX   | [TileMode](#tilemode12)  | 是   | 水平方向的平铺模式。 |
+| tileY   | [TileMode](#tilemode12)  | 是   | 竖直方向的平铺模式。 |
+| samplingOptions     | [SamplingOptions](#samplingoptions12)                           | 是   | 图片采样参数。 |
+| matrix | [Matrix](#matrix12) \| null | 否   | 可选参数，对图片施加的矩阵变换，如果为空，则不施加任何变换。 |
+
+**返回值：**
+
+| 类型    | 说明                       |
+| ------- | ------------------------- |
+| [ShaderEffect](#shadereffect12) | 返回创建的着色器对象。 |
+
+**示例：**
+
+```ts
+import { RenderNode } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
+import { drawing } from '@kit.ArkGraphics2D';
+class DrawingRenderNode extends RenderNode {
+  pixelMap: image.PixelMap | null = null;
+
+  async draw(context : DrawContext) {
+    let matrix = new drawing.Matrix();
+    let options = new drawing.SamplingOptions(drawing.FilterMode.FILTER_MODE_NEAREST);
+    if (this.pixelMap != null) {
+      let imageShader = drawing.ShaderEffect.createImageShader(this.pixelMap, drawing.TileMode.REPEAT, drawing.TileMode.MIRROR, options, matrix);
+    }
+  }
+}
+```
 
 ### createColorShader<sup>12+</sup>
 
