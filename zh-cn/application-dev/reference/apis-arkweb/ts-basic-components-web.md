@@ -10812,6 +10812,7 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | 名称       | 值 | 说明              |
 | --------- | -- | ----------------- |
 | IMAGE     | 1 | 网页元素为图像类型。 |
+| LINK<sup>20+</sup>|2|网页元素为超链接类型。|
 
 ## WebResponseType<sup>13+</sup>枚举说明
 
@@ -10836,7 +10837,7 @@ type OnNativeEmbedVisibilityChangeCallback = (nativeEmbedVisibilityInfo: NativeE
 | onAppear   | Callback\<void\>   | 否     | 自定义选择菜单弹出时回调。     |
 | onDisappear | Callback\<void\>  | 否     | 自定义选择菜单关闭时回调。     |
 | preview    | [CustomBuilder](../apis-arkui/arkui-ts/ts-types.md#custombuilder8)          | 否     | 自定义选择菜单的预览内容样式，未配置时无预览内容。|
-| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`     |
+| menuType   | [MenuType](../apis-arkui/arkui-ts/ts-text-common.md#menutype13枚举说明)      | 否     | 自定义选择菜单类型。<br>默认值：`MenuType.SELECTION_MENU`。<br> 从API version 20起，`MenuType.PREVIEW_MENU`支持超链接预览。     |
 | previewMenuOptions<sup>20+</sup> | [PreviewMenuOptions](#previewmenuoptions20) | 否     | 自定义选择预览菜单选项。 |
 
 ## PreviewMenuOptions<sup>20+</sup>
