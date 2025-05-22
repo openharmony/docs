@@ -1462,7 +1462,7 @@ typedef void (*OH_PhotoOutput_PhotoAssetAvailable)(Camera_PhotoOutput* photoOutp
 | 名称 | 描述 | 
 | -------- | -------- |
 | photoOutput | 传递回调的[Camera_PhotoOutput](#camera_photooutput)。 | 
-| photoAsset | 回调传递的[OH_MediaAsset](../apis-media-library-kit/_media_asset_manager.md#oh_mediaasset)。 | 
+| photoAsset | 回调传递的[OH_MediaAsset](../apis-media-library-kit/capi-oh-mediaasset.md)。 | 
 
 
 ### OH_PhotoOutput_PhotoAvailable
