@@ -48,13 +48,13 @@ DLP错误码的枚举。
 
 | 枚举项 | 描述 |
 | -- | -- |
-| ERR_OH_SUCCESS = 0 | @error 表示操作成功。 |
-| ERR_OH_INVALID_PARAMETER = 19100001 | @error 表示入参错误。 |
-| ERR_OH_API_ONLY_FOR_SANDBOX = 19100006 | @error 表示非DLP沙箱应用。 |
-| ERR_OH_API_NOT_FOR_SANDBOX = 19100007 | @error 表示DLP沙箱应用不允许调用此接口。 |
-| ERR_OH_SYSTEM_SERVICE_EXCEPTION = 19100011 | @error 表示系统服务工作异常。 |
-| ERR_OH_OUT_OF_MEMORY = 19100012 | @error 表示内存申请失败。 |
-| ERR_OH_APPLICATION_NOT_AUTHORIZED = 19100018 | @error 表示应用未授权。 |
+| ERR_OH_SUCCESS = 0 | 表示操作成功。 |
+| ERR_OH_INVALID_PARAMETER = 19100001 | 表示入参错误。 |
+| ERR_OH_API_ONLY_FOR_SANDBOX = 19100006 | 表示非DLP沙箱应用。 |
+| ERR_OH_API_NOT_FOR_SANDBOX = 19100007 | 表示DLP沙箱应用不允许调用此接口。 |
+| ERR_OH_SYSTEM_SERVICE_EXCEPTION = 19100011 | 表示系统服务工作异常。 |
+| ERR_OH_OUT_OF_MEMORY = 19100012 | 表示内存申请失败。 |
+| ERR_OH_APPLICATION_NOT_AUTHORIZED = 19100018 | 表示应用未授权。 |
 
 ### DLP_FileAccess
 
@@ -96,13 +96,13 @@ DLP_ErrCode OH_DLP_GetDlpPermissionInfo(DLP_FileAccess *dlpFileAccess, uint32_t 
 | 参数项 | 描述 |
 | -- | -- |
 | [DLP_FileAccess](#dlp_fileaccess) *dlpFileAccess | 表示DLP文件针对用户的授权类型，例如：只读。 |
-| uint32_t *flags | 表示DLP文件的详细操作权限，操作权限的具体含义为:0x00000000-表示无文件权限。<br>0x00000001-表示文件的查看权限。<br>0x00000002-表示文件的保存权限。<br>0x00000004-表示文件的另存为权限。<br>0x00000008-表示文件的编辑权限。<br>0x00000010-表示文件的截屏权限。<br>0x00000020-表示文件的共享屏幕权限。<br>0x00000040-表示文件的录屏权限。<br>0x00000080-表示文件的复制权限。<br>0x00000100-表示文件的打印权限。<br>0x00000200-表示文件的导出权限。<br>0x00000400-表示文件的修改文件权限。 |
+| uint32_t *flags | 表示DLP文件的详细操作权限，操作权限的具体含义为：<br>0x00000000-表示无文件权限。<br>0x00000001-表示文件的查看权限。<br>0x00000002-表示文件的保存权限。<br>0x00000004-表示文件的另存为权限。<br>0x00000008-表示文件的编辑权限。<br>0x00000010-表示文件的截屏权限。<br>0x00000020-表示文件的共享屏幕权限。<br>0x00000040-表示文件的录屏权限。<br>0x00000080-表示文件的复制权限。<br>0x00000100-表示文件的打印权限。<br>0x00000200-表示文件的导出权限。<br>0x00000400-表示文件的修改文件权限。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| [DLP_ErrCode](#dlp_errcode) | [DLP_ErrCode](capi-dlp-permission-api-h.md#dlp_errcode):<br>         0 - 操作成功。<br>         19100001 - 入参错误。<br>         19100006 - 非DLP沙箱应用。<br>         19100011 - 系统服务工作异常。<br>         19100012 - 内存申请失败。 |
+| [DLP_ErrCode](#dlp_errcode) | 0 - 操作成功。<br>         19100001 - 入参错误。<br>         19100006 - 非DLP沙箱应用。<br>         19100011 - 系统服务工作异常。<br>         19100012 - 内存申请失败。 |
 
 ### OH_DLP_GetOriginalFileName()
 
@@ -128,7 +128,7 @@ DLP_ErrCode OH_DLP_GetOriginalFileName(const char *fileName, char *originalFileN
 
 | 类型 | 说明 |
 | -- | -- |
-| [DLP_ErrCode](#dlp_errcode) | [DLP_ErrCode](capi-dlp-permission-api-h.md#dlp_errcode):<br>         0 - 操作成功。<br>         19100001 - 入参错误。<br>         19100012 - 内存申请失败。 |
+| [DLP_ErrCode](#dlp_errcode) | 0 - 操作成功。<br>         19100001 - 入参错误。<br>         19100012 - 内存申请失败。 |
 
 ### OH_DLP_IsInSandbox()
 
@@ -153,7 +153,7 @@ DLP_ErrCode OH_DLP_IsInSandbox(bool *isInSandbox)
 
 | 类型 | 说明 |
 | -- | -- |
-| [DLP_ErrCode](#dlp_errcode) | [DLP_ErrCode](capi-dlp-permission-api-h.md#dlp_errcode):<br>         0 - 操作成功。<br>         19100011 - 系统服务工作异常。<br>         19100012 - 内存申请失败。 |
+| [DLP_ErrCode](#dlp_errcode) | 0 - 操作成功。<br>         19100011 - 系统服务工作异常。<br>         19100012 - 内存申请失败。 |
 
 ### OH_DLP_SetSandboxAppConfig()
 
@@ -178,7 +178,7 @@ DLP_ErrCode OH_DLP_SetSandboxAppConfig(const char *configInfo)
 
 | 类型 | 说明 |
 | -- | -- |
-| [DLP_ErrCode](#dlp_errcode) | [DLP_ErrCode](capi-dlp-permission-api-h.md#dlp_errcode):<br>         0 - 操作成功。<br>         19100001 - 入参错误。<br>         19100007 - DLP沙箱应用不允许调用此接口。<br>         19100011 - 系统服务工作异常。<br>         19100018 - 应用未授权。 |
+| [DLP_ErrCode](#dlp_errcode) | 0 - 操作成功。<br>         19100001 - 入参错误。<br>         19100007 - DLP沙箱应用不允许调用此接口。<br>         19100011 - 系统服务工作异常。<br>         19100018 - 应用未授权。 |
 
 ### OH_DLP_GetSandboxAppConfig()
 
@@ -203,7 +203,7 @@ DLP_ErrCode OH_DLP_GetSandboxAppConfig(char *configInfo)
 
 | 类型 | 说明 |
 | -- | -- |
-| [DLP_ErrCode](#dlp_errcode) | [DLP_ErrCode](capi-dlp-permission-api-h.md#dlp_errcode):<br>         0 - 操作成功。<br>         19100011 - 系统服务工作异常。<br>         19100012 - 内存申请失败。<br>         19100018 - 应用未授权。 |
+| [DLP_ErrCode](#dlp_errcode) | 0 - 操作成功。<br>         19100011 - 系统服务工作异常。<br>         19100012 - 内存申请失败。<br>         19100018 - 应用未授权。 |
 
 ### OH_DLP_CleanSandboxAppConfig()
 
@@ -221,6 +221,6 @@ DLP_ErrCode OH_DLP_CleanSandboxAppConfig()
 
 | 类型 | 说明 |
 | -- | -- |
-| [DLP_ErrCode](#dlp_errcode) | [DLP_ErrCode](capi-dlp-permission-api-h.md#dlp_errcode):<br>         0 - 操作成功。<br>         19100007 - DLP沙箱应用不允许调用此接口。<br>         19100011 - 系统服务工作异常。<br>         19100018 - 应用未授权。 |
+| [DLP_ErrCode](#dlp_errcode) | 0 - 操作成功。<br>         19100007 - DLP沙箱应用不允许调用此接口。<br>         19100011 - 系统服务工作异常。<br>         19100018 - 应用未授权。 |
 
 

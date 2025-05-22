@@ -3433,9 +3433,9 @@
           <!--DelEnd-->
         - C API<!--data-protection-c-->
           - 模块<!--data-protection-module-->
-            - [DlpPermissionApi](reference/apis-data-protection-kit/_dlp_permission_api.md)
+            - [DlpPermissionApi](reference/apis-data-protection-kit/capi-dlppermissionapi.md)
           - 头文件<!--data-protection-headerfile-->
-            - [dlp_permission_api.h](reference/apis-data-protection-kit/dlp__permission__api_8h.md)
+            - [dlp_permission_api.h](reference/apis-data-protection-kit/capi-dlp-permission-api-h.md)
         - 错误码<!--data-protection-arkts-errcode-->
           - [DLP服务错误码](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-api-->
