@@ -855,8 +855,8 @@ type ImageErrorCallback = (error: ImageError) => void
 | 102112    | read file failed.              | 数据加载 | 媒体库文件 |
 | 102130    | decoded data is empty.         | 数据加载 | 媒体库缩略图文件 |
 | 102131    | load shared memory image data timeout. | 数据加载 | 共享内存 |
-| 102010    | make svg dom failed.           | 数据加载 | 矢量图 |
-| 102010    | image data size is invalid.    | 数据加载 | 位图 |
+| 103100    | make svg dom failed.           | 数据加载 | 矢量图 |
+| 103200    | image data size is invalid.    | 数据加载 | 位图 |
 | 111000    | image source create failed.    | 数据解码 | 位图 |
 | 111001    | pixelmap create failed.        | 数据解码 | 位图 |
 
