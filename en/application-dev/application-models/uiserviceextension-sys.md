@@ -171,7 +171,7 @@ To manually create a UIServiceExtensionAbility in a project in DevEco Studio, pe
 
 ### Starting a UIServiceExtensionAbility
 
-An application calls [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14) to start a UIServiceExtensionAbility. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. Once the UIServiceExtensionAbility is started, its lifecycle is independent of the client. In other words, even if the client is destroyed, the background service remains alive. However, the service is destroyed if the window fails to be created or is destroyed. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md#uiserviceextensioncontextterminateself13) of [UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md) when its work is complete.
+An application calls [startUIServiceExtensionAbility()](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartuiserviceextensionability14) to start a UIServiceExtensionAbility. The [onRequest()](../reference/apis-ability-kit/js-apis-app-ability-uiServiceExtensionAbility-sys.md#uiserviceextensionabilityonrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. Once the UIServiceExtensionAbility is started, its lifecycle is independent of the client. In other words, even if the client is destroyed, the background service remains alive. However, the service is destroyed if the window fails to be created or is destroyed. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md#uiserviceextensioncontextterminateself) of [UIServiceExtensionContext](../reference/apis-ability-kit/js-apis-inner-application-uiserviceExtensionContext-sys.md) when its work is complete.
 
 Start a new UIServiceExtensionAbility in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
@@ -190,7 +190,7 @@ struct Index {
         Button('start ability')
           .enabled(true)
           .onClick(() => {
-            let context = getContext(this) as common.UIAbilityContext;
+            let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             let startWant: Want = {
               bundleName: 'com.acts.uiserviceextensionability',
               abilityName: 'UiServiceExtAbility',
@@ -222,19 +222,19 @@ When the client calls [connectUIServiceExtensionAbility()](../reference/apis-abi
     ```ts
     import { common, Want } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     @Entry
     @Component
     struct Page_UIServiceExtensionAbility {
       @State uiServiceProxy: common.UIServiceProxy | null = null;
-    
+
       build() {
         Column() {
           //...
           Row() {
             //...
           }.onClick(() => {
-            const context = getContext(this) as common.UIAbilityContext;
+            const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             const want: Want = {
               deviceId: '',
               bundleName: 'com.example.myapplication',
@@ -266,19 +266,19 @@ When the client calls [connectUIServiceExtensionAbility()](../reference/apis-abi
     ```ts
     import { common } from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     @Entry
     @Component
     struct Page_UIServiceExtensionAbility {
       @State uiServiceProxy: common.UIServiceProxy | null = null;
-    
+
       build() {
         Column() {
           //...
           Row() {
             //...
           }.onClick(() => {
-            const context = getContext(this) as common.UIAbilityContext;
+            const context = this.getUIContext().getHostContext() as common.UIAbilityContext;
             // this.uiServiceProxy is the proxy object saved during connection.
             context.disconnectUIServiceExtensionAbility(this.uiServiceProxy).then(() => {
               console.log('disconnectUIServiceExtensionAbility success');
@@ -310,7 +310,7 @@ After a UIServiceExtensionAbility is started, the following operations are possi
     ```ts
     import { common, Want} from '@kit.AbilityKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     @Entry
     @Component
     struct Index {
@@ -323,7 +323,7 @@ After a UIServiceExtensionAbility is started, the following operations are possi
           console.log("onDisconnect");
         }
       }
-    
+
       build() {
         Column() {
           Row() {
@@ -331,14 +331,14 @@ After a UIServiceExtensionAbility is started, the following operations are possi
             Button("connect ability")
               .enabled(true)
               .onClick(() => {
-                let context = getContext(this) as common.UIAbilityContext;
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
                 let startWant:Want = {
                   bundleName: 'com.acts.uiserviceextensionability',
                   abilityName: 'UiServiceExtAbility',
                 };
                 try {
-                // Connect to the UIServiceExtensionAbility.
-                context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
+                  // Connect to the UIServiceExtensionAbility.
+                  context.connectUIServiceExtensionAbility(startWant, this.connectCallback).then((proxy: common.UIServiceProxy) => {
                     this.comProxy = proxy;
                     let formData: Record<string, string> = {
                       'test': 'test'

@@ -37,12 +37,12 @@ If the **type** field in **startAbilityByType** is set to **mail**, **wantParam*
     let context = getContext(this) as common.UIAbilityContext;
     let wantParam: Record<string, Object> = {
       'sceneType': 1,
-      'email': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // Email address of the recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
-      'cc': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // Email address of the CC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
-      'bcc': [encodeURI('xxx@example.com'),encodeURI('xxx@example.com')], // Email address of the BCC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+      'email': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+      'cc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the CC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+      'bcc': [encodeURI('xxx@example.com'), encodeURI('xxx@example.com')], // Email address of the BCC recipient. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
       'subject': encodeURI('Email subject'), // Email subject. The content is URL encoded using encodeURI().
       'body': encodeURI('Email body'), // Email body. The content is URL encoded using encodeURI().
-      'ability.params.stream':[encodeURI('attachment uri1'),encodeURI('attachment uri2')], // Attachment URIs. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
+      'ability.params.stream':[encodeURI('attachment uri1'), encodeURI('attachment uri2')], // Attachment URIs. Multiple values are separated by commas (,). The array content is URL encoded using encodeURI().
       'ability.want.params.uriPermissionFlag': wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION
     };
     let abilityStartCallback: common.AbilityStartCallback = {

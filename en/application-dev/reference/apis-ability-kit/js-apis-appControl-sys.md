@@ -1,6 +1,6 @@
 # @ohos.bundle.appControl (appControl) (System API)
 
-The **appControl** module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed status is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
+The appControl module provides APIs for setting, obtaining, and deleting the disposed status of an application. An application in the disposed status is forbidden to run. When a user clicks the application icon on the home screen, the corresponding page is displayed based on the disposal intent.  
 
 > **NOTE**
 >
@@ -11,7 +11,7 @@ The **appControl** module provides APIs for setting, obtaining, and deleting the
 ## Modules to Import
 
 ``` ts
-import appControl from '@ohos.bundle.appControl'
+import appControl from '@ohos.bundle.appControl';
 ```
 
 ## appControl.setDisposedStatus
@@ -676,7 +676,7 @@ Sets an uninstallation disposed rule for an application or an application clone.
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application. appIdentifier is obtained by calling [getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10).<br> If the application does not have an appIdentifier, use its appId instead. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application. appIdentifier is obtained through [getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10).<br>If the application does not have an appIdentifier, use its appId instead. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | rule | [UninstallDisposedRule](#uninstalldisposedrule15) | Yes| Uninstallation disposed rule.|
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to set the uninstallation disposed rule for the main application. A value greater than 0 means to set the uninstallation disposed rule for the application clone.       |
 
@@ -700,7 +700,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { appControl, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Call the corresponding API to obtain appIdentifier or appId.
+// Use the corresponding API to obtain appIdentifier or appId.
 let appIdentifier = "com.example.myapplication_xxxxx";
 let want: Want = {
   bundleName: "com.example.myapplication",
@@ -737,7 +737,7 @@ Obtains the uninstallation disposed rule of an application or an application clo
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application. appIdentifier is obtained by calling [getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10).<br>If the application does not have an appIdentifier, use its appId instead. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application. appIdentifier is obtained through [getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10).<br>If the application does not have an appIdentifier, use its appId instead. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to obtain the uninstallation disposed rule of the main application.             |
 
 **Return value**
@@ -765,7 +765,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { appControl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Call the corresponding API to obtain appIdentifier or appId.
+// Use the corresponding API to obtain appIdentifier or appId.
 let appIdentifier = "com.example.myapplication_xxxxx";
 
 try {
@@ -793,7 +793,7 @@ Deletes an uninstallation disposed rule for an application or an application clo
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
-| appIdentifier  | string | Yes   | appIdentifier of the target application. appIdentifier is obtained by calling [getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10).<br>If the application does not have an appIdentifier, use its appId instead. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
+| appIdentifier  | string | Yes   | appIdentifier of the target application. appIdentifier is obtained through [getAppProvisionInfo](./js-apis-bundleManager-sys.md#bundlemanagergetappprovisioninfo10).<br>If the application does not have an appIdentifier, use its appId instead. For details about how to obtain **appId**, see [Obtaining appId of an Application](#obtaining-appid-of-an-application). |
 | appIndex   | number  | No  | Index of the application clone. The default value is **0**.<br>The value **0** means to delete the uninstallation disposed rule of the main application.           |
 
 **Error codes**
@@ -815,7 +815,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { appControl } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// Call the corresponding API to obtain appIdentifier or appId.
+// Use the corresponding API to obtain appIdentifier or appId.
 let appIdentifier = "com.example.myapplication_xxxxx";
 
 try {
@@ -841,7 +841,7 @@ Defines a disposed rule.
 | disposedType | [DisposedType](#disposedrule11) | Yes| Yes| Type of application disposal.|
 | controlType | [ControlType](#controltype11) | Yes| Yes| Control type of application disposal.|
 | elementList | Array\<[ElementName](js-apis-bundleManager-elementName.md)> | Yes| Yes| List of application components to be disposed of or exempted.|
-| priority | number | Yes| Yes| Priority of the disposed rule. The default value is **0**. A smaller value indicates a higher priority. |
+| priority | number | Yes| Yes| Priority of the disposed rule. The default value is 0. A smaller value indicates a higher priority.|
 
 ### ComponentType<sup>11+</sup>
 
@@ -894,8 +894,8 @@ Describes an uninstallation disposed rule.
 | Name     | Type          | Readable| Writable| Description                       |
 | --------- | -------------- | ---- | ---- | --------------------------- |
 | want | [Want](js-apis-app-ability-want.md)     | Yes  | Yes  | Page displayed when the application is disposed of. The default value is empty. |
-| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | Yes  | Yes  | Type of the ability to start during interception. The default value is UninstallComponentType.EXTENSION. |
-| priority | number | Yes| Yes| Priority of the disposed rule. The default value is **0**. A smaller value indicates a higher priority.|
+| UninstallComponentType | [UninstallComponentType](#uninstallcomponenttype15)  | Yes  | Yes  | Type of the ability to start during interception. The default value is UninstallComponentType.EXTENSION.|
+| priority | number | Yes| Yes| Priority of the disposed rule. The default value is 0. A smaller value indicates a higher priority.|
 
 ### UninstallComponentType<sup>15+</sup>
 

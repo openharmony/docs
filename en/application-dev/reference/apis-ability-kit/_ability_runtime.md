@@ -28,7 +28,7 @@ The AbilityRuntime module provides capabilities related to the ability framework
 | ------------------------------------------------------------ | ---------------------- |
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) {<br>    ABILITY_RUNTIME_ERROR_CODE_NO_ERROR = 0,<br>    ABILITY_RUNTIME_ERROR_CODE_PERMISSION_DENIED = 201,<br>    ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID = 401,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_SUPPORTED = 801,<br>    ABILITY_RUNTIME_ERROR_CODE_NO_SUCH_ABILITY = 16000001,<br>    ABILITY_RUNTIME_ERROR_CODE_INCORRECT_ABILITY_TYPE = 16000002,<br>    ABILITY_RUNTIME_ERROR_CODE_CROWDTEST_EXPIRED = 16000008,<br>    ABILITY_RUNTIME_ERROR_CODE_WUKONG_MODE = 16000009,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST = 16000011,<br>    ABILITY_RUNTIME_ERROR_CODE_CONTROLLED = 16000012,<br>    ABILITY_RUNTIME_ERROR_CODE_EDM_CONTROLLED = 16000013,<br>    ABILITY_RUNTIME_ERROR_CODE_CROSS_APP = 16000018,<br>    ABILITY_RUNTIME_ERROR_CODE_INTERNAL = 16000050,<br>    ABILITY_RUNTIME_ERROR_CODE_NOT_TOP_ABILITY = 16000053,<br>    ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED = 16000067,<br>    ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED = 16000072,<br>    ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY = 16000076,<br>    ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED = 16000077,<br>    ABILITY_RUNTIME_ERROR_MULTI_INSTANCE_NOT_SUPPORTED = 16000078,<br>    ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED = 16000079<br>} | Enumerates the error codes used by the ability framework.|
 | [AbilityRuntime_AreaMode](#abilityruntime_areamode) {<br>    ABILITY_RUNTIME_AREA_MODE_EL1 = 0,<br>    ABILITY_RUNTIME_AREA_MODE_EL2 = 1,<br>    ABILITY_RUNTIME_AREA_MODE_EL3 = 2,<br>    ABILITY_RUNTIME_AREA_MODE_EL4 = 3,<br>    ABILITY_RUNTIME_AREA_MODE_EL5 = 4<br>} | Enumerates the data encryption levels.    |
-| [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) {<br/>    ABILITY_RUNTIME_HIDE_UPON_START = 0,<br/>    ABILITY_RUNTIME_SHOW_UPON_START = 1<br/>} | Enumerates the display modes for the window and dock icon when starting an ability.     |
+| [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) {<br>    ABILITY_RUNTIME_HIDE_UPON_START = 0,<br>    ABILITY_RUNTIME_SHOW_UPON_START = 1<br>} | Enumerates the visibility modes of the window and dock bar icons when the ability is started.    |
 | [AbilityRuntime_WindowMode](#abilityruntime_supportedwindowmode) {<br>    ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED = 0,<br>    ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN = 1<br>} | Enumerates the window modes in which an ability can be displayed at startup.    |
 | [AbilityRuntime_SupportedWindowMode](#abilityruntime_supportedwindowmode) {<br>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FULL_SCREEN = 0,<br>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_SPLIT = 1,<br>    ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FLOATING = 2<br>} | Enumerates the window modes supported by an ability when it is started.    |
 
@@ -63,8 +63,8 @@ The AbilityRuntime module provides capabilities related to the ability framework
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsWindowHeight](#oh_abilityruntime_getstartoptionswindowheight)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &windowHeight) | Obtains the height of the window when the ability is started, in px.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsWindowWidth](#oh_abilityruntime_setstartoptionswindowwidth)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t windowWidth) | Sets the width of the window when the ability is started, in px.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsWindowWidth](#oh_abilityruntime_getstartoptionswindowwidth)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, int32_t &windowWidth) | Obtains the width of the window when the ability is started, in px.|
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartVisibility](#oh_abilityruntime_setstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) startVisibility) | Sets the display mode for the window and dock icon when starting an ability. |
-| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartVisibility](#oh_abilityruntime_getstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) &startVisibility) | Obtains the display mode for the window and dock icon when starting an ability.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartVisibility](#oh_abilityruntime_setstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) startVisibility) | Sets the visibility of the window and dock bar icons when the ability is started.|
+| [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartVisibility](#oh_abilityruntime_getstartoptionsstartvisibility)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [AbilityRuntime_StartVisibility](#abilityruntime_startvisibility) &startVisibility) | Obtains the visibility of the window and dock bar icons when the ability is started.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowIcon](#oh_abilityruntime_setstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative) *startWindowIcon) | Sets the startup icon of the window when the ability is started.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_GetStartOptionsStartWindowIcon](#oh_abilityruntime_getstartoptionsstartwindowicon)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, [OH_PixelmapNative](../apis-image-kit/_image___native_module.md#oh_pixelmapnative) **startWindowIcon) | Obtains the startup icon of the window when the ability is started.|
 | [AbilityRuntime_ErrorCode](#abilityruntime_errorcode) [OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor](#oh_abilityruntime_setstartoptionsstartwindowbackgroundcolor)([AbilityRuntime_StartOptions](#abilityruntime_startoptions) *startOptions, const char *startWindowBackgroundColor) | Sets the background color of the window when the ability is started.|
@@ -84,11 +84,13 @@ The AbilityRuntime module provides capabilities related to the ability framework
 ## Structs
 
 ### AbilityRuntime_StartOptions
+
 ```
 AbilityRuntime_StartOptions
 ```
 
 **Description**
+
 StartOptions struct.
 
 **Since**: 17
@@ -149,6 +151,7 @@ Enumerates the data encryption levels.
 | ABILITY_RUNTIME_AREA_MODE_EL3 | For step recording, file download, or music playback that needs to read, write, and create files when the screen is locked, the application can place these files in EL3.|
 | ABILITY_RUNTIME_AREA_MODE_EL4 | For files that are related to user security information and do not need to be read, written, or created when the screen is locked, the application can place them in EL4.|
 | ABILITY_RUNTIME_AREA_MODE_EL5 | By default, sensitive user privacy files cannot be read or written on the lock screen. If such files need to be read or written on the lock screen, you can call [Access](js-apis-screenLockFileManager.md#screenlockfilemanageracquireaccess) to apply for reading or writing files before the screen is locked or create new files that can be read and written after the screen is locked. It is more appropriate to place these files in EL5.|
+
 ### AbilityRuntime_StartVisibility
 
 ```
@@ -157,14 +160,15 @@ enum AbilityRuntime_StartVisibility
 
 **Description**
 
-Enmerates the display modes for the window and dock icon when starting an ability.
+Enumerates the visibility modes of the window and dock bar icons when the ability is started.
 
 **Since**: 17
 
 | Value                       | Description                                                        |
 | ----------------------------- | ------------------------------------------------------------ |
-| ABILITY_RUNTIME_HIDE_UPON_START | Hides the window and dock icon. It takes effect only on 2-in-1 devices.  |
-| ABILITY_RUNTIME_SHOW_UPON_START | Shows the window and dock icon. It takes effect only on 2-in-1 devices. |
+| ABILITY_RUNTIME_HIDE_UPON_START | Hides the window and dock bar icons. This mode takes effect only on 2-in-1 devices. |
+| ABILITY_RUNTIME_SHOW_UPON_START | Displays the window and dock bar icons. This mode takes effect only on 2-in-1 devices.|
+
 ### AbilityRuntime_WindowMode
 
 ```
@@ -181,7 +185,9 @@ Enumerates the window modes in which an ability can be displayed at startup.
 | ----------------------------- | ------------------------------------------------------------ |
 | ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED | Undefined window mode.|
 | ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN | Full-screen mode. This mode takes effect only on 2-in-1 devices.|
+
 ### AbilityRuntime_SupportedWindowMode
+
 ```
 enum AbilityRuntime_SupportedWindowMode
 ```
@@ -420,7 +426,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the c
 ### OH_AbilityRuntime_ApplicationContextGetDatabaseDir
 
 ```
-AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength);
+AbilityRuntime_ErrorCode OH_AbilityRuntime_ApplicationContextGetDatabaseDir(char* buffer, const int32_t bufferSize, int32_t* writeLength)
 ```
 
 **Description**
@@ -558,6 +564,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if the passed-in value of *
 Returns **ABILITY_RUNTIME_ERROR_CODE_CONTEXT_NOT_EXIST** if the context of the current environment does not exist. For example, the application-level context does not exist in the [child process](c-apis-ability-childprocess.md) created by the application.
 
 ### OH_AbilityRuntime_CreateStartOptions
+
 ```
 AbilityRuntime_StartOptions* OH_AbilityRuntime_CreateStartOptions(void)
 ```
@@ -575,6 +582,7 @@ Returns the pointer to **AbilityRuntime_StartOptions**, which is the StartOption
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void createStartOptionsTest()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -587,7 +595,9 @@ void createStartOptionsTest()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_DestroyStartOptions
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_DestroyStartOptions(AbilityRuntime_StartOptions **startOptions)
 ```
@@ -607,11 +617,13 @@ Destroys a StartOptions struct.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the struct is destroyed successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void destroyStartOptionsTest()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -624,7 +636,9 @@ void destroyStartOptionsTest()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsWindowMode
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWindowMode(AbilityRuntime_StartOptions *startOptions,
     AbilityRuntime_WindowMode windowMode);
@@ -646,11 +660,13 @@ Sets the window mode for starting an ability.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null or **WindowMode** is invalid.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -658,6 +674,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsWindowMode(options,
         ABILITY_RUNTIME_WINDOW_MODE_FULL_SCREEN);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -667,7 +684,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsWindowMode
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWindowMode(AbilityRuntime_StartOptions *startOptions,
     AbilityRuntime_WindowMode &windowMode);
@@ -689,11 +708,13 @@ Obtains the window mode for starting an ability.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -701,6 +722,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_WindowMode windowMode = ABILITY_RUNTIME_WINDOW_MODE_UNDEFINED;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsWindowMode(options, windowMode);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -710,7 +732,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsDisplayId
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsDisplayId(AbilityRuntime_StartOptions *startOptions, int32_t displayId);
 ```
@@ -731,11 +755,13 @@ Sets the ID of the display where the window is launched when the ability is star
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -743,6 +769,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsDisplayId(options, 1);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -751,7 +778,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsDisplayId
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsDisplayId(AbilityRuntime_StartOptions *startOptions, int32_t &displayId);
 ```
@@ -772,11 +801,13 @@ Obtains the ID of the display where the window is launched when the ability is s
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -784,6 +815,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t displayId = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsDisplayId(options, displayId);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -793,7 +825,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsWithAnimation
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWithAnimation(AbilityRuntime_StartOptions *startOptions, bool withAnimation);
 ```
@@ -814,11 +848,13 @@ Sets whether to use animation effects when an ability is started.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -826,6 +862,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsWithAnimation(options, true);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -834,7 +871,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsWithAnimation
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWithAnimation(AbilityRuntime_StartOptions *startOptions, bool &withAnimation);
 ```
@@ -855,11 +894,13 @@ Checks whether animation effects are used when an ability is started.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -867,6 +908,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     bool withAnimation = false;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsWithAnimation(options, withAnimation);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -876,7 +918,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsWindowLeft
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWindowLeft(AbilityRuntime_StartOptions *startOptions, int32_t windowLeft);
 ```
@@ -897,11 +941,13 @@ Sets the left position of the window when the ability is started, in px.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -909,6 +955,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsWindowLeft(options, 200);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -917,7 +964,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsWindowLeft
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWindowLeft(AbilityRuntime_StartOptions *startOptions, int32_t &windowLeft);
 ```
@@ -944,6 +993,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -951,6 +1001,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t windowLeft = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsWindowLeft(options, windowLeft);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -960,7 +1011,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsWindowTop
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWindowTop(AbilityRuntime_StartOptions *startOptions, int32_t windowTop);
 ```
@@ -987,6 +1040,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -994,6 +1048,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsWindowTop(options, 500);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -1002,7 +1057,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsWindowTop
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWindowTop(AbilityRuntime_StartOptions *startOptions, int32_t &windowTop);
 ```
@@ -1023,11 +1080,13 @@ Obtains the top position of the window when the ability is started, in px.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1035,6 +1094,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t windowTop = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsWindowTop(options, windowTop);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -1044,7 +1104,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsWindowHeight
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWindowHeight(AbilityRuntime_StartOptions *startOptions, int32_t windowHeight);
 ```
@@ -1065,11 +1127,13 @@ Sets the height of the window when the ability is started, in px.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1077,6 +1141,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsWindowHeight(options, 500);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -1085,7 +1150,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsWindowHeight
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWindowHeight(AbilityRuntime_StartOptions *startOptions, int32_t &windowHeight);
 ```
@@ -1106,11 +1173,13 @@ Obtains the height of the window when the ability is started, in px.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1118,6 +1187,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t windowHeight = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsWindowHeight(options, windowHeight);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -1127,7 +1197,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsWindowWidth
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsWindowWidth(AbilityRuntime_StartOptions *startOptions, int32_t windowWidth);
 ```
@@ -1148,11 +1220,13 @@ Sets the width of the window when the ability is started, in px.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1160,6 +1234,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsWindowWidth(options, 500);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -1168,7 +1243,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsWindowWidth
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsWindowWidth(AbilityRuntime_StartOptions *startOptions, int32_t &windowWidth);
 ```
@@ -1189,11 +1266,13 @@ Obtains the width of the window when the ability is started, in px.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1201,6 +1280,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t windowWidth = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsWindowWidth(options, windowWidth);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -1210,7 +1290,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsStartWindowIcon
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartWindowIcon(AbilityRuntime_StartOptions *startOptions, OH_PixelmapNative *startWindowIcon)
 ```
@@ -1300,14 +1382,14 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartVisibility(Abilit
 
 **Description**
 
-Sets the display mode for the window and dock icon when starting an ability.
+Sets the visibility of the window and dock bar icons when the ability is started.
 
 **Parameters**
 
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| startVisibility     | Display mode.                           |
+| startVisibility     | Visibility.                          |
 
 **Since**: 17
 
@@ -1315,7 +1397,7 @@ Sets the display mode for the window and dock icon when starting an ability.
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null or **startVisibility** is not set to an enumerated value of **AbilityRuntime_StartVisibility**.
+Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null or **startVisibility** is not an enumerated value of **AbilityRuntime_StartVisibility**.
 
 **Example**
 ```cpp
@@ -1347,20 +1429,20 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsStartVisibility(Abilit
 
 **Description**
 
-Obtains the display mode for the window and dock icon when starting an ability.
+Obtains the visibility of the window and dock bar icons when the ability is started.
 
 **Parameters**
 
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| startVisibility     | Display mode.                           |
+| startVisibility     | Visibility.                          |
 
 **Since**: 17
 
 **Returns**
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** or **startVisibility** is null.
 
@@ -1385,7 +1467,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsStartWindowIcon
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsStartWindowIcon(AbilityRuntime_StartOptions *startOptions,
     OH_PixelmapNative **startWindowIcon)
@@ -1413,6 +1497,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1420,6 +1505,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     OH_PixelmapNative *startWindowIcon = nullptr;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsStartWindowIcon(options, &startWindowIcon);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -1433,7 +1519,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor(AbilityRuntime_StartOptions *startOptions, const char *startWindowBackgroundColor)
 ```
@@ -1447,18 +1535,20 @@ Sets the background color of the window when the ability is started. Background 
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| startWindowBackgroundColor     | Background color of the window.                          |
+| startWindowBackgroundColor     | Background color of the window. The value is in ARGB format, for example, **#E5FFFFFF**.|
 
 **Since**: 17
 
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** or **StartWindowBackgroundColor** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1466,6 +1556,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsStartWindowBackgroundColor(options, "#00000000");
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -1475,7 +1566,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundColor
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundColor(AbilityRuntime_StartOptions *startOptions, char **startWindowBackgroundColor, size_t &size)
 ```
@@ -1489,7 +1582,7 @@ Obtains the background color of the window when the ability is started.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | startOptions     | Pointer to the StartOptions struct.                          |
-| startWindowBackgroundColor     | Background color of the window.                          |
+| startWindowBackgroundColor     | Background color of the window. The value is in ARGB format, for example, **#E5FFFFFF**.|
 | size     | Size of the background color.                          |
 
 **Since**: 17
@@ -1505,7 +1598,9 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_INTERNAL** if an internal error that cannot
 **Example**
 ```cpp
 #include <cstdlib>
+
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1513,6 +1608,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     char *startWindowBackgroundColor = nullptr;
     size_t size = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsStartWindowBackgroundColor(options,
@@ -1520,6 +1616,7 @@ void demo()
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
     }
+
     if (startWindowBackgroundColor != nullptr) {
         // Destroy startWindowBackgroundColor to prevent memory leakage.
         free(startWindowBackgroundColor);
@@ -1530,7 +1627,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsSupportedWindowModes
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsSupportedWindowModes(AbilityRuntime_StartOptions *startOptions,
     AbilityRuntime_SupportedWindowMode *supportedWindowModes, size_t size)
@@ -1553,11 +1652,13 @@ Sets the window modes supported by the ability when it is started.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** or **SupportedWindowModes** is null, or **Size** is **0**.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1565,6 +1666,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     size_t supportedWindowModesSize = 3;
     AbilityRuntime_SupportedWindowMode supportedWindowModes[3] = {
         ABILITY_RUNTIME_SUPPORTED_WINDOW_MODE_FULL_SCREEN,
@@ -1581,7 +1683,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsSupportedWindowModes
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsSupportedWindowModes(AbilityRuntime_StartOptions *startOptions,
     AbilityRuntime_SupportedWindowMode **supportedWindowModes, size_t &size)
@@ -1612,7 +1716,9 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_INTERNAL** if an internal error that cannot
 **Example**
 ```cpp
 #include <cstdlib>
+
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1620,6 +1726,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_SupportedWindowMode *supportedWindowModes = nullptr;
     size_t size = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsSupportedWindowModes(options,
@@ -1627,6 +1734,7 @@ void demo()
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
     }
+
     if (supportedWindowModes != nullptr) {
         // Destroy supportedWindowModes to prevent memory leakage.
         free(supportedWindowModes);
@@ -1636,7 +1744,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsMinWindowWidth
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsMinWindowWidth(AbilityRuntime_StartOptions *startOptions,
     int32_t minWindowWidth)
@@ -1658,11 +1768,13 @@ Sets the minimum window width for starting the ability, in vp.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1670,6 +1782,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsMinWindowWidth(options, 100);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -1679,7 +1792,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsMinWindowWidth
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsMinWindowWidth(AbilityRuntime_StartOptions *startOptions,
     int32_t &minWindowWidth)
@@ -1707,6 +1822,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1714,6 +1830,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t minWindowWidth = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsMinWindowWidth(options, minWindowWidth);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -1724,7 +1841,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsMaxWindowWidth
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsMaxWindowWidth(AbilityRuntime_StartOptions *startOptions,
     int32_t maxWindowWidth)
@@ -1746,11 +1865,13 @@ Sets the maximum window width for starting the ability, in vp.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1758,6 +1879,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsMaxWindowWidth(options, 100);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -1767,7 +1889,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsMaxWindowWidth
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsMaxWindowWidth(AbilityRuntime_StartOptions *startOptions,
     int32_t &maxWindowWidth)
@@ -1789,11 +1913,13 @@ Obtains the maximum window width for starting the ability, in vp.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1801,6 +1927,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t maxWindowWidth = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsMaxWindowWidth(options, maxWindowWidth);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -1811,7 +1938,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsMinWindowHeight
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsMinWindowHeight(AbilityRuntime_StartOptions *startOptions,
     int32_t minWindowHeight)
@@ -1833,11 +1962,13 @@ Sets the minimum window height for starting the ability, in vp.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1845,6 +1976,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsMinWindowHeight(options, 100);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -1854,7 +1986,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsMinWindowHeight
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsMinWindowHeight(AbilityRuntime_StartOptions *startOptions,
     int32_t &minWindowHeight)
@@ -1876,11 +2010,13 @@ Obtains the minimum window height for starting the ability, in vp.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the information is obtained successfully.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1888,6 +2024,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t minWindowHeight = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsMinWindowHeight(options, minWindowHeight);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -1898,7 +2035,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_SetStartOptionsMaxWindowHeight
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_SetStartOptionsMaxWindowHeight(AbilityRuntime_StartOptions *startOptions,
     int32_t maxWindowHeight)
@@ -1920,11 +2059,13 @@ Sets the maximum window height for starting the ability, in vp.
 **Returns**
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_NO_ERROR** if the setting is successful.
+
 Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null.
 
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1932,6 +2073,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_SetStartOptionsMaxWindowHeight(options, 100);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
         // Record error logs and other service processing.
@@ -1941,7 +2083,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_GetStartOptionsMaxWindowHeight
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_GetStartOptionsMaxWindowHeight(AbilityRuntime_StartOptions *startOptions,
     int32_t &maxWindowHeight)
@@ -1969,6 +2113,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_PARAM_INVALID** if **startOptions** is null
 **Example**
 ```cpp
 #include <AbilityKit/ability_runtime/start_options.h>
+
 void demo()
 {
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
@@ -1976,6 +2121,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     int32_t maxWindowHeight = 0;
     AbilityRuntime_ErrorCode err = OH_AbilityRuntime_GetStartOptionsMaxWindowHeight(options, maxWindowHeight);
     if (err != ABILITY_RUNTIME_ERROR_CODE_NO_ERROR) {
@@ -1986,7 +2132,9 @@ void demo()
     OH_AbilityRuntime_DestroyStartOptions(&options);
 }
 ```
+
 ### OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions
+
 ```
 AbilityRuntime_ErrorCode OH_AbilityRuntime_StartSelfUIAbilityWithStartOptions(AbilityBase_Want *want, AbilityRuntime_StartOptions *options)
 ```
@@ -2008,7 +2156,7 @@ Starts the UIAbility of the current application.
 | Name       | Description                                                        |
 | ----------- | ------------------------------------------------------------ |
 | want      | Pointer to the Want information required for starting the UIAbility.                          |
-| options      | Pointer to the StartOptions required for starting the UIAbility.                          |
+| options      | Pointer to the StartOptions required for starting the UIAbility.<br>**NOTE**<br>If the value of [startVisibility](#abilityruntime_startvisibility) is not null, ensure that the current application has been added to the status bar. Otherwise, the **ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED** error code is returned.|
 
 **Returns**
 
@@ -2042,7 +2190,7 @@ Returns **ABILITY_RUNTIME_ERROR_VISIBILITY_SETTING_DISABLED** if it is forbidden
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_MULTI_APP_NOT_SUPPORTED** if the application does not support clone and multi-instance mode.
 
-Returns **ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY** if the multi-instance key is invalid.
+Returns **ABILITY_RUNTIME_ERROR_CODE_INVALID_APP_INSTANCE_KEY** if the instance key is invalid.
 
 Returns **ABILITY_RUNTIME_ERROR_CODE_UPPER_LIMIT_REACHED** if the number of instances has reached the upper limit.
 
@@ -2054,6 +2202,7 @@ Returns **ABILITY_RUNTIME_ERROR_CODE_APP_INSTANCE_KEY_NOT_SUPPORTED** if APP_INS
 ```cpp
 #include <AbilityKit/ability_base/want.h>
 #include <AbilityKit/ability_runtime/application_context.h>
+
 void demo()
 {
     AbilityBase_Element element;
@@ -2065,6 +2214,7 @@ void demo()
         // Record error logs and other service processing.
         return;
     }
+
     AbilityRuntime_StartOptions* options = OH_AbilityRuntime_CreateStartOptions();
     if (options == nullptr) {
         // Record error logs and other service processing.

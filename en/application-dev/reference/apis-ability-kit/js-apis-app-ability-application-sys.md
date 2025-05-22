@@ -17,6 +17,9 @@ createModuleContext(context: Context, bundleName: string, moduleName: string): P
 
 Creates the context for a module.
 
+> **NOTE**
+>
+> This API requires multiple bundle information queries and loads all resources of the specified module, which can be quite slow. To optimize performance, you are advised to cache the created context during the first use to prevent repeated calls for context creation.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -76,7 +79,6 @@ export default class EntryAbility extends UIAbility {
 createBundleContext(context: Context, bundleName: string): Promise\<Context>
 
 Creates the context for an application.
-
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 

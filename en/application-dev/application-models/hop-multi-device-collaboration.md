@@ -654,7 +654,7 @@ The following describes how to implement multi-device collaboration through cros
 | call(method: string, data: rpc.Parcelable): Promise&lt;void&gt; | Sends agreed parcelable data to the CalleeAbility.|
 | callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequence&gt;| Sends agreed parcelable data to the CalleeAbility and obtains the agreed parcelable data returned by the CalleeAbility.|
 | release(): void | Releases the caller object.|
-| on(type: "release", callback: OnReleaseCallback): void | Callback invoked when the caller object is released.|
+| on(type:&nbsp;"release",&nbsp;callback:&nbsp;OnReleaseCallback):&nbsp;void | Callback invoked when the caller object is released.|
 
 
 ### How to Develop
@@ -920,7 +920,7 @@ The following describes how to implement multi-device collaboration through cros
         ```
        
         For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
-
+   
 5. Sends agreed parcelable data to the CalleeAbility.
     1. The parcelable data can be sent to the CalleeAbility with or without a return value. The method and parcelable data must be consistent with those of the CalleeAbility. The following example describes how to use [Call](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callercall) to send data to [Callee](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#callee).
       
