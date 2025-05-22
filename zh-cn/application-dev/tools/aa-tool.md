@@ -268,7 +268,7 @@ aa dump -a
   
   ```bash
   # 打印指定应用组件详细信息
-  aa dump -i 12
+  aa dump -i 105
   ```
 
   ![aa-dump-i](figures/aa-dump-i.png)
