@@ -96,4 +96,6 @@ SVG（Scalable Vector Graphics）是可缩放矢量图形，它是一种基于XM
 | \<use\> | 复用已有元素 | x：x轴偏移分量；<br> y：y轴偏移分量；href：目标元素 | fill、fill-rule、fill-opacity、stroke、stroke-dasharray、stroke-dashoffset、stroke-opacity、stroke-width、stroke-linecap、stroke-linejoin、stroke-miterlimit、transform |
 | \<defs\> | 定义可复用对象 | | |
 
-**说明：** 当前支持的颜色值格式包括：#rgb、#rrggbb、rgb()、rgba()，以及常用颜色关键字（如：red、black、blue等）。
+>**说明：**  
+> 
+> 当前支持的颜色值格式包括#rgb、#rrggbb、rgb()、rgba()，以及常用颜色关键字（如red、black、blue等）。
