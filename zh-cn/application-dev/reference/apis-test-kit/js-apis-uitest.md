@@ -3036,7 +3036,7 @@ async function demo() {
 
 screenCap(savePath: string, displayId: number): Promise\<boolean>
 
-Driver对象采取如下操作：捕获屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
+Driver对象采取如下操作：捕获指定屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3256,7 +3256,7 @@ getDisplaySize(): Promise\<Point>
 **示例：**
 
 ```ts
-import { Driver, } from '@kit.TestKit';
+import { Driver } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
