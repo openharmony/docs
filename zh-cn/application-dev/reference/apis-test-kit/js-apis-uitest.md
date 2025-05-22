@@ -126,11 +126,11 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 | 名称                 | 类型    | 可读 | 可写 | 必填 | 说明                                                                                     |
 | -------------------- | ------- | ---- | ---- | ---- |----------------------------------------------------------------------------------------|
-| bundleName           | string  | 是   | 是  | 否  | 窗口归属应用的包名。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
-| title                | string  | 是   | 是  | 否  | 窗口的标题信息。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
-| focused              | boolean | 是   | 是  | 否  | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| actived(deprecated)  | boolean | 是   | 是  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br>从API version 11开始废弃，建议使用active替代。                                                |
-| active<sup>11+</sup> | boolean | 是   | 是  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
+| bundleName           | string  | 是   | 是  | 否  | 窗口归属应用的包名，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| title                | string  | 是   | 是  | 否  | 窗口的标题信息，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
+| focused              | boolean | 是   | 是  | 否  | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| actived(deprecated)  | boolean | 是   | 是  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 11开始废弃，建议使用active替代。                                                |
+| active<sup>11+</sup> | boolean | 是   | 是  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
 | displayId | number | 是   | 是   | 否  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备主屏ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
