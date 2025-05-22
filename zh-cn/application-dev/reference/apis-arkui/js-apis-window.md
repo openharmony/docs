@@ -244,11 +244,11 @@ import { window } from '@kit.ArkUI';
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
 | brightness                            | number                    | 否   | 否   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从API version 7开始支持。 |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从API version 7开始支持。当前无可替代接口。|
 | isKeepScreenOn                        | boolean                   | 否   | 否   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                   |
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 否   | 否   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                  |
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从API version 7开始支持。      |
-| isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口是否透明。默认为false。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从API version 7开始支持。当前无可替代接口。|
+| isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口背景是否透明。默认为false。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
 | id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | displayId<sup>12+</sup>               | number                    | 是   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID,该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | name<sup>18+</sup>               | string                    | 是   | 是   | 窗口名字，默认为空字符串。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
@@ -1465,22 +1465,26 @@ getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = window.getVisibleWindowInfo();
-promise.then((data) => {
-  data.forEach(windowInfo=>{
-    console.info(`left:${windowInfo.rect.left}`);
-    console.info(`top:${windowInfo.rect.top}`);
-    console.info(`width:${windowInfo.rect.width}`);
-    console.info(`height:${windowInfo.rect.height}`);
-    console.info(`windowId:${windowInfo.windowId}`);
-    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
-    console.info(`abilityName:${windowInfo.abilityName}`);
-    console.info(`bundleName:${windowInfo.bundleName}`);
-    console.info(`isFocused:${windowInfo.isFocused}`);
-  })
-}).catch((err: BusinessError) => {
-  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
-});
+try {
+  let promise = window.getVisibleWindowInfo();
+  promise.then((data) => {
+    data.forEach(windowInfo=>{
+      console.info(`left:${windowInfo.rect.left}`);
+      console.info(`top:${windowInfo.rect.top}`);
+      console.info(`width:${windowInfo.rect.width}`);
+      console.info(`height:${windowInfo.rect.height}`);
+      console.info(`windowId:${windowInfo.windowId}`);
+      console.info(`windowStatusType:${windowInfo.windowStatusType}`);
+      console.info(`abilityName:${windowInfo.abilityName}`);
+      console.info(`bundleName:${windowInfo.bundleName}`);
+      console.info(`isFocused:${windowInfo.isFocused}`);
+    })
+  }).catch((err: BusinessError) => {
+    console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error(`Failed to get visible window info. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## SpecificSystemBar<sup>11+</sup>
@@ -5489,7 +5493,7 @@ windowClass.isWindowSupportWideGamut((err: BusinessError, data) => {
     console.error(`Failed to check whether the window support WideGamut. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in checking whether the window support WideGamut Data: ${data}`);
 });
 ```
 
@@ -5524,7 +5528,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.isWindowSupportWideGamut();
 promise.then((data) => {
-  console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in checking whether the window support WideGamut. Data: ${data}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to check whether the window support WideGamut. Cause code: ${err.code}, message: ${err.message}`);
 });
@@ -5650,7 +5654,14 @@ getWindowColorSpace(): ColorSpace
 **示例：**
 
 ```ts
-let colorSpace = windowClass.getWindowColorSpace();
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let colorSpace = windowClass.getWindowColorSpace();
+  console.info(`Succeeded in getting the window color space. ColorSpace: ${colorSpace}`);
+} catch (exception) {
+  console.error(`Failed to set the window to be focusable. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setWindowBackgroundColor<sup>9+</sup>
@@ -5753,7 +5764,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      let brightness: number = 1;
+      let brightness: number = 1.0;
       try {
         windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
           const errCode: number = err.code;
@@ -5825,7 +5836,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      let brightness: number = 1;
+      let brightness: number = 1.0;
       try {
         let promise = windowClass.setWindowBrightness(brightness);
         promise.then(() => {
@@ -6032,7 +6043,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting the screen to be always on.');
   }).catch((err: BusinessError) => {
-    console.info(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
   console.error(`Failed to set the screen to be always on. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -6241,7 +6252,7 @@ try {
 
 snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
-获取窗口截图，使用callback异步回调。
+获取窗口截图，使用callback异步回调。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -12614,7 +12625,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用主窗口自定义其显示大小缩放系数，子窗会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最终调用的结果设置效果为准。
+支持应用主窗口自定义其显示大小缩放系数，子窗会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -12969,7 +12980,7 @@ export default class EntryAbility extends UIAbility {
     try {
       let promise = windowStage.isWindowRectAutoSave();
       promise.then((data) => {
-        console.info('Succeeded in checking whether the window support the rect auto-save. Data: ' + JSON.stringify(data));
+        console.info(`Succeeded in checking whether the window support the rect auto-save. Data: ${data}`);
       }).catch((err: BusinessError) => {
         console.error(`Failed to check whether the window support the rect auto-save. Cause code: ${err.code}, message: ${err.message}`);
       });
