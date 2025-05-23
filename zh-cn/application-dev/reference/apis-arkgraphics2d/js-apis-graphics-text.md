@@ -1405,7 +1405,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 updateColor(color: common2D.Color): void;
 
-更新整个文本段落的颜色。如果当前装饰线未设置颜色，使用该接口会更新装饰线的颜色。
+更新整个文本段落的颜色。如果当前装饰线未设置颜色，使用该接口也会同时更新装饰线的颜色。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
