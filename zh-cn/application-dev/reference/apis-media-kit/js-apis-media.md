@@ -8644,6 +8644,16 @@ request.finishLoading(uuid, loadingError);
 | PRESERVE_ASPECT_RATIO | 0    | 保持与原始图像相同的宽高比例，即与物理屏幕宽高比例一致。 |
 | SCALE_TO_FILL | 1    | 进行图像拉伸填充，适配设置的宽度和高度。 |
 
+## AVScreenCaptureStrategy<sup>20+</sup>
+
+录屏策略。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+| 名称                  | 类型    | 必填 | 说明                 |
+| --------------------- | ------- | --- | -------------------- |
+| keepCaptureDuringCall | boolean | 否  | 蜂窝通话时是否保持录屏。 |
+
 ## AVScreenCaptureRecordConfig<sup>12+</sup>
 
 表示录屏参数配置。
@@ -8662,6 +8672,7 @@ request.finishLoading(uuid, loadingError);
 | preset            | [AVScreenCaptureRecordPreset](#avscreencapturerecordpreset12) | 否   | 录屏使用的编码和封装格式，默认SCREEN_RECORD_PRESET_H264_AAC_MP4格式。 |
 | displayId<sup>15+</sup>            | number | 否   | 指定录屏使用的屏幕，默认主屏幕。 |
 | fillMode<sup>18+</sup>            | [AVScreenCaptureFillMode](#avscreencapturefillmode18)| 否   | 录屏时视频流的填充模式。 |
+| strategy<sup>20+</sup>            | [AVScreenCaptureStrategy](#avscreencapturestrategy20)| 否   | 录屏策略。 |
 
 ## AVScreenCaptureRecorder<sup>12+</sup>
 

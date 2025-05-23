@@ -81,6 +81,7 @@
 | typedef void(\* [OH_AVScreenCapture_OnBufferAvailable](#oh_avscreencapture_onbufferavailable)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVBuffer](../apis-avcodec-kit/_core.md#oh_avbuffer) \*buffer, [OH_AVScreenCaptureBufferType](#oh_avscreencapturebuffertype) bufferType, int64_t timestamp, void \*userData) | 当OH_AVScreenCapture实例操作期间音频或视频缓存区可用时，将调用该函数指针。 | 
 | typedef enum [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1) [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) | 屏幕录制过程中产生的不同结果码。 | 
 | typedef void(\* [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, uint64_t displayId, void \*userData) | 当录屏事件开始时，将调用函数指针。 | 
+| typedef struct [OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) [OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) | 通过OH_AVScreenCapture_CaptureStrategy设置录屏策略。 | 
 | typedef void(\* [OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged)) ([OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCaptureContentChangedEvent](#oh_avscreencapturecontentchangedevent) event, [OH_Rect](#oh_rect) \*area, void \*userData) | 当录屏内容变化时，将调用函数指针。 | 
 
 
@@ -134,6 +135,10 @@
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetMaxVideoFrameRate](#oh_avscreencapture_setmaxvideoframerate) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, int32_t frameRate) | 设置录屏的最大帧率。  | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ShowCursor](#oh_avscreencapture_showcursor) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, bool showCursor) | 设置光标显示开关。 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetDisplayCallback](#oh_avscreencapture_setdisplaycallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnDisplaySelected](#oh_avscreencapture_ondisplayselected) callback, void \*userData) | 设置获取录屏屏幕Id的回调。 | 
+| [OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy)  \* [OH_AVScreenCapture_CreateCaptureStrategy](#oh_avscreencapture_createcapturestrategy) (void) | 创建CaptureStrategy。 | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_ReleaseCaptureStrategy](#oh_avscreencapture_releasecapturestrategy) ([OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) \*strategy) | 释放CaptureStrategy。 | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetCaptureStrategy](#oh_avscreencapture_setcapturestrategy) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) \*strategy) | 向OH_AVScreenCapture实例设置录屏策略CaptureStrategy。 | 
+| [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_StrategyForKeepCaptureDuringCall](#oh_avscreencapture_strategyforkeepcaptureduringcall) ([OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy) \*strategy, bool value) | 向CaptureStrategy实例设置蜂窝通话是否打断录屏 | 
 | [OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode) [OH_AVScreenCapture_SetCaptureContentChangedCallback](#oh_avscreencapture_setcapturecontentchangedcallback) (struct [OH_AVScreenCapture](#oh_avscreencapture) \*capture, [OH_AVScreenCapture_OnCaptureContentChanged](#oh_avscreencapture_oncapturecontentchanged) callback, void \*userData) | 设置录屏内容变化的回调。 | 
 
 
@@ -656,6 +661,18 @@ typedef enum OH_VideoSourceType OH_VideoSourceType
 **系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
 
 **起始版本：** 10
+
+### OH_AVScreenCapture_CaptureStrategy
+
+```
+typedef struct OH_AVScreenCapture_CaptureStrategy OH_AVScreenCapture_CaptureStrategy;
+```
+**描述**
+通过OH_AVScreenCapture_CaptureStrategy设置录屏策略。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 20
 
 
 ### OH_AVScreenCaptureContentChangedEvent
@@ -1809,6 +1826,108 @@ AV_SCREEN_CAPTURE_ERR_OK：执行成功。
 AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针，或者输入参数frameRate不支持。
 
 AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT：操作受限，建议重试。
+
+
+### OH_AVScreenCapture_CreateCaptureStrategy()
+```
+OH_AVScreenCapture_CaptureStrategy* OH_AVScreenCapture_CreateCaptureStrategy(void);
+```
+**描述**
+创建CaptureStrategy。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 20
+
+**返回：**
+
+执行成功返回[OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy)实例，否则返回空指针。
+
+### OH_AVScreenCapture_ReleaseCaptureStrategy()
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_ReleaseCaptureStrategy(OH_AVScreenCapture_CaptureStrategy* strategy);
+```
+**描述**
+释放CaptureStrategy。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| strategy | 指向[OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy)实例的指针。 | 
+
+**返回：**
+
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针。
+
+### OH_AVScreenCapture_SetCaptureStrategy()
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_SetCaptureStrategy(struct OH_AVScreenCapture *capture, OH_AVScreenCapture_CaptureStrategy *strategy);
+```
+**描述**
+向OH_AVScreenCapture实例设置录屏策略CaptureStrategy。
+
+该接口应在录屏启动之前被调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| capture | 指向[OH_AVScreenCapture](#oh_avscreencapture)实例的指针。 | 
+| strategy | 指向[OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy)实例的指针。 | 
+
+**返回：**
+
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数capture为空指针或输入参数strategy为空指针。
+
+AV_SCREEN_CAPTURE_ERR_UNSUPPORT：操作不支持，录屏策略设置失败，例如：在录屏启动之后调用该接口。
+
+### OH_AVScreenCapture_StrategyForKeepCaptureDuringCall()
+```
+OH_AVSCREEN_CAPTURE_ErrCode OH_AVScreenCapture_StrategyForKeepCaptureDuringCall(OH_AVScreenCapture_CaptureStrategy *strategy, bool value);
+```
+**描述**
+
+向CaptureStrategy实例设置蜂窝通话时是否保持录屏。
+
+true表示蜂窝通话时可以录屏，false表示蜂窝通话时不允许录屏，不设置默认是false
+
+设置为true时并且录屏时接听蜂窝通话的过程中，出于隐私要求，双方通话的声音（本地麦克风和对方说话声音）不会被录制，其他系统音录制正常。电话挂断之后，录屏框架恢复麦克风录制。特别的：如果挂断电话时录屏应用在后台运行，麦克风录制会启动失败，原因是音频模块不允许后台应用启动麦克风录制。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVScreenCapture
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| strategy | 指向[OH_AVScreenCapture_CaptureStrategy](#oh_avscreencapture_capturestrategy)实例的指针。 | 
+| value | 是否保持录屏。 | 
+
+**返回：**
+
+函数结果代码[OH_AVSCREEN_CAPTURE_ErrCode](#oh_avscreen_capture_errcode-1)：
+
+AV_SCREEN_CAPTURE_ERR_OK：执行成功。
+
+AV_SCREEN_CAPTURE_ERR_INVALID_VAL：输入参数strategy为空指针。
 
 
 ### OH_AVScreenCapture_SetCaptureContentChangedCallback()
