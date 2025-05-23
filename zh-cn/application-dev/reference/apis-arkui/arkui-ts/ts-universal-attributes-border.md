@@ -158,7 +158,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 ## LocalizedEdgeColors<sup>12+</sup>对象说明
 
-边框颜色，用于描述组件边框四条边的颜色。
+边框颜色，描述组件边框四条边的颜色。
 
 引入该对象时，至少传入一个参数。
 
@@ -224,7 +224,7 @@ borderRadius(value: Length | BorderRadiuses | LocalizedBorderRadiuses)
 
 ### 示例1（基本样式用法）
 
-设置边框的宽度、颜色、边框圆角半径以及点、线样式。
+设置边框的宽度、颜色、圆角半径以及点、线样式。
 
 ```ts
 // xxx.ets
