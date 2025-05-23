@@ -1,4 +1,4 @@
-# 卡片生命周期管理
+# 管理ArkTS卡片生命周期
 
 
 创建ArkTS卡片，需实现[FormExtensionAbility](../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md)生命周期接口。
