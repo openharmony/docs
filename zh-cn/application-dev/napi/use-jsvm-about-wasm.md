@@ -40,12 +40,23 @@ cpp 部分代码：
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
-#include <vector> 
+#include <vector>
+
+#ifndef CHECK_STATUS
+#define CHECK_STATUS(cond)                           \
+    do {                                             \
+        if (!(cond)) {                               \
+            OH_LOG_ERROR(LOG_APP, "CHECK FAILED");   \
+            break;                               \
+        }                                            \
+    } while (0)
+#endif
 
 // 判断一个 JSVM_Value 是否是 wasm module
 static bool IsWasmModuleObject(JSVM_Env env, JSVM_Value value) {
     bool result;
     JSVM_Status status = OH_JSVM_IsWasmModuleObject(env, value, &result);
+    CHECK_STATUS(status == JSVM_OK);
     return result;
 }
 
@@ -53,6 +64,7 @@ static bool IsWasmModuleObject(JSVM_Env env, JSVM_Value value) {
 static JSVM_Value CreateString(JSVM_Env env, const char *str) {
     JSVM_Value jsvmStr;
     JSVM_Status status = OH_JSVM_CreateStringUtf8(env, str, JSVM_AUTO_LENGTH, &jsvmStr);
+    CHECK_STATUS(status == JSVM_OK);
     return jsvmStr;
 }
 
@@ -60,6 +72,7 @@ static JSVM_Value CreateString(JSVM_Env env, const char *str) {
 static JSVM_Value CreateInt32(JSVM_Env env, int32_t val) {
     JSVM_Value jsvmInt32;
     JSVM_Status status = OH_JSVM_CreateInt32(env, val, &jsvmInt32);
+    CHECK_STATUS(status == JSVM_OK);
     return jsvmInt32;
 }
 
@@ -68,16 +81,20 @@ static JSVM_Value InstantiateWasmModule(JSVM_Env env, JSVM_Value wasmModule) {
     JSVM_Status status = JSVM_OK;
     JSVM_Value globalThis;
     status = OH_JSVM_GetGlobal(env, &globalThis);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value webAssembly;
     status = OH_JSVM_GetProperty(env, globalThis, CreateString(env, "WebAssembly"), &webAssembly);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value webAssemblyInstance;
     status = OH_JSVM_GetProperty(env, webAssembly, CreateString(env, "Instance"), &webAssemblyInstance);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value instance;
     JSVM_Value argv[] = {wasmModule};
     status = OH_JSVM_NewInstance(env, webAssemblyInstance, 1, argv, &instance);
+    CHECK_STATUS(status == JSVM_OK);
     return instance;
 }
 
@@ -105,9 +122,11 @@ static void VerifyAddWasmInstance(JSVM_Env env, JSVM_Value wasmInstance) {
     // 从 wasm instance 获取 exports.add 函数
     JSVM_Value exports;
     status = OH_JSVM_GetProperty(env, wasmInstance, CreateString(env, "exports"), &exports);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value add;
     status = OH_JSVM_GetProperty(env, exports, CreateString(env, "add"), &add);
+    CHECK_STATUS(status == JSVM_OK);
 
     // 执行 exports.add(1, 2)，期望得到结果 3
     JSVM_Value undefined;
@@ -117,9 +136,10 @@ static void VerifyAddWasmInstance(JSVM_Env env, JSVM_Value wasmInstance) {
     JSVM_Value argv[] = {one, two};
     JSVM_Value result;
     status = OH_JSVM_CallFunction(env, undefined, add, 2, argv, &result);
+    CHECK_STATUS(status == JSVM_OK);
     int32_t resultInt32;
     OH_JSVM_GetValueInt32(env, result, &resultInt32);
-    OH_LOG_INFO(LOG_APP, "JSVM resultInt32: %{public}d",resultInt32);
+    CHECK_STATUS(resultInt32 == 3);
 }
 
 // WebAssembly demo 主函数
@@ -131,43 +151,55 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info) {
     JSVM_Value wasmModule;
     // 根据 wasm 字节码得到 wasm module
     status = OH_JSVM_CompileWasmModule(env, wasmBytecode, wasmBytecodeLength, NULL, 0, NULL, &wasmModule);
-    OH_LOG_INFO(LOG_APP, "JSVM IsWasmModuleObject: %{public}d", IsWasmModuleObject(env, wasmModule));
-    
+    CHECK_STATUS(status == JSVM_OK);
+    CHECK_STATUS(IsWasmModuleObject(env, wasmModule));
+
     // 对当前 wasm module 中定义的第一个函数 (即 add) 执行编译优化
     int32_t functionIndex = 0;
     // 注意：当前只支持 high level optimization，即传入 JSVM_WASM_OPT_BASELINE 和传入 JSVM_WASM_OPT_HIGH 效果是一样的
     status = OH_JSVM_CompileWasmFunction(env, wasmModule, functionIndex, JSVM_WASM_OPT_HIGH);
+    CHECK_STATUS(status == JSVM_OK);
     // 对编译得到的 wasm module 进行实例化
     JSVM_Value wasmInstance = InstantiateWasmModule(env, wasmModule);
     // 对实例化的 wasm instance 中的函数进行功能验证
     VerifyAddWasmInstance(env, wasmInstance);
+
     // 创建 wasm cache
     const uint8_t *wasmCacheData = NULL;
     size_t wasmCacheLength = 0;
     status = OH_JSVM_CreateWasmCache(env, wasmModule, &wasmCacheData, &wasmCacheLength);
+    CHECK_STATUS(status == JSVM_OK);
+    // 期望 wasm cache 创建成功
+    CHECK_STATUS(wasmCacheData != NULL);
+    CHECK_STATUS(wasmCacheLength > 0);
+
     // 通过将 wasm cache 赋值来模拟 cache 持久化，实际使用场景可能将 wasm cache 保存到文件
     std::vector<uint8_t> cacheBuffer(wasmCacheData, wasmCacheData + wasmCacheLength);
+
     // cache 一旦保存完成后，需要显式释放，以免发生内存泄露
     // 注意：传入的 JSVM_CacheType 必须匹配
     status = OH_JSVM_ReleaseCache(env, wasmCacheData, JSVM_CACHE_TYPE_WASM);
+    CHECK_STATUS(status == JSVM_OK);
 
     // 使用 wasm code 反序列化来生成 wasm module
     bool cacheRejected;
     JSVM_Value wasmModule2;
     status = OH_JSVM_CompileWasmModule(env, wasmBytecode, wasmBytecodeLength, cacheBuffer.data(), cacheBuffer.size(),
                                        &cacheRejected, &wasmModule2);
-    
+   
     // 传入的 wasm cache 如果是匹配的，且内部校验通过 (如版本)，则会接受 cache
-    OH_LOG_INFO(LOG_APP, "JSVM cacheRejected: %{public}d", cacheRejected == false);
-    OH_LOG_INFO(LOG_APP, "JSVM IsWasmModuleObject2: %{public}d", IsWasmModuleObject(env, wasmModule2));
-    
+    CHECK_STATUS(cacheRejected == false);
+    CHECK_STATUS(IsWasmModuleObject(env, wasmModule2));
+
     // 对反序列化得到的 wasmModule2 进行同样的操作：函数编译、实例化、验证功能，期望也都是通过的
     status = OH_JSVM_CompileWasmFunction(env, wasmModule2, functionIndex, JSVM_WASM_OPT_HIGH);
+
     JSVM_Value wasmInstance2 = InstantiateWasmModule(env, wasmModule);
-    
     VerifyAddWasmInstance(env, wasmInstance2);
+
     JSVM_Value result;
     OH_JSVM_GetBoolean(env, true, &result);
+    OH_LOG_INFO(LOG_APP, "JSVM resultInt: %{public}d", result);
     return result;
 }
 
@@ -186,9 +218,6 @@ const char *srcCallNative = R"JS(wasmDemo())JS";
 ```
 预期输出
 ```
-JSVM IsWasmModuleObject: 1 
-JSVM resultInt32: 3 
-JSVM cacheRejected: 1 
-JSVM IsWasmModuleObject2: 1
-JSVM resultInt32: 3 
+JSVM Init
+JSVM resultInt: 975178312
 ```
