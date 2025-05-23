@@ -193,6 +193,7 @@ static JSVM_Value WasmDemo(JSVM_Env env, JSVM_CallbackInfo info) {
 
     // 对反序列化得到的 wasmModule2 进行同样的操作：函数编译、实例化、验证功能，期望也都是通过的
     status = OH_JSVM_CompileWasmFunction(env, wasmModule2, functionIndex, JSVM_WASM_OPT_HIGH);
+    CHECK_STATUS(status == JSVM_OK);
 
     JSVM_Value wasmInstance2 = InstantiateWasmModule(env, wasmModule);
     VerifyAddWasmInstance(env, wasmInstance2);
