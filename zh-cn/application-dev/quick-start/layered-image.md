@@ -1,4 +1,6 @@
-# 配置分层图标
+# 配置图标
+
+## 配置双层图标
 
 应用图标如果采用分层图标（包括前景图和背景图两层），可以参考本章节进行配置。图标规范详见<!--RP1-->[图标交付](https://docs.openharmony.cn/pages/v5.0/zh-cn/design/ux-design/visual-app-icons.md#%E5%9B%BE%E6%A0%87%E4%BA%A4%E4%BB%98)<!--RP1End-->，图标配置规则详见[图标配置](../application-models/application-component-configuration-stage.md#图标和标签配置)。
 
@@ -25,3 +27,6 @@
         }
     ```
 
+## 生成单层图标
+
+应用如果配置单层图标，可以参考[配置示例](../application-models/application-component-configuration-stage.md#配置示例)。
