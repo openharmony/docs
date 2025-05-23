@@ -93,18 +93,14 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
   "isNotificationNeeded": true,
   "isCaptureFullOfScreen": true
 };
-try {
-  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
-} catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-};
+screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+});
 ```
 
 ## screenshot.save
@@ -141,18 +137,14 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-try {
-  screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
-} catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-};
+screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+});
 ```
 
 ## screenshot.save
