@@ -1,14 +1,14 @@
 # BundleInfo
 
-应用包信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的应用包信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)指定所返回的[BundleInfo](js-apis-bundleManager-bundleInfo.md)中所包含的信息。
+应用包信息，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的应用包信息，其中参数[bundleFlags](js-apis-bundleManager.md#bundleflag)指定所返回的[BundleInfo](js-apis-bundleManager-bundleInfo.md)中所包含的信息。
 
 > **说明：**
 >
-> 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## BundleInfo
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                              | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | --------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -17,17 +17,17 @@
 | versionCode                       | number                                                       | 是   | 否   | 应用包的版本号。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | versionName                       | string                                                       | 是   | 否   | 应用包的版本文本描述信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | minCompatibleVersionCode          | number                                                       | 是   | 否   | 分布式场景下的应用包兼容的最低版本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| targetVersion                     | number                                                       | 是   | 否   | 该标签标识应用运行目标版本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| targetVersion                     | number                                                       | 是   | 否   | 应用运行目标版本。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | appInfo                           | [ApplicationInfo](js-apis-bundleManager-applicationInfo.md)         | 是   | 否   | 应用程序的配置信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_APPLICATION获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | hapModulesInfo                    | Array\<[HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)>     | 是   | 否   | 模块的配置信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | reqPermissionDetails     | Array\<[ReqPermissionDetail](#reqpermissiondetail)>   | 是   | 否   | 应用运行时需向系统申请的权限集合的详细信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | permissionGrantStates        | Array\<[bundleManager.PermissionGrantState](js-apis-bundleManager.md#permissiongrantstate)> | 是   | 否   | 申请权限的授予状态，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | signatureInfo          | [SignatureInfo](#signatureinfo)                                          | 是   | 否   | 应用包的签名信息，通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_SIGNATURE_INFO获取。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| installTime                       | number                                                       | 是   | 否   | 应用包安装时间。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| updateTime                        | number                                                       | 是   | 否   | 应用包更新时间。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| installTime                       | number                                                       | 是   | 否   | 应用包安装时间戳，单位毫秒。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| updateTime                        | number                                                       | 是   | 否   | 应用包更新时间戳，单位毫秒。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | routerMap<sup>12+</sup>           | Array\<[RouterItem](js-apis-bundleManager-hapModuleInfo.md#routeritem12)>           | 是   | 否   | 应用的路由表配置，由hapModulesInfo下的routerMap信息，根据RouterItem中的name字段进行去重后合并得到。通过调用[getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)接口，bundleFlags参数传入GET_BUNDLE_INFO_WITH_HAP_MODULE和GET_BUNDLE_INFO_WITH_ROUTER_MAP获取。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | appIndex<sup>12+</sup>    | number    | 是   | 否   | 应用包的分身索引标识，仅在分身应用中生效。 |
-| firstInstallTime<sup>18+</sup>                        | number                                                       | 是   | 是   | 应用在当前设备的首次安装时间。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
+| firstInstallTime<sup>18+</sup>                        | number                                                       | 是   | 是   | 应用在当前设备的首次安装时间戳，单位毫秒。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
 
 
 ## ReqPermissionDetail
@@ -36,13 +36,13 @@
 > **说明：**
 > - 如果应用内多包申请的权限名称一样，但是权限申请理由不一致，系统只会返回一个权限申请理由，优先级从高到低顺序为entry类型HAP、feature类型HAP、应用内HSP。
 
- **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称                  | 类型                    | 只读 | 可选 | 说明                 |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------|
-| name                  | string                  | 否   | 否   | 需要使用的权限名称。   |
+| name                  | string                  | 否   | 否   | 需要使用的[权限名称](../../security/AccessToken/app-permissions.md)。   |
 | moduleName<sup>10+</sup>            | string                  | 否   | 否   | 申请该权限的module名称。   |
 | reason                | string                  | 否   | 否   | 描述申请权限的原因。  |
 | reasonId              | number                  | 否   | 否  | 描述申请权限的原因ID。 |
@@ -54,9 +54,9 @@
 
 描述权限使用的场景和时机。
 
- **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
@@ -67,7 +67,7 @@
 
 描述应用包的签名信息。
 
- **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
