@@ -43,7 +43,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 
 | 名称         | 类型  | 只读 | 可选             |  说明    |
 | ----------- | ---- | -- | --- |--------------- | 
-| isCloud      | boolean    |  否 | 否           | 表示是否需要实时从云端获取设备列表。<br />-false：表示从设备获取。<br />-true：表示从云端获取。       |
+| isCloud      | boolean    |  否 | 否           | 表示是否需要实时从云端获取设备列表。<br />- false：表示从设备获取。<br />- true：表示从云端获取。       |
 | deviceIdList  | Array&lt;string&gt;  | 否 | 是    | 表示获取指定deviceId的设备信息，deviceId一般为设备的UDID，如设备无UDID，则取其MAC或SN作为deviceId。默认为空。       |
 
 
@@ -95,7 +95,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  registerTime    | string |  否   | 否  |  注册时间。          |
 |  modifyTime      | string |  否   | 否  |  修改时间。          |
 |  shareTime       | string |  否   | 否  |  分享时间。          |
-|  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。<br />-false：表示非本地设备，即被查询的其他设备。<br />-true：表示本地设备。即当前正在使用该接口的设备。     |
+|  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。<br />- false：表示非本地设备，即被查询的其他设备。<br />- true：表示本地设备。即当前正在使用该接口的设备。     |
 |  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 服务配置信息列表。默认为空。 |
 |  productName<sup>18+</sup>     | string  | 否   | 是 |  设备所属的产品名称。默认为空。    |
 |  internalModel<sup>18+</sup>   | string  | 否   | 是 |  设备所属产品的内部型号。默认为空。 |
@@ -113,8 +113,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | -------------- | ---- | -------| -------- | --------|
 |  productId      | string  | 否 | 否   |  设备所属产品ID。          |
 |  subProductId   | string  | 否 | 是   |  设备所属产品子ID。默认为空。      |
-|  imageType      | string  | 否 | 否   |  图片类型。取值范围：<br />-ID：产品实物图。 |
-|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />-lg：大图，尺寸1016064px。<br />-sm：小图，尺寸256*256px。         |
+|  imageType      | string  | 否 | 否   |  图片类型。固定值为"ID"。 |
+|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />- lg：大图，尺寸为1016064px。<br />- sm：小图，尺寸为65536px。         |
 |  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。默认为空。        |
 
 ## DeviceIconInfo<sup>18+</sup>
@@ -129,8 +129,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | -------------- | ---- | ------| --------- | --------|
 |  productId      | string  | 否 | 否   |  设备所属产品ID。          |
 |  subProductId   | string  | 否 | 是   |  设备所属产品子ID。默认为空字符。     |
-|  imageType      | string  | 否 | 否   |  图片类型。取值范围：<br />-ID：产品实物图。        |
-|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />-lg：大图，尺寸1016064px。<br />-sm：小图，尺寸65536px。         |
+|  imageType      | string  | 否 | 否   |  图片类型。取值范围：<br />- ID：产品实物图。        |
+|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />- lg：大图，尺寸为1016064px。<br />- sm：小图，尺寸为65536px。         |
 |  url            | string  | 否 | 否   |  URL。          |
 |  icon           | ArrayBuffer | 否| 否 | 图标。         |
 |  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。默认为空。         |
@@ -146,7 +146,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | ------ | --------- | --------|
 |  wiseDeviceId       | string  | 否 | 否   |  已注册设备标识。          |
-|  onlineStatus    | number  | 否 | 否   |  设备在线状态，包括<br />-0：表示设备处于离线状态。<br />-1：表示设备处于在线状态。可以根据在线状态获取设备网络ID列表。默认值0。      |
+|  onlineStatus    | number  | 否 | 否   |  设备在线状态，包括<br />- 0：表示设备处于离线状态。<br />- 1：表示设备处于在线状态。默认值0。      |
 
 ## DeviceManager
 
@@ -168,7 +168,7 @@ replyUiAction(action: number, actionResult: string): void
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | action        | number          | 是    | 用户操作动作。<br />-0：允许授权。<br />-1：取消授权。<br />-2：授权框用户操作超时。<br />-3：取消pin码框展示。<br />-4：取消pin码输入框展示。<br />-5：pin码输入框确定操作。     |
+  | action        | number          | 是    | 用户操作动作。<br />- 0：允许授权。<br />- 1：取消授权。<br />- 2：授权框用户操作超时。<br />- 3：取消pin码框展示。<br />- 4：取消pin码输入框展示。<br />- 5：pin码输入框确定操作。     |
   | actionResult        | string          | 是    | 表示用户操作结果，长度范围1~255字符。 |
 
 **错误码：**
