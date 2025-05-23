@@ -3336,7 +3336,7 @@ InputMethod_ErrorCode OH_TextConfig_SetAbilityName (InputMethod_TextConfig * con
 
 **描述**
 
-设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的所属窗口的窗口id。
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的abilityName。
 
 **起始版本：** 20
 
@@ -3366,7 +3366,7 @@ InputMethod_ErrorCode OH_TextConfig_GetPlaceholder (InputMethod_TextConfig * con
 
 **描述**
 
-获取[InputMethod_TextConfig](#inputmethod_textconfig)实例所属窗口的窗口id。
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例占位文本信息。
 
 **起始版本：** 20
 
@@ -3398,7 +3398,7 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName (InputMethod_TextConfig * con
 
 **描述**
 
-获取[InputMethod_TextConfig](#inputmethod_textconfig)实例所属窗口的窗口id。
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例abilityName。
 
 **起始版本：** 20
 
