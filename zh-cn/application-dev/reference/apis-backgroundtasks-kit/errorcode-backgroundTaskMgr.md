@@ -188,7 +188,7 @@ Transient task verification failed.
 
 1. 请检查应用自身代码逻辑。
 2. 应用运行短时任务完毕及时释放。
-
+<!--Del-->
 ## 18700001 资源申请接口信息校验失败
 
 **错误信息**
@@ -207,3 +207,4 @@ Caller information verification failed for an energy resource request.
 **处理步骤**
 
 请检查输入的参数。
+<!--DelEnd-->
