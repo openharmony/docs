@@ -427,7 +427,7 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;):
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  deviceProfileInfoList       |  Array&lt;[DeviceProfileInfo](#devicefrofileinfo15)&gt;        |  是   |  需要更新的设备列表。    |
+  |  deviceProfileInfoList       |  Array&lt;[DeviceProfileInfo](#deviceprofileinfo15)&gt;        |  是   |  需要更新的设备列表。    |
 
 **返回值：**
 
