@@ -71,7 +71,7 @@
    // 获取指定时间的下一个时间跳变点
    let tijuanaTimeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana'); // 获取蒂华纳时区
    let zoneRules: i18n.ZoneRules = tijuanaTimeZone.getZoneRules(); // 获取蒂华纳时区的时间跳变规则
-   let someTime = new Date(2025, 4, 13)
+   let someTime = new Date(2025, 4, 13);
    let zoneOffsetTrans: i18n.ZoneOffsetTransition = zoneRules.nextTransition(someTime.getTime());
    zoneOffsetTrans.getMilliseconds(); // 跳变点的时间戳: 1762074000000
    zoneOffsetTrans.getOffsetAfter(); // 跳变后的偏移量: -28800000

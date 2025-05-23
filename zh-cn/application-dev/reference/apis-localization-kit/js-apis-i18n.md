@@ -2035,7 +2035,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 ### getZoneRules<sup>20+</sup>
 
-public getZoneRules(): ZoneRules
+getZoneRules(): ZoneRules
 
 获取时区跳变规则。
 
@@ -2047,11 +2047,14 @@ public getZoneRules(): ZoneRules
 
 | 类型     | 说明                 |
 | ------ | ------------------ |
-| [ZoneRules](#zonerules20) | 时区跳变规则。 |
+| [ZoneRules](#zonerules20) | 时区跳变规则,包含跳变的时间点、跳变前后的偏移量信息。 |
 
 **示例：**
 ```ts
-  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
+import { i18n, intl } from '@kit.LocalizationKit';
+
+  let tzId = 'America/Tijuana'
+  let timeZone: i18n.TimeZone = i18n.getTimeZone(tzId)
   let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
   let date = new Date(2025, 4, 13);
   let zoneOffsetTransition: i18n.ZoneOffsetTransition =
@@ -2059,6 +2062,15 @@ public getZoneRules(): ZoneRules
   zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
   zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
   zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
+  // 将时间戳格式化
+  let dateTimeFormat = new intl.DateTimeFormat('en-US', {
+    timeZone: tzId,
+    dateStyle: 'long',
+    timeStyle: 'long',
+    hour12: false
+  });
+  let dateFormat =
+    dateTimeFormat.format(new Date(zoneOffsetTransition.getMilliseconds())); // November 2, 2025, 1:00:00 PST
 ```
 
 ## ZoneRules<sup>20+</sup>
@@ -2066,7 +2078,7 @@ public getZoneRules(): ZoneRules
 
 ### nextTransition<sup>20+</sup>
 
-public nextTransition(date?: number): ZoneOffsetTransition
+nextTransition(date?: number): ZoneOffsetTransition
 
 获取指定时间的下一个时间跳变点。
 
@@ -2102,7 +2114,7 @@ public nextTransition(date?: number): ZoneOffsetTransition
 
 ### getMilliseconds<sup>20+</sup>
 
-public getMilliseconds(): number
+getMilliseconds(): number
 
 获取时间跳变点的时间戳。
 
@@ -2116,9 +2128,19 @@ public getMilliseconds(): number
 | -------- | ---------- |
 | number | 时间跳变点的时间戳。 |
 
+**示例：**
+```ts
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let date = new Date(2025, 4, 13);
+  let zoneOffsetTransition: i18n.ZoneOffsetTransition =
+      zoneRules.nextTransition(date.getTime()); //获取2025年5月13日以后的下一个时间跳变点
+  zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
+```
+
 ### getOffsetAfter<sup>20+</sup>
 
-public getOffsetAfter(): number
+getOffsetAfter(): number
 
 获取时间跳变后的时间偏移量。
 
@@ -2132,9 +2154,19 @@ public getOffsetAfter(): number
 | -------- | ---------- |
 | number | 时间跳变后的时间偏移量。 |
 
+**示例：**
+```ts
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let date = new Date(2025, 4, 13);
+  let zoneOffsetTransition: i18n.ZoneOffsetTransition =
+      zoneRules.nextTransition(date.getTime()); //获取2025年5月13日以后的下一个时间跳变点
+  zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
+```
+
 ### getOffsetBefore<sup>20+</sup>
 
-public getOffsetBefore(): number
+getOffsetBefore(): number
 
 获取时间跳变前的时间偏移量。
 
@@ -2147,6 +2179,16 @@ public getOffsetBefore(): number
 | 类型       | 说明         |
 | -------- | ---------- |
 | number | 时间跳变前的时间偏移量。 |
+
+**示例：**
+```ts
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let date = new Date(2025, 4, 13);
+  let zoneOffsetTransition: i18n.ZoneOffsetTransition =
+      zoneRules.nextTransition(date.getTime()); //获取2025年5月13日以后的下一个时间跳变点
+  zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
+```
 
 
 ## Transliterator<sup>9+</sup>
