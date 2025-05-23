@@ -306,4 +306,4 @@ export class GlobalStaticSnapshot {
 请不要截取过大尺寸的图片，截图不建议超过屏幕尺寸大小。当要截取的图片目标长宽超过底层限制时，截图会返回失败，不同设备的底层限制并不相同。可以通过控制SnapshotOptions中的scale参数，减小采样精度，这可以在很大程度上节省内存，并大幅度提高截图的效率。
 
 ### 使用其他能力对自渲染场景实现截图
-尽管截图只需传入一个组件根节点即可实现对其下所有组件进行截图，但当子组件中存在[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或[Web](../web/Readme-CN.md)组件时，这并不是推荐的截图方式。建议直接使用[image.createPixelMapFromSurface](../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口来实现。
+尽管截图只需传入一个组件根节点即可实现对其下所有组件进行截图，但当子组件中存在[Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md)、[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md)或[Web](../reference/apis-arkweb/ts-basic-components-web.md)组件时，这并不是推荐的截图方式。建议直接使用[image.createPixelMapFromSurface](../reference/apis-image-kit/js-apis-image.md#imagecreatepixelmapfromsurface11)接口来实现。
