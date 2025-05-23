@@ -22,26 +22,10 @@ Neural Network Runtime部件的环境要求如下：
 
 ### 环境搭建
 
-1. 打开Ubuntu编译服务器的终端。
-2. 把下载好的Native开发套件压缩包拷贝至当前用户根目录下。
-3. 执行以下命令解压Native开发套件的压缩包。
-    ```shell
-    unzip native-linux-{版本号}.zip
-    ```
+1. 使用Ubuntu编译服务器的终端。
+2. 指定native工具链路径来编译代码，可以使用DevEco Studio来下载鸿蒙SDK来进行编译。
+3. DevEco Studio安装目录下的SDK路径可以在DevEco Studio工程界面，点击File > Settings... > 在settings中搜索SDK，下载对应的SDK即可。
 
-    解压缩后的内容如下（随版本迭代，目录下的内容可能发生变化，请以最新版本的Native API为准）：
-    ```text
-    native/
-    ├── build // 交叉编译工具链
-    ├── build-tools // 编译构建工具
-    ├── docs
-    ├── llvm
-    ├── nativeapi_syscap_config.json
-    ├── ndk_system_capability.json
-    ├── NOTICE.txt
-    ├── oh-uni-package.json
-    └── sysroot // Native API头文件和库
-    ```
 ## 接口说明
 
 以下为Neural Network Runtime开发流程中的常用接口，具体可见[NeuralNetworkRuntime](../../reference/apis-neural-network-runtime-kit/_neural_network_runtime.md)。
