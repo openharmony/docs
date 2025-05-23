@@ -514,7 +514,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 是 | 是 | 文字颜色，默认为白色。                         |
 | fontWeight    | [FontWeight](#fontweight)                            | 是 | 是 | 字重，默认为W400。 目前只有系统默认字体支持字重的调节，其他字体设置字重值小于semi-bold（即W600）时字体粗细无变化，当设置字重值大于等于semi-bold（即W600）时可能会触发伪加粗效果。                         |
 | fontStyle     | [FontStyle](#fontstyle)                              | 是 | 是 | 字体样式，默认为常规样式。                          |
-| baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线型，默认为ALPHABETIC。               |
+| baseline      | [TextBaseline](#textbaseline)                        | 是 | 是 | 文本基线类型，默认为ALPHABETIC。               |
 | fontFamilies  | Array\<string>                                       | 是 | 是 | 字体家族名称列表，默认为空，匹配系统字体。                    |
 | fontSize      | number                                               | 是 | 是 | 字体大小，浮点数，默认为14.0，单位为px。  |
 | letterSpacing | number                                               | 是 | 是 | 字符间距，正数拉开字符距离，若是负数则拉近字符距离，浮点数，默认为0.0，单位为物理像素px。|
@@ -1386,7 +1386,7 @@ getActualTextRange(lineNumber: number, includeSpaces: boolean): Range
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
 | lineNumber  | number | 是   | 要获取文本范围的行索引，行索引从0开始。该接口只能获取已有行的边界，即输入行索引从0开始。最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。|
-| includeSpaces  | boolean | 是   | 指示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
+| includeSpaces  | boolean | 是   | 表示是否应包含空白字符。true表示包含空白字符，false表示不包含空白字符。|
 
 **返回值：**
 
@@ -1445,6 +1445,51 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 ```ts
 let lineMetrics =  paragraph.getLineMetrics(0);
+```
+
+### updateColor<sup>20+</sup>
+
+updateColor(color: common2D.Color): void;
+
+更新整个文本段落的颜色。如果当前装饰线未设置颜色，使用该接口也会同时更新装饰线的颜色。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | 是   | 更新后的字体色。|
+
+**示例：**
+
+```ts
+paragraph.updateColor({ alpha: 255, red: 255, green: 0, blue: 0 });
+```
+
+### updateDecoration<sup>20+</sup>
+
+updateDecoration(decoration: Decoration): void;
+
+更新整个文本段落的装饰线。
+
+**系统能力**：SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名 | 类型                                                  | 必填 | 说明                    |
+| ------ | ---------------------------------------------------- | ---- | ---------------------- |
+| decoration | [Decoration](#decoration)                        | 是 | 更新后的装饰线。|
+
+**示例：**
+
+```ts
+paragraph.updateDecoration({
+  textDecoration: text.TextDecorationType.OVERLINE,
+  color: { alpha: 255, red: 255, green: 0, blue: 0 },
+  decorationStyle: text.TextDecorationStyle.WAVY,
+  decorationThicknessScale: 2.0,
+});
 ```
 
 ## LineTypeset<sup>18+</sup>
