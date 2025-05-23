@@ -1116,7 +1116,7 @@ OH_AVErrCode OH_AVPlayer_SetOnInfoCallback(OH_AVPlayer *player, OH_AVPlayerOnInf
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
-| OH_AVPlayerOnInfoCallback callback | 执行回调监听函数的指针，空指针表示取消设置播放器消息回调监听。 |
+| [OH_AVPlayerOnInfoCallback](capi-avplayer-base-h.md#oh_avplayeroninfocallback) callback | 执行回调监听函数的指针，空指针表示取消设置播放器消息回调监听。 |
 | void *userData | 指向应用调用者设置的实例的指针。 |
 
 **返回：**
@@ -1145,7 +1145,7 @@ OH_AVErrCode OH_AVPlayer_SetOnErrorCallback(OH_AVPlayer *player, OH_AVPlayerOnEr
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVPlayer](capi-oh-avplayer.md) *player | 指向OH_AVPlayer实例的指针。 |
-| OH_AVPlayerOnErrorCallback callback | 执行回调监听函数的指针，空指针表示取消设置播放器错误回调监听。 |
+| [OH_AVPlayerOnErrorCallback](capi-avplayer-base-h.md#oh_avplayeronerrorcallback) callback | 执行回调监听函数的指针，空指针表示取消设置播放器错误回调监听。 |
 | void *userData | 指向应用调用者设置的实例的指针。 |
 
 **返回：**

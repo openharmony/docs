@@ -1570,9 +1570,6 @@
           - [图片接收](media/image/image-receiver-native.md)
     - Media Kit（媒体服务）<!--media-kit-->
       - [Media Kit简介](media/media/media-kit-intro.md)
-      <!--Del-->
-      - [Media Kit开发速览](media/media/media-kit-quick-overview.md)
-      <!--DelEnd-->
       - 媒体开发指导(ArkTS)<!--media-kit-dev--arkts-->
         - 播放<!--media-playback-arkts-->
           - [使用AVPlayer播放音频(ArkTS)](media/media/using-avplayer-for-playback.md)
@@ -4391,7 +4388,7 @@
         - 模块<!--media-module-->
           - [AVImageGenerator](reference/apis-media-kit/_a_v_image_generator.md)
           - [AVMetadataExtractor](reference/apis-media-kit/_a_v_metadata_extractor.md)
-          - [AVPlayer](reference/apis-media-kit/_a_v_player.md)
+          - [AVPlayer](reference/apis-media-kit/capi-avplayer.md)
           - [AVRecorder](reference/apis-media-kit/_a_v_recorder.md)
           - [AVScreenCapture](reference/apis-media-kit/_a_v_screen_capture.md)
           - [VideoProcessing](reference/apis-media-kit/_video_processing.md)
@@ -4400,8 +4397,8 @@
           - [avimage_generator_base.h](reference/apis-media-kit/avimage__generator__base_8h.md)
           - [avmetadata_extractor_base.h](reference/apis-media-kit/avmetadata__extractor__base_8h.md)
           - [avmetadata_extractor.h](reference/apis-media-kit/avmetadata__extractor_8h.md)
-          - [avplayer.h](reference/apis-media-kit/avplayer_8h.md)
-          - [avplayer_base.h](reference/apis-media-kit/avplayer__base_8h.md)
+          - [avplayer.h](reference/apis-media-kit/capi-avplayer-h.md)
+          - [avplayer_base.h](reference/apis-media-kit/capi-avplayer-base-h.md)
           - [avrecorder.h](reference/apis-media-kit/avrecorder_8h.md)
           - [avrecorder_base.h](reference/apis-media-kit/avrecorder__base_8h.md)
           - [native_avscreen_capture.h](reference/apis-media-kit/native__avscreen__capture_8h.md)
@@ -4410,7 +4407,10 @@
           - [video_processing.h](reference/apis-media-kit/video__processing_8h.md)
           - [video_processing_types.h](reference/apis-media-kit/video__processing__types_8h.md)
         - 结构体<!--media-struct-->
-          - [AVPlayerCallback](reference/apis-media-kit/_a_v_player_callback.md)
+          - [MediaKeySession](reference/apis-media-kit/capi-mediakeysession.md)
+          - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-drm-mediakeysysteminfo.md)
+          - [AVPlayerCallback](reference/apis-media-kit/capi-avplayercallback.md)
+          - [OH_AVPlayer](reference/apis-media-kit/capi-oh-avplayer.md)
           - [OH_AVRecorder_Config](reference/apis-media-kit/_o_h___a_v_recorder___config.md)
           - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/_o_h___a_v_recorder___encoder_info.md)
           - [OH_AVRecorder_Location](reference/apis-media-kit/_o_h___a_v_recorder___location.md)
