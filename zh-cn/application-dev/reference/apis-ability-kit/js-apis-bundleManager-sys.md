@@ -5203,7 +5203,7 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 
 根据给定的bundleName、moduleName和option使能动态图标。使用Promise异步回调。
 
-使能当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON；
+使能当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON。
 
 使能其他用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
 
@@ -5220,7 +5220,7 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 要使能动态图标的应用包名。 |
 | moduleName  | string | 是   | 要使能动态图标的模块名。 |
-| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要使能动态图标的用户和分身索引。缺省时给应用的所有用户和所有分身都使能动态图标。 |
+| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要使能动态图标的用户和分身索引。缺省时使能应用所有用户和所有分身的动态图标。 |
 
 **返回值：**
 
@@ -5327,7 +5327,7 @@ disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>
 
 根据给定的bundleName和option禁用动态图标。使用Promise异步回调。
 
-禁用当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON；
+禁用当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON。
 
 禁用其他用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
 
@@ -5343,7 +5343,7 @@ disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | 是   | 要禁用动态图标的应用包名。 |
-| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要禁用动态图标的用户和分身索引。缺省给应用的所有用户和所有分身都禁用动态图标。 |
+| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要禁用动态图标的用户和分身索引。缺省时禁用应用所有用户和所有分身的动态图标。 |
 
 **返回值：**
 
@@ -5936,11 +5936,11 @@ try {
 
 getAllDynamicIconInfo(userId?: number): Promise\<Array\<DynamicIconInfo>>
 
-查询指定用户下全量应用已使能的动态图标信息。使用Promise异步回调。
+查询指定用户下所有应用和所有分身的动态图标信息。使用Promise异步回调。
 
-查询当前用户下的全量动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED；
+查询当前用户下所有应用和所有分身的动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED。
 
-查询其他用户或者全量用户下的动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
+查询其他用户或者所有用户下所有应用和所有分身的动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5952,7 +5952,7 @@ getAllDynamicIconInfo(userId?: number): Promise\<Array\<DynamicIconInfo>>
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| userId  | number | 否   | 标识用户ID。缺省时查询所有用户下全量应用使能的动态图标信息。 |
+| userId  | number | 否   | 标识用户ID。缺省时查询所有用户下所有应用和所有分身的动态图标信息。 |
 
 **返回值：**
 

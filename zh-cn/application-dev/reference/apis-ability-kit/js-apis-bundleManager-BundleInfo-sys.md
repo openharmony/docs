@@ -26,7 +26,7 @@
 
 ## BundleOptions
 
-用于设置或者查询应用相关信息类，包含可选参数userId和appIndex。
+应用包选项，用于设置或查询应用相关信息。
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
