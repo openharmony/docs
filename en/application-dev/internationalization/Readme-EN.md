@@ -3,7 +3,7 @@
 - [Introduction to Localization Kit](i18n-l10n.md)
 - Application Internationalization<!--i18n-->
     - [UI Design for Internationalization](i18n-ui-design.md)
-    - [Locale and Cultural Habit Division](i18n-locale-culture.md)
+    - [Locale ID and Cultural Habit Division](i18n-locale-culture.md)
     - Language and User Preference Setting<!--i18n-language-user-preferences-->
         - [System Language and Region Setting](i18n-system-language-region.md)
         - [Preferred Language Setting](i18n-preferred-language.md)

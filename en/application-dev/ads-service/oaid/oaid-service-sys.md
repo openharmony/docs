@@ -76,5 +76,3 @@ The following describes how to configure a system application to reset the OAID.
      hilog.error(0x0000, 'testTag', '%{public}s', `reset oaid catch error: ${err.code} ${err.message}`);
    }
    ```
-
- <!--no_check--> 

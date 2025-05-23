@@ -445,7 +445,7 @@ To animate shared elements during page transitions with **Navigation**, use the 
 
 To implement cross-package routing, with **Router**, use named routes.
 
-1. In the [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md) you want to navigate to, name the @Entry decorated custom component in [EntryOptions](../quick-start/arkts-create-custom-components.md#entryoptions10).
+1. In the [HAR](../quick-start/har-package.md) or [HSP](../quick-start/in-app-hsp.md) you want to navigate to, name the @Entry decorated custom component in [EntryOptions](../ui/state-management/arkts-create-custom-components.md#entryoptions10).
 
    ```ts
    // library/src/main/ets/pages/Index.ets
@@ -601,7 +601,7 @@ For details, see [System Routing Table](arkts-navigation-navigation.md#system-ro
 
 ## Lifecycle Listening
 
-You can use the observer to register for lifecycle events with the **Router**. For details about the APIs, see [observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronrouterpageupdate11).
+You can use the observer to register for lifecycle events with the **Router**. For details about the APIs, see [observer.on('routerPageUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronrouterpageupdate11).
 
 
 ```ts

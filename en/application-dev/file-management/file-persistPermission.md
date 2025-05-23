@@ -108,7 +108,7 @@ async function revokePermissionExample() {
 }
 ```
 
-**NOTE**
+> **NOTE**
 > 
 > - The URI in the example comes from the permission persistence data stored for the application.
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.
@@ -121,6 +121,7 @@ For details about how to revoke a persistent permission using C/C++ APIs, see [O
 Each time an application is started, its persistent permissions have not been loaded to the memory. To make a persistent permission still valid after the application is restarted, use [ohos.fileshare.activatePermission](../reference/apis-core-file-kit/js-apis-fileShare.md#fileshareactivatepermission11) to activate the permission.
 
 **Required Permissions**
+
 ohos.permission.FILE_ACCESS_PERSIST. For details about how to request the permission, see [Workflow for Requesting Permissions](../security/AccessToken/determine-application-mode.md).
 
 **Example**
@@ -160,7 +161,7 @@ async function activatePermissionExample() {
 }
 ```
 
-**NOTE**
+> **NOTE**
 > 
 > - The URI in the example comes from the permission persistence data stored for the application.
 > - You are advised to activate the persistent permissions based on service requirements. Do not activate all persistent permissions.

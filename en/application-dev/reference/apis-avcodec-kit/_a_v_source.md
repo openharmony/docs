@@ -216,7 +216,7 @@ OH_AVFormat *OH_AVSource_GetCustomMetadataFormat(OH_AVSource *source)
 
 Obtains the basic information about custom metadata.
 
-The caller must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -249,7 +249,7 @@ OH_AVFormat* OH_AVSource_GetSourceFormat (OH_AVSource *source)
 
 Obtains the basic information about a media resource file.
 
-The caller must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 
@@ -282,7 +282,7 @@ OH_AVFormat* OH_AVSource_GetTrackFormat (OH_AVSource *source, uint32_t trackInde
 
 Obtains the basic information about a track.
 
-The caller must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
+You must call [OH_AVFormat_Destroy](_core.md#oh_avformat_destroy) to release the **OH_AVFormat** instance when its lifecycle ends.
 
 **System capability**: SystemCapability.Multimedia.Media.Spliter
 

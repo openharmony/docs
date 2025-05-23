@@ -57,6 +57,7 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
    ```ts
     import { BusinessError } from '@kit.BasicServicesKit';
     import { fileIo as fs } from '@kit.CoreFileKit';
+    import { common } from '@kit.AbilityKit';
 
     class Options {
       offset?: number;
@@ -64,7 +65,9 @@ You can call **on('stateChange')** to listen for state changes of the AudioCaptu
     }
 
     let bufferSize: number = 0;
-    let path = getContext().cacheDir;
+    // Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+    let path = context.cacheDir;
     let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
     let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
     let readDataCallback = (buffer: ArrayBuffer) => {
@@ -129,6 +132,7 @@ Refer to the sample code below to record audio using AudioCapturer.
 import { audio } from '@kit.AudioKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 const TAG = 'AudioCapturerDemo';
 
@@ -153,7 +157,9 @@ let audioCapturerOptions: audio.AudioCapturerOptions = {
   streamInfo: audioStreamInfo,
   capturerInfo: audioCapturerInfo
 };
-let path = getContext().cacheDir;
+// Obtain the context from the component and ensure that the return value of this.getUIContext().getHostContext() is UIAbilityContext.
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+let path = context.cacheDir;
 let filePath = path + '/StarWars10s-2C-48000-4SW.pcm';
 let file: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
 let readDataCallback = (buffer: ArrayBuffer) => {

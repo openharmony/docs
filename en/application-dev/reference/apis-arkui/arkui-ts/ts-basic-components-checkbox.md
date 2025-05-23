@@ -50,8 +50,8 @@ select(value: boolean)
 
 Sets whether the check box is selected.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
@@ -71,7 +71,7 @@ select(isSelected: Optional\<boolean>)
 
 Sets whether the check box is selected. Compared to [select](#select), this API supports the **undefined** type for the **isSelected** parameter.
 
-This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md). This attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).
+This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md). This attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 18.
 

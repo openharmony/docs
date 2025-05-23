@@ -23,7 +23,7 @@ Querying data from a large amount of data may take time or even cause applicatio
 **RelationalStore** provides APIs for data operations. With SQLite as the underlying persistent storage engine, **RelationalStore** provides SQLite database features, including transactions, indexes, views, triggers, foreign keys, parameterized queries, prepared SQL statements, and more.
 
 **Figure 1** Working mechanism
- 
+
 ![relationStore_local](figures/relationStore_local.jpg)
 
 
@@ -31,7 +31,7 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 - The default logging mode is Write Ahead Log (WAL), and the default flushing mode is **FULL** mode.
 
-- The RDB store supports a maximum of four read connections and one write connection. A thread performs the read operation when acquiring a read connection. When there is no read connection available but the write connection is idle, the write connection can be used to read data.
+- The RDB store supports four read connections and one write connection. Read connections can be dynamically expanded. If no read connection is available, a read connection is created to execute the read operation. Write connections cannot be dynamically expanded. If no write connection is available, the write operation is executed after the connection is released.
 
 - To ensure data accuracy, only one write operation is allowed at a time.
 
@@ -45,16 +45,16 @@ Querying data from a large amount of data may take time or even cause applicatio
 
 The following table lists the APIs used for RDB data persistence. Most of the APIs are executed asynchronously, using a callback or promise to return the result. The following table uses the callback-based APIs as an example. For more information about the APIs, see [RDB Store](../reference/apis-arkdata/js-apis-data-relationalStore.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.| 
-| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.| 
-| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.| 
-| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.| 
-| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.| 
-| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.| 
-| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.| 
-| isTokenizerSupported(tokenizer: Tokenizer): boolean | Checks whether the specified tokenizer is supported.|
+| getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;RdbStore&gt;): void | Obtains an **RdbStore** instance to implement RDB store operations. You can set **RdbStore** parameters based on actual requirements and use **RdbStore** APIs to perform data operations.|
+| executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&lt;void&gt;):void | Executes an SQL statement that contains specified arguments but returns no value.|
+| insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt;):void | Inserts a row of data into a table.|
+| update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Updates data in the RDB store based on the specified **predicates** instance.|
+| delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void | Deletes data from the RDB store based on the specified **predicates** instance.|
+| query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;ResultSet&gt;):void | Queries data in the RDB store based on specified conditions.|
+| deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&gt;): void | Deletes an RDB store.|
+| isTokenizerSupported(tokenizer: Tokenizer): boolean | Checks whether the specified tokenizer is supported. (Tokenizer is a tool for breaking down text into smaller units, which can be words, subwords, characters, or other language fragments.)|
 
 ## How to Develop
 Unless otherwise specified, the sample code without "stage model" or "FA model" applies to both models.
@@ -64,7 +64,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
 1. Obtain an **RdbStore** instance, which includes operations of creating an RDB store and tables, and upgrading or downgrading the RDB store. <br>Example:
 
    Stage model:
-     
+   
    ```ts
    import { relationalStore} from '@kit.ArkData'; // Import the relationalStore module.
    import { UIAbility } from '@kit.AbilityKit';
@@ -212,7 +212,7 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
    > - For details about the error codes, see [Universal Error Codes](../reference/errorcode-universal.md) and [RDB Store Error Codes](../reference/apis-arkdata/errorcode-data-rdb.md).
 
 2. Call **insert()** to insert data. <br>Example:
-     
+   
    ```ts
    let store: relationalStore.RdbStore | undefined = undefined;
 
@@ -444,4 +444,5 @@ If error 14800011 is thrown, you need to rebuild the database and restore data t
      console.info('Succeeded in deleting RdbStore.');
    });
    ```
+
 <!--no_check-->

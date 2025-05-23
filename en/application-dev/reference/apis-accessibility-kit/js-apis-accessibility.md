@@ -362,6 +362,7 @@ Describes a GUI change event.
 | itemCount        | number                                | No  | Total number of records.       |
 | elementId<sup>12+</sup>        | number                                | No  | Element ID of the component.       |
 | textAnnouncedForAccessibility<sup>12+</sup>        | string                                | No  | Content for auto-broadcasting.       |
+| textResourceAnnouncedForAccessibility<sup>18+</sup>        | Resource      | No  | Content for auto-broadcasting, which supports resources of the string type. |
 | customId<sup>12+</sup>        | string                                | No  | Component ID for auto-focusing.       |
 
 ### constructor
@@ -419,7 +420,8 @@ Implements a constructor.
 type EventType = 'accessibilityFocus' | 'accessibilityFocusClear' |
 'click' | 'longClick' | 'focus' | 'select' | 'hoverEnter' | 'hoverExit' |
 'textUpdate' | 'textSelectionUpdate' | 'scroll' | 'requestFocusForAccessibility' |
-'announceForAccessibility'
+'announceForAccessibility' | 'requestFocusForAccessibilityNotInterrupt' |
+'announceForAccessibilityNotInterrupt' | 'scrolling'
 
 Enumerates accessibility event types.
 
@@ -440,6 +442,9 @@ Enumerates accessibility event types.
 | 'scroll'                  | Event of the scroll view.   |
 | 'requestFocusForAccessibility'     | Event of the auto-focusing.|
 | 'announceForAccessibility'         | Event of the auto-broadcasting.|
+| 'requestFocusForAccessibilityNotInterrupt'     | Event of the auto-focusing without interruption.<br>This event is supported since API version 18.|
+| 'announceForAccessibilityNotInterrupt'         | Event of the auto-broadcasting without interruption.<br>This event is supported since API version 18.|
+| 'scrolling'                  | Event indicating that an item is scrolled out of the screen in the scrolling view.<br>This event is supported since API version 18.|
 
 ## TextMoveUnit
 
@@ -773,6 +778,39 @@ accessibility.on('touchGuideStateChange', (data: boolean) => {
 });
 ```
 
+## accessibility.on('screenReaderStateChange')<sup>18+</sup>
+
+on(type: 'screenReaderStateChange', callback: Callback&lt;boolean&gt;): void
+
+Enables listening for the enabled status changes of the screen reader. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+
+**Parameters**
+
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Listening type, which is set to **'screenReaderStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of screen reader changes.          |
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+accessibility.on('screenReaderStateChange', (data: boolean) => {
+  console.info(`subscribe screen reader state change, result: ${JSON.stringify(data)}`);
+});
+```
+
 ## accessibility.off('accessibilityStateChange')
 
 off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
@@ -836,6 +874,39 @@ import { accessibility } from '@kit.AccessibilityKit';
 
 accessibility.off('touchGuideStateChange', (data: boolean) => {
   console.info(`Unsubscribe touch guide state change, result: ${JSON.stringify(data)}`);
+});
+```
+
+## accessibility.off('screenReaderStateChange')<sup>18+</sup>
+
+off(type: 'screenReaderStateChange', callback?: Callback&lt;boolean&gt;): void
+
+Disables listening for the enabled status changes of the screen reader. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Core
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                                        |
+| -------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                  | Yes  | Listening type, which is set to **'screenReaderStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No  | Callback used for disable listening. The value must be the same as the value of **callback** in **accessibility.on('screenReaderStateChange')**. If this parameter is not specified, listening will be disabled for all callbacks corresponding to the specified type.|
+
+**Error codes**
+
+For details about the error codes, see [Accessibility Error Codes](errorcode-accessibility.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401  |Input parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+accessibility.off('screenReaderStateChange', (data: boolean) => {
+  console.info(`Unsubscribe screen reader state change, result: ${JSON.stringify(data)}`);
 });
 ```
 
@@ -1022,6 +1093,30 @@ Checks whether touch guide mode is enabled.
 import { accessibility } from '@kit.AccessibilityKit';
 
 let status: boolean = accessibility.isOpenTouchGuideSync();
+```
+
+## accessibility.isScreenReaderOpenSync<sup>18+</sup>
+
+isScreenReaderOpenSync(): boolean
+
+Checks whether the screen reader mode is enabled.
+
+**Atomic service API**: This API can be used in atomic services since API version 18.
+
+**System capability**: SystemCapability.BarrierFree.Accessibility.Vision
+
+**Return value**
+
+| Type   | Description                                 |
+| ------- | ------------------------------------- |
+| boolean | Returns **true** if screen reader is enabled; returns **false** otherwise.|
+
+**Example**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+
+let status: boolean = accessibility.isScreenReaderOpenSync();
 ```
 
 ## accessibility.sendEvent<sup>(deprecated)</sup>
@@ -1224,6 +1319,28 @@ let eventInfo: accessibility.EventInfo = ({
   bundleName: 'com.example.MyApplication',
   triggerAction: 'common',
   customId: 'click' // ID of the component to be focused.
+});
+
+accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
+  if (err) {
+    console.error(`failed to send event, Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in send event, eventInfo is ${eventInfo}`);
+});
+```
+
+**Example of resource-supported auto-broadcasting<sup>18+</sup>:**
+
+```ts
+import { accessibility } from '@kit.AccessibilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let eventInfo: accessibility.EventInfo = ({
+  type: 'announceForAccessibility',
+  bundleName: 'com.example.MyApplication',
+  triggerAction: 'common',
+  textResourceAnnouncedForAccessibility: $r('app.string.ResourceName'),
 });
 
 accessibility.sendAccessibilityEvent(eventInfo, (err: BusinessError) => {
