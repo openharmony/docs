@@ -6,6 +6,8 @@
 
 **库：** libos_account_ndk.so
 
+**引用文件：** <BasicServicesKit/os_account.h>
+
 **系统能力：** SystemCapability.Account.OsAccount
 
 **起始版本：** 12
