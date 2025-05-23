@@ -36,44 +36,6 @@ JSVM-API 接口开发流程参考 [使用JSVM-API实现JS与C/C++语言交互开
 cpp 部分代码：
 
 ```cpp
-# 使用JSVM-API接口进行WebAssembly模块相关开发
-
-
-## 简介
-
-JSVM-API WebAssembly 接口提供了 WebAssembly 字节码编译、WebAssembly 函数优化、WebAssembly cache 序列化和反序列化的能力。
-注意：WebAssembly相关接口需要应用拥有JIT权限才能执行，可参考[JSVM 申请JIT权限指导](jsvm-apply-jit-profile.md)申请对应权限。
-
-## 基本概念
-
-- **wasm module**：表示一个 WebAssembly 模块，(WebAssembly 简称为wasm)，通过 `OH_JSVM_CompileWasmModule` 接口可以从 wasm 字节码或 wasm cache 创建 wasm module。通过 `OH_JSVM_IsWasmModuleObject` 接口可以判断一个 JSVM_Value 是否是一个 wasm module。
-- **wasm function**：表示 wasm module 中定义的函数，wasm function 在导出后被外部代码使用。`OH_JSVM_CompileWasmFunction` 接口提供了将 wasm function 编译为优化后的机器码的能力，方便开发者对指定 wasm function 提前编译和函数粒度的并行编译。
-- **wasm cache**：对 wasm module 中的机器码进行序列化，生成的数据被称为 wasm cache。wasm cache 的创建和释放接口分别为 `OH_JSVM_CreateWasmCache` 和 `OH_JSVM_ReleaseCache` (对应的 cacheType 为 `JSVM_CACHE_TYPE_WASM`)。
-
-## 接口说明
-
-| 接口                          | 功能说明                                                                                 |
-| --------------------------- | ------------------------------------------------------------------------------------ |
-| OH_JSVM_CompileWasmModule   | 将 wasm 字节码同步编译为 wasm module。如果提供了 cache 参数，先尝试将 cache 反序列为 wasm module，反序列化失败时再执行编译。 |
-| OH_JSVM_CompileWasmFunction | 将 wasm module 中指定编号的函数编译为优化后的机器码，目前只使能了最高的优化等级，函数编号的合法性由接口调用者保证。                     |
-| OH_JSVM_IsWasmModuleObject  | 判断传入的值是否是一个 wasm module。                                                             |
-| OH_JSVM_CreateWasmCache     | 将 wasm module 中的机器码序列化为 wasm cache，如果 wasm module 不包含机器码，则会序列化失败。                    |
-| OH_JSVM_ReleaseCache        | 释放由 JSVM 接口生成的 cache。传入的 cacheType 和 cacheData 必须匹配，否则会产生未定义行为。                      |
-
-## code cache 校验规格说明
-| 规格        | 规格说明                                         |
-| ---------- | ------------------------------------------------ |
-| 完整性校验  | 由用户保证                                        |
-| 兼容性校验  | 校验生成 cache 的 JSVM 版本与编译选项是否与当前一致 |
-| 一致性校验  | 由用户保证                                        |
-
-## 使用示例
-
-JSVM-API 接口开发流程参考 [使用JSVM-API实现JS与C/C++语言交互开发流程](use-jsvm-process.md)，本文仅对接口对应 C++ 相关代码进行展示。
-
-cpp 部分代码：
-
-```cpp
 // hello.cpp
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
