@@ -907,7 +907,7 @@ getItemIndex(x: number, y: number): number
 | xOffset<sup>10+</sup>   | number&nbsp;\|&nbsp;string                                   | 是   | 水平滚动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为x轴时生效。<br/>取值范围：当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | yOffset<sup>10+</sup>   | number&nbsp;\|&nbsp;string                                   | 是   | 垂直滚动偏移。<br/>**说明：** <br/>该参数值不支持设置百分比。<br/>仅滚动轴为y轴时生效。<br/>取值范围：当值小于0时，不带动画的滚动，按0处理。带动画的滚动，默认滚动到起始位置后停止，可通过设置animation参数，使滚动在越界时启动回弹动画。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | animation<sup>10+</sup> | [ScrollAnimationOptions](#scrollanimationoptions12对象说明)&nbsp;\|&nbsp;boolean | 否   | 动画配置。<br/>- ScrollAnimationOptions:&nbsp; 自定义滚动动效。 <br/>- boolean:&nbsp;使能默认弹簧动效。<br/>默认值：<br/>ScrollAnimationOptions: { duration: 1000, curve: Curve.Ease, canOverScroll: false } <br/>boolean:&nbsp;false<br/>**说明：** <br/>当前List、Scroll、Grid、WaterFlow均支持boolean类型和ICurve曲线。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| canOverScroll<sup>20+</sup>   | boolean                                   | 否   | 滚动目标位置是否可以超出边界停留。<br/>设置为true时滚动可以在过界后停留，设置为false时滚动无法在过界后停留。<br/>默认值：false <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| canOverScroll<sup>20+</sup>   | boolean                                   | 否   | 滚动目标位置是否可以超出边界停留。仅当组件的edgeEffect设置为EdgeEffect.Spring时，滚动能够越界停留。<br/>设置为true时滚动可以在过界后停留，设置为false时滚动无法在过界后停留。<br/>默认值：false <br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## UIScrollEvent<sup>19+</sup>
 frameNode中[getEvent('Scroll')](../js-apis-arkui-frameNode.md#geteventscroll19)方法的返回值，可用于给Scroll节点设置滚动事件。
@@ -1455,3 +1455,104 @@ struct ScrollExample {
 ```
 
 ![edgeEffect_scroll](figures/edgeEffect_scroll.gif)
+
+### 示例9（设置过界停留）
+
+该示例通过scrollTo接口，实现了Scroll组件设置过界停留效果。
+
+```ts
+// xxx.ets
+import { curves, LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct StickyNestedScroll {
+  scroller: Scroller = new Scroller;
+  listScroll: Scroller = new Scroller;
+  @State arr: number[] = []
+
+  aboutToAppear() {
+    for (let i = 0; i < 30; i++) {
+      this.arr.push(i)
+    }
+  }
+
+  @Styles
+  listCard() {
+    .backgroundColor(Color.White)
+    .height(72)
+    .width("100%")
+    .borderRadius(12)
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Button("有动画scrollTo").onClick(() => {
+          let curve = curves.interpolatingSpring(0.5, 5, 10, 15) //创建一个阶梯曲线
+          const yOffset: number = this.scroller.currentOffset().yOffset;
+          const xOffset: number = this.scroller.currentOffset().xOffset;
+          this.scroller.scrollTo({
+            xOffset: xOffset - 100,
+            yOffset: yOffset - 100,
+            animation: { duration: 1000, curve: curve, canOverScroll: true },
+            canOverScroll: true
+          })
+        }).margin({ top: 10 })
+        Button("无动画scrollTo").onClick(() => {
+          const yOffset: number = this.scroller.currentOffset().yOffset;
+          const xOffset: number = this.scroller.currentOffset().xOffset;
+          this.scroller.scrollTo({
+            xOffset: xOffset - 100,
+            yOffset: yOffset - 100,
+            animation: false,
+            canOverScroll: true
+          })
+        }).margin({ top: 10, left: 20 })
+      }.margin({ bottom: 20 })
+
+      Scroll(this.scroller) {
+        Column() {
+          Text("Scroll Area")
+            .width("100%")
+            .height("40%")
+            .backgroundColor('#0080DC')
+            .textAlign(TextAlign.Start)
+          Tabs({ barPosition: BarPosition.Start }) {
+            TabContent() {
+              List({ space: 10, scroller: this.listScroll }) {
+                ForEach(this.arr, (item: number) => {
+                  ListItem() {
+                    Text("item" + item)
+                      .fontSize(16)
+                  }.listCard()
+                }, (item: string) => item)
+              }.width("100%")
+              .edgeEffect(EdgeEffect.Spring)
+              .nestedScroll({
+                scrollForward: NestedScrollMode.PARENT_FIRST,
+                scrollBackward: NestedScrollMode.SELF_FIRST
+              })
+            }.tabBar("Tab1")
+
+            TabContent() {
+            }.tabBar("Tab2")
+          }
+          .vertical(false)
+          .height("100%")
+        }.width("100%")
+      }
+      .scrollable(ScrollDirection.Vertical)
+      .edgeEffect(EdgeEffect.Spring) //设置边缘效果
+      .fadingEdge(false, { fadingEdgeLength: LengthMetrics.vp(80) }) //设置边缘渐隐效果
+      .scrollBar(BarState.Auto)
+      .friction(undefined)
+      .backgroundColor('#DCDCDC')
+      .width('100%')
+      .height('50%')
+    }
+  }
+}
+```
+
+![canOverScroll_scroll](figures/canOverScroll_scroll.gif)
