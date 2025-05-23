@@ -19,6 +19,8 @@ import { CircleShape, EllipseShape, PathShape, RectShape } from "@kit.ArkUI";
 
 用于 clipShape 和 maskShape 接口的圆形形状。
 
+继承自[BaseShape](#baseshape)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -36,13 +38,13 @@ constructor(options?: ShapeSize)
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [ShapeSize](#shapesize) | 否 | 形状的大小。 |
-
-继承自[BaseShape](#baseshape)。
 
 ## EllipseShape
 
 用于 clipShape 和 maskShape 接口的椭圆形状。
 
+继承自[BaseShape](#baseshape)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -61,11 +63,11 @@ constructor(options?: ShapeSize)
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [ShapeSize](#shapesize) | 否 | 形状的大小。 |
 
-继承自[BaseShape](#baseshape)。
-
 ## PathShape
 
 用于 clipShape 和 maskShape 接口的路径。
+
+继承自[CommonShapeMethod](#commonshapemethod)。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -84,8 +86,6 @@ constructor(options?: PathShapeOptions)
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [PathShapeOptions](#pathshapeoptions) | 否 | 路径参数。 |
-
-继承自[CommonShapeMethod](#commonshapemethod)。
 
 ### commands
 
@@ -107,6 +107,8 @@ commands(commands: string): PathShape
 
 用于 clipShape 和 maskShape 接口的矩形形状。
 
+继承自[BaseShape](#baseshape)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -124,8 +126,6 @@ constructor(options?: RectShapeOptions | RoundRectShapeOptions)
 | 参数名         | 类型                                               | 必填 | 说明                                         |
 | ----------- | -------------------------------------------------- | ---- | -------------------------------------------- |
 | options | [RectShapeOptions](#rectshapeoptions) &nbsp;\|&nbsp; [RoundRectShapeOptions](#roundrectshapeoptions) | 否 | 矩形形状参数。 |
-
-继承自[BaseShape](#baseshape)。
 
 ### radiusWidth
 
@@ -209,13 +209,13 @@ PathShape 的构造函数参数。
 
 RectShape 的构造函数参数。
 
+继承自[ShapeSize](#shapesize)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-继承自[ShapeSize](#shapesize)。
 
 | 名称         | 类型                                               | 必填                                             | 说明                                         |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
@@ -225,13 +225,13 @@ RectShape 的构造函数参数。
 
 RectShape 带有半径的构造函数参数。
 
+继承自[ShapeSize](#shapesize)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-继承自[ShapeSize](#shapesize)。
 
 | 名称         | 类型                                               | 必填                                             | 说明                                         |
 | ----------- | -------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
@@ -240,11 +240,11 @@ RectShape 带有半径的构造函数参数。
 
 ## BaseShape
 
+继承自[CommonShapeMethod](#commonshapemethod)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-继承自[CommonShapeMethod](#commonshapemethod)。
 
 ### width
 
