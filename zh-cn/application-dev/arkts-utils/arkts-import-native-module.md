@@ -24,8 +24,8 @@ export const add: (a: number, b: number) => number;
 ```
 ```ts
 // test.ets
-import add from 'libentry.so'
-add.add(2, 3);
+import entry from 'libentry.so'
+entry.add(2, 3);
 ```
 
 ### 命名空间导入
@@ -78,7 +78,7 @@ export * from 'libentry.so'
 ```
 ```ts
 // test2.ets
-import * as add from 'file1'
+import * as add from './test1'
 // 无法获取add对象
 ```
 

@@ -2,6 +2,8 @@
 
 自定义组件冻结功能专为优化复杂UI页面的性能而设计，尤其适用于包含多个页面栈、长列表或宫格布局的场景。在这些情况下，当状态变量绑定了多个UI组件，其变化可能触发大量UI组件的刷新，进而导致界面卡顿和响应延迟。为了提升这类负载UI界面的刷新性能，开发者可以选择尝试使用自定义组件冻结功能。
 
+组件冻结功能是一种性能优化机制，它会冻结非激活状态下的组件的刷新能力。当组件处于非激活状态时，即使其绑定的状态变量发生变化，也不会触发该组件的UI重新渲染，从而降低复杂UI场景下的刷新负载。
+
 组件冻结的工作原理是：
 1. 开发者通过设置freezeWhenInactive属性，即可激活组件冻结机制。
 2. 启用后，系统将仅对处于激活状态的自定义组件进行更新，这使得UI框架可以尽量缩小更新范围，仅限于用户可见范围内（激活状态）的自定义组件，从而提高复杂UI场景下的刷新效率。
@@ -42,15 +44,13 @@
 页面1：
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component({ freezeWhenInactive: true })
 struct Page1 {
   @StorageLink('PropA') @Watch("first") storageLink: number = 47;
 
   first() {
-    console.info("first page " + `${this.storageLink}`)
+    console.info("first page " + `${this.storageLink}`);
   }
 
   build() {
@@ -58,11 +58,11 @@ struct Page1 {
       Text(`From first Page ${this.storageLink}`).fontSize(50)
       Button('first page storageLink + 1').fontSize(30)
         .onClick(() => {
-          this.storageLink += 1
+          this.storageLink += 1;
         })
       Button('go to next page').fontSize(30)
         .onClick(() => {
-          router.pushUrl({ url: 'pages/Page2' })
+          this.getUIContext().getRouter().pushUrl({ url: 'pages/Page2' });
         })
     }
   }
@@ -72,15 +72,13 @@ struct Page1 {
 页面2：
 
 ```ts
-import { router } from '@kit.ArkUI';
-
 @Entry
 @Component({ freezeWhenInactive: true })
 struct Page2 {
   @StorageLink('PropA') @Watch("second") storageLink2: number = 1;
 
   second() {
-    console.info("second page: " + `${this.storageLink2}`)
+    console.info("second page: " + `${this.storageLink2}`);
   }
 
   build() {
@@ -89,12 +87,12 @@ struct Page2 {
       Text(`second Page ${this.storageLink2}`).fontSize(50)
       Button('Change Divider.strokeWidth')
         .onClick(() => {
-          router.back()
+          this.getUIContext().getRouter().back();
         })
 
       Button('second page storageLink2 + 2').fontSize(30)
         .onClick(() => {
-          this.storageLink2 += 2
+          this.storageLink2 += 2;
         })
 
     }
@@ -127,17 +125,17 @@ struct Page2 {
 @Component
 struct TabContentTest {
   @State @Watch("onMessageUpdated") message: number = 0;
-  private data: number[] = [0, 1]
+  private data: number[] = [0, 1];
 
   onMessageUpdated() {
-    console.info(`TabContent message callback func ${this.message}`)
+    console.info(`TabContent message callback func ${this.message}`);
   }
 
   build() {
     Row() {
       Column() {
         Button('change message').onClick(() => {
-          this.message++
+          this.message++;
         })
 
         Tabs() {
@@ -156,11 +154,11 @@ struct TabContentTest {
 
 @Component({ freezeWhenInactive: true })
 struct FreezeChild {
-  @Link @Watch("onMessageUpdated") message: number
-  private index: number = 0
+  @Link @Watch("onMessageUpdated") message: number;
+  index: number = 0;
 
   onMessageUpdated() {
-    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`)
+    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {
@@ -175,7 +173,7 @@ struct FreezeChild {
 
 1.点击“change message”更改message的值，当前正在显示的TabContent组件中的@Watch中注册的方法onMessageUpdated被触发。
 
-2.点击“two”切换到另外的TabContent，TabContent状态由inactive变为active，对应的@Watch中注册的方法onMessageUpdated被触发。 
+2.点击“tab1”切换到另外的TabContent，TabContent状态由inactive变为active，对应的@Watch中注册的方法onMessageUpdated被触发。 
 
 3.再次点击“change message”更改message的值，仅当前显示的TabContent子组件中的@Watch中注册的方法onMessageUpdated被触发。
 
@@ -275,19 +273,19 @@ struct LforEachTest {
   @State @Watch("onMessageUpdated") message: number = 0;
 
   onMessageUpdated() {
-    console.info(`LazyforEach message callback func ${this.message}`)
+    console.info(`LazyforEach message callback func ${this.message}`);
   }
 
   aboutToAppear() {
     for (let i = 0; i <= 20; i++) {
-      this.data.pushData(`Hello ${i}`)
+      this.data.pushData(`Hello ${i}`);
     }
   }
 
   build() {
     Column() {
       Button('change message').onClick(() => {
-        this.message++
+        this.message++;
       })
       List({ space: 3 }) {
         LazyForEach(this.data, (item: string) => {
@@ -304,14 +302,14 @@ struct LforEachTest {
 @Component({ freezeWhenInactive: true })
 struct FreezeChild {
   @Link @Watch("onMessageUpdated") message: number;
-  private index: string = "";
+  index: string = "";
 
   aboutToAppear() {
-    console.info(`FreezeChild aboutToAppear index: ${this.index}`)
+    console.info(`FreezeChild aboutToAppear index: ${this.index}`);
   }
 
   onMessageUpdated() {
-    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`)
+    console.info(`FreezeChild message callback func ${this.message}, index: ${this.index}`);
   }
 
   build() {

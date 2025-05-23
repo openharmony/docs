@@ -8,7 +8,9 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+>  该组件从API version 20开始支持使用[AttributeUpdater](../js-apis-arkui-AttributeUpdater.md)类的[updateConstructorParams](../js-apis-arkui-AttributeUpdater.md#updateconstructorparams)接口更新构造参数。
 
 
 ## 子组件
@@ -66,10 +68,10 @@ viewPort(value: ViewportRect)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| x | string \| number | 否 | 形状视口起始点的水平坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| y | string \| number | 否 | 形状视口起始点的垂直坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| width | string \| number | 否 | 形状视口的宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number | 否 | 形状视口的高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| x | [Length](ts-types.md#length) | 否 | 形状视口起始点的水平坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| y | [Length](ts-types.md#length) | 否 | 形状视口起始点的垂直坐标。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | [Length](ts-types.md#length) | 否 | 形状视口的宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | [Length](ts-types.md#length) | 否 | 形状视口的高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### fill
 
@@ -145,7 +147,7 @@ strokeDashArray(value: Array&lt;any&gt;)
 
 ### strokeDashOffset
 
-strokeDashOffset(value: number | string)
+strokeDashOffset(value: [Length](ts-types.md#length))
 
 设置边框绘制起点的偏移量。异常值按照默认值处理。
 
@@ -159,7 +161,7 @@ strokeDashOffset(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                 |
 | ------ | -------------------------- | ---- | ------------------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
+| value  | [Length](ts-types.md#length) | 是   | 边框绘制起点的偏移量。<br/>默认值：0<br/>默认单位：vp |
 
 ### strokeLineCap
 
@@ -199,7 +201,7 @@ strokeLineJoin(value: LineJoinStyle)
 
 ### strokeMiterLimit
 
-strokeMiterLimit(value: number | string)
+strokeMiterLimit(value: [Length](ts-types.md#length))
 
 设置斜接长度与边框宽度比值的极限值。斜接长度表示外边框外边交点到内边交点的距离，边框宽度即strokeWidth属性的值。该属性取值需在strokeLineJoin属性取值LineJoinStyle.Miter时生效。 
 
@@ -215,7 +217,7 @@ strokeMiterLimit(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                                           |
 | ------ | -------------------------- | ---- | ---------------------------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 斜接长度与边框宽度比值的极限值。<br/>默认值：4 |
+| value  | [Length](ts-types.md#length) | 是   | 斜接长度与边框宽度比值的极限值。<br/>默认值：4 |
 
 ### strokeOpacity
 
@@ -237,7 +239,7 @@ strokeOpacity(value: number | string | Resource)
 
 ### strokeWidth
 
-strokeWidth(value: number | string)
+strokeWidth(value: [Length](ts-types.md#length))
 
 设置边框宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。
 
@@ -251,7 +253,7 @@ strokeWidth(value: number | string)
 
 | 参数名 | 类型                         | 必填 | 说明                     |
 | ------ | ---------------------------- | ---- | ------------------------ |
-| value  | number&nbsp;\|&nbsp;string | 是   | 边框宽度，取值范围≥0。<br/>默认值：1<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| value  | [Length](ts-types.md#length) | 是   | 边框宽度，取值范围≥0。<br/>默认值：1<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ### antiAlias
 
@@ -293,7 +295,9 @@ mesh(value: Array&lt;number&gt;, column: number, row: number)
 
 ## 示例
 
-Shape绘制矩形、椭圆、直线路径。
+### 示例1（组件属性绘制）
+
+通过Shape组件绘制矩形、椭圆、直线路径。
 
 ```ts
 // xxx.ets
@@ -449,4 +453,46 @@ struct ShapeExample {
 ```
 
 ![zh-cn_image_0000001184628104](figures/zh-cn_image_0000001184628104.png)
-、
+
+### 示例2（使用不同参数类型绘制图形）
+
+各属性通过不同的长度类型绘制图形。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct ShapeTypeExample {
+  build() {
+    Column({ space: 10 }) {
+      // 在Shape的(-2, -2)点绘制一个 300 * 50 带边框的矩形,颜色0x317AF7,边框颜色黑色,边框宽度4,边框间隙20,向左偏移10,线条两端样式为半圆,拐角样式圆角,抗锯齿(默认开启)
+      // 在Shape的(-2, 58)点绘制一个 300 * 50 带边框的椭圆,颜色0x317AF7,边框颜色黑色,边框宽度4,边框间隙20,向左偏移10,线条两端样式为半圆,拐角样式圆角,抗锯齿(默认开启)
+      // 在Shape的(-2, 118)点绘制一个 300 * 10 直线路径,颜色0x317AF7,边框颜色黑色,宽度4,间隙20,向左偏移10,线条两端样式为半圆,拐角样式圆角,抗锯齿(默认开启)
+      Shape() {
+        Rect().width('300').height('50')
+        Ellipse().width(300).height(50).offset({ x: 0, y: 60 })
+        Path().width(300).height(10).commands('M0 0 L900 0').offset({ x: 0, y: 120 })
+      }
+      .width(350)
+      .height(140)
+      .viewPort({
+        x: '-2', // 使用string类型
+        y: '-2',
+        width: $r('app.string.ViewportRectWidth'), // 使用Resource类型，需用户自定义
+        height: $r('app.string.ViewportRectHeight')
+      })
+      .fill(Color.Orange)
+      .stroke(Color.Black)
+      .strokeWidth(4)
+      .strokeDashArray([20])
+      .strokeDashOffset(10) //使用number类型
+      .strokeLineCap(LineCapStyle.Round)
+      .strokeLineJoin(LineJoinStyle.Round)
+      .strokeMiterLimit(5)
+      .antiAlias(true)
+    }.width('100%').margin({ top: 15 })
+  }
+}
+```
+
+![shapeDemo2](figures/shapeDemo2.png)

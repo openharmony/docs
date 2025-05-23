@@ -6,7 +6,7 @@
 
 在状态变量相关装饰器中，\@State是最基础的，使变量拥有状态属性的装饰器，它也是大部分状态变量的数据源。
 
-在阅读\@State文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。
+在阅读\@State文档前，建议开发者对状态管理框架有基本的了解。建议提前阅读：[状态管理概述](./arkts-state-management-overview.md)。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 > **说明：**
 >
@@ -87,7 +87,7 @@
   }
   ```
 
-  \@State装饰的类型是Model
+  \@State装饰的类型是Model。
 
   ```ts
   // class类型
@@ -296,7 +296,7 @@ struct EntryComponent {
 struct MyComponent {
   @State title: Model = new Model('Hello World');
   @State count: number = 0;
-  private increaseBy: number = 1;
+  increaseBy: number = 1;
 
   build() {
     Column() {

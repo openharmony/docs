@@ -70,7 +70,7 @@ Ability上次退出原因，该类型为枚举，可配合UIAbility的[onCreate(
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | ABILITY_NOT_RESPONDING<sup>(deprecated)</sup> | 1    | ability未响应。<br>**说明:** 从API version 9开始支持，从API version 10开始废弃，请使用APP_FREEZE替代。|
-| NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
+| NORMAL | 2    | 用户主动关闭，应用程序正常退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。<br>**说明**：如果调用[process.exit()](../apis-arkts/js-apis-process.md#processexitdeprecated)、kill命令等非Ability Kit提供的能力退出应用进程，也会返回NORMAL。 |
 | CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | JS_ERROR<sup>10+</sup>  | 4    | 当应用存在JS语法错误并未被开发者捕获时，触发JS_ERROR故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
 | APP_FREEZE<sup>10+</sup>  | 5    | 由于watchdog检测出应用Freeze故障，导致应用程序退出。<br>**原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。 |
@@ -115,6 +115,7 @@ class MyAbility extends UIAbility {
 | rss | number | 否 | 否 | Ability上次退出时所在进程的rss值。 |
 | pss | number | 否 | 否 | Ability上次退出时所在进程的pss值。 |
 | timestamp | number | 否 | 否 | Ability上次退出时的时间戳。 |
+| processState<sup>20+</sup> | [appManager.ProcessState](js-apis-app-ability-appManager.md#processstate10) | 否 | 是 | Ability上次退出时的进程状态。 |
 
 **示例**:
 
@@ -131,7 +132,8 @@ class MyAbility extends UIAbility {
         '\n exitMsg: ' + launchParam.lastExitDetailInfo.exitMsg +
         '\n rss: ' + launchParam.lastExitDetailInfo.rss +
         '\n pss: ' + launchParam.lastExitDetailInfo.pss +
-        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp
+        '\n timestamp: ' + launchParam.lastExitDetailInfo.timestamp +
+        '\n processState: ' + launchParam.lastExitDetailInfo.processState
       );
     }
   }
@@ -177,6 +179,13 @@ class MyAbility extends UIAbility {
 | MEMORY_LEVEL_MODERATE       | 0   | 内存占用适中。 |
 | MEMORY_LEVEL_LOW            | 1   | 内存占用低。   |
 | MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
+
+> **说明：**
+> 
+> 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
+> - 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
+> - 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
+> - 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
 
 **示例：**
 
@@ -269,8 +278,8 @@ class MyAbility extends UIAbility {
 
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
-| CONTINUATION           | 0    | 迁移保存状态。 |
-| APP_RECOVERY           | 1    | 应用恢复保存状态。 |
+| CONTINUATION           | 0    | 应用迁移场景。 |
+| APP_RECOVERY           | 1    | 应用故障恢复场景。 |
 
 **示例：**
 

@@ -30,7 +30,7 @@ The ComponentContent is incorrect.
 
 **错误描述**
 
-子定义弹窗内容节点错误，无法渲染显示。
+自定义弹窗内容节点错误，无法渲染显示。
 
 **可能原因**
 
@@ -116,7 +116,7 @@ NA
 
 **错误信息**
 
-Toast not found.
+Cannot find the toast. 
 
 **错误描述**
 

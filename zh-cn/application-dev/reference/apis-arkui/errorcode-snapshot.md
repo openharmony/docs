@@ -39,3 +39,21 @@ ComponentSnapshot error.
 **处理步骤**
 
 NA
+
+## 160002 截图超时
+
+**错误信息**
+
+ComponentSnapshot timeout.
+
+**错误描述**
+
+图像超时。
+
+**可能原因**
+
+系统任务未执行。
+
+**处理步骤**
+
+NA

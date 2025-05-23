@@ -347,7 +347,6 @@ on(type: 'hceCmd', callback: AsyncCallback\<number[]>): void
 | 错误码ID | 错误信息|
 | ------- | -------|
 |201 | Permission denied.                 |
-|401 | Invalid parameter.                 |
 |801 | Capability not supported.          |
 
 **示例：**
@@ -538,7 +537,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回发送APDU数据的结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当发送APDU数据成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 

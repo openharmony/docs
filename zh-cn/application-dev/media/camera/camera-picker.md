@@ -13,8 +13,8 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
 
 1. 导入相关接口，导入方法如下。
    ```ts
-   import { camera, cameraPicker as picker } from '@kit.CameraKit'
-   import { fileIo, fileUri } from '@kit.CoreFileKit'
+   import { camera, cameraPicker as picker } from '@kit.CameraKit';
+   import { fileIo, fileUri } from '@kit.CoreFileKit';
    ```
 
 2. 配置[PickerProfile](../../reference/apis-camera-kit/js-apis-cameraPicker.md#pickerprofile)。
@@ -27,37 +27,70 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
    > 应用沙箱内的这个文件必须是一个存在的、可写的文件。这个文件的uri传入picker接口之后，相当于应用给系统相机授权该文件的读写权限。系统相机在拍摄结束之后，会对此文件进行覆盖写入。
 
    ```ts
-   let pathDir = getContext().filesDir;
-   let fileName = `${new Date().getTime()}`
-   let filePath = pathDir + `/${fileName}.tmp`
-   fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
-   
-   let uri = fileUri.getUriFromPath(filePath);
-   let pickerProfile: picker.PickerProfile = {
-     cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
-     saveUri: uri
-   };
+   function createPickerProfile(context: Context): picker.PickerProfile {
+     let pathDir = context.filesDir;
+     let fileName = `${new Date().getTime()}`;
+     let filePath = pathDir + `/${fileName}.tmp`;
+     fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
+     
+     let uri = fileUri.getUriFromPath(filePath);
+     let pickerProfile: picker.PickerProfile = {
+       cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
+       saveUri: uri
+     };
+     return pickerProfile;
+   }
    ```
 
 3. 调用picker拍摄接口获取拍摄的结果。
    ```ts
-   let result: picker.PickerResult =
-     await picker.pick(getContext(), [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
-       pickerProfile);
-   console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
+   async function getPickerResult(context: Context, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
+     let result: picker.PickerResult =
+       await picker.pick(context, [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
+         pickerProfile);
+     console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
+     return result;
+   }
    ```
 
 ## 完整示例
    ```ts 
-   import { camera, cameraPicker as picker } from '@kit.CameraKit'
-   import { fileIo, fileUri } from '@kit.CoreFileKit'
+   import { camera, cameraPicker as picker } from '@kit.CameraKit';
+   import { fileIo, fileUri } from '@kit.CoreFileKit';
 
    @Entry
    @Component
    struct Index {
      @State imgSrc: string = '';
      @State videoSrc: string = '';
-   
+     createPickerProfile(context: Context): picker.PickerProfile {
+       let pathDir = context.filesDir;
+       let fileName = `${new Date().getTime()}`;
+       let filePath = pathDir + `/${fileName}.tmp`;
+       fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
+       
+       let uri = fileUri.getUriFromPath(filePath);
+       let pickerProfile: picker.PickerProfile = {
+         cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
+         saveUri: uri
+       };
+       return pickerProfile;
+     }
+
+     async getPickerResult(context: Context, pickerProfile: picker.PickerProfile): Promise<picker.PickerResult> {
+       let result: picker.PickerResult =
+         await picker.pick(context, [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
+           pickerProfile);
+       console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
+       return result;
+     }
+
+     getContext(): Context | undefined {
+       let uiContext: UIContext = this.getUIContext();
+       let context: Context | undefined = uiContext.getHostContext();
+       return context;
+     }
+
      build() {
        RelativeContainer() {
          Column() {
@@ -66,20 +99,12 @@ CameraPicker的相机交互界面由系统提供，在用户点击拍摄和确�
            Button("Test Picker Photo&Video").fontSize(20)
              .fontWeight(FontWeight.Bold)
              .onClick(async () => {
-               let pathDir = getContext().filesDir;
-               let fileName = `${new Date().getTime()}`
-               let filePath = pathDir + `/${fileName}.tmp`
-               fileIo.createRandomAccessFileSync(filePath, fileIo.OpenMode.CREATE);
-   
-               let uri = fileUri.getUriFromPath(filePath);
-               let pickerProfile: picker.PickerProfile = {
-                 cameraPosition: camera.CameraPosition.CAMERA_POSITION_BACK,
-                 saveUri: uri
-               };
-               let result: picker.PickerResult =
-                 await picker.pick(getContext(), [picker.PickerMediaType.PHOTO, picker.PickerMediaType.VIDEO],
-                   pickerProfile);
-               console.info(`picker resultCode: ${result.resultCode},resultUri: ${result.resultUri},mediaType: ${result.mediaType}`);
+               let context = this.getContext();
+               if (context === undefined) {
+                 return;
+               }
+               let pickerProfile = this.createPickerProfile(context);
+               let result = await this.getPickerResult(context, pickerProfile);
                if (result.resultCode == 0) {
                  if (result.mediaType === picker.PickerMediaType.PHOTO) {
                    this.imgSrc = result.resultUri;

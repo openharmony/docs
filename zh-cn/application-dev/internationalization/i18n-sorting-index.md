@@ -15,7 +15,7 @@
 
 2. 创建对象。
    ```ts
-   let indexUtil: i18n.IndexUtil = i18n.getInstance(locale?: string); // locale表示本地化标识符，默认值是系统当前locale
+   let indexUtil: i18n.IndexUtil = i18n.getInstance(locale?: string); // locale为表示区域ID的字符串，默认值是系统当前区域ID
    ```
 
 3. 获取索引列表。
@@ -43,6 +43,6 @@ indexUtil.addLocale('ru-RU');
 // indexList = ['…', 'A', 'B', 'C', ... 'X', 'Y', 'Z', '…', 'А', 'Б', 'В', ... 'Э', 'Ю', 'Я', '…']
 indexList = indexUtil.getIndexList(); 
 
-// 获取字符串的索引
+// 获取字符串的索引值
 let index: string = indexUtil.getIndex('你好'); // index = 'N'
 ```

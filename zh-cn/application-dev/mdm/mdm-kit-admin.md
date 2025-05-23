@@ -4,22 +4,15 @@
 
 企业设备管理扩展能力，是设备管理应用必备组件。当开发者为企业开发设备管理应用时，需继承EnterpriseAdminExtensionAbility，在EnterpriseAdminExtensionAbility实例中实现MDM业务逻辑，EnterpriseAdminExtensionAbility实现了系统管理状态变化通知功能，并定义了管理应用激活、去激活、应用安装、卸载事件等回调接口。
 
-### 接口说明
+## 接口说明
+以下为本次开发示例所使用的接口，更多接口及使用方式请见[企业设备管理扩展能力接口文档](../../application-dev/reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)。
 
-| 类名                            | 接口名称                                  | 描述                         |
-| ------------------------------- | ----------------------------------------- | ---------------------------- |
-| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | 设备管理器应用激活回调方法   |
-| EnterpriseAdminExtensionAbility | onAdminDisabled(): void                   | 设备管理器应用去激活回调方法 |
-| EnterpriseAdminExtensionAbility | onBundleAdded(bundleName: string): void   | 应用安装回调方法             |
-| EnterpriseAdminExtensionAbility | onBundleRemoved(bundleName: string): void | 应用卸载回调方法             |
-
-onAdminEnabled：由企业管理员或者员工部署设备管理应用，激活设备管理器，系统通知设备管理应用设备管理应用已激活DeviceAdmin权限。设备管理应用可在onAdminEnabled回调函数中进行初始化策略设置。
-
-onAdminDisabled：由系统或者员工去激活设备管理器，通知去激活DeviceAdmin权限，应用可以通知企业管理员设备已脱管。
-
-onBundleAdded: 企业应用管理场景下，企业管理员订阅应用安装事件，端侧应用安装和卸载事件通知设备管理应用，设备管理应用可以在回调函数中进行事件上报，通知企业管理员。
-
-onBundleRemoved: 企业应用管理场景下，企业管理员订阅应用卸载事件，端侧应用安装和卸载事件通知设备管理应用，设备管理应用可以在回调函数中进行事件上报，通知企业管理员。
+| 接口名称                                  | 描述                         |
+| ----------------------------------------- | ---------------------------- |
+| [onAdminEnabled(): void](../../application-dev/reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md#enterpriseadminextensionabilityonadminenabled)                    | 设备管理应用被激活回调方法。   |
+| [onAdminDisabled(): void](../../application-dev/reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md#enterpriseadminextensionabilityonadmindisabled)                   | 设备管理应用被解除激活回调方法。 |
+| [onBundleAdded(bundleName: string): void](../../application-dev/reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md#enterpriseadminextensionabilityonbundleadded)   | 应用安装回调方法。             |
+| [onBundleRemoved(bundleName: string): void](../../application-dev/reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md#enterpriseadminextensionabilityonbundleremoved) | 应用卸载回调方法。             |
 
 ## 开发步骤
 
@@ -37,22 +30,22 @@ onBundleRemoved: 企业应用管理场景下，企业管理员订阅应用卸载
 import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
 
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  // 设备管理器应用激活回调方法，应用可在此回调函数中进行初始化策略设置。
+  // 设备管理应用激活回调方法，应用可在此回调函数中进行初始化策略设置
   onAdminEnabled() {
     console.info("onAdminEnabled");
   }
 
-  // 设备管理器应用去激活回调方法，应用可在此回调函数中通知企业管理员设备已脱管。
+  // 设备管理应用解除激活回调方法，应用可在此回调函数中通知企业管理员设备已脱管
   onAdminDisabled() {
     console.info("onAdminDisabled");
   }
   
-  // 应用安装回调方法，应用可在此回调函数中进行事件上报，通知企业管理员。
+  // 应用安装回调方法，应用可在此回调函数中进行事件上报，通知企业管理员
   onBundleAdded(bundleName: string) {
     console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName);
   }
 
-  // 应用卸载回调方法，应用可在此回调函数中进行事件上报，通知企业管理员。
+  // 应用卸载回调方法，应用可在此回调函数中进行事件上报，通知企业管理员
   onBundleRemoved(bundleName: string) {
     console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName);
   }

@@ -1,6 +1,6 @@
 # 尺寸设置
 
-用于设置组件的宽高、边距。
+设置组件的宽高、边距。
 
 >  **说明：**
 >
@@ -94,13 +94,13 @@ height(heightValue: Length | LayoutPolicy)
 
 >  **说明：**
 > 
->  [Row](./ts-container-row.md)和[Column](./ts-container-column.md)组件的width、height属性支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型参数。
+>  [Row](./ts-container-row.md)和[Column](./ts-container-column.md)组件的width和height属性支持设置[LayoutPolicy](ts-types.md#layoutpolicy15)类型参数。
 
 ## size
 
 size(value: SizeOptions)
 
-设置高宽尺寸。
+设置组件自身的宽高尺寸。
 
 从API version 10开始，该接口支持calc计算特性。
 
@@ -120,7 +120,7 @@ size(value: SizeOptions)
 
 padding(value: Padding | Length | LocalizedPadding)
 
-设置内边距属性。
+设置组件的内边距属性。
 
 从API version 10开始，该接口支持calc计算特性。
 
@@ -140,7 +140,7 @@ padding(value: Padding | Length | LocalizedPadding)
 
 margin(value: Margin | Length | LocalizedMargin)
 
-设置外边距属性。
+设置组件的外边距属性。
 
 从API version 10开始，该接口支持calc计算特性。
 
@@ -178,7 +178,7 @@ safeAreaPadding(value: Padding | LengthMetrics | LocalizedPadding)
 
 layoutWeight(value: number | string)
 
-设置组件的布局权重，使用该属性的组件在父容器（[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)）的主轴方向按照权重分配尺寸。
+设置组件的布局权重，使组件在父容器（[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)）的主轴方向按照权重分配尺寸。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -190,7 +190,7 @@ layoutWeight(value: number | string)
 
 | 参数名   | 类型                         | 必填      | 说明                                       |
 | ----- | -------------------------- | ------- | ---------------------------------------- |
-| value | number&nbsp;\|&nbsp;string | &nbsp;是 | 父容器尺寸确定时，设置了layoutWeight属性的子元素与兄弟元素占主轴尺寸按照权重进行分配，忽略元素本身尺寸设置，表示自适应占满剩余空间。<br/>默认值：0<br/>**说明：** <br/>仅在[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。<br/>如果容器中有子元素设置了layoutWeight属性，且设置的属性值大于0，则所有子元素不会再基于flexShrink和flexGrow布局。 |
+| value | number&nbsp;\|&nbsp;string | &nbsp;是 | 父容器尺寸确定时，不设置layoutWeight属性或者layoutWeight属性生效值为0的元素优先占位，这些元素占位后在主轴留下的空间称为主轴剩余空间。设置了layoutWeight属性且layoutWeight属性生效值大于0的子元素会从主轴剩余空间中按照各自所设置的权重占比分配尺寸，分配时会忽略元素本身的尺寸设置。<br/>默认值：0<br/>**说明：** <br/>仅在[Row](./ts-container-row.md)/[Column](./ts-container-column.md)/[Flex](./ts-container-flex.md)布局中生效。<br/>可选值为大于等于0的数字，或者可以转换为数字的字符串。<br/>如果容器中有子元素设置了layoutWeight属性，且设置的属性值大于0，则所有子元素不会再基于flexShrink和flexGrow布局。 |
 
 ## constraintSize
 
@@ -258,7 +258,7 @@ constraintSize(value: ConstraintSizeOptions)
 
 ### 示例1（设置组件的宽高和边距）
 
-设置组件的宽度和高度，以及内边距和外边距。
+设置组件的宽度、高度、内边距及外边距。
 
 ```ts
 // xxx.ets
@@ -319,7 +319,7 @@ struct SizeExample {
 
 ### 示例2（LocalizedPadding和LocalizedMargin类型的使用）
 
-padding和margin属性使用LocalizedPadding类型和LocalizedMargin类型。
+使用LocalizedPadding类型和LocalizedMargin类型定义padding和margin属性。
 
 ```ts
 // xxx.ets

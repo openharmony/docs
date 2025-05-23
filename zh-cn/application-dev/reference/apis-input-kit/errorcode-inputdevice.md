@@ -32,7 +32,7 @@ There is currently no keyboard device connected.
 
 **错误描述**
 
-当前没有键盘设备插入连接。
+当前未检测到已连接的键盘设备。
 
 **可能原因**
 
@@ -64,7 +64,7 @@ it is prohibited for non-input applications.
 
 **错误信息**
 
-windowId is invalid.
+Invalid windowId. Possible causes: The window id does not belong to the current process.
 
 **错误描述**
 
@@ -72,8 +72,8 @@ windowId is invalid.
 
 **可能原因**
 
-传入非当前应用的窗口id。
+窗口id不属于当前进程。
 
 **处理步骤**
 
-请检查并传入当前应用的窗口id，可通过windowClass.[getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9)接口获取当前窗口属性，窗口属性中含有窗口id。
+请检查并传入当前进程的窗口id，可通过windowClass.[getWindowProperties()](../apis-arkui/js-apis-window.md#getwindowproperties9)接口获取当前窗口属性，窗口属性中含有窗口id。

@@ -22,6 +22,7 @@
    #include "napi/native_api.h"
    #include <ohcamera/camera.h>
    #include <ohcamera/photo_output.h>
+   #include <ohcamera/camera_manager.h>
    #include <multimedia/media_library/media_asset_manager_capi.h>
    #include <multimedia/media_library/media_asset_change_request_capi.h>
    #include <multimedia/media_library/media_access_helper_capi.h>

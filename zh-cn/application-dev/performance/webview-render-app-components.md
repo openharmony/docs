@@ -83,7 +83,7 @@ export struct SearchComponent {
       .borderRadius(18)
       .onClick(() => {
         // 点击搜索框提示
-        promptAction.showToast({
+        this.getUIContext().getPromptAction().showToast({
           message: "仅演示"
         });
       })
@@ -154,7 +154,7 @@ export struct SearchComponent {
               case webview.WebMessageType.STRING: {
                 if (result.getString() === 'shop_search_click') {
                   // 点击搜索框提示
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: $r("app.string.nativeembed_prompt_text")
                   });
                 }
@@ -179,7 +179,7 @@ export struct SearchComponent {
             }
         }
     })
-
+    
     function postStringToApp(str) {
         if (h5Port) {
             h5Port.postMessage(str);
@@ -191,18 +191,18 @@ export struct SearchComponent {
 
     // 获取应用侧的数据对象
     let imageNodeData = mockData.getMockData();
-
+    
     // 搜索框
     let searchNode = document.createElement('div');
     searchNode.classList.add('shop-input');
     searchNode.addEventListener('click', () => {
         postStringToApp('shop_search_click')
     })
-
+    
     // ...
     // 其余相关节点
     // ...
-
+    
     let imageNodeList = []; // 商城node节点列表
     imageNodeData.forEach(item => {
         // 商品div
@@ -219,9 +219,9 @@ export struct SearchComponent {
         node.append(imageNode, textNode);
         imageNodeList.push(node);
     })
-
+    
     shopNode.append(...imageNodeList);
-
+    
     document.querySelector("#my-app").append(titleNode, searchNode, shopNode);
     ```
 
@@ -255,7 +255,7 @@ export struct SearchComponent {
     }
     ```
 2. 用Web加载nativeembed_view.html文件，在加载完成后的onPageEnd回调中，获取Web侧预留的Embed元素大小，并通过px2vp方法转换为组件大小。  
-需要在H5侧添加getEmbedSize方法来获取元素大小，如下：
+   需要在H5侧添加getEmbedSize方法来获取元素大小，如下：
 
     ```javascript
     // H5侧
@@ -280,8 +280,8 @@ export struct SearchComponent {
             height: number
           }
           let embedSize = JSON.parse(result) as EmbedSize;
-          this.searchWidth = px2vp(embedSize.width);
-          this.searchHeight = px2vp(embedSize.height);
+          this.searchWidth = this.getUIContext().px2vp(embedSize.width);
+          this.searchHeight = this.getUIContext().px2vp(embedSize.height);
           this.isWebInit = true;
         }
       });
@@ -309,7 +309,7 @@ export struct SearchComponent {
 2. 因为要使用NodeContainer，所以封装一个继承自NodeController的类SearchNodeController。
     ```typescript
     type Node = BuilderNode<[Params]> | undefined | null;
-
+    
     /**
      * 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
      */
@@ -321,7 +321,7 @@ export struct SearchComponent {
       private componentWidth: number = 0; // 原生组件宽
       private componentHeight: number = 0; // 原生组件高
       private nodeMap: Map<string, Node> = new Map<string, Node>(); // 存放与surfaceId关联的BuilderNode
-
+    
       /**
        * 设置surfaceId等渲染选项
        */
@@ -333,7 +333,7 @@ export struct SearchComponent {
         this.componentWidth = params.width;
         this.componentHeight = params.height;
       }
-
+    
       /**
        * 在对应NodeContainer创建的时候调用、或者通过rebuild方法调用刷新
        */
@@ -351,7 +351,7 @@ export struct SearchComponent {
           return newNode.getFrameNode();
         }
       }
-
+    
       /**
        * 将触摸事件派发到rootNode创建出的FrameNode上
        */
@@ -390,8 +390,8 @@ export struct SearchComponent {
         type: embed.info?.type as string,
         renderType: NodeRenderType.RENDER_TYPE_TEXTURE,
         embedId: embed.embedId as string,
-        width: px2vp(embed.info?.width),
-        height: px2vp(embed.info?.height)
+        width: this.getUIContext().px2vp(embed.info?.width),
+        height: this.getUIContext().px2vp(embed.info?.height)
       });
     }
     this.searchNodeController.rebuild();
@@ -419,6 +419,7 @@ H5的分析：
 - 在应用侧，红蓝线之间为测量和计算布局，图片加载被延后到了蓝线之外。  
 - 在render_service侧，蓝线之后每一帧ReceiveVsync的耗时大幅增加。
   
+
 **图五：非同层渲染情况下的单帧放大图**  
 ![alt text](./figures/webview-render-app-components_6.png)  
 从图五可以明显的看到，其中的RSUniRender::Process耗时比起其他帧大幅增加，说明是应用侧组件层叠导致render_service侧的绘任务过重。 

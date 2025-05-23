@@ -57,6 +57,7 @@ NativeWindow模块提供图像buffer轮转功能，可用来和egl对接。开�
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| int32_t [OH_NativeWindow_CleanCache](#oh_nativewindow_cleancache) ([OHNativeWindow](#ohnativewindow) \*window) | 清理OHNativeWindow中的OHNativeWindowBuffer缓存。<br/>使用该接口清理缓存前，需确保已通过[OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer)接口成功申请OHNativeWindowBuffer。<br/>本接口为非线程安全类型接口。 | 
 | [OHNativeWindow](#ohnativewindow) \* [OH_NativeWindow_CreateNativeWindow](#oh_nativewindow_createnativewindow) (void \*pSurface) | 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 说明：此接口不可用，可通过**OH_NativeImage_AcquireNativeWindow**创建，或通过XComponent创建。 | 
 | void [OH_NativeWindow_DestroyNativeWindow](#oh_nativewindow_destroynativewindow) ([OHNativeWindow](#ohnativewindow) \*window) | 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。 | 
 | [OHNativeWindowBuffer](#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 此接口从API version 12开始废弃，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。 | 
@@ -362,6 +363,35 @@ enum OHScalingModeV2
 
 
 ## 函数说明
+
+### OH_NativeWindow_CleanCache()
+
+```
+int32_t OH_NativeWindow_CleanCache (OHNativeWindow *window)
+```
+
+**描述**
+
+清理OHNativeWindow中的OHNativeWindowBuffer缓存。
+
+使用该接口清理缓存前，需确保已通过[OH_NativeWindow_NativeWindowRequestBuffer](#oh_nativewindow_nativewindowrequestbuffer)接口成功申请OHNativeWindowBuffer。
+
+本接口为非线程安全类型接口。
+
+**系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
+
+**起始版本：** 19
+
+**参数:**
+
+| 名称 | 描述 | 
+| -------- | -------- |
+| window | 一个指向[OHNativeWindow](#ohnativewindow)的结构体实例的指针。 | 
+
+**返回：**
+
+返回值为0表示执行成功，其他返回值可参考[OHNativeErrorCode](#ohnativeerrorcode)。
+
 
 ### OH_NativeWindow_SetColorSpace()
 
@@ -996,7 +1026,9 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 **描述：**
 
 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。
-系统会将fenFd关闭，无需用户close。
+
+系统会将fenceFd关闭，无需用户close。
+
 本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeWindow
@@ -1009,8 +1041,8 @@ int32_t OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow *window, OHNativ
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针。 | 
 | buffer | 一个OHNativeWindowBuffer的结构体实例的指针。 | 
-| fenceFd | 一个文件描述符句柄，用以同步时序。 | 
-| region | 表示一块脏区域，该区域有内容更新。 | 
+| fenceFd |一个文件描述符句柄，用以同步时序。不同取值及含义如下：<br>- -1：CPU渲染完成，无需同步时序。<br>- ≥0：从GPU同步对象转换（如EGL的`eglDupNativeFenceFDANDROID`），对端需要通过此fenceFd同步时序。| 
+| region | 一个[Region](_region.md)结构体，表示一块脏区域，该区域有内容更新。 | 
 
 **返回：**
 
@@ -1068,8 +1100,8 @@ int32_t OH_NativeWindow_NativeWindowRequestBuffer (OHNativeWindow *window, OHNat
 | 名称 | 描述 | 
 | -------- | -------- |
 | window | 一个OHNativeWindow的结构体实例的指针。 | 
-| buffer | 一个OHNativeWindowBuffer的结构体实例的二级指针。 | 
-| fenceFd | 一个文件描述符句柄。 | 
+| buffer | 一个指向OHNativeWindowBuffer指针的指针（二级指针）。通过[OH_NativeWindow_GetBufferHandleFromNative](#oh_nativewindow_getbufferhandlefromnative)可获取[BufferHandle](_buffer_handle.md)结构体，访问缓冲区内存。 | 
+| fenceFd | 一个文件描述符句柄，用于GPU/CPU同步。不同取值及含义如下：<br>- 返回≥0：缓冲区正被GPU使用，需要等待文件描述符fenceFd就绪。<br>- 返回-1：缓冲区可直接使用。| 
 
 **返回：**
 

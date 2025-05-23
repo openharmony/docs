@@ -582,7 +582,7 @@ static isArray(value: Object | undefined | null): boolean
 **示例：**
 
 ```ts
-let arr: collections.Array<string> = new collections.Array('a', 'b', 'c', 'd')
+let arr: collections.Array<string> = new collections.Array('a', 'b', 'c', 'd');
 let result: boolean = collections.Array.isArray(arr);
 console.info(result + '');
 // 预期输出： true
@@ -621,7 +621,7 @@ static of\<T>(...items: T\[]): Array\<T>
 **示例：**
 
 ```ts
-let arr: collections.Array<string> = collections.Array.of('a', 'b', 'c', 'd')
+let arr: collections.Array<string> = collections.Array.of('a', 'b', 'c', 'd');
 console.info(arr.toString());
 // 预期输出： a, b, c, d
 ```
@@ -693,11 +693,10 @@ lastIndexOf(searchElement: T, fromIndex?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID    | 错误信息                                    |
 | -------- | --------------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
 | 10200011 | The lastIndexOf method cannot be bound. |
 | 10200201 | Concurrent modification exception.      |
@@ -739,11 +738,10 @@ some(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                            |
 | -------- | ---------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 10200011 | The some method cannot be bound.   |
 | 10200201 | Concurrent modification exception. |
 
@@ -1883,11 +1881,10 @@ every(predicate: ArrayPredicateFn\<T, Array\<T>>): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                          |
 | -------- | ------------------------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 10200011 | The every method cannot be bound. |
 | 10200201 | Concurrent modification exception. |
 
@@ -2091,7 +2088,7 @@ constructor(entries?: readonly (readonly [K, V])[] | null)
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| entries | [K, V][] \| null | 否   | 键值对数组或其它可迭代对象。默认值为null，创建一个空Map对象。 |
+| entries | readonly (readonly [K, V])[] \| null | 否   | 键值对数组或其它可迭代对象。默认值为null，创建一个空Map对象。 |
 
 **错误码：**
 
@@ -2421,7 +2418,7 @@ get(key: K): V | undefined
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| V    | 与指定键相关联的元素，如果键在Map对象中找不到，则返回undefined。 |
+| V \| undefined    | 与指定键相关联的元素，如果键在Map对象中找不到，则返回undefined。 |
 
 **错误码：**
 
@@ -2453,6 +2450,12 @@ has(key: K): boolean
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明      |
+| ------ | ---- | ---- | --------- |
+| key    | K    | 是   | 待查找元素的值。 |
 
 **返回值：**
 
@@ -2490,6 +2493,13 @@ set(key: K, value: V): Map<K, V>
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明      |
+| ------ | ---- | ---- | --------- |
+| key    | K    | 是   | 添加或更新指定元素的键。 |
+| value    | V    | 是   | 添加或更新指定元素的值。 |
 
 **返回值：**
 
@@ -2600,7 +2610,7 @@ constructor(values?: readonly T[] | null)
 
 | 参数名 | 类型 | 必填 | 说明                                                      |
 | ------ | ---- | ---- | --------------------------------------------------------- |
-| values | T[] \| null | 否 | 数组或其它可迭代对象。默认值为null，创建一个空Set对象。 |
+| values | readonly T[] \| null | 否 | 数组或其它可迭代对象。默认值为null，创建一个空Set对象。 |
 
 **错误码：**
 
@@ -3003,7 +3013,7 @@ mySet.add(obj);
 ```ts
 let set = new collections.Set<number>([1, 2, 3, 4, 5]);
 
-let val: Array<number> = Array.from(set.values())
+let val: Array<number> = Array.from(set.values());
 for (let item of val) {
   console.info("value: " + item);
 }
@@ -3391,7 +3401,7 @@ constructor(buffer: ArrayBuffer, byteOffset?: number, length?: number)
 
 ```ts
 let int32Array: collections.Int32Array = collections.Int32Array.from([1, 2, 3, 4, 5, 6]);
-console.info("byteLength: " + int32Array.buffer.byteLength) // byteLength: 24
+console.info("byteLength: " + int32Array.buffer.byteLength); // byteLength: 24
 // 从int32Array对应buffer第4个字节开始，长度为5
 let uint32Array: collections.Uint32Array = new collections.Uint32Array(int32Array.buffer, 4, 5);
 console.info("[" + uint32Array + "]"); // [2, 3, 4, 5, 6]
@@ -3540,7 +3550,7 @@ static of(...items: number[]): TypedArray
 **示例：**
 
 ```ts
-let arr: collections.Uint32Array = collections.Uint32Array.of(1, 2, 3, 4)
+let arr: collections.Uint32Array = collections.Uint32Array.of(1, 2, 3, 4);
 console.info(arr.toString());
 // 预期输出：1,2,3,4
 ```
@@ -3999,11 +4009,10 @@ lastIndexOf(searchElement: number, fromIndex?: number): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID    | 错误信息                                    |
 | -------- | --------------------------------------- |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range. |
 | 10200011 | The lastIndexOf method cannot be bound. |
 
@@ -4887,11 +4896,10 @@ has(element: number, fromIndex: number, toIndex: number): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
+以下错误码的详细介绍请参见[语言基础类库错误码](errorcode-utils.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 | 10200001 | The value of fromIndex or toIndex is out of range.           |
 | 10200011 | The has method cannot be bound.                              |
 | 10200201 | Concurrent modification error.                               |

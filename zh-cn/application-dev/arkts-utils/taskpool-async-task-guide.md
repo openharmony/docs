@@ -19,14 +19,14 @@
    function collectFrame() {
       // 采集数据，并且进行处理
       // 模拟处理过程，这里是个耗时任务
-      et t = new Date().getTime()
+      let t = new Date().getTime()
       while (new Date().getTime() - t < 30000) {
         continue;
       }
    }
    ```
 
-3. 创建异步队列，执行采集任务。
+3. 创建异步队列并执行采集任务。
 
    ```ts
    // Index.ets
@@ -34,7 +34,7 @@
    @Component
    struct Index {
      sensorTask?: taskpool.LongTask
-   
+
      build() {
        Column() {
          Text("HELLO WORLD")
@@ -42,7 +42,7 @@
            .fontSize(50)
            .fontWeight(FontWeight.Bold)
            .onClick(() => {
-             // 创建异步队列，并发度为5，等待队列的个数为5
+             // 创建并发度为5的异步队列，等待队列个数为5。
              let asyncRunner:taskpool.AsyncRunner = new taskpool.AsyncRunner("async", 5, 5);
              // 每秒触发一次采集任务
              setTimeout(() => {

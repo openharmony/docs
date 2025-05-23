@@ -757,7 +757,7 @@ type GlobalObserver = (reason: GlobalError) => void
 
 **原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 | 名称  | 值  | 说明   |
 | ---- | --- | ------ |

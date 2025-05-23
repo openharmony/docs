@@ -103,7 +103,7 @@
   ```c++
   void PreviewOutputOnError(Camera_PreviewOutput* previewOutput, Camera_ErrorCode errorCode)
   {
-      OH_LOG_INFO(LOG_APP, "PreviewOutput errorCode = %{public}d", errorCode);
+      OH_LOG_ERROR(LOG_APP, "PreviewOutput errorCode = %{public}d", errorCode);
   }
   ```
   ```c++

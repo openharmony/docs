@@ -1,10 +1,20 @@
 # 企业类应用可用权限
 
-以下权限面向<!--Del-->系统应用和<!--DelEnd-->企业类应用开放，企业类应用包括企业普通应用和MDM（Mobile Device Management）设备管理应用。
+以下权限面向<!--Del-->系统应用和<!--DelEnd-->企业类应用开放。
 
-企业类应用的分发类型分别为enterprise_normal（企业普通应用）和enterprise_mdm（MDM应用），开发者可在<!--RP1-->[HarmonyAppProvision配置文件](../app-provision-structure.md)中查询字段`app-distribution-type`。<!--RP1End-->
+企业类应用包括企业普通应用和MDM（Mobile Device Management）设备管理应用。
+
+企业类应用有以下特征：
+
+- 仅在企业定制设备上运行，不会在普通消费者设备上运行。
+- 分发类型分别为enterprise_normal（企业普通应用）和enterprise_mdm（MDM应用）。
+<!--RP1--><!--RP1End-->
 
 企业类应用可参考[声明权限](declare-permissions.md)，申请以下权限。
+
+> **注意：**
+> 
+> 以下权限不支持自动签名，因此在调试和发布阶段，均需参照[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section297715173233)的步骤，完成手动签名。
 
 ## ohos.permission.SET_FILE_GUARD_POLICY
 
@@ -99,6 +109,8 @@
 ## ohos.permission.GET_WIFI_CONFIG
 
 允许应用获取Wi-Fi的配置信息。
+
+当前仅PC/2in1设备应用可申请此权限。
 
 **权限级别**：system_basic
 
@@ -311,3 +323,20 @@
 **ACL使能**：true<!--DelEnd-->
 
 **起始版本**：18
+
+## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
+
+允许应用的AppServiceExtension组件被拉起。
+
+获取此权限后，应用可作为AppServiceExtension被同应用或同在"appidentifierAllowList"配置中的应用拉起或连接。
+
+**权限级别**：system_basic
+
+**授权方式**：系统授权（system_grant）
+
+<!--Del-->
+**ACL使能**：true<!--DelEnd-->
+
+**支持设备**：PC/2in1
+
+**起始版本**：20

@@ -9,7 +9,7 @@ ArkUI状态管理的主要职责是：负责将可观察数据的变化自动同
 1. V2是V1的增强版本，正在持续迭代优化来为开发者提供更多功能和灵活性。
 2. 对于新开发的应用，建议直接使用V2版本范式来进行开发。
 3. 对于已经使用V1的应用，如果V1的功能和性能已能满足需求，则不必立即切换到V2。
-4. 对于需要在现阶段混用V1和V2的场景，请参阅[混用文档](./arkts-custom-component-mixed-scenarios.md)。编译器、工具链、IDE对某些不推荐的误用和混用场景会进行校验，虽然开发者可能可以通过特殊手段绕过这些校验，但还是强烈建议开发者遵循[混用文档](./arkts-custom-component-mixed-scenarios.md)的指导，避免因双重代理等问题给应用带来不确定性。
+4. 对于需要在现阶段混用V1和V2的场景，请参阅[混用文档](./arkts-custom-component-mixed-scenarios.md)。编译器、工具链、DevEco Studio对某些不推荐的误用和混用场景会进行校验，虽然开发者可能可以通过特殊手段绕过这些校验，但还是强烈建议开发者遵循[混用文档](./arkts-custom-component-mixed-scenarios.md)的指导，避免因双重代理等问题给应用带来不确定性。
 
 ## 迁移指南的目的
 1. 对希望将现有V1应用迁移到V2的开发者，提供系统化的模板和指导，帮助完成V1到V2的迁移。
@@ -218,7 +218,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Event
+V2迁移策略：使用@Param和@Event。
 
 ```ts
 @ComponentV2
@@ -287,7 +287,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：直接替换
+V2迁移策略：直接替换。
 
 ```ts
 @ComponentV2
@@ -354,7 +354,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用深拷贝
+V2迁移策略：使用深拷贝。
 
 ```ts
 @ObservedV2
@@ -438,7 +438,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：使用@Param和@Once
+V2迁移策略：使用@Param和@Once。
 
 ```ts
 @ComponentV2
@@ -623,7 +623,7 @@ struct UserProfile {
 }
 ```
 
-V2迁移策略：使用@ObservedV2和@Trace
+V2迁移策略：使用@ObservedV2和@Trace。
 
 ```ts
 @ObservedV2
@@ -700,7 +700,7 @@ struct UserProfile {
 }
 ```
 
-V2迁移策略：使用@ObservedV2和@Trace
+V2迁移策略：使用@ObservedV2和@Trace。
 
 ```ts
 @ObservedV2
@@ -775,7 +775,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：确保alias一致，没有指定alias的情况下，依赖属性名进行匹配
+V2迁移策略：确保alias一致，没有指定alias的情况下，依赖属性名进行匹配。
 
 ```ts
 @ComponentV2
@@ -831,7 +831,7 @@ struct Parent {
 }
 ```
 
-V2迁移策略：@Consumer可以本地初始化
+V2迁移策略：@Consumer可以本地初始化。
 
 ```ts
 @ComponentV2
@@ -884,7 +884,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：使用@Param接受初始值，再赋值给@Provider
+V2迁移策略：使用@Param接受初始值，再赋值给@Provider。
 
 ```ts
 @Entry
@@ -947,7 +947,7 @@ struct Child {
 }
 ```
 
-V2迁移策略：去掉allowOverride
+V2迁移策略：去掉allowOverride。
 
 ```ts
 @Entry
@@ -1013,7 +1013,7 @@ struct watchExample {
 }
 ```
 
-V2迁移策略：直接替换
+V2迁移策略：直接替换。
 
 ```ts
 @Entry
@@ -1074,7 +1074,7 @@ struct watchExample {
 }
 ```
 
-V2迁移策略：同时监听多个变量，以及获取变化前的值
+V2迁移策略：同时监听多个变量，以及获取变化前的值。
 
 ```ts
 @Entry
@@ -1168,7 +1168,7 @@ LocalStorage的目的是为了实现页面间的状态变量共享。之所以�
 **基本场景**
 
 V1:
-通过windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)和[getShared](../../reference/apis-arkui/arkui-ts/ts-state-management.md#getshareddeprecated)接口实现页面间的状态变量共享。
+通过windowStage.[loadContent](../../reference/apis-arkui/js-apis-window.md#loadcontent9)和this.getUIContext().[getSharedLocalStorage](../../reference/apis-arkui/js-apis-arkui-UIContext.md#getsharedlocalstorage12)接口实现页面间的状态变量共享。
 ```
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
@@ -1187,8 +1187,8 @@ export default class EntryAbility extends UIAbility {
 
 ```
 // Page1.ets
-// 通过getShared接口获取stage共享的LocalStorage实例
-@Entry(LocalStorage.getShared())
+// 预览器上不支持获取页面共享的LocalStorage实例。
+@Entry({ useSharedStorage: true })
 @Component
 struct Page1 {
   @LocalStorageLink('count') count: number = 0;
@@ -1223,6 +1223,7 @@ export function Page2Builder() {
 struct Page2 {
   @LocalStorageLink('count') count: number = 0;
   pathStack: NavPathStack = new NavPathStack();
+
   build() {
     NavDestination() {
       Column() {
@@ -1230,6 +1231,14 @@ struct Page2 {
           .fontSize(50)
           .onClick(() => {
             this.count++;
+          })
+        Button('change')
+          .fontSize(50)
+          .onClick(() => {
+            const storage = this.getUIContext().getSharedLocalStorage();
+            if (storage) {
+              storage.set('count', 20);
+            }
           })
       }
     }
@@ -1345,7 +1354,7 @@ struct Page2 {
 }
 ```
 
-如果开发者需要实现类似于\@LocalStorageProp的效果，希望本地的修改不要同步回LocalStorage中，如以下示例:
+如果开发者需要实现类似于\@LocalStorageProp的效果，希望本地的修改不要同步回LocalStorage中，如以下示例：
 - 在`Page1`中改变`count`值，因为count是\@LocalStorageProp装饰的，所以其改变只会在本地生效，并不会同步回LocalStorage。
 - 点击`push to Page2`，跳转到`Page2`中。因为在`Page1`中改变`count`值并不会同步会LocalStorage，所以在`Page2`中Text组件依旧显示原本的值47。
 - 点击`change Storage Count`，调用LocalStorage的setOrCreate，改变`count`对应的值，并通知所有绑定该key的变量。
@@ -1847,7 +1856,8 @@ import { common, Want } from '@kit.AbilityKit';
 @Component
 struct Index {
   @StorageLink('count') count: number = 0;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility count: ${this.count}`)
@@ -1874,7 +1884,8 @@ import { common, Want } from '@kit.AbilityKit';
 @Component
 struct Index1 {
   @StorageLink('count') count: number = 0;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility1 count: ${this.count}`)
@@ -1910,7 +1921,8 @@ export class MyStorage {
 @ComponentV2
 struct Index {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility1 count: ${this.storage.count}`)
@@ -1944,7 +1956,8 @@ export class MyStorage {
 @ComponentV2
 struct Index1 {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
     build() {
       Column() {
         Text(`EntryAbility1 count: ${this.storage.count}`)
@@ -1975,7 +1988,8 @@ import { common, Want } from '@kit.AbilityKit';
 @Component
 struct Index {
   @StorageProp('count') count: number = 0;
-  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility count: ${this.count}`)
@@ -2006,7 +2020,8 @@ import { common, Want } from '@kit.AbilityKit';
 @Component
 struct Index1 {
   @StorageProp('count') count: number = 0;
-  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+
   build() {
     Column() {
       Text(`EntryAbility1 count: ${this.count}`)
@@ -2047,7 +2062,7 @@ export class MyStorage {
 struct Index {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
   @Local count: number = this.storage.count;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {
@@ -2091,7 +2106,7 @@ export class MyStorage {
 struct Index1 {
   @Local storage: MyStorage = AppStorageV2.connect(MyStorage, 'storage', () => new MyStorage())!;
   @Local count: number = this.storage.count;
-  private context: common.UIAbilityContext= getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   @Monitor('storage.count')
   onCountChange(mon: IMonitor) {

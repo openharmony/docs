@@ -73,9 +73,9 @@
 4. Q：在虚拟机引擎实例中创建JS类型实例崩溃（如`OH_JSVM_CreateDouble`），调用栈如下
 
    ```
-   #00 pc 0000000001d209e4/system/1ib64/ndk/libjsvm.so(v8::base::0S::Abort()+28)
+   #00 pc 0000000001d209e4/system/lib64/ndk/libjsvm.so(v8::base::0S::Abort()+28)
    #01 pc 0000000001408480/system/lib64/ndk/libjsvm.so(v8::Utils::ReportApiFailure(char const*,char const*)+124)
-   #02 pc 00000000015c99b8/system/lib64/ndk/libjsvm.so(v8::internal::Handlescope::Extend(v8::internal::Isolate*+200)
+   #02 pc 00000000015c99b8/system/lib64/ndk/libjsvm.so(v8::internal::HandleScope::Extend(v8::internal::Isolate*+200)
    ```
 
    A：检查HandleScope的使用是否正确，见[生命周期管理](jsvm-guidelines.md#生命周期管理)

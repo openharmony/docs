@@ -1,4 +1,4 @@
-# @ohos.abilityConnectionManager (应用多端协同管理)
+# @ohos.distributedsched.abilityConnectionManager (应用多端协同管理)
 
 abilityConnectionManager模块提供了应用协同接口管理能力。设备组网成功（需登录同账号、双端打开蓝牙）后，系统应用和三方应用可以跨设备拉起同应用的一个[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)，拉起并连接成功后可实现跨设备数据传输（文本信息）。
 
@@ -85,28 +85,39 @@ createAbilityConnectionSession(serviceName:&nbsp;string,&nbsp;context:&nbsp;Cont
      }
    }
  
-   const peerInfo: abilityConnectionManager.PeerInfo = {
-     deviceId: "sinkDeviceId",
-     bundleName: 'com.example.remotephotodemo',
-     moduleName: 'entry',
-     abilityName: 'EntryAbility',
-     serviceName: 'collabTest'
-   };
-   const myRecord: Record<string, string> = {
-     "newKey1": "value1",
-   };
+   @Entry
+   @Component
+   struct Index {
+     createSession(): void {
+       // 定义peer信息
+       const peerInfo: abilityConnectionManager.PeerInfo = {
+         deviceId: "sinkDeviceId",
+         bundleName: 'com.example.remotephotodemo',
+         moduleName: 'entry',
+         abilityName: 'EntryAbility',
+         serviceName: 'collabTest'
+       };
+       const myRecord: Record<string, string> = {
+         "newKey1": "value1",
+       };
  
-   const connectOptions: abilityConnectionManager.ConnectOptions = {
-     needSendData: true,
-     startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
-     parameters: myRecord
-   };
-   let context = this.getUIContext().getHostContext();
-   try {
-     let sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
-     hilog.info(0x0000, 'testTag', 'createSession sessionId is', sessionId);
-   } catch (error) {
-     hilog.error(0x0000, 'testTag', error);
+       // 定义连接选项
+       const connectOptions: abilityConnectionManager.ConnectOptions = {
+         needSendData: true,
+         startOptions: abilityConnectionManager.StartOptionParams.START_IN_FOREGROUND,
+         parameters: myRecord
+       };
+       let context = this.getUIContext().getHostContext();
+       try {
+         let sessionId = abilityConnectionManager.createAbilityConnectionSession("collabTest", context, peerInfo, connectOptions);
+         hilog.info(0x0000, 'testTag', 'createSession sessionId is', sessionId);
+       } catch (error) {
+         hilog.error(0x0000, 'testTag', error);
+       }
+     }
+ 
+     build() {
+     }
    }
    ```
 
@@ -325,7 +336,7 @@ acceptConnect(sessionId:&nbsp;number,&nbsp;token:&nbsp;string):&nbsp;Promise&lt;
       abilityConnectionManager.acceptConnect(sessionId, collabToken).then(() => {
         hilog.info(0x0000, 'testTag', 'acceptConnect success');
       }).catch(() => {
-        hilog.error("failed");
+        hilog.error(0x0000, 'testTag', 'failed'); 
       })
     }
 
@@ -843,7 +854,6 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 | 名称       | 类型    | 可读   | 可写   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
 | sessionId | number   | 是    | 是    |   表示当前事件对应的协同会话ID。 |
-| eventType | string   | 是    | 是    |   表示与在函数 “on” 中注册的类型一致的返回事件类型。 |
 | reason | [DisconnectReason](#disconnectreason)     | 是    | 否    |   表示断连原因。 |
 | msg | string   | 是    | 否    |   表示接收的消息。 |
 | data  | ArrayBuffer | 是    | 否    |   表示接收的字节流。 |
@@ -856,7 +866,6 @@ sendData(sessionId:&nbsp;number,&nbsp;data:&nbsp;ArrayBuffer):&nbsp;Promise&lt;v
 
 | 名称       | 类型   | 只读   | 可选   | 说明      |
 | -------- | ------ | ---- | ---- | ------- |
-| sessionId | number   | 是    | 是    | 表示当前事件对应的协同会话ID。 |
 | eventType | [CollaborateEventType](#collaborateeventtype) | 是    | 是    | 表示协同事件的类型。 |
 | eventMsg | string | 是    | 否    | 表示协同事件的消息内容。 |
 

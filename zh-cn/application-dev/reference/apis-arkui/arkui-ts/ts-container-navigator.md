@@ -4,9 +4,9 @@
 
 > **说明：**
 >
-> 从API Version 13 开始，该组件不再维护，推荐使用组件[Navigation](ts-basic-components-navigation.md)进行页面路由。
+> 从API version 13开始，该组件不再维护，推荐使用组件[Navigation](ts-basic-components-navigation.md)进行页面路由。
 >
-> 该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -79,7 +79,7 @@ params(value: object)
 
 target(value: string)
 
-设置跳转目标页面的路径。 目标页面需加入main_pages.json文件中。
+设置跳转目标页面的路径。目标页面需加入main_pages.json文件中。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

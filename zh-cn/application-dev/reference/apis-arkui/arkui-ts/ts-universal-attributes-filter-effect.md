@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 12开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## visualEffect
 
@@ -82,9 +82,9 @@ import { uiEffect } from '@kit.ArkGraphics2D';
 @Entry
 @Component
 struct FilterEffectExample {
-  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10)
-  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10)
+  @State filterTest1: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest2: uiEffect.Filter = uiEffect.createFilter().blur(10);
+  @State filterTest3: uiEffect.Filter = uiEffect.createFilter().blur(10);
 
   build() {
     Column({ space: 15 }) {

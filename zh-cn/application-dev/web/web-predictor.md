@@ -5,7 +5,7 @@
 
 ## 预解析和预连接
 
-可以通过[prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)来预解析或者预连接将要加载的页面。
+此方法可以针对域名级进行优化，通过[prepareForPageLoad()](../reference/apis-arkweb/js-apis-webview.md#prepareforpageload10)来预解析或者预连接将要加载的页面。该方式仅对url进行DNS解析以及建立tcp连接，但不会获取主资源子资源。
 
   在下面的示例中，在Web组件的onAppear中对要加载的页面进行预连接。
 
@@ -62,9 +62,9 @@ export default class EntryAbility extends UIAbility {
 
 ## 预加载
 
-如果能够预测到Web组件将要加载的页面或者即将要跳转的页面。可以通过[prefetchPage()](../reference/apis-arkweb/js-apis-webview.md#prefetchpage10)来预加载即将要加载页面。
+此方法可针对资源级进行优化。如果能够预测到Web组件将要加载的页面或者即将要跳转的页面。可以通过[prefetchPage()](../reference/apis-arkweb/js-apis-webview.md#prefetchpage10)来预加载即将要加载页面。
 
-预加载会提前下载页面所需的资源，包括主资源子资源，但不会执行网页JavaScript代码。预加载是WebviewController的实例方法，需要一个已经关联好Web组件的WebviewController实例。
+预加载会提前下载页面所需的资源，包括主资源子资源，避免阻塞页面渲染。但不会执行网页JavaScript代码。预加载是WebviewController的实例方法，需要一个已经关联好Web组件的WebviewController实例。
 
 在下面的示例中，在onPageEnd的时候触发下一个要访问的页面的预加载。
   
@@ -91,7 +91,7 @@ struct WebComponent {
 
 ## 预获取post请求
 
-可以通过[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。在页面加载结束时，可以通过[clearPrefetchedResource()](../reference/apis-arkweb/js-apis-webview.md#clearprefetchedresource12)清除后续不再使用的预获取资源缓存。
+此方法可以针对请求级进行优化。可以通过[prefetchResource()](../reference/apis-arkweb/js-apis-webview.md#prefetchresource12)预获取将要加载页面中的post请求。在页面加载结束时，可以通过[clearPrefetchedResource()](../reference/apis-arkweb/js-apis-webview.md#clearprefetchedresource12)清除后续不再使用的预获取资源缓存。
 
   以下示例，在Web组件onAppear中，对要加载页面中的post请求进行预获取。在onPageEnd中，可以清除预获取的post请求缓存。
 
@@ -235,15 +235,17 @@ export default class EntryAbility extends UIAbility {
    export interface BuilderData {
      url: string;
      controller: WebviewController;
+     context: UIContext;
    }
 
-   const storage = LocalStorage.getShared();
+   let storage : LocalStorage | undefined = undefined;
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
      private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>, context: UIContext) {
+       storage = context.getSharedLocalStorage();
        super();
        this.wrappedBuilder = wrappedBuilder;
      }
@@ -260,7 +262,7 @@ export default class EntryAbility extends UIAbility {
          return;
        }
 
-       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
        if (!uiContext) {
          return;
        }
@@ -270,7 +272,7 @@ export default class EntryAbility extends UIAbility {
    }
 
    export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
      baseNode.initWeb(data.url, data.controller);
      return baseNode;
    }
@@ -287,16 +289,16 @@ export default class EntryAbility extends UIAbility {
    function WebBuilder(data: BuilderData) {
      Web({ src: data.url, controller: data.controller })
        .onControllerAttached(() => {
-         precompile(data.controller, configs);
+         precompile(data.controller, configs, data.context);
        })
        .fileAccess(true)
    }
 
    export const precompileWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-   export const precompile = async (controller: WebviewController, configs: Array<Config>) => {
+   export const precompile = async (controller: WebviewController, configs: Array<Config>, context: UIContext) => {
      for (const config of configs) {
-       let content = await readRawFile(config.localPath);
+       let content = await readRawFile(config.localPath, context);
 
        try {
          controller.precompileJavaScript(config.url, content, config.options)
@@ -311,9 +313,9 @@ export default class EntryAbility extends UIAbility {
      }
    }
 
-   async function readRawFile(path: string) {
+   async function readRawFile(path: string, context: UIContext) {
      try {
-       return await getContext().resourceManager.getRawFileContent(path);;
+       return await context.getHostContext()!.resourceManager.getRawFileContent(path);;
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -386,7 +388,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件
        this.precompileNode = createNode(precompileWebview,
-         { url: "https://www.example.com/empty.html", controller: this.precompileController});
+         { url: "https://www.example.com/empty.html", controller: this.precompileController, context: this.getUIContext()});
      }
 
      build() {
@@ -396,7 +398,8 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
                url:  "https://www.example.com/business.html",
-               controller: this.businessController
+               controller: this.businessController,
+               context: this.getUIContext()
              });
            })
          // 用于业务的Web组件
@@ -446,15 +449,17 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
    export interface BuilderData {
      url: string;
      controller: WebviewController;
+     context: UIContext;
    }
 
-   const storage = LocalStorage.getShared();
+   let storage : LocalStorage | undefined = undefined;
 
    export class NodeControllerImpl extends NodeController {
      private rootNode: BuilderNode<BuilderData[]> | null = null;
      private wrappedBuilder: WrappedBuilder<BuilderData[]> | null = null;
 
-     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>) {
+     constructor(wrappedBuilder: WrappedBuilder<BuilderData[]>,  context: UIContext) {
+      storage = context.getSharedLocalStorage();
        super();
        this.wrappedBuilder = wrappedBuilder;
      }
@@ -471,7 +476,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
          return;
        }
 
-       const uiContext: UIContext = storage.get<UIContext>("uiContext") as UIContext;
+       const uiContext: UIContext = storage!.get<UIContext>("uiContext") as UIContext;
        if (!uiContext) {
          return;
        }
@@ -481,7 +486,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
    }
 
    export const createNode = (wrappedBuilder: WrappedBuilder<BuilderData[]>, data: BuilderData) => {
-     const baseNode = new NodeControllerImpl(wrappedBuilder);
+     const baseNode = new NodeControllerImpl(wrappedBuilder, data.context);
      baseNode.initWeb(data.url, data.controller);
      return baseNode;
    }
@@ -501,7 +506,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
      Web({ src: data.url, controller: data.controller })
        .onControllerAttached(async () => {
          try {
-           data.controller.injectOfflineResources(await getData ());
+           data.controller.injectOfflineResources(await getData (data.context));
          } catch (err) {
            console.error("error: " + err.code + " " + err.message);
          }
@@ -511,14 +516,14 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
 
    export const injectWebview = wrapBuilder<BuilderData[]>(WebBuilder);
 
-   export async function getData() {
+   export async function getData(context: UIContext) {
      const resourceMapArr: Array<webview.OfflineResourceMap> = [];
 
      // 读取配置，从rawfile目录中读取文件内容
      for (let config of resourceConfigs) {
        let buf: Uint8Array = new Uint8Array(0);
        if (config.localPath) {
-         buf = await readRawFile(config.localPath);
+         buf = await readRawFile(config.localPath, context);
        }
 
        resourceMapArr.push({
@@ -532,9 +537,9 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
      return resourceMapArr;
    }
 
-   export async function readRawFile(url: string) {
+   export async function readRawFile(url: string, context: UIContext) {
      try {
-       return await getContext().resourceManager.getRawFileContent(url);
+       return await context.getHostContext()!.resourceManager.getRawFileContent(url);
      } catch (err) {
        return new Uint8Array(0);
      }
@@ -592,7 +597,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
        ],
        type: webview.OfflineResourceType.CLASSIC_JS,
        responseHeaders: [
-         // 以<script crossorigin="anoymous" />方式使用，提供额外的响应头
+         // 以<script crossorigin="anonymous" />方式使用，提供额外的响应头
          { headerKey: "Cross-Origin", headerValue:"anonymous" }
        ]
      },
@@ -620,7 +625,7 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
      aboutToAppear(): void {
        // 初始化用于注入本地资源的Web组件, 提供一个空的html页面作为url即可
        this.injectNode = createNode(injectWebview,
-           { url: "https://www.example.com/empty.html", controller: this.injectController});
+           { url: "https://www.example.com/empty.html", controller: this.injectController, context: this.getUIContext()});
      }
 
      build() {
@@ -630,7 +635,8 @@ JavaScript资源的获取方式也可通过[网络请求](../reference/apis-netw
            .onClick(() => {
              this.businessNode = createNode(businessWebview, {
                url: "https://www.example.com/business.html",
-               controller: this.businessController
+               controller: this.businessController,
+               context: this.getUIContext()
              });
            })
          // 用于业务的Web组件

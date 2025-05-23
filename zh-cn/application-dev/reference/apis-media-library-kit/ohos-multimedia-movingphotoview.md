@@ -312,6 +312,7 @@ struct MovingPhotoViewDemo {
   @State src: photoAccessHelper.MovingPhoto | undefined = undefined
   @State isMuted: boolean = false
   controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private uiContext: UIContext = this.getUIContext()
 
   aboutToAppear(): void {
     emitter.on({
@@ -332,7 +333,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -342,7 +342,7 @@ struct MovingPhotoViewDemo {
               let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
               uris = photoSelectResult.photoUris
               if (uris[0]) {
-                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
               }
             } catch (e) {
               console.error(`pick file failed`)
@@ -463,6 +463,7 @@ struct MovingPhotoViewDemo {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT, ImageAnalyzerType.OBJECT_LOOKUP],
     aiController: this.aiController
   }
+  private uiContext: UIContext = this.getUIContext()
 
   aboutToAppear(): void {
     emitter.on({
@@ -483,7 +484,6 @@ struct MovingPhotoViewDemo {
         Button('PICK')
           .margin(5)
           .onClick(async () => {
-            let context = getContext(this)
             try {
               let uris: Array<string> = []
               const photoSelectOptions = new photoAccessHelper.PhotoSelectOptions()
@@ -493,7 +493,7 @@ struct MovingPhotoViewDemo {
               let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoViewPicker.select(photoSelectOptions)
               uris = photoSelectResult.photoUris
               if (uris[0]) {
-                this.handlePickerResult(context, uris[0], new MediaDataHandlerMovingPhoto())
+                this.handlePickerResult(this.uiContext.getHostContext()!, uris[0], new MediaDataHandlerMovingPhoto())
               }
             } catch (e) {
               console.error(`pick file failed`)
@@ -599,9 +599,8 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 // xxx.ets
 import { photoAccessHelper, MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } from '@kit.MediaLibraryKit';
 
-let context = getContext(this)
 let data: photoAccessHelper.MovingPhoto
-async function loading() {
+async function loading(context: Context) {
   try {
     // 需要确保imageFileUri和videoFileUri对应的资源在应用沙箱存在。
     let imageFileUri = 'file://{bundleName}/data/storage/el2/base/haps/entry/files/xxx.jpg';
@@ -616,6 +615,7 @@ async function loading() {
 @Component
 struct Index {
   controller: MovingPhotoViewController = new MovingPhotoViewController()
+  private uiContext: UIContext = this.getUIContext()
   @State ImageFit: ImageFit | undefined | null = ImageFit.Contain;
   @State flag: boolean = true;
   @State autoPlayFlag: boolean = true;
@@ -623,7 +623,7 @@ struct Index {
   @State autoPlayPeriodStart: number = 0;
   @State autoPlayPeriodEnd: number = 500;
   aboutToAppear(): void {
-    loading()
+    loading(this.uiContext.getHostContext()!)
   }
 
   build() {

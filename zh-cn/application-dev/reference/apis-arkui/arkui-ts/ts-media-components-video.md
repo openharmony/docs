@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。<br/>
 >  Video组件只提供简单的视频播放功能，无法支撑复杂的视频播控场景。复杂开发场景推荐使用[AVPlayer播控API](../../apis-media-kit/js-apis-media.md#avplayer9)和[XComponent](ts-basic-components-xcomponent.md)组件开发。
 
 ## 权限列表
@@ -118,7 +118,7 @@ controls(value: boolean)
 
 objectFit(value: ImageFit)
 
-设置视频显示模式。
+设置视频填充模式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -128,7 +128,7 @@ objectFit(value: ImageFit)
 
 | 参数名 | 类型                                      | 必填 | 说明                             |
 | ------ | ----------------------------------------- | ---- | -------------------------------- |
-| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频显示模式。<br/>默认值：Cover |
+| value  | [ImageFit](ts-appendix-enums.md#imagefit) | 是   | 视频填充模式。<br/>默认值：Cover。<br/>约束：不支持ImageFit类型中的枚举值MATRIX，若设置，则作用效果与Cover一致。<br/>异常值：若设置异常值undefined、null，或不在[ImageFit](ts-appendix-enums.md#imagefit)枚举范围内的值，作用效果均与Cover一致。|
 
 ### loop
 
@@ -253,13 +253,26 @@ onFinish(event:&nbsp;VoidCallback)
 
 ### onError
 
-onError(event: () => void)
+onError(event: VoidCallback | ErrorCallback)
 
 播放失败时触发该事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                           | 必填 | 说明                                 |
+| ------ | --------------------------------------------- | ---- | ----------------------------------- |
+| event  | [VoidCallback](ts-types.md#voidcallback12) \| [ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)<sup>20+</sup> | 是   | 视频播放失败时的回调函数，[ErrorCallback](../../apis-basic-services-kit/js-apis-base.md#errorcallback)入参用于接收异常信息。<br>Video组件报错信息请参考以下错误信息的详细介绍，其余错误码请请参考[媒体错误码](../../apis-media-kit/errorcode-media.md)。|
+
+以下是错误信息的详细介绍。
+
+|错误码|错误信息|错误描述|
+|--|--|--|
+|103601 |Failed to create the media player.|播放器创建失败。|
+|103602 |Not a valid source.|视频资源设置无效。|
 
 ### onStop<sup>12+</sup>
 
@@ -477,7 +490,7 @@ setCurrentTime(value: number)
 
 | 参数名   | 类型   | 必填   | 说明           |
 | ----- | ------ | ---- | -------------- |
-| value | number | 是    | 视频播放进度位置，取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]，单位：秒。 |
+| value | number | 是    | 视频播放进度位置，取值范围：[0, [duration](ts-media-components-video.md#preparedinfo18对象说明)]，单位：秒。<br/>从API version 8开始，支持设置视频的跳转模式，详见[setCurrentTime<sup>8+</sup>](#setcurrenttime8)。|
 
 ### requestFullscreen
 
@@ -546,23 +559,23 @@ setCurrentTime(value: number, seekMode: SeekMode)
 @Entry
 @Component
 struct VideoCreateComponent {
-  @State videoSrc: Resource = $rawfile('video1.mp4')
-  @State previewUri: Resource = $r('app.media.poster1')
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
-  @State isShortcutKeyEnabled: boolean = false
-  @State showFirstFrame: boolean = false
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  @State isShortcutKeyEnabled: boolean = false;
+  @State showFirstFrame: boolean = false;
+  controller: VideoController = new VideoController();
 
   build() {
     Column() {
       Video({
         src: this.videoSrc,
-        previewUri: this.previewUri,
-        currentProgressRate: this.curRate,
+        previewUri: this.previewUri, //设置预览图
+        currentProgressRate: this.curRate, //设置播放速度
         controller: this.controller,
-        posterOptions: { showFirstFrame: this.showFirstFrame }
+        posterOptions: { showFirstFrame: this.showFirstFrame } //关闭首帧送显
       })
         .width('100%')
         .height(600)
@@ -677,14 +690,14 @@ interface FullscreenObject {
 @Entry
 @Component
 struct ImageAnalyzerExample {
-  @State videoSrc: Resource = $rawfile('video1.mp4')
-  @State previewUri: Resource = $r('app.media.poster1')
-  @State showControls: boolean = true
-  controller: VideoController = new VideoController()
+  @State videoSrc: Resource = $rawfile('video1.mp4');
+  @State previewUri: Resource = $r('app.media.poster1');
+  @State showControls: boolean = true;
+  controller: VideoController = new VideoController();
   config: ImageAnalyzerConfig = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
   }
-  private aiController: ImageAnalyzerController = new ImageAnalyzerController()
+  private aiController: ImageAnalyzerController = new ImageAnalyzerController();
   private options: ImageAIOptions = {
     types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT],
     aiController: this.aiController
@@ -696,7 +709,7 @@ struct ImageAnalyzerExample {
         src: this.videoSrc,
         previewUri: this.previewUri,
         controller: this.controller,
-        imageAIOptions: this.options
+        imageAIOptions: this.options //设置图像AI分析选项
       })
         .width('100%')
         .height(600)
@@ -765,3 +778,110 @@ struct Index {
   }
 }
 ```
+### 示例4（视频填充模式）
+
+使用objectFit属性设置视频填充模式。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct video {
+  @State videoSrc: Resource = $rawfile('rabbit.mp4')
+  @State previewUri: Resource = $r('app.media.tree')
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = true
+  @State showControls: boolean = true
+  controller: VideoController = new VideoController()
+
+  build() {
+    Column() {
+      Text("ImageFit.Contain").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.Contain)//设置视频填充模式为ImageFit.Contain
+        .margin(5)
+
+      Text("ImageFit.Fill").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.Fill)//设置视频填充模式为ImageFit.Fill
+        .margin(5)
+
+      Text("ImageFit.START").fontSize(12)
+      Video({
+        src: this.videoSrc,
+        previewUri: this.previewUri,
+        currentProgressRate: this.curRate,
+        controller: this.controller
+      })
+        .width(350)
+        .height(230)
+        .controls(this.showControls)
+        .objectFit(ImageFit.START)//设置视频填充模式为ImageFit.START
+        .margin(5)
+    }.width('100%').alignItems(HorizontalAlign.Center)
+  }
+}
+```
+![VideoObjectFit](figures/video_objectfit.png)
+
+### 示例5（onError事件上报错误码）
+
+以下示例以传入不存在的视频资源路径为例，展示了如何使Video组件能够通过onError事件获取错误码。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct VideoErrorComponent {
+  @State videoSrc: string = "video.mp4" // 传入不存在的视频资源路径。
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = false
+  @State showControls: boolean = true
+  @State showFirstFrame: boolean = false
+  controller: VideoController = new VideoController()
+  @State errorMessage: string = ""
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        currentProgressRate: this.curRate,
+        controller: this.controller,
+      })
+        .width(200)
+        .height(120)
+        .margin(5)
+        .autoPlay(this.isAutoPlay)
+        .controls(this.showControls)
+        .onError((err) => {
+          // 通过onError事件获取错误码，code为错误码，message为错误信息。
+          console.error(`code is ${err.code}, message is ${err.message}`);
+          this.errorMessage = `code is ${err.code}, message is ${err.message}`;
+        })
+      // 传入不存在的视频资源路径，预期："code is 103602, message is Not a valid source"。
+      Text(this.errorMessage)
+    }
+    .width("100%")
+    .height("100%")
+    .backgroundColor('rgb(213,213,213)')
+  }
+}
+```
+
+![](figures/onError.png)

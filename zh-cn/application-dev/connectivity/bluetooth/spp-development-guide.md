@@ -1,4 +1,4 @@
-# 传输数据开发指导
+# 传输数据
 
 ## 简介
 SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，用于在蓝牙设备之间建立串行通信连接。通过SPP，蓝牙设备可以像使用串口一样进行数据传输，例如传输文件、文本等。
@@ -6,12 +6,12 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 ## 场景介绍
 
 主要场景有：
-- 服务端向客户端写入数据。
-- 通过socket连接对端设备。
+- 服务端向客户端发送数据。
+- 通过socket建立与对端设备的连接。
 
 ## 接口说明
 
-完整的 JS API 说明以及实例代码请参考：[SPP 接口](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)。
+完整的JS API说明以及示例代码请参考：[SPP接口](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md)。
 
 具体接口说明如下表。
 
@@ -28,15 +28,15 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 
 ## 主要场景开发步骤
 
-### 服务端向客户端写入数据
-1. import需要的socket模块。
+### 服务端向客户端发送数据
+1. 导入所需的socket模块。
 2. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
 3. 需要申请权限ohos.permission.ACCESS_BLUETOOTH。
 4. 开启设备蓝牙。
-5. 创建服务端socket，返回serverId。
-6. 服务端等待客户端连接，返回clientId。
-7. 服务端向客户端写入数据。
-8. （可选）服务端订阅客户端写入的数据。
+5. 创建服务端socket，并返回serverId。
+6. 服务端等待客户端连接，并返回clientId。
+7. 服务端向客户端发送数据。
+8. （可选）服务端订阅客户端发送的数据。
 9. 注销服务端socket。
 10. 注销客户端socket。
 11. 示例代码：
@@ -75,7 +75,7 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
     })
     console.info('waiting for client connection');
 
-    // 向客户端写入数据
+    // 服务端向客户端发送数据
     let array = new Uint8Array(990);
     array[0] = 'A'.charCodeAt(0);
     array[1] = 'B'.charCodeAt(0);
@@ -116,11 +116,11 @@ SPP是Serial Port Profile（串口协议）的缩写，是一种蓝牙协议，�
 11. 错误码请参见[蓝牙服务子系统错误码](../../reference/apis-connectivity-kit/errorcode-bluetoothManager.md)。
 
 ### 通过socket连接对端设备
-1. import需要的socket模块。
+1. 导入所需的socket模块。
 2. 需要SystemCapability.Communication.Bluetooth.Core系统能力。
 3. 开启设备蓝牙。
-4. 开启ble扫描，获取对端设备mac地址。
-5. 连接对端设备。
+4. 启用BLE扫描功能，获取对端设备的MAC地址。
+5. 建立与对端设备的连接。
 6. 示例代码：
 
     ```ts

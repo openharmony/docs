@@ -7,7 +7,7 @@
 >
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 建议使用API version 18的性能打点接口，后续性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)将逐步废弃。
+> 建议使用API version 19的性能打点接口，后续性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)将逐步废弃。
 >
 > 性能打点接口[startTrace](#hitracemeterstarttrace)、[finishTrace](#hitracemeterfinishtrace)、[traceByValue](#hitracemetertracebyvalue)无法指定跟踪输出级别，默认均为COMMERCIAL级别性能打点。
 >
@@ -31,7 +31,9 @@ startTrace(name: string, taskId: number): void
 
 如果具有相同name的任务是串行执行的，则taskId可以相同。具体示例可参考[finishTrace](#hitracemeterfinishtrace)中的示例。
 
-从API version 18开始，建议使用[startAsyncTrace](#hitracemeterstartasynctrace18)接口（需与[finishAsyncTrace](#hitracemeterfinishasynctrace18)接口配套使用），以便分级控制跟踪输出与跟踪聚类。
+从API version 19开始，建议使用[startAsyncTrace](#hitracemeterstartasynctrace19)接口（需与[finishAsyncTrace](#hitracemeterfinishasynctrace19)接口配套使用），以便分级控制跟踪输出与跟踪聚类。
+
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -56,7 +58,9 @@ finishTrace(name: string, taskId: number): void
 
 finishTrace的name和taskId必须与流程开始的[startTrace](#hitracemeterstarttrace)对应参数值一致。
 
-从API version 18开始，建议使用[finishAsyncTrace](#hitracemeterfinishasynctrace18)接口（需与[startAsyncTrace](#hitracemeterstartasynctrace18)接口配套使用）。
+从API version 19开始，建议使用[finishAsyncTrace](#hitracemeterfinishasynctrace19)接口（需与[startAsyncTrace](#hitracemeterstartasynctrace19)接口配套使用）。
+
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -101,7 +105,9 @@ traceByValue(name: string, count: number): void
 
 用来标记一个跟踪的整数变量，该变量的数值会不断变化。
 
-从API version 18开始，建议使用[traceByValue<sup>18+</sup>](#hitracemetertracebyvalue18)接口，以便分级控制跟踪输出。
+从API version 19开始，建议使用[traceByValue<sup>19+</sup>](#hitracemetertracebyvalue19)接口，以便分级控制跟踪输出。
+
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -122,13 +128,13 @@ hiTraceMeter.traceByValue("myTestCount", traceCount);
 // 业务流程......
 ```
 
-## HiTraceOutputLevel<sup>18+</sup>
+## HiTraceOutputLevel<sup>19+</sup>
 
 枚举，跟踪输出级别。
 
 低于系统跟踪输出级别阈值的打点将不会生效。log版本阈值为INFO；nolog版本阈值为COMMERCIAL。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -140,7 +146,7 @@ hiTraceMeter.traceByValue("myTestCount", traceCount);
 | COMMERCIAL | 3    | 用于nolog版本的输出级别，优先级最高。   |
 | MAX        | 3    | 输出级别范围限制，MAX = COMMERCIAL。    |
 
-## hiTraceMeter.startAsyncTrace<sup>18+</sup>
+## hiTraceMeter.startAsyncTrace<sup>19+</sup>
 
 startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customCategory: string, customArgs?: string): void
 
@@ -148,9 +154,9 @@ startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customC
 
 如果有多个相同name的任务需要跟踪或者对同一个任务要跟踪多次，并且任务同时被执行，则开发者每次调用startAsyncTrace传入的taskId需不同。
 
-如果具有相同name的任务是串行执行的，则taskId可以相同。具体示例可参考[finishAsyncTrace](#hitracemeterfinishasynctrace18)中的示例。
+如果具有相同name的任务是串行执行的，则taskId可以相同。具体示例可参考[finishAsyncTrace](#hitracemeterfinishasynctrace19)中的示例。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -158,7 +164,7 @@ startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customC
 
 | 参数名         | 类型                                        | 必填 | 说明                                                         |
 | -------------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level          | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
+| level          | [HiTraceOutputLevel](#hitraceoutputlevel19) | 是   | 跟踪输出级别。                                               |
 | name           | string                                      | 是   | 要跟踪的任务名称。                                           |
 | taskId         | number                                      | 是   | 任务id。                                                     |
 | customCategory | string                                      | 是   | 自定义聚类名称，用于聚合同一类异步跟踪打点。                 |
@@ -177,15 +183,15 @@ hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 3, "categoryTest", "key1=
 hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 4, "categoryTest", "key1=value1,key2=value2");
 ```
 
-## hiTraceMeter.finishAsyncTrace<sup>18+</sup>
+## hiTraceMeter.finishAsyncTrace<sup>19+</sup>
 
 finishAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number): void
 
 标记一个异步跟踪耗时任务的结束，分级控制跟踪输出。
 
-finishAsyncTrace的level、name和taskId必须与流程开始的[startAsyncTrace](#hitracemeterstartasynctrace18)对应参数值一致。
+finishAsyncTrace的level、name和taskId必须与流程开始的[startAsyncTrace](#hitracemeterstartasynctrace19)对应参数值一致。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -193,7 +199,7 @@ finishAsyncTrace的level、name和taskId必须与流程开始的[startAsyncTrace
 
 | 参数名 | 类型                                        | 必填 | 说明               |
 | ------ | ------------------------------------------- | ---- | ------------------ |
-| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。     |
+| level  | [HiTraceOutputLevel](#hitraceoutputlevel19) | 是   | 跟踪输出级别。     |
 | name   | string                                      | 是   | 要跟踪的任务名称。 |
 | taskId | number                                      | 是   | 任务id。           |
 
@@ -236,13 +242,13 @@ hiTraceMeter.startTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value"
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
 ```
 
-## hiTraceMeter.startSyncTrace<sup>18+</sup>
+## hiTraceMeter.startSyncTrace<sup>19+</sup>
 
 startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): void
 
-标记一个同步跟踪耗时任务的开始，分级控制跟踪输出。具体示例可参考[finishSyncTrace](#hitracemeterfinishsynctrace18)中的示例。
+标记一个同步跟踪耗时任务的开始，分级控制跟踪输出。具体示例可参考[finishSyncTrace](#hitracemeterfinishsynctrace19)中的示例。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -250,7 +256,7 @@ startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): vo
 
 | 参数名     | 类型                                        | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| level      | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。                                               |
+| level      | [HiTraceOutputLevel](#hitraceoutputlevel19) | 是   | 跟踪输出级别。                                               |
 | name       | string                                      | 是   | 要跟踪的任务名称。                                           |
 | customArgs | string                                      | 否   | 键值对，格式key=value，多个键值对用逗号分隔。<br>不传入该参数等同于传入空字符串。 |
 
@@ -266,15 +272,15 @@ hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc", "key=value");
 hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc", "key1=value1,key2=value2");
 ```
 
-## hiTraceMeter.finishSyncTrace<sup>18+</sup>
+## hiTraceMeter.finishSyncTrace<sup>19+</sup>
 
 finishSyncTrace(level: HiTraceOutputLevel): void
 
 标记一个同步跟踪耗时任务的结束，分级控制跟踪输出。
 
-finishSyncTrace的level必须与流程开始的[startSyncTrace](#hitracemeterstartsynctrace18)对应参数值一致。
+finishSyncTrace的level必须与流程开始的[startSyncTrace](#hitracemeterstartsynctrace19)对应参数值一致。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -282,7 +288,7 @@ finishSyncTrace的level必须与流程开始的[startSyncTrace](#hitracemetersta
 
 | 参数名 | 类型                                        | 必填 | 说明           |
 | ------ | ------------------------------------------- | ---- | -------------- |
-| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。 |
+| level  | [HiTraceOutputLevel](#hitraceoutputlevel19) | 是   | 跟踪输出级别。 |
 
 **示例：**
 
@@ -307,13 +313,13 @@ hiTraceMeter.finishSyncTrace(COMMERCIAL);
 hiTraceMeter.finishSyncTrace(COMMERCIAL);
 ```
 
-## hiTraceMeter.traceByValue<sup>18+</sup>
+## hiTraceMeter.traceByValue<sup>19+</sup>
 
 traceByValue(level: HiTraceOutputLevel, name: string, count: number): void
 
 整数跟踪事件，分级控制跟踪输出。用来标记一个预跟踪的整数变量名及整数值。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 
@@ -321,7 +327,7 @@ traceByValue(level: HiTraceOutputLevel, name: string, count: number): void
 
 | 参数名 | 类型                                        | 必填 | 说明                   |
 | ------ | ------------------------------------------- | ---- | ---------------------- |
-| level  | [HiTraceOutputLevel](#hitraceoutputlevel18) | 是   | 跟踪输出级别。         |
+| level  | [HiTraceOutputLevel](#hitraceoutputlevel19) | 是   | 跟踪输出级别。         |
 | name   | string                                      | 是   | 要跟踪的整数变量名称。 |
 | count  | number                                      | 是   | 整数变量的值。         |
 
@@ -336,7 +342,7 @@ hiTraceMeter.traceByValue(COMMERCIAL, "myTestCount", traceCount);
 // 业务流程......
 ```
 
-## hiTraceMeter.isTraceEnabled<sup>18+</sup>
+## hiTraceMeter.isTraceEnabled<sup>19+</sup>
 
 isTraceEnabled(): boolean
 
@@ -344,7 +350,7 @@ isTraceEnabled(): boolean
 
 开发者可使用[hitrace](../../dfx/hitrace.md)命令行工具开启或关闭应用trace捕获。
 
-**原子化服务API**：从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.HiviewDFX.HiTrace
 

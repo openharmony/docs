@@ -203,13 +203,12 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
     ```ts
     import { common, Want } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -222,7 +221,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 let want: Want = {
                   deviceId: '',
                   bundleName: 'com.samples.stagemodelabilitydevelop',
@@ -231,7 +230,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
                 context.startServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in starting ServiceExtensionAbility.');
                   // 成功启动后台服务
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: 'SuccessfullyStartBackendService'
                   });
                 }).catch((err: BusinessError) => {
@@ -252,13 +251,12 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
     ```ts
     import { common, Want } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { BusinessError } from '@kit.BasicServicesKit';
-    
+
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -271,7 +269,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 let want: Want = {
                   deviceId: '',
                   bundleName: 'com.samples.stagemodelabilitydevelop',
@@ -279,7 +277,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
                 };
                 context.stopServiceExtensionAbility(want).then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in stopping ServiceExtensionAbility.');
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: 'SuccessfullyStoppedAStartedBackendService'
                   });
                 }).catch((err: BusinessError) => {
@@ -300,13 +298,12 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
     ```ts
     import { common } from '@kit.AbilityKit';
-    import { promptAction } from '@kit.ArkUI';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import { BusinessError } from '@kit.BasicServicesKit';
 
     const TAG: string = '[Page_ServiceExtensionAbility]';
     const DOMAIN_NUMBER: number = 0xFF00;
-    
+
     @Entry
     @Component
     struct Page_ServiceExtensionAbility {
@@ -319,11 +316,11 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
                 //...
               }
               .onClick(() => {
-                let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+                let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
                 context.terminateSelf().then(() => {
                   hilog.info(DOMAIN_NUMBER, TAG, 'Succeeded in terminating self.');
                   // 成功停止当前后台服务
-                  promptAction.showToast({
+                  this.getUIContext().getPromptAction().showToast({
                     message: 'SuccessfullyStopStartedBackendService'
                   });
                 }).catch((err: BusinessError) => {
@@ -358,7 +355,6 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
   ```ts
   import { common, Want } from '@kit.AbilityKit';
   import { rpc } from '@kit.IPCKit';
-  import { promptAction } from '@kit.ArkUI';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   // 客户端需要将服务端对外提供的idl_service_ext_proxy.ts导入到本地工程中
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
@@ -408,11 +404,11 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
               //...
             }
             .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
               // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
               connectionId = context.connectServiceExtensionAbility(want, options);
               // 成功连接后台服务
-              promptAction.showToast({
+              this.getUIContext().getPromptAction().showToast({
                 message: 'SuccessfullyConnectBackendService'
               });
               // connectionId = context.connectAbility(want, options);
@@ -432,13 +428,12 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
   
   ```ts
   import { common } from '@kit.AbilityKit';
-  import { promptAction } from '@kit.ArkUI';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   import { BusinessError } from '@kit.BasicServicesKit';
 
   const TAG: string = '[Page_ServiceExtensionAbility]';
   const DOMAIN_NUMBER: number = 0xFF00;
-  
+
   let connectionId: number;
   @Entry
   @Component
@@ -452,12 +447,12 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
               //...
             }
             .onClick(() => {
-              let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+              let context = this.getUIContext().getHostContext() as common.UIAbilityContext; // UIAbilityContext
               // connectionId为调用connectServiceExtensionAbility接口时的返回值，需开发者自行维护
               context.disconnectServiceExtensionAbility(connectionId).then(() => {
                 hilog.info(DOMAIN_NUMBER, TAG, 'disconnectServiceExtensionAbility success');
                 // 成功断连后台服务
-                promptAction.showToast({
+                this.getUIContext().getPromptAction().showToast({
                   message: 'SuccessfullyDisconnectBackendService'
                 });
               }).catch((error: BusinessError) => {
@@ -472,7 +467,6 @@ ServiceExtensionAbility服务组件在onConnect()中返回[IRemoteObject](../ref
       //...
     }
   }
-
   ```
 
 ## 客户端与服务端通信

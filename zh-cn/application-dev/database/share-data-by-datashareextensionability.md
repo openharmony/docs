@@ -48,14 +48,14 @@
 
 1. 在工程Module对应的ets目录下，右键选择“New &gt; Directory”，新建一个目录并命名为DataShareExtAbility。
 
-2. 在DataShareAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DataShareExtAbility.ets。
+2. 在DataShareExtAbility目录，右键选择“New &gt; ArkTS File”，新建一个文件并命名为DataShareExtAbility.ets。
 
 3. 在DataShareExtAbility.ets文件中，导入DataShareExtensionAbility模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块；如果需要增加权限校验，可以在重写的回调方法中使用IPC提供的[getCallingPid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingpid)、[getCallingUid](../reference/apis-ipc-kit/js-apis-rpc.md#getcallinguid)、[getCallingTokenId](../reference/apis-ipc-kit/js-apis-rpc.md#getcallingtokenid8)方法获取访问者信息来进行权限校验。
    
    ```ts
    import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore, DataShareResultSet } from '@kit.ArkData';
    import { Want } from '@kit.AbilityKit';
-   import { BusinessError } from '@kit.BasicServicesKit'
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. 数据提供方的业务实现由开发者自定义。例如可以通过数据库、读写文件或访问网络等各方式实现数据提供方的数据存储。
@@ -105,7 +105,7 @@
          });
        } catch (err) {
          let code = (err as BusinessError).code;
-         let message = (err as BusinessError).message
+         let message = (err as BusinessError).message;
          console.error(`Failed to query. Code:${code},message:${message}`);
        }
      }
@@ -123,13 +123,46 @@
              console.info('Update row count is ' + rows);
              result.push(rows);
            }).catch((err:BusinessError) => {
-             console.info('Update failed, err is ' + JSON.stringify(err));
+             console.error('Update failed, err is ' + JSON.stringify(err));
              result.push(-1)
            })
          }
          results[key] = result;
        }
        callback(null, results);
+     }
+
+     batchInsert(uri: string, valueBuckets:Array<ValuesBucket>, callback:Function) {
+       if (valueBuckets == null || valueBuckets.length == undefined) {
+        return;
+       }
+       let resultNum = valueBuckets.length;
+       rdbStore.batchInsert(TBL_NAME, valueBuckets, (err, ret) => {
+        if (callback !== undefined) {
+          callback(err, ret);
+        }
+       });
+     }
+
+     async normalizeUri(uri: string, callback:Function) {
+       let ret = "normalize+" + uri;
+       let err:BusinessError = {
+         message: "message",
+         code: 0,
+         name: 'name'
+       };
+       await callback(err, ret);
+     }
+
+     async denormalizeUri(uri: string, callback:Function) {
+       let ret = "denormalize+" + uri;
+
+       let err:BusinessError = {
+         message: "message",
+         code: 0,
+         name: 'name'
+       };
+       await callback(err, ret);
      }
      // 可根据应用需求，选择性重写各个接口
    };
@@ -175,7 +208,7 @@
    | 属性名称            | 备注说明                                                     | 必填 |
    | ------------------- | ------------------------------------------------------------ | ---- |
    | tableConfig         | 配置标签。包括uri和crossUserMode。<br>**-uri：** 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashare:///{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashare:///{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表<br>**-crossUserMode：** 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。 | 是   |
-   | isSilentProxyEnable | 标识该ExtensionAbility是否关闭静默访问。<br />false：代表关闭静默访问。<br />true：代表打开静默访问。<br />不填写默认为true，即默认开启静默访问。<br />如果该应用下存在多个ExtensionAbility，其中一个配置了该属性为false，代表应用关闭静默访问。<br />如果数据提供方调用过enableSilentProxy和disableSilentProxy接口，则按照接口的设置结果来开启或关闭静默访问。否则会读取该配置来开启或关闭静默访问。 | 否   |
+   | isSilentProxyEnable | 标识该ExtensionAbility是否启用静默访问。<br />false：代表禁用静默访问。<br />true：代表打开静默访问。<br />不填写默认为true，即默认启用静默访问。<br />如果该应用下存在多个ExtensionAbility，其中一个配置了该属性为false，代表应用禁用静默访问。<br />如果数据提供方调用过enableSilentProxy和disableSilentProxy接口，则按照接口的设置结果来启用或禁用静默访问。否则会读取该配置来启用或禁用静默访问。 | 否   |
    | launchInfos         | 包括storeId和tableNames。<br>该配置中表粒度的数据变更时，通过所属extensionAbilities中的uri拉起extension。若业务方需要在非主动数据变更时做处理，则配置此项，拉起extension即时处理；若不需要，则可以不配置。<br>**-storeId：** 数据库名。该配置需要去掉数据库名后缀，如：数据库名为test.db时，配置信息填入test即可。<br>**-tableNames：** 数据库表名集合。集合内单个表数据变更就会拉起extension。 | 否   |
    
    **data_share_config.json配置样例**
@@ -267,12 +300,12 @@
    let operation1: dataShare.UpdateOperation = {
      values: valuesBucket,
      predicates: predicates
-   }
+   };
    operations1.push(operation1);
    let operation2: dataShare.UpdateOperation = {
      values: updateBucket,
      predicates: predicates
-   }
+   };
    operations2.push(operation2);
    record["uri1"] = operations1;
    record["uri2"] = operations2;
@@ -300,7 +333,7 @@
         let a = Object.entries(data);
         for (let i = 0; i < a.length; i++) {
           let key = a[i][0];
-          let values = a[i][1]
+          let values = a[i][1];
           console.info(`Update uri:${key}`);
           for (const value of values) {
             console.info(`Update result:${value}`);

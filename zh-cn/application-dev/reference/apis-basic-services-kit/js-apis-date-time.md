@@ -447,7 +447,7 @@ try {
 
 getTime(isNanoseconds?: boolean): number
 
- 使用同步方式获取自Unix纪元以来到当前系统时间所经过的时间。
+使用同步方式获取自Unix纪元以来到当前系统时间所经过的时间。
 
 **系统能力：** SystemCapability.MiscServices.Time
 
@@ -457,7 +457,7 @@ getTime(isNanoseconds?: boolean): number
 | ------------- | ------- | ---- | ------------------------------------------------------------ |
 | isNanoseconds | boolean | 否   | 返回结果是否为纳秒数。<br>- true：表示返回结果为纳秒数(ns)。 <br>- false：表示返回结果为毫秒数(ms)。<br>默认值为false。 |
 
-**返回值**：
+**返回值：**
 
 | 类型   | 说明                       |
 | ------ | -------------------------- |
@@ -503,7 +503,7 @@ getUptime(timeType: TimeType, isNanoseconds?: boolean): number
 
 | 错误码ID | 错误信息                                                                                                           |
 | -------- |----------------------------------------------------------------------------------------------------------------|
-| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification failed. This error code was added due to missing issues. |
+| 401       | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3.Parameter verification<br> failed.This error code was added due to missing issues. |
 
 **示例：**
 
@@ -618,7 +618,7 @@ getTimezone(callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名   | 类型              | 必填 | 说明                 |
 | -------- | --------- | ---- | ------------------------ |
-| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+| callback | AsyncCallback&lt;string&gt; | 是   | 回调函数，返回系统时区。具体可见[支持的系统时区](#支持的系统时区)。 |
 
 **示例：**
 
@@ -651,7 +651,7 @@ getTimezone(): Promise&lt;string&gt;
 
 | 类型                  | 说明                                  |
 | --------------------- | ------------------------------------- |
-| Promise&lt;string&gt; | Promise对象，返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+| Promise&lt;string&gt; | Promise对象，返回系统时区。具体可见[支持的系统时区](#支持的系统时区)。 |
 
 **示例：**
 
@@ -682,7 +682,7 @@ getTimezoneSync(): string
 
 | 类型   | 说明                                                       |
 | ------ | ---------------------------------------------------------- |
-| string | 返回系统时区。具体可见[支持的系统时区](#支持的系统时区) 。 |
+| string | 返回系统时区。具体可见[支持的系统时区](#支持的系统时区)。 |
 
 **示例：**
 

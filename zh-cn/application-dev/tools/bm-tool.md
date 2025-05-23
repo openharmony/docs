@@ -746,6 +746,7 @@ error: install parse profile prop check error.
         d. 将证书指纹中SHA256的内容去掉冒号，即为最终要获得的签名指纹。
 
         如下图（仅作为格式示意，内容以实际为准）：
+
         ![示例图](figures/zh-cn_image_0000001635921233.png)
 
         去掉冒号后的签名指纹为：5753DDBC1A8EF88A62058A9FC4B6AFAFC1C5D8D1A1B86FB3532739B625F8F3DB。
@@ -950,28 +951,28 @@ error: signature verification failed due to not trusted app source.
 **处理步骤**
 
 * 场景一：
-	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 
-        1. 获取当前设备的UDID。
+    1. 获取当前设备的UDID。
 
-        ```
-          //UDID获取命令
-          hdc shell bm get -u
-        ```
+    ```
+      //UDID获取命令
+      hdc shell bm get -u
+    ```
+    
+    2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
-        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+    ```
+      IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
 
-        ```
-          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+      例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+      例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+    ```
 
-          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
-          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
-        ```
+    3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
 
-        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
-
-  3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
+3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 ### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
@@ -1301,18 +1302,17 @@ error: install failed due to zero user can only install singleton app.
 
 **错误描述**
 
-UserID 0用户只允许安装singleton权限应用，singleton权限应用只允许被UserID 0用户安装。
+UserID 0用户只允许安装singleton权限应用。
 
 **可能原因**
 
-singleton权限应用安装未指定UserID 0。
+UserID 0用户安装了非singleton权限的应用。
 
 **处理步骤**
 
-1. 应用是singleton权限，安装时指定UserID 0。
+1. 应用是非singleton权限的，不需要指定用户，直接安装。
 	```bash
-	# 指定userId安装命令
-	hdc install -p hap名.hap -u 0
+	hdc shell bm install -p /data/hap名.hap
 	```
 
 
@@ -1511,28 +1511,6 @@ error: isolationMode does not match the system.
 	```
 
 
-### 9568315 数据代理的uri属性错误
-**错误信息**
-
-error: uri in proxy data is wrong.
-
-**错误描述**
-
-应用module.json文件中proxyData标签的uri属性验证失败。
-
-**可能原因**
-
-uri不满足格式规范。
-
-**处理步骤**
-
-1. 确认uri满足格式规范。
-	```bash
-	# uri格式规范
-	不同数据代理的uri不可重复，且需要满足datashareproxy://当前应用包名/xxx的格式
-	```
-
-
 ### 9568310 兼容策略不同
 **错误信息**
 
@@ -1570,16 +1548,19 @@ error: bundle manager service is died.
 1. 重启手机后再次尝试安装应用。
 
 2. 重复上述步骤3到5次后依旧安装失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+  ```
+  hdc shell
+  cd /data/log/faultlog/faultlogger/
+  ls -ls
+  ```
+
 3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+  ```
+  hdc file recv /data/log/faultlog/faultlogger/
+  hdc file recv /data/log/hilog/
+  ```
 
 ### 9568393 验证代码签名失败
 **错误信息**
@@ -1738,6 +1719,25 @@ error: Failed to uninstall the HAP because the uninstall is forbidden by enterpr
 
 1. 由设置方取消该应用的卸载管控。
 
+### 9568389 未知错误导致安装失败
+**错误信息**
+
+error: unknown.
+
+**错误描述**
+
+未知的错误。
+
+**可能原因**
+
+系统未知的错误导致安装失败。
+
+**处理步骤**
+
+1. 重启手机后再次尝试安装应用。
+
+2. 重复上述步骤3到5次后依旧安装失败，请导出日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
+
 ### 9568284 安装版本不匹配
 **错误信息**
 
@@ -1763,7 +1763,7 @@ error: install version not compatible.
 ### 9568287 安装包entry模块数量不合规
 **错误信息**
 
-error: install invalid number of entry HAP.
+error: install invalid number of entry hap.
 
 **错误描述**
 
@@ -2136,7 +2136,7 @@ error: Failed to install the HAP because an enterprise normal/MDM bundle can not
 
 **错误描述**
 
-非企业设备禁止安装分发类型为enterprise_mdm或enterprise_normal的应用。
+非企业设备禁止安装[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为enterprise_mdm或enterprise_normal的应用。
 
 **可能原因**
 
@@ -2146,22 +2146,22 @@ error: Failed to install the HAP because an enterprise normal/MDM bundle can not
 
 1. 使用企业设备安装企业应用。
 
-### 9568402 禁止安装分发类型为app_gallery的release应用
+### 9568402 禁止安装签名证书profile文件中的类型为app_gallery的release应用
 **错误信息**
 
 error: Release bundle can not be installed.
 
 **错误描述**
 
-禁止通过bm命令安装分发类型为app_gallery并且签名证书类型为release的应用。
+禁止通过bm命令安装[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为app_gallery并且签名证书类型为release的应用。
 
 **可能原因**
 
-安装应用的分发类型为app_gallery并且签名证书类型为release。
+安装应用[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型为app_gallery并且签名证书类型为release。
 
 **处理步骤**
 
-1. 使用非app_gallery分发类型的证书对应用重新签名。
+1. 使用[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releaseprofile-0000001914714796)中的类型非app_gallery的文件对应用重新签名。
 2. 使用debug类型证书对应用重新签名。
 
 ### 9568403 安装加密校验失败
@@ -2311,15 +2311,16 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 
 **错误描述**
 
-签名校验失败。
+预置应用卸载后安装同bundleName的应用，由于应用的签名信息不一致禁止安装。
 
 **可能原因**
 
-安装的应用与已经预置的同包名应用签名不一致。
+安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)与已卸载的预置应用都不一致。
 
 **处理步骤**
 
-1. 如果安装的应用是预置应用，需要保证安装应用的签名与预置应用的一致。
+1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
+2. 修改安装应用的[bundleName](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-configuration-file.md)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
@@ -2371,7 +2372,11 @@ error: install version code not same.
 ### 9568421 签名证书profile文件中的类型被限制，不允许安装到当前设备中，导致安装失败
 **错误信息**
 
-error: the app distribution type is not allowed install.
+error: Failed to install the HAP or HSP because the app distribution type is not allowed.
+
+**错误描述**
+
+签名证书profile文件中的类型被限制，不允许安装到当前设备中。
 
 **可能原因**
 
@@ -2380,6 +2385,23 @@ error: the app distribution type is not allowed install.
 **处理步骤**
 
 更换签名证书profile文件中的类型。
+
+### 9568423 签名证书profile文件中缺少当前设备的udid配置，不允许安装到当前设备中
+**错误信息**
+
+error: Failed to install the HAP because the device is unauthorized, make sure the UDID of your device is configured in the signing profile.
+
+**错误描述**
+
+签名证书profile文件中缺少当前设备的UDID配置，不允许安装到当前设备中。
+
+**可能原因**
+
+该应用的[签名证书profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugcert-0000001914263178)为调试类型，且未配置当前设备的UDID。
+
+**处理步骤**
+
+根据[指导](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-device-0000001946142249)将当前设备UDID添加到调试类型证书或使用[发布类型证书](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-releasecert-0000001946273961)重新签名。
 
 ### 9568380 卸载系统应用失败
 **错误信息**
@@ -2447,24 +2469,9 @@ error: Failed to install the plugin because host application check permission fa
 **处理步骤**
 
 1. 参考[权限申请指导](../security/AccessToken/declare-permissions.md)申请[ohos.permission.kernel.SUPPORT_PLUGIN权限](../security/AccessToken/restricted-permissions.md#ohospermissionkernelsupport_plugin)。
-2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
+<!--Del-->2. 该权限等级为system_basic，若[应用APL等级](../security/AccessToken/app-permission-mgmt-overview.md#权限机制)低于system_basic，请[申请受限权限](../security/AccessToken/declare-permissions-in-acl.md)。
+<!--DelEnd-->
 
-### 9568434 应用包名不存在
-**错误信息**
-
-error: Host application is not found.
-
-**错误描述**
-
-传入的应用包名不存在。
-
-**可能原因**
-
-应用没有安装。
-
-**处理步骤**
-
-检查传入的应用是否存在。
 
 ### 9568333 模块名称为空
 **错误信息**
@@ -2592,7 +2599,7 @@ error: Install parse profile prop type error.
 ### 9568345 配置文件中的字符串长度或者数组大小过大
 **错误信息**
 
-error: Too large size of string or array type element in the profile.
+error: too large size of string or array type element in the profile.
 
 **错误描述**
 
@@ -2628,8 +2635,10 @@ error: install parse native so failed.
 
 **处理步骤**
 
-1. 将设备与DevEco Studio进行连接。
-2. 执行如下命令，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+1. 将设备或模拟器与DevEco Studio进行连接，具体指导及要求可查看[运行应用/元服务](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-running-app)。
+
+2. 在命令行执行如下[hdc命令](#环境要求hdc工具)，查询设备支持的Abi列表，返回结果为default/armeabi-v7a/armeabi/arm64-v8a/x86/x86_64中的一个或多个Abi类型。
+
     ```
     hdc shell
     param get const.product.cpu.abilist
@@ -2688,7 +2697,7 @@ error: Installd get proxy error.
 hdc file recv /data/log/hilog/
 ```
 
-### 9568435 设备不具备插件能力
+### 9568434 设备不具备插件能力
 **错误信息**
 
 error: Failed to install the plugin because current device does not support plugin.
@@ -2704,6 +2713,25 @@ error: Failed to install the plugin because current device does not support plug
 **处理步骤**
 
 使用[param工具](./param-tool.md)设置const.bms.support_plugin的值为true，即执行hdc shell param set const.bms.support_plugin true。
+
+
+### 9568435 应用包名不存在
+**错误信息**
+
+error: Host application is not found.
+
+**错误描述**
+
+传入的应用包名不存在。
+
+**可能原因**
+
+应用没有安装。
+
+**处理步骤**
+
+检查传入的应用是否存在。
+
 
 ### 9568436 多个HSP包信息不一致
 **错误信息**

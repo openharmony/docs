@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，实现相应功能。
+> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放。
 > 
 > 当前页面仅包含本模块的系统接口，其他公开接口参见。其他公开接口参见[@ohos.enterprise.adminManager](js-apis-enterprise-adminManager.md)。
 
@@ -199,7 +199,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
-将当前用户下指定的普通设备管理应用去激活。使用callback异步回调。
+将当前用户下指定的普通设备管理应用解除激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -249,7 +249,7 @@ adminManager.disableAdmin(wantTemp, (err) => {
 
 disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
-将指定用户（通过userId指定）下指定的普通管理应用去激活。使用callback异步回调。
+将指定用户（通过userId指定）下指定的普通管理应用解除激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -300,7 +300,7 @@ adminManager.disableAdmin(wantTemp, 100, (err) => {
 
 disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
-根据bundleName将管理员用户下的超级设备管理应用去激活。使用callback异步回调。
+根据bundleName将超级设备管理应用解除激活。使用callback异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -347,7 +347,7 @@ adminManager.disableSuperAdmin(bundleName, (err) => {
 
 disableSuperAdmin(bundleName: String): Promise\<void>
 
-根据bundleName将管理员用户下的超级设备管理应用去激活。使用promise异步回调。
+根据bundleName将超级设备管理应用解除激活。使用promise异步回调。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -367,7 +367,7 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 
 | 类型                | 说明                |
 | ----------------- | ----------------- |
-| Promise\<void>    | 无返回结果的Promise对象。当去激活超级设备管理应用失败时，会抛出错误对象。 |
+| Promise\<void>    | 无返回结果的Promise对象。当解除激活超级设备管理应用失败时，会抛出错误对象。 |
 
 **错误码**:
 

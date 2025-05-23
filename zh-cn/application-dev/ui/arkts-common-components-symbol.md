@@ -22,7 +22,7 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
 
 - 创建SymbolSpan。
 
-  SymbolSpan组件必须嵌入在Text组件中才能显示，单独的SymbolSpan组件不会呈现任何内容。
+  SymbolSpan组件需嵌入在Text组件中才能显示，单独使用不会呈现任何内容。
 
 
   ```ts
@@ -220,7 +220,7 @@ SymbolGlyph通过$r引用Resource资源来创建，目前仅支持系统预置�
 
 关于effectStrategy属性与symbolEffect属性的多种动态属性使用及生效原则，详情请参阅[SymbolGlyph.symbolEffect](../reference/apis-arkui/arkui-ts/ts-basic-components-symbolGlyph.md#symboleffect12-1)属性的说明。  
 
-- 通过设置SymbolEffect属性，可以同时配置SymbolGlyph的动效策略及其播放状态。
+- 通过设置SymbolEffect属性，可以同时配置SymbolGlyph的动效策略和播放状态。
 
   ```ts
   @State isActive: boolean = true;

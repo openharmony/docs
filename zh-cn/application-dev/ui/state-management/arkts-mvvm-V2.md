@@ -177,9 +177,13 @@ struct TodoList {
 
 ### 添加Repeat，实现子组件复用
 
-添加了任务增删功能后，随着任务列表项的增加，需要一种高效渲染多个结构相同的子组件的方法，以提高界面的性能表现。为此，引入了Repeat方法，用于优化任务列表的渲染过程。Repeat支持两种模式：virtualScroll和non-virtualScroll。virtualScroll适用于大量数据的场景，在滚动类容器中按需加载组件，极大节省内存和提升渲染效率。non-virtualScroll适用于数据量较小的场景，一次性渲染所有组件，并在数据变化时仅更新需要变化的部分，避免整体重新渲染。
+添加任务增删功能后，随着任务列表项的增加，需要一种方法可以高效渲染多个结构相同的子组件，来提高界面的性能表现。为此，引入了Repeat方法，用于优化任务列表的渲染过程。
 
-在本例中，任务量较少，选择了non-virtualScroll模式。新建了一个任务数组tasks，并使用Repeat方法迭代数组中的每一项，动态生成并复用TaskItem组件。在任务增删时，这种方式能高效复用已有组件，避免重复渲染，从而提高界面响应速度和性能。这种机制有效地提高了代码的复用性和渲染效率。
+Repeat支持两种场景：懒加载场景和非懒加载场景。
+- 懒加载场景适用于大量数据的场景，在滚动类容器中按需加载组件，极大节省内存和提升渲染效率。
+- 非懒加载场景适用于数据量较小的场景，一次性渲染所有组件，并在数据变化时仅更新需要变化的部分，避免整体重新渲染。
+
+在本例中，由于任务量较少，使用Repeat非懒加载场景。新建一个任务数组tasks，并使用Repeat方法迭代数组中的每一项，动态生成并复用TaskItem组件。在任务增删时，这种方式能高效复用已有组件，避免重复渲染，从而提高界面响应速度和性能。这种机制有效地提高了代码的复用性和渲染效率。
 
 ```ts
 // src/main/ets/pages/5-Repeat.ets
@@ -484,7 +488,7 @@ struct TodoList {
   ];
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   finishAll(ifFinish: boolean) {
     for (let task of this.tasks) {
@@ -554,7 +558,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -652,7 +656,7 @@ struct TodoList {
   @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
@@ -814,7 +818,7 @@ struct TodoList {
   @Local taskList: TaskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
   @Local newTaskName: string = '';
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskList, 'TaskList', () => new TaskList([]))!;
@@ -916,7 +920,7 @@ struct TodoList {
 ### Model层
 Model层负责管理应用的数据及其业务逻辑，通常与后端或数据存储进行交互。在todolist应用中，Model层的主要职责是存储任务数据、加载任务列表，并提供数据操作的接口，而不直接涉及UI展示。
 
-- TaskModel: 单个任务的基本数据结构，包含任务名称和完成状态。
+- TaskModel：单个任务的基本数据结构，包含任务名称和完成状态。
 
 ```ts
 // src/main/ets/model/TaskModel.ets
@@ -927,7 +931,7 @@ export default class TaskModel {
 }
 ```
 
-- TaskListModel: 任务的集合，提供从本地加载任务数据的功能。
+- TaskListModel：任务的集合，提供从本地加载任务数据的功能。
 ```ts
 // src/main/ets/model/TaskListModel.ets
 
@@ -984,7 +988,7 @@ export default class TaskViewModel {
 }
 ```
 
-- TaskListViewModel: 封装了任务列表以及管理功能，包括加载任务、批量更新任务状态，以及添加和删除任务。
+- TaskListViewModel：封装了任务列表以及管理功能，包括加载任务、批量更新任务状态，以及添加和删除任务。
 
 ```ts
 // src/main/ets/viewmodel/TaskListViewModel.ets
@@ -1125,7 +1129,7 @@ import TaskListViewModel from '../viewmodel/TaskListViewModel';
 export default struct BottomView {
   @Param taskList: TaskListViewModel = new TaskListViewModel();
   @Local newTaskName: string = '';
-  private context = getContext() as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build() {
     Column() {
@@ -1176,7 +1180,7 @@ import BottomView from '../view/BottomView';
 struct TodoList {
   @Local taskList: TaskListViewModel = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   async aboutToAppear() {
     this.taskList = PersistenceV2.connect(TaskListViewModel, 'TaskList', () => new TaskListViewModel())!;
@@ -1221,7 +1225,7 @@ export class Setting {
 @ComponentV2
 struct SettingPage {
   @Local setting: Setting = AppStorageV2.connect(Setting, 'Setting', () => new Setting())!;
-  private context = getContext(this) as common.UIAbilityContext;
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   build(){
     Column(){

@@ -39,7 +39,7 @@ import { BackupExtensionAbility, BundleVersion } from '@kit.CoreFileKit';
 
 ### onBackup
 
-onBackup(): void;
+onBackup(): void
 
 Extension生命周期回调，在执行备份数据时回调，由开发者提供扩展的备份数据的操作。
 
@@ -59,7 +59,7 @@ Extension生命周期回调，在执行备份数据时回调，由开发者提�
 
 onBackupEx(backupInfo: string): string | Promise&lt;string&gt;
 
-备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用。<br>
+备份恢复框架增加扩展参数，允许应用备份、恢复时传递参数给应用。支持异步操作，使用Promise异步回调。<br>
 onBackupEx与onBackup互斥，如果重写onBackupEx，则优先调用onBackupEx。<br>
 onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串，则会尝试调用onBackup。
 
@@ -70,6 +70,12 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 | 参数名           | 类型                            | 必填 | 说明                          |
 |---------------| ------------------------------- | ---- |-----------------------------|
 | backupInfo    |string | 是   | 扩展恢复数据的特殊处理接口中三方应用需要传递的包信息。 |
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| Promise&lt;string&gt; |Promise对象，返回应用执行自定义备份操作的信息，包含备份结果和报错信息（返回值为Json格式）。|
 
 > **说明：**
 >
@@ -130,7 +136,7 @@ onBackupEx返回值不能为空字符串，若onBackupEx返回值为空字符串
 
 ### onRestore
 
-onRestore(bundleVersion: BundleVersion): void;
+onRestore(bundleVersion: BundleVersion): void
 
 Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作。
 
@@ -158,7 +164,7 @@ Extension生命周期回调，在执行恢复数据时回调，由开发者提�
 
 onRestoreEx(bundleVersion: BundleVersion, restoreInfo: string): string | Promise&lt;string&gt;
 
-Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作。<br>
+Extension生命周期回调，在执行恢复数据时回调，由开发者提供扩展的恢复数据的操作，支持异步操作，使用Promise异步回调。<br>
 onRestoreEx与onRestore互斥，如果重写onRestoreEx，则优先调用onRestoreEx。<br>
 onRestoreEx返回值不能为空字符串，若onRestoreEx返回值为空字符串，则会尝试调用onRestore。<br>
 onRestoreEx的返回值为Json格式，使用方法见示例代码。
@@ -171,6 +177,12 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 | ------------- | ------------------------------- | ---- | ------------------------------ |
 | bundleVersion | [BundleVersion](#bundleversion) | 是   | 恢复时应用数据所在的版本信息。 |
 | restoreInfo |string | 是   | 预留字段，应用恢复过程中需要的扩展参数。 |
+
+**返回值：**
+
+| 类型                            | 说明    |
+| ----------------------------- | :---- |
+| Promise&lt;string&gt; |Promise对象，返回应用执行自定义恢复操作的信息，包含恢复结果和报错信息（返回值为Json格式）。|
 
 > **说明：**
 >
@@ -230,16 +242,23 @@ onRestoreEx的返回值为Json格式，使用方法见示例代码。
 
 ### onProcess<sup>12+</sup>
 
-onProcess(): string;
+onProcess(): string
 
 备份恢复框架增加进度返回接口。该接口为同步接口，由应用在执行onBackup(onBackupEx)/onRestore(onRestoreEx)期间进行实现。返回应用自身处理业务的进度，返回值为json结构，使用方法见示例代码。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
+**返回值：**
+
+| 类型                   | 说明    |
+| --------------------- | :---- |
+| string |返回应用onBackup或者onRestore执行过程中处理数据的进度信息（返回值为Json格式）。|
+
 > **说明：**
+>
 > - onProcess可以不实现，系统有默认处理机制；若要实现，返回值结构严格按照示例代码返回。
 > - 实现onProcess时，业务需要将onBackup(onBackupEx)/onRestore(onRestoreEx)做异步实现，且需要单独开辟子线程，否则onProcess相关功能无法正常运行。具体使用方式见示例代码。
-> - onProcess() 推荐使用示例如下。
+> - onProcess()推荐使用示例如下。
 
 **示例：**
 

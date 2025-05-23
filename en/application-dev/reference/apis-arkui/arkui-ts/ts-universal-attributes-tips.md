@@ -7,7 +7,7 @@ You can bind a floating tooltip to a component. The tooltip is automatically dis
 >  This API is supported since API version 18. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## bindTips
-bindTips(message: TipsMessageType, options: TipsOptions)
+bindTips(message: TipsMessageType, options?: TipsOptions)
 
 Binds a tooltip to the component.
 
@@ -41,13 +41,13 @@ Defines the parameters of the tooltip.
 | appearingTimeWithContinuousOperation    |     number   | No  | Delay before the tooltip disappears when multiple tooltips are displayed consecutively.<br>Default value: **300**.<br>Unit: ms.|
 | disappearingTimeWithContinuousOperation |     number   | No  | Delay before the tooltip disappears when multiple tooltips are displayed consecutively.<br>Default value: **0**.<br>Unit: ms.|
 | enableArrow        | boolean                                                      | No  | Whether to display the tooltip arrow.<br>Default value: **true**.<br>**NOTE**<br>If the available space on the screen is insufficient, the tooltip will cover part of the component and the arrow will not be displayed.|
-| arrowPointPosition     | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | No  | Position of the tooltip arrow relative to its parent component. Available positions are **Start**, **Center**, and **End**, in both vertical and horizontal directions. All these positions are within the parent component area.|
+| arrowPointPosition     | [ArrowPointPosition](ts-appendix-enums.md#arrowpointposition11) | No  | Position of the tooltip arrow relative to its parent component. Available positions are **Start**, **Center**, and **End**, in both vertical and horizontal directions. These positions are within the parent component area and do not exceed its boundaries or cover rounded corners.<br>Default value: **ArrowPointPosition.CENTER**.|
 | arrowWidth           | [Dimension](ts-types.md#dimension10)                  | No  | Width of the tooltip arrow. If the arrow width exceeds the length of the edge minus twice the size of the tooltip rounded corner, the arrow is not drawn.<br>Default value: **16**.<br>Unit: vp.<br>**NOTE**<br>Percentage values are not supported.|
 | arrowHeight          | [Dimension](ts-types.md#dimension10)                  | No  | Height of the tooltip arrow.<br>Default value: **8**.<br>Unit: vp.<br>**NOTE**<br>Percentage values are not supported.|
 
 ## TipsMessageType
 
-TipsMessageType = ResourceStr | StyledString
+type TipsMessageType = ResourceStr | StyledString
 
 Provides information about the tooltip.
 

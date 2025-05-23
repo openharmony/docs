@@ -33,13 +33,13 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    import { BusinessError } from '@kit.BasicServicesKit';
    import { Filter } from '@kit.CoreFileKit';
 
-   // 获取应用上下文
-   let context = getContext(this) as common.UIAbilityContext;
+   // context是EntryAbility传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext; 
 
    // 创建连接系统内所有文件管理服务端的helper对象
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
-   function createFileAccessHelper(): void {
-     try {    // this.context是EntryAbility传过来的Context
+   function createFileAccessHelper(context: common.UIAbilityContext): void {
+     try {
        fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
          console.error("createFileAccessHelper interface returns an undefined object");
@@ -214,11 +214,12 @@ notify接口不仅可以用来监听目录的变化，还能监听设备上线�
      }
    }
 
-   let context = getContext(this) as common.UIAbilityContext;
+   // context是EntryAbility传过来的context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+   let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
    // 创建连接系统内所有文件管理服务端的helper对象
    let fileAccessHelperAllServer: fileAccess.FileAccessHelper;
-   function createFileAccessHelper(): void {
-     try {    // this.context是EntryAbility传过来的Context
+   function createFileAccessHelper(context: common.UIAbilityContext): void {
+     try {
        fileAccessHelperAllServer = fileAccess.createFileAccessHelper(context);
        if (!fileAccessHelperAllServer) {
          console.error("createFileAccessHelper interface returns an undefined object");

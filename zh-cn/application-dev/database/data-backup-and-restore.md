@@ -1,5 +1,4 @@
-# 数据库备份与恢复
-
+# 数据库备份与恢复（ArkTS）
 
 ## 场景介绍
 
@@ -25,51 +24,59 @@
 
    (3) 创建kvStore。
 
-     
+
    ```ts
+   import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    import { distributedKVStore } from '@kit.ArkData';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
-   let kvManager: distributedKVStore.KVManager;
-   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
-   let context = getContext(this);
-   const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-     context: context,
-     bundleName: 'com.example.datamanagertest'
-   }
-   try {
-     kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-     console.info('Succeeded in creating KVManager.');
-     try {
-       const options: distributedKVStore.Options = {
-         createIfMissing: true,
-         encrypt: true,
-         backup: false,
-         autoSync: false,
-         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-         securityLevel: distributedKVStore.SecurityLevel.S3
-       };
-       kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
-         if (err) {
-           console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
-           return;
+
+   export default class EntryAbility extends UIAbility {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+       let kvManager: distributedKVStore.KVManager;
+       let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
+       let context = this.context;
+       const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+         context: context,
+         bundleName: 'com.example.datamanagertest'
+       }
+       try {
+         kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+         console.info('Succeeded in creating KVManager.');
+         try {
+           const options: distributedKVStore.Options = {
+             createIfMissing: true,
+             encrypt: true,
+             backup: false,
+             autoSync: false,
+             kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+             securityLevel: distributedKVStore.SecurityLevel.S3
+           };
+           kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+             if (err) {
+               console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+               return;
+             }
+             console.info('Succeeded in getting KVStore.');
+             kvStore = store;
+           });
+         } catch (e) {
+           let error = e as BusinessError;
+           console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
          }
-         console.info('Succeeded in getting KVStore.');
-         kvStore = store;
-       });
-     } catch (e) {
-       let error = e as BusinessError;
-       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+       } catch (e) {
+         let error = e as BusinessError;
+         console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+       }
+
+       if (kvStore !== undefined) {
+         kvStore = kvStore as distributedKVStore.SingleKVStore;
+         //进行后续操作
+         //...
+       }
      }
-   } catch (e) {
-     let error = e as BusinessError;
-     console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-   }
-   
-   if (kvStore !== undefined) {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
-     //进行后续操作
-     //...
    }
    ```
 
@@ -170,42 +177,48 @@
 
 手动备份：通过调用[backup](../reference/apis-arkdata/js-apis-data-relationalStore.md#backup)接口实现数据库手动备份。示例如下：
 
-   ```ts
-   import { relationalStore } from '@kit.ArkData';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo } from '@kit.CoreFileKit';
-   
-   let store: relationalStore.RdbStore | undefined = undefined;
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-   let context = getContext(this);
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
 
-   const STORE_CONFIG: relationalStore.StoreConfig = {
-     name: 'RdbTest.db',
-     securityLevel: relationalStore.SecurityLevel.S3,
-     allowRebuild: true
-   };
-   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
-     store = rdbStore;
-     if (err) {
-       console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     console.info('Succeeded in getting RdbStore.');
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-     /**
-      * "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。
-      * 也可指定绝对路径："/data/storage/el2/database/Backup.db"，文件路径需要存在，不会自动创建目录。
-      */
-     (store as relationalStore.RdbStore).backup("Backup.db", (err: BusinessError) => {
-       if (err) {
-         console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
-           return;
-        }
-        console.info(`Succeeded in backing up RdbStore.`);
-      })
-     })
-   })
-   ```
+    const STORE_CONFIG: relationalStore.StoreConfig = {
+      name: 'RdbTest.db',
+      securityLevel: relationalStore.SecurityLevel.S3,
+      allowRebuild: true
+    };
+    try {
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
+      console.info('Succeeded in getting RdbStore.');
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
+    }
+
+    if (!store) {
+      return;
+    }
+
+    try {
+      /**
+       * "Backup.db"为备份数据库文件名，默认在RdbStore同路径下备份。
+       * 也可指定绝对路径："/data/storage/el2/database/Backup.db"，文件路径需要存在，不会自动创建目录。
+       */
+      await store.backup("Backup.db");
+      console.info(`Succeeded in backing up RdbStore.`);
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to backup RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
+```
 
 <!--Del-->
 
@@ -213,24 +226,34 @@
 
 自动备份：可以通过在[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore-sys.md#storeconfig)中配置haMode参数为MAIN_REPLICA实现数据库双写备份，仅支持系统应用。示例如下：
 
-   ```ts
-   // 新增StoreConfig配置，配置haMode参数为MAIN_REPLICA。
-   const AUTO_BACKUP_CONFIG :relationalStore.StoreConfig = {
-     name: "BackupRestoreTest.db",
-     securityLevel: relationalStore.SecurityLevel.S3,
-     haMode: relationalStore.HAMode.MAIN_REPLICA, // 配置为双写备份
-     allowRebuild: true
-   }
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-   // 使用getRdbStore()方法创建关系型数据库。
-   relationalStore.getRdbStore(context, AUTO_BACKUP_CONFIG, (err, store) => {
-     if (err) {
-       console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
-       return;
-     }
-     console.info('Succeeded in getting RdbStore.');
-   })
-   ```
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+    try {
+      // 配置StoreConfig的haMode参数为MAIN_REPLICA。
+      const AUTO_BACKUP_CONFIG: relationalStore.StoreConfig = {
+        name: "BackupRestoreTest.db",
+        securityLevel: relationalStore.SecurityLevel.S3,
+        haMode: relationalStore.HAMode.MAIN_REPLICA, // 配置为双写备份
+        allowRebuild: true
+      }
+
+      // 使用getRdbStore()方法创建关系型数据库。
+      store = await relationalStore.getRdbStore(context, AUTO_BACKUP_CONFIG);
+      console.info('Succeeded in getting RdbStore.');
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
+```
 
 <!--DelEnd-->
 
@@ -244,30 +267,31 @@
 
 若数据库异常前未配置StoreConfig中的allowRebuild或allowRebuild配置为false，则需将其配置为true再次进行开库。具体示例如下：
 
-   ```ts
-   import { relationalStore } from '@kit.ArkData';
-   import { BusinessError } from '@kit.BasicServicesKit';
-   
-   let store: relationalStore.RdbStore | undefined = undefined;
+```ts
+import { UIAbility } from '@kit.AbilityKit';
+import { relationalStore } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-   let context = getContext(this);
-
-   const STORE_CONFIG: relationalStore.StoreConfig = {
-     name: 'RdbTest.db',
-     securityLevel: relationalStore.SecurityLevel.S3,
-     allowRebuild: true
-   };
-   relationalStore.getRdbStore(context, STORE_CONFIG, (err, rdbStore) => {
-     store = rdbStore;
-     if (err) {
-       console.error(`Failed to get RdbStore. Code:${err.code},message:${err.message}`);
-       return;
-     }
-     store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)', (err) => {
-     })
-     console.info('Succeeded in getting RdbStore.');
-   })
-   ```
+export default class EntryAbility extends UIAbility {
+  async onCreate(): Promise<void> {
+    let store: relationalStore.RdbStore | undefined = undefined;
+    let context = this.context;
+    try {
+      const STORE_CONFIG: relationalStore.StoreConfig = {
+        name: 'RdbTest.db',
+        securityLevel: relationalStore.SecurityLevel.S3,
+        allowRebuild: true
+      };
+      store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+      await store.executeSql('CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)');
+      console.info('Succeeded in getting RdbStore.');
+    } catch (e) {
+      const err = e as BusinessError;
+      console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+    }
+  }
+}
+```
 
 ## 关系型数据库数据恢复
 
@@ -332,36 +356,47 @@
 3. 调用restore接口恢复数据。
 
    ```ts
-   try {
-     let context = getContext();
-     /**
-      * "Backup.db"为备份数据库文件名，默认在当前 store 所在路径下查找备份文件 Backup.db。
-      * 如在备份时指定了绝对路径："/data/storage/el2/database/Backup.db", 需要传入绝对路径。
-      */
-     let backup = context.databaseDir + '/entry/rdb/Backup.db';
-     if (!fileIo.access(backup)) {
-       console.info("no backup file");
-       try {
-         (store as relationalStore.RdbStore).close();
-         store = undefined;
-       } catch (e) {
-           if (e.code != 14800014) {
-             console.info(JSON.stringify(e));
-           }
-       }
-       let storeConfig: relationalStore.StoreConfig = {
-         name: "BackupRestoreTest.db",
+   import { UIAbility } from '@kit.AbilityKit';
+   import { relationalStore } from '@kit.ArkData';
+   import { BusinessError } from '@kit.BasicServicesKit';
+   import { fileIo } from '@kit.CoreFileKit';
+
+   export default class EntryAbility extends UIAbility {
+     async onCreate(): Promise<void> {
+       let store: relationalStore.RdbStore | undefined = undefined;
+       let context = this.context;
+       let STORE_CONFIG: relationalStore.StoreConfig = {
+         name: "RdbTest.db",
          securityLevel: relationalStore.SecurityLevel.S3,
          allowRebuild: true
        }
-       // todo 开库建表
-       // todo 自行生成数据
-       return
+       try {
+         /**
+          * "Backup.db"为备份数据库文件名，默认在当前 store 所在路径下查找备份文件 Backup.db。
+          * 如在备份时指定了绝对路径："/data/storage/el2/database/Backup.db", 需要传入绝对路径。
+          */
+         let backupFilePath = context.databaseDir + '/rdb/Backup.db';
+         const backupExist = await fileIo.access(backupFilePath);
+         if (!backupExist) {
+           console.info("Backup is not exist.");
+           // todo 开库建表
+           // todo 自行生成数据
+           return;
+         }
+       } catch (e) {
+         console.error(`Code:${e.code}, message:${e.message}`);
+       }
+
+       try {
+         store = await relationalStore.getRdbStore(context, STORE_CONFIG);
+         // 调用restore接口恢复数据
+         await store.restore("Backup.db");
+         console.log("Restore from back success.")
+       } catch (e) {
+         const err = e as BusinessError;
+         console.error(`Failed to get RdbStore. Code:${err.code}, message:${err.message}`);
+       }
      }
-     // 调用restore接口恢复数据
-     (store as relationalStore.RdbStore).restore("Backup.db");
-   } catch (e) {
-       console.error(`Code:${e.code}, message:${e.message}`);
    }
    ```
 
@@ -387,7 +422,7 @@
                resultSet.close();
              } catch (e) {
                  if (e.code !== 14800014) {
-                   console.info(`Code:${err.code}, message:${err.message}`);
+                   console.error(`Code:${e.code}, message:${e.message}`);
                  }
              }
            }
@@ -400,7 +435,7 @@
              console.info(`Succeeded in restoring RdbStore.`);
            })
          }
-         console.info(`Code:${err.code}, message:${err.message}`);
+         console.error(`Code:${err.code}, message:${err.message}`);
      }
    }
    ```

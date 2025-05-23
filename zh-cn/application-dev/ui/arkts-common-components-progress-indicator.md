@@ -108,7 +108,7 @@ Progress有5种可选类型，通过ProgressType可以设置进度条样式，Pr
 @Entry
 @Component
 struct ProgressCase1 { 
-  @State progressValue: number = 0	// 设置进度条初始值为0
+  @State progressValue: number = 0;	// 设置进度条初始值为0
   build() {
     Column() {
       Column() {
@@ -116,9 +116,9 @@ struct ProgressCase1 {
         Row().width('100%').height(5)
         Button("进度条+5")
           .onClick(()=>{
-            this.progressValue += 5
+            this.progressValue += 5;
             if (this.progressValue > 100){
-              this.progressValue = 0
+              this.progressValue = 0;
             }
           })
       }

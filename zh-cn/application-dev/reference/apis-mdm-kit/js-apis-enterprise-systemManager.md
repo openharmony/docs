@@ -8,7 +8,7 @@
 >
 > 本模块接口仅可在Stage模型下使用。
 >
-> 本模块接口仅对[设备管理应用](../../mdm/mdm-kit-guide.md#功能介绍)开放，需将设备管理应用激活后调用，实现相应功能。
+> 本模块接口仅对设备管理应用开放，且调用接口前需激活设备管理应用，具体请参考[MDM Kit开发指南](../../mdm/mdm-kit-guide.md)。
 
 ## 导入模块
 
@@ -209,7 +209,18 @@ try {
 } catch (err) {
   console.error(`Failed to set ota update policy. Code is ${err.code}, message is ${err.message}`);
 }
-
+// 禁用公网升级
+let otaUpdatePolicy6: systemManager.OtaUpdatePolicy = {
+  "policyType": systemManager.PolicyType.DEFAULT,
+  "version": "version_1.0.0.5",
+  "disableSystemOtaUpdate": true,
+};
+try {
+  systemManager.setOtaUpdatePolicy(wantTemp, otaUpdatePolicy6);
+  console.info('Succeeded in setting ota update policy.');
+} catch (err) {
+  console.error(`Failed to set ota update policy. Code is ${err.code}, message is ${err.message}`);
+}
 ```
 
 ## systemManager.getOtaUpdatePolicy
@@ -456,6 +467,7 @@ systemManager.getUpdateAuthData(wantTemp).then((result: string) => {
 | delayUpdateTime | number   | 否   | 表示延迟升级时间（单位：小时）。 |
 | installStartTime        | number   | 否   | 表示指定安装窗口起始时间（时间戳）。 |
 | installEndTime | number   | 否   | 表示指定安装窗口结束时间（时间戳）。 |
+| disableSystemOtaUpdate<sup>20+</sup> | boolean   | 否   | 表示是否禁用在公网环境下升级。true表示禁用公网升级，false表示不禁用公网升级，默认值为false。禁用公网升级后，可以采用内网升级。 |
 
 ## PolicyType
 

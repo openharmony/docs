@@ -54,14 +54,15 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     </state>
     ```
 4. 外部可调用thermal service的UpdateThermalState接口设置场景状态值。
-```cpp
-bool UpdateThermalState(const std::string& tag, const std::string& val, bool isImmed = false)
-```
-| 参数 | 说明 | 类型 |
-|---|---|---|
-| tag | 场景标签 | string |
-| val | 场景状态值 | string |
-| isImmed | 是否立即更新温控动作值 | bool |
+
+   ```cpp
+   bool UpdateThermalState(const std::string& tag, const std::string& val, bool isImmed = false)
+   ```
+   | 参数 | 说明 | 类型 |
+   |---|---|---|
+   | tag | 场景标签 | string |
+   | val | 场景状态值 | string |
+   | isImmed | 是否立即更新温控动作值 | bool |
 
 5. 参考[默认热场景配置文件夹中的BUILD.gn](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/BUILD.gn)编写BUILD.gn文件，将thermal_service_config.xml打包到`/vendor/etc/thermal_config`目录下：
 

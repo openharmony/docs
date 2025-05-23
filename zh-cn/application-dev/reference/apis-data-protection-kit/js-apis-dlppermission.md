@@ -962,11 +962,11 @@ startDLPManagerForResult(context: common.UIAbilityContext, want: Want): Promise&
 
 ```ts
 import { dlpPermission } from '@kit.DataProtectionKit';
-import { common, UIAbility, AbilityConstant, Want } from '@kit.AbilityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { common, Want } from '@kit.AbilityKit';
+import { UIContext } from '@kit.ArkUI';
 
 try {
-  let context = getContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
+  let context = new UIContext().getHostContext() as common.UIAbilityContext; // 获取当前UIAbilityContext。
   let want: Want = {
     "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
     "parameters": {

@@ -1,6 +1,6 @@
 # @ohos.secureElement (安全单元的通道管理)
 
-本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE(Embedded SE)和SIM卡。文档中出现的SE服务为SEService实例，参见[newSEService](#omapinewseservice)。
+本模块主要用于操作及管理安全单元（SecureElement，简称SE），电子设备上可能存在的安全单元有eSE(Embedded SE)和SIM卡。文档中出现的SE服务为SEService实例，参见[createService]((#omapicreateservice12)。
 
 对于文档中出现以下类型说明：
 
@@ -31,7 +31,7 @@ import { omapi } from '@kit.ConnectivityKit';
 | DISCONNECTED | 0    | SE服务状态已断开。 |
 | CONNECTED    | 1    | SE服务状态已连接。 |
 
-## omapi.newSEService
+## omapi.newSEService<sup>(deprecated)</sup>
 
 newSEService(type: 'serviceState', callback: Callback\<ServiceState>): SEService
 
@@ -143,7 +143,7 @@ on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
 
 注册监听服务状态变化事件。
 
-调用[omapi.newSEService](#omapinewseservice)或[omapi.createService](#omapicreateservice12)创建服务成功后再用on接口注册回调。
+调用[omapi.newSEService](#omapinewseservicedeprecated)或[omapi.createService](#omapicreateservice12)创建服务成功后再用on接口注册回调。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -160,7 +160,6 @@ on(type: 'stateChanged', callback: Callback\<ServiceState>): void;
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 401  | Invalid parameter.        |
 | 801  | Capability not supported. |
 
 **示例：**
@@ -188,7 +187,6 @@ off(type: 'stateChanged', callback?: Callback\<ServiceState>): void;
 
 | 错误码ID | 错误信息                                  |
 | -------- | ----------------------------------------- |
-| 401  | Invalid parameter.        |
 | 801  | Capability not supported. |
 
 **示例：**
@@ -319,18 +317,16 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 let seService : omapi.SEService;
 
 function secureElementDemo() {
-    // 获取service
-    try {
-        seService = omapi.newSEService("serviceState", (state) => {
-        hilog.info(0x0000, 'testTag', 'se service state = %{public}s', JSON.stringify(state));
-        });
-    } catch (error) {
-        hilog.error(0x0000, 'testTag', 'newSEService error %{public}s', JSON.stringify(error));
-    }
-    if (seService == undefined || !seService.isConnected()) {
-        hilog.error(0x0000, 'testTag', 'secure element service disconnected.');
-        return;
-    }
+    omapi.createService().then((data) => {
+        seService = data;
+        if (seService == undefined || !seService.isConnected()) {
+            hilog.error(0x0000, 'testTag', 'seservice state disconnected');
+            return;
+        }
+        hilog.info(0x0000, 'testTag', 'seservice state connected');
+    }).catch((error : BusinessError)=> {
+        hilog.error(0x0000, 'testTag', 'createService error %{public}s', JSON.stringify(error));
+    });
 }
 ```
 

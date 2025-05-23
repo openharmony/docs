@@ -1,5 +1,5 @@
 # FA模型的Context
-
+<!--deprecated_code_no_check-->
 
 FA模型下只有一个Context。Context中的所有功能都是通过方法来提供的，它提供了一些featureAbility中不存在的方法，相当于featureAbility的一个扩展和补全。
 

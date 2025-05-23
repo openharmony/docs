@@ -59,6 +59,10 @@ stateStyles(value: StateStyles)
   | [GridItem](ts-container-griditem.md) | selected         | 10          |
   | [MenuItem](ts-basic-components-menuitem.md) | selected         | 10          |
 
+**pressed和clicked状态说明**
+
+- 当clicked和pressed同时在一个组件上使用时，只有后注册的状态才能生效。
+
 ## 示例
 
 ### 示例1（设置Text多态样式）

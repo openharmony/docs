@@ -57,6 +57,22 @@ enableNestedScroll(enabled: Optional\<boolean>)
 >
 > 设置嵌套滚动模式为PARALLEL时，父子组件同时滚动，需要开发者在onScrollFrameBegin中按照所需逻辑，自行设置父子组件滚动顺序。
 
+### scrollBarColor<sup>20+</sup>
+
+scrollBarColor(color: Optional\<ColorMetrics\>)
+
+设置滚动条滑块的颜色，仅滚动条不放置子组件时生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明           |
+| ------ | ------------------------------------------------------------ | ---- | -------------- |
+| color  |  [Optional](ts-universal-attributes-custom-property.md#optional12)\<[ColorMetrics](../js-apis-arkui-graphics.md#colormetrics12)\> | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）<br/>   |
+
 ## ScrollBarOptions对象说明
 
 滚动条组件参数。
@@ -102,8 +118,8 @@ enableNestedScroll(enabled: Optional\<boolean>)
 @Entry
 @Component
 struct ScrollBarExample {
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   build() {
     Column() {
@@ -151,8 +167,8 @@ struct ScrollBarExample {
 @Entry
 @Component
 struct ScrollBarExample {
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   build() {
     Column() {
@@ -194,13 +210,13 @@ struct ScrollBarExample {
 @Component
 struct StickyNestedScroll {
   listScroller: Scroller = new Scroller();
-  @State array: number[] = []
+  @State array: number[] = [];
 
   @Styles
   listCard() {
     .backgroundColor(Color.White)
     .height(72)
-    .width("100%")
+    .width('100%')
     .borderRadius(12)
   }
 
@@ -209,8 +225,8 @@ struct StickyNestedScroll {
       Scroll() {
         Column() {
           Text('Scroll Area')
-            .width("100%")
-            .height("40%")
+            .width('100%')
+            .height('40%')
             .backgroundColor('#0080DC')
             .textAlign(TextAlign.Center)
           List({ space: 10, scroller: this.listScroller }) {
@@ -227,9 +243,9 @@ struct StickyNestedScroll {
             scrollForward: NestedScrollMode.PARENT_FIRST,
             scrollBackward: NestedScrollMode.SELF_FIRST
           })
-          .height("100%")
+          .height('100%')
         }
-        .width("100%")
+        .width('100%')
       }
       .edgeEffect(EdgeEffect.Spring)
       .backgroundColor('#DCDCDC')
@@ -244,7 +260,7 @@ struct StickyNestedScroll {
 
   aboutToAppear() {
     for (let i = 0; i < 15; i++) {
-      this.array.push(i)
+      this.array.push(i);
     }
   }
 }

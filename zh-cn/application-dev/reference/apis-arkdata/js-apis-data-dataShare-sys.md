@@ -10,7 +10,7 @@
 >
 > - 本模块接口仅可在Stage模型下使用。
 >
-> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于200KB数据的传输。
+> - 本模块订阅RDB数据变更的接口on('rdbDataChange')的回调支持不大于10M数据的传输。
 
 
 ## 导入模块
@@ -45,31 +45,36 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
-    if (err !== undefined) {
-      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-      return;
-    }
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, (err:BusinessError, data:dataShare.DataShareHelper) => {
+        if (err !== undefined) {
+          console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+          return;
+        }
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 
@@ -98,31 +103,36 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err:BusinessError, data:dataShare.DataShareHelper) => {
-    if (err !== undefined) {
-      console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-      return;
-    }
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, {isProxy : true}, (err:BusinessError, data:dataShare.DataShareHelper) => {
+        if (err !== undefined) {
+          console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+          return;
+        }
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 ## dataShare.createDataShareHelper
@@ -157,29 +167,34 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
-let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
-let context = getContext(UIAbility);
-try {
-  dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
-    console.info("createDataShareHelper succeed, data : " + data);
-    dataShareHelper = data;
-  }). catch((err: BusinessError) => {
-    console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
-  });
-} catch (err) {
-  let code = (err as BusinessError).code;
-  let message = (err as BusinessError).message;
-  console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashareproxy://com.samples.datasharetest.DataShare");
+    let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;
+    let context = this.context;
+    try {
+      dataShare.createDataShareHelper(context, uri, {isProxy : true}).then((data: dataShare.DataShareHelper) => {
+        console.info("createDataShareHelper succeed, data : " + data);
+        dataShareHelper = data;
+      }). catch((err: BusinessError) => {
+        console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
+      });
+    } catch (err) {
+      let code = (err as BusinessError).code;
+      let message = (err as BusinessError).message;
+      console.error(`createDataShareHelper error: code: ${code}, message: ${message} `);
+    };
+  };
 };
 ```
 
@@ -215,22 +230,27 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI is not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
-let context = getContext(UIAbility);
-dataShare.enableSilentProxy(context, uri).then(() => {
-  console.info("enableSilentProxy succeed");
-}). catch((err: BusinessError) => {
-  console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
-});
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
+    let context = this.context;
+    dataShare.enableSilentProxy(context, uri).then(() => {
+      console.info("enableSilentProxy succeed");
+    }). catch((err: BusinessError) => {
+      console.error(`enableSilentProxy error: code: ${err.code}, message: ${err.message} `);
+    });
+  };
+};
 ```
 
 ## dataShare.disableSilentProxy<sup>11+</sup>
@@ -265,22 +285,28 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI does not exist. |
 
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
-import { UIAbility } from '@kit.AbilityKit';
+import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
-let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
-let context = getContext(UIAbility);
-dataShare.disableSilentProxy(context, uri).then(() => {
-  console.info("disableSilentProxy succeed");
-}). catch((err: BusinessError) => {
-  console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
-});
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    let uri = ("datashare:///com.acts.datasharetest/entry/DB00/TBL00?Proxy=true");
+    let context = this.context;
+    dataShare.disableSilentProxy(context, uri).then(() => {
+      console.info("disableSilentProxy succeed");
+    }). catch((err: BusinessError) => {
+      console.error(`disableSilentProxy error: code: ${err.code}, message: ${err.message} `);
+    });
+  };
+};
+
 ```
 
 ## DataShareHelperOptions<sup>10+</sup>
@@ -319,7 +345,7 @@ dataShare.disableSilentProxy(context, uri).then(() => {
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-订阅/取消订阅RDB数据变更的结果，回调支持传输不大于200KB的数据。
+订阅/取消订阅RDB数据变更的结果，回调支持传输不大于10M的数据。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -435,6 +461,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -475,6 +502,7 @@ on(event: 'dataChange', type:SubscriptionType, uri: string, callback: AsyncCallb
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -515,6 +543,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -555,6 +584,7 @@ off(event: 'dataChange', type:SubscriptionType, uri: string, callback?: AsyncCal
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -596,6 +626,7 @@ addTemplate(uri: string, subscriberId: string, template: Template): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -643,6 +674,7 @@ delTemplate(uri: string, subscriberId: string): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700011 | The URI is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -698,6 +730,7 @@ on(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, cal
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -751,6 +784,7 @@ off(type: 'rdbDataChange', uris: Array&lt;string&gt;, templateId: TemplateId, ca
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -793,6 +827,7 @@ on(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string,
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -850,6 +885,7 @@ off(type: 'publishedDataChange', uris: Array&lt;string&gt;, subscriberId: string
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -891,6 +927,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, c
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -938,6 +975,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -987,6 +1025,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -1024,6 +1063,7 @@ getPublishedData(bundleName: string, callback: AsyncCallback&lt;Array&lt;Publish
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -1067,6 +1107,7 @@ getPublishedData(bundleName: string): Promise&lt;Array&lt;PublishedItem&gt;&gt;
 
 | 错误码ID | 错误信息                    |
 | -------- | -------------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700012 | The data area is not exist.|
 | 15700013 | The DataShareHelper instance is already closed.|
@@ -1101,6 +1142,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1166,6 +1208,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1224,6 +1267,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1280,6 +1324,7 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1330,6 +1375,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1388,6 +1434,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1439,6 +1486,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1507,6 +1555,7 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1571,6 +1620,7 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 
 | 错误码ID | 错误信息                             |
 | -------- | ------------------------------------ |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700000 | Inner error.                         |
 | 15700013 | The DataShareHelper instance is already closed. |
@@ -1655,6 +1705,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1721,6 +1772,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1778,6 +1830,7 @@ close(): Promise &lt;void&gt;
 
 | 错误码ID | 错误信息     |
 | -------- | ------------ |
+| 202      | Not System Application.|
 | 15700000 | Inner error. |
 
 **示例：**
@@ -1809,6 +1862,7 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1855,6 +1909,7 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1894,6 +1949,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1940,6 +1996,7 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -1979,6 +2036,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2019,6 +2077,7 @@ notifyChange(uri: string): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Mandatory parameters are left unspecified.|
 | 15700013 | The DataShareHelper instance is already closed.|
 
@@ -2057,6 +2116,7 @@ notifyChange(data: ChangeInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息              |
 | -------- | -------------------- |
+| 202      | Not System Application.|
 | 401      | Parameter error.Possible causes:1.Mandatory parameters are left unspecified; 2.Incorrect parameters types.|
 | 15700013 | The DataShareHelper instance is already closed.|
 

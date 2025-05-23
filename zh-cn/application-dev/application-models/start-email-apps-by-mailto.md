@@ -53,23 +53,23 @@ mailto:someone@example.com?key1=value1&key2=value2
 
 ### 从应用拉起
 
-保证mailto字符串传入uri参数即可，在应用中page页面可通过 getContext(this) 获取context，在ability中可通过this.context获取context。
+保证mailto字符串传入uri参数即可，在应用中page页面可通过 getHostContext() 获取context，在ability中可通过this.context获取context。
 
 ```ts
+import { common } from '@kit.AbilityKit';
+
 @Entry
 @Component
 struct Index {
-
   build() {
     Column() {
       Button('反馈')
         .onClick(() => {
-          let ctx = getContext(this) as common.UIAbilityContext;
+          let ctx = this.getUIContext().getHostContext() as common.UIAbilityContext;
           ctx.startAbility({
             action: 'ohos.want.action.sendToData',
             uri: 'mailto:feedback@example.com?subject=App Feedback&body=Please describe your feedback here...'
           })
-        
         })
     }
   }

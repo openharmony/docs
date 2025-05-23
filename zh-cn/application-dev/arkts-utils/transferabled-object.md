@@ -42,7 +42,8 @@ struct Index {
   @State pixelMap: PixelMap | undefined = undefined;
 
   private loadImageFromThread(): void {
-    const resourceMgr = getContext(this).resourceManager;
+    let context : Context = this.getUIContext().getHostContext() as Context;
+    const resourceMgr = context.resourceManager;
     // 此处‘startIcon.png’为media下复制到rawfile文件夹中，请开发者自行替换，否则imageSource创建失败会导致后续无法正常执行。
     resourceMgr.getRawFd('startIcon.png').then(rawFileDescriptor => {
       taskpool.execute(loadPixelMap, rawFileDescriptor).then(pixelMap => {

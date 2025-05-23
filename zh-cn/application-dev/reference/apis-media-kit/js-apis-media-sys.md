@@ -490,6 +490,16 @@ let meta : Record<string, string> = {
 avRecorder.setMetadata(meta);
 ```
 
+## AVRecorderProfile<sup>9+</sup>
+
+音视频录制的配置文件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVRecorder
+
+| 名称             | 类型                                         | 必填 | 说明                                                         |
+| ---------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enableStableQualityMode<sup>18+</sup>            | boolean                        | 否   | 视频录制是否选择稳定质量模式，选择视频录制时选填，enableStableQualityMode默认为false。设置为true时，启用视频编码策略以实现质量稳定的编码。<br>**系统接口：** 该接口为系统接口。|
+
 ## VideoRecorder<sup>9+</sup>
 
 > **说明：**

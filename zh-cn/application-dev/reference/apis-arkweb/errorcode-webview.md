@@ -23,7 +23,7 @@ WebviewController还没有和具体的Web组件关联，无法进行相应的操
 
 **错误信息**
 
-Invalid url.
+URL error.Possible causes: 1. No valid cookie found for the specified URL. 2. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048.
 
 **错误描述**
 
@@ -72,7 +72,7 @@ Function not enabled.
 
 **错误信息**
 
-Invalid cookie value.
+The provided cookie value is invalid. It must follow the format specified in RFC 6265.
 
 **错误描述**
 
@@ -106,29 +106,6 @@ port可能已经关闭。
 请检查port是否关闭。
 
 
-## 17100007 无效的前进后退操作
-
-**错误信息**
-
-Invalid backward or forward operation.
-
-**错误描述**
-
-无效的前进后退操作。
-
-**可能原因**
-
-1. 浏览历史记录被清除。
-
-2. 没有前进或后退对应的浏览操作。
-
-**处理步骤**
-
-1. 是否调用clearHistory。
-
-2. 实际操作中是否有浏览对应跳转的网页数。
-
-
 ## 17100008 删除不存在的javaScriptProxy
 
 **错误信息**
@@ -146,25 +123,6 @@ Failed to delete JavaScriptProxy because it does not exist.
 **处理步骤**
 
 检查传入的javaScriptProxy是否注册成功。
-
-
-## 17100009 上一次的zoomin/out操作缩放失败
-
-**错误信息**
-
-The zoom operation failed.
-
-**错误描述**
-
-上一次的zoomin/out操作缩放失败。
-
-**可能原因**
-
-已经达到最大或者最小缩放比例。
-
-**处理步骤**
-
-检查当前的页面比例是否已经达到最大或者最小的缩放尺寸。
 
 
 ## 17100010 无法使用该端口发送消息
@@ -268,24 +226,6 @@ The type and value of the message do not match.
 需要根据消息的类型调用相应的接口来获取消息的值。举例：如获取到的类型是BOOLEAN，则需要调用GetBoolean接口来获取布尔值。
 
 
-## 17100015 申请内存失败
-
-**错误信息**
-
-Memory allocation failed.
-
-**错误描述**
-
-申请失败，内存不足。
-
-**可能原因**
-
-需要发送的数据过大，导致申请内存失败。
-
-**处理步骤**
-
-检查需要发送的数据的长度。
-
 ## 17100016 下载任务没有处于暂停状态
 
 **错误信息**
@@ -304,23 +244,6 @@ The download task is not paused.
 
 下载并没有被暂停，不需要恢复。
 
-## 17100017 当前的WebviewController是无效的
-
-**错误信息**
-
-No valid WebviewController is associated.
-
-**错误描述**
-
-当前的WebviewController是无效的。
-
-**可能原因**
-
-当前的WebviewController没有关联一个有效的Web组件。
-
-**处理步骤**
-
-使用关联有效web的WebviewController。
 
 ## 17100018 没有设置一个委托类来接收下载状态
 

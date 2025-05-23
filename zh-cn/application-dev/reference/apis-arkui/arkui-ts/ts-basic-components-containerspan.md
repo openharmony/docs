@@ -20,7 +20,7 @@ ContainerSpan()
 
 ## 属性
 
-仅支持以下属性:
+仅支持以下属性：
 
 ### textBackgroundStyle
 
@@ -91,20 +91,19 @@ struct Index {
 该示例通过attributeModifier属性展示了文本设置背景样式的效果。
 
 ```ts
-// xxx.ets
-import { ContainerSpanModifier } from '@ohos.arkui.modifier'
+import { ContainerSpanModifier } from '@ohos.arkui.modifier';
 
 class MyContainerSpanModifier extends ContainerSpanModifier {
   applyNormalAttribute(instance: ContainerSpanAttribute): void {
     super.applyNormalAttribute?.(instance);
-    this.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" })
+    this.textBackgroundStyle({ color: "#7F007DFF", radius: "12vp" });
   }
 }
 
 @Entry
 @Component
 struct ContainerSpanModifierExample {
-  @State containerSpanModifier: ContainerSpanModifier = new MyContainerSpanModifier()
+  @State containerSpanModifier: ContainerSpanModifier = new MyContainerSpanModifier();
 
   build() {
     Column() {
