@@ -9,6 +9,7 @@
 > **说明：**
 >
 > 状态管理V2从API version 12开始支持。
+> 该文档介绍的混用规则仅适用于API version 18及以前。从API version 19开始，为支持应用更便捷地从V1向V2迁移，状态管理提供了新的接口[enableV2Compatibility](../../reference/apis-arkui/js-apis-StateManagement.md#enablev2compatibility19)和[makeV1Observed](../../reference/apis-arkui/js-apis-StateManagement.md#makev1observed19)来帮助开发者解决在V1向V2迁移过程中遇到的混用问题，详见[状态管理V1V2混用文档](./arkts-v1-v2-mixusage.md)。
 
 ## 概述
 

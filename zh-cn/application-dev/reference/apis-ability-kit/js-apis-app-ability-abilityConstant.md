@@ -178,6 +178,13 @@ class MyAbility extends UIAbility {
 | MEMORY_LEVEL_LOW            | 1   | 内存占用低。   |
 | MEMORY_LEVEL_CRITICAL       | 2   | 内存占用高。   |
 
+> **说明：**
+> 
+> 不同产品的触发条件可能存在差异。以12G内存的标准设备为例：
+> - 当可用内存下降至1700M~1800M时，会触发取值为0的onMemoryLevel回调。
+> - 当可用内存下降至1600M~1700M时，会触发取值为1的onMemoryLevel回调。
+> - 当可用内存下降至1600M以下时，会触发取值为2的onMemoryLevel回调。
+
 **示例：**
 
 ```ts

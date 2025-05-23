@@ -286,9 +286,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value: boolean) => {
-  console.log("connect success")
+  console.log("connect success");
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err))
+  console.log("connect fail, error:" + JSON.stringify(err));
 });
 ```
 

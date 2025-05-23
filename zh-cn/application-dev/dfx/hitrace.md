@@ -207,7 +207,7 @@ $ hitrace --trace_dump
 #              | |           |       |   ||||      |         |
            <...>-21829   (  19280) [003] .... 3011033.731844: tracing_mark_write: trace_event_clock_sync: realtime_ts=1732002022239
            <...>-21829   (  19280) [003] .... 3011033.731865: tracing_mark_write: trace_event_clock_sync: parent_ts=3011033.750000
-#
+$
 ```
 添加输出路径，trace信息将导出到对应文件。
 
