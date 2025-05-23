@@ -47,7 +47,6 @@ cpp 部分代码：
     do {                                             \
         if (!(cond)) {                               \
             OH_LOG_ERROR(LOG_APP, "CHECK FAILED");   \
-            break;                               \
         }                                            \
     } while (0)
 #endif
