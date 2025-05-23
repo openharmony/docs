@@ -2053,9 +2053,9 @@ public getZoneRules(): ZoneRules
 ```ts
   let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
   let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
-  let date = new Date(2025, 4, 13)
+  let date = new Date(2025, 4, 13);
   let zoneOffsetTransition: i18n.ZoneOffsetTransition =
-      zoneRules.nextTransition(date.getTime()) //获取2025年5月13日以后的下一个时间跳变点
+      zoneRules.nextTransition(date.getTime()); //获取2025年5月13日以后的下一个时间跳变点
   zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
   zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
   zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
@@ -2088,10 +2088,13 @@ public nextTransition(date?: number): ZoneOffsetTransition
 
 **示例：**
 ```ts
-  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
-  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
-  let date = new Date(2025, 4, 13)
-  let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(date.getTime())
+  // 获取蒂华纳时区对象
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana");
+  // 获取蒂华纳时区跳变规则
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
+  let date = new Date(2025, 4, 13);
+  // 获取蒂华纳时区2025年5月13日后的下一个跳变点
+  let zoneOffsetTransition: i18n.ZoneOffsetTransition = zoneRules.nextTransition(date.getTime());
 ```
 
 ## ZoneOffsetTransition<sup>20+</sup>
