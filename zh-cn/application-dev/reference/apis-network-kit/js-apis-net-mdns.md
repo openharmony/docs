@@ -1,6 +1,6 @@
 # @ohos.net.mdns (MDNS管理)
 
-MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、移除、发现、解析等能力。
+mDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、移除、发现、解析等能力。
 
 > **说明：**
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -27,9 +27,11 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 |-------------|----------------------------------|-----------|-------------------------------------------------|
 | context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
-| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功添加error为undefined，data为添加到本地的mdns服务信息。      |
+| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功添加error为undefined，data为添加到本地的mDNS服务信息。      |
 
 **错误码：**
+
+以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -39,9 +41,6 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 | 2204003 | Callback duplicated. |
 | 2204008 | Failed to delete the service instance. |
 | 2204010 | Failed to send the message. |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -56,7 +55,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取context
+// 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -96,9 +95,11 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[LocalServiceInfo](#localserviceinfo)> | 以Promise形式返回添加的mdns服务信息。 |
+| Promise\<[LocalServiceInfo](#localserviceinfo)> | 以Promise形式返回添加的mDNS服务信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -109,8 +110,6 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 | 2204008 | Failed to delete the service instance. |
 | 2204010 | Failed to send the message. |
 
-> **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -125,7 +124,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取context
+// 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -159,9 +158,11 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 |-------------|----------------------------------|-----------|-------------------------------------------------|
 | context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
-| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为移除本地的mdns服务信息。      |
+| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为移除本地的mDNS服务信息。      |
 
 **错误码：**
+
+以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -172,8 +173,6 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 2204008 | Failed to delete the service instance. |
 | 2204010 | Failed to send the message. |
 
-> **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -188,7 +187,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取context
+// 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -228,9 +227,11 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[LocalServiceInfo](#localserviceinfo)> | 以Promise形式返回移除的mdns服务信息。 |
+| Promise\<[LocalServiceInfo](#localserviceinfo)> | 以Promise形式返回移除的mDNS服务信息。 |
 
 **错误码：**
+
+以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -240,9 +241,6 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 | 2204002 | Callback not found. |
 | 2204008 | Failed to delete the service instance. |
 | 2204010 | Failed to send the message. |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -278,7 +276,7 @@ mdns.removeLocalService(context, localServiceInfo).then((data: mdns.LocalService
 
 createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
-返回一个DiscoveryService对象，该对象用于发现指定服务类型的mDNS服务。
+返回一个DiscoveryService对象，该对象用于发现指定服务类型（serviceType）的mDNS服务。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -295,15 +293,17 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 | Type                         | Description                     |
 | ----------------------------- |---------------------------------|
-| DiscoveryService | 基于指定serviceType和Context的发现服务对象。 |
+| DiscoveryService | 基于指定服务类型（serviceType）和Context的发现服务对象。 |
 
 **错误码：**
+
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
 | 401     | Parameter error. |
 
-**示例**
+**示例：**
 
 >**说明：** 
 >
@@ -316,7 +316,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取context
+// 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let serviceType = "_print._tcp";
@@ -339,9 +339,11 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 |-------------|----------------------------------|-----------|-------------------------------------------------------------|
 | context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](../apis-ability-kit/js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](../apis-ability-kit/js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
-| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为解析的mdns服务信息。      |
+| callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为解析的mDNS服务信息。      |
 
 **错误码：**
+
+以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
@@ -351,9 +353,6 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
 | 2204010 | Failed to send the message.                  |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -368,7 +367,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取context
+// 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -412,6 +411,8 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 **错误码：**
 
+以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
 | 401     | Parameter error.                             |
@@ -420,9 +421,6 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 | 2204003 | Callback duplicated.                         |
 | 2204006 | Request timeout.                |
 | 2204010 | Failed to send the message.                  |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[MDNS错误码](errorcode-net-mdns.md)。
 
 **示例：**
 
@@ -437,7 +435,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取context
+// 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
 let localServiceInfo: mdns.LocalServiceInfo = {
@@ -481,7 +479,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取context
+// 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -511,7 +509,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 获取context
+// 获取context。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -546,7 +544,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 参考mdns.createDiscoveryService
+// 参考mdns.createDiscoveryService。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -574,7 +572,7 @@ off(type: 'discoveryStart', callback?: Callback\<DiscoveryEventInfo\>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的mDNS服务事件。 |
-| callback | Callback\<DiscoveryEventInfo\>  | 否       |mDNS服务的信息和事件错误信息。          |
+| callback | Callback\<DiscoveryEventInfo\>  | 否       |mDNS服务的信息和事件错误信息。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。          |
 
 **示例：**
 
@@ -587,7 +585,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 参考mdns.createDiscoveryService
+// 参考mdns.createDiscoveryService。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -632,7 +630,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 参考mdns.createDiscoveryService
+// 参考mdns.createDiscoveryService。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -660,7 +658,7 @@ off(type: 'discoveryStop', callback?: Callback\<DiscoveryEventInfo\>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件'discoveryStop'。<br>discoveryStop：停止搜索局域网内的mDNS服务事件。 |
-| callback | Callback\<DiscoveryEventInfo\>  | 否       |mDNS服务的信息和事件错误信息。      |
+| callback | Callback\<DiscoveryEventInfo\>  | 否       |mDNS服务的信息和事件错误信息。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。      |
 
 **示例：**
 
@@ -673,7 +671,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 参考mdns.createDiscoveryService
+// 参考mdns.createDiscoveryService。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -718,7 +716,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 参考mdns.createDiscoveryService
+// 参考mdns.createDiscoveryService。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -749,7 +747,7 @@ off(type: 'serviceFound', callback?: Callback\<LocalServiceInfo>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件，固定为'serviceFound'。<br>serviceFound：发现mDNS服务事件。 |
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 否        |   mDNS服务的信息。      |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>                 | 否        |   mDNS服务的信息。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。      |
 
 **示例：**
 
@@ -762,7 +760,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 参考mdns.createDiscoveryService
+// 参考mdns.createDiscoveryService。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -810,7 +808,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 参考mdns.createDiscoveryService
+// 参考mdns.createDiscoveryService。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -838,7 +836,7 @@ off(type: 'serviceLost', callback?: Callback\<LocalServiceInfo>): void
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |取消订阅的事件，固定为'serviceLost'。<br>serviceLost：移除mDNS服务事件。 |
-| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | 否        |   mDNS服务的信息。      |
+| callback | Callback<[LocalServiceInfo](#localserviceinfo)>   | 否        |   mDNS服务的信息。可以指定传入on中的callback取消对应的订阅，也可以不指定callback清空所有订阅。      |
 
 **示例：**
 
@@ -851,7 +849,7 @@ import { mdns } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
 
-// 参考mdns.createDiscoveryService
+// 参考mdns.createDiscoveryService。
 let context: common.UIAbilityContext = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
@@ -878,7 +876,7 @@ mDNS服务信息。
 
 | 名称                  | 类型                                | 必填 | 说明                     |
 | --------------------- | ---------------------------------- | --- | ------------------------ |
-| serviceType   | string                             |  是 |  mDNS服务的类型。格式_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。  |
+| serviceType   | string                             |  是 |  mDNS服务的类型。格式:_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。  |
 | serviceName | string                             |  是 |  mDNS服务的名字。   |
 | port            | number           |  否 |  mDNS服务的端口号。取值范围[0,65535]。           |
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 |  mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。               |

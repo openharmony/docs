@@ -1,11 +1,11 @@
 # @ohos.net.webSocket (WebSocket连接)
 
-> **说明：**
->
-> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+## 使用说明
+
+本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
-使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。
+WebSocket是一种在单个TCP连接上进行全双工通信的协议。使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。
 
 若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
 
@@ -28,7 +28,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
     console.log(JSON.stringify(err));
     return;
   }
-  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信
+  // 当收到on('open')事件时，可以通过send()方法与服务器进行通信。
   ws.send("Hello, server!", (err: BusinessError, value: boolean) => {
     if (!err) {
       console.log("send success");
@@ -39,7 +39,7 @@ ws.on('open', (err:BusinessError, value: Object) => {
 });
 ws.on('message',(error: BusinessError, value: string | ArrayBuffer) => {
   console.log("on message, message:" + value);
-  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接
+  // 当收到服务器的`bye`消息时（此消息字段仅为示意，具体字段需要与服务器协商），主动断开连接。
   if (value === 'bye') {
     ws.close((err: BusinessError, value: boolean) => {
       if (!err) {
@@ -117,7 +117,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
-> 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
+> 可通过监听error事件获得该接口的执行结果。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -136,6 +136,8 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
+以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
@@ -146,8 +148,6 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
 | 2302999<sup>10+</sup> | Internal error.             |
 
-> **错误码说明：**
-> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
@@ -181,7 +181,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -193,6 +193,8 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **错误码：**
 
+以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
@@ -202,9 +204,6 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | 2302003<sup>12+</sup> | Websocket connection already exists.       |
 | 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
 | 2302999<sup>10+</sup> | Internal error.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
 
 **示例：**
 
@@ -247,7 +246,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -264,6 +263,8 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **错误码：**
 
+以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
@@ -274,9 +275,6 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 | 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
 | 2302999<sup>10+</sup> | Internal error.             |
 
-> **错误码说明：**
-> 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
-
 **示例：**
 
 ```ts
@@ -286,9 +284,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value: boolean) => {
-  console.log("connect success");
+  console.log("connect success")
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err));
+  console.log("connect fail, error:" + JSON.stringify(err))
 });
 ```
 
@@ -312,6 +310,8 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:发送请求创建成功；false:发送请求创建失败。   |
 
 **错误码：**
+
+以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -379,6 +379,8 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 
 **错误码：**
 
+以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -439,6 +441,8 @@ close(callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
+以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -480,6 +484,8 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 | callback | AsyncCallback\<boolean\> | 是   | 回调函数。true:关闭请求创建成功；false:关闭请求创建失败。                                            |
 
 **错误码：**
+
+以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -534,6 +540,8 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 **错误码：**
 
+以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
 | 401     | Parameter error.        |
@@ -572,7 +580,7 @@ on(type: 'open', callback: AsyncCallback\<Object\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
+| type     | string                  | 是   | 订阅的事件类型。'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 是   | 回调函数。                    |
 
 **示例：**
@@ -608,7 +616,7 @@ off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                          |
 | -------- | ----------------------- | ---- | ----------------------------- |
-| type     | string                  | 是   | 'open'：WebSocket的打开事件。 |
+| type     | string                  | 是   | 取消订阅的事件类型。'open'：WebSocket的打开事件。 |
 | callback | AsyncCallback\<Object\> | 否   | 回调函数。                    |
 
 **示例：**
@@ -626,7 +634,7 @@ let callback1 = (err: BusinessError, value: Object) => {
  console.log("on open, status:" + ((value as OutValue).status + ", message:" + (value as OutValue).message));
 }
 ws.on('open', callback1);
-// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 ws.off('open', callback1);
 ```
 
@@ -637,7 +645,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
-> AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
+> AsyncCallback中的数据可以是字符串(API 6开始支持)或ArrayBuffer(API 8开始支持)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -647,7 +655,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
-| type     | string                  | 是   | 'message'：WebSocket的接收服务器消息事件。 |
+| type     | string                  | 是   | 订阅的事件类型。'message'：WebSocket的接收服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
 **示例：**
@@ -680,7 +688,7 @@ off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
 | 参数名   | 类型                                                | 必填 | 说明                                         |
 | -------- | --------------------------------------------------- | ---- | -------------------------------------------- |
-| type     | string                                              | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
+| type     | string                                              | 是   | 取消订阅的事件类型。'message'：WebSocket的接收到服务器消息事件。 |
 | callback | AsyncCallback\<string \|ArrayBuffer <sup>8+</sup>\> | 否   | 回调函数。                                   |
 
 **示例：**
@@ -706,7 +714,7 @@ on(type: 'close', callback: AsyncCallback\<CloseResult\>): void
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
+| type     | string                                          | 是   | 订阅的事件类型。'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback\<CloseResult\> | 是   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
@@ -738,7 +746,7 @@ off(type: 'close', callback?: AsyncCallback\<CloseResult\>): void
 
 | 参数名   | 类型                                            | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ------------------------------ |
-| type     | string                                          | 是   | 'close'：WebSocket的关闭事件。 |
+| type     | string                                          | 是   | 取消订阅的事件类型。'close'：WebSocket的关闭事件。 |
 | callback | AsyncCallback\<CloseResult\> | 否   | 回调函数。<br>close：close错误码，reason：错误码说明 |
 
 **示例：**
@@ -764,8 +772,8 @@ on(type: 'error', callback: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
-| type     | string        | 是   | 'error'：WebSocket的Error事件。 |
-| callback | ErrorCallback | 是   | 回调函数。<br>常见错误码：200 |
+| type     | string        | 是   | 订阅的事件类型。'error'：WebSocket的Error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。 |
 
 **示例：**
 
@@ -796,7 +804,7 @@ off(type: 'error', callback?: ErrorCallback): void
 
 | 参数名   | 类型          | 必填 | 说明                            |
 | -------- | ------------- | ---- | ------------------------------- |
-| type     | string        | 是   | 'error'：WebSocket的Error事件。 |
+| type     | string        | 是   | 取消订阅的事件类型。'error'：WebSocket的Error事件。 |
 | callback | ErrorCallback | 否   | 回调函数。                      |
 
 **示例：**
@@ -820,7 +828,7 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 
 | 参数名   |       类型        | 必填 |                  说明                   |
 | -------- | ---------------- | ---- | --------------------------------------- |
-| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。 |
+| type     | string           | 是   | 订阅的事件类型。'dataEnd'：WebSocket的数据接收结束事件。 |
 | callback | Callback\<void\> | 是   | 回调函数。                              |
 
 **示例：**
@@ -849,7 +857,7 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 
 | 参数名   |        类型       | 必填 |                说明                    |
 | -------- | ---------------- | ---- | -------------------------------------- |
-| type     | string           | 是   | 'dataEnd'：WebSocket的数据接收结束事件。|
+| type     | string           | 是   | 取消订阅的事件类型。'dataEnd'：WebSocket的数据接收结束事件。|
 | callback | Callback\<void\> | 否   | 回调函数。                             |
 
 **示例：**
@@ -873,8 +881,8 @@ on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
 
 | 参数名   |        类型       | 必填 |                说明                    |
 | -------- | ---------------- | ---- | -------------------------------------- |
-| type     | string           | 是   | 'headerReceive'：WebSocket的headerReceive事件。|
-| callback | Callback\<ResponseHeaders\> | 是   | 回调函数,返回订阅事件。                             |
+| type     | string           | 是   | 订阅的事件类型。'headerReceive'：WebSocket的headerReceive事件。|
+| callback | Callback\<ResponseHeaders\> | 是   | 回调函数，返回订阅事件。                             |
 
 **示例：**
 
@@ -902,8 +910,8 @@ off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 
 | 参数名   |        类型       | 必填 |                说明                    |
 | -------- | ---------------- | ---- | -------------------------------------- |
-| type     | string           | 是   | 'headerReceive'：WebSocket的headerReceive事件。|
-| callback | Callback\<ResponseHeaders\> | 否   | 回调函数,返回订阅事件。                           |
+| type     | string           | 是   | 取消订阅的事件类型。'headerReceive'：WebSocket的headerReceive事件。|
+| callback | Callback\<ResponseHeaders\> | 否   | 回调函数，返回订阅事件。                           |
 
 **示例：**
 
@@ -938,7 +946,7 @@ ws.off('headerReceive');
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | certPath   | string  | 是   | 证书路径。 |
 | keyPath | string | 是   | 证书密钥的路径。 |
-| keyPassword | string | 否   | 证书密钥的密码。 |
+| keyPassword | string | 否   | 证书密钥的密码。 缺省为空字符串|
 
 ## ProxyConfiguration<sup>12+</sup>
 type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
@@ -990,7 +998,7 @@ type ResponseHeaders = {
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined |
+| {[k:string]:string \| string[] \| undefined} | header数据类型为键值对、字符串或者undefined。 |
 
 ## close错误码说明
 
@@ -1000,11 +1008,11 @@ type ResponseHeaders = {
 
 | 值        | 说明               |
 | :-------- | :----------------- |
-| 1000      | 正常关闭           |
-| 1001      | 服务器主动关闭     |
-| 1002      | 协议错误           |
-| 1003      | 无法处理的数据类型 |
-| 1004~1015 | 保留值             |
+| 1000      | 正常关闭。           |
+| 1001      | 服务器主动关闭。     |
+| 1002      | 协议错误。           |
+| 1003      | 无法处理的数据类型。 |
+| 1004~1015 | 保留值。             |
 
 ## HttpProxy<sup>12+</sup>
 
