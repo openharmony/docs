@@ -95,7 +95,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  registerTime    | string |  否   | 否  |  注册时间。          |
 |  modifyTime      | string |  否   | 否  |  修改时间。          |
 |  shareTime       | string |  否   | 否  |  分享时间。          |
-|  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。<br />-false: 非本地设备。<br />-true: 本地设备。     |
+|  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。<br />-false：非本地设备。<br />-true：本地设备。     |
 |  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 服务配置信息列表。默认为空。 |
 |  productName     | string  | 否   | 是 |  设备所属的产品名称。默认为空字符。    |
 |  internalModel   | string  | 否   | 是 |  设备所属产品的内部型号。默认为空字符。 |
@@ -114,7 +114,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  productId      | string  | 否 | 否   |  设备所属产品ID。          |
 |  subProductId   | string  | 否 | 是   |  设备所属产品子ID。默认为空字符。      |
 |  imageType      | string  | 否 | 否   |  图片类型。取值范围：<br />-ID：产品实物图。 |
-|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
+|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />-lg：大图。<br />-sm：小图。         |
 |  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。默认为空字符。        |
 
 ## DeviceIconInfo<sup>18+</sup>
@@ -130,7 +130,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  productId      | string  | 否 | 否   |  设备所属产品ID。          |
 |  subProductId   | string  | 否 | 是   |  设备所属产品子ID。默认为空字符。     |
 |  imageType      | string  | 否 | 否   |  图片类型。取值范围：<br />-ID：产品实物图。        |
-|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
+|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />-lg：大图。<br />-sm：小图。         |
 |  url            | string  | 否 | 否   |  URL。          |
 |  icon           | ArrayBuffer | 否| 否 | 图标。         |
 |  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。默认为空字符。         |
@@ -146,7 +146,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | ------ | --------- | --------|
 |  wiseDeviceId       | string  | 否 | 否   |  已注册设备标识。          |
-|  onlineStatus    | string  | 否 | 否   |  设备在线状态，包括<br />-0: 表示设备处于离线状态。<br />-1: 表示设备在线。可以根据在线状态获取设备网络ID列表。      |
+|  onlineStatus    | string  | 否 | 否   |  设备在线状态，包括<br />-0：表示设备处于离线状态。<br />-1：表示设备在线。可以根据在线状态获取设备网络ID列表。      |
 
 ## DeviceManager
 
