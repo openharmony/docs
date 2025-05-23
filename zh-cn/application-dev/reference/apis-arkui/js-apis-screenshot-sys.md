@@ -23,11 +23,12 @@ import { screenshot } from '@kit.ArkUI';
 
 | 名称                 | 类型          | 必填 | 说明                                                         |
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect             | [Rect](js-apis-screenshot.md#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。                       |
-| imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
-| rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。该参数应为整数。     |
+| screenRect             | [Rect](js-apis-screenshot.md#rect) | 否   | 表示截取图像的区域，不传值默认返回displayId所在逻辑屏的区域。                       |
+| imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为displayId所在逻辑屏的大小。若screenRect小于imageSize，图像会拉伸至imageSize，反之则压缩至imageSize的大小。                       |
+| rotation               | number        | 否   | 表示截取图像后要旋转的角度，当前仅支持输入值为0，默认值为0。     |
 | displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，该参数应为整数。 |
 | isNotificationNeeded<sup>14+</sup>| boolean        | 否   | 表示截取图像之后是否发送截屏通知，true表示发送截屏通知，false表示不发送截屏通知，默认值为true。截屏通知可以通过[captureStatusChange](js-apis-display.md#displayoncapturestatuschange12)接口监听。   |
+| isCaptureFullOfScreen<sup>19+</sup> | boolean        | 否   | 表示是否截取当前Screen上的所有display。对于一个Screen上有多个display的场景，为true表示截取整个Screen，false则只截取displayId所在逻辑屏的区域，默认值为false。 |
 
 ## Size
 
@@ -59,7 +60,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [ScreenshotOptions](#screenshotoptions) | 是   | 要截取的图像信息。 |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象，其大小为指定的imageSize大小，若未指定默认为displayId所在逻辑屏的大小。                                   |
 
 **错误码：**
 
@@ -89,7 +90,8 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
     "height": 300 },
   "rotation": 0,
   "displayId": 0,
-  "isNotificationNeeded": true
+  "isNotificationNeeded": true,
+  "isCaptureFullOfScreen": true
 };
 screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
   if (err) {
@@ -197,7 +199,8 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
     "height": 300 },
   "rotation": 0,
   "displayId": 0,
-  "isNotificationNeeded": true
+  "isNotificationNeeded": true,
+  "isCaptureFullOfScreen": true
 };
 try {
   let promise = screenshot.save(screenshotOptions);
