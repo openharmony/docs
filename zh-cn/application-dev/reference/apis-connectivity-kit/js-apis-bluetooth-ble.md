@@ -4095,7 +4095,7 @@ GATT特征值结构定义，是服务[GattService](#gattservice)的核心数据�
 | characteristicValue | ArrayBuffer                              | 否 | 否    | 特征值的数据内容。                      |
 | descriptors         | Array&lt;[BLEDescriptor](#bledescriptor)&gt; | 否 | 否    | 特征值包含的描述符列表。                |
 | properties  | [GattProperties](#gattproperties) | 否 | 是     | 特征值支持的属性。     |
-| characteristicValueHandle<sup>18+</sup> | number                           | 否    | 是    | 特征值的唯一标识句柄。当对端BLE蓝牙设备提供了多个相同UUID特征值时，可以通过此句柄区分不同的特征值。                      |
+| characteristicValueHandle<sup>18+</sup> | number                           | 否    | 是    | 特征值的唯一标识句柄。当server端BLE蓝牙设备提供了多个相同UUID特征值时，可以通过此句柄区分不同的特征值。                      |
 
 
 ## BLEDescriptor
@@ -4112,7 +4112,7 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 | characteristicUuid | string      | 否 | 否    | 描述符所属的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | descriptorUuid     | string      | 否 | 否    | 描述符UUID。例如：00002902-0000-1000-8000-00805f9b34fb。 |
 | descriptorValue    | ArrayBuffer | 否 | 否    | 描述符的数据内容。                              |
-| descriptorHandle<sup>18+</sup> | number        | 否    | 是    | 描述符的唯一标识句柄。当对端BLE蓝牙设备提供了多个相同UUID描述符时，可以通过此句柄区分不同的描述符。                      |
+| descriptorHandle<sup>18+</sup> | number        | 否    | 是    | 描述符的唯一标识句柄。当server端BLE蓝牙设备提供了多个相同UUID描述符时，可以通过此句柄区分不同的描述符。                      |
 
 
 ## NotifyCharacteristic
@@ -4129,7 +4129,6 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 | characteristicUuid  | string      | 否 | 否    | 内容发生变化的特征值UUID。例如：00002a11-0000-1000-8000-00805f9b34fb。 |
 | characteristicValue | ArrayBuffer | 否 | 否    | 特征值对应的数据内容。                               |
 | confirm             | boolean     | 否 | 否    | true表示发送的是指示，需要client端回复确认。false表示发送的是通知，不需要client端回复确认。 |
-| includeTxPower<sup>18+</sup> | boolean     | 否    | 是    | 是否携带广播发送功率。<br>true表示携带广播发送功率，false表示不携带广播发送功率，默认值为false。<br>携带该值后，广播报文长度将多占用3个字节。      |
 
 
 ## CharacteristicReadRequest
@@ -4285,6 +4284,8 @@ GATT描述符结构定义，是特征值[BLECharacteristic](#blecharacteristic)�
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 否 | 否    | 要携带的制造商数据内容。           |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 否 | 否    | 要携带的服务数据内容。               |
 | includeDeviceName | boolean     | 否 | 是    | 是否携带蓝牙设备名称。true表示携带，false表示不携带，默认值为false。        |
+| includeTxPower<sup>18+</sup> | boolean     | 否    | 是    | 是否携带广播发送功率。<br>true表示携带广播发送功率，false表示不携带广播发送功率，默认值为false。<br>携带该值后，广播报文长度将多占用3个字节。      |
+
 
 ## AdvertisingParams<sup>11+</sup>
 
