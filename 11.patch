@@ -1,0 +1,28 @@
+diff --git a/zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md b/zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md
+index 59d6436f38e..6f32ee4e1bc 100644
+--- a/zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md
++++ b/zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md
+@@ -601,6 +601,8 @@ constructor(webTag?: string)
+ > 传参且参数是合法字符串：new webview.WebviewController("xxx")，用于开发者区分多实例，并调用对应实例下的方法。
+ > 
+ > 传入参数为空：new webview.WebviewController("")或new webview.WebviewController(undefined)，该场景下参数无意义，无法区分多个实例，直接返回undefined，需要开发者判断返回值是否正常。
++>
++> Web组件销毁后会解绑WebViewController，之后调用WebviewController的非静态方法会抛出17100001异常，应注意调用时机和捕获异常，防止进程异常退出。
+ 
+ **系统能力：** SystemCapability.Web.Webview.Core
+ 
+diff --git a/zh-cn/application-dev/web/web-event-sequence.md b/zh-cn/application-dev/web/web-event-sequence.md
+index 5aef74b6e64..a176913c508 100644
+--- a/zh-cn/application-dev/web/web-event-sequence.md
++++ b/zh-cn/application-dev/web/web-event-sequence.md
+@@ -8,6 +8,10 @@ Web组件提供生命周期回调接口，用于感知状态变化和处理业
+ 
+ Web组件的状态主要包括：Controller绑定到Web组件、网页加载开始、网页加载进度、网页加载结束、页面即将可见。
+ 
++Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)。
++
++自定义组件析构销毁时执行[aboutToDisAppear](../reference/apis-arkui/arkui-ts/ts-custom-component-lifecycle.md#abouttodisappear)函数，Web组件会被销毁，Web组件与WebviewController解绑，js运行环境也会一并销毁。
++
+ **图1**  Web组件网页正常加载过程中的回调事件
+ 
+ ![web-event-sequence](figures/web-event-sequence.png)
