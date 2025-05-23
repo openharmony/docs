@@ -1513,6 +1513,7 @@ wrapKeyItem(keyAlias: string, params: HuksOptions): Promise\<HuksReturnResult>
 
 <!--Del-->该功能暂不支持。<!--DelEnd-->
 
+
 **系统能力：** SystemCapability.Security.Huks.Core
 
 **参数：**
@@ -1553,6 +1554,7 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 加密导入密钥，与wrapKeyItem对应。使用Promise异步回调。
 
 <!--Del-->该功能暂不支持。<!--DelEnd-->
+
 
 **系统能力：** SystemCapability.Security.Huks.Core
 
