@@ -5361,6 +5361,119 @@ try {
 }
 ```
 
+## bundleManager.getAppCloneIdentityBySandboxDataDir<sup>20+</sup>
+
+getAppCloneIdentityBySandboxDataDir(sandboxDataDir: string): AppCloneIdentity
+
+根据应用的沙箱目录获取应用的身份信息，包括应用包名和分身索引信息。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ---------------------------|
+| sandboxDataDir | string |  是  |     表示[应用的沙箱目录](../../file-management/app-sandbox-directory.md)。      |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| [AppCloneIdentity](js-apis-bundleManager-bundleInfo.md#appcloneidentity14) | 返回应用包名和分身索引信息。 |
+
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+//主应用
+let dataDir = 'com.example.myapplication';
+try {
+    let res = bundleManager.getAppCloneIdentityBySandboxDataDir(dataDir);
+    console.info('getAppCloneIdentityBySandboxDataDir successfully. res = ' + JSON.stringify(res));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getAppCloneIdentityBySandboxDataDir failed. Cause = ' + message);
+}
+
+//分身应用
+let cloneDataDir = '+clone-1+com.example.myapplication';
+try {
+    let res = bundleManager.getAppCloneIdentityBySandboxDataDir(cloneDataDir);
+    console.info('getAppCloneIdentityBySandboxDataDir successfully. res = ' + JSON.stringify(res));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getAppCloneIdentityBySandboxDataDir failed. Cause = ' + message);
+}
+
+//元服务
+let atomicDataDir = '+auid-20000000+com.example.myapplication';
+try {
+    let res = bundleManager.getAppCloneIdentityBySandboxDataDir(atomicDataDir);
+    console.info('getAppCloneIdentityBySandboxDataDir successfully. res = ' + JSON.stringify(res));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getAppCloneIdentityBySandboxDataDir failed. Cause = ' + message);
+}
+```
+
+## bundleManager.getSandboxDataDir<sup>20+</sup>
+
+getSandboxDataDir(bundleName: string, appIndex: number): string
+
+根据应用包名和分身索引获取对应的沙箱目录。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ---------- | ------ | ---- | ---------------------------|
+| bundleName | string |  是  |   表示要查询的应用包名。   |
+| appIndex | number |  是  |   表示分身索引。取值范围0~5，取值为0表示主应用。当查询的应用是元服务时，该参数无效。   |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| string | 返回应用的沙箱目录。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700061 | The appIndex is invalid. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = 'com.example.myapplication';
+let appIndex = 1;
+
+try {
+    let dataDir = bundleManager.getSandboxDataDir(bundleName, appIndex);
+    console.info('getSandboxDataDir successfully. dataDir = ' + dataDir);
+} catch (err) {
+    let message = (err as BusinessError).message;
+    console.error('getSandboxDataDir failed. Cause = ' + message);
+}
+```
+
 ## bundleManager.getAppCloneBundleInfo<sup>12+</sup>
 
 getAppCloneBundleInfo(bundleName: string, appIndex: number, bundleFlags: number, userId?: number): Promise\<BundleInfo>;

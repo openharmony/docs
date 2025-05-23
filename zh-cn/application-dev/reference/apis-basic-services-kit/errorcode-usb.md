@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Call requestRight or requestAccessoryRight to get the permission or USBDevicePipe access right first.
+Access right denied. Call requestRight to get the USBDevicePipe access right first.
 
 **错误描述**
 
@@ -21,7 +21,7 @@ Permission denied. Call requestRight or requestAccessoryRight to get the permiss
 **处理步骤**
 
 调用requestRight方法申请设备的使用权限。
-
+<!--Del-->
 ## 14400002 HDC功能被禁用
 
 **错误信息**
@@ -57,7 +57,7 @@ Unsupported operation. The current device does not support port role switching.
 **处理步骤**
 
 使用正确的端口角色。
-
+<!--DelEnd-->
 ## 14400004 服务异常
 
 **错误信息**
@@ -89,7 +89,7 @@ Database operation exception.
 **处理步骤**
 
 尝试重新调用接口。
-
+<!--Del-->
 ## 14400006 不支持的USB设备侧功能
 
 **错误信息**
@@ -107,7 +107,7 @@ Unsupported operation. The function is not supported.
 **处理步骤**
 
 使用正确的USB设备侧功能。
-
+<!--DelEnd-->
 ## 14401001 目标USB配件未匹配
 
 **错误信息**
@@ -220,7 +220,7 @@ Other USB error. Possible causes:Unrecognized discard error code.
 
 **错误信息**
 
-If the transfer is not in progress, already complete, or already cancelled. 
+The transfer is not in progress, or is already complete or cancelled.
 
 **错误描述**
 

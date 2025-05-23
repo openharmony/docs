@@ -204,6 +204,8 @@ alignItems(value: ItemAlign)
 
 ## 事件
 
+除支持[通用事件](ts-component-general-events.md)外，还支持以下事件：
+
 ### onBreakpointChange
 
 onBreakpointChange(callback: (breakpoints: string) => void)

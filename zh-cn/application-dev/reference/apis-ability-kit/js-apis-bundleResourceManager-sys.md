@@ -473,3 +473,60 @@ try {
     hilog.error(0x0000, 'testTag', 'getLauncherAbilityResourceInfo failed: %{public}s', message);
 }
 ```
+
+### bundleResourceManager.getExtensionAbilityResourceInfo<sup>20+</sup>
+
+getExtensionAbilityResourceInfo(bundleName: string, extensionAbilityType: bundleManager.ExtensionAbilityType, resourceFlags: number, appIndex?: number): Array\<LauncherAbilityResourceInfo>
+
+根据应用包名、扩展组件类型、资源信息标志、应用分身ID获取应用的扩展组件资源。使用同步方式返回。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_RESOURCES
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Resource
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                |
+| ----------- | ------ | ---- | --------------------- |
+| bundleName | string | 是   | 应用包名。 |
+| extensionAbilityType | [bundleManager.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | 是   | 应用的扩展组件类型，仅支持ExtensionAbilityType.INPUT_METHOD、ExtensionAbilityType.SHARE、ExtensionAbilityType.ACTION。 |
+| [resourceFlags](#resourceflag) | number | 是   | 资源信息标志，指示需要获取的资源信息的内容。 |
+| appIndex | number | 否   | 应用分身的ID，默认值是0。取值范围0~5，取值为0表示主应用。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                  |
+| ----------------------------------------------------------- | ------------------------------------- |
+| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | 返回指定应用的配置入口图标和名称信息。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[包管理子系统通用错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                              |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied，non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
+| 17700061 | AppIndex not in valid range or not found. |
+
+**示例：**
+
+```ts
+import { bundleManager, bundleResourceManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = "com.example.myapplication";
+let extensionAbilityType = bundleManager.ExtensionAbilityType.INPUT_METHOD;
+let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+try {
+    let resourceInfo = bundleResourceManager.getExtensionAbilityResourceInfo(bundleName, extensionAbilityType, bundleFlags);
+    console.info('getExtensionAbilityResourceInfo successfully. Data label: ' + JSON.stringify(resourceInfo[0].label));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`getExtensionAbilityResourceInfo failed, err code:${code}, err msg: ${message}`);
+}
+```

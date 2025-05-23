@@ -6,7 +6,6 @@
     - [构建第一个ArkTS应用（Stage模型）](quick-start/start-with-ets-stage.md)
   <!--DelEnd-->
   - 开发基础知识<!--development-fundamentals-->
-    - [应用程序包术语](quick-start/application-package-glossary.md)
     - 应用程序包基础知识<!--application-package-fundamentals-->
       - [应用程序包概述](quick-start/application-package-overview.md)
       - 应用程序包结构<!--application-package-structure-->
@@ -34,6 +33,7 @@
       - [创建应用分身](quick-start/app-clone.md)
       - [创建应用多实例](quick-start/multiInstance.md)
       - [配置分层图标](quick-start/layered-image.md)
+    - [应用程序包术语](quick-start/application-package-glossary.md)
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言<!--learning-arkts-->
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
@@ -196,7 +196,9 @@
           - [window接口切换](application-models/window-switch.md)
           - [Storage接口切换](application-models/storage-switch.md)
       <!--DelEnd-->
-      - [Native子进程开发指导（C/C++）](application-models/capi_nativechildprocess_development_guideline.md)
+      - Native子进程开发指导<!--native-childprocess-development-->
+          - [创建Native子进程](application-models/capi_nativechildprocess_development_guideline.md)
+          - [获取Native子进程退出信息](application-models/capi-nativechildprocess-exit-info.md)
     - ArkData（方舟数据管理）<!--arkdata-->
       - [ArkData简介](database/data-mgmt-overview.md)
       - 标准化数据定义<!--uniform-data-definition-->
@@ -568,6 +570,7 @@
           - [嵌入ArkTS组件](ui/ndk-embed-arkts-components.md)
           - [通过XComponent接入无障碍](ui/ndk-accessibility-xcomponent.md)
           - [自定义绘制](ui/arkts-user-defined-draw.md)
+          - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ui/ndk-embedded-component.md)
       - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
         - [UI开发 (兼容JS的类Web开发范式)概述](ui/ui-js-overview.md)
         - 框架说明<!--js-framework-overview-->
@@ -687,6 +690,7 @@
         - [Web组件焦点管理](web/web-focus.md)
         - [Web组件手势事件](web/web-gesture.md)
         - [Web组件缩放功能](web/web-scale-zoom.md)
+        - [使用Web组件显示网页弹框](web/web-dialog.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -706,6 +710,8 @@
       - 使用网页多媒体<!--web-use-multimedia-->
         - [使用WebRTC进行Web视频会议](web/web-rtc.md)
         - [托管网页中的媒体播放](web/app-takeovers-web-media.md)
+        - [使用Web组件支持画中画](web/web-picture-in-picture.md)
+        - [Web组件支持视频沉浸式全屏播放](web/web_full_screen.md)
       - 处理网页内容<!--web-process-page-content-->
         - [使用Web组件打印前端页面](web/web-print.md)
         - [使用Web组件的PDF文档预览能力](web/web-pdf-preview.md)
@@ -2046,6 +2052,7 @@
           - [@ohos.bundle.defaultAppManager (默认应用管理)](reference/apis-ability-kit/js-apis-defaultAppManager.md)
           - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](reference/apis-ability-kit/js-apis-launcherBundleManager.md)
           - [@ohos.bundle.overlay (overlay模块)](reference/apis-ability-kit/js-apis-overlay.md)
+          - [@ohos.bundle.shortcutManager (shortcutManager模块)](reference/apis-ability-kit/js-apis-shortcutManager.md)
           <!--Del-->
           - [@ohos.bundle.appControl (appControl模块)(系统接口)](reference/apis-ability-kit/js-apis-appControl-sys.md)
           - [@ohos.bundle.appDomainVerify (应用域名校验)(系统接口)](reference/apis-ability-kit/js-apis-appDomainVerify-sys.md)
@@ -2236,6 +2243,8 @@
           - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
           - [OH_NativeBundle_ApplicationInfo](reference/apis-ability-kit/_o_h___native_bundle_application_info.md)
           - [OH_NativeBundle_ElementName](reference/apis-ability-kit/_o_h___native_bundle_element_name.md)
+          - [OH_NativeBundle_Metadata](reference/apis-ability-kit/native_interface_bundle_metadata.md)
+          - [OH_NativeBundle_ModuleMetadata](reference/apis-ability-kit/native_interface_bundle_module_metadata.md)
       - 错误码<!--ability-arkts-errcode-->
         - [元能力子系统错误码](reference/apis-ability-kit/errorcode-ability.md)
         - [DistributedSchedule错误码](reference/apis-ability-kit/errorcode-DistributedSchedule.md)
@@ -3086,6 +3095,7 @@
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
           - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
+          - [注册节点渲染状态监听错误码](reference/apis-arkui/errorcode-node-render-monitor.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           - [Canvas错误码](reference/apis-arkui/errorcode-canvas.md)
           <!--Del-->
@@ -3427,9 +3437,9 @@
           <!--DelEnd-->
         - C API<!--data-protection-c-->
           - 模块<!--data-protection-module-->
-            - [DlpPermissionApi](reference/apis-data-protection-kit/_dlp_permission_api.md)
+            - [DlpPermissionApi](reference/apis-data-protection-kit/capi-dlppermissionapi.md)
           - 头文件<!--data-protection-headerfile-->
-            - [dlp_permission_api.h](reference/apis-data-protection-kit/dlp__permission__api_8h.md)
+            - [dlp_permission_api.h](reference/apis-data-protection-kit/capi-dlp-permission-api-h.md)
         - 错误码<!--data-protection-arkts-errcode-->
           - [DLP服务错误码](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-api-->
@@ -3776,7 +3786,7 @@
           - 模块<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
-            - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
+            - [OsAccount](reference/apis-basic-services-kit/capi-osaccount.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
@@ -3789,8 +3799,8 @@
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
             - [oh_pasteboard.h](reference/apis-basic-services-kit/oh__pasteboard_8h.md)
             - [oh_pasteboard_err_code.h](reference/apis-basic-services-kit/oh__pasteboard__err__code_8h.md)
-            - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
-            - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
+            - [os_account.h](reference/apis-basic-services-kit/capi-os-account-h.md)
+            - [os_account_common.h](reference/apis-basic-services-kit/capi-os-account-common-h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
             - [ohscan.h](reference/apis-basic-services-kit/c-apis-scan.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
@@ -4124,23 +4134,33 @@
         - [@ohos.multimedia.avVolumePanel (音量面板)](reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)
       - C API<!--audio-c-->
         - 模块<!--audio-module-->
-          - [OHAudio](reference/apis-audio-kit/_o_h_audio.md)
+          - [OHAudio](reference/apis-audio-kit/capi-ohaudio.md)
         - 头文件<!--audio-headerfile-->
-          - [native_audio_common.h](reference/apis-audio-kit/native__audio__common_8h.md)
-          - [native_audio_device_base.h](reference/apis-audio-kit/native__audio__device__base_8h.md)
-          - [native_audio_manager.h](reference/apis-audio-kit/native__audio__manager_8h.md)
-          - [native_audio_routing_manager.h](reference/apis-audio-kit/native__audio__routing__manager_8h.md)
-          - [native_audio_session_manager.h](reference/apis-audio-kit/native__audio__session__manager_8h.md)
-          - [native_audiocapturer.h](reference/apis-audio-kit/native__audiocapturer_8h.md)
-          - [native_audiorenderer.h](reference/apis-audio-kit/native__audiorenderer_8h.md)
-          - [native_audiostream_base.h](reference/apis-audio-kit/native__audiostream__base_8h.md)
-          - [native_audiostreambuilder.h](reference/apis-audio-kit/native__audiostreambuilder_8h.md)
+          - [native_audiocapturer.h](reference/apis-audio-kit/capi-native-audiocapturer-h.md)
+          - [native_audio_manager.h](reference/apis-audio-kit/capi-native-audio-manager-h.md)
+          - [native_audio_routing_manager.h](reference/apis-audio-kit/capi-native-audio-routing-manager-h.md)
+          - [native_audio_session_manager.h](reference/apis-audio-kit/capi-native-audio-session-manager-h.md)
+          - [native_audio_stream_manager.h](reference/apis-audio-kit/capi-native-audio-stream-manager-h.md)
+          - [native_audiorenderer.h](reference/apis-audio-kit/capi-native-audiorenderer-h.md)
+          - [native_audio_common.h](reference/apis-audio-kit/capi-native-audio-common-h.md)
+          - [native_audio_device_base.h](reference/apis-audio-kit/capi-native-audio-device-base-h.md)
+          - [native_audiostream_base.h](reference/apis-audio-kit/capi-native-audiostream-base-h.md)
+          - [native_audiostreambuilder.h](reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)
         - 结构体<!--audio-struct-->
-          - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
-          - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/_o_h___audio_device_descriptor_array.md)
-          - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
-          - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/_o_h___audio_session___deactivated_event.md)
-          - [OH_AudioSession_Strategy](reference/apis-audio-kit/_o_h___audio_session___strategy.md)
+          - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-oh-audiosession-strategy.md)
+          - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-oh-audiosession-deactivatedevent.md)
+          - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/capi-oh-audiodevicedescriptorarray.md)
+          - [OH_AudioStreamInfo](reference/apis-audio-kit/capi-oh-audiostreaminfo.md)
+          - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md)
+          - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)
+          - [OH_AudioManager](reference/apis-audio-kit/capi-oh-audiomanager.md)
+          - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-oh-audioroutingmanager.md)
+          - [OH_AudioSessionManager](reference/apis-audio-kit/capi-oh-audiosessionmanager.md)
+          - [OH_AudioStreamManager](reference/apis-audio-kit/capi-oh-audiostreammanager.md)
+          - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-oh-audiodevicedescriptor.md)
+          - [OH_AudioStreamBuilderStruct](reference/apis-audio-kit/capi-oh-audiostreambuilderstruct.md)
+          - [OH_AudioRendererStruct](reference/apis-audio-kit/capi-oh-audiorendererstruct.md)
+          - [OH_AudioCapturerStruct](reference/apis-audio-kit/capi-oh-audiocapturerstruct.md)
       - 错误码<!--audio-arkts-errcode-->
         - [Audio错误码](reference/apis-audio-kit/errorcode-audio.md)
         - [Ringtone错误码](reference/apis-audio-kit/errorcode-ringtone.md)
@@ -4429,17 +4449,21 @@
         <!--DelEnd-->
       - C API<!--media-library-c-->
         - 模块<!--media-library-module-->
-          - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
+          - [MediaAssetManager](reference/apis-media-library-kit/capi-mediaassetmanager.md)
         - 头文件<!--media-library-headerfile-->
-          - [media_access_helper_capi.h](reference/apis-media-library-kit/media__access__helper__capi_8h.md)
-          - [media_asset_base_capi.h](reference/apis-media-library-kit/media__asset__base__capi_8h.md)
-          - [media_asset_capi.h](reference/apis-media-library-kit/media__asset__capi_8h.md)
-          - [media_asset_change_request_capi.h](reference/apis-media-library-kit/media__asset__change__request__capi_8h.md)
-          - [media_asset_manager_capi.h](reference/apis-media-library-kit/media__asset__manager__capi_8h.md)
-          - [moving_photo_capi.h](reference/apis-media-library-kit/moving__photo__capi_8h.md)
+          - [media_access_helper_capi.h](reference/apis-media-library-kit/capi-media-access-helper-capi-h.md)
+          - [media_asset_base_capi.h](reference/apis-media-library-kit/capi-media-asset-base-capi-h.md)
+          - [media_asset_capi.h](reference/apis-media-library-kit/capi-media-asset-capi-h.md)
+          - [media_asset_change_request_capi.h](reference/apis-media-library-kit/capi-media-asset-change-request-capi-h.md)
+          - [media_asset_manager_capi.h](reference/apis-media-library-kit/capi-media-asset-manager-capi-h.md)
+          - [moving_photo_capi.h](reference/apis-media-library-kit/capi-moving-photo-capi-h.md)
         - 结构体<!--media-library-struct-->
-          - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
-          - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)
+          - [MediaLibrary_RequestId](reference/apis-media-library-kit/capi-medialibrary-requestid.md)
+          - [OH_MediaAssetManager](reference/apis-media-library-kit/capi-oh-mediaassetmanager.md)
+          - [OH_MediaAssetChangeRequest](reference/apis-media-library-kit/capi-oh-mediaassetchangerequest.md)
+          - [OH_MovingPhoto](reference/apis-media-library-kit/capi-oh-movingphoto.md)
+          - [OH_MediaAsset](reference/apis-media-library-kit/capi-oh-mediaasset.md)
+          - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/capi-medialibrary-requestoptions.md)
   - 图形<!--graphics-api-->
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
       - ArkTS API<!--arkgraphics-arkts-->

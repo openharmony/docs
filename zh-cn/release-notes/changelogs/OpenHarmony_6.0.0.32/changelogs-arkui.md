@@ -74,7 +74,27 @@
 
 **适配指导**
 
-若有继承派生则需要在继承派生定义处增加Resource类型支持，否则无需适配。
+若有继承派生或者读取赋值则需要在定义处增加Resource类型支持，否则无需适配。
+
+```ts
+@Entry
+@Component
+struct Index {
+  searchOptions: SearchOptions = { value: '123456'}
+  // @State text: string = this.searchOptions.value; //原定义
+  @State text: ResourceStr | undefined = this.searchOptions.value; //适配定义
+  build() {
+    Column() {
+      Scroll() {
+        Column({ space: 20 }) {
+          Search(this.searchOptions)
+          Text(this.text)
+        }.alignItems(HorizontalAlign.Center).width('100%').margin({ top: 20 })
+      }
+    }
+  }
+}
+```
 
 ## cl.arkui.2 width和height支持的matchParent接口规格变更
 

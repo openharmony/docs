@@ -1005,8 +1005,10 @@ struct AnimatorTest {
   }
 
   aboutToDisappear() {
+    // 自定义组件消失时调用finish使未完成的动画结束，避免动画继续运行。
     // 由于backAnimator在onframe中引用了this, this中保存了backAnimator，
     // 在自定义组件消失时应该将保存在组件中的backAnimator置空，避免内存泄漏
+    this.backAnimator?.finish();
     this.backAnimator = undefined;
   }
 

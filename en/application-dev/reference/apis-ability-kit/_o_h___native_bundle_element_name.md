@@ -11,6 +11,8 @@ This struct is an output parameter of [OH_NativeBundle_GetMainElementName()](_bu
 
 **Related module**: [Bundle](_bundle.md)
 
+**Header file**: [native_interface_bundle.h](native__interface__bundle.md)
+
 
 ## Summary
 

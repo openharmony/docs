@@ -4573,6 +4573,20 @@ Allows an application to call the APIs for installing plugins.
 
 **Valid since**: 19
 
+## ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
+
+Allows an applications to call the interface of enterprise space to access DLP files.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
 Allows an application to call the APIs for uninstalling plugins.
@@ -4748,6 +4762,20 @@ Allows an application to run background request tasks without triggering notific
 **Enable via ACL**: true
 
 **Supported devices**: General
+
+**Valid since**: 20
+
+## ohos.permission.RESTORE_APP
+
+Allows a system application to display a pop-up window for application restore.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
 
 **Valid since**: 20
 

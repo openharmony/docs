@@ -133,6 +133,9 @@ order(value: number | GridColColumnOption)
   ```
 - 建议手动配置不同断点下GridCol组件所占列数，避免默认补全列数的布局效果不符合预期。
 
+## 事件
+支持[通用事件](ts-component-general-events.md)。
+
 ## 示例
 GridCol的基本用法示例。
 

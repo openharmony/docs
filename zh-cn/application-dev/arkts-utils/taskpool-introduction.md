@@ -109,7 +109,7 @@ function add(num1: number, num2: number): number {
   return num1 + num2;
 }
 
-async function ConcurrentFunc(): Promise<void> {
+async function concurrentFunc(): Promise<void> {
   try {
     const task: taskpool.Task = new taskpool.Task(add, 1, 2);
     console.info(`taskpool res is: ${await taskpool.execute(task)}`);
@@ -130,7 +130,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            ConcurrentFunc();
+            concurrentFunc();
           })
       }
       .width('100%')
@@ -142,7 +142,7 @@ struct Index {
 
 #### 并发函数返回Promise
 
-并发函数中返回Promise时需要特别关注。如示例所示，testPromise和testPromise1等并发同步函数会处理该Promise并返回结果。
+并发函数中返回Promise时需要特别关注。如示例所示，testPromise和testPromise1等需处理Promise并返回结果。
 
 示例：
 

@@ -58,6 +58,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
+| int32_t [OH_NativeWindow_CleanCache](_native_window.md#oh_nativewindow_cleancache) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window) | 清理OHNativeWindow中的OHNativeWindowBuffer缓存。<br/>使用该接口清理缓存前，需确保已通过[OH_NativeWindow_NativeWindowRequestBuffer](_native_window.md#oh_nativewindow_nativewindowrequestbuffer)接口成功申请OHNativeWindowBuffer。<br/>本接口为非线程安全类型接口。 | 
 | [OHNativeWindow](_native_window.md#ohnativewindow) \* [OH_NativeWindow_CreateNativeWindow](_native_window.md#oh_nativewindow_createnativewindow) (void \*pSurface) | 创建OHNativeWindow实例，每次调用都会产生一个新的OHNativeWindow实例。 说明：此接口不可用，可通过**OH_NativeImage_AcquireNativeWindow**创建，或通过XComponent创建。 | 
 | void [OH_NativeWindow_DestroyNativeWindow](_native_window.md#oh_nativewindow_destroynativewindow) ([OHNativeWindow](_native_window.md#ohnativewindow) \*window) | 将OHNativeWindow对象的引用计数减1，当引用计数为0的时候，该OHNativeWindow对象会被析构掉。 | 
 | [OHNativeWindowBuffer](_native_window.md#ohnativewindowbuffer) \* [OH_NativeWindow_CreateNativeWindowBufferFromSurfaceBuffer](_native_window.md#oh_nativewindow_createnativewindowbufferfromsurfacebuffer) (void \*pSurfaceBuffer) | 创建OHNativeWindowBuffer实例，每次调用都会产生一个新的OHNativeWindowBuffer实例。 此接口从API version 12开始废弃，使用[OH_NativeWindow_CreateNativeWindowBufferFromNativeBuffer](_native_window.md#oh_nativewindow_createnativewindowbufferfromnativebuffer)替代。 | 

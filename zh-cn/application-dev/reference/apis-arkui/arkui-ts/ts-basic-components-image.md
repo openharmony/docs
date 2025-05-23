@@ -460,7 +460,7 @@ resizable(value: ResizableOptions)
 
 设置图像拉伸时可调整大小的图像选项。拉伸对拖拽缩略图以及占位图有效。
 
-设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。
+设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat属性和orientation属性设置不生效。
 
 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。
 
@@ -855,8 +855,8 @@ type ImageErrorCallback = (error: ImageError) => void
 | 102112    | read file failed.              | 数据加载 | 媒体库文件 |
 | 102130    | decoded data is empty.         | 数据加载 | 媒体库缩略图文件 |
 | 102131    | load shared memory image data timeout. | 数据加载 | 共享内存 |
-| 102010    | make svg dom failed.           | 数据加载 | 矢量图 |
-| 102010    | image data size is invalid.    | 数据加载 | 位图 |
+| 103100    | make svg dom failed.           | 数据加载 | 矢量图 |
+| 103200    | image data size is invalid.    | 数据加载 | 位图 |
 | 111000    | image source create failed.    | 数据解码 | 位图 |
 | 111001    | pixelmap create failed.        | 数据解码 | 位图 |
 

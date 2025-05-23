@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## 需要权限
@@ -274,7 +274,7 @@ Web组件指定共享渲染进程。
 | 名称        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器，通过controller可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器，通过controller可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER，该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview，false表示创建正常模式的webview。<br> 默认值：false。 |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token，多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""。  |
@@ -1827,6 +1827,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
 > - 该脚本按照字典序执行，非数组本身顺序，若需数组本身顺序，建议使用[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)接口。
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1903,6 +1904,7 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 > - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
 > - 该脚本按照字典序执行，非数组本身顺序。
 > - 不建议与[runJavaScriptOnDocumentEnd](#runjavascriptondocumentend15)同时使用。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1966,6 +1968,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
 > - 该脚本按照数组本身顺序执行。
 > - 不建议与[javaScriptOnDocumentStart](#javascriptondocumentstart11)同时使用。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2042,6 +2045,7 @@ runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 > - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
 > - 该脚本按照数组本身顺序执行。
 > - 不建议与[javaScriptOnDocumentEnd](#javascriptondocumentend11)同时使用。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -3450,7 +3454,7 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
 
 | 参数名     | 类型                   | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 是    | 网页触发alert()告警弹窗时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnAlertEvent](#onalertevent12), boolean\>                | 是    | 网页触发alert()告警弹窗时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终确认结果。当回调返回false时，弹窗的处理结果会被视为取消。 |
 
 **示例：**
 
@@ -3475,12 +3479,6 @@ onAlert(callback: Callback\<OnAlertEvent, boolean\>)
                 title: 'onAlert',
                 message: 'text',
                 primaryButton: {
-                  value: 'cancel',
-                  action: () => {
-                    event.result.handleCancel();
-                  }
-                },
-                secondaryButton: {
                   value: 'ok',
                   action: () => {
                     event.result.handleConfirm();
@@ -3610,7 +3608,7 @@ onConfirm(callback: Callback\<OnConfirmEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 是    | 网页调用confirm()告警时触发<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnConfirmEvent](#onconfirmevent12), boolean\>                | 是    | 网页调用confirm()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终确认结果。当回调返回false时，弹窗的处理结果会被视为取消。 |
 
 **示例：**
 
@@ -3699,47 +3697,80 @@ onPrompt(callback: Callback\<OnPromptEvent, boolean\>)
 
 | 参数名     | 类型                  | 必填   | 说明            |
 | ------- | --------------------- | ---- | --------------- |
-| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 是    | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认和取消），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终是否离开当前页面。当回调返回false时，函数中绘制的自定义弹窗无效。 |
+| callback     | Callback\<[OnPromptEvent](#onpromptevent12), boolean\>                | 是    | 网页调用prompt()告警时触发。<br>返回值boolean。当回调返回true时，应用可以调用自定义弹窗能力（包括确认、取消和输入），并且需要根据用户的确认或取消操作调用JsResult通知Web组件最终处理结果。当回调返回false时，弹窗的处理结果会被视为取消。 |
 
 **示例：**
 
   ```ts
   // xxx.ets
+  import { CustomContentDialog } from '@kit.ArkUI';
   import { webview } from '@kit.ArkWeb';
 
   @Entry
   @Component
   struct WebComponent {
-    controller: webview.WebviewController = new webview.WebviewController();
-    uiContext: UIContext = this.getUIContext();
+    @State message: string = 'Hello World';
+    @State title: string = 'Hello World';
+    @State result: JsResult | null = null;
+    promptResult: string = '';
+    webviewController: webview.WebviewController = new webview.WebviewController();
+    dialogController: CustomDialogController = new CustomDialogController({
+      builder: CustomContentDialog({
+        primaryTitle: this.title,
+        contentBuilder: () => {
+          this.buildContent();
+        },
+        buttons: [
+          {
+            value: '取消',
+            buttonStyle: ButtonStyleMode.TEXTUAL,
+            action: () => {
+              console.info('Callback when the button is clicked');
+              this.result?.handleCancel()
+            }
+          },
+          {
+            value: '确认',
+            buttonStyle: ButtonStyleMode.TEXTUAL,
+            action: () => {
+              this.result?.handlePromptConfirm(this.promptResult);
+            }
+          }
+        ],
+      }),
+      onWillDismiss: () => {
+        this.result?.handleCancel();
+        this.dialogController.close();
+      }
+    });
+
+    // 自定义弹出框的内容区
+    @Builder
+    buildContent(): void {
+      Column() {
+        Text(this.message)
+        TextInput()
+          .onChange((value) => {
+            this.promptResult = value;
+          })
+          .defaultFocus(true)
+      }
+      .width('100%')
+    }
 
     build() {
       Column() {
-        Web({ src: $rawfile("index.html"), controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.webviewController })
           .onPrompt((event) => {
             if (event) {
-              console.log("url:" + event.url);
-              console.log("message:" + event.message);
-              console.log("value:" + event.value);
-              this.uiContext.showAlertDialog({
-                title: 'onPrompt',
-                message: 'text',
-                primaryButton: {
-                  value: 'cancel',
-                  action: () => {
-                    event.result.handleCancel();
-                  }
-                },
-                secondaryButton: {
-                  value: 'ok',
-                  action: () => {
-                    event.result.handlePromptConfirm(event.value);
-                  }
-                },
-                cancel: () => {
-                  event.result.handleCancel();
-                }
-              })
+              console.log("event.url:" + event.url);
+              console.log("event.message:" + event.message);
+              console.log("event.value:" + event.value);
+              this.title = "来自" + event.url + "的消息";
+              this.message = event.message;
+              this.promptResult = event.value;
+              this.result = event.result;
+              this.dialogController.open();
             }
             return true;
           })
@@ -10618,7 +10649,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | object     | object                                   | 是    | 参与注册的对象。只能声明方法，不能声明属性。                   |
 | name       | string                                   | 是    | 注册对象的名称，与window中调用的对象名一致。                |
 | methodList | Array\<string\>                          | 是    | 参与注册的应用侧JavaScript对象的同步方法。                 |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9) | 是    | -    | 控制器。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | asyncMethodList<sup>12+</sup>  | Array\<string\>      | 否    | 参与注册的应用侧JavaScript对象的异步方法。异步方法无法获取返回值。   |
 | permission<sup>12+</sup>  | string  | 否    | json字符串，默认为空，通过该字符串配置JSBridge的权限管控，可以定义object、method一级的url白名单。<br>示例请参考[前端页面调用应用侧函数](../../web/web-in-page-app-function-invoking.md)。 |
 

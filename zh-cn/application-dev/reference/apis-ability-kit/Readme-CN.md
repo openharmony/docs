@@ -90,6 +90,7 @@
     - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
     - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](js-apis-launcherBundleManager.md)
     - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
+    - [@ohos.bundle.shortcutManager (shortcutManager模块)](js-apis-shortcutManager.md)
     <!--Del-->
     - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl-sys.md)
     - [@ohos.bundle.appDomainVerify (应用域名校验)(系统接口)](js-apis-appDomainVerify-sys.md)
@@ -280,6 +281,8 @@
     - [AbilityBase_Element](_ability_base_element.md)
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
     - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
+    - [OH_NativeBundle_Metadata](native_interface_bundle_metadata.md)
+    - [OH_NativeBundle_ModuleMetadata](native_interface_bundle_module_metadata.md)
 - 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)

@@ -51,8 +51,8 @@ notEqualTo(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notEqualTo("NAME", "Rose")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notEqualTo("NAME", "Rose");
 ```
 
 ### beginWrap
@@ -76,13 +76,13 @@ beginWrap(): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
     .equalTo("SALARY", 200.5)
-    .endWrap()
+    .endWrap();
 ```
 
 ### endWrap
@@ -106,13 +106,13 @@ endWrap(): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .beginWrap()
     .equalTo("AGE", 18)
     .or()
     .equalTo("SALARY", 200.5)
-    .endWrap()
+    .endWrap();
 ```
 
 ### or
@@ -139,7 +139,7 @@ or(): DataSharePredicates
 let predicates = new dataSharePredicates.DataSharePredicates()
 predicates.equalTo("NAME", "lisi")
     .or()
-    .equalTo("NAME", "Rose")
+    .equalTo("NAME", "Rose");
 ```
 
 ### contains
@@ -170,8 +170,8 @@ contains(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.contains("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.contains("NAME", "os");
 ```
 
 ### beginsWith
@@ -202,8 +202,8 @@ beginsWith(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.beginsWith("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.beginsWith("NAME", "os");
 ```
 
 ### endsWith
@@ -234,8 +234,8 @@ endsWith(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.endsWith("NAME", "os")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.endsWith("NAME", "os");
 ```
 
 ### isNull
@@ -265,8 +265,8 @@ isNull(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.isNull("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.isNull("NAME");
 ```
 
 ### isNotNull
@@ -296,8 +296,8 @@ isNotNull(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.isNotNull("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.isNotNull("NAME");
 ```
 
 ### like
@@ -328,8 +328,8 @@ like(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.like("NAME", "%os%")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.like("NAME", "%os%");
 ```
 
 ### unlike
@@ -360,8 +360,8 @@ unlike(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.unlike("NAME", "%os%")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.unlike("NAME", "%os%");
 ```
 
 ### glob
@@ -392,8 +392,8 @@ glob(field: string, value: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.glob("NAME", "?h*g")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.glob("NAME", "?h*g");
 ```
 
 ### between
@@ -425,8 +425,8 @@ between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.between("AGE", 10, 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.between("AGE", 10, 50);
 ```
 
 ### notBetween
@@ -458,8 +458,8 @@ notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notBetween("AGE", 10, 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notBetween("AGE", 10, 50);
 ```
 
 ### greaterThan
@@ -490,8 +490,8 @@ greaterThan(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.greaterThan("AGE", 10)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.greaterThan("AGE", 10);
 ```
 
 ### lessThan
@@ -522,8 +522,8 @@ lessThan(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.lessThan("AGE", 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.lessThan("AGE", 50);
 ```
 
 ### greaterThanOrEqualTo
@@ -554,8 +554,8 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.greaterThanOrEqualTo("AGE", 10)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.greaterThanOrEqualTo("AGE", 10);
 ```
 
 ### lessThanOrEqualTo
@@ -586,8 +586,8 @@ lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.lessThanOrEqualTo("AGE", 50)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.lessThanOrEqualTo("AGE", 50);
 ```
 
 ### distinct
@@ -611,8 +611,8 @@ distinct(): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose").distinct()
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose").distinct();
 ```
 
 ### groupBy
@@ -642,8 +642,8 @@ groupBy(fields: Array&lt;string&gt;): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.groupBy(["AGE", "NAME"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.groupBy(["AGE", "NAME"]);
 ```
 
 ### indexedBy
@@ -673,8 +673,8 @@ indexedBy(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.indexedBy("SALARY_INDEX")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.indexedBy("SALARY_INDEX");
 ```
 
 ### notIn
@@ -705,8 +705,8 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.notIn("NAME", ["Lisa", "Rose"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.notIn("NAME", ["Lisa", "Rose"]);
 ```
 
 ### prefixKey
@@ -736,8 +736,8 @@ prefixKey(prefix: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.prefixKey("NAME")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.prefixKey("NAME");
 ```
 
 ### inKeys
@@ -767,6 +767,6 @@ inKeys(keys: Array&lt;string&gt;): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.inKeys(["Lisa", "Rose"])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.inKeys(["Lisa", "Rose"]);
 ```
