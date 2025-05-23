@@ -8,6 +8,8 @@
 
 **库：** libohaudio.so
 
+**引用文件：** <multimedia/audio_framework/audio_manager/native_audio_stream_manager.h>
+
 **系统能力：** SystemCapability.Multimedia.Audio.Core
 
 **起始版本：** 19
