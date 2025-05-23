@@ -6562,6 +6562,62 @@ try {
 }
 ```
 
+### setStartWindowBackgroundColor<sup>20+</sup>
+
+setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: ColorMetrics): Promise&lt;void&gt;
+
+设置启动页背景色
+
+**系统能力：** SystemCapability.Window.SessionManager
+ 
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| moduleName     | string                        | 是   | 需要设置的UIability所属module的名字，取值范围为0-200，仅支持设置当前bundle中的内容。 |
+| abilityName     | string                        | 是   | 需要设置的UIability名字，取值范围为0-200，仅支持设置当前bundle中的内容。 |
+| color | ColorMetrics | 是   | 设置的背景色。                       |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { ColorMetrics, window } from '@kit.ArkUI';
+
+try {
+  let promise =
+    window.setStartWindowBackgroundColor("entry", "EntryAbility", ColorMetrics.numeric(0xff000000));
+  promise.then(() => {
+    console.log('Succeeded in setting the starting window color.');
+  }).catch((err: BusinessError) => {
+    console.error(`Set the starting window color failed. Cause code: ${err.code}, message:  ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the starting window color. Cause code: ${exception.code}, message:  ${exception.message}`);
+}
+```
+
 ### setWindowKeepScreenOn<sup>9+</sup>
 
 setWindowKeepScreenOn(isKeepScreenOn: boolean, callback: AsyncCallback&lt;void&gt;): void
