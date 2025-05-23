@@ -498,6 +498,8 @@
 
 ## KeyboardAvoidMode<sup>12+</sup>枚举说明
 
+弹窗避让键盘时，避让模式的枚举类型。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
