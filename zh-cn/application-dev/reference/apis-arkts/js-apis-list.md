@@ -878,7 +878,7 @@ list.add(5);
 list.add(4);
 
 // 使用方法一：
-let items = Array.from(list)
+let items = Array.from(list);
 for (let item of items) {
   console.log("value: " + item);
 }
