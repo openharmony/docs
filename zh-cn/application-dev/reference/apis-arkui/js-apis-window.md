@@ -4890,7 +4890,7 @@ try {
 
 ### on('windowStatusDidChange')<sup>20+</sup>
 
-on(type:  'windowStatusDidChange', callback: Callback&lt;WindowStatusType&gt;): void
+on(type: 'windowStatusDidChange', callback: Callback&lt;WindowStatusType&gt;): void
 
 开启窗口模式变化的监听，当窗口windowStatus发生变化后进行通知（此时窗口[Rect](#rect7)属性已经完成更新）。
 
@@ -4913,7 +4913,6 @@ on(type:  'windowStatusDidChange', callback: Callback&lt;WindowStatusType&gt;): 
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length; 3. Incorrect parameter format. |
 
 **示例：**
 
@@ -4952,7 +4951,6 @@ off(type: 'windowStatusDidChange', callback?: Callback&lt;WindowStatusType&gt;):
 | ------- | ------------------------------ |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
-| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length; 3. Incorrect parameter format. |
 
 **示例：**
 
