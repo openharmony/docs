@@ -1552,7 +1552,7 @@ unwrapKeyItem(keyAlias: string, params: HuksOptions, wrappedKey: Uint8Array): Pr
 
 加密导入密钥，与wrapKeyItem对应。使用Promise异步回调。
 
-<!--Del-->该功能当前暂时无法使用，调用接口将返回错误码801。<!--DelEnd-->
+<!--Del-->该功能暂不支持。<!--DelEnd-->
 
 **系统能力：** SystemCapability.Security.Huks.Core
 
