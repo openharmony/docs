@@ -5781,12 +5781,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let connAddress: socket.TCPConnectOptions = {
+let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
-};
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: connAddress,
+  address: netAddress,
   timeout: 6000
 }
 
