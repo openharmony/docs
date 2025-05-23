@@ -60,6 +60,7 @@ AVCastPicker({
 ## 示例
 
 投播功能的示例说明参考如下。
+<!--RP1--><!--RP1End-->
 
 ```ts
 import { AVCastPickerState, AVCastPicker } from '@kit.AVSessionKit';
