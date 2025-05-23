@@ -1251,7 +1251,7 @@ request方法回调函数的返回值类型。
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 |  receiveSize        | number | 是  | 已接收的数据量(字节)。           |
-| totalSize| number | 是 | 总共要接收的数据量(字节)|
+| totalSize| number | 是 | 总共要接收的数据量(字节)。|
 
 ## DataSendProgressInfo<sup>11+</sup>
 
