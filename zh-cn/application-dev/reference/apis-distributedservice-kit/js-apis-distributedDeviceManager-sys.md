@@ -377,7 +377,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 
   | 类型                                                       | 说明                               |
   | ---------------------------------------------------------- | ---------------------------------- |
-  | Array&lt;[DeviceProfileInfo](#devicefrofileinfo15)&gt; | Promise实例，返回设备列表。 |
+  | Array&lt;[DeviceProfileInfo](#deviceprofileinfo15)&gt; | Promise实例，返回设备列表。 |
 
 **错误码：**
 
@@ -482,7 +482,7 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;Device
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  |  filterOptions       | [DeviceIconInfoFilterOptions](#deviceiconinfofilteroptions15)         | 是    |  查询过程中使用的过滤条件。    |
+  |  filterOptions       | [DeviceIconInfoFilterOptions](#deviceiconinfofilteroptions18)         | 是    |  查询过程中使用的过滤条件。    |
 
 **返回值：**
 
