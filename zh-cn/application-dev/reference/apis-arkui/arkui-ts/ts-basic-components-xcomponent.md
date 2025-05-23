@@ -547,7 +547,9 @@ lockCanvas(): Canvas | null
 >
 > 只支持TEXTURE和SURFACE模式。
 >
-> 此接口不影响NDK侧的绘制流程，但是画布对象的绘制内容和NDK侧的绘制内容共享XComponent的同一显示区域，同时使用可能导致绘制内容重叠或者显示异常，建议谨慎混用。
+> 使用此接口后，同时在NDK侧获取NativeWindow并调用相关接口进行绘制，可能出现缓冲区竞争和上下文冲突而发生绘制画面错误等异常，因此不允许使用。
+>
+> 此接口需要和[unlockCanvasAndPost](#unlockcanvasandpost20)接口配对使用，具体参考[示例3使用画布对象在XComponent上绘制内容](#示例3使用画布对象在xcomponent上绘制内容)。
 
 ### unlockCanvasAndPost<sup>20+</sup>
 
@@ -570,7 +572,9 @@ unlockCanvasAndPost(canvas: Canvas): void
 >
 > 2. 只支持TEXTURE和SURFACE模式。
 >
-> 3. 此接口不影响NDK侧的绘制流程，但是画布对象的绘制内容和NDK侧的绘制内容共享XComponent的同一显示区域，同时使用可能导致绘制内容重叠或者显示异常，建议谨慎混用。
+> 3. 使用此接口后，同时在NDK侧获取NativeWindow并调用相关接口进行绘制，可能出现缓冲区竞争和上下文冲突而发生绘制画面错误等异常，因此不允许使用。
+>
+> 4. 此接口需要和[lockCanvas](#lockcanvas20)接口配对使用，具体参考[示例3使用画布对象在XComponent上绘制内容](#示例3使用画布对象在xcomponent上绘制内容)。
 
 ## SurfaceRotationOptions<sup>12+</sup>对象说明
 
@@ -782,7 +786,7 @@ struct Index {
 
 ### 示例3（使用画布对象在XComponent上绘制内容）
 
-通过lockCanvas返回的画布对象调用对应的绘制接口，结合unlockCanvasAndPost在XComponent上绘制内容。
+应用调用lockCanvas返回画布对象，然后通过画布对象调用对应的绘制接口，最后调用unlockCanvasAndPost在XComponent上绘制内容。
 
 ```ts
 // xxx.ets
@@ -803,21 +807,21 @@ struct Index {
           this.mCanvas = this.xcController.lockCanvas();
           if (this.mCanvas) {
             this.mCanvas.drawColor(255, 240, 250, 255); // 每次绘制前必须完全重绘整个XComponent区域,可以调用此方法实现
-            const brush = new drawing.Brush();
-            brush.setColor({
+            const brush = new drawing.Brush(); // 创建画刷对象
+            brush.setColor({ // 设置画刷的颜色
               alpha: 255,
               red: 39,
               green: 135,
               blue: 217
             });
-            this.mCanvas.attachBrush(brush);
-            this.mCanvas.drawRect({
+            this.mCanvas.attachBrush(brush); // 绑定画刷到画布上
+            this.mCanvas.drawRect({ // 绘制一个矩形
               left: 300,
               right: 800,
               top: 100,
               bottom: 800
             });
-            this.mCanvas.detachBrush();
+            this.mCanvas.detachBrush(); // 将画刷与画布解绑
             this.xcController.unlockCanvasAndPost(this.mCanvas);
           }
         })
