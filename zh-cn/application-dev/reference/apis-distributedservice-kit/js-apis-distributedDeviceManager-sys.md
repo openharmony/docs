@@ -44,7 +44,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | 名称         | 类型  | 只读 | 可选             |  说明    |
 | ----------- | ---- | -- | --- |--------------- | 
 | isCloud      | boolean    |  否 | 否           | 表示是否需要实时从云端获取设备列表。<br />-false：表示从设备获取。<br />-true：表示从云端获取。       |
-| deviceIdList  | Array&lt;string&gt;  | 否 | 是    | 表示获取指定deviceId的设备信息，deviceId一般为设备的UDID，如设备无UDID，则取其MAC或SN作为deviceI的。默认为空。       |
+| deviceIdList  | Array&lt;string&gt;  | 否 | 是    | 表示获取指定deviceId的设备信息，deviceId一般为设备的UDID，如设备无UDID，则取其MAC或SN作为deviceId的。默认值为空。       |
 
 
 ## ServiceProfileInfo<sup>15+</sup>
@@ -60,7 +60,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | deviceId       | string  | 否 | 否   |  设备ID。          |
 | serviceId       | string  | 否 |否   | 服务ID。           |
 | serviceType     | string   | 否 | 否   | 服务类型。无取值范围规定，只是一个字符串标识。           |
-| data       | string  | 否 | 是   |  服务数据。范围小于1000个字符。          |
+| data       | string  | 否 | 是   |  服务数据。字符长度小于1000个字符。          |
 
 ## DeviceProfileInfo<sup>15+</sup>
 
@@ -80,7 +80,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  manufacturer  | string  |  否    | 否   |  制造商。           |
 |  deviceName    | string  |  否    | 否   |  设备名称。         |
 |  productId     | string  |  否    | 否   |  设备所属产品ID。    |
-|  subProductId  | string  |  否    | 是   |  设备所属产品子ID。         |
+|  subProductId  | string  |  否    | 是   |  设备所属产品子ID。默认为空字符。         |
 |  sdkVersion    | string  |  否    | 否   |  SDK版本。          |
 |  bleMac        | string  |  否    | 否   |  蓝牙BLE的MAC地址。  |
 |  brMac         | string  |  否    | 否   |  蓝牙BR的MAC地址。  |
@@ -88,17 +88,17 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  firmwareVersion | string |  否   | 否  |  固件版本。          |
 |  hardwareVersion | string |  否   | 否  |  硬件版本。          |
 |  softwareVersion | string |  否  | 否  |  软件版本。          |
-|  protocolType    | number |  否   | 否  |  协议类型。          |
-|  setupType       | number |  否   | 否  |  设备类型。          |
+|  protocolType    | number |  否   | 否  |  协议类型。无取值范围规定，只是一个标识。          |
+|  setupType       | number |  否   | 否  |  设备类型。无取值范围规定，只是一个标识。          |
 |  wiseDeviceId    | string |  否   | 否  |  已注册设备标识。        |
 |  wiseUserId      | string |  否   | 否  |  已注册用户标识。        |
 |  registerTime    | string |  否   | 否  |  注册时间。          |
 |  modifyTime      | string |  否   | 否  |  修改时间。          |
 |  shareTime       | string |  否   | 否  |  分享时间。          |
-|  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。     |
-|  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 服务配置信息列表。 |
-|  productName     | string  | 否   | 是 |  设备所属的产品名称。    |
-|  internalModel   | string  | 否   | 是 |  设备所属产品的内部型号。 |
+|  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。<br />-false: 非本地设备。<br />-true: 本地设备。     |
+|  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 服务配置信息列表。默认为空。 |
+|  productName     | string  | 否   | 是 |  设备所属的产品名称。默认为空字符。    |
+|  internalModel   | string  | 否   | 是 |  设备所属产品的内部型号。默认为空字符。 |
 
 
 ## DeviceIconInfoFilterOptions<sup>18+</sup> 
@@ -112,10 +112,10 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | -------| -------- | --------|
 |  productId      | string  | 否 | 否   |  设备所属产品ID。          |
-|  subProductId   | string  | 否 | 是   |  设备所属产品子ID。      |
-|  imageType      | string  | 否 | 否   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
-|  specName       | string  | 否 | 否   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
-|  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。        |
+|  subProductId   | string  | 否 | 是   |  设备所属产品子ID。默认为空字符。      |
+|  imageType      | string  | 否 | 否   |  图片类型。取值范围：<br />-ID：产品实物图。 |
+|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
+|  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。默认为空字符。        |
 
 ## DeviceIconInfo<sup>18+</sup>
 
@@ -128,12 +128,12 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | 名称           | 类型  | 只读  |可选              |  说明    |
 | -------------- | ---- | ------| --------- | --------|
 |  productId      | string  | 否 | 否   |  设备所属产品ID。          |
-|  subProductId   | string  | 否 | 是   |  设备所属产品子ID。     |
-|  imageType      | string  | 否 | 否   |  图片类型。约定取值范围：<br />-ID.<br />-ID_Headset_L.<br />-ID_Headset_R.<br />-ID_Headset_B.<br />-ID_Headset_LB.<br />-ID_Headset_RB.         |
-|  specName       | string  | 否 | 否   |  图片规格名称。约定取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
+|  subProductId   | string  | 否 | 是   |  设备所属产品子ID。默认为空字符。     |
+|  imageType      | string  | 否 | 否   |  图片类型。取值范围：<br />-ID：产品实物图。        |
+|  specName       | string  | 否 | 否   |  图片规格名称。取值范围：<br />-lg: 大图。<br />-sm: 小图。         |
 |  url            | string  | 否 | 否   |  URL。          |
 |  icon           | ArrayBuffer | 否| 否 | 图标。         |
-|  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。         |
+|  internalModel  | string  | 否 | 是   |  设备所属产品的内部型号。默认为空字符。         |
 
 ## NetworkIdQueryFilter<sup>18+</sup>
 
@@ -146,7 +146,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | ------ | --------- | --------|
 |  wiseDeviceId       | string  | 否 | 否   |  已注册设备标识。          |
-|  onlineStatus    | string  | 否 | 是   |  设备在线状态，包括<br />-0: 表示设备处于离线状态。<br />-1: 表示设备在线。可以根据在线状态获取设备网络ID列表。      |
+|  onlineStatus    | string  | 否 | 否   |  设备在线状态，包括<br />-0: 表示设备处于离线状态。<br />-1: 表示设备在线。可以根据在线状态获取设备网络ID列表。      |
 
 ## DeviceManager
 
@@ -415,7 +415,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 
 putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;): Promise&lt;number&gt;
 
-更新设备列表，使用Promise异步回调。
+业务调用更新设备列表，使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -470,7 +470,7 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;):
 
 getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;DeviceIconInfo&gt;
 
-获取设备实物图，使用Promise异步回调。
+获取设备图标，使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
