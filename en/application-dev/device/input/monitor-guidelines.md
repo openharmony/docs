@@ -6,7 +6,7 @@ The multimodal module provides applications with the ability to listen for key a
 
 ## Available APIs
 
-The following table lists the APIs for event listening. For details, see [Input](../../reference/apis-input-kit/capi-input.md).
+The following table lists the APIs for event listening. For details, see [Input](../../reference/apis-input-kit/input.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
