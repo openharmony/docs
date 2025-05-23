@@ -18,12 +18,12 @@ Neural Network Runtime部件的环境要求如下：
 - 开发环境：Ubuntu 18.04及以上。
 - 接入设备：系统定义的标准设备，系统中内置AI硬件驱动并已接入Neural Network Runtime。
 
-由于Neural Network Runtime通过Native API对外开放，需要需要下载鸿蒙SDK并通过Native开发套件编译Neural Network Runtime应用。可以DevEco Studio来搭建环境和编译代码。
+由于Neural Network Runtime通过Native API对外开放，需要下载对应的SDK并通过Native开发套件编译Neural Network Runtime应用。可以使用DevEco Studio来搭建环境和编译代码。
 
 ### 环境搭建
 
 1. 使用Ubuntu编译服务器的终端。
-2. 指定native工具链路径来编译代码，可以使用DevEco Studio来下载鸿蒙SDK来进行编译。
+2. 指定native工具链路径来编译代码，可以使用DevEco Studio来下载对应的SDK来进行编译。
 3. DevEco Studio安装目录下的SDK路径可以在DevEco Studio工程界面，点击File > Settings... > 在settings中搜索SDK，下载对应的SDK即可。
 
 ## 接口说明
