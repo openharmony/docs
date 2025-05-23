@@ -1,4 +1,4 @@
-#  @ohos.multimodalInput.shortKey (系统预置全局快捷键)
+#  @ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)
 
 通过本模块接口，可以设置快捷键拉起Ability的延迟时间，如设置长按快捷键3s后再截屏等。
 

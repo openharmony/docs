@@ -6,11 +6,7 @@
 >
 > - 本模块首批接口从API version 14开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> - 全局快捷键指由系统或应用定义的组合按键。
->
-> - 由系统定义的全局快捷键相关资料也会描述为系统快捷键或系统定义的全局快捷键。
->
-> - 文档中系统快捷键指由系统定义的全局快捷键。
+> - 全局快捷键指由系统或应用定义的组合按键，系统快捷键指由系统定义的全局快捷键，应用快捷键指由应用定义的全局快捷键。
 
 
 ## 导入模块
@@ -48,7 +44,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
-全局快捷键-系统定义。获取所有系统快捷键，使用Promise异步回调。
+获取所有系统快捷键，使用Promise异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -78,7 +74,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
-全局快捷键-应用定义。订阅全局快捷键，当满足条件的组合按键输入事件发生时上报快捷键选项，使用Callback异步回调。该接口只允许订阅应用设置的自定义快捷键。
+订阅应用快捷键。当满足条件的组合按键输入事件发生时上报快捷键选项，使用Callback异步回调。该接口只允许订阅应用设置的自定义快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -125,7 +121,7 @@ try {
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
-全局快捷键-应用定义。取消订阅全局快捷键。该接口只允许取消应用设置的自定义快捷键。
+订阅应用快捷键。取消订阅全局快捷键。该接口只允许取消应用设置的自定义快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
