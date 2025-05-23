@@ -97,8 +97,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  shareTime       | string |  否   | 否  |  分享时间。          |
 |  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。<br />-false：非本地设备。<br />-true：本地设备。     |
 |  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 服务配置信息列表。默认为空。 |
-|  productName<sup>15+</sup>     | string  | 否   | 是 |  设备所属的产品名称。默认为空字符。    |
-|  internalModel<sup>15+</sup>   | string  | 否   | 是 |  设备所属产品的内部型号。默认为空字符。 |
+|  productName<sup>18+</sup>     | string  | 否   | 是 |  设备所属的产品名称。默认为空字符。    |
+|  internalModel<sup>18+</sup>   | string  | 否   | 是 |  设备所属产品的内部型号。默认为空字符。 |
 
 
 ## DeviceIconInfoFilterOptions<sup>18+</sup> 
