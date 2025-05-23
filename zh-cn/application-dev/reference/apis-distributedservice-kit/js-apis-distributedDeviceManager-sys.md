@@ -97,8 +97,8 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 |  shareTime       | string |  否   | 否  |  分享时间。          |
 |  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。<br />-false：非本地设备。<br />-true：本地设备。     |
 |  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 服务配置信息列表。默认为空。 |
-|  productName     | string  | 否   | 是 |  设备所属的产品名称。默认为空字符。    |
-|  internalModel   | string  | 否   | 是 |  设备所属产品的内部型号。默认为空字符。 |
+|  productName<sup>15+</sup>     | string  | 否   | 是 |  设备所属的产品名称。默认为空字符。    |
+|  internalModel<sup>15+</sup>   | string  | 否   | 是 |  设备所属产品的内部型号。默认为空字符。 |
 
 
 ## DeviceIconInfoFilterOptions<sup>18+</sup> 
@@ -146,7 +146,7 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | 名称           | 类型  | 只读 | 可选              |  说明    |
 | -------------- | ---- | ------ | --------- | --------|
 |  wiseDeviceId       | string  | 否 | 否   |  已注册设备标识。          |
-|  onlineStatus    | string  | 否 | 否   |  设备在线状态，包括<br />-0：表示设备处于离线状态。<br />-1：表示设备在线。可以根据在线状态获取设备网络ID列表。      |
+|  onlineStatus    | number  | 否 | 否   |  设备在线状态，包括<br />-0：表示设备处于离线状态。<br />-1：表示设备在线。可以根据在线状态获取设备网络ID列表。默认值0。      |
 
 ## DeviceManager
 
@@ -389,7 +389,7 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 500. |
 | 11600102 | Failed to obtain service.                                 |
-| 11600106 | Failed to get data from the cloud. |
+| 11600106 | Get data from cloud fail. |
 | 11600107 | A login account is required.  |
 
 **示例：**
@@ -500,7 +500,7 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;Device
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; |
 | 11600102 | Failed to obtain service.                                 |
-| 11600106 | Failed to get data from the cloud. |
+| 11600106 | Get data from cloud fail. |
 
 **示例：**
 
@@ -725,7 +725,7 @@ restoreLocalDeivceName(): void
 | -------- | --------------------------------------------------------------- |
 | 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
 | 202 | Permission verification failed. A non-system application calls a system API.                              |
-| 11600102 | Failed to obtain service.                                 |
+| 11600102 | Failed to obtain the service.                                 |
 
 **示例：**
 
