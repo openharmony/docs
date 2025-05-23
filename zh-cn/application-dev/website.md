@@ -665,6 +665,7 @@
         - [Web组件焦点管理](web/web-focus.md)
         - [Web组件手势事件](web/web-gesture.md)
         - [Web组件缩放功能](web/web-scale-zoom.md)
+        - [使用Web组件显示网页弹框](web/web-dialog.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -2918,6 +2919,7 @@
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
+          - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           <!--Del-->
