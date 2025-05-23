@@ -1,6 +1,6 @@
 # Row
 
-沿水平方向布局容器。
+沿水平方向布局的容器。
 
 >  **说明：**
 >
@@ -77,7 +77,7 @@ justifyContent(value: FlexAlign)
 
 reverse(isReversed: Optional\<boolean\>)
 
-设置子组件在主轴（即水平方向）上的排列是否反转。
+设置子组件在水平方向上的排列是否反转。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
