@@ -1,6 +1,6 @@
 # @ohos.pasteboard (剪贴板)
 
-本模块主要提供管理系统剪贴板的能力，为系统复制、粘贴功能提供支持。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
+本模块提供管理系统剪贴板的能力，支持系统复制、粘贴功能。系统剪贴板支持对文本、HTML、URI、Want、PixelMap等内容的操作。
 
 > **说明：**
 >
@@ -137,7 +137,7 @@ let pasteData: pasteboard.PasteData = pasteboard.createData(record);
 
 ## pasteboard.createRecord<sup>9+</sup>
 
-createRecord(mimeType: string, value: ValueType):PasteDataRecord
+createRecord(mimeType: string, value: ValueType): PasteDataRecord
 
 创建一条自定义数据内容条目。
 
@@ -149,7 +149,7 @@ createRecord(mimeType: string, value: ValueType):PasteDataRecord
 
 | 参数名 | 类型 | 必填 | 说明                |
 | -------- | -------- | -------- |-------------------|
-| mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024个字节。  |
+| mimeType | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024字节。  |
 | value | [ValueType](#valuetype9) | 是 | 自定义数据内容。          |
 
 **返回值：**
@@ -464,7 +464,7 @@ let record: pasteboard.PasteDataRecord = pasteboard.createUriRecord('dataability
 
 ## PasteDataProperty<sup>7+</sup>
 
-定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
+定义剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
 该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -661,7 +661,7 @@ addEntry(type: string, value: ValueType): void
 
 | 参数名   | 类型 | 必填 | 说明                |
 |-------| -------- | -------- |-------------------|
-| type  | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024个字节。  |
+| type  | string | 是 | 剪贴板数据对应的MIME类型，可以是[常量](#常量)中已定义的类型，包括HTML类型，WANT类型，纯文本类型，URI类型，PIXELMAP类型；也可以是自定义的MIME类型，开发者可自定义此参数值，mimeType长度不能超过1024字节。  |
 | value | [ValueType](#valuetype9) | 是 | 自定义数据内容。          |
 
 **错误码：**
@@ -1029,12 +1029,12 @@ addRecord(mimeType: string, value: ValueType): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| mimeType | string | 是 | 自定义数据的MIME类型， 其长度不能超过1024个字节。 |
+| mimeType | string | 是 | 自定义数据的MIME类型， 其长度不能超过1024字节。 |
 | value | [ValueType](#valuetype9) | 是 | 自定义数据内容。 |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和见[剪贴板错误码](errorcode-pasteboard.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[剪贴板错误码](errorcode-pasteboard.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
