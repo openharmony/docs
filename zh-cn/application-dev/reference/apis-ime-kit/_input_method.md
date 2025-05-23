@@ -3336,7 +3336,7 @@ InputMethod_ErrorCode OH_TextConfig_SetAbilityName (InputMethod_TextConfig * con
 
 **描述**
 
-设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的abilityName。
+设置[InputMethod_TextConfig](#inputmethod_textconfig)实例的ability名称。
 
 **起始版本：** 20
 
@@ -3345,8 +3345,8 @@ InputMethod_ErrorCode OH_TextConfig_SetAbilityName (InputMethod_TextConfig * con
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 指向即将被设置值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
-| abilityName | 指向UTF-16编码的双字节指针；若传空指针，则会将abilityName设置为空字符串。| 
-| length |  abilityName指针指向内存所包含的元素个数，包含最后的字符串结尾符，计数单位为双字节。<br>1. 如果长度为0，abilityName会被设置为空字符串。<br>2. UTF-16编码的最大长度为127个字符（如果最后一位是字符串结尾符，不包含在计数中），超过127个字符数将会被截断。| 
+| abilityName | 指向UTF-16编码的双字节指针；若传空指针，则会将ability名称设置为空字符串。| 
+| length |  abilityName指针指向内存所包含的元素个数，包含最后的字符串结尾符，计数单位为双字节。<br>1. 如果长度为0，ability名称会被设置为空字符串。<br>2. UTF-16编码的最大长度为127个字符（如果最后一位是字符串结尾符，不包含在计数中），超过127个字符数将会被截断。| 
 
 **返回：**
 
@@ -3398,7 +3398,7 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName (InputMethod_TextConfig * con
 
 **描述**
 
-获取[InputMethod_TextConfig](#inputmethod_textconfig)实例abilityName。
+获取[InputMethod_TextConfig](#inputmethod_textconfig)实例ability名称。
 
 **起始版本：** 20
 
@@ -3407,8 +3407,8 @@ InputMethod_ErrorCode OH_TextConfig_GetAbilityName (InputMethod_TextConfig * con
 | 名称 | 描述 | 
 | -------- | -------- |
 | config | 指向即将被获取值的[InputMethod_TextConfig](#inputmethod_textconfig)实例的指针。 | 
-| abilityName | 用于存放占位文本信息，该指针内存由调用者维护。| 
-| length | abilityName长度，计数单位为双字节，长度包含字符串结尾符。<br>1. 作为入参，代表abilityName指向的内存可用长度。作为出参，代表实际的abilityName长度。<br>2. 如果abilityName为空指针，且length指向有效内存，则length会被填充实际的abilityName长度。接口会返错。<br>3. 如果abilityName和length都指向有效内存，但length传入的长度小于实际的abilityName长度，则length会被填充实际的占位文本长度。接口会返错。| 
+| abilityName | 用于存放ability名称信息，该指针内存由调用者维护。| 
+| length | ability名称长度，计数单位为双字节，长度包含字符串结尾符。<br>1. 作为入参，代表abilityName指向的内存可用长度。作为出参，代表实际的abilityName长度。<br>2. 如果abilityName为空指针，且length指向有效内存，则length会被填充实际的abilityName长度。接口会返错。<br>3. 如果abilityName和length都指向有效内存，但length传入的长度小于实际的abilityName长度，则length会被填充实际的占位文本长度。接口会返错。| 
 
 **返回：**
 
