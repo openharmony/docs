@@ -36,8 +36,6 @@ Websocket 证书不存在。
 
 **错误信息**
 
-错误信息
-
 Websocket connection already exists.
 
 **错误描述**
