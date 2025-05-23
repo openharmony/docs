@@ -2,7 +2,7 @@
 
 ## 功能介绍
 
-MDM Kit为企业MDM应用提供设备管理能力，包括企业设备管理与事件监听、应用管理、禁用管理、安全管理、设备设置、设备控制、设备信息获取、硬件外设管理、系统管理、网络通信管理等，具体API接口说明详见[API参考](../reference/apis-mdm-kit/Readme-CN.md)。
+MDM Kit为企业MDM应用提供设备管理能力，包括企业设备管理与事件监听、应用管理、禁用管理、安全管理、设备设置、设备控制、设备信息获取、硬件外设管理、系统管理、网络通信管理等，具体API接口说明详见[API参考](../reference/apis-mdm-kit/js-apis-EnterpriseAdminExtensionAbility.md)。
 
 设备管理应用：具备[企业设备管理扩展能力](./mdm-kit-admin.md)的应用。
 
