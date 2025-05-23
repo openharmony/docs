@@ -74,7 +74,7 @@ inputConsumer.getAllSystemHotkeys().then((data: Array<inputConsumer.HotkeyOption
 
 on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;HotkeyOptions&gt;): void
 
-订阅应用快捷键。当满足条件的组合按键输入事件发生时上报快捷键选项，使用Callback异步回调。该接口只允许订阅应用设置的自定义快捷键。
+订阅应用快捷键。当满足条件的组合按键输入事件发生时上报快捷键选项，使用Callback异步回调。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
@@ -121,7 +121,7 @@ try {
 
 off(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback?: Callback&lt;HotkeyOptions&gt;): void
 
-订阅应用快捷键。取消订阅全局快捷键。该接口只允许取消应用设置的自定义快捷键。
+取消订阅应用快捷键。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
