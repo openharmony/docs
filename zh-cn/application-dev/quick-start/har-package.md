@@ -2,10 +2,9 @@
 HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资源和配置文件。通过HAR可以实现多个模块或多个工程共享ArkUI组件、资源等相关代码。
 
 ## 使用场景
-- 支持应用内共享，也可以发布后供其他应用使用。
-- 作为二方库，发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-ohpm-repo)，供公司内部其他应用使用。
-- 作为三方库，发布到[OHPM中心仓](https://ohpm.openharmony.cn/)，供其他应用使用。
-- 多包（HAP/HSP）引用相同的HAR时，会造成多包间代码和资源的重复拷贝，从而导致应用包膨大。
+- 支持应用内共享，也可以作为二方库（SDK），三方库（SDK）发布后供其他应用使用。
+- 作为二方库（SDK），发布到[OHPM私仓](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-ohpm-repo)，供公司内部其他应用使用。
+- 作为三方库（SDK），发布到[OHPM中心仓](https://ohpm.openharmony.cn/)，供其他应用使用。
 
 ## 约束限制
 
@@ -16,6 +15,8 @@ HAR（Harmony Archive）是静态共享包，可以包含代码、C++库、资�
 > 如果使用[startAbility](../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口拉起HAR中的UIAbility，接口参数中的moduleName取值需要为依赖该HAR的[HAP](hap-package.md)/[HSP](in-app-hsp.md)的moduleName。
 - HAR不支持在配置文件中声明[pages](./module-configuration-file.md#pages标签)页面，但是可以包含pages页面，并通过[Navigation跳转](../ui/arkts-navigation-navigation.md#路由操作)的方式进行跳转。
 - HAR不支持引用AppScope目录中的资源。在编译构建时，AppScope中的内容不会打包到HAR中，因此会导致HAR资源引用失败。
+- 由于HSP仅支持应用内共享，如果HAR依赖了HSP，则该HAR文件仅支持应用内共享，不支持发布到二方仓或三方仓供其他应用使用，否则会导致编译失败。
+- 多包（HAP/HSP）引用相同的HAR时，会造成多包间代码和资源的重复拷贝，从而导致应用包膨大。
 - HAR可以依赖其他HAR，但不支持循环依赖，也不支持依赖传递。
 
 ## 创建

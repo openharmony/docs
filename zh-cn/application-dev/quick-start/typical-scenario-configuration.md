@@ -20,7 +20,7 @@
     {
       "shortcuts": [
         {
-          "shortcutId": "id_test1",  // 标识快捷方式，在应用有多个快捷方式时，该字段可作为快捷方式的唯一标识符
+          "shortcutId": "id_test1",  // 标识快捷方式，在应用有多个快捷方式时，该字段可作为快捷方式的唯一标识符，不支持通过资源索引的方式（$string）配置该字段
           "label": "$string:share",  // 标识该快捷方式对外显示的文字
           "icon": "$media:share_icon",  // 标识该快捷方式对外显示的图片
           "wants": [
