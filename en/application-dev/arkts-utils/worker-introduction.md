@@ -22,7 +22,7 @@ When creating a Worker, the thread that initiates it is referred to as the host 
 - When using the Worker module, you are advised to register the **onAllErrors** callback in the host thread in API version 18 or later to capture various exceptions that may occur during the lifecycle of the Worker thread. In API version 15 or earlier, register the **onerror** callback. If neither of them is registered, JS crash occurs when the Worker thread is abnormal. Note that the **onerror** callback can only capture synchronous exceptions within the **onmessage** callback. Once an exception is captured, the Worker thread will proceed to the destruction process and cannot be used. For details, see [Behavior Differences Between onAllErrors and onerror](#behavior-differences-between-onallerrors-and-onerror).
 - Worker thread files cannot be used across HAPs.
 - Before referencing a HAR or HSP, configure the dependency on the HAR or HSP. For details, see [Referencing a Shared Package](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-har-import-V5).
-- [AppStorage](../quick-start/arkts-appstorage.md) cannot be used in Worker threads.
+- [AppStorage](../ui/state-management/arkts-appstorage.md) cannot be used in Worker threads.
 - Starting from API version 18, the priority of the Worker thread can be specified in the [WorkerOptions](../reference/apis-arkts/js-apis-worker.md#workeroptions) parameter of the constructor.
 
 ### Precautions for Creating a Worker

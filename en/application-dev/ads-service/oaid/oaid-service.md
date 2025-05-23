@@ -1,13 +1,8 @@
 # OAID Service
 
-## Obtaining an OAID
+## When to Use
 
-
-### When to Use
-
-An Open Anonymous Device Identifier (OAID) is a non-permanent device identifier.
-
-The OAID service is useful for media application developers, ad platforms, and tracking platforms alike. Specifically, it provides personalized ads for users while protecting their personal data privacy, and also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
+An Open Anonymous Device Identifier (OAID) is a non-permanent device identifier. The OAID service is useful for media application developers, ad platforms, and tracking platforms alike. Specifically, it provides personalized ads for users while protecting their personal data privacy, and also interact with third-party tracking platforms to provide conversion attribution analysis for advertisers.
 
 An OAID is a 32-bit Universally Unique Identifier (UUID) generated using a Huawei algorithm. The format is xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
 
@@ -35,7 +30,7 @@ The OAID changes in the following scenarios:
 > - If the application has not configured the permission **ohos.permission.APP_TRACKING_CONSENT**, 00000000-0000-0000-0000-000000000000 is returned.
 
 
-### How to Develop
+## How to Develop
 1. In the **module.json5** file of the module, configure the permission [ohos.permission.APP_TRACKING_CONSENT](../../security/AccessToken/permissions-for-all-user.md#ohospermissionapp_tracking_consent), which is a user_grant permission. In this case, the **reason** and **abilities** fields are mandatory. For details about the configuration, see [Declaring Permissions in the Configuration File](../../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
    
    The sample code is as follows:

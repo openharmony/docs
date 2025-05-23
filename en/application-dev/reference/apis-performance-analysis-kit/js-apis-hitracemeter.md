@@ -7,6 +7,8 @@ For details about the development process, see [Development of Performance Traci
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+> The vertical bar (|) is used as the separator in user-mode trace format. Therefore, the string parameters passed by the HiTraceMeter APIs must exclude this character to avoid trace parsing exceptions.
+
 
 ## Modules to Import
 
@@ -45,7 +47,7 @@ hiTraceMeter.startTrace("myTestFunc", 1);
 
 finishTrace(name: string, taskId: number): void
 
-Stops a trace task.
+Marks the stop of a trace task.
 
 To stop a trace task, the values of name and task ID in **finishTrace** must be the same as those in [startTrace](#hitracemeterstarttrace).
 

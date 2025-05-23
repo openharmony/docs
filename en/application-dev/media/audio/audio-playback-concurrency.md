@@ -1,4 +1,4 @@
-# Introduction to Audio Focus and Audio Session
+# Introduction to Audio Focus and Audio Sessions
 
 When an application plays or records a sound, conflicts with other audio streams may occur, adversely affecting user experience. For example, when a video starts playing while music is playing in the background, users expect the music to pause to prioritize the video's audio. This is where audio focus comes into play. For applications that provide audio services, it is important to properly manage audio focus, which can significantly improve the audio experience of users.
 

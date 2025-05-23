@@ -45,7 +45,7 @@ Sets the state-specific styles for the component.
 
 **Notes about the selected state:**
 
-- The selected state style depends on the value of the component's selected attribute. You can change the attribute value through [onClick](ts-universal-events-click.md) or [$$](../../../quick-start/arkts-two-way-sync.md).
+- The selected state style depends on the value of the component's selected attribute. You can change the attribute value through [onClick](ts-universal-events-click.md) or [$$](../../../ui/state-management/arkts-two-way-sync.md).
 
 - The table below lists the components that support the selected state style and their selected attributes or parameters.
 

@@ -44,8 +44,8 @@ selected(value: number | Resource)
 
 Sets the index of the initial selected option in the drop-down list box. The index of the first option is **0**. If this attribute is set to an invalid value or is not set, the default value **-1** will be used, which means that no option will be selected. If this attribute is set to **undefined** or **null**, the first option will be selected.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -63,8 +63,8 @@ selected(numCount: Optional<number | Resource>)
 
 Sets the index of the initial selected option in the drop-down list box. The index of the first option is **0**. If this attribute is set to an invalid value or is not set, the default value **-1** will be used, which means that no option will be selected. If this attribute is set to **undefined** or **null**, the first option will be selected.
 
-This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-This attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md).
+This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+This attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 
@@ -82,8 +82,8 @@ value(value: ResourceStr)
 
 Sets the text of the drop-down button. By default, it will be replaced by the content of the selected option, if any.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
-Since API version 18, this attribute supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
+Since API version 18, this attribute supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -101,7 +101,7 @@ value(resStr: Optional\<ResourceStr>)
 
 Sets the text of the drop-down button. By default, it will be replaced by the content of the selected option, if any. Compared to [value](#value), this API supports the **undefined** type for the **resStr** parameter.
 
-This attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md) or [!!](../../../quick-start/arkts-new-binding.md).
+This attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md) or [!!](../../../ui/state-management/arkts-new-binding.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 18.
 

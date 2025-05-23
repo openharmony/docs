@@ -2,9 +2,9 @@
 
 During the development and debugging process of an application, you may need to push files to the application sandbox directory for intra-application access or for testing purposes. You can use either of the following methods to push files:
 
-1. Use DevEco Studio to push the files to the application installation directory. For details, see [Application Installation Resource Access](../quick-start/resource-categories-and-access.md#resource-access).
+- Use DevEco Studio to push the files to the application installation directory. For details, see [Application Installation Resource Access](../quick-start/resource-categories-and-access.md#resource-access).
 
-2. Use the hdc tool to push files to the application sandbox directory on the device, which is described below.
+- Use the hdc tool to push files to the application sandbox directory on the device, which is described below.
 
 However, the file paths viewed on the hdc shell are different from the application sandbox paths in the application view. You need to understand the [mappings between application sandbox paths and physical paths](app-sandbox-directory.md#mappings-between-application-sandbox-paths-and-physical-paths).
 
@@ -26,7 +26,7 @@ hdc shell ps -ef | grep com.ohos.example
 
 Run the following command to set **user_id** and **group_id** of the file based on **user_id** of the application process:
 ```
-hdc shell chown ${user_id}:${user_id} ${ File path}
+hdc shell chown ${user_id}:${user_id} ${File path}
 ```
 
 ## Switching to the Application View

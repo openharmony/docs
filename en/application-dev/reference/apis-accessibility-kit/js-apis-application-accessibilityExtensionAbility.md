@@ -201,7 +201,7 @@ Enumerates the page update types.
 
 ## TouchGuideType
 
-type TouchGuideType = 'touchBegin' | 'touchEnd'
+TouchGuideType = 'touchBegin' | 'touchEnd'
 
 Enumerates the touch guide event types.
 
@@ -220,7 +220,7 @@ Called when the **AccessibilityExtensionAbility** is enabled and connected to th
 
 > **NOTE**
 >
-> This API is deprecated since API version 12. The substitute API is available only for system applications.
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -244,7 +244,7 @@ Called when the **AccessibilityExtensionAbility** is disabled and disconnected f
 
 > **NOTE**
 >
-> This API is deprecated since API version 12. The substitute API is available only for system applications.
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -268,7 +268,7 @@ Called when an event that matches the specified bundle and event type occurs. In
 
 > **NOTE**
 >
-> This API is deprecated since API version 12. The substitute API is available only for system applications.
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -301,7 +301,7 @@ Called when a physical key is pressed. In this API, you can determine whether to
 
 > **NOTE**
 >
-> This API is deprecated since API version 12. The substitute API is available only for system applications.
+> This API is deprecated since API version 12.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 

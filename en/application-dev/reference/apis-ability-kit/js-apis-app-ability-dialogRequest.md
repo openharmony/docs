@@ -1,6 +1,7 @@
 # @ohos.app.ability.dialogRequest (dialogRequest)
 
-The **dialogRequest** module provides APIs related to modal dialog box processing, including obtaining the request information (used to bind a modal dialog box) and request callback (used to set the request result).
+The dialogRequest module provides APIs related to modal dialog box processing, including obtaining the request information (used to bind a modal dialog box) and request callback (used to set the request result).
+
 A modal dialog box is a system pop-up box that intercepts events (such as mouse, keyboard, and touchscreen events) triggered for the page displayed under it. The page can be operated only after the modal dialog box is destroyed.
 
 > **NOTE**
@@ -122,8 +123,8 @@ Defines the location attributes of a modal dialog box.
 | ---- | ------ | ---- | --------------------------- |
 | left  | number | Yes  | X-coordinate of the upper left corner of the dialog box.|
 | top  | number | Yes  | Y-coordinate of the upper left corner of the dialog box.|
-| width  | number | Yes  | Width of the dialog box.|
-| height  | number | Yes  | Height of the dialog box.|
+| width  | number | Yes  | Width of the dialog box, in px.|
+| height  | number | Yes  | Height of the dialog box, in px.|
 
 ## RequestInfo
 

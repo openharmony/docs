@@ -65,7 +65,7 @@ Use the **&lt;slider&gt;** component to set the background color, selected color
 
 ![en-us_image_0000001232003000](figures/en-us_image_0000001232003000.gif)
 
-Add the **mix**, **max**, **value**, **step**, and **mode** attributes to set the minimum value, maximum value, initial value, step, and style of the slider.
+Add the **min**, **max**, **value**, **step**, and **mode** attributes to set the minimum value, maximum value, initial value, step, and style of the slider.
 
 
 ```html

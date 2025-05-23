@@ -470,4 +470,4 @@ When using Sendable in HAR, you must enable the configuration for compiling and 
 
 ## Rules for Interaction with the UI
 
-To observe data changes in Sendable objects when interacting with UI, Sendable data must be used in conjunction with [makeObserved](../quick-start/arkts-new-makeObserved.md). For more information, see [Using makeObserved and @Sendable Decorated Class Together](../quick-start/arkts-new-makeObserved.md#using-makeobserved-and-sendable-decorated-class-together).
+To observe data changes in Sendable objects when interacting with UI, Sendable data must be used in conjunction with [makeObserved](../ui/state-management/arkts-new-makeObserved.md). For more information, see [Using makeObserved and @Sendable Decorated Class Together](../ui/state-management/arkts-new-makeObserved.md#using-makeobserved-and-sendable-decorated-class-together).

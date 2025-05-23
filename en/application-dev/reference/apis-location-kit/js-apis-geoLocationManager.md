@@ -11,8 +11,9 @@ To use location services, turn on the Location switch on your device. If the swi
 
 ## Applying for Permissions
 
-For details, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).
-
+<!--RP2-->
+For details, see [Applying for Location Permissions](../../device/location/location-permission-guidelines.md#how-to-develop).
+<!--RP2End-->
 
 ## Modules to Import
 
@@ -448,7 +449,7 @@ Enumerates error codes in a continuous location request.
 | -------- | -------- | -------- |
 | LOCATING_FAILED_DEFAULT   | -1 |  Unknown type. This is the default value.|
 | LOCATING_FAILED_LOCATION_PERMISSION_DENIED   | -2 | Failed to verify the **ohos.permission.APPROXIMATELY_LOCATION** or **ohos.permission.LOCATION** permission.|
-| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | Failed to verify the location permission when the application is running in the background. For details about how to apply for the location permission, see [Applying for Location Permissions](../../device/location/location-guidelines.md#applying-for-location-permissions).|
+| LOCATING_FAILED_BACKGROUND_PERMISSION_DENIED    | -3 | Failed to verify the location permission when the application is running in the background. <!--RP3-->For details about how to apply for the location permission, see [Applying for Location Permissions](../../device/location/location-permission-guidelines.md#how-to-develop).<!--RP3End-->|
 | LOCATING_FAILED_LOCATION_SWITCH_OFF    | -4 | Location switch turned off.|
 | LOCATING_FAILED_INTERNET_ACCESS_FAILURE    | -5 | Network access denied.|
 

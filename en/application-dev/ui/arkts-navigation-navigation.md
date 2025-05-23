@@ -592,7 +592,7 @@ To facilitate the decoupling of components from pages, custom components within 
   ```
 - Page status listening
   
-  You can register a listener for **NavDestination** lifecycle changes using the [observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#uiobserveronnavdestinationupdate) API.
+  You can register a listener for **NavDestination** lifecycle changes using the [observer.on('navDestinationUpdate')](../reference/apis-arkui/js-apis-arkui-observer.md#observeronnavdestinationupdate) API.
   
   ```ts
   uiObserver.on('navDestinationUpdate', (info) => {
