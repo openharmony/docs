@@ -778,7 +778,7 @@
           - [ArkTS卡片运行机制](form/arkts-ui-widget-working-principles.md)
           - [ArkTS卡片相关模块](form/arkts-ui-widget-modules.md)
           - ArkTS卡片开发指导<!--arkts-ui-widget-dev-->
-            - [创建一个ArkTS卡片](form/arkts-ui-widget-creation.md)
+            - [创建ArkTS卡片](form/arkts-ui-widget-creation.md)
             - [配置卡片的配置文件](form/arkts-ui-widget-configuration.md)
             - [卡片生命周期管理](form/arkts-ui-widget-lifecycle.md)
             - 开发卡片页面<!--arkts-ui-widget-page-->
@@ -809,7 +809,7 @@
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
         - [开发基于JS UI的卡片](form/js-ui-widget-development.md)
-      - [服务卡片开发指导（FA模型）](form/widget-development-fa.md)
+      - [JS卡片开发指导（FA模型）](form/widget-development-fa.md)
     - IME Kit（输入法开发服务）<!--ime-kit-->
       - [IME Kit简介](inputmethod/ime-kit-intro.md)
       - [实现一个输入法应用](inputmethod/inputmethod-application-guide.md)
