@@ -1402,7 +1402,7 @@ uiContext.getMeasureUtils();
 
 getComponentSnapshot(): ComponentSnapshot
 
-获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。
+获取ComponentSnapshot对象，可通过该对象获取组件截图的能力。典型使用场景及最佳实践可参考[组件截图](../../ui/arkts-uicontext-component-snapshot.md)。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
