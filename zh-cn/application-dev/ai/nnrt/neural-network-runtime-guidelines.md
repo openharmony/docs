@@ -18,7 +18,7 @@ Neural Network Runtime部件的环境要求如下：
 - 开发环境：Ubuntu 18.04及以上。
 - 接入设备：系统定义的标准设备，系统中内置AI硬件驱动并已接入Neural Network Runtime。
 
-由于Neural Network Runtime通过Native API对外开放，需要通过Native开发套件编译Neural Network Runtime应用。在社区的每日构建中下载对应系统版本的ohos-sdk压缩包，从压缩包中提取对应平台的Native开发套件。以Linux为例，Native开发套件的压缩包命名为`native-linux-{版本号}.zip`。
+由于Neural Network Runtime通过Native API对外开放，需要需要下载鸿蒙SDK并通过Native开发套件编译Neural Network Runtime应用。可以DevEco Studio来搭建环境和编译代码。
 
 ### 环境搭建
 
