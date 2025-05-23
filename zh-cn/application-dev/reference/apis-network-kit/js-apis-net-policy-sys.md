@@ -29,7 +29,7 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 
 | 参数名    | 类型                 | 必填 | 说明                                                         |
 | --------- | -------------------- | ---- | ------------------------------------------------------------ |
-| isAllowed | boolean              | 是   | 是否允许应用后台使用数据。                                     |
+| isAllowed | boolean              | 是   | 是否允许应用后台使用数据。true：允许应用后台使用数据；false：不允许应用后台使用数据。                                     |
 | callback  | AsyncCallback\<void> | 是   | 回调函数，成功时，err 为 undefined，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -69,7 +69,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| isAllowed | boolean | 是   | 是否允许应用后台使用数据。 |
+| isAllowed | boolean | 是   | 是否允许应用后台使用数据。true：允许应用后台使用数据；false：不允许应用后台使用数据。 |
 
 **错误码：**
 
@@ -684,7 +684,7 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 | 参数名    | 类型                    | 必填 | 说明                                                      |
 | --------- | ----------------------- | ---- | --------------------------------------------------------- |
 | uid       | number                  | 是   | app 唯一标识符。                                            |
-| isMetered | boolean                 | 是   | 是否为计量网络。                                            |
+| isMetered | boolean                 | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。                                            |
 | callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回 true 表示这个 uid 可以访问对应的计量网络。 |
 
 **错误码：**
@@ -726,7 +726,7 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>
 | 参数名    | 类型    | 必填 | 说明           |
 | --------- | ------- | ---- | -------------- |
 | uid       | number  | 是   | app 唯一标识符。 |
-| isMetered | boolean | 是   | 是否为计量网络。 |
+| isMetered | boolean | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。 |
 
 **返回值：**
 
@@ -870,7 +870,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 | 参数名    | 类型                           | 必填 | 说明                                           |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
 | uids      | Array\<number>                 | 是   | app 唯一标识符。                                 |
-| isAllowed | boolean                        | 是   | 是否加入白名单。                                 |
+| isAllowed | boolean                        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。                                 |
 | callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -911,7 +911,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 | 参数名    | 类型           | 必填 | 说明           |
 | --------- | -------------- | ---- | -------------- |
 | uids      | Array\<number> | 是   | app 唯一标识符。 |
-| isAllowed | boolean        | 是   | 是否加入白名单。 |
+| isAllowed | boolean        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。 |
 
 **返回值：**
 
@@ -1331,7 +1331,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 | 参数名    | 类型                           | 必填 | 说明                                           |
 | --------- | ------------------------------ | ---- | ---------------------------------------------- |
 | uids      | Array\<number>                 | 是   | app 唯一标识符。                                |
-| isAllowed | boolean                        | 是   | 是否加入白名单。                                 |
+| isAllowed | boolean                        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。                                 |
 | callback  | callback: AsyncCallback\<void> | 是   | 回调函数。成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -1372,7 +1372,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 | 参数名    | 类型           | 必填 | 说明           |
 | --------- | -------------- | ---- | -------------- |
 | uids      | Array\<number> | 是   | app 唯一标识符。 |
-| isAllowed | boolean        | 是   | 是否加入白名单。 |
+| isAllowed | boolean        | 是   | 是否加入白名单。true：加入白名单；false：没有加入白名单。 |
 
 **返回值：**
 
@@ -2218,7 +2218,7 @@ try {
 | periodDuration    | string                        | 是   | 流量限制计量周期。D1，M1，Y1 分别代表 1 天，1 个月，1 年内流量限制，超出时间则不受限制。 |
 | warningBytes      | number                        | 是   | 发出警告的流量阈值。                                          |
 | limitBytes        | number                        | 是   | 流量设置的配额。                                            |
-| metered           | boolean                       | 是   | 是否为计量网络。                                            |
+| metered           | boolean                       | 是   | 是否为计量网络。true：是计量网络；false：不是计量网络。                                            |
 | limitAction       | [LimitAction](#limitaction10) | 是   | 到达流量限制后的动作。                                         |
 | lastWarningRemind | number                        | 否   | 最新一次发出警告的时间。默认值：-1                                  |
 | lastLimitRemind   | number                        | 否   | 最新一次配额耗尽的时间。默认值：-1                                        |
@@ -2317,8 +2317,8 @@ try {
 
 | 名称              | 类型       | 必填 | 说明                          |
 | ----------------- | --------- | ---- | ----------------------------- |
-| allowWiFi         | boolean   | 是   | 能否允许访问wifi网络。 |
-| allowCellular     | boolean   | 是   | 能否允许访问蜂窝网络。 |
+| allowWiFi         | boolean   | 是   | 能否允许访问wifi网络。true：允许访问wifi网络；false：不允许访问wifi网络。 |
+| allowCellular     | boolean   | 是   | 能否允许访问蜂窝网络。true：允许访问蜂窝网络；false：不允许访问蜂窝网络。 |
 
 ## UidNetworkAccessPolicy<sup>12+</sup>
 
