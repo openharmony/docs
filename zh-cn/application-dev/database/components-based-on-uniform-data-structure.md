@@ -2,7 +2,7 @@
 
 ## 场景介绍
 
-我们提供了部分标准化数据结构的预置卡片，当需要展示标准化数据结构数据时，可以直接引用提供的预置卡片，快捷的展示数据。
+我们提供了部分标准化数据结构的预置卡片，当需要展示标准化数据结构数据时，可以直接引用提供的预置卡片，快捷地展示数据。
 
 ## 内容卡片控件
 
@@ -14,9 +14,9 @@
 
 | 接口名称                                                                                    | 描述                                          | 
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
-| ContentFormCard({contentFormData: uniformDataStruct.ContentForm, formType: FormType, formWidth?: number, formHeight?: number, handleOnClick?: Function}) | 按照固定的样式展示传入的内容卡片数据，并在点击操作时，执行回调函数，并跳转至配置的页面 |
+| ContentFormCard({contentFormData: uniformDataStruct.ContentForm, formType: FormType, formWidth?: number, formHeight?: number, handleOnClick?: Function}) | 按照固定的样式展示传入的内容卡片数据，并在点击操作时，执行回调函数，并跳转至配置的页面。 |
 
-### 开发步骤
+### 开发示例
 
 ```ts
 // 1. 导入需要的模块
@@ -51,7 +51,7 @@ struct Index {
         appName: "com.test.demo"
       };
     } catch (err) {
-      console.info("Init data error");
+      console.error("Init data error");
     }
   }
 

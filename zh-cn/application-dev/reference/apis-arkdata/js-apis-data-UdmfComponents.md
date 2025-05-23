@@ -22,8 +22,6 @@ ContentFormCard({contentFormData: uniformDataStruct.ContentForm, formType: FormT
 
 **装饰器类型：**\@Component
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 | 名称 | 类型 | 必填 | 装饰器类型 | 说明 |
@@ -79,7 +77,7 @@ struct Index {
         appName: "com.test.demo"
       };
     } catch (err) {
-      console.info("Init data error");
+      console.error("Init data error");
     }
   }
 
