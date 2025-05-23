@@ -1401,7 +1401,7 @@ async function example() {
     let result = await phAccessHelper.grantPhotoUriPermission(tokenId,
         'file://media/Photo/1/IMG_datetime_0001/displayName.jpg',
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
-        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
+        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOOTING_PARAM);
 
     console.info('grantPhotoUriPermission success, result=' + result);
   } catch (err) {
@@ -2763,19 +2763,17 @@ async function example() {
     console.info('setPendingCallbackDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.open('rw');
     photoAsset.setPending(true, async (err) => {
       if (err !== undefined) {
         console.error(`setPending(true) failed with error: ${err.code}, ${err.message}`);
         return;
       }
-      // write photo buffer in fd.
+      // add asset resource.
       photoAsset.setPending(false, async (err) => {
         if (err !== undefined) {
           console.error(`setPending(false) failed with error: ${err.code}, ${err.message}`);
           return;
         }
-        await photoAsset.close(fd);
       });
     });
   } catch (err) {
@@ -6616,6 +6614,12 @@ static getCloudEnhancementInstance(context: Context): CloudEnhancement
 | -------- | ------------------------- | ---- | ---------- |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md) | 是   | 传入Ability实例的Context。 |
 
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| [CloudEnhancement](#cloudenhancement13) | 返回云增强管理类实例。 |
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -6948,6 +6952,12 @@ queryCloudEnhancementTaskState(photoAsset: PhotoAsset): Promise&lt;CloudEnhancem
 | -------- | ------------------------- | ---- | ---------- |
 | photoAsset | [PhotoAsset](#photoasset) | 是   | 需要查询云增强任务信息的[PhotoAsset](#photoasset)。 |
 
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise<[CloudEnhancementTaskState](#cloudenhancementtaskstate13)> | 返回云增强任务信息。 |
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -7071,6 +7081,12 @@ getCloudEnhancementPair(asset: PhotoAsset): Promise&lt;PhotoAsset&gt;
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | photoAsset | [PhotoAsset](#photoasset) | 是   | 需要查询云增强配对照片的[PhotoAsset](#photoasset)。 |
+
+**返回值：**
+
+| 类型                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| Promise<[PhotoAsset](#photoasset)> | 返回云增强配对照片。 |
 
 **错误码：**
 
