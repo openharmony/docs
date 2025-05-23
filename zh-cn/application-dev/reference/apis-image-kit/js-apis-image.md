@@ -4712,8 +4712,12 @@ imageSourceApi.getImageProperties(key).then((data) => {
 
 getImagePropertySync(key:PropertyKey): string
 
-获取图片exif指定属性键的值，用String形式返回结果，仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同
-文件,该图片需要包含exif信息（exif信息是图片的元数据，包含拍摄时间、相机型号、光圈、焦距、ISO等）。
+获取图片exif指定属性键的值，用String形式返回结果。
+
+>**说明：**
+> 该方法仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同文件），且需要包含exif信息。
+> exif信息是图片的元数据，包含拍摄时间、相机型号、光圈、焦距、ISO等。
+
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4727,7 +4731,7 @@ getImagePropertySync(key:PropertyKey): string
 
 | 类型             | 说明                                                              |
 | ---------------- | ----------------------------------------------------------------- |
-| string | 返回图片exif中指定属性键的值，如获取失败则返回属性默认值,各个数据值作用请参考[PropertyKey](#propertykey7) |
+| string | 返回图片exif中指定属性键的值（如获取失败则返回属性默认值），各个数据值作用请参考[PropertyKey](#propertykey7)。 |
 
 **错误码：**
 
