@@ -15,7 +15,7 @@ import netfirewall from '@ohos.net.netFirewall';
 
 ## netFirewall.getInterceptedRecords
 
-getInterceptedRecords(userId: number, requestParam: RequestParam): Promise<InterceptedRecordPage>
+getInterceptedRecords(userId: number, requestParam: RequestParam): Promise\<InterceptedRecordPage\>
 
 按userId获取截获的记录，需要指定分页查询参数。
 
