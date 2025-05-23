@@ -1451,4 +1451,4 @@ enableDeviceLevelCapture是AVScreenCaptureStrategy接口中的一个可选参数
 
 | 名称                      | 类型    | 必填 | 说明 |
 | ------------------------ | ------- | ---- | ---- |
-| enableDeviceLevelCapture | boolean | 否   | true表示折叠屏PC在折叠状态下录制整块屏幕，false表示折叠屏PC在折叠状态下录制半块屏幕 |
+| enableDeviceLevelCapture | boolean | 否   | true表示折叠屏PC在折叠状态下录制整块屏幕，false表示折叠屏PC在折叠状态下录制半块屏幕。 |
