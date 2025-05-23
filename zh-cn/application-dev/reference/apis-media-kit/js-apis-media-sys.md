@@ -184,7 +184,7 @@ try {
 }
 ```
 
-## media.createParallelSoundPool<sup>18+</sup>
+## media.createParallelSoundPool<sup>20+</sup>
 
 createParallelSoundPool(maxStreams: number, audioRenderInfo: audio.AudioRendererInfo): Promise\<SoundPool>
 
