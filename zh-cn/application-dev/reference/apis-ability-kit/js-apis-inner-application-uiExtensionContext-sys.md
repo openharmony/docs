@@ -55,7 +55,7 @@ startAbilityForResultAsCaller(want: Want, options?: StartOptions): Promise&lt;Ab
 | -------- | ------------------------------------------------------- |
 | 401| Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist.                   |
-| 16000004 | Failed to start the invisible ability.                      |
+| 16000004 | Cannot start an invisible component.                    |
 | 16000050 | Internal error.                                         |
 | 16000073 | The app clone index is invalid. |
 
@@ -115,7 +115,7 @@ startServiceExtensionAbility(want: Want): Promise\<void>
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
@@ -204,7 +204,7 @@ startServiceExtensionAbilityWithAccount(want: Want, accountId: number): Promise\
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 | 16000001 | The specified ability does not exist. |
 | 16000002 | Incorrect ability type. |
-| 16000004 | Failed to start the invisible ability. |
+| 16000004 | Cannot start an invisible component. |
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
