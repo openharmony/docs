@@ -5199,9 +5199,13 @@ try {
 
 ## bundleManager.enableDynamicIcon<sup>20+</sup>
 
-enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions): Promise\<void>;
+enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions): Promise\<void>
 
-根据给定的bundleName、moduleName和option使能动态图标。使用Promise异步回调。使能当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON；使能其他用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
+根据给定的bundleName、moduleName和option使能动态图标。使用Promise异步回调。
+
+使能当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON；
+
+使能其他用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5214,9 +5218,9 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 要使能动态图标的应用名称。 |
-| moduleName  | string | 是   | 要使能动态图标的模块名称。 |
-| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要使能动态图标的用户和分身索引。缺省值默认给应用的所有用户和所有分身都使能动态图标。 |
+| bundleName  | string | 是   | 要使能动态图标的应用包名。 |
+| moduleName  | string | 是   | 要使能动态图标的模块名。 |
+| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要使能动态图标的用户和分身索引。缺省时给应用的所有用户和所有分身都使能动态图标。 |
 
 **返回值：**
 
@@ -5244,9 +5248,10 @@ enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-let bundleName : string = 'com.ohos.demo';
-let moduleName : string = 'moduleTest';
-let option : bundleManager.BundleOptions = {'userId':100, 'appIndex':0};
+
+let bundleName: string = 'com.ohos.demo';
+let moduleName: string = 'moduleTest';
+let option: bundleManager.BundleOptions = {'userId':100, 'appIndex':0};
 
 try {
     bundleManager.enableDynamicIcon(bundleName, moduleName, option).then(() => {
@@ -5318,9 +5323,13 @@ try {
 
 ## bundleManager.disableDynamicIcon<sup>20+</sup>
 
-disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>;
+disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>
 
-根据给定的bundleName和option禁用动态图标。使用Promise异步回调。禁用当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON；禁用其他用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
+根据给定的bundleName和option禁用动态图标。使用Promise异步回调。
+
+禁用当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON；
+
+禁用其他用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5333,8 +5342,8 @@ disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>;
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 要禁用动态图标的应用名称。 |
-| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要禁用动态图标的用户和分身索引。缺省值默认给应用的所有用户和所有分身都禁用动态图标。 |
+| bundleName  | string | 是   | 要禁用动态图标的应用包名。 |
+| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要禁用动态图标的用户和分身索引。缺省给应用的所有用户和所有分身都禁用动态图标。 |
 
 **返回值：**
 
@@ -5361,8 +5370,9 @@ disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>;
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-let bundleName : string = 'com.ohos.demo';
-let option : bundleManager.BundleOptions = {'userId':100, 'appIndex':0};
+
+let bundleName: string = 'com.ohos.demo';
+let option: bundleManager.BundleOptions = {'userId':100, 'appIndex':0};
 
 try {
     bundleManager.disableDynamicIcon(bundleName, option).then(() => {
@@ -5868,9 +5878,9 @@ type PluginModuleInfo = _PluginModuleInfo
 
 ## bundleManager.getDynamicIconInfo<sup>20+</sup>
 
-getDynamicIconInfo(bundleName: string): Promise\<Array\<DynamicIconInfo>>;
+getDynamicIconInfo(bundleName: string): Promise\<Array\<DynamicIconInfo>>
 
-根据给定的bundleName获取所有用户和分身下该应用的已使能的动态图标信息。使用Promise异步回调。
+根据指定的bundleName获取所有用户和所有分身下的动态图标信息。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5882,13 +5892,13 @@ getDynamicIconInfo(bundleName: string): Promise\<Array\<DynamicIconInfo>>;
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| bundleName  | string | 是   | 要查询动态图标资源的应用名称。 |
+| bundleName  | string | 是   | 要查询动态图标的应用包名。 |
 
 **返回值：**
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array<[DynamicIconInfo](js-apis-bundleManager-BundleInfo-sys.md#dynamiciconinfo)>> | Promise对象，返回Array\<DynamicIconInfo>。 |
+| Promise\<Array<[DynamicIconInfo](js-apis-bundleManager-BundleInfo-sys.md#dynamiciconinfo)>> | Promise对象，返回查询到的动态图标信息。 |
 
 **错误码：**
 
@@ -5907,10 +5917,11 @@ getDynamicIconInfo(bundleName: string): Promise\<Array\<DynamicIconInfo>>;
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-let bundleName : string = 'com.ohos.demo';
+
+let bundleName: string = 'com.ohos.demo';
 
 try {
-bundleManager.getDynamicIconInfo(bundleName).then((data) => {
+    bundleManager.getDynamicIconInfo(bundleName).then((data) => {
         hilog.info(0x0000, 'testTag', 'getDynamicIconInfo successfully %s', JSON.stringify(data));
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getDynamicIconInfo failed. Cause: %{public}s', err.message);
@@ -5923,9 +5934,13 @@ bundleManager.getDynamicIconInfo(bundleName).then((data) => {
 
 ## bundleManager.getAllDynamicIconInfo<sup>20+</sup>
 
-getAllDynamicIconInfo(userId?: number): Promise\<Array\<DynamicIconInfo>>;
+getAllDynamicIconInfo(userId?: number): Promise\<Array\<DynamicIconInfo>>
 
-查询指定用户下全量应用已使能的动态图标信息。使用Promise异步回调。查询当前用户下的全量动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED；查询其他用户或者全量用户下的动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
+查询指定用户下全量应用已使能的动态图标信息。使用Promise异步回调。
+
+查询当前用户下的全量动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED；
+
+查询其他用户或者全量用户下的动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
 
 **系统接口：** 此接口为系统接口。
 
@@ -5937,13 +5952,13 @@ getAllDynamicIconInfo(userId?: number): Promise\<Array\<DynamicIconInfo>>;
 
 | 参数名     | 类型   | 必填 | 说明                       |
 | ----------- | ------ | ---- | ---------------------------- |
-| userId  | number | 否   | 标识用户ID。缺省值默认查询所有用户下全量应用使能的动态图标信息。 |
+| userId  | number | 否   | 标识用户ID。缺省时查询所有用户下全量应用使能的动态图标信息。 |
 
 **返回值：**
 
 | 类型                                                        | 说明                        |
 | ----------------------------------------------------------- | --------------------------- |
-| Promise\<Array\<[DynamicIconInfo](js-apis-bundleManager-BundleInfo-sys.md#dynamiciconinfo)>> | Promise对象，返回Array\<DynamicIconInfo>。 |
+| Promise\<Array\<[DynamicIconInfo](js-apis-bundleManager-BundleInfo-sys.md#dynamiciconinfo)>> | Promise对象，返回查询到的动态图标信息。 |
 
 **错误码：**
 
@@ -5962,10 +5977,11 @@ getAllDynamicIconInfo(userId?: number): Promise\<Array\<DynamicIconInfo>>;
 import { bundleManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-let userId : number = 100;
+
+let userId: number = 100;
 
 try {
-bundleManager.getAllDynamicIconInfo(userId).then((data) => {
+    bundleManager.getAllDynamicIconInfo(userId).then((data) => {
         hilog.info(0x0000, 'testTag', 'getAllDynamicIconInfo successfully');
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'getAllDynamicIconInfo failed. Cause: %{public}s', err.message);
