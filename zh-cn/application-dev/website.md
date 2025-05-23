@@ -355,10 +355,12 @@
             - [页面和自定义组件生命周期](ui/state-management/arkts-page-custom-components-lifecycle.md)
             - [自定义组件的自定义布局](ui/state-management/arkts-page-custom-components-layout.md)
             - [自定义组件成员属性访问限定符使用限制](ui/state-management/arkts-custom-components-access-restrictions.md)
-          - [\@Builder装饰器：自定义构建函数](ui/state-management/arkts-builder.md)
-          - [\@LocalBuilder装饰器：维持组件关系](ui/state-management/arkts-localBuilder.md)
-          - [\@BuilderParam装饰器：引用\@Builder函数](ui/state-management/arkts-builderparam.md)
-          - [wrapBuilder：封装全局@Builder](ui/state-management/arkts-wrapBuilder.md)
+          - 组件扩展<!--arkts-extend-components--> 
+            - [组件扩展概述](ui/state-management/arkts-extend-components-overview.md)  
+            - [\@Builder装饰器：自定义构建函数](ui/state-management/arkts-builder.md)
+            - [\@LocalBuilder装饰器：维持组件关系](ui/state-management/arkts-localBuilder.md)
+            - [\@BuilderParam装饰器：引用\@Builder函数](ui/state-management/arkts-builderparam.md)
+            - [wrapBuilder：封装全局@Builder](ui/state-management/arkts-wrapBuilder.md)
           - [\@Styles装饰器：定义组件重用样式](ui/state-management/arkts-style.md)
           - [\@Extend装饰器：定义扩展组件样式](ui/state-management/arkts-extend.md)
           - [stateStyles：多态样式](ui/state-management/arkts-statestyles.md)
@@ -415,6 +417,7 @@
             - [MVVM模式（状态管理V2）](ui/state-management/arkts-mvvm-V2.md)
           - V1V2混用和迁移指导<!--v1v2-migration-->
             - [自定义组件混用场景指导](ui/state-management/arkts-custom-component-mixed-scenarios.md)
+            - [状态管理V1V2混用文档](ui/state-management/arkts-v1-v2-mixusage.md)
             - [V1->V2迁移指导](ui/state-management/arkts-v1-v2-migration.md)
         - 学习UI范式渲染控制<!--arkts-rendering-control-->
           - [渲染控制概述](ui/state-management/arkts-rendering-control-overview.md)
@@ -546,6 +549,7 @@
           - [应用深浅色适配](ui/ui-dark-light-color-adaptation.md)
           - [设置应用内主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
+        - [使用组件截图（ComponentSnapshot）](ui/arkts-uicontext-component-snapshot.md)
         - 嵌入式组件<!--arkts-ui-cross-process-->
           - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           - [同应用进程嵌入式组件 (EmbeddedComponent)](ui/arkts-embedded-components.md)
@@ -691,6 +695,7 @@
         - [Web组件焦点管理](web/web-focus.md)
         - [Web组件手势事件](web/web-gesture.md)
         - [Web组件缩放功能](web/web-scale-zoom.md)
+        - [使用Web组件显示网页弹框](web/web-dialog.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -810,6 +815,8 @@
           - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
             - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
             - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
+          - 应用内添加ArkTS卡片<!--arkts-ui-widget-within-the-app--->
+              - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
@@ -1137,6 +1144,7 @@
         - WLAN<!--wlan-->
           - [WLAN服务开发概述](connectivity/wlan/wlan-overview.md)
           - [P2P模式开发指南](connectivity/wlan/p2p-development-guide.md)
+        - [Connectivity Kit术语](connectivity/terminology.md)
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-kit-->
         - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
         - [分布式设备管理](distributedservice/devicemanager-guidelines.md)
@@ -2495,6 +2503,7 @@
             - [悬浮态效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
             - [组件标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)
             - [复用标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
+            - [复用选项](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)
             - [多态样式](reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
             - [分布式迁移标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)
             - [前景色设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-color.md)
@@ -2574,6 +2583,7 @@
           - [ArcSwiper](reference/apis-arkui/arkui-ts/ts-container-arcswiper.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
           - [FlowItem](reference/apis-arkui/arkui-ts/ts-container-flowitem.md)
+          - [LazyVGridLayout](reference/apis-arkui/arkui-ts/ts-container-lazyvgridlayout.md)
           - [ScrollBar](reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)
           - [Refresh](reference/apis-arkui/arkui-ts/ts-container-refresh.md)
           - [ArcScrollBar](reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)
@@ -2773,6 +2783,7 @@
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
         - 状态管理与渲染控制<!--state-management-and-rendering-control-->
           - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
+          - [状态变量变化监听](reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md)
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
@@ -3063,6 +3074,7 @@
           - [动画错误码](reference/apis-arkui/errorcode-animator.md)
           - [弹窗错误码](reference/apis-arkui/errorcode-promptAction.md)
           - [页面路由错误码](reference/apis-arkui/errorcode-router.md)
+          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
           - [拖拽事件错误码](reference/apis-arkui/errorcode-drag-event.md)
           - [图像AI分析错误码](reference/apis-arkui/errorcode-image-analyzer.md)
           - [焦点错误码](reference/apis-arkui/errorcode-focus.md)
@@ -3070,10 +3082,11 @@
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
+          - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           <!--Del-->
-          - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
+          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
@@ -3648,6 +3661,7 @@
             - [@ohos.runningLock (Runninglock锁)](reference/apis-basic-services-kit/js-apis-runninglock.md)
             - [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)
             - [@ohos.usbManager (USB管理)](reference/apis-basic-services-kit/js-apis-usbManager.md)
+            - [@ohos.usbManager.serial (串口管理)](reference/apis-basic-services-kit/js-apis-serialManager.md)
             <!--Del-->
             - [@ohos.batteryInfo (电量信息)(系统接口)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
             - [@ohos.batteryStatistics (耗电统计)(系统接口)](reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md)
@@ -3659,6 +3673,7 @@
             - [@ohos.systemParameterEnhance (系统参数)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
             - [@ohos.screenLock (锁屏管理)(系统接口)](reference/apis-basic-services-kit/js-apis-screen-lock-sys.md)
             - [@ohos.usbManager (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usbManager-sys.md)
+            - [@ohos.usbManager.serial (串口管理)(系统接口)](reference/apis-basic-services-kit/js-apis-serialManager-sys.md)
             - [@ohos.update (升级)(系统接口)](reference/apis-basic-services-kit/js-apis-update-sys.md)
             <!--DelEnd-->
           - 数据文件处理<!--data-file-processing-arkts-->
