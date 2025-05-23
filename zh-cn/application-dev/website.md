@@ -546,6 +546,7 @@
           - [应用深浅色适配](ui/ui-dark-light-color-adaptation.md)
           - [设置应用内主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
+        - [使用组件截图（ComponentSnapshot）](ui/arkts-uicontext-component-snapshot.md)
         - 嵌入式组件<!--arkts-ui-cross-process-->
           - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           - [同应用进程嵌入式组件 (EmbeddedComponent)](ui/arkts-embedded-components.md)
@@ -691,6 +692,7 @@
         - [Web组件焦点管理](web/web-focus.md)
         - [Web组件手势事件](web/web-gesture.md)
         - [Web组件缩放功能](web/web-scale-zoom.md)
+        - [使用Web组件显示网页弹框](web/web-dialog.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -2490,6 +2492,7 @@
             - [悬浮态效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
             - [组件标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)
             - [复用标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
+            - [复用选项](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)
             - [多态样式](reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
             - [分布式迁移标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)
             - [前景色设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-color.md)
@@ -3064,10 +3067,12 @@
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
+          - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
+          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
