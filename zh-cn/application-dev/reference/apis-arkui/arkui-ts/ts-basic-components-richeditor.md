@@ -984,7 +984,7 @@ closeSelectionMenu(): void
 
 getTypingStyle(): RichEditorTextStyle
 
-获取用户预设的样式。
+获取用户预设的文本样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1000,7 +1000,7 @@ getTypingStyle(): RichEditorTextStyle
 
 setTypingStyle(value: RichEditorTextStyle): void
 
-设置用户预设的样式。
+设置用户预设的文本样式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1011,6 +1011,22 @@ setTypingStyle(value: RichEditorTextStyle): void
 | 参数名   | 类型                                     | 必填   | 说明  |
 | ----- | ---------------------------------------- | ---- | ----- |
 | value | [RichEditorTextStyle](#richeditortextstyle) | 是    | 预设样式。 |
+
+### setTypingParagraphStyle<sup>20+</sup>
+
+setTypingParagraphStyle(style: RichEditorParagraphStyle): void
+
+设置用户预设的段落样式。仅在组件内容为空或组件末尾换行后，输入文本生效。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填   | 说明  |
+| ----- | ---------------------------------------- | ---- | ----- |
+| style | [RichEditorParagraphStyle](#richeditorparagraphstyle11) | 是    | 预设段落样式。 |
 
 ### setSelection<sup>11+</sup>
 
@@ -5233,3 +5249,96 @@ struct StyledUndo {
 }
 ```
 ![UndoStyle](figures/richEditorStyledUndo.gif)
+
+### 示例29（文本设置预设段落样式）
+可以通过setTypingParagraphStyle接口设置预设段落样式。
+
+```ts
+@Entry
+@Component
+struct RichEditorExample {
+  controller: RichEditorController = new RichEditorController()
+  options: RichEditorOptions = { controller: this.controller }
+  ssController: RichEditorStyledStringController = new RichEditorStyledStringController()
+  ssOptions: RichEditorStyledStringOptions = { controller: this.ssController }
+  contentChangedListener: StyledStringChangedListener = {
+    onWillChange: (value: StyledStringChangeValue) => {
+      let range = '[ ' + value.range.start + ' , ' + value.range.end + ' ]';
+      let replaceString = value.replacementString.getString();
+      console.info('styledString, onWillChange, range=' + range);
+      console.info('styledString, onWillChange, replaceString=' + replaceString);
+      let styles: Array<SpanStyle> = []
+      if (replaceString.length != 0) {
+        styles = value.replacementString.getStyles(0, replaceString.length, StyledStringKey.PARAGRAPH_STYLE)
+      }
+      styles.forEach((style) => {
+        let value = style.styledValue
+        let paraStyle: ParagraphStyle = value as ParagraphStyle
+        if (paraStyle != undefined) {
+          console.info('styledString, onWillChange, textAlign=' + JSON.stringify(paraStyle.textAlign)
+            + ', textIndent=' + JSON.stringify(paraStyle.textIndent)
+            + ', maxLines=' + JSON.stringify(paraStyle.maxLines)
+            + ', overflow=' + JSON.stringify(paraStyle.overflow)
+            + ', wordBreak=' + JSON.stringify(paraStyle.wordBreak)
+            + ', leadingMargin=' + JSON.stringify(paraStyle.leadingMargin)
+            + ', paragraphSpacing=' + JSON.stringify(paraStyle.paragraphSpacing)
+          );
+        }
+      })
+      return true;
+    }
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Text('ParaStyle')
+        // 设置预设段落样式为居中对齐
+        Button('setStyle1').onClick(() => {
+          let paragraphStyle: RichEditorParagraphStyle = {
+            textAlign: TextAlign.Center
+          }
+          this.controller.setTypingParagraphStyle(paragraphStyle)
+          this.ssController.setTypingParagraphStyle(paragraphStyle)
+        })
+        // 设置预设段落样式为左对齐、带有缩进
+        Button('setStyle2').onClick(() => {
+          let paragraphStyle: RichEditorParagraphStyle = {
+            textAlign: TextAlign.Start,
+            leadingMargin: 80
+          }
+          this.controller.setTypingParagraphStyle(paragraphStyle)
+          this.ssController.setTypingParagraphStyle(paragraphStyle)
+        })
+        // 清除预设段落样式
+        Button('clearParaStyle').onClick(() => {
+          this.controller.setTypingParagraphStyle(undefined)
+          this.ssController.setTypingParagraphStyle(undefined)
+        })
+      }
+
+      Row() {
+        Column() {
+          RichEditor(this.options)
+            .height('25%')
+            .width('100%')
+            .border({ width: 1, color: Color.Blue })
+            .onWillChange((value: RichEditorChangeValue) => {
+              console.log('controller, onWillChange, rangeBefore=' + JSON.stringify(value.rangeBefore))
+              value.replacedSpans.forEach((item: RichEditorTextSpanResult) => {
+                console.log('controller, onWillChange, replacedTextSpans=' + JSON.stringify(item))
+              })
+              return true
+            })
+          RichEditor(this.ssOptions)
+            .height('25%')
+            .width('100%')
+            .onReady(() => {
+              this.ssController.onContentChanged(this.contentChangedListener);
+            })
+        }
+      }
+    }
+  }
+}
+```
