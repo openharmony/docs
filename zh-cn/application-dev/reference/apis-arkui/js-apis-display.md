@@ -112,10 +112,10 @@ import { display } from '@kit.ArkUI';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px，该参数应为整数。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px，该参数应为整数。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px，该参数应为整数。   |
-| height | number   | 是   | 是   | 矩形区域的高度，单位为px，该参数应为整数。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px，该参数为整数。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px，该参数为整数。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px，该参数为整数。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px，该参数为整数。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -155,8 +155,8 @@ import { display } from '@kit.ArkUI';
 | 名称                        | 类型      | 只读 | 可选 | 说明               |
 | --------------------------- | ------------- | ---- | ---- | ------------------ |
 | foldDisplayMode             | [FoldDisplayMode](#folddisplaymode10) | 是   | 否   | 折叠设备的显示模式。 |
-| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数应为大于0的整数。|
-| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数应为大于0的整数。|
+| physicalWidth   | number | 是 | 否 | 折叠设备的宽度，单位为px，该参数为大于0的整数。|
+| physicalHeight  | number | 是 | 否 | 折叠设备的高度，单位为px，该参数为大于0的整数。|
 
 ## VirtualScreenConfig<sup>16+</sup>
 
@@ -427,7 +427,7 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明                                                                                                                              |
 | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------|
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数应为整数。                                                                                                     |
+| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数为整数。                                                                                                     |
 
 **错误码：**
 
@@ -464,7 +464,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的显示设备的id，该参数应为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
+| callback | Callback&lt;number&gt; | 否 | 需要取消注册的回调函数。返回监听到的显示设备的id，该参数为整数。若无此参数，则取消注册当前type类型事件监听的所有回调函数。 |
 
 **错误码：**
 
@@ -769,7 +769,15 @@ off(type: 'foldAngleChange', callback?: Callback&lt;Array&lt;number&gt;&gt;): vo
 **示例：**
 
 ```ts
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
 display.off('foldAngleChange');
+
+let callback: Callback<Array<number>> = (angles: Array<number>) => {
+  console.info('Listening fold angles length: ' + angles.length);
+};
+// 关闭传入的callback监听
+display.off('foldAngleChange', callback);
 ```
 
 ## display.on('captureStatusChange')<sup>12+</sup>
@@ -838,7 +846,15 @@ off(type: 'captureStatusChange', callback?: Callback&lt;boolean&gt;): void
 **示例：**
 
 ```ts
+
+// 如果通过on注册多个callback，同时关闭所有callback监听
 display.off('captureStatusChange');
+
+let callback: Callback<boolean> = (captureStatus: boolean) => {
+  console.info('Listening capture status: ' + captureStatus);
+};
+// 关闭传入的callback监听
+display.off('captureStatusChange', callback);
 ```
 
 ## display.isCaptured<sup>12+</sup>
@@ -1262,7 +1278,7 @@ makeUnique(screenId:number): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明          |
 | --------- | ------ | ---- | ------------- |
-| screenId  | number | 是   | 要设置成异源模式的屏幕id。其中id应为大于等于0的整数，否则返回401错误码。 |
+| screenId  | number | 是   | 要设置成异源模式的屏幕id。其中id应为大于0的整数，否则返回401错误码。 |
 
 **返回值：**
 
@@ -1306,14 +1322,14 @@ display.makeUnique(screenId).then(() => {
 
 | 名称 | 类型 | 只读 | 可选 | 说明                                                                                                            |
 | -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
-| id | number | 是 | 否 | 显示设备的id号，该参数应为大于等于0的整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| id | number | 是 | 否 | 显示设备的id号，该参数为大于等于0的整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | name | string | 是 | 否 | 显示设备的名称。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
 | alive | boolean | 是 | 否 | 显示设备是否启用。true表示设备启用，false表示设备未启用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                     |
 | state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                      |
-| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数，单位为hz。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
+| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数为整数，单位为hz。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                             |
 | rotation | number | 是 | 否 | 显示设备的屏幕顺时针旋转角度。<br>值为0时，表示显示设备屏幕顺时针旋转为0°；<br>值为1时，表示显示设备屏幕顺时针旋转为90°；<br>值为2时，表示显示设备屏幕顺时针旋转为180°；<br>值为3时，表示显示设备屏幕顺时针旋转为270°。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
-| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数应为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+| width | number | 是 | 否 | 显示设备的屏幕宽度，单位为px，该参数为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
+| height | number | 是 | 否 | 显示设备的屏幕高度，单位为px，该参数为整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                        |
 | densityDPI | number | 是 | 否 | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为浮点数，单位为px。一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
 | orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                  |
 | densityPixels | number | 是 | 否 | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数，计算方式为：![densityPixels](figures/densityPixels.jpg)<br>该参数为浮点数，受densityDPI范围限制，取值范围在[0.5，4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                  |
