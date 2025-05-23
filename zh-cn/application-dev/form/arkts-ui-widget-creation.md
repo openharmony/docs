@@ -26,7 +26,7 @@
    
    建议根据实际使用场景命名卡片名称，ArkTS卡片创建完成后，工程中会新增如下卡片相关文件：卡片生命周期管理文件（EntryFormAbility.ets）、卡片页面文件（WidgetCard.ets）和卡片配置文件（form_config.json）。  
    ![WidgetProjectView](figures/WidgetProjectView.png)
-# 工程结构介绍
+## 工程结构介绍
 **图1** ArkTS卡片工程目录、相关模块
 
 ![WidgetModules](figures/WidgetModules.png)
