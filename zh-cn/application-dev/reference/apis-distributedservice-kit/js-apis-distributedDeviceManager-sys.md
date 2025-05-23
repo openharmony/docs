@@ -403,11 +403,11 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
     dmInstance.getDeviceProfileInfoList({"isCloud": false}).then((data: Array<distributedDeviceManager.DeviceProfileInfo>) => {
       console.info('getDeviceProfileInfoList' + JSON.stringify(data));
     }).catch((e: BusinessError) => {
-      console.error('getDeviceProfileInfoList errCode: ${e.code}, errMessage: + ${e.message}');
+      console.error('getDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error('getDeviceProfileInfoList errCode: ${e.code}, errMessage: + ${e.message}');
+    console.error('getDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -458,11 +458,11 @@ putDeviceProfileInfoList(deviceProfileInfoList: Array&lt;DeviceProfileInfo&gt;):
     dmInstance.putDeviceProfileInfoList(deviceProfileInfoList).then((data:number) => {
       console.info('put device profile info:' + JSON.stringify(data));
     }).catch((e: BusinessError) => {
-      console.error('putDeviceProfileInfoList errCode: ${e.code}, errMessage: + ${e.message}');
+      console.error('putDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error('putDeviceProfileInfoList errCode: ${e.code}, errMessage: + ${e.message}');
+    console.error('putDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -524,11 +524,11 @@ getDeviceIconInfo(filterOptions: DeviceIconInfoFilterOptions): Promise&lt;Device
     dmInstance.getDeviceIconInfo(options).then((data: distributedDeviceManager.DeviceIconInfo) => {
       console.info('getDeviceIconInfo' + JSON.stringify(data));
     }).catch((e : BusinessError) => {
-      console.error('getDeviceIconInfo errCode: ${e.code}, errMessage: + ${e.message}');
+      console.error('getDeviceIconInfo errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error('getDeviceIconInfo errCode: ${e.code}, errMessage: + ${e.message}');
+    console.error('getDeviceIconInfo errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -579,11 +579,11 @@ getLocalDisplayDeviceName(maxNameLength: number): Promise&lt;string&gt;
     dmInstance.getLocalDisplayDeviceName(maxNameLength).then((data:string)=>{
       console.info('getLocalDisplayDeviceName name:' + JSON.stringify(data));
     }).catch((e: BusinessError)=>{
-      console.error('getLocalDisplayDeviceName errCode: ${e.code}, errMessage: + ${e.message}');
+      console.error('getLocalDisplayDeviceName errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error('getLocalDisplayDeviceName errCode: ${e.code}, errMessage: + ${e.message}');
+    console.error('getLocalDisplayDeviceName errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -637,11 +637,11 @@ setLocalDeviceName(deviceName: string): Promise&lt;number&gt;
     dmInstance.setLocalDeviceName(deviceName).then((data:number)=>{
       console.info('setLocalDeviceName name:' + JSON.stringify(data));
     }).catch((e: BusinessError)=>{
-      console.error('setLocalDeviceName errCode: ${e.code}, errMessage: + ${e.message}');
+      console.error('setLocalDeviceName errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error('setLocalDeviceName errCode: ${e.code}, errMessage: + ${e.message}');
+    console.error('setLocalDeviceName errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -697,11 +697,11 @@ setRemoteDeviceName(deviceId: string, deviceName: string): Promise&lt;number&gt;
     dmInstance.setRemoteDeviceName(deviceId, deviceName).then((data:number)=>{
       console.info('setRemoteDeviceName name:' + JSON.stringify(data));
     }).catch((e: BusinessError)=>{
-      console.error('setRemoteDeviceName errCode: ${e.code}, errMessage: + ${e.message}');
+      console.error('setRemoteDeviceName errCode:' + e.code + ',errMessage:' + e.message);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error('setRemoteDeviceName errCode: ${e.code}, errMessage: + ${e.message}');
+    console.error('setRemoteDeviceName errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -738,7 +738,7 @@ restoreLocalDeivceName(): void
     dmInstance.restoreLocalDeivceName();
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error('restoreLocalDeivceName errCode: ${e.code}, errMessage: + ${e.message}');
+    console.error('restoreLocalDeivceName errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
 
@@ -793,10 +793,10 @@ getDeviceNetworkIdList(filterOptions: NetworkIdQueryFilter): Promise&lt;Array&lt
     dmInstance.getDeviceNetworkIdList(queryFiler).then((data:Array<string>) => {
       console.info('getDeviceNetworkIdList name:' + JSON.stringify(data));
     }).catch((e: BusinessError) => {
-      console.error('getDeviceNetworkIdList errCode: ${e.code}, errMessage: + ${e.message}');
+      console.error('getDeviceNetworkIdList errCode:' + e.code + ',errMessage:' + e.message);
     })
   } catch (err) {
     let e: BusinessError = err as BusinessError;
-    console.error('getDeviceNetworkIdList errCode: ${e.code}, errMessage: + ${e.message}');
+    console.error('getDeviceNetworkIdList errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
