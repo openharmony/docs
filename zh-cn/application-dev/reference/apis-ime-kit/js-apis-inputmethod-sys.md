@@ -257,3 +257,58 @@ try {
   console.error(`Failed to query isPanelShown: ${JSON.stringify(err)}`);
 }
 ```
+
+### enableInputMethod<sup>20+</sup>
+
+enableInputMethod(bundleName: string, extensionName: string, enabledState: EnabledState): Promise&lt;void&gt;
+
+修改输入法的启用状态。使用promise异步回调。
+
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | bundleName |  string | 是 | 输入法包名。 |
+  | extensionName |  string | 是 | 输入法扩展名。 |
+  | enabledState |  [EnabledState](js-apis-inputmethod.md#enabledstate15) | 是 | 输入法启用状态。 |
+
+**返回值：**
+
+  | 类型           | 说明                     |
+  | -------------- | ----------------------- |
+  | Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[通用错误码说明文档](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                             |
+| -------- | -------------------------------------- |
+| 201      | permissions check fails. |
+| 202      | not system application. |
+| 12800008 | input method manager service error. |
+| 12800018 | the input method is not found. |
+| 12800019 | the preconfigured default input method cannot be disabled. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let currentIme = inputMethod.getCurrentInputMethod();
+try {
+  inputMethodSetting.enableInputMethod(currentIme.name, currentIme.id, inputMethod.EnabledState.BASIC_MODE).then(() => {
+    console.info('Succeeded in enable inputmethod.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to enableInputMethod. Code: ${err.code}, message: ${err.message}`);
+  })
+} catch (err) {
+  console.error(`Failed to enableInputMethod. Code: ${err.code}, message: ${err.message}`);
+}
+```
