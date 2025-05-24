@@ -4088,6 +4088,82 @@ onPageEnd(callback: Callback\<OnPageEndEvent\>)
   }
   ```
 
+### onLoadStarted<sup>20+</sup>
+
+onLoadStarted(callback: Callback\<OnLoadStartedEvent\>)
+
+通知宿主应用页面开始加载。此方法在每次主frame加载时调用一次，因此对于包含iframes或frameset的页面，onLoadStarted仅针对主frame调用一次。这意味着当嵌入式frame的内容发生变化时，如点击iframe中的链接或Fragment跳转（即跳转到#fragment_id的导航）等，不会调用onLoadStarted。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明      |
+| ---- | ------ | ---- | --------- |
+| callback  | Callback\<[OnLoadStartedEvent](#onloadstartedevent20)\> | 是    | 网页加载开始时触发。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onLoadStarted((event) => {
+            if (event) {
+              console.log('url:' + event.url);
+            }
+          })
+      }
+    }
+  }
+  ```
+
+### onLoadFinished<sup>20+</sup>
+
+onLoadFinished(callback: Callback\<OnLoadFinishedEvent\>)
+
+通知宿主应用页面已加载完成。此方法仅在主frame加载完成时被调用。对于片段跳转（即导航至#fragment_id），onLoadFinished同样会被触发。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填   | 说明      |
+| ---- | ------ | ---- | --------- |
+| callback  | Callback\<[OnLoadFinishedEvent](#onloadfinishedevent20)\> | 是    | 网页加载结束时触发。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onLoadFinished((event) => {
+            if (event) {
+              console.log('url:' + event.url);
+            }
+          })
+      }
+    }
+  }
+  ```
+
 ### onProgressChange
 
 onProgressChange(callback: Callback\<OnProgressChangeEvent\>)
@@ -10254,6 +10330,26 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 ## OnPageBeginEvent<sup>12+</sup>
 
 定义网页加载开始时触发的函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 页面的URL地址。                       |
+
+## OnLoadStartedEvent<sup>20+</sup>
+
+定义网页加载开始时触发的函数。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+| 名称             | 类型      | 必填   | 说明                                       |
+| -------------- | ---- | ---- | ---------------------------------------- |
+| url | string | 是 | 页面的URL地址。                       |
+
+## OnLoadFinishedEvent<sup>20+</sup>
+
+定义网页加载结束时触发的函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
