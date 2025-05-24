@@ -21,7 +21,7 @@
 
 ## 接口说明
 
-注册使用主题字体的常用接口如下表所示，详细接口说明请参考[Drawing](../reference/apis-arkgraphics2d/_drawing.md)。
+注册使用主题字体的常用接口如下表所示，详细接口说明请参考[Drawing](../reference/apis-arkgraphics2d/capi-drawing.md)。
 
 | 接口名 | 描述 |
 | -------- | -------- |
