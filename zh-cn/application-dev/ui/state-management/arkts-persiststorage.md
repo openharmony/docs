@@ -100,6 +100,7 @@ struct Index {
       Column() {
         Text(this.message)
         // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
+        // 未修改时默认值为47
         Text(`${this.aProp}`)
           .onClick(() => {
             this.aProp += 1;
