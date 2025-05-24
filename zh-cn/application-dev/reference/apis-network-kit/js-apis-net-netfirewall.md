@@ -300,7 +300,7 @@ setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>
 
 **需要权限**：ohos.permission.MANAGE_NET_FIREWALL
 
-**系统能力**：SystemCapability.Communication.NetManager.netfirewall
+**系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
 **参数：**
 
