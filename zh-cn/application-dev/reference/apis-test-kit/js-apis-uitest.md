@@ -66,11 +66,11 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称 | 类型   | 可读 | 可写 | 必填 | 说明        |
-| ---- | ------ | ---- | ---- | ---- |-----------|
-| x    | number | 是   | 是   | 是   | 坐标点的横坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
-| y    | number | 是   | 是   | 是   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
-| displayId    | number | 是   | 是   | 否   | 坐标点所属的屏幕ID，取值大于等于0的整数。默认值为设备主屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| 名称 | 类型   | 只读 |  必填 | 说明        |
+| ---- | ------ | ---- | ---- |-----------|
+| x    | number |  否   | 是   | 坐标点的横坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
+| y    | number |  否   | 是   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
+| displayId    | number |  是   | 否   | 坐标点所属的屏幕ID，取值大于等于0的整数。默认值为设备主屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## Rect<sup>9+</sup>
 
@@ -80,13 +80,13 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称   | 类型   | 可读 | 可写 | 必填 |说明                      |
+| 名称   | 类型   | 只读 |  必填 | 说明                      |
 | ------ | ------ | ---- | ---- | ---- |------------------------- |
-| left   | number | 是   | 是   | 是 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
-| top    | number | 是   | 是   | 是 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
-| right  | number | 是   | 是   | 是 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
-| bottom | number | 是   | 是   | 是 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
-| displayId | number | 是   | 是   | 否 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备主屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| left   | number |  否   | 是 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| top    | number |  否   | 是 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| right  | number |  否   | 是 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| bottom | number |  否   | 是 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| displayId | number |  否   | 否 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备主屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## WindowMode<sup>9+</sup>
 
@@ -124,14 +124,14 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称                 | 类型    | 可读 | 可写 | 必填 | 说明                                                                                     |
+| 名称                 | 类型    | 只读 | 必填 | 说明                                                                                     |
 | -------------------- | ------- | ---- | ---- | ---- |----------------------------------------------------------------------------------------|
-| bundleName           | string  | 是   | 是  | 否  | 窗口归属应用的包名，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
-| title                | string  | 是   | 是  | 否  | 窗口的标题信息，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
-| focused              | boolean | 是   | 是  | 否  | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| actived(deprecated)  | boolean | 是   | 是  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 11开始废弃，建议使用active替代。                                                |
-| active<sup>11+</sup> | boolean | 是   | 是  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
-| displayId | number | 是   | 是   | 否  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备主屏ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| bundleName           | string  | 否  | 否  | 窗口归属应用的包名，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| title                | string  | 否  | 否  | 窗口的标题信息，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
+| focused              | boolean | 否  | 否  | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| actived(deprecated)  | boolean | 否   | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 11开始废弃，建议使用active替代。                                                |
+| active<sup>11+</sup> | boolean | 否  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
+| displayId | number | 否   | 否  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备主屏ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
 
@@ -199,10 +199,10 @@ UI事件的相关信息。
 
 **系统能力**：SystemCapability.Test.UiTest
 
-| 名称       | 类型   | 可读 | 可写 | 说明                                                       |
+| 名称       | 类型   | 只读 | 必填 | 说明                                                       |
 | ---------- | ------ |----|----|----------------------------------------------------------|
-| paste | boolean | 是  | 是  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** <br>1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。<br>2.在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
-| addition       | boolean | 是  | 是  | 输入文本时是否以追加的方式进行输入。true：以追加方式输入。false：不以追加方式输入。默认为false。|
+| paste | boolean | 否  | 否  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** <br>1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。<br>2.在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
+| addition       | boolean | 否  | 否  | 输入文本时是否以追加的方式进行输入。true：以追加方式输入。false：不以追加方式输入。默认为false。|
 
 
 ## On<sup>9+</sup>
@@ -2455,7 +2455,7 @@ async function demo() {
 
 triggerKey(keyCode: number, displayId: number): Promise\<void>
 
-Driver对象采取如下操作：在指定屏幕，传入key值实现模拟点击对应按键的效果，使用Promise异步回调。
+在指定屏幕，传入key值实现模拟点击对应按键的效果，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2535,7 +2535,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2?: number, displayId: number): Promise\<void>
 
-Driver对象通过给定的key值，找到对应组合键，并在指定屏幕下进行点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
+通过给定的key值，找到对应组合键，并在指定屏幕下进行点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2616,7 +2616,7 @@ async function demo() {
 
 clickAt(point: Point): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标点单击，使用Promise异步回调。
+在目标坐标点进行单击，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2694,7 +2694,7 @@ async function demo() {
 
 doubleClickAt(point: Point): Promise\<void>
 
-Driver对象采取如下操作：对目标坐标进行双击，使用Promise异步回调。
+对目标坐标进行双击，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2772,7 +2772,7 @@ async function demo() {
 
 longClickAt(point: Point, duration?: number): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标进行双击，使用Promise异步回调。
+在目标坐标长按指定时长，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2854,11 +2854,7 @@ async function demo() {
 
 swipeBetween(from: Point, to: Point, speed?: number): Promise\<void>
 
-Driver对象采取如下操作：从起始坐标点滑向目的坐标点，使用Promise异步回调。
-
-> **说明**
->
-> 起止点应属于同一个屏幕，当入参中起止坐标所属屏幕id不同时，将抛出17000007异常。
+从起始坐标点滑向目标坐标点，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2869,7 +2865,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点，使�
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- |------------------------------------------------------|
 | from | [Point](#point9) | 是   | 以Point对象的形式传入起始点的坐标信息和所属屏幕ID。                       |
-| to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。                       |
+| to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。<br> **说明:** 应与起始点属于同一个屏幕，否则将抛出17000007异常。                       |
 | speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
 
 **返回值：**
@@ -2946,12 +2942,7 @@ async function demo() {
 
 dragBetween(from: Point, to: Point, speed?: number, duration?: number): Promise\<void>
 
-Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点，使用Promise异步回调。
-
-> **说明**
->
-> 该接口仅在手机、平板、2in1设备上生效。
-> 起止点应属于同一个屏幕，当入参中起止坐标所属屏幕id不同时，将抛出17000007异常。
+从起始坐标点拖拽至目标坐标点，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2962,7 +2953,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点，�
 | 参数名 | 类型   | 必填 | 说明                                                     |
 | ------ | ------ | ---- |--------------------------------------------------------|
 | from | [Point](#point9) | 是   | 以Point对象的形式传入起始点的坐标信息和所属屏幕ID。                       |
-| to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。                       |
+| to  | [Point](#point9) | 是   | 以Point对象的形式传入终止点的坐标信息和所属屏幕ID。<br> **说明:** 应与起始点属于同一个屏幕，否则将抛出17000007异常。                       |
 | speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
 | duration  | number | 否   | 拖拽前长按持续的时间，取值范围为大于等于1500的整数，默认值为1500，单位：ms。 |
 
@@ -3037,7 +3028,7 @@ async function demo() {
 
 screenCap(savePath: string, displayId: number): Promise\<boolean>
 
-Driver对象采取如下操作：捕获指定屏幕，并保存为PNG格式的图片至给出的保存路径中，使用Promise异步回调。适用于支持截屏的场景。
+捕获指定屏幕，并保存为PNG格式的图片至给出的保存路径中，使用Promise异步回调。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
