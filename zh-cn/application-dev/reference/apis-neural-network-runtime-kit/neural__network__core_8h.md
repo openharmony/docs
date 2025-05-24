@@ -5,7 +5,9 @@
 
 Neural Network Core模块接口定义，AI推理框架使用Neural Network Core提供的Native接口，完成模型编译，并在加速硬件上执行推理和计算。
 
-注意：Neural Network Core的接口目前均不支持多线程并发调用。
+部分接口定义从neural_network_runtime.h移动至此头文件统一呈现，对于此类接口，API version 11 版本之前即支持使用，各版本均可正常使用。
+
+Neural Network Core的接口目前均不支持多线程并发调用。
 
 **引用文件：**&lt;neural_network_runtime/neural_network_core.h&gt;
 
