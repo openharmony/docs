@@ -203,7 +203,7 @@ try{
       return;
     }
     if (result) {
-      console.log('Succeeded in switching inputmethod.');
+      console.info('Succeeded in switching inputmethod.');
     } else {
       console.error('Failed to switchInputMethod.');
     }
@@ -259,7 +259,7 @@ let currentIme = inputMethod.getCurrentInputMethod();
 try {
   inputMethod.switchInputMethod(currentIme).then((result: boolean) => {
     if (result) {
-      console.log('Succeeded in switching inputmethod.');
+      console.info('Succeeded in switching inputmethod.');
     } else {
       console.error('Failed to switchInputMethod.');
     }
@@ -349,7 +349,7 @@ try {
       return;
     }
     if (result) {
-      console.log('Succeeded in switching currentInputMethodSubtype.');
+      console.info('Succeeded in switching currentInputMethodSubtype.');
     } else {
       console.error('Failed to switchCurrentInputMethodSubtype');
     }
@@ -418,7 +418,7 @@ try {
     extra: extra
   }).then((result: boolean) => {
     if (result) {
-      console.log('Succeeded in switching currentInputMethodSubtype.');
+      console.info('Succeeded in switching currentInputMethodSubtype.');
     } else {
       console.error('Failed to switchCurrentInputMethodSubtype.');
     }
@@ -499,7 +499,7 @@ try {
       return;
     }
     if (result) {
-      console.log('Succeeded in switching currentInputMethodAndSubtype.');
+      console.info('Succeeded in switching currentInputMethodAndSubtype.');
     } else {
       console.error('Failed to switchCurrentInputMethodAndSubtype.');
     }
@@ -559,7 +559,7 @@ let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
   inputMethod.switchCurrentInputMethodAndSubtype(currentIme, imSubType).then((result: boolean) => {
     if (result) {
-      console.log('Succeeded in switching currentInputMethodAndSubtype.');
+      console.info('Succeeded in switching currentInputMethodAndSubtype.');
     } else {
       console.error('Failed to switchCurrentInputMethodAndSubtype.');
     }
@@ -833,10 +833,10 @@ onMessage(msgId: string, msgParam?: ArrayBuffer): void
 
 **参数：**
 
-| 参数名   | 类型        | 可选 | 说明                             |
+| 参数名   | 类型        | 必填 | 说明                             |
 | -------- | ----------- | ---- | -------------------------------- |
-| msgId    | string      | 否   | 接收到的自定义通信数据的标识符。 |
-| msgParam | ArrayBuffer | 是   | 接收到的自定义通信数据的消息体。 |
+| msgId    | string      | 是   | 接收到的自定义通信数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 接收到的自定义通信数据的消息体。 |
 
 **示例：**
 
@@ -847,10 +847,10 @@ let inputMethodController = inputMethod.getController();
 try {
     let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
-            console.log('OnTerminated.');
+            console.info('OnTerminated.');
         },
         onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-            console.log('recv message.');
+            console.info('recv message.');
         }
     }
     inputMethodController.recvMessage(messageHandler);
@@ -882,10 +882,10 @@ let inputMethodController = inputMethod.getController();
 try {
     let messageHandler: inputMethod.MessageHandler = {
         onTerminated(): void {
-            console.log('OnTerminated.');
+            console.info('OnTerminated.');
         },
         onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-            console.log('recv message.');
+            console.info('recv message.');
         }
     }
     inputMethodController.recvMessage(messageHandler);
@@ -958,7 +958,7 @@ try {
       console.error(`Failed to attach: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in attaching the inputMethod.');
+    console.info('Succeeded in attaching the inputMethod.');
   });
 } catch(err) {
   console.error(`Failed to attach: ${JSON.stringify(err)}`);
@@ -1013,7 +1013,7 @@ try {
     }
   };
   inputMethodController.attach(true, textConfig).then(() => {
-    console.log('Succeeded in attaching inputMethod.');
+    console.info('Succeeded in attaching inputMethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
   })
@@ -1074,7 +1074,7 @@ try {
   let requestKeyboardReason: inputMethod.RequestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
 
   inputMethodController.attach(true, textConfig, requestKeyboardReason).then(() => {
-    console.log('Succeeded in attaching inputMethod.');
+    console.info('Succeeded in attaching inputMethod.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to attach: ${JSON.stringify(err)}`);
   })
@@ -1121,7 +1121,7 @@ inputMethodController.showTextInput((err: BusinessError) => {
     console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in showing the inputMethod.');
+  console.info('Succeeded in showing the inputMethod.');
 });
 ```
 
@@ -1159,7 +1159,7 @@ showTextInput(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showTextInput().then(() => {
-  console.log('Succeeded in showing text input.');
+  console.info('Succeeded in showing text input.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
 });
@@ -1207,7 +1207,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let requestKeyboardReason = inputMethod.RequestKeyboardReason.MOUSE;
 
 inputMethodController.showTextInput(requestKeyboardReason).then(() => {
-  console.log('Succeeded in showing text input.');
+  console.info('Succeeded in showing text input.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showTextInput: ${JSON.stringify(err)}`);
 });
@@ -1253,7 +1253,7 @@ inputMethodController.hideTextInput((err: BusinessError) => {
     console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in hiding text input.');
+  console.info('Succeeded in hiding text input.');
 });
 ```
 
@@ -1293,7 +1293,7 @@ hideTextInput(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideTextInput().then(() => {
-  console.log('Succeeded in hiding inputMethod.');
+  console.info('Succeeded in hiding inputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to hideTextInput: ${JSON.stringify(err)}`);
 })
@@ -1332,7 +1332,7 @@ inputMethodController.detach((err: BusinessError) => {
     console.error(`Failed to detach: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in detaching inputMethod.');
+  console.info('Succeeded in detaching inputMethod.');
 });
 ```
 
@@ -1365,7 +1365,7 @@ detach(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.detach().then(() => {
-  console.log('Succeeded in detaching inputMethod.');
+  console.info('Succeeded in detaching inputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to detach: ${JSON.stringify(err)}`);
 });
@@ -1413,7 +1413,7 @@ try {
       console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in setting callingWindow.');
+    console.info('Succeeded in setting callingWindow.');
   });
 } catch(err) {
   console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
@@ -1463,7 +1463,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let windowId: number = 2000;
   inputMethodController.setCallingWindow(windowId).then(() => {
-    console.log('Succeeded in setting callingWindow.');
+    console.info('Succeeded in setting callingWindow.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to setCallingWindow: ${JSON.stringify(err)}`);
   })
@@ -1510,7 +1510,7 @@ try {
       console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in updating cursorInfo.');
+    console.info('Succeeded in updating cursorInfo.');
   });
 } catch(err) {
   console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
@@ -1556,7 +1556,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let cursorInfo: inputMethod.CursorInfo = { left: 0, top: 0, width: 600, height: 800 };
   inputMethodController.updateCursor(cursorInfo).then(() => {
-    console.log('Succeeded in updating cursorInfo.');
+    console.info('Succeeded in updating cursorInfo.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateCursor: ${JSON.stringify(err)}`);
   })
@@ -1604,7 +1604,7 @@ try {
       console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in changing selection.');
+    console.info('Succeeded in changing selection.');
   });
 } catch(err) {
   console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
@@ -1651,7 +1651,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodController.changeSelection('test', 0, 5).then(() => {
-    console.log('Succeeded in changing selection.');
+    console.info('Succeeded in changing selection.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to changeSelection: ${JSON.stringify(err)}`);
   })
@@ -1698,7 +1698,7 @@ try {
       console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in updating attribute.');
+    console.info('Succeeded in updating attribute.');
   });
 } catch(err) {
   console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
@@ -1744,7 +1744,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   let inputAttribute: inputMethod.InputAttribute = { textInputType: 0, enterKeyType: 1 };
   inputMethodController.updateAttribute(inputAttribute).then(() => {
-    console.log('Succeeded in updating attribute.');
+    console.info('Succeeded in updating attribute.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to updateAttribute: ${JSON.stringify(err)}`);
   })
@@ -1792,7 +1792,7 @@ try {
       return;
     }
     if (result) {
-      console.log('Succeeded in stopping inputSession.');
+      console.info('Succeeded in stopping inputSession.');
     } else {
       console.error('Failed to stopInputSession.');
     }
@@ -1837,7 +1837,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   inputMethodController.stopInputSession().then((result: boolean) => {
     if (result) {
-      console.log('Succeeded in stopping inputSession.');
+      console.info('Succeeded in stopping inputSession.');
     } else {
       console.error('Failed to stopInputSession.');
     }
@@ -1886,7 +1886,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showSoftKeyboard((err: BusinessError) => {
   if (!err) {
-    console.log('Succeeded in showing softKeyboard.');
+    console.info('Succeeded in showing softKeyboard.');
   } else {
     console.error(`Failed to show softKeyboard: ${JSON.stringify(err)}`);
   }
@@ -1929,7 +1929,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.showSoftKeyboard().then(() => {
-  console.log('Succeeded in showing softKeyboard.');
+  console.info('Succeeded in showing softKeyboard.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to show softKeyboard: ${JSON.stringify(err)}`);
 });
@@ -1972,7 +1972,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideSoftKeyboard((err: BusinessError) => {
   if (!err) {
-    console.log('Succeeded in hiding softKeyboard.');
+    console.info('Succeeded in hiding softKeyboard.');
   } else {
     console.error(`Failed to hide softKeyboard: ${JSON.stringify(err)}`);
   }
@@ -2015,7 +2015,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.hideSoftKeyboard().then(() => {
-  console.log('Succeeded in hiding softKeyboard.');
+  console.info('Succeeded in hiding softKeyboard.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to hide softKeyboard: ${JSON.stringify(err)}`);
 });
@@ -2037,10 +2037,10 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 **参数：**
 
-| 参数名   | 类型        | 可选 | 说明                                       |
+| 参数名   | 类型        | 必填 | 说明                                       |
 | -------- | ----------- | ---- | ------------------------------------------ |
-| msgId    | string      | 否   | 需要发送至输入法应用的自定义数据的标识符。 |
-| msgParam | ArrayBuffer | 是   | 需要发送至输入法应用的自定义数据的消息体。 |
+| msgId    | string      | 是   | 需要发送至输入法应用的自定义数据的标识符。 |
+| msgParam | ArrayBuffer | 否   | 需要发送至输入法应用的自定义数据的消息体。 |
 
 **返回值：**
 
@@ -2054,7 +2054,7 @@ sendMessage(msgId: string, msgParam?: ArrayBuffer): Promise<void&gt;
 
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
-| 401      | parameter error.                            |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. 2. Incorrect parameter length.  |
 | 12800003 | input method client error.                  |
 | 12800009 | input method client detached.               |
 | 12800014 | the input method is in basic mode.          |
@@ -2069,7 +2069,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let msgId: string = "testMsgId";
 let msgParam: ArrayBuffer = new ArrayBuffer(128);
 inputMethodController.sendMessage(msgId, msgParam).then(() => {
-  console.log('Succeeded send message.');
+  console.info('Succeeded send message.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to send message: ${JSON.stringify(err)}`);
 });
@@ -2107,7 +2107,7 @@ recvMessage(msgHandler?: MessageHandler): void
 
 | 错误码ID | 错误信息         |
 | -------- | ---------------- |
-| 401      | parameter error. |
+| 401      | parameter error. Possible causes: 1. Incorrect parameter types. |
 
 **示例：**
 
@@ -2115,10 +2115,10 @@ recvMessage(msgHandler?: MessageHandler): void
 import { BusinessError } from '@kit.BasicServicesKit';
 let messageHandler: inputmethod.MessageHandler = {
     onTerminated(): void {
-        console.log('OnTerminated.');
+        console.info('OnTerminated.');
     },
     onMessage(msgId: string, msgParam?:ArrayBuffer): void {
-        console.log('recv message.');
+        console.info('recv message.');
     }
 }
 inputMethodController.recvMessage(messageHandler);
@@ -2156,7 +2156,7 @@ inputMethodController.stopInput((err: BusinessError, result: boolean) => {
     return;
   }
   if (result) {
-    console.log('Succeeded in stopping input.');
+    console.info('Succeeded in stopping input.');
   } else {
     console.error('Failed to stopInput.');
   }
@@ -2190,7 +2190,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodController.stopInput().then((result: boolean) => {
   if (result) {
-    console.log('Succeeded in stopping input.');
+    console.info('Succeeded in stopping input.');
   } else {
     console.error('Failed to stopInput.');
   }
@@ -2265,7 +2265,7 @@ off(type: 'insertText', callback?: (text: string) => void): void
 
 ```ts
 let onInsertTextCallback = (text: string) => {
-    console.log(`Succeeded in subscribing insertText: ${text}`);
+    console.info(`Succeeded in subscribing insertText: ${text}`);
 };
 inputMethodController.off('insertText', onInsertTextCallback);
 inputMethodController.off('insertText');
@@ -2300,7 +2300,7 @@ on(type: 'deleteLeft', callback: (length: number) => void): void
 ```ts
 try {
   inputMethodController.on('deleteLeft', (length: number) => {
-    console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
+    console.info(`Succeeded in subscribing deleteLeft, length: ${length}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe deleteLeft: ${JSON.stringify(err)}`);
@@ -2326,7 +2326,7 @@ off(type: 'deleteLeft', callback?: (length: number) => void): void
 
 ```ts
 let onDeleteLeftCallback = (length: number) => {
-    console.log(`Succeeded in subscribing deleteLeft, length: ${length}`);
+    console.info(`Succeeded in subscribing deleteLeft, length: ${length}`);
 };
 inputMethodController.off('deleteLeft', onDeleteLeftCallback);
 inputMethodController.off('deleteLeft');
@@ -2361,7 +2361,7 @@ on(type: 'deleteRight', callback: (length: number) => void): void
 ```ts
 try {
   inputMethodController.on('deleteRight', (length: number) => {
-    console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
+    console.info(`Succeeded in subscribing deleteRight, length: ${length}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe deleteRight: ${JSON.stringify(err)}`);
@@ -2387,7 +2387,7 @@ off(type: 'deleteRight', callback?: (length: number) => void): void
 
 ```ts
 let onDeleteRightCallback = (length: number) => {
-    console.log(`Succeeded in subscribing deleteRight, length: ${length}`);
+    console.info(`Succeeded in subscribing deleteRight, length: ${length}`);
 };
 inputMethodController.off('deleteRight', onDeleteRightCallback);
 inputMethodController.off('deleteRight');
@@ -2422,7 +2422,7 @@ on(type: 'sendKeyboardStatus', callback: (keyboardStatus: KeyboardStatus) => voi
 ```ts
 try {
   inputMethodController.on('sendKeyboardStatus', (keyboardStatus: inputMethod.KeyboardStatus) => {
-    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
+    console.info(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe sendKeyboardStatus: ${JSON.stringify(err)}`);
@@ -2448,7 +2448,7 @@ off(type: 'sendKeyboardStatus', callback?: (keyboardStatus: KeyboardStatus) => v
 
 ```ts
 let onSendKeyboardStatus = (keyboardStatus: inputMethod.KeyboardStatus) => {
-    console.log(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
+    console.info(`Succeeded in subscribing sendKeyboardStatus, keyboardStatus: ${keyboardStatus}`);
 };
 inputMethodController.off('sendKeyboardStatus', onSendKeyboardStatus);
 inputMethodController.off('sendKeyboardStatus');
@@ -2483,7 +2483,7 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 ```ts
 try {
   inputMethodController.on('sendFunctionKey', (functionKey: inputMethod.FunctionKey) => {
-    console.log(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
+    console.info(`Succeeded in subscribing sendFunctionKey, functionKey.enterKeyType: ${functionKey.enterKeyType}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe sendFunctionKey: ${JSON.stringify(err)}`);
@@ -2509,7 +2509,7 @@ off(type: 'sendFunctionKey', callback?: (functionKey: FunctionKey) => void): voi
 
 ```ts
 let onSendFunctionKey = (functionKey: inputMethod.FunctionKey) => {
-    console.log(`Succeeded in subscribing sendFunctionKey, functionKey: ${functionKey.enterKeyType}`);
+    console.info(`Succeeded in subscribing sendFunctionKey, functionKey: ${functionKey.enterKeyType}`);
 };
 inputMethodController.off('sendFunctionKey', onSendFunctionKey);
 inputMethodController.off('sendFunctionKey');
@@ -2544,7 +2544,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 ```ts
 try {
   inputMethodController.on('moveCursor', (direction: inputMethod.Direction) => {
-    console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
+    console.info(`Succeeded in subscribing moveCursor, direction: ${direction}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe moveCursor: ${JSON.stringify(err)}`);
@@ -2570,7 +2570,7 @@ off(type: 'moveCursor', callback?: (direction: Direction) => void): void
 
 ```ts
 let onMoveCursorCallback = (direction: inputMethod.Direction) => {
-    console.log(`Succeeded in subscribing moveCursor, direction: ${direction}`);
+    console.info(`Succeeded in subscribing moveCursor, direction: ${direction}`);
 };
 inputMethodController.off('moveCursor', onMoveCursorCallback);
 inputMethodController.off('moveCursor');
@@ -2605,7 +2605,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 ```ts
 try {
   inputMethodController.on('handleExtendAction', (action: inputMethod.ExtendAction) => {
-    console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
+    console.info(`Succeeded in subscribing handleExtendAction, action: ${action}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe handleExtendAction: ${JSON.stringify(err)}`);
@@ -2632,7 +2632,7 @@ off(type: 'handleExtendAction', callback?: (action: ExtendAction) => void): void
 ```ts
 try {
   let onHandleExtendActionCallback = (action: inputMethod.ExtendAction) => {
-    console.log(`Succeeded in subscribing handleExtendAction, action: ${action}`);
+    console.info(`Succeeded in subscribing handleExtendAction, action: ${action}`);
   };
   inputMethodController.off('handleExtendAction', onHandleExtendActionCallback);
   inputMethodController.off('handleExtendAction');
@@ -2669,7 +2669,7 @@ on(type: 'selectByRange', callback: Callback&lt;Range&gt;): void
 ```ts
 try {
   inputMethodController.on('selectByRange', (range: inputMethod.Range) => {
-    console.log(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
+    console.info(`Succeeded in subscribing selectByRange: start: ${range.start} , end: ${range.end}`);
   });
 } catch(err) {
   console.error(`Failed to subscribe selectByRange: ${JSON.stringify(err)}`);
@@ -2696,7 +2696,7 @@ off(type: 'selectByRange', callback?:  Callback&lt;Range&gt;): void
 ```ts
 try {
   let onSelectByRangeCallback = (range: inputMethod.Range) => {
-    console.log(`Succeeded in subscribing selectByRange, start: ${range.start} , end: ${range.end}`);
+    console.info(`Succeeded in subscribing selectByRange, start: ${range.start} , end: ${range.end}`);
   };
   inputMethodController.off('selectByRange', onSelectByRangeCallback);
   inputMethodController.off('selectByRange');
@@ -2733,7 +2733,7 @@ on(type: 'selectByMovement', callback: Callback&lt;Movement&gt;): void
 ```ts
 try {
   inputMethodController.on('selectByMovement', (movement: inputMethod.Movement) => {
-    console.log('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
+    console.info('Succeeded in subscribing selectByMovement: direction: ' + movement.direction);
   });
 } catch(err) {
   console.error(`Failed to subscribe selectByMovement: ${JSON.stringify(err)}`);
@@ -2760,7 +2760,7 @@ off(type: 'selectByMovement', callback?: Callback&lt;Movement&gt;): void
 ```ts
 try {
   let onSelectByMovementCallback = (movement: inputMethod.Movement) => {
-    console.log(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
+    console.info(`Succeeded in subscribing selectByMovement, movement.direction: ${movement.direction}`);
   };
   inputMethodController.off('selectByMovement', onSelectByMovementCallback);
   inputMethodController.off('selectByMovement');
@@ -3016,15 +3016,15 @@ let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string,
 
 try {
   inputMethodController.on('setPreviewText', setPreviewTextCallback1);
-  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  console.info(`SetPreviewTextCallback1 subscribed to setPreviewText`);
   inputMethodController.on('setPreviewText', setPreviewTextCallback2);
-  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  console.info(`SetPreviewTextCallback2 subscribed to setPreviewText`);
   // 仅取消setPreviewText的callback1的回调。
   inputMethodController.off('setPreviewText', setPreviewTextCallback1);
-  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  console.info(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
   // 取消setPreviewText的所有回调。
   inputMethodController.off('setPreviewText');
-  console.log(`All callbacks unsubscribed from setPreviewText`);
+  console.info(`All callbacks unsubscribed from setPreviewText`);
 } catch(err) {
   console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
 }
@@ -3058,15 +3058,15 @@ let setPreviewTextCallback2: inputMethod.SetPreviewTextCallback = (text: string,
 
 try {
   inputMethodController.on('setPreviewText', setPreviewTextCallback1);
-  console.log(`SetPreviewTextCallback1 subscribed to setPreviewText`);
+  console.info(`SetPreviewTextCallback1 subscribed to setPreviewText`);
   inputMethodController.on('setPreviewText', setPreviewTextCallback2);
-  console.log(`SetPreviewTextCallback2 subscribed to setPreviewText`);
+  console.info(`SetPreviewTextCallback2 subscribed to setPreviewText`);
   // 仅取消setPreviewText的callback1的回调。
   inputMethodController.off('setPreviewText', setPreviewTextCallback1);
-  console.log(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
+  console.info(`SetPreviewTextCallback1 unsubscribed from setPreviewText`);
   // 取消setPreviewText的所有回调。
   inputMethodController.off('setPreviewText');
-  console.log(`All callbacks unsubscribed from setPreviewText`);
+  console.info(`All callbacks unsubscribed from setPreviewText`);
 } catch(err) {
   console.error(`Failed to operate on setPreviewText: ${JSON.stringify(err)}`);
 }
@@ -3111,15 +3111,15 @@ let finishTextPreviewCallback2 = () => {
 
 try {
   inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
-  console.log(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  console.info(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
   inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
-  console.log(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  console.info(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
   // 仅取消finishTextPreview的callback1的回调。
   inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
-  console.log(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  console.info(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
   // 取消finishTextPreview的所有回调。
   inputMethodController.off('finishTextPreview');
-  console.log(`All callbacks unsubscribed from finishTextPreview`);
+  console.info(`All callbacks unsubscribed from finishTextPreview`);
 } catch(err) {
   console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
 }
@@ -3152,15 +3152,15 @@ let finishTextPreviewCallback2 = () => {
 
 try {
   inputMethodController.on('finishTextPreview', finishTextPreviewCallback1);
-  console.log(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
+  console.info(`FinishTextPreviewCallback1 subscribed to finishTextPreview`);
   inputMethodController.on('finishTextPreview', finishTextPreviewCallback2);
-  console.log(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
+  console.info(`FinishTextPreviewCallback2 subscribed to finishTextPreview`);
   // 仅取消finishTextPreview的callback1的回调。
   inputMethodController.off('finishTextPreview', finishTextPreviewCallback1);
-  console.log(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
+  console.info(`FinishTextPreviewCallback1 unsubscribed from finishTextPreview`);
   // 取消finishTextPreview的所有回调。
   inputMethodController.off('finishTextPreview');
-  console.log(`All callbacks unsubscribed from finishTextPreview`);
+  console.info(`All callbacks unsubscribed from finishTextPreview`);
 } catch(err) {
   console.error(`Failed to operate on finishTextPreview (subscribe/off): ${JSON.stringify(err)}`);
 }
@@ -3191,7 +3191,7 @@ on(type: 'imeChange', callback: (inputMethodProperty: InputMethodProperty, input
 import { InputMethodSubtype } from '@kit.IMEKit';
 try {
   inputMethodSetting.on('imeChange', (inputMethodProperty: inputMethod.InputMethodProperty, inputMethodSubtype: InputMethodSubtype) => {
-    console.log('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
+    console.info('Succeeded in subscribing imeChange: inputMethodProperty: ' + JSON.stringify(inputMethodProperty) + " , inputMethodSubtype: " + JSON.stringify(inputMethodSubtype));
   });
 } catch(err) {
   console.error(`Failed to unsubscribing inputMethodProperty. err: ${JSON.stringify(err)}`);
@@ -3263,7 +3263,7 @@ try {
       console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in listing inputMethodSubtype.');
+    console.info('Succeeded in listing inputMethodSubtype.');
   });
 } catch (err) {
   console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
@@ -3315,7 +3315,7 @@ let inputMethodProperty: inputMethod.InputMethodProperty = {
 let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listInputMethodSubtype(inputMethodProperty).then((data: Array<InputMethodSubtype>) => {
-    console.log('Succeeded in listing inputMethodSubtype.');
+    console.info('Succeeded in listing inputMethodSubtype.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to listInputMethodSubtype: ${JSON.stringify(err)}`);
   })
@@ -3360,7 +3360,7 @@ try {
       console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in listing currentInputMethodSubtype.');
+    console.info('Succeeded in listing currentInputMethodSubtype.');
   });
 } catch(err) {
   console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
@@ -3399,7 +3399,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let inputMethodSetting = inputMethod.getSetting();
 try {
   inputMethodSetting.listCurrentInputMethodSubtype().then((data: Array<InputMethodSubtype>) => {
-    console.log('Succeeded in listing currentInputMethodSubtype.');
+    console.info('Succeeded in listing currentInputMethodSubtype.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to listCurrentInputMethodSubtype: ${JSON.stringify(err)}`);
   })
@@ -3450,7 +3450,7 @@ try {
       console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in getting inputMethods.');
+    console.info('Succeeded in getting inputMethods.');
   });
 } catch (err) {
   console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
@@ -3500,7 +3500,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
   inputMethodSetting.getInputMethods(true).then((data: Array<inputMethod.InputMethodProperty>) => {
-    console.log('Succeeded in getting inputMethods.');
+    console.info('Succeeded in getting inputMethods.');
   }).catch((err: BusinessError) => {
     console.error(`Failed to getInputMethods: ${JSON.stringify(err)}`);
   })
@@ -3589,7 +3589,7 @@ try {
       console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in getting all inputMethods.');
+    console.info('Succeeded in getting all inputMethods.');
   });
 } catch (err) {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
@@ -3625,7 +3625,7 @@ getAllInputMethods(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.getAllInputMethods().then((data: Array<inputMethod.InputMethodProperty>) => {
-  console.log('Succeeded in getting all inputMethods.');
+  console.info('Succeeded in getting all inputMethods.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to getAllInputMethods: ${JSON.stringify(err)}`);
 })
@@ -3700,7 +3700,7 @@ try {
       console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
       return;
     }
-    console.log('Succeeded in showing optionalInputMethods.');
+    console.info('Succeeded in showing optionalInputMethods.');
   });
 } catch (err) {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
@@ -3739,7 +3739,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.showOptionalInputMethods().then((data: boolean) => {
-  console.log('Succeeded in showing optionalInputMethods.');
+  console.info('Succeeded in showing optionalInputMethods.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to showOptionalInputMethods: ${JSON.stringify(err)}`);
 })
@@ -3773,7 +3773,7 @@ inputMethodSetting.listInputMethod((err: BusinessError, data: Array<inputMethod.
     console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in listing inputMethod.');
+  console.info('Succeeded in listing inputMethod.');
  });
 ```
 
@@ -3801,7 +3801,7 @@ listInputMethod(): Promise&lt;Array&lt;InputMethodProperty&gt;&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.listInputMethod().then((data: Array<inputMethod.InputMethodProperty>) => {
-  console.log('Succeeded in listing inputMethod.');
+  console.info('Succeeded in listing inputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to listInputMethod: ${JSON.stringify(err)}`);
 })
@@ -3835,7 +3835,7 @@ inputMethodSetting.displayOptionalInputMethod((err: BusinessError) => {
     console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
     return;
   }
-  console.log('Succeeded in displaying optionalInputMethod.');
+  console.info('Succeeded in displaying optionalInputMethod.');
 });
 ```
 
@@ -3863,7 +3863,7 @@ displayOptionalInputMethod(): Promise&lt;void&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.displayOptionalInputMethod().then(() => {
-  console.log('Succeeded in displaying optionalInputMethod.');
+  console.info('Succeeded in displaying optionalInputMethod.');
 }).catch((err: BusinessError) => {
   console.error(`Failed to displayOptionalInputMethod: ${JSON.stringify(err)}`);
 })
@@ -3889,7 +3889,7 @@ getInputMethodState(): Promise&lt;EnabledState&gt;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 12800004 | not an input method.              |
+| 12800004 | not an input method application.    |
 | 12800008 | input method manager service error. |
 
 **示例：**
@@ -3898,7 +3898,7 @@ getInputMethodState(): Promise&lt;EnabledState&gt;
 import { BusinessError } from '@kit.BasicServicesKit';
 
 inputMethodSetting.getInputMethodState().then((status: inputMethod.EnabledState) => {
-  console.log(`Succeeded in getInputMethodState, status: ${status}`);
+  console.info(`Succeeded in getInputMethodState, status: ${status}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to getInputMethodState: ${JSON.stringify(err)}`);
 })
