@@ -5197,6 +5197,74 @@ try {
 }
 ```
 
+## bundleManager.enableDynamicIcon<sup>20+</sup>
+
+enableDynamicIcon(bundleName: string, moduleName: string, option?: BundleOptions): Promise\<void>
+
+根据给定的bundleName、moduleName和option使能动态图标。使用Promise异步回调。
+
+使能当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON。
+
+使能其他用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ACCESS_DYNAMIC_ICON or (ohos.permission.ACCESS_DYNAMIC_ICON and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS)
+
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 要使能动态图标的应用包名。 |
+| moduleName  | string | 是   | 要使能动态图标的模块名。 |
+| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要使能动态图标的用户和分身索引。缺省时使能应用所有用户和所有分身的动态图标。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified moduleName is not found. |
+| 17700004 | The specified user ID is not found. |
+| 17700061 | AppIndex not in valid range. |
+| 17700304 | Failed to enable the dynamic icon. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let bundleName: string = 'com.ohos.demo';
+let moduleName: string = 'moduleTest';
+let option: bundleManager.BundleOptions = {'userId':100, 'appIndex':0};
+
+try {
+    bundleManager.enableDynamicIcon(bundleName, moduleName, option).then(() => {
+        hilog.info(0x0000, 'testTag', 'enableDynamicIcon successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'enableDynamicIcon failed. Cause: %{public}s', message);
+}
+```
+
 ## bundleManager.disableDynamicIcon<sup>12+</sup>
 
 disableDynamicIcon(bundleName: string): Promise\<void>;
@@ -5243,6 +5311,71 @@ let bundleName : string = 'com.ohos.demo';
 
 try {
     bundleManager.disableDynamicIcon(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'disableDynamicIcon successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', message);
+}
+```
+
+## bundleManager.disableDynamicIcon<sup>20+</sup>
+
+disableDynamicIcon(bundleName: string, option?: BundleOptions): Promise\<void>
+
+根据给定的bundleName和option禁用动态图标。使用Promise异步回调。
+
+禁用当前用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON。
+
+禁用其他用户下的动态图标信息时需要申请权限ohos.permission.ACCESS_DYNAMIC_ICON 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.ACCESS_DYNAMIC_ICON or (ohos.permission.ACCESS_DYNAMIC_ICON and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS)
+
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 要禁用动态图标的应用包名。 |
+| option  | [BundleOptions](js-apis-bundleManager-BundleInfo-sys.md#bundleoptions) | 否   | 指定需要禁用动态图标的用户和分身索引。缺省时禁用应用所有用户和所有分身的动态图标。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<void> | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
+| 17700004 | The specified user ID is not found. |
+| 17700061 | AppIndex not in valid range. |
+| 17700305 | Failed to disable the dynamic icon. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let bundleName: string = 'com.ohos.demo';
+let option: bundleManager.BundleOptions = {'userId':100, 'appIndex':0};
+
+try {
+    bundleManager.disableDynamicIcon(bundleName, option).then(() => {
         hilog.info(0x0000, 'testTag', 'disableDynamicIcon successfully');
     }).catch((err: BusinessError) => {
         hilog.error(0x0000, 'testTag', 'disableDynamicIcon failed. Cause: %{public}s', err.message);
@@ -5855,3 +5988,119 @@ type PluginModuleInfo = _PluginModuleInfo
 | 类型                                                         | 说明           |
 | ------------------------------------------------------------ | -------------- |
 | [_PluginModuleInfo](js-apis-bundleManager-pluginBundleInfo-sys.md#pluginmoduleinfo) |插件的模块信息。 |
+
+## bundleManager.getDynamicIconInfo<sup>20+</sup>
+
+getDynamicIconInfo(bundleName: string): Promise\<Array\<DynamicIconInfo>>
+
+根据指定的bundleName获取所有用户和所有分身下的动态图标信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| bundleName  | string | 是   | 要查询动态图标的应用包名。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<Array<[DynamicIconInfo](js-apis-bundleManager-BundleInfo-sys.md#dynamiciconinfo)>> | Promise对象，返回查询到的动态图标信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700001 | The specified bundleName is not found. |
+| 17700306 | Failed to obtain the dynamic icon. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let bundleName: string = 'com.ohos.demo';
+
+try {
+    bundleManager.getDynamicIconInfo(bundleName).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getDynamicIconInfo successfully %s', JSON.stringify(data));
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getDynamicIconInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getDynamicIconInfo failed. Cause: %{public}s', message);
+}
+```
+
+## bundleManager.getAllDynamicIconInfo<sup>20+</sup>
+
+getAllDynamicIconInfo(userId?: number): Promise\<Array\<DynamicIconInfo>>
+
+查询指定用户下所有应用和所有分身的动态图标信息。使用Promise异步回调。
+
+查询当前用户下所有应用和所有分身的动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED。
+
+查询其他用户或者所有用户下所有应用和所有分身的动态图标信息时需要申请权限ohos.permission.GET_BUNDLE_INFO_PRIVILEGED 和 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_BUNDLE_INFO_PRIVILEGED and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明                       |
+| ----------- | ------ | ---- | ---------------------------- |
+| userId  | number | 否   | 标识用户ID。缺省时查询所有用户下所有应用和所有分身的动态图标信息。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                        |
+| ----------------------------------------------------------- | --------------------------- |
+| Promise\<Array\<[DynamicIconInfo](js-apis-bundleManager-BundleInfo-sys.md#dynamiciconinfo)>> | Promise对象，返回查询到的动态图标信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.bundle错误码](errorcode-bundle.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | --------------------------------------|
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api. |
+| 17700004 |  The specified user ID is not found. |
+| 17700306  | Failed to obtain the dynamic icon. |
+
+**示例：**
+
+```ts
+import { bundleManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let userId: number = 100;
+
+try {
+    bundleManager.getAllDynamicIconInfo(userId).then((data) => {
+        hilog.info(0x0000, 'testTag', 'getAllDynamicIconInfo successfully');
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllDynamicIconInfo failed. Cause: %{public}s', err.message);
+    });
+} catch (err) {
+    let message = (err as BusinessError).message;
+    hilog.error(0x0000, 'testTag', 'getAllDynamicIconInfo failed. Cause: %{public}s', message);
+}
+```
