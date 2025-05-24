@@ -248,7 +248,7 @@ I/O通道异常，实际读/写操作失败。
 
 **错误信息**
 
-The USBDevicePipe validity check failed. Possible causes: 1. The input parameters fails the validation check. 2. The call chain used to obtain the input parameters is not reasonable.
+The USBDevicePipe validity check failed. Possible causes: 1. The input parameters fail the validation check. 2. The call chain used to obtain the input parameters is not reasonable.
 
 **错误描述**
 
