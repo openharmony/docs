@@ -182,7 +182,7 @@
 | [NativeArkWeb_OnDestroyCallback](#nativearkweb_ondestroycallback) [OH_NativeArkWeb_GetDestroyCallback](#oh_nativearkweb_getdestroycallback) (const char \*webTag) | 获取已注册的组件销毁时的回调函数。  | 
 | [ArkWeb_ErrorCode](#arkweb_errorcode) [OH_NativeArkWeb_LoadData](#oh_nativearkweb_loaddata) (const char* webTag,const char* data,const char* mimeType,const char* encoding,const char* baseUrl,const char* historyUrl) | 加载数据或URL，此函数应在主线程中调用。  |
 | bool [OH_ArkWeb_RegisterScrollCallback](#oh_arkweb_registerscrollcallback) (const char\* webTag, [ArkWeb_OnScrollCallback](#arkweb_onscrollcallback) callback, void\* userData) | 设置组件滚动时的回调函数。 | 
-| void [OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy](#oh_nativearkweb_registerasyncthreadjavascriptproxy) (const char \*webTag, const [ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md) \*proxyObject, const char \*permission) | 将JavaScript对象注入window对象，并在window对象中调用该对象的同步方法。该对象的同步方法可带有返回值，且这些方法在工作线程上运行。  | 
+| void [OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy](#oh_nativearkweb_registerasyncthreadjavascriptproxy) (const char \*webTag, const [ArkWeb_ProxyObjectWithResult](_ark_web___proxy_object_with_result.md) \*proxyObject, const char \*permission) | 注册一个包含回调方法的 JavaScript 对象，这些方法可以返回值。该对象将被注入到当前页面的所有frame中，包括所有的 iframe，并且可以通过在 ArkWeb_ProxyObjectWithResult 中指定的名称进行访问。该对象只会在下一次加载或重新加载页面后在 JavaScript 中生效。这些方法将在 ArkWeb 的工作线程中执行。  | 
 
 
 ## 宏定义说明
@@ -2748,7 +2748,7 @@ void OH_NativeArkWeb_RegisterAsyncThreadJavaScriptProxy (const char* webTag, con
 ```
 **描述：**
 
-将JavaScript对象注入window对象，并在window对象中调用该对象的同步方法。该对象的同步方法可带有返回值，且这些方法在工作线程上运行。
+注册一个包含回调方法的 JavaScript 对象，这些方法可以返回值。该对象将被注入到当前页面的所有frame中，包括所有的 iframe，并且可以通过在 ArkWeb_ProxyObjectWithResult 中指定的名称进行访问。该对象只会在下一次加载或重新加载页面后在 JavaScript 中生效。这些方法将在 ArkWeb 的工作线程中执行。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
