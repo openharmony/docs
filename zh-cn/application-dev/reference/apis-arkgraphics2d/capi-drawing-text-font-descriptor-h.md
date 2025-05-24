@@ -51,7 +51,7 @@ enum OH_Drawing_SystemFontType
 | GENERIC = 1 << 1 | 系统字体类型。 |
 | STYLISH = 1 << 2 | 风格字体类型 |
 | INSTALLED = 1 << 3 | 用户已安装字体类型。 |
-| CUSTOMIZED = 1 << 4 |  |
+| CUSTOMIZED = 1 << 4 | 自定义字体类型。<br/> **起始版本：** 18|
 
 
 ## 函数说明

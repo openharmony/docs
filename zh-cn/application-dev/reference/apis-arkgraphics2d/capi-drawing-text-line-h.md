@@ -372,7 +372,7 @@ OH_Drawing_Rect* OH_Drawing_TextLineGetImageBounds(OH_Drawing_TextLine* line)
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* | 指向文本行对象的图像边界[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，不再需要[OH_Drawing_Rect](capi-oh-drawing-rect.md)时，请使用[OH_Drawing_RectDestroy](api-drawing-rect-h.md#oh_drawing_rectdestroy)接口释放该对象的指针。 |
+| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* | 指向文本行对象的图像边界[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，不再需要[OH_Drawing_Rect](capi-oh-drawing-rect.md)时，请使用[OH_Drawing_RectDestroy](capi-drawing-rect-h.md#oh_drawing_rectdestroy)接口释放该对象的指针。 |
 
 ### OH_Drawing_TextLineGetTrailingSpaceWidth()
 

@@ -41,8 +41,8 @@
 | [void OH_NativeImage_Destroy(OH_NativeImage** image)](#oh_nativeimage_destroy) | - | 销毁通过OH_NativeImage_Create创建的OH_NativeImage实例, 销毁后该<br>OH_NativeImage指针会被赋值为空。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_NativeImage_GetTransformMatrixV2(OH_NativeImage* image, float matrix[16])](#oh_nativeimage_gettransformmatrixv2) | - | 根据生产端设置的旋转角度，获取最近调用OH_NativeImage_UpdateSurfaceImage的纹理图像的变化矩阵。<br>matrix在[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口调用后，才会更新。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_NativeImage_GetBufferMatrix(OH_NativeImage* image, float matrix[16])](#oh_nativeimage_getbuffermatrix) | - | 获取根据生产端设置的旋转角度和buffer实际有效内容区域计算出的变换矩阵。<br>本接口返回一个变换矩阵，该矩阵是[OH_NativeImage](capi-oh-nativeimage.md)在消费buffer，即调用[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)或者[OH_NativeImage_AcquireNativeWindowBuffer](capi-native-image-h.md#oh_nativeimage_acquirenativewindowbuffer)时，根据buffer的旋转角度和实际有效内容区域计算所得。<br>本接口为非线程安全类型接口。 |
-| [int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd)](#oh_nativeimage_acquirenativewindowbuffer) | - | 通过消费端的OH_NativeImage获取一个<b>OHNativeWindowBuffer</b>。<br>本接口不能与[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口同时使用。<br>本接口将会创建一个<b>OHNativeWindowBuffer</b>。<br>当使用<b>OHNativeWindowBuffer</b>时，用户需要通过[OH_NativeWindow_NativeObjectReference](capi-external-window-h.md#oh_nativewindow_nativeobjectreference)接口将其引用计数加一。<br>当<b>OHNativeWindowBuffer</b>使用完，用户需要通过[OH_NativeWindow_NativeObjectUnreference](api-external-window-h.md#oh_nativewindow_nativeobjectunreference)接口将其引用计数减一。<br>本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](capi-native-image-h.md#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。<br>当fenceFd使用完，用户需要将其close。<br>本接口为非线程安全类型接口。 |
-| [int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,OHNativeWindowBuffer* nativeWindowBuffer, int fenceFd)](#oh_nativeimage_releasenativewindowbuffer) | - | 通过OH_NativeImage实例将<b>OHNativeWindowBuffer</b>归还到buffer队列中。<br>系统会将fenceFd关闭，无需用户close。<br>本接口为非线程安全类型接口。 |
+| [int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,OHNativeWindowBuffer** nativeWindowBuffer, int* fenceFd)](#oh_nativeimage_acquirenativewindowbuffer) | - | 通过消费端的OH_NativeImage获取一个OHNativeWindowBuffer。<br>本接口不能与[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口同时使用。<br>本接口将会创建一个OHNativeWindowBuffer。<br>当使用OHNativeWindowBuffer时，用户需要通过[OH_NativeWindow_NativeObjectReference](capi-external-window-h.md#oh_nativewindow_nativeobjectreference)接口将其引用计数加一。<br>当OHNativeWindowBuffer使用完，用户需要通过[OH_NativeWindow_NativeObjectUnreference](capi-external-window-h.md#oh_nativewindow_nativeobjectunreference)接口将其引用计数减一。<br>本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](capi-native-image-h.md#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。<br>当fenceFd使用完，用户需要将其close。<br>本接口为非线程安全类型接口。 |
+| [int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,OHNativeWindowBuffer* nativeWindowBuffer, int fenceFd)](#oh_nativeimage_releasenativewindowbuffer) | - | 通过OH_NativeImage实例将OHNativeWindowBuffer归还到buffer队列中。<br>系统会将fenceFd关闭，无需用户close。<br>本接口为非线程安全类型接口。 |
 | [OH_NativeImage* OH_ConsumerSurface_Create(void)](#oh_consumersurface_create) | - | 创建一个OH_NativeImage实例，作为surface的消费端。<br>本接口仅用于surface消费端的内存轮转，创建的OH_NativeImage内部不会主动进行内存渲染处理。<br>本接口不能与[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口同时使用。<br>本接口与[OH_NativeImage_AcquireNativeWindowBuffer](capi-native-image-h.md#oh_nativeimage_acquirenativewindowbuffer)和[OH_NativeImage_ReleaseNativeWindowBuffer](capi-native-image-h.md#oh_nativeimage_releasenativewindowbuffer)配合使用。<br>本接口需要和[OH_NativeImage_Destroy](capi-native-image-h.md#oh_nativeimage_destroy)接口配合使用，否则会存在内存泄露。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_ConsumerSurface_SetDefaultUsage(OH_NativeImage* image, uint64_t usage)](#oh_consumersurface_setdefaultusage) | - | 设置默认读写方式。<br>本接口为非线程安全类型接口。 |
 | [int32_t OH_ConsumerSurface_SetDefaultSize(OH_NativeImage* image, int32_t width, int32_t height)](#oh_consumersurface_setdefaultsize) | - | 设置几何图形默认尺寸。<br>本接口为非线程安全类型接口。 |
@@ -435,7 +435,7 @@ int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,OHNativeW
 
 **描述**
 
-通过消费端的OH_NativeImage获取一个<b>OHNativeWindowBuffer</b>。<br>本接口不能与[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口同时使用。<br>本接口将会创建一个<b>OHNativeWindowBuffer</b>。<br>当使用<b>OHNativeWindowBuffer</b>时，用户需要通过[OH_NativeWindow_NativeObjectReference](capi-external-window-h.md#oh_nativewindow_nativeobjectreference)接口将其引用计数加一。<br>当<b>OHNativeWindowBuffer</b>使用完，用户需要通过[OH_NativeWindow_NativeObjectUnreference](api-external-window-h.md#oh_nativewindow_nativeobjectunreference)接口将其引用计数减一。<br>本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](capi-native-image-h.md#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。<br>当fenceFd使用完，用户需要将其close。<br>本接口为非线程安全类型接口。
+通过消费端的OH_NativeImage获取一个OHNativeWindowBuffer。本接口不能与[OH_NativeImage_UpdateSurfaceImage](capi-native-image-h.md#oh_nativeimage_updatesurfaceimage)接口同时使用。<br>本接口将会创建一个OHNativeWindowBuffer。当使用OHNativeWindowBuffer<时，用户需要通过[OH_NativeWindow_NativeObjectReference](capi-external-window-h.md#oh_nativewindow_nativeobjectreference)接口将其引用计数加一。当OHNativeWindowBuffer使用完，用户需要通过[OH_NativeWindow_NativeObjectUnreference](capi-external-window-h.md#oh_nativewindow_nativeobjectunreference)接口将其引用计数减一。<br>本接口需要和[OH_NativeImage_ReleaseNativeWindowBuffer](capi-native-image-h.md#oh_nativeimage_releasenativewindowbuffer)接口配合使用，否则会存在内存泄露。<br>当fenceFd使用完，用户需要将其close。<br>本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -447,7 +447,7 @@ int32_t OH_NativeImage_AcquireNativeWindowBuffer(OH_NativeImage* image,OHNativeW
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeImage](capi-oh-nativeimage.md)* image | 指向OH_NativeImage实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md)** nativeWindowBuffer | 指向<b>OHNativeWindowBuffer</b>指针的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindowbuffer.md)** nativeWindowBuffer | 指向OHNativeWindowBuffer指针的指针。 |
 | int* fenceFd | 指向文件描述符句柄的指针。 |
 
 **返回：**
@@ -464,7 +464,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,OHNativeW
 
 **描述**
 
-通过OH_NativeImage实例将<b>OHNativeWindowBuffer</b>归还到buffer队列中。<br>系统会将fenceFd关闭，无需用户close。<br>本接口为非线程安全类型接口。
+通过OH_NativeImage实例将OHNativeWindowBuffer归还到buffer队列中。<br>系统会将fenceFd关闭，无需用户close。<br>本接口为非线程安全类型接口。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeImage
 
@@ -476,7 +476,7 @@ int32_t OH_NativeImage_ReleaseNativeWindowBuffer(OH_NativeImage* image,OHNativeW
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeImage](capi-oh-nativeimage.md)* image | 指向OH_NativeImage实例的指针。 |
-| [OHNativeWindowBuffer](capi-nativewindowbuffer.md)* nativeWindowBuffer | 指向<b>OHNativeWindowBuffer</b>实例的指针。 |
+| [OHNativeWindowBuffer](capi-nativewindowbuffer.md)* nativeWindowBuffer | 指向OHNativeWindowBuffer实例的指针。 |
 | int fenceFd | 指向文件描述符句柄, 用于并发同步控制。 |
 
 **返回：**

@@ -20,6 +20,6 @@
 | size_t fontGenericInfoSize                     | 通用字体集列表数量。   |
 | size_t fallbackGroupSize                       | 备用字体集列表数量。   |
 | char** fontDirSet                              | 系统字体文件路径列表。 |
-| OH_Drawing_FontGenericInfo* fontGenericInfoSet | 通用字体集列表。       |
-| OH_Drawing_FontFallbackGroup* fallbackGroupSet | 备用字体集列表。       |
+| [OH_Drawing_FontGenericInfo](capi-oh-drawing-fontgenericinfo.md)* fontGenericInfoSet | 通用字体集列表。       |
+| [OH_Drawing_FontFallbackGroup](capi-oh-drawing-fontfallbackgroup.md)* fallbackGroupSet | 备用字体集列表。       |
 

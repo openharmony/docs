@@ -215,7 +215,7 @@ typedef void (*WebPipLifeCycleCallback)(uint32_t controllerId, PictureInPicture_
 | -- | -- |
 | uint32_t controllerId | 画中画控制器Id，为非负整数。 |
 |  PictureInPicture_PipState state | 当前画中画生命周期状态。 |
-|  int32_t errcode | 画中画接口的通用状态码。具体可见[WindowManager_ErrorCode](#windowmanager_errorcode)。 |
+|  int32_t errcode | 画中画接口的通用状态码。具体可见[WindowManager_ErrorCode](capi-oh-window-comm-h.md#windowmanager_errorcode)。 |
 
 ### WebPipControlEventCallback()
 

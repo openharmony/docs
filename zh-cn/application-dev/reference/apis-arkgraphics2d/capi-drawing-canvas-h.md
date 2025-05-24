@@ -1268,7 +1268,7 @@ void OH_Drawing_CanvasGetTotalMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matri
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-rect-h.md#oh_drawing_matrixcreate)接口创建。 |
+| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-matrix-h.md#oh_drawing_matrixcreate)接口创建。 |
 
 ### OH_Drawing_CanvasConcatMatrix()
 
@@ -1362,7 +1362,7 @@ void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* ma
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-rect-h.md#oh_drawing_matrixcreate)接口创建。 |
+| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-matrix-h.md#oh_drawing_matrixcreate)接口创建。 |
 
 ### OH_Drawing_CanvasResetMatrix()
 

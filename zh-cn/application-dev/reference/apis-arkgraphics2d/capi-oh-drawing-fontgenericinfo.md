@@ -19,6 +19,6 @@
 | char* familyName                         | 字体家族名。         |
 | size_t aliasInfoSize                     | 别名字体列表的数量。 |
 | size_t adjustInfoSize                    | 字重映射列表的数量。 |
-| OH_Drawing_FontAliasInfo* aliasInfoSet   | 别名字体列表。       |
-| OH_Drawing_FontAdjustInfo* adjustInfoSet | 字重映射列表。       |
+| [OH_Drawing_FontAliasInfo](capi-oh-drawing-fontaliasinfo.md)* aliasInfoSet   | 别名字体列表。       |
+| [OH_Drawing_FontAdjustInfo](capi-oh-drawing-fontadjustinfo.md)* adjustInfoSet | 字重映射列表。       |
 

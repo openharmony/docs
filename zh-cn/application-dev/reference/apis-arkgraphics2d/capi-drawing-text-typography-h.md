@@ -462,7 +462,7 @@ enum OH_Drawing_WordBreakType
 | WORD_BREAK_TYPE_NORMAL = 0 | 常规方式。 |
 | WORD_BREAK_TYPE_BREAK_ALL = 1 | 全部中断方式。 |
 | WORD_BREAK_TYPE_BREAK_WORD = 2 | 单词中断方式。 |
-| WORD_BREAK_TYPE_BREAK_HYPHEN = 3 |  |
+| WORD_BREAK_TYPE_BREAK_HYPHEN = 3 | 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟`WORD_BREAK_TYPE_BREAK_WORD`保持一致。<br/> **起始版本：** 18 |
 
 ### OH_Drawing_RectHeightStyle
 
@@ -581,7 +581,7 @@ enum OH_Drawing_TextHeightBehavior
 | TEXT_HEIGHT_ALL = 0x0 | 段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](capi-drawing-text-typography-h.md#oh_drawing_settextstylefontheight)设置的高度生效。 |
 | TEXT_HEIGHT_DISABLE_FIRST_ASCENT = 0x1 | 禁止段落中第一行顶部[OH_Drawing_SetTextStyleFontHeight](capi-drawing-text-typography-h.md#oh_drawing_settextstylefontheight)设置的高度生效。 |
 | TEXT_HEIGHT_DISABLE_LAST_ASCENT = 0x2 | 禁止段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](capi-drawing-text-typography-h.md#oh_drawing_settextstylefontheight)设置的高度生效。 |
-| TEXT_HEIGHT_DISABLE_ALL = 0x1 | 0x2 | 禁止段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](capi-drawing-text-typography-h.md#oh_drawing_settextstylefontheight)设置的高度生效。 |
+| TEXT_HEIGHT_DISABLE_ALL = 0x1 \| 0x2 | 禁止段落中第一行顶部和段落中最后一行底部[OH_Drawing_SetTextStyleFontHeight](capi-drawing-text-typography-h.md#oh_drawing_settextstylefontheight)设置的高度生效。 |
 
 ### OH_Drawing_TextStyleType
 
@@ -1273,7 +1273,7 @@ OH_Drawing_TypographyCreate* OH_Drawing_CreateTypographyHandler(OH_Drawing_Typog
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TypographyStyle](capi-oh-drawing-typographystyle.md)* style | 指向排版样式[OH_Drawing_TypographyStyle](capi-oh-drawing-typographystyle.md)的指针，由[OH_Drawing_CreateTypographyStyle](capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。 |
-| [OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)* fontCollection | 指向字体集对象[OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)的指针，由[OH_Drawing_CreateFontCollection](capi-drawing-font-collection-h.md#oh_drawing_createfontfollection)获取。 |
+| [OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)* fontCollection | 指向字体集对象[OH_Drawing_FontCollection](capi-oh-drawing-fontcollection.md)的指针，由[OH_Drawing_CreateFontCollection](capi-drawing-font-collection-h.md#oh_drawing_createfontcollection)获取。 |
 
 **返回：**
 

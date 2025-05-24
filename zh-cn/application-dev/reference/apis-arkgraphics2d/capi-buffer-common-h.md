@@ -101,7 +101,7 @@ OH_NativeBuffer的图像标准。
 | OH_VIDEO_HDR_HLG | 视频HLG。 |
 | OH_VIDEO_HDR_HDR10 | 视频HDR10。 |
 | OH_VIDEO_HDR_VIVID | 视频HDR VIVID。 |
-| OH_VIDEO_NONE = -1 |  |
+| OH_VIDEO_NONE = -1 |  无元数据。<br/>**起始版本：** 13 |
 
 ### OH_NativeBuffer_MetadataKey
 
