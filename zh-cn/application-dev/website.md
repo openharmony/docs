@@ -3902,7 +3902,7 @@
             - [Input_DeviceInfo](reference/apis-input-kit/capi-input-deviceinfo.md)
             - [Input_InterceptorOptions](reference/apis-input-kit/capi-input-interceptoroptions.md)
         - 错误码<!--input-arkts-errcode-->
-          - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
+          - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-cooperator.md)
           - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
           - [按键前置监听错误码](reference/apis-input-kit/errorcode-inputmonitor.md)
           - [输入设备错误码](reference/apis-input-kit/errorcode-inputdevice.md)
