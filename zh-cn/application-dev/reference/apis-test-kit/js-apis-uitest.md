@@ -16,7 +16,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
-> - 本模块接口适用于手机、平板、2in1、智能穿戴设备。
+> - 本模块接口适用于手机、平板、2in1、穿戴设备。
 
 
 ## 导入模块
@@ -70,7 +70,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | ---- | ------ | ---- | ---- |-----------|
 | x    | number |  否   | 是   | 坐标点的横坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
 | y    | number |  否   | 是   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
-| displayId    | number |  是   | 否   | 坐标点所属的屏幕ID，取值大于等于0的整数。默认值为设备主屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| displayId<sup>20+</sup>    | number |  是   | 否   | 坐标点所属的屏幕ID，取值范围：大于等于0的整数。默认值为设备默认屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## Rect<sup>9+</sup>
 
@@ -86,7 +86,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | top    | number |  否   | 是 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
 | right  | number |  否   | 是 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
 | bottom | number |  否   | 是 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
-| displayId | number |  否   | 否 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备主屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。  |
+| displayId<sup>20+</sup> | number |  否   | 否 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备默认屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## WindowMode<sup>9+</sup>
 
@@ -131,7 +131,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 | focused              | boolean | 否  | 否  | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | actived(deprecated)  | boolean | 否   | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 11开始废弃，建议使用active替代。                                                |
 | active<sup>11+</sup> | boolean | 否  | 否  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                     |
-| displayId | number | 否   | 否  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备主屏ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| displayId<sup>20+</sup> | number | 否   | 否  | 窗口所属的屏幕ID。取值大于或等于0的整数。默认值为设备默认屏ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## UiDirection<sup>10+</sup>
 
@@ -201,7 +201,7 @@ UI事件的相关信息。
 
 | 名称       | 类型   | 只读 | 必填 | 说明                                                       |
 | ---------- | ------ |----|----|----------------------------------------------------------|
-| paste | boolean | 否  | 否  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** <br>1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。<br>2.在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
+| paste | boolean | 否  | 否  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** <br>1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。<br>2.在穿戴设备中，该接口不支持以复制粘贴方式输入。|
 | addition       | boolean | 否  | 否  | 输入文本时是否以追加的方式进行输入。true：以追加方式输入。false：不以追加方式输入。默认为false。|
 
 
@@ -923,7 +923,7 @@ hint(val: string, pattern?: MatchPattern): On
 
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
-| [On](#on9) | 指定提示文本控件的On对象。 |
+| [On](#on9) | 返回指定提示文本控件的On对象。 |
 
 **错误码：**
 
@@ -955,13 +955,13 @@ belongingDisplay(displayId: number): On
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ |----|---------------------------------------|
-| displayId     | number | 是  | 指定控件所属屏幕ID。                              |
+| displayId | number | 是  | 指定控件所属屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **返回值：**
 
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
-| [On](#on9) | 指定提示控件所属屏幕的On对象。 |
+| [On](#on9) | 返回指定控件所属屏幕的On对象。 |
 
 **错误码：**
 
@@ -1589,7 +1589,7 @@ inputText(text: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在穿戴设备中，该接口不支持输入包含中文的文本。 |
 
 **错误码：**
 
@@ -1626,7 +1626,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在穿戴设备中，该接口不支持输入包含中文的文本。 |
 | mode | [InputTextMode](#inputtextmode20)  | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。<br> **说明：** InputTextMode.addition取值为ture时，在控件已有文本末尾后追加指定文本。取值为false时，指定文本将覆盖控件已有文本。|
 
 **返回值：**
@@ -1747,7 +1747,7 @@ scrollSearch(on: On, vertical?: boolean, offset?: number): Promise\<Component>
 |------------------------| ---------- | ---- |-----------------------------------|
 | on                     | [On](#on9) | 是   | 目标控件的属性要求。                        |
 | vertical |    boolean | 否 | 默认为true，表示查找方向是纵向。false表示查找方向为横向。 |
-| offset   | number| 否 | 滑动起点/终点到组件边框的偏移，默认80，单位：px，取值大于等于0的整数。    |
+| offset   | number| 否 | 滑动起点/终点到组件边框的偏移，默认80，单位：px，取值范围：大于等于0的整数。    |
 
 **返回值：**
 
@@ -2125,7 +2125,7 @@ Driver对象在给定的时间内延时。
 
 | 参数名   | 类型   | 必填 | 说明                            |
 | -------- | ------ | ---- | ------------------------------- |
-| duration | number | 是   | 给定的时间，单位：ms，取值大于等于0的整数。 |
+| duration | number | 是   | 给定的时间，单位：ms，取值范围：大于等于0的整数。 |
 
 **错误码：**
 
@@ -2284,7 +2284,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 | 参数名 | 类型       | 必填 | 说明                                      |
 | ------ | ---------- | ---- | ----------------------------------------- |
 | on    | [On](#on9) | 是   | 目标控件的属性要求。                      |
-| time   | number     | 是   | 查找目标控件的持续时间。单位ms，取值大于等于0的整数。 |
+| time   | number     | 是   | 查找目标控件的持续时间。单位ms，取值范围：大于等于0的整数。 |
 
 **返回值：**
 
@@ -2379,7 +2379,7 @@ async function demo() {
 
 pressBack(displayId): Promise\<void>
 
-Driver对象对指定屏幕进行点击BACK键的操作，使用Promise异步回调。
+对指定屏幕进行点击BACK键的操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2389,7 +2389,7 @@ Driver对象对指定屏幕进行点击BACK键的操作，使用Promise异步回
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| displayId | number | 是   | 指定的屏幕ID，取值大于等于0的整数。 |
+| displayId | number | 是   | 指定的屏幕ID，取值范围：大于等于0的整数。<br> **说明:** 传入displayId不存在时，将抛出17000007异常。  |
 
 **返回值：**
 
@@ -2430,7 +2430,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
+| keyCode | number | 是   | 指定的key值，取值范围：大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
 
 **错误码：**
 
@@ -2465,8 +2465,8 @@ triggerKey(keyCode: number, displayId: number): Promise\<void>
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| keyCode | number | 是   | 指定的key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
-| displayId | number | 是   | 指定的屏幕ID，取值大于等于0的整数。 |
+| keyCode | number | 是   | 指定的key值，取值范围：大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。 |
+| displayId | number | 是   | 指定的屏幕ID，取值范围：大于等于0的整数。<br> **说明:** 传入displayId不存在时，将抛出17000007异常。  |
 
 **返回值：**
 
@@ -2510,7 +2510,7 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 | ------ | ------ | ---- | ------------------------------ |
 | key0   | number | 是   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
 | key1   | number | 是   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
-| key2   | number | 否   | 指定的第三个key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+| key2   | number | 否   | 指定的第三个key值，取值范围：大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
 
 **错误码：**
 
@@ -2547,8 +2547,8 @@ triggerCombineKeys(key0: number, key1: number, key2?: number, displayId: number)
 | ------ | ------ | ---- | ------------------------------ |
 | key0   | number | 是   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
 | key1   | number | 是   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
-| key2   | number | 否   | 指定的第三个key值，取值大于等于0的整数。取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
-| displayId | number | 是   | 指定的屏幕ID，取值大于等于0的整数。 |
+| key2   | number | 否   | 指定的第三个key值，取值范围：大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
+| displayId | number | 是   | 指定的屏幕ID，取值范围：大于等于0的整数。 |
 
 **返回值：**
 
@@ -2590,8 +2590,8 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **错误码：**
 
@@ -2668,8 +2668,8 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **错误码：**
 
@@ -2746,8 +2746,8 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **错误码：**
 
@@ -2825,10 +2825,10 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 | 参数名 | 类型   | 必填 | 说明                                                   |
 | ------ | ------ | ---- |------------------------------------------------------|
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0的整数。                       |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0的整数。                       |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0的整数。                       |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0的整数。                       |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值范围：大于等于0的整数。                       |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值范围：大于等于0的整数。                       |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值范围：大于等于0的整数。                       |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值范围：大于等于0的整数。                       |
 | speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
 **错误码：**
@@ -2912,10 +2912,10 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0的整数。              |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0的整数。              |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0的整数。              |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0的整数。              |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值范围：大于等于0的整数。              |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值范围：大于等于0的整数。              |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值范围：大于等于0的整数。              |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值范围：大于等于0的整数。              |
 | speed  | number | 否   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。|
 
 **错误码：**
@@ -3039,7 +3039,7 @@ screenCap(savePath: string, displayId: number): Promise\<boolean>
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
 | savePath | string | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明:** 传入displayId不存在时，将抛出17000007异常。                  |
 
 **返回值：**
 
@@ -3154,7 +3154,7 @@ getDisplayRotation(displayId: number): Promise\<DisplayRotation>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明:** 传入displayId不存在时，将抛出17000007异常。                  |
 
 **返回值：**
 
@@ -3270,7 +3270,7 @@ getDisplaySize(displayId: number): Promise\<Point>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明:** 传入displayId不存在时，将抛出17000007异常。               |
 
 **返回值：**
 
@@ -3346,7 +3346,7 @@ getDisplayDensity(displayId: number): Promise\<Point>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| displayId | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
+| displayId | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明:** 传入displayId不存在时，将抛出17000007异常。                  |
 
 **返回值：**
 
@@ -3452,7 +3452,7 @@ pressHome(displayId: number): Promise\<void>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明:** 传入displayId不存在时，将抛出17000007异常。                  |
 
 **返回值：**
 
@@ -3494,8 +3494,8 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒，取值大于等于0的整数。 |
-| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒，取值大于等于0的整数。                    |
+| idleTime | number | 是   | 空闲时间的阈值。在这个时间段控件不发生变化，视为该控件空闲，单位：毫秒，取值范围：大于等于0的整数。 |
+| timeout  | number | 是   | 等待空闲的最大时间，单位：毫秒，取值范围：大于等于0的整数。                    |
 
 **返回值：**
 
@@ -3667,7 +3667,7 @@ fling(direction: UiDirection, speed: number, displayId: number): Promise\<void>
 | --------- | ----------------------------- | ---- |--------------------------------------------------------|
 | direction | [UiDirection](#uidirection10) | 是   | 进行抛滑的方向。                                               |
 | speed     | number                        | 是   | 滑动速率，取值范围为200-40000，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
-| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。                |
+| displayId     | number | 是  | 指定设备屏幕ID。取值范围：大于等于0的整数。 <br> **说明:** 传入displayId不存在时，将抛出17000007异常。                  |
 
 **返回值：**
 
@@ -4098,7 +4098,7 @@ inputText(p: Point, text: string): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在穿戴设备中，该接口不支持输入包含中文的文本。 |
 
 **错误码：**
 
@@ -4136,7 +4136,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在穿戴设备中，该接口不支持输入包含中文的文本。 |
 | mode | [InputTextMode](#inputtextmode20) | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
 
 **返回值：**
@@ -4447,7 +4447,7 @@ crownRotate(d: number, speed?: number): Promise\<void>
 
 注入手表表冠旋转事件，可指定旋转速度，使用Promise异步回调。
 
-该接口仅在智能穿戴设备上生效。
+该接口仅在穿戴设备上生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -4853,8 +4853,8 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                            |
 | ------ | ------ | ---- | ----------------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **返回值：**
 
@@ -4898,8 +4898,8 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 | 参数名    | 类型                                 | 必填 | 说明                                                         |
 | --------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| wide      | number                               | 是   | 以number的形式传入调整后窗口的宽度，取值大于等于0的整数。                         |
-| height    | number                               | 是   | 以number的形式传入调整后窗口的高度，取值大于等于0的整数。                         |
+| wide      | number                               | 是   | 以number的形式传入调整后窗口的宽度，取值范围：大于等于0的整数。                         |
+| height    | number                               | 是   | 以number的形式传入调整后窗口的高度，取值范围：大于等于0的整数。                         |
 | direction | [ResizeDirection](#resizedirection9) | 是   | 以[ResizeDirection](#resizedirection9)的形式传入窗口调整的方向。 |
 
 **返回值：**
@@ -6219,8 +6219,8 @@ UiDriver对象采取如下操作：在目标坐标点单击。
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **示例：**
 
@@ -6247,8 +6247,8 @@ UiDriver对象采取如下操作：在目标坐标点双击。
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **示例：**
 
@@ -6275,8 +6275,8 @@ UiDriver对象采取如下操作：在目标坐标点长按下鼠标左键。
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值大于等于0的整数。 |
-| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值大于等于0的整数。 |
+| x      | number | 是   | 以number的形式传入目标点的横坐标信息，取值范围：大于等于0的整数。 |
+| y      | number | 是   | 以number的形式传入目标点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **示例：**
 
@@ -6302,10 +6302,10 @@ UiDriver对象采取如下操作：从给出的起始坐标点滑向给出的目
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | -------------------------------------- |
-| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值大于等于0的整数。 |
-| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值大于等于0的整数。 |
-| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值大于等于0的整数。 |
-| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值大于等于0的整数。 |
+| startx | number | 是   | 以number的形式传入起始点的横坐标信息，取值范围：大于等于0的整数。 |
+| starty | number | 是   | 以number的形式传入起始点的纵坐标信息，取值范围：大于等于0的整数。 |
+| endx   | number | 是   | 以number的形式传入目的点的横坐标信息，取值范围：大于等于0的整数。 |
+| endy   | number | 是   | 以number的形式传入目的点的纵坐标信息，取值范围：大于等于0的整数。 |
 
 **示例：**
 
