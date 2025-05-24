@@ -150,7 +150,7 @@ loop(value: boolean)
 
 enableAnalyzer(enable: boolean)
 
-设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能。
+设置组件支持AI分析，当前支持主体识别、文字识别和对象查找等功能，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 使能后，视频播放暂停时自动进入分析状态，开始分析当前画面帧，视频继续播放后自动退出分析状态。
 不能和[overlay](ts-universal-attributes-overlay.md)属性同时使用，两者同时设置时[overlay](ts-universal-attributes-overlay.md)中[CustomBuilder](ts-types.md#custombuilder8)属性将失效。
 
@@ -173,7 +173,7 @@ enableAnalyzer(enable: boolean)
 
 analyzerConfig(config: ImageAnalyzerConfig)
 
-设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能。
+设置AI分析识别类型，包括主体识别、文字识别和对象查找等功能，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -207,7 +207,7 @@ enableShortcutKey(enabled: boolean)
 
 onStart(event:&nbsp;VoidCallback)
 
-播放时触发该事件。
+播放时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -223,7 +223,7 @@ onStart(event:&nbsp;VoidCallback)
 
 onPause(event:&nbsp;VoidCallback)
 
-暂停时触发该事件。
+暂停时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -239,7 +239,7 @@ onPause(event:&nbsp;VoidCallback)
 
 onFinish(event:&nbsp;VoidCallback)
 
-播放结束时触发该事件。
+播放结束时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -255,7 +255,7 @@ onFinish(event:&nbsp;VoidCallback)
 
 onError(event: VoidCallback | ErrorCallback)
 
-播放失败时触发该事件。
+播放失败时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -278,7 +278,7 @@ onError(event: VoidCallback | ErrorCallback)
 
 onStop(event: Callback&lt;void&gt;)
 
-播放停止时触发该事件(当stop()方法被调用后触发)。
+播放停止时触发该事件(当stop()方法被调用后触发)，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -288,7 +288,7 @@ onStop(event: Callback&lt;void&gt;)
 
 onPrepared(callback: Callback\<PreparedInfo>)
 
-视频准备完成时触发该事件。
+视频准备完成时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -304,7 +304,7 @@ onPrepared(callback: Callback\<PreparedInfo>)
 
 onSeeking(callback: Callback\<PlaybackInfo>)
 
-操作进度条过程时上报时间信息。
+操作进度条过程时上报时间信息，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -320,7 +320,7 @@ onSeeking(callback: Callback\<PlaybackInfo>)
 
 onSeeked(callback: Callback\<PlaybackInfo>)
 
-操作进度条完成后，上报播放时间信息。
+操作进度条完成后，上报播放时间信息，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -336,7 +336,7 @@ onSeeked(callback: Callback\<PlaybackInfo>)
 
 onUpdate(callback: Callback\<PlaybackInfo>)
 
-播放进度变化时触发该事件。
+播放进度变化时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -352,7 +352,7 @@ onUpdate(callback: Callback\<PlaybackInfo>)
 
 onFullscreenChange(callback: Callback\<FullscreenInfo>)
 
-在全屏播放与非全屏播放状态之间切换时触发该事件。
+在全屏播放与非全屏播放状态之间切换时触发该事件，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -885,3 +885,124 @@ struct VideoErrorComponent {
 ```
 
 ![](figures/onError.png)
+
+### 示例6（使用attributeModifier动态设置Video组件的属性及方法）
+
+以下示例展示了如何使用attributeModifier动态设置Video组件的enableAnalyzer、analyzerConfig属性和onStart、onPause、onFinish、onError、onStop、onPrepared、onSeeking、onSeeked、onUpdate、onFullscreenChange方法。
+
+```ts
+// xxx.ets
+class MyVideoModifier implements AttributeModifier<VideoAttribute> {
+  applyNormalAttribute(instance: VideoAttribute): void {
+    // 设置开启组件AI分析功能，长按触发AI识别功能
+    instance.enableAnalyzer(true)
+    let config: ImageAnalyzerConfig = {
+      types: [ImageAnalyzerType.SUBJECT, ImageAnalyzerType.TEXT]
+    }
+    instance.analyzerConfig(config)
+    instance.onStart(() => {
+      console.info('video: onStart')
+    })
+    instance.onPause(() => {
+      console.info('video: onPause')
+    })
+    instance.onFinish(() => {
+      console.info('video: onFinish')
+    })
+    instance.onError((err) => {
+      console.error('video: onError is code = ' + err.code + ', message = ' + err.message)
+    })
+    instance.onStop(() => {
+      console.info('video: onStop')
+    })
+    instance.onPrepared((e?: DurationObject) => {
+      if (e != undefined) {
+        console.info('video: onPrepared is ' + e.duration)
+      }
+    })
+    instance.onSeeking((e?: TimeObject) => {
+      if (e != undefined) {
+        console.info('video: onSeeking is ' + e.time)
+      }
+    })
+    instance.onSeeked((e?: TimeObject) => {
+      if (e != undefined) {
+        console.info('video: onSeeked is ' + e.time)
+      }
+    })
+    instance.onUpdate((e?: TimeObject) => {
+      if (e != undefined) {
+        console.info('video: onUpdate is ' + e.time)
+      }
+    })
+    instance.onFullscreenChange((e?: FullscreenObject) => {
+      if (e != undefined) {
+        console.info('video: onFullscreenChange is ' + e.fullscreen)
+      }
+    })
+  }
+}
+
+@Entry
+@Component
+struct VideoModifierDemo {
+  @State videoSrc: Resource = $rawfile('video.mp4');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = false;
+  controller: VideoController = new VideoController();
+  @State modifier: MyVideoModifier = new MyVideoModifier()
+
+  build() {
+    Column() {
+      Video({
+        src: this.videoSrc,
+        currentProgressRate: this.curRate, //设置播放速度
+        controller: this.controller
+      })
+        .width(300)
+        .height(180)
+        .autoPlay(this.isAutoPlay)
+        .controls(this.showControls)
+        .attributeModifier(this.modifier)
+      Row() {
+        Button('start').onClick(() => {
+          this.controller.start() // 开始播放
+        }).margin(2)
+        Button('pause').onClick(() => {
+          this.controller.pause() // 暂停播放
+        }).margin(2)
+        Button('stop').onClick(() => {
+          this.controller.stop() // 结束播放
+        }).margin(2)
+        Button('reset').onClick(() => {
+          this.controller.reset() // 重置AVPlayer
+        }).margin(2)
+      }
+
+      Row() {
+        Button('Fullscreen').onClick(() => {
+          this.controller.requestFullscreen(true) // 全屏
+        }).margin(2)
+        Button('showControls').onClick(() => {
+          this.showControls = !this.showControls // 显示控制栏
+        }).margin(2)
+      }
+    }
+  }
+}
+
+interface DurationObject {
+  duration: number;
+}
+
+interface TimeObject {
+  time: number;
+}
+
+interface FullscreenObject {
+  fullscreen: boolean;
+}
+```
+
+![](figures/videoModifier.png)
