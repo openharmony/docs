@@ -276,6 +276,10 @@ Redirection to a third-party application is not allowed in API version 11 or lat
 
 当应用API版本大于11的时候，不允许显式跳转到其他三方应用。
 
+**可能原因**
+
+应用使用的API版本大于11并且显式跳转到其他三方应用。
+
 **处理步骤**
 
 使用隐式启动方式或通过[openLink](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextopenlink12)跳转其他应用。
@@ -1364,3 +1368,23 @@ Running startup tasks timeout.
 **处理步骤**
 
 根据需要调整超时时间。超时时间的设置可参见[设置启动参数](../../application-models/app-startup.md#设置启动参数)。
+
+<!--Del-->
+## 16400001 目标应用类型不是系统级HSP
+
+**错误信息**
+
+The input bundleName is not a system HSP.
+
+**错误描述**
+
+通过[createSystemHspModuleResourceManager](js-apis-inner-application-context-sys.md#contextcreatesystemhspmoduleresourcemanager12)接口创建[ResourceManager](../apis-localization-kit/js-apis-resource-manager.md#resourcemanager)时，如果传入的bundleName不属于[系统级HSP](../../quick-start/application-package-glossary.md#系统级hsp)的模块，将返回该错误码。
+
+**可能原因**
+
+调用createSystemHspModuleResourceManager传入的bundleName，不是OEM预置到系统中的HSP的bundleName。
+
+**处理步骤**
+
+检查bundleName是否正确。
+<!--DelEnd-->
