@@ -5,7 +5,7 @@
   - [标准化数据定义概述](unified-data-definition-overview.md)
   - [标准化数据类型](uniform-data-type-descriptors.md)
   - [标准化数据结构](uniform-data-structure.md)
-  - [基于标准化数据结构的控件（ArkTS）](content-form-card.md)
+  - [基于标准化数据结构的控件（ArkTS）](components-based-on-uniform-data-structure.md)
   - [Uniform Type Descriptor(UTD)预置类型列表](uniform-data-type-list.md)
 - 应用数据持久化<!--app-data-persistence-->
   - [应用数据持久化概述](app-data-persistence-overview.md)
