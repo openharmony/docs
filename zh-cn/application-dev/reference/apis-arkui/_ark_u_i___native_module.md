@@ -15473,8 +15473,8 @@ ArkUI_StyledString* OH_ArkUI_StyledString_Create (OH_Drawing_TypographyStyle * s
 
 | 名称 | 描述 |
 | -------- | -------- |
-| style | 指向OH_Drawing_TypographyStyle的指针，由[**OH_Drawing_CreateTypographyStyle**](../apis-arkgraphics2d/_drawing.md#oh_drawing_createtypographystyle)获取。  |
-| collection | 指向OH_Drawing_FontCollection的指针，由[**OH_Drawing_CreateFontCollection**](../apis-arkgraphics2d/_drawing.md#oh_drawing_createfontcollection)获取。  |
+| style | 指向OH_Drawing_TypographyStyle的指针，由[**OH_Drawing_CreateTypographyStyle**](../apis-arkgraphics2d/capi-drawing-text-typography-h.md#oh_drawing_createtypographystyle)获取。  |
+| collection | 指向OH_Drawing_FontCollection的指针，由[**OH_Drawing_CreateFontCollection**](../apis-arkgraphics2d/capi-drawing-font-collection-h.md#oh_drawing_createfontcollection)获取。  |
 
 **返回：**
 
@@ -17634,6 +17634,33 @@ int32_t OH_ArkUI_UnregisterDrawCallbackOnNodeHandle (ArkUI_NodeHandle node)
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。
 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
+
+
+### OH_ArkUI_RunTaskInScope()
+
+```
+int32_t OH_ArkUI_RunTaskInScope(ArkUI_ContextHandle uiContext, void* userData, void(*callback)(void* userData))
+```
+**描述：**
+
+在UIContext作用域内运行自定义函数。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| uiContext | 表示目标UIContext的指针。  |
+| userData | 表示指定自定义数据的指针。 |
+| callback | 自定义函数。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。
+[ARKUI_ERROR_CODE_CAPI_INIT_ERROR](_ark_u_i___native_module.md#arkui_errorcode) CAPI初始化错误。
+[ARKUI_ERROR_CODE_UI_CONTEXT_INVALID](_ark_u_i___native_module.md#arkui_errorcode) UIContext对象无效。
+[ARKUI_ERROR_CODE_CALLBACK_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 回调函数无效。
 
 
 ### OH_ArkUI_ProgressLinearStyleOption_Create
