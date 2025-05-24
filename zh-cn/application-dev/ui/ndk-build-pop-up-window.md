@@ -1,10 +1,10 @@
 # 构建弹窗
 
 
-通过弹窗控制器显示自定义弹窗，可以设置自定义弹窗的样式和内容。
+使用弹窗控制器显示自定义弹窗，设置其样式和内容。
 
 
-弹窗接口集合定义在结构体里，命名为ArkUI_NativeDialogAPI_x （x表示版本），这些接口围绕弹窗控制器实现各种弹窗控制。
+弹窗接口集合定义在结构体里，命名为ArkUI_NativeDialogAPI_x （x表示版本），用于实现各种弹窗控制。
 [OH_ArkUI_QueryModuleInterfaceByName](../reference/apis-arkui/_ark_u_i___native_module.md#oh_arkui_querymoduleinterfacebyname)用于获取指定类型的Native模块接口集合，可以通过其返回ArkUI_NativeDialogHandle类型的数据调用Native模块中的接口。
 
 
@@ -100,7 +100,7 @@
 
 可创建交互页面，打开或关闭弹窗。
 
-1. 创建一个可交互的界面，点击Button之后可以弹窗。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
+1. 创建可交互界面，点击Button后弹窗。其中获取与使用ArkUI_NodeContentHandle类型节点可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
    ```
    constexpr int32_t BUTTON_CLICK_ID = 1;
    bool isShown = false;
@@ -170,9 +170,9 @@
 
 ## 弹窗的生命周期
 
-在弹窗显示前后和弹窗关闭前后，存在registerOnWillAppear、registerOnDidAppear、registerOnWillDisappear、registerOnDidDisappear这四个生命周期。
+弹窗显示和关闭前后，存在四个生命周期：registerOnWillAppear、registerOnDidAppear、registerOnWillDisappear、registerOnDidDisappear。
 这些生命周期方法需要在调用show方法之前调用，生命周期的时序如下：
-registerOnWillAppear -> 弹窗显示动画开始 -> 弹窗显示动画结束 ->registerOnDidAppear -> 弹窗显示完成 ->
+registerOnWillAppear -> 弹窗显示动画开始 -> 弹窗显示动画结束 -> registerOnDidAppear -> 弹窗显示完成 ->
 registerOnWillDisappear -> 弹窗关闭动画开始 ->  弹窗关闭动画结束 -> registerOnDidDisappear -> 弹窗关闭完成。
 
 创建一个弹窗，弹窗显示和关闭时会触发生命周期的回调函数。其中 ArkUI_NodeContentHandle 类型节点的获取与使用可参考[接入ArkTS页面](ndk-access-the-arkts-page.md)。
