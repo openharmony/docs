@@ -2891,7 +2891,7 @@ const char* OH_MD_KEY_VIDEO_DECODER_OUTPUT_COLOR_SPACE
 **描述**
 设置视频解码器输出色彩空间的键，值类型为int32_t。
 
-支持的值为OH_COLORSPACE_BT709_LIMIT，请参见[OH_NativeBuffer_ColorSpace](../../referenceapis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)。
+支持的值为OH_COLORSPACE_BT709_LIMIT，请参见[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)。
 
 在视频解码调用[OH_VideoDecoder_Configure](_video_decoder.md#oh_videodecoder_configure)接口时使用此接口。
 
