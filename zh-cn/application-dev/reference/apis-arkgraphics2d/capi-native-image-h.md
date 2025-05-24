@@ -525,7 +525,7 @@ int32_t OH_ConsumerSurface_SetDefaultUsage(OH_NativeImage* image, uint64_t usage
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_NativeImage](capi-oh-nativeimage.md)* image | 指向OH_NativeImage实例的指针。 |
-| uint64_t usage | 表示读写方式。枚举值参考{@link OH_NativeBuffer_Usage}。 |
+| uint64_t usage | 表示读写方式。枚举值参考[OH_NativeBuffer_Usage](capi-native-buffer-h.md#oh_nativebuffer_usage)。 |
 
 **返回：**
 

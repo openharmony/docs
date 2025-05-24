@@ -308,7 +308,7 @@ OH_Drawing_TextLine* OH_Drawing_TextLineCreateTruncatedLine(OH_Drawing_TextLine*
 | -- | -- |
 | [OH_Drawing_TextLine](capi-oh-drawing-textline.md)* line | 指向文本行对象[OH_Drawing_TextLine](capi-oh-drawing-textline.md)的指针。 |
 | double width | 截断后的行宽度。 |
-| int mode | 截断的类型，取值对应为{@link OH_Drawing_EllipsisModal}枚举，当前仅支持头部截断ELLIPSIS_MODAL_HEAD和尾部截断ELLIPSIS_MODAL_TAIL。 |
+| int mode | 截断的类型，取值对应为 [OH_Drawing_EllipsisModal](capi-drawing-text-typography-h.md#oh_drawing_ellipsismodal) 枚举，当前仅支持头部截断ELLIPSIS_MODAL_HEAD和尾部截断ELLIPSIS_MODAL_TAIL。 |
 | const char* ellipsis | 截断的标记字符串。 |
 
 **返回：**
