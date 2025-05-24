@@ -20,7 +20,7 @@
 import { intl } from '@kit.LocalizationKit';
 ```
 
-## Locale
+## Locale<sup>(deprecated)</sup>
 
 ### 属性
 
@@ -43,9 +43,11 @@ import { intl } from '@kit.LocalizationKit';
 | numberingSystem | string  | 是    | 区域使用的数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | numeric         | boolean | 是    | true表示对数字字符进行特殊的排序规则处理，false表示不对数字字符进行特殊的排序规则处理。<br>默认值：false。                      |
 
-### constructor<sup>8+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor()
+
+从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale)替代。
 
 创建区域对象。
 
@@ -63,9 +65,11 @@ constructor()
   let localeID = locale.toString();
   ```
 
-### constructor
+### constructor<sup>(deprecated)</sup>
 
 constructor(locale: string, options?: LocaleOptions)
+
+从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale() constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/Locale)替代。
 
 创建区域对象。
 
@@ -80,7 +84,7 @@ constructor(locale: string, options?: LocaleOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string                           | 是    | 表示区域ID的字符串，由语言、脚本、国家地区组成。|
-| options             | [LocaleOptions](#localeoptions) | 否    | 创建区域对象的选项。 |
+| options             | [LocaleOptions](#localeoptionsdeprecated) | 否    | 创建区域对象的选项。 |
 
 **示例：**
   ```ts
@@ -90,9 +94,11 @@ constructor(locale: string, options?: LocaleOptions)
   ```
 
 
-### toString
+### toString<sup>(deprecated)</sup>
 
 toString(): string
+
+从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.toString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/toString)替代。
 
 获取区域对象的字符串。
 
@@ -115,9 +121,11 @@ toString(): string
   let localeID = locale.toString(); // localeID = "en-GB"
   ```
 
-### maximize
+### maximize<sup>(deprecated)</sup>
 
 maximize(): Locale
+
+从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.maximize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/maximize)替代。
 
 最大化区域信息，补齐区域对象中缺少的脚本、国家地区信息。
 
@@ -131,7 +139,7 @@ maximize(): Locale
 
 | 类型                | 说明         |
 | ----------------- | ---------- |
-| [Locale](#locale) | 补齐完脚本、国家地区信息后的区域对象。 |
+| [Locale](#localedeprecated) | 补齐完脚本、国家地区信息后的区域对象。 |
 
 **示例：**
   ```ts
@@ -149,9 +157,11 @@ maximize(): Locale
   ```
 
 
-### minimize
+### minimize<sup>(deprecated)</sup>
 
 minimize(): Locale
+
+从API version 8开始支持，从API version 20开始废弃，建议使用[Intl.Locale.prototype.minimize()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/minimize)替代。
 
 最小化区域信息，移除区域对象中的脚本、国家地区信息。
 
@@ -165,7 +175,7 @@ minimize(): Locale
 
 | 类型                | 说明         |
 | ----------------- | ---------- |
-| [Locale](#locale) | 移除完脚本、国家地区信息后的区域对象。 |
+| [Locale](#localedeprecated) | 移除完脚本、国家地区信息后的区域对象。 |
 
 **示例：**
   ```ts
@@ -182,9 +192,9 @@ minimize(): Locale
   localeID = minimizedLocale.toString(); // localeID = "en"
   ```
 
-## LocaleOptions
+## LocaleOptions<sup>(deprecated)</sup>
 
-区域初始化选项。从API version 9开始，LocaleOptions属性由必填改为可选。
+区域初始化选项。从API version 9开始，LocaleOptions属性由必填改为可选。从API version 8开始支持，从API version 20开始废弃，以calendar为例，建议使用[Intl.Locale.prototype.calendar()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/calendar)替代。
 
 **卡片能力**：从API version 11开始，该类型支持在ArkTS卡片中使用。
 
