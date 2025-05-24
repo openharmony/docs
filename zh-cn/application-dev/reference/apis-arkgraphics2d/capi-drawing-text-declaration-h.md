@@ -23,7 +23,7 @@
 | [OH_Drawing_TextStyle](capi-oh-drawing-textstyle.md) | OH_Drawing_TextStyle | 用于管理字体颜色、装饰等。 |
 | [OH_Drawing_TypographyStyle](capi-oh-drawing-typographystyle.md) | OH_Drawing_TypographyStyle | 用于管理排版风格，如文字方向等。 |
 | [OH_Drawing_LineTypography](capi-oh-drawing-linetypography.md) | OH_Drawing_LineTypography | 用于从一段文字中提取单行数据进行排版。 |
-| [OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md) | OH_Drawing_TypographyCreate | 用于创建{@link OH_Drawing_Typography}。 |
+| [OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md) | OH_Drawing_TypographyCreate | 用于创建[OH_Drawing_Typography](capi-oh-drawing-typography.md)。 |
 | [OH_Drawing_TextBox](capi-oh-drawing-textbox.md) | OH_Drawing_TextBox | 用于接收文本框的矩形大小、方向和数量大小。 |
 | [OH_Drawing_PositionAndAffinity](capi-oh-drawing-positionandaffinity.md) | OH_Drawing_PositionAndAffinity | 用于接收字体的位置和亲和性。 |
 | [OH_Drawing_Range](capi-oh-drawing-range.md) | OH_Drawing_Range | 用于接收字体的起始位置和结束位置。 |

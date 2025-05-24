@@ -74,7 +74,7 @@ OH_Drawing_Surface* OH_Drawing_SurfaceCreateOnScreen(OH_Drawing_GpuContext* gpuC
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)* gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)。<br>该图形处理器上下文对象必须由{@link OH_Drawing_GpuContextCreate}创建，否则surface对象会创建失败。 |
+| [OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)* gpuContext | 指向图形处理器上下文对象的指针[OH_Drawing_GpuContext](capi-oh-drawing-gpucontext.md)。<br>该图形处理器上下文对象必须由[OH_Drawing_GpuContextCreate](capi-drawing-gpu-context-h.md#oh_drawing_gpucontextcreate)创建，否则surface对象会创建失败。 |
 | [OH_Drawing_Image_Info](capi-oh-drawing-image-info.md) imageInfo | 图片信息[OH_Drawing_Image_Info](capi-oh-drawing-image-info.md)结构体。 |
 | void* window | 指向屏幕窗口对象的指针。 |
 

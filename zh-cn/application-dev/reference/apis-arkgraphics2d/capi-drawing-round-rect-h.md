@@ -160,7 +160,7 @@ OH_Drawing_Corner_Radii OH_Drawing_RoundRectGetCorner(OH_Drawing_RoundRect* roun
 
 | 类型 | 说明 |
 | -- | -- |
-| OH_Drawing_Corner_Radii | 返回指定圆角位置的圆角半径结构体{@link OH_Drawing_Corner_Radii}，其中包含x轴方向和y轴方向上的半径。 |
+| OH_Drawing_Corner_Radii | 返回指定圆角位置的圆角半径结构体OH_Drawing_Corner_Radii，其中包含x轴方向和y轴方向上的半径。 |
 
 ### OH_Drawing_RoundRectDestroy()
 

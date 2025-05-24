@@ -990,7 +990,7 @@ OH_Drawing_ErrorCode OH_Drawing_FontGetTextPath(const OH_Drawing_Font* font, con
 | const [OH_Drawing_Font](capi-oh-drawing-font.md)* font | 指示字型对象[OH_Drawing_Font](capi-oh-drawing-font.md)的指针。 |
 | const void* text | 指示要获取轮廓路径的文本字符串。 |
 | size_t byteLength | 指示要获取对应文本路径的字节长度，如果此字节长度大于text字符串的字节长度，会发生未定义行为。 |
-| [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) encoding | 指示文本编码格式，支持 UTF-8、UTF-16、UTF-32，以及字形索引，具体类型格式可见{@link OH_DRAWING_TextEncoding}。 |
+| [OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding) encoding | 指示文本编码格式，支持 UTF-8、UTF-16、UTF-32，以及字形索引，具体类型格式可见[OH_Drawing_TextEncoding](capi-drawing-types-h.md#oh_drawing_textencoding)。 |
 | float x | 指示文本在绘图区域内以原点为起始位置的X坐标。 |
 | float y | 指示文本在绘图区域内以原点为起始位置的Y坐标。 |
 | [OH_Drawing_Path](capi-oh-drawing-path.md)* path | 返回获取到的文字轮廓路径对象，作为出参使用。 |

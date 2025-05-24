@@ -46,7 +46,7 @@ OH_Drawing_LineTypography* OH_Drawing_CreateLineTypography(OH_Drawing_Typography
 
 | 参数项 | 描述 |
 | -- | -- |
-| [OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)* handler | 指向[OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)对象的指针，由{@link OH_Drawing_CreateTypographyHandler}获取。 |
+| [OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)* handler | 指向[OH_Drawing_TypographyCreate](capi-oh-drawing-typographycreate.md)对象的指针，由[OH_Drawing_CreateTypographyHandler](capi-drawing-text-typography-h.md#oh_drawing_createtypographyhandler)获取。 |
 
 **返回：**
 

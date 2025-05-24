@@ -257,7 +257,7 @@ OH_Drawing_Typeface* OH_Drawing_FontMgrMatchFamilyStyle(OH_Drawing_FontMgr* draw
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 返回对应的字体样式的字型对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)，不再需要时，请使用{@link OH_Drawing_TypefaceDestroy}释放该对象指针。 |
+| [OH_Drawing_Typeface](capi-oh-drawing-typeface.md)* | 返回对应的字体样式的字型对象[OH_Drawing_Typeface](capi-oh-drawing-typeface.md)，不再需要时，请使用[OH_Drawing_TypefaceDestroy](capi-drawing-typeface-h.md#oh_drawing_typefacedestroy)释放该对象指针。 |
 
 ### OH_Drawing_FontMgrMatchFamilyStyleCharacter()
 

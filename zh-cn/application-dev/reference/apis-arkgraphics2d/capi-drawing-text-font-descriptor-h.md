@@ -159,7 +159,7 @@ OH_Drawing_Array* OH_Drawing_GetSystemFontFullNamesByType(OH_Drawing_SystemFontT
 
 | 类型 | 说明 |
 | -- | -- |
-| [OH_Drawing_Array](capi-oh-drawing-array.md)* | 返回对应字体类型的字体名称数组{@link OH_Drawing_Array}的指针，不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_DestroySystemFontFullNames](capi-drawing-text-font-descriptor-h.md#oh_drawing_destroysystemfontfullnames)接口释放该对象的指针。 |
+| [OH_Drawing_Array](capi-oh-drawing-array.md)* | 返回对应字体类型的字体名称数组[OH_Drawing_Array](capi-oh-drawing-array.md)的指针，不再需要[OH_Drawing_Array](capi-oh-drawing-array.md)时，请使用[OH_Drawing_DestroySystemFontFullNames](capi-drawing-text-font-descriptor-h.md#oh_drawing_destroysystemfontfullnames)接口释放该对象的指针。 |
 
 ### OH_Drawing_GetSystemFontFullNameByIndex()
 

@@ -29,7 +29,7 @@
 | 名称 | 描述 |
 | -- | -- |
 | [OH_Drawing_Canvas* OH_Drawing_CanvasCreate(void)](#oh_drawing_canvascreate) | 用于创建一个画布对象。 |
-| [OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixelMap)](#oh_drawing_canvascreatewithpixelmap) | 用于将一个像素图对象绑定到画布中，使得画布绘制的内容输出到像素图中（即CPU渲染）。绑定像素图对象后的画布为非录制类型画布。<br>像素图对象应该在销毁画布对象之后调用{@link OH_Drawing_PixelMapDissolve}解除绑定。 |
+| [OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixelMap)](#oh_drawing_canvascreatewithpixelmap) | 用于将一个像素图对象绑定到画布中，使得画布绘制的内容输出到像素图中（即CPU渲染）。绑定像素图对象后的画布为非录制类型画布。<br>像素图对象应该在销毁画布对象之后调用[OH_Drawing_PixelMapDissolve](capi-drawing-pixel-map-h.md#oh_drawing_pixelmapdissolve)解除绑定。 |
 | [void OH_Drawing_CanvasDestroy(OH_Drawing_Canvas* canvas)](#oh_drawing_canvasdestroy) | 用于销毁画布对象并回收该对象占有的内存。 |
 | [void OH_Drawing_CanvasBind(OH_Drawing_Canvas* canvas, OH_Drawing_Bitmap* bitmap)](#oh_drawing_canvasbind) | 用于将一个位图对象绑定到画布中，使得画布绘制的内容输出到位图中（即CPU渲染）。绑定位图对象后的画布为非录制类型画布。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>canvas、bitmap任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
 | [void OH_Drawing_CanvasAttachPen(OH_Drawing_Canvas* canvas, const OH_Drawing_Pen* pen)](#oh_drawing_canvasattachpen) | 用于设置画笔给画布，画布将会使用设置画笔的样式和颜色去绘制图形形状的轮廓。执行该方法后，若画笔的效果发生改变并且开发者希望该变化生效于接下来的绘制动作，需要再次执行该方法以确保变化生效。<br>本接口会产生错误码，可以通过[OH_Drawing_ErrorCodeGet](capi-drawing-error-code-h.md#oh_drawing_errorcodeget)查看错误码的取值。<br>canvas、pen任意一个为NULL时返回OH_DRAWING_ERROR_INVALID_PARAMETER。 |
@@ -211,7 +211,7 @@ OH_Drawing_Canvas* OH_Drawing_CanvasCreateWithPixelMap(OH_Drawing_PixelMap* pixe
 
 **描述**
 
-用于将一个像素图对象绑定到画布中，使得画布绘制的内容输出到像素图中（即CPU渲染）。绑定像素图对象后的画布为非录制类型画布。<br>像素图对象应该在销毁画布对象之后调用{@link OH_Drawing_PixelMapDissolve}解除绑定。
+用于将一个像素图对象绑定到画布中，使得画布绘制的内容输出到像素图中（即CPU渲染）。绑定像素图对象后的画布为非录制类型画布。<br>像素图对象应该在销毁画布对象之后调用[OH_Drawing_PixelMapDissolve](capi-drawing-pixel-map-h.md#oh_drawing_pixelmapdissolve)解除绑定。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -1246,7 +1246,7 @@ void OH_Drawing_CanvasGetLocalClipBounds(OH_Drawing_Canvas* canvas, OH_Drawing_R
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，开发者可调用{@link OH_Drawing_RectCreate}接口创建。 |
+| [OH_Drawing_Rect](capi-oh-drawing-rect.md)* rect | 指向矩形对象[OH_Drawing_Rect](capi-oh-drawing-rect.md)的指针，开发者可调用[OH_Drawing_RectCreate](capi-drawing-rect-h.md#oh_drawing_rectcreate)接口创建。 |
 
 ### OH_Drawing_CanvasGetTotalMatrix()
 
@@ -1268,7 +1268,7 @@ void OH_Drawing_CanvasGetTotalMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matri
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用{@link OH_Drawing_MatrixCreate}接口创建。 |
+| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-rect-h.md#oh_drawing_matrixcreate)接口创建。 |
 
 ### OH_Drawing_CanvasConcatMatrix()
 
@@ -1362,7 +1362,7 @@ void OH_Drawing_CanvasSetMatrix(OH_Drawing_Canvas* canvas, OH_Drawing_Matrix* ma
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_Canvas](capi-oh-drawing-canvas.md)* canvas | 指向画布对象[OH_Drawing_Canvas](capi-oh-drawing-canvas.md)的指针。 |
-| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用{@link OH_Drawing_MatrixCreate}接口创建。 |
+| [OH_Drawing_Matrix](capi-oh-drawing-matrix.md)* matrix | 指向矩阵对象[OH_Drawing_Matrix](capi-oh-drawing-matrix.md)的指针，开发者可调用[OH_Drawing_MatrixCreate](capi-drawing-rect-h.md#oh_drawing_matrixcreate)接口创建。 |
 
 ### OH_Drawing_CanvasResetMatrix()
 
