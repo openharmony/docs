@@ -65,6 +65,8 @@
    |renderingMode|表示卡片的渲染模式，取值范围如下：<br/>-&nbsp;autoColor：自动模式，锁屏卡片中心与桌面卡片中心/卡片管理内都可以显示的卡片。<br/>-&nbsp;fullColor：全色模式，桌面卡片中心/卡片管理内可以显示的卡片。<br/>-&nbsp;singleColor：单色模式，锁屏卡片中心内可以显示的卡片。	|字符串|可缺省，缺省值为“fullColor”。|
    |multiScheduledUpdateTime|表示卡片的多定点刷新的时刻，作为单点刷新的一个附加参数，采用24小时制，精确到分钟，多个时间用英文逗号分隔，最多写24个时间。<br/>**说明：**<br/>multiScheduledUpdateTime需要配合scheduledUpdateTime使用。|字符串|可缺省，缺省时不进行多定点刷新。|
    |conditionUpdate|表示卡片的支持的条件刷新（仅对系统应用的ArkTS卡片生效）。取值范围如下：<br/>-&nbsp;network：表示支持网络刷新。|字符串|可缺省，缺省值为空字符串。|
+   |[funInteractionParams](#funinteractionparams标签)| 趣味交互类型互动卡片扩展字段 | 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
+   |[sceneAnimationParams](#sceneanimationparams标签)| 场景动效类型互动卡片扩展字段 | 对象 | 可缺省，缺省为空。funInteractionParams 和 sceneAnimationParams 同时配置时识别为趣味交互类型互动卡片。|
 
 ## isDynamic标签
 
@@ -115,6 +117,104 @@
          "isDynamic": true,
          "transparencyEnabled": false,
          "metadata": []
+       }
+     ]
+   }
+   ```
+<!--RP1End-->
+
+## funInteractionParams标签
+
+此标签标识趣味交互类型互动卡片配置。
+
+| 名称    | 类型     | 必填 | 说明                                                         |
+|--------|--------|----|------------------------------------------------------------|
+| abilityName | string | 否  | 趣味交互场景 extensionAbility 名称，默认为鸿蒙小游戏引擎对应 extensionAbility。|
+| targetBundleName  | string | 是  | 趣味交互场景 RPK 资源 bundle 名称。|
+| subBundleName  | string | 否  | 趣味交互场景 RPK 资源子 bundle 名称。 |
+| keepStateDuration  | number | 否  | 趣味交互场景无交互时，激活态保持时长（单位 ms）保持时长限制不超过 10000ms，配置超过 10000ms 按照 10000ms 计。可缺省，缺省按 10000ms 计。 |
+
+配置示例如下：
+
+<!--RP1-->
+   ```json
+   {
+     "forms": [
+       {
+         "name": "widget",
+         "displayName": "$string:widget_display_name",
+         "description": "$string:widget_desc",
+         "src": "./ets/widget/pages/WidgetCard.ets",
+         "uiSyntax": "arkts",
+         "window": {
+           "designWidth": 720,
+           "autoDesignWidth": true
+         },
+         "colorMode": "auto",
+         "renderingMode": "fullColor",
+         "isDefault": true,
+         "updateEnabled": true,
+         "scheduledUpdateTime": "10:30",
+         "updateDuration": 1,
+         "defaultDimension": "2*2",
+         "supportDimensions": [
+           "2*2"
+         ],
+         "formConfigAbility": "ability://EntryAbility",
+         "dataProxyEnabled": false,
+         "isDynamic": true,
+         "transparencyEnabled": false,
+         "metadata": [],
+         "funInteractionParams": {
+            "targetBundleName": "com.example.funInteraction"
+         }          
+       }
+     ]
+   }
+   ```
+<!--RP1End-->
+
+## sceneAnimationParams标签
+
+此标签标识场景动效类型互动卡片配置。
+
+| 名称    | 类型     | 必填 | 说明 |
+|--------|--------|----|----------------------------|
+| abilityName | string | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility 名称，相应业务逻辑需卡片提供方进一步开发。|
+| disabledDesktopBehaviors | string | 否  | 只针对系统应用生效，缺省为不禁用。支持禁用的用户操作有：滑动桌面（SWIPE_DESKTOP），下拉全搜（PULL_DOWN_SEARCH），长按（LONG_CLICK），拖动（DRAG）。配置时候通过 \| 的形式追加。例如 SWIPE_DESKTOP\|PULL_DOWN_SEARCH\|LONG_CLICK\|DRAG。 |
+
+<!--RP1-->
+   ```json
+   {
+     "forms": [
+       {
+         "name": "widget",
+         "displayName": "$string:widget_display_name",
+         "description": "$string:widget_desc",
+         "src": "./ets/widget/pages/WidgetCard.ets",
+         "uiSyntax": "arkts",
+         "window": {
+           "designWidth": 720,
+           "autoDesignWidth": true
+         },
+         "colorMode": "auto",
+         "renderingMode": "fullColor",
+         "isDefault": true,
+         "updateEnabled": true,
+         "scheduledUpdateTime": "10:30",
+         "updateDuration": 1,
+         "defaultDimension": "2*2",
+         "supportDimensions": [
+           "2*2"
+         ],
+         "formConfigAbility": "ability://EntryAbility",
+         "dataProxyEnabled": false,
+         "isDynamic": true,
+         "transparencyEnabled": false,
+         "metadata": [],
+         "sceneAnimationParams": {
+            "abilityName": "MyLiveFormExtensionAbility"
+         }          
        }
      ]
    }

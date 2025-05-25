@@ -2886,3 +2886,171 @@ try {
 }
 
 ```
+
+## on('formOverflow')
+
+on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): void;
+
+订阅互动卡片动效请求事件。使用callback异步回调。互动卡片动效支持动效渲染范围超过卡片自身边界。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型       | 必填 | 说明 |
+|----------|--------|---|-----------------------------------------|
+| type     | string | 是 | 事件回调类型，支持的事件为'formOverflow'，表示互动卡片动效请求。|
+| callback | Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#OverflowRequest)&gt; | 是 | 回调函数，返回动效处理函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                  |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
+| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
+
+**示例：**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.on('formOverflow', (request: formInfo.OverflowRequest) => {
+    console.log(`formHost on formOverflow, formId is ${request.formId}`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## off('formOverflow')
+
+off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): void;
+
+取消订阅互动卡片动效请求事件。使用callback异步回调。互动卡片动效支持动效渲染范围超过卡片自身边界。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                     |
+| ------ | ------ |----|----------------------------------------|
+| type | string | 是  | 事件回调类型，支持的事件为'formOverflow'，表示互动卡片动效请求。|
+| callback |Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#OverflowRequest)&gt; | 否  | 回调函数，返回动效处理函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                |
+| --- |-----------------------------------------------------------------------------------------------------------|
+| 202 | The application is not a system application.                                                              |
+| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
+
+**示例：**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.off('formOverflow', (request: formInfo.OverflowRequest) => {
+    console.log(`formHost off formOverflow, formId is ${request.formId}`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}   
+```
+
+## on('changeSceneAnimationState')
+
+on(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.ChangeSceneAnimationStateRequest&gt;): void;
+
+订阅互动卡片状态切换事件。使用callback异步回调。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                                   |
+| ------ | ------ | ---- |------------------------------------------------------|
+| type | string | 是   | 事件回调类型，支持的事件为'changeSceneAnimationState'，表示互动卡片状态切换。|
+| callback |Callback&lt;[formInfo.ChangeSceneAnimationStateRequest](js-apis-app-form-formInfo-sys.md#ChangeSceneAnimationStateRequest)&gt; | 是 | 回调函数，返回状态切换处理函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                                                                  |
+|-------|-----------------------------------------------------------------------------------------------------------|
+| 202   | The application is not a system application.                                                              |
+| 801   | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
+
+**示例：**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.on('changeSceneAnimationState', (request: formInfo.ChangeSceneAnimationStateRequest): void => {
+    console.log(`formHost on changeSceneAnimationState, formId is ${request.formId}`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```
+
+## off('changeSceneAnimationState')
+
+off(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.changeSceneAnimationState&gt;): void;
+
+取消订阅互动卡片状态切换事件。使用callback异步回调。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
+
+**系统能力：** SystemCapability.Ability.Form
+
+**系统接口：** 此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ |----| ------- |
+| type | string | 是  | 事件回调类型，支持的事件为'changeSceneAnimationState'，表示互动卡片状态切换。|
+| callback |Callback&lt;[formInfo.ChangeSceneAnimationStateRequest](js-apis-app-form-formInfo-sys.md#ChangeSceneAnimationStateRequest)&gt; | 否  | 回调函数，返回状态切换处理函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 801 | Capability not supported.function formOverflow can not work correctly due to limited device capabilities. |
+
+**示例：**
+
+```ts
+import { formHost } from '@kit.FormKit';
+import { formInfo } from '@kit.FormKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  formHost.off('changeSceneAnimationState', (request: formInfo.ChangeSceneAnimationStateRequest): void => {
+    console.log(`formHost off changeSceneAnimationState, formId is ${request.formId}`);
+  });
+} catch (error) {
+  console.error(`catch error, code: ${(error as BusinessError).code}, message: ${(error as BusinessError).message}`);
+}
+```

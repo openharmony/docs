@@ -46,6 +46,8 @@ import { formInfo } from '@kit.FormKit';
 | <!--DelRow-->previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | <!--DelRow-->enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | <!--DelRow-->renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| <!--DelRow-->funInteractionParams<sup>20+</sup>  | [FunInteractionParams](./js-apis-app-form-formInfo-sys.md#funinteractionparamssup20sup) | 是    | 否     | 趣味交互类型互动卡片配置参数。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| <!--DelRow-->sceneAnimationParams<sup>20+</sup>  | [SceneAnimationParams](./js-apis-app-form-formInfo-sys.md#sceneanimationparamssup20sup) | 是    | 否     | 场景动效类型互动卡片配置参数。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## FormType
 
@@ -197,3 +199,30 @@ import { formInfo } from '@kit.FormKit';
 | FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
 | FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |
 
+## OverflowInfo<sup>20+</sup>
+
+互动卡片动效信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称       | 类型     | 必填 | 说明                         |
+|----------|--------|----|---------------------------------|
+| area     | Rect   | 是  | 描述溢出动效区域范围, 以卡片左上角为原点, 单位为vp。|
+| duration | number | 是  | 描述溢出动效区域持续时长。限制动效时长不超过 3500 ms。|
+
+## Rect<sup>20+</sup>
+
+互动卡片动效渲染区域参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 字段名  | 类型    | 必填 | 说明                       |
+|--------|--------|----|--------------------------|
+| left   | number | 是  | 描述动效区域矩形的左上角顶点的 x 坐标，单位：vp。|
+| top    | number | 是  | 描述动效区域矩形的左上角顶点的 y 坐标，单位：vp。|
+| width  | number | 是  | 描述动效区域矩形的宽度，单位：vp。|
+| height | number | 是  | 描述动效区域矩形的高度，单位：vp。|
