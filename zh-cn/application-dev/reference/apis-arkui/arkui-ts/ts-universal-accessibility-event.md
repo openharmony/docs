@@ -9,7 +9,7 @@
 
 ## onAccessibilityFocus
 
-onAccessibilityFocus(callback: AccessibilityFocusCallback)
+onAccessibilityFocus(callback: AccessibilityFocusCallback): T
 
 设置无障碍节点获焦、失焦状态的回调函数。当状态发生变化时，触发回调函数。
 
@@ -23,7 +23,13 @@ onAccessibilityFocus(callback: AccessibilityFocusCallback)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
+| callback | [AccessibilityFocusCallback](ts-universal-accessibility-event.md#AccessibilityFocusCallback) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
+
+**返回值：**
+
+| 类型    | 说明              |
+| ------ | ---------------- |
+| T | 返回当前组件。 |
 
 ## AccessibilityFocusCallback
 
