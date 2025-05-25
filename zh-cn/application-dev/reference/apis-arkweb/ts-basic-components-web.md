@@ -3549,6 +3549,7 @@ onBeforeUnload(callback: Callback\<OnBeforeUnloadEvent, boolean\>)
             if (event) {
               console.log("event.url:" + event.url);
               console.log("event.message:" + event.message);
+              console.log("event.isReload:" + event?.isReload ?? 'false');
               this.uiContext.showAlertDialog({
                 title: 'onBeforeUnload',
                 message: 'text',
@@ -10411,6 +10412,7 @@ type OnViewportFitChangedCallback = (viewportFit: ViewportFit) => void
 | url | string | 是 | 当前显示弹窗所在网页的URL。                       |
 | message | string | 是 | 弹窗中显示的信息。                       |
 | result | [JsResult](#jsresult) | 是 | 通知Web组件用户操作行为。                       |
+| isReload<sup>20+</sup> | boolean | 否 | 页面是否刷新。当页面因刷新即将离开时，isReload参数被设置为true；当页面因关闭即将离开时，isReload参数被设置为false。默认值：false|
 
 ## OnConfirmEvent<sup>12+</sup>
 
