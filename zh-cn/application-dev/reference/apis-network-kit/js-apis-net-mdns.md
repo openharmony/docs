@@ -31,7 +31,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 **错误码：**
 
-以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -99,7 +99,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 **错误码：**
 
-以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -162,7 +162,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 **错误码：**
 
-以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -231,7 +231,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 **错误码：**
 
-以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -297,7 +297,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 **错误码：**
 
-以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|---|
@@ -343,7 +343,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 **错误码：**
 
-以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
@@ -411,7 +411,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 **错误码：**
 
-以下错误码的详细介绍参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[mDNS错误码](errorcode-net-mdns.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID      | 错误信息 |
 |---------|----------------------------------------------|
@@ -874,13 +874,13 @@ mDNS服务信息。
 
 **系统能力**：SystemCapability.Communication.NetManager.MDNS
 
-| 名称                  | 类型                                | 必填 | 说明                     |
-| --------------------- | ---------------------------------- | --- | ------------------------ |
-| serviceType   | string                             |  是 |  mDNS服务的类型。格式:_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。  |
-| serviceName | string                             |  是 |  mDNS服务的名字。   |
-| port            | number           |  否 |  mDNS服务的端口号。取值范围[0,65535]。           |
-| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 |  mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。               |
-| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  否 |  mDNS服务属性信息。               |
+| 名称                  | 类型                                | 必填 | 说明                                                         |
+| --------------------- | ---------------------------------- | --- |------------------------------------------------------------|
+| serviceType   | string                             |  是 | mDNS服务的类型。格式：_\<name>.<_tcp/_udp>，name长度小于63字符并且不能包含字符'.'。 |
+| serviceName | string                             |  是 | mDNS服务的名字。                                                 |
+| port            | number           |  否 | mDNS服务的端口号。取值范围[0,65535]。                                  |
+| host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 | mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。                      |
+| serviceAttribute     | Array\<[ServiceAttribute](#serviceattribute)> |  否 | mDNS服务属性信息。                                                |
 
 ## ServiceAttribute
 

@@ -111,10 +111,10 @@ httpRequest.request(// 填写HTTP请求的URL地址，可以带参数也可以�
 
 createHttp(): HttpRequest
 
-创建一个HTTP请求，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header事件。如需发起多个HTTP请求，须为每个HTTP请求创建对应HttpRequest对象。每一个HttpRequest对象对应一个HTTP请求。
+创建一个HTTP请求，里面包括发起请求、中断请求、订阅/取消订阅HTTP Response Header事件。当发起多个HTTP请求时，需为每个HTTP请求创建对应HttpRequest对象。每一个HttpRequest对象对应一个HTTP请求。
 
 > **说明：**
-> 当该请求使用完毕时，须调用destroy方法主动销毁HttpRequest对象，否则会出现资源泄露问题。
+> 当该请求使用完毕时，需调用destroy方法主动销毁HttpRequest对象，否则会出现资源泄露问题。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -145,7 +145,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
 
 > **说明：**
-> 此接口仅支持数据大小为5M以内的数据接收，如果有超过5M的数据接收，需要主动在HttpRequestOptions的[maxLimit](#httprequestoptions)中进行设置。
+> 此接口仅支持接收数据大小为5M以内的数据，如果有超过5M的数据接收，[HttpRequestOptions](#httprequestoptions)的maxLimit中进行设置。
 > 若URL包含中文或其他语言，需先调用encodeURL(URL)编码，再发起请求。
 
 **需要权限**：ohos.permission.INTERNET
@@ -163,8 +163,8 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>): void
 
 **错误码：**
 
-以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
-HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。<br>
+HTTP错误码映射关系：2300000 + curl错误码。更多常用错误码可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 | 错误码ID   | 错误信息                                                         |
 |---------|----------------------------------------------------------------|
@@ -249,6 +249,9 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 **错误码：**
 
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。<br>
+HTTP错误码映射关系：2300000 + curl错误码。更多常用错误码可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+
 | 错误码ID   | 错误信息                                                         |
 |---------|----------------------------------------------------------------|
 | 401     | Parameter error.                                               |
@@ -284,10 +287,6 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300997 | Cleartext traffic not permitted.                               |
 | 2300998 | It is not allowed to access this domain.                       |
 | 2300999 | Internal error.                                                 |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
-> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
 
@@ -363,8 +362,8 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
-HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。<br>
+HTTP错误码映射关系：2300000 + curl错误码。更多常用错误码可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 | 错误码ID   | 错误信息                                                         |
 |---------|----------------------------------------------------------------|
@@ -473,8 +472,8 @@ requestInStream(url: string, callback: AsyncCallback\<number\>): void
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
-HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。<br>
+HTTP错误码映射关系：2300000 + curl错误码。更多常用错误码可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 | 错误码ID   | 错误信息                                                         |
 |---------|----------------------------------------------------------------|
@@ -548,8 +547,8 @@ requestInStream(url: string, options: HttpRequestOptions, callback: AsyncCallbac
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
-HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。<br>
+HTTP错误码映射关系：2300000 + curl错误码。更多常用错误码可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 | 错误码ID   | 错误信息                                                         |
 |---------|----------------------------------------------------------------|
@@ -650,8 +649,8 @@ requestInStream(url: string, options? : HttpRequestOptions): Promise\<number\>
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。
-HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)和[HTTP错误码](errorcode-net-http.md)。<br>
+HTTP错误码映射关系：2300000 + curl错误码。更多常用错误码可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 | 错误码ID   | 错误信息                                                         |
 |---------|----------------------------------------------------------------|
@@ -732,7 +731,7 @@ on(type: "headerReceive", callback: AsyncCallback\<Object\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'headerReceive'。 |
-| callback | AsyncCallback\<Object\> | 是   | 回调函数。当订阅成功时，回调内容是Object，订阅失败时为undefined。                        |
+| callback | AsyncCallback\<Object\> | 是   | 回调函数。返回HTTP响应头对象。                        |
 
 **示例：**
 
@@ -750,7 +749,7 @@ httpRequest.on("headerReceive", (data: BusinessError) => {
 
 off(type: "headerReceive", callback?: AsyncCallback\<Object\>): void
 
-取消订阅HTTP Response Header 事件。
+取消订阅HTTP Response Header事件。
 
 > **说明：**
 >
@@ -786,10 +785,10 @@ on(type: "headersReceive", callback: Callback\<Object\>): void
 
 **参数：**
 
-| 参数名   | 类型               | 必填 | 说明                               |
-| -------- | ------------------ | ---- | ---------------------------------- |
+| 参数名   | 类型               | 必填 | 说明                        |
+| -------- | ------------------ | ---- |---------------------------|
 | type     | string             | 是   | 订阅的事件类型：'headersReceive'。 |
-| callback | Callback\<Object\> | 是   | 回调函数。当订阅成功时，回调内容是Object，订阅失败时为undefined。                         |
+| callback | Callback\<Object\> | 是   | 回调函数。返回HTTP响应头对象。         |
 
 **示例：**
 
@@ -845,7 +844,7 @@ once(type: "headersReceive", callback: Callback\<Object\>): void
 | 参数名   | 类型               | 必填 | 说明                               |
 | -------- | ------------------ | ---- | ---------------------------------- |
 | type     | string             | 是   | 订阅的事件类型：'headersReceive'。 |
-| callback | Callback\<Object\> | 是   | 回调函数。当订阅成功时，回调内容是Object，订阅失败时为undefined。                         |
+| callback | Callback\<Object\> | 是   | 回调函数。返回HTTP响应头对象。                         |
 
 **示例：**
 
@@ -925,7 +924,7 @@ on(type: "dataEnd", callback: Callback\<void\>): void
 | 参数名   | 类型                    | 必填 | 说明                              |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | 是   | 订阅的事件类型，'dataEnd'。 |
-| callback | AsyncCallback\<void\>   | 是   | 回调函数。当订阅成功时，回调内容空，订阅失败时为undefined。                        |
+| callback | AsyncCallback\<void\>   | 是   | 回调函数。当订阅成功时，err为undefined，否则为错误对象。                        |
 
 **示例：**
 
@@ -1084,31 +1083,31 @@ httpRequest.off("dataSendProgress");
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称         | 类型                                          | 必填 | 说明                                                         |
-| -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                   |
-| extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />1. 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体，示例如下：<br />  (1) 当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据必须在key和value进行URL转码后(encodeURIComponent/encodeURI)，按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String。<br />(2) 当'content-Type'为'text/xml'时，该字段对应的类型通常为String。<br />(3) 当'content-Type'为'application/json'时，该字段对应的类型通常为Object。<br />(4) 当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer。<br />(5) 当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。<br>以上信息仅供参考，并可能根据具体情况有所不同。<br />2. 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送。ArrayBuffer类型的参数不会做拼接处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。当指定其类型为Object时，最大长度为65536字符数。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true，请求时优先读取缓存。 缓存跟随当前进程生效。新缓存会替换旧缓存；false：不使用缓存。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| priority<sup>9+</sup>        | number                          | 否   | HTTP/HTTPS请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                           |
-| header                       | Object                          | 否   | HTTP请求头字段。当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。<br />如果head中包含number类型的字段，最大支持int64的整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
-| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒(ms)，默认为60000ms。传入值需为uint32_t范围内的整数。<br />设置为0表示不会出现超时情况。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒(ms)，默认为60000ms。传入值需为uint32_t范围内的整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。              |
-| usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
-| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | 否   | HTTP代理配置，该项不配置时表示不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理，为false时，不使用代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书。<br />系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径(开发者可通过UIAbilityContext提供的能力获取应用沙箱路径)。目前仅支持后缀名为.pem的文本格式证书。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                             |
-| resumeFrom<sup>11+</sup> | number | 否 | 用于设置下载起始位置，该参数只能用于GET方法，不能用于其他。HTTP标准(RFC 7233第3.1节)允许服务器忽略范围请求。<br />- 使用HTTP PUT时，不能使用该选项，因为该选项可能与其他选项冲突。<br />- 取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
-| resumeTo<sup>11+</sup> | number | 否 | 用于设置下载结束位置，该参数只能用于GET方法，不能用于其他。HTTP标准(RFC 7233第3.1节)允许服务器忽略范围请求。<br />- 使用HTTP PUT时，不能使用该选项，因为该选项可能与其他选项冲突。<br />- 取值范围是:1~4294967296(4GB)，超出范围则不生效。 |
-| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书。 |
-| dnsOverHttps<sup>11+</sup> | string | 否 | 设置使用HTTPS协议的服务器进行DNS解析。<br />- 参数必须以以下格式进行URL编码:"https:// host:port/path"。 |
-| dnsServers<sup>11+</sup> | Array\<string\> | 否 | 设置指定的DNS服务器进行DNS解析。<br />- 最多可以设置3个DNS解析服务器。如果有3个以上，只取前3个。<br />- 服务器必须是IPV4或者IPV6地址。 |
-| maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制。<br />默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。<br />  |
-| multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。 |
-| certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | 否 | 支持动态设置证书锁定配置，可以传入单个或多个证书PIN码。 |
-| addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | 否 | 支持解析目标域名时限定地址类型。 |
-| remoteValidation<sup>18+</sup> | [RemoteValidation](#remotevalidation18)                             | 否 | 证书颁发机构（CA），用于验证远程服务器的身份。如果未设置此字段，系统CA将用于验证远程服务器的标识。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| tlsOptions<sup>18+</sup> | [TlsOptions](#tlsoptions18)                                         | 否 | TLS配置。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| serverAuthentication<sup>18+</sup> | [ServerAuthentication](#serverauthentication18)                     | 否 | 安全连接期间的服务器身份验证配置。默认不认证。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| 名称         | 类型                                          | 必填 | 说明                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| -------------- | --------------------------------------------- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| extraData      | string \| Object \| ArrayBuffer | 否   | 发送请求的额外数据，默认无此字段。<br />1. 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。<br />示例如下：<br />  (1) 当'content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据必须在key和value进行URL转码后(encodeURIComponent/encodeURI)，按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码，该字段对应的类型通常为String。<br />(2) 当'content-Type'为'text/xml'时，该字段对应的类型通常为String。<br />(3) 当'content-Type'为'application/json'时，该字段对应的类型通常为Object。<br />(4) 当'content-Type'为'application/octet-stream'时，该字段对应的类型通常为ArrayBuffer。<br />(5) 当'content-Type'为'multipart/form-data'且需上传的字段为文件时，该字段对应的类型通常为ArrayBuffer。<br>以上信息仅供参考，并可能根据具体情况有所不同。<br />2. 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送。ArrayBuffer类型的参数不会做拼接处理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。当指定其类型为Object时，最大长度为65536字符数。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，true表示请求时优先读取缓存，false表示不使用缓存；默认为true，请求时优先读取缓存。缓存跟随当前进程生效，新缓存会替换旧缓存。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| priority<sup>9+</sup>        | number                          | 否   | HTTP/HTTPS请求并发优先级，值越大优先级越高，范围[1,1000]，默认为1。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| header                       | Object                          | 否   | HTTP请求头字段。当请求方式为"POST" "PUT" "DELETE" 或者""时，默认{'content-Type': 'application/json'}， 否则默认{'content-Type': 'application/x-www-form-urlencoded'}。<br />如果head中包含number类型的字段，最大支持int64的整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。传入值需为uint32_t范围内的整数。<br />设置为0表示不会出现超时情况。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。传入值需为uint32_t范围内的整数。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| usingProxy<sup>10+</sup>     | boolean \| [HttpProxy](js-apis-net-connection.md#httpproxy10)               | 否   | HTTP代理配置，该项不配置时表示不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理，为false时，不使用代理。<br />- 当usingProxy为HttpProxy类型时，使用指定网络代理。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性），否则将使用系统预设CA证书。<br />系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过UIAbilityContext提供的能力获取应用沙箱路径）。目前仅支持后缀名为.pem的文本格式证书。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| resumeFrom<sup>11+</sup> | number | 否 | 用于设置下载起始位置，该参数只能用于GET方法，不能用于其他。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />- 使用HTTP PUT时，不能使用该选项，因为该选项可能与其他选项冲突。<br />- 取值范围是:1~4294967296（4GB），超出范围则不生效。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| resumeTo<sup>11+</sup> | number | 否 | 用于设置下载结束位置，该参数只能用于GET方法，不能用于其他。HTTP标准（RFC 7233第3.1节）允许服务器忽略范围请求。<br />- 使用HTTP PUT时，不能使用该选项，因为该选项可能与其他选项冲突。<br />- 取值范围是:1~4294967296（4GB），超出范围则不生效。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| clientCert<sup>11+</sup> | [ClientCert](#clientcert11) | 否 | 支持传输客户端证书。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| dnsOverHttps<sup>11+</sup> | string | 否 | 设置使用HTTPS协议的服务器进行DNS解析。<br />- 参数必须以以下格式进行URL编码:"https:// host:port/path"。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| dnsServers<sup>11+</sup> | Array\<string\> | 否 | 设置指定的DNS服务器进行DNS解析。<br />- 最多可以设置3个DNS解析服务器。如果有3个以上，只取前3个。<br />- 服务器必须是IPV4或者IPV6地址。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| maxLimit<sup>11+</sup>   | number   | 否 | 响应消息的最大字节限制。<br />默认值为5\*1024\*1024，以字节为单位。最大值为100\*1024\*1024，以字节为单位。<br />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| multiFormDataList<sup>11+</sup> | Array<[MultiFormData](#multiformdata11)> | 否 | 当'content-Type'为'multipart/form-data'时，则上传该字段定义的数据字段表单列表。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| certificatePinning<sup>12+</sup> | [CertificatePinning](#certificatepinning12) \| CertificatePinning[] | 否 | 支持动态设置证书锁定配置，可以传入单个或多个证书PIN码。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| addressFamily<sup>15+</sup> | [AddressFamily](#addressfamily15) | 否 | 支持解析目标域名时限定地址类型。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| remoteValidation<sup>18+</sup> | [RemoteValidation](#remotevalidation18)                             | 否 | 证书颁发机构（CA），用于验证远程服务器的身份。如果未设置此字段，系统CA将用于验证远程服务器的标识。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| tlsOptions<sup>18+</sup> | [TlsOptions](#tlsoptions18)                                         | 否 | TLS配置。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| serverAuthentication<sup>18+</sup> | [ServerAuthentication](#serverauthentication18)                     | 否 | 安全连接期间的服务器身份验证配置。默认不认证。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 ## RequestMethod
 
@@ -1227,10 +1226,10 @@ request方法回调函数的返回值类型。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型 | 必填 | 说明 |
-| ---- | ---- | ---- | ---- |
-|  receiveSize        | number | 是  | 已接收的数据量(单位：字节)。           |
-| totalSize| number | 是 | 总共要接收的数据量(单位：字节)。|
+| 名称 | 类型 | 必填 | 说明                |
+| ---- | ---- | ---- |-------------------|
+|  receiveSize        | number | 是  | 已接收的数据量（单位：字节）。   |
+| totalSize| number | 是 | 总共要接收的数据量（单位：字节）。 |
 
 ## DataSendProgressInfo<sup>11+</sup>
 
@@ -1507,10 +1506,10 @@ HTTP协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称  |   值   | 说明     |
-| :-------- | :----------- | :----------- |
-| HTTP1_1   |   0   |  协议HTTP1.1 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| HTTP2     |   1   |  协议HTTP2 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| 名称  |   值   | 说明                                                                   |
+| :-------- | :----------- |:---------------------------------------------------------------------|
+| HTTP1_1   |   0   | 协议HTTP1.1。 <br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| HTTP2     |   1   | 协议HTTP2。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。          |
 | HTTP3<sup>11+</sup> |  2  | 协议HTTP3，若系统或服务器不支持，则使用低版本的HTTP协议请求。<br />- 仅对HTTPS的URL生效，HTTP则会请求失败。 |
 
 ## CertType<sup>11+</sup>

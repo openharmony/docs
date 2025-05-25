@@ -1,13 +1,13 @@
 # @ohos.net.webSocket (WebSocket连接)
 
-## 使用说明
-
-本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> **说明：**
+>
+> 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 
 WebSocket是一种在单个TCP连接上进行全双工通信的协议。使用WebSocket建立服务器与客户端的双向连接，需要先通过[createWebSocket](#websocketcreatewebsocket6)方法创建[WebSocket](#websocket6)对象，然后通过[connect](#connect6)方法连接到服务器。当连接成功后，客户端会收到[open](#onopen6)事件的回调，之后客户端就可以通过[send](#send6)方法与服务器进行通信。当服务器发信息给客户端时，客户端会收到[message](#onmessage6)事件的回调。当客户端不要此连接时，可以通过调用[close](#close6)方法主动断开连接，之后客户端会收到[close](#onclose6)事件的回调。
 
-若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。
+若在上述任一过程中发生错误，客户端会收到[error](#onerror6)事件的回调。[js-apis-http.md](js-apis-http.md)
 
 ## 导入模块
 
@@ -136,7 +136,7 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
@@ -193,7 +193,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **错误码：**
 
-以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
@@ -263,7 +263,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **错误码：**
 
-以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID              | 错误信息                                   |
 | --------------------- | ------------------------------------------ |
@@ -286,7 +286,7 @@ let promise = ws.connect(url);
 promise.then((value: boolean) => {
   console.log("connect success")
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err))
+  console.error("connect fail, error:" + JSON.stringify(err))
 });
 ```
 
@@ -311,7 +311,7 @@ send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -379,7 +379,7 @@ send(data: string | ArrayBuffer): Promise\<boolean\>
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -412,7 +412,7 @@ ws.on('open', (err: BusinessError, value: Object) => {
   promise.then((value: boolean) => {
     console.log("send success")
   }).catch((err:string) => {
-    console.log("send fail, error:" + JSON.stringify(err))
+    console.error("send fail, error:" + JSON.stringify(err))
   });
 });
 ```
@@ -441,7 +441,7 @@ close(callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -485,7 +485,7 @@ close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -540,7 +540,7 @@ close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
 **错误码：**
 
-以上错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
+以下错误码的详细介绍参见[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息                 |
 | ------- | ----------------------- |
@@ -562,7 +562,7 @@ let promise = ws.close();
 promise.then((value: boolean) => {
     console.log("close success")
 }).catch((err:string) => {
-    console.log("close fail, err is " + JSON.stringify(err))
+    console.error("close fail, err is " + JSON.stringify(err))
 });
 ```
 
@@ -645,7 +645,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
-> AsyncCallback中的数据可以是字符串(API 6开始支持)或ArrayBuffer(API 8开始支持)。
+> AsyncCallback中的数据可以是字符串(API version 6开始支持)或ArrayBuffer(API version 8开始支持)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -942,11 +942,11 @@ ws.off('headerReceive');
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 名称 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| certPath   | string  | 是   | 证书路径。 |
-| keyPath | string | 是   | 证书密钥的路径。 |
-| keyPassword | string | 否   | 证书密钥的密码。 缺省为空字符串|
+| 名称 | 类型   | 必填 | 说明                |
+| ------ | ------ | ---- |-------------------|
+| certPath   | string  | 是   | 证书路径。             |
+| keyPath | string | 是   | 证书密钥的路径。          |
+| keyPassword | string | 否   | 证书密钥的密码。 缺省为空字符串。 |
 
 ## ProxyConfiguration<sup>12+</sup>
 type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy

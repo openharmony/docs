@@ -48,7 +48,7 @@ VPN扩展的上下文。它允许访问serviceExtension特定资源。
 
 startVpnExtensionAbility(want: Want): Promise\<void>
 
-启动新的三方VPN功能。使用Promise方式作为异步方法。
+启动新的三方VPN功能。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -119,7 +119,7 @@ struct Index {
 
 stopVpnExtensionAbility(want: Want): Promise\<void>
 
-停止同一应用程序中的服务。使用Promise方式作为异步方法。
+停止同一应用程序中的服务。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -242,13 +242,13 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 ## VpnConnection
 
-VPN连接对象。在调用 VpnConnection 的方法前，需要先通过vpnExt.createVpnConnection创建VPN连接对象。
+VPN连接对象。在调用VpnConnection的方法前，需要先通过vpnExt.createVpnConnection创建VPN连接对象。
 
 ### create
 
 create(config: VpnConfig): Promise\<number\>
 
-使用 config 创建一个VPN网络。使用 Promise 方式作为异步方法。
+使用 config 创建一个VPN网络。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -417,7 +417,7 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 destroy(): Promise\<void\>
 
-销毁启动的VPN网络。使用Promise方式作为异步方法。
+销毁启动的VPN网络。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -464,19 +464,19 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
-| 名称                | 类型                                                           | 必填 | 说明                                |
-| ------------------- | -------------------------------------------------------------- | ---- | ----------------------------------- |
-| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN虚拟网卡的IP地址。            |
-| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN虚拟网卡的路由信息(目前最多可配置1024条路由)。            |
-| dnsAddresses        | Array\<string\>                                                | 否   | DNS服务器地址信息。                |
-| searchDomains       | Array\<string\>                                                | 否   | DNS的搜索域列表。                  |
-| mtu                 | number                                                         | 否   | 最大传输单元MTU值(单位:字节)。取值范围：576-1500。     |
-| isIPv4Accepted      | boolean                                                        | 否   | 是否支持IPV4, 默认值为 true。true：支持 IPV4；false：不支持 IPV4。      |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持IPV6, 默认值为 false。true：支持 IPV6；false：不支持 IPV6。     |
-| isInternal          | boolean                                                        | 否   | 是否支持内置VPN, 默认值为 false。true：支持内置 VPN；false：不支持内置 VPN。   |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为 false。true：阻塞模式；false：非阻塞模式。       |
-| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。  |
-| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。  |
+| 名称                | 类型                                                           | 必填 | 说明                                             |
+| ------------------- | -------------------------------------------------------------- | ---- |------------------------------------------------|
+| addresses           | Array\<[LinkAddress](js-apis-net-connection.md#linkaddress)\> | 是   | VPN虚拟网卡的IP地址。                                  |
+| routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN虚拟网卡的路由信息（目前最多可配置1024条路由）。                  |
+| dnsAddresses        | Array\<string\>                                                | 否   | DNS服务器地址信息。                                    |
+| searchDomains       | Array\<string\>                                                | 否   | DNS的搜索域列表。                                     |
+| mtu                 | number                                                         | 否   | 最大传输单元MTU值（单位:字节）。取值范围：576-1500。               |
+| isIPv4Accepted      | boolean                                                        | 否   | 是否支持IPV4, 默认值为true。true：支持IPV4；false：不支持IPV4。  |
+| isIPv6Accepted      | boolean                                                        | 否   | 是否支持IPV6, 默认值为false。true：支持IPV6；false：不支持IPV6。 |
+| isInternal          | boolean                                                        | 否   | 是否支持内置VPN, 默认值为false。true：支持内置VPN；false：不支持内置VPN。 |
+| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为false。true：阻塞模式；false：非阻塞模式。       |
+| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。                         |
+| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。                         |
 
 **示例：**
 
