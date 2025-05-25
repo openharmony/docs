@@ -615,6 +615,201 @@ let customTypeSupported = relationalStore.isTokenizerSupported(customType);
 console.info("custom tokenizer supported on current platform: " + customTypeSupported);
 ```
 
+## relationalStore.getInsertSqlInfo<sup>20+</sup>
+
+getInsertSqlInfo(table: string, values: ValuesBucket, conflict: ConflictResolution): SqlInfo
+
+获取用于插入数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| table | string              | 是   | 要写入数据的数据库表名。 |
+| values | ValuesBucket | 是 | 要写入数据库中数据的字段信息已经对应的值信息。 |
+| conflict | ConflictResolution | 是 |指定冲突解决模式。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| SqlInfo | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Parameter error. Possible causes: 1. table is too long，exceed 256;  2. values is too long, exceed 1000; 3.args in values is too long, exceed 256; 4.table is empty; 5.conflict is vaild; 6. values is empty; 7. args in values is Assets type. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+const bucket: relationStore.ValuesBucket = {
+  name: "Logitech",
+  age: 18,
+  sex: "man",
+  desc: "asserter"
+};
+const sqlInfo: relationStore.SqlInfo = relationStore.getInsertSqlInfo(
+  "USER",
+  bucket,
+  relationStore.ConflictResolution.ON_CONFLICT_NONE
+);
+expect(sqlInfo.sql).assertEqual("INSERT INTO USER(age,desc,name,sex) VALUES (?,?,?,?)");
+expect(sqlInfo.args).assertContain(18);
+expect(sqlInfo.args).assertContain("asserter");
+expect(sqlInfo.args).assertContain("Logitech");
+expect(sqlInfo.args).assertContain("man");
+```
+
+## relationalStore.getUpdateSqlInfo<sup>20+</sup>
+
+getUpdateSqlInfo(predicates: RdbPredicates, values: ValuesBucket, conflict: ConflictResolution): SqlInfo
+
+获取用于更新数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | RdbPredicates              | 是   | 与指定字段匹配的谓词。 |
+| values | ValuesBucket | 是 | 要写入数据库中数据的字段信息已经对应的值信息。 |
+| conflict | ConflictResolution | 是 |指定冲突解决模式。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| SqlInfo | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Parameter error. Possible causes: 1. table is too long，exceed 256;  2. values is too long, exceed 1000; 3.args in values is too long, exceed 256; 4.conflict is vaild; 5. values is empty; 7. args in predicates is too long, exceed 256. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const bucket: relationStore.ValuesBucket = {
+  name: "Logitech",
+  age: 18,
+  sex: "man",
+  desc: "asserter"
+};
+const predicates = new relationalStore.RdbPredicates("users");
+const sqlInfo: relationStore.SqlInfo = relationStore.getUpdateSqlInfo(
+  predicates,
+  bucket,
+  relationStore.ConflictResolution.ON_CONFLICT_NONE
+);
+expect(sqlInfo.sql).assertEqual("UPDATE users SET age=?,desc=?,name=?,sex=?");
+expect(sqlInfo.args).assertContain(18);
+expect(sqlInfo.args).assertContain("asserter");
+expect(sqlInfo.args).assertContain("Logitech");
+expect(sqlInfo.args).assertContain("man");
+```
+
+## relationalStore.getDeleteSqlInfo<sup>20+</sup>
+
+getDeleteSqlInfo(predicates: RdbPredicates): SqlInfo
+
+获取用于更新数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | RdbPredicates              | 是   | 与指定字段匹配的谓词。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| SqlInfo | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Parameter error. Possible causes: 1. table is too long，exceed 256; 2. args in predicates is too long, exceed 256. |
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const predicates = new relationalStore.RdbPredicates("users");
+predicates.equalTo("tableName", "a");
+predicates.notEqualTo("age", 18);
+const sqlInfo: relationStore.SqlInfo = relationStore.getDeleteSqlInfo(predicates);
+expect(sqlInfo.sql).assertEqual("DELETE FROM users WHERE tableName = ? AND age <> ? ");
+expect(sqlInfo.args[0]).assertEqual("a");
+expect(sqlInfo.args[1]).assertEqual(18);
+```
+
+## relationalStore.getQuerySqlInfo<sup>20+</sup>
+
+getQuerySqlInfo(predicates: RdbPredicates, colums?: Array\<string\>): SqlInfo
+
+获取用于更新数据的SQL语句，此为同步接口。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名  | 类型                  | 必填 | 说明                                                         |
+| ------- | --------------------- | ---- | ------------------------------------------------------------ |
+| predicates | RdbPredicates              | 是   | 与指定字段匹配的谓词。 |
+| colums | Array\<string>\ | 否 | 要查询的列；如果不指定此参数，则查询所有列。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| SqlInfo | SqlInfo对象，其中sql为返回的sql语句，args为执行SQL中的参数信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| **错误码ID** | **错误信息**             |
+|-----------|---------------------|
+| 14800001       | Parameter error. Possible causes: 1. table is too long，exceed 256; 2. args in predicates is too long, exceed 256. 3.colums is not a string array. 4.colums is too long, exceed 1000. 5.args in colums is too long, exceed 256|
+
+
+**示例：**
+
+```ts
+import { relationalStore } from '@kit.ArkData'; // 导入模块
+
+const predicates = new relationalStore.RdbPredicates("users");
+predicates.notEqualTo("age", 18);
+predicates.equalTo("name", "zhangsan");
+const sqlInfo: relationStore.SqlInfo = relationStore.getQuerySqlInfo(predicates);
+expect(sqlInfo.sql).assertEqual("SELECT name, age  FROM users WHERE age <> ? AND name = ? ");
+expect(sqlInfo.args[0]).assertEqual(18);
+expect(sqlInfo.args[1]).assertEqual("zhangsan");
+```
+
 ## StoreConfig
 
 管理关系数据库配置。
@@ -1099,6 +1294,17 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | waitTime<sup>12+</sup>       | number                        | 是   |   否   | 表示获取句柄的时间，单位为μs。                                         |
 | prepareTime<sup>12+</sup>    | number                        | 是   |   否   | 表示准备SQL和绑定参数的时间，单位为μs。                                 |
 | executeTime<sup>12+</sup>    | number                        | 是   |   否   | 表示执行SQL语句的时间，单位为μs。 |
+
+## SqlInfo<sup>20+</sup>
+
+描述数据库执行的SQL语句的统计信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称     | 类型                                               | 只读 | 可选  |说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ---- | -------------------------------------------------------- |
+| sql<sup>20+</sup>           | string           | 是   |   否   | 表示执行的sql语句，包含增删改查接口sql语句。      |
+| args<sup>20+</sup>      | Array&lt;ValueType&gt;                        | 是   |   否   | 表示执行SQL中的参数信息。                                    |
 
 ## TransactionType<sup>14+</sup>
 
