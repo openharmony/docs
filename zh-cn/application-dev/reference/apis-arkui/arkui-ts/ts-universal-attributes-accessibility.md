@@ -220,40 +220,6 @@ accessibilityRole(role: AccessibilityRoleType)
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
 
-## onAccessibilityFocus<sup>18+</sup>
-
-onAccessibilityFocus(callback: AccessibilityFocusCallback)
-
-设置无障碍节点获焦、失焦状态的回调函数。当状态发生变化时，触发回调函数。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型    | 必填 | 说明                                                         |
-| -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
-
-## AccessibilityFocusCallback<sup>18+</sup>
-
-type AccessibilityFocusCallback = (isFocus: boolean) => void
-
-定义onAccessibilityFocus中使用的回调类型。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型    | 必填 | 说明              |
-| ------ | ------ | ---- | ---------------- |
-| isFocus | boolean | 是 | 用于表示组件是否获焦。<br/>true：当前组件获焦。<br/>false：当前组件失焦。|
-
 ## AccessibilityRoleType<sup>18+</sup>枚举说明
 
 定义组件的屏幕朗读功能角色类型。
