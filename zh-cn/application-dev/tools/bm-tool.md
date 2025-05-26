@@ -2809,3 +2809,40 @@ error: The plugin name is same as host bundle name.
 **处理步骤**
 
 重新配置插件的包名。
+
+### 9568441 应用不能变更U1Enabled
+**错误信息**
+
+error: install failed due to U1Enabled can not change.
+
+**错误描述**
+
+签名信息中U1Enabled变更导致安装失败。
+
+**可能原因**
+
+应用[Profile签名文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugprofile-0000001914423102)中allowed-acls字段的U1Enabled配置发生变更，例如：
+1. 已安装应用在allowed-acls中配置了U1Enabled，待安装应用在allowed-acls中没有配置U1Enabled。
+2. 已安装应用在allowed-acls中没有配置U1Enabled，待安装应用在allowed-acls中配置了U1Enabled。
+
+**处理步骤**
+
+方案一：重新签名，签名过程中，请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section9786111152213)的支持ACL权限、或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section157591551175916)的使用ACL的签名配置指导进行配置，确保待安装应用与已安装应用配置一致。<br>
+方案二：先卸载设备上已安装的应用，再尝试安装待安装应用。
+
+### 9568442 U1Enable配置不一致
+**错误信息**
+
+error: Install failed due to the U1Enabled is not same in all haps.
+
+**错误描述**
+
+签名信息中U1Enabled配置不一致，导致安装失败。
+
+**可能原因**
+
+多HAP包签名时使用的[Profile签名文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-add-debugprofile-0000001914423102)不一致导致签名信息中allowed-acls的U1Enabled配置不一致。
+
+**处理步骤**
+
+重新签名，签名过程中，请参考[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section9786111152213)的支持ACL权限、或者[手动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section157591551175916)的使用ACL的签名配置指导进行配置，使多个HAP包签名信息中allowed-acls的U1Enabled信息一致。
