@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  该组件从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## 子组件
@@ -445,7 +445,7 @@ onSelected(callback:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void)
 
 索引项选中事件，回调参数为当前选中项索引。 
 
-从API Version 8开始废弃，建议使用[onSelect](#onselect8)代替。
+从API version 8开始废弃，建议使用[onSelect](#onselect8)代替。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
