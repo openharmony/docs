@@ -40,7 +40,7 @@ import { inputConsumer, KeyEvent } from '@kit.InputKit';
 | action    | number  | 是      | 否      | 按键事件类型。当前仅支持取值为1，表示按键按下。 |
 | isRepeat  | boolean  | 是      | 否      | 是否上报重复的按键事件。true表示上报，false表示不上报，默认值为true。 |
 
-## inputConsumer.getAllSystemHotkeys<sup>14+</sup>
+## inputConsumer.getAllSystemHotkeys
 
 getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
