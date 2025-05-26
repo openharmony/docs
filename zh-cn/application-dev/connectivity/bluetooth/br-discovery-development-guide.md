@@ -19,21 +19,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 用于扫描周边支持蓝牙能力的设备，并获取到蓝牙设备的部分信息。此过程也可被称为“搜索”、“发现”或“查找”。只有周边蓝牙设备处于可被发现的状态时，才能被本机蓝牙设备扫描到。
 
 #### 订阅扫描设备结果上报事件
-- 推荐使用API version 18及以上的扫描结果上报方式。该方式可获取到更多设备信息，包括设备地址、设备信号强度、设备名称和设备类型。详情请见[connection.on('discoveryResult')](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectionondiscoveryresult18)。
-```ts
-// 定义扫描结果上报回调函数
-function onReceiveEvent(data: Array<connection.DiscoveryResult>) {
-  console.info('bluetooth device: '+ JSON.stringify(data));
-}
-
-try {
-  // 发起订阅
-  connection.on('discoveryResult', onReceiveEvent);
-} catch (err) {
-  console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
-}
-```
-- API version 17及以前的扫描结果上报方式只支持获取设备地址信息。详情请见[connection.on('bluetoothDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiononbluetoothdevicefind)。
+扫描结果上报方式只支持获取设备地址信息。详情请见[connection.on('bluetoothDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiononbluetoothdevicefind)。
 ```ts
 // 定义扫描结果上报回调函数
 function onReceiveEvent(data: Array<string>) {
