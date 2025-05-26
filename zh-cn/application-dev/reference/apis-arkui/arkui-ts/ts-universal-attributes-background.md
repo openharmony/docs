@@ -575,20 +575,14 @@ backgroundBrightness(options: Optional\<BackgroundBrightnessOptions>): T
 
 ```ts
 // xxx.ets
-import { ColorMetrics } from '@kit.ArkUI';
-
 @Entry
 @Component
 struct BackgroundExample {
-  @State p3Red: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 1, 0, 0, 1);
 
   build() {
     Column({ space: 5 }) {
       Text('background color').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Row().width('90%').height(50).backgroundColor(0xE5E5E5).border({ width: 1 })
-
-      Text('background color with colorMetrics').fontSize(9).width('90%').fontColor(0xCCCCCC)
-      Row().width('90%').height(50).backgroundColor(this.p3Red).border({ width: 1 })
 
       Text('background image repeat along X').fontSize(9).width('90%').fontColor(0xCCCCCC)
       Row()
@@ -941,3 +935,29 @@ struct BackGroundBlur {
 ```
 
 ![backgroundBlur](figures/backgroundBlur.png)
+
+### 示例8（设置P3色域背景效果）
+
+该示例通过backgroundColor设置P3色域背景效果。
+
+```ts
+// xxx.ets
+import { ColorMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct P3BackgroundDemo {
+  @State p3Color: ColorMetrics = ColorMetrics.colorWithSpace(ColorSpace.DISPLAY_P3, 0, 0.3, 0.8, 1);
+
+  build() {
+    Column({ space: 5 }) {
+      Text('background color with colorMetrics').fontSize(9).width('90%').fontColor(0xCCCCCC)
+      Row().width('90%').height(50).backgroundColor(this.p3Color)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_background_p3](figures/zh-cn_background_p3.png)

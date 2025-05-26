@@ -277,7 +277,7 @@ struct ColorGradientExample {
 }
 ```
 
-![zh-cn_image_0000001219864149](figures/gradientColor2.png)
+![zh-cn_image_0000001219864149](figures/gradientColor2_1.png)
 
 ### 示例3（颜色按径向渐变）
 
