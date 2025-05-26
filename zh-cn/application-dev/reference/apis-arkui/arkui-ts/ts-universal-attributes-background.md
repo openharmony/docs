@@ -21,11 +21,57 @@ background(builder: CustomBuilder, options?: { align?: Alignment })
 | 参数名  | 类型                                                 | 必填 | 说明                                                         |
 | ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | builder | [CustomBuilder](ts-types.md#custombuilder8)          | 是   | 自定义背景。                                                 |
-| options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | 否   | 设置自定义背景与组件的对齐方式。<br/>同时设置了background，backgroundColor，backgroundImage时，叠加显示，background在最上层。 |
+| options | {align?:[Alignment](ts-appendix-enums.md#alignment)} | 否   | 设置自定义背景与组件的对齐方式。 |
 
 >  **说明：**
 >
->  自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
+> - 自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
+> - 同时设置了background，backgroundColor，backgroundImage时，三者叠加显示，background在最上层。
+
+## background<sup>20+</sup>
+
+background(content: CustomBuilder | ResourceColor, options?: BackgroundOptions): T
+
+设置组件背景。与[background](#background10)相比，content参数新增了对[ResourceColor](ts-types.md#resourcecolor)类型的支持，并新增了背景向父组件的安全区扩展的能力。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名  | 类型                                                 | 必填 | 说明                                                         |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| content | [CustomBuilder](ts-types.md#custombuilder8) \| [ResourceColor](ts-types.md#resourcecolor)        | 是   | 自定义背景。                                                 |
+| options | [BackgroundOptions](#backgroundoptions20对象说明) | 否   | 设置自定义背景选项。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
+>  **说明：**
+>
+> - 自定义背景渲染会有一定延迟，不能响应事件，不能进行动态更新。该属性不支持嵌套使用，不支持预览器预览。
+> - 同时设置了background，backgroundColor，backgroundImage时，三者将按以下规则叠加显示：
+>   - 若background为ResourceColor类型，或设置了ignoresLayoutSafeAreaEdges属性，则background位于最底层。
+>   - 其他情况下，background位于最上层。
+
+## BackgroundOptions<sup>20+</sup>对象说明
+
+background配置选项。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称          | 类型   | 必填 | 说明                                                         |
+| ------------- | ------ | ---- | ------------------------------------------------------------ |
+| align<sup>10+</sup>          | [Alignment](ts-appendix-enums.md#alignment) | 否   | 自定义背景与组件的对齐方式。该属性仅对CustomBuilder类型的背景生效。如果设置了ignoresLayoutSafeAreaEdges，则背景的布局区域为包含了扩展安全区的范围。<br/>默认值：Alignment.Center<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| ignoresLayoutSafeAreaEdges | Array<[LayoutSafeAreaEdge](ts-types.md#layoutsafeareaedge12)> | 否   | 配置背景要扩展到的安全区。未配置该属性时，CustomBuilder背景不扩展，ResourceColor背景扩展至父组件全部安全区。<br/> 默认值：[] <br/>**说明：**<br/>动态调整该属性会按照设置的扩展区域重新生成背景。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+
+> **说明：**
+>
+> 背景设置ignoreLayoutSafeArea之后生效的条件为父组件设置了对应方向的[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)。
 
 ## backgroundColor
 
@@ -838,3 +884,56 @@ struct BackGroundBlur {
 ```
 
 ![backgroundBlur](figures/backgroundBlur.png)
+
+### 示例8（设置组件背景扩展）
+
+该示例通过background实现组件背景扩展到父组件的安全区。
+
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct BackgroundExtension {
+  @Builder
+  myImages() {
+    Column() {
+      Image($r('app.media.startIcon'))
+        .width('100%')
+        .height('100%')
+    }
+  }
+
+  build() {
+    Column({space: 10}) {
+      Stack() {
+        // CustomBuilder类型的背景设置了ignoresLayoutSafeAreaEdges属性，背景扩展到父组件安全区
+        Column()
+          .size({ width: '100%', height: '100%' })
+          .border({ width: 1, color: Color.Red })
+          .background(
+            this.myImages(),
+            { align: Alignment.Center , ignoresLayoutSafeAreaEdges: [ LayoutSafeAreaEdge.START, LayoutSafeAreaEdge.TOP ] }
+          )
+      }
+      .size({ width: 300, height: 300 })
+      .backgroundColor('#004aaf')
+      .safeAreaPadding(LengthMetrics.vp(50))
+
+      Stack() {
+        // ResourceColor类型的背景未设置ignoresLayoutSafeAreaEdges属性，背景默认扩展到父组件安全区
+        Column()
+          .size({ width: '100%', height: '100%' })
+          .border({ width: 1, color: Color.Red })
+          .background('#d5d5d5', { align: Alignment.Center })
+      }
+      .size({ width: 300, height: 300 })
+      .backgroundColor('#707070')
+      .safeAreaPadding(LengthMetrics.vp(50))
+    }
+    .margin(10)
+  }
+}
+```
+
+![backgroundExtension](figures/backgroundExtension.png)
