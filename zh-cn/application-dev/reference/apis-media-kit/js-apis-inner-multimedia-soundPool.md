@@ -1709,17 +1709,6 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string   | 是   | 错误事件回调类型，支持的事件：'error'，用户操作和系统都会触发此事件。 |
 | callback | ErrorCallback | 是   | 错误事件回调方法：使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |
 
-SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几种：
-
-| 错误码ID | 错误信息              | 说明                                                         |
-| -------- | --------------------- | ------------------------------------------------------------ |
-| 401      | Invalid Parameter.    | 入参错误，表示调用无效。                                     |
-| 801      | Unsupport Capability. | 不支持该API能力，表示调用无效。                              |
-| 5400101  | No Memory.            | 内存不足。 |
-| 5400102  | Operation Not Allowed.   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error.             | I/O异常。 |
-| 5400105  | Service Died.         | 播放进程死亡，音频池依赖的service端发生异常。|
-
 **示例：**
 
 ```js
@@ -1788,7 +1777,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 on(type: 'errorOccurred', callback: Callback<ErrorInfo>): void
 
-监听[SoundPool](#soundpool)的错误事件，并返回较为[errorInfo](#errorinfo20)。
+监听[SoundPool](#soundpool)的错误事件，并返回包含错误码，错误发生阶段，资源ID，音频流ID的[errorInfo](#errorinfo20)。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1798,17 +1787,6 @@ on(type: 'errorOccurred', callback: Callback<ErrorInfo>): void
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 错误事件回调类型，支持的事件：'errorOccurred'，用户操作和系统都会触发此事件。 |
 | callback | Callback<[ErrorInfo](#errorinfo20)> | 是   | 错误事件回调方法：使用播放器的过程中发生错误，并提供错误信息[errorInfo](#errorinfo20)。 |
-
-SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几种：
-
-| 错误码ID | 错误信息              | 说明                                                         |
-| -------- | --------------------- | ------------------------------------------------------------ |
-| 401      | Invalid Parameter.    | 入参错误，表示调用无效。                                     |
-| 801      | Unsupport Capability. | 不支持该API能力，表示调用无效。                              |
-| 5400101  | No Memory.            | 内存不足。 |
-| 5400102  | Operation Not Allowed.   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error.             | I/O异常。 |
-| 5400105  | Service Died.         | 播放进程死亡，音频池依赖的service端发生异常。|
 
 **示例：**
 
