@@ -3361,17 +3361,17 @@
           <!--DelEnd-->
         - C API<!--asset-store-c-->
           - 模块<!--asset-store-module-->
-            - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
-            - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
+            - [AssetApi](reference/apis-asset-store-kit/capi-assetapi.md)
+            - [AssetType](reference/apis-asset-store-kit/capi-assettype.md)
           - 头文件<!--asset-store-headerfile-->
-            - [asset_api.h](reference/apis-asset-store-kit/asset__api_8h.md)
-            - [asset_type.h](reference/apis-asset-store-kit/asset__type_8h.md)
+            - [asset_api.h](reference/apis-asset-store-kit/capi-asset-api-h.md)
+            - [asset_type.h](reference/apis-asset-store-kit/capi-asset-type-h.md)
           - 结构体<!--asset-store-struct-->
-            - [Asset_Attr](reference/apis-asset-store-kit/_asset___attr.md)
-            - [Asset_Blob](reference/apis-asset-store-kit/_asset___blob.md)
-            - [Asset_Result](reference/apis-asset-store-kit/_asset___result.md)
-            - [Asset_ResultSet](reference/apis-asset-store-kit/_asset___result_set.md)
-            - [Asset_Value](reference/apis-asset-store-kit/union_asset___value.md)
+            - [Asset_Blob](reference/apis-asset-store-kit/capi-asset-blob.md)
+            - [Asset_Value](reference/apis-asset-store-kit/capi-asset-value.md)
+            - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
+            - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
+            - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
         - 错误码<!--asset-store-arkts-errcode-->
           - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
