@@ -927,7 +927,7 @@ connectToCandidateConfigWithUserAction(networkId: number): Promise&lt;void&gt;
 
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
-  | networkId | number | 是 | 候选网络配置的ID。 |
+  | networkId | number | 是 | 候选网络配置的ID，ID不能小于0。 |
 
 **错误码：**
 
@@ -957,7 +957,7 @@ connectToCandidateConfigWithUserAction(networkId: number): Promise&lt;void&gt;
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
-	
+
 ```
 
 ## wifiManager.addDeviceConfig<sup>15+</sup>
