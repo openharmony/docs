@@ -4666,7 +4666,7 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF(不同硬件设备支持情况不同)文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4715,7 +4715,8 @@ getImagePropertySync(key:PropertyKey): string
 获取图片exif指定属性键的值，用String形式返回结果。
 
 >**说明：**
-> 该方法仅支持JPEG、PNG和HEIF(不同硬件设备支持情况不同)文件，且需要包含exif信息。
+>
+> 该方法仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。
 >
 > exif信息是图片的元数据，包含拍摄时间、相机型号、光圈、焦距、ISO等。
 
@@ -4892,7 +4893,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF(不同硬件设备支持情况不同)文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
