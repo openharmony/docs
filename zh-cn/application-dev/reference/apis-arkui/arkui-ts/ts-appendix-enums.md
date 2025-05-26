@@ -1291,3 +1291,17 @@ type Nullable\<T> = T | undefined
 > - 建议在出现[像素取整常见问题](./ts-universal-attributes-pixelRound.md#常见问题)时，尝试采用PIXEL_ROUND_AFTER_MEASURE模式解决。
 > - 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量大小结束时进行一次取整，即最终大小相比于PIXEL_ROUND_ON_LAYOUT_FINISH模式可能扩大1px。
 
+## AnimationPropertyType<sup>20+</sup>
+
+用于动画的属性类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  值   | 说明                   |
+| ------  | ---- | -------------------- |
+| ROTATION | 0 | x、y、z方向的旋转角属性。该属性对应参数个数为3，属性的单位为度（°）。 |
+| TRANSLATION | 1 | x、y方向的平移属性。该属性对应参数个数为2，属性的单位为px。 |
+| SCALE | 2 | x、y方向的缩放属性。该属性对应参数个数为2。 |
+| OPACITY | 3 | 透明度属性。该属性对应参数个数为1，属性的取值范围为[0,1]。 |

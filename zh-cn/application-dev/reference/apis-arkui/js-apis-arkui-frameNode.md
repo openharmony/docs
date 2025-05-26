@@ -170,7 +170,7 @@ isModifiable(): boolean
 
 | 类型    | 说明                                                                                                                                  |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| boolean | 判断当前节点是否可修改。当返回false的时候，当前FrameNode不支持appendChild、insertChildAfter、removeChild、clearChildren的操作。 |
+| boolean | 判断当前节点是否可修改。当节点为系统组件的代理节点或节点已经[dispose](#dispose12)时返回false。当返回false时，当前FrameNode不支持appendChild、insertChildAfter、removeChild、clearChildren、createAnimation、cancelAnimations的操作。 |
 
 **示例：**
 
@@ -1699,6 +1699,81 @@ removeSupportedUIStates(uiStates: number): void
 **示例：**
 
 请参考[组件设置和删除多态样式状态示例](#组件设置和删除多态样式状态示例)。
+
+### createAnimation<sup>20+</sup>
+
+createAnimation(property: AnimationPropertyType, startValue: Optional\<number[]>, endValue: number[], param: AnimateParam): boolean
+
+创建FrameNode上属性的动画。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型 | 必填 | 说明                                                     |
+| ------- | -------- | ---- | ------------------------------------------------------------ |
+| property  | [AnimationPropertyType](./arkui-ts/ts-appendix-enums.md#animationpropertytype20) | 是   | 动画属性枚举。 |
+| startValue  | Optional\<number[]> | 是 | 动画属性的起始值。取值为undefined或数组，取值为数组时数组长度需要和属性枚举匹配。如果为undefined则表示不显式指定动画初值，节点上一次设置的属性终值为此次动画的起点值。<br/>**说明：**<br/>当节点上从未设置过该属性时，需要显式指定startValue才能正常创建动画。当节点上已经设置过属性（如第二次及之后创建动画），则推荐不显式指定startValue或者显式指定startValue为上一次的终值，表示使用上一次的终值作为新的动画起点，避免起始值跳变。 |
+| endValue  | number[] | 是 | 动画属性的终止值。取值为数组，数组长度需要和属性枚举匹配。 |
+| param  | [AnimateParam](./arkui-ts/ts-explicit-animation.md#animateparam对象说明) | 是 | 动画参数。包含时长、动画曲线、播放次数等信息。 |
+
+**返回值：**
+
+| 类型               | 说明               |
+| ------------------ | ------------------ |
+| boolean | 表示动画是否创建成功。<br/>如返回值为false且动画参数中设置了结束回调，则结束回调不会被调用。<br/>可能导致动画创建失败的原因：<br/>&nbsp;1. 节点已经释放，调用过[dispose](#dispose12)方法。<br/>&nbsp;2. 对于系统组件的代理节点，即对于[isModifiable](#ismodifiable12)为false的节点，调用该接口会失败。<br/>&nbsp;3. 属性枚举非法，或属性枚举需要的长度与startValue或endValue的长度不匹配。<br/>&nbsp;4. 该属性在第一次创建动画时没有显式指定startValue导致没有动画起点值，或设置的动画终值和动画起始值（当startValue为undefined时动画起始值为上一次的终值）相同，此时无动画产生。 |
+
+**示例：**
+
+请参考[动画创建与取消示例](#动画创建与取消示例)。
+
+### cancelAnimations<sup>20+</sup>
+
+cancelAnimations(properties: AnimationPropertyType[]): boolean
+
+请求取消FrameNode上指定属性上的所有动画，该方法需在节点所处线程中调用，会阻塞当前线程以等待取消结果。如果动画成功取消，节点上的属性值会被恢复为取消时的显示值（即当前状态）。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型 | 必填 | 说明                                                     |
+| ------- | -------- | ---- | ------------------------------------------------------------ |
+| properties  | [AnimationPropertyType](./arkui-ts/ts-appendix-enums.md#animationpropertytype20)\[\] | 是   | 待取消的动画属性枚举数组。可以一次取消一个节点上的多个属性的动画。 |
+
+**返回值：**
+
+| 类型               | 说明               |
+| ------------------ | ------------------ |
+| boolean | 表示动画是否取消成功。<br/>可能导致动画取消失败的原因：<br/>&nbsp;1. 节点已经释放，调用过[dispose](#dispose12)方法。<br/>&nbsp;2. 对于系统组件的代理节点，即对于[isModifiable](#ismodifiable12)为false的节点，调用该接口会失败。<br/>&nbsp;3. 属性枚举数组存在非法枚举值。<br/>&nbsp;4. 系统异常。如发生ipc异常导致动画取消失败。<br/>**说明：**<br/>&nbsp;1. 即使属性上没有动画，尝试取消该属性的动画，在无系统异常情况下调用取消接口也会返回true。<br/>&nbsp;2. 如果开发者保证传入参数合法且节点正常，返回false时表明发生了系统异常。此时开发者可隔一段时间后再次尝试取消，或通过调用duration为0的[createAnimation](#createanimation20)接口停止属性上的动画。|
+
+**示例：**
+
+请参考[动画创建与取消示例](#动画创建与取消示例)。
+
+### getNodePropertyValue<sup>20+</sup>
+
+getNodePropertyValue(property: AnimationPropertyType): number[]
+
+获取FrameNode上的属性值。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 参数名  | 类型 | 必填 | 说明                                                     |
+| ------- | -------- | ---- | ------------------------------------------------------------ |
+| property  | [AnimationPropertyType](./arkui-ts/ts-appendix-enums.md#animationpropertytype20) | 是   | 动画属性枚举。 |
+
+**返回值：**
+
+| 类型               | 说明               |
+| ------------------ | ------------------ |
+| number[] | 表示渲染节点上的属性值，返回的数组长度与属性枚举相关，异常时返回空数组。<br/>可能导致返回空数组的原因：<br/>&nbsp;1. 节点已经释放，调用过[dispose](#dispose12)方法。<br/>&nbsp;2. 属性枚举非法。<br/>**说明：**<br/>1. 动画正常取消后，节点上的属性值被恢复为取消时的值，通过该接口可以获取取消后的显示值。<br/>2. 动画期间该接口的返回值为该属性的终值，而不是动画过程的实时值。<br/>|
+
+**示例：**
+
+请参考[动画创建与取消示例](#动画创建与取消示例)。
 
 ## TypedFrameNode<sup>12+</sup>
 
@@ -5810,3 +5885,94 @@ struct FrameNodeTypeTest {
   }
 }
 ```
+
+## 动画创建与取消示例
+
+该示例说明在FrameNode上[createAnimation](#createanimation20)、[cancelAnimations](#cancelanimations20)、[getNodePropertyValue](#getnodepropertyvalue20)接口的用法。
+
+``` ts
+import { FrameNode, NodeController, UIContext } from '@kit.ArkUI';
+class MyNodeController extends NodeController {
+  private rootNode: FrameNode | null = null;
+  private isRunning: boolean = false; // 表示节点上动画是否在运行
+  private startInitAnimation() {
+    if (this.rootNode) {
+      let result: boolean = this.rootNode.createAnimation(AnimationPropertyType.ROTATION, [0, 0, 0], [0, 0, 360],
+        {duration: 3000, curve: Curve.Linear, iterations: -1});// 创建动画，第一次创建时显式指定初值，旋转角从[0,0,0]变成[0,0,360]，无限循环
+      if (result) {
+        this.isRunning = true;
+      } else {
+        console.warn('create rotation animation failed');
+      }
+    }
+  }
+  cancelAnimation(cnt: number) {
+    if (this.rootNode && this.isRunning) {
+      let result: boolean = this.rootNode.cancelAnimations([AnimationPropertyType.ROTATION]);
+      if (result) {
+        this.isRunning = false;
+      } else {
+        console.warn('cancel rotation animation failed');
+        if (cnt < 2) { // cnt为尝试取消的次数
+          // 如果取消失败，500ms后再次尝试取消
+          setTimeout(() => {
+            this.cancelAnimation(cnt + 1);
+          }, 500);
+        }
+      }
+    }
+  }
+  continueAnimation() {
+    if (this.rootNode && !this.isRunning) {
+      let currentProperty: number[] = this.rootNode.getNodePropertyValue(AnimationPropertyType.ROTATION);// 获取当前节点上的旋转属性终值
+      if (currentProperty.length == 3) { // 获取属性正常，旋转属性对应的数组长度为3，分别是x、y、z方向的旋转角
+        let endValue: number[];
+        let startValue: number[] | undefined = undefined;
+        if (currentProperty[2] >= 360) {
+          startValue = [currentProperty[0], currentProperty[1], currentProperty[2] - 360]; // 当旋转属性过大时使z方向少转360度，避免z方向角度由于多次启停动画一直增加
+          endValue = [currentProperty[0], currentProperty[1], currentProperty[2]];
+        } else {
+          endValue = [currentProperty[0], currentProperty[1], currentProperty[2] + 360]; // 此时旋转属性小于360度，可以从上次旋转角再多旋转一圈
+        }
+        let result: boolean = this.rootNode.createAnimation(AnimationPropertyType.ROTATION, startValue, endValue, {duration: 3000, curve: Curve.Linear, iterations: -1});
+        console.info(`create rotation animation from ${startValue? String(startValue[2]): "undefined"} to ${endValue[2]}`);
+        if (result) {
+          this.isRunning = true;
+        } else {
+          console.warn('create rotation animation failed when continue');
+        }
+      }
+    }
+  }
+
+  makeNode(uiContext: UIContext): FrameNode | null {
+    if (this.rootNode) {
+      return this.rootNode;
+    }
+    this.rootNode = new FrameNode(uiContext);
+    this.rootNode.commonAttribute.width(100).height(100).backgroundColor(Color.Red);//设置节点属性
+    this.startInitAnimation();
+    this.rootNode.commonEvent.setOnClick(()=>{
+      if (this.isRunning) {
+        this.cancelAnimation(1);
+      } else {
+        this.continueAnimation();
+      }
+    });
+    return this.rootNode;
+  }
+}
+@Entry
+@Component
+struct CreateAnimationExample {
+  private myNodeController: MyNodeController = new MyNodeController();
+
+  build() {
+    Column() {
+      NodeContainer(this.myNodeController)
+    }.width('100%').padding({top: 50})
+  }
+}
+```
+
+![cancelAnimation](./figures/frameNode_cancelAnimation.gif)
