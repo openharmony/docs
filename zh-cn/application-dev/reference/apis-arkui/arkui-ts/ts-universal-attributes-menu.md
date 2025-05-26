@@ -6,13 +6,13 @@
 >
 >  - 从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
->  - CustomBuilder里不支持再使用bindMenu和bindContextMenu弹出菜单。多级菜单可使用[Menu组件](ts-basic-components-menu.md)。
+>  - CustomBuilder不支持使用bindMenu和bindContextMenu弹出菜单。多级菜单可使用[Menu组件](ts-basic-components-menu.md)。
 >
 >  - 弹出菜单的文本内容不支持长按选中。
 >
 >  - 当窗口大小发生变化时，菜单自动隐藏。
 >
->  - 如果组件是可拖动节点且未指定bindContextMenu的preview，菜单弹出时会显示拖拽预览图，且菜单选项和预览图不会避让。开发者可根据使用场景设置preview或将目标节点设置为不可拖动。
+>  - 如果组件是可拖动节点且未指定bindContextMenu的preview，菜单弹出时会显示拖拽预览图，且菜单选项和预览图不会相互避让。开发者可根据使用场景设置preview或将目标节点设置为不可拖动。
 >
 >  - 从API version 12开始，菜单支持长按500ms弹出子菜单，支持按压态跟随手指移动。
 >
@@ -82,7 +82,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 当isShown为true时，弹出菜单；为false时，隐藏菜单。菜单项支持自定义。
 
-菜单弹出不跟随点击位置，只与placement设置有关。
+菜单弹出位置仅有placement设置决定，与点击位置无关。
 
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
