@@ -2053,9 +2053,9 @@ getZoneRules(): ZoneRules
 ```ts
 import { i18n, intl } from '@kit.LocalizationKit';
 
-  let tzId = 'America/Tijuana'
-  let timeZone: i18n.TimeZone = i18n.getTimeZone(tzId)
-  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let tzId = 'America/Tijuana';
+  let timeZone: i18n.TimeZone = i18n.getTimeZone(tzId);
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
   let date = new Date(2025, 4, 13);
   let zoneOffsetTransition: i18n.ZoneOffsetTransition =
       zoneRules.nextTransition(date.getTime()); //获取2025年5月13日以后的下一个时间跳变点
@@ -2130,8 +2130,8 @@ getMilliseconds(): number
 
 **示例：**
 ```ts
-  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
-  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana");
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
   let date = new Date(2025, 4, 13);
   let zoneOffsetTransition: i18n.ZoneOffsetTransition =
       zoneRules.nextTransition(date.getTime()); //获取2025年5月13日以后的下一个时间跳变点
@@ -2156,8 +2156,8 @@ getOffsetAfter(): number
 
 **示例：**
 ```ts
-  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
-  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana");
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
   let date = new Date(2025, 4, 13);
   let zoneOffsetTransition: i18n.ZoneOffsetTransition =
       zoneRules.nextTransition(date.getTime()); //获取2025年5月13日以后的下一个时间跳变点
@@ -2182,8 +2182,8 @@ getOffsetBefore(): number
 
 **示例：**
 ```ts
-  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana")
-  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules()
+  let timeZone: i18n.TimeZone = i18n.getTimeZone("America/Tijuana");
+  let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
   let date = new Date(2025, 4, 13);
   let zoneOffsetTransition: i18n.ZoneOffsetTransition =
       zoneRules.nextTransition(date.getTime()); //获取2025年5月13日以后的下一个时间跳变点
