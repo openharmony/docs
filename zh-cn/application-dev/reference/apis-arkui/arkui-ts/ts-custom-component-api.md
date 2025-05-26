@@ -92,7 +92,7 @@ queryNavDestinationInfo(): NavDestinationInfo | undefined;
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Component
 export struct NavDestinationExample {
@@ -110,7 +110,7 @@ struct MyComponent {
   aboutToAppear() {
     // this指代MyComponent自定义节点，并从该节点向上查找其最近的一个类型为NavDestination的父亲节点
     this.navDesInfo = this.queryNavDestinationInfo();
-    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo))
+    console.log('get navDestinationInfo: ' + JSON.stringify(this.navDesInfo));
   }
 
   build() {
@@ -133,7 +133,7 @@ queryNavDestinationInfo(isInner: Optional\<boolean>): NavDestinationInfo | undef
 
 | 参数名 | 类型                                          | 必填 | 说明                                          |
 | ------ | --------------------------------------------- | ---- | --------------------------------------------- |
-| isInner  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | true: 向内查询最近的，且在栈内的NavDestinationinfo的详细信息。<br/>false: 向外查询最近的，且在栈内的NavDestinationinfo的详细信息。|
+| isInner  | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | true：向内查询最近的，且在栈内的NavDestinationinfo的详细信息。<br/>false：向外查询最近的，且在栈内的NavDestinationinfo的详细信息。|
 
 **返回值：**
 
@@ -168,11 +168,11 @@ struct NavigationExample {
 
 ```ts
 // PageOne.ets
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Builder
 export function PageOneBuilder() {
-  PageOneComponent();
+  PageOneComponent()
 }
 
 @Component
@@ -188,7 +188,7 @@ export struct PageOneComponent {
           .margin(20)
           .onClick(() => {
             // 向内查询PageOne的NavDestination信息
-            this.navDesInfo = this.queryNavDestinationInfo(true)
+            this.navDesInfo = this.queryNavDestinationInfo(true);
             this.text = JSON.stringify(this.navDesInfo?.name).toString();
           })
         Text('向内查找的NavDestination是:' + this.text)
@@ -205,7 +205,7 @@ export struct PageOneComponent {
 
 @Component
 struct MyComponent {
-  navDesInfo: uiObserver.NavDestinationInfo | undefined
+  navDesInfo: uiObserver.NavDestinationInfo | undefined;
   @State text: string = '';
 
   build() {
@@ -265,12 +265,12 @@ queryNavigationInfo(): NavigationInfo | undefined
 
 ```ts
 // index.ets
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct MainPage {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   build() {
     Navigation(this.pathStack) {
@@ -282,14 +282,14 @@ struct MainPage {
 
 @Component
 export struct PageOne {
-  pathStack: NavPathStack = new NavPathStack()
+  pathStack: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     // this指代PageOne自定义节点，并从该节点向上查找其最近的一个类型为Navigation的父亲节点
-    let navigationInfo: uiObserver.NavigationInfo | undefined = this.queryNavigationInfo()
-    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo))
+    let navigationInfo: uiObserver.NavigationInfo | undefined = this.queryNavigationInfo();
+    console.log('get navigationInfo: ' + JSON.stringify(navigationInfo));
     if (navigationInfo !== undefined) {
-      this.pathStack = navigationInfo.pathStack
+      this.pathStack = navigationInfo.pathStack;
     }
   }
 
@@ -320,7 +320,7 @@ queryRouterPageInfo(): RouterPageInfo | undefined;
 **示例：**
 
 ```ts
-import { uiObserver } from '@kit.ArkUI'
+import { uiObserver } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -358,7 +358,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { ComponentContent } from '@kit.ArkUI';
 
 class Params {
-  text: string = ""
+  text: string = "";
   constructor(text: string) {
     this.text = text;
   }
@@ -393,7 +393,7 @@ function buildText(params: Params) {
 @Entry
 @ComponentV2
 struct Index {
-  @Local message: string = "hello"
+  @Local message: string = "hello";
 
   build() {
     Row() {
@@ -401,11 +401,11 @@ struct Index {
         Button('click me')
           .fontSize(20)
           .onClick(() => {
-            let ctx = this.getUIContext()
-            let promptAction = ctx.getPromptAction()
-            promptAction.openCustomDialog(new ComponentContent(ctx, wrapBuilder(buildText), new Params(this.message)))
+            let ctx = this.getUIContext();
+            let promptAction = ctx.getPromptAction();
+            promptAction.openCustomDialog(new ComponentContent(ctx, wrapBuilder(buildText), new Params(this.message)));
               .catch((err: BusinessError) => {
-                console.error("openCustomDialog error: " + err.code + " " + err.message)
+                console.error("openCustomDialog error: " + err.code + " " + err.message);
               })
           })
       }

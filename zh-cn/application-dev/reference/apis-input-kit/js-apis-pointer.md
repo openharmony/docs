@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.pointer (鼠标指针)
 
-鼠标指针管理模块，用于查询和设置鼠标指针相关属性。
+本模块提供鼠标指针管理能力，包括查询、设置鼠标指针属性。
 
 > **说明**：
 >
@@ -42,13 +42,13 @@ setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 try {
   pointer.setPointerVisible(true, (error: Error) => {
     if (error) {
-      console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set pointer visible success`);
   });
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -68,9 +68,9 @@ setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
 **返回值**：
 
-| 参数                  | 说明                  |
+| 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Promise&lt;void&gt; | Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -89,7 +89,7 @@ try {
     console.log(`Set pointer visible success`);
   });
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -97,7 +97,7 @@ try {
 
 setPointerVisibleSync(visible: boolean): void
 
-使用同步方式设置鼠标指针显示或者隐藏。
+设置鼠标指针的显示或隐藏，使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -122,7 +122,7 @@ try {
   pointer.setPointerVisibleSync(false);
   console.log(`Set pointer visible success`);
 } catch (error) {
-  console.log(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -138,7 +138,7 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名       | 类型                           | 必填   | 说明             |
 | -------- | ---------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标指针状态，true为显示，false为隐藏。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，返回鼠标指针状态，true为显示，false为隐藏。 |
 
 **错误码**：
 
@@ -154,13 +154,13 @@ isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 try {
   pointer.isPointerVisible((error: Error, visible: boolean) => {
     if (error) {
-      console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -174,9 +174,9 @@ isPointerVisible(): Promise&lt;boolean&gt;
 
 **返回值**：
 
-| 参数                     | 说明                  |
+| 类型                     | 说明                  |
 | ---------------------- | ------------------- |
-| Promise&lt;boolean&gt; | Promise对象，异步返回鼠标指针显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
+| Promise&lt;boolean&gt; | Promise对象，返回鼠标指针状态查询结果。true代表显示状态，false代表隐藏状态。 |
 
 **示例**：
 
@@ -186,7 +186,7 @@ try {
     console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
   });
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -200,7 +200,7 @@ isPointerVisibleSync(): boolean
 
 **返回值**：
 
-| 参数                     | 说明                  |
+| 类型                     | 说明                  |
 | ---------------------- | ------------------- |
 | boolean | 返回鼠标指针显示或隐藏状态。true代表显示状态，false代表隐藏状态。 |
 
@@ -211,7 +211,7 @@ try {
   let visible: boolean = pointer.isPointerVisibleSync();
   console.log(`Get pointer visible success, visible: ${JSON.stringify(visible)}`);
 } catch (error) {
-  console.log(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer visible failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -259,7 +259,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
-    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -280,9 +280,9 @@ getPointerStyle(windowId: number): Promise&lt;PointerStyle&gt;
 
 **返回值**：
 
-| 参数                                       | 说明                  |
+| 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
-| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise实例，异步返回鼠标样式类型。 |
+| Promise&lt;[PointerStyle](#pointerstyle)&gt; | Promise实例，返回鼠标样式类型。 |
 
 **错误码**：
 
@@ -313,7 +313,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
       console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
     });
   } catch (error) {
-    console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -322,7 +322,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
 
 getPointerStyleSync(windowId: number): PointerStyle
 
-使用同步方式获取鼠标样式类型。
+查询鼠标样式类型，如向东箭头、向西箭头、向南箭头、向北箭头等。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -334,7 +334,7 @@ getPointerStyleSync(windowId: number): PointerStyle
 
 **返回值**：
 
-| 参数                                       | 说明                  |
+| 类型                                       | 说明                  |
 | ---------------------------------------- | ------------------- |
 | [PointerStyle](#pointerstyle) | 返回鼠标样式类型。 |
 
@@ -356,7 +356,7 @@ try {
   let style: pointer.PointerStyle = pointer.getPointerStyleSync(windowId);
   console.log(`Get pointer style success, style: ${JSON.stringify(style)}`);
 } catch (error) {
-  console.log(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Get pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -405,7 +405,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
       console.log(`Set pointer style success`);
     });
   } catch (error) {
-    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -426,9 +426,9 @@ setPointerStyle(windowId: number, pointerStyle: PointerStyle): Promise&lt;void&g
 
 **返回值**：
 
-| 参数                  | 说明                  |
+| 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| Promise&lt;void&gt; | Promise对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -459,7 +459,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
       console.log(`Set pointer style success`);
     });
   } catch (error) {
-    console.log(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Set pointer style failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -468,7 +468,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
 
 setPointerStyleSync(windowId: number, pointerStyle: PointerStyle): void
 
-使用同步方式设置鼠标样式类型。
+设置鼠标样式类型，使用同步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -506,7 +506,7 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
     pointer.setPointerStyleSync(windowId, pointer.PointerStyle.CROSS);
     console.log(`Set pointer style success`);
   } catch (error) {
-    console.log(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`getPointerSize failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
   }
 });
 ```
@@ -524,15 +524,17 @@ window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError
 
 ## RightClickType<sup>10+</sup>
 
-右键菜单触发方式。
+右键菜单的触发方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
 | 名称                               | 值    | 说明     |
 | -------------------------------- | ---- | ------ |
-| TOUCHPAD_RIGHT_BUTTON            | 1    |触控板右键区域。 |
-| TOUCHPAD_LEFT_BUTTON            | 2    |触控板左键区域。 |
-| TOUCHPAD_TWO_FINGER_TAP         | 3    |双指轻击或按压触控板。|
+| TOUCHPAD_RIGHT_BUTTON            | 1    |按压触控板右键区域。 |
+| TOUCHPAD_LEFT_BUTTON            | 2    |按压触控板左键区域。 |
+| TOUCHPAD_TWO_FINGER_TAP         | 3    |双指轻击或双指按压触控板。|
+| TOUCHPAD_TWO_FINGER_TAP_OR_RIGHT_BUTTON<sup>20+</sup>       | 4    |双指轻击或双指按压触控板、或按压触控板右键区域。|
+| TOUCHPAD_TWO_FINGER_TAP_OR_LEFT_BUTTON<sup>20+</sup>         | 5    |双指轻击或双指按压触控板、或按压触控板左键区域。|
 
 ## PointerStyle
 
@@ -607,7 +609,7 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
@@ -625,6 +627,8 @@ setCustomCursor(windowId: number, pixelMap: image.PixelMap, focusX?: number, foc
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
+
+// app_icon为示例资源，请开发者根据实际需求配置资源文件。
 this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -637,7 +641,7 @@ this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.m
             console.log(`setCustomCursor success`);
           });
         } catch (error) {
-          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
       });
   });
@@ -683,7 +687,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 
 **返回值**：
 
-| 参数                  | 说明               |
+| 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
@@ -702,6 +706,8 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
+
+// app_icon为示例资源，请开发者根据实际需求配置资源文件。
 this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -714,7 +720,7 @@ this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.m
             console.log(`setCustomCursor success`);
           });
         } catch (error) {
-          console.log(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursor failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
       });
   });
@@ -733,7 +739,7 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| windowId  | number  | 是    | 窗口id。                          |
+| windowId  | number  | 是    | 窗口id。取值为大于0的整数。                          |
 | pixelMap  | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 自定义光标资源。 |
 | focusX  | number | 否    | 自定义光标焦点x，取值范围：大于等于0，默认为0。 |
 | focusY  | number | 否    | 自定义光标焦点y，取值范围：大于等于0，默认为0。 |
@@ -752,6 +758,8 @@ setCustomCursorSync(windowId: number, pixelMap: image.PixelMap, focusX?: number,
 import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { window } from '@kit.ArkUI';
+
+// app_icon为示例资源，请开发者根据实际需求配置资源文件。
 const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMediaContent($r("app.media.app_icon")).then((svgFileData) => {
   const svgBuffer: ArrayBuffer = svgFileData.buffer.slice(0);
   let svgImagesource: image.ImageSource = image.createImageSource(svgBuffer);
@@ -763,7 +771,7 @@ const svgFileData = this.getUIContext()?.getHostContext()?.resourceManager.getMe
           pointer.setCustomCursorSync(windowId, pixelMap, 25, 25);
           console.log(`setCustomCursorSync success`);
         } catch (error) {
-          console.log(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+          console.error(`setCustomCursorSync failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
         }
     });
   });

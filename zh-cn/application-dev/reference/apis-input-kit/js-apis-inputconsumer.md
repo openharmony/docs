@@ -157,7 +157,7 @@ try {
   inputConsumer.off("hotkeyChange", hotkeyOption, hotkeyCallback);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -174,7 +174,7 @@ try {
   inputConsumer.off("hotkeyChange", hotkeyOption);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -216,7 +216,7 @@ try {
     console.log(`Subscribe success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Subscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -255,6 +255,6 @@ try {
   // 取消当前已订阅的所有回调函数
   inputConsumer.off("keyPressed");
 } catch (error) {
-  console.log(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Unsubscribe execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

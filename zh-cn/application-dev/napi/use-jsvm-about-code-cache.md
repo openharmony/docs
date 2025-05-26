@@ -28,6 +28,7 @@ JSVM 提供了生成并使用 code cache 加速编译过程的方法，其获取
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <string>
 
 JSVM_Value UseCodeCache(JSVM_Env env, JSVM_CallbackInfo info) {
     // 编译参数准备
@@ -100,6 +101,9 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"UseCodeCache", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
+
+// 样例测试js
+const char* srcCallNative = R"JS(globalThis.UseCodeCache())JS";
 ```
 
 预期输出结果

@@ -24,7 +24,7 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
 3. Enable display of local digits on the application page.
    ```ts
    try {
-     i18n.System.setUsingLocalDigit(true); // Enable the local digit switch.
+     i18n.System.setUsingLocalDigit(true); // Enable use of local digits.
    } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.setUsingLocalDigit failed, error code: ${err.code}, message: ${err.message}.`);
@@ -38,7 +38,7 @@ For details about how to use the APIs, see [setUsingLocalDigit](../reference/api
 4. Set the 24-hour clock format.
    ```ts
    try {
-     i18n.System.set24HourClock(true); // true means to enable the 24-hour clock, and false means to enable the 12-hour clock.
+     i18n.System.set24HourClock (true); // Set the system time to the 24-hour clock.
    } catch (error) {
      let err: BusinessError = error as BusinessError;
      console.error(`call System.set24HourClock failed, error code: ${err.code}, message: ${err.message}.`);

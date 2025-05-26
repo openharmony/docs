@@ -82,7 +82,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | notBefore          | string         | 否  | 否  | 表示证书有效期起始日期，最大长度为32字节。 |
 | notAfter          | string   | 否  | 否  | 表示证书有效期截止日期，最大长度为32字节。 |
 | fingerprintSha256     | string     | 否  | 否  | 表示证书的指纹值，最大长度为128字节。 |
-| cert          | Uint8Array         | 否  | 否  | 表示证书二进制数据。 |
+| cert          | Uint8Array         | 否  | 否  | 表示证书二进制数据，最大长度为8196字节。 |
 
 ## CertAbstract
 
@@ -110,7 +110,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | keyUri          | string     | 否  | 否  | 表示凭据的唯一标识符，最大长度为256字节。 |
 | certNum          | number         | 否  | 否  | 表示凭据中包含的证书个数。 |
 | keyNum          | number   | 否  | 否  | 表示凭据中包含的密钥个数。 |
-| credentialData          | Uint8Array   | 否  | 否  | 表示凭据二进制数据。 |
+| credentialData          | Uint8Array   | 否  | 否  | 表示凭据二进制数据，最大长度为24588字节。 |
 
 ## CredentialAbstract
 
@@ -148,7 +148,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 | 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
 | -------------- | --------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| handle         | Uint8Array        | 否  | 否   | 签名、验签的初始化操作句柄。 |
+| handle         | Uint8Array        | 否  | 否   | 签名、验签的初始化操作句柄，最大长度为8字节。 |
 
 ## CMErrorCode
 
@@ -189,16 +189,28 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CURRENT_USER   | 1      | 表示当前用户。 |
 | GLOBAL_USER   | 2      | 表示设备公共，即所有用户都可以访问的位置。 |
 
+## CertAlgorithm<sup>20+</sup>
+
+表示证书的算法类型。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称            | 值 | 说明                       |
+|---------------| ------ |--------------------------|
+| INTERNATIONAL | 1      | 表示国际密码算法，如RSA、NIST ECC等。 |
+| SM            | 2      | 表示商用密码算法，如SM2、SM4等。      |
+
 ## CertStoreProperty<sup>18+</sup>
 
 表示获取证书存储位置的参数集合，包括证书的类型及证书的位置。
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
-| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| certType          | [CertType](#certtype18)                     | 否  | 否  | 表示证书的类型。 |
-| certScope        | [CertScope](#certscope18)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。 |
+| 名称        | 类型                                | 只读 | 可选 | 说明                                          |
+|-----------|-----------------------------------| ---- | ------------------------------------------------------------ |---------------------------------------------|
+| certType  | [CertType](#certtype18)           | 否  | 否  | 表示证书的类型。                                    |
+| certScope | [CertScope](#certscope18)         | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。       |
+| certAlg   | [CertAlgorithm](#certalgorithm20) | 否   | 是  | 表示证书算法类型。仅当certType为CA_CERT_SYSTEM时有效，默认值为INTERNATIONAL。 |
 
 ## AuthStorageLevel<sup>18+</sup>
 
@@ -226,7 +238,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keystore | Uint8Array                   | 是   | 表示带有密钥对和证书的密钥库文件。 |
+| keystore | Uint8Array                   | 是   | 表示带有密钥对和证书的密钥库文件，最大长度为20480字节。 |
 | keystorePwd | string | 是   | 表示密钥库文件的密码，长度限制32字节以内。 |
 | certAlias | string | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线，长度建议32字节以内。 |
 | callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当安装私有凭据成功时，err为null，data为[CMResult](#cmresult)对象中的uri属性；否则为错误对象。 |
@@ -280,7 +292,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| keystore | Uint8Array                   | 是   | 表示带有密钥对和证书的密钥库文件。 |
+| keystore | Uint8Array                   | 是   | 表示带有密钥对和证书的密钥库文件，最大长度为20480字节。 |
 | keystorePwd | string | 是   | 表示密钥库文件的密码，长度限制32字节以内。 |
 | certAlias | string | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线，长度建议32字节以内。 |
 
@@ -339,7 +351,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 
 | 参数名      | 类型       | 必填 | 说明                                                         |
 | ----------- | ---------- | ---- | ------------------------------------------------------------ |
-| keystore    | Uint8Array | 是   | 表示带有密钥对和证书的密钥库文件。                           |
+| keystore    | Uint8Array | 是   | 表示带有密钥对和证书的密钥库文件，最大长度为20480字节。                           |
 | keystorePwd | string     | 是   | 表示密钥库文件的密码。<br>长度限制：32字节以内。                   |
 | certAlias   | string     | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线。<br>长度建议：32字节以内。 |
 | level   | [AuthStorageLevel](#authstoragelevel18)   | 是   | 表示凭据的存储级别。 |
@@ -603,7 +615,7 @@ installUserTrustedCertificateSync(cert: Uint8Array, certScope: CertScope) : CMRe
 
 | 参数名       | 类型                         | 必填 | 说明           |
 |-----------|----------------------------|----|--------------|
-| cert      | Uint8Array                 | 是  | 表示CA证书数据。    |
+| cert      | Uint8Array                 | 是  | 表示CA证书数据，最大长度为8196字节。    |
 | certScope | [CertScope](#certscope18)  | 是  | 表示CA证书安装的位置。 |
 
 **返回值**：
@@ -811,7 +823,7 @@ update(handle: Uint8Array, data: Uint8Array, callback: AsyncCallback\<void>): vo
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
+| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄，最大长度为8字节。 |
 | data | Uint8Array                   | 是   | 表示待签名、验签的数据。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当签名、验签的数据更新操作成功时，err为null，否则为错误对象。 |
 
@@ -863,7 +875,7 @@ update(handle: Uint8Array, data: Uint8Array): Promise\<void>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
+| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄，最大长度为8字节。 |
 | data | Uint8Array                   | 是   | 表示待签名、验签的数据。 |
 
 **返回值**：
@@ -919,7 +931,7 @@ finish(handle: Uint8Array, callback: AsyncCallback\<CMResult>): void
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
+| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄，最大长度为8字节。 |
 | callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当签名成功时，err为null，data为[CMResult](#cmresult)对象中的outData属性，表示签名数据；否则为错误对象。 |
 
 **错误码：**
@@ -972,7 +984,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
+| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄，最大长度为8字节。 |
 | signature | Uint8Array                   | 是   | 表示签名数据。 |
 | callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当验签成功时，err为null；否则为错误对象。 |
 
@@ -1024,7 +1036,7 @@ finish(handle: Uint8Array, signature?: Uint8Array): Promise\<CMResult>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
+| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄，最大长度为8字节。 |
 | signature | Uint8Array                   | 否   | 表示签名数据。 |
 
 **返回值**：
@@ -1094,7 +1106,7 @@ abort(handle: Uint8Array, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
+| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄，最大长度为8字节。 |
 | callback | AsyncCallback\<void> | 是   | 回调函数。当中止签名、验签成功时，err为null，否则为错误对象。 |
 
 **错误码：**
@@ -1142,7 +1154,7 @@ abort(handle: Uint8Array): Promise\<void>
 
 | 参数名   | 类型                                              | 必填 | 说明                       |
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
-| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄。 |
+| handle | Uint8Array                   | 是   | 表示初始化操作返回的句柄，最大长度为8字节。 |
 
 **返回值**：
 
@@ -1520,10 +1532,11 @@ getCertificateStorePath(property: CertStoreProperty): string;
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 错误码ID    | 错误信息      |
+|----------| ------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001 | Internal error. |
+| 17500009 | The device does not support the specified certificate store path. |
 
 **示例**：
 ```ts
@@ -1552,9 +1565,15 @@ try {
   }
   let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
   console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
+
+  /* 获取SM算法系统CA的存储位置 */
+  let property4: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_SYSTEM,
+    certAlg: certificateManager.CertAlgorithm.SM,
+  }
+  let smSystemCAPath = certificateManager.getCertificateStorePath(property4);
+  console.info(`Success to get SM system ca path: ${smSystemCAPath}`);
 } catch (error) {
   console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
 }
 ```
-
-

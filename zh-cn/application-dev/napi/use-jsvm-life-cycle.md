@@ -279,15 +279,32 @@ static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
     return 0;
 }
 
-static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info) {
+    JSVM_VM vm;
+    OH_JSVM_GetVM(env, &vm);
     if (AddFinalizer(vm, env) != 0) {
         OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
     }
+
+    return nullptr;
 }
+
+// RunDemo注册回调
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = RunDemo},
+};
+static JSVM_CallbackStruct *method = param;
+// RunDemo方法别名，供JS调用
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"RunDemo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// 样例测试js
+const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
 
 预期结果
-```
+```ts
 JSVM: finalizer added.
 JSVM: before call gc.
 JSVM: finalizer called.

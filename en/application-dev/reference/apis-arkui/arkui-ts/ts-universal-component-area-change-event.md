@@ -18,7 +18,7 @@ This event is not triggered for changes in render attributes caused by re-render
 
 >  **NOTE**
 >
-> When a component is bound to both the **onAreaChange** event and the [position](ts-universal-attributes-location.md#position) attribute, the **onAreaChange** event responds to changes in the **position** attribute of type [Position](ts-types.md#position), but does not respond to changes in the **position** attribute of type Edges](ts-types.md#edges12) or [LocalizedEdges](ts-types.md#localizededges12).
+> When a component is bound to both the **onAreaChange** event and the [position](ts-universal-attributes-location.md#position) attribute, the **onAreaChange** event responds to changes in the **position** attribute of type [Position](ts-types.md#position), but does not respond to changes in the **position** attribute of type [Edges](ts-types.md#edges12) or [LocalizedEdges](ts-types.md#localizededges12).
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 

@@ -1,8 +1,8 @@
-# Socket 连接
+# Socket连接
 
 ## 简介
 
-Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。
+Socket连接主要是通过Socket进行数据传输，支持TCP/UDP/Multicast/TLS协议。
 
 > **说明：**
 >
@@ -19,21 +19,21 @@ Socket 连接主要是通过 Socket 进行数据传输，支持 TCP/UDP/Multicas
 
 ## 场景介绍
 
-应用通过 Socket 进行数据传输，支持 TCP/UDP/Multicast/TLS 协议。主要场景有：
+应用通过Socket进行数据传输，支持TCP/UDP/Multicast/TLS协议。主要场景有：
 
-- 应用通过 TCP/UDP Socket进行数据传输
-- 应用通过 TCP Socket Server 进行数据传输
-- 应用通过 Multicast Socket 进行数据传输
-- 应用通过 Local Socket进行数据传输
-- 应用通过 Local Socket Server 进行数据传输
-- 应用通过 TLS Socket 进行加密数据传输
-- 应用通过 TLS Socket Server 进行加密数据传输
+- 应用通过TCP/UDP Socket进行数据传输
+- 应用通过TCP Socket Server进行数据传输
+- 应用通过Multicast Socket进行数据传输
+- 应用通过Local Socket进行数据传输
+- 应用通过Local Socket Server进行数据传输
+- 应用通过TLS Socket进行加密数据传输
+- 应用通过TLS Socket Server进行加密数据传输
 
 ## 接口说明
 
-完整的 API 说明以及实例代码请参考：[Socket 连接](../reference/apis-network-kit/js-apis-socket.md)。
+完整的API说明以及实例代码请参考：[Socket 连接](../reference/apis-network-kit/js-apis-socket.md)。
 
-Socket 连接主要由 socket 模块提供。具体接口说明如下表。
+Socket连接主要由socket模块提供。具体接口说明如下表。
 
 | 接口名                             | 描述                                                                          |
 | ---------------------------------- | ------------------------------------------------------------------------------ |
@@ -44,11 +44,11 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | constructLocalSocketInstance()       | 创建一个 LocalSocket 对象。                                                  |
 | constructLocalSocketServerInstance() | 创建一个 LocalSocketServer 对象。                                            |
 | listen()                           | 绑定、监听并启动服务，接收客户端的连接请求。（仅 TCP/LocalSocket 支持）。             |
-| bind()                             | 绑定 IP 地址和端口，或是绑定本地套接字路径。                                        |
+| bind()                             | 绑定 IP 地址和端口，或是绑定LocalSocket路径。                                        |
 | send()                             | 发送数据。                                                                     |
 | close()                            | 关闭连接。                                                                     |
 | getState()                         | 获取 Socket 状态。                                                             |
-| connect()                          | 连接到指定的 IP 地址和端口，或是连接到本地套接字（仅 TCP/LocalSocket 支持）。          |
+| connect()                          | 连接到指定的 IP 地址和端口，或是连接到LocalSocket（仅 TCP/LocalSocket 支持）。          |
 | getRemoteAddress()                 | 获取对端 Socket 地址（仅 TCP 支持，需要先调用 connect 方法）。                   |
 | setExtraOptions()                  | 设置 Socket 连接的其他属性。                                                   |
 | getExtraOptions()                  | 获取 Socket 连接的其他属性（仅 LocalSocket 支持）。                            |
@@ -69,7 +69,7 @@ Socket 连接主要由 socket 模块提供。具体接口说明如下表。
 | on(type:&nbsp;'connect')           | 订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                            |
 | off(type:&nbsp;'connect')          | 取消订阅 Socket 的连接事件（仅 TCP/LocalSocket 支持）。                         |
 
-TLS Socket 连接主要由 tls_socket 模块提供。具体接口说明如下表。
+TLS Socket连接主要由socket模块提供。具体接口说明如下表。
 
 | 接口名                       | 功能描述                                                   |
 | ---------------------------- | ---------------------------------------------------------- |
@@ -93,23 +93,23 @@ TLS Socket 连接主要由 tls_socket 模块提供。具体接口说明如下表
 | send()                       | 发送数据。                                                 |
 | setExtraOptions()            | 设置 TLSSocket 连接的其他属性。                            |
 
-## 应用 TCP/UDP 协议进行通信
+## 应用TCP/UDP协议进行通信
 
-UDP 与 TCP 流程大体类似，下面以 TCP 为例：
+UDP与TCP流程大体类似，下面以TCP为例：
 
-1. import 需要的 socket 模块。
+1. 导入所需的socket模块。
 
-2. 创建一个 TCPSocket 连接，返回一个 TCPSocket 对象。
+2. 创建一个TCPSocket连接，返回一个TCPSocket对象。
 
-3. （可选）订阅 TCPSocket 相关的订阅事件。
+3. （可选）订阅TCPSocket相关的订阅事件。
 
-4. 绑定 IP 地址和端口，端口可以指定或由系统随机分配。
+4. 绑定IP地址和端口，端口可以指定或由系统随机分配。
 
-5. 连接到指定的 IP 地址和端口。
+5. 连接到指定的IP地址和端口。
 
 6. 发送数据。
 
-7. Socket 连接使用完毕后，主动关闭。
+7. Socket连接使用完毕后，主动关闭。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
@@ -185,18 +185,18 @@ setTimeout(() => {
 }, 30 * 1000);
 ```
 
-## 应用通过 TCP Socket Server 进行数据传输
+## 应用通过TCP Socket Server进行数据传输
 
-服务端 TCP Socket 流程：
+服务端TCP Socket流程：
 
-1. import 需要的 socket 模块。
-2. 创建一个 TCPSocketServer 连接，返回一个 TCPSocketServer 对象。
-3. 绑定本地 IP 地址和端口，监听并接受与此套接字建立的客户端 TCPSocket 连接。
-4. 订阅 TCPSocketServer 的 connect 事件，用于监听客户端的连接状态。
-5. 客户端与服务端建立连接后，返回一个 TCPSocketConnection 对象，用于与客户端通信。
-6. 订阅 TCPSocketConnection 相关的事件，通过 TCPSocketConnection 向客户端发送数据。
+1. 导入所需的socket模块。
+2. 创建一个TCPSocketServer连接，返回一个TCPSocketServer对象。
+3. 绑定本地IP地址和端口，监听并接受与此套接字建立的客户端TCPSocket连接。
+4. 订阅TCPSocketServer的connect事件，用于监听客户端的连接状态。
+5. 客户端与服务端建立连接后，返回一个TCPSocketConnection对象，用于与客户端通信。
+6. 订阅TCPSocketConnection相关的事件，通过TCPSocketConnection向客户端发送数据。
 7. 主动关闭与客户端的连接。
-8. 取消 TCPSocketConnection 和 TCPSocketServer 相关事件的订阅。
+8. 取消TCPSocketConnection和TCPSocketServer相关事件的订阅。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
@@ -268,19 +268,19 @@ setTimeout(() => {
 }, 30 * 1000);
 ```
 
-## 应用通过 Multicast Socket 进行数据传输
+## 应用通过Multicast Socket进行数据传输
 
-1. import 需要的 socket 模块。
+1. 导入所需的socket模块。
 
-2. 创建 multicastSocket 多播对象。
+2. 创建multicastSocket多播对象。
 
-3. 指定多播 IP 与端口，加入多播组。
+3. 指定多播IP与端口，加入多播组。
 
-4. 开启消息 message 监听。
+4. 开启消息message监听。
 
-5. 发送数据，数据以广播的形式传输，同一多播组中已经开启消息 message 监听的多播对象都会接收到数据。
+5. 发送数据，数据以广播的形式传输，同一多播组中已经开启消息message监听的多播对象都会接收到数据。
 
-6. 关闭 message 消息的监听。
+6. 关闭message消息的监听。
 
 7. 退出多播组。
 
@@ -336,21 +336,23 @@ multicast.dropMembership(addr).then(() => {
 });
 ```
 
-## 应用通过 LocalSocket 进行数据传输
+## 应用通过LocalSocket进行数据传输
 
-1. import 需要的 socket 模块。
+1. 导入所需的socket模块。
 
-2. 使用 constructLocalSocketInstance 接口，创建一个 LocalSocket 客户端对象。
+2. 使用constructLocalSocketInstance接口，创建一个LocalSocket客户端对象。
 
-3. 注册 LocalSocket 的消息(message)事件，以及一些其它事件(可选)。
+3. 注册LocalSocket的消息(message)事件，以及一些其它事件(可选)。
 
 4. 连接到指定的本地套接字文件路径。
 
 5. 发送数据。
 
-6. Socket 连接使用完毕后，取消事件的注册，并关闭套接字。
+6. Socket连接使用完毕后，取消事件的注册，并关闭套接字。
 
-**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
@@ -409,21 +411,21 @@ client.close().then(() => {
 })
 ```
 
-## 应用通过 Local Socket Server 进行数据传输
+## 应用通过Local Socket Server进行数据传输
 
-服务端 LocalSocket Server 流程：
+服务端LocalSocket Server的主要流程包括：
 
-1. import 需要的 socket 模块。
+1. 导入所需的socket模块。
 
-2. 使用 constructLocalSocketServerInstance 接口，创建一个 LocalSocketServer 服务端对象。
+2. 使用constructLocalSocketServerInstance接口，创建一个 LocalSocketServer 服务端对象。
 
 3. 启动服务，绑定本地套接字路径，创建出本地套接字文件，监听客户端的连接请求。
 
-4. 注册 LocalSocket 的客户端连接(connect)事件，以及一些其它事件(可选)。
+4. 注册LocalSocket的客户端连接事件，以及一些其它事件(可选)。
 
 5. 在客户端连接上来时，通过连接事件的回调函数，获取连接会话对象。
 
-6. 给会话对象 LocalSocketConnection 注册消息(message)事件，以及一些其它事件(可选)。
+6. 给会话对象LocalSocketConnection注册消息(message)事件，以及一些其它事件(可选)。
 
 7. 通过会话对象主动向客户端发送消息。
 
@@ -431,7 +433,9 @@ client.close().then(() => {
 
 9. 取消 LocalSocketConnection 和 LocalSocketServer 相关事件的订阅。
 
-**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
@@ -498,23 +502,23 @@ server.off('connect');
 server.off('error');
 ```
 
-## 应用通过 TLS Socket 进行加密数据传输
+## 应用通过TLS Socket进行加密数据传输
 
-客户端 TLS Socket 流程：
+客户端TLS Socket流程包括：
 
-1. import 需要的 socket 模块。
+1. 导入所需的socket模块。
 
-2. 绑定服务器 IP 和端口号。
+2. 绑定服务器IP地址和端口。
 
-3. 双向认证上传客户端 CA 证书及数字证书；单向认证上传客户端 CA 证书。
+3. 双向认证上传客户端CA证书及数字证书；单向认证上传客户端CA证书。
 
-4. 创建一个 TLSSocket 连接，返回一个 TLSSocket 对象。
+4. 创建一个TLSSocket连接，返回一个TLSSocket对象。
 
-5. （可选）订阅 TLSSocket 相关的订阅事件。
+5. （可选）订阅TLSSocket相关的订阅事件。
 
 6. 发送数据。
 
-7. TLSSocket 连接使用完毕后，主动关闭。
+7. TLSSocket连接使用完毕后，主动关闭。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
@@ -656,23 +660,23 @@ tlsTwoWay.close((err: BusinessError) => {
 });
 ```
 
-## 应用通过将 TCP Socket 升级为 TLS Socket 进行加密数据传输
+## 应用通过将TCP Socket升级为TLS Socket进行加密数据传输
 
-客户端 TCP Socket 升级为 TLS Socket 流程：
+客户端TCP Socket升级为 TLS Socket 流程：
 
-1. import 需要的 socket 模块。
+1. 导入所需的socket模块。
 
-2. 参考[应用 TCP/UDP 协议进行通信](#应用-tcpudp-协议进行通信)，创建一个 TCPSocket 连接。
+2. 参考[应用 TCP/UDP 协议进行通信](#应用tcpudp协议进行通信)，创建一个TCPSocket连接。
 
-3. 确保 TCPSocket 已连接后，使用该 TCPSocket 对象创建 TLSSocket 连接，返回一个 TLSSocket 对象。
+3. 确保TCPSocket已连接后，使用该TCPSocket对象创建TLSSocket连接，返回一个TLSSocket对象。
 
 4. 双向认证上传客户端 CA 证书及数字证书；单向认证上传客户端 CA 证书。
 
-5. （可选）订阅 TLSSocket 相关的订阅事件。
+5. （可选）订阅TLSSocket相关的订阅事件。
 
 6. 发送数据。
 
-7. TLSSocket 连接使用完毕后，主动关闭。
+7. TLSSocket连接使用完毕后，主动关闭。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
@@ -785,25 +789,25 @@ tcp.bind(ipAddress, (err: BusinessError) => {
 });
 ```
 
-## 应用通过 TLS Socket Server 进行加密数据传输
+## 应用通过TLS Socket Server进行加密数据传输
 
-服务端 TLS Socket Server 流程：
+服务端TLS Socket Server流程：
 
-1. import 需要的 socket 模块。
+1. 导入所需的socket模块。
 
-2. 启动服务，绑定 IP 和端口号，监听客户端连接，创建并初始化 TLS 会话，加载证书密钥并验证。
+2. 启动服务，绑定 IP 和端口号，监听客户端连接，创建并初始化TLS会话，加载证书密钥并验证。
 
-3. 订阅 TLSSocketServer 的连接事件。
+3. 订阅TLSSocketServer的连接事件。
 
-4. 收到客户端连接，通过回调得到 TLSSocketConnection 对象。
+4. 收到客户端连接，通过回调得到TLSSocketConnection对象。
 
-5. 订阅 TLSSocketConnection 相关的事件。
+5. 订阅TLSSocketConnection相关的事件。
 
 6. 发送数据。
 
-7. TLSSocketConnection 连接使用完毕后，断开连接。
+7. TLSSocketConnection连接使用完毕后，断开连接。
 
-8. 取消订阅 TLSSocketConnection 以及 TLSSocketServer 的相关事件。
+8. 取消订阅TLSSocketConnection以及TLSSocketServer的相关事件。
 
 ```ts
 import { socket } from '@kit.NetworkKit';
@@ -882,6 +886,6 @@ tlsServer.off('connect');
 
 ## 相关实例
 
-针对 Socket 连接开发，有以下相关实例可供参考：
+针对Socket连接开发，有以下相关实例可供参考：
 
-- [网络管理-Socket 连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)
+- [网络管理-Socket连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)

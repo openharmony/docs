@@ -50,7 +50,7 @@ let callback = (keyOptions: inputConsumer.KeyOptions) => {
 try {
   inputConsumer.on("key", keyOptions, callback);
 } catch (error) {
-  console.log(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Subscribe failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -86,7 +86,7 @@ try {
   inputConsumer.off("key", keyOption, callback);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 ```js
@@ -102,7 +102,7 @@ try {
   inputConsumer.off("key", keyOption);
   console.log(`Unsubscribe success`);
 } catch (error) {
-  console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -110,7 +110,7 @@ try {
 
 setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
-设置屏蔽按键拦截状态。
+设置快捷键屏蔽类型。
 
 **需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -120,7 +120,7 @@ setShieldStatus(shieldMode: ShieldMode, isShield: boolean): void
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | ShieldMode                     | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                     | 是    | 快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
 | isShield | boolean  | 是    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。              |
 
 **示例：** 
@@ -131,16 +131,15 @@ try {
   inputConsumer.setShieldStatus(FACTORY_MODE,true);
   console.log(`set shield status success`);
 } catch (error) {
-  console.log(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`set shield status failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-
 ```
 
 ## inputConsumer.getShieldStatus<sup>11+</sup>
 
 getShieldStatus(shieldMode: ShieldMode): boolean
 
-获取屏蔽按键拦截是否生效。
+获取快捷键屏蔽类型。
 
 **需要权限**: ohos.permission.INPUT_CONTROL_DISPATCHING
 
@@ -150,11 +149,11 @@ getShieldStatus(shieldMode: ShieldMode): boolean
 
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------------------------------------- |
-| shieldMode       | ShieldMode                    | 是    | 屏蔽类型，目前仅支持'FACTORY_MODE'。                       |
+| shieldMode       | [ShieldMode](js-apis-inputconsumer-sys.md#shieldmode11)                    | 是    | 快捷键屏蔽类型，目前仅支持取值为'FACTORY_MODE'，表示屏蔽所有快捷键。                       |
 
 **返回值：** 
 
-| 参数         |  说明                                       |
+| 类型         |  说明                                       |
 | ---------- |  ---------------------------------------- |
 | boolean                    | 屏蔽类型生效状态，true代表屏蔽类型生效，flase代表不生效。                       |
 
@@ -166,7 +165,7 @@ try {
   let shieldstatusResult:Boolean =  inputConsumer.getShieldStatus(FACTORY_MODE);
   console.log(` get shield status result:${JSON.stringify(shieldstatusResult)}`);
 } catch (error) {
-  console.log(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Failed to get shield status, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -186,10 +185,12 @@ try {
 
 ## shieldMode<sup>11+</sup>
 
-屏蔽类型。
+快捷键屏蔽类型。
 
 **系统能力：** SystemCapability.MultimodalInput.Input.InputConsumer
 
-| 名称                        | 类型  | 可读 | 可写 | 说明           |
-| ------------------------------ | ----------- | ---------------- | ---------------- | ---------------- |
-| FACTORY_MODE | number | 是 | 否 | 屏蔽类型，屏蔽所有快捷键。 |
+| 名称                        | 值 | 说明           |
+| ------------------------------ | ----------- | ---------------- |
+| UNSET_MODE | -1 | 值为-1，表示不屏蔽快捷键。 |
+| FACTORY_MODE | 0 | 值为0，表示屏蔽所有快捷键。 |
+| OOBE_MODE | 1 | 值为1，表示OOBE阶段屏蔽所有快捷键，暂不支持该能力。 |

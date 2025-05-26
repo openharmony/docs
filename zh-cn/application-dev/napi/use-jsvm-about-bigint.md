@@ -38,6 +38,8 @@ cpp部分代码
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <fstream>
+
 // OH_JSVM_GetValueBigintWords的样例方法
 static JSVM_Value GetValueBigintWords(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
@@ -84,7 +86,7 @@ const char* srcCallNative = R"JS(getValueBigintWords(BigInt(5555555555555555)))J
 预期的输出结果
 ```ts
 OH_JSVM_GetValueBigintWords wordCount:1.
-OH_JSVM_GetValueBigintWords signBit: 1.
+OH_JSVM_GetValueBigintWords signBit: 0.
 ```
 
 ### OH_JSVM_CreateBigintWords

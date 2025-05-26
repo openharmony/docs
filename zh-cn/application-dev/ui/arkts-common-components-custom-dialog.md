@@ -14,9 +14,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
    ```ts
    @CustomDialog
    struct CustomDialogExample {
-     controller: CustomDialogController = new CustomDialogController({
-       builder: CustomDialogExample({}),
-     })
+     controller: CustomDialogController
    
      build() {
        Column() {
@@ -51,7 +49,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
        Column() {
          Button('click me')
            .onClick(() => {
-             this.dialogController.open()
+             this.dialogController.open();
            })
        }.width('100%').margin({ top: 5 })
      }
@@ -73,7 +71,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
      }
      confirm: () => void = () => {
      }
-     controller: CustomDialogController
+     controller: CustomDialogController;
    
      build() {
        Column() {
@@ -81,16 +79,16 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
          Flex({ justifyContent: FlexAlign.SpaceAround }) {
            Button('cancel')
              .onClick(() => {
-               this.controller.close()
+               this.controller.close();
                if (this.cancel) {
-                 this.cancel()
+                 this.cancel();
                }
              }).backgroundColor(0xffffff).fontColor(Color.Black)
            Button('confirm')
              .onClick(() => {
-               this.controller.close()
+               this.controller.close();
                if (this.confirm) {
-                 this.confirm()
+                 this.confirm();
                }
              }).backgroundColor(0xffffff).fontColor(Color.Red)
          }.margin({ bottom: 10 })
@@ -109,21 +107,21 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
          cancel: ()=> { this.onCancel() },
          confirm: ()=> { this.onAccept() },
        }),
-     })
+     });
    
      onCancel() {
-       console.info('Callback when the first button is clicked')
+       console.info('Callback when the first button is clicked');
      }
    
      onAccept() {
-       console.info('Callback when the second button is clicked')
+       console.info('Callback when the second button is clicked');
      }
    
      build() {
        Column() {
          Button('click me')
            .onClick(() => {
-             this.dialogController.open()
+             this.dialogController.open();
            })
        }.width('100%').margin({ top: 5 })
      }
@@ -138,8 +136,8 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
    // Index.ets
    @CustomDialog
    struct CustomDialogExample {
-     @Link textValue: string
-     controller?: CustomDialogController
+     @Link textValue: string;
+     controller?: CustomDialogController;
      cancel: () => void = () => {
      }
      confirm: () => void = () => {
@@ -158,19 +156,19 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
            Button('cancel')
              .onClick(() => {
                if (this.controller != undefined) {
-                 this.controller.close()
-                 this.cancel()
+                 this.controller.close();
+                 this.cancel();
                }
              }).backgroundColor(0xffffff).fontColor(Color.Black)
            Button('confirm')
              .onClick(() => {
                if (this.controller != undefined && this.textValue != '') {
-                 this.controller.close()
+                 this.controller.close();
                } else if (this.controller != undefined) {
                  this.getUIContext().getRouter().pushUrl({
                    url: 'pages/Index2'
-                 })
-                 this.controller.close()
+                 });
+                 this.controller.close();
                }
              }).backgroundColor(0xffffff).fontColor(Color.Red)
          }.margin({ bottom: 10 })
@@ -181,7 +179,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
    @Entry
    @Component
    struct CustomDialogUser {
-     @State textValue: string = ''
+     @State textValue: string = '';
      dialogController: CustomDialogController | null = new CustomDialogController({
        builder: CustomDialogExample({
          cancel: () => {
@@ -192,31 +190,31 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
          },
          textValue: this.textValue
        })
-     })
+     });
    
      // 在自定义组件即将析构销毁时将dialogController置空
      aboutToDisappear() {
-       this.dialogController = null // 将dialogController置空
+       this.dialogController = null; // 将dialogController置空
      }
    
      onPageShow() {
        const params = this.getUIContext().getRouter().getParams() as Record<string, string>; // 获取传递过来的参数对象
        if (params) {
-         this.dialogController?.open()
+         this.dialogController?.open();
          this.textValue = params.info as string; // 获取info属性的值
        }
      }
    
      onCancel() {
-       console.info('Callback when the first button is clicked')
+       console.info('Callback when the first button is clicked');
      }
    
      onAccept() {
-       console.info('Callback when the second button is clicked')
+       console.info('Callback when the second button is clicked');
      }
    
      exitApp() {
-       console.info('Click the callback in the blank area')
+       console.info('Click the callback in the blank area');
      }
    
      build() {
@@ -224,7 +222,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
          Button('click me')
            .onClick(() => {
              if (this.dialogController != null) {
-               this.dialogController.open()
+               this.dialogController.open();
              }
            }).backgroundColor(0x317aff)
        }.width('100%').margin({ top: 5 })
@@ -265,7 +263,7 @@ CustomDialog是自定义弹出框，可用于广告、中奖、警告、软件�
 ```ts
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -277,8 +275,8 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct CustomDialogUser {
-  @State textValue: string = ''
-  @State inputValue: string = 'click me'
+  @State textValue: string = '';
+  @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample(),
     openAnimation: {
@@ -297,11 +295,11 @@ struct CustomDialogUser {
     customStyle: false,
     backgroundColor: 0xd9ffffff,
     cornerRadius: 10,
-  })
+  });
 
   // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null; // 将dialogController置空
   }
 
   build() {
@@ -309,7 +307,7 @@ struct CustomDialogUser {
       Button(this.inputValue)
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -326,7 +324,7 @@ struct CustomDialogUser {
 ```ts
 @CustomDialog
 struct CustomDialogExample {
-  controller?: CustomDialogController
+  controller?: CustomDialogController;
 
   build() {
     Column() {
@@ -338,8 +336,8 @@ struct CustomDialogExample {
 @Entry
 @Component
 struct CustomDialogUser {
-  @State textValue: string = ''
-  @State inputValue: string = 'click me'
+  @State textValue: string = '';
+  @State inputValue: string = 'click me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample(),
     autoCancel: true,
@@ -355,11 +353,11 @@ struct CustomDialogUser {
     borderStyle: BorderStyle.Dashed,//使用borderStyle属性，需要和borderWidth属性一起使用
     borderColor: Color.Blue,//使用borderColor属性，需要和borderWidth属性一起使用
     shadow: ({ radius: 20, color: Color.Grey, offsetX: 50, offsetY: 0}),
-  })
+  });
 
   // 在自定义组件即将析构销毁时将dialogController置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null; // 将dialogController置空
   }
 
   build() {
@@ -367,7 +365,7 @@ struct CustomDialogUser {
       Button(this.inputValue)
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -384,9 +382,10 @@ struct CustomDialogUser {
 ```ts
 @CustomDialog
 struct CustomDialogExampleTwo {
-  controllerTwo?: CustomDialogController
-  @State message: string = "I'm the second dialog box."
+  controllerTwo?: CustomDialogController;
+  @State message: string = "I'm the second dialog box.";
   @State showIf: boolean = false;
+
   build() {
     Column() {
       if (this.showIf) {
@@ -398,27 +397,28 @@ struct CustomDialogExampleTwo {
         .fontSize(30)
         .height(100)
       Button("Create Text")
-        .onClick(()=>{
+        .onClick(() => {
           this.showIf = true;
         })
-      Button ('Close Second Dialog Box')
+      Button('Close Second Dialog Box')
         .onClick(() => {
           if (this.controllerTwo != undefined) {
-            this.controllerTwo.close()
+            this.controllerTwo.close();
           }
         })
         .margin(20)
     }
   }
 }
+
 @CustomDialog
 struct CustomDialogExample {
-  openSecondBox?: ()=>void
+  openSecondBox?: () => void
   controller?: CustomDialogController
 
   build() {
     Column() {
-      Button ('Open Second Dialog Box and close this box')
+      Button('Open Second Dialog Box and close this box')
         .onClick(() => {
           this.controller!.close();
           this.openSecondBox!();
@@ -427,13 +427,14 @@ struct CustomDialogExample {
     }.borderRadius(10)
   }
 }
+
 @Entry
 @Component
 struct CustomDialogUser {
-  @State inputValue: string = 'Click Me'
+  @State inputValue: string = 'Click Me';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample({
-      openSecondBox: ()=>{
+      openSecondBox: () => {
         if (this.dialogControllerTwo != null) {
           this.dialogControllerTwo.open()
         }
@@ -445,34 +446,36 @@ struct CustomDialogUser {
     offset: { dx: 0, dy: -20 },
     gridCount: 4,
     customStyle: false
-  })
+  });
   dialogControllerTwo: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExampleTwo(),
     alignment: DialogAlignment.Bottom,
-    offset: { dx: 0, dy: -25 } })
+    offset: { dx: 0, dy: -25 }
+  });
 
   aboutToDisappear() {
-    this.dialogController = null
-    this.dialogControllerTwo = null
+    this.dialogController = null;
+    this.dialogControllerTwo = null;
   }
 
   onCancel() {
-    console.info('Callback when the first button is clicked')
+    console.info('Callback when the first button is clicked');
   }
 
   onAccept() {
-    console.info('Callback when the second button is clicked')
+    console.info('Callback when the second button is clicked');
   }
 
   exitApp() {
-    console.info('Click the callback in the blank area')
+    console.info('Click the callback in the blank area');
   }
+
   build() {
     Column() {
       Button(this.inputValue)
         .onClick(() => {
           if (this.dialogController != null) {
-            this.dialogController.open()
+            this.dialogController.open();
           }
         }).backgroundColor(0x317aff)
     }.width('100%').margin({ top: 5 })
@@ -483,6 +486,103 @@ struct CustomDialogUser {
 ![nested_dialog](figures/nested_dialog.gif)
 
 由于自定义弹出框在状态管理侧有父子关系，如果将第二个弹出框定义在第一个弹出框内，那么当父组件（第一个弹出框）被销毁（关闭）时，子组件（第二个弹出框）内无法再继续创建新的组件。
+
+## 实现弹出框的物理返回拦截
+
+执行点击遮障层关闭、侧滑（左滑或右滑）、三键Back、键盘ESC关闭等交互操作时，如果注册了[onWillDismiss](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)回调函数，弹出框不会立即关闭。在回调函数中，通过[reason](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#dismissdialogaction12)获取阻拦关闭弹出框的操作类型，根据原因决定是否关闭弹出框。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+  controller?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text('Are you sure?')
+        .fontSize(20)
+        .margin({
+          top: 10,
+          bottom: 10
+        })
+      Row() {
+        Button('cancel')
+          .onClick(() => {
+            if (this.controller != undefined) {
+              this.controller.close();
+            }
+          })
+          .backgroundColor(0xffffff)
+          .fontColor(Color.Black)
+        Button('confirm')
+          .onClick(() => {
+            if (this.controller != undefined) {
+              this.controller.close();
+            }
+          })
+          .backgroundColor(0xffffff)
+          .fontColor(Color.Red)
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
+      .margin({ bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct InterceptCustomDialog {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExample({
+      cancel: () => {
+        this.onCancel();
+      },
+      confirm: () => {
+        this.onAccept();
+      }
+    }),
+    onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+      console.log('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
+      // 1、PRESS_BACK    点击三键back、左滑/右滑、键盘ESC。
+      // 2、TOUCH_OUTSIDE    点击遮障层时
+      // 3、CLOSE_BUTTON    点击关闭按钮
+      if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+        // 处理业务逻辑后通过dismiss主动关闭对话框
+        // dismissDialogAction.dismiss();
+      }
+      if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+        // dismissDialogAction.dismiss();
+      }
+    },
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 }
+  })
+
+  onCancel() {
+    console.info('Callback when the first button is clicked');
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked');
+  }
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          this.dialogController.open();
+        })
+    }
+    .width('100%')
+  }
+}
+```
+
+![onWillDismiss_dialog](figures/onWillDismiss_dialog.gif)
 
 ## 相关实例
 

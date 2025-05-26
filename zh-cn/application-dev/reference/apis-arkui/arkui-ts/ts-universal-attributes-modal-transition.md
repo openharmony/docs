@@ -24,7 +24,7 @@ bindContentCover(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: 
 
 | 参数名  | 类型                                        | 必填 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                         | 是   | 是否显示全屏模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。|
+| isShow  | Optional\<boolean\>                         | 是   | 是否显示全屏模态页面。<br/>true：显示全屏模态页面。<br/>false：隐藏全屏模态页面。<br/>从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br />从API version 18开始，该参数支持[!!](../../../ui/state-management/arkts-new-binding.md#组件参数双向绑定)双向绑定变量。|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | 是   | 配置全屏模态页面内容。                                       |
 | options | [ContentCoverOptions](#contentcoveroptions) | 否   | 配置全屏模态页面的可选属性。                                 |
 
@@ -56,8 +56,8 @@ bindContentCover(isShow: Optional\<boolean\>, builder: CustomBuilder, options?: 
 @Entry
 @Component
 struct ModalTransitionExample {
-  @State isShow: boolean = false
-  @State isShow2: boolean = false
+  @State isShow: boolean = false;
+  @State isShow2: boolean = false;
 
   @Builder
   myBuilder2() {
@@ -85,16 +85,16 @@ struct ModalTransitionExample {
         modalTransition: ModalTransition.NONE,
         backgroundColor: Color.Orange,
         onWillAppear: () => {
-          console.log("BindContentCover onWillAppear.")
+          console.log("BindContentCover onWillAppear.");
         },
         onAppear: () => {
-          console.log("BindContentCover onAppear.")
+          console.log("BindContentCover onAppear.");
         },
         onWillDisappear: () => {
-          console.log("BindContentCover onWillDisappear.")
+          console.log("BindContentCover onWillDisappear.");
         },
         onDisappear: () => {
-          console.log("BindContentCover onDisappear.")
+          console.log("BindContentCover onDisappear.");
         }
       })
 
@@ -114,7 +114,7 @@ struct ModalTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -122,16 +122,16 @@ struct ModalTransitionExample {
           modalTransition: ModalTransition.NONE,
           backgroundColor: Color.Pink,
           onWillAppear: () => {
-            console.log("BindContentCover onWillAppear.")
+            console.log("BindContentCover onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindContentCover onAppear.")
+            console.log("BindContentCover onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindContentCover onWillDisappear.")
+            console.log("BindContentCover onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindContentCover onDisappear.")
+            console.log("BindContentCover onDisappear.");
           }
         })
     }
@@ -156,17 +156,17 @@ import { curves } from '@kit.ArkUI';
 @Entry
 @Component
 struct ModalTransitionExample {
-  @State @Watch("isShow1Change") isShow: boolean = false
-  @State @Watch("isShow2Change") isShow2: boolean = false
+  @State @Watch("isShow1Change") isShow: boolean = false;
+  @State @Watch("isShow2Change") isShow2: boolean = false;
   @State isScale1: number = 1;
   @State isScale2: number = 1;
 
   isShow1Change() {
-    this.isShow ? this.isScale1 = 0.95 : this.isScale1 = 1
+    this.isShow ? this.isScale1 = 0.95 : this.isScale1 = 1;
   }
 
   isShow2Change() {
-    this.isShow2 ? this.isScale2 = 0.95 : this.isScale2 = 1
+    this.isShow2 ? this.isScale2 = 0.95 : this.isScale2 = 1;
   }
 
   @Builder
@@ -195,16 +195,16 @@ struct ModalTransitionExample {
         modalTransition: ModalTransition.NONE,
         backgroundColor: Color.Orange,
         onWillAppear: () => {
-          console.log("BindContentCover onWillAppear.")
+          console.log("BindContentCover onWillAppear.");
         },
         onAppear: () => {
-          console.log("BindContentCover onAppear.")
+          console.log("BindContentCover onAppear.");
         },
         onWillDisappear: () => {
-          console.log("BindContentCover onWillDisappear.")
+          console.log("BindContentCover onWillDisappear.");
         },
         onDisappear: () => {
-          console.log("BindContentCover onDisappear.")
+          console.log("BindContentCover onDisappear.");
         }
       })
 
@@ -226,7 +226,7 @@ struct ModalTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -234,16 +234,16 @@ struct ModalTransitionExample {
           modalTransition: ModalTransition.NONE,
           backgroundColor: Color.Pink,
           onWillAppear: () => {
-            console.log("BindContentCover onWillAppear.")
+            console.log("BindContentCover onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindContentCover onAppear.")
+            console.log("BindContentCover onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindContentCover onWillDisappear.")
+            console.log("BindContentCover onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindContentCover onDisappear.")
+            console.log("BindContentCover onDisappear.");
           }
         })
     }
@@ -268,8 +268,8 @@ struct ModalTransitionExample {
 @Entry
 @Component
 struct ModalTransitionExample {
-  @State isShow: boolean = false
-  @State isShow2: boolean = false
+  @State isShow: boolean = false;
+  @State isShow2: boolean = false;
 
   @Builder
   myBuilder2() {
@@ -297,16 +297,16 @@ struct ModalTransitionExample {
         modalTransition: ModalTransition.DEFAULT,
         backgroundColor: Color.Gray,
         onWillAppear: () => {
-          console.log("BindContentCover onWillAppear.")
+          console.log("BindContentCover onWillAppear.");
         },
         onAppear: () => {
-          console.log("BindContentCover onAppear.")
+          console.log("BindContentCover onAppear.");
         },
         onWillDisappear: () => {
-          console.log("BindContentCover onWillDisappear.")
+          console.log("BindContentCover onWillDisappear.");
         },
         onDisappear: () => {
-          console.log("BindContentCover onDisappear.")
+          console.log("BindContentCover onDisappear.");
         }
       })
 
@@ -326,7 +326,7 @@ struct ModalTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -334,16 +334,16 @@ struct ModalTransitionExample {
           modalTransition: ModalTransition.DEFAULT,
           backgroundColor: Color.Pink,
           onWillAppear: () => {
-            console.log("BindContentCover onWillAppear.")
+            console.log("BindContentCover onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindContentCover onAppear.")
+            console.log("BindContentCover onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindContentCover onWillDisappear.")
+            console.log("BindContentCover onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindContentCover onDisappear.")
+            console.log("BindContentCover onDisappear.");
           }
         })
     }
@@ -366,8 +366,8 @@ struct ModalTransitionExample {
 @Entry
 @Component
 struct ModalTransitionExample {
-  @State isShow: boolean = false
-  @State isShow2: boolean = false
+  @State isShow: boolean = false;
+  @State isShow2: boolean = false;
 
   @Builder
   myBuilder2() {
@@ -396,16 +396,16 @@ struct ModalTransitionExample {
         modalTransition: ModalTransition.ALPHA,
         backgroundColor: Color.Gray,
         onWillAppear: () => {
-          console.log("BindContentCover onWillAppear.")
+          console.log("BindContentCover onWillAppear.");
         },
         onAppear: () => {
-          console.log("BindContentCover onAppear.")
+          console.log("BindContentCover onAppear.");
         },
         onWillDisappear: () => {
-          console.log("BindContentCover onWillDisappear.")
+          console.log("BindContentCover onWillDisappear.");
         },
         onDisappear: () => {
-          console.log("BindContentCover onDisappear.")
+          console.log("BindContentCover onDisappear.");
         }
       })
 
@@ -425,7 +425,7 @@ struct ModalTransitionExample {
     Column() {
       Button("transition modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -433,16 +433,16 @@ struct ModalTransitionExample {
           modalTransition: ModalTransition.ALPHA,
           backgroundColor: Color.Pink,
           onWillAppear: () => {
-            console.log("BindContentCover onWillAppear.")
+            console.log("BindContentCover onWillAppear.");
           },
           onAppear: () => {
-            console.log("BindContentCover onAppear.")
+            console.log("BindContentCover onAppear.");
           },
           onWillDisappear: () => {
-            console.log("BindContentCover onWillDisappear.")
+            console.log("BindContentCover onWillDisappear.");
           },
           onDisappear: () => {
-            console.log("BindContentCover onDisappear.")
+            console.log("BindContentCover onDisappear.");
           }
         })
     }
@@ -465,8 +465,8 @@ struct ModalTransitionExample {
 @Entry
 @Component
 struct ModalTransitionExample {
-  @State isShow: boolean = false
-  @State isShow2: boolean = false
+  @State isShow: boolean = false;
+  @State isShow2: boolean = false;
 
   @Builder
   myBuilder2() {
@@ -501,16 +501,16 @@ struct ModalTransitionExample {
             transition: TransitionEffect.SLIDE.animation({ duration: 5000, curve: Curve.LinearOutSlowIn }),
             onWillDismiss: ((dismissContentCoverAction: DismissContentCoverAction) => {
               if (dismissContentCoverAction.reason == DismissReason.PRESS_BACK) {
-                console.log("BindContentCover dismiss reason is back pressed")
+                console.log("BindContentCover dismiss reason is back pressed");
               }
-              dismissContentCoverAction.dismiss()
+              dismissContentCoverAction.dismiss();
             }),
             onAppear: () => {
-              console.info("BindContentCover onAppear.")
+              console.info("BindContentCover onAppear.");
             },
             onDisappear: () => {
               this.isShow2 = false;
-              console.info("BindContentCover onDisappear.")
+              console.info("BindContentCover onDisappear.");
             }
           })
 
@@ -530,7 +530,7 @@ struct ModalTransitionExample {
     Column() {
       Button("Transition Modal 1")
         .onClick(() => {
-          this.isShow = true
+          this.isShow = true;
         })
         .fontSize(20)
         .margin(10)
@@ -551,14 +551,14 @@ struct ModalTransitionExample {
               if (dismissContentCoverAction.reason == DismissReason.PRESS_BACK) {
                 console.log("back pressed");
               }
-              dismissContentCoverAction.dismiss()
+              dismissContentCoverAction.dismiss();
             }),
             onAppear: () => {
-              console.log("BindContentCover onAppear.")
+              console.log("BindContentCover onAppear.");
             },
             onDisappear: () => {
               this.isShow = false;
-              console.log("BindContentCover onDisappear.")
+              console.log("BindContentCover onDisappear.");
             }
           })
     }

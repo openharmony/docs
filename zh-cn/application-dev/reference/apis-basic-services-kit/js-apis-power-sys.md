@@ -103,7 +103,7 @@ wakeup(detail: string): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -144,7 +144,7 @@ suspend(isImmediate?: boolean): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 9-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 9-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -275,7 +275,7 @@ setScreenOffTime(timeout: number): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 
@@ -316,7 +316,7 @@ hibernate(clearMemory: boolean): void
 
 **需要权限：** ohos.permission.POWER_MANAGER
 
-API version 12-17，使用该接口无需权限；从API version 18开始，需要申请“ohos.permission.POWER_MANAGER”权限。
+API version 12-18，使用该接口无需权限；从API version 19开始，需要申请“ohos.permission.POWER_MANAGER”权限。
 
 **系统能力：** SystemCapability.PowerManager.PowerManager.Core
 

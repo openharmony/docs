@@ -5,12 +5,13 @@
 
 Defines information about a single event, including the event domain, event name, event type, and custom parameter list in JSON string format.
 
-\@SystemCapability.HiviewDFX.HiAppEvent
+**System capability**: SystemCapability.HiviewDFX.HiAppEvent
 
 **Since**: 12
 
 **Related module**: [HiAppEvent](_hi_app_event.md)
 
+**Header file**: [hiappevent.h](hiappevent_8h.md)
 
 ## Summary
 

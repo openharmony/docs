@@ -78,7 +78,7 @@ export * from 'libentry.so'
 ```
 ```ts
 // test2.ets
-import * as add from 'file1'
+import * as add from './test1'
 // 无法获取add对象
 ```
 

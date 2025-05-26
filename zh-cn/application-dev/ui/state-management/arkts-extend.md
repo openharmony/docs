@@ -173,7 +173,7 @@ struct FancyUse {
 @Entry
 @Component
 struct FancyUse {
-  @State label: string = 'Hello World'
+  @State label: string = 'Hello World';
 
   build() {
     Row({ space: 10 }) {
@@ -212,7 +212,7 @@ struct FancyUse {
 @Entry
 @Component
 struct FancyUse {
-  @State label: string = 'Hello World'
+  @State label: string = 'Hello World';
 
   build() {
     Row({ space: 10 }) {

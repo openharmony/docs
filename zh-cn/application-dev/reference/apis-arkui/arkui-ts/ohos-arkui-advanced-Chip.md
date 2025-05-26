@@ -388,7 +388,7 @@ import { Chip, ChipSize } from '@kit.ArkUI';
 @Entry
 @Component
 struct Index {
-  @State isActivated: boolean = false
+  @State isActivated: boolean = false;
 
   build() {
     Column({ space: 10 }) {

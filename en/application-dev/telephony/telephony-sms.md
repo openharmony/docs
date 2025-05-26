@@ -31,7 +31,7 @@ Typical development scenarios are as follows:
 ## Available APIs
 
 > **NOTE**
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [API Reference](../reference/apis-telephony-kit/js-apis-sms.md).
+> To maximize the application running efficiency, most APIs are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see the [API Reference](../reference/apis-telephony-kit/js-apis-sms.md).
 
 | Name                                                      | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
@@ -189,7 +189,7 @@ struct Index {
     Column() {
       Button ('Send SMS')
         .onClick(() => {
-          let context = getContext(this) as common.UIAbilityContext;
+          let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
           let exampleUrl = "sms:106XXXXXXXXXX?body=%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E5%86%85%E5%AE%B9";
         
           let want: Want = {

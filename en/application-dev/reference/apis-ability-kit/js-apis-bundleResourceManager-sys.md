@@ -33,7 +33,7 @@ Enumerates the resource information flags, which indicate the type of resource i
 
 **System API**: This is a system API.
 
- **System capability**: SystemCapability.BundleManager.BundleFramework.Resource
+**System capability**: SystemCapability.BundleManager.BundleFramework.Resource
 
 | Name                                     | Value        | Description                                                        |
 | ----------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -194,7 +194,7 @@ let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllBundleResourceInfo(bundleFlags, (err, data) => {
         if (err) {
-            hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
+            hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
             return;
         }
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
@@ -250,7 +250,7 @@ try {
     bundleResourceManager.getAllBundleResourceInfo(bundleFlags).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
     }).catch((err: BusinessError) => {
-        hilog.info(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
+        hilog.error(0x0000, 'testTag', 'getAllBundleResourceInfo failed. err: %{public}s', err.message);
     })
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -297,7 +297,7 @@ let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
 try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags, (err, data) => {
         if (err) {
-            hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
+            hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
             return;
         }
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
@@ -352,7 +352,7 @@ try {
     bundleResourceManager.getAllLauncherAbilityResourceInfo(bundleFlags).then(data=> {
         hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo successfully. Data length: %{public}s', JSON.stringify(data.length));
     }).catch((err: BusinessError) => {
-        hilog.info(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
+        hilog.error(0x0000, 'testTag', 'getAllLauncherAbilityResourceInfo failed. err: %{public}s', err.message);
     })
 } catch (err) {
     let message = (err as BusinessError).message;
@@ -471,5 +471,62 @@ try {
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getLauncherAbilityResourceInfo failed: %{public}s', message);
+}
+```
+
+### bundleResourceManager.getExtensionAbilityResourceInfo<sup>20+</sup>
+
+getExtensionAbilityResourceInfo(bundleName: string, extensionAbilityType: bundleManager.ExtensionAbilityType, resourceFlags: number, appIndex?: number): Array\<LauncherAbilityResourceInfo>
+
+Obtains the ExtensionAbility resource information of an application based on the bundle name, ExtensionAbility type, resource flags, and clone ID. This API returns the result synchronously.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_RESOURCES
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Resource
+
+**Parameters**
+
+| Name    | Type  | Mandatory| Description               |
+| ----------- | ------ | ---- | --------------------- |
+| bundleName | string | Yes  | Bundle name of the application.|
+| extensionAbilityType | [bundleManager.ExtensionAbilityType](js-apis-bundleManager.md#extensionabilitytype) | Yes  | ExtensionAbility type. Only **ExtensionAbilityType.INPUTMETHOD**, **ExtensionAbilityType.SHARE** and **ExtensionAbilityType.ACTION** are supported.|
+| [resourceFlags](#resourceflag) | number | Yes  | Resource information flags, which indicate the type of resource information to obtain.|
+| appIndex | number | No  | ID of the application clone. The default value is **0**. The value ranges from 0 to 5. The value **0** indicates the main application.|
+
+**Return value**
+
+| Type                                                       | Description                                 |
+| ----------------------------------------------------------- | ------------------------------------- |
+| Array<[LauncherAbilityResourceInfo](js-apis-bundleManager-LauncherAbilityResourceInfo-sys.md)> | Entry icon and name of the application.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 201 | Permission denied. |
+| 202 | Permission denied, non-system app called system api.|
+| 17700001 | The specified bundleName is not found. |
+| 17700061 | AppIndex not in valid range or not found. |
+
+**Example**
+
+```ts
+import { bundleManager, bundleResourceManager } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let bundleName = "com.example.myapplication";
+let extensionAbilityType = bundleManager.ExtensionAbilityType.INPUT_METHOD;
+let bundleFlags = bundleResourceManager.ResourceFlag.GET_RESOURCE_INFO_ALL;
+try {
+    let resourceInfo = bundleResourceManager.getExtensionAbilityResourceInfo(bundleName, extensionAbilityType, bundleFlags);
+    console.info('getExtensionAbilityResourceInfo successfully. Data label: ' + JSON.stringify(resourceInfo[0].label));
+} catch (err) {
+    let message = (err as BusinessError).message;
+    let code = (err as BusinessError).code;
+    console.error(`getExtensionAbilityResourceInfo failed, err code:${code}, err msg: ${message}`);
 }
 ```

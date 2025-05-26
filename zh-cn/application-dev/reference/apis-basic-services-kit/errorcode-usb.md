@@ -8,7 +8,7 @@
 
 **错误信息**
 
-Permission denied. Call requestRight or requestAccessoryRight to get the permission or USBDevicePipe access right first.
+Access right denied. Call requestRight to get the USBDevicePipe access right first.
 
 **错误描述**
 
@@ -21,7 +21,7 @@ Permission denied. Call requestRight or requestAccessoryRight to get the permiss
 **处理步骤**
 
 调用requestRight方法申请设备的使用权限。
-
+<!--Del-->
 ## 14400002 HDC功能被禁用
 
 **错误信息**
@@ -57,7 +57,7 @@ Unsupported operation. The current device does not support port role switching.
 **处理步骤**
 
 使用正确的端口角色。
-
+<!--DelEnd-->
 ## 14400004 服务异常
 
 **错误信息**
@@ -89,7 +89,7 @@ Database operation exception.
 **处理步骤**
 
 尝试重新调用接口。
-
+<!--Del-->
 ## 14400006 不支持的USB设备侧功能
 
 **错误信息**
@@ -107,7 +107,7 @@ Unsupported operation. The function is not supported.
 **处理步骤**
 
 使用正确的USB设备侧功能。
-
+<!--DelEnd-->
 ## 14401001 目标USB配件未匹配
 
 **错误信息**
@@ -188,7 +188,7 @@ No such device (it may have been disconnected).
 
 **错误信息**
 
-Insufficient memory. Possible causes: 1. Malloc memory failed.
+Insufficient memory. Possible causes: 1. Memory allocation failed.
 
 **错误描述**
 
@@ -220,7 +220,7 @@ Other USB error. Possible causes:Unrecognized discard error code.
 
 **错误信息**
 
-If the transfer is not in progress, already complete, or already cancelled. 
+The transfer is not in progress, or is already complete or cancelled.
 
 **错误描述**
 
@@ -244,11 +244,32 @@ I/O通道异常，实际读/写操作失败。
 
 尝试重新操作。
 
+## 14400013 参数合法性检查失败
+
+**错误信息**
+
+The USBDevicePipe validity check failed. Possible causes: 1. The input parameters fails the validation check. 2. The call chain used to obtain the input parameters is not reasonable.
+
+**错误描述**
+
+参数合法性检查失败。
+
+ **可能原因**
+
+1. 输入参数合法性检查失败。
+
+2. 入参获取调用链不合理。
+
+**处理步骤**
+
+采用合理的调用链获取入参。
+
+
 ## 31400001 串口服务异常
 
 **错误信息**
 
-serial service exception.
+Serial port management exception.
 
 **错误描述**
 
@@ -266,7 +287,7 @@ serial service exception.
 
 **错误信息**
 
-no access right to serial device, call requestSerialRight first.
+Access denied. Call requestSerialRight to request user authorization first.
 
 **错误描述**
 
@@ -284,7 +305,7 @@ no access right to serial device, call requestSerialRight first.
 
 **错误信息**
 
-portId not exist.
+PortId does not exist.
 
 **错误描述**
 
@@ -302,11 +323,11 @@ portId not exist.
 
 **错误信息**
 
-device is using by other application.
+The serial port device is occupied.
 
 **错误描述**
 
-设备正在被其他应用程序使用。
+串口设备已被占用。
 
 **可能原因**
 
@@ -320,11 +341,11 @@ device is using by other application.
 
 **错误信息**
 
-device is not open, call open first.
+The serial port device is not opened. Call the open API first.
 
 **错误描述**
 
-设备未打开，请先调用Open接口打开设备。
+串口设备未打开，请先调用Open接口打开设备。
 
 **可能原因**
 
@@ -338,11 +359,11 @@ device is not open, call open first.
 
 **错误信息**
 
-transfer timeout.
+Data transfer timed out.
 
 **错误描述**
 
-传输超时。
+数据传输超时。
 
 **可能原因**
 
@@ -356,7 +377,7 @@ transfer timeout.
 
 **错误信息**
 
-IO exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data.
+IO exception. Possible causes: 1. The transfer was canceled. 2. The device offered more data than allowed.
 
 **错误描述**
 

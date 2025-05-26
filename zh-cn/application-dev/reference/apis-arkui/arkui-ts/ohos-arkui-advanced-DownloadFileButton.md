@@ -11,8 +11,8 @@
 
 ##  导入模块
 
-```
-import { DownloadFileButton } from '@kit.ArkUI'
+```ts
+import { DownloadFileButton } from '@kit.ArkUI';
 ```
 
 ## 子组件

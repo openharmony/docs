@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块接口从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
@@ -75,9 +75,9 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                              |
+| 名称         | 类型   | 只读 | 可选 | 说明                                              |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType<sup>10+</sup> | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口，[postMessageEventExt](#postmessageeventext10)、[onMessageEventExt](#onmessageeventext10)，默认false不使用。   |
+| isExtentionType<sup>10+</sup> | boolean | 否   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口，[postMessageEventExt](#postmessageeventext10)、[onMessageEventExt](#onmessageeventext10)。<br>true表示使用扩展增强接口，false表示不使用扩展增强接口。<br>默认值：false。   |
 
 ### postMessageEvent
 
@@ -297,9 +297,9 @@ struct WebComponent {
           }
         })
         Button('SendToH5 setNumber').margin({
-        top: 10,
-        right: 800,
-      })
+          top: 10,
+          right: 800,
+        })
         .onClick(() => {
           // 使用本侧端口发送消息给HTML5
           try {
@@ -586,7 +586,7 @@ struct WebComponent {
 
 ## WebviewController
 
-通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
+通过WebviewController可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
 
 ### constructor<sup>11+</sup>
 
@@ -601,6 +601,8 @@ constructor(webTag?: string)
 > 传参且参数是合法字符串：new webview.WebviewController("xxx")，用于开发者区分多实例，并调用对应实例下的方法。
 > 
 > 传入参数为空：new webview.WebviewController("")或new webview.WebviewController(undefined)，该场景下参数无意义，无法区分多个实例，直接返回undefined，需要开发者判断返回值是否正常。
+>
+> Web组件销毁后会解绑WebViewController，之后调用WebviewController的非静态方法会抛出17100001异常，应注意调用时机和捕获异常，防止进程异常退出。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -723,7 +725,7 @@ export default class EntryAbility extends UIAbility {
 
 static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
-设置Web组件是否使用HTTPDNS解析dns。
+设置Web组件是否使用HTTPDNS解析DNS。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -769,7 +771,7 @@ export default class EntryAbility extends UIAbility {
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能，默认不开启。详情请参考[DevTools工具](../../web/web-debugging-with-devtools.md)。
+设置是否启用网页调试功能。详情请参考[DevTools工具](../../web/web-debugging-with-devtools.md)。
 
 安全提示：启用网页调试功能可以让用户检查修改Web页面内部状态，存在安全隐患，不建议在应用正式发布版本中启用。
 
@@ -779,7 +781,7 @@ static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。设置为true，表示启用网页调试功能。设置为false，表示不启用网页调试功能。 |
+| webDebuggingAccess | boolean | 是   | 设置是否启用网页调试功能。<br>true表示启用网页调试功能。false表示不启用网页调试功能。<br>默认值：false。 |
 
 **错误码：**
 
@@ -991,7 +993,7 @@ data数据必须使用base64编码或将内容中的任何#字符编码为%23。
 | data       | string | 是   | 按照"base64"或者"URL"编码后的一段字符串。                    |
 | mimeType   | string | 是   | 媒体类型（MIME）。                                           |
 | encoding   | string | 是   | 编码类型，具体为"base64"或者"URL"编码。                       |
-| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给window.origin。当加载大量html文件时，需设置为"data"。 |
+| baseUrl    | string | 否   | 指定的一个URL路径（"http"/"https"/"data"协议），并由Web组件赋值给`window.origin`。当加载大量html文件时，需设置为"data"。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
 > **说明：**
@@ -1220,7 +1222,7 @@ accessBackward(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 可以后退返回true,否则返回false。 |
+| boolean | 当前页面可以后退返回true,否则返回false。 |
 
 **错误码：**
 
@@ -1263,7 +1265,7 @@ struct WebComponent {
 
 backward(): void
 
-按照历史栈，后退一个页面。一般结合accessBackward一起使用。
+按照历史栈，后退一个页面。一般结合[accessBackward](accessbackward)一起使用。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1455,7 +1457,7 @@ accessStep(step: number): boolean
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 页面是否前进或后退，返回true表示可以前进或者后退，返回false表示不可以前进或后退。 |
+| boolean | 页面是否前进或后退。<br>返回true表示可以前进或者后退，返回false表示不可以前进或后退。 |
 
 **错误码：**
 
@@ -1775,7 +1777,12 @@ struct Index {
 
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
 
-异步执行JavaScript脚本，并通过回调方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+在当前显示页面的上下文中异步执行JavaScript脚本，脚本执行的结果将通过异步回调方式返回。此方法必须在用户界面（UI）线程上使用 ，并且回调也将在用户界面（UI）线程上调用。
+
+> **说明：**
+>
+> - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1860,7 +1867,12 @@ struct WebComponent {
 
 runJavaScript(script: string): Promise\<string>
 
-异步执行JavaScript脚本，并通过Promise方式返回脚本执行的结果。runJavaScript需要在loadUrl完成后，比如onPageEnd中调用。
+在当前显示页面的上下文中异步执行JavaScript脚本，脚本执行的结果将通过Promise方式返回。此方法必须在用户界面（UI）线程上使用 ，并且回调也将在用户界面（UI）线程上调用。
+
+> **说明：**
+>
+> - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
+> - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2638,7 +2650,7 @@ searchNext(forward: boolean): void
 
 | 参数名  | 类型 | 必填 | 说明               |
 | ------- | -------- | ---- | ---------------------- |
-| forward | boolean  | 是   | 从前向后或者逆向查找方式。true表示从前向后查找，false表示从后向前查找。 |
+| forward | boolean  | 是   | 从前向后或者逆向查找方式。<br>true表示从前向后查找，false表示从后向前查找。 |
 
 **错误码：**
 
@@ -2771,7 +2783,7 @@ struct WebComponent {
 
 createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
-创建Web消息端口。完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
+创建Web消息端口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2779,7 +2791,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 |
+| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口。<br>true表示使用扩展增强接口，false表示不使用扩展增强接口。<br>默认值：false。 |
 
 **返回值：**
 
@@ -2798,33 +2810,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 **示例：**
 
-```ts
-// xxx.ets
-import { webview } from '@kit.ArkWeb';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: webview.WebviewController = new webview.WebviewController();
-  ports: webview.WebMessagePort[] = [];
-
-  build() {
-    Column() {
-      Button('createWebMessagePorts')
-        .onClick(() => {
-          try {
-            this.ports = this.controller.createWebMessagePorts();
-            console.log("createWebMessagePorts size:" + this.ports.length);
-          } catch (error) {
-            console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
+完整示例代码参考[onMessageEventExt](#onmessageeventext10)。
 
 ### postMessage
 
@@ -3429,7 +3415,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 | 参数名   | 类型              | 必填 | 说明                                                         |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | baseName | string                | 是   | 生成的离线网页存储位置，该值不能为空。                                 |
-| autoName | boolean               | 是   | 决定是否自动生成文件名。如果为false，则按baseName的文件名存储；如果为true，则根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
+| autoName | boolean               | 是   | 决定是否自动生成文件名。<br>false表示按baseName的文件名存储，true表示根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
 | callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保存网页失败会返回null。                   |
 
 **错误码：**
@@ -3491,7 +3477,7 @@ storeWebArchive(baseName: string, autoName: boolean): Promise\<string>
 | 参数名   | 类型 | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | baseName | string   | 是   | 生成的离线网页存储位置，该值不能为空。                                 |
-| autoName | boolean  | 是   | 决定是否自动生成文件名。如果为false，则按baseName的文件名存储；如果为true，则根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
+| autoName | boolean  | 是   | 决定是否自动生成文件名。<br>false表示按baseName的文件名存储，true表示根据当前Url自动生成文件名，并按baseName的文件目录存储。 |
 
 **返回值：**
 
@@ -3706,8 +3692,8 @@ scrollTo(x:number, y:number, duration?:number): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| x   | number   | 是   | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。单位：vp。 |
-| y   | number   | 是   | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。单位：vp。|
+| x   | number   | 是   | 绝对位置的水平坐标，当传入数值为负数时，按照传入0处理。<br>单位：vp。 |
+| y   | number   | 是   | 绝对位置的垂直坐标，当传入数值为负数时，按照传入0处理。<br>单位：vp。|
 | duration<sup>14+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
 
 **错误码：**
@@ -3790,8 +3776,8 @@ scrollBy(deltaX:number, deltaY:number,duration?:number): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。单位：vp。 |
-| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。单位：vp。 |
+| deltaX | number   | 是   | 水平偏移量，其中水平向右为正方向。<br>单位：vp。 |
+| deltaY | number   | 是   | 垂直偏移量，其中垂直向下为正方向。<br>单位：vp。 |
 | duration<sup>14+</sup> | number | 否 | 滚动动画时间。<br>单位：ms。<br>不传入为无动画，当传入数值为负数或传入0时，按照不传入处理。 |
 
 **错误码：**
@@ -3884,7 +3870,7 @@ scrollByWithResult(deltaX: number, deltaY: number): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | true表示当前网页可以滑动，false表示当前网页不可以滑动。默认为false。|
+| boolean | true表示当前网页可以滑动，false表示当前网页不可以滑动。<br>默认为false。 |
 
 **错误码：**
 
@@ -3965,8 +3951,8 @@ slideScroll(vx:number, vy:number): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| vx     | number   | 是   | 轻扫滚动的水平速度分量，其中水平向右为速度正方向。单位：vp/ms。 |
-| vy     | number   | 是   | 轻扫滚动的垂直速度分量，其中垂直向下为速度正方向。单位：vp/ms。 |
+| vx     | number   | 是   | 轻扫滚动的水平速度分量，其中水平向右为速度正方向。<br>单位：vp/ms。 |
+| vy     | number   | 是   | 轻扫滚动的垂直速度分量，其中垂直向下为速度正方向。<br>单位：vp/ms。 |
 
 **错误码：**
 
@@ -4136,7 +4122,7 @@ struct WebComponent {
 
 setNetworkAvailable(enable: boolean): void
 
-设置JavaScript中的window.navigator.onLine属性。
+设置JavaScript中的`window.navigator.onLine`属性。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4144,7 +4130,7 @@ setNetworkAvailable(enable: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean | 是   | 是否使能window.navigator.onLine，默认为true，表示开启JavaScript中的window.navigator.onLine属性。 |
+| enable | boolean | 是   | 设置JavaScript中的`window.navigator.onLine`属性。<br>true表示设置JavaScript中的`window.navigator.onLine`属性为true，false表示设置JavaScript中的`window.navigator.onLine`属性为false。<br>默认值：true。 |
 
 **错误码：**
 
@@ -4193,6 +4179,7 @@ struct WebComponent {
 <p id="demo"></p>
 <button onclick="func()">click</button>
 <script>
+    // 检测浏览器是否在线。
     let online = navigator.onLine;
     document.getElementById("demo").innerHTML = "浏览器在线：" + online;
 
@@ -4217,7 +4204,7 @@ hasImage(callback: AsyncCallback\<boolean>): void
 
 | 参数名   | 类型                    | 必填 | 说明                       |
 | -------- | ----------------------- | ---- | -------------------------- |
-| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。<br> true:存在图像；false:不存在图像。 |
+| callback | AsyncCallback\<boolean> | 是   | 返回查找页面是否存在图像。<br> true表示页面存在图像；false表示页面不存在图像。 |
 
 **错误码：**
 
@@ -4274,7 +4261,7 @@ hasImage(): Promise\<boolean>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。 <br>true:存在图像；false:不存在图像。 |
+| Promise\<boolean> | Promise实例，返回查找页面是否存在图像。<br> true表示页面存在图像；false表示页面不存在图像。 |
 
 **错误码：**
 
@@ -4321,7 +4308,7 @@ struct WebComponent {
 
 removeCache(clearRom: boolean): void
 
-清除应用中的资源缓存文件，此方法将会清除同一应用中所有webview的缓存文件。
+清除应用中的资源缓存文件，此方法将会清除同一应用中所有Webview的缓存文件。
 
 > **说明：**
 >
@@ -4376,11 +4363,11 @@ struct WebComponent {
 
 static removeAllCache(clearRom: boolean): void
 
-清除应用中的资源缓存文件，此方法将会清除同一应用中所有webview的缓存文件。
+清除应用中的资源缓存文件，此方法将会清除同一应用中所有Webview的缓存文件。
 
 > **说明：**
 >
-> 可以通过在data/app/el2/100/base/\<applicationPackageName\>/cache/web/目录下查看webview的缓存。
+> 可以通过在data/app/el2/100/base/\<applicationPackageName\>/cache/web/目录下查看Webview的缓存。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4438,7 +4425,7 @@ pageUp(top: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| top    | boolean | 是   | 是否跳转到页面最顶部，设置为false时将页面内容向上滚动半个视框大小，设置为true时跳转到页面最顶部。 |
+| top    | boolean | 是   | 是否跳转到页面最顶部。<br>false表示将页面内容向上滚动半个视框大小，true表示跳转到页面最顶部。 |
 
 **错误码：**
 
@@ -4489,7 +4476,7 @@ pageDown(bottom: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| bottom | boolean | 是   | 是否跳转到页面最底部，设置为false时将页面内容向下滚动半个视框大小，设置为true时跳转到页面最底部。 |
+| bottom | boolean | 是   | 是否跳转到页面最底部。<br>false时表示将页面内容向下滚动半个视框大小，true表示跳转到页面最底部。 |
 
 **错误码：**
 
@@ -4706,7 +4693,7 @@ struct WebComponent {
               let buf = new ArrayBuffer(size);
               fileIo.read(file.fd, buf, (err, readLen) => {
                 if (err) {
-                  console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+                  console.error("console error with error message: " + err.message + ", error code: " + err.code);
                 } else {
                   console.info("read file data succeed");
                   this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
@@ -4742,7 +4729,7 @@ export default class EntryAbility extends UIAbility {
 
 static customizeSchemes(schemes: Array\<WebCustomScheme\>): void
 
-对Web内核赋予自定义协议url的跨域请求与fetch请求的权限。当Web在跨域fetch自定义协议url时，该fetch请求可被onInterceptRequest事件接口所拦截，从而开发者可以进一步处理该请求。建议在任何Web组件初始化之前调用该接口。
+对Web内核赋予自定义协议url的跨域请求与fetch请求的权限。当Web在跨域fetch自定义协议url时，该fetch请求可被[onInterceptRequest](./ts-basic-components-web.md#oninterceptrequest9)事件接口所拦截，从而开发者可以进一步处理该请求。建议在任何Web组件初始化之前调用该接口。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5134,7 +5121,7 @@ setAudioMuted(mute: boolean): void
 
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | -------------------------------------- |
-| mute | boolean | 是   | 表示是否将网页设置为静音状态，true表示设置为静音状态，false表示取消静音状态。 |
+| mute | boolean | 是   | 表示是否将网页设置为静音状态。<br>true表示将网页设置为静音状态，false表示将网页取消静音状态。 |
 
 **错误码：**
 
@@ -5245,7 +5232,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 | request           | [RequestInfo](#requestinfo12)   | 是   | 预获取请求的信息。                                                      |
 | additionalHeaders | Array\<[WebHeader](#webheader)> | 否   | 预获取请求的附加HTTP请求头。                                             |
 | cacheKey          | string                          | 否   | 用于后续查询预获取资源缓存的key。仅支持字母和数字，未传入或传入空则取默认值url作为key。 |
-| cacheValidTime    | number                          | 否   | 预获取资源缓存的有效期。取值范围：(0, 2147483647]。单位：秒。默认值：300秒。          |
+| cacheValidTime    | number                          | 否   | 预获取资源缓存的有效期。<br>取值范围：(0, 2147483647]。<br>默认值：300秒。 <br>单位：秒。         |
 
 **错误码：**
 
@@ -5340,7 +5327,7 @@ struct WebComponent {
 
 static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: number): void
 
-预连接url，在加载url之前调用此API，对url只进行dns解析，socket建链操作，并不获取主资源子资源。
+预连接url，在加载url之前调用此API，对url只进行DNS解析，socket建链操作，并不获取主资源子资源。
 
 **系统能力：**  SystemCapability.Web.Webview.Core
 
@@ -5349,7 +5336,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 | 参数名          | 类型    |  必填  | 说明                                            |
 | ---------------| ------- | ---- | ------------- |
 | url            | string  | 是   | 预连接的url。|
-| preconnectable | boolean | 是   | 是否进行预连接。如果preconnectable为true，则对url进行dns解析，socket建链预连接；如果preconnectable为false，则不做任何预连接操作。|
+| preconnectable | boolean | 是   | 是否进行预连接。如果preconnectable为true，则对url进行DNS解析，socket建链预连接；如果preconnectable为false，则不做任何预连接操作。|
 | numSockets     | number  | 是   | 要预连接的socket数。socket数目连接需要大于0，最多允许6个连接。|
 
 **错误码：**
@@ -5608,6 +5595,113 @@ struct WebComponent {
 }
 ```
 
+### setAppCustomUserAgent<sup>20+</sup>
+
+static setAppCustomUserAgent(userAgent: string): void
+
+设置应用级自定义用户代理，会覆盖系统的用户代理，应用内所有Web组件生效。
+
+当需要设置应用级自定义用户代理时，建议在Web组件创建前调用setAppCustomUserAgent方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
+
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明 |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | 是   | 用户自定义代理信息。建议先使用[getDefaultUserAgent](#getdefaultuseragent14)获取当前默认用户代理，在此基础上追加自定义用户代理信息。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.initializeWebEngine();
+      let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setAppCustomUserAgent(appUA);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setUserAgentForHosts<sup>20+</sup>
+
+static setUserAgentForHosts(userAgent: string, hosts: Array): void
+
+针对特定网站设置自定义用户代理，会覆盖系统的用户代理，应用内所有Web组件生效。
+
+当需要对特定网站设置自定义用户代理时，建议在Web组件创建前调用setUserAgentForHosts方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
+
+
+
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明 |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | 是   | 用户自定义代理信息。建议先使用[getDefaultUserAgent](#getdefaultuseragent14)获取当前默认用户代理，在此基础上追加自定义用户代理信息。 |
+| hosts      | Array  | 是   | 用户自定义代理的相关域名列表，每次调用时仅保留最新传入的列表，并限制最大条目数为两万，超出部分自动截断。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.initializeWebEngine();
+      let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setUserAgentForHosts(
+        appUA,
+        [
+          "www.example.com",
+          "www.baidu.com"
+        ]
+      );
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### setConnectionTimeout<sup>11+</sup>
 
 static setConnectionTimeout(timeout: number): void
@@ -5771,7 +5865,7 @@ isSafeBrowsingEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前网页是否启用了检查网站安全风险的功能，默认为false，表示未启用。|
+| boolean | 当前网页是否启用了检查网站安全风险的功能。<br>true表示启用了检查网站安全风险的功能，false表示未启用检查网站安全风险的功能。<br>默认值：false。 |
 
 **示例：**
 
@@ -5801,7 +5895,7 @@ struct WebComponent {
 
 enableIntelligentTrackingPrevention(enable: boolean): void
 
-启用智能防跟踪功能，默认该功能未启用。
+启用智能防跟踪功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -5809,13 +5903,13 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用智能防跟踪功能。<br>true表示启用启用智能防跟踪功能，false表示不启用启用智能防跟踪功能。<br>默认值：false。 |
+|  enable | boolean | 是   | 是否启用智能防跟踪功能。<br>true表示启用智能防跟踪功能，false表示不启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5866,13 +5960,13 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 | 类型    | 说明                                     |
 | ------- | --------------------------------------- |
-| boolean | 当前Web是否启用了智能防跟踪功能，默认为false，表示未启用。|
+| boolean | 当前Web是否启用了智能防跟踪功能。<br>true表示启用了智能防跟踪功能，false表示未启用智能防跟踪功能。<br>默认值：false。 |
 
 **错误码：**
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5928,7 +6022,7 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5984,7 +6078,7 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6034,7 +6128,7 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6077,6 +6171,12 @@ static getDefaultUserAgent(): string
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | ArkWeb默认User-Agent字符串。 |
+
 **示例：**
 
 ```ts
@@ -6098,7 +6198,7 @@ export default class EntryAbility extends UIAbility {
 
 enableAdsBlock(enable: boolean): void
 
-启用广告过滤功能，默认该功能未启用。
+启用广告过滤功能。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6106,13 +6206,13 @@ enableAdsBlock(enable: boolean): void
 
 | 参数名   | 类型    |  必填  | 说明                       |
 | --------| ------- | ---- | ---------------------------|
-|  enable | boolean | 是   | 是否启用广告过滤功能，默认为false，表示未启用。 |
+|  enable | boolean | 是   | 是否启用广告过滤功能。<br>true表示启用广告过滤功能，false表示取消广告过滤功能。<br>默认值：false。 |
 
 **错误码：**
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6155,7 +6255,7 @@ struct WebComponent {
 
 isAdsBlockEnabled() : boolean
 
-查询广告过滤功能是否开启，默认该功能未启用。
+查询广告过滤功能是否开启。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -6163,13 +6263,13 @@ isAdsBlockEnabled() : boolean
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | 返回true代表广告过滤功能已开启，返回false代表广告过滤功能关闭。 |
+| boolean | 返回true代表广告过滤功能已开启，返回false代表广告过滤功能关闭。<br>默认值：false。 |
 
 **错误码：**
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6225,7 +6325,7 @@ isAdsBlockEnabledForCurPage() : boolean
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6274,7 +6374,7 @@ static setRenderProcessMode(mode: RenderProcessMode): void
 
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
-| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
+| mode        | [RenderProcessMode](#renderprocessmode12)| 是   | 渲染子进程模式。<br>可以先调用[getRenderProcessMode()](#getrenderprocessmode12)查看当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。<br>如果传入RenderProcessMode枚举值之外的非法数字，则默认识别为多渲染子进程模式。 |
 
 **错误码：**
 
@@ -6323,7 +6423,7 @@ static getRenderProcessMode(): RenderProcessMode
 
 | 类型                                      | 说明                                                         |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| [RenderProcessMode](#renderprocessmode12) | 渲染子进程模式类型。调用[getRenderProcessMode()](#getrenderprocessmode12)获取当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。 |
+| [RenderProcessMode](#renderprocessmode12) | 渲染子进程模式类型。<br>调用[getRenderProcessMode()](#getrenderprocessmode12)获取当前设备的ArkWeb渲染子进程模式，枚举值0为单子进程模式，枚举值1为多子进程模式。<br>如果获取的值不在RenderProcessMode枚举值范围内，则默认为多渲染子进程模式。 |
 
 
 **示例：**
@@ -6364,7 +6464,7 @@ terminateRenderProcess(): boolean
 
 | 类型                                                         | 说明                   |
 | ------------------------------------------------------------ | ---------------------- |
-| boolean | 返回销毁渲染进程的结果，如果渲染进程可以被销毁则返回true，否则返回false。 如果渲染进程已被销毁则直接返回true。|
+| boolean | 返回销毁渲染进程的结果。<br>返回true表示渲染进程可以被销毁或已被销毁，返回false表示渲染进程不可以被销毁。|
 
 **错误码：**
 
@@ -6538,7 +6638,7 @@ isIncognitoMode(): boolean
 
 | 类型                 | 说明                      |
 | -------------------- | ------------------------- |
-| boolean              | 返回是否是隐私模式的Webview，默认为false，表示未开启隐私模式。 |
+| boolean              | 返回是否是隐私模式的Webview。<br>true表示是隐私模式，false表示不是隐私模式。<br>默认为false。 |
 
 **错误码：**
 
@@ -6635,7 +6735,7 @@ setScrollable(enable: boolean, type?: ScrollType): void
 
 | 参数名 | 类型 | 必填 | 说明               |
 | ------ | -------- | ---- | ---------------------- |
-| enable     | boolean   | 是   | 表示是否将网页设置为允许滚动，true表示设置为允许滚动，false表示禁止滚动。 |
+| enable     | boolean   | 是   | 表示是否将网页设置为允许滚动。<br>true表示设置为允许滚动，false表示禁止滚动。 |
 | type       | [ScrollType](#scrolltype12) |  否 | 网页可触发的滚动类型，支持缺省配置。<br/> - enable为false时，表示禁止ScrollType类型的滚动，当ScrollType缺省时表示禁止所有类型网页滚动。<br/> - enable为true时，ScrollType缺省与否，都表示允许所有类型的网页滚动。|
 
 **错误码：**
@@ -6687,7 +6787,7 @@ getScrollable(): boolean
 
 | 类型   | 说明           |
 | ------ | -------------- |
-| boolean | 当前网页是否允许滚动，true为允许滚动，false为禁止滚动。 |
+| boolean | 当前网页是否允许滚动。<br>true为允许滚动，false为禁止滚动。 |
 
 **错误码：**
 
@@ -6738,7 +6838,7 @@ setPrintBackground(enable: boolean): void
 
 | 参数名   | 类型    | 必填 | 说明                      |
 | -------- | ------- | ---- | -------------------------------------- |
-| enable | boolean | 是   | 表示是否打印网页背景，true表示设置为打印网页背景，false表示取消网页背景打印。 |
+| enable | boolean | 是   | 表示是否打印网页背景。<br>true表示设置为打印网页背景，false表示取消网页背景打印。 |
 
 **错误码：**
 
@@ -6833,6 +6933,12 @@ getLastJavascriptProxyCallingFrameUrl(): string
 通过[registerJavaScriptProxy](#registerjavascriptproxy)或者[javaScriptProxy](ts-basic-components-web.md#javascriptproxy)注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入的对象的frame的url。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | 最后一次调用注入的对象的frame的url。 |
 
 **错误码：**
 
@@ -7526,6 +7632,10 @@ startCamera(): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
+**需要权限：**
+
+使用摄像头功能前请在module.json5中添加权限: ohos.permission.CAMERA，具体权限的添加方法请参考[在配置文件中声明权限](../../security/AccessToken/declare-permissions.md)。
+
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
@@ -8202,7 +8312,7 @@ webPageSnapshot(info: SnapshotInfo, callback: AsyncCallback\<SnapshotResult>): v
 | 参数名       | 类型           | 必填  | 说明                      |
 | ----------- | ------------- | ---- | ------------------------ |
 | info        | [SnapshotInfo](#snapshotinfo12)| 是   | 全量绘制结果入参。 |
-| callback        | [SnapshotResult](#snapshotresult12)| 是   | 全量绘制回调结果。 |
+| callback        | AsyncCallback\<[SnapshotResult](#snapshotresult12)>| 是   | 全量绘制回调结果。 |
 
 **示例：**
 
@@ -8249,7 +8359,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 内存缓存中的资源由内核自动管理，当注入的资源过多导致内存压力过大，内核自动释放未使用的资源，应避免注入大量资源到内存缓存中。
 正常情况下，资源的有效期由提供的Cache-Control或Expires响应头控制其有效期，默认的有效期为86400秒，即1天。
 资源的MIMEType通过提供的Content-Type响应头配置，Content-Type需符合标准，否则无法正常使用，MODULE_JS必须提供有效的MIMEType，其他类型可不提供。
-以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。
+以此方式注入的资源，仅支持通过HTML中的标签加载。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anonymous或use-credentials。
 当调用`webview.WebviewController.SetRenderProcessMode(webview.RenderProcessMode.MULTIPLE)`接口后，应用会启动多渲染进程模式，此接口在此场景下不会生效。
 
 **系统能力：** SystemCapability.Web.Webview.Core
@@ -8454,7 +8564,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
        ],
        type: webview.OfflineResourceType.CLASSIC_JS,
        responseHeaders: [
-         // 以<script crossorigin="anoymous" />方式使用，提供额外的响应头
+         // 以<script crossorigin="anonymous" />方式使用，提供额外的响应头
          { headerKey: "Cross-Origin", headerValue:"anonymous" }
        ]
      },
@@ -9691,11 +9801,13 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 > **说明：**
 >
-> configCookie中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
+> configCookieSync中的url，可以指定域名的方式来使得页面内请求也附带上cookie。
 >
 > 同步cookie的时机建议在Web组件加载之前完成。
 >
 > 若通过configCookieSync进行两次或多次设置cookie，则每次设置的cookie之间会通过"; "进行分隔。
+>
+> Cookie每30s周期性保存到磁盘中，也可以使用接口[saveCookieAsync](#savecookieasync)进行强制落盘。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10002,7 +10114,7 @@ static saveCookieSync(): void
 
 > **说明：**
 >
-> saveCookieSync用于强制将需要持久化的cookies写入磁盘。默认情况下，2in1和Tablet设备不会持久化session cookie。
+> saveCookieSync用于强制将需要持久化的cookies写入磁盘。PC/2in1和Tablet设备不会持久化session cookie，即使调用saveCookieSync，也不会将session cookie写入磁盘。
 
 **示例：**
 
@@ -10037,6 +10149,10 @@ struct WebComponent {
 static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 将当前存在内存中的cookie异步保存到磁盘中。
+
+> **说明：**
+>
+> Cookie信息存储在应用沙箱路径下/proc/{pid}/root/data/storage/el2/base/cache/web/Cookies。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10204,7 +10320,7 @@ static isCookieAllowed(): boolean
 
 | 类型    | 说明                             |
 | ------- | -------------------------------- |
-| boolean | 是否拥有发送和接收cookie的权限，默认为true，表示拥有发送和接收cookie的权限。 |
+| boolean | 是否拥有发送和接收cookie的权限。<br>true表示拥有发送和接收cookie的权限，false表示无发送和接收cookie的权限。<br>默认值：true。 |
 
 **示例：**
 
@@ -10292,7 +10408,7 @@ static isThirdPartyCookieAllowed(): boolean
 
 | 类型    | 说明                                   |
 | ------- | -------------------------------------- |
-| boolean | 是否拥有发送和接收第三方cookie的权限，默认为false，表示未拥有发送和接收第三方cookie的权限。 |
+| boolean | 是否拥有发送和接收第三方cookie的权限。<br>true表示拥有发送和接收第三方cookie的权限，false表示无发送和接收第三方cookie的权限。<br>默认值：false。 |
 
 **示例：**
 
@@ -10409,7 +10525,7 @@ static clearAllCookiesSync(incognito?: boolean): void
 
 | 参数名 | 类型    | 必填 | 说明                                       |
 | ------ | ------- | ---- | :----------------------------------------- |
-| incognito    | boolean | 否   | true表示清除隐私模式下webview的所有内存cookies，false表示清除正常非隐私模式下的持久化cookies。 |
+| incognito    | boolean | 否   | true表示清除隐私模式下Webview的所有内存cookies，false表示清除正常非隐私模式下的持久化cookies。 |
 
 **示例：**
 
@@ -10552,7 +10668,7 @@ static deleteSessionCookie(): void
 
 > **说明：**
 >
-> 从API version 9开始支持，从API version 11开始废弃。建议使用[clearSessionCookiesync](#clearsessioncookiesync11)替代
+> 从API version 9开始支持，从API version 11开始废弃。建议使用[clearSessionCookieSync](#clearsessioncookiesync11)替代
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10798,7 +10914,7 @@ struct WebComponent {
       db.transaction(function(tx){
         tx.executeSql('INSERT INTO LOGS (id,log) VALUES(1,"test1")');
         tx.executeSql('INSERT INTO LOGS (id,log) VALUES(2,"test2")');
-        msg = '<p>数据表已创建,且插入了两条数据。</p>';
+        msg = '<p>数据表已创建，且插入了两条数据。</p>';
 
         document.querySelector('#status').innerHTML = msg;
       });
@@ -11389,7 +11505,7 @@ struct WebComponent {
 
 static existHttpAuthCredentials(): boolean
 
-判断是否存在任何已保存的HTTP身份验证凭据，该方法为同步方法。存在返回true，不存在返回false。
+判断是否存在任何已保存的HTTP身份验证凭据，该方法为同步方法。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -11397,7 +11513,7 @@ static existHttpAuthCredentials(): boolean
 
 | 类型    | 说明                                                         |
 | ------- | ------------------------------------------------------------ |
-| boolean | 是否存在任何已保存的HTTP身份验证凭据。存在返回true，不存在返回false |
+| boolean | 是否存在任何已保存的HTTP身份验证凭据。<br>存在返回true，不存在返回false。 |
 
 **示例：**
 
@@ -11594,7 +11710,7 @@ static getAccessibleGeolocation(origin: string, callback: AsyncCallback\<boolean
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | origin   | string                 | 是   | 指定源的字符串索引                                           |
-| callback | AsyncCallback\<boolean> | 是   | 返回指定源的地理位置权限状态。获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
+| callback | AsyncCallback\<boolean> | 是   | 返回指定源的地理位置权限状态。<br>获取成功，true表示已授权，false表示拒绝访问。<br>获取失败，表示不存在指定源的权限状态。 |
 | incognito<sup>11+</sup>    | boolean | 否   | true表示获取隐私模式下以回调方式异步获取指定源的地理位置权限状态，false表示正常非隐私模式下以回调方式异步获取指定源的地理位置权限状态。 |
 
 **错误码：**
@@ -11660,7 +11776,7 @@ static getAccessibleGeolocation(origin: string, incognito?: boolean): Promise\<b
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise\<boolean> | Promise实例，用于获取指定源的权限状态，获取成功，true表示已授权，false表示拒绝访问。获取失败，表示不存在指定源的权限状态。 |
+| Promise\<boolean> | Promise实例，用于获取指定源的权限状态。<br>获取成功，true表示已授权，false表示拒绝访问。<br>获取失败，表示不存在指定源的权限状态。 |
 
 **错误码：**
 
@@ -11872,10 +11988,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 可读 | 可写 |说明                 |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| headerKey   | string | 是 | 是 | 请求/响应头的key。   |
-| headerValue | string | 是 | 是 | 请求/响应头的value。 |
+| headerKey   | string | 否 | 否 | 请求/响应头的key。   |
+| headerValue | string | 否 | 否 | 请求/响应头的value。 |
 
 ## RequestInfo<sup>12+</sup>
 
@@ -11883,11 +11999,11 @@ Web组件发送的资源请求信息。
 
 **系统能力：**: SystemCapability.Web.Webview.Core
 
-| 名称      | 类型   | 可读 | 可写 |说明        |
+| 名称      | 类型   | 只读 | 可选 |说明        |
 | ---------| ------ | -----|------|--------  |
-| url      | string | 是 | 是 | 请求的链接。    |
-| method   | string | 是 | 是 | 请求的方法。    |
-| formData | string | 是 | 是 | 请求的表单数据。 |
+| url      | string | 否 | 否 | 请求的链接。    |
+| method   | string | 否 | 否 | 请求的方法。    |
+| formData | string | 否 | 否 | 请求的表单数据。 |
 
 ## WebHitTestType
 
@@ -11925,10 +12041,10 @@ Web组件发送的资源请求信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明|
+| 名称 | 类型 | 只读 | 可选 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | 是 | 是 | 当前被点击区域的元素类型。|
-| extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| type | [WebHitTestType](#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
+| extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
 
@@ -12436,11 +12552,11 @@ setError(message: Error): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称   | 类型   | 可读 | 可写 | 说明 |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
 | ------ | ------ | ---- | ---- | ---- |
-| origin | string | 是  | 是 | 指定源的字符串索引。 |
-| usage  | number | 是  | 是 | 指定源的存储量。     |
-| quota  | number | 是  | 是 | 指定源的存储配额。   |
+| origin | string | 否  | 否 | 指定源的字符串索引。 |
+| usage  | number | 否  | 否 | 指定源的存储量。     |
+| quota  | number | 否  | 否 | 指定源的存储配额。   |
 
 ## BackForwardList
 
@@ -12448,10 +12564,10 @@ setError(message: Error): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称         | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 是   | 是   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 是   | 是   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| currentIndex | number | 否   | 否   | 当前在页面历史列表中的索引。                                 |
+| size         | number | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 
@@ -12520,12 +12636,12 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 类型                                   | 可读 | 可写 | 说明                         |
+| 名称          | 类型                                   | 只读 | 可选 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
 | icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
-| historyUrl    | string                                 | 是   | 是   | 历史记录项的url地址。        |
-| historyRawUrl | string                                 | 是   | 是   | 历史记录项的原始url地址。    |
-| title         | string                                 | 是   | 是   | 历史记录项的标题。           |
+| historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
+| historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
+| title         | string                                 | 否   | 否   | 历史记录项的标题。           |
 
 ## WebCustomScheme
 
@@ -12533,17 +12649,17 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| 名称           | 类型       | 只读 | 可选 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-', 同时需要以字母开头。        |
-| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
-| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
-| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
-| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
-| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
-| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code，false表示设置了该选项的scheme的js资源不支持生成code。<br>默认值：false。         |
+| schemeName     | string    | 否   | 否   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'，同时需要以字母开头。        |
+| isSupportCORS  | boolean   | 否   | 否   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
+| isSupportFetch | boolean   | 否   | 否   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
+| isStandard<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
+| isLocal<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
+| isDisplayIsolated<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
+| isSecure<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
+| isCspBypassing<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code cache，false表示设置了该选项的scheme的js资源不支持生成code cache。<br>默认值：false。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -12554,7 +12670,7 @@ Web组件使用HTTPDNS的模式。
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
 | OFF                                  | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
-| AUTO                                 | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
+| AUTO                                 | 1 |自动模式，用于解析的设定DNS服务器不可用时，可自动回落至系统DNS。|
 | SECURE_ONLY                          | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
 
 ## WebDownloadState<sup>11+</sup>
@@ -14590,7 +14706,7 @@ insertProxyRule(proxyRule: string, schemeFilter?: ProxySchemeFilter): void
 | 参数名          | 类型     |  必填  | 说明           |
 | ---------------| ------- | ---- | ------------- |
 | proxyRule      | string  | 是   | URL要使用的代理。 |
-| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | 否   | 与schemeFilter匹配的URL会使用代理。默认值：MATCH_ALL_SCHEMES |
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | 否   | 与schemeFilter匹配的URL会使用代理。<br>默认值：MATCH_ALL_SCHEMES。 |
 
 **错误码：**
 
@@ -14616,7 +14732,7 @@ insertDirectRule(schemeFilter?: ProxySchemeFilter): void
 
 | 参数名          | 类型     |  必填  | 说明           |
 | ---------------| ------- | ---- | ------------- |
-| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | 否   | 与schemeFilter匹配的URL会直接与服务器相连。默认值：MATCH_ALL_SCHEMES |
+| schemeFilter   | [ProxySchemeFilter](#proxyschemefilter15)  | 否   | 与schemeFilter匹配的URL会直接与服务器相连。<br>默认值：MATCH_ALL_SCHEMES |
 
 **错误码：**
 
@@ -15142,7 +15258,7 @@ WebHttpBodyStream是否采用分块传输。
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| boolean | WebHttpBodyStream是否采用分块传输。 |
+| boolean | WebHttpBodyStream是否采用分块传输，如果采用分块传输则返回true，否则返回false。 |
 
 **示例：**
 
@@ -15152,7 +15268,7 @@ WebHttpBodyStream是否采用分块传输。
 
 isEof(): boolean
 
-判断WebHttpBodyStream中的所有数据是否都已被读取。如果所有数据都已被读取，则返回true。对于分块传输类型的 WebHttpBodyStream，在第一次读取尝试之前返回false。
+判断WebHttpBodyStream中的所有数据是否都已被读取。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -15160,7 +15276,7 @@ isEof(): boolean
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| boolean | WebHttpBodyStream中的所有数据是否都已被读取。 |
+| boolean | WebHttpBodyStream中的所有数据是否都已被读取。<br>如果所有数据都已被读取，则返回true。对于分块传输类型的WebHttpBodyStream，在第一次读取尝试之前返回false。 |
 
 **示例：**
 
@@ -15170,7 +15286,7 @@ isEof(): boolean
 
 isInMemory(): boolean
 
-判断WebHttpBodyStream中的上传数据是否在内存中。如果WebHttpBodyStream中的上传数据完全在内存中，并且所有读取请求都将同步成功，则返回true。对于分块传输类型的数据，预期返回false。
+判断WebHttpBodyStream中的上传数据是否在内存中。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -15178,7 +15294,7 @@ isInMemory(): boolean
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| boolean | WebHttpBodyStream中的上传数据是否在内存中。 |
+| boolean | WebHttpBodyStream中的上传数据是否在内存中。<br>如果WebHttpBodyStream中的上传数据完全在内存中，并且所有读取请求都将同步成功，则返回true。对于分块传输类型的数据，预期返回false。 |
 
 **示例：**
 
@@ -15272,7 +15388,7 @@ isMainFrame(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 判断资源请求是否为主frame。 |
+| boolean | 判断资源请求是否为主frame，如果资源请求是主frame则返回true，否则返回false。 |
 
 **示例：**
 
@@ -15290,7 +15406,7 @@ hasGesture(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 返回资源请求是否与手势（如点击）相关联。 |
+| boolean | 返回资源请求是否与手势（如点击）相关联，如果返回资源请求与手势相关联则返回true，否则返回false。 |
 
 **示例：**
 
@@ -15423,7 +15539,7 @@ setUrl(url: string): void
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 **错误码：**
 
@@ -15457,7 +15573,7 @@ setNetErrorCode(code: WebNetErrorList): void
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### setStatus<sup>12+</sup>
 
@@ -15483,7 +15599,7 @@ setStatus(code: number): void
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### setStatusText<sup>12+</sup>
 
@@ -15509,7 +15625,7 @@ setStatusText(text: string): void
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### setMimeType<sup>12+</sup>
 
@@ -15535,7 +15651,7 @@ setMimeType(type: string): void
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### setEncoding<sup>12+</sup>
 
@@ -15561,7 +15677,7 @@ setEncoding(encoding: string): void
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### setHeaderByName<sup>12+</sup>
 
@@ -15589,7 +15705,7 @@ setHeaderByName(name: string, value: string, overwrite: boolean): void
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### getUrl<sup>12+</sup>
 
@@ -15608,7 +15724,7 @@ getUrl(): string
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### getNetErrorCode<sup>12+</sup>
 
@@ -15626,7 +15742,7 @@ getNetErrorCode(): WebNetErrorList
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### getStatus<sup>12+</sup>
 
@@ -15644,7 +15760,7 @@ getStatus(): number
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### getStatusText<sup>12+</sup>
 
@@ -15662,7 +15778,7 @@ getStatusText(): string
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### getMimeType<sup>12+</sup>
 
@@ -15680,7 +15796,7 @@ getMimeType(): string
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### getEncoding<sup>12+</sup>
 
@@ -15698,7 +15814,7 @@ getEncoding(): string
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ### getHeaderByName<sup>12+</sup>
 
@@ -15723,7 +15839,7 @@ getHeaderByName(name: string): string
 
 **示例：**
 
-示例完整示例代码参考[constructor](#constructor12)。
+完整示例代码参考[constructor](#constructor12)。
 
 ## WebResourceHandler<sup>12+</sup>
 
@@ -15991,9 +16107,9 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 可读 | 可写 |说明                 |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
+| responseHeaders   | Array<[WebHeader](#webheader)> | 否 | 否 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
 
 ## PlaybackStatus<sup>12+</sup>
 
@@ -16134,7 +16250,7 @@ handleDurationChanged(duration: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| duration | number | 是 | 媒体的总时长。单位： 秒 。 |
+| duration | number | 是 | 媒体的总时长。<br>单位：秒。 |
 
 **示例：**
 
@@ -16379,7 +16495,7 @@ seek(targetTime: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| targetTime | number | 是 | 单位： 秒。 |
+| targetTime | number | 是 | 播放跳转到的时间点。<br>单位：秒。 |
 
 **示例：**
 
@@ -16390,13 +16506,12 @@ seek(targetTime: number): void
 setVolume(volume: number): void
 
 设置播放器音量值。
-取值范围: [0, 1.0]
 
 **参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| volume | number | 是 | 播放器的音量。取值范围是从 0 到 1.0 。 其中 0 表示静音， 1.0 表示最大音量。 |
+| volume | number | 是 | 播放器的音量。<br>取值范围:[0, 1.0]，其中0表示静音，1.0表示最大音量。 |
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -16427,7 +16542,6 @@ setMuted(muted: boolean): void
 setPlaybackRate(playbackRate: number): void
 
 设置播放速度。
-取值范围: [0, 10.0]
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -16435,7 +16549,7 @@ setPlaybackRate(playbackRate: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |--------|------|------|------|
-| playbackRate | number | 是 | 播放倍率。取值范围是从 0 到 10.0 。其中 1 表示原速播放。 |
+| playbackRate | number | 是 | 播放倍率。<br>取值范围: [0, 10.0]，其中1表示原速播放。 |
 
 **示例：**
 
@@ -16526,8 +16640,8 @@ suspendPlayer?(type: SuspendType): void
 
 | 名称 | 值 | 说明 |
 |------|----|------|
-| URL | 0 | 媒体源的类型是 URL 。 |
-| MSE | 1 | 媒体源的类型是 blob 。 |
+| URL | 0 | 媒体源的类型是URL。 |
+| MSE | 1 | 媒体源的类型是blob。 |
 
 ## MediaSourceInfo<sup>12+<sup>
 
@@ -16549,8 +16663,8 @@ suspendPlayer?(type: SuspendType): void
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| id | string | 是 | surface 的id ， 用于同层渲染的NativeImage的 psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
-| rect | [RectEvent](#rectevent12) | 是 | surface 的位置信息。 |
+| id | string | 是 | surface的id，用于同层渲染的NativeImage的psurfaceid。<br/>详见[NativeEmbedDataInfo](ts-basic-components-web.md#nativeembeddatainfo11)。 |
+| rect | [RectEvent](#rectevent12) | 是 | surface的位置信息。 |
 
 ## Preload<sup>12+<sup>
 
@@ -16591,7 +16705,7 @@ suspendPlayer?(type: SuspendType): void
 type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, mediaInfo: MediaInfo) => NativeMediaPlayerBridge
 
 [onCreateNativeMediaPlayer](#oncreatenativemediaplayer12)方法的参数。
-一个回调函数， 创建一个播放器, 用于接管网页中的媒体播放。
+一个回调函数，创建一个播放器，用于接管网页中的媒体播放。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -16614,16 +16728,16 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 ## OfflineResourceMap<sup>12+</sup>
 
-本地离线资源配置对象，用于配置将被[injectOfflineResources](#injectofflineresources12)接口注入到内存缓存的本地离线资源的相关信息, 内核会根据此信息生成资源缓存，并据此控制缓存的有效期。
+本地离线资源配置对象，用于配置将被[injectOfflineResources](#injectofflineresources12)接口注入到内存缓存的本地离线资源的相关信息，内核会根据此信息生成资源缓存，并据此控制缓存的有效期。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 可读 | 可写 |说明                 |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin), 如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议，长度不超过2048。      |
-| resource | Uint8Array | 是   | 是   | 本地离线资源的内容。      |
-| responseHeaders | Array<[WebHeader](#webheader)> | 是   | 是   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anoymous或use-credentials。      |
-| type | [OfflineResourceType](#offlineresourcetype12) | 是   | 是   | 资源的类型，目前仅支持Javascript、图片和CSS类型的资源。      |
+| urlList | Array\<string\> | 否   | 否   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin)，如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议，长度不超过2048。      |
+| resource | Uint8Array | 否   | 否   | 本地离线资源的内容。      |
+| responseHeaders | Array<[WebHeader](#webheader)> | 否   | 否   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anonymous或use-credentials。      |
+| type | [OfflineResourceType](#offlineresourcetype12) | 否   | 否   | 资源的类型，目前仅支持Javascript、图片和CSS类型的资源。      |
 
 ## OfflineResourceType<sup>12+</sup>
 
@@ -16673,12 +16787,12 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| 名称           | 类型       | 只读 | 可选 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| x  | number   | 是   | 是   | 矩形区域左上角x坐标。    |
-| y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
-| width  | number   | 是   | 是   | 矩形的宽度。    |
-| height  | number   | 是   | 是   | 矩形的高度。    |
+| x  | number   | 否   | 否   | 矩形区域左上角x坐标。    |
+| y  | number   | 否   | 否   | 矩形区域左上角y坐标。    |
+| width  | number   | 否   | 否   | 矩形的宽度。    |
+| height  | number   | 否   | 否   | 矩形的高度。    |
 
 ## BackForwardCacheSupportedFeatures<sup>12+<sup>
 
@@ -16688,14 +16802,14 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许，false：不允许。<br>默认值：false。 |
-| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许，false：不允许。<br>默认值：false。|
+| nativeEmbed | boolean | 是 | 是否允许使用同层渲染的页面进入前进后退缓存。<br>如果设置为允许，需要维护为同层渲染元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用同层渲染的页面进入前进后退缓存，false：不允许使用同层渲染的页面进入前进后退缓存。<br>默认值：false。 |
+| mediaTakeOver | boolean | 是 | 是否允许使用视频托管的页面进入前进后退缓存。<br>如果设置为允许，需要维护为视频元素创建的系统控件的生命周期，避免造成泄漏。<br>true：允许使用视频托管的页面进入前进后退缓存，false：不允许使用视频托管的页面进入前进后退缓存。<br>默认值：false。|
 
 ### constructor<sup>12+</sup>
 
 constructor()
 
-BackForwardCacheOptions的构造函数。
+BackForwardCacheSupportedFeatures的构造函数。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -16707,8 +16821,8 @@ BackForwardCacheOptions的构造函数。
 
 | 名称 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| size | number | 是 | 设置每个Web组件允许缓存的最大页面个数。默认为1，最大可设置为50。设置为0或负数时，前进后退缓存功能不生效。Web会根据内存压力对缓存进行回收。 |
-| timeToLive | number | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间，默认为600秒。设置为0或负数时，前进后退缓存功能不生效。|
+| size | number | 是 | 设置每个Web组件允许缓存的最大页面个数。<br>默认为1，最大可设置为50。<br>设置为0或负数时，前进后退缓存功能不生效。<br>Web会根据内存压力对缓存进行回收。 |
+| timeToLive | number | 是 | 设置每个Web组件允许页面在前进后退缓存中停留的时间。<br>设置为0或负数时，前进后退缓存功能不生效。<br>默认值：600。<br>单位：秒。 |
 
 ### constructor<sup>12+</sup>
 
@@ -16745,7 +16859,7 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16818,7 +16932,7 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16900,7 +17014,7 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16972,7 +17086,7 @@ static clearAdsBlockDisallowedList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17051,7 +17165,7 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17136,7 +17250,7 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17208,7 +17322,7 @@ static clearAdsBlockAllowedList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17273,7 +17387,7 @@ struct WebComponent {
 | 名称 | 类型 |  必填 | 说明 |
 |------|------|------|------|
 | id | string | 否 | snapshot的id。|
-| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | web绘制的尺寸，最多支持16000px * 16000px, 长度单位支持px、vp、%，需保持不同参数传入长度单位一致, 默认单位vp，超过规格时返回最大规格。（示例：width:'100px', height:'200px'。或者 width:'20%', height'30%'。只写数字时单位为vp。）|
+| size | [SizeOptions](../apis-arkui/arkui-ts/ts-types.md#sizeoptions)  | 否 | web绘制的尺寸，最多支持16000px * 16000px，长度单位支持px、vp、%，需保持不同参数传入长度单位一致，默认单位vp，超过规格时返回最大规格。（示例：width:'100px'，height:'200px'。或者 width:'20%'，height:'30%'。只写数字时单位为vp。）|
 
 ## SnapshotResult<sup>12+</sup>
 
@@ -17326,14 +17440,14 @@ createPdf函数输入参数。
 
 | 名称                  | 类型    | 必填 | 说明                                                         |
 | --------------------- | ------- | ---- | ------------------------------------------------------------ |
-| width                 | number  | 是   | 页面宽度。单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
-| height                | number  | 是   | 页面高度。单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
-| scale                 | number  | 否   | 放大倍数。取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。默认值：1.0。 |
-| marginTop             | number  | 是   | 上边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
-| marginBottom          | number  | 是   | 下边距。取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
-| marginRight           | number  | 是   | 右边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
-| marginLeft            | number  | 是   | 左边距。取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。单位：英寸。 |
-| shouldPrintBackground | boolean | 否   | true表示打印背景颜色，false表示不打印背景颜色。默认值：false。                            |
+| width                 | number  | 是   | 页面宽度。<br>单位：英寸。<br />推荐值：A4纸页面宽度8.27英寸。   |
+| height                | number  | 是   | 页面高度。<br>单位：英寸。<br />推荐值：A4纸页面高度11.69英寸。  |
+| scale                 | number  | 否   | 放大倍数。<br>取值范围：[0.0, 2.0]。如果不在取值范围内，小于0.0设置为0.0，大于2.0设置为2.0。<br>默认值：1.0。 |
+| marginTop             | number  | 是   | 上边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginBottom          | number  | 是   | 下边距。<br>取值范围：[0.0, 页面高度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginRight           | number  | 是   | 右边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| marginLeft            | number  | 是   | 左边距。<br>取值范围：[0.0, 页面宽度的一半)。如果不在取值范围内，则设置为0.0。<br>单位：英寸。 |
+| shouldPrintBackground | boolean | 否   | true表示打印背景颜色，false表示不打印背景颜色。<br>默认值：false。                            |
 
 ## PdfData<sup>14+</sup>
 
@@ -17363,7 +17477,7 @@ pdfArrayBuffer(): Uint8Array
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称 | 类型   | 只读 | 可选 | 说明                                                         |
 | ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x    | number | 是   | 是   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。单位为vp。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。 |
-| y    | number | 是   | 是   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。单位为vp。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。 |
+| x    | number | 否   | 否   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br/>单位：vp。 |
+| y    | number | 否   | 否   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br/>单位：vp。 |

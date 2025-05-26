@@ -24,7 +24,7 @@ setTransform(transform?: Matrix2D): void
 
 | 参数名      | 类型  | 必填 | 说明   |
 | --------- | -------------- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否  | 转换矩阵。<br>默认值：null。 |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否  | 转换矩阵。<br>默认值：null |
 
 ## 示例
 
@@ -35,11 +35,11 @@ setTransform(transform?: Matrix2D): void
 @Entry
 @Component
 struct CanvasPatternPage {
-  private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private matrix: Matrix2D = new Matrix2D()
-  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg")
-  private pattern: CanvasPattern | null = null
+  private settings: RenderingContextSettings = new RenderingContextSettings(true);
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+  private matrix: Matrix2D = new Matrix2D();
+  private img: ImageBitmap = new ImageBitmap("common/pattern.jpg");
+  private pattern: CanvasPattern | null = null;
 
   build() {
       Column() {

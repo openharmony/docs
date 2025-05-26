@@ -96,7 +96,7 @@ The callback already exists.
 
 **处理步骤**
 
-1.确保待注册的callback对象未进行过注册
+1.确保待注册的callback对象未进行过注册。
 
 2.若callback对象已进行过注册，执行已存在的注册。
 
@@ -115,10 +115,10 @@ The number of requests exceeded the maximum allowed.
 
 1.激活&监听指定属性网络请求数超过了最大值。
 
-2.netconnection.register接口超过了最大注册数量限制。
+2.NetConnection.register接口超过了最大注册数量限制。
 
 **处理步骤**
 
 1.建议通过日志信息“Over the max request number”定位问题。
 
-2.使用完netconnection.register接口后，及时调用unregister接口取消注册。
+2.使用完NetConnection.register接口后，及时调用unregister接口取消注册。

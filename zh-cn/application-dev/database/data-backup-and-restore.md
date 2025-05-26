@@ -1,5 +1,4 @@
-# 数据库备份与恢复
-
+# 数据库备份与恢复（ArkTS）
 
 ## 场景介绍
 
@@ -423,7 +422,7 @@ export default class EntryAbility extends UIAbility {
                resultSet.close();
              } catch (e) {
                  if (e.code !== 14800014) {
-                   console.info(`Code:${err.code}, message:${err.message}`);
+                   console.error(`Code:${e.code}, message:${e.message}`);
                  }
              }
            }
@@ -436,7 +435,7 @@ export default class EntryAbility extends UIAbility {
              console.info(`Succeeded in restoring RdbStore.`);
            })
          }
-         console.info(`Code:${err.code}, message:${err.message}`);
+         console.error(`Code:${err.code}, message:${err.message}`);
      }
    }
    ```

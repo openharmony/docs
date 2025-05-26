@@ -46,13 +46,14 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 try {
   inputMonitor.on('touch', (touchEvent: TouchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -93,7 +94,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -129,14 +130,13 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
-import { promptAction } from '@kit.ArkUI';
 import { display } from '@kit.ArkUI';
 
 /**
  * Callback triggered when the mouse pointer moves to the specified rectangular area.
  */
-function callback(mouseEvent : MouseEvent) {
-  promptAction.showToast({
+let callback = (mouseEvent : MouseEvent) => {
+  this.getUIContext().getPromptAction().showToast({
     message: `Monitor on success: ${JSON.stringify(mouseEvent)}`
   })
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -161,7 +161,7 @@ let rect: display.Rect[] = [{
 try {
   inputMonitor.on('mouse', rect, callback);
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -195,6 +195,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 // Disable listening for a single callback.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -205,12 +206,13 @@ try {
   inputMonitor.off('touch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 // Cancel listening for all callbacks.
 let callback = (touchEvent: TouchEvent) => {
   console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
@@ -221,7 +223,7 @@ try {
   inputMonitor.off('touch');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -255,6 +257,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
+
 // Disable listening for a single callback.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -265,12 +268,13 @@ try {
   inputMonitor.off('mouse', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 import { MouseEvent } from '@kit.InputKit';
+
 // Cancel listening for all callbacks.
 let callback = (mouseEvent: MouseEvent) => {
   console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
@@ -281,7 +285,7 @@ try {
   inputMonitor.off('mouse');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -311,6 +315,7 @@ Defines the callback for touch (touchscreen) events.
 
 ```js
 import { TouchEvent } from '@kit.InputKit';
+
 try {
   inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) {// Three fingers are pressed.
@@ -319,7 +324,7 @@ try {
     return false;
   });
 } catch (error) {
-    console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -353,14 +358,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
+
 try {
   inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -406,7 +412,7 @@ try {
   inputMonitor.off('pinch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -423,7 +429,7 @@ try {
   inputMonitor.off('pinch');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -463,7 +469,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -509,7 +515,7 @@ try {
   inputMonitor.off("threeFingersSwipe", callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -526,7 +532,7 @@ try {
   inputMonitor.off("threeFingersSwipe");
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -566,7 +572,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -612,7 +618,7 @@ try {
   inputMonitor.off('fourFingersSwipe', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -629,7 +635,7 @@ try {
   inputMonitor.off('fourFingersSwipe');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -664,14 +670,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Rotate } from '@kit.InputKit';
+import { Rotate } from '@kit.InputKit';
+
 try {
   inputMonitor.on('rotate', 2, (rotateEvent: Rotate) => {
     console.log(`Monitor on success ${JSON.stringify(rotateEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -718,7 +725,7 @@ try {
   inputMonitor.off('rotate', 2, callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -735,7 +742,7 @@ try {
   inputMonitor.off('rotate', 2);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -770,14 +777,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import type { Pinch } from '@kit.InputKit';
+import { Pinch } from '@kit.InputKit';
+
 try {
   inputMonitor.on('pinch', 2, (pinchEvent: Pinch) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -824,7 +832,7 @@ try {
   inputMonitor.off('pinch', 2, callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -841,7 +849,7 @@ try {
   inputMonitor.off('pinch', 2);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -881,7 +889,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -927,7 +935,7 @@ try {
   inputMonitor.off("threeFingersTap", callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -944,7 +952,7 @@ try {
   inputMonitor.off("threeFingersTap");
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -979,7 +987,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -988,7 +995,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1024,7 +1031,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let callback = (event: TouchGestureEvent) => {
@@ -1035,13 +1041,12 @@ try {
   inputMonitor.on('touchscreenSwipe', fingers, callback);
   inputMonitor.off('touchscreenSwipe', fingers, callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 // Cancel listening for all callbacks.
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1051,7 +1056,7 @@ try {
   });
   inputMonitor.off('touchscreenSwipe', fingers);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1086,7 +1091,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1095,7 +1099,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1131,7 +1135,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```js
 // Disable listening for a single callback.
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let callback = (event: TouchGestureEvent) => {
@@ -1142,13 +1145,12 @@ try {
   inputMonitor.on('touchscreenPinch', fingers, callback);
   inputMonitor.off("touchscreenPinch", fingers, callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
 ```js
 // Cancel listening for all callbacks.
-import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 import { TouchGestureEvent } from '@ohos.multimodalInput.gestureEvent';
 
 let fingers: number = 4;
@@ -1158,7 +1160,7 @@ try {
   });
   inputMonitor.off("touchscreenPinch", fingers);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1202,7 +1204,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1247,7 +1249,7 @@ try {
   inputMonitor.on('keyPressed', keys, callback);
   inputMonitor.off("keyPressed", callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1262,6 +1264,6 @@ try {
   });
   inputMonitor.off("keyPressed");
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

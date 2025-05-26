@@ -84,7 +84,8 @@ OH_AVSource* OH_AVSource_CreateWithDataSource (OH_AVDataSource * dataSource)
 2. dataSource-&gt;size == 0；
 3. 设置数据源失败；
 4. 内存不足；
-5. 解码器引擎为nullptr。 
+5. 解码器引擎为nullptr；
+6. dataSource-&gt;readAt == nullptr。
 
 
 ### OH_AVSource_CreateWithFD()

@@ -247,7 +247,7 @@ List组件卡片样式枚举。
 | --------- | --------- | ------------------------------------------------------------ |
 | COLLAPSED | 0 | 收起状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于隐藏状态。 |
 | EXPANDED  | 1 | 展开状态，当ListItem向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时操作项处于显示状态。<br/>**说明：**<br/>需要ListItem设置向左或向右滑动（当列表方向为“垂直”时），<br/>向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
-| ACTIONING | 2 | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。<br/>**说明**：<br/>滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。 |
+| ACTIONING | 2 | 长距离状态，当ListItem进入长距删除区后删除ListItem的状态。<br/>**说明：**<br/>滑动后松手的位置超过或等于设置的距离阈值，并且设置的距离阈值有效时才能进入该状态。 |
 
 ## 事件
 
@@ -334,18 +334,18 @@ struct ListItemExample {
 @Entry
 @Component
 struct ListItemExample2 {
-  @State arr: number[] = [0, 1, 2, 3, 4]
-  @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
-  @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
-  private scroller: ListScroller = new ListScroller()
+  @State arr: number[] = [0, 1, 2, 3, 4];
+  @State enterEndDeleteAreaString: string = 'not enterEndDeleteArea';
+  @State exitEndDeleteAreaString: string = 'not exitEndDeleteArea';
+  private scroller: ListScroller = new ListScroller();
 
   @Builder itemEnd() {
     Row() {
-      Button("Delete").margin("4vp")
-      Button("Set").margin("4vp").onClick(() => {
-        this.scroller.closeAllSwipeActions()
+      Button('Delete').margin('4vp')
+      Button('Set').margin('4vp').onClick(() => {
+        this.scroller.closeAllSwipeActions();
       })
-    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+    }.padding('4vp').justifyContent(FlexAlign.SpaceEvenly)
   }
 
   build() {
@@ -353,7 +353,7 @@ struct ListItemExample2 {
       List({ space: 10, scroller: this.scroller }) {
         ForEach(this.arr, (item: number) => {
           ListItem() {
-            Text("item" + item)
+            Text('item' + item)
               .width('100%')
               .height(100)
               .fontSize(16)
@@ -367,18 +367,18 @@ struct ListItemExample2 {
               builder: () => { this.itemEnd() },
               onAction: () => {
                 this.getUIContext()?.animateTo({ duration: 1000 }, () => {
-                  let index = this.arr.indexOf(item)
-                  this.arr.splice(index, 1)
-                })
+                  let index = this.arr.indexOf(item);
+                  this.arr.splice(index, 1);
+                });
               },
               actionAreaDistance: 56,
               onEnterActionArea: () => {
-                this.enterEndDeleteAreaString = "enterEndDeleteArea"
-                this.exitEndDeleteAreaString = "not exitEndDeleteArea"
+                this.enterEndDeleteAreaString = 'enterEndDeleteArea';
+                this.exitEndDeleteAreaString = 'not exitEndDeleteArea';
               },
               onExitActionArea: () => {
-                this.enterEndDeleteAreaString = "not enterEndDeleteArea"
-                this.exitEndDeleteAreaString = "exitEndDeleteArea"
+                this.enterEndDeleteAreaString = 'not enterEndDeleteArea';
+                this.exitEndDeleteAreaString = 'exitEndDeleteArea';
               }
             }
           })
@@ -406,20 +406,20 @@ struct ListItemExample2 {
 struct ListItemExample3 {
   build() {
     Column() {
-      List({ space: "4vp", initialIndex: 0 }) {
+      List({ space: '4vp', initialIndex: 0 }) {
         ListItemGroup({ style: ListItemGroupStyle.CARD }) {
           ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => {
             ListItem({ style: itemStyle }) {
-              Text("" + index)
-                .width("100%")
+              Text('' + index)
+                .width('100%')
                 .textAlign(TextAlign.Center)
             }
           })
         }
         ForEach([ListItemStyle.CARD, ListItemStyle.CARD, ListItemStyle.NONE], (itemStyle: number, index?: number) => {
           ListItem({ style: itemStyle }) {
-            Text("" + index)
-              .width("100%")
+            Text('' + index)
+              .width('100%')
               .textAlign(TextAlign.Center)
           }
         })
@@ -445,7 +445,7 @@ import { ComponentContent } from '@kit.ArkUI';
 
 class BuilderParams {
   text: string | Resource;
-  scroller: ListScroller
+  scroller: ListScroller;
   constructor(text: string | Resource, scroller: ListScroller) {
     this.text = text;
     this.scroller = scroller;
@@ -455,37 +455,37 @@ class BuilderParams {
 @Builder
 function itemBuilder(params: BuilderParams) {
   Row() {
-    Button(params.text).margin("4vp")
-    Button("Set").margin("4vp").onClick(() => {
+    Button(params.text).margin('4vp')
+    Button('Set').margin('4vp').onClick(() => {
       params.scroller.closeAllSwipeActions()
     })
-  }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+  }.padding('4vp').justifyContent(FlexAlign.SpaceEvenly)
 }
 @Component
 struct MyListItem {
-  scroller: ListScroller = new ListScroller()
-  @State arr: number[] = [0, 1, 2, 3, 4]
-  @State project ?: number = 0
-  startBuilder ?: ComponentContent<BuilderParams> = undefined
-  endBuilder ?: ComponentContent<BuilderParams> = undefined
+  scroller: ListScroller = new ListScroller();
+  @State arr: number[] = [0, 1, 2, 3, 4];
+  @State project ?: number = 0;
+  startBuilder ?: ComponentContent<BuilderParams> = undefined;
+  endBuilder ?: ComponentContent<BuilderParams> = undefined;
 
-  builderParam = new BuilderParams("delete", this.scroller)
+  builderParam = new BuilderParams('delete', this.scroller);
 
   aboutToAppear(): void {
-    this.startBuilder = new ComponentContent(this.getUIContext(), wrapBuilder(itemBuilder), this.builderParam)
-    this.endBuilder = new ComponentContent(this.getUIContext(), wrapBuilder(itemBuilder), this.builderParam)
+    this.startBuilder = new ComponentContent(this.getUIContext(), wrapBuilder(itemBuilder), this.builderParam);
+    this.endBuilder = new ComponentContent(this.getUIContext(), wrapBuilder(itemBuilder), this.builderParam);
   }
   GetStartBuilder() {
-    this.startBuilder?.update(new BuilderParams("StartDelete", this.scroller));
+    this.startBuilder?.update(new BuilderParams('StartDelete', this.scroller));
     return this.startBuilder;
   }
   GetEndBuilder() {
-    this.endBuilder?.update(new BuilderParams("EndDelete", this.scroller));
+    this.endBuilder?.update(new BuilderParams('EndDelete', this.scroller));
     return this.endBuilder;
   }
   build() {
     ListItem() {
-      Text("item" + this.project)
+      Text('item' + this.project)
         .width('100%')
         .height(100)
         .fontSize(16)
@@ -499,9 +499,9 @@ struct MyListItem {
         builderComponent: this.GetEndBuilder(),
         onAction: () => {
           this.getUIContext()?.animateTo({ duration: 1000 }, () => {
-            let index = this.arr.indexOf(this.project)
-            this.arr.splice(index, 1)
-          })
+            let index = this.arr.indexOf(this.project);
+            this.arr.splice(index, 1);
+          });
         },
         actionAreaDistance: 56
       },
@@ -509,9 +509,9 @@ struct MyListItem {
         builderComponent: this.GetStartBuilder(),
         onAction: () => {
           this.getUIContext()?.animateTo({ duration: 1000 }, () => {
-            let index = this.arr.indexOf(this.project)
-            this.arr.splice(index, 1)
-          })
+            let index = this.arr.indexOf(this.project);
+            this.arr.splice(index, 1);
+          });
         },
         actionAreaDistance: 56
       }
@@ -523,8 +523,8 @@ struct MyListItem {
 @Entry
 @Component
 struct ListItemExample {
-  @State arr: number[] = [0, 1, 2, 3, 4]
-  private scroller: ListScroller = new ListScroller()
+  @State arr: number[] = [0, 1, 2, 3, 4];
+  private scroller: ListScroller = new ListScroller();
 
   build() {
     Column() {

@@ -24,10 +24,10 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| top | number | 否 | 表示页面上边距。 |
-| bottom | number | 否 | 表示页面下边距。 |
-| left | number | 否 | 表示页面左边距。 |
-| right | number | 否 | 表示页面右边距。 |
+| top | number | 否 | 表示页面上边距。默认值为0。 |
+| bottom | number | 否 | 表示页面下边距。默认值为0。 |
+| left | number | 否 | 表示页面左边距。默认值为0。 |
+| right | number | 否 | 表示页面右边距。默认值为0。 |
 
 ## PrinterRange
 
@@ -40,9 +40,9 @@ import { print } from '@kit.BasicServicesKit';
 **属性：**
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
-| startPage | number | 否 | 表示起始页。 |
-| endPage | number | 否 | 表示结束页。 |
-| pages | Array&lt;number&gt; | 否 | 表示离散页面。 |
+| startPage | number | 否 | 表示起始页。默认值为1。 |
+| endPage | number | 否 | 表示结束页。默认值为待打印文件的最大页数。 |
+| pages | Array&lt;number&gt; | 否 | 表示待打印的页面范围的集合。默认值为空。 |
 
 ## PreviewAttribute
 
@@ -56,7 +56,7 @@ import { print } from '@kit.BasicServicesKit';
 | **名称** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | previewRange | [PrinterRange](#printerrange) | 是 | 表示预览页面范围。 |
-| result | number | 否 | 表示预览文件结果。 |
+| result | number | 否 | 表示预览文件结果。默认值为-1。 |
 
 ## PrintResolution
 
@@ -107,7 +107,7 @@ import { print } from '@kit.BasicServicesKit';
 | printerId | string | 是 | 表示打印机ID。 |
 | printerName | string | 是 | 表示打印机名称。 |
 | printerState | [PrinterState](./js-apis-print.md#printerstate14) | 是 | 表示当前打印机状态。 |
-| printerIcon | number | 否 | 表示打印机图标的资源ID。 |
+| printerIcon | number | 否 | 表示打印机图标的资源ID。默认值为-1。 |
 | description | string | 否 | 表示打印机说明。 |
 | capability | [PrinterCapability](#printercapability) | 否 | 表示打印机功能。 |
 | options | Object | 否 | 表示JSON对象字符串。 |

@@ -15,7 +15,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
 > 当开发者传输的绘制内容包含透明元素时，surface区域的显示效果会与下方内容进行合成展示。例如，若传输的内容完全透明，且XComponent的背景色被设置为黑色，同时Surface保持默认的大小与位置，则最终显示的将是一片黑色区域。
 
 ## Native XComponent场景
-在XComponent组件构造函数的libraryname中定义需要加载的动态库，而后应用就可以在Native层获取Native XComponent实例，其是XComponent组件提供在Native层的实例，可作为ArkTS层和Native层XComponent绑定的桥梁。XComponent所提供的NDK接口都依赖于该实例。接口能力包括获取NativeWindow实例、获取XComponent的布局/事件信息、注册XComponent的生命周期回调、注册XComponent的触摸、鼠标、按键等事件回调。针对Native XComponent，主要的开发场景如下：
+本场景在Native侧使用ArkUI NDK 接口创建XComponent组件进行自定义绘制。具体步骤包括：创建组件，获取NativeXComponent实例，注册XComponent的生命周期回调及触摸、鼠标、按键等事件回调，通过回调获取NativeWindow，使用OpenGL ES/EGL接口在XComponent组件上进行图形绘制，最后在ArkTS层使用ContentSlot占位组件进行挂载显示。针对Native XComponent的主要开发场景如下：
 
 - 利用Native XComponent提供的接口注册XComponent的生命周期和事件回调。
 - 在这些回调中进行初始化环境、获取当前状态、响应各类事件的开发。
@@ -23,17 +23,13 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
 
 **约束条件**：
 
-1、构造XComponent时需要配置libraryname参数、id参数以及type参数。
-
-2、id需要唯一。
+构造XComponent时需要根据需要的type使用对应的节点类型。
 
 > **说明**：
 >
 > 1. Native侧的OH_NativeXComponent缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
 >
-> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
->
-> 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
+> 2. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
 
 **接口说明**
 
@@ -58,6 +54,15 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
 | OH_NativeXComponent_GetKeyEventSourceType(OH_NativeXComponent_KeyEvent* keyEvent, OH_NativeXComponent_EventSourceType* sourceType) | 获取按键事件的输入源类型。                                   |
 | OH_NativeXComponent_GetKeyEventDeviceId(OH_NativeXComponent_KeyEvent* keyEvent, int64_t* deviceId) | 获取按键事件的设备ID。                                       |
 | OH_NativeXComponent_GetKeyEventTimestamp(OH_NativeXComponent_KeyEvent* keyEvent, int64_t* timestamp) | 获取按键事件的时间戳。                                       |
+| OH_ArkUI_QueryModuleInterfaceByName(ArkUI_NativeAPIVariantKind type, const char* structName) | 获取指定类型的Native模块接口集合。                           |
+| OH_ArkUI_GetNodeContentFromNapiValue(napi_env env, napi_value value, ArkUI_NodeContentHandle* content) | 获取ArkTS侧创建的NodeContent对象映射到native侧的ArkUI_NodeContentHandle。 |
+| OH_ArkUI_NodeContent_SetUserData(ArkUI_NodeContentHandle content, void* userData) | 在NodeContent对象上保存自定义数据。                          |
+| OH_ArkUI_NodeContentEvent_GetNodeContentHandle(ArkUI_NodeContentEvent* event) | 获取触发事件的NodeContent对象。                              |
+| OH_ArkUI_NodeContent_GetUserData(ArkUI_NodeContentHandle content) | 获取在NodeContent对象上保存的自定义数据。                    |
+| OH_ArkUI_NodeContentEvent_GetEventType(ArkUI_NodeContentEvent* event) | 获取触发NodeContent事件的事件类型。                          |
+| OH_ArkUI_NodeContent_AddNode(ArkUI_NodeContentHandle content, ArkUI_NodeHandle node) | 将一个ArkUI组件节点添加到对应的NodeContent对象下。           |
+| OH_ArkUI_NodeContent_RegisterCallback(ArkUI_NodeContentHandle content, ArkUI_NodeContentCallback callback) | 注册NodeContent事件函数。                                    |
+| OH_NativeXComponent_GetNativeXComponent(ArkUI_NodeHandle node) | 基于Native接口创建的组件实例获取OH_NativeXComponent类型的指针。 |
 
 > **说明 :**
 >
@@ -70,71 +75,90 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
 以下步骤以SURFACE类型为例，描述了如何使用`XComponent组件`调用`Node-API`接口来创建`EGL/GLES`环境，实现在主页面绘制图形，并可以改变图形的颜色。
 
 1. 在界面中定义XComponent。
-
-    ```typescript
-    //在ets/interface/XComponentContext.ts中声明native侧接口
-    export default interface XComponentContext {
-      drawPattern(): void;
-    
-      getStatus(): XComponentContextStatus;
-    };
-    
-    type XComponentContextStatus = {
-      hasDraw: boolean,
-      hasChangeColor: boolean,
-    };
-    ```
     
     ```typescript
-    import XComponentContext from "../interface/XComponentContext"
+    import nativeNode from 'libnativenode.so';
+    import {NodeContent} from '@kit.ArkUI';
 
     @Entry
     @Component
     struct Index {
-        xComponentContext: XComponentContext | undefined = undefined;
-        xComponentAttrs: XComponentAttrs = {
-            id: 'xcomponentId',
-            type: XComponentType.SURFACE,
-            libraryname: 'nativerender'
-        }
-    
-        build() {
-        Row() {
-            // ...
-            // 在xxx.ets 中定义 XComponent
-            XComponent(this.xComponentAttrs)
-                .focusable(true) // 可响应键盘事件
-                .onLoad((xComponentContext) => {
-                    console.log("onLoad");
-                    this.xComponentContext = xComponentContext as XComponentContext;
+      @State currentStatus: string = "init";
+      private nodeContent: NodeContent = new NodeContent();
+      aboutToAppear():void{
+        // 通过C-API创建节点，并添加到管理器nodeContent上
+        nativeNode.createNativeNode(this.nodeContent);
+      }
 
-                    // 调用drawPattern绘制内容
-                    if (this.xComponentContext) {
-                        this.xComponentContext.drawPattern();
-                        if (this.xComponentContext.getStatus()) {
-                            this.xComponentContext.getStatus().hasDraw;
-                        }
-                    }
-                })
-                .onDestroy(() => {
-                    console.log("onDestroy");
-                })
-            // ...
-            }
-            .onClick(() => {
-                // 调用getStatus改变绘制内容
-                if (this.xComponentContext && this.xComponentContext.getStatus()) {
-                    this.xComponentContext.getStatus().hasChangeColor;
-                }
+      build() {
+        Column() {
+          Row() {
+            Text('Native XComponent Sample')
+            .fontSize('24fp')
+            .fontWeight(500)
+            .margin({
+                left: 24,
+                top: 12
             })
-            .height('100%')
+          }
+          .margin({ top: 24 })
+          .width('100%')
+          .height(56)
+
+          Column({ space: 10 }) {
+            // 显示nodeContent管理器里存放的Native侧的组件
+            ContentSlot(this.nodeContent);
+
+            Text(this.currentStatus)
+            .fontSize('24fp')
+            .fontWeight(500)
+          }
+          .onClick(() => {
+            let hasChangeColor: boolean = false;
+            // 获取当前绘制内容状态
+            if (nativeNode.getStatus()) {
+              hasChangeColor = nativeNode.getStatus().hasChangeColor;
+            }
+            if (hasChangeColor) {
+              this.currentStatus = "change color";
+            }
+          })
+          .margin({
+            top: 27,
+            left: 12,
+            right: 12
+          })
+          .height('40%')
+          .width('90%')
+
+          Row() {
+            Button('Draw Star')
+            .fontSize('16fp')
+            .fontWeight(500)
+            .margin({ bottom: 24 })
+            .onClick(() => {
+              // 调用drawPattern绘制内容
+              nativeNode.drawPattern();
+              let hasDraw: boolean = false;
+              // 获取当前绘制内容状态
+              if (nativeNode.getStatus()) {
+                hasDraw = nativeNode.getStatus().hasDraw;
+              }
+              if (hasDraw) {
+                this.currentStatus = "draw star";
+              }
+            })
+            .width('53.6%')
+            .height(40)
+          }
+          .width('100%')
+          .justifyContent(FlexAlign.Center)
+          .alignItems(VerticalAlign.Bottom)
+          .layoutWeight(1)
         }
-    }
-        
-    interface XComponentAttrs {
-        id: string;
-        type: number;
-        libraryname: string;
+        .width('100%')
+        .height('100%')
+      }
     }
     ```
     
@@ -149,16 +173,19 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
     EXTERN_C_START
     static napi_value Init(napi_env env, napi_value exports) {
         // ...
-        // 向ArkTS侧暴露接口getContext()
+        // 向ArkTS侧暴露接口
         napi_property_descriptor desc[] = {
-            { "getContext", nullptr, PluginManager::GetContext, nullptr, nullptr, nullptr, napi_default, nullptr }
+            {"createNativeNode", nullptr, PluginManager::createNativeNode, nullptr, nullptr, nullptr,
+            napi_default, nullptr },
+            {"getStatus", nullptr, PluginManager::GetXComponentStatus, nullptr, nullptr,
+            nullptr, napi_default, nullptr},
+            {"drawPattern", nullptr, PluginManager::NapiDrawPattern, nullptr, nullptr,
+            nullptr, napi_default, nullptr}
         };
         if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Init", "napi_define_properties failed");
             return nullptr;
         }
-        // 方法内检查环境变量是否包含XComponent组件实例，若实例存在则导出绘制相关接口
-        PluginManager::GetInstance()->Export(env, exports);
         return exports;
     }
     EXTERN_C_END
@@ -180,529 +207,198 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
     extern "C" __attribute__((constructor)) void RegisterModule(void) { napi_module_register(&nativerenderModule); }
     ```
 
-    ```c++
-    // 检查环境变量是否包含XComponent组件实例，若实例存在则导出绘制相关接口
-    void PluginManager::Export(napi_env env, napi_value exports)
-    {
-        if ((env == nullptr) || (exports == nullptr)) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: env or exports is null");
-            return;
-        }
-
-        napi_value exportInstance = nullptr;
-        if (napi_get_named_property(env, exports, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: napi_get_named_property fail");
-        }
-
-        // 获取nativeXComponent
-        OH_NativeXComponent* nativeXComponent = nullptr;
-        if (napi_unwrap(env, exportInstance, reinterpret_cast<void**>(&nativeXComponent)) != napi_ok) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "Export: napi_unwrap fail");
-            return;
-        }
- 
-        // 获取XComponent的id，即ArkTS侧XComponent组件构造中的id参数
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        if (OH_NativeXComponent_GetXComponentId(nativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
-                         "Export: OH_NativeXComponent_GetXComponentId fail");
-            return;
-        }
-
-        std::string id(idStr);
-        auto context = PluginManager::GetInstance();
-        if ((context != nullptr) && (nativeXComponent != nullptr)) {
-            context->SetNativeXComponent(id, nativeXComponent);
-            auto render = context->GetRender(id);
-            if (render != nullptr) {
-                // 注册回调函数
-                render->RegisterCallback(nativeXComponent);
-                // 方法内使用Node-API，导出绘制相关接口，向ArkTS侧暴露绘制相关方法
-                render->Export(env, exports);
-            }
-        }
-    }
-    ```
-    ```c++
-    // 使用Node-API中的napi_define_properties方法，向ArkTS侧暴露drawPattern()和getStatus()方法，在ArkTS侧调用drawPattern()来绘制内容，
-    // 调用getStatus()来改变绘制内容
-    void PluginRender::Export(napi_env env, napi_value exports)
-    {
-        // ...
-        // 将接口函数注册为ArkTS侧接口drawPattern和getStatus
-        napi_property_descriptor desc[] = {
-            {"drawPattern", nullptr, PluginRender::NapiDrawPattern, nullptr, nullptr, nullptr, napi_default, nullptr},
-            {"getStatus", nullptr, PluginRender::TestGetXComponentStatus, nullptr, nullptr, nullptr, napi_default,
-             nullptr}};
-        if (napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc) != napi_ok) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "Export: napi_define_properties failed");
-        }
-    }
-    ```
-
 3. 注册XComponent事件回调，使用Node-API实现XComponent事件回调函数。
 
     (1) 定义surface创建成功，发生改变，销毁和XComponent的touch事件回调接口。
 
     ```c++
-    // 在头文件中定义PluginRender类
-    class PluginRender {
+    // 在头文件中定义PluginManager类
+    class PluginManager {
     public:
-        explicit PluginRender(std::string& id);
-        ~PluginRender() {
-            if (eglCore_ != nullptr) {
-                eglCore_->Release();
-                delete eglCore_;
-                eglCore_ = nullptr;
-            }
+        static OH_NativeXComponent_Callback callback_;
+        PluginManager();
+        ~PluginManager();
+        static PluginManager* GetInstance()
+        {
+            return &PluginManager::pluginManager_;
         }
-        static PluginRender* GetInstance(std::string& id);
-        static void Release(std::string& id);
+        
+        static napi_value createNativeNode(napi_env env, napi_callback_info info);
+        static napi_value GetXComponentStatus(napi_env env, napi_callback_info info);
         static napi_value NapiDrawPattern(napi_env env, napi_callback_info info);
-        static napi_value TestGetXComponentStatus(napi_value env, napi_callback_info info);
-        void Export(napi_env env, napi_value exports);
+        
+        // CAPI XComponent
         void OnSurfaceChanged(OH_NativeXComponent* component, void* window);
-        void OnTouchEvent(OH_NativeXComponent* component, void* window);
-        void OnMouseEvent(OH_NativeXComponent* component, void* window);
-        void OnHoverEvent(OH_NativeXComponent* component, bool isHover);
-        void OnFocusEvent(OH_NativeXComponent* component, void* window);
-        void OnBlurEvent(OH_NativeXComponent* component, void* window);
-        void OnKeyEvent(OH_NativeXComponent* component, void* window);
-        void RegisterCallback(OH_NativeXComponent* NativeXComponent);
+        void OnSurfaceDestroyed(OH_NativeXComponent* component, void* window);
+        void DispatchTouchEvent(OH_NativeXComponent* component, void* window);
+        void OnSurfaceCreated(OH_NativeXComponent* component, void* window);
 
     public:
-        static std::unordered_map<std::string, PluginRender*> instance_;
-        EGLCore* eglCore_;
-        std::string id_;
+        EGLCore *eglcore_;
+        uint64_t width_;
+        uint64_t height_;
+        OH_NativeXComponent_TouchEvent touchEvent_;
         static int32_t hasDraw_;
         static int32_t hasChangeColor_;
 
     private:
-        OH_NativeXComponent_Callback renderCallback_;
-        OH_NativeXComponent_MouseEvent_Callback mouseCallback_;
+        static PluginManager pluginManager_;
+        std::unordered_map<std::string, OH_NativeXComponent*> nativeXComponentMap_;
+        std::unordered_map<std::string, PluginManager*> pluginManagerMap_;
     };
     ```
 
     ```c++
-    // 在源文件中实现PluginRender类中方法
-    std::unordered_map<std::string, PluginRender *> PluginRender::instance_;
-    int32_t PluginRender::hasDraw_ = 0;
-    int32_t PluginRender::hasChangeColor_ = 0;
-
-    PluginRender::PluginRender(std::string& id) {
-        this->id_ = id;
-        this->eglCore_ = new EGLCore();
-    }
-
-    PluginRender* PluginRender::GetInstance(std::string& id) {
-        if (instance_.find(id) == instance_.end()) {
-            PluginRender* instance = new PluginRender(id);
-            instance_[id] = instance;
-            return instance;
-        } else {
-            return instance_[id];
-        }
-    }
-   
     // 定义一个函数OnSurfaceCreatedCB()，封装初始化环境与绘制背景
     void OnSurfaceCreatedCB(OH_NativeXComponent *component, void *window) {
-   	    // ...
-   	    // 获取XComponent的id，即ArkTS侧XComponent组件构造中的id参数
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			             "OnSurfaceCreatedCB: Unable to get XComponent id");
-   		    return;
-   	    }
-   
-   	    // 初始化环境与绘制背景
-   	    std::string id(idStr);
-   	    auto render = PluginRender::GetInstance(id);
-   	    uint64_t width;
-   	    uint64_t height;
-   	    // 获取XComponent拥有的surface的大小
-   	    int32_t xSize = OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-   	    if ((xSize == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) && (render != nullptr)) {
-   		    if (render->eglCore_->EglContextInit(window, width, height)) {
-   			    render->eglCore_->Background();
-   		    }
-   	    }
+        // ...
+        // 初始化环境与绘制背景
+        auto *pluginManger = PluginManager::GetInstance();
+        pluginManger->OnSurfaceCreated(component, window);
     }
    
     // 定义一个函数OnSurfaceChangedCB()
     void OnSurfaceChangedCB(OH_NativeXComponent *component, void *window) {
-   	    // ...
-   	    // 获取XComponent的id
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			             "OnSurfaceChangedCB: Unable to get XComponent id");
-   		    return;
-   	    }
-   
-   	    std::string id(idStr);
-   	    auto render = PluginRender::GetInstance(id);
-   	    if (render != nullptr) {
-   		    // 封装OnSurfaceChanged方法
-   		    render->OnSurfaceChanged(component, window);
-   	    }
+        // ...
+        auto *pluginManger = PluginManager::GetInstance();
+        // 封装OnSurfaceChanged方法
+        pluginManger->OnSurfaceChanged(component, window);
     }
    
     // 定义一个函数OnSurfaceDestroyedCB()，将PluginRender类内释放资源的方法Release()封装在其中
     void OnSurfaceDestroyedCB(OH_NativeXComponent *component, void *window) {
-   	    // ...
-   	    // 获取XComponent的id
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {'\0'};
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			             "OnSurfaceDestroyedCB: Unable to get XComponent id");
-   		    return;
-   	    }
-   
-   	    std::string id(idStr);
-   	    // 释放资源
-   	    PluginRender::Release(id);
+        // ...
+        auto *pluginManger = PluginManager::GetInstance();
+        pluginManger->OnSurfaceDestroyed(component, window);
     }
    
     // 定义一个函数DispatchTouchEventCB()，响应触摸事件时触发该回调
     void DispatchTouchEventCB(OH_NativeXComponent *component, void *window) {
-   	    // ...
-   	    // 获取XComponent的id
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			             "DispatchTouchEventCB: Unable to get XComponent id");
-   		    return;
-   	    }
-   
-   	    std::string id(idStr);
-   	    PluginRender *render = PluginRender::GetInstance(id);
-   	    if (render != nullptr) {
-   		    // 封装OnTouchEvent方法
-   		    render->OnTouchEvent(component, window);
-   	    }
-    }
-   
-    // 定义一个函数DispatchMouseEventCB()，响应鼠标事件时触发该回调
-    void DispatchMouseEventCB(OH_NativeXComponent *component, void *window) {
-   	    // ...
-   	    int32_t ret;
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    return;
-   	    }
-   
-   	    std::string id(idStr);
-   	    auto render = PluginRender::GetInstance(id);
-   	    if (render) {
-   		    // 封装OnMouseEvent方法
-   		    render->OnMouseEvent(component, window);
-   	    }
-    }
-   
-    // 定义一个函数DispatchHoverEventCB()，响应鼠标悬停事件时触发该回调
-    void DispatchHoverEventCB(OH_NativeXComponent *component, bool isHover) {
-   	    // ...
-   	    int32_t ret;
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    return;
-   	    }
-   
-   	    std::string id(idStr);
-   	    auto render = PluginRender::GetInstance(id);
-   	    if (render) {
-   		    // 封装OnHoverEvent方法
-   		    render->OnHoverEvent(component, isHover);
-   	    }
-    }
-   
-    // 定义一个函数OnFocusEventCB()，响应获焦事件时触发该回调
-    void OnFocusEventCB(OH_NativeXComponent *component, void *window) {
         // ...
-   	    int32_t ret;
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    return;
-   	    }
-   
-   	    std::string id(idStr);
-   	    auto render = PluginRender::GetInstance(id);
-   	    if (render) {
-   		    // 封装OnFocusEvent方法
-   		    render->OnFocusEvent(component, window);
-   	    }
-    }
-   
-    // 定义一个函数OnBlurEventCB()，响应失去焦点事件时触发该回调
-    void OnBlurEventCB(OH_NativeXComponent *component, void *window) {
-   	    // ...
-   	    int32_t ret;
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   	    	return;
-   	    }
-   
-   	    std::string id(idStr);
-   	    auto render = PluginRender::GetInstance(id);
-   	    if (render) {
-   		    // 封装OnBlurEvent方法
-   		    render->OnBlurEvent(component, window);
-   	    }
-    }
-   
-    // 定义一个函数OnKeyEventCB()，响应按键事件时触发该回调
-    void OnKeyEventCB(OH_NativeXComponent *component, void *window) {
-   	    // ...
-   	    int32_t ret;
-   	    char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = {};
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    ret = OH_NativeXComponent_GetXComponentId(component, idStr, &idSize);
-   	    if (ret != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    return;
-   	    }
-
-   	    std::string id(idStr);
-   	    auto render = PluginRender::GetInstance(id);
-   	    if (render) {
-   		    // 封装OnKeyEvent方法
-   		    render->OnKeyEvent(component, window);
-   	    }
-    }
-   
-    // 定义一个OnSurfaceChanged()方法
-    void PluginRender::OnSurfaceChanged(OH_NativeXComponent* component, void* window) {
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback", "OnSurfaceChanged: Unable to get XComponent id");
-   		    return;
-   	    }
-
-        std::string id(idStr);
-        PluginRender* render = PluginRender::GetInstance(id);
-        double offsetX;
-        double offsetY;
-        // 获取XComponent持有的surface相对其父组件左顶点的偏移量
-        OH_NativeXComponent_GetXComponentOffset(component, window, &offsetX, &offsetY);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OH_NativeXComponent_GetXComponentOffset",
-                     "offsetX = %{public}lf, offsetY = %{public}lf", offsetX, offsetY);
-        uint64_t width;
-        uint64_t height;
-        OH_NativeXComponent_GetXComponentSize(component, window, &width, &height);
-        if (render != nullptr) {
-            render->eglCore_->UpdateSize(width, height);
-        }
-    }
-   
-    // 定义一个OnTouchEvent()方法
-    void PluginRender::OnTouchEvent(OH_NativeXComponent* component, void* window) {
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-   	    uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-   	    if (OH_NativeXComponent_GetXComponentId(component, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   		    OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "Callback",
-   			             "OnTouchEvent: Unable to get XComponent id");
-   		    return;
-   	    }
-
-        OH_NativeXComponent_TouchEvent touchEvent;
-        // 获取由XComponent触发的触摸事件
-        OH_NativeXComponent_GetTouchEvent(component, window, &touchEvent);
-        // 获取XComponent触摸点相对于XComponent组件左边缘的坐标x和相对于XComponent组件上边缘的坐标y
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent", "touch info: x = %{public}lf, y = %{public}lf",
-                     touchEvent.x, touchEvent.y);
-        // 获取XComponent触摸点相对于XComponent所在应用窗口左上角的x坐标和相对于XComponent所在应用窗口左上角的y坐标
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
-                     "touch info: screenX = %{public}lf, screenY = %{public}lf", touchEvent.screenX, touchEvent.screenY);
-        std::string id(idStr);
-        PluginRender* render = PluginRender::GetInstance(id);
-        if (render != nullptr && touchEvent.type == OH_NativeXComponent_TouchEventType::OH_NATIVEXCOMPONENT_UP) {
-            render->eglCore_->ChangeColor();
-            hasChangeColor_ = 1;
-        }
-        float tiltX = 0.0f;
-        float tiltY = 0.0f;
-        OH_NativeXComponent_TouchPointToolType toolType =
-            OH_NativeXComponent_TouchPointToolType::OH_NATIVEXCOMPONENT_TOOL_TYPE_UNKNOWN;
-        // 获取XComponent触摸点的工具类型
-        OH_NativeXComponent_GetTouchPointToolType(component, 0, &toolType);
-        // 获取XComponent触摸点处相对X轴的倾斜角度
-        OH_NativeXComponent_GetTouchPointTiltX(component, 0, &tiltX);
-        // 获取XComponent触摸点处相对Y轴的倾斜角度
-        OH_NativeXComponent_GetTouchPointTiltY(component, 0, &tiltY);
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "OnTouchEvent",
-                     "touch info: toolType = %{public}d, tiltX = %{public}lf, tiltY = %{public}lf", toolType, tiltX, tiltY);
-    }
-   
-    // 定义一个OnMouseEvent()方法
-    void PluginRender::OnMouseEvent(OH_NativeXComponent *component, void *window) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnMouseEvent");
-        OH_NativeXComponent_MouseEvent mouseEvent;
-        // 获取由XComponent触发的鼠标事件
-        int32_t ret = OH_NativeXComponent_GetMouseEvent(component, window, &mouseEvent);
-        if (ret == OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-   	        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender",
-                         "MouseEvent Info: x = %{public}f, y = %{public}f, action = %{public}d, button = %{public}d",
-                         mouseEvent.x, mouseEvent.y, mouseEvent.action, mouseEvent.button);
-        } else {
-   	        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "GetMouseEvent error");
-        }
-    }
-   
-    // 定义一个OnHoverEvent()方法
-    void PluginRender::OnHoverEvent(OH_NativeXComponent* component, bool isHover) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnHoverEvent isHover_ = %{public}d", isHover);
-    }
-   
-    // 定义一个OnFocusEvent()方法
-    void PluginRender::OnFocusEvent(OH_NativeXComponent* component, void* window) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnFocusEvent");
-    }
-   
-    // 定义一个OnBlurEvent()方法
-    void PluginRender::OnBlurEvent(OH_NativeXComponent* component, void* window) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnBlurEvent");
-    }
-   
-    // 定义一个OnKeyEvent()方法
-    void PluginRender::OnKeyEvent(OH_NativeXComponent *component, void *window) {
-        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "OnKeyEvent");
-   
-        OH_NativeXComponent_KeyEvent *keyEvent = nullptr;
-        // 获取由XComponent触发的按键事件
-        if (OH_NativeXComponent_GetKeyEvent(component, &keyEvent) >= 0) {
-   	        OH_NativeXComponent_KeyAction action;
-            // 获取按键事件的动作
-   	        OH_NativeXComponent_GetKeyEventAction(keyEvent, &action);
-   	        OH_NativeXComponent_KeyCode code;
-            // 获取按键事件的键码值
-   	        OH_NativeXComponent_GetKeyEventCode(keyEvent, &code);
-   	        OH_NativeXComponent_EventSourceType sourceType;
-            // 获取按键事件的输入源类型
-   	        OH_NativeXComponent_GetKeyEventSourceType(keyEvent, &sourceType);
-   	        int64_t deviceId;
-            // 获取按键事件的设备ID
-   	        OH_NativeXComponent_GetKeyEventDeviceId(keyEvent, &deviceId);
-   	        int64_t timeStamp;
-            // 获取按键事件的时间戳
-   	        OH_NativeXComponent_GetKeyEventTimestamp(keyEvent, &timeStamp);
-   	        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender",
-                         "KeyEvent Info: action=%{public}d, code=%{public}d, sourceType=%{public}d, deviceId=%{public}ld, "
-                         "timeStamp=%{public}ld",
-                         action, code, sourceType, deviceId, timeStamp);
-        } else {
-   	        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "GetKeyEvent error");
-        }
+        auto *pluginManger = PluginManager::GetInstance();
+        pluginManger->DispatchTouchEvent(component, window);
     }
     ```
 
-    (2) 注册XComponent事件回调函数，在XComponent事件触发时调用3.1步骤中定义的方法。
+    (2) 定义createNativeNode方法，暴露到ArkTS侧的createNativeNode()方法会执行该方法。
 
     ```c++
-    void PluginRender::RegisterCallback(OH_NativeXComponent *NativeXComponent) {
-        // 设置组件创建事件的回调函数，组件创建时触发相关操作，初始化环境与绘制背景
-        renderCallback_.OnSurfaceCreated = OnSurfaceCreatedCB;
-        // 设置组件改变事件的回调函数，组件改变时触发相关操作
-        renderCallback_.OnSurfaceChanged = OnSurfaceChangedCB;
-        // 设置组件销毁事件的回调函数，组件销毁时触发相关操作，释放申请的资源
-        renderCallback_.OnSurfaceDestroyed = OnSurfaceDestroyedCB;
-        // 设置触摸事件的回调函数，在触摸事件触发时调用Node-API接口函数，从而调用原C++方法
-        renderCallback_.DispatchTouchEvent = DispatchTouchEventCB;
-        // 将OH_NativeXComponent_Callback注册给NativeXComponent
-        OH_NativeXComponent_RegisterCallback(NativeXComponent, &renderCallback_);
+    napi_value PluginManager::createNativeNode(napi_env env, napi_callback_info info)
+    {
+        if ((env == nullptr) || (info == nullptr)) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "CreateNativeNode env or info is null");
+            return nullptr;
+        }
+        size_t argCnt = 2;
+        napi_value args[2] = { nullptr, nullptr };
+        if (napi_get_cb_info(env, info, &argCnt, args, nullptr, nullptr) != napi_ok) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "CreateNativeNode napi_get_cb_info failed");
+        }
+        if (argCnt != ARG_CNT) {
+            napi_throw_type_error(env, NULL, "Wrong number of arguments");
+            return nullptr;
+        }
+        ArkUI_NodeContentHandle nodeContentHandle_ = nullptr;
+        OH_ArkUI_GetNodeContentFromNapiValue(env, args[0], &nodeContentHandle_);
+        nodeAPI = reinterpret_cast<ArkUI_NativeNodeAPI_1*>(
+            OH_ArkUI_QueryModuleInterfaceByName(ARKUI_NATIVE_NODE, "ArkUI_NativeNodeAPI_1")
+        );
+        std::string tag = value2String(env, args[1]);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "tag=%{public}s", tag.c_str());
+        int32_t ret = OH_ArkUI_NodeContent_SetUserData(nodeContentHandle_, new std::string(tag));
+        if (ret != ARKUI_ERROR_CODE_NO_ERROR) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "setUserData failed error=%{public}d", ret);
+        }
+        if (nodeAPI != nullptr && nodeAPI->createNode != nullptr && nodeAPI->addChild != nullptr) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager",
+                        "CreateNativeNode tag=%{public}s", tag.c_str());
+            auto nodeContentEvent = [](ArkUI_NodeContentEvent *event) {
+                ArkUI_NodeContentHandle handle = OH_ArkUI_NodeContentEvent_GetNodeContentHandle(event);
+                std::string *userDate = reinterpret_cast<std::string*>(OH_ArkUI_NodeContent_GetUserData(handle));
+                if (OH_ArkUI_NodeContentEvent_GetEventType(event) == NODE_CONTENT_EVENT_ON_ATTACH_TO_WINDOW) {
+                    ArkUI_NodeHandle testNode;
+                    if (userDate) {
+                        testNode = CreateNodeHandle(*userDate);
+                        delete userDate;
+                        userDate = nullptr;
+                    } else {
+                        testNode = CreateNodeHandle("noUserData");
+                    }
+                    OH_ArkUI_NodeContent_AddNode(handle, testNode);
+                }
+            };
+            OH_ArkUI_NodeContent_RegisterCallback(nodeContentHandle_, nodeContentEvent);
+        }
+        return nullptr;
+    }
+
+    ArkUI_NodeHandle CreateNodeHandle(const std::string &tag)
+    {
+        ArkUI_NodeHandle column = nodeAPI->createNode(ARKUI_NODE_COLUMN);
+        ArkUI_NumberValue value[] = {480};
+        ArkUI_NumberValue value1[] = {{.u32 = 15}, {.f32 = 15}};
+        ArkUI_AttributeItem item = {value, 1, "changeSize"};
+        ArkUI_AttributeItem item1 = {value1, 2};
+        nodeAPI->setAttribute(column, NODE_WIDTH, &item);
+        value[0].f32 = COLUMN_MARGIN;
+        nodeAPI->setAttribute(column, NODE_MARGIN, &item);
+        // 创建XComponent组件
+        xc = nodeAPI->createNode(ARKUI_NODE_XCOMPONENT);
+        // 设置XComponent组件属性
+        value[0].u32 = ARKUI_XCOMPONENT_TYPE_SURFACE;
+        nodeAPI->setAttribute(xc, NODE_XCOMPONENT_TYPE, &item);
+        nodeAPI->setAttribute(xc, NODE_XCOMPONENT_ID, &item);
+        nodeAPI->setAttribute(xc, NODE_XCOMPONENT_SURFACE_SIZE, &item1);
+        ArkUI_NumberValue focusable[] = {1};
+        focusable[0].i32 = 1;
+        ArkUI_AttributeItem focusableItem = {focusable, 1};
+        nodeAPI->setAttribute(xc, NODE_FOCUSABLE, &focusableItem);
+        ArkUI_NumberValue valueSize[] = {480};
+        ArkUI_AttributeItem itemSize = {valueSize, 1};
+        valueSize[0].f32 = XC_WIDTH;
+        nodeAPI->setAttribute(xc, NODE_WIDTH, &itemSize);
+        valueSize[0].f32 = XC_HEIGHT;
+        nodeAPI->setAttribute(xc, NODE_HEIGHT, &itemSize);
+        ArkUI_AttributeItem item2 = {value, 1, "ndkxcomponent"};
+        nodeAPI->setAttribute(xc, NODE_ID, &item2);
         
-        // 设置鼠标事件的回调函数，在触摸事件触发时调用Node-API接口函数，从而调用原C++方法
-        mouseCallback_.DispatchMouseEvent = DispatchMouseEventCB;
-        // 设置鼠标悬停事件的回调函数，在触摸事件触发时调用Node-API接口函数，从而调用原C++方法
-        mouseCallback_.DispatchHoverEvent = DispatchHoverEventCB;
-        // 将OH_NativeXComponent_MouseEvent_Callback注册给NativeXComponent
-        OH_NativeXComponent_RegisterMouseEventCallback(NativeXComponent, &mouseCallback_);
-        
-        // 将OnFocusEventCB方法注册给NativeXComponent
-        OH_NativeXComponent_RegisterFocusEventCallback(NativeXComponent, OnFocusEventCB);
-        // 将OnKeyEventCB方法注册给NativeXComponent
-        OH_NativeXComponent_RegisterKeyEventCallback(NativeXComponent, OnKeyEventCB);
-        // 将OnBlurEventCB方法注册给 NativeXComponent
-        OH_NativeXComponent_RegisterBlurEventCallback(NativeXComponent, OnBlurEventCB);
+        auto *nativeXComponent = OH_NativeXComponent_GetNativeXComponent(xc);
+        if (!nativeXComponent) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "GetNativeXComponent error");
+            return column;
+        }
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "GetNativeXComponent success");
+        // 注册XComponent回调函数
+        OH_NativeXComponent_RegisterCallback(nativeXComponent, &PluginManager::callback_);
+        auto typeRet = nodeAPI->getAttribute(xc, NODE_XCOMPONENT_TYPE);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "xcomponent type: %{public}d",
+                    typeRet->value[0].i32);
+        auto idRet = nodeAPI->getAttribute(xc, NODE_XCOMPONENT_ID);
+        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "xcomponent id: %{public}s",
+                    idRet->string);
+        nodeAPI->addChild(column, xc);
+        return column;
     }
     ```
 
     (3) 定义NapiDrawPattern方法，暴露到ArkTS侧的drawPattern()方法会执行该方法。
 
     ```c++
-    napi_value PluginRender::NapiDrawPattern(napi_env env, napi_callback_info info) {
+    napi_value PluginManager::NapiDrawPattern(napi_env env, napi_callback_info info) {
         // ...
         // 获取环境变量参数
         napi_value thisArg;
         if (napi_get_cb_info(env, info, nullptr, nullptr, &thisArg, nullptr) != napi_ok) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "NapiDrawPattern: napi_get_cb_info fail");
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginManager", "NapiDrawPattern: napi_get_cb_info fail");
             return nullptr;
         }
-       
-        // 获取环境变量中XComponent实例
-        napi_value exportInstance;
-        if (napi_get_named_property(env, thisArg, OH_NATIVE_XCOMPONENT_OBJ, &exportInstance) != napi_ok) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender",
-                         "NapiDrawPattern: napi_get_named_property fail");
-            return nullptr;
-        }
-       
-        // 通过napi_unwrap接口，获取XComponent的实例指针
-        OH_NativeXComponent *NativeXComponent = nullptr;
-        if (napi_unwrap(env, exportInstance, reinterpret_cast<void **>(&NativeXComponent)) != napi_ok) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender", "NapiDrawPattern: napi_unwrap fail");
-            return nullptr;
-        }
-       
-        // 获取XComponent实例的id
-        char idStr[OH_XCOMPONENT_ID_LEN_MAX + 1] = { '\0' };
-        uint64_t idSize = OH_XCOMPONENT_ID_LEN_MAX + 1;
-        if (OH_NativeXComponent_GetXComponentId(NativeXComponent, idStr, &idSize) != OH_NATIVEXCOMPONENT_RESULT_SUCCESS) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "PluginRender",
-                         "NapiDrawPattern: Unable to get XComponent id");
-            return nullptr;
-        }
-       
-        std::string id(idStr);
-        PluginRender *render = PluginRender::GetInstance(id);
-        if (render) {
-            // 调用绘制方法
-            render->eglCore_->Draw();
-            OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginRender", "render->eglCore_->Draw() executed");
-        }
+
+        auto *pluginManger = PluginManager::GetInstance();
+        // 调用绘制方法
+        pluginManger->eglcore_->Draw(hasDraw_);
+        OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "PluginManager", "render->eglCore_->Draw() executed");
+        
         return nullptr;
-    }
-    ```
-
-    (4) 定义TestGetXComponentStatus方法，暴露到ArkTS侧的getStatus()方法会执行该方法。
-
-    ```c++
-    napi_value PluginRender::TestGetXComponentStatus(napi_env env, napi_callback_info info) {
-        napi_value hasDraw;
-        napi_value hasChangeColor;
-
-        napi_create_int32(env, hasDraw_, &(hasDraw));
-        napi_create_int32(env, hasChangeColor_, &(hasChangeColor));
-
-        napi_value obj;
-        napi_create_object(env, &obj);
-        napi_set_named_property(env, obj, "hasDraw", hasDraw);
-        napi_set_named_property(env, obj, "hasChangeColor", hasChangeColor);
-
-        return obj;
     }
     ```
 
@@ -713,6 +409,9 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         // width_和height_在头文件中定义
         width_ = width;
         height_ = height;
+        if (width_ > 0) {
+            widthPercent_ = FIFTY_PERCENT * height_ / width_;
+        }
     }
     
     bool EGLCore::EglContextInit(void *window, int width, int height) {
@@ -731,8 +430,8 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         EGLint majorVersion;
         EGLint minorVersion;
         if (!eglInitialize(eglDisplay_, &majorVersion, &minorVersion)) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore",
-                "eglInitialize: unable to get initialize EGL display");
+            OH_LOG_Print(
+                LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglInitialize: unable to get initialize EGL display");
             return false;
         }
     
@@ -743,19 +442,25 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglChooseConfig: unable to choose configs");
             return false;
         }
-    
         // 创建环境
         return CreateEnvironment();
-    }
+        }
     ```
 
     ```c++
     bool EGLCore::CreateEnvironment() {
-        // ...
         // 创建surface
+        if (eglWindow_ == nullptr) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglWindow_ is null");
+            return false;
+        }
         eglSurface_ = eglCreateWindowSurface(eglDisplay_, eglConfig_, eglWindow_, NULL);
+        if (eglSurface_ == nullptr) {
+            OH_LOG_Print(
+                LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "eglCreateWindowSurface: unable to create surface");
+            return false;
+        }
     
-        // ...
         // 创建context
         eglContext_ = eglCreateContext(eglDisplay_, eglConfig_, EGL_NO_CONTEXT, CONTEXT_ATTRIBS);
         if (!eglMakeCurrent(eglDisplay_, eglSurface_, eglSurface_, eglContext_)) {
@@ -774,23 +479,23 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
     
     GLuint EGLCore::CreateProgram(const char* vertexShader, const char* fragShader) {
         if ((vertexShader == nullptr) || (fragShader == nullptr)) {
-            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore",
-                         "createProgram: vertexShader or fragShader is null");
+            OH_LOG_Print(
+                LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "createProgram: vertexShader or fragShader is null");
             return PROGRAM_ERROR;
         }
-    
+
         GLuint vertex = LoadShader(GL_VERTEX_SHADER, vertexShader);
         if (vertex == PROGRAM_ERROR) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "createProgram vertex error");
             return PROGRAM_ERROR;
         }
-    
+
         GLuint fragment = LoadShader(GL_FRAGMENT_SHADER, fragShader);
         if (fragment == PROGRAM_ERROR) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "createProgram fragment error");
             return PROGRAM_ERROR;
         }
-    
+
         GLuint program = glCreateProgram();
         if (program == PROGRAM_ERROR) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "createProgram program error");
@@ -803,7 +508,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         glAttachShader(program, vertex);
         glAttachShader(program, fragment);
         glLinkProgram(program);
-    
+
         GLint linked;
         glGetProgramiv(program, GL_LINK_STATUS, &linked);
         if (linked != 0) {
@@ -811,7 +516,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
             glDeleteShader(fragment);
             return program;
         }
-    
+
         OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "createProgram linked error");
         GLint infoLen = 0;
         glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLen);
@@ -834,7 +539,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "glCreateShader type or shaderSrc error");
             return PROGRAM_ERROR;
         }
-    
+
         GLuint shader = glCreateShader(type);
         if (shader == 0) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "glCreateShader unable to load shader");
@@ -925,7 +630,8 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "PrepareDraw: param error");
             return POSITION_ERROR;
         }
-   
+
+        // The gl function has no return value.
         glViewport(DEFAULT_X_POSITION, DEFAULT_Y_POSITION, width_, height_);
         glClearColor(GL_RED_DEFAULT, GL_GREEN_DEFAULT, GL_BLUE_DEFAULT, GL_ALPHA_DEFAULT);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -936,11 +642,12 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
    
     // 依据传入参数在指定区域绘制指定颜色
     bool EGLCore::ExecuteDraw(GLint position, const GLfloat *color, const GLfloat shapeVertices[], unsigned long vertSize) {
-        if ((position > 0) || (color == nullptr) || (vertSize / sizeof(shapeVertices[0]) != SHAPE_VERTICES_SIZE)) {
+        if ((position > 0) || (color == nullptr) || (vertSize / sizeof(shapeVertices[0])) != SHAPE_VERTICES_SIZE) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ExecuteDraw: param error");
             return false;
         }
-   
+
+        // The gl function has no return value.
         glVertexAttribPointer(position, POINTER_SIZE, GL_FLOAT, GL_FALSE, 0, shapeVertices);
         glEnableVertexAttribArray(position);
         glVertexAttrib4fv(1, color);
@@ -962,7 +669,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
    (2) 绘制图形。
 
     ```c++
-    void EGLCore::Draw() {
+    void EGLCore::Draw(int& hasDraw) {
         flag_ = false;
         OH_LOG_Print(LOG_APP, LOG_INFO, LOG_PRINT_DOMAIN, "EGLCore", "Draw");
         GLint position = PrepareDraw();
@@ -972,8 +679,8 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         }
    
         // 绘制背景
-        if (!ExecuteDraw(position, BACKGROUND_COLOR, BACKGROUND_RECTANGLE_VERTICES,
-                         sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
+        if (!ExecuteDraw(position, BACKGROUND_COLOR,
+                        BACKGROUND_RECTANGLE_VERTICES, sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw background failed");
             return;
         }
@@ -1002,12 +709,11 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         }
         
         GLfloat rad = M_PI / 180 * 72;
-        for (int i = 0; i < 4; ++i) 
-        {
+        for (int i = 0; i < NUM_4; ++i) {
             // 旋转得其他四个四边形的顶点
-            rotate2d(centerX, centerY, &rotateX, &rotateY,rad);
-            rotate2d(centerX, centerY, &leftX, &leftY,rad);
-            rotate2d(centerX, centerY, &rightX, &rightY,rad);
+            Rotate2d(centerX, centerY, &rotateX, &rotateY, rad);
+            Rotate2d(centerX, centerY, &leftX, &leftY, rad);
+            Rotate2d(centerX, centerY, &rightX, &rightY, rad);
             
             // 确定绘制四边形的顶点，使用绘制区域的百分比表示
             const GLfloat shapeVertices[] = {
@@ -1019,7 +725,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
             
             // 绘制图形
             if (!ExecuteDrawStar(position, DRAW_COLOR, shapeVertices, sizeof(shapeVertices))) {
-                OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw star failed");
+                OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw shape failed");
                 return;
             }
         }
@@ -1029,6 +735,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw FinishDraw failed");
             return;
         }
+        hasDraw = 1;
    
         flag_ = true;
     }
@@ -1037,7 +744,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
    (3) 改变颜色，重新画一个大小相同颜色不同的图形，与原图形替换，达到改变颜色的效果。
 
     ```c++
-    void EGLCore::ChangeColor() {
+    void EGLCore::ChangeColor(int& hasChangeColor) {
         if (!flag_) {
             return;
         }
@@ -1049,8 +756,8 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         }
     
         // 绘制背景
-        if (!ExecuteDraw(position, BACKGROUND_COLOR, BACKGROUND_RECTANGLE_VERTICES,
-                         sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
+        if (!ExecuteDraw(position, BACKGROUND_COLOR,
+                        BACKGROUND_RECTANGLE_VERTICES, sizeof(BACKGROUND_RECTANGLE_VERTICES))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ChangeColor execute draw background failed");
             return;
         }
@@ -1080,11 +787,11 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         }
     
         GLfloat rad = M_PI / 180 * 72;
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < NUM_4; ++i) {
             // 旋转得其他四个四边形的顶点
-            rotate2d(centerX, centerY, &rotateX, &rotateY,rad);
-            rotate2d(centerX, centerY, &leftX, &leftY,rad);
-            rotate2d(centerX, centerY, &rightX, &rightY,rad);
+            Rotate2d(centerX, centerY, &rotateX, &rotateY, rad);
+            Rotate2d(centerX, centerY, &leftX, &leftY, rad);
+            Rotate2d(centerX, centerY, &rightX, &rightY, rad);
             
             // 确定绘制四边形的顶点，使用绘制区域的百分比表示
             const GLfloat shapeVertices[] = {
@@ -1096,7 +803,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
     
             // 使用新的颜色绘制
             if (!ExecuteDrawNewStar(position, CHANGE_COLOR, shapeVertices, sizeof(shapeVertices))) {
-                OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw star failed");
+                OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Draw execute draw shape failed");
                 return;
             }
         }
@@ -1105,21 +812,22 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         if (!FinishDraw()) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ChangeColor FinishDraw failed");
         }
+        hasChangeColor = 1;
     }
    
    bool EGLCore::ExecuteDrawNewStar(
        GLint position, const GLfloat* color, const GLfloat shapeVertices[], unsigned long vertSize) {
        if ((position > 0) || (color == nullptr) || (vertSize / sizeof(shapeVertices[0])) != SHAPE_VERTICES_SIZE) {
-           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ExecuteDraw: param error");
-           return false;
-       }
+            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "ExecuteDraw: param error");
+            return false;
+        }
    
-       // The gl function has no return value.
-       glVertexAttribPointer(position, POINTER_SIZE, GL_FLOAT, GL_FALSE, 0, shapeVertices);
-       glEnableVertexAttribArray(position);
-       glVertexAttrib4fv(1, color);
-       glDrawArrays(GL_TRIANGLE_FAN, 0, TRIANGLE_FAN_SIZE);
-       glDisableVertexAttribArray(position);
+        // The gl function has no return value.
+        glVertexAttribPointer(position, POINTER_SIZE, GL_FLOAT, GL_FALSE, 0, shapeVertices);
+        glEnableVertexAttribArray(position);
+        glVertexAttrib4fv(1, color);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, TRIANGLE_FAN_SIZE);
+        glDisableVertexAttribArray(position);
    
        return true;
    }
@@ -1142,20 +850,6 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
         // 释放display
         if ((eglDisplay_ == nullptr) || (!eglTerminate(eglDisplay_))) {
             OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "EGLCore", "Release eglTerminate failed");
-        }
-    }
-    ```
-
-    (2) PluginRender类添加Release()方法，释放EGLCore实例及PluginRender实例。
-
-    ```c++
-    void PluginRender::Release(std::string &id) {
-        PluginRender *render = PluginRender::GetInstance(id);
-        if (render != nullptr) {
-            render->eglCore_->Release();
-            delete render->eglCore_;
-            render->eglCore_ = nullptr;
-            instance_.erase(instance_.find(id));
         }
     }
     ```
@@ -1219,7 +913,7 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
 
 ## ArkTS XComponent场景
 
-与Native XComponent不同，ArkTS XComponent不再需要libraryname参数。通过在ArkTS侧获取SurfaceId，布局信息、生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发，按需传递到Native侧进行处理。主要开发场景如下：
+与Native XComponent不同，ArkTS XComponent通过在ArkTS侧获取SurfaceId，布局信息、生命周期回调、触摸、鼠标、按键等事件回调等均在ArkTS侧触发，按需传递到Native侧进行处理。主要开发场景如下：
 - 基于ArkTS侧获取的SurfaceId，在Native侧调用OH_NativeWindow_CreateNativeWindowFromSurfaceId接口创建出NativeWindow实例。
 - 利用NativeWindow和EGL接口开发自定义绘制内容以及申请和提交Buffer到图形队列。
 - ArkTS侧获取生命周期、事件等信息传递到Native侧处理。
@@ -1228,7 +922,8 @@ XComponent持有一个surface，开发者能通过调用[NativeWindow](../graphi
 >
 > 1. Native侧的NativeWindow缓存在字典中，其key需要保证其唯一性，当对应的XComponent销毁后，需要及时从字典里将其删除。
 >
-> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口进行缓冲区尺寸设置。
+> 2. 对于使用[typeNode](../reference/apis-arkui/js-apis-arkui-frameNode.md#typenode12)创建的SURFACE或TEXTURE类型的XComponent组件，由于typeNode组件的生命周期与声明式组件存在差异，组件在创建后的缓冲区尺寸为未设置状态，因此在开始绘制内容之前，应调用[OH_NativeWindow_NativeWindowHandleOpt](../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt
+)接口进行缓冲区尺寸设置。
 > 
 > 3. 多个XComponent开发时，缓存Native侧资源需要保证key是唯一的，key推荐使用id+随机数或者surfaceId。
 
@@ -1271,7 +966,7 @@ Native侧
     ```
     
     ```typescript
-    import nativeRender from 'libnativerender.so'
+    import nativeRender from 'libnativerender.so';
     
     // 重写XComponentController，设置生命周期回调
     class MyXComponentController extends XComponentController {
@@ -1753,7 +1448,8 @@ function myComponent() {
 针对Native XComponent的使用，有以下相关实例可供参考：
 
 - [XComponent3D（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent3D)
-- [Native XComponent（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent)
+- [XComponent（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/XComponent)
+- [Native XComponent（API12）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkXComponent)
 - [OpenGL三棱椎（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkOpenGL)
 
 针对ArkTS XComponent的使用，有以下相关实例可供参考：

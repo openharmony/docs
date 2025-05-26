@@ -9,6 +9,7 @@ The OH_Drawing_RunBuffer struct describes a run, which provides storage for glyp
 
 **Related module**: [Drawing](_drawing.md)
 
+**Header file**: [drawing_text_blob.h](drawing__text__blob_8h.md)
 
 ## Summary
 

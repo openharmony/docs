@@ -4,7 +4,7 @@
 
 VPN，即虚拟专用网络（Virtual Private Network），是在公用网络上建立专用网络的一种技术。在VPN网络中，任意两个节点间的连接并非依赖传统专用网络所需要的端到端的物理链路，而是构建在公用网络服务商提供的平台（如Internet）之上的逻辑网络。用户数据在这一逻辑链路中进行传输。
 
-OpenHarmony为开发者提供了用于创建VPN的API解决方案。本文将指导您如何开发自己的VPN客户端。
+OpenHarmony为开发者提供了用于创建VPN的API解决方案。当前提供三方VPN能力主要用于创建虚拟网卡及配置VPN路由信息，连接隧道过程及内部连接的协议需要应用内部自行实现。本文将指导您如何开发自己的VPN客户端。
 
 > **说明：**
 >
@@ -175,10 +175,10 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | dnsAddresses        | Array\<string\>                                              | 否   | DNS服务器地址信息。配置后VPN白名单的应用访问网络时使用这些DNS服务器，不配置则使用系统分配的DNS服务器地址。 |
 | searchDomains       | Array\<string\>                                              | 否   | DNS的搜索域列表。                                            |
 | mtu                 | number                                                       | 否   | 最大传输单元MTU值(单位：字节)。                               |
-| isIPv4Accepted      | boolean                                                      | 否   | 是否支持IPV4，默认值为true。                                 |
-| isIPv6Accepted      | boolean                                                      | 否   | 是否支持IPV6，默认值为false。                                |
-| isInternal          | boolean                                                      | 否   | 是否支持内置VPN，默认值为false。                             |
-| isBlocking          | boolean                                                      | 否   | 是否阻塞模式，默认值为false。                                |
+| isIPv4Accepted      | boolean                                                      | 否   | 是否支持IPV4，默认值为true。true：支持IPV4；false：不支持IPV4。                                 |
+| isIPv6Accepted      | boolean                                                      | 否   | 是否支持IPV6，默认值为false。true：支持IPV6；false：不支持IPV6。                                |
+| isInternal          | boolean                                                      | 否   | 是否支持内置VPN，默认值为false。true：支持内置VPN；false：不支持内置VPN。                             |
+| isBlocking          | boolean                                                      | 否   | 是否阻塞模式，默认值为false。true：是阻塞模式；false：不是阻塞模式。                                |
 | trustedApplications | Array\<string\>                                              | 否   | VPN生效的应用白名单信息，string类型表示的包名。              |
 | blockedApplications | Array\<string\>                                              | 否   | 不生效VPN的应用黑名单信息，string类型表示的包名。            |
 

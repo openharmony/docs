@@ -30,6 +30,7 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 ```cpp
 #include <csetjmp>
+#include <vector>
 
 static jmp_buf buf;
 static bool oomHandlerFinished = false;
@@ -95,6 +96,7 @@ const char *srcCallNative = R"JS(triggerOOMError();)JS";
 
 ```cpp
 #include <csetjmp>
+#include <vector>
 
 static jmp_buf buf;
 static bool fatalHandlerFinished = false;

@@ -303,7 +303,7 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
 ### on('progress')
 
-on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (uploadedSize: number, totalSize: number) =&gt; void): void
 
 订阅上传任务进度事件，使用callback异步回调。
 
@@ -388,7 +388,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 ### on('complete' | 'fail')<sup>9+</sup>
 
- on(type:'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ on(type: 'complete' | 'fail', callback: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 订阅上传任务完成或失败事件，使用callback异步回调。
 
@@ -528,7 +528,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
 ### off('complete' | 'fail')<sup>9+</sup>
 
- off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
+ off(type: 'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void
 
 取消订阅上传任务的完成或失败事件。
 
@@ -1045,7 +1045,7 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
 
 ### on('progress')
 
-on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; void): void
+on(type: 'progress', callback: (receivedSize: number, totalSize: number) =&gt; void): void
 
 订阅下载任务进度事件，使用callback异步回调。
 
@@ -1168,7 +1168,7 @@ try {
 
 ### on('complete'|'pause'|'remove')<sup>7+</sup>
 
-on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
+on(type: 'complete'|'pause'|'remove', callback: () =&gt; void): void
 
 订阅下载任务相关的事件，使用callback异步回调。
 
@@ -2666,6 +2666,19 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | gauge        | boolean                                       | 否  | 后台任务的进度通知策略。 <br/>- true，显示进度、成功、失败通知。 <br/>- false，仅显示成功、失败通知。<br/>默认为false。 |
 | notification<sup>15+</sup> | [Notification](#notification15) | 是  | 通知栏自定义设置。默认值为`{}`                     |
 
+## WaitingReason<sup>20+</sup>
+
+枚举，定义任务等待的原因。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+| 名称 | 值    | 说明                       |
+| -------- |------|--------------------------|
+| TASK_QUEUE_FULL | 0x00 | 表示任务因任务队列已满而进入等待状态。      |
+| NETWORK_NOT_MATCH | 0x01 | 表示任务因所需网络条件不满足而进入等待状态。   |
+| APP_BACKGROUND | 0x02 | 表示任务因应用长时间处于后台而进入等待状态。   |
+| USER_INACTIVATED | 0x03 | 表示任务因所属用户处于非激活状态而进入等待状态。 |
+
 ## Task<sup>10+</sup> 
 上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
 
@@ -3269,6 +3282,142 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
 >
 > 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
+### on('fault')<sup>20+</sup>
+
+on(event: 'fault', callback: Callback&lt;Faults&gt;): void
+
+订阅任务失败原因，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名 | 类型                                  | 必填 | 说明                         |
+| -------- |-------------------------------------| -------- |----------------------------|
+| event | string                              | 是 | 订阅的事件类型。<br>- 取值为'fault'，表示任务失败原因。 |
+| callback | Callback&lt;[Faults](#faults10)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务失败的原因。 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+  
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let faultOnCallback = (faults: request.agent.Faults) => {
+    console.info('upload task failed.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('fault', faultOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### on('wait')<sup>20+</sup>
+
+on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
+
+订阅任务等待原因，使用callback形式返回结果。
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名 | 类型                                                | 必填 | 说明                              |
+| -------- |---------------------------------------------------| -------- |---------------------------------|
+| event | string                                            | 是 | 订阅的事件类型。<br>- 取值为'wait'，表示任务等待。 |
+| callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | 是 | 发生相关的事件时触发该回调方法，返回任务等待的原因。      |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+  
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOnTest",
+    value: {
+      filename: "taskOnTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOnTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let waitOnCallback = (reason: request.agent.Faults) => {
+    console.info('upload task waiting.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('wait', waitOnCallback);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
 ### off('progress')<sup>10+</sup>
 
 off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void): void
@@ -3284,7 +3433,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'progress'，表示任务进度。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3377,7 +3526,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'completed'，表示任务完成。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3470,7 +3619,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'failed'，表示任务失败。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3560,7 +3709,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'pause'，表示任务暂停。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3650,7 +3799,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'resume'，表示任务恢复。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3740,7 +3889,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | event | string | 是 | 取消订阅的事件类型。<br>- 取值为'remove'，表示任务被移除。 |
-  | callback | function | 是 | 回调函数，发生相关的事件时触发该回调方法。 |
+  | callback | function | 否 | 回调函数，发生相关的事件时触发该回调方法。 |
 
 回调函数的参数：
 
@@ -3892,6 +4041,160 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
     task.off('response', createOffCallback1);
     //表示取消订阅任务移除的所有回调
     task.off('response');
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### off('fault')<sup>20+</sup>
+
+off(event: 'fault', callback?: Callback&lt;Faults&gt;): void
+
+取消订阅任务响应头。
+
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名 | 类型                         | 必填 | 说明                                    |
+| -------- |----------------------------| -------- |---------------------------------------|
+| event | string                     | 是 | 订阅的事件类型。<br>- 取值为'fault'，表示任务失败。      |
+| callback | Callback&lt;[Faults](#faults10)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+  
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let faultOffCallback1 = (progress: request.agent.HttpResponse) => {
+    console.info('upload task failed.');
+  };
+  let faultOffCallback2 = (progress: request.agent.HttpResponse) => {
+    console.info('upload task failed.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('fault', faultOffCallback1);
+    task.on('fault', faultOffCallback2);
+    // 表示取消faultOffCallback1的订阅
+    task.off('fault', faultOffCallback1);
+    // 表示取消订阅任务移除的所有回调
+    task.off('fault');
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
+    task.start();
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+
+### off('wait')<sup>20+</sup>
+
+off(event: 'wait', callback?: Callback&lt;WaitingReason&gt;): void
+
+取消订阅任务响应头。
+
+
+**系统能力**：SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+| 参数名 | 类型                                | 必填 | 说明                                    |
+| -------- |-----------------------------------| -------- |---------------------------------------|
+| event | string                            | 是 | 订阅的事件类型。<br>- 取值为'wait'，表示任务等待。       |
+| callback | Callback&lt;[WaitingReason](#waitingreason20)&gt; | 否 | 需要取消订阅的回调函数。若无此参数，则默认取消订阅当前类型的所有回调函数。 |
+
+**示例：**
+
+  ```ts
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
+  
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  let attachments: Array<request.agent.FormItem> = [{
+    name: "taskOffTest",
+    value: {
+      filename: "taskOffTest.avi",
+      mimeType: "application/octet-stream",
+      path: "./taskOffTest.avi",
+    }
+  }];
+  let config: request.agent.Config = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1', // 需要手动将url替换为真实服务器的HTTP协议地址
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.FOREGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let waitOffCallback1 = (progress: request.agent.HttpResponse) => {
+    console.info('upload task failed.');
+  };
+  let waitOffCallback2 = (progress: request.agent.HttpResponse) => {
+    console.info('upload task failed.');
+  };
+  request.agent.create(context, config).then((task: request.agent.Task) => {
+    task.on('wait', waitOffCallback1);
+    task.on('wait', waitOffCallback2);
+    // 表示取消waitOffCallback1的订阅
+    task.off('wait', waitOffCallback1);
+    // 表示取消订阅任务移除的所有回调
+    task.off('wait');
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
     task.start();
   }).catch((err: BusinessError) => {

@@ -20,7 +20,7 @@ Click effect of the component.
 
 | Name| Type                                                 | Mandatory| Description                                                        |
 | ------ | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [ClickEffect](#clickeffect) \| null | Yes  | Click effect of the component.<br>**NOTE**<br>You can remove the click effect by setting this attribute to **undefined** or **null**.<br>Avoid using this attribute in scenarios where the component size dynamically changes.<br>This attribute is not supported when the component cannot trigger a universal event.|
+| value  | [ClickEffect](#clickeffect) \| null | Yes  | Click effect of the component.<br>**NOTE**<br>The click effect is revoked when this attribute is set to **null**.<br>Avoid using this attribute in scenarios where the component size dynamically changes.<br>This attribute is not supported when the component cannot trigger a universal event.|
 
 ## clickEffect<sup>18+</sup>
 

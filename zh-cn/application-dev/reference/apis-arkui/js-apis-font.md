@@ -6,12 +6,12 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 本模块功能依赖UI的执行上下文，不可在UI上下文不明确的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
+> 本模块功能依赖UI的执行上下文，不可在[UI上下文不明确](../../ui/arkts-global-interface.md)的地方使用，参见[UIContext](./js-apis-arkui-UIContext.md#uicontext)说明。
 
 ## 导入模块
 
 ```ts
-import { font } from '@kit.ArkUI'
+import { font } from '@kit.ArkUI';
 ```
 
 ## font.registerFont<sup>(deprecated)</sup>
@@ -51,7 +51,7 @@ registerFont(options: FontOptions): void
 
 > **说明**
 >
-> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+> 直接使用font可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
 ```ts
 // xxx.ets
@@ -147,7 +147,7 @@ getSystemFontList(): Array\<string>
 
 > **说明**
 >
-> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+> 直接使用font可能导致[UI上下文不明确](../../ui/arkts-global-interface.md)的问题，推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
 <!--deprecated_code_no_check-->
 
@@ -166,7 +166,7 @@ struct FontExample {
         .width('60%')
         .height('6%')
         .onClick(() => {
-          this.fontList = font.getSystemFontList() // 建议使用 this.getUIContext().getFont().getSystemFontList()接口
+          this.fontList = font.getSystemFontList(); // 建议使用 this.getUIContext().getFont().getSystemFontList()接口
         })
     }.width('100%')
   }
@@ -224,7 +224,7 @@ getFontByName(fontName: string): FontInfo
 
 > **说明**
 >
-> 推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
+> 直接使用font可能导致实例不明确的问题，推荐通过使用[UIContext](./js-apis-arkui-UIContext.md#uicontext)中的[getFont](./js-apis-arkui-UIContext.md#getfont)方法获取当前UI上下文关联的[Font](./js-apis-arkui-UIContext.md#font)对象。
 
 <!--deprecated_code_no_check-->
 
@@ -243,17 +243,17 @@ struct FontExample {
       Button("getFontByName")
         .onClick(() => {
           this.fontInfo =
-            font.getFontByName('HarmonyOS Sans Italic') // 建议使用 this.getUIContext().getFont().getFontByName()接口
-          console.log("getFontByName(): path = " + this.fontInfo.path)
-          console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
-          console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
-          console.log("getFontByName(): Family = " + this.fontInfo.family)
-          console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily)
-          console.log("getFontByName(): weight = " + this.fontInfo.weight)
-          console.log("getFontByName(): width = " + this.fontInfo.width)
-          console.log("getFontByName(): italic = " + this.fontInfo.italic)
-          console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace)
-          console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic)
+            font.getFontByName('HarmonyOS Sans Italic'); // 建议使用 this.getUIContext().getFont().getFontByName()接口
+          console.log("getFontByName(): path = " + this.fontInfo.path);
+          console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName);
+          console.log("getFontByName(): fullName = " + this.fontInfo.fullName);
+          console.log("getFontByName(): Family = " + this.fontInfo.family);
+          console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily);
+          console.log("getFontByName(): weight = " + this.fontInfo.weight);
+          console.log("getFontByName(): width = " + this.fontInfo.width);
+          console.log("getFontByName(): italic = " + this.fontInfo.italic);
+          console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace);
+          console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic);
         })
     }.width('100%')
   }

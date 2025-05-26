@@ -81,6 +81,10 @@ export class AVPlayerDemo {
   private isSeek: boolean = true; // Specify whether the seek operation is supported.
   private fileSize: number = -1;
   private fd: number = 0;
+  private context: Context | undefined;
+  constructor(context: Context) {
+    this.context = context; // this.getUIContext().getHostContext();
+  }
   // Set AVPlayer callback functions.
   setAVPlayerCallback(avPlayer: media.AVPlayer) {
     // Callback function for the seek operation.
@@ -162,14 +166,15 @@ export class AVPlayerDemo {
     this.setAVPlayerCallback(avPlayer);
     let fdPath = 'fd://';
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
-    let context = getContext(this) as common.UIAbilityContext;
-    let pathDir = context.filesDir;
-    let path = pathDir + '/01.mp3';
-    // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
-    this.isSeek = true; // The seek operation is supported.
-    avPlayer.url = fdPath;
+    if (this.context != undefined) {
+      let pathDir = this.context.filesDir;
+      let path = pathDir + '/01.mp3';
+      // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
+      let file = await fs.open(path);
+      fdPath = fdPath + '' + file.fd;
+      this.isSeek = true; // The seek operation is supported.
+      avPlayer.url = fdPath;
+    }
   }
 
   // The following demo shows how to use resourceManager to obtain the media file packed in the HAP file and play the media file by using the fdSrc attribute.
@@ -180,13 +185,14 @@ export class AVPlayerDemo {
     this.setAVPlayerCallback(avPlayer);
     // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
     // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
-    let context = getContext(this) as common.UIAbilityContext;
-    let fileDescriptor = await context.resourceManager.getRawFd('01.mp3');
-    let avFileDescriptor: media.AVFileDescriptor =
-      { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
-    this.isSeek = true; // The seek operation is supported.
-    // Assign a value to fdSrc to trigger the reporting of the initialized state.
-    avPlayer.fdSrc = avFileDescriptor;
+    if (this.context != undefined) {
+      let fileDescriptor = await this.context.resourceManager.getRawFd('01.mp3');
+      let avFileDescriptor: media.AVFileDescriptor =
+        { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
+      this.isSeek = true; // The seek operation is supported.
+      // Assign a value to fdSrc to trigger the reporting of the initialized state.
+      avPlayer.fdSrc = avFileDescriptor;
+    }
   }
 
   // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file with the seek operation using the dataSrc attribute.
@@ -210,13 +216,14 @@ export class AVPlayerDemo {
         return -1;
       }
     };
-    let context = getContext(this) as common.UIAbilityContext;
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
-    let pathDir = context.filesDir;
-    let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
-      this.fd = file.fd;
-    });
+    if (this.context != undefined) {
+      let pathDir = this.context.filesDir;
+      let path = pathDir  + '/01.mp3';
+      await fs.open(path).then((file: fs.File) => {
+        this.fd = file.fd;
+      });
+    }
     // Obtain the size of the file to be played.
     this.fileSize = fs.statSync(path).size;
     src.fileSize = this.fileSize;
@@ -230,7 +237,6 @@ export class AVPlayerDemo {
     let avPlayer: media.AVPlayer = await media.createAVPlayer();
     // Set a callback for state changes.
     this.setAVPlayerCallback(avPlayer);
-    let context = getContext(this) as common.UIAbilityContext;
     let src: media.AVDataSrcDescriptor = {
       fileSize: -1,
       callback: (buf: ArrayBuffer, length: number) => {
@@ -246,13 +252,15 @@ export class AVPlayerDemo {
       }
     };
     // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
-    let pathDir = context.filesDir;
-    let path = pathDir  + '/01.mp3';
-    await fs.open(path).then((file: fs.File) => {
-      this.fd = file.fd;
-    });
-    this.isSeek = false; // The seek operation is not supported.
-    avPlayer.dataSrc = src;
+    if (this.context != undefined) {
+        let pathDir = this.context.filesDir;
+        let path = pathDir  + '/01.mp3';
+        await fs.open(path).then((file: fs.File) => {
+          this.fd = file.fd;
+        });
+        this.isSeek = false; // The seek operation is not supported.
+        avPlayer.dataSrc = src;
+      }
   }
 
   // The following demo shows how to play live streams by setting the network address through the URL.

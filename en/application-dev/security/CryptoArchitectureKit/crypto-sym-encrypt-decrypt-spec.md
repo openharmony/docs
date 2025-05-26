@@ -1,11 +1,8 @@
 # Symmetric Key Encryption and Decryption Algorithm Specifications
 
-
 This topic describes the supported algorithms and specifications for symmetric key encryption and decryption.
 
-
 For details about the cipher modes supported by each algorithm, see the specifications of each algorithm.
-
 
 ## AES
 
@@ -43,7 +40,6 @@ The AES encryption and decryption can be implemented based a string parameter. W
   
   For example, if the block mode is CFB and the padding mode is **NoPadding** for an AES key with key length not specified, the string parameter is **AES|CFB|NoPadding**.
 
-
 ## 3DES
 
 [3DES](crypto-sym-key-generation-conversion-spec.md#3des) encryption and decryption apply the DES cipher three times to each data block to obtain the ciphertext or plaintext.
@@ -77,7 +73,6 @@ The 3DES encryption and decryption can be implemented based a string parameter. 
 - Since API version 10, symmetric encryption and decryption support the algorithm specifications without the key length. If the symmetric key type does not contain the key length, the encryption and decryption operations vary with the actual key length.
   For example, if the block mode is CFB and the padding mode is **NoPadding** for a 3DES key with key length not specified, the string parameter is **3DES|CFB|NoPadding**.
 
-
 ## SM4
 
 The Crypto framework provides the following cipher modes for [SM4](crypto-sym-key-generation-conversion-spec.md#sm4) encryption and decryption: ECB, CBC, CTR, OFB, CFB, CFB128, and GCM. The encryption and decryption parameters vary depending on the cipher mode. For details, see [ParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#paramsspec).
@@ -110,7 +105,6 @@ The SM4 encryption and decryption can be implemented based a string parameter. W
   | CFB | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | CFB128 | 128 | [NoPadding\|PKCS5\|PKCS7] | 10+ | 
   | GCM | 128 | [NoPadding\|PKCS5\|PKCS7] | 12+ | 
-
 
 ## Padding Mode
 
