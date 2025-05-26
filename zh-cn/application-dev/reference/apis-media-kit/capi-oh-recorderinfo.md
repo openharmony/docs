@@ -1,8 +1,8 @@
-# OH_VideoEncInfo
+# OH_RecorderInfo
 
 ## 概述
 
-视频解码信息
+录制文件信息
 
 **起始版本：** 10
 
@@ -16,8 +16,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_VideoCodecFormat videoCodec | 视频解码格式 |
-| int32_t videoBitrate | 比特率 |
-| int32_t videoFrameRate | 帧率 |
+| char* url | 录制文件url |
+| uint32_t urlLen | 录制文件url长度 |
+| OH_ContainerFormatType fileFormat | 录制文件url格式 |
 
 
