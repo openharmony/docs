@@ -111,7 +111,7 @@
 
 - **[使用AVPlayer开发音频播放功能(C/C++)](../media/using-ndk-avplayer-for-playback.md)**：
   
-  可以在调用[OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/_a_v_player.md#oh_avplayer_setaudiorendererinfo)接口时，传入对应的[OH_AudioStream_Usage](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage)指定音频流类型。
+  可以在调用[OH_AVPlayer_SetAudioRendererInfo](../../reference/apis-media-kit/capi-avplayer-h.md#oh_avplayer_setaudiorendererinfo)接口时，传入对应的[OH_AudioStream_Usage](../../reference/apis-audio-kit/capi-native-audiostream-base-h.md#oh_audiostream_usage)指定音频流类型。
 
 - **[使用SoundPool开发音频播放功能](../media/using-soundpool-for-playback.md)**：
   
