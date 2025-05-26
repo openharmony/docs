@@ -46,78 +46,6 @@
       - [TypeScript to ArkTS Cookbook](quick-start/typescript-to-arkts-migration-guide.md)
       - [Adaptation Cases](quick-start/arkts-more-cases.md)
     - [ArkTS Performant Programming Practices](quick-start/arkts-high-performance-programming.md)
-    - Basic Syntax of UI Paradigms<!--arkts-ui-paradigm-basic-syntax-->
-      - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
-      - [Declarative UI Description](quick-start/arkts-declarative-ui-description.md)
-      - Custom Components<!--arkts-custom-components-->
-        - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
-        - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
-        - [Custom Component Layout](quick-start/arkts-page-custom-components-layout.md)
-        - [Constraints on Access Modifiers of Custom Component Member Variables](quick-start/arkts-custom-components-access-restrictions.md)
-      - [\@Builder Decorator: Custom Builder Function](quick-start/arkts-builder.md)
-      - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](quick-start/arkts-localBuilder.md)
-      - [\@BuilderParam Decorator: @Builder Function Reference](quick-start/arkts-builderparam.md)
-      - [wrapBuilder: Encapsulating Global @Builder](quick-start/arkts-wrapBuilder.md)
-      - [\@Styles Decorator: Definition of Reusable Styles](quick-start/arkts-style.md)
-      - [\@Extend Decorator: Extension of Built-in Components](quick-start/arkts-extend.md)
-      - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
-      - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](quick-start/arkts-animatable-extend.md)
-      - [\@Require Decorator: Validating Constructor Input Parameters](quick-start/arkts-require.md)
-      - [@Reusable Decorator: Reusing Components](quick-start/arkts-reusable.md)
-    - State Management<!--arkts-state-management-->
-      - [State Management Overview](quick-start/arkts-state-management-overview.md)
-      - State Management (V1)<!--arkts-state-management-v1-->
-        - Component State Management<!--arkts-component-state-management-->
-          - [\@State Decorator: State Owned by Component](quick-start/arkts-state.md)
-          - [\@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components](quick-start/arkts-prop.md)
-          - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](quick-start/arkts-link.md)
-          - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](quick-start/arkts-provide-and-consume.md)
-          - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](quick-start/arkts-observed-and-objectlink.md)
-        - Application State Management<!--arkts-application-state-management-->
-          - [Application State Management Overview](quick-start/arkts-application-state-management-overview.md)
-          - [LocalStorage: UI State Storage](quick-start/arkts-localstorage.md)
-          - [AppStorage: Application-wide UI State Storage](quick-start/arkts-appstorage.md)
-          - [PersistentStorage: Persisting Application State](quick-start/arkts-persiststorage.md)
-          - [Environment: Device Environment Query](quick-start/arkts-environment.md)
-        - Other State Management Features<!--arkts-other-state-mgmt-functions-->
-          - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
-          - [\@Watch Decorator: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
-          - [$$ Syntax: Creating a Two-Way Synchronization with Built-in Components](quick-start/arkts-two-way-sync.md)
-          - [\@Track Decorator: Class Object Property-level Update](quick-start/arkts-track.md)
-          - [Freezing a Custom Component](quick-start/arkts-custom-components-freeze.md)
-        - [MVVM](quick-start/arkts-mvvm.md)
-        - [Best Practices for State Management](quick-start/arkts-state-management-best-practices.md)
-        - [Proper Use of State Management](quick-start/properly-use-state-management-to-develope.md)
-      - State Management (V2)<!--arkts-state-management-v2-->
-        - V2 Exclusive Decorators<!--arkts-v2-decorators-->
-          - [\@ObservedV2 and \@Trace Decorators: Observing Class Property Changes](quick-start/arkts-new-observedV2-and-trace.md)
-          - [\@ComponentV2 Decorator: Custom Component](quick-start/arkts-new-componentV2.md)
-          - [\@Local Decorator: Representing the Internal State of Components](quick-start/arkts-new-local.md)
-          - [\@Param Decorator: Inputting External Parameters to Components](quick-start/arkts-new-param.md)
-          - [\@Once: Implementing Initialization Once](quick-start/arkts-new-once.md)
-          - [\@Event Decorator: Component Output](quick-start/arkts-new-event.md)
-          - [\@Provider and \@Consumer Decorators: Synchronizing Across Component Levels in a Two-Way Manner](quick-start/arkts-new-Provider-and-Consumer.md)
-          - [\@Monitor Decorator: Listening for Value Changes of the State Variables](quick-start/arkts-new-monitor.md)
-          - [\\@Computed Decorator: Computed Property](quick-start/arkts-new-Computed.md)
-          - [\@Type Decorator: Marking the Types of the Class Property](quick-start/arkts-new-type.md)
-        - Other State Management Features<!--arkts-new-other-state-mgmt-->
-          - [AppStorageV2: Storing Application-wide UI State](quick-start/arkts-new-appstoragev2.md)
-          - [PersistenceV2: Persisting Application State](quick-start/arkts-new-persistencev2.md)
-          - [!! Syntax: Two-Way Binding](quick-start/arkts-new-binding.md)
-          - [Freezing a Custom Component](quick-start/arkts-custom-components-freezeV2.md)
-          - [Repeat: Reusing Child Components](quick-start/arkts-new-rendering-control-repeat.md)
-          - [getTarget API: Obtaining Original Objects](quick-start/arkts-new-getTarget.md)
-          - [makeObserved API: Changing Unobservable Data to Observable Data](quick-start/arkts-new-makeObserved.md)
-        - [MVVM (V2)](quick-start/arkts-mvvm-V2.md)
-      - Mixed Use and Migration Guide for V1 and V2<!--v1v2-migration-->
-        - [Mixing Use of Custom Components](quick-start/arkts-custom-component-mixed-scenarios.md)
-        - [Migrating Applications from V1 to V2](quick-start/arkts-v1-v2-migration.md)
-    - Rendering Control<!--arkts-rendering-control-->
-      - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
-      - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
-      - [ForEach: Rendering Repeated Content](quick-start/arkts-rendering-control-foreach.md)
-      - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
-      - [ContentSlot: Developing in a Hybrid Mode](quick-start/arkts-rendering-control-contentslot.md)
 - Development<!--application-develop-->
   - Application Framework<!--app-framework-->
     - Ability Kit<!--ability-kit-->
@@ -405,6 +333,78 @@
       - [Introduction to ArkUI](ui/arkui-overview.md)
       - UI Development (ArkTS-based Declarative Development Paradigm)<!--arkts-ui-development-->
         - [UI Development (ArkTS-based Declarative Development Paradigm) Overview](ui/arkts-ui-development-overview.md)
+        - Basic Syntax of UI Paradigms<!--arkts-ui-paradigm-basic-syntax-->
+          - [Basic Syntax Overview](ui/state-management/arkts-basic-syntax-overview.md)
+          - [Declarative UI Description](ui/state-management/arkts-declarative-ui-description.md)
+          - Custom Components<!--arkts-custom-components-->
+            - [Creating a Custom Component](ui/state-management/arkts-create-custom-components.md)
+            - [Page and Custom Component Lifecycle](ui/state-management/arkts-page-custom-components-lifecycle.md)
+            - [Custom Component Layout](ui/state-management/arkts-page-custom-components-layout.md)
+            - [Constraints on Access Modifiers of Custom Component Member Variables](ui/state-management/arkts-custom-components-access-restrictions.md)
+          - [\@Builder Decorator: Custom Builder Function](ui/state-management/arkts-builder.md)
+          - [\@LocalBuilder Decorator: Maintaining the Parent-Child Relationship Between Component and State Management](ui/state-management/arkts-localBuilder.md)
+          - [\@BuilderParam Decorator: @Builder Function Reference](ui/state-management/arkts-builderparam.md)
+          - [wrapBuilder: Encapsulating Global @Builder](ui/state-management/arkts-wrapBuilder.md)
+          - [\@Styles Decorator: Definition of Reusable Styles](ui/state-management/arkts-style.md)
+          - [\@Extend Decorator: Extension of Built-in Components](ui/state-management/arkts-extend.md)
+          - [stateStyles: Polymorphic Style](ui/state-management/arkts-statestyles.md)
+          - [\@AnimatableExtend Decorator: Definition of Animatable Attributes](ui/state-management/arkts-animatable-extend.md)
+          - [\@Require Decorator: Validating Constructor Input Parameters](ui/state-management/arkts-require.md)
+          - [@Reusable Decorator: Reusing Components](ui/state-management/arkts-reusable.md)
+        - UI Paradigm State Management<!--arkts-state-management-->
+          - [State Management Overview](ui/state-management/arkts-state-management-overview.md)
+          - State Management (V1)<!--arkts-state-management-v1-->
+            - Component State Management<!--arkts-component-state-management-->
+              - [\@State Decorator: State Owned by Component](ui/state-management/arkts-state.md)
+              - [\@Prop Decorator: One-Way Synchronization from the Parent Component to Child Components](ui/state-management/arkts-prop.md)
+              - [\@Link Decorator: Two-Way Synchronization Between Parent and Child Components](ui/state-management/arkts-link.md)
+              - [\@Provide and \@Consume Decorators: Two-Way Synchronization with Descendant Components](ui/state-management/arkts-provide-and-consume.md)
+              - [\@Observed and \@ObjectLink Decorators: Observing Attribute Changes in Nested Class Objects](ui/state-management/arkts-observed-and-objectlink.md)
+            - Application State Management<!--arkts-application-state-management-->
+              - [Application State Management Overview](ui/state-management/arkts-application-state-management-overview.md)
+              - [LocalStorage: UI State Storage](ui/state-management/arkts-localstorage.md)
+              - [AppStorage: Application-wide UI State Storage](ui/state-management/arkts-appstorage.md)
+              - [PersistentStorage: Persisting Application State](ui/state-management/arkts-persiststorage.md)
+              - [Environment: Device Environment Query](ui/state-management/arkts-environment.md)
+            - Other State Management Features<!--arkts-other-state-mgmt-functions-->
+              - [Overview of Other State Management Features](ui/state-management/arkts-other-state-mgmt-functions-overview.md)
+              - [\@Watch Decorator: Getting Notified of State Variable Changes](ui/state-management/arkts-watch.md)
+              - [$$ Syntax: Two-Way Synchronization of Built-in Components](ui/state-management/arkts-two-way-sync.md)
+              - [\@Track Decorator: Class Object Property-level Update](ui/state-management/arkts-track.md)
+              - [Freezing a Custom Component](ui/state-management/arkts-custom-components-freeze.md)
+            - [MVVM](ui/state-management/arkts-mvvm.md)
+            - [Best Practices for State Management](ui/state-management/arkts-state-management-best-practices.md)
+            - [Proper Use of State Management](ui/state-management/properly-use-state-management-to-develope.md)
+          - State Management (V2)<!--arkts-state-management-v2-->
+            - V2 Exclusive Decorators<!--arkts-v2-decorators-->
+              - [\@ObservedV2 and \@Trace Decorators: Observing Class Property Changes](ui/state-management/arkts-new-observedV2-and-trace.md)
+              - [\@ComponentV2 Decorator: Custom Component](ui/state-management/arkts-new-componentV2.md)
+              - [\@Local Decorator: Representing the Internal State of Components](ui/state-management/arkts-new-local.md)
+              - [\@Param Decorator: Inputting External Parameters to Components](ui/state-management/arkts-new-param.md)
+              - [\@Once: Implementing Initialization Once](ui/state-management/arkts-new-once.md)
+              - [\@Event Decorator: Component Output](ui/state-management/arkts-new-event.md)
+              - [\@Provider and \@Consumer Decorators: Synchronizing Across Component Levels in a Two-Way Manner](ui/state-management/arkts-new-Provider-and-Consumer.md)
+              - [\@Monitor Decorator: Listening for Value Changes of the State Variables](ui/state-management/arkts-new-monitor.md)
+              - [\\@Computed Decorator: Computed Property](ui/state-management/arkts-new-Computed.md)
+              - [\@Type Decorator: Marking the Types of the Class Property](ui/state-management/arkts-new-type.md)
+            - Other State Management Features<!--arkts-new-other-state-mgmt-->
+              - [AppStorageV2: Storing Application-wide UI State](ui/state-management/arkts-new-appstoragev2.md)
+              - [PersistenceV2: Persisting Application State](ui/state-management/arkts-new-persistencev2.md)
+              - [!! Syntax: Two-Way Binding](ui/state-management/arkts-new-binding.md)
+              - [Freezing a Custom Component](ui/state-management/arkts-custom-components-freezeV2.md)
+              - [Repeat: Reusing Child Components](ui/state-management/arkts-new-rendering-control-repeat.md)
+              - [getTarget API: Obtaining Original Objects](ui/state-management/arkts-new-getTarget.md)
+              - [makeObserved API: Changing Unobservable Data to Observable Data](ui/state-management/arkts-new-makeObserved.md)
+            - [MVVM (V2)](ui/state-management/arkts-mvvm-V2.md)
+          - Mixed Use and Migration Guide for V1 and V2<!--v1v2-migration-->
+            - [Mixing Use of Custom Components](ui/state-management/arkts-custom-component-mixed-scenarios.md)
+            - [Migrating Applications from V1 to V2](ui/state-management/arkts-v1-v2-migration.md)
+        - UI Paradigm Rendering Control<!--arkts-rendering-control-->
+          - [Rendering Control Overview](ui/state-management/arkts-rendering-control-overview.md)
+          - [if/else: Conditional Rendering](ui/state-management/arkts-rendering-control-ifelse.md)
+          - [ForEach: Rendering Repeated Content](ui/state-management/arkts-rendering-control-foreach.md)
+          - [LazyForEach: Lazy Data Loading](ui/state-management/arkts-rendering-control-lazyforeach.md)
+          - [ContentSlot: Representing a Placeholder in Hybrid Development](ui/state-management/arkts-rendering-control-contentslot.md)
         - Layout Development<!--arkts-layout-development-->
           - [Layout Overview](ui/arkts-layout-development-overview.md)
           - Building a Layout<!--arkts-build-layout-->

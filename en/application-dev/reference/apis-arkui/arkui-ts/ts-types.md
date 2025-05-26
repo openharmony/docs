@@ -818,7 +818,7 @@ The **Configuration** type is used to describe the color mode and font scale.
 | colorMode | string | Yes  | No  | Color mode.|
 | fontScale | number | Yes  | No  | Font scale.|
 
-## TextContentControllerOptions<sup>16+</sup>
+## TextContentControllerOptions<sup>15+</sup>
 
 The **TextContentControllerOptions** type is used to configure the insertion of text into a text box.
 

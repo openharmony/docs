@@ -290,7 +290,7 @@ struct Index {
 ```
 ## Building an HAR
 
-HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation.md#enabling-code-obfuscation).
+HAR can be used as a second-party or third-party library for other applications. To protect code assets, you are advised to [enable code obfuscation](../arkts-utils/source-obfuscation-guide.md).
 
 To better protect your source code, enable obfuscation for the HAR so that DevEco Studio compiles, obfuscates, and compresses code during HAR building.
 
