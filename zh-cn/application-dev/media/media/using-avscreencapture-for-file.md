@@ -127,7 +127,6 @@ target_link_libraries(entry PUBLIC libnative_avscreen_capture.so)
 下面展示了使用AVScreenCapture屏幕录制存文件的完整示例代码。
 
 ```c++
-
 #include "napi/native_api.h"
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
