@@ -70,7 +70,7 @@ constructor(value: CustomDialogControllerOptions)
 | levelUniqueId<sup>15+</sup>       | number | 否   | 设置页面级弹窗需要显示的层级下的[节点 uniqueId](../js-apis-arkui-frameNode.md#getuniqueid12)。<br/>取值范围：大于等于0的数字。<br />**说明：**<br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | immersiveMode<sup>15+</sup>       | [ImmersiveMode](../js-apis-promptAction.md#immersivemode15枚举说明) | 否   | 设置页面内弹窗蒙层效果。<br />**说明：**<br />- 默认值：ImmersiveMode.DEFAULT <br />- 当且仅当levelMode属性设置为LevelMode.EMBEDDED时生效。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 | levelOrder<sup>18+</sup>       | [LevelOrder](../js-apis-promptAction.md#levelorder18) | 否   | 设置弹窗显示的顺序。<br />**说明：**<br />- 默认值：LevelOrder.clamp(0) <br />- 不支持动态刷新顺序。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| focusable<sup>18+</sup>       | boolean | 否   | 设置弹窗是否获取焦点。值为true表示获取焦点，值为false表示不获取焦点。<br />默认值：true <br />**说明：**<br />只有弹出覆盖在当前窗口之上的弹窗才可以获取焦点。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| focusable<sup>19+</sup>       | boolean | 否   | 设置弹窗是否获取焦点。值为true表示获取焦点，值为false表示不获取焦点。<br />默认值：true <br />**说明：**<br />只有弹出覆盖在当前窗口之上的弹窗才可以获取焦点。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 > **说明：**
 >
@@ -148,6 +148,36 @@ close()
 
 
 关闭显示的自定义弹窗，若已关闭，则不生效。
+
+### getState<sup>20+</sup>
+
+getState(): PromptActionCommonState
+
+获取自定义弹窗的状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [PromptActionCommonState](#promptactioncommonstate20) | 返回对应的弹窗状态。 |
+
+## PromptActionCommonState<sup>20+</sup>
+
+type PromptActionCommonState = CommonState
+
+自定义弹窗的状态。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型 | 说明 |
+| -------- | -------- |
+| [CommonState](../js-apis-promptAction.md#commonstate20枚举说明) | 返回对应的弹窗状态。 |
 
 ## 示例
 
@@ -575,3 +605,62 @@ struct CustomDialogUser {
 ```
 
 ![zh-cn_image_custom](figures/zh-cn_image_custom_hovermode.gif)
+
+### 示例5（获取弹窗的状态）
+
+该示例实现了在CustomDialogController中调用getState获取弹窗当前状态。
+
+```ts
+// xxx.ets
+@CustomDialog
+struct CustomDialogExample {
+  controller?: CustomDialogController
+
+  build() {
+    Column() {
+      Button("点我查询弹窗状态:通过自定义组件自带controller")
+        .onClick(() => {
+          if (this.getDialogController() != undefined) {
+            console.info('state:' + this.getDialogController().getState())
+          } else {
+            console.info('state: no exist')
+          }
+        }).margin(20)
+      Button('点我查询弹窗状态:通过CustomDialogController ')
+        .onClick(() => {
+          console.info('state:' + this.controller?.getState())
+        }).margin(20)
+      Button('点我关闭弹窗')
+        .onClick(() => {
+          if (this.getDialogController() != undefined) {
+            this.getDialogController().close()
+          }
+        }).margin(20)
+      
+    }
+  }
+}
+
+@Entry
+@Component
+struct CustomDialogUser {
+  @State bg: ResourceColor = Color.Green
+  dialogController: CustomDialogController | null = new CustomDialogController({
+    builder: CustomDialogExample({
+    }),
+    autoCancel: false
+  })
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          if (this.dialogController != null) {
+            this.dialogController.open()
+          }
+        }).backgroundColor(0x317aff)
+    }.width('100%').margin({ top: 5 })
+    .backgroundColor(this.bg)
+  }
+}
+```

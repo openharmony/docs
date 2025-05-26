@@ -487,6 +487,103 @@ struct CustomDialogUser {
 
 由于自定义弹出框在状态管理侧有父子关系，如果将第二个弹出框定义在第一个弹出框内，那么当父组件（第一个弹出框）被销毁（关闭）时，子组件（第二个弹出框）内无法再继续创建新的组件。
 
+## 实现弹出框的物理返回拦截
+
+执行点击遮障层关闭、侧滑（左滑或右滑）、三键Back、键盘ESC关闭等交互操作时，如果注册了[onWillDismiss](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#customdialogcontrolleroptions对象说明)回调函数，弹出框不会立即关闭。在回调函数中，通过[reason](../reference/apis-arkui/arkui-ts/ts-methods-custom-dialog-box.md#dismissdialogaction12)获取阻拦关闭弹出框的操作类型，根据原因决定是否关闭弹出框。
+
+```ts
+@CustomDialog
+struct CustomDialogExample {
+  cancel: () => void = () => {
+  }
+  confirm: () => void = () => {
+  }
+  controller?: CustomDialogController;
+
+  build() {
+    Column() {
+      Text('Are you sure?')
+        .fontSize(20)
+        .margin({
+          top: 10,
+          bottom: 10
+        })
+      Row() {
+        Button('cancel')
+          .onClick(() => {
+            if (this.controller != undefined) {
+              this.controller.close();
+            }
+          })
+          .backgroundColor(0xffffff)
+          .fontColor(Color.Black)
+        Button('confirm')
+          .onClick(() => {
+            if (this.controller != undefined) {
+              this.controller.close();
+            }
+          })
+          .backgroundColor(0xffffff)
+          .fontColor(Color.Red)
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.SpaceAround)
+      .margin({ bottom: 10 })
+    }
+  }
+}
+
+@Entry
+@Component
+struct InterceptCustomDialog {
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExample({
+      cancel: () => {
+        this.onCancel();
+      },
+      confirm: () => {
+        this.onAccept();
+      }
+    }),
+    onWillDismiss: (dismissDialogAction: DismissDialogAction) => {
+      console.log('dialog onWillDismiss reason: ' + dismissDialogAction.reason);
+      // 1、PRESS_BACK    点击三键back、左滑/右滑、键盘ESC。
+      // 2、TOUCH_OUTSIDE    点击遮障层时
+      // 3、CLOSE_BUTTON    点击关闭按钮
+      if (dismissDialogAction.reason === DismissReason.PRESS_BACK) {
+        // 处理业务逻辑后通过dismiss主动关闭对话框
+        // dismissDialogAction.dismiss();
+      }
+      if (dismissDialogAction.reason === DismissReason.TOUCH_OUTSIDE) {
+        // dismissDialogAction.dismiss();
+      }
+    },
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: 0, dy: -20 }
+  })
+
+  onCancel() {
+    console.info('Callback when the first button is clicked');
+  }
+
+  onAccept() {
+    console.info('Callback when the second button is clicked');
+  }
+
+  build() {
+    Column() {
+      Button('click me')
+        .onClick(() => {
+          this.dialogController.open();
+        })
+    }
+    .width('100%')
+  }
+}
+```
+
+![onWillDismiss_dialog](figures/onWillDismiss_dialog.gif)
+
 ## 相关实例
 
 针对自定义弹出框开发，有以下相关实例可供参考：

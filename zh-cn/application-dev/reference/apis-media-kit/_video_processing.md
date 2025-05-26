@@ -493,7 +493,7 @@ VideoProcessing_ErrorCode OH_VideoProcessing_GetSurface (OH_VideoProcessing * vi
 
 创建surface。
 
-在视频处理启动之前创建输入surface。调用[OH_NativeWindow_DestroyNativeWindow](../apis-arkgraphics2d/_native_window.md#oh_nativewindow_destroynativewindow)销毁输入surface。
+在视频处理启动之前创建输入surface。调用[OH_NativeWindow_DestroyNativeWindow](../apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_destroynativewindow)销毁输入surface。
 
 **起始版本：** 12
 

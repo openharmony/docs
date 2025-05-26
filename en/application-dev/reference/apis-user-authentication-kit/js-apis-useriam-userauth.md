@@ -1532,7 +1532,7 @@ Enumerates the identity authentication types.
 
 | Name       | Value  | Description      |
 | ----------- | ---- | ---------- |
-| PIN<sup>10+</sup>         | 1    | PIN authentication.|
+| PIN<sup>10+</sup>         | 1    | Password authentication. |
 | FACE        | 2    | Facial authentication.|
 | FINGERPRINT | 4    | Fingerprint authentication.|
 

@@ -52,7 +52,7 @@ int32_t (*setLevelOrder)(ArkUI_NativeDialogHandle handle, double levelOrder)
 
 设置自定义弹窗显示的顺序。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 
@@ -516,7 +516,7 @@ int32_t (*setFocusable)(ArkUI_NativeDialogHandle handle, bool focusable)
 
 设置自定义弹窗是否获取焦点。
 
-**起始版本：** 18
+**起始版本：** 19
 
 **参数:**
 

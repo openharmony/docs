@@ -44,7 +44,7 @@ aa help
 
 ```bash
 # 显示启动Ability
-aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [-W] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 
 # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
 aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [-R] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
@@ -75,6 +75,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
+  | -W | 可选参数，调优命令。打印启动耗时。<br>**说明：** 从API version 20开始，支持该参数。        |
 
   **返回值**：
 
@@ -267,7 +268,7 @@ aa dump -a
   
   ```bash
   # 打印指定应用组件详细信息
-  aa dump -i 12
+  aa dump -i 105
   ```
 
   ![aa-dump-i](figures/aa-dump-i.png)

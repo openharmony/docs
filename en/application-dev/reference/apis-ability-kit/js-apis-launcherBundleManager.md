@@ -27,7 +27,7 @@ Obtains the launcher ability information based on the given bundle name and user
 | Name    | Type  | Mandatory| Description        |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | Yes  | Bundle name.|
-| userId     | number | Yes  | User ID.|
+| userId     | number | Yes  | User ID, which can be obtained by calling [getOsAccountLocalId](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9).|
 
 **Returns**
 
@@ -41,8 +41,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 201 | Permission denied. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 201 | Verify permission denied. |
 | 801 | Capability not support. |
 | 17700001 | The specified bundle name is not found.  |
 | 17700004 | The specified user ID is not found.       |
@@ -62,3 +61,15 @@ try {
     console.error(`errData is errCode:${code}  message:${message}`);
 }
 ```
+
+## LauncherAbilityInfo<sup>18+</sup>
+
+type LauncherAbilityInfo = _LauncherAbilityInfo
+
+Defines the information about the launcher ability.
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Launcher
+
+| Type                                                        | Description          |
+| ------------------------------------------------------------ | -------------- |
+| [_LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md) | Ability information of the home screen application.|

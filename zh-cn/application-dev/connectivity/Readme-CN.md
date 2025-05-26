@@ -14,3 +14,4 @@
 - WLAN<!--wlan-->
   - [WLAN服务开发概述](wlan/wlan-overview.md)
   - [P2P模式开发指南](wlan/p2p-development-guide.md)
+- [Connectivity Kit术语](terminology.md)

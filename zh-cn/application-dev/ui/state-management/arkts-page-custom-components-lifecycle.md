@@ -267,7 +267,7 @@ Page aboutToDisappear
 
 - 最小化应用或者应用进入后台，触发Index onPageHide。当前Index页面未被销毁，所以并不会执行组件的aboutToDisappear。应用回到前台，执行Index onPageShow。
 
-- 退出应用时，触发以下生命周期：Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。。
+- 退出应用时，触发以下生命周期：Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
 
 ## 自定义组件监听页面生命周期
 

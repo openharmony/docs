@@ -88,7 +88,7 @@ ws.connect(defaultIpAddress, {
 
 createWebSocket(): WebSocket
 
-创建一个WebSocket，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
+创建一个WebSocket对象，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -170,7 +170,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 
 connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
 
-根据URL地址和header，建立一个WebSocket连接，使用callback方式作为异步方法。
+根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
@@ -236,7 +236,7 @@ ws.connect(url, options, (err: BusinessError, value: Object) => {
 
 connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
-根据URL地址和header，建立一个WebSocket连接，使用Promise方式作为异步方法。
+根据URL地址，建立一个WebSocket连接，使用Promise方式作为异步方法。
 
 > **说明：**
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
@@ -260,7 +260,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回建立连接的结果。true:连接请求创建成功；false:连接请求创建失败。 |
+| Promise\<boolean\> | 回调函数。true:连接请求创建成功；false:连接请求创建失败。 |
 
 **错误码：**
 
@@ -286,9 +286,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value: boolean) => {
-  console.log("connect success")
+  console.log("connect success");
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err))
+  console.log("connect fail, error:" + JSON.stringify(err));
 });
 ```
 
@@ -464,7 +464,7 @@ ws.close((err: BusinessError) => {
 
 close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
-根据可选参数code和reason，关闭WebSocket连接，使用callback方式作为异步方法。
+根据参数options，关闭WebSocket连接，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -512,7 +512,7 @@ ws.close(options, (err: BusinessError) => {
 
 close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
-根据可选参数code和reason，关闭WebSocket连接，使用Promise方式作为异步方法。
+根据可选参数options，关闭WebSocket连接，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -634,7 +634,7 @@ ws.off('open', callback1);
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
-订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
+订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
@@ -647,7 +647,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
-| type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
+| type     | string                  | 是   | 'message'：WebSocket的接收服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
 **示例：**
@@ -666,7 +666,7 @@ ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
 
 off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
-取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
+取消订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
@@ -865,7 +865,7 @@ ws.off('dataEnd');
 
 on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
 
-订阅HTTP Response Header事件，使用callback方式作为同步方法。
+订阅HTTP Response Header事件，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -891,7 +891,7 @@ ws.on('headerReceive', (data) => {
 
 off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 
-取消订阅HTTP Response Header事件，使用callback方式作为同步方法。
+取消订阅HTTP Response Header事件，使用callback方式作为异步方法。
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -937,8 +937,8 @@ ws.off('headerReceive');
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | certPath   | string  | 是   | 证书路径。 |
-| keyPath | string | 是   | 证书秘钥的路径。 |
-| keyPassword | string | 否   | 证书秘钥的密码。 |
+| keyPath | string | 是   | 证书密钥的路径。 |
+| keyPassword | string | 否   | 证书密钥的密码。 |
 
 ## ProxyConfiguration<sup>12+</sup>
 type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy

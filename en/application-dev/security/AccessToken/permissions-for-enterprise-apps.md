@@ -317,3 +317,20 @@ Allows an application to obtain visible window information of the current screen
 **Enable via ACL**: true<!--DelEnd-->
 
 **Valid since**: 18
+
+## ohos.permission.SUPPORT_APP_SERVICE_EXTENSION
+
+Allows an application to be launched as an AppServiceExtension.
+
+With this permission, the application can be launched or connected as an AppServiceExtension by the same application or applications in appidentifierAllowList.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+<!--Del-->
+**Enable via ACL**: true<!--DelEnd-->
+
+**Supported Devices**：PC/2in1
+
+**Valid since**：20

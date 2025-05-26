@@ -32,7 +32,7 @@ class A {
 }
 
 @Sendable
-class B extends A {
+class B extends A { // A不是sendable class，B不能继承它，编译报错
   constructor() {
     super()
   }
@@ -68,7 +68,7 @@ class A {
   }
 }
 
-class B extends A {
+class B extends A { // A是sendable class，B不能继承它，编译报错
   constructor() {
     super()
   }
@@ -98,7 +98,7 @@ type ISendable = lang.ISendable;
 
 interface I extends ISendable {};
 
-class B implements I {};
+class B implements I {};  // I是sendable interface，B不能实现，编译报错
 ```
 
 ## Sendable类/接口成员变量规则
@@ -125,7 +125,7 @@ class A {
 class A {
   constructor() {
   }
-  b: Array<number> = [1, 2, 3] // 需使用collections.Array
+  b: Array<number> = [1, 2, 3] // 编译报错，需使用collections.Array
 }
 ```
 
@@ -152,7 +152,7 @@ class A {
 class A {
   constructor() {
   }
-  a!: number;
+  a!: number; // 编译报错，不支持使用“!”
 }
 ```
 
@@ -182,14 +182,14 @@ enum B {
 }
 @Sendable
 class A {
-    ["aaa"]: number = 1; // ["aaa"] is allowed in other classes in ets files
-    [B.b1]: number = 2; // [B.b1] is allowed in other classes in ets files
+    ["aaa"]: number = 1; // 编译报错，不支持["aaa"]
+    [B.b1]: number = 2; // 编译报错，不支持[B.b1]
 }
 ```
 
 ## 泛型规则
 
-### 泛型类中的Sendable类、collections.Array、collections.Map和collections.Set的模板类型必须是Sendable类型
+### 泛型类中的Sendable类、SendableLruCache、collections.Array、collections.Map和collections.Set的模板类型必须是Sendable类型
 
 Sendable数据不能持有非Sendable数据，因此泛型类中的Sendable数据的模版类型必须是Sendable类型。
 
@@ -213,7 +213,7 @@ try {
 import { collections } from '@kit.ArkTS';
 
 try {
-  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>();
+  let arr1: collections.Array<Array<number>> = new collections.Array<Array<number>>(); // 编译报错，模板类型必须是Sendable类型
   let arr2: Array<number> = new Array<number>();
   arr2.push(1);
   arr1.push(arr2);
@@ -309,6 +309,11 @@ type SendableFuncType = () => void;
 
 @Sendable
 class C {}
+
+@Sendable
+function SendableFunc() {
+  console.info("Sendable func");
+}
 ```
 
 **反例：**
@@ -338,7 +343,7 @@ class A {
 
 ```ts
 @Sendable
-@Observed
+@Observed // 编译报错
 class C {
   num: number = 1;
 }
@@ -372,7 +377,7 @@ let arr4: number[] = new collections.Array<number>(1, 2, 3); // 编译报错
 
 ### 禁止非Sendable类型强制转换为Sendable
 
-除了Object类型，非Sendable类型不能强转成Sendable类型。非Sendable类型通过as强转成Sendable类型后，实际数据仍为非Sendable类型，会导致错误使用。Sendable类型在不违反Sendable规则的前提下，需要和非Sendable类型行为兼容，因此Sendable类型可以as成非Sendable类型。
+除了Object类型，非Sendable类型不能强转成Sendable类型。非Sendable类型通过as强转成Sendable类型后，实际数据仍为非Sendable类型，会导致错误使用。Sendable类型在不违反Sendable规则的前提下，需要和非Sendable类型行为兼容，因此Sendable类型可以as强转成非Sendable类型。
 
 **正例：**
 
@@ -401,7 +406,7 @@ class SendableA {
   state: number = 0;
 }
 
-let a2: SendableA = new A() as SendableA;
+let a2: SendableA = new A() as SendableA; // 编译报错
 ```
 
 ## 函数规则
@@ -477,4 +482,4 @@ Sendable数据需要与[makeObserved](../ui/state-management/arkts-new-makeObser
 
 ## 在HAR包中的使用规则
 
-HAR中使用Sendable时，需开启编译生成TS文件的配置。详情可查[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)。
+HAR中使用Sendable时，需开启编译生成TS文件的配置。具体使用请参考[编译生成TS文件](../quick-start/har-package.md#编译生成ts文件)。

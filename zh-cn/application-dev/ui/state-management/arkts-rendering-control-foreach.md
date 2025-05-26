@@ -161,7 +161,7 @@ struct ChildItem {
 **图4**  ForEach非首次渲染案例运行效果图  
 ![ForEach-Non-Initial-Render-Case-Effect](figures/ForEach-Non-Initial-Render-Case-Effect.gif)
 
-从本例可以看出`@State` 能够监听到简单数据类型数组 `simpleList` 数组项的变化。
+从本例可以看出`@State`能够监听到简单数据类型数组`simpleList`数组项的变化。
 
 1. 当`simpleList`数组项发生变化时，会触发`ForEach`重新渲染。
 2. `ForEach`遍历新的数据源`['one', 'two', 'new three']`，并生成对应的键值`one`、`two`和`new three`。

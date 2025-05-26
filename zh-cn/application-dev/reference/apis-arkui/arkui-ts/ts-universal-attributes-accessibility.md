@@ -1,6 +1,6 @@
 # 无障碍属性
 
-组件可以设置相应的无障碍属性和事件来更好地使用无障碍能力。
+设置组件的无障碍属性和事件，以充分利用无障碍功能。
 
 >  **说明：**
 >
@@ -10,9 +10,9 @@
 
 accessibilityGroup(value: boolean)
 
-设置是否启用无障碍分组。启用无障碍分组后该组件及其所有子组件将作为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。
+设置是否启用无障碍分组。启用无障碍分组后，组件及其子组件作为一整个可选组件，无障碍服务不再关注子组件内容。
 
-若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本，若某一子组件没有通用文本属性，则忽略该子组件不进行拼接。此时合并文本不使用子组件的无障碍文本。
+若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本。若某一子组件没有通用文本属性，则忽略该子组件不进行拼接，此时合并文本不使用子组件的无障碍文本。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -30,11 +30,11 @@ accessibilityGroup(value: boolean)
 
 accessibilityGroup(isGroup: boolean, accessibilityOptions: AccessibilityOptions)
 
-设置是否启用无障碍分组，支持优先拼接无障碍文本进行朗读。启用无障碍分组后该组件及其所有子组件将作为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。
+设置是否启用无障碍分组。启用无障碍分组后，组件及其子组件作为一整个可选组件，无障碍服务不再关注子组件内容。
 
-若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本，若某一子组件没有通用文本属性，则忽略该子组件不进行拼接。
+若组件启用无障碍分组，当组件不包含通用文本属性，同时未设置[无障碍文本](#accessibilitytext)时，将默认拼接其子组件的通用文本属性作为组件的合并文本。若某一子组件没有通用文本属性，则忽略该子组件不进行拼接。
 
-通过accessibilityPreferred启用优先拼接无障碍文本进行朗读后，将优先拼接其子组件的无障碍文本属性作为组件的合并文本，若某一子组件未设置无障碍文本，则继续拼接该子组件的通用文本属性，若该子组件没有通用文本属性，则忽略该子组件不进行拼接。
+通过accessibilityPreferred启用优先拼接无障碍文本进行朗读后，将优先拼接其子组件的无障碍文本属性作为组件的合并文本。若某一子组件未设置无障碍文本，则继续拼接该子组件的通用文本属性，若该子组件没有通用文本属性，则忽略该子组件不进行拼接。
 
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
@@ -220,40 +220,6 @@ accessibilityRole(role: AccessibilityRoleType)
 | -------- | ------- | ---- | ------------------------------------------------------------ |
 | role | [AccessibilityRoleType](ts-universal-attributes-accessibility.md#AccessibilityRoleType18) | 是   | 屏幕朗读播报的组件类型，如按钮、图表。具体类型可由开发者自定义。 |
 
-## onAccessibilityFocus<sup>18+</sup>
-
-onAccessibilityFocus(callback: AccessibilityFocusCallback)
-
-设置无障碍节点获焦、失焦状态的回调函数。当状态发生变化时，触发回调函数。
-
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名   | 类型    | 必填 | 说明                                                         |
-| -------- | ------- | ---- | ------------------------------------------------------------ |
-| callback | [AccessibilityFocusCallback](ts-universal-attributes-accessibility.md#AccessibilityFocusCallback18) | 是   | 向注册回调函数方通知当前获焦、失焦状态。 |
-
-## AccessibilityFocusCallback<sup>18+</sup>
-
-type AccessibilityFocusCallback = (isFocus: boolean) => void
-
-定义onAccessibilityFocus中使用的回调类型。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名  | 类型    | 必填 | 说明              |
-| ------ | ------ | ---- | ---------------- |
-| isFocus | boolean | 是 | 用于表示组件是否获焦。<br/>true：当前组件获焦。<br/>false：当前组件失焦。|
-
 ## AccessibilityRoleType<sup>18+</sup>枚举说明
 
 定义组件的屏幕朗读功能角色类型。
@@ -288,7 +254,7 @@ type AccessibilityFocusCallback = (isFocus: boolean) => void
 | CONTAINER_MODAL | 21 | 模态容器。 |
 | DATA_PANEL | 22 | 数据面板组件。 |
 | DATE_PICKER | 23 | 选择日期的滑动选择器组件。 |
-| DIALOG | 24 | 弹出框 。 |
+| DIALOG | 24 | 弹出框。 |
 | DIVIDER | 25 | 提供分隔器组件。 |
 | DRAG_BAR | 26 | 拖拽条。 |
 | EFFECT_COMPONENT | 27 | 特效合并容器组件。 |
@@ -455,13 +421,13 @@ accessibilityUseSamePage(pageMode: AccessibilitySamePageMode)
 | 名称        | 值   | 说明                                                         |
 | ----------- | ---- | ------------------------------------------------------------ |
 | SEMI_SILENT | 0    | UEA（由UIExtensionComponent拉起来的进程的page事件）中如果是首次加载页面或者UEA页面的根节点发送的page事件会被忽略。 |
-| FULL_SILENT | 1    | UEA忽略所有的page事件。                                      |
+| FULL_SILENT | 1    | UEA将忽略所有的page事件。                                      |
 
 ## accessibilityScrollTriggerable<sup>18+</sup>
 
 accessibilityScrollTriggerable(isTriggerable: boolean)
 
-无障碍节点是否需要支持屏幕朗读滚动操作，即屏幕朗读在焦点切换时，若容器内当前页面无可聚焦的组件时，会发起一次自动滚动的操作。
+设置无障碍节点是否支持屏幕朗读滚动操作。当屏幕朗读在焦点切换时，若容器内当前页面无可聚焦的组件，会发起一次自动滚动操作。
 
 **卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
 
@@ -497,12 +463,13 @@ accessibilityTextHint(value: string)
 
 accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
-无障碍获焦绿框绘制层级设置能力。
+无障碍焦点绿框的绘制层级设置功能。
+
 > **说明：**
 >
-> 1、在聚焦节点层级绘制获焦无障碍绿框，默认使用这个层级绘制，由于绘制组件数顺序以及图形绘制顺序，绘制绿框会被父组件或者z序更高的兄弟组件遮挡裁切。
+> 1. 在聚焦节点层级绘制获焦无障碍绿框，默认使用该层级绘制，由于绘制组件数顺序以及图形绘制顺序，绘制绿框会被父组件或者z序更高的兄弟组件遮挡裁切。
 >
-> 2、在Z序顶层绘制绿框情况下，可以避免由于组件遮挡、裁切导致无障碍绿框被裁切遮挡。但由于具备较高的绘制层级，如果需要交互过程中，需要遮挡当前获焦的组件，并且不希望显示无障碍绿框则不适合使用这种配置。
+> 2. 在Z序顶层绘制绿框情况下，可以避免由于组件遮挡、裁切导致无障碍绿框被裁切遮挡。但由于具备较高的绘制层级，如果需要交互过程中，需要遮挡当前获焦的组件，并且不希望显示无障碍绿框则不适合使用这种配置。
 
 
 **卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
@@ -515,7 +482,7 @@ accessibilityFocusDrawLevel(drawLevel: FocusDrawLevel)
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel19) | 是   | 无障碍绘制能力，默认绘制聚焦节点本身。 |
+| drawLevel | [FocusDrawLevel](ts-appendix-enums.md#focusdrawlevel19) | 是   | 无障碍绘制能力，默认情况下绘制聚焦节点本身。 |
 
 ## 示例
 

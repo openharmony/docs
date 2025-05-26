@@ -132,20 +132,20 @@ interface EmitterOptions<PARTICLE extends ParticleType> {
   shape?: ParticleEmitterShape;
   position?: ParticleTuple<Dimension, Dimension>;
   size?: ParticleTuple<Dimension, Dimension>;
+  annulusRegion?: ParticleAnnulusRegion;
 }
 ```
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | particle | [EmitterParticleOptions](#emitterparticleoptions18)<[PARTICLE](#particletype)> | 是 | 粒子配置。<br>-type表示粒子类型，可以选择图片或者是点。<br/><br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>-config表示对应类型的配置。<br>-config类型和type值有关联：<br>1、如果type为ParticleType.POINT，则config类型为[PointParticleParameters](#pointparticleparameters) 。<br>2、如果type为ParticleType.IMAGE，则config类型为[ImageParticleParameters](#imageparticleparameters) 。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>-count表示发射的粒子总数，count取值>=-1,当count为-1表示粒子总数无限大。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>-lifetime表示单个粒子的生命周期，默认值1000（即1000ms，1s）,lifetime>=-1,当lifetime为-1表示粒子生命周期无限大。当lifetime<-1，取默认值。<br/>**说明：**如果不需要动画一直播放，建议不要将生命周期设置为-1，可能对性能造成较大影响。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>-lifeTimeRange表示粒子生命周期取值范围，设置lifeTimeRange后粒子的生命周期为 [lifetime-lifeTimeRange,lifeTime+lifeTimeRange]中间的一个随机整数。lifeTimeRange 默认值为0，取值范围为为0到正无穷。设置为负值时取默认值。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| emitRate | number | 否 | 发射器发射速率（即每秒发射粒子数）。 默认值：5，小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。|
-| shape | [ParticleEmitterShape](#particleemittershape) | 否 | 发射器形状。默认值：ParticleEmitterShape.RECTANGLE。 |
-| position | [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | 否 | 发射器位置（距离组件左上角的位置。第一个参数为x方向上的相对偏移，第二个参数为y轴方向相对偏移。） <br>默认值：`[0.0, 0.0]`。|
-| size |  [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)>     |否 | 发射窗口的大小。第一个参数为发射器宽，第二个参数为发射器高。<br>默认值：`['100%','100%']`(即发射窗口占满Particle组件)。 |
+| emitRate | number | 否 | 发射器发射速率（即每秒发射粒子数）。 默认值：5，小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| shape | [ParticleEmitterShape](#particleemittershape) | 否 | 发射器形状。默认值：ParticleEmitterShape.RECTANGLE。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| position | [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)> | 否 | 发射器位置（距离组件左上角的位置。第一个参数为x方向上的相对偏移，第二个参数为y轴方向相对偏移。） <br>默认值：`[0.0, 0.0]`。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| size |  [ParticleTuple](#particletuple18)<[Dimension](ts-types.md#dimension10), [Dimension](ts-types.md#dimension10)>     |否 | 发射窗口的大小。第一个参数为发射器宽，第二个参数为发射器高。<br>默认值：`['100%','100%']`(即发射窗口占满Particle组件)。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| annulusRegion<sup>20+</sup>  | [ParticleAnnulusRegion](ts-particle-animation.md#particleannulusregion20)| 否  |环形发射器参数。需要发射器形状为环形（即shape参数为ParticleEmitterShape.ANNULUS）时才生效，且对于环形发射器，形状信息必须通过annulusRegion参数指定，position和size不生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ParticleConfigs
 
@@ -323,18 +323,18 @@ enum ParticleEmitterShape {
   RECTANGLE = 'rectangle',
   CIRCLE = 'circle',
   ELLIPSE = 'ellipse',
+  ANNULUS = 'annulus',
 }
 ```
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称  | 描述 |
 | -------- |  -------- | 
-RECTANGLE |粒子发射器为矩形|
-CIRCLE | 粒子发射器为圆形|
-ELLIPSE |粒子发射器为椭圆形|
+RECTANGLE |粒子发射器为矩形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+CIRCLE | 粒子发射器为圆形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+ELLIPSE |粒子发射器为椭圆形。<br/> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+ANNULUS<sup>20+</sup> |粒子发射器为环形。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## DistributionType<sup>12+<sup>
 ```typescript
@@ -402,16 +402,15 @@ enum ParticleUpdater {
 
 ## EmitterProperty<sup>12+</sup>
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| index   | number | 是   |索引，取整，按初始化参数中发射器的数组索引指定对应的发射器。异常默认值为0。 |
-| emitRate  | number  | 否   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率， 传入值小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。 |
-| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。需传入两个有效参数，若其中一个为异常值，则position不生效。<br/>x、y的取值范围：(-∞, +∞)。 |
-| size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。需传入两个有效参数且都大于0，若其中一个为异常值，则size不生效。 |
+| index   | number | 是   |索引，取整，按初始化参数中发射器的数组索引指定对应的发射器。异常默认值为0。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| emitRate  | number  | 否   | 发射器发射速率，即每秒发射粒子的数量。<br/>未传入时保持其当前的发射速率， 传入值小于0时取默认值5。emitRate值超过5000时会极大影响性能，建议设置参数小于5000。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| position  | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;number&gt; | 否   |发射器位置的数组，只支持number类型。<br/>未传入时保持其当前的发射器位置。需传入两个有效参数，若其中一个为异常值，则position不生效。<br/>x、y的取值范围：(-∞, +∞)。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| size  | [SizeT](../js-apis-arkui-graphics.md#sizett12)&lt;number&gt;| 否  |发射窗口的大小，只支持number类型。<br/>未传入时保持其当前发射窗口大小。需传入两个有效参数且都大于0，若其中一个为异常值，则size不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| annulusRegion<sup>20+</sup>  | [ParticleAnnulusRegion](ts-particle-animation.md#particleannulusregion20)| 否  |环形发射器参数。需要对应index的发射器形状为环形才生效。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ## ParticleTuple<sup>18+</sup>
 
@@ -597,6 +596,33 @@ interface ParticleColorOptions {
 | g    | [ParticleTuple](#particletuple18)<number, number>  | 是   | g颜色通道的差值。            |
 | b    | [ParticleTuple](#particletuple18)<number, number>  | 是   | b颜色通道的差值。            |
 | a    | [ParticleTuple](#particletuple18)<number, number>  | 是   | a颜色通道的差值。            |
+
+## ParticleAnnulusRegion<sup>20+</sup>
+
+用于设置环形发射器区域的配置信息。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称   | 类型   | 必填 | 说明 |
+| ------ | ------ | ---- | ---- |
+| center      | [PositionT](../js-apis-arkui-graphics.md#positiont12)&lt;[LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&gt; | 否   | 圆环的圆心坐标，组件的左上角为坐标原点。默认值：{x:LengthMetrics.percent(0.5),y:LengthMetrics.percent(0.5)}   |
+| outerRadius      | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 圆环的外圆半径。   |
+| innerRadius  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 圆环的内圆半径。   |
+| startAngle | number | 否   | 圆环的起始角度。<br>单位：度<br>默认值：0  |
+| endAngle | number | 否   | 圆环的结束角度。<br>单位：度<br>默认值：360  |
+
+
+>  **说明：**
+>
+>  1、outerRadius、innerRadius小于零或使用百分比单位时，会按零进行处理。
+>
+>  2、当outerRadius小于innerRadius时（即外圆半径小于内圆半径时），会将当前较小的值作为新的内圆半径，将较大的值作为新的外圆半径。
+>
+>  3、当endAngle小于startAngle时（即结束角度小于起始角度时），会将当前较小的值作为新的起始角度，将较大的值作为新的结束角度。
+
+![](figures/annulus.png)
 
 ## 示例
 
@@ -1315,3 +1341,209 @@ struct ParticleExample {
 }
 ```
 ![particle](figures/emitters.gif)
+
+### 示例5（环形发射器创建）
+描述粒子动画环形发射器创建的基础用法。
+```ts
+import { LengthMetrics } from '@kit.ArkUI';
+
+@Entry
+@Component
+struct ParticleExample {
+  build() {
+    Stack() {
+      Text()
+        .width(300).height(300).backgroundColor(Color.Black)
+      Particle({
+        particles: [
+          {
+            emitter: {
+              particle: {
+                type: ParticleType.POINT, //粒子类型
+                config: {
+                  radius: 5//圆点半径
+                },
+                count: 2000, //粒子总数
+                lifetime: 10000, //粒子生命周期，单位ms
+                lifetimeRange: 100//粒子生命周期取值范围，单位ms
+              },
+              emitRate: 100, //每秒发射粒子数
+              shape: ParticleEmitterShape.ANNULUS,//环形发射器
+              annulusRegion:{
+                center:{x:LengthMetrics.percent(0.5),y:LengthMetrics.percent(0.5)}, // 圆环的圆心坐标
+                innerRadius:LengthMetrics.vp(100), // 圆环的外圆半径
+                outerRadius:LengthMetrics.vp(120), // 圆环的内圆半径
+                startAngle:0, // 圆环的起始角度
+                endAngle:360 // 圆环的结束角度
+              }
+            },
+            color: {
+              range: [Color.Pink, Color.White],
+            },
+            opacity: {
+              range: [0.0, 1.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0.0,
+                    to: 1.0,
+                    startMillis: 0,
+                    endMillis: 3000,
+                    curve: Curve.EaseIn
+                  },
+                  {
+                    from: 1.0,
+                    to: 0.0,
+                    startMillis: 5000,
+                    endMillis: 10000,
+                    curve: Curve.EaseIn
+                  }
+                ]
+              }
+            },
+            scale: {
+              range: [0.0, 0.0],
+              updater: {
+                type: ParticleUpdater.CURVE,
+                config: [
+                  {
+                    from: 0.0,
+                    to: 0.5,
+                    startMillis: 0,
+                    endMillis: 3000,
+                    curve: Curve.EaseIn
+                  }
+                ]
+              }
+            },
+          }
+        ]
+      }).width(300).height(300)
+    }.width("100%").height("100%").align(Alignment.Center)
+  }
+}
+```
+![](figures/annulusCreate.gif)
+
+### 示例6（环形发射器更新）
+描述粒子动画环形发射器更新的基础用法。
+```ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+
+@Entry
+@Component
+struct ParticleExample {
+
+  @State radius: number = 1
+  @State shape: ParticleEmitterShape = ParticleEmitterShape.ANNULUS
+  @State emitRate: number = 200
+  @State count: number = 2000
+  private timerID: number = -1
+  private centerX: LengthMetrics = LengthMetrics.percent(0.5)
+  private centerY: LengthMetrics = LengthMetrics.percent(0.5)
+  private inRadius: LengthMetrics = LengthMetrics.vp(120)
+  private outRadius: LengthMetrics = LengthMetrics.vp(120)
+  private startAngle: number = 0
+  private endAngle: number = 90
+  @State emitterProperties: Array<EmitterProperty> = [
+    {
+      index: 0,
+      emitRate: 100,
+      annulusRegion: {
+        center:{x:this.centerX, y: this.centerY}, // 圆环的圆心坐标
+        outerRadius: this.outRadius, // 圆环的外圆半径
+        innerRadius: this.inRadius, // 圆环的内圆半径
+        startAngle: -90, // 圆环的起始角度
+        endAngle: 0 // 圆环的结束角度
+      }
+    }
+  ]
+  @State region: ParticleAnnulusRegion = {
+    center:{x:this.centerX, y: this.centerY},
+    outerRadius: this.outRadius,
+    innerRadius: this.inRadius,
+    startAngle: -90,
+    endAngle: 0
+  }
+
+  aboutToDisappear(): void {
+    // 页面销毁时清除计时器
+    if (this.timerID != -1) {
+      clearInterval(this.timerID);
+    }
+  }
+
+  build() {
+    Column({ space: 10}) {
+      Stack() {
+        Text()
+          .width(300).height(300).backgroundColor(Color.Black)
+
+        Particle({
+          particles: [
+            {
+              emitter: {
+                particle: {
+                  type: ParticleType.POINT, // 粒子类型
+                  config: {
+                    radius: this.radius // 圆点半径
+                  },
+                  count: this.count, // 粒子总数
+                  lifetime: -1 // 粒子的生命周期，-1表示粒子生命周期无限大
+                },
+                emitRate: this.emitRate, // 每秒发射粒子数
+                shape: this.shape, //发射器形状
+                annulusRegion: this.region
+              },
+              color: {
+                range: [Color.White, Color.Pink], // 初始颜色范围
+              },
+            },
+          ]
+        }).width("100%")
+          .height("100%")
+          .emitter(this.emitterProperties)
+          .onClick(()=>{
+            // 清除已有定时器
+            if (this.timerID != -1) {
+              clearInterval(this.timerID);
+            }
+
+            // 创建定时器（每秒更新）
+            this.timerID = setInterval(() => {
+              this.emitterProperties = [
+                {
+                  index: 0,
+                  emitRate: this.emitRate,
+                  annulusRegion: {
+                    center:{x:this.centerX, y: this.centerY},
+                    outerRadius: this.outRadius,
+                    innerRadius: this.inRadius,
+                    startAngle: this.startAngle,
+                    endAngle: this.endAngle
+                  }
+                }
+              ];
+              if (this.endAngle >= 270) {
+                if (this.timerID != -1) {
+                  clearInterval(this.timerID);
+                }
+                return;
+              }
+              // 更新角度值（5度/秒）
+              this.startAngle += 30;
+              this.endAngle += 30;
+            }, 1000);
+
+          })
+      }
+      .width("100%")
+      .height("100%")
+      .align(Alignment.Center)
+    }
+  }
+}
+```
+![](figures/annulusUpdate.gif)

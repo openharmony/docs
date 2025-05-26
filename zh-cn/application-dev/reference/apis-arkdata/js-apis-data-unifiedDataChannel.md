@@ -1243,7 +1243,10 @@ UDMF已经支持的数据通路枚举类型。其主要用途是标识各种UDMF
 | 名称       | 值         | 说明      |
 |----------|-----------|---------|
 | DATA_HUB | 'DataHub' | 公共数据通路。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
-| DRAG<sup>14+</sup> | 'Drag' | 拖拽类型数据通路。<br/>**模型约束：** 仅可在Stage模型下使用。 |
+| DRAG<sup>14+</sup> | 'Drag' | 拖拽类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**适用场景：** 适用于在拖拽场景下使用UDMF来跨应用数据共享。 |
+| SYSTEM_SHARE<sup>20+</sup> | 'SystemShare' | 系统分享类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**适用场景：** 适用于在系统分享场景下使用UDMF来跨应用数据共享。 |
+| PICKER<sup>20+</sup> | 'Picker' | Picker类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**适用场景：** 适用于在Picker选择器场景下使用UDMF来跨应用数据共享。 |
+| MENU<sup>20+</sup> | 'Menu' | 菜单类型数据通道。<br/>**模型约束：** 此接口仅可在Stage模型下使用。<br/>**适用场景：** 适用于在右键菜单场景下使用UDMF来跨应用数据共享。 |
 
 ## Options
 
@@ -1893,7 +1896,7 @@ setAppShareOptions(intention: Intention, shareOptions: ShareOptions): void
 | ------------ | ------------------------------------------------------------ |
 | 201          | Permission denied. Interface caller does not have permission "ohos.permission.MANAGE_UDMF_APP_SHARE_OPTION". |
 | 401          | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 20400001     | Settings already exist, if need to reconfigure, please remove the previous share options.       |
+| 20400001     | Settings already exist. To reconfigure, remove the existing sharing options.       |
 
 **示例：**
 

@@ -1731,6 +1731,10 @@ rmdir(path: string): Promise&lt;void&gt;
 
 删除整个目录，使用promise异步回调。
 
+> **说明：**
+>
+> 该接口支持删除单个文件，但不推荐使用此方法删除单个文件，推荐使用unlink接口删除单个文件。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
@@ -1769,6 +1773,10 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除整个目录，使用callback异步回调。
 
+> **说明：**
+>
+> 该接口支持删除单个文件，但不推荐使用此方法删除单个文件，推荐使用unlink接口删除单个文件。
+
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
@@ -1803,6 +1811,10 @@ rmdir(path: string, callback: AsyncCallback&lt;void&gt;): void
 rmdirSync(path: string): void
 
 以同步方法删除目录。
+
+> **说明：**
+>
+> 该接口支持删除单个文件，但不推荐使用此方法删除单个文件，推荐使用unlinkSync接口删除单个文件。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2983,7 +2995,9 @@ symlinkSync(target: string, srcPath: string): void
 ## fs.listFile
 listFile(path: string, options?: ListFileOptions): Promise<string[]>
 
-列出目录下的所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。使用promise异步回调。
+默认列出当前目录下所有文件名和目录名。支持过滤。使用promise异步回调。
+
+可通过配置options中recursion参数实现递归列出所有文件的相对路径，相对路径以“/”开头。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3034,7 +3048,9 @@ listFile(path: string, options?: ListFileOptions): Promise<string[]>
 ## fs.listFile
 listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string[]>): void
 
-列出目录下的所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。使用callback异步回调。
+默认列出当前目录下所有文件名和目录名。支持过滤。使用callback异步回调。
+
+可通过配置options中recursion参数实现递归列出所有文件的相对路径，相对路径以“/”开头。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3083,7 +3099,9 @@ listFile(path: string, options?: ListFileOptions, callback: AsyncCallback<string
 
 listFileSync(path: string, options?: ListFileOptions): string[]
 
-以同步方式列出目录下所有文件名。支持递归列出所有文件名，支持文件过滤，返回结果以“/”开头且包含子目录路径。
+默认以同步方式列出当前目录下所有文件名和目录名。支持过滤。
+
+可通过配置options中recursion参数实现递归列出所有文件的相对路径，相对路径以“/”开头。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -6023,7 +6041,7 @@ open接口flags参数常量。文件打开标签。
 | suffix | Array&lt;string&gt;     | 否 | 文件后缀名完全匹配，各个关键词OR关系。           |
 | displayName    | Array&lt;string&gt;     | 否 | 文件名模糊匹配，各个关键词OR关系。当前仅支持通配符*。 |
 | mimeType    | Array&lt;string&gt; | 否 | mime类型完全匹配，各个关键词OR关系。预留字段，暂不支持使用。      |
-| fileSizeOver    | number | 否 | 文件大小匹配，大于等于指定大小的文件。       |
+| fileSizeOver    | number | 否 | 文件大小匹配，大于指定大小的文件。       |
 | lastModifiedAfter    | number | 否 | 文件最近修改时间匹配，在指定时间点及之后的文件。       |
 | excludeMedia    | boolean | 否 | 是否排除Media中已有的文件。true：排除Media中已有的文件；false：不排除Media中已有的文件。    |
 

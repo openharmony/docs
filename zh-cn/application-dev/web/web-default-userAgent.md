@@ -105,6 +105,45 @@ struct WebComponent {
 }
 ```
 
+从API version 20开始，可通过[setAppCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#setappcustomuseragent20)接口设置应用级自定义用户代理，或者通过[setUserAgentForHosts()](../reference/apis-arkweb/js-apis-webview.md#setuseragentforhosts20)对特定网站设置应用级自定义用户代理，覆盖系统的用户代理，应用内所有Web组件生效。
+
+建议在Web组件创建前调用setAppCustomUserAgent，setUserAgentForHosts方法设置User-Agent，再创建指定src的Web组件或通过loadUrl加载具体页面。
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.initializeWebEngine();
+      let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+      let appUA = " appUA";
+      webview.WebviewController.setUserAgentForHosts(
+        appUA,
+        [
+          "www.example.com",
+          "www.baidu.com"
+        ]
+      );
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 在下面的示例中，通过[getCustomUserAgent()](../reference/apis-arkweb/js-apis-webview.md#getcustomuseragent10)接口获取自定义用户代理。
 
 ```ts
@@ -134,6 +173,15 @@ struct WebComponent {
   }
 }
 ```
+
+## 相关User-Agent接口优先级
+
+| 接口名称 | 优先级 | 说明 |
+| -------- | -------- | -------- |
+| setCustomUserAgent | 最高 | 对调用的Web组件生效。|
+| setUserAgentForHosts | 低于setCustomUserAgent | 对应用中所有Web组件访问指定网站生效。|
+| setAppCustomUserAgent | 低于setUserAgentForHosts | 对应用中所有Web组件生效。 |
+|  ArkWeb默认UA | 最低 | 对应用中所有Web组件生效，只读，通过getDefaultUserAgent获取。|
 
 ## 常见问题
 

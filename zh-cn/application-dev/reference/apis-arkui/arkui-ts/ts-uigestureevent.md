@@ -25,8 +25,8 @@ addGesture(gesture: GestureHandler\<T>, priority?: GesturePriority, mask?: Gestu
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | gesture  |  [GestureHandler\<T>](#gesturehandlert) | 是   | 手势处理器对象。 |
-| priority  |  [GesturePriority](#gesturepriority枚举说明) | 否   | 绑定手势的优先级。 |
-| mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。 |
+| priority  |  [GesturePriority](#gesturepriority枚举说明) | 否   | 绑定手势的优先级。<br>默认值：GesturePriority.NORMAL |
+| mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。<br>默认值：GestureMask.Normal |
 
 ### addParallelGesture
 
@@ -43,7 +43,7 @@ addParallelGesture(gesture: GestureHandler\<T>, mask?: GestureMask): void
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
 | gesture  |  [GestureHandler\<T>](#gesturehandlert) | 是   | 手势处理器对象。 |
-| mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。 |
+| mask  |  [GestureMask](./ts-gesture-settings.md#gesturemask枚举说明) | 否   | 事件响应设置。<br>默认值：GestureMask.Normal |
 
 ### removeGestureByTag
 
