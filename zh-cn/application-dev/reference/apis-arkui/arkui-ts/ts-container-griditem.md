@@ -123,7 +123,7 @@ forceRebuild(value: boolean)
 
 设置在触发组件build时是否重新创建此节点。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。
 
-从API version9开始废弃。
+从API version 9开始废弃。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
