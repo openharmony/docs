@@ -24,7 +24,7 @@ Binds a modal to the component, which can be displayed when the component is tou
 
 | Name | Type                                       | Mandatory| Description                                                        |
 | ------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
-| isShow  | Optional\<boolean\>                         | Yes  | Whether to display the modal.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).<br>Since API version 16, this parameter supports two-way binding through [!!](../../../quick-start/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
+| isShow  | Optional\<boolean\>                         | Yes  | Whether to display the modal.<br>Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).<br>Since API version 16, this parameter supports two-way binding through [!!](../../../ui/state-management/arkts-new-binding.md#two-way-binding-between-built-in-component-parameters).|
 | builder | [CustomBuilder](ts-types.md#custombuilder8) | Yes  | Content of the modal.                                      |
 | options | [ContentCoverOptions](#contentcoveroptions) | No  | Optional attributes of the modal.                                |
 

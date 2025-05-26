@@ -26,7 +26,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 | Name| Type| Mandatory  | Description          |
 | ---- | ---------- | -----| -------------- |
 | type | [ToggleType](#toggletype) | Yes  | Type of the toggle.<br>Default value: **ToggleType.Switch**                  |
-| isOn | boolean                           | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).|
+| isOn | boolean                           | No  | Whether the toggle is turned on. The value **true** means that the toggle is turned on, and **false** means the opposite.<br>Default value: **false**<br>This parameter supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).|
 
 ## ToggleType
 

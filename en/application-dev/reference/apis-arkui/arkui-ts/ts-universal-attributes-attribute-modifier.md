@@ -163,7 +163,7 @@ struct attributeDemo {
 
 ### Example 2: Implementing the Pressed State Effect with a Modifier
 
-This example demonstrates how to implement a pressed state effect for a **Button** component by binding it to a modifier. For details about how to use the attribute modifier with state management V2, see [Modifier and makeObserved](../../../quick-start/arkts-v1-v2-migration.md#modifier).
+This example demonstrates how to implement a pressed state effect for a **Button** component by binding it to a modifier. For details about how to use the attribute modifier with state management V2, see [Modifier and makeObserved](../../../ui/state-management/arkts-v1-v2-migration.md#modifier).
 
 ```ts
 // xxx.ets

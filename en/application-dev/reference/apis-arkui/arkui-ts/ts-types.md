@@ -358,7 +358,7 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | () =&gt; any \| void | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../../quick-start/arkts-builder.md).|
+| CustomBuilder | () =&gt; any \| void | Builder for creating a custom component; must be used with @Builder. For details, see [@Builder](../../../ui/state-management/arkts-builder.md).|
 
 ## MarkStyle<sup>10+</sup>
 
@@ -818,7 +818,7 @@ The **Configuration** type is used to describe the color mode and font scale.
 | colorMode | string | Yes  | No  | Color mode.|
 | fontScale | number | Yes  | No  | Font scale.|
 
-## TextContentControllerOptions<sup>16+</sup>
+## TextContentControllerOptions<sup>15+</sup>
 
 The **TextContentControllerOptions** type is used to configure the insertion of text into a text box.
 

@@ -17,7 +17,11 @@ Styled strings are string objects that facilitate the flexible use of text style
 
 ## StyledString
 
+### constructor
+
 constructor(value: string | ImageAttachment | CustomSpan , styles?: Array\<StyleOptions>)
+
+A constructor used to create a styled string.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -793,17 +797,16 @@ Describes the image attachment.
 
 ### Properties
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name          | Type             | Read Only  | Optional  | Description    |
 | ------------ |---------------------| ---- | ---- | ------ |
-| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes |  No | Image data source of the styled string.|
-| size  | [SizeOptions](ts-types.md#sizeoptions) |  Yes |  Yes | Image size of the styled string.|
-| verticalAlign  | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) |  Yes |  Yes | Image alignment mode of the styled string.|
-| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  Yes |  Yes | Image scale type of the styled string.|
-| layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) |  Yes |  Yes | Image layout of the styled string.|
+| value  | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes |  No | Image data source of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| size  | [SizeOptions](ts-types.md#sizeoptions) |  Yes |  Yes | Image size of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| verticalAlign  | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) |  Yes |  Yes | Image alignment mode of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| objectFit  | [ImageFit](ts-appendix-enums.md#imagefit) |  Yes |  Yes | Image scale type of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| layoutStyle  | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) |  Yes |  Yes | Image layout of the styled string. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  Yes |  Yes | Image color filter of the styled string. **Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ### constructor
 
@@ -821,19 +824,64 @@ A constructor used to create an image object.
 | ------- | --------------------------------- | ---- | --------------------------------- |
 | value | [ImageAttachmentInterface](#imageattachmentinterface) | Yes  | Image attachment options.|
 
-## ImageAttachmentInterface
+### constructor<sup>15+</sup>
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
+constructor(attachment: Optional\<AttachmentType\>)
+
+A constructor used to create an image object. Compared to the constructor with a **value** type parameter, this constructor with an **attachment** type parameter supports images of **undefined** and [ResourceStr](ts-types.md#resourcestr) types.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| attachment | Optional<[AttachmentType](#attachmenttype15)> | Yes  | Image attachment, which can be of type PixelMap or [ResourceStr](ts-types.md#resourcestr).|
+
+## AttachmentType<sup>15+</sup>
+
+type AttachmentType = ImageAttachmentInterface | ResourceImageAttachmentOptions
+
+Defines the image attachment type, which is used to set images of PixelMap or [ResourceStr](ts-types.md#resourcestr) type for styled strings.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type | Description  |
+| ------ | ---------- |
+| [ImageAttachmentInterface](#imageattachmentinterface) | Settings for images of the PixelMap type.|
+| [ResourceImageAttachmentOptions](#resourceimageattachmentoptions15) | Settings for images of the ResourceStr type.|
+
+## ColorFilterType<sup>15+</sup>
+
+type ColorFilterType = ColorFilter | DrawingColorFilter
+
+Defines the type for image color filter settings.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Type | Description  |
+| ------ | ---------- |
+| [ColorFilter](ts-types.md#colorfilter9) | Color filter settings of the ColorFilter type.|
+| [DrawingColorFilter](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#colorfilter) | Color filter settings of the DrawingColorFilter type.|
+
+## ImageAttachmentInterface
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 | Name | Type                             | Mandatory| Description  |
 | ------- | --------------------------------- | ---- | --------------------------------- |
-| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes | Image data source.|
-| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size.|
-| verticalAlign | [ImageSpanAlignment](ts-basic-components-imagespan.md#imagespanalignment) | No  | Alignment mode of the image with the text.|
-| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type.|
-| layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout.|
+| value | [PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7) |  Yes | Image data source. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size. **Atomic service API**: This API can be used in atomic services since API version 12.<br>The default value of **size** depends on the value of **objectFit**. For example, if the value of **objectFit** is **Cover**, the image height is the component height minus the top and bottom paddings, and the image width is the component width minus the left and right paddings.|
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | No  | Alignment mode of the image with the text. **Atomic service API**: This API can be used in atomic services since API version 12.<br>Default value: **ImageSpanAlignment.BOTTOM**|
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type. **Atomic service API**: This API can be used in atomic services since API version 12.<br>Default value: **ImageFit.Cover**|
+| layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout. **Atomic service API**: This API can be used in atomic services since API version 12.|
+| colorFilter<sup>15+</sup>  | [ColorFilterType](#colorfiltertype15) |  No | Image color filter of the styled string. **Atomic service API**: This API can be used in atomic services since API version 15.|
 
 ## ImageAttachmentLayoutStyle
 
@@ -846,6 +894,24 @@ A constructor used to create an image object.
 | margin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Margin](ts-types.md#margin) | No  | Image margin.|
 | padding | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [Padding](ts-types.md#padding) | No  | Image padding.|
 | borderRadius | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) \| [BorderRadiuses](ts-types.md#borderradiuses9) | No  | Radius of the image border corners.|
+
+## ResourceImageAttachmentOptions<sup>15+</sup>
+
+Defines the settings for images of the ResourceStr type.
+
+**Atomic service API**: This API can be used in atomic services since API version 15.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+| Name | Type                             | Mandatory| Description  |
+| ------- | --------------------------------- | ---- | --------------------------------- |
+| resourceValue | Optional<[ResourceStr](ts-types.md#resourcestr)> |  Yes | Image data source.|
+| size | [SizeOptions](ts-types.md#sizeoptions) | No  | Image size.|
+| verticalAlign | [ImageSpanAlignment](ts-appendix-enums.md#imagespanalignment10) | No  | Alignment mode of the image with the text.<br>Default value: **ImageSpanAlignment.BOTTOM**|
+| objectFit | [ImageFit](ts-appendix-enums.md#imagefit) | No  | Image scale type.<br>Default value: **ImageFit.Cover**|
+| layoutStyle | [ImageAttachmentLayoutStyle](#imageattachmentlayoutstyle) | No  | Image layout.|
+| colorFilter  | [ColorFilterType](#colorfiltertype15) |  No | Image color filter of the styled string.|
+| syncLoad  | boolean |  No | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder image is not displayed.<br>Default value: **false**|
 
 ## CustomSpan
 
@@ -1605,6 +1671,21 @@ struct styled_string_demo4 {
             }
           })
 
+        Button('Set Resource Type Image')
+          .onClick(() => {
+            if (this.imagePixelMap !== undefined) {
+              this.mutableStr = new MutableStyledString(new ImageAttachment({
+                resourceValue: $r('app.media.icon'),
+                size: { width: 50, height: 50 },
+                layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+                verticalAlign: ImageSpanAlignment.BASELINE,
+                objectFit: ImageFit.Contain,
+                syncLoad: true
+              }))
+              this.controller.setStyledString(this.mutableStr)
+            }
+          })
+
         Button('Image: Append')
           .onClick(() => {
             let str = new StyledString('123')
@@ -2096,3 +2177,64 @@ struct styled_string {
 }
 ```
 
+### Example 10: Setting a Color Filter for an Image
+
+This example demonstrates how to apply a color filter to an image by setting **colorFilter** for **imageAttachment**.
+
+``` ts
+// xxx.ets
+import { LengthMetrics } from '@kit.ArkUI'
+import { drawing, common2D } from '@kit.ArkGraphics2D';
+@Entry
+@Component
+struct styled_string_demo4 {
+  @State message: string = 'Hello World'
+  mutableStr: MutableStyledString = new MutableStyledString('origin image:');
+  mutableStr2: MutableStyledString = new MutableStyledString('with filter:');
+  controller: TextController = new TextController();
+  controller2: TextController = new TextController();
+  private color: common2D.Color = { alpha: 125, red: 125, green: 125, blue: 255 };
+  build() {
+    Row() {
+      Column({ space: 5 }) {
+        Text(undefined, { controller: this.controller })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+          .onAppear(() => {
+            this.mutableStr = new MutableStyledString(new ImageAttachment({
+              resourceValue: $r('app.media.startIcon'),
+              size: { width: 50, height: 50 },
+              layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+              verticalAlign: ImageSpanAlignment.BASELINE,
+              objectFit: ImageFit.Contain,
+              syncLoad: true
+            }))
+            this.controller.setStyledString(this.mutableStr)
+          })
+        Text(undefined, { controller: this.controller2 })
+          .copyOption(CopyOptions.InApp)
+          .draggable(true)
+          .fontSize(30)
+        Button('set image color filter')
+          .onClick(() => {
+            this.mutableStr2 = new MutableStyledString(new ImageAttachment({
+              resourceValue: $r('app.media.startIcon'),
+              size: { width: 50, height: 50 },
+              layoutStyle: { borderRadius: LengthMetrics.vp(10) },
+              verticalAlign: ImageSpanAlignment.BASELINE,
+              objectFit: ImageFit.Contain,
+              colorFilter: drawing.ColorFilter.createBlendModeColorFilter(this.color, drawing.BlendMode.SRC_IN),
+              syncLoad: true
+            }))
+            this.controller2.setStyledString(this.mutableStr2)
+          })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+
+![](figures/styledString_10.gif)
