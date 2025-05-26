@@ -30,7 +30,7 @@ Multi-Category Security(MCS)是 SELinux 强制访问控制的一种模式，通�
 
 ## MCS生效验证
 
-开启MCS并配置安全级别后，使用命令`ps -efZ`查询levelFrom——MCS配置状况。
+开启MCS并配置安全级别后，使用命令`ps -efZ`查询MCS配置状况。
 示例如下：
 ```text
 o:r:normal_hap:s0:x55,x334,x512,x868,x1024
