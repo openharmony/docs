@@ -39,7 +39,7 @@ setShortcutVisibleForSelf(id: string, visible: boolean) : Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17700070 | The specified shortcut id is not exist. |
+| 17700070 | The specified shortcut id is illegal. |
 
 **示例：**
 
