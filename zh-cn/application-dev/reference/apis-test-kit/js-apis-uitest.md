@@ -3260,7 +3260,7 @@ async function demo() {
 
 getDisplaySize(displayId: number): Promise\<Point>
 
-获取当前设备的屏幕大小，使用Promise异步回调。
+获取当前设备指定屏幕的大小，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
