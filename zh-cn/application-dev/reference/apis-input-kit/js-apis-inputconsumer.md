@@ -50,7 +50,7 @@ getAllSystemHotkeys(): Promise&lt;Array&lt;HotkeyOptions&gt;&gt;
 
 **返回值：**
 
-| 参数         |  说明                                       |
+| 类型         |  说明                                       |
 | ---------- |  ---------------------------------------- |
 | Promise&lt;Array&lt;HotkeyOptions&gt;&gt;                    | Promise对象，返回所有系统快捷键的列表。 |
 
