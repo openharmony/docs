@@ -28,7 +28,7 @@
       - [Working with Cleanup Hooks Using Node-API](use-napi-about-cleanuphook.md)
       - [Working with Date Using Node-API](use-napi-about-date.md)
       - [Error Handling Using Node-API](use-napi-about-error.md)
-      - [Associating Data with a Running Environment to Tide Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
+      - [Associating Data with a Running Environment to Tie Their Lifecycle Using Node-API](use-napi-about-environmental-life-cycle.md)
       - [Working with Functions Using Node-API](use-napi-about-function.md)
       - [Performing Lifecycle Management Using Node-API](use-napi-life-cycle.md)
       - [Working with Objects Using Node-API](use-napi-about-object.md)
@@ -88,7 +88,7 @@
       - [Working with Well-Known Symbols Using JSVM-API](use-jsvm-about-well-known-symbols.md)
       - [Working with Wrapper Objects Using JSVM-API](use-jsvm-about-wrapper-object.md)
       - [Creating Basic Data Types Using JSVM-API](use-jsvm-basic-data-types.md)
-    - Typical JSVM-API Use Cases<!--jsvm-scenarios-->
+    - JSVM-API Use Cases<!--jsvm-scenarios-->
       - [JSVM-API Debugging](jsvm-debugger-cpuprofiler-heapsnapshot.md)
       - [JSVM-API Tracing](use-jsvm-about-trace.md)
       - [Requesting the JIT Profile for JSVMs](jsvm-apply-jit-profile.md)
@@ -96,7 +96,9 @@
         - [Creating and Destroying JSVMs Using JSVM-API](use-jsvm-runtime-task.md)
         - [Accelerating Compilation Using a Code Cache](use-jsvm-about-code-cache.md)
         - [JSVM Tuning Practices](jsvm-optimizations.md)
-  - OpenMP Support<!--jsvm-usage-examples-->
+    - JSVM Performance Debugging Guides<!--jsvm-performance-->
+      - [Collecting V8 Trace Data Using HiSmartPerf](use-jsvm-about-v8-trace.md)
+  - OpenMP Support<!--openmp-->
     - [OpenMP Overview](openmp-overview.md)
     - [Building and Running Applications Using OpenMP](openmp-guideline.md)
   - Resource Management<!--resource-management-->
@@ -117,3 +119,4 @@
   - [CPU Features](cpu-features.md)
   - [Using Neon Instructions](neon-guide.md)
 
+<!--no_check-->
