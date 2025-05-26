@@ -2654,7 +2654,7 @@ async function demo() {
 
 doubleClick(x: number, y: number): Promise\<void>
 
-Driver对象采取如下操作：在目标坐标点双击。
+在目标坐标点双击，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
