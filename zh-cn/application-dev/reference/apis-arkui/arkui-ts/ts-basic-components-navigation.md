@@ -1772,7 +1772,7 @@ Navigation自定义标题。
 | backgroundBlurStyle   | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)        | 否    | 工具栏背景模糊样式，不设置时关闭背景模糊效果。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | backgroundBlurStyleOptions<sup>19+</sup>   | [BackgroundBlurStyleOptions](ts-universal-attributes-background.md#backgroundblurstyleoptions10对象说明)        | 否    | 工具栏背景模糊选项。<br/>**说明：** <br/>只在设置了backgroundBlurStyle时生效。<br/>不建议与backgroundEffect同时使用。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | backgroundEffect<sup>19+</sup>   | [BackgroundEffectOptions](ts-universal-attributes-background.md#backgroundeffectoptions11)        | 否    | 设置工具栏背景属性包括：模糊半径，亮度，饱和度，颜色等。<br/>**说明：** <br/>不建议与backgroundBlurStyleOptions同时使用。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
-| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| barStyle<sup>14+</sup>   | [BarStyle](#barstyle12枚举说明)        | 否    | 设置工具栏布局方式。<br/>默认值：BarStyle.STANDARD。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 | hideItemValue<sup>19+</sup>   | boolean | 否    | 设置是否隐藏工具栏的文本，默认显示文本。<br/>默认值：false。<br/>true：隐藏工具栏的文本。<br/>false：不隐藏工具栏的文本。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。 |
 | moreButtonOptions<sup>19+</sup>   | [MoreButtonOptions](#morebuttonoptions19)        | 否    | 工具栏更多图标的菜单选项。 |
 
