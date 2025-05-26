@@ -5171,8 +5171,8 @@ import { Component, Driver, ON } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
-  let button: Component = await driver.findComponent(ON.type('TextInput'));
-  let displayId = await button.getDisplayId();
+  let window: UiWindow = await driver.findWindow({active: true});
+  let id = await window.getDisplayId();
 }
 ```
 
