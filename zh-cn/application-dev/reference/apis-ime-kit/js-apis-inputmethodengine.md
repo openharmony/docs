@@ -38,6 +38,10 @@ import { inputMethodEngine } from '@kit.IMEKit';
 | PATTERN_PASSWORD | number | 7 | 密码编辑框。 |
 | PATTERN_PASSWORD_NUMBER<sup>11+</sup> | number | 8 | 数字密码编辑框。 |
 | PATTERN_PASSWORD_SCREEN_LOCK<sup>11+</sup> | number | 9 | 锁屏密码编辑框。 |
+| PATTERN_USER_NAME<sup>20+</sup> | number | 10 | 用户名编辑框。 |
+| PATTERN_NEW_PASSWORD<sup>20+</sup> | number | 11 | 新密码编辑框。 |
+| PATTERN_NUMBER_DECIMAL<sup>20+</sup> | number | 12 | 带小数点的数字编辑框。 |
+| PATTERN_ONE_TIME_CODE<sup>20+</sup> | number | 13 | 验证码编辑框。 |
 | OPTION_ASCII | number | 20 | 允许输入ASCII值。 |
 | OPTION_NONE | number | 0 | 不指定编辑框输入属性。 |
 | OPTION_AUTO_CAP_CHARACTERS | number | 2 | 允许输入字符。 |
@@ -774,6 +778,70 @@ try {
 } catch (err) {
   let error = err as BusinessError;
   console.error(`unregist calling display changed error: ${error.code} ${error.message}`);
+}
+```
+
+### on('discardTypingText')<sup>20+</sup>
+
+on(type: 'discardTypingText', callback: Callback\<void>): void
+
+订阅编辑框应用发送“清空候选词”事件到输入法。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                       |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                        | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示订阅编辑框应用发送“清空候选词”事件到输入法。 |
+| callback |  Callback\<void> | 是   | 回调函数。当命令发送成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import inputMethodEngine from '@ohos.inputMethodEngine';
+
+try {
+  console.info(`discard the typing text`);
+  inputMethodEngine.getInputMethodAbility().on('discardTypingText', ( ) => {
+    console.info('InputMethodAbility discard the typing text.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`discard the typing text error: ${error.code} ${error.message}`);
+}
+```
+
+### off('discardTypingText')<sup>20+</sup>
+
+off(type: 'discardTypingText', callback?: Callback\<void>): void
+
+取消订阅编辑框应用发送“清空候选词”事件到输入法。使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                                                         |
+| -------- | ------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | string                                      | 是   | 设置监听类型，固定取值为'discardTypingText'。<br/> - 'discardTypingText'：表示取消订阅编辑框应用发送“清空候选词”事件到输入法。 |
+| callback | Callback\<void>  | 否   | 取消订阅的回调函数。参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import inputMethodEngine from '@ohos.inputMethodEngine';
+
+try {
+  console.info(`discard the typing text`);
+  inputMethodEngine.getInputMethodAbility().off('discardTypingText', ( ) => {
+    console.info('InputMethodAbility discard the typing text.');
+  });
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`discard the typing text error: ${error.code} ${error.message}`);
 }
 ```
 
@@ -4707,6 +4775,8 @@ try {
 | immersiveMode<sup>15+</sup> | [ImmersiveMode](#immersivemode15) | 是   | 是   | 输入法沉浸模式。 |
 | windowId<sup>18+</sup> | number | 是 | 是 | 编辑框设置所属窗口ID。 |
 | displayId<sup>18+</sup> | number | 是   | 是   | 编辑框设置窗口对应的屏幕ID。如果没有设置windowId，取当前焦点窗口屏幕ID。|
+| placeholder<sup>20+</sup> | string | 是 | 是 | 编辑框设置的占位符信息。|
+| abilityName<sup>20+</sup> | string | 是 | 是 | 编辑框设置的ability名称。|
 | capitalizeMode<sup>20+</sup> | [CapitalizeMode](#capitalizemode20) | 是 | 是 | 编辑框设置大小写模式。如果没有设置或设置非法值，默认不进行任何首字母大写处理。|
 
 ## KeyEvent
