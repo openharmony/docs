@@ -2494,7 +2494,7 @@ async function demo() {
 
 triggerCombineKeys(key0: number, key1: number, key2?: number): Promise\<void>
 
-Driver对象通过给定的key值，找到对应组合键并点击。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
+通过给定的key值，找到对应组合键并点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
