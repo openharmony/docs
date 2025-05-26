@@ -4747,14 +4747,24 @@ getImagePropertySync(key:PropertyKey): string
 **示例：**
 
 ```ts
+import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+import fs from '@ohos.file.fs';
 
-imageSourceApi.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE)
-.then((data: string) => {
-  console.info('Succeeded in getting the value of the specified attribute key of the image.');
-}).catch((error: BusinessError) => {
-  console.error('Failed to get the value of the specified attribute key of the image.');
-})
+let context = getContext();
+if (context == null) {
+  return;
+}
+let resoutceManager = context.resourceManager;
+if (resoutceManager == null) {
+  return;
+}
+let fd = resourceManager.getRawFdSync("example.jpg");
+
+const imageSourceApi = image.createImageSource(fd);
+console.info("getImagePropertySync");
+let bits_per_sample = imageSourceApi.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE);
+console.info("bits_per_sample : " + bits_per_sample);
 ```
 
 ### modifyImageProperty<sup>11+</sup>
