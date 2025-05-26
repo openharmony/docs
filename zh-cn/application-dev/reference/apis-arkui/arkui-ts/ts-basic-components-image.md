@@ -510,7 +510,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
+| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：DynamicRangeMode.STANDARD |
 
 ### orientation<sup>14+</sup>
 
@@ -977,7 +977,7 @@ struct ImageExample2 {
 }
 ```
 
-![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.gif)
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.png)
 
 ### 示例3（为图片添加事件）
 
@@ -1096,10 +1096,11 @@ struct Index {
       Image($r("app.media.landscape"))
         .resizable({
           slice: {
-            left: this.left,
-            right: this.right,
-            top: this.top,
-            bottom: this.bottom
+            //传入数字时默认为vp单位，但在不同设备上vp单位会被解析成不同大小的px单位，可以根据需要选择传入的单位
+            left: `${this.left}px`,
+            right: `${this.right}px`,
+            top: `${this.top}px`,
+            bottom: `${this.bottom}px`
           }
         })
         .width(200)
