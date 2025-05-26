@@ -25,7 +25,7 @@
    // IndependentTask.ets
    import { IconItemSource } from './IconItemSource';
     
-   // 在Task中执行的方法，需要添加@Concurrent注解，否则无法正常调用。
+   // 在TaskPool线程中执行的方法，需要添加@Concurrent注解，否则无法正常调用。
    @Concurrent
    export function loadPicture(count: number): IconItemSource[] {
      let iconItemSourceList: IconItemSource[] = [];
@@ -45,7 +45,7 @@
    }
    ```
 
-2. 将需要执行的Task放到了一个TaskGroup里面，当TaskGroup中的所有Task执行完毕后，会将每个Task的结果都放在一个数组中并返回给宿主线程，而不是每执行完一个Task就返回一次，这样宿主线程就可以在返回的数据里拿到所有Task的执行结果，便于后续使用。
+2. 将需要执行的Task放到了一个TaskGroup里面，当TaskGroup中的所有Task执行完毕后，会将所有Task的结果都放在一个数组中并返回给宿主线程，而不是每执行完一个Task就返回一次，这样宿主线程就可以在返回的数据里拿到所有Task的执行结果，便于后续使用。
 
    ```ts
    // MultiTask.ets
