@@ -1464,7 +1464,7 @@
 
 **授权方式**：系统授权（system_grant）
 
-**授权方式**：General
+**支持设备**：General
 
 **ACL使能**：true
 
