@@ -108,16 +108,16 @@ Navigation组件信息。
 
 ScrollEvent滚动信息。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称         | 类型                                               | 必填 | 说明                                         |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| id           | string                                             | 是   | 滚动组件的id。                               |
-| uniqueId           | number                                             | 是   | 滚动组件的uniqueId。                               |
-| scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。                             |
-| offset       | number                                             | 是   | 滚动组件的当前偏移量。                   |
+| id           | string                                             | 是   | 滚动组件的id。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| uniqueId           | number                                             | 是   | 滚动组件的uniqueId。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| scrollEvent    | [ScrollEventType](#scrolleventtype12)                | 是   | 滚动事件的类型。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| offset       | number                                             | 是   | 滚动组件的当前偏移量。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| axis<sup>20+</sup>         | [Axis](arkui-ts/ts-appendix-enums.md#axis)         | 否   | 滚动组件的滚动方向。<br/> **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## ObserverOptions<sup>12+</sup>
 
