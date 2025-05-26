@@ -1244,6 +1244,8 @@
 
 **授权方式**：系统授权（system_grant）
 
+**支持设备**：General
+
 **ACL使能**：true
 
 **起始版本**：8
@@ -1461,6 +1463,8 @@
 **权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
+
+**授权方式**：General
 
 **ACL使能**：true
 
@@ -1713,6 +1717,8 @@
 **权限级别**：system_core
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
@@ -4706,6 +4712,8 @@
 **权限级别**：system_basic
 
 **授权方式**：系统授权（system_grant）
+
+**支持设备**：General
 
 **ACL使能**：true
 
