@@ -310,6 +310,8 @@
 | float [OH_ArkUI_DragEvent_GetVelocityY](#oh_arkui_dragevent_getvelocityy) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的y轴方向拖动速度。  |
 | float [OH_ArkUI_DragEvent_GetVelocity](#oh_arkui_dragevent_getvelocity) ([ArkUI_DragEvent](#arkui_dragevent) \*event) | 获取当前拖拽的主方向拖动速度。  |
 | int32_t [OH_ArkUI_DragEvent_GetModifierKeyStates](#oh_arkui_dragevent_getmodifierkeystates) ([ArkUI_DragEvent](#arkui_dragevent) \*event, uint64_t \*keys) | 获取功能键按压状态。  |
+| [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode) [OH_ArkUI_DragEvent_GetDragSource](#oh_arkui_dragevent_getdragsource) ([ArkUI_DragEvent](#arkui_dragevent) \*event, char \*bundleName, int32_t length) | 获取拖拽发起方的应用包名信息，需要传递一个字符数组来接收包名字符串，并显式指明数组长度，该数组长度不小于128个字符。<br/>**起始版本：** 20 |
+| [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode) [OH_ArkUI_DragEvent_IsRemote](#oh_arkui_dragevent_isremote) ([ArkUI_DragEvent](#arkui_dragevent) \*event, bool \*isRemote) | 判断当前的拖拽操作是否是跨设备拖拽。<br/>**起始版本：** 20 |
 | [ArkUI_ErrorCode](_ark_u_i___native_module.md#arkui_errorcode) [OH_ArkUI_DragEvent_GetDisplayId](#oh_arkui_dragevent_getdisplayid) ([ArkUI_DragEvent](#arkui_dragevent) \*event, int32_t \*displayId) | 获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。<br/>**起始版本：** 20  |
 | int32_t [OH_ArkUI_SetDragEventStrictReportWithNode](#oh_arkui_setdrageventstrictreportwithnode) ([ArkUI_NodeHandle](#arkui_nodehandle) node, bool enabled) | 控制是否使能严格dragEvent上报，建议开启；默认是不开启的； 当不开启时，从父组件拖移进子组件时，父组件并不会收到leave的通知；而开启之后，只要前后两个组件发生变化，上一个组件就会收到 leave，新的组件收到enter通知；该配置与具体的UI实例相关，需要通过传入一个当前UI实例上的一个具体的组件节点来关联。  |
 | int32_t [OH_ArkUI_SetDragEventStrictReportWithContext](#oh_arkui_setdrageventstrictreportwithcontext) ([ArkUI_ContextHandle](#arkui_contexthandle-12) uiContext, bool enabled) | 控制是否使能严格dragEvent上报，建议开启；默认是不开启的; 当不开启时，从父组件拖移进子组件时，父组件并不会收到leave的通知；而开启之后，只要前后两个组件发生变化，上一个组件就会收到 leave，新的组件收到enter通知；该配置与具体的UI实例相关，可通过传入一个UI实例进行关联。  |
@@ -9661,6 +9663,50 @@ int32_t OH_ArkUI_DragEvent_GetModifierKeyStates (ArkUI_DragEvent * event, uint64
 
 ARKUI_ERROR_CODE_NO_ERROR 成功。 ARKUI_ERROR_CODE_PARAM_INVALID 函数参数异常。
 
+### OH_ArkUI_DragEvent_GetDragSource()
+
+```
+ArkUI_ErrorCode OH_ArkUI_DragEvent_GetDragSource (ArkUI_DragEvent* event, char* bundleName, int32_t length)
+```
+**描述：**
+
+获取拖起方包名。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| event | ArkUI_DragEvent事件指针。 |
+| bundleName | 接收拖起方包名的字符串数组。 |
+| length | 传入的字符串数组长度，不小于128个字符。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
+
+### OH_ArkUI_DragEvent_IsRemote()
+
+```
+ArkUI_ErrorCode OH_ArkUI_DragEvent_IsRemote (ArkUI_DragEvent * event, bool* isRemote)
+```
+**描述：**
+
+获取是否是跨设备拖拽，跨设备拖拽时为true。
+
+**起始版本：** 20
+
+**参数**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| event | ArkUI_DragEvent事件指针。  |
+| isRemote | 布尔变量指针，用来接收是否是跨设备拖拽。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md#arkui_errorcode) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md#arkui_errorcode) 函数参数异常。
 
 ### OH_ArkUI_DragEvent_GetDisplayId()
 
