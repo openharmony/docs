@@ -224,6 +224,9 @@ let metadata: avSession.AVMetadata = {
   // The LRC contains two types of elements: time tag + lyrics, and ID tag.
   // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
   lyric: "Lyrics in LRC format",
+  // The singleLyricText field stores a single line of lyric text without timestamps.
+  // Example: "Content of a single lyric line"
+  singleLyricText: "Content of a single lyric line",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -279,6 +282,9 @@ let metadata: avSession.AVMetadata = {
   // The LRC contains two types of elements: time tag + lyrics, and ID tag.
   // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
   lyric: "Lyrics in LRC format",
+  // The singleLyricText field stores a single line of lyric text without timestamps.
+  // Example: "Content of a single lyric line"
+  singleLyricText: "Content of a single lyric line",
   previousAssetId: "121277",
   nextAssetId: "121279"
 };
@@ -1907,7 +1913,8 @@ currentAVSession.on('rewind', (time?: number) => {
 
 on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
-Subscribes to playback events of a given media ID.
+Subscribes to playback events of a given media asset ID.
+
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1917,7 +1924,7 @@ Subscribes to playback events of a given media ID.
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | Yes  | Event type. The event **'playFromAssetId'** is triggered when the media ID is played.|
+| type     | string               | Yes  | Event type. The event **'playFromAssetId'** is triggered when the media asset ID is played.|
 | callback | callback: (assetId: number) => void | Yes  | Callback The **assetId** parameter in the callback indicates the media asset ID.     |
 
 **Error codes**
@@ -1942,7 +1949,8 @@ currentAVSession.on('playFromAssetId', (assetId: number) => {
 
 off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
-Unsubscribes from playback events of a given media ID.
+Unsubscribes from playback events of a given media asset ID.
+
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1962,7 +1970,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
-| 6600101  | Session service exception. |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102  | The session does not exist. |
 
 **Example**
@@ -2593,7 +2601,7 @@ Unsubscribes from setSpeed command events.
 | Name  | Type                                 | Mandatory| Description    |
 | -------- | ------------------------------------- | ---- | ----- |
 | type     | string | Yes  | Event type, which is **'setLoopMode'** in this case.|
-| callback | (mode: [LoopMode](#loopmode10)) => void | No  | Callback used for unsubscription. The **mode** parameter in the callback indicates the loop mode.<br>If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
+| callback | (mode: [LoopMode](#loopmode10)) => void | No  | Callback used for unsubscription. The **mode** parameter in the callback indicates the loop mode.<br>- If the unsubscription is successful, **err** is **undefined**; otherwise, **err** is an error object.<br>- The **callback** parameter is optional. If it is not specified, all the subscriptions to the specified event are canceled for this session.|
 
 **Error codes**
 
@@ -3148,7 +3156,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID  | Error Message|
 |---------| --------------------------------------- |
-| 6600101 | Session service exception. |
+| 6600101 | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102 | The session does not exist. |
 
 **Example**
@@ -3185,7 +3193,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID  | Error Message|
 |---------| --------------------------------------- |
-| 6600101 | Session service exception. |
+| 6600101 | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 6600102 | The session does not exist. |
 
 **Example**
@@ -3267,7 +3275,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 
 **Example**
 
@@ -3305,7 +3313,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 6600101  | Session service exception |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 
 **Example**
 
@@ -5086,11 +5094,12 @@ Describes the media metadata.
 | subtitle        | string                  | No | Subtitle.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                               |
 | description     | string                  | No | Media description.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                              |
 | lyric           | string                  | No | Lyrics. The application needs to combine the lyrics into a string with less than or equal to 40960 bytes.<br>**NOTE**: The system supports lyrics in the simple LRC format. If the lyrics are not standard (for example, having duplicate timestamps), the lyrics fail to be parsed and cannot be displayed properly in the system.|
+| singleLyricText<sup>17+</sup> | string    | No  | Lyrics of a single media asset. The application must combine the lyrics into a string (excluding the timestamp).<br>The string length must be less than 40960 bytes.<br>**Atomic service API**: This API can be used in atomic services since API version 17.|
 | previousAssetId | string                  | No | ID of the previous media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
 | nextAssetId     | string                  | No | ID of the next media asset.<br>**Atomic service API**: This API can be used in atomic services since API version 12.                                                           |
 | filter<sup>11+</sup>        | number         | No | Protocol supported by the media session. The default value is **TYPE_CAST_PLUS_STREAM**. For details, see [ProtocolType](#protocoltype11).<br>**Atomic service API**: This API can be used in atomic services since API version 12.                  |
 | drmSchemes<sup>12+</sup>        | Array\<string>         | No | DRM scheme supported by the media session. The value is the UUID of the DRM scheme.|
-| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No | Fast-forward or rewind interval supported by the media session. The default value is **SECONDS_15**, that is, 15 seconds.                           |
+| skipIntervals<sup>11+</sup>  | [SkipIntervals](#skipintervals11)        | No | Intervals supported for fast-forwarding and rewinding. The default value is **SECONDS_15**, that is, 15 seconds.                           |
 |displayTags<sup>11+</sup>     | number                           | No | Display tags of the media asset. For details, see [DisplayTag](#displaytag11).                                                         |
 
 ## AVMediaDescription<sup>10+</sup>
@@ -5150,7 +5159,7 @@ Describes the information related to the media playback state.
 | position     | [PlaybackPosition](#playbackposition10) | No  | Playback position.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | bufferedTime | number                                | No  | Buffered time.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | loopMode     | [LoopMode](#loopmode10)                 | No  | Loop mode.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
-| isFavorite   | boolean                               | No  | Whether the media asset is favorited.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
+| isFavorite   | boolean                               | No  | Whether the media asset is favorited. The value **true** means that the media asset is favorited.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | activeItemId<sup>10+</sup> | number                  | No  | ID of the item that is being played.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | volume<sup>10+</sup> | number                  | No  | Media volume.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | maxVolume<sup>11+</sup> | number                    | No  | Maximum volume.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
@@ -5339,13 +5348,35 @@ Through the AV session controller, you can query the session ID, send commands a
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let AVSessionController: avSession.AVSessionController;
-avSession.createController(currentAVSession.sessionId).then((controller: avSession.AVSessionController) => {
-  AVSessionController = controller;
-}).catch((err: BusinessError) => {
-  console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-});
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession | undefined = undefined;
+          let tag: string = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string = "";
+          let AVSessionController: avSession.AVSessionController;
+          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+            currentAVSession = data;
+            sessionId = currentAVSession.sessionId;
+            AVSessionController = await currentAVSession.getController();
+            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+          }).catch((err: BusinessError) => {
+            console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
+          });
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
 ```
 
 ### getAVPlaybackState<sup>10+</sup>
@@ -5796,7 +5827,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 600101  | Session service exception. |
+| 600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 600103  | The session controller does not exist. |
 
 **Example**
@@ -5836,7 +5867,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 600101  | Session service exception. |
+| 600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
 | 600105  | Invalid session command. |
@@ -5887,7 +5918,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Parameter verification failed. |
-| 600101  | Session service exception. |
+| 600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
 | 600102  | The session does not exist. |
 | 600103  | The session controller does not exist. |
 | 600105  | Invalid session command. |
@@ -6362,6 +6393,7 @@ Sends a custom control command to the session through the controller. This API u
 | args | {[key: string]: Object} | Yes  | Parameters in key-value pair format carried in the custom control command.|
 
 > **NOTE**
+>
 > The **args** parameter supports the following data types: string, number, Boolean, object, array, and file descriptor. For details, see [@ohos.app.ability.Want(Want)](../apis-ability-kit/js-apis-app-ability-want.md).
 
 **Return value**
@@ -6388,35 +6420,42 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let avSessionController: avSession.AVSessionController | undefined = undefined;
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-let sessionId: string = "";
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession | undefined = undefined;
+          let tag: string = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string = "";
+          let controller:avSession.AVSessionController | undefined = undefined;
+          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+            currentAVSession = data;
+            sessionId = currentAVSession.sessionId;
+            controller = await currentAVSession.getController();
+            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+          }).catch((err: BusinessError) => {
+            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+          });
+          let commandName = "my_command";
+          if (controller !== undefined) {
+            (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
+              console.info('SendCommonCommand successfully');
+            }).catch((err: BusinessError) => {
+              console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+            })
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
   }
-});
-if (currentAVSession !== undefined) {
-  sessionId = (currentAVSession as avSession.AVSession).sessionId;
-  avSession.createController(sessionId).then((controller: avSession.AVSessionController) => {
-    avSessionController = controller;
-  }).catch((err: BusinessError) => {
-    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
-}
-
-let commandName = "my_command";
-if (avSessionController !== undefined) {
-  (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}).then(() => {
-    console.info('SendCommonCommand successfully');
-  }).catch((err: BusinessError) => {
-    console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
-  })
 }
 ```
 
@@ -6457,33 +6496,42 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
-let avSessionController: avSession.AVSessionController | undefined = undefined;
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-  }
-});
-if (currentAVSession !== undefined) {
-  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
-    avSessionController = controller;
-  }).catch((err: BusinessError) => {
-    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
-}
-
-let commandName = "my_command";
-if (avSessionController !== undefined) {
-  (avSessionController as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
-    if (err) {
-        console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession | undefined = undefined;
+          let tag: string = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string = "";
+          let controller:avSession.AVSessionController | undefined = undefined;
+          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+            currentAVSession = data;
+            sessionId = currentAVSession.sessionId;
+            controller = await currentAVSession.getController();
+            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+          }).catch((err: BusinessError) => {
+            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+          });
+          let commandName = "my_command";
+          if (controller !== undefined) {
+            (controller as avSession.AVSessionController).sendCommonCommand(commandName, {command : "This is my command"}, (err: BusinessError) => {
+              if (err) {
+                console.error(`SendCommonCommand BusinessError: code: ${err.code}, message: ${err.message}`);
+              }
+            })
+          }
+        })
     }
-  })
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -6520,33 +6568,41 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let avSessionController: avSession.AVSessionController | undefined = undefined;
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession | undefined = undefined;
+          let tag: string = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string = "";
+          let controller:avSession.AVSessionController | undefined = undefined;
+          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+            currentAVSession = data;
+            sessionId = currentAVSession.sessionId;
+            controller = await currentAVSession.getController();
+            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+          }).catch((err: BusinessError) => {
+            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+          });
+          if (controller !== undefined) {
+            (controller as avSession.AVSessionController).getExtras().then((extras) => {
+              console.info(`getExtras : SUCCESS : ${extras}`);
+            }).catch((err: BusinessError) => {
+              console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+            });
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
   }
-});
-if (currentAVSession !== undefined) {
-  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
-    avSessionController = controller;
-  }).catch((err: BusinessError) => {
-    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
-}
-
-if (avSessionController !== undefined) {
-  (avSessionController as avSession.AVSessionController).getExtras().then((extras) => {
-    console.info(`getExtras : SUCCESS : ${extras}`);
-  }).catch((err: BusinessError) => {
-    console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
 }
 ```
 
@@ -6581,35 +6637,43 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let avSessionController: avSession.AVSessionController | undefined = undefined;
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
-  }
-});
-if (currentAVSession !== undefined) {
-  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
-    avSessionController = controller;
-  }).catch((err: BusinessError) => {
-    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
-}
-
-if (avSessionController !== undefined) {
-  (avSessionController as avSession.AVSessionController).getExtras((err, extras) => {
-    if (err) {
-      console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
-    } else {
-      console.info(`getExtras : SUCCESS : ${extras}`);
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession | undefined = undefined;
+          let tag: string = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string = "";
+          let controller:avSession.AVSessionController | undefined = undefined;
+          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+            currentAVSession = data;
+            sessionId = currentAVSession.sessionId;
+            controller = await currentAVSession.getController();
+            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+          }).catch((err: BusinessError) => {
+            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+          });
+          if (controller !== undefined) {
+            (controller as avSession.AVSessionController).getExtras((err, extras) => {
+              if (err) {
+                console.error(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
+              } else {
+                console.info(`getExtras : SUCCESS : ${extras}`);
+              }
+            });
+          }
+        })
     }
-  });
+    .width('100%')
+    .height('100%')
+  }
 }
 ```
 
@@ -7210,31 +7274,39 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let avSessionController: avSession.AVSessionController | undefined = undefined;
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession | undefined = undefined;
+          let tag: string = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string = "";
+          let controller:avSession.AVSessionController | undefined = undefined;
+          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+            currentAVSession = data;
+            sessionId = currentAVSession.sessionId;
+            controller = await currentAVSession.getController();
+            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+          }).catch((err: BusinessError) => {
+            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+          });
+          if (controller !== undefined) {
+            (controller as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
+              console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
+            });
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
   }
-});
-if (currentAVSession !== undefined) {
-  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
-    avSessionController = controller;
-  }).catch((err: BusinessError) => {
-    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
-}
-
-if (avSessionController !== undefined) {
-  (avSessionController as avSession.AVSessionController).on('sessionEvent', (sessionEvent, args) => {
-    console.info(`OnSessionEvent, sessionEvent is ${sessionEvent}, args: ${JSON.stringify(args)}`);
-  });
 }
 ```
 
@@ -7438,31 +7510,39 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
+import { avSession } from '@kit.AVSessionKit';
+@Entry
+@Component
+struct Index {
+  @State message: string = 'hello world';
 
-let avSessionController: avSession.AVSessionController | undefined = undefined;
-let currentAVSession: avSession.AVSession | undefined = undefined;
-let tag = "createNewSession";
-let context: Context = getContext(this);
-
-avSession.createAVSession(context, tag, "audio", (err: BusinessError, data: avSession.AVSession) => {
-  if (err) {
-    console.error(`CreateAVSession BusinessError: code: ${err.code}, message: ${err.message}`);
-  } else {
-    currentAVSession = data;
+  build() {
+    Column() {
+      Text(this.message)
+        .onClick(()=>{
+          let currentAVSession: avSession.AVSession | undefined = undefined;
+          let tag: string = "createNewSession";
+          let context: Context = this.getUIContext().getHostContext() as Context;
+          let sessionId: string = "";
+          let controller:avSession.AVSessionController | undefined = undefined;
+          avSession.createAVSession(context, tag, "audio").then(async (data:avSession.AVSession)=> {
+            currentAVSession = data;
+            sessionId = currentAVSession.sessionId;
+            controller = await currentAVSession.getController();
+            console.info('CreateAVSession : SUCCESS :sessionid = ${sessionid}');
+          }).catch((err: BusinessError) => {
+            console.info('CreateAVSession BusinessError:code: ${err.code}, message: ${err.message}')
+          });
+          if (controller !== undefined) {
+            (controller as avSession.AVSessionController).on('extrasChange', (extras) => {
+              console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
+            });
+          }
+        })
+    }
+    .width('100%')
+    .height('100%')
   }
-});
-if (currentAVSession !== undefined) {
-  avSession.createController((currentAVSession as avSession.AVSession).sessionId).then((controller: avSession.AVSessionController) => {
-    avSessionController = controller;
-  }).catch((err: BusinessError) => {
-    console.error(`CreateController BusinessError: code: ${err.code}, message: ${err.message}`);
-  });
-}
-
-if (avSessionController !== undefined) {
-  (avSessionController as avSession.AVSessionController).on('extrasChange', (extras) => {
-    console.info(`Caught extrasChange event,the new extra is: ${JSON.stringify(extras)}`);
-  });
 }
 ```
 
@@ -7987,7 +8067,7 @@ Implements a semi-modal object used for casting. It displays a semi-modal window
 
 constructor(context: Context)
 
-Creates an **AVCastPickerHelper** instance. For details about how to obtain the context, see [getContext](../apis-arkui/js-apis-getContext.md).
+Creates an **AVCastPickerHelper** instance. For details about how to obtain the context, see [getContext](../apis-arkui/js-apis-arkui-UIContext.md#gethostcontext12).
 
 **Atomic service API**: This API can be used in atomic services since API version 14.
 
@@ -7998,6 +8078,15 @@ Creates an **AVCastPickerHelper** instance. For details about how to obtain the 
 | Name   | Type                                                       | Mandatory| Description                                                        |
 | --------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | Context | Yes  | Application context. (Only [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) is supported.)|
+
+**Error codes**
+
+For details about the error codes, see [AVSession Management Error Codes](errorcode-avsession.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -8099,6 +8188,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
 
 **Example**
 
@@ -8138,6 +8228,7 @@ For details about the error codes, see [AVSession Management Error Codes](errorc
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 401 |  parameter check failed. 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
+| 6600101  | Session service exception. |
 
 **Example**
 
