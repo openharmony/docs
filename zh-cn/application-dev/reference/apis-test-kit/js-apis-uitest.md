@@ -5167,7 +5167,7 @@ getDisplayId(): Promise\<number>
 **示例：**
 
 ```ts
-import { Component, Driver, ON } from '@kit.TestKit';
+import { UiWindow, Driver } from '@kit.TestKit';
 
 async function demo() {
   let driver: Driver = Driver.create();
