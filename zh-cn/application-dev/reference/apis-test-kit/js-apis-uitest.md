@@ -2987,7 +2987,7 @@ async function demo() {
 
 screenCap(savePath: string): Promise\<boolean>
 
-Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
+捕获当前屏幕，并保存为PNG格式的图片至给出的保存路径中。适用于支持截屏的场景。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
