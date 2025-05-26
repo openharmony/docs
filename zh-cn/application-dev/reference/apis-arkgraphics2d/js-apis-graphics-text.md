@@ -55,7 +55,7 @@ setTextHighContrast(action: TextHighContrast): void
 **示例：**
 
 ```ts
-text.setTextHighContrast(text.TEXT_APP_DISABLE_HIGH_CONTRAST)
+text.setTextHighContrast(text.TextHighContrast.TEXT_APP_DISABLE_HIGH_CONTRAST)
 ```
 
 ## text.matchFontDescriptors<sup>18+</sup>
