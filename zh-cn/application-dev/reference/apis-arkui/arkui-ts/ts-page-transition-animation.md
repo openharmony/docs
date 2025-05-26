@@ -406,7 +406,7 @@ struct Index {
     Column() {
       Button("页面1").onClick(() => {
         this.getUIContext().getRouter().pushUrl({
-          url: "pages/Page1";
+          url: "pages/Page1"
         })
       })
         .width(200)
