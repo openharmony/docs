@@ -363,7 +363,6 @@ config_.videoInfo.videoCapInfo.missionIDsLen = static_cast<int32_t>(missionIds.s
 > 编码格式当前阶段仅作预留，待后续版本实现。
 
 ```c++
-
 #include "napi/native_api.h"
 #include <multimedia/player_framework/native_avscreen_capture.h>
 #include <multimedia/player_framework/native_avscreen_capture_base.h>
