@@ -951,7 +951,7 @@ belongingDisplay(displayId: number): On
 
 | 参数名 | 类型   | 必填 | 说明                                    |
 | ------ | ------ |----|---------------------------------------|
-| displayId | number | 是  | 指定控件所属屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 传入displayId不存在时，将抛出17000007异常。可通过[getAllDisplays](../apis-arkui/js-apis-display.md#displaygetalldisplayssup9sup)获取当前所有的display对象，并由display对象获取对应的屏幕ID。 |
+| displayId | number | 是  | 指定控件所属屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 传入displayId不存在时，将抛出17000007异常。可通过[getAllDisplays](../apis-arkui/js-apis-display.md#displaygetalldisplayssup9sup-1)获取当前所有的display对象，并由display对象获取对应的屏幕ID。 |
 
 **返回值：**
 
@@ -972,7 +972,7 @@ belongingDisplay(displayId: number): On
 ```ts
  import { On, ON } from '@kit.TestKit';
  
- let on:On = ON.belongingDisplay(0); // 使用静态构造器ON创建On对象，指定目标控件所属屏幕ID。
+ let on:On = ON.belongingDisplay(0); // 使用静态构造器ON创建On对象，指定目标控件所属屏幕ID
 ```
 
 ## Component<sup>9+</sup>
