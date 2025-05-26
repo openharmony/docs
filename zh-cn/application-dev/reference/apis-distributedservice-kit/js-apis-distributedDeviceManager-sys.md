@@ -360,4 +360,3 @@ getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise
     console.error('getDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
-  
