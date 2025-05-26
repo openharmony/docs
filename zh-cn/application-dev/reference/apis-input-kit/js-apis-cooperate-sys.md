@@ -122,7 +122,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number, callback: AsyncCal
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[ohos.multimodalinput错误码](errorcode-cooperator.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -176,7 +176,7 @@ start(sinkDeviceDescriptor: string, srcInputDeviceId: number): Promise\<void>
 
 **错误码**：
 
-以下错误码的详细介绍请参见[ohos.multimodalinput错误码](errorcode-multimodalinput.md)。
+以下错误码的详细介绍请参见[ohos.multimodalinput错误码](errorcode-cooperator.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
