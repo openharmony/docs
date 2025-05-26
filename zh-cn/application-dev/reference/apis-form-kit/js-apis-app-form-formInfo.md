@@ -46,8 +46,8 @@ import { formInfo } from '@kit.FormKit';
 | <!--DelRow-->previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | <!--DelRow-->enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | <!--DelRow-->renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
-| <!--DelRow-->funInteractionParams<sup>20+</sup>  | [FunInteractionParams](./js-apis-app-form-formInfo-sys.md#funinteractionparamssup20sup) | 是    | 否     | 趣味交互类型互动卡片配置参数。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
-| <!--DelRow-->sceneAnimationParams<sup>20+</sup>  | [SceneAnimationParams](./js-apis-app-form-formInfo-sys.md#sceneanimationparamssup20sup) | 是    | 否     | 场景动效类型互动卡片配置参数。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| <!--DelRow-->funInteractionParams<sup>20+</sup>  | [FunInteractionParams](./js-apis-app-form-formInfo-sys.md#funinteractionparams20) | 是    | 否     | 趣味交互类型互动卡片配置参数。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
+| <!--DelRow-->sceneAnimationParams<sup>20+</sup>  | [SceneAnimationParams](./js-apis-app-form-formInfo-sys.md#sceneanimationparams20) | 是    | 否     | 场景动效类型互动卡片配置参数。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 
 ## FormType
 

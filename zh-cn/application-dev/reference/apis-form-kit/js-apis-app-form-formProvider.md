@@ -600,7 +600,7 @@ try {
 
 requestOverflow(formId: string, overflowInfo: formInfo.OverflowInfo): Promise&lt;void&gt;
 
-卡片提供方发起互动卡片动效请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneAnimationParams标签)生效。
+卡片提供方发起互动卡片动效请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -659,7 +659,7 @@ try {
 
 cancelOverflow(formId: string): Promise&lt;void&gt;;
 
-卡片提供方发起取消互动卡片动效请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneAnimationParams标签)生效。
+卡片提供方发起取消互动卡片动效请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效。
 
 **系统能力：** SystemCapability.Ability.Form
 

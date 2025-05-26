@@ -328,7 +328,7 @@ try {
 
 activateSceneAnimation(formId: string): Promise&lt;void&gt;
 
-卡片提供方发起互动卡片状态切换到激活态请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneAnimationParams标签)生效。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
+卡片提供方发起互动卡片状态切换到激活态请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -379,7 +379,7 @@ try {
 
 deactivateSceneAnimation(formId: string): Promise&lt;void&gt;
 
-卡片提供方发起互动卡片状态切换到非激活态请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneAnimationParams标签)生效。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
+卡片提供方发起互动卡片状态切换到非激活态请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
 
 **系统能力：** SystemCapability.Ability.Form
 
