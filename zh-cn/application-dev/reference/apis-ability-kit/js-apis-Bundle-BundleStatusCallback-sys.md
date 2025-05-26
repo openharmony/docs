@@ -15,7 +15,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 
 | 监听类型   | 注册回调                                          | 说明                                   |
 | ------ | --------------------------------------------- | -------------------------------------- |
