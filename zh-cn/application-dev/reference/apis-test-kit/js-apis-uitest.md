@@ -16,7 +16,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
-> - 本模块接口适用于手机、平板、2in1、穿戴设备。
+> - 本模块接口适用于手机、平板、2in1、智能穿戴设备。
 
 
 ## 导入模块
@@ -62,30 +62,26 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 坐标点信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称 | 类型   | 只读 |  必填 | 说明        |
 | ---- | ------ | ---- | ---- |-----------|
-| x    | number |  否   | 是   | 坐标点的横坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
-| y    | number |  否   | 是   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。 |
+| x    | number |  否   | 是   | 坐标点的横坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，只读选项由是更改为否。 |
+| y    | number |  否   | 是   | 坐标点的纵坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，只读选项由是更改为否。|
 | displayId<sup>20+</sup>    | number |  是   | 否   | 坐标点所属的屏幕ID，取值范围：大于等于0的整数。默认值为设备默认屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## Rect<sup>9+</sup>
 
 控件的边框信息。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称   | 类型   | 只读 |  必填 | 说明                      |
 | ------ | ------ | ---- | ---- | ------------------------- |
-| left   | number |  否   | 是 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
-| top    | number |  否   | 是 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
-| right  | number |  否   | 是 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
-| bottom | number |  否   | 是 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
+| left   | number |  否   | 是 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，只读选项由是更改为否。  |
+| top    | number |  否   | 是 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，只读选项由是更改为否。  |
+| right  | number |  否   | 是 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，只读选项由是更改为否。  |
+| bottom | number |  否   | 是 |控件边框的右下角的Y坐标，取值大于0的整数。<br> **说明：**  从API version 11开始，该接口支持在原子化服务中使用。从API version 20开始，只读选项由是更改为否。  |
 | displayId<sup>20+</sup> | number |  否   | 否 |控件边框所属的屏幕ID，取值大于或等于0的整数。默认值为设备默认屏幕ID。<br> **说明：** 从API version 20开始，该接口支持在原子化服务中使用。  |
 
 ## WindowMode<sup>9+</sup>
@@ -201,7 +197,7 @@ UI事件的相关信息。
 
 | 名称       | 类型   | 只读 | 必填 | 说明                                                       |
 | ---------- | ------ |----|----|----------------------------------------------------------|
-| paste | boolean | 否  | 否  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** <br>1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。<br>2.在穿戴设备中，该接口不支持以复制粘贴方式输入。|
+| paste | boolean | 否  | 否  | 输入文本时是否指定以复制粘贴方式输入。true：指定以复制粘贴方式输入。false：指定以逐字键入方式输入。默认为false。<br /> **说明：** <br>1.当输入文本中包含中文、特殊字符或文本长度超过200字符时，无论该参数取值为何，均以复制粘贴方式输入。<br>2.在智能穿戴设备中，该接口不支持以复制粘贴方式输入。|
 | addition       | boolean | 否  | 否  | 输入文本时是否以追加的方式进行输入。true：以追加方式输入。false：不以追加方式输入。默认为false。|
 
 
@@ -1589,7 +1585,7 @@ inputText(text: string): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 
 **错误码：**
 
@@ -1626,7 +1622,7 @@ inputText(text: string, mode: InputTextMode): Promise\<void>
 
 | 参数名 | 类型   | 必填 | 说明                                     |
 | ------ | ------ | ---- | ---------------------------------------- |
-| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string | 是   | 输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 | mode | [InputTextMode](#inputtextmode20)  | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。<br> **说明：** InputTextMode.addition取值为ture时，在控件已有文本末尾后追加指定文本。取值为false时，指定文本将覆盖控件已有文本。|
 
 **返回值：**
@@ -2772,7 +2768,7 @@ async function demo() {
 
 longClickAt(point: Point, duration?: number): Promise\<void>
 
-在目标坐标长按指定时长，使用Promise异步回调。
+长按目标坐标点，支持指定长按时长，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -2942,7 +2938,7 @@ async function demo() {
 
 dragBetween(from: Point, to: Point, speed?: number, duration?: number): Promise\<void>
 
-从起始坐标点拖拽至目标坐标点，使用Promise异步回调。
+从起始坐标点拖拽至目标坐标点，支持指定拖拽速度和拖拽前长按时间，使用Promise异步回调。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -4098,7 +4094,7 @@ inputText(p: Point, text: string): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 
 **错误码：**
 
@@ -4136,7 +4132,7 @@ inputText(p: Point, text: string, mode: InputTextMode): Promise\<void>
 | 参数名 | 类型             | 必填 | 说明               |
 | ------ | ---------------- | ---- | ------------------ |
 | p      | [Point](#point9) | 是   | 输入文本的坐标点。 |
-| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在穿戴设备中，该接口不支持输入包含中文的文本。 |
+| text   | string           | 是   |输入的文本信息，当前支持英文、中文和特殊字符。 <br> **说明：** 在智能穿戴设备中，该接口不支持输入包含中文的文本。 |
 | mode | [InputTextMode](#inputtextmode20) | 否   | 输入文本的方式，取值请参考[InputTextMode](#inputtextmode20)。 <br> **说明：** InputTextMode.addition取值为ture时，将光标移动至文本末尾后输入指定文本。取值为false时，将在坐标点位置输入指定文本。 |
 
 **返回值：**
@@ -4447,7 +4443,7 @@ crownRotate(d: number, speed?: number): Promise\<void>
 
 注入手表表冠旋转事件，可指定旋转速度，使用Promise异步回调。
 
-该接口仅在穿戴设备上生效。
+该接口仅在智能穿戴设备上生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
