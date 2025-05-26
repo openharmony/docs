@@ -815,8 +815,8 @@
           - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
             - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
             - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
-          - 应用内添加ArkTS卡片<!--arkts-ui-widget-within-the-app--->
-              - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
+          - 应用内请求卡片加桌<!--arkts-ui-widget-add-->
+            - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
