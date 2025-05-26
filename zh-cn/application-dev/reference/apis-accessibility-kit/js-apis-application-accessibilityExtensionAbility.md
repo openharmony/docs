@@ -35,6 +35,7 @@ import { AccessibilityExtensionAbility } from '@kit.AccessibilityKit';
 | timeStamp | number              | 否        | 是         | 事件时间戳，单位是毫秒。默认值为0。                          |
 | elementId<sup>12+</sup> | number            | 否             | 是             | 主动聚焦的组件ID。默认值为0。                 |
 | textAnnouncedForAccessibility<sup>12+</sup> | string    | 否           | 是     | 主动播报的内容。                  |
+| extraInfo<sup>12+</sup> | string    | 否           | 是     | 新增\删除的文本内容。                  |
 
 
 ## AccessibilityElement<sup>10+</sup>
