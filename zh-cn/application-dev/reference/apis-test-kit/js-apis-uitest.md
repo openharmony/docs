@@ -1014,7 +1014,7 @@ async function demo() {
 
 doubleClick(): Promise\<void>
 
-控件对象进行双击操作。
+控件对象进行双击操作，使用Promise异步回调。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
