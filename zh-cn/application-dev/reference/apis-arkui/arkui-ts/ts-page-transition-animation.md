@@ -410,7 +410,7 @@ struct PageTransitionExample {
     Column() {
       Button("页面1").onClick(() => {
         router.pushUrl({
-          url: "pages/page1";
+          url: "pages/page1"
         })
       })
         .width(200)

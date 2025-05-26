@@ -540,8 +540,8 @@ animator.update(options);
 | fill       | 'none' \| 'forwards' \| 'backwards' \| 'both'               | 是   | 动画执行后是否恢复到初始状态，动画执行后，动画结束时的状态（在最后一个关键帧中定义）将保留。<br/>'none'：在动画执行之前和之后都不会应用任何样式到目标上。<br/>'forwards'：在动画结束后，目标将保留动画结束时的状态（在最后一个关键帧中定义）。<br/>'backwards'：动画将在animation-delay期间应用第一个关键帧中定义的值。当animation-direction为'normal'或'alternate'时应用from关键帧中的值，当animation-direction为'reverse'或'alternate-reverse'时应用to关键帧中的值。<br/>'both'：动画将遵循forwards和backwards的规则，从而在两个方向上扩展动画属性。 |
 | direction  | 'normal' \| 'reverse' \| 'alternate' \| 'alternate-reverse' | 是   | 动画播放模式。<br/>'normal'： 动画正向循环播放。<br/>'reverse'： 动画反向循环播放。<br/>'alternate'：动画交替循环播放，奇数次正向播放，偶数次反向播放。<br/>'alternate-reverse'：动画反向交替循环播放，奇数次反向播放，偶数次正向播放。 |
 | iterations | number                                                      | 是   | 动画播放次数。设置为0时不播放，设置为-1时无限次播放，设置大于0时为播放次数。<br/>**说明:** 设置为除-1外其他负数视为无效取值，无效取值动画默认播放1次。 |
-| begin      | number                                                      | 是   | 动画插值起点。                                               |
-| end        | number                                                      | 是   | 动画插值终点。                                               |
+| begin      | number                                                      | 是   | 动画插值起点。<br/>**说明:** 会影响[onFrame](#onframe12)回调的入参值。                                               |
+| end        | number                                                      | 是   | 动画插值终点。<br/>**说明:** 会影响[onFrame](#onframe12)回调的入参值。                                               |
 
 
 ## 完整示例
@@ -666,8 +666,8 @@ struct AnimatorTest {
       fill: "forwards",
       direction: "normal",
       iterations: 1,
-      begin: 100,
-      end: 200
+      begin: 100, //动画插值起点
+      end: 200 //动画插值终点
     })
     this.backAnimator.onFinish = () => {
       this.flag = true
