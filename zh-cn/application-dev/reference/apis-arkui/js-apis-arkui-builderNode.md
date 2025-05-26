@@ -113,14 +113,12 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 build的可选参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型                                   | 必填 | 说明                                                         |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值:false。                                          |
-
+| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值：false<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| localStorage<sup>20+</sup> |[LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 给当前builderNode设置localStorage，挂载在此builderNode下的自定义组件共享该localStorage，如果自定义组件构造函数同时也传入localStorage，优先使用构造函数中传入的localStorage。默认值：null<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务
 ### InputEventType<sup>20+</sup>
 
 type InputEventType = TouchEvent | MouseEvent | AxisEvent
