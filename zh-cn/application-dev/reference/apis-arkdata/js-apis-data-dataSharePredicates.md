@@ -27,7 +27,7 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 
 该接口用于配置谓词以匹配值等于指定值的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -60,7 +60,7 @@ and(): DataSharePredicates
 
 该接口用于将和条件添加到谓词中。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -87,7 +87,7 @@ orderByAsc(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配其值按升序排序的列。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -118,7 +118,7 @@ orderByDesc(field: string): DataSharePredicates
 
 该接口用于配置谓词以匹配其值按降序排序的列。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -149,7 +149,7 @@ limit(total: number, offset: number): DataSharePredicates
 
 该接口用于配置谓词以指定结果数和起始位置。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -159,8 +159,8 @@ limit(total: number, offset: number): DataSharePredicates
 
 | 参数名   | 类型   | 必填 | 说明           |
 | -------- | ------ | ---- | -------------- |
-| total    | number | 是   | 表示最大数据记录数，取值为正整数。传入值小于0时，不会限制记录数量。传入值等于0时，KVDB(schema)会限制记录数为0，而RDB则在传入值等于0时不会限制记录数量。|
-| offset | number | 是   | 指定查询结果的起始位置，默认初始位置为结果集的最前端。当offset为负数时，起始位置为结果集的最前端。当offset超出结果集最后位置时，查询结果为空。|
+| total    | number | 是   | 最大数据记录数。</br>当使用键值型数据库时，取值范围参考[键值型数据库limit接口](./js-apis-distributedKVStore.md#limit)中的total参数说明。</br>当使用关系型数据库时，取值范围参考[关系型数据库limitAs接口](./js-apis-data-relationalStore.md#limitas)中的value参数说明。|
+| offset | number | 是   | 指定查询结果的起始位置。</br>当使用键值型数据库时，取值范围参考[键值型数据库limit接口](./js-apis-distributedKVStore.md#limit)中的offset参数说明。</br>当使用关系型数据库时，取值范围参考[关系型数据库offsetAs接口](./js-apis-data-relationalStore.md#offsetas)中的rowOffset参数说明。|
 
 **返回值：**
 
@@ -181,7 +181,7 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 该接口用于配置谓词以匹配值在指定范围内的字段。
 
-目前仅RDB及KVDB(schema)支持该谓词。
+目前仅关系型数据库及键值型数据库支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
