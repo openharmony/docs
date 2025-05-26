@@ -339,7 +339,6 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName: strin
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -403,7 +402,6 @@ getProfileByAbility(moduleName: string, abilityName: string, metadataName?: stri
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -487,7 +485,6 @@ getProfileByAbilitySync(moduleName: string, abilityName: string, metadataName?: 
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified abilityName is not existed.                     |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 | 17700029 | The specified ability is disabled.                            |
 
 **示例：**
@@ -560,7 +557,6 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -623,7 +619,6 @@ getProfileByExtensionAbility(moduleName: string, extensionAbilityName: string, m
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
@@ -695,7 +690,6 @@ getProfileByExtensionAbilitySync(moduleName: string, extensionAbilityName: strin
 | 17700002 | The specified moduleName is not existed.                      |
 | 17700003 | The specified extensionAbilityName not existed.            |
 | 17700024 | Failed to get the profile because there is no profile in the HAP. |
-| 17700026 | The specified bundle is disabled.                            |
 
 **示例：**
 
