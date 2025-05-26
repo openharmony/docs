@@ -4715,7 +4715,8 @@ getImagePropertySync(key:PropertyKey): string
 获取图片exif指定属性键的值，用String形式返回结果。
 
 >**说明：**
-> 该方法仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同文件），且需要包含exif信息。
+> 该方法仅支持JPEG、PNG和HEIF(不同硬件设备支持情况不同)文件，且需要包含exif信息。
+>
 > exif信息是图片的元数据，包含拍摄时间、相机型号、光圈、焦距、ISO等。
 
 
