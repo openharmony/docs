@@ -191,22 +191,6 @@ type AnimationRange\<T>=[from: T, to: T]
 | ENABLED | 1 | 菜单弹出时振动。 |
 | AUTO | 2 | 菜单振动效果跟随系统，当前为菜单有蒙层时振动。 |
 
-## BorderRadiusType<sup>18+</sup>
-
-type BorderRadiusType = [Length](ts-types.md#length) | [BorderRadiuses](ts-types.md#borderradiuses9) | [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12)
-
-圆角类型。
-
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 类型                   |说明                                               |
-| ----------------------| --------------------------------------------------|
-| [Length](ts-types.md#length)                |    长度类型，用于描述尺寸单位。           |
-| [BorderRadiuses](ts-types.md#borderradiuses9)        | 圆角类型，用于描述组件边框圆角半径。 |
-| [LocalizedBorderRadiuses](ts-types.md#localizedborderradiuses12) | 圆角类型，用于描述组件边框圆角半径。 |
-
 ## 示例
 
 ### 示例1（弹出普通菜单）
