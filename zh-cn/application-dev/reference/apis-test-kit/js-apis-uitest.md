@@ -16,7 +16,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 > - 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口在<!--RP1-->[自动化测试脚本](../../application-test/arkxtest-guidelines.md)<!--RP1End-->中使用。
 > - 本模块接口不支持并发调用。
-> - 本模块接口适用于手机、平板、2in1、智能穿戴设备。
+> - 本模块接口适用于手机、平板、PC/2in1、智能穿戴设备。
 
 
 ## 导入模块
@@ -1854,7 +1854,7 @@ dragTo(target: Component): Promise\<void>
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2894,11 +2894,11 @@ async function demo() {
 
 drag(startx: number, starty: number, endx: number, endy: number, speed?: number): Promise\<void>
 
-Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
+从起始坐标点拖拽至目的坐标点，使用Promise异步回调。
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -2939,6 +2939,10 @@ async function demo() {
 dragBetween(from: Point, to: Point, speed?: number, duration?: number): Promise\<void>
 
 从起始坐标点拖拽至目标坐标点，支持指定拖拽速度和拖拽前长按时间，使用Promise异步回调。
+
+> **说明**
+>
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -3071,7 +3075,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3186,7 +3190,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3406,7 +3410,7 @@ pressHome(): Promise\<void>
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3438,7 +3442,7 @@ pressHome(displayId: number): Promise\<void>
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -4045,7 +4049,7 @@ mouseDrag(from: Point, to: Point, speed?: number): Promise\<void>
 
 > **说明**
 >
-> 该接口仅在手机、平板、2in1设备上生效。
+> 该接口仅在手机、平板、PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -4180,7 +4184,7 @@ touchPadMultiFingerSwipe(fingers: number, direction: UiDirection, options?: Touc
 
 > **说明**
 >
-> 该接口仅在2in1设备上生效。
+> 该接口仅在PC/2in1设备上生效。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
