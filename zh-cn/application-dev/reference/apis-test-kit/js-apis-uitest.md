@@ -2377,7 +2377,7 @@ async function demo() {
 
 ### pressBack<sup>20+</sup>
 
-pressBack(displayId): Promise\<void>
+pressBack(displayId: number): Promise\<void>
 
 对指定屏幕进行点击BACK键的操作，使用Promise异步回调。
 
@@ -2389,7 +2389,7 @@ pressBack(displayId): Promise\<void>
 
 | 参数名  | 类型   | 必填 | 说明          |
 | ------- | ------ | ---- | ------------- |
-| displayId | number | 是   | 指定的屏幕ID，取值范围：大于等于0的整数。<br> **说明:** 传入displayId不存在时，将抛出17000007异常。  |
+| displayId | number | 是   | 指定的屏幕ID，取值范围：大于等于0的整数。<br> **说明：** 传入displayId不存在时，将抛出17000007异常。  |
 
 **返回值：**
 
@@ -2533,7 +2533,7 @@ async function demo() {
 
 ### triggerCombineKeys<sup>20+</sup>
 
-triggerCombineKeys(key0: number, key1: number, key2?: number, displayId: number): Promise\<void>
+triggerCombineKeys(key0: number, key1: number, key2?: number, displayId?: number): Promise\<void>
 
 通过给定的key值，找到对应组合键，并在指定屏幕下进行点击，使用Promise异步回调。例如，Key值为(2072, 2019)时，Driver对象找到key值对应的组合键并点击，如ctrl+c。
 
@@ -2548,7 +2548,7 @@ triggerCombineKeys(key0: number, key1: number, key2?: number, displayId: number)
 | key0   | number | 是   | 指定的第一个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
 | key1   | number | 是   | 指定的第二个key值，取值大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)。            |
 | key2   | number | 否   | 指定的第三个key值，取值范围：大于等于0的整数，取值范围：[KeyCode键码值](../apis-input-kit/js-apis-keycode.md#keycode)，默认值为0。 |
-| displayId | number | 是   | 指定的屏幕ID，取值范围：大于等于0的整数。 |
+| displayId | number | 否  | 指定的屏幕ID，取值范围：大于等于0的整数，默认值为设备默认屏幕ID。 |
 
 **返回值：**
 
