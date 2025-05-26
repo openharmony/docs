@@ -433,7 +433,7 @@ getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfcte
 
 | **类型**                                                  | **说明**                                                                |
 | --------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [MifareClassicTag](js-apis-nfctech.md#mifareclassictags9) | MIFARE Classic类型Tag对象，通过该对象访问MIFARE Classic类型的相关接口。 |
+| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9) | MIFARE Classic类型Tag对象，通过该对象访问MIFARE Classic类型的相关接口。 |
 
 **错误码：**
 
