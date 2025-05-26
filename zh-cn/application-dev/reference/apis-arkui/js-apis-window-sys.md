@@ -3334,7 +3334,7 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
-| imgResourceId | number | 是   | 静态图的资源id，获取方式：\$r("imagePath").id，imagePath为图片所在路径，如\$r("app.media.cat").id |
+| imgResourceId | number | 是   | 静态图的资源id，获取方式：`$r("imagePath").id`，imagePath为图片所在路径，如`$r("app.media.cat").id` |
 | value | ImageFit | 是 | 静态图的[填充方式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) |
 
 **返回值：**
@@ -3350,10 +3350,10 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | ------------------------------ |
 | 202     | Permission verification failed. A non-system application calls a system API. |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300002 | This window state is abnormal. |
 | 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. 2. Invalid parameter length. 3. Incorrect parameter format. |
 
 **示例：**
 
