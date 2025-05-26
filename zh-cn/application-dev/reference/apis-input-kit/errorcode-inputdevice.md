@@ -4,6 +4,7 @@
 >
 > 以下仅介绍本模块特有错误码，通用错误码请参考[通用错误码说明文档](../errorcode-universal.md)。
 
+<!--Del-->
 ## 3900001 指定的设备不存在
 
 **错误信息**
@@ -22,7 +23,7 @@ The specified device does not exist.
 **处理步骤**
 
 1. 通过[inputDevice.getDeviceList](js-apis-inputdevice.md#inputdevicegetdevicelist9)查询设备id，并传入正确的设备id。
-2. 检查设备的物理连接是否断开。
+2. 检查设备的物理连接是否断开。<!--DelEnd-->
 
 ## 3900002 键盘设备没有连接
 

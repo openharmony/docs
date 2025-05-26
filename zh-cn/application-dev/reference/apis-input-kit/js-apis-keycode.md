@@ -109,14 +109,14 @@ import { KeyCode } from '@kit.InputKit';
 | KEYCODE_MENU                     |  2067 | 菜单键。                         |
 | KEYCODE_PAGE_UP                  |  2068 | 向上翻页键。                       |
 | KEYCODE_PAGE_DOWN                |  2069 | 向下翻页键。                       |
-| KEYCODE_ESCAPE                   |  2070 | ESC键。                        |
+| KEYCODE_ESCAPE                   |  2070 | Esc键。                        |
 | KEYCODE_FORWARD_DEL              |  2071 | 删除键。                         |
 | KEYCODE_CTRL_LEFT                |  2072 | 左Ctrl键。                |
 | KEYCODE_CTRL_RIGHT               |  2073 | 右Ctrl键。               |
 | KEYCODE_CAPS_LOCK                |  2074 | 大写锁定键。                       |
 | KEYCODE_SCROLL_LOCK              |  2075 | 滚动锁定键。                       |
-| KEYCODE_META_LEFT                |  2076 | 左元修改器键。                      |
-| KEYCODE_META_RIGHT               |  2077 | 右元修改器键。                      |
+| KEYCODE_META_LEFT                |  2076 | 左Meta键。                      |
+| KEYCODE_META_RIGHT               |  2077 | 右Meta键。                      |
 | KEYCODE_FUNCTION                 |  2078 | 功能键。                      |
 | KEYCODE_SYSRQ                    |  2079 | 系统请求/打印屏幕键。                  |
 | KEYCODE_BREAK                    |  2080 | Break/Pause键。                |

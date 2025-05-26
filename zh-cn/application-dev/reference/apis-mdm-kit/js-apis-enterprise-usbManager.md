@@ -59,6 +59,7 @@ addAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -109,6 +110,7 @@ removeAllowedUsbDevices(admin: Want, usbDeviceIds: Array\<UsbDeviceId>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -164,6 +166,7 @@ getAllowedUsbDevices(admin: Want): Array\<UsbDeviceId>
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -223,6 +226,7 @@ setUsbStorageDeviceAccessPolicy(admin: Want, usbPolicy: UsbPolicy): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -275,6 +279,7 @@ getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -327,6 +332,7 @@ addDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -379,6 +385,7 @@ removeDisallowedUsbDevices(admin: Want, usbDevices: Array\<UsbDeviceType>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -436,6 +443,7 @@ getDisallowedUsbDevices(admin: Want): Array\<UsbDeviceType>
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

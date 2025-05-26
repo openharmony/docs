@@ -358,7 +358,7 @@
 
 ## LocalizedAlignment<sup>20+</sup>
 
-用于支持align属性镜像特性的枚举类型。
+用于支持align、[layoutGravity](ts-universal-attributes-location.md#layoutgravity20)属性镜像特性的枚举类型。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 

@@ -3361,17 +3361,17 @@
           <!--DelEnd-->
         - C API<!--asset-store-c-->
           - 模块<!--asset-store-module-->
-            - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
-            - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
+            - [AssetApi](reference/apis-asset-store-kit/capi-assetapi.md)
+            - [AssetType](reference/apis-asset-store-kit/capi-assettype.md)
           - 头文件<!--asset-store-headerfile-->
-            - [asset_api.h](reference/apis-asset-store-kit/asset__api_8h.md)
-            - [asset_type.h](reference/apis-asset-store-kit/asset__type_8h.md)
+            - [asset_api.h](reference/apis-asset-store-kit/capi-asset-api-h.md)
+            - [asset_type.h](reference/apis-asset-store-kit/capi-asset-type-h.md)
           - 结构体<!--asset-store-struct-->
-            - [Asset_Attr](reference/apis-asset-store-kit/_asset___attr.md)
-            - [Asset_Blob](reference/apis-asset-store-kit/_asset___blob.md)
-            - [Asset_Result](reference/apis-asset-store-kit/_asset___result.md)
-            - [Asset_ResultSet](reference/apis-asset-store-kit/_asset___result_set.md)
-            - [Asset_Value](reference/apis-asset-store-kit/union_asset___value.md)
+            - [Asset_Blob](reference/apis-asset-store-kit/capi-asset-blob.md)
+            - [Asset_Value](reference/apis-asset-store-kit/capi-asset-value.md)
+            - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
+            - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
+            - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
         - 错误码<!--asset-store-arkts-errcode-->
           - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
@@ -3879,11 +3879,11 @@
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
           - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
           - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
-          - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis-input-kit/js-apis-inputconsumer.md)
+          - [@ohos.multimodalInput.inputConsumer (全局快捷键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
-          - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
-          - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
+          - [@ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
+          - [@ohos.multimodalInput.inputConsumer (全局快捷键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
