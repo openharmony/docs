@@ -17,6 +17,6 @@
 | 名称 | 描述 |
 | -- | -- |
 | uint32_t tag | 关键资产属性名称。 |
-| Asset_Value value | 关键资产属性内容。 |
+| [Asset_Value](capi-asset-value.md) value | 关键资产属性内容。 |
 
 

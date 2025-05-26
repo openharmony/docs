@@ -4,6 +4,8 @@
 
 声明用于访问关键资产的接口。
 
+**引用文件：** <asset/asset_api.h>
+
 **库：** libasset_ndk.z.so
 
 **系统能力：** SystemCapability.Security.Asset
@@ -40,6 +42,8 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt)
 
 新增一条关键资产。
 
+如果要设置[Asset_Tag](capi-asset-type-h.md#asset_tag).ASSET_TAG_IS_PERSISTENT属性，需要申请ohos.permission.STORE_PERSISTENT_DATA权限。
+
 **起始版本：** 11
 
 
@@ -47,7 +51,7 @@ int32_t OH_Asset_Add(const Asset_Attr *attributes, uint32_t attrCnt)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const Asset_Attr *attributes | 待新增关键资产的属性集合。 |
+| const [Asset_Attr](capi-asset-attr.md) *attributes | 待新增关键资产的属性集合。 |
 | uint32_t attrCnt | 待新增关键资产的属性数量。 |
 
 **返回：**
@@ -73,7 +77,7 @@ int32_t OH_Asset_Remove(const Asset_Attr *query, uint32_t queryCnt)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const Asset_Attr *query | 待删除关键资产的搜索条件。 |
+| const [Asset_Attr](capi-asset-attr.md) *query | 待删除关键资产的搜索条件。 |
 | uint32_t queryCnt | 待删除关键资产搜索条件的个数。 |
 
 **返回：**
@@ -99,9 +103,9 @@ int32_t OH_Asset_Update(const Asset_Attr *query, uint32_t queryCnt,const Asset_A
 
 | 参数项 | 描述 |
 | -- | -- |
-| const Asset_Attr *query | 待更新关键资产的搜索条件。 |
+| const [Asset_Attr](capi-asset-attr.md) *query | 待更新关键资产的搜索条件。 |
 | uint32_t queryCnt | 待更新关键资产搜索条件的个数。 |
-| const Asset_Attr *attributesToUpdate | 待更新关键资产的属性集合。 |
+| const [Asset_Attr](capi-asset-attr.md) *attributesToUpdate | 待更新关键资产的属性集合。 |
 | uint32_t updateCnt | 待更新关键资产的属性数量。 |
 
 **返回：**
@@ -127,7 +131,7 @@ int32_t OH_Asset_PreQuery(const Asset_Attr *query, uint32_t queryCnt, Asset_Blob
 
 | 参数项 | 描述 |
 | -- | -- |
-| const Asset_Attr *query | 关键资产的查询条件。 |
+| const [Asset_Attr](capi-asset-attr.md) *query | 关键资产的查询条件。 |
 | uint32_t queryCnt | 关键资产查询条件的个数。 |
 | [Asset_Blob](capi-asset-blob.md) *challenge | 挑战值，在后续调用OH_Asset_Query时使用。 |
 
@@ -154,7 +158,7 @@ int32_t OH_Asset_Query(const Asset_Attr *query, uint32_t queryCnt, Asset_ResultS
 
 | 参数项 | 描述 |
 | -- | -- |
-| const Asset_Attr *query | 关键资产的查询条件。 |
+| const [Asset_Attr](capi-asset-attr.md) *query | 关键资产的查询条件。 |
 | uint32_t queryCnt | 关键资产查询条件的个数。 |
 | [Asset_ResultSet](capi-asset-resultset.md) *resultSet | 查询结果列表。 |
 
@@ -181,7 +185,7 @@ int32_t OH_Asset_PostQuery(const Asset_Attr *handle, uint32_t handleCnt)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const Asset_Attr *handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。 |
+| const [Asset_Attr](capi-asset-attr.md) *handle | 待处理的查询句柄，当前包含OH_Asset_PreQuery执行成功返回的挑战值。 |
 | uint32_t handleCnt | 句柄属性集合中元素的个数。 |
 
 **返回：**
@@ -207,7 +211,7 @@ Asset_Attr *OH_Asset_ParseAttr(const Asset_Result *result, Asset_Tag tag)
 
 | 参数项 | 描述 |
 | -- | -- |
-| const Asset_Result *result | 从OH_Asset_Query中获取的查询结果。 |
+| const [Asset_Result](capi-asset-result.md) *result | 从OH_Asset_Query中获取的查询结果。 |
 | [Asset_Tag](capi-asset-type-h.md#asset_tag) tag | 待获取的属性标签。 |
 
 **返回：**
@@ -253,5 +257,3 @@ void OH_Asset_FreeResultSet(Asset_ResultSet *resultSet)
 | 参数项 | 描述 |
 | -- | -- |
 | [Asset_ResultSet](capi-asset-resultset.md) *resultSet | 从OH_Asset_Query得到的查询结果列表。 |
-
-

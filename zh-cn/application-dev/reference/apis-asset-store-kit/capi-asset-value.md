@@ -18,6 +18,6 @@
 | -- | -- |
 | bool boolean | 该字段用于传入bool类型的关键资产。 |
 | uint32_t u32 | 该字段用于传入uint32类型的关键资产。 |
-| Asset_Blob blob | 该字段用于传入bytes类型的关键资产。 |
+| [Asset_Blob](capi-asset-blob.md) blob | 该字段用于传入bytes类型的关键资产。 |
 
 

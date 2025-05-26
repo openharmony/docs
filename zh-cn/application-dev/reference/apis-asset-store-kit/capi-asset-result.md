@@ -17,6 +17,6 @@
 | 名称 | 描述 |
 | -- | -- |
 | uint32_t count | 关键资产属性的个数。 |
-| Asset_Attr* attrs | 指向关键资产属性数组的指针。 |
+| [Asset_Attr](capi-asset-attr.md) *attrs | 指向关键资产属性数组的指针。 |
 
 
