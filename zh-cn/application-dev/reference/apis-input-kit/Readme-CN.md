@@ -14,7 +14,7 @@
   - [@ohos.multimodalInput.inputConsumer (全局快捷键)](js-apis-inputconsumer.md)
   <!--Del-->
   - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](js-apis-pointer-sys.md)
-  - [@ohos.multimodalInput.shortKey(系统预置全局快捷键)(系统接口)](js-apis-shortKey-sys.md)
+  - [@ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)](js-apis-shortKey-sys.md)
   - [@ohos.multimodalInput.inputConsumer (全局快捷键)(系统接口)](js-apis-inputconsumer-sys.md)
   - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](js-apis-inputdevice-sys.md)
   - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](js-apis-inputeventclient-sys.md)
