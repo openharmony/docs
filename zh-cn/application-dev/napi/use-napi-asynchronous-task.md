@@ -209,6 +209,7 @@ napi_queue_async_work接口底层使用了uv_queue_work能力，并对回调中�
      hilog.info(0x0000, 'XXX', 'result is %{public}d', result);
    });
    ```
+   运行结果：result is 579
 
 ## 注意事项
 - 调用napi_cancel_async_work接口，无论底层uv是否失败都会返回napi_ok。若因为底层uv导致取消任务失败，complete callback中的status会传入对应错误值，请在complete callback中对status进行处理。
