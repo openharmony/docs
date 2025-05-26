@@ -294,8 +294,8 @@ addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
 
 以下情况下，调用本接口会报策略冲突：
 
-1. 已经通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)接口禁用了设备Wi-Fi能力。通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)解除Wi-Fi禁用后，可解除冲突。
-2. 已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了Wi-Fi白名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除Wi-Fi白名单后，可解除冲突。
+<!--Del-->1. 已经通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)接口禁用了设备Wi-Fi能力。通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)解除Wi-Fi禁用后，可解除冲突。
+2. <!--DelEnd-->已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了Wi-Fi白名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除Wi-Fi白名单后，可解除冲突。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
