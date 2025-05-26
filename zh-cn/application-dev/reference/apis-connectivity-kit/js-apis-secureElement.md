@@ -178,7 +178,7 @@ off(type: 'stateChanged', callback?: Callback\<ServiceState>): void;
 
 | **参数名** | **类型**                                             | **必填** | **说明**             |
 | ---------- | ---------------------------------------------------- | ------ | -------------------- |
-| type       | string                                               | 是      | 取消订阅监听的事件类型，固定填'serviceState' 。      |
+| type       | string                                               | 是      | 取消订阅监听的事件类型，固定填'stateChanged' 。      |
 | callback   | Callback<[ServiceState](#servicestate)> | 否      | 返回SE服务状态的回调 。|
 
 **错误码：**
