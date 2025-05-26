@@ -4529,7 +4529,7 @@ getBackForwardEntries(): BackForwardList
 
 > **说明：**
 >
-> getBackForwardEntries在[onLoadIntercept](ts-basic-components-web.md#onloadintercept10)中调用时，获取的是拦截前当前Webview的历史信息列表，而非加载后的历史栈。
+> [onLoadIntercept](ts-basic-components-web.md#onloadintercept10)在加载开始的时候触发，该时刻还未生成历史节点，所以在[onLoadIntercept](ts-basic-components-web.md#onloadintercept10)中调用getBackForwardEntries拿到的历史栈不包括当前正在加载中的跳转。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
