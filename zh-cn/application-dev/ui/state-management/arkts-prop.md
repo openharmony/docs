@@ -1,9 +1,8 @@
 # \@Prop装饰器：父子单向同步
 
+\@Prop装饰的变量可以和父组件建立单向的同步关系：\@Prop装饰的变量是可变的，但是变化不会同步回其父组件。
 
-\@Prop装饰的变量可以和父组件建立单向的同步关系。\@Prop装饰的变量是可变的，但是变化不会同步回其父组件。
-
-在阅读\@Prop文档前，建议开发者首先了解[\@State](./arkts-state.md)的基本用法。
+在阅读@Prop文档前，建议提前了解[@State](./arkts-state.md)的基本用法。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 > **说明：**
 >
@@ -15,23 +14,20 @@
 
 \@Prop装饰的变量和父组件建立单向的同步关系：
 
-- \@Prop变量允许在本地修改，但修改后的变化不会同步回父组件。
+- \@Prop变量允许在本地修改，但修改不会同步回父组件。
 
-- 当数据源更改时，\@Prop装饰的变量都会更新，并且会覆盖本地所有更改。因此，数值的同步是父组件到子组件（所属组件)，子组件数值的变化不会同步到父组件。
-
-
+- 当数据源更改时，\@Prop装饰的变量都会更新，并且会覆盖本地所有更改。因此，数值的同步是父组件到子组件，子组件数值的变化不会同步到父组件。
 
 ## 限制条件
 
 - \@Prop装饰变量时会进行深拷贝，在拷贝的过程中除了基本类型、Map、Set、Date、Array外，都会丢失类型。例如[PixelMap](../../reference/apis-image-kit/js-apis-image.md#pixelmap7)等通过NAPI提供的复杂类型，由于有部分实现在Native侧，因此无法在ArkTS侧通过深拷贝获得完整的数据。
-
 
 ## 装饰器使用规则说明
 
 | \@Prop变量装饰器 | 说明                                       |
 | ----------- | ---------------------------------------- |
 | 装饰器参数       | 无。                                        |
-| 同步类型        | 单向同步：对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop变量的修改不会同步到父组件的状态变量上。嵌套类型的场景请参考[观察变化](#观察变化)。 |
+| 同步类型        | 单向同步。对父组件状态变量值的修改，将同步给子组件\@Prop装饰的变量，子组件\@Prop装饰的变量的修改不会同步到父组件的状态变量上。<br>嵌套类型的场景请参考[观察变化](#观察变化)。 |
 | 允许装饰的变量类型   | Object、class、string、number、boolean、enum类型，以及这些类型的数组。<br/>不支持any，支持undefined和null。<br/>支持Date类型。<br/>API11及以上支持Map、Set类型。<br/>支持ArkUI框架定义的联合类型Length、ResourceStr、ResourceColor类型。<br/>必须指定类型。<br/>\@Prop和[数据源](arkts-state-management-overview.md#基本概念)类型需要相同，有以下三种情况：<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器同步时双方的类型必须相同，示例请参考[父组件@State到子组件@Prop简单数据类型同步](#父组件state到子组件prop简单数据类型同步)。<br/>-&nbsp;\@Prop装饰的变量和\@State以及其他装饰器装饰的数组的项同步时 ，\@Prop的类型需要和\@State装饰的数组的数组项相同，比如\@Prop&nbsp;:&nbsp;T和\@State&nbsp;:&nbsp;Array&lt;T&gt;，示例请参考[父组件@State数组中的项到子组件@Prop简单数据类型同步](#父组件state数组项到子组件prop简单数据类型同步)。<br/>-&nbsp;当父组件状态变量为Object或者class时，\@Prop装饰的变量和父组件状态变量的属性类型相同，示例请参考[从父组件中的@State类对象属性到@Prop简单类型的同步](#从父组件中的state类对象属性到prop简单类型的同步)。<br/>支持类型的场景请参考[观察变化](#观察变化)。<br/>API11及以上支持上述支持类型的联合类型，比如string \| number, string \| undefined 或者 ClassA \| null，示例见[Prop支持联合类型实例](#prop支持联合类型实例)。 <br/>**注意**<br/>当使用undefined和null的时候，建议显式指定类型，遵循TypeScript类型校验，比如：`@Prop a : string \| undefined = undefined`是支持的，不支持`@Prop a: string = undefined`。 |
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
@@ -39,12 +35,11 @@
 
 ## 变量的传递/访问规则说明
 
-| 传递/访问          | 说明                                                         |
+| 装饰器使用规则          | 说明                                                         |
 | ------------------ | ------------------------------------------------------------ |
 | 从父组件初始化     | 如果本地有初始化，则是可选的，初始化行为和[\@State](./arkts-state.md#变量的传递访问规则说明)保持一致。没有的话，则必选，支持父组件中的常规变量（常规变量对@Prop赋值，只是数值的初始化，常规变量的变化不会触发UI刷新。只有状态变量才能触发UI刷新）、[\@State](arkts-state.md)、[\@Link](arkts-link.md)、\@Prop、[\@Provide](arkts-provide-and-consume.md)、[\@Consume](arkts-provide-and-consume.md)、[\@ObjectLink](arkts-observed-and-objectlink.md)、[\@StorageLink](arkts-appstorage.md#storagelink)、[\@StorageProp](arkts-appstorage.md#storageprop)、[\@LocalStorageLink](arkts-localstorage.md#localstoragelink)和[\@LocalStorageProp](arkts-localstorage.md#localstorageprop)去初始化子组件中的\@Prop变量。 |
 | 用于初始化子组件   | \@Prop支持去初始化子组件中的常规变量、\@State、\@Link、\@Prop、\@Provide。 |
 | 是否支持组件外访问 | \@Prop装饰的变量是私有的，只能在组件内访问。                 |
-
 
   **图1** 初始化规则图示  
 
@@ -183,20 +178,19 @@ struct ParentComponent {
 
 ### 框架行为
 
-要理解\@Prop变量值初始化和更新机制，有必要了解父组件和拥有\@Prop变量的子组件初始渲染和更新流程。
+理解\@Prop变量值初始化和更新机制，需要了解父组件和子组件的渲染和更新流程。
 
 1. 初始渲染：
-   1. 执行父组件的build()函数将创建子组件的新实例，将数据源传递给子组件。
+   1. 执行父组件的build()函数，创建子组件的新实例，并将数据源传递给子组件。
    2. 初始化子组件\@Prop装饰的变量。
 
 2. 更新：
    1. 子组件\@Prop更新时，更新仅停留在当前子组件，不会同步回父组件。
-   2. 当父组件的数据源更新时，子组件的\@Prop装饰的变量将被来自父组件的数据源重置，所有\@Prop装饰的本地的修改将被父组件的更新覆盖。
+   2. 当父组件的数据源更新时，子组件的\@Prop装饰的变量将被来自父组件的数据源重置，所有@Prop装饰变量的本地修改将被父组件的更新覆盖。
 
 > **说明：**
 >
 > \@Prop装饰的数据更新依赖其所属自定义组件的重新渲染，所以在应用进入后台后，\@Prop无法刷新，推荐使用\@Link代替。
-
 
 ## 使用场景
 
@@ -204,12 +198,9 @@ struct ParentComponent {
 ### 父组件\@State到子组件\@Prop简单数据类型同步
 
 
-以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent 不会同步给父组件ParentComponent。
+以下示例中，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent，不会同步给父组件ParentComponent。
 
-
-ParentComponent的状态变量countDownStartValue的变化将重置CountDownComponent的count。
-
-
+ParentComponent的countDownStartValue变化将重置CountDownComponent的count。
 
 ```ts
 @Component
@@ -259,23 +250,20 @@ struct ParentComponent {
 在上面的示例中：
 
 
-1. CountDownComponent子组件首次创建时其\@Prop装饰的count变量将从父组件\@State装饰的countDownStartValue变量初始化。
+1. CountDownComponent子组件首次创建时，其\@Prop装饰的count变量将从父组件\@State装饰的countDownStartValue变量初始化。
 
-2. 按“+1”或“-1”按钮时，父组件的\@State装饰的countDownStartValue值会变化，这将触发父组件重新渲染，在父组件重新渲染过程中会刷新使用countDownStartValue状态变量的UI组件并单向同步更新CountDownComponent子组件中的count值。
+2. 按“+1”或“-1”按钮时，父组件的\@State装饰的countDownStartValue值会变化，这将触发父组件重新渲染，在父组件重新渲染过程中会刷新使用countDownStartValue状态变量的UI组件，并单向同步更新CountDownComponent子组件中的count值。
 
 3. 更新count状态变量值也会触发CountDownComponent的重新渲染，在重新渲染过程中，评估使用count状态变量的if语句条件（this.count &gt; 0），并执行true分支中的使用count状态变量的UI组件相关描述来更新Text组件的UI显示。
 
-4. 当按下子组件CountDownComponent的“Try again”按钮时，其\@Prop变量count将被更改，但是count值的更改不会影响父组件的countDownStartValue值。
+4. 当按下子组件CountDownComponent的“Try again”按钮时，CountDownComponent的\@Prop变量count更改，但不影响父组件的countDownStartValue。
 
-5. 父组件的countDownStartValue值会变化时，父组件的修改将覆盖掉子组件CountDownComponent中count本地的修改。
-
+5. 父组件的countDownStartValue值变化时，父组件的修改将覆盖子组件CountDownComponent中count本地的修改。
 
 ### 父组件\@State数组项到子组件\@Prop简单数据类型同步
 
 
-父组件中\@State如果装饰的数组，其数组项也可以初始化\@Prop。以下示例中父组件Index中\@State装饰的数组arr，将其数组项初始化子组件Child中\@Prop装饰的value。
-
-
+父组件中\@State装饰的数组，其数组项也可以初始化\@Prop。以下示例中，父组件Index中\@State装饰的数组arr，将其数组项初始化子组件Child中\@Prop装饰的value。
 
 ```ts
 @Component
@@ -326,10 +314,7 @@ struct Index {
 
 初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onclick事件处理程序会更改局部变量值。
 
-
-如果点击界面上的“1”六下，“2”五下、“3”四下，将所有变量的本地取值都变为“7”。
-
-
+如果点击界面上的“1”六次，“2”五次，“3”四次，所有变量的本地取值都变为“7”。
 
 ```
 7
@@ -342,7 +327,7 @@ struct Index {
 ```
 
 
-单击replace entire arr后，屏幕将显示以下信息。
+单击replace entire arr后，屏幕显示以下信息：
 
 
 
@@ -357,7 +342,7 @@ struct Index {
 ```
 
 
-- 在子组件Child中做的所有的修改都不会同步回父组件Index组件，所以即使6个组件显示都为7，但在父组件Index中，this.arr保存的值依旧是[1,2,3]。
+- 子组件Child的修改不会同步回父组件Index，即使6个组件显示都为7，在父组件Index中，this.arr保存的值仍为[1,2,3]。
 
 - 点击replace entire arr，this.arr[0] == 1成立，将this.arr赋值为[3, 4, 5]。
 
@@ -369,10 +354,9 @@ struct Index {
 
 ### 从父组件中的\@State类对象属性到\@Prop简单类型的同步
 
-如果图书馆有一本图书和两位用户，每位用户都可以将图书标记为已读，此标记行为不会影响其它读者用户。从代码角度讲，对\@Prop图书对象的本地更改不会同步给图书馆组件中的\@State图书对象。
+如果图书馆有一本图书和两位用户，每位用户都可以将图书标记为已读，此标记行为不会影响其他用户。从代码角度讲，对\@Prop图书对象的本地更改不会同步给图书馆组件中的\@State图书对象。
 
 在此示例中，图书类可以使用\@Observed装饰器，但不是必须的，只有在嵌套结构时需要此装饰器。这一点我们会在[从父组件中的@State数组项到@Prop class类型的同步](#从父组件中的state数组项到prop-class类型的同步)说明。
-
 
 ```ts
 class Book {
@@ -416,7 +400,7 @@ struct Library {
 
 ### 从父组件中的\@State数组项到\@Prop class类型的同步
 
-在下面的示例中，更改了\@State 装饰的allBooks数组中Book对象上的属性，但点击“Mark read for everyone”无反应。这是因为该属性是第二层的嵌套属性，\@State装饰器只能观察到第一层属性，不会观察到此属性更改，所以框架不会更新ReaderComp。
+在以下示例中，更改了\@State装饰的allBooks数组中Book对象的属性，但点击“Mark read for everyone”时，没有触发UI更新。这是因为该属性是第二层的嵌套属性，\@State装饰器只能观察到第一层属性，不会观察到此属性更改，所以框架不会更新ReaderComp。
 
 ```ts
 let nextId: number = 1;
@@ -623,7 +607,7 @@ struct MainProgram {
 
 ### \@Prop嵌套场景
 
-在嵌套场景下，每一层都要用@Observed装饰，且每一层都要被@Prop接收，这样才能观察到嵌套场景。
+在嵌套场景下，每一层都要用\@Observed装饰，且每一层都要被\@Prop接收，这样才能观察到嵌套场景。
 
 ```ts
 // 以下是嵌套类对象的数据结构。
@@ -648,7 +632,7 @@ class Father {
 }
 ```
 
-以下组件层次结构呈现的是@Prop嵌套场景的数据结构。
+以下组件层次结构展示了\@Prop嵌套场景的数据结构。
 
 ```ts
 @Entry

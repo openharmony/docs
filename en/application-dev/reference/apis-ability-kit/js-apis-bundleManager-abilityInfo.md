@@ -13,7 +13,7 @@ The AbilityInfo module defines the ability information. A third-party applicatio
 | Name                 | Type                                                    | Read-Only| Optional| Description                                     |
 | --------------------- | -------------------------------------------------------- | ---- | ---- | ------------------------------------------ |
 | bundleName            | string                                                   | Yes  | No  | Bundle name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| moduleName            | string                                                   | Yes  | No  | Name of the HAP file to which the ability belongs.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| moduleName            | string                                                   | Yes  | No  | HAP module name to which the ability belongs.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | name                  | string                                                   | Yes  | No  | Ability name.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | label                 | string                                                   | Yes  | No  | Resource descriptor of the ability name visible to users. Example: **"label": "$string: mainability_description"**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | labelId               | number                                                   | Yes  | No  | ID of the ability label.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -38,8 +38,8 @@ The AbilityInfo module defines the ability information. A third-party applicatio
 | windowSize|[WindowSize](#windowsize)                                            |    Yes  | No  | Window size.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | excludeFromDock<sup>12+</sup>             | boolean                                                  | Yes  | No  | Whether the ability icon can be hidden in the dock area. The value **true** means that the ability icon can be hidden in the dock area, and **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 12.|
 | skills<sup>12+</sup>             | Array\<[Skill](js-apis-bundleManager-skill.md)>                                                 | Yes  | No  | Skills of the ability.<br>**Atomic service API**: This API can be used in atomic services since API version 12.  |
-| appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for cloned applications.|
-| orientationId<sup>14+</sup>    | number      | Yes  | No  | Resource ID of the ability display mode. If **orientationId** is not set to **0**, the current display mode is customized, and **orientationId** must be used to obtain the corresponding resource from the resource manager module.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
+| appIndex<sup>12+</sup>    | number    | Yes  | No  | Index of an application clone. It takes effect only for application clones.|
+| orientationId<sup>14+</sup>    | number      | Yes  | No  | Resource ID of the ability display mode. If **orientationId** is set to a value other than **0**, the current display mode is customized, and this ID must be used to obtain the corresponding resource from the resource manager module.<br>**Atomic service API**: This API can be used in atomic services since API version 14.|
 
 ## WindowSize
 
@@ -51,8 +51,8 @@ Describes the window size.
 
 | Name              | Type   | Read-Only| Optional| Description                              |
 | -------------------| ------- | ---- | ---- | ---------------------------------- |
-| maxWindowRatio     | number  | Yes  | No  | Maximum aspect ratio of the window in free window mode. The value ranges from 0 to 1.|
-| minWindowRatio     | number  | Yes  | No  | Minimum aspect ratio of the window in free window mode. The value ranges from 0 to 1.|
+| maxWindowRatio     | number  | Yes  | No  | Maximum aspect ratio of the window in free window mode. The value ranges from 0 to 1. |
+| minWindowRatio     | number  | Yes  | No  | Minimum aspect ratio of the window in free window mode. The value ranges from 0 to 1. |
 | maxWindowWidth     | number  | Yes  | No  | Maximum width of the window in free window mode. The unit is vp.|
 | minWindowWidth     | number  | Yes  | No  | Minimum width of the window in free window mode. The unit is vp.|
 | maxWindowHeight    | number  | Yes  | No  | Maximum height of the window in free window mode. The unit is vp.|

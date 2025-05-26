@@ -1444,7 +1444,7 @@ static GetShared(): LocalStorage
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**模型约束：**此接口仅可在Stage模型下使用。
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **返回值：**
 
@@ -1665,6 +1665,18 @@ info(): string;
 |---------|-------------|
 |string    |属性名称。    |
 
+## PersistPropsOptions<sup>10+</sup>
+
+用于指定持久化属性及其默认值的键值对对象，作为[persistProps](#persistprops10)参数传入。
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称       | 类型                                  | 必填 | 说明                                                     |
+| ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
+| key          | string                                | 是   | 属性名。                                                     |
+| defaultValue | number \| string \| boolean \| Object | 是   | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化它。从API version 12开始，defaultValue允许为null或undefined。 |
 
 ## PersistentStorage
 
@@ -1676,20 +1688,6 @@ PersistentStorage具体UI使用说明，详见[PersistentStorage(持久化存储
 
 > **说明：**<br/>
 > 从API version 12开始，PersistentStorage支持null、undefined。
-
-### PersistPropsOptions
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-**参数：**
-
-| 参数名       | 类型                                  | 必填 | 说明                                                     |
-| ------------ | ------------------------------------- | ---- | ------------------------------------------------------------ |
-| key          | string                                | 是   | 属性名。                                                     |
-| defaultValue | number \| string \| boolean \| Object | 是   | 在PersistentStorage和AppStorage未查询到时，则使用默认值初始化它。从API version 12开始，defaultValue允许为null或undefined。 |
-
 
 ### persistProp<sup>10+</sup>
 
@@ -1761,7 +1759,7 @@ static persistProps(props: PersistPropsOptions[]): void
 
 | 参数名        | 类型                                       | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| props | [PersistPropsOptions](#persistpropsoptions)[] | 是 | 持久化数组。 |
+| props | [PersistPropsOptions](#persistpropsoptions10)[] | 是 | 持久化数组。 |
 
 **示例：**
 ```ts
@@ -1876,7 +1874,6 @@ static PersistProps(properties: {key: string, defaultValue: any;}[]): void
 PersistentStorage.PersistProps([{ key: 'highScore', defaultValue: '0' }, { key: 'wightScore', defaultValue: '1' }]);
 ```
 
-
 ### Keys<sup>(deprecated)</sup>
 
 static Keys(): Array&lt;string&gt;
@@ -1898,29 +1895,26 @@ static Keys(): Array&lt;string&gt;
 ```ts
 let keys: Array<string> = PersistentStorage.Keys();
 ```
+## EnvPropsOptions<sup>10+</sup>
 
-
-## Environment
-
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-Environment具体使用说明，详见[Environment(设备环境查询)](../../../ui/state-management/arkts-environment.md)
-
-### EnvPropsOptions
+用于指定环境变量名称及其默认值的键值对对象，作为[envProps](#envprops10)参数传入。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
-| 参数名       | 类型                        | 必填 | 说明                                                     |
+| 名称       | 类型                        | 必填 | 说明                                                     |
 | ------------ | --------------------------- | ---- | ------------------------------------------------------------ |
 | key          | string                      | 是   | 环境变量名称，支持的范围详见[内置环境变量说明](#内置环境变量说明)。 |
 | defaultValue | number \| string \| boolean | 是   | 查询不到环境变量key，则使用defaultValue作为默认值存入AppStorage中。 |
 
+## Environment
+
+Environment具体使用说明，详见[Environment(设备环境查询)](../../../ui/state-management/arkts-environment.md)
+
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### envProp<sup>10+</sup>
 
@@ -1969,7 +1963,7 @@ static envProps(props: EnvPropsOptions[]): void
 
 | 参数名 | 类型                                          | 必填 | 说明                             |
 | ------ | --------------------------------------------- | ---- | ------------------------------------ |
-| props  | [EnvPropsOptions](#envpropsoptions)[] | 是   | 系统环境变量和默认值的键值对的数组。 |
+| props  | [EnvPropsOptions](#envpropsoptions10)[] | 是   | 系统环境变量和默认值的键值对的数组。 |
 
 **示例：**
 ```ts
