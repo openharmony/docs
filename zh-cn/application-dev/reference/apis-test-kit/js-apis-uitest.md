@@ -81,7 +81,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称   | 类型   | 只读 |  必填 | 说明                      |
-| ------ | ------ | ---- | ---- | ---- |------------------------- |
+| ------ | ------ | ---- | ---- | ------------------------- |
 | left   | number |  否   | 是 |控件边框的左上角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
 | top    | number |  否   | 是 |控件边框的左上角的Y坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
 | right  | number |  否   | 是 |控件边框的右下角的X坐标，取值大于0的整数。<br> **说明：** 从API version 20开始可写。  |
@@ -125,7 +125,7 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称                 | 类型    | 只读 | 必填 | 说明                                                                                     |
-| -------------------- | ------- | ---- | ---- | ---- |----------------------------------------------------------------------------------------|
+| -------------------- | ------- | ---- | ---- |----------------------------------------------------------------------------------------|
 | bundleName           | string  | 否  | 否  | 窗口归属应用的包名，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
 | title                | string  | 否  | 否  | 窗口的标题信息，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
 | focused              | boolean | 否  | 否  | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
