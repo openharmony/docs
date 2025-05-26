@@ -50,7 +50,7 @@ import { audio } from '@kit.AudioKit';
 
 | 名称            | 类型                                     | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| errorCode | BusinessError   | 是  |    错误码。    |
+| errorCode | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror)   | 是  |    错误码。    |
 | errorType | [ErrorType](#errortype20)    | 否  | 表示错误发生阶段。 |
 | soundId  | number | 否  |  发生错误的资源ID，load方法能够获取soundId。    |
 | streamId | number  | 否  | 发生错误的音频流ID，play方法能够获取streamId。 |
@@ -1830,7 +1830,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
-| type   | string | 是   | 错误事件回调类型，取消注册的事件：'error'。 |
+| type   | string | 是   | 错误事件回调类型，取消注册的事件：'errorOccurred'。 |
 | callback | Callback<[ErrorInfo](#errorinfo20)> | 否   | 错误事件回调方法：使用播放器的过程中发生错误，并提供错误信息[errorInfo](#errorinfo20)。 |
 
 **示例：**
