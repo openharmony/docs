@@ -4,6 +4,8 @@
 
 ## arkts-identifiers-as-prop-names
 
+当属性名是有效的标识符（即不包含特殊字符、空格等，并且不以数字开头），可以直接使用而无需引号。
+
 **应用代码**
 
 ```typescript
@@ -151,6 +153,8 @@ foo((value: string) => {
 
 ## arkts-no-ctor-signatures-type
 
+使用工厂函数（() => Instance）替代构造函数签名。
+
 **应用代码**
 
 ```typescript
@@ -236,6 +240,8 @@ function foo(data: Record<string, string>) {
 
 ## arkts-no-typing-with-this
 
+使用具体类型替代`this`。
+
 **应用代码**
 
 ```typescript
@@ -257,6 +263,8 @@ class C {
 ```
 
 ## arkts-no-ctor-prop-decls
+
+显式声明类属性，并在构造函数中手动赋值。
 
 **应用代码**
 
@@ -286,6 +294,8 @@ class Person {
 ```
 
 ## arkts-no-ctor-signatures-iface
+
+使用type定义工厂函数或普通函数类型。
 
 **应用代码**
 
@@ -370,6 +380,8 @@ function foo(params: Record<string, string | number>) {
 
 ## arkts-no-inferred-generic-params
 
+所有泛型调用都应显式标注泛型参数类型，如 Map\<string, T\>、.map\<T\>()。
+
 **应用代码**
 
 ```typescript
@@ -403,6 +415,8 @@ let originMenusMap: Map<string, C | null> = new Map<string, C | null>(arr.map<[s
 `(item instanceof C) ? item: null` 需要声明类型为`C | null`，由于编译器无法推导出`map`的泛型类型参数，需要显式标注。
 
 ## arkts-no-regexp-literals
+
+使用new RegExp(pattern, flags) 构造函数替代RegExp字面量。
 
 **应用代码**
 
@@ -764,6 +778,8 @@ emit('', emitArg);
 
 ## arkts-no-obj-literals-as-types
 
+使用interface显式定义结构类型。
+
 **应用代码**
 
 ```typescript
@@ -780,6 +796,8 @@ interface Person {
 ```
 
 ## arkts-no-noninferrable-arr-literals
+
+显式声明数组元素的类型（使用interface或class），并为数组变量添加类型注解。
 
 **应用代码**
 
@@ -809,6 +827,8 @@ let permissionList: PermissionItem[] = [
 ```
 
 ## arkts-no-method-reassignment
+
+使用函数类型的类字段（class field）代替原型方法。
 
 **应用代码**
 
@@ -847,6 +867,8 @@ c1.add = sub;
 
 ## arkts-no-polymorphic-unops
 
+使用 Number.parseInt()、new Number() 等显式转换函数。
+
 **应用代码**
 
 ```typescript
@@ -866,6 +888,8 @@ let d = new Number('string');
 ```
 
 ## arkts-no-type-query
+
+使用类、接口或类型别名替代typeof，避免依赖变量做类型推导。
 
 **应用代码**
 
@@ -924,6 +948,8 @@ function test(str: string, obj: Record<string, Object>) {
 
 ## arkts-no-destruct-assignment
 
+使用索引访问元素或手动赋值代替解构赋值。
+
 **应用代码**
 
 ```typescript
@@ -949,6 +975,8 @@ for (let arr of map) {
 ```
 
 ## arkts-no-types-in-catch
+
+使用无类型 catch (error)，然后通过类型断言处理。
 
 **应用代码**
 
@@ -976,6 +1004,8 @@ try {
 ```
 
 ## arkts-no-for-in
+
+使用 Object.entries(obj) + for of 替代 for in。
 
 **应用代码**
 
@@ -1008,6 +1038,8 @@ for (let ele of Object.entries(p)) {
 
 ## arkts-no-mapped-types
 
+使用 Record\<K, T\> 替代映射类型。
+
 **应用代码**
 
 ```typescript
@@ -1034,6 +1066,8 @@ type OptionsFlags = Record<keyof C, string>
 ```
 
 ## arkts-limited-throw
+
+将对象转换为Error，或创建新的Error实例抛出。
 
 **应用代码**
 
@@ -1152,6 +1186,8 @@ class Test {
 ```
 
 ## arkts-no-spread
+
+使用Object.assign()、手动赋值或数组方法替代扩展运算符。
 
 **应用代码**
 
@@ -1951,6 +1987,8 @@ function foo(a: number): number | undefined {
 
 ## arkts-strict-typing-required
 
+删除忽略注释，为所有变量显式声明类型。
+
 **应用代码**
 
 ```typescript
@@ -1981,6 +2019,8 @@ ArkTS不支持通过注释的方式绕过严格类型检查。首先将注释（
 方式2.将.ets文件中被.ts文件依赖的代码单独抽取到.ts文件中。
 
 ## arkts-no-special-imports
+
+改为使用普通import { ... } from '...' 导入类型。
 
 **应用代码**
 
@@ -2099,7 +2139,7 @@ console.log(getC2Value());
 
 ## arkts-no-side-effects-imports
 
-改用动态import
+改用动态import。
 
 **应用代码**
 
@@ -2114,6 +2154,8 @@ import('module')
 ```
 
 ## arkts-no-func-props
+
+使用class来组织多个相关函数。
 
 **应用代码**
 
@@ -2150,6 +2192,8 @@ class Foo {
 ```
 
 ## arkts-limited-esobj
+
+使用具体类型（如number, string）或接口代替模糊的ESObject。
 
 **应用代码**
 
