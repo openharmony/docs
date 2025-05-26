@@ -3910,9 +3910,11 @@
             - [Input_DeviceInfo](reference/apis-input-kit/capi-input-deviceinfo.md)
             - [Input_InterceptorOptions](reference/apis-input-kit/capi-input-interceptoroptions.md)
         - 错误码<!--input-arkts-errcode-->
+          <!--Del-->
           - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-cooperator.md)
-          - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
           - [按键前置监听错误码](reference/apis-input-kit/errorcode-inputmonitor.md)
+          <!--DelEnd-->
+          - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
           - [输入设备错误码](reference/apis-input-kit/errorcode-inputdevice.md)
           - [鼠标指针错误码](reference/apis-input-kit/errorcode-pointer.md)
       - MDM Kit（企业设备管理服务）<!--mdm-api-->
