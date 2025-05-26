@@ -57,7 +57,7 @@ getBluetoothInfo(admin: Want): BluetoothInfo
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -106,7 +106,7 @@ addAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -154,7 +154,7 @@ removeAllowedBluetoothDevices(admin: Want, deviceIds: Array\<string>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -207,7 +207,7 @@ getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

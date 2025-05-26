@@ -251,7 +251,7 @@ Set the rotation center around an element in different transform-origin position
     align-items: center;
     justify-content: center;
 }
-/* Use react4 and react5 to shape eyes. */
+/* Use rect4 and rect5 to shape eyes. */
 .rect4 {
     width: 100px;
     height: 100px;

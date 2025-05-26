@@ -26,9 +26,15 @@ Enumerates the camera scene modes.
 | PROFESSIONAL_PHOTO<sup>12+</sup>        | 5      | Professional photo mode. **System API**: This is a system API.            |
 | PROFESSIONAL_VIDEO<sup>12+</sup>        | 6      | Professional video mode. **System API**: This is a system API.            |
 | SLOW_MOTION_VIDEO<sup>12+</sup>        | 7   | Slow-motion video mode. **System API**: This is a system API. |
+| MACRO_PHOTO<sup>12+</sup>        | 8   | Macro photo mode. **System API**: This is a system API. |
+| MACRO_VIDEO<sup>12+</sup>        | 9   | Macro video mode. **System API**: This is a system API. |
+| LIGHT_PAINTING_PHOTO<sup>12+</sup>        | 10   | Light painting mode. **System API**: This is a system API. |
 | HIGH_RESOLUTION_PHOTO<sup>12+</sup>        | 11     | High-resolution photo mode. **System API**: This is a system API.         |
+| QUICK_SHOT_PHOTO<sup>12+</sup>        | 13   | Quick snap mode. **System API**: This is a system API. |
+| APERTURE_VIDEO<sup>12+</sup>        | 14   | Large aperture video mode. **System API**: This is a system API. |
 | PANORAMA_PHOTO<sup>12+</sup>        | 15     | Panoramic photo mode. **System API**: This is a system API.         |
 | TIME_LAPSE_PHOTO<sup>12+</sup>        | 16     | Time-lapse photo mode. **System API**: This is a system API.         |
+| FLUORESCENCE_PHOTO<sup>13+</sup>        | 17   | Fluorescence photo mode. **System API**: This is a system API. |
 
 ## SlowMotionStatus<sup>12+</sup>
 
@@ -114,7 +120,7 @@ Implements camera management. Before calling any API in **CameraManager**, you m
 
 ### createDepthDataOutput<sup>13+</sup>
 
-createDepthDataOutput(profile: Profile): DepthDataOutput
+createDepthDataOutput(profile: DepthProfile): DepthDataOutput
 
 Creates a **DepthDataOutput** instance. This API returns the result synchronously.
 
@@ -126,7 +132,7 @@ Creates a **DepthDataOutput** instance. This API returns the result synchronousl
 
 | Name    | Type                                            | Mandatory| Description                             |
 | -------- | ----------------------------------------------- | ---- | ------------------------------- |
-| profile  | [Profile](js-apis-camera.md#profile)                             | Yes  | Supported preview profile, which is obtained through [getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11).|
+| profile  | [DepthProfile](#depthprofile13)           | Yes  | Supported preview profile, which is obtained through [getSupportedOutputCapability](js-apis-camera.md#getsupportedoutputcapability11).|
 
 **Return value**
 
@@ -149,7 +155,7 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 import { BusinessError } from '@kit.BasicServicesKit';
 
 function createDepthDataOutput(cameraOutputCapability: camera.CameraOutputCapability, cameraManager: camera.CameraManager): camera.DepthDataOutput | undefined {
-  let profile: camera.Profile = cameraOutputCapability.depthProfiles[0];
+  let profile: camera.DepthProfile = cameraOutputCapability.depthProfiles[0];
   let depthDataOutput: camera.DepthDataOutput | undefined = undefined;
   try {
     depthDataOutput = cameraManager.createDepthDataOutput(profile);
@@ -195,7 +201,7 @@ Mutes or unmutes the camera device.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 12. You are advised to use [muteCameraPersistent](#mutecamerapersistent12) instead.
+>This API is supported since API version 10 and deprecated since API version 12. You are advised to use [muteCameraPersistent](#mutecamerapersistent12) instead.
 
 **System API**: This is a system API.
 
@@ -441,7 +447,7 @@ function preLaunch(context: common.BaseContext): void {
 
 ### createDeferredPreviewOutput
 
-createDeferredPreviewOutput(profile: Profile): PreviewOutput
+createDeferredPreviewOutput(profile?: Profile): PreviewOutput
 
 Creates a deferred **PreviewOutput** instance and adds it, instead of a common **PreviewOutput** instance, to the data stream during stream configuration.
 
@@ -453,7 +459,7 @@ Creates a deferred **PreviewOutput** instance and adds it, instead of a common *
 
 | Name    | Type            | Mandatory| Description      |
 | -------- | --------------- | ---- | --------- |
-| profile | [Profile](js-apis-camera.md#profile) | Yes| Configuration file of the camera preview stream.|
+| profile | [Profile](js-apis-camera.md#profile) | No| Configuration file of the camera preview stream.|
 
 **Return value**
 
@@ -883,7 +889,7 @@ function callback(depthDataOutputError: BusinessError): void {
 }
 
 function registerDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
-  depthDataOutput.on('error', callback)
+  depthDataOutput.on('error', callback);
 }
 ```
 
@@ -909,6 +915,176 @@ Unsubscribes from **DepthDataOutput** error events.
 ```ts
 function unregisterDepthDataOutputError(depthDataOutput: camera.DepthDataOutput): void {
   depthDataOutput.off('error');
+}
+```
+
+## DepthFusionQuery<sup>14+</sup>
+
+A class for querying depth fusion capabilities.
+
+### isDepthFusionSupported<sup>14+</sup>
+
+isDepthFusionSupported(): boolean
+
+Checks whether depth fusion is supported.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| boolean | Check result. The value **true** means that depth fusion is supported, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.     |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionSupported(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let isSupperted: boolean = DepthFusionQuery.isDepthFusionSupported();
+    console.info('Promise returned to indicate that isDepthFusionSupported method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  isDepthFusionSupported, error code: ${err.code}.`);
+  }
+}
+
+```
+### getDepthFusionThreshold<sup>14+</sup>
+
+getDepthFusionThreshold(): Array\<number\>
+
+Obtains the depth fusion threshold.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| Array\<number\> | Depth fusion threshold.      |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config, only throw in session usage.      |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function getDepthFusionThreshold(DepthFusionQuery: camera.DepthFusionQuery): void {
+  try {
+    let threshold: Array<number> = DepthFusionQuery.getDepthFusionThreshold();
+    console.info('Promise returned to indicate that getDepthFusionThreshold method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion query  getDepthFusionThreshold, error code: ${err.code}.`);
+  }
+}
+```
+## DepthFusion<sup>14+</sup>
+
+Depth fusion class. It inherits from [DepthFusionQuery](js-apis-camera-sys.md#depthfusionquery14).
+
+### isDepthFusionEnabled<sup>14+</sup>
+
+isDepthFusionEnabled(): boolean
+
+Checks whether depth fusion is enabled.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type           | Description                    |
+| -------------- | ----------------------- |
+| boolean | Check result. The value **true** means that depth fusion is enabled, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID        | Error Message       |
+| --------------- | --------------- |
+| 202             | Not System Application. |
+| 7400103         | Session not config.      |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isDepthFusionEnabled(DepthFusion: camera.DepthFusion): void {
+  try {
+    let isEnable: boolean = DepthFusion.isDepthFusionEnabled();
+    console.info('Promise returned to indicate that isDepthFusionEnabled method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion isDepthFusionEnabled, error code: ${err.code}.`);
+  };
+}
+```
+
+### enableDepthFusion<sup>14+</sup>
+
+enableDepthFusion(enabled: boolean): void
+
+Enables depth fusion.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name    | Type     | Mandatory| Description                                 |
+| -------- | ---------- | --- | ------------------------------------ |
+| enabled  | boolean    | Yes  | Whether to enable depth fusion. The value **true** means to enable depth fusion, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
+
+| ID  | Error Message                                          |
+|---------|------------------------------------------------|
+| 202     | Not System Application.                        |
+| 7400101 | Parameter missing or parameter type incorrect. |
+| 7400103 | Session not config.                            |
+| 7400201 | Camera service fatal error.                    |
+
+**Example**
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function enableDepthFusion(DepthFusion: camera.DepthFusion): void {
+  try {
+    let enabled: boolean = true;
+    DepthFusion.enableDepthFusion(enabled);
+    console.info('Promise returned to indicate that enableDepthFusion method execution success.');
+  } catch (error) {
+    let err = error as BusinessError;
+    console.error(`Failed to depth fusion enableDepthFusion, error code: ${err.code}.`);
+  };
 }
 ```
 
@@ -2523,8 +2699,8 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 **Example**
 
 ```ts
-function isSceneFeatureSupported(photoSession: camera.PhotoSession, featureType: camera.SceneFeatureType): boolean {
-  let isSupported: boolean = photoSession.isSceneFeatureSupported(featureType);
+function isSceneFeatureSupported(photoSessionForSys: camera.PhotoSessionForSys, featureType: camera.SceneFeatureType): boolean {
+  let isSupported: boolean = photoSessionForSys.isSceneFeatureSupported(featureType);
   return isSupported;
 }
 ```
@@ -2633,9 +2809,9 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-function getZoomPointInfos(): Array<ZoomPointInfo> {
+function getZoomPointInfos(photoSessionForSys: camera.PhotoSessionForSys): Array<camera.ZoomPointInfo> {
   try {
-    let zoomPointInfos: Array<ZoomPointInfo> = sessionExtendsZoom.getZoomPointInfos();
+    let zoomPointInfos: Array<ZoomPointInfo> = photoSessionForSys.getZoomPointInfos();
 	return zoomPointInfos;
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
@@ -3297,7 +3473,7 @@ Implements a capture session, which saves all [CameraInput](js-apis-camera.md#ca
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [PhotoSession](#photosession11) and [VideoSession](#videosession11) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [PhotoSession](#photosession11) and [VideoSession](#videosession11) instead.
 
 ### getSupportedBeautyTypes<sup>(deprecated)</sup>
 
@@ -3307,7 +3483,7 @@ Obtains the supported beauty types.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyTypes](#getsupportedbeautytypes11) instead.
 
 **System API**: This is a system API.
 
@@ -3351,7 +3527,7 @@ Obtains the levels that can be set a beauty type. The beauty levels vary accordi
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getSupportedBeautyRange](#getsupportedbeautyrange11) instead.
 
 **System API**: This is a system API.
 
@@ -3398,7 +3574,7 @@ Sets a beauty type and its level. Beauty mode is turned off only when all the [b
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.setBeauty](#setbeauty11) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.setBeauty](#setbeauty11) instead.
 
 **System API**: This is a system API.
 
@@ -3443,7 +3619,7 @@ Obtains the level of the beauty type in use.
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getBeauty](#getbeauty11) instead.
+>This API is supported since API version 10 and deprecated since API version 11. You are advised to use [Beauty.getBeauty](#getbeauty11) instead.
 
 **System API**: This is a system API.
 
@@ -3756,6 +3932,19 @@ Describes the focus tracking information, which is obtained by calling VideoSess
 | trackingMode   | [FocusTrackingMode](#focustrackingmode15) | No  | No  | Tracing mode.|
 | trackingRegion | [Rect](js-apis-camera.md#rect)            | No  | No  | Tracking region.|
 
+## LightStatus<sup>18+</sup>
+
+Enumerates the camera light statuses, which are obtained by calling VideoSessionForSys.[on('lightStatusChange')](#onlightstatuschange18).
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name          | Value  | Description   |
+|--------------| ---- |-------|
+| NORMAL       | 0    | Normal lighting conditions.|
+| INSUFFICIENT | 1    | Insufficient lighting (too dark).|
+
 ## VideoSessionForSys<sup>11+</sup>
 
 VideoSessionForSys extends VideoSession, Beauty, ColorEffect, ColorManagement, Macro, Aperture, ColorReservation
@@ -3997,6 +4186,98 @@ For details about the error codes, see [Camera Error Codes](errorcode-camera.md)
 function unregisterFocusTrakingInfoChanged(session: camera.VideoSessionForSys): void {
   session.off('focusTrackingInfoAvailable');
 }
+```
+
+### on('lightStatusChange')<sup>18+</sup>
+
+on(type: 'lightStatusChange', callback: AsyncCallback\<LightStatus\>): void
+
+Subscribes to camera light status changes. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                                                                             |
+| -------- |------------------------------------------------| ---- |---------------------------------------------------------------------------------|
+| type     | string                                         | Yes  | Event type. The value is fixed at **'lightStatusChange'**.<br>The event can be listened for when a **VideoSessionForSys** object is created.|
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | Yes  | Callback used to return the light status information.                                                             |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**Example**
+
+```ts
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOn(): void {
+        Logger.info(TAG, 'handleLightStatusOn');
+        try {
+          this.mSession?.on('lightStatusChange', this.handleLightStatusCallback);
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOn err:${e}`);
+        }
+    }
+```
+
+### off('lightStatusChange')<sup>18+</sup>
+
+off(type: 'lightStatusChange', callback?: AsyncCallback\<LightStatus\>): void
+
+Unsubscribes from camera light status changes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                                                                              |
+| -------- |------------------------------------------------|----|----------------------------------------------------------------------------------|
+| type     | string                                         | Yes | Event type. The value is fixed at **'lightStatusChange'**.<br>The event can be listened for when a **VideoSessionForSys** object is created.|
+| callback | AsyncCallback\<[LightStatus](#lightstatus18)\> | No | Callback used to return the result. This parameter is optional. If this parameter is specified, the subscription to the specified event **on('lightStatusChange')** with the specified callback is canceled. (The callback object cannot be an anonymous function.)               |
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 202      | Not System Application. |
+
+**Example**
+
+```ts
+    private handleLightStatusCallback: AsyncCallback<camera.LightStatus> =
+    (err, data: camera.LightStatus) => {
+      if (err) {
+        Logger.error(TAG, `handleLightStatusOff err: ${simpleStringify(err)}}`);
+        return;
+      }
+      Logger.info(TAG, `lightStatusCallback: ${data}`);
+    };
+    public handleLightStatusOff(): void {
+        Logger.info(TAG, 'handleLightStatusOff');
+        try {
+          this.mSession?.off('lightStatusChange');
+        } catch (e) {
+          Logger.error(TAG, `handleLightStatusOff err:${e}`);
+        }
+  }
 ```
 
 ## PortraitPhotoSession<sup>11+</sup>
@@ -5329,7 +5610,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 function isExposureMeteringModeSupported(professionalPhotoSession: camera.ProfessionalPhotoSession): boolean {
   let isSupported: boolean = false;
   try {
-    isSupported = professionalPhotoSession.isExposureModeSupported(camera.ExposureMeteringMode.CENTER);
+    isSupported = professionalPhotoSession.isExposureMeteringModeSupported(camera.ExposureMeteringMode.CENTER);
   } catch (error) {
     // If the operation fails, error.code is returned and processed.
     let err = error as BusinessError;
@@ -6350,7 +6631,6 @@ function getWhiteBalanceMode(professionalPhotoSession: camera.ProfessionalPhotoS
 ```
 
 ### setWhiteBalance<sup>12+</sup>
-
 setWhiteBalance(whiteBalance: number): void
 
 Sets a white balance value.

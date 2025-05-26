@@ -115,7 +115,7 @@ Geo-fencing uses the following interfaces. For details, see [Location Kit](../..
    }
    ```
 
-5. Delete a geofence.
+6. Delete a geofence.
 
    ```ts
    // fenceId is obtained after geoLocationManager.addGnssGeofence is successfully executed.

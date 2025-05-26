@@ -114,7 +114,7 @@ avPlayer.setMediaSource(mediaSource, playbackStrategy);
 
 ### DASH Audio and Video Track Switching
 
-DASH streaming media generally include multiple audio, video, and subtitle tracks, each with distinct parameters like resolution, bit rate, sampling rate, and encoding format. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
+DASH streaming media generally includes multiple audio, video, and subtitle tracks, each with distinct parameters like resolution, bit rate, sampling rate, and encoding format. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
 
 1. Set the [trackChange](../../reference/apis-media-kit/js-apis-media.md#ontrackchange12) event.
 

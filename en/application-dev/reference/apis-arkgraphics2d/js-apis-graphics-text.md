@@ -718,7 +718,7 @@ Enumerates the vertical alignment modes of a placeholder relative to the surroun
 | OFFSET_AT_BASELINE  | 0 | Aligns the baseline of the placeholder to the baseline of the text.    |
 | ABOVE_BASELINE      | 1 | Aligns the bottom edge of the placeholder to the baseline of the text.  |
 | BELOW_BASELINE      | 2 | Aligns the top edge of the placeholder to the baseline of the text.  |
-| TOP_OF_ROW_BOX      | 3 | Aligns the top edge of the placeholder to the bottom edge of the text.  |
+| TOP_OF_ROW_BOX      | 3 | Aligns the top edge of the placeholder to the top edge of the text.  |
 | BOTTOM_OF_ROW_BOX   | 4 | Aligns the bottom edge of the placeholder to the bottom edge of the text.  |
 | CENTER_OF_ROW_BOX   | 5 | Center-aligned.|
 

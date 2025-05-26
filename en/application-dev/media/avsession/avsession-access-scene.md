@@ -109,6 +109,9 @@ async function setListener() {
     // The LRC contains two types of elements: time tag + lyrics, and ID tag.
     // Example: [00:25.44]xxx\r\n[00:26.44]xxx\r\n
     lyric: "Lyrics in LRC format",
+    // The singleLyricText field stores a single line of lyric text without timestamps.
+    // Example: "Content of a single lyric line"
+    singleLyricText: "Content of a single lyric line",
   };
   session.setAVMetadata(metadata).then(() => {
     console.info(`SetAVMetadata successfully`);

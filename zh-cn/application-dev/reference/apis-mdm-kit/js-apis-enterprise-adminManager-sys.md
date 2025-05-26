@@ -56,6 +56,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -115,6 +116,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -180,6 +182,7 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -231,6 +234,7 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -282,6 +286,7 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -332,6 +337,7 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName, (err) => {
@@ -385,6 +391,7 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.disableSuperAdmin(bundleName).catch((err: BusinessError) => {
@@ -424,6 +431,7 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -471,6 +479,7 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -524,6 +533,7 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -568,6 +578,7 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName, (err, result) => {
@@ -617,6 +628,7 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let bundleName: string = 'com.example.myapplication';
 
 adminManager.isSuperAdmin(bundleName).then((result) => {
@@ -701,6 +713,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -762,6 +775,7 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -809,6 +823,7 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -862,6 +877,7 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -912,6 +928,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -971,6 +988,7 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1021,6 +1039,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1080,6 +1099,7 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1131,6 +1151,7 @@ authorizeAdmin(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1191,6 +1212,7 @@ authorizeAdmin(admin: Want, bundleName: string): Promise&lt;void&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -1297,6 +1319,57 @@ try {
 }
 ```
 
+## adminManager.setAdminRunningMode<sup>19+</sup>
+
+setAdminRunningMode(admin: Want, mode: RunningMode): void
+
+设置设备管理应用的运行模式。
+
+该接口仅在PC设备上生效。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**模型约束**: 此接口仅可在Stage模型下使用。
+
+**参数**：
+
+| 参数名            | 类型                                  | 必填   | 说明                           |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。       |
+| mode | [RunningMode](#runningmode19) | 是    | 运行模式。取值为DEFAULT表示默认用户运行模式，即应用在首次开机后的用户下运行。取值为MULTI_USER表示多用户运行模式，即应用能够在多个用户下同时运行。 |
+
+
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                               |
+| ------- | ----------------------------------------------------- |
+| 9200001 | The application is not an administrator application of the device. |
+| 201  | Permission verification failed. The application does not have the permission required to call the API. |
+| 202  | Permission verification failed. A non-system application calls a system API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let admin: Want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
+};
+try {
+  adminManager.setAdminRunningMode(admin, adminManager.RunningMode.MULTI_USER);
+  console.info(`Succeeded in set admin running mode.`);
+} catch(err) {
+  console.error(`Failed to set admin running mode. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
 ## EnterpriseInfo
 
 设备管理应用的企业信息。
@@ -1322,3 +1395,16 @@ try {
 | ----------------- | ---- | ----- |
 | ADMIN_TYPE_NORMAL | 0x00 | 普通设备管理应用。 |
 | ADMIN_TYPE_SUPER  | 0x01 | 超级设备管理应用。 |
+
+## RunningMode<sup>19+</sup>
+
+设备管理的运行模式。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+| 名称                | 值  | 说明    |
+| ----------------- | ---- | ----- |
+| DEFAULT  | 0 | 默认用户运行模式，表示应用在首次开机后的用户下运行。 |
+| MULTI_USER   | 1 | 多用户运行模式，表示应用能够在多个用户下同时运行。 |

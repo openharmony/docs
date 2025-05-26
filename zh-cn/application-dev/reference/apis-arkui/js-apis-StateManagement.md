@@ -410,6 +410,139 @@ struct Index {
 }
 ```
 
+### enableV2Compatibility<sup>19+</sup>
+
+static enableV2Compatibility\<T extends object\>(source: T): T
+
+使V1的状态变量能够在\@ComponentV2中观察，主要应用于状态管理V1、V2混用场景。详见[状态管理V1V2混用文档](../../ui/state-management/arkts-v1-v2-mixusage.md)。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+| source | T    | 是   | 数据源，仅支持V1状态数据。 |
+
+**返回值：**
+
+| 类型 | 说明                                             |
+| ---- | ------------------------------------------------ |
+| T    | 如果数据源是V1的状态数据，则返回能够在\@ComponentV2中观察的数据。否则返回数据源本身。 |
+
+
+**示例：**
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+@Observed
+class ObservedClass {
+  name: string = 'Tom';
+}
+
+@Entry
+@Component
+struct CompV1 {
+  @State observedClass: ObservedClass = new ObservedClass();
+
+  build() {
+    Column() {
+      Text(`@State observedClass: ${this.observedClass.name}`)
+        .onClick(() => {
+          this.observedClass.name = 'State'; // 刷新
+        })
+      // 将V1的状态变量使能V2的观察能力
+      CompV2({ observedClass: UIUtils.enableV2Compatibility(this.observedClass) })
+    }
+  }
+}
+
+@ComponentV2
+struct CompV2 {
+  @Param observedClass: ObservedClass = new ObservedClass();
+
+  build() {
+    // V1状态变量在使能V2观察能力后，可以在V2观察第一层的变化
+    Text(`@Param observedClass: ${this.observedClass.name}`)
+      .onClick(() => {
+        this.observedClass.name = 'Param'; // 刷新
+      })
+  }
+}
+```
+
+### makeV1Observed<sup>19+</sup>
+static makeV1Observed\<T extends object\>(source: T): T
+
+将不可观察的对象包装成状态管理V1可观察的对象，其能力等同于@Observed，可初始化@ObjectLink。
+
+该接口可搭配[enableV2Compatibility](#enablev2compatibility19)应用于状态管理V1和V2混用场景，详见[状态管理V1V2混用文档](../../ui/state-management/arkts-v1-v2-mixusage.md)。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明     |
+| ------ | ---- | ---- | ------------ |
+| source | T    | 是   | 数据源。支持普通class、Array、Map、Set、Date类型。</br>不支持[collections类型](../apis-arkts/js-apis-arkts-collections.md)和[@Sendable](../../arkts-utils/arkts-sendable.md)修饰的class。</br>不支持undefined和null。不支持状态管理V2的数据和[makeObserved](#makeobserved)的返回值。 |
+
+**返回值：**
+
+| 类型 | 说明                                             |
+| ---- | ------------------------------------------------ |
+| T    | 对于支持的入参类型，返回状态管理V1的观察数据。对于不支持的入参类型，返回数据源对象本身。 |
+
+**示例：**
+
+```ts
+import { UIUtils } from '@kit.ArkUI';
+
+class Outer {
+  outerValue: string = 'outer';
+  inner: Inner;
+
+  constructor(inner: Inner) {
+    this.inner = inner;
+  }
+}
+
+class Inner {
+  interValue: string = 'inner';
+}
+
+@Entry
+@Component
+struct Index {
+  @State outer: Outer = new Outer(UIUtils.makeV1Observed(new Inner()));
+
+  build() {
+    Column() {
+      // makeV1Observed的返回值可初始化@ObjectLink
+      Child({ inner: this.outer.inner })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+
+@Component
+struct Child {
+  @ObjectLink inner: Inner;
+
+  build() {
+    Text(`${this.inner.interValue}`)
+      .onClick(() => {
+        this.inner.interValue += '!';
+      })
+  }
+}
+```
+
 ## StorageDefaultCreator\<T\>
 
 type StorageDefaultCreator\<T\> = () => T

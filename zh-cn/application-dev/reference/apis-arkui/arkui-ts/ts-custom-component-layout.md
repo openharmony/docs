@@ -1,6 +1,6 @@
 # 自定义组件的自定义布局
 
-自定义组件的自定义布局用于通过数据计算的方式布局自定义组件内的子组件。
+自定义组件的自定义布局通过数据计算的方式布局自定义组件内的子组件。
 
 > **说明：**
 >
@@ -10,7 +10,7 @@
 
 onPlaceChildren?(selfLayoutInfo: GeometryInfo, children: Array&lt;Layoutable&gt;, constraint: ConstraintSizeOptions):void
 
-ArkUI框架会在自定义组件布局时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
+ArkUI框架会在自定义组件确定位置时，将该自定义组件的子节点自身的尺寸范围通过onPlaceChildren传递给该自定义组件。不允许在onPlaceChildren函数中改变状态变量。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -221,7 +221,7 @@ struct CustomLayout {
 ![custom_layout_demo2.png](figures/custom_layout_demo2.png)
 
 **示例三：** 
-通过uniqueId获取子组件的[FrameNode](../js-apis-arkui-frameNode.md#framenode)  ，并调用FrameNode的API接口修改尺寸、背景颜色。
+通过uniqueId获取子组件的[FrameNode](../js-apis-arkui-frameNode.md#framenode)，并调用FrameNode的API接口修改尺寸、背景颜色。
 ```ts
 import { FrameNode, NodeController } from '@kit.ArkUI';
 @Entry
@@ -319,7 +319,7 @@ struct CustomLayout {
 
 | 名称         | 类型       | 只读|可选|  说明                                                      |
 |--------------|---------------------------------- | ------|-----------------------------------------------------|---------------------|
-| measureResult| [MeasureResult](#measureresult10)      |   否|否| 子组件测量后的尺寸信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
+| measureResult| [MeasureResult](#measureresult10) |   否|否| 子组件测量后的尺寸信息。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。<br>单位：vp     |
 
 ### layout
 
@@ -341,7 +341,7 @@ layout(position: Position)
 
 getMargin() : DirectionalEdgesT\<number>
 
-调用此方法获得子组件的margin信息。
+调用此方法获取子组件的margin信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -357,7 +357,7 @@ getMargin() : DirectionalEdgesT\<number>
 
 getPadding() : DirectionalEdgesT\<number>
 
- 调用此方法获得子组件的padding信息。
+ 调用此方法获取子组件的padding信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -373,7 +373,7 @@ getPadding() : DirectionalEdgesT\<number>
 
 getBorderWidth() : DirectionalEdgesT\<number>
 
-调用此方法获得子组件的borderWidth信息。
+调用此方法获取子组件的borderWidth信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -407,7 +407,7 @@ getBorderWidth() : DirectionalEdgesT\<number>
 
  measure(constraint: ConstraintSizeOptions) : MeasureResult
 
- 调用此方法对子组件的尺寸范围进行限制。
+ 调用此方法限制子组件的尺寸范围。
 
  **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -45,7 +45,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 |FUNC|napi_fatal_error|Raises a fatal error to terminate the process immediately.|10|
 |FUNC|napi_open_handle_scope|Opens a scope.|10|
 |FUNC|napi_close_handle_scope|Closes the scope passed in. After the scope is closed, all references declared in it are closed.|10|
-|FUNC|napi_open_escapable_handle_scope|Opens an escapable handle scope from which the declared values can be returned to the outer scope.|10|
+|FUNC|napi_open_escapable_handle_scope|Opens an escapable handle scope, from which the declared values can be returned to the parent scope.|10|
 |FUNC|napi_close_escapable_handle_scope|Closes the escapable handle scope passed in.|10|
 |FUNC|napi_escape_handle|Promotes the handle to the input JS object so that it is valid for the lifespan of its outer scope.|10|
 |FUNC|napi_create_reference|Creates a reference for an **Object** to extend its lifespan. The caller needs to manage the reference lifespan.|10|
@@ -176,9 +176,11 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 |FUNC|napi_add_finalizer|Adds a **napi_finalize** callback, which will be called when the JS object in **js_Object** is garbage-collected.|11|
 |FUNC|napi_fatal_exception|Throws **UncaughtException** to JS.|12|
 
-## Differences Between the Exported Symbols and the Symbols in the Native Library 
+## Differences Between the Exported Symbols and the Symbols in the Native Library
 
-For ease of description, the symbol exported to OpenHarmony is referred to as "exported symbol" and the symbol in the native library is referred to as "native symbol".
+> **NOTE**
+>
+> For ease of description, the symbol exported to OpenHarmony is referred to as "exported symbol" and the symbol in the native library is referred to as "native symbol".
 
 ### napi_throw_error
 
@@ -281,6 +283,10 @@ For ease of description, the symbol exported to OpenHarmony is referred to as "e
 **Parameters**
 
 - **object**: The value type can be TypedArray or [Sendable TypedArray](../apis-arkts/js-apis-arkts-collections.md#collectionstypedarray) in the exported symbol.
+
+**Return value**
+
+- The native symbol returns the number of elements in TypedArray via the **length** parameter; while the exported symbol returns length of the elements in TypedArray, in bytes.
 
 ### napi_coerce_to_object
 
@@ -455,7 +461,7 @@ For ease of description, the symbol exported to OpenHarmony is referred to as "e
 
 - The exported symbol does not support **async_hooks**.
 
-- The exported symbol does not check whether the input parameter **async_resource_name** is a string.
+- The exported symbol does not verify whether the input parameter **async_resource_name** is of the string type. A value of string type is recommended. If **async_resource_name** is of the string type, the trace information contains the string. Otherwise, the trace information does not contain it.
 
 - The exported symbol does not process the input parameter **async_resource** because it does not support **async_hooks**.
 
@@ -507,7 +513,7 @@ For ease of description, the symbol exported to OpenHarmony is referred to as "e
 
 - When an exception occurs in the **resolve** or **reject** callback of the **then()** method of the promise, if the promise does not have a catch block, the code execution continues. If the promise has a catch block, the exception will be captured by the catch block.
 
-### napi_reject_deffered
+### napi_reject_deferred
 
 **NOTE**
 
@@ -581,7 +587,7 @@ For ease of description, the symbol exported to OpenHarmony is referred to as "e
 
 - The buffer created in OpenHarmony is of the ArrayBufferLike type.
 
-- If **size** is **0**, the exported symbol returns **napi_invalid_arg**.
+- If **size** is less than or equal to **0**, the exported symbol returns **napi_invalid_arg**.
 
 - If **size** is greater than **2097152**, the exported symbol returns **napi_invalid_arg** and logs an error.
 
@@ -595,9 +601,9 @@ For ease of description, the symbol exported to OpenHarmony is referred to as "e
 
 - The buffer created in OpenHarmony is of the ArrayBufferLike type.
 
-- If **size** is **0**, the exported symbol returns **napi_invalid_arg**.
+- If **length** is less than or equal to **0**, the exported symbol returns **napi_invalid_arg**.
 
-- If **size** is greater than **2097152**, the exported symbol returns **napi_invalid_arg** and logs an error.
+- If **length** is greater than **2097152**, the exported symbol returns **napi_invalid_arg** and logs an error.
 
 - If **data** is **nullptr**, the exported symbol returns **napi_invalid_arg**.
 
@@ -609,9 +615,9 @@ For ease of description, the symbol exported to OpenHarmony is referred to as "e
 
 - The buffer created in OpenHarmony is of the ArrayBufferLike type.
 
-- If **size** is **0**, the exported symbol returns **napi_invalid_arg**.
+- If **length** is less than or equal to **0**, the exported symbol returns **napi_invalid_arg**.
 
-- If **size** is greater than **2097152**, the exported symbol returns **napi_invalid_arg** and logs an error.
+- If **length** is greater than **2097152**, the exported symbol returns **napi_invalid_arg** and logs an error.
 
 - If the buffer fails to be created due to an identified cause, the native symbol returns **napi_generic_failure**, whereas the exported symbol returns **napi_pending_exception**.
 
@@ -709,6 +715,7 @@ For ease of description, the symbol exported to OpenHarmony is referred to as "e
 |FUNC|napi_wrap_sendable_with_size | Wraps a native instance into an ArkTS object with the specified size.|12|
 |FUNC|napi_unwrap_sendable | Unwraps the native instance from an ArkTS object.|12|
 |FUNC|napi_remove_wrap_sendable | Removes the native instance from an ArkTS object.|12|
+|FUNC|napi_wrap_enhance | Wraps a Node-API instance into an ArkTS object and specifies the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).|18|
 
 > **NOTE**
 >
@@ -762,7 +769,7 @@ Adds an async work object to the queue so that it can be scheduled for execution
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_run_script_path
 
@@ -786,7 +793,7 @@ Runs an .abc file.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_load_module
 
@@ -810,7 +817,7 @@ Loads a system module or a customized module. This API returns the namespace of 
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_create_object_with_properties
 
@@ -839,7 +846,7 @@ Creates a JS object using the given **napi_property_descriptor**.<br>**napi_prop
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_create_object_with_named_properties
 
@@ -869,7 +876,7 @@ Creates a JS object using the given **napi_value**s and keys. The key must be a 
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_coerce_to_native_binding_object
 
@@ -902,7 +909,7 @@ Converts a JS object into an object carrying native information by forcibly bind
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_create_ark_runtime
 
@@ -912,7 +919,7 @@ napi_status napi_create_ark_runtime(napi_env *env)
 
 **Description**
 
-Creates an ArkTS runtime environment.
+Creates an ArkTS runtime environment. A process allows up to 64 instances, and the total number of subthreads, including those created by [Worker](../../arkts-utils/worker-introduction.md), cannot exceed 80.
 
 **Parameters**
 
@@ -920,7 +927,7 @@ Creates an ArkTS runtime environment.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_destroy_ark_runtime
 
@@ -938,7 +945,7 @@ Destroys an ArkTS runtime environment.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_run_event_loop
 
@@ -957,7 +964,7 @@ Runs the underlying event loop.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_stop_event_loop
 
@@ -975,7 +982,7 @@ Stops the underlying event loop.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_load_module_with_info
 
@@ -1002,7 +1009,7 @@ Loads an .abc file as a module. This API returns the namespace of the module. It
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_serialize
 
@@ -1032,7 +1039,7 @@ Converts an ArkTS object into native data.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_deserialize
 
@@ -1054,7 +1061,7 @@ Converts native data into an ArkTS object.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_delete_serialization_data
 
@@ -1074,7 +1081,7 @@ Deletes serialized data.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_call_threadsafe_function_with_priority
 
@@ -1101,7 +1108,7 @@ Calls a task with the specified priority and enqueuing mode into the ArkTS main 
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_is_sendable
 
@@ -1123,7 +1130,7 @@ Checks whether the given JS value is sendable.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 
 ### napi_define_sendable_class
@@ -1168,7 +1175,7 @@ Creates a sendable class.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_create_sendable_object_with_properties
 
@@ -1195,7 +1202,7 @@ Creates a sendable object with the given **napi_property_descriptor**.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_create_sendable_array
 
@@ -1215,7 +1222,7 @@ Creates a sendable array.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_create_sendable_array_with_length
 
@@ -1237,7 +1244,7 @@ Creates a sendable array of the specified length.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_create_sendable_arraybuffer
 
@@ -1261,7 +1268,7 @@ Creates a sendable **ArrayBuffer**.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_create_sendable_typedarray
 
@@ -1294,7 +1301,7 @@ Creates a sendable **TypedArray**.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_wrap_sendable
 
@@ -1324,7 +1331,7 @@ Wraps a native instance into an ArkTS object.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_wrap_sendable_with_size
 
@@ -1357,7 +1364,7 @@ Wraps a native instance into an ArkTS object with the specified size.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_unwrap_sendable
 
@@ -1379,7 +1386,7 @@ Unwraps the native instance from an ArkTS object.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
 
 ### napi_remove_wrap_sendable
 
@@ -1401,6 +1408,75 @@ Removes the native instance from an ArkTS object.
 
 **Return value**
 
-Returns **napi_ok** if the operation is successful.
+**napi_ok** if the operation is successful.
+
+### napi_wrap_enhance
+
+```cpp
+napi_status napi_wrap_enhance(napi_env env,
+                              napi_value js_object,
+                              void* native_object,
+                              napi_finalize finalize_cb,
+                              bool async_finalizer,
+                              void* finalize_hint,
+                              size_t native_binding_size,
+                              napi_ref* result);
+```
+
+**Description**
+
+Wraps a Node-API instance into an ArkTS object and specifies the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **js_object**: ArkTS object.
+
+- **native_object**: pointer to the native instance to be wrapped in the ArkTS object.
+
+- **finalize_cb**: (optional) callback to be called when the ArkTS object is destroyed. For details, see [napi_finalize](#napi_finalize-description).
+
+- **async_finalizer**: a Boolean value used to indicate whether to execute the **finalize_cb** callback asynchronously. The value **true** means to execute the callback asynchronously. In this case, thread safety must be ensured. The value **false** means to execute the callback synchronously.
+
+- **finalize_hint**: (optional) pointer to the callback context, which will be passed to the callback.
+
+- **native_binding_size**: (optional) size of the native instance wrapped.
+
+- **result**: (optional) pointer to the ArkTS object reference.
+
+**Return value**
+
+- **napi_ok**: The operation is successful.
+
+- **napi_invalid_arg**: The **env**, **js_object**, or **native_object** parameter is null.
+
+- **napi_object_expected**: The **js_object** parameter is not an ArkTs object or function.
+
+- **napi_pending_exception**: An uncaught exception or an exception occurs during the execution.
+
+#### **napi_finalize** description
+
+```cpp
+typedef void (*napi_finalize)(napi_env env,
+                              void* finalize_data,
+                              void* finalize_hint);
+```
+
+**Description**
+
+Called when the lifecycle of a Node-API object ends.
+
+**Parameters**
+
+- **env**: environment, in which the API is invoked.
+
+- **finalize_data**: pointer to the user data to be cleared.
+
+- **finalize_hint**: context hint, which is used to assist the clear process.
+
+**Return value**
+
+- **void**: no return value.
 
 <!--no_check-->

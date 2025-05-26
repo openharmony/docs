@@ -218,7 +218,7 @@ class MyUIAbility extends UIAbility {
 
 onForeground(): void
 
-Called when this UIAbility is switched from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
+Triggered when the application transitions from the background to the foreground. This API returns the result synchronously and does not support asynchronous callback.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -241,7 +241,7 @@ class MyUIAbility extends UIAbility {
 
 onBackground(): void
 
-Called when this UIAbility is switched from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
+Triggered when the application transitions from the foreground to the background. This API returns the result synchronously and does not support asynchronous callback.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -1260,7 +1260,7 @@ Defines the callback that is invoked when the stub on the target UIAbility is di
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
-
+ 
 ## OnRemoteStateChangeCallback<sup>10+</sup>
 
 ### (msg: string)
@@ -1276,7 +1276,7 @@ Defines the callback that is invoked when the remote UIAbility state changes in 
 | Name| Type| Mandatory| Description|
 | --- | ----- | --- | -------- |
 | msg | string | Yes| Message used for disconnection.| 
-
+ 
 ## CalleeCallback
 
 ### (indata: rpc.MessageSequence)

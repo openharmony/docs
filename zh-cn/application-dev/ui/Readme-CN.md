@@ -72,6 +72,7 @@
       - [MVVM模式（状态管理V2）](state-management/arkts-mvvm-V2.md)
     - V1V2混用和迁移指导<!--v1v2-migration-->
       - [自定义组件混用场景指导](state-management/arkts-custom-component-mixed-scenarios.md)
+      - [状态管理V1V2混用文档](state-management/arkts-v1-v2-mixusage.md)
       - [V1->V2迁移指导](state-management/arkts-v1-v2-migration.md)
   - 学习UI范式渲染控制<!--arkts-rendering-control-->
       - [渲染控制概述](state-management/arkts-rendering-control-overview.md)
@@ -203,6 +204,7 @@
     - [应用深浅色适配](ui-dark-light-color-adaptation.md)
     - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
+  - [使用组件截图（ComponentSnapshot）](arkts-uicontext-component-snapshot.md)
   - 嵌入式组件<!--arkts-ui-cross-process-->
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
     - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
