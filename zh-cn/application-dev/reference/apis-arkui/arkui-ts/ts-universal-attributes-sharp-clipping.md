@@ -48,7 +48,15 @@ clip(value: boolean | CircleAttribute | EllipseAttribute | PathAttribute | RectA
 
 clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
-按指定的形状对当前组件进行裁剪。
+按指定的形状（形状中可包含位置信息）对当前组件进行裁剪。
+
+> **说明：**  
+>
+> 不同的形状支持的属性范围不同，路径是一种形状，除此之外还有椭圆、矩形等形状。
+>
+> 路径的形状不支持设置宽度和高度。具体形状支持的属性参考具体形状的文档。
+>
+> 形状中的[fill](../js-apis-arkui-shape.md#fill)属性对clipShape接口不生效。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -60,7 +68,7 @@ clipShape(value: CircleShape | EllipseShape | PathShape | RectShape)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 参数为相应类型的组件，按指定的形状对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。|
+| value  | [CircleShape](../js-apis-arkui-shape.md#circleshape)&nbsp;\|&nbsp;[EllipseShape](../js-apis-arkui-shape.md#ellipseshape)&nbsp;\|&nbsp;[PathShape](../js-apis-arkui-shape.md#pathshape)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape) | 是   | 参数为相应类型的组件，按指定的形状（形状中可包含位置信息）对当前组件进行裁剪。<br/>**说明：** 裁剪不会导致被裁剪区域无法响应绑定的手势事件。|
 
 ## mask<sup>12+</sup>
 
