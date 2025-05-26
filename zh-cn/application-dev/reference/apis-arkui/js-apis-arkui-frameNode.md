@@ -924,7 +924,7 @@ getInspectorInfo(): Object
     }
 }
 ```
-以上返回结果的\$attrs字段会根据不同的组件类型具有不同的属性，具体可以参考[getInspectorInfo返回结果$attrs映射表.xlsx](./figures/getInspectorInfo%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%24attrs%E6%98%A0%E5%B0%84%E8%A1%A8.xlsx)
+以上返回结果的\$attrs字段会根据不同的组件类型具有不同的属性，具体可以参考<!--RP1-->[getInspectorInfo返回结果$attrs映射表.xlsx](./figures/getInspectorInfo%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C%24attrs%E6%98%A0%E5%B0%84%E8%A1%A8.xlsx)<!--RP1End-->
 
 **示例：**
 
