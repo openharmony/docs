@@ -1880,7 +1880,7 @@ isSeekContinuousSupported() : boolean
 
 | 类型           | 说明                                       |
 | -------------- | ------------------------------------------ |
-| boolean | 查询媒体源是否支持以SEEK_CONTINUOUS模式进行seek的返回值。 |
+| boolean | 查询媒体源是否支持以SEEK_CONTINUOUS模式SeekMode进行seek的返回值。 |
 
 **示例：**
 
