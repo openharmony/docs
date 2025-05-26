@@ -58,7 +58,6 @@
 | const char * OH_PLAYER_BUFFERING_VALUE | 获取缓冲更新消息具体数值的关键字，对应值类型是int32_t，参见[AVPlayerBufferingType](capi-avplayer-base-h.md#avplayerbufferingtype)。<br>当缓冲更新消息类型是AVPLAYER_BUFFERING_PERCENT、AVPLAYER_BUFFERING_CACHED_DURATION时有效。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_SEEK_POSITION | 获取Seek后播放进度的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_PLAYBACK_SPEED | 获取播放倍速信息的关键字, 对应值类型是[AVPlaybackSpeed](capi-avplayer-base-h.md#avplaybackspeed)。<br>通过该关键字获取信息时，需要先使用int32_t类型变量保存结果，再转换为类型AVPlaybackSpeed。<br>**起始版本：** 12 |
-| const char * OH_PLAYER_PLAYBACK_RATE | 获取有效播放速率的关键字，对应值类型是浮点数。<br>**起始版本：** 20 |
 | const char * OH_PLAYER_BITRATE | 获取比特率信息的关键字，对应值类型是uint32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_CURRENT_POSITION | 获取播放进度信息的关键字，对应值类型是int32_t。<br>**起始版本：** 12 |
 | const char * OH_PLAYER_DURATION | 获取媒体资源时长信息的关键字，对应值类型是int64_t。<br>**起始版本：** 12 |
@@ -176,7 +175,6 @@ OnInfo类型。<br>可用于OH_AVPlayerOnInfoCallback和OH_AVPlayerOnInfo(已废
 | AV_INFO_TYPE_TRACK_INFO_UPDATE = 15 | 轨道更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_SUBTITLE_UPDATE = 16 | 字幕信息更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17 | 音频输出设备改变时返回消息。<br>key为OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。 |
-| AV_INFO_TYPE_PLAYBACK_RATE_DONE = 18 | 上报设置播放器速率完成消息。<br>当播放速率成功应用时触发，通知应用实际生效的速率。使用key OH_PLAYER_PLAYBACK_RATE从事件数据中获取值。<br>**起始版本：** 20 |
 
 ### AVPlayerBufferingType
 
