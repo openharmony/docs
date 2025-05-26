@@ -2078,6 +2078,7 @@
           - [context_constant.h](reference/apis-ability-kit/context__constant_8h.md)
           - [native_interface_bundle.h](reference/apis-ability-kit/native__interface__bundle.md)
           - [native_child_process.h](reference/apis-ability-kit/native__child__process_8h.md)
+          - [start_options.h](reference/apis-ability-kit/start__options_8h.md)
           - [want.h](reference/apis-ability-kit/want__8h.md)
         - Structs<!--ability-struct-->
           - [AbilityBase_Element](reference/apis-ability-kit/_ability_base_element.md)
@@ -2920,7 +2921,6 @@
           - [Animator Error Codes](reference/apis-arkui/errorcode-animator.md)
           - [promptAction Error Codes](reference/apis-arkui/errorcode-promptAction.md)
           - [Router Error Codes](reference/apis-arkui/errorcode-router.md)
-          - [UI Appearance Error Codes](reference/apis-arkui/errorcode-uiappearance.md)
           - [Drag Event Error Codes](reference/apis-arkui/errorcode-drag-event.md)
           - [AI Image Analyzer Error Codes](reference/apis-arkui/errorcode-image-analyzer.md)
           - [Focus Error Codes](reference/apis-arkui/errorcode-focus.md)
@@ -3312,6 +3312,7 @@
           - [@ohos.bluetooth.constant (Bluetooth Constant Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-constant-sys.md)
           - [@ohos.bluetooth.hfp (Bluetooth HFP Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-hfp-sys.md)
           - [@ohos.bluetooth.hid (Bluetooth HID Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md)
+          - [@ohos.bluetooth.hid (Bluetooth HID Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-hid-sys.md)
           - [@ohos.bluetooth.pan (Bluetooth PAN Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-pan-sys.md)
           - [@ohos.bluetooth.pbap (Bluetooth PBAP Module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-pbap-sys.md)
           - [@ohos.bluetooth.map (Bluetooth MAP module) (Recommended) (System API)](reference/apis-connectivity-kit/js-apis-bluetooth-map-sys.md)
@@ -3349,11 +3350,11 @@
       - Distributed Service Kit<!--distributed-service-api-->
         - ArkTS APIs<!--distributed-service-arkts-->
           - [@ohos.distributedDeviceManager (Device Management)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md)
-          - [@ohos.abilityConnectionManager (Cross-Device Connection Management)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
+          - [@ohos.distributedsched.abilityConnectionManager (Cross-Device Connection Management)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md)
           <!--Del-->
           - [@ohos.distributedHardware.hardwareManager (Distributed Hardware Management) (System API)](reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md)
           - [@ohos.distributedDeviceManager (Device Management) (System API)](reference/apis-distributedservice-kit/js-apis-distributedDeviceManager-sys.md)
-          - [@ohos.abilityConnectionManager (Cross-Device Connection Management) (System API)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager-sys.md)
+          - [@ohos.distributedsched.abilityConnectionManager (Cross-Device Connection Management) (System API)](reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager-sys.md)
           - [@ohos.cooperate (Screen Hopping) (System API)](reference/apis-distributedservice-kit/js-apis-devicestatus-cooperate-sys.md)
           - APIs No Longer Maintained<!--distributed-service-dep-->
             - [@ohos.distributedHardware.deviceManager (Device Management) (System API) (To be Deleted)](reference/apis-distributedservice-kit/js-apis-device-manager-sys.md)
@@ -4367,8 +4368,6 @@
     - Calendar Kit<!--calendar-api-->
       - ArkTS APIs<!--calendar-arkts-->
         - [@ohos.calendarManager (Calendar Manager)](reference/apis-calendar-kit/js-apis-calendarManager.md)
-      - Error Codes<!--calendar-arkts-errcode-->
-        - [CalendarManager Error Codes](reference/apis-calendar-kit/errorcode-calendarManager.md)
     - Contacts Kit<!--contacts-->
       - ArkTS APIs<!--contacts-arkts-->
         - [@ohos.contact (Contacts)](reference/apis-contacts-kit/js-apis-contact.md)
