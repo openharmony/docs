@@ -83,7 +83,7 @@ on(type: 'hotkeyChange', hotkeyOptions: HotkeyOptions, callback: Callback&lt;Hot
 | 参数名         | 类型                         | 必填   | 说明                                       |
 | ---------- | -------------------------- | ---- | ---------- |
 | type       | string                     | 是    | 事件类型，固定取值为'hotkeyChange'。                   |
-| hotkeyOptions | [HotkeyOptions](#hotkeyoptions14) | 是    | 快捷键选项。                 |
+| hotkeyOptions | [HotkeyOptions](#hotkeyoptions) | 是    | 快捷键选项。                 |
 | callback   | Callback&lt;HotkeyOptions&gt; | 是    | 回调函数，获取满足条件的组合按键输入事件。 |
 
 **错误码**：
