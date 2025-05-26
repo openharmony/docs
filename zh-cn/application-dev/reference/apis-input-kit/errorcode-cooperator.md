@@ -30,7 +30,7 @@ Incorrect descriptor for the target device.
 
 **错误信息**
 
-Failed to operate the input device.
+Screen hop failed.
 
 **错误描述**
 
