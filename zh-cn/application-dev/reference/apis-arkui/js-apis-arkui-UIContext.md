@@ -9545,7 +9545,9 @@ struct ActivateExample {
 
 isActive(): boolean
 
-返回UI实例的[焦点事件](../../ui/arkts-common-events-focus-event.md)。
+返回UI实例的焦点激活态。
+
+焦点激活态可参考[基础概念：焦点激活态](../../ui/arkts-common-events-focus-event.md#基础概念)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
