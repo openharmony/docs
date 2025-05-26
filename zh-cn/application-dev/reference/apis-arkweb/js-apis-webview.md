@@ -1780,7 +1780,8 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 > **说明：**
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
-> - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。。
+> - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1871,6 +1872,7 @@ runJavaScript(script: string): Promise\<string>
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4518,6 +4520,10 @@ struct WebComponent {
 getBackForwardEntries(): BackForwardList
 
 获取当前Webview的历史信息列表。
+
+> **说明：**
+>
+> [onLoadIntercept](ts-basic-components-web.md#onloadintercept10)在加载开始的时候触发，该时刻还未生成历史节点，所以在[onLoadIntercept](ts-basic-components-web.md#onloadintercept10)中调用getBackForwardEntries拿到的历史栈不包括当前正在加载中的跳转。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
