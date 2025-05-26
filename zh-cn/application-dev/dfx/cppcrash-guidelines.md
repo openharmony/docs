@@ -825,6 +825,61 @@ Tid:18257, Name:crasher_cpp                 <- 故障线程号，线程名
 ...
 ```
 
+#### 应用通过hiAppEvent设置崩溃日志配置参数场景
+
+系统提供了通用的崩溃日志生成功能，但一些应用对崩溃日志打印内容有个性化的需求，因此从**API version 20**开始hiAppEvent的[setEventConfig](hiappevent-watcher-crash-events-arkts.md#崩溃日志配置参数设置接口描述)接口支持设置崩溃日志配置参数。以下是一份DevEco Studio归档在FaultLog的32位系统崩溃日志的核心内容：
+
+``` text
+...
+Build info:OpenHarmony 6.0.0.33
+Enabled app log configs:    <- 使能的配置参数列表，只打印不是默认值的配置参数
+Extend pc lr printing:true  <- extend_pc_lr_printing参数设置为true
+Log cut off size:102400B    <- 崩溃日志大小截断到100KB（仅通过hiAppEvent接口订阅获取的崩溃日志生效）
+Simplify maps printing:true <- simplify_vma_printing参数设置为true
+Timestamp:2025-05-17 19:17:07.000
+...
+Registers: <- 故障现场寄存器
+r0:00000000 r1:ff87d48c r2:00000000 r3:00000008
+r4:00000000 r5:fffff000 r6:00000000 r7:000000af
+r8:00c0b4f0 r9:00c0bdc0 r10:00c0bdc0
+fp:ff87d520 ip:00c0a6e4 sp:ff87d488 lr:f7ecc044 pc:f7f19940
+cpsr:00800010
+Memory near registers:
+...
+lr(/system/lib/ld-musl-arm.so.1): <- lr寄存器地址附近的内存值
+    f7ecbfc8 e0824000 <- extend_pc_lr_printing设置为true时，向前打印内存值到此
+    ...
+    f7ecc03c e3a00006 <- extend_pc_lr_printing设置为false时，向前打印内存值到此
+    f7ecc040 eb013612
+    f7ecc044 e59f10b0 <- lr寄存器地址（f7ecc044）的内存值（e59f10b0）
+    ...
+    f7ecc0b8 e58d4004 <- extend_pc_lr_printing设置为false时，向后打印内存值到此
+    f7ecc0bc e1a0100d
+    f7ecc0c0 e3a00020
+    f7ecc0c4 e3a070af <- extend_pc_lr_printing设置为true时，向后打印内存值到此
+pc(/system/lib/ld-musl-arm.so.1): <- pc寄存器地址附近的内存值
+    f7f198c4 e5900000 <- extend_pc_lr_printing设置为true时，向前打印内存值到此
+    ...
+    f7f19938 e3a03008 <- extend_pc_lr_printing设置为false时，向前打印内存值到此
+    f7f1993c ef000000
+    f7f19940 e51b0014 <- pc寄存器地址（f7f19940）的内存值（e51b0014）
+    ... 
+    f7f199b4 e2b52000 <- extend_pc_lr_printing设置为false时，向后打印内存值到此
+    f7f199b8 03530000
+    f7f199bc 0a000003
+    f7f199c0 ebfec957 <- extend_pc_lr_printing设置为true时，向后打印内存值到此
+...
+Maps:       <- simplify_vma_printing设置为true，打印Maps数量减少，只保留崩溃日志中出现的地址所属的Maps
+ba0000-ba9000 r--p 00000000 /data/test/test_signalhandler
+ba9000-bd8000 r-xp 00008000 /data/test/test_signalhandler
+bd8000-bdb000 r--p 00036000 /data/test/test_signalhandler
+bdb000-bdc000 rw-p 00038000 /data/test/test_signalhandler
+... <- 继续打印崩溃日志中出现的地址所属的Maps，此处省略不展示
+OpenFiles:
+...
+[truncated]  <- 日志截断的标志符，如果有打印说明日志被截断了
+```
+
 ### 如何阅读汇编指令
 
 #### llvm-objdump工具使用方法
