@@ -947,16 +947,16 @@ connectToCandidateConfigWithUserAction(networkId: number): Promise&lt;void&gt;
 ```ts
 	import { wifiManager } from '@kit.ConnectivityKit';
 
-	try {
-		let networkId = 0;
-		wifiManager.connectToCandidateConfigWithUserAction(networkId).then(result => {
-			console.info("result:" + JSON.stringify(result));
-		}).catch((err:number) => {
-			console.error("failed:" + JSON.stringify(err));
-		});
-	}catch(error){
-		console.error("failed:" + JSON.stringify(error));
-	}
+  try {
+    let networkId = 0;
+    wifiManager.connectToCandidateConfigWithUserAction(networkId).then(result => {
+      console.info("result:" + JSON.stringify(result));
+    }).catch((err:number) => {
+      console.error("failed:" + JSON.stringify(err));
+    });
+  }catch(error){
+    console.error("failed:" + JSON.stringify(error));
+  }
 ```
 
 ## wifiManager.addDeviceConfig<sup>15+</sup>
