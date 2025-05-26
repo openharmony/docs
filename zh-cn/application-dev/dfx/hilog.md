@@ -522,3 +522,85 @@ HiLog日志系统，提供给系统框架、服务、以及应用，用于打印
    Set hilog privacy format off successfully
    ```
 <!--DelEnd-->
+
+## hilog超限机制介绍
+
+背景：为了防止日志打印流量过大导致应用性能恶化和打印失败问题，hilog日志打印时增加超限机制，debug应用默认关闭此机制。超限机制介绍如下：
+
+应用日志：进程维度管控，打印到 LOG_APP buffer里面的应用日志适配了pid超限机制，应用层js日志全部为app log，每个进程每秒日志量不超过50K，超过的话被超限掉，并且有超限日志打印，关闭pid超限命令：hilog -Q pidoff。
+
+系统日志：domainID维度管控，打印到 LOG_CORE buffer里面的系统日志适配了domain超限机制，每个domainID打印的日志量每秒不超过50K，超过的话被超限掉，并且有超限日志打印，关闭domain超限命令：hilog -Q domainoff。
+```
+pid超限提示日志打印：
+04-19 17:02:34.219  5394  5394 W A00032/com.example.myapplication/LOGLIMIT: ==com.example.myapplication LOGS OVER PROC QUOTA, 3091 DROPPED==
+说明：本条日志表示进程com.example.myapplication在17:02:34时存在日志打印超限，在17:02:34.219的前一秒内，有3091行日志由于超限管控丢弃，未打印出来。
+```
+```
+domain超限提示日志打印：
+04-19 17:02:34.219  5394  5394 W C02C02/system_server/LOGLIMIT: 108 line(s) dropped in a second!
+说明：本条日志表示domainID为02C02的日志在17:02:34时存在日志打印超限，在17:02:34.219的前一秒内，有108行日志由于超限管控丢弃，未打印出来。
+```
+
+## 日志丢失处理方法
+目前日志丢失场景都有相应的维测信息，可以在hilog日志里面搜索对应关键字：LOGLIMIT|Slow reader missed|write socket failed。
+
+LOGLIMIT是进程或domainID超限管控的丢失，slowreader是全局的日志丢失，write socket failed是进程对应的日志丢失。
+
+
+1、"LOGLIMIT"
+
+1.1 含义：表示日志打印超限被管控了，属于领域日志量超出hilog规格后的主动管控，需要领域对日志进行精简和整改。
+
+1.2 规避方法：
+
+     关闭pid超限管控机制（针对LOG_APP类型日志）：hilog -Q pidoff
+
+     关闭domain超限管控机制（针对LOG_CORE类型日志）：hilog -Q domainoff
+
+
+2、"Slow reader missed"
+
+2.1 含义：表示打印时间点前后日志量太大，hilog buffer中的日志还未落盘已经被循环覆盖了。
+
+2.2 原因：排查是否打开了D级别或者关闭了超限管控、或者问题时间点前后日志量是否过大（每秒超过3K行），有模块在循环打印日志等。
+
+2.3 规避方法：
+
+    hilog buffer大小默认是256K，通过hilog -g命令可以查询当前的buffer大小；
+
+    出现此种日志丢失时，可以扩大hilog buffer大小，命令：hilog -G 16M，表示将buffer大小修改为16M。（当前允许的最大规格为16M）；
+
+    同时查看是否后台有领域频繁打印日志导致，若发现某个领域日志频繁打印，影响正常日志读取，可以通过命令关闭其领域的日志打印；
+
+
+3："write socket failed"
+
+3.1 含义：日志写入socket失败，出现丢包问题。
+
+3.2 原因：
+
+    （1）日志量过大，排查是否打开了D级别或者关闭了超限管控、或者问题时间点前后日志量是否过大（每秒超过3K行），有模块在循环打印日志等；
+
+    （2）存在高负载问题，如果出现高负载或者低内存问题，会导致socket服务端处理日志过慢，socket通道中日志堆积严重，也会导致客户端写入socket数据失败；
+
+3.3 规避方法：
+
+    关闭其他领域的日志打印，只打印本模块的日志。
+
+      关闭其他领域日志：
+
+         hilog -b X
+
+      打开本模块的日志打印：
+
+         LOG_APP类型：
+
+            hilog -b I -D 0x3200 （将03200 domain能够打印出来的日志级别设为INFO）
+
+            hilog -b I -D 0x3201（将03201 domain能够打印出来的日志级别设为INFO）
+
+         LOG_CORE类型：
+
+            hilog -b I -D d003200 （将03200 domain能够打印出来的日志级别设为INFO）
+
+            hilog -b I -D d003201（将03201 domain能够打印出来的日志级别设为INFO）
