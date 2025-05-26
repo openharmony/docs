@@ -81,7 +81,7 @@
        }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
-           console.info(`DataShareExtAbility onCreate, executeSql done err:${err}`);
+           console.error(`DataShareExtAbility onCreate, executeSql done err:${err}`);
          });
          if (callback) {
            callback();
@@ -92,7 +92,7 @@
      // 重写query接口
      query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
        if (predicates === null || predicates === undefined) {
-         console.info('invalid predicates');
+         console.error('invalid predicates');
        }
        try {
          rdbStore.query(TBL_NAME, predicates, columns, (err:BusinessError, resultSet:relationalStore.ResultSet) => {

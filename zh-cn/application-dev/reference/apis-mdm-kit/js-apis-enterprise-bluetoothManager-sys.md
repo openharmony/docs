@@ -58,7 +58,7 @@ isBluetoothDisabled(admin: Want): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -107,7 +107,7 @@ setBluetoothDisabled(admin: Want, disabled: boolean): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
-import { bluetoothManager } from '@kit.MDMKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

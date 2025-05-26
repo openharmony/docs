@@ -601,6 +601,8 @@ constructor(webTag?: string)
 > 传参且参数是合法字符串：new webview.WebviewController("xxx")，用于开发者区分多实例，并调用对应实例下的方法。
 > 
 > 传入参数为空：new webview.WebviewController("")或new webview.WebviewController(undefined)，该场景下参数无意义，无法区分多个实例，直接返回undefined，需要开发者判断返回值是否正常。
+>
+> Web组件销毁后会解绑WebViewController，之后调用WebviewController的非静态方法会抛出17100001异常，应注意调用时机和捕获异常，防止进程异常退出。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -7403,6 +7405,10 @@ startCamera(): void
 开启当前网页摄像头捕获。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**需要权限：**
+
+使用摄像头功能前请在module.json5中添加权限：ohos.permission.CAMERA，具体权限的添加方法请参考[在配置文件中声明权限](../../security/AccessToken/declare-permissions.md)。
 
 **错误码：**
 

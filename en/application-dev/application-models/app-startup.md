@@ -65,6 +65,7 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
               "name": "StartupTask_002",
               "srcEntry": "./ets/startup/StartupTask_002.ets",
               "dependencies": [
+                "StartupTask_003",
                 "StartupTask_004"
               ],
               "runOnThread": "taskPool",
@@ -129,19 +130,17 @@ AppStartup supports startup tasks in automatic or manual mode. By default, autom
 
 3. Add the index of the AppStartup configuration file to the **appStartup** tag in the [module.json5 file](../quick-start/module-configuration-file.md).
 
-    The following is an example of the **module.json5** file:
-
-    ```json
-    {
-    "module": {
-    "name": "entry",
-    "type": "entry",
-    // ...
-    "appStartup": "$profile:startup_config," // AppStartup configuration file
-    // ...
-    }
-    }
-    ```
+          ```json
+          {
+            "module": {
+              "name": "entry",
+              "type": "entry",
+              // ...
+              "appStartup": "$profile:startup_config", // AppStartup configuration file
+              // ...
+            }
+          }
+          ```
 
 ### Setting Startup Parameters
 
@@ -161,7 +160,7 @@ export default class MyStartupConfigEntry extends StartupConfigEntry {
     let onCompletedCallback = (error: BusinessError<void>) => {
       hilog.info(0x0000, 'testTag', `onCompletedCallback`);
       if (error) {
-        hilog.info(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
+        hilog.error(0x0000, 'testTag', 'onCompletedCallback: %{public}d, message: %{public}s', error.code, error.message);
       } else {
         hilog.info(0x0000, 'testTag', `onCompletedCallback: success.`);
       }
@@ -231,20 +230,19 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    let startParams = ["StartupTask_005", "StartupTask_006"];
+    let startParams = ['StartupTask_005', 'StartupTask_006'];
     try {
       startupManager.run(startParams).then(() => {
-        console.log('StartupTest startupManager run then, startParams = ');
+        console.log(`StartupTest startupManager run then, startParams = ${JSON.stringify(startParams)}.`);
       }).catch((error: BusinessError) => {
-        console.info('StartupTest promise catch error, error = ' + JSON.stringify(error));
-        console.info('StartupTest promise catch error, startParams = '
-          + JSON.stringify(startParams));
+        console.error(`StartupTest promise catch error, error = ${JSON.stringify(error)}.`);
+        console.error(`StartupTest promise catch error, startParams = ${JSON.stringify(startParams)}.`);
       })
     } catch (error) {
-      let errMsg = JSON.stringify(error);
-      let errCode: number = error.code;
-      console.log('Startup catch error , errCode= ' + errCode);
-      console.log('Startup catch error ,error= ' + errMsg);
+      let errMsg = (error as BusinessError).message;
+      let errCode = (error as BusinessError).code;
+      console.error(`Startup catch error, errCode= ${errCode}.`);
+      console.error(`Startup catch error, errMsg= ${errMsg}.`);
     }
   }
 
@@ -260,7 +258,7 @@ import { startupManager } from '@kit.AbilityKit';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Manual Mode'
+  @State message: string = "Manual Mode";
   @State startParams: Array<string> = ["StartupTask_006"];
 
   build() {
@@ -284,4 +282,3 @@ struct Index {
   }
 }
 ```
-   

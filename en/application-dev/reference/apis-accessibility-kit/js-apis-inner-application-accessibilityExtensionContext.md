@@ -30,58 +30,58 @@ Provides attribute names and value types of a node element.
 
 ### Attributes
 
-| Name                  | Type                                                                | Readable | Writable | Description                 |
-|----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
-| accessibilityFocused | boolean                                                            | Yes  | No  |   Accessibility focus status.  |
+| Name                  | Type                                                             | Readable| Writable| Description             |
+|----------------------|--------------------------------------------------------------------|------|------|-------------------|
+| accessibilityFocused | boolean                                                            | Yes  | No  | Whether the element is focused for accessibility purposes. The value **true** indicates that the element is focused, and **false** indicates the opposite.<br>Default value: **false**.|
 | accessibilityText<sup>12+</sup> | string                                                  | Yes  | No  | Accessibility text information of an element.|
 | bundleName           | string                                                             | Yes  | No  | Bundle name.|
-| checkable            | boolean                                                            | Yes  | No  | Whether the element is checkable.|
-| checked              | boolean                                                            | Yes  | No  | Whether the element is checked.|
+| checkable            | boolean                                                            | Yes  | No  | Whether the element is checkable. The value **true** indicates that the element is checkable, and **false** indicates the opposite.<br>Default value: **false**.|
+| checked              | boolean                                                            | Yes  | No  | Whether the element is checked. The value **true** indicates that the element is checked, and **false** indicates the opposite.<br>Default value: **false**.|
 | children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | Yes  | No  | All child elements.|
-| clickable            | boolean                                                            | Yes  | No  | Whether the element is clickable.|
-| componentId          | number                                                             | Yes  | No  | ID of the component to which the element belongs.|
+| clickable            | boolean                                                            | Yes  | No  | Whether the element is clickable. The value **true** indicates that the element is clickable, and **false** indicates the opposite.<br>Default value: **false**.|
+| componentId          | number                                                             | Yes  | No  | ID of the component to which the element belongs. <br>Default value: **-1**.|
 | componentType        | string                                                             | Yes  | No  | Type of the component to which the element belongs.|
 | contents             | Array&lt;string&gt;                                                | Yes  | No  | Content.|
-| currentIndex         | number                                                             | Yes  | No  | Index of the current item.|
+| currentIndex         | number                                                             | Yes  | No  | Index of the current item. <br>Default value: **0**.|
 | description          | string                                                             | Yes  | No  | Description of the element.|
-| editable             | boolean                                                            | Yes  | No  | Whether the element is editable.|
-| endIndex             | number                                                             | Yes  | No  | Index of the last list item displayed on the screen.|
+| editable             | boolean                                                            | Yes  | No  | Whether the element is editable. The value **true** indicates that the element is editable, and **false** indicates the opposite.<br>Default value: **false**.|
+| endIndex             | number                                                             | Yes  | No  | Index of the last list item displayed on the screen. <br>Default value: **0**.|
 | error                | string                                                             | Yes  | No  | Error status.|
-| focusable            | boolean                                                            | Yes  | No  | Whether the element is focusable.|
+| focusable            | boolean                                                            | Yes  | No  | Whether the element is focusable. The value **true** indicates that the element is focusable, and **false** indicates the opposite.<br>Default value: **false**.|
 | hintText             | string                                                             | Yes  | No  | Hint text.|
-| inputType            | number                                                             | Yes  | No  | Type of the input text.|
+| inputType            | number                                                             | Yes  | No  | Type of the input text. <br>Default value: **0**.|
 | inspectorKey         | string                                                             | Yes  | No  | Inspector key.|
-| isActive             | boolean                                                            | Yes  | No  | Whether the element is active.|
-| isEnable             | boolean                                                            | Yes  | No  | Whether the element is enabled.|
-| isHint               | boolean                                                            | Yes  | No  | Whether the element is in the hint state.|
-| isFocused            | boolean                                                            | Yes  | No  | Whether the element is focused.|
-| isPassword           | boolean                                                            | Yes  | No  | Whether the element is a password.|
-| isVisible            | boolean                                                            | Yes  | No  | Whether the element is visible.|
-| itemCount            | number                                                             | Yes  | No  | Total number of items.|
+| isActive             | boolean                                                            | Yes  | No  | Whether the element is active. The value **true** indicates that the element is active and **false** indicates the opposite.<br>Default value: **true**.|
+| isEnable             | boolean                                                            | Yes  | No  | Whether the element is enabled. The value **true** indicates that the element is enabled, and **false** indicates the opposite.<br>Default value: **false**.|
+| isHint               | boolean                                                            | Yes  | No  | Whether the element is a hint. The value **true** indicates that the element is a hint, and **false** indicates the opposite.<br>Default value: **false**.|
+| isFocused            | boolean                                                            | Yes  | No  | Whether the element is focused. The value **true** indicates that the element is focused, and **false** indicates the opposite.<br>Default value: **false**.|
+| isPassword           | boolean                                                            | Yes  | No  | Whether the element is a password. The value **true** indicates that the element is a password, and **false** indicates the opposite.<br>Default value: **false**.|
+| isVisible            | boolean                                                            | Yes  | No  | Whether the element is visible. The value **true** indicates that the element is visible, and **false** indicates the opposite.<br>Default value: **false**.|
+| itemCount            | number                                                             | Yes  | No  | Total number of items. <br>Default value: **0**.|
 | lastContent          | string                                                             | Yes  | No  | Last content.|
 | layer                | number                                                             | Yes  | No  | Display layer of the element.|
-| longClickable        | boolean                                                            | Yes  | No  | Whether the element is long-clickable.|
-| pageId               | number                                                             | Yes  | No  | Page ID.|
+| longClickable        | boolean                                                            | Yes  | No  | Whether the element is long-clickable. The value **true** indicates that the element is long-clickable, and **false** indicates the opposite.<br>Default value: **false**.|
+| pageId               | number                                                             | Yes  | No  | Page ID. <br>Default value: **-1**.|
 | parent               | [AccessibilityElement](#accessibilityelement9)                     | Yes  | No  | Parent element of the element.|
-| pluralLineSupported  | boolean                                                            | Yes  | No  | Whether the element supports multiple lines of text.|
+| pluralLineSupported  | boolean                                                            | Yes  | No  | Whether the element supports multiple lines of text. The value **true** indicates that the element supports multiple lines of text, and **false** indicates the opposite.<br>Default value: **false**.|
 | rect                 | [Rect](#rect)                                                      | Yes  | No  | Area of the element.|
 | resourceName         | string                                                             | Yes  | No  | Resource name of the element.|
 | rootElement          | [AccessibilityElement](#accessibilityelement9)                     | Yes  | No  | Root element of the window element.|
 | screenRect           | [Rect](#rect)                                                      | Yes  | No  | Display area of the element.|
-| scrollable           | boolean                                                            | Yes  | No  | Whether the element is scrollable.|
-| selected             | boolean                                                            | Yes  | No  | Whether the element is selected.|
-| startIndex           | number                                                             | Yes  | No  | Index of the first list item on the screen.|
+| scrollable           | boolean                                                            | Yes  | No  | Whether the element is scrollable. The value **true** indicates that the element is scrollable, and **false** indicates the opposite.<br>Default value: **false**.|
+| selected             | boolean                                                            | Yes  | No  | Whether the element is selected. The value **true** indicates that the element is selected, and **false** indicates the opposite.<br>Default value: **false**.|
+| startIndex           | number                                                             | Yes  | No  | Index of the first list item on the screen. <br>Default value: **0**.|
 | text                 | string                                                             | Yes  | No  | Text of the element.|
 | textLengthLimit      | number                                                             | Yes  | No  | Maximum text length of the element.|
-| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | Yes  | No  | Unit of movement when the text is read.|
-| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | Yes  | No  | Action that triggers the element event.|
+| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| Yes  | No  | Unit of movement when the text is read.|
+| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)            | Yes  | No  | Action that triggers the element event.|
 | type                 | [WindowType](#windowtype)                                          | Yes  | No  | Window type of the element.|
-| valueMax             | number                                                             | Yes  | No  | Maximum value.|
-| valueMin             | number                                                             | Yes  | No  | Minimum value.|
-| valueNow             | number                                                             | Yes  | No  | Current value.|
-| windowId             | number                                                             | Yes  | No  | Window ID.|
+| valueMax             | number                                                             | Yes  | No  | Maximum value. <br>Default value: **0**.|
+| valueMin             | number                                                             | Yes  | No  | Minimum value. <br>Default value: **0**.|
+| valueNow             | number                                                             | Yes  | No  | Current value. <br>Default value: **0**.|
+| windowId             | number                                                             | Yes  | No  | Window ID. <br>Default value: **-1**.|
 | textType<sup>12+</sup>             | string                                                             | Yes  | No  | Accessibility text type of an element, which is configured by the **accessibilityTextHint** attribute of the component.|
-| offset<sup>12+</sup>             | number                                                             | Yes  | No  | Pixel offset of the content area relative to the top coordinate of a scrollable component, such as **List** and **Grid**.|
+| offset<sup>12+</sup>             | number              | Yes  | No  | Pixel offset of the content area relative to the top coordinate of a scrollable component, such as **List** and **Grid**. <br>Default value: **0**.|
 | hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | Yes  | No  | Touchable area of an element.|
 
 ## FocusDirection
@@ -148,7 +148,7 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -193,7 +193,7 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -239,7 +239,7 @@ Obtains the focus element. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -247,7 +247,7 @@ Obtains the focus element. This API uses a promise to return the result.
 
 | Name                 | Type     | Mandatory  | Description                 |
 | -------------------- | ------- | ---- | ------------------- |
-| isAccessibilityFocus | boolean | No   | Whether the obtained focus element is an accessibility focus. The value **True** means that the obtained focus element is an accessibility focus, and **False** means the opposite. The default value is **False**.|
+| isAccessibilityFocus | boolean | No   | Whether the obtained element is an accessibility focus. The value **true** indicates that the element is an accessibility focus, and **false** indicates the opposite.<br>Default value: **false**.|
 
 **Return value**
 | Type                                 | Description                    |
@@ -287,7 +287,7 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -332,7 +332,7 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -379,7 +379,7 @@ Obtains the root element of a window. This API uses a promise to return the resu
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -428,7 +428,7 @@ Obtains the root element of a window. This API uses an asynchronous callback to 
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -473,7 +473,7 @@ Obtains the root element of a window. This API uses an asynchronous callback to 
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -520,7 +520,7 @@ Obtains the list of windows on a display. This API uses a promise to return the 
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -566,7 +566,7 @@ Obtains the list of windows on a display. This API uses an asynchronous callback
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -608,7 +608,7 @@ Obtains the list of windows on a display. This API uses an asynchronous callback
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -650,7 +650,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 > **NOTE**
 >
-> This API is deprecated since API version 10.
+> This API is deprecated since API version 10. Related capabilities are no longer available in the system.
 
 Injects a gesture. This API uses a promise to return the result.
 
@@ -701,7 +701,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 > **NOTE**
 >
-> This API is deprecated since API version 10.
+> This API is deprecated since API version 10. Related capabilities are no longer available in the system.
 
 Injects a gesture. This API uses an asynchronous callback to return the result.
 
@@ -750,7 +750,7 @@ Injects a gesture.
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -796,7 +796,7 @@ Obtains all attribute names of this element. This API uses a promise to return t
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -828,7 +828,7 @@ Obtains all attribute names of this element. This API uses an asynchronous callb
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -862,7 +862,7 @@ Obtains the attribute value based on an attribute name. This API uses a promise 
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -914,7 +914,7 @@ Obtains the attribute value based on an attribute name. This API uses an asynchr
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -960,7 +960,7 @@ Obtains the names of all actions supported by this element. This API uses a prom
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -991,7 +991,7 @@ Obtains the names of all actions supported by this element. This API uses an asy
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1022,7 +1022,7 @@ Performs an action based on the specified action name. This API uses a promise t
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1117,7 +1117,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1125,7 +1125,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -1162,7 +1162,7 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1209,7 +1209,7 @@ Finds an element based on the content type. This API uses a promise to return th
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1257,7 +1257,7 @@ Finds an element based on the content type. This API uses an asynchronous callba
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1302,7 +1302,7 @@ Finds an element based on the focus type. This API uses a promise to return the 
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1351,7 +1351,7 @@ Finds an element based on the focus type. This API uses an asynchronous callback
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1397,7 +1397,7 @@ Finds an element based on the focus direction. This API uses a promise to return
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1446,7 +1446,7 @@ Finds an element based on the focus direction. This API uses an asynchronous cal
 
 > **NOTE**
 >
-> This API is deprecated since API version 12.
+> This API is deprecated since API version 12. Related capabilities are no longer available in the system.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 

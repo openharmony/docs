@@ -84,20 +84,20 @@ Target actions supported by the application. The target actions for which parame
 | 'clearSelection'          | Clearing selection. Not supported yet.|
 | 'accessibilityFocus'      | Obtaining the accessibility focus.      |
 | 'clearAccessibilityFocus'      | Clearing the accessibility focus.      |
-| 'cut'                     | Cut.  |
-| 'copy'                    | Copy.  |
-| 'paste'                   | Paste.  |
-| 'select'                  | Select.  |
-| 'setCursorPosition'                 | Set text. You need to set the **setText** parameter.|
+| 'cut'                     | Cutting.  |
+| 'copy'                    | Copying.  |
+| 'paste'                   | Pasting.  |
+| 'select'                  | Selecting.  |
+| 'setText'                 | Setting text. You need to set the **setText** parameter.|
 | 'delete'                  | Delete. Not supported yet.  |
-| 'setSelection'            | Select. You need to set the **selectTextBegin**, **selectTextEnd** and **selectTextInForWard** parameters.  |
+| 'setSelection'            | Selecting. You need to set the **selectTextBegin**, **selectTextEnd** and **selectTextInForWard** parameters.  |
 | 'common'            | Common actions used in auto-focusing and auto-broadcasting.  |
-| 'home'                | Return to the home screen.  |
-| 'back'                | Return to the previous screen.  |
-| 'recentTask'          | Open a recent task.  |
-| 'notificationCenter'      | Open the notification bar.  |
-| 'controlCenter'       | Open the control center.  |
-| 'setCursorPosition'     | Set cursor location. You need to set the **offset** parameter.  |
+| 'home'                | Returning to the home screen.  |
+| 'back'                | Returning to the previous screen.  |
+| 'recentTask'          | Opening a recent task.  |
+| 'notificationCenter'      | Opening the notification bar.  |
+| 'controlCenter'       | Opening the control center.  |
+| 'setCursorPosition'     | Setting cursor location. You need to set the **offset** parameter.  |
 
 ## Capability
 
@@ -402,7 +402,7 @@ Implements a constructor.
 
 | Name | Type               | Mandatory| Description           |
 |------|-------------------|---|---------------|
-| type | [EventType](#eventtype)          | Yes| Enumerates accessibility event types.     |
+| type | [EventType](#eventtype)          | Yes| Accessibility event types.     |
 | bundleName | string | Yes| Target application name.       |
 | triggerAction | [Action](#action) | Yes| Action that triggers the event.|
 
@@ -427,10 +427,10 @@ Enumerates accessibility event types.
 
 | Type                     | Description                    |
 | ----------------------- |------------------------|
-| 'accessibilityFocus'      | Represents an event indicating that the accessibility focus is obtained.         |
-| 'accessibilityFocusClear' | Represents an event indicating that the accessibility focus is cleared.         |
+| 'accessibilityFocus'      | Event indicating that the accessibility focus is obtained.         |
+| 'accessibilityFocusClear' | Event indicating that the accessibility focus is cleared.         |
 | 'click'                   | Event of clicking a component.            |
-| 'longClick'               | Represents an event indicating that the component is long pressed.            |
+| 'longClick'               | Event indicating that the component is long pressed.            |
 | 'select'                  | Event of selecting a component.   |
 | 'hoverEnter'              | Event indicating that the hover enters a component. |
 | 'hoverExit'               | Event indicating that the hover exits a component. |
@@ -440,7 +440,6 @@ Enumerates accessibility event types.
 | 'scroll'                  | Event of the scroll view.   |
 | 'requestFocusForAccessibility'     | Event of the auto-focusing.|
 | 'announceForAccessibility'         | Event of the auto-broadcasting.|
-
 
 ## TextMoveUnit
 

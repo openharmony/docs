@@ -24,7 +24,7 @@ import { DataShareResultSet } from '@kit.ArkData';
 
 ```ts
 import { DataShareResultSet, dataShare, dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { UIAbility } from '@kit.AbilityKit';
 
 let dataShareHelper: dataShare.DataShareHelper | undefined = undefined;

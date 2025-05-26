@@ -23,9 +23,9 @@ import { screenshot } from '@kit.ArkUI';
 
 | 名称                 | 类型          | 必填 | 说明                                                         |
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
-| screenRect             | [Rect](js-apis-screenshot.md#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。                       |
-| imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
-| rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0，该参数应为整数。     |
+| screenRect             | [Rect](js-apis-screenshot.md#rect) | 否   | 表示截取图像的区域，不传值默认返回displayId所在逻辑屏的区域。                       |
+| imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为displayId所在逻辑屏的大小。若screenRect小于imageSize，图像会拉伸至imageSize，反之则压缩至imageSize的大小。                       |
+| rotation               | number        | 否   | 表示截取图像后要旋转的角度，当前仅支持输入值为0，默认值为0。     |
 | displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，该参数应为整数。 |
 | isNotificationNeeded<sup>14+</sup>| boolean        | 否   | 表示截取图像之后是否发送截屏通知，true表示发送截屏通知，false表示不发送截屏通知，默认值为true。截屏通知可以通过[captureStatusChange](js-apis-display.md#displayoncapturestatuschange12)接口监听。   |
 | isPointerNeeded<sup>14+</sup>| boolean       | 否   | 表示截取图像是否保留光标，true表示保留光标，false表示不保留光标，默认值为true。当前该参数不支持使用。   |
@@ -60,7 +60,7 @@ save(options: ScreenshotOptions, callback: AsyncCallback&lt;image.PixelMap&gt;):
 | 参数名   | 类型                                    | 必填 | 说明                                                         |
 | -------- | --------------------------------------- | ---- | ------------------------------------------------------------ |
 | options  | [ScreenshotOptions](#screenshotoptions) | 是   | 要截取的图像信息。 |
-| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象。                                   |
+| callback | AsyncCallback&lt;[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt;     | 是   | 回调函数。返回一个PixelMap对象，其大小为指定的imageSize大小，若未指定默认为displayId所在逻辑屏的大小。                                   |
 
 **错误码：**
 
@@ -92,18 +92,14 @@ let screenshotOptions: screenshot.ScreenshotOptions = {
   "displayId": 0,
   "isNotificationNeeded": true
 };
-try {
-  screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
-} catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-};
+screenshot.save(screenshotOptions, (err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+});
 ```
 
 ## screenshot.save
@@ -140,18 +136,14 @@ save(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 import { BusinessError } from '@kit.BasicServicesKit';
 import { image } from '@kit.ImageKit';
 
-try {
-  screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
-    if (err) {
-      console.log('Failed to save screenshot. Code: ' + JSON.stringify(err));
-      return;
-    }
-    console.log('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
-    pixelMap.release(); // PixelMap使用完后及时释放内存
-  });
-} catch (exception) {
-  console.error('Failed to save screenshot. Code: ' + JSON.stringify(exception));
-};
+screenshot.save((err: BusinessError, pixelMap: image.PixelMap) => {
+  if (err) {
+    console.error('Failed to save screenshot. Code: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in saving screenshot. Pixel bytes number: ' + pixelMap.getPixelBytesNumber());
+  pixelMap.release(); // PixelMap使用完后及时释放内存
+});
 ```
 
 ## screenshot.save

@@ -642,6 +642,12 @@ Resets the default application based on a system-defined application type, a fil
 | type  | string | Yes   | Type of the target application. It must be set to a value defined by [ApplicationType](js-apis-defaultAppManager.md#applicationtype), a file type that complies with the media type format, or a value defined by [UniformDataType](../apis-arkdata/js-apis-data-uniformTypeDescriptor.md).      |
 | userId  | number | No   | User ID. The default value is the user ID of the caller.                           |
 
+**Return value**
+
+| Type          | Description                              |
+| -------------- | ---------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Bundle Error Codes](errorcode-bundle.md).

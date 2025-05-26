@@ -39,6 +39,7 @@ Defines **Params** (specifying the action that can be performed) in the Want.
 | APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.appInstance  | Specific application instance.|
 | CREATE_APP_INSTANCE_KEY<sup>14+</sup>  | ohos.extra.param.key.createAppInstance  | Action of creating an application instance.|
 | CALLER_APP_CLONE_INDEX<sup>14+</sup>  | ohos.param.callerAppCloneIndex  | Clone index of the caller.|
+| APP_LAUNCH_TRUSTLIST<sup>17+</sup>  | ohos.params.appLaunchTrustList  | Filter list of applications for implicit launch. Only applications in the list are matched during implicit launch. The value is an array of [AppIdentifiers](js-apis-bundleManager-bundleInfo.md#signatureinfo) of the string type. The filter list supports a maximum of 50 applications. Passing an empty array will have no effect.<br>**Atomic service API**: This API can be used in atomic services since API version 17.|
 
 ## Flags
 

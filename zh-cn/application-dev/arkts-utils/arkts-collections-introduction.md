@@ -102,6 +102,8 @@ ArkTS提供了Sendable数据相关的共享容器集，接口行为与原生API�
 | values(): IterableIterator&lt;T&gt; | values(): IterableIterator&lt;T&gt; | 否 | / |
 | includes(searchElement: T, fromIndex?: number): boolean | includes(searchElement: T, fromIndex?: number): boolean | 否 | / |
 | at(index: number): T \| undefined | at(index: number): T \| undefined | 否 | / |
+| find(predicate: (value: T, index: number, obj: T[]) =&gt; unknown, thisArg?: any): T \| undefined | find(predicate: (value: T, index: number, obj: Array&lt;T&gt;) =&gt; boolean): T \| undefined | 是 | 1. 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。<br/>2. ArkTS不支持this，因此不支持thisArg参数。|
+| splice(start: number, deleteCount: number, ...items: T[]): T[] | splice(start: number, deleteCount: number, ...items: T[]): Array&lt;T&gt; | 是 | 不允许在遍历、访问过程中进行元素的增、删、改操作，否则会抛出异常。 |
 
 ### ArrayBuffer
 

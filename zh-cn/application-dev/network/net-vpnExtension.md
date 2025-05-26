@@ -175,10 +175,10 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | dnsAddresses        | Array\<string\>                                              | 否   | DNS服务器地址信息。配置后VPN白名单的应用访问网络时使用这些DNS服务器，不配置则使用系统分配的DNS服务器地址。 |
 | searchDomains       | Array\<string\>                                              | 否   | DNS的搜索域列表。                                            |
 | mtu                 | number                                                       | 否   | 最大传输单元MTU值(单位：字节)。                               |
-| isIPv4Accepted      | boolean                                                      | 否   | 是否支持IPV4，默认值为true。                                 |
-| isIPv6Accepted      | boolean                                                      | 否   | 是否支持IPV6，默认值为false。                                |
-| isInternal          | boolean                                                      | 否   | 是否支持内置VPN，默认值为false。                             |
-| isBlocking          | boolean                                                      | 否   | 是否阻塞模式，默认值为false。                                |
+| isIPv4Accepted      | boolean                                                      | 否   | 是否支持IPV4，默认值为true。true：支持IPV4；false：不支持IPV4。                                 |
+| isIPv6Accepted      | boolean                                                      | 否   | 是否支持IPV6，默认值为false。true：支持IPV6；false：不支持IPV6。                                |
+| isInternal          | boolean                                                      | 否   | 是否支持内置VPN，默认值为false。true：支持内置VPN；false：不支持内置VPN。                             |
+| isBlocking          | boolean                                                      | 否   | 是否阻塞模式，默认值为false。true：是阻塞模式；false：不是阻塞模式。                                |
 | trustedApplications | Array\<string\>                                              | 否   | VPN生效的应用白名单信息，string类型表示的包名。              |
 | blockedApplications | Array\<string\>                                              | 否   | 不生效VPN的应用黑名单信息，string类型表示的包名。            |
 
