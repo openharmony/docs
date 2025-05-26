@@ -261,4 +261,48 @@ struct PopupExample {
 
 ![image](figures/UIpopupStyle.gif)
 
+## 气泡避让软键盘
+
+当软键盘弹出时，气泡默认不会对其避让，可能导致气泡被软键盘覆盖，这时需要设置keyboardAvoidMode为KeyboardAvoidMode.DEFAULT，来使气泡避让键盘。这时如果当前没有位置放下气泡时，气泡会从预设位置平移覆盖宿主组件。
+
+```ts
+// xxx.ets
+
+@Entry
+@Component
+struct PopupExample {
+  @State handlePopup: boolean = false;
+
+  @Builder popupBuilder() {
+    Column({ space: 2 }) {
+      Text('Custom Popup').fontSize(20)
+        .borderWidth(2)
+      TextInput()
+    }.width(200).padding(5)
+  }
+
+  build() {
+    Column({ space: 100 }) {
+      TextInput()
+      Button('PopupOptions')
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup;
+        })
+        .bindPopup(this.handlePopup!!, {
+          width: 200,
+          builder: this.popupBuilder(),
+          placement: Placement.Bottom,
+          mask: false,
+          autoCancel: false,
+          keyboardAvoidMode: KeyboardAvoidMode.DEFAULT
+        })
+        .position({x: 100, y: 300})
+    }
+    .width('100%')
+  }
+}
+```
+
+![image](figures/avoidKeyboard.gif)
+
 

@@ -38,8 +38,8 @@ Circle(value?: CircleOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number| 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
-| height | string \| number| 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| width | [Length](ts-types.md#length) | 否 | 宽度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
+| height | [Length](ts-types.md#length) | 否 | 高度，取值范围≥0。<br/>默认值：0<br/>默认单位：vp<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -193,7 +193,7 @@ strokeOpacity(value: number | string | Resource)
 
 strokeWidth(value: Length)
 
-设置边框宽度。该属性若为string类型, 暂不支持百分比，百分比按照1px处理。
+设置边框宽度。该属性若为string类型，暂不支持百分比，百分比按照1px处理。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -223,7 +223,9 @@ antiAlias(value: boolean)
 
 ## 示例
 
-使用fillOpacity、stroke、strokeDashArray分别绘制圆的透明度、边框颜色、边框间隙。
+### 示例1（组件属性绘制）
+
+通过fillOpacity、stroke、strokeDashArray属性可分别设置圆的透明度、边框颜色和边框间隙样式。
 
 ```ts
 // xxx.ets
@@ -248,3 +250,27 @@ struct CircleExample {
 ```
 
 ![zh-cn_image_0000001219744191](figures/zh-cn_image_0000001219744191.png)
+
+### 示例2（宽和高使用不同参数类型绘制圆）
+
+width、height属性分别使用不同的长度类型绘制圆。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct CircleTypeExample {
+  build() {
+    Column({ space: 10 }) {
+      // 绘制一个直径为50的圆
+      Circle({ width: '50', height: '50' }) // 使用string类型
+      // 绘制一个直径为100的圆
+      Circle({ width: 100, height: 100 }) // 使用number类型
+      // 绘制一个直径为150的圆
+      Circle({ width: $r('app.string.CircleWidth'), height: $r('app.string.CircleHeight') }) // 使用Resource类型，需用户自定义
+    }.width('100%')
+  }
+}
+```
+
+![circleDemo2](figures/circleDemo2.png)

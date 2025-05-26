@@ -10,7 +10,7 @@
 
 无
 
-##  接口
+## 接口
 
 PatternLock(controller?: PatternLockController)
 
@@ -32,7 +32,7 @@ PatternLock(controller?: PatternLockController)
 
 sideLength(value: Length)
 
-设置组件的宽度和高度（宽高相同）。设置为0或负数时组件不显示。
+设置组件的宽度和高度（宽高相同）。当设置为0或负数时，组件不显示。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -58,7 +58,7 @@ circleRadius(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                               |
 | ------ | ---------------------------- | ---- | ---------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 宫格中圆点的半径。<br/>默认值：6vp<br/>取值范围：(0, sideLength/11]，设置小于等于0的值时按默认值处理，超过最大值按最大值处理。 |
+| value  | [Length](ts-types.md#length) | 是   |宫格中圆点的半径。<br/>默认值：6vp<br/>取值范围：(0, sideLength/11]。设置小于等于0的值时，按默认值处理；超过最大值时，按最大值处理。|
 
 ### backgroundColor
 backgroundColor(value: ResourceColor)
@@ -93,7 +93,7 @@ regularColor(value: ResourceColor)
 
 selectedColor(value: ResourceColor)
 
-设置宫格圆点在“选中“状态的填充颜色。
+设置宫格圆点在“选中”状态的填充色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -125,7 +125,7 @@ activeColor(value: ResourceColor)
 
 pathColor(value: ResourceColor)
 
-设置连线的颜色。
+设置连线颜色。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -151,7 +151,7 @@ pathStrokeWidth(value: number | string)
 
 | 参数名 | 类型                       | 必填 | 说明                          |
 | ------ | -------------------------- | ---- | ----------------------------- |
-| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp<br/>取值范围：[0, sideLength/3]，超过最大值按最大值处理。 |
+| value  | number&nbsp;\|&nbsp;string | 是   | 连线的宽度。<br/>默认值：12vp<br/>取值范围：(0, sideLength/3]，超过最大值按最大值处理。 |
 
 ### autoReset
 
@@ -231,7 +231,7 @@ onPatternComplete(callback: (input: Array\<number\>) => void)
 
 | 参数名 | 类型            | 必填 | 说明                                                         |
 | ------ | --------------- | ---- | ------------------------------------------------------------ |
-| input  | Array\<number\> | 是   | 与选中宫格圆点顺序一致的数字数组，数字为选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
+| input  | Array\<number\> | 是   | 与选中宫格圆点顺序一致的数字数组，每个数字表示选中宫格圆点的索引值（第一行圆点从左往右依次为0、1、2，第二行圆点依次为3、4、5，第三行圆点依次为6、7、8）。 |
 
 ### onDotConnect<sup>11+</sup>
 
@@ -279,7 +279,7 @@ reset()
 
 setChallengeResult(result: PatternLockChallengeResult): void
 
-用于设置图案密码正确或错误状态。
+设置图案密码的正确或错误状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

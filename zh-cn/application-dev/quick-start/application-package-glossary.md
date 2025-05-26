@@ -53,3 +53,11 @@ API version 9开始新增的应用模型，提供UIAbility、ExtensionAbility两
 ### UIAbility
 
 Stage模型中的组件类型名，即UIAbility组件，包含UI，提供展示UI的能力，主要用于和用户交互。
+
+<!--Del-->
+## X
+
+### 系统级HSP
+
+由OEM厂商预置到系统中的HSP，作为Kit的底层实现，被三方应用间接依赖，运行在三方进程空间。
+<!--DelEnd-->

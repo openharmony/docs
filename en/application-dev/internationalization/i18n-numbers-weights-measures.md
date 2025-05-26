@@ -16,7 +16,7 @@ Number formatting is implemented through the [format](../reference/apis-localiza
    ```
 
 2. Create a **NumberFormat** object.
-   If you pass in a list of locales, the first valid locale will be used. If you do not pass in any locale, the current system locale will be used.
+   If a list of locale IDs is passed, the first valid locale is used. If no locale is passed, the current system locale ID is used.
    The **NumberFormat** constructor allows you to set different number formatting formats by using **NumberOptions**. For details, see Table 1 to Table 8.
 
    ```ts
@@ -168,7 +168,7 @@ Number range formatting is implemented through the [formatRange](../reference/ap
    ```
 
 2. Create a **NumberFormat** object.
-   If you pass in a list of locales, the first valid locale will be used. If you do not pass in any locale, the current system locale will be used.
+   If a list of locale IDs is passed, the first valid locale is used. If no locale is passed, the current system locale ID is used.
    The **NumberFormat** constructor allows you to set different number formatting formats by using **NumberOptions**. For details, see Table 1 to Table 8.
 
    ```ts
@@ -314,7 +314,7 @@ import { i18n } from '@kit.LocalizationKit';
 let fromUnit: i18n.UnitInfo = {unit: 'cup', measureSystem: 'US'};
 let toUnit: i18n.UnitInfo = {unit: 'liter', measureSystem: 'SI'};
 
-// Convert the unit based on the locale en-US.
+// Convert the unit based on the locale ID en-US.
 let convertedUnit: string = i18n.I18NUtil.unitConvert(fromUnit, toUnit, 1000, 'en-US'); // convertedUnit = '236.588 L'
 
 // Display the complete unit.

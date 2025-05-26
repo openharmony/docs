@@ -18,11 +18,11 @@
 | RSA/NoDigest/PKCS1_V1_5 | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。由业务对明文做哈希，再将哈希后的数据传入，哈希后的数据长度必须满足RSA签名验签支持的摘要算法规格。 | 9+ | 是 |
 | <!--DelRow-->DSA/SHA1<br/>DSA/SHA224<br/>DSA/SHA256<br/>DSA/SHA384<br/>DSA/SHA512 | - | 8+ | 否 |
 | <!--DelRow-->DSA/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
-| <!--DelRow-->ECC/SHA1<br/>ECC/SHA224 | - | 8+ | 否 |
-| ECC/SHA256<br/>ECC/SHA384<br/>ECC/SHA512 | ECC算法支持的椭圆曲线函数包括：P-256、P-384、P-521。 | 8+ | 是 |
-| <!--DelRow-->ECC/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
+| <!--DelRow-->ECC/SHA1<br/>ECC/SHA224 | 签名是ASN1格式。 | 8+ | 否 |
+| ECC/SHA256<br/>ECC/SHA384<br/>ECC/SHA512 | 签名是ASN1格式。<br/>ECC算法支持的椭圆曲线函数包括：P-256、P-384、P-521。 | 8+ | 是 |
+| <!--DelRow-->ECC/NoDigest | 签名是ASN1格式。<br/>NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 9+ | 否 |
 | ED25519/NoDigest | NoDigest需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE。 | 8+ | 是 |
-| SM2/SM3 | - | 9+ | 是 |
+| SM2/SM3 | 签名是ASN1格式。 | 9+ | 是 |
 
 **轻设备规格**
 

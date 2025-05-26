@@ -129,9 +129,9 @@ taskpool.execute<[number], number>(printArgs, 100).then((value: number) => { // 
   console.info("taskpool result: " + value);
 });
 
-taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {})
+taskpool.execute<[number, string, number], string>(testWithThreeParams, 100, "test", 100).then((value: string) => {});
 
-taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {})
+taskpool.execute<[[number, string]], string>(testWithArray, [100, "test"]).then((value: string) => {});
 ```
 
 
@@ -208,7 +208,7 @@ execute<A extends Array\<Object>, R>(task: GenericsTask<A, R>, priority?: Priori
 
 | 参数名   | 类型                  | 必填 | 说明                                       |
 | -------- | --------------------- | ---- | ---------------------------------------- |
-| task     | [GenericsTask](#genericstask13)         | 是   | 需要在任务池中执行的泛型任务。                  |
+| task     | [GenericsTask<A, R>](#genericstask13)         | 是   | 需要在任务池中执行的泛型任务。                  |
 | priority | [Priority](#priority) | 否   | 等待执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
 **返回值：**
@@ -355,7 +355,7 @@ executeDelayed(delayTime: number, task: Task, priority?: Priority): Promise\<Obj
 
 ```ts
 // import BusinessError
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 @Concurrent
 function printArgs(args: number): void {
@@ -388,7 +388,7 @@ executeDelayed<A extends Array\<Object>, R>(delayTime: number, task: GenericsTas
 | 参数名       | 类型          | 必填 | 说明                 |
 | ----------- | ------------- | ---- | -------------------- |
 | delayTime   | number        | 是   | 延时时间。单位为ms。  |
-| task        | [GenericsTask](#genericstask13) | 是   | 需要延时执行的泛型任务。 |
+| task        | [GenericsTask\<A, R>](#genericstask13) | 是   | 需要延时执行的泛型任务。 |
 | priority    | [Priority](#priority)       | 否   | 延时执行的任务的优先级，默认值为taskpool.Priority.MEDIUM。 |
 
 **返回值：**
@@ -521,7 +521,7 @@ executePeriodically<A extends Array\<Object>, R>(period: number, task: GenericsT
 | 参数名       | 类型          | 必填  | 说明                 |
 | -----------  | ------------- | ----- | -------------------- |
 | period       | number        | 是    | 周期时长。单位为ms。  |
-| task         | [GenericsTask](#genericstask13) | 是    | 需要周期执行的泛型任务。 |
+| task         | [GenericsTask\<A, R>](#genericstask13) | 是    | 需要周期执行的泛型任务。 |
 | priority     | [Priority](#priority) | 否   | 周期执行的任务的优先级，该参数默认值为taskpool.Priority.MEDIUM。 |
 
 
@@ -638,7 +638,7 @@ function concurrentFunc() {
   let task4: taskpool.Task = new taskpool.Task(inspectStatus, 400); // 400: test number
   let task5: taskpool.Task = new taskpool.Task(inspectStatus, 500); // 500: test number
   let task6: taskpool.Task = new taskpool.Task(inspectStatus, 600); // 600: test number
-  taskpool.execute(task1).then((res: Object)=>{
+  taskpool.execute(task1).then((res: Object) => {
     console.info("taskpool test result: " + res);
   });
   taskpool.execute(task2);
@@ -647,7 +647,7 @@ function concurrentFunc() {
   taskpool.execute(task5);
   taskpool.execute(task6);
   // 1s后取消task
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(task1);
     } catch (e) {
@@ -702,13 +702,13 @@ function concurrentFunc() {
   taskGroup1.addTask(printArgs, 10); // 10: test number
   let taskGroup2: taskpool.TaskGroup = new taskpool.TaskGroup();
   taskGroup2.addTask(printArgs, 100); // 100: test number
-  taskpool.execute(taskGroup1).then((res: Array<Object>)=>{
+  taskpool.execute(taskGroup1).then((res: Array<Object>) => {
     console.info("taskGroup1 res is:" + res);
   });
-  taskpool.execute(taskGroup2).then((res: Array<Object>)=>{
+  taskpool.execute(taskGroup2).then((res: Array<Object>) => {
     console.info("taskGroup2 res is:" + res);
   });
-  setTimeout(()=>{
+  setTimeout(() => {
     try {
       taskpool.cancel(taskGroup2);
     } catch (e) {
@@ -774,7 +774,7 @@ function cancelFunction(taskId: number) {
 function concurrentFunc() {
   let task = new taskpool.Task(printArgs, 100); // 100: test number
   taskpool.execute(task);
-  setTimeout(()=>{
+  setTimeout(() => {
     let cancelTask = new taskpool.Task(cancelFunction, task.taskId);
     taskpool.execute(cancelTask);
   }, 1000);
@@ -822,7 +822,7 @@ function longTask(arg: number): number {
 
 function concurrentFunc() {
   let task1: taskpool.LongTask = new taskpool.LongTask(longTask, 1000); // 1000: sleep time
-  taskpool.execute(task1).then((res: Object)=>{
+  taskpool.execute(task1).then((res: Object) => {
     taskpool.terminateTask(task1);
     console.info("taskpool longTask result: " + res);
   });
@@ -867,8 +867,8 @@ isConcurrent(func: Function): boolean
 @Concurrent
 function test() {}
 
-let result: Boolean = taskpool.isConcurrent(test)
-console.info("result is: " + result)
+let result: Boolean = taskpool.isConcurrent(test);
+console.info("result is: " + result);
 ```
 
 ## taskpool.getTaskPoolInfo<sup>10+</sup>
@@ -1099,7 +1099,7 @@ function inspectStatus(arg: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-taskpool.execute(task).then((res: Object)=>{
+taskpool.execute(task).then((res: Object) => {
   console.info("taskpool test result: " + res);
 }).catch((err: string) => {
   console.error("taskpool test occur error: " + err);
@@ -1159,9 +1159,9 @@ console.info("testTransfer view1 byteLength: " + view1.byteLength);
 
 let task: taskpool.Task = new taskpool.Task(testTransfer, view, view1);
 task.setTransferList([view.buffer, view1.buffer]);
-taskpool.execute(task).then((res: Object)=>{
+taskpool.execute(task).then((res: Object) => {
   console.info("test result: " + res);
-}).catch((e: string)=>{
+}).catch((e: string) => {
   console.error("test catch: " + e);
 })
 console.info("testTransfer view2 byteLength: " + view.byteLength);
@@ -1239,7 +1239,7 @@ export class BaseClass {
     this.num1 = num;
   }
 
-  constructor(){
+  constructor() {
     console.info(this.str);
     this.isDone1 = true;
   }
@@ -1261,9 +1261,9 @@ export class DeriveClass extends BaseClass {
 ```ts
 // index.ets
 // 宿主线程（这里的宿主线程为UI主线程）调用taskpool，在taskpool线程中调用BaseClass和DeriveClass的方法、访问对应属性
-import { taskpool } from '@kit.ArkTS'
-import { BusinessError } from '@kit.BasicServicesKit'
-import { BaseClass, DeriveClass } from './sendable'
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { BaseClass, DeriveClass } from './sendable';
 
 @Concurrent
 function testFunc(arr: Array<BaseClass>, num: number): number {
@@ -1286,7 +1286,7 @@ function printLog(arr: Array<DeriveClass>): void {
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -1295,7 +1295,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button() {
-          Text("TaskPool Test")
+          Text("TaskPool Test");
         }.onClick(() => {
           // task1访问调用BaseClass.str1/BaseClass.SetNum/BaseClass.GetNum/BaseClass.isDone1/BaseClass.publicFunc
           let baseInstance1: BaseClass = new BaseClass();
@@ -1483,7 +1483,7 @@ addDependency(...tasks: Task[]): void
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+    continue;
   }
   return args;
 }
@@ -1497,7 +1497,7 @@ task1.addDependency(task2);
 task2.addDependency(task3);
 console.info("dependency: add dependency end");
 
-console.info("dependency: start execute second")
+console.info("dependency: start execute second");
 taskpool.execute(task1).then(() => {
   console.info("dependency: second task1 success");
 })
@@ -1543,7 +1543,7 @@ removeDependency(...tasks: Task[]): void
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+    continue;
   }
   return args;
 }
@@ -1561,7 +1561,7 @@ task1.removeDependency(task2);
 task2.removeDependency(task3);
 console.info("dependency: remove dependency end");
 
-console.info("dependency: start execute")
+console.info("dependency: start execute");
 taskpool.execute(task1).then(() => {
   console.info("dependency: task1 success");
 })
@@ -1602,23 +1602,23 @@ onEnqueued(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+	  continue;
   }
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onEnqueued(()=>{
-  console.info("taskpool: onEnqueued")
+task.onEnqueued(() => {
+  console.info("taskpool: onEnqueued");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1651,23 +1651,23 @@ onStartExecution(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
   let t: number = Date.now();
   while ((Date.now() - t) < 1000) {
-	continue;
+	  continue;
   }
   return args;
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onStartExecution(()=>{
-  console.info("taskpool: onStartExecution")
+task.onStartExecution(() => {
+  console.info("taskpool: onStartExecution");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1699,13 +1699,13 @@ onExecutionFailed(callback: CallbackFunctionWithError): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
-import { BusinessError } from '@kit.BasicServicesKit'
-import { HashMap } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { HashMap } from '@kit.ArkTS';
 
 @Concurrent
-function test(args:number) {
-  let t = Date.now()
+function test(args: number) {
+  let t = Date.now();
   while ((Date.now() - t) < 100) {
     continue;
   }
@@ -1715,12 +1715,12 @@ function test(args:number) {
 }
 
 let task2 = new taskpool.Task(test, 1);
-task2.onExecutionFailed((e:Error)=>{
+task2.onExecutionFailed((e: Error) => {
   console.info("taskpool: onExecutionFailed error is " + e);
 })
-taskpool.execute(task2).then(()=>{
-  console.info("taskpool: execute task success")
-}).catch((e:BusinessError)=>{
+taskpool.execute(task2).then(() => {
+  console.info("taskpool: execute task success");
+}).catch((e:BusinessError) => {
   console.error(`taskpool: error code: ${e.code}, error info: ${e.message}`);
 })
 ```
@@ -1753,7 +1753,7 @@ onExecutionSucceeded(callback: CallbackFunction): void
 **示例：**
 
 ```ts
-import { taskpool } from '@kit.ArkTS'
+import { taskpool } from '@kit.ArkTS';
 
 @Concurrent
 function delay(args: number): number {
@@ -1765,11 +1765,11 @@ function delay(args: number): number {
 }
 
 let task: taskpool.Task = new taskpool.Task(delay, 1);
-task.onExecutionSucceeded(()=>{
-  console.info("taskpool: onExecutionSucceeded")
+task.onExecutionSucceeded(() => {
+  console.info("taskpool: onExecutionSucceeded");
 });
-taskpool.execute(task).then(()=> {
-  console.info("taskpool: execute task success")
+taskpool.execute(task).then(() => {
+  console.info("taskpool: execute task success");
 });
 ```
 
@@ -1804,13 +1804,13 @@ function inspectStatus(arg: number): number {
 
 async function taskpoolCancel(): Promise<void> {
   let task: taskpool.Task = new taskpool.Task(inspectStatus, 100); // 100: test number
-  taskpool.execute(task).then((res: Object)=>{
+  taskpool.execute(task).then((res: Object) => {
     console.info("taskpool test result: " + res);
   }).catch((err: string) => {
     console.error("taskpool test occur error: " + err);
   });
 
-  setTimeout(()=>{
+  setTimeout(() => {
     if (!task.isDone()) {
       taskpool.cancel(task);
     }
@@ -2224,7 +2224,7 @@ execute(task: Task): Promise\<Object>
 
 ```ts
 @Concurrent
-function additionDelay(delay:number): void {
+function additionDelay(delay: number): void {
   let start: number = new Date().getTime();
   while (new Date().getTime() - start < delay) {
     continue;
@@ -2234,8 +2234,7 @@ function additionDelay(delay:number): void {
 function waitForRunner(finalString: string): string {
   return finalString;
 }
-async function seqRunner()
-{
+async function seqRunner() {
   let finalString:string = "";
   let task1:taskpool.Task = new taskpool.Task(additionDelay, 3000);
   let task2:taskpool.Task = new taskpool.Task(additionDelay, 2000);
@@ -2381,27 +2380,25 @@ execute(task: Task, priority?: Priority): Promise\<Object>
 
 ```ts
 @Concurrent
-function additionDelay(delay:number): void {
+function additionDelay(delay: number): void {
   let start: number = new Date().getTime();
   while (new Date().getTime() - start < delay) {
     continue;
   }
 }
-async function asyRunner()
-{
+async function asyRunner() {
   let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner("runner1", 5, 5);
   for (let i = 0; i < 30; i++) {
     let task:taskpool.Task = new taskpool.Task(additionDelay, 1000);
     runner.execute(task).then(() => {
       console.info("asyncRunner: task" + i + " done.");
     }).catch((e: BusinessError) => {
-      console.info("asyncRunner: task" + i + " error." + e.code + "-" + e.message);
+      console.error("asyncRunner: task" + i + " error." + e.code + "-" + e.message);
     });
   }
 }
 
-async function asyRunner2()
-{
+async function asyRunner2() {
   let runner:taskpool.AsyncRunner = new taskpool.AsyncRunner(5);
   for (let i = 0; i < 20; i++) {
     let task:taskpool.Task = new taskpool.Task(additionDelay, 1000);
@@ -2781,7 +2778,7 @@ let taskId: number = 0;
 let state: number = 0;
 let duration: number = 0;
 let name: string = "";
-let threadIS = Array.from(taskpoolInfo.threadInfos)
+let threadIS = Array.from(taskpoolInfo.threadInfos);
 for (let threadInfo of threadIS) {
   tid = threadInfo.tid;
   if (threadInfo.taskIds != undefined && threadInfo.priority != undefined) {
@@ -2790,7 +2787,7 @@ for (let threadInfo of threadIS) {
   }
   console.info("taskpool---tid is:" + tid + ", taskIds is:" + taskIds + ", priority is:" + priority);
 }
-let taskIS = Array.from(taskpoolInfo.taskInfos)
+let taskIS = Array.from(taskpoolInfo.taskInfos);
 for (let taskInfo of taskIS) {
   taskId = taskInfo.taskId;
   state = taskInfo.state;

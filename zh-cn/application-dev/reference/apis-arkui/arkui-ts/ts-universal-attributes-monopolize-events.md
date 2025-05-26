@@ -33,10 +33,10 @@ monopolizeEvents(monopolize: boolean)
 @Entry
 @Component
 struct Index {
-  @State message: string = 'set monopolizeEvents false'
-  @State messageOut: string = ' '
-  @State messageInner: string = ' '
-  @State monopolize: boolean = false
+  @State message: string = 'set monopolizeEvents false';
+  @State messageOut: string = ' ';
+  @State messageInner: string = ' ';
+  @State monopolize: boolean = false;
 
   build() {
     Column() {

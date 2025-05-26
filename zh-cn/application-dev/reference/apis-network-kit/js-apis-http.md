@@ -13,7 +13,9 @@ import { http } from '@kit.NetworkKit';
 
 ## 完整示例 
 
-**注意：** 关于示例代码中this的说明：在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
+>**说明：** 
+>
+>在本文档的示例中，通过this.context来获取UIAbilityContext，其中this代表继承自UIAbility的UIAbility实例。如需在页面中使用UIAbilityContext提供的能力，请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
 // 引入包名
@@ -1249,7 +1251,7 @@ request方法回调函数的返回值类型。
 | 名称 | 类型 | 必填 | 说明 |
 | ---- | ---- | ---- | ---- |
 |  receiveSize        | number | 是  | 已接收的数据量(字节)。           |
-| totalSize| number | 是 | 总共要接收的数据量(字节)|
+| totalSize| number | 是 | 总共要接收的数据量(字节)。|
 
 ## DataSendProgressInfo<sup>11+</sup>
 

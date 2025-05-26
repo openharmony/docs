@@ -1,6 +1,6 @@
 # Using HiDebug (C/C++)
 
-HiDebug provides APIs for application debugging.
+This module can be used to obtain memory, CPU, and GPU data of application processes, and enable process trace collection. Since most APIs of this module are both performance-consuming and time-consuming, and are defined based on the HiDebug module, you are advised to use these APIs only during the application debugging and profiling phases. If the APIs are required in other scenarios, evaluate the impact of the APIs on application performance.
 
 ## Available APIs
 | API                         | Description                             |
@@ -59,7 +59,7 @@ The following describes how to add a button in the application and click the but
    #undef LOG_TAG
    #define LOG_TAG "testTag"
    
-   static napi_value TestHidebugNdk(napi_env env, napi_callback_info info)
+   static napi_value TestHiDebugNdk(napi_env env, napi_callback_info info)
    {
        double cpuUsage = OH_HiDebug_GetSystemCpuUsage();
        OH_LOG_INFO(LogType::LOG_APP, "GetSystemCpuUsage: %{public}f", cpuUsage);
@@ -67,15 +67,15 @@ The following describes how to add a button in the application and click the but
    }
    ```
 
-4. Register **TestHidebugNdk** as an ArkTS API.
+4. Register **TestHiDebugNdk** as an ArkTS API.
 
-   In the **napi_init.cpp** file, register **TestHidebugNdk** as an ArkTS API.
+   In the **napi_init.cpp** file, register **TestHiDebugNdk** as an ArkTS API.
 
    ```c++
    static napi_value Init(napi_env env, napi_value exports)
    {
        napi_property_descriptor desc[] = {
-           { "testHidebugNdk", nullptr, TestHidebugNdk, nullptr, nullptr, nullptr, napi_default, nullptr }
+           { "testHiDebugNdk", nullptr, TestHiDebugNdk, nullptr, nullptr, nullptr, napi_default, nullptr }
        };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
@@ -85,7 +85,7 @@ The following describes how to add a button in the application and click the but
    In the **index.d.ts** file, define the ArkTS API.
 
    ```typescript
-   export const testHidebugNdk: () => void;
+   export const testHiDebugNdk: () => void;
    ```
 
 5. In the **Index.ets** file, add a click event to the **Text** component. The sample code is as follows:
@@ -104,7 +104,7 @@ The following describes how to add a button in the application and click the but
            Text(this.message)
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.testHidebugNdk);// Add a click event to trigger testHidebugNdk().
+             .onClick(testNapi.testHiDebugNdk); //Add a click event to trigger testHiDebugNdk().
          }
          .width('100%')
        }
@@ -116,6 +116,7 @@ The following describes how to add a button in the application and click the but
 6. Click the **Run** button in DevEco Studio to run the project, and click "Hello world".
 
 7. At the bottom of DevEco Studio, switch to the **Log** tab and set the filter criteria to **testTag**.
+
    Then, the CPU usage logs obtained using **OH_HiDebug_GetSystemCpuUsage()** are displayed in the window.
 
    ```Text

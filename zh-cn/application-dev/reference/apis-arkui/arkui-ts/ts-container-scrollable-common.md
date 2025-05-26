@@ -24,6 +24,12 @@ scrollBar(barState: BarState): T
 | -------- | ----------------------------------------- | ---- | -------------------------------------- |
 | barState | [BarState](ts-appendix-enums.md#barstate) | 是   | 滚动条状态。<br/>默认值：List、Grid、Scroll组件默认BarState.Auto，WaterFlow组件默认BarState.Off。 |
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### scrollBarColor<sup>11+</sup>
 
 scrollBarColor(color: Color | number | string): T
@@ -40,6 +46,12 @@ scrollBarColor(color: Color | number | string): T
 | ------ | ------------------------------------------------------------ | ---- | -------------- |
 | color  | string&nbsp;\|&nbsp;number&nbsp;\|&nbsp;[Color](ts-appendix-enums.md#color) | 是   | 滚动条的颜色。<br/>默认值：'\#182431'（40%不透明度）<br/>number为HEX格式颜色，支持rgb或者argb，示例：0xffffff。string为rgb或者argb格式颜色，示例：'#ffffff'。 |
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### scrollBarWidth<sup>11+</sup>
 
 scrollBarWidth(value: number | string): T
@@ -55,6 +67,12 @@ scrollBarWidth(value: number | string): T
 | 参数名 | 类型                       | 必填 | 说明                                      |
 | ------ | -------------------------- | ---- | ----------------------------------------- |
 | value  | string&nbsp;\|&nbsp;number | 是   | 滚动条的宽度。<br/>默认值：4<br/>单位：vp <br/>取值范围：设置为小于0的值时，按默认值处理。设置为0时，不显示滚动条。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ### edgeEffect<sup>11+</sup>
 
@@ -73,6 +91,12 @@ edgeEffect(edgeEffect: EdgeEffect, options?: EdgeEffectOptions): T
 | edgeEffect            | [EdgeEffect](ts-appendix-enums.md#edgeeffect)     | 是   | 滚动组件的边缘滑动效果，支持弹簧效果和阴影效果。<br/>默认值：Grid、Scroll、WaterFlow组件默认EdgeEffect.None，List组件默认EdgeEffect.Spring。|
 | options | [EdgeEffectOptions](#edgeeffectoptions11对象说明) | 否   | 组件内容大小小于组件自身时，是否开启滑动效果。设置为{ alwaysEnabled: true }会开启滑动效果，{ alwaysEnabled: false }不开启。<br/>默认值：<br/>List、Grid、WaterFlow组件默认{ alwaysEnabled: false }，Scroll组件默认{ alwaysEnabled: true }。|
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### nestedScroll<sup>11+</sup>
 
 nestedScroll(value: NestedScrollOptions): T
@@ -88,6 +112,12 @@ nestedScroll(value: NestedScrollOptions): T
 | 参数名 | 类型                                                  | 必填 | 说明           |
 | ------ | ----------------------------------------------------- | ---- | -------------- |
 | value  | [NestedScrollOptions](#nestedscrolloptions10对象说明) | 是   | 嵌套滚动选项。|
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ### enableScrollInteraction<sup>11+</sup>
 
@@ -105,6 +135,12 @@ enableScrollInteraction(value: boolean): T
 | ------ | ------- | ---- | ----------------------------------- |
 | value  | boolean | 是   | 是否支持滚动手势。设置为true时可以通过手指或者鼠标滚动，设置为false时无法通过手指或者鼠标滚动，但不影响控制器[Scroller](ts-container-scroll.md#scroller)的滚动接口。<br/>默认值：true |
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### friction<sup>11+</sup>
 
 friction(value: number | Resource): T
@@ -121,6 +157,12 @@ friction(value: number | Resource): T
 | ------ | ---------------------------------------------------- | ---- | --------------------------------------------------------- |
 | value  | number&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 是   | 摩擦系数。<br/>默认值：非wearable设备为0.6，wearable设备为0.9。<br/>从API version 11开始，非wearable设备默认值为0.7。<br/>从API version 12开始，非wearable设备默认值为0.75。 <br/>取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。|
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### flingSpeedLimit<sup>11+</sup>
 
 flingSpeedLimit(speedLimit: number): T
@@ -136,6 +178,12 @@ flingSpeedLimit(speedLimit: number): T
 | 参数名     | 类型   | 必填 | 说明                            |
 | ---------- | ------ | ---- | ------------------------------- |
 | speedLimit | number | 是   | Fling动效开始时的最大初始速度。<br/>默认值：9000<br/>单位：vp/s <br/>取值范围：(0, +∞)，设置为小于等于0的值时，按默认值处理。|
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ### fadingEdge<sup>14+</sup>
 
@@ -154,6 +202,12 @@ fadingEdge(enabled: Optional&lt;boolean&gt;, options?: FadingEdgeOptions): T
 | enabled | Optional&lt;boolean&gt;                           | 是   | fadingEdge生效时，会覆盖原组件的.overlay()属性。<br/>fadingEdge生效时，建议不在该组件上设置background相关属性，会影响渐隐的显示效果。<br/>fadingEdge生效时，组件会裁剪到边界，设置组件的clip属性为false不生效。<br/>设置为true时开启边缘渐隐效果，设置为false时不开启边缘渐隐效果。<br/>默认值：false |
 | options | [FadingEdgeOptions](#fadingedgeoptions14对象说明) | 否   | 边缘渐隐参数对象。可以通过该对象定义边缘渐隐效果属性，比如设置渐隐长度。 |
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### clipContent<sup>14+</sup>
 
 clipContent(clip: ContentClipMode | RectShape): T
@@ -169,6 +223,12 @@ clipContent(clip: ContentClipMode | RectShape): T
 | 参数名  | 类型                                              | 必填 | 说明                                                         |
 | ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | clip | [ContentClipMode](#contentclipmode14枚举说明)&nbsp;\|&nbsp;[RectShape](../js-apis-arkui-shape.md#rectshape)   | 是   | 裁剪只针对滚动容器的内容，即其子节点，背景不受影响。通过RectShape传入自定义矩形区域时仅支持设置宽高和相对于组件左上角的[offset](../js-apis-arkui-shape.md#offset)，不支持圆角。<br></div>默认值：Grid、Scroll的默认值为ContentClipMode.BOUNDARY，List、WaterFlow的默认值为ContentClipMode.CONTENT_ONLY。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ### backToTop<sup>15+</sup>
 
@@ -187,6 +247,22 @@ backToTop(backToTop: boolean)
 | 参数名 | 类型    | 必填 | 说明                                           |
 | ------ | ------- | ---- | ---------------------------------------------- |
 | backToTop  | boolean | 是   | 设置滚动组件是否支持点击状态栏回到顶部。设置为true支持点击状态栏回到顶部，设置为false不支持点击状态栏回到顶部。<br/>默认值：<br/>API version 18之前：false。 <br/>API version 18及以后：滚动方向是水平方向时为false，是垂直方向时为true。 |
+
+### scrollBarMargin<sup>20+</sup>
+
+scrollBarMargin(margin: ScrollBarMargin): T
+
+设置滚动条的边距。边距是在滚动条避让圆角距离的基础上计算的，如果滚动条区域小于滚动条的最小长度，则不显示滚动条。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                                  |
+| ------ | ------- | ---- | ------------------------------------- |
+| margin  | [ScrollBarMargin](#scrollbarmargin20对象说明)  | 是   |滚动条起始、末尾边距。 |
 
 ### digitalCrownSensitivity<sup>18+</sup>
 
@@ -221,6 +297,18 @@ onReachStart(event: () => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | () => void | 是   | 滚动组件到达起始位置时的回调。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### onReachEnd<sup>11+</sup>
 
 onReachEnd(event: () => void): T
@@ -232,6 +320,18 @@ onReachEnd(event: () => void): T
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | () => void | 是   | 滚动组件到达末尾位置时的回调。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ### onScrollStart<sup>11+</sup>
 
@@ -249,6 +349,18 @@ onScrollStart(event: () => void): T
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | () => void | 是   | 滚动开始时的回调。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### onScrollStop<sup>11+</sup>
 
 onScrollStop(event: () => void): T
@@ -264,6 +376,18 @@ onScrollStop(event: () => void): T
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型   | 必填 | 说明                 |
+| ------ | ------ | ---- | -------------------- |
+| event  | () => void | 是   | 滚动停止时的回调。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ### onWillScroll<sup>12+</sup> 
 
@@ -282,6 +406,12 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;): T
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
 | handler | Optional&lt;[OnWillScrollCallback](#onwillscrollcallback12)&gt; | 是 | 滚动组件滑动前触发的回调。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 > **说明：** 
 > 
@@ -306,13 +436,19 @@ onDidScroll(handler: OnScrollCallback): T
 | ------ | ------ | ------ | ------|
 | handler | [OnScrollCallback](#onscrollcallback12) | 是 | 滚动组件滑动时触发的回调。 |
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### onScroll<sup>(deprecated)</sup>
 
 onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 滚动组件滑动时触发。
 
-从API version11开始使用。
+从API version 11开始使用。
 
 从API version 12开始废弃不再使用，Scroll组件的onScroll事件在布局之前触发，建议使用[onWillScroll](#onwillscroll12)替代；List、Grid和WaterFlow组件的onScroll事件在布局之后触发，建议使用[onDidScroll](#ondidscroll12)替代。
 
@@ -324,8 +460,13 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | ------ | ------|
-| scrollOffset | number | 是 | 每帧滚动的偏移量，滚动组件的内容向上滚动时偏移量为正，向下滚动时偏移量为负。<br/>单位vp。 |
-| scrollState | [ScrollState](ts-container-list.md#scrollstate枚举说明) | 是 | 当前滑动状态。 |
+| event  | (scrollOffset: number, scrollState: [ScrollState](ts-container-list.md#scrollstate枚举说明)) => void | 是 | 滚动组件滑动时的回调。<br/>scrollOffset：每帧滚动的偏移量，滚动组件的内容向上滚动时偏移量为正，向下滚动时偏移量为负。单位vp。<br/>scrollState：当前滑动状态。|
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ## ItemDragInfo对象说明
 
@@ -390,6 +531,19 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 | ----- | ---- | ------------ |
 | START | 1    | 起始边生效。 |
 | END   | 2    | 末尾边生效。 |
+
+## ScrollBarMargin<sup>20+</sup>对象说明
+
+滚动条边距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称  | 类型                                                         | 必填 | 说明                                   |
+| ----- | ------------------------------------------------------------ | ---- | -------------------------------------- |
+| start | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 滚动条起始边距。<br/>默认值：0，单位：vp |
+| end   | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否   | 滚动条末尾边距。<br/>默认值：0，单位：vp |
 
 ## ContentClipMode<sup>14+</sup>枚举说明
 
@@ -589,9 +743,9 @@ update(index: number, childSize: number): void
 | ------- | -------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2.Incorrect parameter types; 3. Parameter verification failed.   |
 
-## UIScrollableCommonEvent<sup>18+</sup>
+## UIScrollableCommonEvent<sup>19+</sup>
 用于设置滚动事件回调。
-### setOnReachStart<sup>18+</sup>
+### setOnReachStart<sup>19+</sup>
 
 setOnReachStart(callback: Callback\<void> | undefined): void
 
@@ -599,7 +753,7 @@ setOnReachStart(callback: Callback\<void> | undefined): void
 
 方法入参为undefined的时候，重置对应的事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -609,7 +763,7 @@ setOnReachStart(callback: Callback\<void> | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onReachStart事件的回调函数。 |
 
-### setOnReachEnd<sup>18+</sup>
+### setOnReachEnd<sup>19+</sup>
 
 setOnReachEnd(callback: Callback\<void> | undefined): void
 
@@ -617,7 +771,7 @@ setOnReachEnd(callback: Callback\<void> | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -628,7 +782,7 @@ setOnReachEnd(callback: Callback\<void> | undefined): void
 | callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onReachEnd事件的回调函数。 |
 
 
-### setOnScrollStart<sup>18+</sup>
+### setOnScrollStart<sup>19+</sup>
 
 setOnScrollStart(callback: Callback\<void> | undefined): void
 
@@ -636,7 +790,7 @@ setOnScrollStart(callback: Callback\<void> | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -647,7 +801,7 @@ setOnScrollStart(callback: Callback\<void> | undefined): void
 | callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp; undefined | 是   | onScrollStart事件的回调函数。|
 
 
-### setOnScrollStop<sup>18+</sup>
+### setOnScrollStop<sup>19+</sup>
 
 setOnScrollStop(callback: Callback\<void> | undefined): void
 
@@ -655,7 +809,7 @@ setOnScrollStop(callback: Callback\<void> | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -665,7 +819,7 @@ setOnScrollStop(callback: Callback\<void> | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [Callback](./ts-types.md#callback12)\<void> &nbsp;\|&nbsp;undefined | 是   | onScrollStop事件的回调函数。 |
 
-### setOnScrollFrameBegin<sup>18+</sup>
+### setOnScrollFrameBegin<sup>19+</sup>
 
 setOnScrollFrameBegin(callback: OnScrollFrameBeginCallback | undefined): void
 
@@ -673,7 +827,7 @@ setOnScrollFrameBegin(callback: OnScrollFrameBeginCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

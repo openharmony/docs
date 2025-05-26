@@ -47,7 +47,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.addContact(
     context,
     {
@@ -146,7 +146,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.addContact(
     context,
     {
@@ -239,7 +239,7 @@ Deletes a contact based on the specified contact key. This API uses an asynchron
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context; 
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.deleteContact(context, 'xxx', (err: BusinessError) => {
       if (err) {
           console.error(`Failed to delete Contact. Code: ${err.code}, message: ${err.message}`);
@@ -318,7 +318,7 @@ Deletes a contact based on the specified contact key. This API uses a promise to
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.deleteContact(context, 'xxx');
   promise.then(() => {
       console.info(`Succeeded in deleting Contact.`);
@@ -395,7 +395,7 @@ Updates a contact based on the specified contact information. This API uses an a
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
       id: 1,
       name: {
@@ -486,7 +486,7 @@ Updates a contact based on the specified contact information. This API uses an a
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.updateContact(context, {
       id: 1,
       name: {
@@ -587,7 +587,7 @@ Updates a contact based on the specified contact information and attributes. Thi
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.updateContact(context, {
       id: 1,
       name: {
@@ -687,7 +687,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isLocalContact(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to isLocalContact. Code: ${err.code}, message: ${err.message}`);
@@ -768,7 +768,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isLocalContact(context, /*id*/1);
   promise.then((data) => {
       console.info(`Succeeded in isLocalContact. data->${JSON.stringify(data)}`);
@@ -847,7 +847,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.isMyCard(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to isMyCard. Code: ${err.code}, message: ${err.message}`);
@@ -928,7 +928,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.isMyCard(context, /*id*/1);
   promise.then((data) => {
       console.info(`Succeeded in isMyCard. data->${JSON.stringify(data)}`);
@@ -1006,7 +1006,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query My Card. Code: ${err.code}, message: ${err.message}`);
@@ -1081,7 +1081,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1166,7 +1166,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryMyCard(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   });
@@ -1458,7 +1458,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contact. Code: ${err.code}, message: ${err.message}`);
@@ -1535,7 +1535,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1621,7 +1621,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -1704,7 +1704,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1801,7 +1801,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContact(context, 'xxx', {
       holderId: 1,
       bundleName: "",
@@ -1893,7 +1893,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts. Code: ${err.code}, message: ${err.message}`);
@@ -1968,7 +1968,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -2052,7 +2052,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2133,7 +2133,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -2228,7 +2228,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContacts(context, {
       holderId: 1,
       bundleName: "",
@@ -2320,7 +2320,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts By PhoneNumber. Code: ${err.code}, message: ${err.message}`);
@@ -2397,7 +2397,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2483,7 +2483,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       attributes: [contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE]
   }, (err: BusinessError, data) => {
@@ -2566,7 +2566,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2663,7 +2663,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByPhoneNumber(context, '138xxxxxxxx', {
       holderId: 1,
       bundleName: "",
@@ -2756,7 +2756,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Contacts By Email. Code: ${err.code}, message: ${err.message}`);
@@ -2833,7 +2833,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -2919,7 +2919,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       attributes: [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME]
   }, (err: BusinessError, data) => {
@@ -3002,7 +3002,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -3099,7 +3099,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryContactsByEmail(context, 'xxx@email.com', {
       holderId: 1,
       bundleName: "",
@@ -3189,7 +3189,7 @@ Queries all groups of this contact. This API uses an asynchronous callback to re
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Groups. Code: ${err.code}, message: ${err.message}`);
@@ -3264,7 +3264,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryGroups(context, {
       holderId: 1,
       bundleName: "",
@@ -3353,7 +3353,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryGroups(context, {
       holderId: 1,
       bundleName: "",
@@ -3439,7 +3439,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryHolders(context, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Holders. Code: ${err.code}, message: ${err.message}`);
@@ -3518,7 +3518,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryHolders(context);
   promise.then((data) => {
       console.info(`Succeeded in querying Holders. data->${JSON.stringify(data)}`);
@@ -3591,7 +3591,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, (err: BusinessError, data) => {
       if (err) {
           console.error(`Failed to query Key. Code: ${err.code}, message: ${err.message}`);
@@ -3668,7 +3668,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   contact.queryKey(context, /*id*/1, {
       holderId: 1,
       bundleName: "",
@@ -3759,7 +3759,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
   // Obtain the application context.
-  let context = getContext(this) as Context;
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   let promise = contact.queryKey(context, /*id*/1, {
       holderId: 1,
       bundleName: "",
@@ -3855,7 +3855,15 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
 // Obtain the application context.
-let context = getContext(this) as Context;
+let contactInfo: contact.Contact = {
+    name: {
+        fullName: 'xxx'
+    },
+    phoneNumbers: [{
+        phoneNumber: '138xxxxxx'
+    }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let promise = contact.addContactViaUI(context, contactInfo);
 ```
 
@@ -3900,7 +3908,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
 // Obtain the application context.
-let context = getContext(this) as Context;
+let contactInfo: contact.Contact = {
+    id: 1,
+    name: {
+        fullName: 'xxx'
+    },
+    phoneNumbers: [{
+        phoneNumber: '138xxxxxx'
+    }]
+}
+let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 ``` 
 
@@ -3927,10 +3944,10 @@ Defines the contact selection filter.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-|                Name              |                  Type                | Mandatory |        Description     |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterClause        | [FilterClause](#filterclause15) | Yes  | Filter criteria.    |
-| filterType        | [FilterType](#filtertype15) | Yes  | Filter type.    |
+|                Name              |                  Type                |  Read-Only | Optional   |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| filterClause        | [FilterClause](#filterclause15) |  No |  No  |  Filter criteria.    |
+| filterType        | [FilterType](#filtertype15) |  No |  No   | Filter type.    |
 
 ## FilterType<sup>15+</sup>
 
@@ -3940,11 +3957,11 @@ Enumerates contact filter types.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-| Name                 | Value| Description                              |
-| --------------------- | ---- | ---------------------------------- |
-| SHOW_FILTER    | 0 | Shows only contacts that meet the filter criteria.|
-| DEFAULT_SELECT            | 1 | Selects contacts that meet the filter criteria by default.                |
-| SHOW_FILTER_AND_DEFAULT_SELECT | 2 | Shows only contacts that meet the filter criteria and selects these contacts by default.                    |
+| Name                 | Type| Value| Description                              |
+| --------------------- | ---- | ---- | ---------------------------------- |
+| SHOW_FILTER    | number  | 0 | Shows only contacts that meet the filter criteria.|
+| DEFAULT_SELECT            | number  | 1 | Selects contacts that meet the filter criteria by default.                |
+| SHOW_FILTER_AND_DEFAULT_SELECT | number  | 2 | Shows only contacts that meet the filter criteria and selects these contacts by default.                    |
 
 ## FilterClause<sup>15+</sup>
 
@@ -3954,12 +3971,12 @@ Defines the contact filter criteria.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-|                Name              |                  Type                | Mandatory |        Description     |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| id         | Array<[FilterOptions](#filteroptions15)> | No  | Contact ID.    |
-| name         | Array<[FilterOptions](#filteroptions15)>  | No  | Contact name.    |
-| dataItem         | [DataFilter](#datafilter15) | No  | Contact data filter item.    |
-| focusModeList        | Array<[FilterOptions](#filteroptions15)>  | No  | Focus mode list.    |
+|                Name              |                  Type                |   Read-Only | Optional    |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| id         | Array\<[FilterOptions](#filteroptions15)> | No  | Yes  | Contact ID.    |
+| name         | Array\<[FilterOptions](#filteroptions15)>  | No  | Yes  | Contact name.    |
+| dataItem         | [DataFilter](#datafilter15) | No  | Yes  | Contact data filter item.    |
+| focusModeList        | Array\<[FilterOptions](#filteroptions15)>  | No  | Yes  | Focus mode list.    |
 
 ## FilterOptions<sup>15+</sup>
 
@@ -3969,10 +3986,10 @@ Defines contact filter options.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-|                Name              |                  Type                | Mandatory |        Description     |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| filterCondition         | [FilterCondition](#filtercondition15) | Yes  | Filter criteria.    |
-| value        | string \| ValueType[] | No  | Filter value. The default value is **undefined**.    |
+|                Name              |                  Type                |  Read-Only | Optional   |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| filterCondition         | [FilterCondition](#filtercondition15) | No   |   No  | Filter criteria.    |
+| value        | string \| ValueType[] |  No   |   Yes  | Filter value. The default value is **undefined**.    |
 
 ## FilterCondition<sup>15+</sup>
 
@@ -3982,14 +3999,14 @@ Enumerates filter criteria.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-| Name                 | Value| Description                              |
-| --------------------- | ---- | ---------------------------------- |
-| IS_NOT_NULL    | 0 |The corresponding field is not empty.|
-| EQUAL_TO            | 1 | The corresponding field is equal to a value.                |
-| NOT_EQUAL_TO | 2 | The corresponding field is not equal to a value.                    |
-| IN | 3 | The value of the corresponding field is in an array.                    |
-| NOT_IN | 4 | The value of the corresponding field is not in an array.                    |
-| CONTAINS | 5 | The value of the corresponding field contains a certain value.                    |
+| Name                 | Type| Value| Description                              |
+| --------------------- | ---- | ---- | ---------------------------------- |
+| IS_NOT_NULL    | number  | 0 | The corresponding field is not empty.|
+| EQUAL_TO            | number  | 1 | The corresponding field is equal to a value.                |
+| NOT_EQUAL_TO | number  | 2 | The corresponding field is not equal to a value.                    |
+| IN | number  | 3 | The value of the corresponding field is in an array.                    |
+| NOT_IN | number  | 4 | The value of the corresponding field is not in an array.                    |
+| CONTAINS | number  | 5 | The value of the corresponding field contains a certain value.                    |
 
 ## DataFilter<sup>15+</sup>
 
@@ -3999,10 +4016,10 @@ Defines the contact data filter item.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-|                Name              |                  Type                | Mandatory |        Description     |
-| --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| field         | [DataField](#datafield15) | Yes  | Contact data field.    |
-| options         | Array<[FilterOptions](#filteroptions15)> | Yes  | Filter options.    |
+|                Name              |                  Type                |  Read-Only | Optional  |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---- | ---------------- |
+| field         | [DataField](#datafield15) | No | No | Contact data field.    |
+| options         | Array\<[FilterOptions](#filteroptions15)> | No | No | Filter options.    |
 
 ## DataField<sup>15+</sup>
 
@@ -4012,11 +4029,11 @@ Enumerates contact data fields.
 
 **System capability**: SystemCapability.Applications.Contacts
 
-| Name                 | Value| Description                              |
-| --------------------- | --- | ---------------------------------- |
-| EMAIL    | 0 |Email of the contact.|
-| PHONE            | 1 | Phone number of the contact.                |
-| ORGANIZATION | 2 | Organization of the contact.                    |
+| Name                 | Type| Value| Description                              |
+| --------------------- | ---- | --- | ---------------------------------- |
+| EMAIL    | number | 0 | Email of the contact.|
+| PHONE            | number | 1 | Phone number of the contact.                |
+| ORGANIZATION | number | 2 | Organization of the contact.                    |
 
 ## Contact
 
@@ -4153,12 +4170,12 @@ Defines a contact's email.
 
 ### Attributes
 
-| Name       |   Type  | Readable| Writable| Description            |
+| Name       |   Type  | Read-Only| Optional| Description            |
 | ----------- | -------- | ---- | ---- | ---------------- |
-| email       | string   | Yes  | Yes  | Email addresses      |
-| labelName   | string   | Yes  | Yes  | Name of the mailbox type.|
-| displayName | string   | Yes  | Yes  | Displayed name of the mailbox.|
-| labelId     | number   | Yes  | Yes  | Mailbox type.    |
+| email       | string   | No  | No  | Email addresses      |
+| labelName   | string   | No  | Yes  | Name of the mailbox type.|
+| displayName | string   | No  | Yes  | Displayed name of the mailbox.|
+| labelId     | number   | No  | Yes  | Mailbox type.    |
 
 **Example**
 
@@ -4185,11 +4202,11 @@ Defines an application that creates the contact.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       | Type  | Readable| Writable| Description        |
+| Name       | Type  | Read-Only| Optional| Description        |
 | ----------- | ------ | ---- | ---- | ------------ |
 | bundleName  | string | Yes  | No  | Bundle name. The value is **com.ohos.contacts**.|
-| displayName | string | Yes  | No  | Application name.  |
-| holderId    | number | Yes  | Yes  | Application ID.    |
+| displayName | string | Yes  | Yes  | Application name.  |
+| holderId    | number | No  | Yes  | Application ID.    |
 
 **Example**
 
@@ -4213,21 +4230,21 @@ Defines a contact's event.
 
 ### Constant
 
-| Name             | Value  | Description              |
-| ----------------- | ---- | ------------------ |
-| CUSTOM_LABEL      | 0    | Custom event.  |
-| EVENT_ANNIVERSARY | 1    | Anniversary event.|
-| EVENT_OTHER       | 2    | Other event.    |
-| EVENT_BIRTHDAY    | 3    | Birthday event.    |
-| INVALID_LABEL_ID  | -1   | Invalid event.    |
+| Name             |   Type  |  Value  | Description              |
+| ----------------- | ---- | ---- | ------------------ |
+| CUSTOM_LABEL      | number   | 0    | Custom event.  |
+| EVENT_ANNIVERSARY | number   | 1    | Anniversary event.|
+| EVENT_OTHER       | number   | 2    | Other event.    |
+| EVENT_BIRTHDAY    | number   | 3    | Birthday event.    |
+| INVALID_LABEL_ID  | number   | -1   | Invalid event.    |
 
 ### Attributes
 
-|    Name  |   Type  | Readable| Writable| Description          |
+|    Name  |   Type  | Read-Only| Optional| Description          |
 | --------- | -------- | ---- | ---- | -------------- |
-| eventDate | string   | Yes  | Yes  | Event date.  |
-| labelName | string   | Yes  | Yes  | Event type.|
-| labelId   | number   | Yes  | Yes  | Event type ID.    |
+| eventDate | string   | No  | No  | Event date.  |
+| labelName | string   | No  | Yes  | Event type.|
+| labelId   | number   | No  | Yes  | Event type ID.    |
 
 **Example**
 
@@ -4254,10 +4271,10 @@ Defines a contact group.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name   |   Type  | Readable| Writable| Description              |
+| Name   |   Type  | Read-Only| Optional| Description              |
 | ------- | -------- | ---- | ---- | ------------------ |
-| groupId | number   | Yes  | Yes  | ID of a contact group.  |
-| title   | string   | Yes  | Yes  | Name of a contact group.|
+| groupId | number   | No  | Yes  | ID of a contact group.  |
+| title   | string   | No  | No  | Name of a contact group.|
 
 **Example**
 
@@ -4280,25 +4297,25 @@ Enumerates IM addresses.
 
 ### Constant
 
-| Name            | Value  | Description                |
-| ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | -1   | Custom IM|
-| IM_AIM           | 0    | AIM   |
-| IM_MSN           | 1    | MSN   |
-| IM_YAHOO         | 2    | Yahoo |
-| IM_SKYPE         | 3    | Skype |
-| IM_QQ            | 4    | QQ    |
-| IM_ICQ           | 6    | ICQ   |
-| IM_JABBER        | 7    | JABBER|
-| INVALID_LABEL_ID | -2   | Invalid IM|
+| Name            |   Type  | Value  | Description                |
+| ---------------- | ---- | ---- | -------------------- |
+| CUSTOM_LABEL     | number   | -1   | Custom IM|
+| IM_AIM           | number   | 0    | AIM   |
+| IM_MSN           | number   | 1    | MSN   |
+| IM_YAHOO         | number   | 2    | Yahoo |
+| IM_SKYPE         | number   | 3    | Skype |
+| IM_QQ            | number   | 4    | QQ    |
+| IM_ICQ           | number   | 6    | ICQ   |
+| IM_JABBER        | number   | 7    | JABBER|
+| INVALID_LABEL_ID | number   | -2   | Invalid IM|
 
 ### Attributes
 
-| Name     |   Type  | Readable| Writable| Description              |
+| Name     |   Type  | Read-Only| Optional| Description              |
 | --------- | -------- | ---- | ---- | ------------------ |
-| imAddress | string   | Yes  | Yes  | IM address.    |
-| labelName | string   | Yes  | Yes  | IM name.|
-| labelId   | number   | Yes  | Yes  | IM ID.    |
+| imAddress | string   | No  | No  | IM address.    |
+| labelName | string   | No  | Yes  | IM name.|
+| labelId   | number   | No  | Yes  | IM ID.    |
 
 **Example**
 
@@ -4327,17 +4344,17 @@ Defines a contact's name.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name              |   Type  | Readable| Writable| Description                       |
+| Name              |   Type  | Read-Only| Optional| Description                       |
 | ------------------ | -------- | ---- | ---- | --------------------------- |
-| familyName         | string   | Yes  | Yes  | Family name.         |
-| familyNamePhonetic | string   | Yes  | Yes  | Family name in pinyin.     |
-| fullName           | string   | Yes  | Yes  | Full name of the contact.             |
-| givenName          | string   | Yes  | Yes  | Given name of the contact.|
-| givenNamePhonetic  | string   | Yes  | Yes  | Given name of the contact in pinyin.         |
-| middleName         | string   | Yes  | Yes  | Middle name of the contact.           |
-| middleNamePhonetic | string   | Yes  | Yes  | Middle name of the contact in pinyin.       |
-| namePrefix         | string   | Yes  | Yes  | Prefix of the contact name.         |
-| nameSuffix         | string   | Yes  | Yes  | Suffix of the contact name.         |
+| familyName         | string   | No  | Yes  | Family name.         |
+| familyNamePhonetic | string   | No  | Yes  | Family name in pinyin.     |
+| fullName           | string   | No  | No  | Full name of the contact.             |
+| givenName          | string   | No  | Yes  | Given name of the contact.|
+| givenNamePhonetic  | string   | No  | Yes  | Given name of the contact in pinyin.         |
+| middleName         | string   | No  | Yes  | Middle name of the contact.           |
+| middleNamePhonetic | string   | No  | Yes  | Middle name of the contact in pinyin.       |
+| namePrefix         | string   | No  | Yes  | Prefix of the contact name.         |
+| nameSuffix         | string   | No  | Yes  | Suffix of the contact name.         |
 
 **Example**
 
@@ -4358,9 +4375,9 @@ Defines a contact's nickname.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name    |   Type  | Readable| Writable| Description          |
+| Name    |   Type  | Read-Only| Optional| Description          |
 | -------- | -------- | ---- | ---- | -------------- |
-| nickName | string   | Yes  | Yes  | Contact nickname.|
+| nickName | string   | No  | Yes  | Contact nickname.|
 
 **Example**
 
@@ -4380,9 +4397,9 @@ Defines a contact's note.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name       |   Type  | Readable| Writable| Description              |
+| Name       |   Type  | Read-Only| Optional| Description              |
 | ----------- | -------- | ---- | ---- | ------------------ |
-| noteContent | string   | Yes  | Yes  | Notes of the contact.|
+| noteContent | string   | No  | No  | Notes of the contact.|
 
 **Example**
 
@@ -4402,10 +4419,10 @@ Defines a contact's organization.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name |   Type  | Readable| Writable| Description      |
+| Name |   Type  | Read-Only| Optional| Description      |
 | ----- | -------- | ---- | ---- | ---------- |
-| name  | string   | Yes  | Yes  | Organization name.|
-| title | string   | Yes  | Yes  | Job title.|
+| name  | string   | No  | No  | Organization name.|
+| title | string   | No  | Yes  | Job title.|
 
 **Example**
 
@@ -4428,38 +4445,38 @@ Defines a contact's phone number.
 
 ### Constant
 
-| Name            | Value  | Description                                            |
-| ---------------- | ---- | ------------------------------------------------ |
-| CUSTOM_LABEL     | 0    | Custom phone type.                                |
-| NUM_HOME         | 1    | Home phone.                                  |
-| NUM_MOBILE       | 2    | Mobile phone.                                  |
-| NUM_WORK         | 3    | Work phone.                                  |
-| NUM_FAX_WORK     | 4    | Work fax.                              |
-| NUM_FAX_HOME     | 5    | Family fax.                              |
-| NUM_PAGER        | 6    | Pager.                                |
-| NUM_OTHER        | 7    | Other phone type.                                  |
-| NUM_CALLBACK     | 8    | Callback phone.                                  |
-| NUM_CAR          | 9    | Car phone.                                  |
-| NUM_COMPANY_MAIN | 10   | Company phone.                                  |
-| NUM_ISDN         | 11   | Integrated Services Digital Network (ISDN) phone.                |
-| NUM_MAIN         | 12   | Main phone.                                    |
-| NUM_OTHER_FAX    | 13   | Other fax phone.                                  |
-| NUM_RADIO        | 14   | Wireless phone.                                  |
-| NUM_TELEX        | 15   | Telex phone.                                  |
-| NUM_TTY_TDD      | 16   | Teletypewriter (TTY) or Test Driven Development (TDD) phone.|
-| NUM_WORK_MOBILE  | 17   | Work mobile phone.                              |
-| NUM_WORK_PAGER   | 18   | Work pager.                            |
-| NUM_ASSISTANT    | 19   | Assistant phone.                                  |
-| NUM_MMS          | 20   | MMS phone.                                  |
-| INVALID_LABEL_ID | -1   | Invalid phone type.                                  |
+| Name            |  Type | Value  | Description                                            |
+| ---------------- | ---- | ---- | ------------------------------------------------ |
+| CUSTOM_LABEL     |  number  | 0    | Custom phone type.                                |
+| NUM_HOME         |  number  | 1    | Home phone.                                  |
+| NUM_MOBILE       |  number  | 2    | Mobile phone.                                  |
+| NUM_WORK         |  number  | 3    | Work phone.                                  |
+| NUM_FAX_WORK     |  number  | 4    | Work fax.                              |
+| NUM_FAX_HOME     |  number  | 5    | Family fax.                              |
+| NUM_PAGER        |  number  | 6    | Pager.                                |
+| NUM_OTHER        |  number  | 7    | Other phone type.                                  |
+| NUM_CALLBACK     |  number  | 8    | Callback phone.                                  |
+| NUM_CAR          |  number  | 9    | Car phone.                                  |
+| NUM_COMPANY_MAIN |  number  | 10   | Company phone.                                  |
+| NUM_ISDN         |  number  | 11   | Integrated Services Digital Network (ISDN) phone.                |
+| NUM_MAIN         |  number  | 12   | Main phone.                                    |
+| NUM_OTHER_FAX    |  number  | 13   | Other fax phone.                                  |
+| NUM_RADIO        |  number  | 14   | Wireless phone.                                  |
+| NUM_TELEX        |  number  | 15   | Telex phone.                                  |
+| NUM_TTY_TDD      |  number  | 16   | Teletypewriter (TTY) or Test Driven Development (TDD) phone.|
+| NUM_WORK_MOBILE  |  number  | 17   | Work mobile phone.                              |
+| NUM_WORK_PAGER   |  number  | 18   | Work pager.                            |
+| NUM_ASSISTANT    |  number  | 19   | Assistant phone.                                  |
+| NUM_MMS          |  number  | 20   | MMS phone.                                  |
+| INVALID_LABEL_ID |  number  | -1   | Invalid phone type.                                  |
 
 ### Attributes
 
-| Name       |   Type  | Readable| Writable| Description              |
+| Name       |   Type  | Read-Only| Optional| Description              |
 | ----------- | -------- | ---- | ---- | ------------------ |
-| labelName   | string   | Yes  | Yes  | Phone number type.|
-| phoneNumber | string   | Yes  | Yes  | Phone number.        |
-| labelId     | number   | Yes  | Yes  | Phone number ID.    |
+| labelName   | string   | No  | Yes  | Phone number type.|
+| phoneNumber | string   | No  | No  | Phone number.        |
+| labelId     | number   | No  | Yes  | Phone number ID.    |
 
 **Example**
 
@@ -4487,9 +4504,9 @@ Defines a contact's portrait.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name|   Type  | Readable| Writable| Description          |
+| Name|   Type  | Read-Only| Optional| Description          |
 | ---- | -------- | ---- | ---- | -------------- |
-| uri  | string   | Yes  | Yes  | Contact portrait.|
+| uri  | string   | No  | No  | Contact portrait.|
 
 **Example**
 
@@ -4511,28 +4528,28 @@ Defines a contact's postal address.
 
 ### Constant
 
-| Name            | Value  | Description                |
-| ---------------- | ---- | -------------------- |
-| CUSTOM_LABEL     | 0    | Custom postal address type.|
-| ADDR_HOME        | 1    | Home address.      |
-| ADDR_WORK        | 2    | Work address.      |
-| ADDR_OTHER       | 3    | Other addresses.      |
-| INVALID_LABEL_ID | -1   | Invalid address type.      |
+| Name            |   Type  | Value  | Description                |
+| ---------------- | ---- | ---- | -------------------- |
+| CUSTOM_LABEL     | number   | 0    | Custom postal address type.|
+| ADDR_HOME        | number   | 1    | Home address.      |
+| ADDR_WORK        | number   | 2    | Work address.      |
+| ADDR_OTHER       | number   | 3    | Other addresses.      |
+| INVALID_LABEL_ID | number   | -1   | Invalid address type.      |
 
 ### Attributes
 
-| Name         |   Type  | Readable| Writable| Description                      |
+| Name         |   Type  | Read-Only| Optional| Description                      |
 | ------------- | -------- | ---- | ---- | -------------------------- |
-| city          | string   | Yes  | Yes  | City where the contact is located.        |
-| country       | string   | Yes  | Yes  | Country/Region where the contact is located.        |
-| labelName     | string   | Yes  | Yes  | Postal address type.        |
-| neighborhood  | string   | Yes  | Yes  | Neighbor of the contact.            |
-| pobox         | string   | Yes  | Yes  | Email of the contact.            |
-| postalAddress | string   | Yes  | Yes  | Postal address of the contact.        |
-| postcode      | string   | Yes  | Yes  | Postal code of the region where the contact is located.|
-| region        | string   | Yes  | Yes  | Area where the contact is located.        |
-| street        | string   | Yes  | Yes  | Street where the contact resides.        |
-| labelId       | number   | Yes  | Yes  | Postal address type.            |
+| city          | string   | No  | Yes  | City where the contact is located.        |
+| country       | string   | No  | Yes  | Country/Region where the contact is located.        |
+| labelName     | string   | No  | Yes  | Postal address type.        |
+| neighborhood  | string   | No  | Yes  | Neighbor of the contact.            |
+| pobox         | string   | No  | Yes  | Email of the contact.            |
+| postalAddress | string   | No  | No  | Postal address of the contact.        |
+| postcode      | string   | No  | Yes  | Postal code of the region where the contact is located.|
+| region        | string   | No  | Yes  | Area where the contact is located.        |
+| street        | string   | No  | Yes  | Street where the contact resides.        |
+| labelId       | number   | No  | Yes  | Postal address type.            |
 
 **Example**
 
@@ -4563,32 +4580,32 @@ Defines a contact's relationship.
 
 ### Constant
 
-| Name                     | Value  | Description              |
-| ------------------------- | ---- | ------------------ |
-| CUSTOM_LABEL              | 0    | Custom relationship.  |
-| RELATION_ASSISTANT        | 1    | Assistant.    |
-| RELATION_BROTHER          | 2    | Sibling.    |
-| RELATION_CHILD            | 3    | Child.    |
-| RELATION_DOMESTIC_PARTNER | 4    | Domestic partner.|
-| RELATION_FATHER           | 5    | Father.    |
-| RELATION_FRIEND           | 6    | Friend.    |
-| RELATION_MANAGER          | 7    | Manager.  |
-| RELATION_MOTHER           | 8    | Mother.    |
-| RELATION_PARENT           | 9    | Parent.    |
-| RELATION_PARTNER          | 10   | Partner.|
-| RELATION_REFERRED_BY      | 11   | Referrer.  |
-| RELATION_RELATIVE         | 12   | Relative.    |
-| RELATION_SISTER           | 13   | Sister.    |
-| RELATION_SPOUSE           | 14   | Spouse.    |
-| INVALID_LABEL_ID          | -1   | Invalid relationship.  |
+| Name                     |  Type  | Value  | Description              |
+| ------------------------- | ---- | ---- | ------------------ |
+| CUSTOM_LABEL              | number   | 0    | Custom relationship.  |
+| RELATION_ASSISTANT        | number   | 1    | Assistant.    |
+| RELATION_BROTHER          | number   | 2    | Sibling.    |
+| RELATION_CHILD            | number   | 3    | Child.    |
+| RELATION_DOMESTIC_PARTNER | number   | 4    | Domestic partner.|
+| RELATION_FATHER           | number   | 5    | Father.    |
+| RELATION_FRIEND           | number   | 6    | Friend.    |
+| RELATION_MANAGER          | number   | 7    | Manager.  |
+| RELATION_MOTHER           | number   | 8    | Mother.    |
+| RELATION_PARENT           | number   | 9    | Parent.    |
+| RELATION_PARTNER          | number   | 10   | Partner.|
+| RELATION_REFERRED_BY      | number   | 11   | Referrer.  |
+| RELATION_RELATIVE         | number   | 12   | Relative.    |
+| RELATION_SISTER           | number   | 13   | Sister.    |
+| RELATION_SPOUSE           | number   | 14   | Spouse.    |
+| INVALID_LABEL_ID          | number   | -1   | Invalid relationship.  |
 
 ### Attributes
 
-| Name        |   Type  | Readable| Writable| Description          |
+| Name        |   Type  | Read-Only| Optional| Description          |
 | ------------ | -------- | ---- | ---- | -------------- |
-| labelName    | string   | Yes  | Yes  | Relationship type.|
-| relationName | string   | Yes  | Yes  | Relationship name.    |
-| labelId      | number   | Yes  | Yes  | Relationship ID.    |
+| labelName    | string   | No  | Yes  | Relationship type.|
+| relationName | string   | No  | No  | Relationship name.    |
+| labelId      | number   | No  | Yes  | Relationship ID.    |
 
 **Example**
 
@@ -4619,21 +4636,21 @@ Defines a contact's SIP address.
 
 ### Constant
 
-| Name            | Value  | Description                               |
-| ---------------- | ---- | ----------------------------------- |
-| CUSTOM_LABEL     | 0    | Custom SIP address.|
-| SIP_HOME         | 1    | Home SIP address.  |
-| SIP_WORK         | 2    | Work SIP address.  |
-| SIP_OTHER        | 3    | Other SIP address.  |
-| INVALID_LABEL_ID | -1   | Invalid SIP address.  |
+| Name            |   Type  | Value  | Description                               |
+| ---------------- | ---- | ---- | ----------------------------------- |
+| CUSTOM_LABEL     | number   | 0    | Custom SIP address.|
+| SIP_HOME         | number   | 1    | Home SIP address.  |
+| SIP_WORK         | number   | 2    | Work SIP address.  |
+| SIP_OTHER        | number   | 3    | Other SIP address.  |
+| INVALID_LABEL_ID | number   | -1   | Invalid SIP address.  |
 
 ### Attributes
 
-| Name      |   Type  | Readable| Writable| Description                             |
+| Name      |   Type  | Read-Only| Optional| Description                             |
 | ---------- | -------- | ---- | ---- | --------------------------------- |
-| labelName  | string   | Yes  | Yes  | SIP address type.|
-| sipAddress | string   | Yes  | Yes  | SIP address.        |
-| labelId    | number   | Yes  | Yes  | SIP address ID.    |
+| labelName  | string   | No  | Yes  | SIP address type.|
+| sipAddress | string   | No  | No  | SIP address.        |
+| labelId    | number   | No  | Yes  | SIP address ID.    |
 
 **Example**
 
@@ -4660,9 +4677,9 @@ Defines a contact's website.
 
 **System capability**: SystemCapability.Applications.ContactsData
 
-| Name   |   Type  | Readable| Writable| Description              |
+| Name   |   Type  | Read-Only| Optional| Description              |
 | ------- | -------- | ---- | ---- | ------------------ |
-| website | string   | Yes  | Yes  | Website of the contact.|
+| website | string   | No  | No  | Website of the contact.|
 
 **Example**
 

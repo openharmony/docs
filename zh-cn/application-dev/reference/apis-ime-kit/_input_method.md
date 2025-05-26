@@ -903,7 +903,7 @@ enum InputMethod_TextInputType
 | IME_TEXT_INPUT_TYPE_SCREEN_LOCK_PASSWORD | 锁屏密码类型。 | 
 | IME_TEXT_INPUT_TYPE_USER_NAME | 用户名类型。 | 
 | IME_TEXT_INPUT_TYPE_NEW_PASSWORD | 新密码类型。 | 
-| IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL | 带小数点的数字类型。| 
+| IME_TEXT_INPUT_TYPE_NUMBER_DECIMAL | 数字小数类型。| 
 | IME_TEXT_INPUT_TYPE_ONE_TIME_CODE | 验证码类型。 | 
 
 
@@ -965,7 +965,7 @@ void OH_AttachOptions_Destroy (InputMethod_AttachOptions * options)
 
 **描述**
 
-销毁一个[InputMethod_AttachOptions](#inputmethod_attachoptions)实例.
+销毁一个[InputMethod_AttachOptions](#inputmethod_attachoptions)实例。
 
 **起始版本：** 12
 
@@ -1390,7 +1390,7 @@ InputMethod_ErrorCode OH_InputMethodProxy_SendPrivateCommand (InputMethod_InputM
 | -------- | -------- |
 | inputMethodProxy | 表示指向[InputMethod_InputMethodProxy](#inputmethod_inputmethodproxy)实例的指针。 inputMethodProxy由调用[OH_InputMethodController_Attach](#oh_inputmethodcontroller_attach)获取。 | 
 | privateCommand | 私有命令, 定义在[InputMethod_PrivateCommand](#inputmethod_privatecommand)，最大大小为32KB。 | 
-| size | 私有命令的大小. 最大大小为5。 | 
+| size | 私有命令的大小。最大大小为5。 | 
 
 **返回：**
 

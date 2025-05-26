@@ -7,6 +7,8 @@
 
 **引用文件：** &lt;scsi_peripheral/scsi_peripheral_types.h&gt;
 
+**库：** libscsi.z.so
+
 **系统能力：** SystemCapability.Driver.SCSI.Extension
 
 **起始版本：** 18
@@ -44,7 +46,7 @@
 | [SCSIPERIPHERAL_MAX_CMD_DESC_BLOCK_LEN](_s_c_s_i.md#scsiperipheral_max_cmd_desc_block_len)&nbsp;&nbsp;&nbsp;16 | 命令描述符块的最大长度。 | 
 | [SCSIPERIPHERAL_MAX_SENSE_DATA_LEN](_s_c_s_i.md#scsiperipheral_max_sense_data_len)&nbsp;&nbsp;&nbsp;252 | 在SCSI协议中，Sense Data（感应数据）的最大长度通常为252字节。 | 
 | [SCSIPERIPHERAL_VENDOR_ID_LEN](_s_c_s_i.md#scsiperipheral_vendor_id_len)&nbsp;&nbsp;&nbsp;8 | vendor id的最大长度。 | 
-| [SCSIPERIPHERAL_PRODUCT_ID_LEN](_s_c_s_i.md#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;16 | product id的最大长度。 | 
+| [SCSIPERIPHERAL_PRODUCT_ID_LEN](_s_c_s_i.md#scsiperipheral_product_id_len)&nbsp;&nbsp;&nbsp;18 | product id的最大长度。 | 
 | [SCSIPERIPHERAL_PRODUCT_REV_LEN](_s_c_s_i.md#scsiperipheral_product_rev_len)&nbsp;&nbsp;&nbsp;4 | 产品版本的最大长度。 | 
 
 

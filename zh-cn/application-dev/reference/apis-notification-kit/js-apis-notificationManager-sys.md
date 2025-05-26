@@ -3341,6 +3341,12 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 | enable | boolean                       | 是   | 使能状态（true：使能，false：禁止）。     |
 | isForceControl<sup>11+</sup> | boolean               | 否   | 渠道开关是否受通知总开关影响（false：受总开关影响，true：不受总开关影响）。默认为false。     |
 
+**返回值：**
+
+| 类型     | 说明         |
+| ------- |------------|
+| Promise\<void\> | 无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[通知错误码](./errorcode-notification.md)。
@@ -3806,7 +3812,7 @@ try{
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
   },);
-} catch (err: BusinessError) {
+} catch (err) {
   console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -4341,7 +4347,7 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 添加勿扰模式配置信息。使用Promise异步回调。
 
-该接口不支持wearable设备。
+该接口不支持tv和wearable设备。
 
 **系统能力**：SystemCapability.Notification.Notification
 

@@ -948,7 +948,7 @@ getCurrentAppCloneIndex(): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
-| 16000071 | The MultiAppMode is not {@link APP_CLONE}. |
+| 16000071 | App clone is not supported. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 
@@ -985,7 +985,7 @@ setFont(font: string): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| font | string | 是   | 设置字体类型，字体可以通过[font.registerFont](../apis-arkui/js-apis-font.md#fontregisterfont)方法进行注册使用。  |
+| font | string | 是   | 设置字体类型，字体可以通过[UIContext.registerFont](../apis-arkui/js-apis-arkui-UIContext.md#registerfont)方法进行注册使用。  |
 
 **错误码**：
 
@@ -1011,7 +1011,7 @@ struct Index {
   context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear() {
-    font.registerFont({
+    this.getUIContext().getFont().registerFont({
       familyName: 'fontName',
       familySrc: $rawfile('font/medium.ttf')
     })

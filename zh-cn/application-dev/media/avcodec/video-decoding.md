@@ -431,29 +431,19 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     > 1. 等1号解码器完全释放后，再调用OH_VideoDecoder_Start接口启动2号解码器；
     > 2. 1号解码器用surface1，2号解码器先调用OH_ConsumerSurface_Create接口创建临时surface，等1号解码器释放后，再调用OH_VideoDecoder_SetSurface接口将2号解码器绑定至surface1上，详情请参见：[创建视频解码器和NativeWindow初始化并行](../../media/avcodec/parallel-decoding-nativeWindow.md)。
 
-7. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
-    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
 
-    ```c++
-    OH_AVFormat *format = OH_AVFormat_Create();
-    // 配置显示旋转角度。
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
-    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
-    OH_AVFormat_Destroy(format);
-    ```
-
-8. 调用OH_VideoDecoder_Prepare()解码器就绪。
+7. 调用OH_VideoDecoder_Prepare()解码器就绪。
 
     该接口将在解码器运行前进行一些数据的准备工作。
 
     ```c++
-    ret = OH_VideoDecoder_Prepare(videoDec);
+    int32_t ret = OH_VideoDecoder_Prepare(videoDec);
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
     ```
 
-9. 调用OH_VideoDecoder_Start()启动解码器。
+8. 调用OH_VideoDecoder_Start()启动解码器。
 
     ```c++
     // 启动解码器，开始解码。
@@ -461,6 +451,20 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     if (ret != AV_ERR_OK) {
         // 异常处理。
     }
+    ```
+
+9. （可选）OH_VideoDecoder_SetParameter()动态配置解码器surface参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // 配置显示旋转角度。
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_ROTATION, 90);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理。
+    }
+    OH_AVFormat_Destroy(format);
     ```
 
 10. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
@@ -617,7 +621,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
     > **注意：**
-    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口获取。
+    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt
+)接口获取。
     >
 
 13. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
@@ -965,7 +970,21 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-8. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
+8. （可选）OH_VideoDecoder_SetParameter()动态配置解码器参数。
+    详细可配置选项的说明请参考[视频专有键值对](../../reference/apis-avcodec-kit/_codec_base.md#媒体数据键值对)。
+
+    ```c++
+    OH_AVFormat *format = OH_AVFormat_Create();
+    // 配置帧率。
+    OH_AVFormat_SetDoubleValue(format, OH_MD_KEY_FRAME_RATE, 30.0);
+    int32_t ret = OH_VideoDecoder_SetParameter(videoDec, format);
+    if (ret != AV_ERR_OK) {
+        // 异常处理。
+    }
+    OH_AVFormat_Destroy(format);
+    ```
+
+9. （可选）调用OH_AVCencInfo_SetAVBuffer()，设置cencInfo。
 
     与Surface模式相同，此处不再赘述。
 
@@ -1023,7 +1042,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-9. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
+10. 调用OH_VideoDecoder_PushInputBuffer()写入解码码流。
 
     与Surface模式相同，此处不再赘述。
 
@@ -1058,7 +1077,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     }
     ```
 
-10. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
+11. 调用OH_VideoDecoder_FreeOutputBuffer()释放解码帧。
 
     以下示例中：
 

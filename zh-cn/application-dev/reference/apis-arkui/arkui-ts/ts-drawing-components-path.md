@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 该组件从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该组件从API version 20开始支持使用[AttributeUpdater](../js-apis-arkui-AttributeUpdater.md)类的[updateConstructorParams](../js-apis-arkui-AttributeUpdater.md#updateconstructorparams)接口更新构造参数。
 
 
 ## 子组件
@@ -38,9 +40,9 @@ Path(options?: PathOptions)
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| width | string \| number | 否 | 路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
-| height | string \| number | 否 | 路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
-| [commands](ts-drawing-components-path.md#commands) | string  | 否 | 路径绘制的命令字符串。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。默认值：''<br/>异常值按照默认值处理。 |
+| width | [Length](ts-types.md#length) | 否 | 路径所在矩形的宽度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
+| height | [Length](ts-types.md#length) | 否 | 路径所在矩形的高度。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。<br/>默认单位：vp |
+| [commands](ts-drawing-components-path.md#commands) | [ResourceStr](ts-types.md#ResourceStr)  | 否 | 路径绘制的命令字符串。<br/>值为异常值或缺省时按照自身内容需要的宽度处理。默认值：空字符串<br/>异常值按照默认值处理。 |
 
 ## 属性
 
@@ -48,7 +50,7 @@ Path(options?: PathOptions)
 
 ### commands
 
-commands(value: string)
+commands(value: [ResourceStr](ts-types.md#ResourceStr))
 
 设置符合[SVG路径描述规范](ts-drawing-components-path.md#svg路径描述规范)的命令字符串，单位为px。像素单位转换方法请参考[像素单位转换](ts-pixel-units.md)。
 
@@ -62,7 +64,7 @@ commands(value: string)
 
 | 参数名 | 类型   | 必填 | 说明                          |
 | ------ | ------ | ---- | ----------------------------- |
-| value  | string | 是   | 线条绘制的路径。<br/>默认值：''<br/>默认单位：px |
+| value  | [ResourceStr](ts-types.md#ResourceStr) | 是   | 线条绘制的路径。<br/>默认值：空字符串<br/>默认单位：px |
 
 ### fill
 
@@ -285,7 +287,9 @@ SVG路径描述规范支持的命令如下：
 
 ## 示例
 
-使用commands、fillOpacity、stroke属性分别绘制路径、透明度、边框颜色。
+### 示例1（组件属性绘制）
+
+通过commands、fillOpacity、stroke属性分别绘制路径、透明度、边框颜色。
 
 ```ts
 // xxx.ets
@@ -367,3 +371,40 @@ struct PathExample {
 ```
 
 ![zh-cn_image_0000001219744193](figures/zh-cn_image_0000001219744193.png)
+
+### 示例2（使用不同参数类型绘制路径）
+
+width、height、commands属性分别使用不同的长度类型绘制图形。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct PathTypeExample {
+  build() {
+    Column({ space: 10 }) {
+      // 宽、高、命令字符串使用string类型，绘制一条直线
+      Path({ width: '600px', height: '10px' })
+        .commands('M0 0 L600 0')
+        .fillOpacity(0)
+        .stroke(Color.Black)
+        .strokeWidth(3)
+      // 宽、高使用number类型，绘制一个弧线图形
+      Path({ width: 200, height: 200 })
+        .commands('M0 0 H200 V200 H0 Z')
+        .fillOpacity(0)
+        .stroke(Color.Black)
+        .strokeWidth(3)
+      // 宽、高、命令字符串使用Resource类型（需用户自定义），绘制一个弧线图形
+      Path({ width: $r('app.string.PathWidth'), height: $r('app.string.PathHeight') })
+        .commands($r('app.string.PathCommands'))
+        .fillOpacity(0)
+        .stroke(Color.Black)
+        .strokeWidth(3)
+    }.width('100%')
+    .margin({ top: 5 })
+  }
+}
+```
+
+![pathDemo2](figures/pathDemo2.png)

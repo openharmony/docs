@@ -1,6 +1,5 @@
 # Converting Binary Data into an Asymmetric Key Pair (C/C++)
 
-
 This topic uses RSA, ECC, and SM2 as an example to describe how to convert binary data into an asymmetric key pair (**OH_CryptoKeyPair**). That is, convert a piece of external or internal binary data into a **KeyPair** object for subsequent operations, such as encryption and decryption.
 
 > **NOTE**
@@ -31,7 +30,6 @@ For details about the algorithm specifications, see [RSA](crypto-asym-key-genera
 3. Call [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert) to convert the binary data into an asymmetric key pair (**OH_CryptoKeyPair**).
 
 Example: Convert binary data into an RSA key pair.
-
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
@@ -82,7 +80,6 @@ For details about the algorithm specifications, see [ECC](crypto-asym-key-genera
 3. Call [OH_CryptoAsymKeyGenerator_Convert](../../reference/apis-crypto-architecture-kit/_crypto_asym_key_api.md#oh_cryptoasymkeygenerator_convert) to convert the binary data into an asymmetric key pair (**OH_CryptoKeyPair**).
 
 Example: Convert binary data into an ECC key pair.
-
 ```c++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"

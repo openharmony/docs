@@ -41,4 +41,4 @@
   - [AIP Overview](aip-data-intelligence-overview.md)
   - [Application Data Vectorization](aip-data-intelligence-embedding.md)
 - [RelationalStore Development (C/C++)](native-relational-store-guidelines.md)
-- [UDMF Development Guide (C/C++)](native-unified-data-management-framework-guidelines.md)
+- [UDMF Development (C/C++)](native-unified-data-management-framework-guidelines.md)

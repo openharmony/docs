@@ -86,7 +86,7 @@ const char* srcCallNative = R"JS(getValueBigintWords(BigInt(5555555555555555)))J
 预期的输出结果
 ```ts
 OH_JSVM_GetValueBigintWords wordCount:1.
-OH_JSVM_GetValueBigintWords signBit: 1.
+OH_JSVM_GetValueBigintWords signBit: 0.
 ```
 
 ### OH_JSVM_CreateBigintWords

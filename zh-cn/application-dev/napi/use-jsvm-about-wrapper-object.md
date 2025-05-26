@@ -35,7 +35,7 @@ static JSVM_Value WrapperObject(JSVM_Env env, JSVM_CallbackInfo info) {
 
     JSVM_HandleScope handleScope;
     OH_JSVM_OpenHandleScope(env, &handleScope);
-    string src = R"JS(new Number(42))JS";
+    std::string src = R"JS(new Number(42))JS";
     JSVM_Value jsSrc;
     JSVM_Script script;
     JSVM_Value result;

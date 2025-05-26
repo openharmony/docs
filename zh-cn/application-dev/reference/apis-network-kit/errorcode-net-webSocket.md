@@ -34,11 +34,7 @@ Websocket 证书不存在。
 
 ## 2302003 Websocket 连接已经存在
 
-## 2302003 不允许访问域名
-
 **错误信息**
-
-错误信息
 
 Websocket connection already exists.
 

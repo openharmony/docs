@@ -30,7 +30,7 @@ HiAppEvent模块提供应用事件打点功能。
 | 名称 | 描述 | 
 | -------- | -------- |
 | struct&nbsp;&nbsp;[HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) | 单个事件信息，包含事件领域，事件名称，事件类型和json格式字符串表示的事件中携带的自定义参数列表。  | 
-| struct&nbsp;&nbsp;[HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | 具有相同事件名称的事件组。  | 
+| struct&nbsp;&nbsp;[HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) | 一组事件信息，包含事件组的名称，按名称分组的单个事件信息数组，事件数组的长度。  | 
 
 
 ### 宏定义
@@ -49,6 +49,9 @@ HiAppEvent模块提供应用事件打点功能。
 | [EVENT_CPU_USAGE_HIGH](#event_cpu_usage_high)&nbsp;&nbsp;&nbsp;"CPU_USAGE_HIGH" | 应用CPU资源占用高事件。  | 
 | [EVENT_BATTERY_USAGE](#event_battery_usage)&nbsp;&nbsp;&nbsp;"BATTERY_USAGE" | 应用电源使用率事件。  | 
 | [EVENT_RESOURCE_OVERLIMIT](#event_resource_overlimit)&nbsp;&nbsp;&nbsp;"RESOURCE_OVERLIMIT" | 应用资源超限事件。  | 
+| [EVENT_ADDRESS_SANITIZER](#event_address_sanitizer)&nbsp;&nbsp;&nbsp;"ADDRESS_SANITIZER" | 应用踩内存事件。  | 
+| [EVENT_MAIN_THREAD_JANK](#event_main_thread_jank)&nbsp;&nbsp;&nbsp;"MAIN_THREAD_JANK" | 应用主线程超时事件。  | 
+| [EVENT_APP_HICOLLIE](#event_app_hicollie)&nbsp;&nbsp;&nbsp;"APP_HICOLLIE" | 应用任务执行超时事件。  | 
 | [DOMAIN_OS](#domain_os)&nbsp;&nbsp;&nbsp;"OS" | OS作用域。  | 
 | [PARAM_USER_ID](#param_user_id)&nbsp;&nbsp;&nbsp;"user_id" | 用户ID。  | 
 | [PARAM_DISTRIBUTED_SERVICE_NAME](#param_distributed_service_name)&nbsp;&nbsp;&nbsp;"ds_name" | 分布式服务名称。  | 
@@ -60,13 +63,13 @@ HiAppEvent模块提供应用事件打点功能。
 | 名称 | 描述 | 
 | -------- | -------- |
 | typedef struct [HiAppEvent_AppEventInfo](_hi_app_event___app_event_info.md) [HiAppEvent_AppEventInfo](#hiappevent_appeventinfo) | 单个事件信息，包含事件领域，事件名称，事件类型和json格式字符串表示的事件中携带的自定义参数列表。  | 
-| typedef struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) [HiAppEvent_AppEventGroup](#hiappevent_appeventgroup) | 具有相同事件名称的事件组。  | 
+| typedef struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) [HiAppEvent_AppEventGroup](#hiappevent_appeventgroup) | 一组事件信息，包含事件组的名称，按名称分组的单个事件信息数组，事件数组的长度。  | 
 | typedef struct ParamListNode \* [ParamList](#paramlist) | 事件参数列表节点。  | 
 | typedef struct [HiAppEvent_Watcher](#hiappevent_watcher) [HiAppEvent_Watcher](#hiappevent_watcher) | 用于接收app事件的监听器。  | 
 | typedef struct [HiAppEvent_Processor](#hiappevent_processor) [HiAppEvent_Processor](#hiappevent_processor) | 用于处理app事件上报的处理者。  | 
 | typedef struct [HiAppEvent_Config](#hiappevent_config) [HiAppEvent_Config](#hiappevent_config) | 用于设置系统事件触发条件的配置对象。  | 
 | typedef void(\* [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive)) (const char \*domain, const struct [HiAppEvent_AppEventGroup](_hi_app_event___app_event_group.md) \*appEventGroups, uint32_t groupLen) | 监听器接收到事件后，将触发该回调，将事件内容传递给调用方。  | 
-| typedef void(\* [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger)) (int row, int size) | 监听器收到事件后，若监听器中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。当保存的事件满足通过 OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。  | 
+| typedef void(\* [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger)) (int row, int size) | 监听器收到事件后，若监听器中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。<br/>当保存的事件满足通过OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。 | 
 | typedef void(\* [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake)) (const char \*const \*events, uint32_t eventLen) | 使用OH_HiAppEvent_TakeWatcherData获取监听器接收到的事件时，监听器接收到的事件将通过该回调函数传递给调用者。  | 
 
 
@@ -104,14 +107,14 @@ HiAppEvent模块提供应用事件打点功能。
 | bool [OH_HiAppEvent_Configure](#oh_hiappevent_configure) (const char \*name, const char \*value) | 实现应用事件打点的配置功能。  | 
 | [HiAppEvent_Watcher](#hiappevent_watcher) \* [OH_HiAppEvent_CreateWatcher](#oh_hiappevent_createwatcher) (const char \*name) | 创建一个用于监听app事件的监听器。  | 
 | void [OH_HiAppEvent_DestroyWatcher](#oh_hiappevent_destroywatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 销毁已创建的监听器。  | 
-| int [OH_HiAppEvent_SetTriggerCondition](#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | 用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量、新接收事件大小、onTrigger触发超时时间，设置触发条件。调用方应至少保证从一个方面设置触发条件。  | 
+| int [OH_HiAppEvent_SetTriggerCondition](#oh_hiappevent_settriggercondition) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, int row, int size, int timeOut) | 用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件。<br/>分别可以从监视器新接收事件数量、新接收事件大小、onTrigger触发超时时间，设置触发条件。调用方应至少保证从一个方面设置触发条件。 | 
 | int [OH_HiAppEvent_SetAppEventFilter](#oh_hiappevent_setappeventfilter) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, const char \*domain, uint8_t eventTypes, const char \*const \*names, int namesLen) | 用于设置监听器需要监听的事件的类型。  | 
-| int [OH_HiAppEvent_SetWatcherOnTrigger](#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger) onTrigger) | 用于设置监听器onTrigger回调的接口。  | 
+| int [OH_HiAppEvent_SetWatcherOnTrigger](#oh_hiappevent_setwatcherontrigger) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnTrigger](#oh_hiappevent_ontrigger) onTrigger) | 用于设置监听器onTrigger回调的接口。<br/>如果未设置OnReceive回调或已将其设置为nullptr，则将保存观察者接收到的应用事件。当保存的应用事件满足onTrigger回调的触发条件时，将调用onTrigger回调。 | 
 | int [OH_HiAppEvent_SetWatcherOnReceive](#oh_hiappevent_setwatcheronreceive) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, [OH_HiAppEvent_OnReceive](#oh_hiappevent_onreceive) onReceive) | 用于设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。  | 
 | int [OH_HiAppEvent_TakeWatcherData](#oh_hiappevent_takewatcherdata) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher, uint32_t eventNum, [OH_HiAppEvent_OnTake](#oh_hiappevent_ontake) onTake) | 用于获取监听器收到后保存的事件。  | 
 | int [OH_HiAppEvent_AddWatcher](#oh_hiappevent_addwatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 添加监听器的接口，监听器开始监听系统消息。  | 
 | int [OH_HiAppEvent_RemoveWatcher](#oh_hiappevent_removewatcher) ([HiAppEvent_Watcher](#hiappevent_watcher) \*watcher) | 移除监听器的接口，监听器停止监听系统消息。  | 
-| void [OH_HiAppEvent_ClearData](#oh_hiappevent_cleardata) (void) | 清除所有监视器保存的所有事件。  | 
+| void [OH_HiAppEvent_ClearData](#oh_hiappevent_cleardata) () | 清除所有监视器保存的所有事件。  | 
 | [HiAppEvent_Processor](#hiappevent_processor) \* [OH_HiAppEvent_CreateProcessor](#oh_hiappevent_createprocessor) (const char \*name) | 创建一个用于处理app事件上报的处理者。  | 
 | int [OH_HiAppEvent_SetReportRoute](#oh_hiappevent_setreportroute) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, const char \*appId, const char \*routeInfo) | 设置处理者事件上报路由的接口。  | 
 | int [OH_HiAppEvent_SetReportPolicy](#oh_hiappevent_setreportpolicy) ([HiAppEvent_Processor](#hiappevent_processor) \*processor, int periodReport, int batchReport, bool onStartReport, bool onBackgroundReport) | 设置处理者事件上报策略的接口。  | 
@@ -154,6 +157,17 @@ OS作用域。
 **起始版本：** 12
 
 
+### EVENT_ADDRESS_SANITIZER
+
+```
+#define EVENT_ADDRESS_SANITIZER   "ADDRESS_SANITIZER"
+```
+**描述**
+应用踩内存事件。
+
+**起始版本：** 12
+
+
 ### EVENT_APP_CRASH
 
 ```
@@ -174,6 +188,17 @@ OS作用域。
 应用卡顿事件。
 
 **起始版本：** 12
+
+
+### EVENT_APP_HICOLLIE
+
+```
+#define EVENT_APP_HICOLLIE   "APP_HICOLLIE"
+```
+**描述**
+应用任务执行超时事件。
+
+**起始版本：** 18
 
 
 ### EVENT_APP_LAUNCH
@@ -218,6 +243,17 @@ OS作用域。
 分布式服务事件。
 
 **起始版本：** 8
+
+
+### EVENT_MAIN_THREAD_JANK
+
+```
+#define EVENT_MAIN_THREAD_JANK   "MAIN_THREAD_JANK"
+```
+**描述**
+应用主线程超时事件。
+
+**起始版本：** 12
 
 
 ### EVENT_RESOURCE_OVERLIMIT
@@ -317,7 +353,7 @@ OS作用域。
 typedef struct HiAppEvent_AppEventGroupHiAppEvent_AppEventGroup
 ```
 **描述**
-具有相同事件名称的事件组。
+一组事件信息，包含事件组的名称，按名称分组的单个事件信息数组，事件数组的长度。
 
 **系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
@@ -332,8 +368,6 @@ typedef struct HiAppEvent_AppEventInfoHiAppEvent_AppEventInfo
 **描述**
 单个事件信息，包含事件领域，事件名称，事件类型和json格式字符串表示的事件中携带的自定义参数列表。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
-
 **起始版本：** 12
 
 
@@ -344,8 +378,6 @@ typedef struct HiAppEvent_ConfigHiAppEvent_Config
 ```
 **描述**
 用于设置系统事件触发条件的配置对象。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 15
 
@@ -384,8 +416,6 @@ typedef void(* OH_HiAppEvent_OnReceive) (const char *domain, const struct HiAppE
 
 注意：回调中的指针所指对象的生命周期仅限于该回调函数内，请勿在该回调函数外直接使用该指针，若需缓存该信息，请对指针指向的内容进行深拷贝。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
-
 **起始版本：** 12
 
 **参数:**
@@ -407,8 +437,6 @@ typedef void(* OH_HiAppEvent_OnTake) (const char *const *events, uint32_t eventL
 
 注意：回调中的指针所指对象的生命周期仅限于该回调函数内，请勿在该回调函数外直接使用该指针。若需缓存该信息，请对指针指向的内容进行深拷贝。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
-
 **起始版本：** 12
 
 **参数:**
@@ -425,9 +453,9 @@ typedef void(* OH_HiAppEvent_OnTake) (const char *const *events, uint32_t eventL
 typedef void(* OH_HiAppEvent_OnTrigger) (int row, int size)
 ```
 **描述**
-监听器收到事件后，若监听器中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。当保存的事件满足通过OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。
+监听器收到事件后，若监听器中未设置OH_HiAppEvent_OnReceive回调，将保存该事件。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+当保存的事件满足通过OH_HiAppEvent_SetTriggerCondition设定的条件后，将触发该回调。回调结束后，当新保存的事件消息再次满足设定的条件后，将再次进行回调。
 
 **起始版本：** 12
 
@@ -436,7 +464,7 @@ typedef void(* OH_HiAppEvent_OnTrigger) (int row, int size)
 | 名称 | 描述 | 
 | -------- | -------- |
 | row | 监听器新接收到的事件消息的数量。  | 
-| size | 监听器新接收的事件消息的大小总和(单个事件大小计算方式为：将消息转换为json字符串后，字符串的长度)。  | 
+| size | 监听器新接收的事件消息的大小总和（单个事件大小计算方式为：将消息转换为json字符串后，字符串的长度）。  | 
 
 
 ### ParamList
@@ -461,7 +489,7 @@ enum EventType
 **描述**
 事件类型。
 
-建议开发者根据不同的使用场景选择不同的事件类型。
+建议您根据不同的使用场景选择不同的事件类型。
 
 **起始版本：** 8
 
@@ -486,13 +514,13 @@ enum HiAppEvent_ErrorCode
 | 枚举值 | 描述 | 
 | -------- | -------- |
 | HIAPPEVENT_SUCCESS  | 操作成功。&nbsp;&nbsp; | 
-| HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH  | 参数值长度无效。&nbsp;&nbsp; | 
-| HIAPPEVENT_PROCESSOR_IS_NULL  | 事件处理者为空。&nbsp;&nbsp; | 
-| HIAPPEVENT_PROCESSOR_NOT_FOUND  | 事件处理者不存在。&nbsp;&nbsp; | 
+| HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH  | 参数值长度无效。<br/>**起始版本：** 18 | 
+| HIAPPEVENT_PROCESSOR_IS_NULL  | 事件处理者为空。<br/>**起始版本：** 18 | 
+| HIAPPEVENT_PROCESSOR_NOT_FOUND  | 事件处理者不存在。<br/**起始版本：** 18 | 
 | HIAPPEVENT_INVALID_PARAM_VALUE  | 参数值无效。&nbsp;&nbsp; | 
 | HIAPPEVENT_EVENT_CONFIG_IS_NULL  | 事件配置为空。&nbsp;&nbsp; | 
-| HIAPPEVENT_OPERATE_FAILED  | 操作失败。&nbsp;&nbsp; | 
-| HIAPPEVENT_INVALID_UID  | 用户标识为空。&nbsp;&nbsp; | 
+| HIAPPEVENT_OPERATE_FAILED  | 操作失败。<br/>**起始版本：** 18 | 
+| HIAPPEVENT_INVALID_UID  | 无效的用户标识。<br/>**起始版本：** 18 | 
 
 
 ## 函数说明
@@ -847,7 +875,17 @@ int64_t OH_HiAppEvent_AddProcessor (HiAppEvent_Processor * processor)
 
 **返回：**
 
-调用成功时返回处理者唯一ID，大于0；-7：processor入参为空；-9：参数值无效；-200：用户标识无效。
+调用成功时返回处理者唯一ID，大于0；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_OPERATE_FAILED：数据处理者名称未找到或注册失败；
+
+HIAPPEVENT_INVALID_UID：用户标识无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_AddStringArrayParam()
@@ -905,8 +943,6 @@ int OH_HiAppEvent_AddWatcher (HiAppEvent_Watcher * watcher)
 **描述**
 添加监听器的接口，监听器开始监听系统消息。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
-
 **起始版本：** 12
 
 **参数:**
@@ -923,12 +959,10 @@ int OH_HiAppEvent_AddWatcher (HiAppEvent_Watcher * watcher)
 ### OH_HiAppEvent_ClearData()
 
 ```
-void OH_HiAppEvent_ClearData (void )
+void OH_HiAppEvent_ClearData ()
 ```
 **描述**
 清除所有监视器保存的所有事件。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 12
 
@@ -950,7 +984,7 @@ bool OH_HiAppEvent_Configure (const char * name, const char * value )
 | 名称 | 描述 | 
 | -------- | -------- |
 | name | 配置项名称。名称可填[DISABLE](#disable)和[MAX_STORAGE](#max_storage)。  | 
-| value | 配置项值。如果配置项名称是[DISABLE](#disable)，值可以填“true”或者“false”；如果配置项名称是[MAX_STORAGE](#max_storage)，配额值字符串只由数字字符和大小单位字符（单位字符支持[b\|k\|kb\|m\|mb\|g\|gb\|t\|tb]，不区分大小写）构成，配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。  | 
+| value | 配置项值。如果配置项名称是[DISABLE](#disable)，值可以填“true”或者“false”；<br/>如果配置项名称是[MAX_STORAGE](#max_storage)，配额值字符串只由数字字符和大小单位字符（单位字符支持[b\|k\|kb\|m\|mb\|g\|gb\|t\|tb]，不区分大小写）构成。<br/>配额值字符串必须以数字开头，后面可以选择不传单位字符（默认使用byte作为单位），或者以单位字符结尾。 | 
 
 **返回：**
 
@@ -964,8 +998,6 @@ HiAppEvent_Config* OH_HiAppEvent_CreateConfig (void )
 ```
 **描述**
 创建一个指向设置系统事件触发条件的配置对象的指针。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 15
 
@@ -1005,7 +1037,7 @@ HiAppEvent_Processor* OH_HiAppEvent_CreateProcessor (const char * name)
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| name | 处理者名称，只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。  | 
+| name | 处理者名称。只能包含大小写字母、数字、下划线和$，不能以数字开头，长度非空且不超过256个字符。  | 
 
 **返回：**
 
@@ -1021,8 +1053,6 @@ HiAppEvent_Watcher* OH_HiAppEvent_CreateWatcher (const char * name)
 创建一个用于监听app事件的监听器。
 
 注意：创建的监听器不再使用后必须通过调用OH_HiAppEvent_DestroyWatcher接口进行销毁。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 12
 
@@ -1046,8 +1076,6 @@ void OH_HiAppEvent_DestroyConfig (HiAppEvent_Config * config)
 销毁已创建的配置对象。
 
 注意：已创建的配置对象不再使用后，需要将其销毁，释放内存，防止内存泄漏，销毁后需要将对应指针置空。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 15
 
@@ -1104,8 +1132,6 @@ void OH_HiAppEvent_DestroyWatcher (HiAppEvent_Watcher * watcher)
 
 注意：已创建的监听器不再使用后，需要将其销毁，释放内存，防止内存泄漏，销毁后需将对应指针置空。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
-
 **起始版本：** 12
 
 **参数:**
@@ -1135,7 +1161,15 @@ int OH_HiAppEvent_RemoveProcessor (int64_t processorId)
 
 **返回：**
 
-0：接口调用成功；-8：事件处理者不存在；-100：操作失败；-200：用户标识无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_NOT_FOUND：事件处理者不存在；
+
+HIAPPEVENT_OPERATE_FAILED：操作失败；
+
+HIAPPEVENT_INVALID_UID：用户标识无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_RemoveWatcher()
@@ -1147,8 +1181,6 @@ int OH_HiAppEvent_RemoveWatcher (HiAppEvent_Watcher * watcher)
 移除监听器的接口，监听器停止监听系统消息。
 
 注意：该接口仅仅使监听器停止监听系统消息，并未销毁该监听器，该监听器依然常驻内存，直至调用OH_HiAppEvent_DestroyWatcher接口，内存才会释放。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 12
 
@@ -1173,8 +1205,6 @@ int OH_HiAppEvent_SetAppEventFilter (HiAppEvent_Watcher * watcher, const char * 
 
 该函数可以重复调用，可添加多个过滤规则，而非替换，监听器将收到满足任一过滤规则的事件的通知。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
-
 **起始版本：** 12
 
 **参数:**
@@ -1183,7 +1213,7 @@ int OH_HiAppEvent_SetAppEventFilter (HiAppEvent_Watcher * watcher, const char * 
 | -------- | -------- |
 | watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
 | domain | 需要监听事件的领域。  | 
-| eventTypes | 需要监听事件的事件类型。使用按位与方式进行匹配，可支持监听多种类型的事件。第一位为1（数值为1）表示支持监听故障类型的事件；第二位为1（数值为2）表示支持监听统计类型的事件；<br/>第三位为1（数值为4）表示支持监听安全类型的事件；第四位为1（数值为8）表示支持监听行为类型的事件。<br/>都为1（数值为15）或者都为0（数值为0）表示支持所有类型事件。 | 
+| eventTypes | 需要监听事件的事件类型。使用按位与方式进行匹配，可支持监听多种类型的事件。 第一位为1（数值为1）表示支持监听故障类型的事件；<br/>第二位为1（数值为2）表示支持监听统计类型的事件；<br/>第三位为1（数值为4）表示支持监听安全类型的事件；<br/>第四位为1（数值为8）表示支持监听行为类型的事件。<br/>都为1（数值为15）或者都为0（数值为0）表示支持所有类型事件。 | 
 | names | 需要监听的事件名称数组。  | 
 | namesLen | 监听的事件名称的数组长度。  | 
 
@@ -1211,7 +1241,15 @@ int OH_HiAppEvent_SetConfigId (HiAppEvent_Processor * processor, int configId )
 
 **返回：**
 
-0：接口调用成功；-7：processor入参为空；-9：参数值无效；-200：用户标识无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_INVALID_UID：用户标识无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetConfigItem()
@@ -1221,8 +1259,6 @@ int OH_HiAppEvent_SetConfigItem (HiAppEvent_Config * config, const char * itemNa
 ```
 **描述**
 设置配置对象中的配置项。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 15
 
@@ -1236,7 +1272,13 @@ int OH_HiAppEvent_SetConfigItem (HiAppEvent_Config * config, const char * itemNa
 
 **返回：**
 
-0：接口调用成功；-9：设定的配置项无效；-10：传入的指向配置对象的指针为空。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_EVENT_CONFIG_IS_NULL：传入的指向配置对象的指针为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：设定的配置项无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetCustomConfig()
@@ -1259,7 +1301,17 @@ int OH_HiAppEvent_SetCustomConfig (HiAppEvent_Processor * processor, const char 
 
 **返回：**
 
-0：接口调用成功；-7：processor入参为空；-9：参数值无效；-200：用户标识无效；4：参数值长度无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_INVALID_UID：用户标识无效；
+
+HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH：参数值长度无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetEventConfig()
@@ -1269,8 +1321,6 @@ int OH_HiAppEvent_SetEventConfig (const char * name, HiAppEvent_Config * config 
 ```
 **描述**
 设定系统事件订阅触发条件。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 15
 
@@ -1283,7 +1333,11 @@ int OH_HiAppEvent_SetEventConfig (const char * name, HiAppEvent_Config * config 
 
 **返回：**
 
-0：接口调用成功；-9：设置的参数无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：设置的参数无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetReportEvent()
@@ -1307,7 +1361,15 @@ int OH_HiAppEvent_SetReportEvent (HiAppEvent_Processor * processor, const char *
 
 **返回：**
 
-0：接口调用成功；-7：processor入参为空；-9：参数值无效；-200：用户标识无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_INVALID_UID：用户标识无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetReportPolicy()
@@ -1332,7 +1394,15 @@ int OH_HiAppEvent_SetReportPolicy (HiAppEvent_Processor * processor, int periodR
 
 **返回：**
 
-0：接口调用成功；-7：processor入参为空；-9：参数值无效；-200：用户标识无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_INVALID_UID：用户标识无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetReportRoute()
@@ -1355,7 +1425,17 @@ int OH_HiAppEvent_SetReportRoute (HiAppEvent_Processor * processor, const char *
 
 **返回：**
 
-0：接口调用成功；-7：processor入参为空；-9：参数值无效；-200：用户标识无效；4：参数值长度无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_INVALID_UID：用户标识无效；
+
+HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH：参数值长度无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetReportUserId()
@@ -1378,7 +1458,17 @@ int OH_HiAppEvent_SetReportUserId (HiAppEvent_Processor * processor, const char 
 
 **返回：**
 
-0：接口调用成功；-7：processor入参为空；-9：参数值无效；-200：用户标识无效；4：参数值长度无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_INVALID_UID：用户标识无效；
+
+HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH：参数值长度无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetReportUserProperty()
@@ -1401,7 +1491,17 @@ int OH_HiAppEvent_SetReportUserProperty (HiAppEvent_Processor * processor, const
 
 **返回：**
 
-0：接口调用成功；-7：processor入参为空；-9：参数值无效；-200：用户标识无效；4：参数值长度无效。
+HIAPPEVENT_SUCCESS：接口调用成功；
+
+HIAPPEVENT_PROCESSOR_IS_NULL：processor入参为空；
+
+HIAPPEVENT_INVALID_PARAM_VALUE：参数值无效；
+
+HIAPPEVENT_INVALID_UID：用户标识无效；
+
+HIAPPEVENT_INVALID_PARAM_VALUE_LENGTH：参数值长度无效。
+
+具体可参考[HiAppEvent_ErrorCode](#hiappevent_errorcode)。
 
 
 ### OH_HiAppEvent_SetTriggerCondition()
@@ -1410,9 +1510,9 @@ int OH_HiAppEvent_SetReportUserProperty (HiAppEvent_Processor * processor, const
 int OH_HiAppEvent_SetTriggerCondition (HiAppEvent_Watcher * watcher, int row, int size, int timeOut )
 ```
 **描述**
-用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件，分别可以从监视器新接收事件数量、新接收事件大小、onTrigger触发超时时间，设置触发条件。调用方应至少保证从一个方面设置触发条件。
+用于设置监听器OH_HiAppEvent_OnTrigger回调的触发条件。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+分别可以从监视器新接收事件数量、新接收事件大小、onTrigger触发超时时间，设置触发条件。调用方应至少保证从一个方面设置触发条件。
 
 **起始版本：** 12
 
@@ -1421,9 +1521,9 @@ int OH_HiAppEvent_SetTriggerCondition (HiAppEvent_Watcher * watcher, int row, in
 | 名称 | 描述 | 
 | -------- | -------- |
 | watcher | 指向监听器的指针（即OH_HiAppEvent_CreateWatcher接口返回的指针）。  | 
-| row | 当输入值大于0，且新接收事件的数量大于等于该值时，将调用设置的onTrigger回调函数；当输入值小于等于0时，不再以接收数量多少为维度 来触发onTrigger回调。  | 
-| size | 当输入值大于0，且新接收事件的大小(单个事件大小计算方式为，将事件转换为json字符串后，字符串的长度)大于等于该值时，将调用设置的 onTrigger回调函数；当输入值小于等于0时，不再以新接收事件大小为维度触发onTrigger回调。  | 
-| timeOut | 单位秒，当输入值大于0，每经过timeout秒，将检查监视器是否存在新接收到的事件，如果存在将触发onTrigger回调。触发onTrigger 后，经过timeOut秒后将再次检查是否存在新接收到的事件。当输入值小于等于0，不以超时时间为维度触发onTrigger回调。  | 
+| row | 当输入值大于0，且新接收事件的数量大于等于该值时，将调用设置的onTrigger回调函数；<br/>当输入值小于等于0时，不再以接收数量多少为维度来触发onTrigger回调。 | 
+| size | 当输入值大于0，且新接收事件的大小(单个事件大小计算方式为，将事件转换为json字符串后，字符串的长度)大于等于该值时，将调用设置的onTrigger回调函数；<br/>当输入值小于等于0时，不再以新接收事件大小为维度触发onTrigger回调。 | 
+| timeOut | 单位秒，当输入值大于0，每经过timeout秒，将检查监视器是否存在新接收到的事件，如果存在将触发onTrigger回调。<br/>触发onTrigger后，经过timeOut秒后将再次检查是否存在新接收到的事件。<br/>当输入值小于等于0，不以超时时间为维度触发onTrigger回调。 | 
 
 **返回：**
 
@@ -1437,8 +1537,6 @@ int OH_HiAppEvent_SetWatcherOnReceive (HiAppEvent_Watcher * watcher, OH_HiAppEve
 ```
 **描述**
 用于设置监听器onReceive回调函数的接口。当监听器监听到相应事件后，onReceive回调函数将被调用。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 12
 
@@ -1462,7 +1560,7 @@ int OH_HiAppEvent_SetWatcherOnTrigger (HiAppEvent_Watcher * watcher, OH_HiAppEve
 **描述**
 用于设置监听器onTrigger回调的接口。
 
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
+如果未设置OnReceive回调或已将其设置为nullptr，则将保存观察者接收到的应用事件。当保存的应用事件满足onTrigger回调的触发条件时，将调用onTrigger回调。
 
 **起始版本：** 12
 
@@ -1485,8 +1583,6 @@ int OH_HiAppEvent_TakeWatcherData (HiAppEvent_Watcher * watcher, uint32_t eventN
 ```
 **描述**
 用于获取监听器收到后保存的事件。
-
-**系统能力：** SystemCapability.HiviewDFX.HiAppEvent
 
 **起始版本：** 12
 
@@ -1519,12 +1615,16 @@ int OH_HiAppEvent_Write (const char * domain, const char * name, enum EventType 
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| domain | 事件领域。开发者可以根据需要自定义事件领域。事件领域名称支持数字、字母、下划线字符，需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。  | 
-| name | 事件名称。开发者可以根据需要自定义事件名称。首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。  | 
+| domain | 事件领域。您可以根据需要自定义事件领域。<br/>事件领域名称支持数字、字母、下划线字符，需要以字母开头且不能以下划线结尾，长度非空且不超过32个字符。 | 
+| name | 事件名称。您可以根据需要自定义事件名称。<br/>首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过48个字符。 | 
 | type | 事件类型，在[EventType](#eventtype)中定义。  | 
-| list | 事件参数列表，每个参数由参数名和参数值组成，其规格定义如下：<br/>1、参数名为字符串类型，首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br/>2、参数值支持字符串、数值、布尔、数组类型，字符串类型参数长度需在8\*1024个字符以内，超出会做丢弃处理；数组类型参数中的元素类型只能为字符串、数值、布尔中的一种，且元素个数需在100以内，超出会做丢弃处理。<br/>3、参数个数需在32个以内，超出的参数会做丢弃处理。 | 
+| list | 事件参数列表，每个参数由参数名和参数值组成，其规格定义如下：<br/>1、参数名为字符串类型。<br/>首字符必须为字母字符或$字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。<br/>2、参数值支持字符串、数值、布尔、数组类型。字符串类型参数长度需在8\*1024个字符以内，超出会做丢弃处理；<br/>数组类型参数中的元素类型只能为字符串、数值、布尔中的一种，且元素个数需在100以内，超出会做丢弃处理。<br/>3、参数个数需在32个以内，超出的参数会做丢弃处理。 | 
 
 **返回：**
 
-如果事件参数校验成功，则返回0，将事件写入事件文件；如果事件中存在无效参数，则返回正值，丢弃 无效参数后将事件写入事件文件；如果事件参数校验失败，则返回负值，并且事件将不会写入事件文件。
+如果事件参数校验成功，则返回0，将事件写入事件文件；
+
+如果事件中存在无效参数，则返回正值，丢弃无效参数后将事件写入事件文件；
+
+如果事件参数校验失败，则返回负值，并且事件将不会写入事件文件。
 0  事件参数校验成功。-1  非法的事件名称。-4  非法的事件领域名称。-99  打点功能被关闭。1  非法的事件参数名称。4  非法的事件参数字符串长度。5  非法的事件参数数量。6  非法的事件参数数组长度。8  重复的事件参数名称。 

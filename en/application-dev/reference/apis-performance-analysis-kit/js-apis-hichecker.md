@@ -117,7 +117,7 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Check result. If the rule exists in the collection of added rules, **true** is returned; otherwise, **false** is returned.|
 
 **Error codes**
 
@@ -218,7 +218,7 @@ Obtains a collection of thread, process, and alarm rules that have been added.
 
 ```ts
 // Add a rule.
-hichecker.addRule(hichecker.RULE_THREAD_CHECK_SLOW_PROCESS);
+hichecker.addCheckRule(hichecker.RULE_CAUTION_PRINT_LOG);
 
 // Obtain the collection of added rules.
 hichecker.getRule();   // return 1n;
@@ -246,7 +246,7 @@ Checks whether the specified rule exists in the collection of added rules. If th
 
 | Type   | Description                                                      |
 | ------- | ---------------------------------------------------------- |
-| boolean | Returns **true** if the rule exists in the collection of added rules; returns **false** otherwise.|
+| boolean | Check result. If the rule exists in the collection of added rules, **true** is returned; otherwise, **false** is returned.|
 
 **Example**
 

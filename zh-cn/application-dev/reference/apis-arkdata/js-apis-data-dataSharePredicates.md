@@ -31,6 +31,8 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型                                                | 必填 | 说明                   |
@@ -47,8 +49,8 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
 ```
 
 
@@ -62,6 +64,8 @@ and(): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **返回值：**
 
 | 类型                                        | 说明                   |
@@ -71,10 +75,10 @@ and(): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .and()
-    .equalTo("SALARY", 200.5)
+    .equalTo("SALARY", 200.5);
 ```
 
 ### orderByAsc<sup>10+</sup>
@@ -87,6 +91,8 @@ orderByAsc(field: string): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -102,8 +108,8 @@ orderByAsc(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.orderByAsc("AGE")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.orderByAsc("AGE");
 ```
 
 ### orderByDesc<sup>10+</sup>
@@ -116,6 +122,8 @@ orderByDesc(field: string): DataSharePredicates
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
+
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明               |
@@ -131,8 +139,8 @@ orderByDesc(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.orderByDesc("AGE")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.orderByDesc("AGE");
 ```
 
 ### limit<sup>10+</sup>
@@ -144,6 +152,8 @@ limit(total: number, offset: number): DataSharePredicates
 目前仅RDB及KVDB(schema)支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -161,8 +171,8 @@ limit(total: number, offset: number): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose").limit(10, 3)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose").limit(10, 3);
 ```
 
 ### in<sup>10+</sup>
@@ -174,6 +184,8 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 目前仅RDB及KVDB(schema)支持该谓词。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
+
+**原子化服务API：**  从API version 20开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
@@ -191,6 +203,6 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.in("AGE", [18, 20])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.in("AGE", [18, 20]);
 ```

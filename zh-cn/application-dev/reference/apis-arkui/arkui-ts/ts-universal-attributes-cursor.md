@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
->  从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
 ## cursorControl
@@ -15,7 +15,9 @@ setCursor(value: PointerStyle): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-方法语句中可使用的全局接口，调用此接口可以更改当前的鼠标光标样式。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+方法语句中可使用的全局接口，调用该接口可更改当前的鼠标光标样式。
 
 **参数：**
 
@@ -30,12 +32,14 @@ restoreDefault(): void
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
-方法语句中可使用的全局接口，调用此接口可以将鼠标光标恢复成默认的箭头光标样式。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+方法语句中可使用的全局接口，调用此接口可将鼠标光标恢复成默认箭头样式。
 
 
 ## 示例
 
-该示例通过setCursor实现了鼠标更改当前光标样式。
+该示例通过setCursor实现了鼠标光标样式的更改。
 
 > **说明：**
 > 
@@ -48,7 +52,7 @@ import { pointer } from '@kit.InputKit';
 @Entry
 @Component
 struct CursorControlExample {
-  @State text: string = ''
+  @State text: string = '';
   controller: TextInputController = new TextInputController()
 
   build() {
@@ -79,10 +83,10 @@ struct CursorControlExample {
 ```
 示意图：
 
-当鼠标悬浮在蓝色区域时，显示：向西箭头光标
+当鼠标悬浮在蓝色区域时，显示：向西箭头光标样式。
 
 ![cursor_blue](figures/cursor_blue.jpg)
 
-当鼠标悬浮在绿色区域时，显示：向东箭头光标
+当鼠标悬浮在绿色区域时，显示：向东箭头光标样式。
 
 ![cursor_green](figures/cursor_green.jpg)

@@ -1310,8 +1310,6 @@ type WantAgent = object
 
 Target WantAgent object.
 
-**Atomic service API**: This API can be used in atomic services since API version 12.
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Type| Description|

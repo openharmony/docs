@@ -440,7 +440,7 @@ struct ImageAnimatorAutoPauseTest {
   @State state: AnimationStatus = AnimationStatus.Running;
   @State reverse: boolean = false;
   @State iterations: number = 100;
-  @State preCallBack: string = "Null";
+  @State preCallBack: string = 'Null';
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {

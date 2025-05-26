@@ -1,6 +1,6 @@
 # @ohos.graphics.drawing (Drawing)
 
-The Drawing module provides basic drawing capabilities, such as drawing rectangles, circles, points, straight lines, custom paths, and fonts.
+During application development, you often need to draw different elements. Typically, you can use ArkUI components to draw the desired elements or effects. However, sometimes these components cannot meet the needs for custom graphics or effects. In such cases, you can turn to the Drawing module for flexible custom drawing. This module provides basic drawing capabilities, such as drawing rectangles, circles, points, straight lines, custom paths, and fonts.
 
 > **NOTE**
 >
@@ -18,7 +18,7 @@ import { drawing } from '@kit.ArkGraphics2D';
 
 ## BlendMode
 
-Enumerates the blend modes. In blend mode, each operation generates a new color from two colors (source color and destination color). These operations are the same for the red, green, and blue color channels (the alpha channel follows a different rule). For simplicity, the following description uses the alpha channel as an example rather than naming each channel individually.
+Enumerates the blend modes. A blend mode combines two colors (source color and destination color) in a specific way to create a new color. This is commonly used in graphics operations like overlaying, filtering, and masking. The blending process applies the same logic to the red, green, and blue color channels separately. The alpha channel, however, is handled according to the specific definitions of each blend mode.
 
 For brevity, the following abbreviations are used:
 
@@ -71,7 +71,7 @@ The table below shows the effect of each blend mode, where the yellow rectangle 
 
 ## PathMeasureMatrixFlags<sup>12+</sup>
 
-Enumerates the types of matrix information obtained during path measurement.
+Enumerates the dimensions of matrix information in path measurement. It is often used in animation scenarios where objects move along a path.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -83,7 +83,7 @@ Enumerates the types of matrix information obtained during path measurement.
 
 ## SrcRectConstraint<sup>12+</sup>
 
-Enumerates the constraint types of the source rectangle.
+Enumerates the constraints on the source rectangle. It is used to specify whether to limit the sampling range within the source rectangle when drawing an image on a canvas.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -94,7 +94,7 @@ Enumerates the constraint types of the source rectangle.
 
 ## ShadowFlag<sup>12+</sup>
 
-Enumerates the flags used to control shadow drawing to create various shadow effects.
+Enumerates the shadow drawing behaviors.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -107,7 +107,7 @@ Enumerates the flags used to control shadow drawing to create various shadow eff
 
 ## PathOp<sup>12+</sup>
 
-Enumerates the operation modes available for a path.
+Enumerates the path operation types. It is often used in path combination and clipping scenarios.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -121,7 +121,7 @@ Enumerates the operation modes available for a path.
 
 ## PathIteratorVerb<sup>18+</sup>
 
-Enumerates the types of path operations contained in the iterator.
+Enumerates the path operation types contained in an iterator. It is used to read path operation instructions.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -133,11 +133,11 @@ Enumerates the types of path operations contained in the iterator.
 | CONIC | 3    | Adds a conic curve.|
 | CUBIC | 4    | Adds a cubic Bezier curve for smooth transitions.|
 | CLOSE | 5    | Closes a path.|
-| DONE  | CLOSE + 1   | The path setting is complete.|
+| DONE  | CLOSE + 1    | The path setting is complete.|
 
 ## PathIterator<sup>18+</sup>
 
-Implements a path operation iterator.
+Implements a path operation iterator. You can read path operation instructions by traversing the iterator.
 
 ### constructor<sup>18+</sup>
 
@@ -157,6 +157,7 @@ Creates an iterator and binds it with a path.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 let iter: drawing.PathIterator = new drawing.PathIterator(path);
 ```
@@ -173,7 +174,7 @@ Retrieves the next operation in this path and moves the iterator to that operati
 
 | Name  | Type                                        | Mandatory| Description                           |
 | -------- | -------------------------------------------- | ---- | ------------------------------- |
-| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | Yes  | An array of coordinate points. The array must be at least 4 elements long. After the operation, the array will be overwritten. The number of coordinate point pairs written to the array depends on the path operation type. Specifically: **MOVE** inserts 1 pair; **LINE** inserts 2 pairs; **QUAD** inserts 3 pairs; **CONIC** inserts 3.5 pairs (3 pairs plus the weight for the conic curve); **CUBIC** inserts 4 pairs; **CLOSE** and **DONE** do not insert any pairs. The array length should be at least the offset plus 4.|
+| points | Array\<[common2D.Point](js-apis-graphics-common2D.md#point)>   | Yes  | Array of coordinate points. The array length must be at least the offset plus 4 to ensure that the array can hold all types of path data. After the operation is executed, this array is overwritten. The number of coordinate points to be filled depends on the operation type. Specifically, for **MOVE**, fill one coordinate; for **LINE**, fill two coordinates; for **QUAD**, fill three coordinates; for **CONIC**, fill three coordinates and one weight value (a total of 3.5 groups); for **CUBIC**, fill four coordinates; for **CLOSE** and **DONE**, do not fill any coordinate points.|
 | offset | number   | No  | Offset from the start of the array where writing begins. The default value is **0**. The value range is [0, size - 4], where **size** is the length of the coordinate point array.|
 
 **Return value**
@@ -194,6 +195,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 path.moveTo(10, 20);
 let iter: drawing.PathIterator = new drawing.PathIterator(path);
@@ -228,6 +230,7 @@ Retrieves the next operation in this path, without moving the iterator.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 let iter: drawing.PathIterator = new drawing.PathIterator(path);
 let res = iter.peek();
@@ -237,7 +240,7 @@ let res = iter.peek();
 
 hasNext(): boolean
 
-Checks whether there are other operations in the path operation iterator.
+Checks whether there is a next operation in the path operation iterator.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -245,12 +248,13 @@ Checks whether there are other operations in the path operation iterator.
 
 | Type   | Description          |
 | ------- | -------------- |
-| boolean | Check result. The value **true** means that there are other operations in the path operation iterator, and **false** means the opposite.|
+| boolean | Check result. The value **true** means that there is a next operation in the path operation iterator, and **false** means the opposite.|
 
 **Example**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 let iter: drawing.PathIterator = new drawing.PathIterator(path);
 let res = iter.hasNext();
@@ -272,6 +276,7 @@ Constructs a path.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 ```
 
@@ -293,6 +298,7 @@ Constructs a copy of an existing path.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 path.moveTo(0, 0);
 path.lineTo(0, 700);
@@ -328,6 +334,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 ```
@@ -359,6 +366,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.lineTo(10, 15);
@@ -368,7 +376,7 @@ path.lineTo(10, 15);
 
 arcTo(x1: number, y1: number, x2: number, y2: number, startDeg: number, sweepDeg: number): void
 
-Draws an arc to this path. This is done by using angle arc mode. In this mode, a rectangle that encloses an ellipse is specified first, and then a start angle and a sweep angle are specified. The arc is a portion of the ellipse defined by the start angle and the sweep angle. By default, a line segment from the last point of the path to the start point of the arc is also added.
+Draws an arc to this path using angle arc mode. This mode first defines a rectangle and takes its inscribed ellipse. Then, it specifies a start angle and a sweep angle. The arc is the portion of the ellipse's circumference defined by the start angle and the sweep angle. By default, a line segment from the last point of the path to the start point of the arc is also added.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -395,6 +403,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.arcTo(10, 15, 10, 10, 10, 10);
@@ -429,6 +438,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.quadTo(10, 15, 10, 10);
@@ -450,7 +460,7 @@ Draws a conic curve from the last point of this path to the target point. If the
 | ctrlY  | number | Yes  | Y coordinate of the control point. The value is a floating point number.|
 | endX   | number | Yes  | X coordinate of the target point. The value is a floating point number.|
 | endY   | number | Yes  | Y coordinate of the target point. The value is a floating point number.|
-| weight | number | Yes  | Weight of the curve, which determines its shape. The larger the value, the closer of the curve to the control point. If the value is less than or equal to 0, this API is equivalent to [lineTo](#lineto), that is, adding a line segment from the last point of the path to the target point. If the value is 1, this API is equivalent to [quadTo](#quadto). The value is a floating point number.|
+| weight | number | Yes  | Weight of the curve, which determines its shape. The larger the value, the closer of the curve to the control point. If the value is less than or equal to 0, this API has the same effect as [lineTo](#lineto). If the value is 1, it has the same effect as [quadTo](#quadto). The value is a floating point number.|
 
 **Error codes**
 
@@ -500,6 +510,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.cubicTo(100, 100, 80, 150, 300, 150);
@@ -507,7 +518,7 @@ path.cubicTo(100, 100, 80, 150, 300, 150);
 
 ### rMoveTo<sup>12+</sup>
 
-rMoveTo(dx : number, dy : number): void
+rMoveTo(dx: number, dy: number): void
 
 Sets the start position relative to the last point of this path. If the path is empty, the start point (0, 0) is used.
 
@@ -539,7 +550,7 @@ path.rMoveTo(10, 10);
 
 ### rLineTo<sup>12+</sup>
 
-rLineTo(dx : number, dy : number): void
+rLineTo(dx: number, dy: number): void
 
 Draws a line segment from the last point of this path to a point relative to the last point. If the path is empty, the start point (0, 0) is used.
 
@@ -751,7 +762,7 @@ path.addCircle(100, 200, 50, drawing.PathDirection.CLOCKWISE);
 
 addOval(rect: common2D.Rect, start: number, pathDirection?: PathDirection): void
 
-Adds an oval to this path in the specified direction, where the **common2D.Rect** object specifies the outer tangent rectangle of the oval.
+Adds the inscribed ellipse of a rectangle to this path in the specified direction.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1147,7 +1158,7 @@ console.info("get pathOp: ", path2.op(path, drawing.PathOp.DIFFERENCE));
 
 close(): void
 
-Draws a line segment from the current point to the start point of this path.
+Closes this path by adding a line segment from the start point to the last point of the path.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1155,6 +1166,7 @@ Draws a line segment from the current point to the start point of this path.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.cubicTo(10, 10, 10, 10, 15, 15);
@@ -1173,6 +1185,7 @@ Resets the path data.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.moveTo(10,10);
 path.cubicTo(10, 10, 10, 10, 15, 15);
@@ -1202,7 +1215,8 @@ Obtains the path length.
 **Example**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
+import { drawing } from '@kit.ArkGraphics2D';
+
 let path = new drawing.Path();
 path.arcTo(20, 20, 180, 180, 180, 90);
 let len = path.getLength(false);
@@ -1244,6 +1258,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 path.moveTo(0, 0);
 path.lineTo(0, 700);
@@ -1282,18 +1297,11 @@ Extracts a segment of this path and appends it to a destination path.
 | --------------------- | -------------- |
 | boolean |Extraction result. The value **true** means that the extraction is successful, and **false** means the opposite.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 path.moveTo(0, 0);
 path.lineTo(0, 700);
@@ -1320,6 +1328,7 @@ Checks whether a path is closed.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 path.moveTo(0, 0);
 path.lineTo(0, 700);
@@ -1334,7 +1343,7 @@ if (path.isClosed()) {
 
 getMatrix(forceClosed: boolean, distance: number, matrix: Matrix, flags: PathMeasureMatrixFlags): boolean
 
-Obtains a transformation matrix at a distance from the start point of this path.
+Obtains a transformation matrix at a specific position along the path, which represents the coordinates and orientation of that point.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1351,7 +1360,7 @@ Obtains a transformation matrix at a distance from the start point of this path.
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Check result. The value **true** means that a transformation matrix is obtained, and **false** means the opposite.|
+| boolean | Result indicating whether the transformation matrix is obtained. The value **true** means that the operation is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1365,6 +1374,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 let matrix = new drawing.Matrix();
 if(path.getMatrix(false, 10, matrix, drawing.PathMeasureMatrixFlags.GET_TANGENT_MATRIX)) {
@@ -1392,7 +1402,7 @@ Parses the path represented by an SVG string.
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Check result. The value **true** means that the parsing is successful, and **false** means the opposite.|
+| boolean | Result of the parsing operation. The value **true** means that the operation is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -1406,6 +1416,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 let svgStr: string =  "M150 100 L75 300 L225 300 Z";
 if(path.buildFromSvgString(svgStr)) {
@@ -1433,6 +1444,7 @@ Obtains the operation iterator of this path.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let path: drawing.Path = new drawing.Path();
 let iter = path.getPathIterator();
 ```
@@ -1443,13 +1455,13 @@ A carrier that carries the drawn content and drawing status.
 
 > **NOTE**
 >
-> By default, the canvas has a black brush with anti-aliasing enabled but no any other style. This default brush takes effect only when no brush or pen is proactively set in the canvas.
+> The canvas comes with a default brush. The brush is black, has anti-aliasing enabled, and has no other style effects. This default brush is used when no brush or pen is actively set in the canvas.
 
 ### constructor
 
 constructor(pixelmap: image.PixelMap)
 
-A constructor used to create a **Canvas** object.
+Creates a **Canvas** object that uses a PixelMap as the drawing target.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -1472,6 +1484,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
 import { image } from '@kit.ImageKit';
+
 const color = new ArrayBuffer(96);
 let opts : image.InitializationOptions = {
   editable: true,
@@ -1513,6 +1526,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1556,6 +1570,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
 
   draw(context : DrawContext) {
@@ -1597,6 +1612,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1635,6 +1651,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1675,6 +1692,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1719,6 +1737,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1777,6 +1796,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1809,6 +1829,7 @@ Obtains the bounds of the cropping region of the canvas.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1844,6 +1865,7 @@ Obtains the canvas matrix.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1884,6 +1906,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -1928,6 +1951,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   pixelMap: image.PixelMap | null = null;
 
@@ -1971,6 +1995,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
 pixelMap: image.PixelMap | null = null;
   draw(context : DrawContext) {
@@ -2016,6 +2041,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
 pixelMap: image.PixelMap | null = null;
   draw(context : DrawContext) {
@@ -2034,7 +2060,7 @@ pixelMap: image.PixelMap | null = null;
 
 drawColor(color: common2D.Color, blendMode?: BlendMode): void
 
-Draws the background color.
+Fills the drawable area of the canvas with the specified color and [blend mode](#blendmode).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2042,7 +2068,7 @@ Draws the background color.
 
 | Name   | Type                                                | Mandatory| Description                            |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.                  |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. The value of each color channel is an integer ranging from 0 to 255.                  |
 | blendMode | [BlendMode](#blendmode)                              | No  | Blend mode. The default mode is **SRC_OVER**.|
 
 **Error codes**
@@ -2058,6 +2084,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2076,7 +2103,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawColor(alpha: number, red: number, green: number, blue: number, blendMode?: BlendMode): void
 
-Draws the background color. This API provides better performance than [drawColor](#drawcolor) and is recommended.
+Fills the drawable area of the canvas with the specified color and [blend mode](#blendmode). This API provides better performance than [drawColor](#drawcolor) and is recommended.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2103,6 +2130,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2115,7 +2143,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawColor(color: number, blendMode?: BlendMode): void
 
-Draws the background color.
+Fills the drawable area of the canvas with the specified color and [blend mode](#blendmode).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2139,6 +2167,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2181,6 +2210,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { RenderNode } from '@kit.ArkUI';
 import { image } from '@kit.ImageKit';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   pixelMap: image.PixelMap | null = null;
 
@@ -2201,7 +2231,7 @@ class DrawingRenderNode extends RenderNode {
 
 clear(color: common2D.Color): void
 
-Clears the canvas with a given color.
+Clears the canvas with a given color. This API has the same effect as [drawColor](#drawcolor).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2209,7 +2239,7 @@ Clears the canvas with a given color.
 
 | Name   | Type                                                | Mandatory| Description                            |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.     |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. The value of each color channel is an integer ranging from 0 to 255.     |
 
 **Error codes**
 
@@ -2224,6 +2254,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2245,21 +2276,14 @@ Clears the canvas with a given color.
 
 | Name   | Type                                                | Mandatory| Description                            |
 | --------- | ---------------------------------------------------- | ---- | -------------------------------- |
-| color     | [common2D.Color](js-apis-graphics-common2D.md#color) \| number| Yes  | Color, represented by a 32-bit unsigned integer in hexadecimal ARGB format. |
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| color     | [common2D.Color](js-apis-graphics-common2D.md#color) \| number| Yes  | Color, represented by an unsigned integer in hexadecimal ARGB format. |
 
 **Example**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2288,6 +2312,7 @@ Obtains the canvas width.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2316,6 +2341,7 @@ Obtains the canvas height.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2329,7 +2355,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawOval(oval: common2D.Rect): void
 
-Draws an oval on the canvas. The shape and position of the oval are defined by the rectangle parameters that specify the oval boundary.
+Draws an oval on the canvas, where the shape and position of the oval are defined by its bounding rectangle.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2352,6 +2378,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2396,6 +2423,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2439,6 +2467,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2480,6 +2509,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2521,6 +2551,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2568,6 +2599,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2612,6 +2644,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2702,6 +2735,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2721,7 +2755,7 @@ class DrawingRenderNode extends RenderNode {
 
 attachPen(pen: Pen): void
 
-Attaches a pen to a canvas so that the canvas can use the style and color of the pen to outline a shape.
+Attaches a pen to the canvas. When you draw on the canvas, the pen's style is used to outline shapes.
 
 > **NOTE**
 >
@@ -2748,6 +2782,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2765,7 +2800,7 @@ class DrawingRenderNode extends RenderNode {
 
 attachBrush(brush: Brush): void
 
-Attaches a brush to a canvas so that the canvas can use the style and color of the brush to fill in a shape.
+Attaches a brush to the canvas. When you draw on the canvas, the brush's style is used to fill the interior of shapes.
 
 > **NOTE**
 >
@@ -2792,6 +2827,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2808,7 +2844,7 @@ class DrawingRenderNode extends RenderNode {
 
 detachPen(): void
 
-Detaches the pen from a canvas so that the canvas can no longer use the style and color of the pen to outline a shape.
+Detaches the pen from the canvas. When you draw on the canvas, the pen is no longer used to outline shapes.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2817,6 +2853,7 @@ Detaches the pen from a canvas so that the canvas can no longer use the style an
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2834,7 +2871,7 @@ class DrawingRenderNode extends RenderNode {
 
 detachBrush(): void
 
-Detaches the brush from a canvas so that the canvas can no longer use the style and color of the brush to fill in a shape.
+Detaches the brush from the canvas. When you draw on the canvas, the brush is no longer used to fill the interior of shapes.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2843,6 +2880,7 @@ Detaches the brush from a canvas so that the canvas can no longer use the style 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2859,7 +2897,7 @@ class DrawingRenderNode extends RenderNode {
 
 clipPath(path: Path, clipOp?: ClipOp, doAntiAlias?: boolean): void
 
-Clips a path.
+Clips the drawable area of the canvas using a custom path.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2884,6 +2922,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2901,7 +2940,7 @@ class DrawingRenderNode extends RenderNode {
 
 clipRect(rect: common2D.Rect, clipOp?: ClipOp, doAntiAlias?: boolean): void
 
-Clips a rectangle.
+Clips the drawable area of the canvas using a rectangle.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2926,6 +2965,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2939,7 +2979,7 @@ class DrawingRenderNode extends RenderNode {
 
 save(): number
 
-Saves the current canvas status (canvas matrix) to the top of the stack. This API must be used in pair with [restore](#restore12).
+Saves the canvas states (canvas matrix and drawable area) to the top of the stack. This API must be used in pair with [restore](#restore12).
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -2954,6 +2994,7 @@ Saves the current canvas status (canvas matrix) to the top of the stack. This AP
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -2977,7 +3018,7 @@ Saves the matrix and cropping region of the canvas, and allocates a PixelMap for
 | Name | Type    | Mandatory  | Description        |
 | ---- | ------ | ---- | ----------------- |
 | rect   | [common2D.Rect](js-apis-graphics-common2D.md#rect)\|null | No  | **Rect** object, which is used to limit the size of the graphics layer. The default value is the current canvas size.|
-| brush  | [Brush](#brush)\|null | No  | **Brush** object. The alpha value, filter effect, and blend mode of the brush are applied when the bitmap is drawn. If null is passed in, no effect is applied.|
+| brush  | [Brush](#brush)\|null | No  | **Brush** object. The alpha value, filter effect, and blend mode of the brush are applied when the PixelMap is drawn. If null is passed in, no effect is applied.|
 
 **Return value**
 
@@ -2998,6 +3039,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3029,7 +3071,7 @@ class DrawingRenderNode extends RenderNode {
 
 scale(sx: number, sy: number): void
 
-Scales the canvas.
+Applies a scaling matrix on top of the current canvas matrix (identity matrix by default). Subsequent drawing and clipping operations will automatically have a scaling effect applied to the shapes and positions.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3053,6 +3095,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3071,7 +3114,7 @@ class DrawingRenderNode extends RenderNode {
 
 skew(sx: number, sy: number) : void
 
-Skews the canvas in both the horizontal and vertical directions.
+Applies a skewing matrix on top of the current canvas matrix (identity matrix by default). Subsequent drawing and clipping operations will automatically have a skewing effect applied to the shapes and positions.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3095,6 +3138,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3113,7 +3157,7 @@ class DrawingRenderNode extends RenderNode {
 
 rotate(degrees: number, sx: number, sy: number) : void
 
-Rotates the canvas by a certain angle.
+Applies a rotation matrix on top of the current canvas matrix (identity matrix by default). Subsequent drawing and clipping operations will automatically have a rotation effect applied to their shapes and positions.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3138,6 +3182,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3156,7 +3201,7 @@ class DrawingRenderNode extends RenderNode {
 
 translate(dx: number, dy: number): void
 
-Translates the canvas by a given distance.
+Applies a translation matrix on top of the current canvas matrix (identity matrix by default). Subsequent drawing and clipping operations will automatically have a translation effect applied to the shapes and positions.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3180,6 +3225,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3198,7 +3244,7 @@ class DrawingRenderNode extends RenderNode {
 
 getSaveCount(): number
 
-Obtains the number of canvas statuses (canvas matrices) saved in the stack.
+Obtains the number of canvas states (canvas matrix and clipping area) saved in the stack.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3213,6 +3259,7 @@ Obtains the number of canvas statuses (canvas matrices) saved in the stack.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3233,7 +3280,7 @@ class DrawingRenderNode extends RenderNode {
 
 restoreToCount(count: number): void
 
-Restores to a given number of canvas statuses (canvas matrices).
+Restores the canvas state (canvas matrix and clipping area) to a specified number.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3256,6 +3303,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3280,7 +3328,7 @@ class DrawingRenderNode extends RenderNode {
 
 restore(): void
 
-Restores the canvas status (canvas matrix) saved on the top of the stack.
+Restores the canvas state (canvas matrix and clipping area) saved on the top of the stack.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3289,6 +3337,7 @@ Restores the canvas status (canvas matrix) saved on the top of the stack.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3306,7 +3355,7 @@ class DrawingRenderNode extends RenderNode {
 
 concatMatrix(matrix: Matrix): void
 
-Preconcats the existing matrix of the canvas with the passed-in matrix. The drawing operation triggered before this API is called is not affected.
+Multiplies the current canvas matrix by the incoming matrix on the left. This API does not affect previous drawing operations, but subsequent drawing and clipping operations will be influenced by this matrix in terms of shape and position.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3329,6 +3378,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3344,7 +3394,7 @@ class DrawingRenderNode extends RenderNode {
 
 setMatrix(matrix: Matrix): void
 
-Sets a matrix for the canvas.
+Sets a matrix for the canvas. Subsequent drawing and clipping operations will be affected by this matrix in terms of shape and position.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3367,6 +3417,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3397,6 +3448,7 @@ Checks whether the region that can be drawn is empty after clipping.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3437,6 +3489,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3478,6 +3531,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3503,6 +3557,7 @@ Resets the matrix of this canvas to an identity matrix.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -3531,14 +3586,6 @@ Checks whether the path is not intersecting with the canvas area. The canvas are
 | Type                 | Description          |
 | --------------------- | -------------- |
 | boolean | Check result. The value **true** means that the path is not intersecting with the canvas area, and **false** means the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **Example**
 
@@ -3582,14 +3629,6 @@ Checks whether the rectangle is not intersecting with the canvas area. The canva
 | --------------------- | -------------- |
 | boolean | Check result. The value **true** means that the rectangle is not intersecting with the canvas area, and **false** means the opposite.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -3613,7 +3652,7 @@ class DrawingRenderNode extends RenderNode {
 
 drawArcWithCenter(arc: common2D.Rect, startAngle: number, sweepAngle: number, useCenter: boolean): void
 
-Draws an arc on the canvas. It enables you to define the starting angle, sweep angle, and whether the arc's endpoints should connect to its center.
+Draws an arc on the canvas. It enables you to define the start angle, sweep angle, and whether the arc's endpoints should connect to its center.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -3625,14 +3664,6 @@ Draws an arc on the canvas. It enables you to define the starting angle, sweep a
 | startAngle      | number | Yes  | Start angle, in degrees. The value is a floating point number. When the degree is 0, the start point is located at the right end of the oval. A positive number indicates that the start point is placed clockwise, and a negative number indicates that the start point is placed counterclockwise.|
 | sweepAngle      | number | Yes  | Angle to sweep, in degrees. The value is a floating point number. A positive number indicates a clockwise sweep, and a negative value indicates a counterclockwise swipe. The swipe angle can exceed 360 degrees, and a complete ellipse is drawn.|
 | useCenter       | boolean | Yes  | Whether the start point and end point of the arc are connected to its center. The value **true** means that they are connected to the center; the value **false** means the opposite.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **Example**
 
@@ -3794,6 +3825,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
 ```
 
@@ -3830,6 +3862,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.CLAMP);
 let clolorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
 let imgFilter1 = drawing.ImageFilter.createFromColorFilter(clolorfilter, imgFilter);
@@ -4015,7 +4048,7 @@ class DrawingRenderNode extends RenderNode {
 
 uniqueID(): number
 
-Obtains the unique identifier of a text blob. The identifier is a non-zero value.
+Obtains the unique, non-zero identifier of this **TextBlob** object.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -4023,12 +4056,13 @@ Obtains the unique identifier of a text blob. The identifier is a non-zero value
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| number | Unique identifier of the text blob.|
+| number | Unique, non-zero identifier of this **TextBlob** object.|
 
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let text : string = 'TextBlobUniqueId';
 let font : drawing.Font = new drawing.Font();
 font.setSize(100);
@@ -4072,6 +4106,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -4122,6 +4157,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -4162,6 +4198,7 @@ Obtains the rectangular bounding box of the text blob.
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const font = new drawing.Font();
 font.setSize(20);
 const textBlob = drawing.TextBlob.makeFromString("drawing", font, drawing.TextEncoding.TEXT_ENCODING_UTF8);
@@ -4170,13 +4207,13 @@ let bounds = textBlob.bounds();
 
 ## Typeface
 
-Describes the typeface such as SimSun and Kaiti.
+Describes the style of a typeface, such as SimSun or KaiTi.
 
 ### getFamilyName
 
 getFamilyName(): string
 
-Obtains the name of the typeface, that is, the name of the font family.
+Obtains the name of the typeface family, which is the name given to a collection of related typeface designs.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -4184,12 +4221,13 @@ Obtains the name of the typeface, that is, the name of the font family.
 
 | Type  | Description                |
 | ------ | -------------------- |
-| string | Typeface name.|
+| string | Family name.|
 
 **Example**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const font = new drawing.Font();
 let typeface = font.getTypeface();
 let familyName = typeface.getFamilyName();
@@ -4228,6 +4266,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class TextRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     const canvas = context.canvas;
@@ -4261,19 +4300,12 @@ Constructs a typeface from a file, which must be stored in the **resources/rawfi
 | ------ | -------------------- |
 | [Typeface](#typeface) | **Typeface** object. In abnormal cases, a null pointer is returned.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class TextRenderNode extends RenderNode {
   async draw(context: DrawContext) {
     const canvas = context.canvas;
@@ -4288,7 +4320,7 @@ class TextRenderNode extends RenderNode {
 
 ## Font
 
-Describes the attributes, such as the size, used for drawing text.
+Describes the attributes used for text rendering, such as size and typeface.
 
 ### isSubpixel<sup>12+</sup>
 
@@ -4308,6 +4340,7 @@ Checks whether sub-pixel rendering is used for this font.
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let font: drawing.Font = new drawing.Font();
 font.enableSubpixel(true)
 console.info("values=" + font.isSubpixel());
@@ -4331,6 +4364,7 @@ Checks whether linear scaling is used for this font.
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let font: drawing.Font = new drawing.Font();
 font.enableLinearMetrics(true)
 console.info("values=" + font.isLinearMetrics());
@@ -4354,6 +4388,7 @@ Obtains the horizontal skew factor of this font.
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let font: drawing.Font = new drawing.Font();
 font.setSkewX(-1)
 console.info("values=" + font.getSkewX());
@@ -4377,6 +4412,7 @@ Checks whether the bold effect is set for this font.
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let font: drawing.Font = new drawing.Font();
 font.enableEmbolden(true);
 console.info("values=" + font.isEmbolden());
@@ -4400,6 +4436,7 @@ Obtains the horizontal scale ratio of this font.
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let font: drawing.Font = new drawing.Font();
 font.setScaleX(2);
 console.info("values=" + font.getScaleX());
@@ -4423,6 +4460,7 @@ Obtains the font hinting effect.
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let font: drawing.Font = new drawing.Font();
 console.info("values=" + font.getHinting());
 ```
@@ -4445,6 +4483,7 @@ Obtains the font edging effect.
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let font: drawing.Font = new drawing.Font();
 console.info("values=" + font.getEdging());
 ```
@@ -4475,6 +4514,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.enableSubpixel(true);
 ```
@@ -4505,6 +4545,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.enableEmbolden(true);
 ```
@@ -4535,6 +4576,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.enableLinearMetrics(true);
 ```
@@ -4543,7 +4585,7 @@ font.enableLinearMetrics(true);
 
 setSize(textSize: number): void
 
-Sets the text size.
+Sets the font size.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -4551,7 +4593,7 @@ Sets the text size.
 
 | Name  | Type  | Mandatory| Description            |
 | -------- | ------ | ---- | ---------------- |
-| textSize | number | Yes  | Text size. The value is a floating point number. If a negative number is passed in, the size is set to 0. If the size is 0, the text drawn will not be displayed.|
+| textSize | number | Yes  | Font size. The value is a floating point number. If a negative number is passed in, the size is set to 0. If the size is 0, the text drawn will not be displayed.|
 
 **Error codes**
 
@@ -4565,6 +4607,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.setSize(5);
 ```
@@ -4573,7 +4616,7 @@ font.setSize(5);
 
 getSize(): number
 
-Obtains the text size.
+Obtains the font size.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -4581,12 +4624,13 @@ Obtains the text size.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| number | Text size. The value is a floating point number.|
+| number | Font size. The value is a floating point number.|
 
 **Example**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.setSize(5);
 let fontSize = font.getSize();
@@ -4596,7 +4640,7 @@ let fontSize = font.getSize();
 
 setTypeface(typeface: Typeface): void
 
-Sets the typeface.
+Sets the typeface style (including attributes such as font name, weight, and italic) for the font.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -4604,7 +4648,7 @@ Sets the typeface.
 
 | Name  | Type                 | Mandatory| Description  |
 | -------- | --------------------- | ---- | ------ |
-| typeface | [Typeface](#typeface) | Yes  | **Typeface** object.|
+| typeface | [Typeface](#typeface) | Yes  | Typeface style (including attributes such as font name, weight, and italic).|
 
 **Error codes**
 
@@ -4618,6 +4662,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.setTypeface(new drawing.Typeface());
 ```
@@ -4640,6 +4685,7 @@ Obtains the typeface.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 let typeface = font.getTypeface();
 ```
@@ -4662,6 +4708,7 @@ Obtains the font metrics of the typeface.
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 let metrics = font.getMetrics();
 ```
@@ -4703,6 +4750,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let font = new drawing.Font();
 font.measureText("drawing", drawing.TextEncoding.TEXT_ENCODING_UTF8);
 ```
@@ -4778,6 +4826,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -4821,6 +4870,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -5128,7 +5178,7 @@ Obtains the width of each glyph in an array.
 
 | Type  | Description            |
 | ------ | ---------------- |
-| Array\<number> | Array that holds the obtained glyph widths.|
+| Array\<number> | Glyph width array.|
 
 **Error codes**
 
@@ -5211,14 +5261,6 @@ Obtains the rectangular bounding box of each glyph in an array.
 | Type  | Description            |
 | ------ | ---------------- |
 | Array\<[common2D.Rect](js-apis-graphics-common2D.md#rect)> | Array that holds the rectangular bounding boxes.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
 
 **Example**
 
@@ -5306,14 +5348,6 @@ Obtains the outline path of a glyph.
 | ------ | ---------------- |
 | [Path](#path) | Outline path of the glyph.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
@@ -5371,7 +5405,7 @@ console.info("font is theme font followed: " + font.isThemeFontFollowed());
 
 isThemeFontFollowed(): boolean
 
-Checks whether the font follows the theme font. By default, the theme font is not followed.
+Checks whether the font follows the theme font. By default, the font follows the theme font.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -5446,7 +5480,7 @@ Creates a **ColorFilter** object with a given color and blend mode.
 
 | Name| Type                                                | Mandatory| Description            |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.|
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. The value of each color channel is an integer ranging from 0 to 255.|
 | mode   | [BlendMode](#blendmode)                              | Yes  | Blend mode.|
 
 **Return value**
@@ -5467,6 +5501,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
 ```
@@ -5483,7 +5518,7 @@ Creates a **ColorFilter** object with a given color and blend mode.
 
 | Name| Type                                                | Mandatory| Description            |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | Yes  | Color, represented by a 32-bit unsigned integer in hexadecimal ARGB format.|
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) \| number | Yes  | Color, represented by an unsigned integer in hexadecimal ARGB format.|
 | mode   | [BlendMode](#blendmode)                              | Yes  | Blend mode.|
 
 **Return value**
@@ -5504,6 +5539,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let colorFilter = drawing.ColorFilter.createBlendModeColorFilter(0xffff0000, drawing.BlendMode.SRC);
 ```
 
@@ -5540,6 +5576,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 let colorFilter1 = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.SRC);
 let colorFilter2 = drawing.ColorFilter.createBlendModeColorFilter(color, drawing.BlendMode.DST);
@@ -5564,6 +5601,7 @@ Creates a **ColorFilter** object that applies the sRGB gamma curve to the RGB ch
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 ```
 
@@ -5585,6 +5623,7 @@ Creates a **ColorFilter** object that applies the RGB channels to the sRGB gamma
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let colorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
 ```
 
@@ -5606,6 +5645,7 @@ Creates a **ColorFilter** object that multiplies the luma into the alpha channel
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let colorFilter = drawing.ColorFilter.createLumaColorFilter();
 ```
 
@@ -5641,6 +5681,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let matrix: Array<number> = [
   1, 0, 0, 0, 0,
   0, 1, 0, 0, 0,
@@ -5670,9 +5711,9 @@ Enumerates the cap styles of a pen. The cap style defines the style of both ends
 
 | Name       | Value  | Description                                                        | Diagram  |
 | ---------- | ---- | ----------------------------------------------------------- | -------- |
-| FLAT_CAP   | 0    | There is no cap style. Both ends of the line segment are cut off square.| ![FLAT_CAP](./figures/image_CapStyle_Flat_Cap.png) |
-| SQUARE_CAP | 1    | Square cap style. Both ends have a square, the height of which is half of the width of the line segment, with the same width.| ![SQUARE_CAP](./figures/image_CapStyle_Square_Cap.png) |
-| ROUND_CAP  | 2    | Round cap style. Both ends have a semicircle centered, the diameter of which is the same as the width of the line segment.| ![ROUND_CAP](./figures/image_CapStyle_Round_Cap.png) |
+| FLAT_CAP   | 0    | There is no cap style. Both ends of the line segment are cut off square.| ![FLAT_CAP](./figures/image_CapStyle_Flat_Cap.jpg) |
+| SQUARE_CAP | 1    | Square cap style. Both ends have a square, the height of which is half of the width of the line segment, with the same width.| ![SQUARE_CAP](./figures/image_CapStyle_Square_Cap.jpg) |
+| ROUND_CAP  | 2    | Round cap style. Both ends have a semicircle centered, the diameter of which is the same as the width of the line segment.| ![ROUND_CAP](./figures/image_CapStyle_Round_Cap.jpg) |
 
 ## BlurType<sup>12+</sup>
 
@@ -5682,10 +5723,10 @@ Enumerates the blur types of a mask filter.
 
 | Name  | Value| Description              | Diagram  |
 | ------ | - | ------------------ | -------- |
-| NORMAL | 0 | Blurs both inside and outside the original border.         | ![NORMAL](./figures/image_BlueType_Normal.png) |
-| SOLID  | 1 | Draws solid inside the border, and blurs outside.| ![SOLID](./figures/image_BlueType_Solid.png) |
-| OUTER  | 2 | Draws nothing inside the border, and blurs outside.| ![OUTER](./figures/image_BlueType_Outer.png) |
-| INNER  | 3 | Blurs inside the border, and draws nothing outside.| ![INNER](./figures/image_BlueType_Inner.png) |
+| NORMAL | 0 | Both the outer edges and the inner solid parts are blurred.| ![NORMAL](./figures/image_BlueType_Normal.png) |
+| SOLID  | 1 | The inner solid part remains unchanged, while only the outer edges are blurred.| ![SOLID](./figures/image_BlueType_Solid.png) |
+| OUTER  | 2 | Only the outer edges are blurred, with the inner solid part being fully transparent.| ![OUTER](./figures/image_BlueType_Outer.png) |
+| INNER  | 3 | Only the inner solid part is blurred, while the outer edges remain sharp.| ![INNER](./figures/image_BlueType_Inner.png) |
 
 ## SamplingOptions<sup>12+</sup>
 
@@ -5695,7 +5736,7 @@ Implements sampling options.
 
 constructor()
 
-Creates a **SamplingOptions** object.
+Creates a **SamplingOptions** object. The default value of [FilterMode](#filtermode12) is **FILTER_MODE_NEAREST**.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -5704,6 +5745,7 @@ Creates a **SamplingOptions** object.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -5740,6 +5782,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -5791,6 +5834,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     let xDivs : Array<number> = [1, 2, 4];
@@ -5840,6 +5884,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     let xDivs : Array<number> = [1, 2, 4];
@@ -5900,6 +5945,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -5918,7 +5964,7 @@ Enumerates the styles of the dashed path effect.
 | ------ | - | ------------------ |
 | TRANSLATE | 0 | Translates only, not rotating with the path.|
 | ROTATE  | 1 | Rotates with the path.|
-| MORPH  | 2 | Rotates with the path and adjusts by stretching or compressing at angles to enhance smoothness.|
+| MORPH  | 2 | Rotates with the path and stretches or compresses at turns to enhance smoothness.|
 
 ## PathEffect<sup>12+</sup>
 
@@ -5958,6 +6004,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6003,6 +6050,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6056,19 +6104,12 @@ Creates an overlay path effect based on two distinct path effects. Different fro
 | ------------------------- | --------------------- |
 | [PathEffect](#patheffect12) | **PathEffect** object created.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6113,6 +6154,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6143,19 +6185,12 @@ Creates an effect that segments the path and scatters the segments in an irregul
 | ------------------------- | --------------------- |
 | [PathEffect](#patheffect12) | **PathEffect** object created.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6185,19 +6220,12 @@ Creates a path effect by sequentially applying the inner effect and then the out
 | ------------------------- | --------------------- |
 | [PathEffect](#patheffect12) | **PathEffect** object created.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6227,7 +6255,7 @@ Creates a **ShadowLayer** object.
 | blurRadius  | number   | Yes  | Radius of the shadow layer. The value must be a floating point number greater than 0.    |
 | x           | number   | Yes  | Offset on the X axis. The value is a floating point number.       |
 | y           | number   | Yes  | Offset on the Y axis. The value is a floating point number.       |
-| color       | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.|
+| color       | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. The value of each color channel is an integer ranging from 0 to 255.|
 
 **Return value**
 
@@ -6248,6 +6276,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6272,7 +6301,7 @@ Creates a **ShadowLayer** object.
 | blurRadius  | number   | Yes  | Radius of the shadow layer. The value must be a floating point number greater than 0.    |
 | x           | number   | Yes  | Offset on the X axis. The value is a floating point number.       |
 | y           | number   | Yes  | Offset on the Y axis. The value is a floating point number.       |
-| color       | [common2D.Color](js-apis-graphics-common2D.md#color) \| number   | Yes  | Color, represented by a 32-bit unsigned integer in hexadecimal ARGB format. |
+| color       | [common2D.Color](js-apis-graphics-common2D.md#color) \| number   | Yes  | Color, represented by an unsigned integer in hexadecimal ARGB format. |
 
 **Return value**
 
@@ -6293,6 +6322,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6435,6 +6465,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let colorfilter = drawing.ColorFilter.createSRGBGammaToLinear();
 let imgFilter = drawing.ImageFilter.createFromColorFilter(colorfilter);
 let pen = new drawing.Pen();
@@ -6460,6 +6491,7 @@ Obtains the color filter of this pen.
 
 ```ts 
 import {drawing} from '@kit.ArkGraphics2D';
+
 let pen = new drawing.Pen();
 let colorfilter = drawing.ColorFilter.createLumaColorFilter();
 pen.setColorFilter(colorfilter);
@@ -6478,7 +6510,7 @@ Sets a color for this pen.
 
 | Name| Type                                                | Mandatory| Description            |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.|
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. The value of each color channel is an integer ranging from 0 to 255.|
 
 **Error codes**
 
@@ -6492,6 +6524,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const pen = new drawing.Pen();
 pen.setColor(color);
@@ -6526,6 +6559,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setColor(255, 255, 0, 0);
 ```
@@ -6544,18 +6578,11 @@ Sets a color for this pen.
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
 | color  | number | Yes  | Color in hexadecimal ARGB format.|
 
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
-
-| ID| Error Message|
-| ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
-
 **Example**
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setColor(0xffff0000);
 ```
@@ -6637,6 +6664,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setStrokeWidth(5);
 ```
@@ -6653,7 +6681,7 @@ Obtains the stroke width of this pen. The width describes the thickness of the o
 
 | Type  | Description           |
 | ------ | -------------- |
-| number | Stroke width of the pen.|
+| number | Stroke width for the pen, in px.|
 
 **Example**
 
@@ -6668,7 +6696,7 @@ let width = pen.getWidth();
 
 setAntiAlias(aa: boolean) : void
 
-Enables anti-aliasing for this pen. Anti-aliasing makes the edges of the content smoother.
+Enables anti-aliasing for this pen. Anti-aliasing makes the edges of the content smoother. If this API is not called, anti-aliasing is disabled by default.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -6690,6 +6718,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setAntiAlias(true);
 ```
@@ -6743,6 +6772,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setAlpha(128);
 ```
@@ -6796,6 +6826,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 pen.setColorFilter(colorFilter);
@@ -6828,6 +6859,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6867,6 +6899,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6938,6 +6971,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -6987,6 +7021,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setBlendMode(drawing.BlendMode.SRC);
 ```
@@ -6995,7 +7030,7 @@ pen.setBlendMode(drawing.BlendMode.SRC);
 
 setJoinStyle(style: JoinStyle): void
 
-Sets the join style for this pen.
+Sets the join style for this pen. If this API is not called, the default join style is **MITER_JOIN**.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -7018,6 +7053,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7048,6 +7084,7 @@ Obtains the join style of this pen.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7064,7 +7101,7 @@ class DrawingRenderNode extends RenderNode {
 
 setCapStyle(style: CapStyle): void
 
-Sets the cap style for this pen.
+Sets the cap style for this pen. If this API is not called, the default cap style is **FLAT_CAP**.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -7072,7 +7109,7 @@ Sets the cap style for this pen.
 
 | Name| Type                    | Mandatory| Description                  |
 | ------ | ----------------------- | ---- | --------------------- |
-| style  | [CapStyle](#capstyle12)   | Yes  | A variable that describes the cap style.   |
+| style  | [CapStyle](#capstyle12)   | Yes  | Cap style.   |
 
 **Error codes**
 
@@ -7087,6 +7124,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7117,6 +7155,7 @@ Obtains the cap style of this pen.
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7155,6 +7194,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const pen = new drawing.Pen();
 pen.setDither(true);
 ```
@@ -7192,6 +7232,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let pen = new drawing.Pen();
 let pathSrc: drawing.Path = new drawing.Path();
 let pathDst: drawing.Path = new drawing.Path();
@@ -7282,7 +7323,7 @@ Sets a color for this brush.
 
 | Name| Type                                                | Mandatory| Description            |
 | ------ | ---------------------------------------------------- | ---- | ---------------- |
-| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. Each color channel is an integer ranging from 0 to 255.|
+| color  | [common2D.Color](js-apis-graphics-common2D.md#color) | Yes  | Color in ARGB format. The value of each color channel is an integer ranging from 0 to 255.|
 
 **Error codes**
 
@@ -7296,6 +7337,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 const color : common2D.Color = { alpha: 255, red: 255, green: 0, blue: 0 };
 const brush = new drawing.Brush();
 brush.setColor(color);
@@ -7330,6 +7372,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setColor(255, 255, 0, 0);
 ```
@@ -7360,6 +7403,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setColor(0xffff0000);
 ```
@@ -7419,7 +7463,7 @@ console.info('getHexColor: ', hex_color.toString(16));
 
 setAntiAlias(aa: boolean) : void
 
-Enables anti-aliasing for this brush. Anti-aliasing makes the edges of the content smoother.
+Enables anti-aliasing for this brush. Anti-aliasing makes the edges of the content smoother. If this API is not called, anti-aliasing is disabled by default.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -7441,6 +7485,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setAntiAlias(true);
 ```
@@ -7494,6 +7539,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setAlpha(128);
 ```
@@ -7547,6 +7593,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 let colorFilter = drawing.ColorFilter.createLinearToSRGBGamma();
 brush.setColorFilter(colorFilter);
@@ -7579,6 +7626,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7648,6 +7696,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { common2D, drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -7690,7 +7739,7 @@ class DrawingRenderNode extends RenderNode {
 
 setBlendMode(mode: BlendMode) : void
 
-Sets a blend mode for this brush.
+Sets a blend mode for this brush. If this API is not called, the default blend mode is **SRC_OVER**.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -7712,6 +7761,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 const brush = new drawing.Brush();
 brush.setBlendMode(drawing.BlendMode.SRC);
 ```
@@ -7742,6 +7792,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import {drawing} from '@kit.ArkGraphics2D';
+
 let brush = new drawing.Brush();
 let imgFilter = drawing.ImageFilter.createBlurImageFilter(5, 10, drawing.TileMode.DECAL);
 brush.setImageFilter(imgFilter);
@@ -7766,6 +7817,7 @@ Obtains the color filter of this brush.
 
 ```ts 
 import {drawing} from '@kit.ArkGraphics2D';
+
 let brush = new drawing.Brush();
 let setColorFilter = drawing.ColorFilter.createSRGBGammaToLinear();
 brush.setColorFilter(setColorFilter);
@@ -8058,7 +8110,7 @@ Inverts this matrix and returns the result.
 
 | Type                       | Description                 |
 | --------------------------- | -------------------- |
-| Boolean | Check result. The value **true** means that the matrix is revertible and the **matrix** object is filled with the inverted matrix, and **false** means that the matrix is not revertible and the **matrix** object is filled with the current matrix (not changed).|
+| Boolean | Check result. The value **true** means that the matrix is revertible and the **matrix** object is set to its inverse, and **false** means that the matrix is not revertible and the **matrix** object remains unchanged.|
 
 **Error codes**
 
@@ -8142,7 +8194,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 for (let i = 0; i < 9; i++) {
     console.info("matrix "+matrix.getValue(i).toString());
@@ -8176,7 +8229,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 let degree: number = 2;
 let px: number = 3;
@@ -8213,7 +8267,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 let sx: number = 2;
 let sy: number = 0.5;
@@ -8249,7 +8304,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 let dx: number = 3;
 let dy: number = 4;
@@ -8284,7 +8340,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 let degree: number = 2;
 let px: number = 3;
@@ -8321,7 +8378,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 let sx: number = 2;
 let sy: number = 0.5;
@@ -8357,7 +8415,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 let dx: number = 3;
 let dy: number = 4;
@@ -8376,7 +8435,8 @@ Resets this matrix to an identity matrix.
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 matrix.postScale(2, 3, 4, 5);
 matrix.reset();
@@ -8414,7 +8474,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing,common2D} from "@kit.ArkGraphics2D"
+import {drawing,common2D} from "@kit.ArkGraphics2D";
+
 let src: Array<common2D.Point> = [];
 src.push({x: 15, y: 20});
 src.push({x: 20, y: 15});
@@ -8442,7 +8503,8 @@ Obtains all element values of this matrix.
 **Example**
 
 ```ts
-import {drawing} from "@kit.ArkGraphics2D"
+import {drawing} from "@kit.ArkGraphics2D";
+
 let matrix = new drawing.Matrix();
 console.info("matrix "+ matrix.getAll());
 ```
@@ -8481,7 +8543,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing,common2D} from "@kit.ArkGraphics2D"
+import {drawing,common2D} from "@kit.ArkGraphics2D";
+
 let dst: common2D.Rect = { left: 100, top: 20, right: 130, bottom: 60 };
 let src: common2D.Rect = { left: 100, top: 80, right: 130, bottom: 120 };
 let matrix = new drawing.Matrix();
@@ -8510,7 +8573,7 @@ Sets this matrix to a transformation matrix that maps a source rectangle to a de
 
 | Type                 | Description          |
 | --------------------- | -------------- |
-| boolean | Check result. The value **true** means that the matrix can represent the mapping, and **false** means the opposite. In particular, if either the width or the height of the source rectangle is less than or equal to 0, the API returns **false** and sets the matrix to an identity matrix. If either the width or height of the destination rectangle is less than or equal to 0, the API returns **true** and sets the matrix to a matrix with all values 0, except for a perspective scaling coefficient of 1.|
+| boolean | Check result. The value **true** means that the matrix can represent the mapping, and **false** means the opposite. If either the width or the height of the source rectangle is less than or equal to 0, the API returns **false** and sets the matrix to an identity matrix. If either the width or height of the destination rectangle is less than or equal to 0, the API returns **true** and sets the matrix to a matrix with all values 0, except for a perspective scaling coefficient of 1.|
 
 **Error codes**
 
@@ -8523,7 +8586,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing,common2D} from "@kit.ArkGraphics2D"
+import {drawing,common2D} from "@kit.ArkGraphics2D";
+
 let src: common2D.Rect = { left: 100, top: 100, right: 300, bottom: 300 };
 let dst: common2D.Rect = { left: 200, top: 200, right: 600, bottom: 600 };
 let scaleToFit: drawing.ScaleToFit = drawing.ScaleToFit.FILL_SCALE_TO_FIT
@@ -8566,7 +8630,8 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```ts
-import {drawing,common2D} from "@kit.ArkGraphics2D"
+import {drawing,common2D} from "@kit.ArkGraphics2D";
+
 let srcPoints: Array<common2D.Point> = [ {x: 10, y: 20}, {x: 200, y: 150} ];
 let dstPoints: Array<common2D.Point> = [{ x:0, y: 10 }, { x:300, y: 600 }];
 let matrix = new drawing.Matrix();
@@ -8639,6 +8704,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let roundRect : drawing.RoundRect = new drawing.RoundRect({left: 0, top: 0, right: 300, bottom: 300}, 50, 50);
 roundRect.setCorner(drawing.CornerPos.TOP_LEFT_POS, 150, 150);
 ```
@@ -8675,6 +8741,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let roundRect : drawing.RoundRect = new drawing.RoundRect({left: 0, top: 0, right: 300, bottom: 300}, 50, 50);
 let cornerRadius = roundRect.getCorner(drawing.CornerPos.BOTTOM_LEFT_POS);
 console.info("getCorner---"+cornerRadius.x)
@@ -8708,6 +8775,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 ```ts
 import { drawing } from '@kit.ArkGraphics2D';
+
 let roundRect : drawing.RoundRect = new drawing.RoundRect({left: 0, top: 0, right: 300, bottom: 300}, 50, 50);
 roundRect.offset(100, 100);
 ```
@@ -8750,6 +8818,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8802,6 +8871,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8857,6 +8927,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8913,6 +8984,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -8965,6 +9037,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -9021,6 +9094,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 ```ts
 import { RenderNode } from '@kit.ArkUI';
 import { drawing } from '@kit.ArkGraphics2D';
+
 class DrawingRenderNode extends RenderNode {
   draw(context : DrawContext) {
     const canvas = context.canvas;
@@ -9143,7 +9217,7 @@ let shaderEffect = drawing.ShaderEffect.createLinearGradient(startPt, endPt, [0x
 
 static createRadialGradient(centerPt: common2D.Point, radius: number, colors: Array\<number>, mode: TileMode, pos?: Array\<number> | null, matrix?: Matrix | null): ShaderEffect;
 
-Creates a **ShaderEffect** object that generates a radial gradient based on the center and radius of a circle. The radial gradient transitions colors from the center to the ending shape in a radial manner.
+Creates a **ShaderEffect** object that generates a radial gradient based on the center and radius of a circle. A radial gradient refers to the color transition that spreads out gradually from the center of a circle.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
@@ -9191,7 +9265,7 @@ static createSweepGradient(centerPt: common2D.Point, colors: Array\<number>,
   mode: TileMode, startAngle: number, endAngle: number, pos?: Array\<number> | null,
   matrix?: Matrix | null): ShaderEffect;
 
-Creates a **ShaderEffect** object that generates a sweep gradient based on the center. A sweep gradient paints a gradient of colors in a clockwise or counterclockwise direction based on a given circle center.
+Creates a **ShaderEffect** object that generates a color sweep gradient around a given center point, either in a clockwise or counterclockwise direction.
 
 **System capability**: SystemCapability.Graphics.Drawing
 
