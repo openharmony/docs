@@ -297,7 +297,7 @@ struct Page1 {
 ## Properly Controlling the Number of Components Associated with Object State Variables
 
 
-When a complex object is defined as a state variable, take care to control the number of components associated with the object—a change to any property of the object will cause a re-render of these components, even when they do not directly use the changed property. To reduce redundant re-renders and help deliver a smooth experience, split the complex object as appropriate and control the number of components associated with the object. For details, see [Precisely Controlling Render Scope](../../performance/precisely-control-render-scope.md) and [Proper Use of State Management](properly-use-state-management-to-develope.md).
+When a complex object is defined as a state variable, take care to control the number of components associated with the object—a change to any property of the object will cause a re-render of these components, even when they do not directly use the changed property. To reduce redundant re-renders and help deliver a smooth experience, split the complex object as appropriate and control the number of components associated with the object. For details, see [Proper Use of State Management](properly-use-state-management-to-develope.md).
 
 ## Querying the Number of Components Associated with a State Variable
 
