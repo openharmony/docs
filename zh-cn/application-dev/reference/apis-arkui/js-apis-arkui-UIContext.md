@@ -7995,6 +7995,8 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 >
 > 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
 >
+> 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。
+>
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -8005,7 +8007,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>1. 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。<br/>2. 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。 |
 | partialUpdate | boolean | 否 | menu弹窗更新方式，默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
