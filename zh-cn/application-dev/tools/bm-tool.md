@@ -1082,6 +1082,24 @@ error: install failed due to singleton not same.
 
 方案2：更新包调整singleton配置，与已安装包配置一致，重新打包，再更新应用包。<!--DelEnd-->
 
+<!--Del-->
+### 9568294 应用类别不一致导致的安装失败
+**错误信息**
+
+error: install failed due to apptype not same.
+
+**错误描述**
+
+应用安装时，应用已安装HAP包和待安装HAP包的签名文件中[app-feature](../security/app-provision-structure.md)配置不一致，导致安装失败。
+
+**可能原因**
+
+应用已安装HAP包和待安装HAP包包名一致，但签名文件中app-feature配置不一致。
+
+**处理步骤**
+  
+* 方案1：卸载已安装的HAP包，再安装新的HAP包。
+* 方案2：修改待安装HAP包的签名文件中的app-feature字段，确保与已安装包配置一致，重新打包、签名[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)，再重试安装。<!--DelEnd-->
 
 ### 9568297 由于设备sdk版本较低导致安装失败
 **错误信息**
