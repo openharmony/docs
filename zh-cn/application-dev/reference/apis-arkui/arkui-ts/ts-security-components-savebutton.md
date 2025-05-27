@@ -158,7 +158,7 @@ setIcon(icon: Resource): SaveButtonAttribute
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| icon | [Resource](ts-types.md#resource) |是 |自定义图标资源信息。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则自定义图标设置不生效，保存控件保持默认样式。详见[SaveButtonOptions](#savebuttonoptions)说明。|
+| icon | [Resource](ts-types.md#resource) |是 |自定义图标资源信息，仅支持Resource类型的数据源。<br/>可支持的图片格式：png、jpg、jpeg、bmp、svg、webp、gif和heif等，支持的图片格式范围见[Image](ts-basic-components-image.md)。当资源为非图片资源或不支持的格式时，图标显示为空白。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则自定义图标设置不生效，保存控件保持默认样式。详见[SaveButtonOptions](#savebuttonoptions)说明。|
 
 **返回值：**
 
@@ -204,7 +204,7 @@ iconSize(size: Dimension | SizeOptions): SaveButtonAttribute
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。<br/>- 保存控件提供的系统图标，宽高默认值均为16vp。宽高设置值不一致时，取其中最小值作为宽高值；宽高仅设置其中一个值时，取该值作为宽高值。<br/>- 对于自定义图标，宽默认值为16vp，高根据自定义图标实际尺寸做自适应处理。宽高仅设置其中一个值时，未设置的另一个值做自适应处理；宽高均设置时按照指定宽高生效。|
+| size | [Dimension](ts-types.md#dimension10) \| [SizeOptions](ts-types.md#sizeoptions) |是 |图标尺寸，不支持设置百分比字符串。<br/>- 保存控件提供的系统图标，宽高默认值均为16vp。宽高设置值不一致时，取其中最小值作为宽高值；宽高仅设置其中一个值时，取该值作为宽高值。<br/>- 对于自定义图标，宽默认值为16vp，高根据自定义图标实际尺寸做自适应处理。宽高仅设置其中一个值时，未设置的另一个值做自适应处理；宽高均设置时按照指定宽高生效，当设置的宽高比例与自定义图标的宽高比例不一致时，图片被截断。|
 
 **返回值：**
 
@@ -228,7 +228,7 @@ iconBorderRadius(radius: Dimension | BorderRadiuses): SaveButtonAttribute
 
 | 参数名 | 类型                   | 必填 | 说明                   |
 |------------|------|-------|---------|
-| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) |是 |保存控件边框圆角半径。支持设置四个圆角。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则圆角半径设置不生效。 |
+| radius | [Dimension](ts-types.md#dimension10) \| [BorderRadiuses](ts-types.md#borderradiuses9) |是 |保存控件边框圆角半径，支持设置四个圆角。<br/>如果应用无ohos.permission.CUSTOMIZE_SAVE_BUTTON权限，则圆角半径设置不生效。 |
 
 **返回值：**
 
