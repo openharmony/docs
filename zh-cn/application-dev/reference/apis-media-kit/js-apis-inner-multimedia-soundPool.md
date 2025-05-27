@@ -1775,7 +1775,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ### on('errorOccurred')<sup>20+</sup>
 
-on(type: 'errorOccurred', callback: Callback<ErrorInfo>): void
+on(type: 'errorOccurred', callback: Callback\<ErrorInfo>): void
 
 监听[SoundPool](#soundpool)的错误事件，并返回包含错误码，错误发生阶段，资源ID，音频流ID的[errorInfo](#errorinfo20)。
 
@@ -1786,7 +1786,7 @@ on(type: 'errorOccurred', callback: Callback<ErrorInfo>): void
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | type     | string   | 是   | 错误事件回调类型，支持的事件：'errorOccurred'，用户操作和系统都会触发此事件。 |
-| callback | Callback<[ErrorInfo](#errorinfo20)> | 是   | 错误事件回调方法：使用播放器的过程中发生错误，并提供错误信息[errorInfo](#errorinfo20)。 |
+| callback | Callback\<[ErrorInfo](#errorinfo20)> | 是   | 错误事件回调方法：使用播放器的过程中发生错误，并提供错误信息[errorInfo](#errorinfo20)。 |
 
 **示例：**
 
@@ -1820,7 +1820,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 ### off('errorOccurred')<sup>20+</sup>
 
- off(type: 'errorOccurred', callback?: Callback<ErrorInfo>): void
+ off(type: 'errorOccurred', callback?: Callback\<ErrorInfo>): void
 
 取消监听音频池的错误事件。
 
@@ -1831,7 +1831,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
 | type   | string | 是   | 错误事件回调类型，取消注册的事件：'errorOccurred'。 |
-| callback | Callback<[ErrorInfo](#errorinfo20)> | 否   | 错误事件回调方法：使用播放器的过程中发生错误，并提供错误信息[errorInfo](#errorinfo20)。 |
+| callback | Callback\<[ErrorInfo](#errorinfo20)> | 否   | 错误事件回调方法：使用播放器的过程中发生错误，并提供错误信息[errorInfo](#errorinfo20)。 |
 
 **示例：**
 
