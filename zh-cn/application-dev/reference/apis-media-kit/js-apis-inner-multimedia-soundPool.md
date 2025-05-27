@@ -1806,7 +1806,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
   } else {
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
-    soundPool.on('errorOccurred', (errorInfo: ErrorInfo) => {
+    soundPool.on('errorOccurred', (errorInfo) => {
       console.error('error happened,and error message is :' + errorInfo.errorCode.message)
       console.error('error happened,and error code is :' + errorInfo.errorCode.code)
       console.error('error happened,and errorType is :' + errorInfo.errorType)
