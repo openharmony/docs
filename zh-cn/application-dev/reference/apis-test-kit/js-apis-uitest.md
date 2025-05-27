@@ -3366,7 +3366,7 @@ getDisplaySize(): Promise\<Point>
 
 | 类型                       | 说明                                    |
 | -------------------------- | --------------------------------------- |
-| Promise\<[Point](#point9)> | Promise对象，返回当前设备的屏幕大小。 |
+| Promise\<[Point](#point9)> | Promise对象，返回Point对象，当前设备屏幕的大小为Point.x * Point.y。 |
 
 **错误码：**
 
@@ -3483,7 +3483,7 @@ getDisplayDensity(displayId: number): Promise\<Point>
 
 | 类型                       | 说明                                      |
 | -------------------------- | ----------------------------------------- |
-| Promise\<[Point](#point9)> | 以Promise的形式返回当前设备指定屏幕的分辨率。 |
+| Promise\<[Point](#point9)> | Promise对象，返回Point对象，当前设备指定屏幕的分辨率为Point.x*Point.y。 |
 
 **错误码：**
 
