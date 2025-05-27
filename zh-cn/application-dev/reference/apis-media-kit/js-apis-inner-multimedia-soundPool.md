@@ -50,10 +50,15 @@ import { audio } from '@kit.AudioKit';
 
 | 名称            | 类型                                     | 只读 | 可选 | 说明                                                         |
 | --------------- | ---------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| errorCode | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror)   | 否  | 否  |    错误码。    |
+| errorCode | T  | 否  | 否  |    错误码。    |
 | errorType | [ErrorType](#errortype20)    | 否  | 是  | 表示错误发生阶段。 |
 | soundId  | number | 否  | 是  |  发生错误的资源ID，load方法能够获取soundId。    |
 | streamId | number  | 否  | 是  | 发生错误的音频流ID，play方法能够获取streamId。 |
+
+> **说明：**
+>
+> errorCode的类型T为[BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror)类型。
+
 
 ## SoundPool
 
