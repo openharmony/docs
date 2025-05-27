@@ -2652,7 +2652,7 @@ normalize(text: string): string
 
 ### constructor<sup>11+</sup>
 
-constructor(icsPath: string)
+constructor(icsPath: String)
 
 创建HolidayManager对象，用于解析节假日数据。
 
@@ -2664,7 +2664,7 @@ constructor(icsPath: string)
 
 |   参数名  |      类型      | 必填 |     说明      |
 | --------- | ------------- | ---- | ------------- |
-| icsPath   | string | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径。  |
+| icsPath   | String | 是   | 在设备上有应用读取权限的iCalendar格式的ics文件路径。  |
 
 **错误码：**
 
