@@ -55,6 +55,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **Example**
@@ -133,6 +134,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **Example**
@@ -754,6 +756,8 @@ displayBadge(bundle: BundleOption, enable: boolean, callback: AsyncCallback\<voi
 
 Sets whether to enable the notification badge for a specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -777,6 +781,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -806,6 +811,8 @@ displayBadge(bundle: BundleOption, enable: boolean): Promise\<void\>
 
 Sets whether to enable the notification badge for a specified application. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -834,6 +841,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -860,6 +868,8 @@ isBadgeDisplayed(bundle: BundleOption, callback: AsyncCallback\<boolean\>): void
 
 Checks whether the notification badge is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -882,6 +892,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -911,6 +922,8 @@ isBadgeDisplayed(bundle: BundleOption): Promise\<boolean\>
 
 Checks whether the notification badge is enabled for a specified application. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -938,6 +951,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -964,6 +978,8 @@ notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 setSlotFlagsByBundle(bundle: BundleOption, slotFlags: number): Promise\<void\>
 
 Sets the notification slot for a specified application. This API uses a promise to return the result.
+
+This API is not supported on wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -993,6 +1009,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1024,6 +1041,8 @@ Sets the notification slot for a specified application. This API uses an asynchr
 
 Before setting a notification slot, create a slot through [addSlot](#notificationmanageraddslot).
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1047,6 +1066,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1081,6 +1101,8 @@ Sets the notification slot for a specified application. This API uses a promise 
 
 Before setting a notification slot, create a slot through [addSlot](#notificationmanageraddslot).
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1109,6 +1131,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1140,6 +1163,8 @@ getSlotFlagsByBundle(bundle: BundleOption): Promise\<number\>
 
 Obtains the notification slot flag of a specified application. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1167,6 +1192,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1193,6 +1219,8 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<Notificat
 
 Obtains the notification slots of a specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1215,6 +1243,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1244,6 +1273,8 @@ getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 Obtains the notification slots of a specified application. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1271,6 +1302,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1298,6 +1330,8 @@ getSlotNumByBundle(bundle: BundleOption, callback: AsyncCallback\<number\>): voi
 
 Obtains the number of notification slots of a specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1320,6 +1354,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1351,6 +1386,8 @@ getSlotNumByBundle(bundle: BundleOption): Promise\<number\>
 
 Obtains the number of notification slots of a specified application. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1378,6 +1415,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -1720,6 +1758,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, callback: AsyncCallback\<void\>): vo
 
 Sets the DND time. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1742,6 +1782,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1775,6 +1816,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate): Promise\<void\>
 
 Sets the DND time. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1803,6 +1846,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1832,6 +1876,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number, callback: AsyncCallb
 
 Sets the DND time for a specified user. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1855,6 +1901,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1892,6 +1939,8 @@ setDoNotDisturbDate(date: DoNotDisturbDate, userId: number): Promise\<void\>
 
 Sets the DND time for a specified user. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1920,6 +1969,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1954,6 +2004,8 @@ getDoNotDisturbDate(callback: AsyncCallback\<DoNotDisturbDate\>): void
 
 Obtains the DND time. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -1975,6 +2027,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2002,6 +2055,8 @@ getDoNotDisturbDate(): Promise\<DoNotDisturbDate\>
 
 Obtains the DND time. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2022,6 +2077,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2046,6 +2102,8 @@ getDoNotDisturbDate(userId: number, callback: AsyncCallback\<DoNotDisturbDate\>)
 
 Obtains the DND time of a specified user. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2068,6 +2126,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2099,6 +2158,8 @@ getDoNotDisturbDate(userId: number): Promise\<DoNotDisturbDate\>
 
 Obtains the DND time of a specified user. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2126,6 +2187,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2154,6 +2216,8 @@ notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.
 
 Checks whether DND mode is supported. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2175,6 +2239,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2201,6 +2266,8 @@ isSupportDoNotDisturbMode(): Promise\<boolean\>
 
 Checks whether DND mode is supported. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2221,6 +2288,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2242,6 +2310,8 @@ notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 setDistributedEnable(enable: boolean, callback: AsyncCallback\<void\>): void
 
 Sets whether to enable distributed notification on this device. This API uses an asynchronous callback to return the result.
+
+This API is not supported on TVs and wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2265,6 +2335,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2291,6 +2362,8 @@ notificationManager.setDistributedEnable(enable, setDistributedEnableCallback);
 setDistributedEnable(enable: boolean): Promise\<void>
 
 Sets whether to enable distributed notification on this device. This API uses a promise to return the result.
+
+This API is not supported on TVs and wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -2319,6 +2392,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2343,6 +2417,8 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean, callback: As
 
 Sets whether to enable distributed notification for a specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2366,6 +2442,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2399,6 +2476,8 @@ setDistributedEnableByBundle(bundle: BundleOption, enable: boolean): Promise\<vo
 
 Sets whether to enable distributed notification for a specified application. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2427,6 +2506,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2455,6 +2535,8 @@ isDistributedEnabledByBundle(bundle: BundleOption, callback: AsyncCallback\<bool
 
 Checks whether distributed notification is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2477,6 +2559,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2507,6 +2590,8 @@ isDistributedEnabledByBundle(bundle: BundleOption): Promise\<boolean>
 
 Checks whether distributed notification is enabled for a specified application. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2534,6 +2619,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -2562,6 +2648,8 @@ getDeviceRemindType(callback: AsyncCallback\<DeviceRemindType\>): void
 
 Obtains the notification reminder type. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2583,6 +2671,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2608,6 +2697,8 @@ getDeviceRemindType(): Promise\<DeviceRemindType\>
 
 Obtains the notification reminder type. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -2628,6 +2719,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2686,6 +2778,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **Example**
@@ -2767,6 +2860,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **Example**
@@ -2843,6 +2937,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                              |
 
 **Example**
@@ -3109,6 +3204,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 Sets the enabled status of a slot type for the specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3133,6 +3230,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3165,6 +3263,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 Sets the enabled status of a slot type for the specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3190,6 +3290,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3223,6 +3324,8 @@ setNotificationEnableSlot(bundle: BundleOption, type: SlotType, enable: boolean,
 
 Sets the enabled status of a slot type for the specified application. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3253,6 +3356,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3281,6 +3385,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncC
 
 Checks whether a specified notification slot type is enabled for a specified application. This API uses an asynchronous callback to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API.
@@ -3304,6 +3410,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3335,6 +3442,8 @@ isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolea
 
 Checks whether a specified notification slot type is enabled for a specified application. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3363,6 +3472,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3389,6 +3499,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: 
 
 Sets whether to enable the notification sync feature for devices where the application is not installed. This API uses an asynchronous callback to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3412,6 +3524,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3442,6 +3555,8 @@ setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<
 
 Sets whether to enable the notification sync feature for devices where the application is not installed. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3470,6 +3585,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3696,7 +3812,7 @@ try{
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
   },);
-} catch (err) {
+} catch (err: BusinessError) {
   console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
@@ -3749,6 +3865,8 @@ triggerSystemLiveView(bundle: BundleOption, notificationId: number, buttonOption
 
 Triggers a system live view notification. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3778,6 +3896,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3813,6 +3932,8 @@ subscribeSystemLiveView(subscriber: SystemLiveViewSubscriber): Promise\<void>
 
 Subscribes to the system live view notification. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API.
@@ -3837,6 +3958,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -3865,6 +3987,8 @@ notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 setDistributedEnabledByBundle(bundle: BundleOption, deviceType: string, enable: boolean): Promise<void\>
 
 Sets whether a specified application supports cross-device collaboration. This API uses a promise to return the result.
+
+This API is not supported on TVs and wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -3895,6 +4019,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3926,6 +4051,8 @@ isDistributedEnabledByBundle(bundle: BundleOption, deviceType: string): Promise<
 
 Obtains whether a specified application supports cross-device collaboration. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -3954,6 +4081,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -3984,6 +4112,8 @@ setSmartReminderEnabled(deviceType: string, enable: boolean): Promise<void\>
 
 Sets a smart reminder for cross-device collaboration. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -4012,6 +4142,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4038,6 +4169,8 @@ notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
 isSmartReminderEnabled(deviceType: string): Promise<boolean\>
 
 Obtains a smart reminder for cross-device collaboration. This API uses a promise to return the result.
+
+This API is not supported on TVs and wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -4066,6 +4199,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4092,6 +4226,8 @@ setBadgeNumberByBundle(bundle: BundleOption, badgeNumber: number): Promise\<void
 
 Sets the badge count for other applications. This API uses a promise to return the result.
 
+This API is not supported on wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **System API**: This is a system API.
@@ -4117,6 +4253,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4149,6 +4286,8 @@ Obtains a notification slot of a specified application. This API uses a promise 
 
 This API is not supported on wearables.
 
+Before obtaining the notification slot, create a slot through [addSlot](#notificationmanageraddslot).
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -4177,6 +4316,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -4207,6 +4347,8 @@ addDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void\>
 
 Adds the Do Not Disturb profile configuration information. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -4234,6 +4376,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4275,6 +4418,8 @@ removeDoNotDisturbProfile(templates: Array\<DoNotDisturbProfile>): Promise\<void
 
 Deletes the Do Not Disturb profile configuration. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
@@ -4302,6 +4447,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4331,6 +4477,8 @@ setAdditionalConfig(key: string, value: string): Promise\<number\>
 
 Sets the additional system configuration information of the notification. This API uses a promise to return the result.
 
+This API is not supported on TVs and wearables.
+
 **System capability**: SystemCapability.Notification.Notification
 
 **Required permissions**: ohos.permission.NOTIFICATION_AGENT_CONTROLLER
@@ -4359,6 +4507,7 @@ For details about the error codes, see [Notification Error Codes](./errorcode-no
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4380,6 +4529,8 @@ notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundl
 getDoNotDisturbProfile(id: number): Promise\<DoNotDisturbProfile\>
 
 Queries the configuration information about the Do Not Disturb profile. This API uses a promise to return the result.
+
+This API is not supported on TVs and wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -4408,6 +4559,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -4422,6 +4574,219 @@ notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.Do
   console.info("getDoNotDisturbProfile success: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
   console.error(`getDoNotDisturbProfile failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## notificationManager.disableNotificationFeature<sup>18+</sup>
+
+disableNotificationFeature(disabled: boolean, bundleList: Array\<string\>): Promise\<void\>
+
+Disables the application from publishing notifications by adding the application bundle name to the permission control list. This function can be disabled as required.
+
+This API is not supported on wearables.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| disabled | boolean | Yes  | Whether to enable the permission control list for publishing notifications (**true**: enabled; **false**: disabled).|
+| bundleList | Array\<string\> | Yes  | Application list under the permission control list. The bundle name is used to represent the application.|
+
+**Return value**
+
+| Type           | Description                    |
+|-----------------|-------------------------|
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 801 | Capability not supported. |
+| 1600001      | Internal error.                     |
+| 1600002      | Marshalling or unmarshalling error. |
+
+**Example**
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let disabled: boolean = true;
+let bundleList: Array<string> = ["com.example.myapplication"];
+try {
+  notificationManager.disableNotificationFeature(disabled, bundleList).then(() => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `disableNotificationFeature success.`);
+  }).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `disableNotificationFeature failed, code is ${err.code}, message is ${err.message}`);
+  });
+} catch (err) {
+  hilog.error(0x0000, 'testTag', '%{public}s', `testTag failed, code is ${err.code}, message is ${err.message}`);
+}
+```
+
+## notificationManager.setTargetDeviceStatus<sup>18+</sup>
+
+setTargetDeviceStatus(deviceType: string, status: number): Promise\<void\>
+
+Sets the status of a device after it is successfully connected. Device status determines the notification mode of the current device when a notification is published.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| deviceType | string | Yes  | Device type. Currently, only **headset** (wearable audio device), **liteWearable** (lite wearables), **wearable** (smart wearables), and **current** (local device) are supported.|
+| status | number | Yes  | Device status.<br>- Bit 0: whether the device is in use. The value **0** indicates that the device is available; **1** indicates that the device is in use.<br>- Bit 1: whether the device user is the owner. The value **0** indicates that the user is not the owner; **1** indicates the opposite.<br>- Bit 2: whether the device is in the Do Not Disturb mode. The value **0** indicates that the device is not in the Do Not Disturb mode; **1** indicates the opposite.|
+
+**Return value**
+
+| Type           | Description                    |
+|-----------------|-------------------------|
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.setTargetDeviceStatus("current", 1).then(() => {
+  console.info(`Succeeded in setting target device status.`);
+}).catch((err: BusinessError) => {
+  console.error(`Failed to set target device status. Code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## notificationManager.setDistributedEnabledBySlot<sup>18+</sup>
+
+setDistributedEnabledBySlot(slot: SlotType, deviceType: string, enabled: boolean): Promise\<void\>
+
+Sets whether the notification of a specified slot can be sent to devices of a specified type through cross-device collaboration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| slot | [SlotType](js-apis-notificationManager.md#slottype) | Yes  | Types of the notification slot.|
+| deviceType | string | Yes  | Device type. The value can be **wearable**, **litewearable**, or **headset**.|
+| enabled | boolean | Yes  | Whether to enable cross-device collaboration for notifications. The value **true** indicates that the function is enabled; **false** indicates the opposite.|
+
+**Return value**
+
+| Type           | Description                    |
+|-----------------|-------------------------|
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let slot: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+let deviceType: string = 'wearable';
+let enabled: boolean = true;
+
+notificationManager.setDistributedEnabledBySlot(slot, deviceType, enabled).then(() => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `setDistributedEnabledBySlot success.`);
+}).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `setDistributedEnabledBySlot failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
+## notificationManager.isDistributedEnabledBySlot<sup>18+</sup>
+
+isDistributedEnabledBySlot(slot: SlotType, deviceType: string): Promise\<boolean\>
+
+Queries whether notifications of a specified slot can be sent to devices of a specified type through cross-device collaboration. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name  | Type                                                        | Mandatory| Description                    |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------ |
+| slot | [SlotType](js-apis-notificationManager.md#slottype) | Yes  | Types of the notification slot.|
+| deviceType | string | Yes  | Device type. The value can be **wearable**, **litewearable**, or **headset**.|
+
+**Return value**
+
+| Type           | Description                    |
+|-----------------|-------------------------|
+| Promise\<boolean\> | Promise used to return the result. The value **true** indicates that cross-device collaboration is supported; **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 202      | Permission verification failed. A non-system application calls a system API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { notificationManager } from '@kit.NotificationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
+
+let slot: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
+let deviceType: string = 'wearable';
+
+notificationManager.isDistributedEnabledBySlot(slot, deviceType).then((data: boolean) => {
+    hilog.info(0x0000, 'testTag', '%{public}s', `isDistributedEnabledBySlot success.`);
+}).catch((err: BusinessError) => {
+    hilog.error(0x0000, 'testTag', '%{public}s', `isDistributedEnabledBySlot failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 

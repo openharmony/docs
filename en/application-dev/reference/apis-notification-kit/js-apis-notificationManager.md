@@ -27,7 +27,7 @@ If the ID and label of the new notification are the same as that of the previous
 | Name    | Type                                       | Mandatory| Description                                       |
 | -------- | ------------------------------------------- | ---- | ------------------------------------------- |
 | request  | [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
-| callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                       |
+| callback | AsyncCallback\<void\>                       | Yes  | Callback used to return the result.                       |
 
 **Error codes**
 
@@ -47,6 +47,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                                 |
 
 **Example**
@@ -81,7 +82,7 @@ notificationManager.publish(notificationRequest, publishCallback);
 
 publish(request: NotificationRequest): Promise\<void\>
 
-Publish a notification. This API uses a promise to return the result.
+Publish a notification. This API uses a promise to return the URI of the file in the destination directory.
 
 If the ID and label of the new notification are the same as that of the previous notification, the new one replaces the previous one.
 
@@ -117,6 +118,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600014  | No permission.                                       |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
+| 1600020  | The application is not allowed to publish notifications due to permission control settings. |
 | 2300007  | Network unreachable.                                 |
 
 **Example**
@@ -158,7 +160,7 @@ Cancels a notification with the specified ID and label. This API uses an asynchr
 | -------- | --------------------- | ---- | -------------------- |
 | id       | number                | Yes  | Notification ID.              |
 | label    | string                | Yes  | Notification label.            |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -192,7 +194,7 @@ notificationManager.cancel(0, "label", cancelCallback);
 
 cancel(id: number, label?: string): Promise\<void\>
 
-Cancels a notification with the specified ID and optional label. This API uses a promise to return the result.
+Cancels a notification with the specified ID and optional label. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -246,7 +248,7 @@ Cancels a notification with the specified ID. This API uses an asynchronous call
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
 | id       | number                | Yes  | Notification ID.              |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -288,7 +290,7 @@ Cancels all notifications of this application. This API uses an asynchronous cal
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -321,7 +323,7 @@ notificationManager.cancelAll(cancelAllCallback);
 
 cancelAll(): Promise\<void\>
 
-Cancels all notifications of this application. This API uses a promise to return the result.
+Cancels all notifications of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -366,7 +368,7 @@ Adds a notification slot of a specified type. This API uses an asynchronous call
 | Name    | Type                 | Mandatory| Description                  |
 | -------- | --------------------- | ---- | ---------------------- |
 | type     | [SlotType](#slottype)              | Yes  | Type of the notification slot to add.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.  |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.  |
 
 **Error codes**
 
@@ -400,7 +402,7 @@ notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, a
 
 addSlot(type: SlotType): Promise\<void\>
 
-Adds a notification slot of a specified type. This API uses a promise to return the result.
+Adds a notification slot of a specified type. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -452,8 +454,8 @@ Obtains a notification slot of a specified type. This API uses an asynchronous c
 
 | Name    | Type                             | Mandatory| Description                                                       |
 | -------- | --------------------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)                          | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
-| callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained **NotificationSlot**; otherwise, **err** is an error object.                                       |
+| slotType | [SlotType](#slottype)                          | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| callback | AsyncCallback\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\> | Yes  | Callback used to return the result.                                       |
 
 **Error codes**
 
@@ -487,7 +489,7 @@ notificationManager.getSlot(slotType, getSlotCallback);
 
 getSlot(slotType: SlotType): Promise\<NotificationSlot\>
 
-Obtains a notification slot of a specified type. This API uses a promise to return the result.
+Obtains a notification slot of a specified type. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -495,7 +497,7 @@ Obtains a notification slot of a specified type. This API uses a promise to retu
 
 | Name    | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
+| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
 
 **Return value**
 
@@ -539,7 +541,7 @@ Obtains all notification slots of this application. This API uses an asynchronou
 
 | Name    | Type                             | Mandatory| Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the obtained **NotificationSlot** array; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Yes  | Callback used to return all notification slots of the current application.|
 
 **Error codes**
 
@@ -573,7 +575,7 @@ notificationManager.getSlots(getSlotsCallback);
 
 getSlots(): Promise\<Array\<NotificationSlot>>
 
-Obtains all notification slots of this application. This API uses a promise to return the result.
+Obtains all notification slots of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -581,7 +583,7 @@ Obtains all notification slots of this application. This API uses a promise to r
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Promise used to return the **NotificationSlot** array.|
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>\> | Promise used to return all notification slots of the current application.|
 
 **Error codes**
 
@@ -617,8 +619,8 @@ Removes a notification slot of a specified type for this application. This API u
 
 | Name    | Type                 | Mandatory| Description                                                       |
 | -------- | --------------------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype)              | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                                       |
+| slotType | [SlotType](#slottype)              | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.                                       |
 
 **Error codes**
 
@@ -652,7 +654,7 @@ notificationManager.removeSlot(slotType, removeSlotCallback);
 
 removeSlot(slotType: SlotType): Promise\<void\>
 
-Removes a notification slot of a specified type for this application. This API uses a promise to return the result.
+Removes a notification slot of a specified type for this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -660,7 +662,7 @@ Removes a notification slot of a specified type for this application. This API u
 
 | Name    | Type    | Mandatory| Description                                                       |
 | -------- | -------- | ---- | ----------------------------------------------------------- |
-| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, such as social communication, service notification, content consultation, and so on.|
+| slotType | [SlotType](#slottype) | Yes  | Type of a notification slot, including social communication, service notification, and content consultation.|
 
 **Return value**
 
@@ -704,7 +706,7 @@ Removes all notification slots for this application. This API uses an asynchrono
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -736,7 +738,7 @@ notificationManager.removeAllSlots(removeAllSlotsCallback);
 
 removeAllSlots(): Promise\<void\>
 
-Removes all notification slots for this application. This API uses a promise to return the result.
+Removes all notification slots for this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -815,7 +817,7 @@ notificationManager.isNotificationEnabled(isNotificationEnabledCallback);
 
 isNotificationEnabled(): Promise\<boolean\>
 
-Checks whether notification is enabled for the specified application. This API uses a promise to return the result.
+Checks whether notification is enabled for the specified application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -853,7 +855,7 @@ notificationManager.isNotificationEnabled().then((data: boolean) => {
 
 isNotificationEnabledSync(): boolean
 
-Checks whether notification is enabled for the specified application. This API returns the result synchronously.
+Synchronously checks whether notification is enabled for the specified application.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -861,7 +863,7 @@ Checks whether notification is enabled for the specified application. This API r
 
 | Type                                                       | Description                                                    |
 | ----------------------------------------------------------- |--------------------------------------------------------- |
-| boolean | Result of the notification enabling status. The value **true** means that the notification is enabled, and **false** means the opposite.|
+| boolean | Returned result. **true**: enabled; **false**: returned.|
 
 **Error codes**
 
@@ -884,7 +886,9 @@ console.info(`isNotificationEnabledSync success, data is : ${JSON.stringify(enab
 
 setBadgeNumber(badgeNumber: number): Promise\<void\>
 
-Sets the notification badge number. This API uses a promise to return the result.
+Sets the notification badge number. This API uses a promise to return the URI of the file in the destination directory.
+
+If the **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.
 
 This API is not supported on TVs and wearables.
 
@@ -894,7 +898,7 @@ This API is not supported on TVs and wearables.
 
 | Name     | Type  | Mandatory| Description      |
 | ----------- | ------ | ---- | ---------- |
-| badgeNumber | number | Yes  | Notification badge number to set. If **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.|
+| badgeNumber | number | Yes  | Notification badge number to set.|
 
 **Return value**
 
@@ -909,6 +913,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -933,6 +938,8 @@ setBadgeNumber(badgeNumber: number, callback: AsyncCallback\<void\>): void
 
 Sets the notification badge number. This API uses an asynchronous callback to return the result.
 
+If the **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.
+
 This API is not supported on TVs and wearables.
 
 **System capability**: SystemCapability.Notification.Notification
@@ -941,8 +948,8 @@ This API is not supported on TVs and wearables.
 
 | Name     | Type                 | Mandatory| Description              |
 | ----------- | --------------------- | ---- | ------------------ |
-| badgeNumber | number                | Yes  | Notification badge number to set. If **badgeNumber** is set to **0**, badges are cleared; if the value is greater than **99**, **99+** is displayed on the badge.        |
-| callback    | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| badgeNumber | number                | Yes  | Notification badge number to set.        |
+| callback    | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -951,6 +958,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -984,7 +992,7 @@ Obtains the number of active notifications of this application. This API uses an
 
 | Name    | Type                  | Mandatory| Description                  |
 | -------- | ---------------------- | ---- | ---------------------- |
-| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the obtained number of active notifications; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1017,7 +1025,7 @@ notificationManager.getActiveNotificationCount(getActiveNotificationCountCallbac
 
 getActiveNotificationCount(): Promise\<number\>
 
-Obtains the number of active notifications of this application. This API uses a promise to return the result.
+Obtains the number of active notifications of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1061,7 +1069,7 @@ Obtains the active notifications of this application. This API uses an asynchron
 
 | Name    | Type                                                        | Mandatory| Description                          |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the obtained **NotificationRequest** array; otherwise, **err** is an error object.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1093,7 +1101,7 @@ notificationManager.getActiveNotifications(getActiveNotificationsCallback);
 
 getActiveNotifications(): Promise\<Array\<NotificationRequest\>\>
 
-Obtains the active notifications of this application. This API uses a promise to return the result.
+Obtains the active notifications of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1138,7 +1146,7 @@ Cancels notifications under a notification group of this application. This API u
 | Name     | Type                 | Mandatory| Description                        |
 | --------- | --------------------- | ---- | ---------------------------- |
 | groupName | string                | Yes  | Name of the notification group, which is specified through [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) when the notification is published.|
-| callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
+| callback  | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1171,7 +1179,7 @@ notificationManager.cancelGroup(groupName, cancelGroupCallback);
 
 cancelGroup(groupName: string): Promise\<void\>
 
-Cancels notifications under a notification group of this application. This API uses a promise to return the result.
+Cancels notifications under a notification group of this application. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1215,7 +1223,7 @@ notificationManager.cancelGroup(groupName).then(() => {
 
 isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): void
 
-Checks whether a specified template is supported before using [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md) to publish a notification. This API uses an asynchronous callback to return the result.
+Checks whether a specified template is supported. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1257,7 +1265,7 @@ notificationManager.isSupportTemplate(templateName, isSupportTemplateCallback);
 
 isSupportTemplate(templateName: string): Promise\<boolean\>
 
-Checks whether a specified template is supported before using [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md) to publish a notification. This API uses a promise to return the result.
+Checks whether a specified template is supported. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1297,16 +1305,101 @@ notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
 });
 ```
 
+## notificationManager.requestEnableNotification<sup>(deprecated)</sup>
+
+requestEnableNotification(callback: AsyncCallback\<void\>): void
+
+Requests notification to be enabled for this application. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [requestEnableNotification](#notificationmanagerrequestenablenotification10) with **context** input parameters instead.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                      |
+| -------- | ------------------------ | ---- | -------------------------- |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let requestEnableNotificationCallback = (err: BusinessError): void => {
+  if (err) {
+    console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+  } else {
+    console.info("requestEnableNotification success");
+  }
+};
+notificationManager.requestEnableNotification(requestEnableNotificationCallback);
+```
+
+## notificationManager.requestEnableNotification<sup>(deprecated)</sup>
+
+requestEnableNotification(): Promise\<void\>
+
+Requests notification to be enabled for this application. This API uses a promise to return the URI of the file in the destination directory.
+
+> **NOTE**
+>
+> This API is deprecated since API version 12. You are advised to use [requestEnableNotification](#notificationmanagerrequestenablenotification10-1) with **context** input parameters instead.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**Return value**
+
+| Type     | Description       |
+|---------|-----------|
+| Promise\<void\> | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect to the service.          |
+| 1600004  | Notification disabled.          |
+| 1600013  | A notification dialog box is already displayed.           |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+notificationManager.requestEnableNotification().then(() => {
+  console.info("requestEnableNotification success");
+}).catch((err: BusinessError) => {
+  console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
+});
+```
+
 ## notificationManager.requestEnableNotification<sup>10+</sup>
 
 requestEnableNotification(context: UIAbilityContext, callback: AsyncCallback\<void\>): void
 
-Requests notification to be enabled for this application. You can call this API to display a dialog box prompting the user to enable notification for your application before publishing a notification. This API uses an asynchronous callback to return the result.
+Requests notification to be enabled for this application in a modal. This API uses an asynchronous callback to return the result.
 
-> **NOTE**
->
-> - This API can be called only after the application UI is loaded (that is, [loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent) is successfully called).
-> - When an application uses **requestEnableNotification()** to display a dialog box for notification authorization and the user rejects the authorization, the application cannot use this API to open the dialog box again. However, it can call [openNotificationSettings](#notificationmanageropennotificationsettings13) to open the notification management dialog box.
+This API can be called only after the application UI is loaded (that is, [loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent) is successfully called).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1317,7 +1410,7 @@ Requests notification to be enabled for this application. You can call this API 
 | Name  | Type                    | Mandatory| Description                |
 | -------- | ------------------------ | ---- |--------------------|
 | context | [UIAbilityContext](../../reference/apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | Yes  | Ability context bound to the notification dialog box.|
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.    |
+| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.    |
 
 **Error codes**
 
@@ -1366,12 +1459,9 @@ class MyAbility extends UIAbility {
 
 requestEnableNotification(context: UIAbilityContext): Promise\<void\>
 
-Requests notification to be enabled for this application. You can call this API to display a dialog box prompting the user to enable notification for your application before publishing a notification. This API uses a promise to return the result.
+Requests notification to be enabled for this application in a modal. This API uses a promise to return the URI of the file in the destination directory.
 
-> **NOTE**
->
-> - This API can be called only after the application UI is loaded (that is, [loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent) is successfully called).
-> - When an application uses **requestEnableNotification()** to display a dialog box for notification authorization and the user rejects the authorization, the application cannot use this API to open the dialog box again. However, it can call [openNotificationSettings](#notificationmanageropennotificationsettings13) to open the notification management dialog box.
+This API can be called only after the application UI is loaded (that is, [loadContent](../apis-ability-kit/js-apis-app-ability-uiExtensionContentSession.md#uiextensioncontentsessionloadcontent) is successfully called).
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1429,94 +1519,6 @@ class MyAbility extends UIAbility {
 }
 ```
 
-## notificationManager.requestEnableNotification<sup>(deprecated)</sup>
-
-requestEnableNotification(callback: AsyncCallback\<void\>): void
-
-Requests notification to be enabled for this application. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 12. You are advised to use [requestEnableNotification](#notificationmanagerrequestenablenotification10) with **context** input parameters instead.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Parameters**
-
-| Name  | Type                    | Mandatory| Description                      |
-| -------- | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<void\> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
-
-| ID| Error Message                           |
-| -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect to the service.          |
-| 1600004  | Notification disabled.          |
-| 1600013  | A notification dialog box is already displayed.           |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let requestEnableNotificationCallback = (err: BusinessError): void => {
-  if (err) {
-    console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
-  } else {
-    console.info("requestEnableNotification success");
-  }
-};
-notificationManager.requestEnableNotification(requestEnableNotificationCallback);
-```
-
-## notificationManager.requestEnableNotification<sup>(deprecated)</sup>
-
-requestEnableNotification(): Promise\<void\>
-
-Requests notification to be enabled for this application. This API uses a promise to return the result.
-
-> **NOTE**
->
-> This API is deprecated since API version 12. You are advised to use [requestEnableNotification](#notificationmanagerrequestenablenotification10-1) with **context** input parameters instead.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Return value**
-
-| Type     | Description       |
-|---------|-----------|
-| Promise\<void\> | Promise that returns no value.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
-
-| ID| Error Message                           |
-| -------- | ----------------------------------- |
-| 1600001  | Internal error.                     |
-| 1600002  | Marshalling or unmarshalling error. |
-| 1600003  | Failed to connect to the service.          |
-| 1600004  | Notification disabled.          |
-| 1600013  | A notification dialog box is already displayed.           |
-
-**Example**
-
-```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-notificationManager.requestEnableNotification().then(() => {
-  console.info("requestEnableNotification success");
-}).catch((err: BusinessError) => {
-  console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
-});
-```
-
 ## notificationManager.isDistributedEnabled   
 
 isDistributedEnabled(callback: AsyncCallback\<boolean>): void
@@ -1562,7 +1564,7 @@ notificationManager.isDistributedEnabled(isDistributedEnabledCallback);
 
 isDistributedEnabled(): Promise\<boolean>
 
-Checks whether distributed notification is enabled on this device. This API uses a promise to return the result.
+Checks whether distributed notification is enabled on this device. This API uses a promise to return the URI of the file in the destination directory.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1599,7 +1601,9 @@ notificationManager.isDistributedEnabled().then((data: boolean) => {
 
 openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
-Opens the notification settings page of the application, which is displayed in semi-modal mode and can be used to set the notification enabling and notification mode. This API uses a promise to return the result.
+Opens the notification settings page of the application, which is displayed in semi-modal mode and can be used to set the notification enabling and notification mode. This API uses a promise to return the URI of the file in the destination directory.
+
+This API is not supported on wearables.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1623,6 +1627,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 801 | Capability not supported. |
 | 1600001  | Internal error.                     |
 | 1600003  | Failed to connect to the service.          |
 | 1600018  | the notification settings window is already displayed.           |
@@ -1669,8 +1674,8 @@ Enumerates the notification content types.
 | NOTIFICATION_CONTENT_PICTURE      | 2          | Picture-attached notification.         |
 | NOTIFICATION_CONTENT_CONVERSATION | 3          | Conversation notification. Not supported currently.|
 | NOTIFICATION_CONTENT_MULTILINE    | 4          | Multi-line text notification.       |
-| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | Live view notification. A third-party application cannot directly create a notification of this type. After the system proxy creates a system live view, the third-party application publishes a notification with the same ID to update the specified content.|
-| NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>    | 6 | Common live view notification. Available only to system applications. |
+| NOTIFICATION_CONTENT_SYSTEM_LIVE_VIEW<sup>11+</sup>    | 5 | Live view notification. A third-party application cannot directly create a notification of this type. After the system proxy creates a system live view, the third-party application releases a notification with the same ID to update the specified content.|
+| NOTIFICATION_CONTENT_LIVE_VIEW<sup>11+</sup>    | 6 | Common live view notification. Only system applications are supported. |
 
 ## SlotLevel
 
@@ -1681,8 +1686,8 @@ Enumerates the notification level.
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | Notification is disabled.    |
-| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no alert tone and banner.|
-| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no alert tone and banner.|
+| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no banner and alert tone.|
+| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no banner and alert tone.|
 | LEVEL_DEFAULT                     | 3           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone but no banner.|
 | LEVEL_HIGH                        | 4           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner.|
 
@@ -1701,7 +1706,7 @@ Enumerates the notification slot types.
 | SOCIAL_COMMUNICATION | 1 | Notification slot for social communication. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_HIGH**.|
 | SERVICE_INFORMATION  | 2 | Notification slot for service information. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_HIGH**.|
 | CONTENT_INFORMATION  | 3 | Notification slot for content consultation. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
-| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this slot type. After the system proxy creates a system live view, the third-party application publishes a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
+| LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this slot type. After the system proxy creates a system live view, the third-party application releases a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Customer service message. This type is used for messages between users and customer service providers. The messages must be initiated by users. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**. |
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
 
@@ -1709,25 +1714,25 @@ Enumerates the notification slot types.
 
 type BundleOption = _BundleOption
 
-Describes the bundle information of an application.
+Describes the **BundleOption** information, that is, the bundle information of a specified application.
 
 **System capability**: SystemCapability.Notification.Notification
 
 | Type| Description|
 | --- | --- |
-| [_BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Bundle information.|
+| [_BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Bundle information of a specified application.|
 
 ## NotificationActionButton
 
 type NotificationActionButton = _NotificationActionButton
 
-Describes the operation button displayed in the notification.
+Describes the button displayed in the notification.
 
 **System capability**: SystemCapability.Notification.Notification
 
 | Type| Description|
 | --- | --- |
-| [_NotificationActionButton](js-apis-inner-notification-notificationActionButton.md) | Operation button.|
+| [_NotificationActionButton](js-apis-inner-notification-notificationActionButton.md) | Button displayed in the notification.|
 
 ## NotificationBasicContent
 
@@ -1739,13 +1744,13 @@ Describes the normal text notification.
 
 | Type| Description|
 | --- | --- |
-| [_NotificationBasicContent](js-apis-inner-notification-notificationContent.md#notificationbasiccontent) | Normal text notification.|
+| [_NotificationBasicContent](js-apis-inner-notification-notificationContent.md#notificationbasiccontent) | Common text notification.|
 
 ## NotificationContent
 
 type NotificationContent = _NotificationContent
 
-Describes the notification contents.
+Describes the notification content.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -1787,7 +1792,7 @@ Describes the picture-attached notification.
 
 | Type| Description|
 | --- | --- |
-| [_NotificationPictureContent](js-apis-inner-notification-notificationContent.md#notificationpicturecontent) | Picture-attached notification|
+| [_NotificationPictureContent](js-apis-inner-notification-notificationContent.md#notificationpicturecontent) | Picture-attached notification.|
 
 ## NotificationSystemLiveViewContent<sup>11+</sup>
 
@@ -1799,7 +1804,7 @@ Describes the system live view notification.
 
 | Type| Description|
 | --- | --- |
-| [_NotificationSystemLiveViewContent](js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent) | System live view notification.|
+| [_NotificationSystemLiveViewContent](js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent) | Content of the system live view notification.|
 
 ## NotificationRequest
 
@@ -1853,7 +1858,7 @@ Describes the notification template.
 
 type NotificationUserInput = _NotificationUserInput
 
-Describes the user input for the notification.
+Describes the user input.
 
 **System capability**: SystemCapability.Notification.Notification
 
