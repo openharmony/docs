@@ -33,6 +33,71 @@ import { distributedDeviceManager } from '@kit.DistributedServiceKit';
 | TEMP_STOP_HEARTBEAT      | 100    | 临时停止心跳广播，超时后自动恢复。             |
 | START_HEARTBEAT          | 101    | 开始心跳广播。                               |
 
+## DeviceProfileInfoFilterOptions<sup>15+</sup>
+
+设备信息过滤器选项。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**系统API**： 此接口为系统接口。
+
+| 名称         | 类型  | 只读 | 可选             |  说明    |
+| ----------- | ---- | -- | --- |--------------- | 
+| isCloud      | boolean    |  否 | 否           | 表示是否需要实时从云端获取设备列表。<br />- false：表示从设备获取。<br />- true：表示从云端获取。       |
+| deviceIdList  | Array&lt;string&gt;  | 否 | 是    | 表示获取指定deviceId的设备信息，deviceId一般为设备的UDID，如设备无UDID，则取其MAC或SN作为deviceId。默认为空。       |
+
+
+## ServiceProfileInfo<sup>15+</sup>
+
+服务配置信息。根据云端返回的数据填充。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**系统API**： 此接口为系统接口。
+
+| 名称           | 类型  | 只读| 可选              |  说明    |
+| -------------- | ---- | --------| ------- | --------|
+| deviceId       | string  | 否 | 否   |  设备ID。          |
+| serviceId       | string  | 否 |否   | 服务ID。           |
+| serviceType     | string   | 否 | 否   | 服务类型。           |
+| data       | string  | 否 | 是   |  服务数据。字符长度不超过1000个字符。默认为空。          |
+
+## DeviceProfileInfo<sup>15+</sup>
+
+设备信息。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**系统API**： 此接口为系统接口。
+
+| 名称           | 类型  | 只读   |可选              |  说明    |
+| -------------- | ---- | ---| --------------- | --------|
+|  deviceId      | string  |  否    | 否   |  设备ID。          |
+|  deviceSn      | string  |  否    | 否   |  设备序列号。      |
+|  mac           | string  |  否    | 否   |  MAC地址。         |
+|  model         | string  |  否    | 否   |  设备型号。         |
+|  deviceType    | string  |  否    | 否   |  设备类型。         |
+|  manufacturer  | string  |  否    | 否   |  制造商。           |
+|  deviceName    | string  |  否    | 否   |  设备名称。         |
+|  productId     | string  |  否    | 否   |  设备所属产品ID。    |
+|  subProductId  | string  |  否    | 是   |  设备所属产品子ID。默认为空。         |
+|  sdkVersion    | string  |  否    | 否   |  SDK版本。          |
+|  bleMac        | string  |  否    | 否   |  蓝牙BLE的MAC地址。  |
+|  brMac         | string  |  否    | 否   |  蓝牙BR的MAC地址。  |
+|  sleMac        | string  |  否    | 否   |  Starflash的MAC地址。 |
+|  firmwareVersion | string |  否   | 否  |  固件版本。          |
+|  hardwareVersion | string |  否   | 否  |  硬件版本。          |
+|  softwareVersion | string |  否  | 否  |  软件版本。          |
+|  protocolType    | number |  否   | 否  |  协议类型。          |
+|  setupType       | number |  否   | 否  |  设备类型。          |
+|  wiseDeviceId    | string |  否   | 否  |  已注册设备标识。        |
+|  wiseUserId      | string |  否   | 否  |  已注册用户标识。        |
+|  registerTime    | string |  否   | 否  |  注册时间。          |
+|  modifyTime      | string |  否   | 否  |  修改时间。          |
+|  shareTime       | string |  否   | 否  |  分享时间。          |
+|  isLocalDevice   | boolean | 否   | 否 |  是否为本地设备。<br />- false：表示非本地设备，即被查询的其他设备。<br />- true：表示本地设备，即当前正在使用该接口的设备。     |
+|  services        | Array&lt;[ServiceProfileInfo](#serviceprofileinfo15)&gt; | 否  | 是  | 服务配置信息列表。默认为空。 |
+
 ## DeviceManager
 
 设备管理实例，用于获取可信设备和本地设备的相关信息。在调用DeviceManager的方法前，需要先通过createDeviceManager构建一个DeviceManager实例dmInstance。
@@ -53,7 +118,7 @@ replyUiAction(action: number, actionResult: string): void
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | action        | number          | 是    | 用户操作动作。<br />-0：允许授权。<br />-1：取消授权。<br />-2：授权框用户操作超时。<br />-3：取消pin码框展示。<br />-4：取消pin码输入框展示。<br />-5：pin码输入框确定操作。     |
+  | action        | number          | 是    | 用户操作动作。<br />- 0：允许授权。<br />- 1：取消授权。<br />- 2：授权框用户操作超时。<br />- 3：取消pin码框展示。<br />- 4：取消pin码输入框展示。<br />- 5：pin码输入框确定操作。     |
   | actionResult        | string          | 是    | 表示用户操作结果，长度范围1~255字符。 |
 
 **错误码：**
@@ -137,10 +202,10 @@ on(type: 'replyResult', callback: Callback&lt;{ param: string;}&gt;): void
   try {
     let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
     dmInstance.on('replyResult', (data: Data) => {
-      console.log('replyResult executed, dialog closed' + JSON.stringify(data));
+      console.info('replyResult executed, dialog closed' + JSON.stringify(data));
       let tmpStr: TmpStr = JSON.parse(data.param);
       let isShow = tmpStr.verifyFailed;
-      console.log('replyResult executed, dialog closed' + isShow);
+      console.info('replyResult executed, dialog closed' + isShow);
     });
   } catch (err) {
     let e: BusinessError = err as BusinessError;
@@ -237,5 +302,61 @@ setHeartbeatPolicy(policy: StrategyForHeartbeat, delayTime: number): void
   } catch (err) {
     let e: BusinessError = err as BusinessError;
     console.error('setHeartbeatPolicy errCode:' + e.code + ',errMessage:' + e.message);
+  }
+  ```
+
+### getDeviceProfileInfoList<sup>15+</sup>
+
+getDeviceProfileInfoList(filterOptions: DeviceProfileInfoFilterOptions): Promise&lt;Array&lt;DeviceProfileInfo&gt;&gt;
+
+获取同账号下全部的设备列表，使用Promise异步回调。
+
+**需要权限**：ohos.permission.ACCESS_SERVICE_DM
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**系统API**： 此接口为系统接口。
+
+**参数：**
+
+  | 参数名       | 类型            | 必填  | 说明                |
+  | ------------- | --------------- | ---- | ------------------- |
+  | filterOptions        |  &nbsp;[DeviceProfileInfoFilterOptions](#deviceprofileinfofilteroptions15)&nbsp;         | 是    | 查询过程中使用的过滤条件。     |
+
+**返回值：**
+
+  | 类型                                                       | 说明                               |
+  | ---------------------------------------------------------- | ---------------------------------- |
+  | Promise&lt;Array&lt;[DeviceProfileInfo](#deviceprofileinfo15)&gt;&gt; | Promise实例，返回设备列表。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[设备管理错误码](errorcode-device-manager.md)。
+
+| 错误码ID | 错误信息                                                        |
+| -------- | --------------------------------------------------------------- |
+| 201 | Permission verification failed. The application does not have the permission required to call the API.                                            |
+| 202 | Permission verification failed. A non-system application calls a system API.                              |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter type; 3. Parameter verification failed; 4. The size of specified type is greater than 500. |
+| 11600102 | Failed to obtain service.                                 |
+| 11600106 | Get data from cloud fail. |
+| 11600107 | A login account is required.  |
+
+**示例：**
+
+  ```ts
+  import { distributedDeviceManager } from '@kit.DistributedServiceKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+
+  try {
+    let dmInstance = distributedDeviceManager.createDeviceManager('ohos.samples.jsHelloWorld');
+    dmInstance.getDeviceProfileInfoList({"isCloud": false}).then((data: Array<distributedDeviceManager.DeviceProfileInfo>) => {
+      console.info('getDeviceProfileInfoList' + JSON.stringify(data));
+    }).catch((e: BusinessError) => {
+      console.error('getDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
+    });
+  } catch (err) {
+    let e: BusinessError = err as BusinessError;
+    console.error('getDeviceProfileInfoList errCode:' + e.code + ',errMessage:' + e.message);
   }
   ```
