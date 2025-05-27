@@ -12,7 +12,7 @@ parse(text: string, reviver?: Transformer, options?: ParseOptions): Object | nul
 
 | 特性	| 原生parse	 | 本库parse |
 | -------- | -------- | -------- |
-| BigInt支持	| 不支持 |支持（通过parseBigInt扩展）|
+| BigInt支持	| 不支持（抛出TypeError） |支持（通过parseBigInt扩展）|
 | 参数校验	| 弱校验 |强校验（抛出BusinessError） |
 | 错误信息	| 原生错误（如SyntaxError） |	自定义BusinessError |
 | reviver参数	| 支持 | 支持，但强制类型检查 |
@@ -27,8 +27,8 @@ stringify(value: Object, replacer?: (number | string)[] | null, space?: string |
 
 | 特性	| 原生stringify | 本库stringify |
 | -------- | -------- | -------- |
-| BigInt支持 | 不支持（会报错）| 支持（通过stringifyBigInt扩展） |
-| 循环引用检测 | 直接报错TypeError | 检测并抛出BusinessError |
+| BigInt支持 | 不支持（抛出TypeError）| 支持（通过stringifyBigInt扩展） |
+| 循环引用检测 | 抛出TypeError | 检测并抛出BusinessError |
 | 参数校验 | 弱校验	| 强校验（replacer 必须是函数或数组） |
 | 错误信息 | 原生错误	| 自定义BusinessError |
 
