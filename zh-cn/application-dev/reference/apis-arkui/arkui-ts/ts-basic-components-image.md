@@ -1,6 +1,6 @@
 # Image
 
-Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](#drawabledescriptor10)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif和heif类型的图片格式。
+Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](#drawabledescriptor10)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif、apng和heif类型的图片格式，不支持svga格式。
 
 > **说明：**
 >
@@ -52,7 +52,7 @@ Image加载成功且组件不设置宽高时，其显示大小自适应父组件
 >
 > Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多。不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
 >
-> src由有效切换为无效时，图片保持不动。
+> src由有效值（可正常解析并加载的图片资源）切换为无效值（无法解析或加载的图片路径）时，组件应保持显示此前成功加载的图片内容，不进行清除或重置操作。
 >
 > 当Image组件入参为[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型时，只有当PixelMap对象的引用发生变化（即指向一个新的PixelMap实例），Image组件才能感知到数据的变化。仅修改PixelMap对象的内容（如像素值）而不更换对象引用，无法触发数据变化的感知。
 
@@ -266,7 +266,9 @@ matchTextDirection(value: boolean)
 
 fitOriginalSize(value: boolean)
 
-设置图片的显示尺寸是否跟随图源尺寸。图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。
+设置图片的显示尺寸是否跟随图源尺寸。
+
+图片组件已设置width、height属性时，fitOriginalSize属性不生效。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
