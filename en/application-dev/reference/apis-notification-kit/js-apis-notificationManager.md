@@ -35,7 +35,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                             |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect to the service.                    |
@@ -57,9 +57,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // publish callback
 let publishCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("publish success");
+    console.info(`Succeeded in publishing notification.`);
   }
 }
 // NotificationRequest object
@@ -95,9 +95,9 @@ If the ID and label of the new notification are the same as that of the previous
 
 **Return value**
 
-| Type    | Description| 
+| Type    | Description|
 | ------- |--|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -105,7 +105,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                             |
 | -------- | ---------------------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.    |
 | 1600001  | Internal error.                                      |
 | 1600002  | Marshalling or unmarshalling error.                  |
 | 1600003  | Failed to connect to the service.                    |
@@ -137,9 +137,9 @@ let notificationRequest: notificationManager.NotificationRequest = {
   }
 };
 notificationManager.publish(notificationRequest).then(() => {
-  console.info("publish success");
+  console.info(`Succeeded in publishing notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`publish fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
 });
 
 ```
@@ -166,7 +166,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -180,9 +180,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel callback
 let cancelCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancel success");
+    console.info(`Succeeded in canceling notification.`);
   } 
 }
 notificationManager.cancel(0, "label", cancelCallback);
@@ -205,9 +205,9 @@ Cancels a notification with the specified ID and optional label. This API uses a
 
 **Return value**
 
-| Type    | Description       | 
+| Type    | Description       |
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -215,7 +215,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -227,9 +227,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.cancel(0).then(() => {
-  console.info("cancel success");
+  console.info(`Succeeded in canceling notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancel fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -254,7 +254,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -268,9 +268,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel callback
 let cancelCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancel success");
+    console.info(`Succeeded in canceling notification.`);
   }
 }
 notificationManager.cancel(0, cancelCallback);
@@ -296,7 +296,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -309,9 +309,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // cancel callback
 let cancelAllCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancelAll failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel all notification. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancelAll success");
+    console.info(`Succeeded in canceling all notification.`);
   }
 }
 notificationManager.cancelAll(cancelAllCallback);
@@ -327,9 +327,9 @@ Cancels all notifications of this application. This API uses a promise to return
 
 **Return value**
 
-| Type    | Description       | 
+| Type    | Description       |
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -337,7 +337,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -348,9 +347,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.cancelAll().then(() => {
-  console.info("cancelAll success");
+  console.info(`Succeeded in canceling all notification.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancelAll fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel all notification. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -375,7 +374,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -389,9 +388,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // addSlot callback
 let addSlotCallBack = (err: BusinessError): void => {
   if (err) {
-    console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to add slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("addSlot success");
+    console.info(`Succeeded in adding slot.`);
   }
 }
 notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION, addSlotCallBack);
@@ -413,9 +412,9 @@ Adds a notification slot of a specified type. This API uses a promise to return 
 
 **Return value**
 
-| Type    | Description       | 
+| Type    | Description       |
 | ------- |-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -423,7 +422,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -435,9 +434,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.addSlot(notificationManager.SlotType.SOCIAL_COMMUNICATION).then(() => {
-  console.info("addSlot success");
+  console.info(`Succeeded in adding slot.`);
 }).catch((err: BusinessError) => {
-  console.error(`addSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to add slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -462,7 +461,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -475,9 +474,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // getSlot callback
 let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
   if (err) {
-    console.error(`getSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getSlot success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
   }
 }
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
@@ -510,7 +509,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -522,9 +521,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.getSlot(slotType).then((data: notificationManager.NotificationSlot) => {
-  console.info("getSlot success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting slot, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -549,7 +548,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -562,9 +561,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // getSlots callback
 let getSlotsCallback = (err: BusinessError, data: Array<notificationManager.NotificationSlot>): void => {
   if (err) {
-    console.error(`getSlots failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getSlots success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
   }
 }
 notificationManager.getSlots(getSlotsCallback);
@@ -590,7 +589,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -601,9 +599,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getSlots().then((data: Array<notificationManager.NotificationSlot>) => {
-  console.info("getSlots success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting slots, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getSlots fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get slots. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -628,7 +626,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -641,9 +639,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // removeSlot callback
 let removeSlotCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`removeSlot failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to remove slot. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("removeSlot success");
+    console.info(`Succeeded in removing slot.`);
   }
 }
 let slotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
@@ -666,9 +664,9 @@ Removes a notification slot of a specified type for this application. This API u
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -676,7 +674,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -688,9 +686,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let slotType: notificationManager.SlotType = notificationManager.SlotType.SOCIAL_COMMUNICATION;
 notificationManager.removeSlot(slotType).then(() => {
-  console.info("removeSlot success");
+  console.info(`Succeeded in removing slot.`);
 }).catch((err: BusinessError) => {
-  console.error(`removeSlot fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to remove slot. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -714,7 +712,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -726,9 +724,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let removeAllSlotsCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`removeAllSlots failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to remove all slots. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("removeAllSlots success");
+    console.info(`Succeeded in removing all slots.`);
   }
 }
 notificationManager.removeAllSlots(removeAllSlotsCallback);
@@ -744,9 +742,9 @@ Removes all notification slots for this application. This API uses a promise to 
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -754,7 +752,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -765,9 +762,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.removeAllSlots().then(() => {
-  console.info("removeAllSlots success");
+  console.info(`Succeeded in removing all slots.`);
 }).catch((err: BusinessError) => {
-  console.error(`removeAllSlots fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to remove all slots. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -834,7 +831,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect to the service.               |
@@ -849,7 +845,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.isNotificationEnabled().then((data: boolean) => {
   console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+  console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -902,9 +898,9 @@ If the **badgeNumber** is set to **0**, badges are cleared; if the value is grea
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -912,7 +908,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -925,9 +921,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let badgeNumber: number = 10;
 notificationManager.setBadgeNumber(badgeNumber).then(() => {
-  console.info("setBadgeNumber success");
+  console.info(`Succeeded in setting badge number.`);
 }).catch((err: BusinessError) => {
-  console.error(`setBadgeNumber fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -954,7 +950,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -967,9 +963,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let setBadgeNumberCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`setBadgeNumber failed code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to set badge number. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("setBadgeNumber success");
+    console.info(`Succeeded in setting badge number.`);
   }
 }
 let badgeNumber: number = 10;
@@ -996,7 +992,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1008,9 +1004,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let getActiveNotificationCountCallback = (err: BusinessError, data: number): void => {
   if (err) {
-    console.error(`getActiveNotificationCount failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info(`getActiveNotificationCount success, data is ${JSON.stringify(data)}`);
+    console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
   }
 }
 
@@ -1037,7 +1033,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1048,9 +1043,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotificationCount().then((data: number) => {
-  console.info("getActiveNotificationCount success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting active notification count, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getActiveNotificationCount fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get active notification count. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1074,7 +1069,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1086,9 +1081,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let getActiveNotificationsCallback = (err: BusinessError, data: Array<notificationManager.NotificationRequest>): void => {
   if (err) {
-    console.error(`getActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("getActiveNotifications success" + JSON.stringify(data));
+    console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
   }
 }
 notificationManager.getActiveNotifications(getActiveNotificationsCallback);
@@ -1114,7 +1109,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1125,9 +1119,9 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
-  console.info("getActiveNotifications success, data: " + JSON.stringify(data));
+  console.info(`Succeeded in getting active notifications, data is ` + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`getActiveNotifications fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to get active notifications. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1152,7 +1146,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1164,9 +1158,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let cancelGroupCallback = (err: BusinessError): void => {
   if (err) {
-    console.error(`cancelGroup failed, code is ${err.code}, message is ${err.message}`);
+    console.error(`Failed to cancel group. Code is ${err.code}, message is ${err.message}`);
   } else {
-    console.info("cancelGroup success");
+    console.info(`Succeeded in canceling group.`);
   }
 }
 let groupName: string = "GroupName";
@@ -1189,9 +1183,9 @@ Cancels notifications under a notification group of this application. This API u
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1199,7 +1193,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1211,9 +1205,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let groupName: string = "GroupName";
 notificationManager.cancelGroup(groupName).then(() => {
-  console.info("cancelGroup success");
+  console.info(`Succeeded in canceling group.`);
 }).catch((err: BusinessError) => {
-  console.error(`cancelGroup fail: ${JSON.stringify(err)}`);
+  console.error(`Failed to cancel group. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1238,7 +1232,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1285,7 +1279,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1299,7 +1293,7 @@ let templateName: string = 'downloadTemplate';
 notificationManager.isSupportTemplate(templateName).then((data: boolean) => {
   console.info("isSupportTemplate success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isSupportTemplate fail: ${JSON.stringify(err)}`);
+  console.error(`isSupportTemplate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1327,7 +1321,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1363,9 +1357,9 @@ Requests notification to be enabled for this application. This API uses a promis
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1373,7 +1367,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1388,7 +1381,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.requestEnableNotification().then(() => {
   console.info("requestEnableNotification success");
 }).catch((err: BusinessError) => {
-  console.error(`requestEnableNotification fail: ${JSON.stringify(err)}`);
+  console.error(`requestEnableNotification failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1474,9 +1467,9 @@ This API can be called only after the application UI is loaded (that is, [loadCo
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1484,7 +1477,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1538,7 +1531,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1579,7 +1572,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      | 
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1593,7 +1585,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.isDistributedEnabled().then((data: boolean) => {
   console.info("isDistributedEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-  console.error(`isDistributedEnabled fail: ${JSON.stringify(err)}`);
+  console.error(`isDistributedEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1602,6 +1594,7 @@ notificationManager.isDistributedEnabled().then((data: boolean) => {
 openNotificationSettings(context: UIAbilityContext): Promise\<void\>
 
 Opens the notification settings page of the application, which is displayed in semi-modal mode and can be used to set the notification enabling and notification mode. This API uses a promise to return the URI of the file in the destination directory.
+
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -1615,9 +1608,9 @@ Opens the notification settings page of the application, which is displayed in s
 
 **Return value**
 
-| Type     | Description       | 
+| Type     | Description       |
 |---------|-----------|
-| Promise\<void\> | Promise that returns no value.| 
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 
@@ -1683,8 +1676,8 @@ Enumerates the notification level.
 | Name                             | Value         | Description              |
 | --------------------------------- | ----------- | ------------------ |
 | LEVEL_NONE                        | 0           | Notification is disabled.    |
-| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no banner or alert tone.|
-| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no banner or alert tone.|
+| LEVEL_MIN                         | 1           | Notification is enabled, but the notification icon is not displayed in the status bar, with no banner and alert tone.|
+| LEVEL_LOW                         | 2           | Notification is enabled, and the notification icon is displayed in the status bar, with no banner and alert tone.|
 | LEVEL_DEFAULT                     | 3           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone but no banner.|
 | LEVEL_HIGH                        | 4           | Notification is enabled, and the notification icon is displayed in the status bar, with an alert tone and banner.|
 
@@ -1706,3 +1699,215 @@ Enumerates the notification slot types.
 | LIVE_VIEW<sup>11+</sup>            | 4 | Live view. A third-party application cannot directly create a notification of this slot type. After the system proxy creates a system live view, the third-party application releases a notification with the same ID to update the specified content. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**.|
 | CUSTOMER_SERVICE<sup>11+</sup>     | 5 | Customer service message. This type is used for messages between users and customer service providers. The messages must be initiated by users. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_DEFAULT**. |
 | OTHER_TYPES          | 0xFFFF | Notification slot for other purposes. This type corresponds to [SlotLevel](#slotlevel) being **LEVEL_MIN**.|
+
+## BundleOption
+
+type BundleOption = _BundleOption
+
+Describes the **BundleOption** information, that is, the bundle information of a specified application.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | Bundle information of a specified application.|
+
+## NotificationActionButton
+
+type NotificationActionButton = _NotificationActionButton
+
+Describes the button displayed in the notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationActionButton](js-apis-inner-notification-notificationActionButton.md) | Button displayed in the notification.|
+
+## NotificationBasicContent
+
+type NotificationBasicContent = _NotificationBasicContent
+
+Describes the normal text notification.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationBasicContent](js-apis-inner-notification-notificationContent.md#notificationbasiccontent) | Common text notification.|
+
+## NotificationContent
+
+type NotificationContent = _NotificationContent
+
+Describes the notification content.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationContent](js-apis-inner-notification-notificationContent.md#notificationcontent) | Notification content.|
+
+## NotificationLongTextContent
+
+type NotificationLongTextContent = _NotificationLongTextContent
+
+Describes the long text notification.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationLongTextContent](js-apis-inner-notification-notificationContent.md#notificationlongtextcontent) | Long text notification.|
+
+## NotificationMultiLineContent
+
+type NotificationMultiLineContent = _NotificationMultiLineContent
+
+Describes the multi-line text notification.
+
+**Atomic service API**: This API can be used in atomic services since API version 12.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationMultiLineContent](js-apis-inner-notification-notificationContent.md#notificationmultilinecontent) | Multi-line text notification.|
+
+## NotificationPictureContent
+
+type NotificationPictureContent = _NotificationPictureContent
+
+Describes the picture-attached notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationPictureContent](js-apis-inner-notification-notificationContent.md#notificationpicturecontent) | Picture-attached notification.|
+
+## NotificationSystemLiveViewContent
+
+type NotificationSystemLiveViewContent = _NotificationSystemLiveViewContent
+
+Describes the system live view notification.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationSystemLiveViewContent](js-apis-inner-notification-notificationContent.md#notificationsystemliveviewcontent) | Content of the system live view notification.|
+
+## NotificationRequest
+
+type NotificationRequest = _NotificationRequest
+
+Describes the notification request.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) | Notification request.|
+
+## DistributedOptions<sup>8+</sup>
+
+type DistributedOptions = _DistributedOptions
+
+Describes distributed notification options.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_DistributedOptions](js-apis-inner-notification-notificationRequest.md#distributedoptions8) | Distributed notification options.|
+
+## NotificationSlot
+
+type NotificationSlot = _NotificationSlot
+
+Describes the notification slot.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationSlot](js-apis-inner-notification-notificationSlot.md) | Notification slot.|
+
+## NotificationTemplate
+
+type NotificationTemplate = _NotificationTemplate
+
+Describes the notification template.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationTemplate](js-apis-inner-notification-notificationTemplate.md) | Notification template.|
+
+## NotificationUserInput
+
+type NotificationUserInput = _NotificationUserInput
+
+Describes the user input.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | User input.|
+
+## NotificationCapsule<sup>11+</sup>
+
+type NotificationCapsule = _NotificationCapsule
+
+Describes the notification capsule.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationCapsule](js-apis-inner-notification-notificationContent.md#notificationcapsule11) | Notification capsule.|
+
+## NotificationButton<sup>11+</sup>
+
+type NotificationButton = _NotificationButton
+
+Describes the notification button.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationButton](js-apis-inner-notification-notificationContent.md#notificationbutton11) | Notification button.|
+
+## NotificationTime<sup>11+</sup>
+
+type NotificationTime = _NotificationTime
+
+Describes the notification timing information.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationTime](js-apis-inner-notification-notificationContent.md#notificationtime11) | Notification timing information.|
+
+## NotificationProgress<sup>11+</sup>
+
+type NotificationProgress = _NotificationProgress
+
+Describes the notification progress.
+
+**System capability**: SystemCapability.Notification.Notification
+
+| Type| Description|
+| --- | --- |
+| [_NotificationProgress](js-apis-inner-notification-notificationContent.md#notificationprogress11) | Notification progress.|
