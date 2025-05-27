@@ -2251,6 +2251,7 @@
           - [@ohos.util.Vector (线性容器Vector)](reference/apis-arkts/js-apis-vector.md)
       - 错误码<!--arkts-arkts-errcode-->
         - [语言基础类库错误码](reference/apis-arkts/errorcode-utils.md)
+        - [编译工具链错误码](reference/apis-arkts/errorcode-ets-loader.md)
     - ArkUI（方舟UI框架）<!--arkui-api-->
       - ArkTS API<!--arkui-arkts-->
         - UI界面<!--ui-->
