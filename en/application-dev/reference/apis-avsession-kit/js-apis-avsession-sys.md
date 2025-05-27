@@ -1,6 +1,6 @@
 # @ohos.multimedia.avsession (AVSession Management) (System API)
 
-The avSession module provides APIs for media playback control so that applications can access the system's Media Controller.
+The AVSession module provides APIs for media playback control so that applications can access the system's Media Controller.
 
 This module provides the following typical features related to media sessions:
 
@@ -1989,6 +1989,7 @@ Sets the surface ID for playback, which is used at the cast receiver (sink). Thi
 **System capability**: SystemCapability.Multimedia.AVSession.AVCast
 
 **System API**: This is a system API.
+
 
 **Return value**
 
