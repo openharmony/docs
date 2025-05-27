@@ -5,7 +5,7 @@
 
 提供用于播放媒体源的API。
 
-开发者可根据实际的开发需求，参考对应的开发指南及样例：
+根据实际的开发需求，参考对应的开发指南及样例：
 
 - [使用AVPlayer播放音频](../../media/media/using-ndk-avplayer-for-playback.md)
 - [使用AVPlayer播放视频](../../media/media/using-ndk-avplayer-for-video-playback.md)
@@ -69,7 +69,7 @@
 | -------- | -------- |
 | OH_AVPlayer \*[OH_AVPlayer_Create](#oh_avplayer_create) (void) | 创建播放器。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetURLSource](#oh_avplayer_seturlsource) (OH_AVPlayer \*player, const char \*url) | 设置播放器的播放源。对应的源可以是http url。 | 
-| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetFDSource](#oh_avplayer_setfdsource) (OH_AVPlayer \*player, int32_t fd, int64_t offset, int64_t size) | 设置播放器的播放媒体文件描述符来源。 | 
+| [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_SetFDSource](#oh_avplayer_setfdsource) (OH_AVPlayer \*player, int32_t fd, int64_t offset, int64_t size) | 设置播放器的媒体文件描述符来源。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Prepare](#oh_avplayer_prepare) (OH_AVPlayer \*player) | 准备播放环境，异步缓存媒体数据。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode)  [OH_AVPlayer_Play](#oh_avplayer_play) (OH_AVPlayer \*player) | 开始播放。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_Pause](#oh_avplayer_pause) (OH_AVPlayer \*player) | 暂停播放。 | 
@@ -93,7 +93,7 @@
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetDuration](#oh_avplayer_getduration) (OH_AVPlayer \*player, int32_t \*duration) | 获取媒体文件的总时长，精确到毫秒。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_GetState](#oh_avplayer_getstate) (OH_AVPlayer \*player, [AVPlayerState](#avplayerstate) \*state) | 获取当前播放状态。 | 
 | bool [OH_AVPlayer_IsPlaying](#oh_avplayer_isplaying) (OH_AVPlayer \*player) | 判断播放器是否在播放。 | 
-| bool [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | 判断是用循环播放。 | 
+| bool [OH_AVPlayer_IsLooping](#oh_avplayer_islooping) (OH_AVPlayer \*player) | 判断是否循环播放。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetLooping](#oh_avplayer_setlooping) (OH_AVPlayer \*player, bool loop) | 设置循环播放。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SetPlayerCallback](#oh_avplayer_setplayercallback) (OH_AVPlayer \*player, [AVPlayerCallback](_a_v_player_callback.md) callback) | 设置播放器回调方法。 | 
 | [OH_AVErrCode](../apis-avcodec-kit/_core.md#oh_averrcode) [OH_AVPlayer_SelectTrack](#oh_avplayer_selecttrack) (OH_AVPlayer \*player, int32_t index) | 选择音频轨道。该接口在当前版本暂不支持，将在后续版本开放能力。 | 
@@ -110,25 +110,25 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| const char \* [OH_PLAYER_STATE](#oh_player_state) | 获取播放状态的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_STATE_CHANGE_REASON](#oh_player_state_change_reason) | 获取播放状态变更原因的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_VOLUME](#oh_player_volume) | 获取音量的关键字, 对应值类型是float。  | 
-| const char \* [OH_PLAYER_BITRATE_ARRAY](#oh_player_bitrate_array) | 获取比特率列表的关键字, 对应值类型是uint8_t字节数组[AV_INFO_TYPE_BITRATE_COLLECT](#avplayeroninfotype-1)。  | 
-| const char \* [OH_PLAYER_AUDIO_INTERRUPT_TYPE](#oh_player_audio_interrupt_type) | 获取音频打断类型的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_AUDIO_INTERRUPT_FORCE](#oh_player_audio_interrupt_force) | 获取音频打断FORCE类型的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_AUDIO_INTERRUPT_HINT](#oh_player_audio_interrupt_hint) | 获取音频打断HINT类型的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON](#oh_player_audio_device_change_reason) | 获取音频音频设备变更原因的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_BUFFERING_TYPE](#oh_player_buffering_type) | 获取缓冲更新消息类型的关键字, 对应值类型是[AVPlayerBufferingType](#avplayerbufferingtype-1)。  | 
-| const char \* [OH_PLAYER_BUFFERING_VALUE](#oh_player_buffering_value) | 获取缓冲更新消息具体数值的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_SEEK_POSITION](#oh_player_seek_position) | 获取Seek后播放进度信息的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_PLAYBACK_SPEED](#oh_player_playback_speed) | 获取播放倍速信息的关键字, 对应值类型是[AVPlaybackSpeed](#avplaybackspeed-1)。  | 
-| const char \* [OH_PLAYER_BITRATE](#oh_player_bitrate) | 获取比特率信息的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_CURRENT_POSITION](#oh_player_current_position) | 获取播放进度信息的关键字, 对应值类型是int32_t。  | 
-| const char \* [OH_PLAYER_DURATION](#oh_player_duration) | 获取媒体资源时长信息的关键字, 对应值类型是int64_t。  | 
-| const char \* [OH_PLAYER_VIDEO_WIDTH](#oh_player_video_width) | 获取视频宽度信息的关键字, 对应值类型int32_t。  | 
-| const char \* [OH_PLAYER_VIDEO_HEIGHT](#oh_player_video_height) | 获取视频高度信息的关键字, 对应值类型int32_t。  | 
-| const char \* [OH_PLAYER_MESSAGE_TYPE](#oh_player_message_type) | 获取播放器消息信息的关键字, 对应值类型int32_t。  | 
-| const char \* [OH_PLAYER_IS_LIVE_STREAM](#oh_player_is_live_stream) | 获取媒体资源是否为直播类型信息的关键字, 对应值类型int32_t。  | 
+| const char \* [OH_PLAYER_STATE](#oh_player_state) | 获取播放状态的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_STATE_CHANGE_REASON](#oh_player_state_change_reason) | 获取播放状态变更原因的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_VOLUME](#oh_player_volume) | 获取音量的关键字，对应值类型是float。  | 
+| const char \* [OH_PLAYER_BITRATE_ARRAY](#oh_player_bitrate_array) | 获取比特率列表的关键字，对应值类型是uint8_t字节数组[AV_INFO_TYPE_BITRATE_COLLECT](#avplayeroninfotype-1)。  | 
+| const char \* [OH_PLAYER_AUDIO_INTERRUPT_TYPE](#oh_player_audio_interrupt_type) | 获取音频打断类型的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_AUDIO_INTERRUPT_FORCE](#oh_player_audio_interrupt_force) | 获取音频打断FORCE类型的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_AUDIO_INTERRUPT_HINT](#oh_player_audio_interrupt_hint) | 获取音频打断HINT类型的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON](#oh_player_audio_device_change_reason) | 获取音频设备变更原因的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_BUFFERING_TYPE](#oh_player_buffering_type) | 获取缓冲更新消息类型的关键字，对应值类型是[AVPlayerBufferingType](#avplayerbufferingtype-1)。  | 
+| const char \* [OH_PLAYER_BUFFERING_VALUE](#oh_player_buffering_value) | 获取缓冲更新消息数值的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_SEEK_POSITION](#oh_player_seek_position) | 获取Seek后播放进度信息的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_PLAYBACK_SPEED](#oh_player_playback_speed) | 获取播放倍速信息的关键字，对应值类型是[AVPlaybackSpeed](#avplaybackspeed-1)。  | 
+| const char \* [OH_PLAYER_BITRATE](#oh_player_bitrate) | 获取比特率信息的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_CURRENT_POSITION](#oh_player_current_position) | 获取播放进度信息的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_DURATION](#oh_player_duration) | 获取媒体资源时长信息的关键字，对应值类型是int64_t。  | 
+| const char \* [OH_PLAYER_VIDEO_WIDTH](#oh_player_video_width) | 获取视频宽度信息的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_VIDEO_HEIGHT](#oh_player_video_height) | 获取视频高度信息的关键字，对应值类型是int32_t。  | 
+| const char \* [OH_PLAYER_MESSAGE_TYPE](#oh_player_message_type) | 获取播放器消息信息的关键字，对应值类型int32_t。  | 
+| const char \* [OH_PLAYER_IS_LIVE_STREAM](#oh_player_is_live_stream) | 获取媒体资源是否为直播类型信息的关键字，对应值类型是int32_t。  | 
 
 
 ## 类型定义说明
@@ -203,7 +203,7 @@ OnInfo类型。
 typedef enum AVPlayerSeekMode AVPlayerSeekMode
 ```
 **描述**
-跳转模式
+跳转模式：用于指定页面或组件之间的导航方式。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -265,7 +265,7 @@ typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, cons
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| 指向OH_AVPlayer实例的指针 |  | 
+| 指向OH_AVPlayer实例的指针 |  指向OH_AVPlayer实例的指针，用于标识当前播放器实例。 | 
 | errorCode | 错误码。<br> AV_ERR_NO_MEMORY：无内存，取值为1<br>AV_ERR_OPERATE_NOT_PERMIT：操作不允许，取值为2<br>AV_ERR_INVALID_VAL：无效值，取值为3<br>AV_ERR_IO：IO错误，取值为4<br>AV_ERR_TIMEOUT：超时错误，取值为5<br>AV_ERR_UNKNOWN：未知错误，取值为6<br>AV_ERR_SERVICE_DIED：服务死亡，取值为7<br>AV_ERR_INVALID_STATE：当前状态不支持此操作，取值为8<br>AV_ERR_UNSUPPORT：未支持的接口，取值为9<br>AV_ERR_EXTEND_START：扩展错误码初始值，取值为100 | 
 | errorMsg | 错误消息  | 
 
@@ -276,7 +276,7 @@ typedef void(* OH_AVPlayerOnError) (OH_AVPlayer *player, int32_t errorCode, cons
 typedef void(* OH_AVPlayerOnErrorCallback) (OH_AVPlayer *player, int32_t errorCode, const char *errorMsg, void *userData)
 ```
 **描述**
-发生错误时被调用。如果应用成功设置该回调，则不会回调OH_AVPlayerOnError函数。
+发生错误时调用此回调。如果应用成功设置该回调，OH_AVPlayerOnError函数将不会被调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -304,7 +304,7 @@ typedef void(* OH_AVPlayerOnInfo) (OH_AVPlayer *player, AVPlayerOnInfoType type,
 
 | 信息类型（type） | 对应的extra描述 | 
 | -------- | -------- |
-| AV_INFO_TYPE_SEEKDONE | 跳转到对应播放位置时返回消息，extra表示seek到的位置。 |
+| AV_INFO_TYPE_SEEKDONE | 当播放位置跳转完成时，返回消息，extra表示跳转到的位置。|
 | AV_INFO_TYPE_SPEEDDONE | 播放倍速设置完成时返回消息，extra表示播放倍速信息，具体请参考[AVPlaybackSpeed](#avplaybackspeed-1)。 |
 | AV_INFO_TYPE_BITRATEDONE | 比特率设置完成时返回消息，extra表示比特率信息。 |
 | AV_INFO_TYPE_EOS | 播放完成时返回消息。|
@@ -1755,7 +1755,7 @@ const char* OH_PLAYER_PLAYBACK_SPEED
 const char* OH_PLAYER_SEEK_POSITION
 ```
 **描述**
-获取Seek后播放进度信息的关键字, 对应值类型是int32_t。
+获取Seek后播放进度的关键字, 对应值类型是int32_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1809,7 +1809,7 @@ const char* OH_PLAYER_VIDEO_HEIGHT
 const char* OH_PLAYER_VIDEO_WIDTH
 ```
 **描述**
-获取视频宽度信息的关键字, 对应值类型int32_t。
+获取视频宽度信息的关键字, 对应值类型是int32_t。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
