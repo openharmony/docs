@@ -765,7 +765,7 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
 | startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
 | endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |
-| mode  | [DividerMode](#dividermode19枚举说明)<sup>19+</sup>| 否  | 设置分割线模式。 |
+| mode  | [DividerMode](ts-appendix-enums.md#dividermode19枚举说明)<sup>19+</sup>| 否  | 设置分割线模式。 |
 
 ## TextContentControllerBase<sup>10+</sup>
 
@@ -1059,16 +1059,3 @@ setTextSelection选中文字时的配置。
 | 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
 | offset | number | 是   | 是   | 插入文本的位置。 |
-
-## DividerMode<sup>19+</sup>枚举说明
-
-分割线模式
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称            | 值 | 说明                                       |
-| ------------------ | - | ---------------------------------------- |
-| FLOATING_ABOVE_MENU| 0 | 悬浮在Menu之上，默认值，不占用高度。      |
-| EMBEDDED_IN_MENU   | 1 | 在Menu中展开，参与布局计算，占用高度。    |

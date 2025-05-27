@@ -156,6 +156,6 @@ export default {
 
 | 名称      | 类型            | 描述                                     |
 | -------- | --------------- | ---------------------------------------- |
-| data     | Object&nbsp;\|&nbsp;Function | 页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。<br/>data字段不可与private/public字段同时使用。 |
+| data     | Object&nbsp;\|&nbsp;Function | 页面的数据模型，类型是对象或者函数，如果类型是函数，返回值必须是对象。属性名不能以$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。<br/>data与private和public不能重合使用。 |
 | props    | Array&nbsp;\|&nbsp;Object    | props用于组件之间的数据通信，可以通过&lt;tag&nbsp;xxxx='value'&gt;方式传递给组件；props名称必须用小写，不能以$或_开头，不要使用保留字for,&nbsp;if,&nbsp;show,&nbsp;tid。目前props的数据类型不支持Function。 |
 | computed | Object          | 计算属性，用于在读取或设置参数时，进行预先处理，其结果会被缓存。计算属性名不能以$或_开头，不要使用保留字。 |
