@@ -69,8 +69,8 @@
    let timezoneArray: Array<i18n.TimeZone> = i18n.TimeZone.getTimezonesByLocation(-43.1, -22.5);
 
    // 获取指定时间的下一个时间跳变点
-   let tijuanaTzid: string = 'America/Tijuana';
-   let tijuanaTimeZone: i18n.TimeZone = i18n.getTimeZone(tijuanaTzid); // 获取蒂华纳时区
+   let tijuanaTzId: string = 'America/Tijuana';
+   let tijuanaTimeZone: i18n.TimeZone = i18n.getTimeZone(tijuanaTzId); // 获取蒂华纳时区
    let zoneRules: i18n.ZoneRules = tijuanaTimeZone.getZoneRules(); // 获取蒂华纳时区的时间跳变规则
    let someTime = new Date(2025, 4, 13);
    let zoneOffsetTrans: i18n.ZoneOffsetTransition = zoneRules.nextTransition(someTime.getTime());
@@ -79,13 +79,13 @@
    zoneOffsetTrans.getOffsetBefore(); // 跳变前的偏移量: -25200000
    // 将跳变点时间格式化
    let dateTimeFormat: intl.DateTimeFormat = new intl.DateTimeFormat('en-US', {
-     timeZone: tzId,
+     timeZone: tijuanaTzId,
      dateStyle: 'long',
      timeStyle: 'long',
      hour12: false
    });
    let dateFormat: string =
-     dateTimeFormat.format(new Date(zoneOffsetTransition.getMilliseconds())); // November 2, 2025, 1:00:00 PST
+     dateTimeFormat.format(new Date(zoneOffsetTrans.getMilliseconds())); // November 2, 2025, 1:00:00 PST
    ```
 
 ### 双时钟应用
