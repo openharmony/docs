@@ -49,6 +49,7 @@ setValue(admin: Want, item: string, value: string): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -83,7 +84,7 @@ getValue(admin: Want, item: string): string
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| string | 策略类型值。<br/>当item为screenOff时，返回设备息屏时间（单位：毫秒），对于2in1设备，返回设备电池供电下的息屏时间（单位：毫秒）；<br/>当item为dateTime时，返回设置的系统时间（单位：毫秒）；<br/>当item为powerPolicy时，返回电源策略，对于2in1设备，返回设备电池供电下的电源策略，格式为JSON字符串:{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒）；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
+| string | 策略类型值。<br/>当item为screenOff时，返回设备息屏时间（单位：毫秒），对于2in1设备，返回设备电池供电下的息屏时间（单位：毫秒）。<br/>当item为dateTime时，返回设置的系统时间（单位：毫秒）。<br/>当item为powerPolicy时，返回电源策略，对于2in1设备，返回设备电池供电下的电源策略，格式为JSON字符串:{"powerScene":xx,"powerPolicy":{"powerPolicyAction":xx,"delayTime":xx}}。powerScene为电源策略场景；delayTime为延迟时间（单位：毫秒）；powerPolicyAction为休眠策略。<br/>电源策略场景：<br/>- 0：超时场景。<br/>休眠策略：<br/>- 0：不执行动作。<br/>- 1：自动进入睡眠。<br/>- 2：强制进入睡眠。<br/>- 3：进入休眠。（当前电源子系统暂不支持）<br/>- 4：关机。 |
 
 **错误码**：
 
@@ -100,6 +101,7 @@ getValue(admin: Want, item: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

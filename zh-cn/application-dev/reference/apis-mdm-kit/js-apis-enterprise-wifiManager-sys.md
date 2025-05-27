@@ -22,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
-指定设备管理应用查询wifi开启状态。使用callback异步回调。
+查询当前设备的Wi-Fi开启状态。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -34,7 +34,7 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
 | callback | AsyncCallback&lt;boolean&gt;            | 是    | 回调函数，当接口调用成功，err为null，data为boolean值，true表示wifi开启，false表示wifi关闭，否则err为错误对象。       |
 
 **错误码**：
@@ -53,6 +53,7 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -71,7 +72,7 @@ wifiManager.isWifiActive(wantTemp, (err, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-指定设备管理应用获取wifi开启状态。使用Promise异步回调。
+查询当前设备的Wi-Fi开启状态。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -83,13 +84,13 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;boolean&gt; | Promise结果，返回wifi开启状态，true表示wifi开启，false表示wifi关闭。  |
+| Promise&lt;boolean&gt; | Promise对象，返回Wi-Fi开启状态，true表示Wi-Fi开启，false表示Wi-Fi关闭。  |
 
 **错误码**：
 
@@ -108,6 +109,7 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -124,7 +126,7 @@ wifiManager.isWifiActive(wantTemp).then((result) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;void&gt;): void
 
-指定设备管理应用为设备配置wifi，使连接到指定网络。使用callback异步回调。
+为当前设备配置Wi-Fi，使连接到指定网络。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -136,8 +138,8 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 设备管理应用。                  |
-| profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | 是    | WLAN配置信息。                  |
+| admin    | [Want](../apis-ability-kit/js-apis-app-ability-want.md)     | 是    | 企业设备管理扩展组件。                  |
+| profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | 是    | Wi-Fi配置信息。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。      |
 
 **错误码**：
@@ -156,6 +158,7 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -179,7 +182,7 @@ wifiManager.setWifiProfile(wantTemp, profile, (err) => {
 
 setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
-指定设备管理应用为设备配置wifi，使连接到指定网络。使用Promise异步回调。
+为当前设备配置Wi-Fi，使连接到指定网络。使用Promise异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -191,14 +194,14 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
-| profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | 是    | WLAN配置信息。                  |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
+| profile    | [WifiProfile](js-apis-enterprise-wifiManager.md#wifiprofile) | 是    | Wi-Fi配置信息。                  |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当配置wifi连接到指定网络失败时会抛出错误对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当配置Wi-Fi连接到指定网络失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -217,6 +220,7 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -238,7 +242,7 @@ wifiManager.setWifiProfile(wantTemp, profile).then(() => {
 
 isWifiDisabled(admin: Want): boolean
 
-指定设备管理应用查询wifi是否被禁用。
+查询当前设备Wi-Fi是否被禁用。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -250,7 +254,7 @@ isWifiDisabled(admin: Want): boolean
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 设备管理应用。 |
+| admin | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是    | 企业设备管理扩展组件。 |
 
 **返回值：**
 
@@ -274,6 +278,7 @@ isWifiDisabled(admin: Want): boolean
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -290,7 +295,7 @@ try {
 
 setWifiDisabled(admin: Want, disabled: boolean): void
 
-指定设备管理应用设置禁用wifi策略。
+设置禁用Wi-Fi策略。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -302,7 +307,7 @@ setWifiDisabled(admin: Want, disabled: boolean): void
 
 | 参数名     | 类型                                | 必填 | 说明                                      |
 | ---------- | ----------------------------------- | ---- | ----------------------------------------- |
-| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 设备管理应用。                            |
+| admin      | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                            |
 | disabled   | boolean                             | 是   | true表示禁用wifi，false表示解除wifi禁用。 |
 
 **错误码：**
@@ -321,6 +326,7 @@ setWifiDisabled(admin: Want, disabled: boolean): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

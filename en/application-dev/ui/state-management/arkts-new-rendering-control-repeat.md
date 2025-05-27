@@ -158,9 +158,7 @@ The following figure shows the node status in the list during initial rendering.
 
 Swipe the screen to the right for a distance of one node and **Repeat** starts to reuse the nodes in the cache pool. The node whose index is 10 enters the valid loading area. Its template type is **bb**. Because the cache pool **bb** is not empty, **Repeat** obtains an idle node from this pool for reuse and updates the node attributes. Other grandchild components related to the data item and index in the child component are updated synchronously based on the rules of state management of V2. The rest nodes are still in the valid loading area and only their indexes are updated.
 
-The node whose index is 0 is out of the valid loading area. When the UI main thread is idle, the system checks whether the cache pool **aa** is full. If it is not full, the system adds the node to the corresponding cache pool;
-
-otherwise, **Repeat** destroys redundant nodes.
+The node whose index is 0 is out of the valid loading area. When the UI main thread is idle, the system checks whether the cache pool **aa** is full. If it is not full, the system adds the node to the corresponding cache pool; otherwise, **Repeat** destroys redundant nodes.
 
 ![Repeat-Slide](./figures/Repeat-Slide.png)
 

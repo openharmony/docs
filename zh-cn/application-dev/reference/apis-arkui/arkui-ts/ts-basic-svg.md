@@ -64,8 +64,8 @@ SVG（Scalable Vector Graphics）是可缩放矢量图形，它是一种基于XM
 
 | 元素 | 说明 | 特有属性 |
 | :-------- | :-------- | :-------- |
-| \<linearGradient\> | 线性渐变 | x1，y1，x2，y2 |
-| \<radialGradient\> | 放射渐变 | fx，fy，cx，cy，r |
+| \<linearGradient\> | 线性渐变 | x1、y1、x2、y2 |
+| \<radialGradient\> | 放射渐变 | fx、fy、cx、cy、r |
 | \<stop\> | 色阶 | offset、stop-color |
 
 ## 静态图片
