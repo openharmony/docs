@@ -915,7 +915,10 @@ connectToCandidateConfig(networkId: number): void
 
 connectToCandidateConfigWithUserAction(networkId: number): Promise&lt;void&gt;
 
-应用使用该接口连接到自己添加的候选网络。
+应用使用该接口连接到自己添加的候选网络时，会提示用户是否信任并建立连接，使用Promise异步回调用户响应结果。
+
+> **说明：**
+> 调用[wifiManager.connectToCandidateConfig](#wifimanagerconnecttocandidateconfig9)连接候选网络时，不会返回用户响应结果。
 
 **需要权限：** ohos.permission.SET_WIFI_INFO
 
