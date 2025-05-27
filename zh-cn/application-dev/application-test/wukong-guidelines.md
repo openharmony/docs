@@ -61,19 +61,18 @@ wukong部件架构图以及部件内子模块职责如下所述。
   ```bash
   #若为单设备，则直接输入如下命令进入shell模式
   C:\Users>hdc shell
-  #
-
+  $
   #若为多设备，则需先获取sn号，先输入hdc list targets获取sn号，然后进入shell模式
   C:\Users>hdc list targets
   15xxx424axxxx345209d94xxxx8fxx900
   C:\Users>hdc -t 15xxx424axxxx345209d94xxxx8fxx900 shell
-  #
+  $
   ```
 
 - 获取应用的bundle name和ability name
 
   ```bash
-  # wukong appinfo
+  $ wukong appinfo
   BundleName:  com.ohos.adminprovisioning
   AbilityName:  com.ohos.adminprovisioning.MainAbility
   BundleName:  com.ohos.callui
@@ -83,7 +82,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 
   ```bash
   C:\Users>hdc shell
-  # wukong --help        //wukong帮助菜单
+  $ wukong --help        #wukong帮助菜单
   wukong: '--help' is not a valid wukong command. See 'wukong help'.
   usage: wukong <command> [<arguments>]
   These are common wukong command list:
@@ -93,7 +92,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
     special                    run special test
     focus                      run focus test
     appinfo                    show all app information
-  # wukong exec -help   //wukong随机测试帮助菜单
+  $ wukong exec -help   #wukong随机测试帮助菜单
   usage: wukong exec [<arguments>]
   These are wukong exec arguments list:
     -h, --help                 random test help
@@ -120,7 +119,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
     -B, --checkBWScreen        black and white screen detection
     -U, --Uri                  set Uri pages
     -x, --Uri-type             set Uri-type
-  # wukong special -help    //wukong专项测试帮助菜单
+  $ wukong special -help    #wukong专项测试帮助菜单
   usage: wukong special [<arguments>]
   These are wukong special arguments list:
     -h, --help                 special test help
@@ -177,7 +176,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 - 设置100次事件注入
 
   ```bash
-  # wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
+  $ wukong exec -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
   ```
 
   命令中各参数含义：
@@ -195,16 +194,16 @@ wukong部件架构图以及部件内子模块职责如下所述。
   ```bash
   > 显示启动
   > hdc_std shell
-  # wukong exec -b bundlename -a abilityname -U uri
+  $ wukong exec -b bundlename -a abilityname -U uri
 
   > 隐式启动
   > hdc_std shell
-  # wukong exec -b bundlename -U uri -x uriType
+  $ wukong exec -b bundlename -U uri -x uriType
   ```
 
 - 设置允许测试和禁止测试的ability
   ```bash
-  # wukong exec -b com.ohos.settings -e com.ohos.settings.MainAbility -E com.ohos.settings.AppInfoAbility
+  $ wukong exec -b com.ohos.settings -e com.ohos.settings.MainAbility -E com.ohos.settings.AppInfoAbility
   ```
   >  **说明** 
   >
@@ -234,7 +233,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 ### 测试命令
 
 ```bash
-# wukong special -C [bundlename] -p
+$ wukong special -C [bundlename] -p
 ```
 
 ## 专注测试
@@ -271,7 +270,7 @@ wukong部件架构图以及部件内子模块职责如下所述。
 ### 使用示例
 
 ```bash
-# wukong focus -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
+$ wukong focus -s 10 -i 1000 -a 0.28 -t 0.72 -c 100
 ```
 
 命令中各参数含义：
@@ -308,15 +307,15 @@ wukong部件架构图以及部件内子模块职责如下所述。
 wukong支持通过hdc命令将日志获取到本地，查看操作历程。
 
 ```bash
-// wukong.log文件对应路径如下
+# wukong.log文件对应路径如下
 /data/local/tmp/wukong/report/xxxxxxxx_xxxxxx/wukong.log
 
-// 查看wukong测试报告文件目录操作如下
-# cd /data/local/tmp/wukong/report/20170805_170053
-# ls
+# 查看wukong测试报告文件目录操作如下
+$ cd /data/local/tmp/wukong/report/20170805_170053
+$ ls
 data.js  exception  wukong.log  wukong_report.csv
 
-// 开启shell窗口，用hdc file recv获取wukong日志
+# 开启shell窗口，用hdc file recv获取wukong日志
 C:\Users\xxx>hdc file recv /data/local/tmp/wukong/report/20170805_170053/wukong.log C:\Users\xxx\Desktop\log
 [I][2024-01-03 20:08:02] HdcFile::TransferSummary success
 FileTransfer finish, Size:76492, File count = 1, time:16ms rate:4780.75kB/s
