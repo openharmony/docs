@@ -24,7 +24,7 @@ import { AppStorageV2,PersistenceV2,UIUtils} from '@kit.ArkUI';
 
 ## AppStorageV2
 
-For details about how to use AppStorageV2, see [AppStorageV2: Storing Application-wide UI State](../../quick-start/arkts-new-appstoragev2.md).
+For details about how to use AppStorageV2, see [AppStorageV2: Storing Application-wide UI State](../../ui/state-management/arkts-new-appstoragev2.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -38,7 +38,7 @@ static connect\<T extends object\>( <br>
       defaultCreator?: StorageDefaultCreator\<T\> <br>
 ): T | undefined;
 
-Stores key-value pair data in the application memory. If the given key already exists in [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md), it returns the corresponding value; otherwise, it constructs a default value using the constructor for obtaining the default value and returns it.
+Stores key-value pair data in the application memory. If the given key already exists in [AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md), it returns the corresponding value; otherwise, it constructs a default value using the constructor for obtaining the default value and returns it.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -92,7 +92,7 @@ const as3: SampleClass = AppStorageV2.connect(SampleClass) as SampleClass;
 
 static remove\<T\>(keyOrType: string | TypeConstructorWithArgs\<T\>): void;
 
-Removes the specified key-value pair from [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md). If the specified key does not exist in AppStorageV2, the removal will fail.
+Removes the specified key-value pair from [AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md). If the specified key does not exist in AppStorageV2, the removal will fail.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -127,7 +127,7 @@ AppStorageV2.remove('key_as1');
 
 static keys(): Array\<string\>;
 
-Obtains all keys in [AppStorageV2](../../quick-start/arkts-new-appstoragev2.md).
+Obtains all keys in [AppStorageV2](../../ui/state-management/arkts-new-appstoragev2.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -154,7 +154,7 @@ const keys: Array<string> = AppStorageV2.keys();
 
 ## PersistenceV2
 
-Inherits from [AppStorageV2](#appstoragev2). For details, see [PersistenceV2: Persisting Application State](../../quick-start/arkts-new-persistencev2.md).
+Inherits from [AppStorageV2](#appstoragev2). For details, see [PersistenceV2: Persisting Application State](../../ui/state-management/arkts-new-persistencev2.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -178,7 +178,7 @@ Persists the specified key-value pair data once.
 
 >**NOTE**
 >
->Since changes to non-[\@Trace](../../quick-start/arkts-new-observedV2-and-trace.md) decorated data do not automatically trigger persistence through [PersistenceV2](../../quick-start/arkts-new-persistencev2.md), you can call this API to manually persist the data for the corresponding key when needed.
+>Since changes to non-[\@Trace](../../ui/state-management/arkts-new-observedV2-and-trace.md) decorated data do not automatically trigger persistence through [PersistenceV2](../../ui/state-management/arkts-new-persistencev2.md), you can call this API to manually persist the data for the corresponding key when needed.
 >
 >It is useless to manually persist the keys that are not in the **connect** state in the memory.
 
@@ -234,7 +234,7 @@ Provides APIs for handling data transformations related to state management.
 
 static getTarget\<T extends object\>(source: T): T;
 
-Obtains the original object from a proxy object wrapped by the state management framework. For details, see [getTarget API: Obtaining Original Objects](../../quick-start/arkts-new-getTarget.md).
+Obtains the original object from a proxy object wrapped by the state management framework. For details, see [getTarget API: Obtaining Original Objects](../../ui/state-management/arkts-new-getTarget.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -277,7 +277,7 @@ struct Index {
 
 static makeObserved\<T extends object\>(source: T): T;
 
-Converts ordinary unobservable data into observable data. For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../quick-start/arkts-new-makeObserved.md).
+Converts ordinary unobservable data into observable data. For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../ui/state-management/arkts-new-makeObserved.md).
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -287,7 +287,7 @@ Converts ordinary unobservable data into observable data. For details, see [make
 
 | Name| Type| Mandatory| Description    |
 | ------ | ---- | ---- | ------------ |
-| source | T    | Yes  | Source object. It supports classes not decorated by @Observed or @ObserveV2, objects returned by **JSON.parse**, and classes decorated by @Sendable.<br>Array, Map, Set, and Date types are supported.<br>**collection.Array**, **collection.Set**, and **collection.Map** are supported.<br>For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../quick-start/arkts-new-makeObserved.md).|
+| source | T    | Yes  | Source object. It supports classes not decorated by @Observed or @ObserveV2, objects returned by **JSON.parse**, and classes decorated by @Sendable.<br>Array, Map, Set, and Date types are supported.<br>**collection.Array**, **collection.Set**, and **collection.Map** are supported.<br>For details, see [makeObserved API: Changing Unobservable Data to Observable Data](../../ui/state-management/arkts-new-makeObserved.md).|
 
 **Return value**
 

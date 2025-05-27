@@ -95,7 +95,7 @@ The position of the context menu is subject to the **placement** settings, rathe
 
 | Name      | Type                                              | Mandatory| Description                                        |
 | ------------ | -------------------------------------------------- | ---- | -------------------------------------------- |
-| isShown | boolean | Yes  | Whether to show the context menu. The value **true** means to show the context menu, and **false** (default) means the opposite. The menu can be displayed properly only when the related page has been constructed. If this parameter is set to **true** before the construction is complete, display issues, such as misplacement, distortion, or failure to pop up, may occur. To trigger dragging by long presses is not supported. This parameter supports two-way binding through the [!! syntax](../../../quick-start/arkts-new-binding.md).|
+| isShown | boolean | Yes  | Whether to show the context menu. The value **true** means to show the context menu, and **false** (default) means the opposite. The menu can be displayed properly only when the related page has been constructed. If this parameter is set to **true** before the construction is complete, display issues, such as misplacement, distortion, or failure to pop up, may occur. To trigger dragging by long presses is not supported. This parameter supports two-way binding through the [!! syntax](../../../ui/state-management/arkts-new-binding.md).|
 | content      | [CustomBuilder](ts-types.md#custombuilder8)        | Yes  | Builder of the custom menu content.|
 | options      | [ContextMenuOptions](#contextmenuoptions10)                      | No  | Parameters of the context menu.                        |
 

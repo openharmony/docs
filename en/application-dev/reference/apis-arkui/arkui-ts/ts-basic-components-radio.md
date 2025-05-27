@@ -67,7 +67,7 @@ checked(value: boolean)
 
 Sets whether the radio button is selected.
 
-Since API version 10, this attribute supports two-way binding through [$$](../../../quick-start/arkts-two-way-sync.md).
+Since API version 10, this attribute supports two-way binding through [$$](../../../ui/state-management/arkts-two-way-sync.md).
 
 **Widget capability**: This API can be used in ArkTS widgets since API version 9.
 
