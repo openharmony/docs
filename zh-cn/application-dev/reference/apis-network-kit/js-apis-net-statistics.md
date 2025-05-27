@@ -31,7 +31,7 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -75,7 +75,7 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -113,7 +113,7 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -157,7 +157,7 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -194,7 +194,7 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -231,7 +231,7 @@ getCellularRxBytes(): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -267,7 +267,7 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -304,7 +304,7 @@ getCellularTxBytes(): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -342,7 +342,7 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service. |
 | 2100003   | System internal error.                       |
@@ -380,7 +380,7 @@ getAllRxBytes(): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -417,7 +417,7 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -455,7 +455,7 @@ getAllTxBytes(): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 2100002   | Failed to connect to the service.            |
 | 2100003   | System internal error.                       |
@@ -491,7 +491,7 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -534,7 +534,7 @@ getUidRxBytes(uid: number): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -571,7 +571,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -614,7 +614,7 @@ getUidTxBytes(uid: number): Promise\<number>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100002   | Failed to connect to the service.            |
@@ -652,7 +652,7 @@ getSockfdRxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -696,7 +696,7 @@ getSockfdRxBytes(sockfd: number): Promise\<number\>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -736,7 +736,7 @@ getSockfdTxBytes(sockfd: number, callback: AsyncCallback\<number\>): void;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
@@ -780,7 +780,7 @@ getSockfdTxBytes(sockfd: number): Promise\<number\>;
 
 以下错误码的详细介绍参见[statistics 错误码](errorcode-net-statistics.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2100001   | Invalid parameter value.                     |
