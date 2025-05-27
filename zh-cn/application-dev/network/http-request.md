@@ -36,7 +36,7 @@ HTTP数据请求功能主要由http模块提供。
 | on\('dataSendProgress'\)<sup>11+</sup>        | 订阅HTTP网络请求数据发送进度事件。  |
 | off\('dataSendProgress'\)<sup>11+</sup>       | 取消订阅HTTP网络请求数据发送进度事件。 |
 
-## request接口开发步骤
+## 发起HTTP一般数据请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -124,7 +124,7 @@ httpRequest.request(
 );
 ```
 
-## requestInStream接口开发步骤
+## 发起HTTP流式传输请求
 
 1. 从@kit.NetworkKit中导入http命名空间。
 2. 调用createHttp()方法，创建一个HttpRequest对象。
@@ -315,7 +315,7 @@ openssl dgst -sha256 -binary www.example.com.pubkey.der | openssl base64
 |trust-anchors              | array           |受信任的CA。可以包含任意个item。item必须包含1个certificates。|
 |certificates               | string          |CA证书路径。 |
 |domains                    | array           |域。可以包含任意个item。item必须包含1个name(string：指示域名)，可以包含0或者1个include-subdomains。|
-|include-subdomains         | boolean         |指示规则是否适用于子域。 |
+|include-subdomains         | boolean         |指示规则是否适用于子域。true：指示规则适用于子域；false：指示规则不适用于子域。 |
 |pin-set                    | object          |证书公钥哈希设置。必须包含1个pin，可以包含0或者1个expiration。|
 |expiration                 | string          |指示证书公钥哈希的过期时间。 |
 |pin                        | array           |证书公钥哈希。可以包含任意个item。item必须包含1个digest-algorithm，item必须包含1个digest。|

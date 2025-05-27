@@ -4,7 +4,7 @@
 
 崩溃是指应用进程非预期退出。以下两种场景会生成崩溃事件：
 
-1. Native代码未处理[崩溃异常信号](cppcrash-guidelines#哪些信号会生成cppcrash日志)时，会生成崩溃事件。
+1. Native代码未处理[崩溃异常信号](cppcrash-guidelines.md#哪些信号会生成cppcrash日志)时，会生成崩溃事件。
 2. Js/ArkTS代码未处理异常时，会生成崩溃事件。
 
 本文面向开发者介绍崩溃事件各字段的含义及规格。如需了解如何使用HiAppEvent接口订阅系统崩溃事件，请参考以下文档。目前提供ArkTs和C/C++两种接口，按需选择。

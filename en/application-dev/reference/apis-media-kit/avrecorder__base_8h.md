@@ -53,7 +53,7 @@ The **avrecorder_base.h** file declares the struct and enums used by the AVRecor
 | typedef struct [OH_AVRecorder_EncoderInfo](_o_h___a_v_recorder___encoder_info.md) [OH_AVRecorder_EncoderInfo](_a_v_recorder.md#oh_avrecorder_encoderinfo) | Defines a struct for the encoder information.| 
 | typedef void(\* [OH_AVRecorder_OnStateChange](_a_v_recorder.md#oh_avrecorder_onstatechange)) ([OH_AVRecorder](_a_v_recorder.md#oh_avrecorder) \*recorder, [OH_AVRecorder_State](_a_v_recorder.md#oh_avrecorder_state) state, [OH_AVRecorder_StateChangeReason](_a_v_recorder.md#oh_avrecorder_statechangereason) reason, void \*userData) | Defines a callback invoked when the AVRecorder state changes.| 
 | typedef void(\* [OH_AVRecorder_OnError](_a_v_recorder.md#oh_avrecorder_onerror)) ([OH_AVRecorder](_a_v_recorder.md#oh_avrecorder) \*recorder, int32_t errorCode, const char \*errorMsg, void \*userData) | Defines a callback invoked when an error occurs during recording.| 
-| typedef void(\* [OH_AVRecorder_OnUri](_a_v_recorder.md#oh_avrecorder_onuri)) ([OH_AVRecorder](_a_v_recorder.md#oh_avrecorder) \*recorder, OH_MediaAsset \*asset, void \*userData) | Defines a callback invoked when the recording is in OH_AVRecorder_FileGenerationMode.AVRECORDER_AUTO_CREATE_CAMERA_SCENE mode.| 
+| typedef void(\* [OH_AVRecorder_OnUri](_a_v_recorder.md#oh_avrecorder_onuri)) ([OH_AVRecorder](_a_v_recorder.md#oh_avrecorder) \*recorder, [OH_MediaAsset](../apis-media-library-kit/_media_asset_manager.md#oh_mediaasset) \*asset, void \*userData) | Defines a callback invoked when the recording is in OH_AVRecorder_FileGenerationMode.AVRECORDER_AUTO_CREATE_CAMERA_SCENE mode.| 
 
 
 ### Enums

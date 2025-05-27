@@ -355,10 +355,12 @@
             - [页面和自定义组件生命周期](ui/state-management/arkts-page-custom-components-lifecycle.md)
             - [自定义组件的自定义布局](ui/state-management/arkts-page-custom-components-layout.md)
             - [自定义组件成员属性访问限定符使用限制](ui/state-management/arkts-custom-components-access-restrictions.md)
-          - [\@Builder装饰器：自定义构建函数](ui/state-management/arkts-builder.md)
-          - [\@LocalBuilder装饰器：维持组件关系](ui/state-management/arkts-localBuilder.md)
-          - [\@BuilderParam装饰器：引用\@Builder函数](ui/state-management/arkts-builderparam.md)
-          - [wrapBuilder：封装全局@Builder](ui/state-management/arkts-wrapBuilder.md)
+          - 组件扩展<!--arkts-extend-components--> 
+            - [组件扩展概述](ui/state-management/arkts-extend-components-overview.md)  
+            - [\@Builder装饰器：自定义构建函数](ui/state-management/arkts-builder.md)
+            - [\@LocalBuilder装饰器：维持组件关系](ui/state-management/arkts-localBuilder.md)
+            - [\@BuilderParam装饰器：引用\@Builder函数](ui/state-management/arkts-builderparam.md)
+            - [wrapBuilder：封装全局@Builder](ui/state-management/arkts-wrapBuilder.md)
           - [\@Styles装饰器：定义组件重用样式](ui/state-management/arkts-style.md)
           - [\@Extend装饰器：定义扩展组件样式](ui/state-management/arkts-extend.md)
           - [stateStyles：多态样式](ui/state-management/arkts-statestyles.md)
@@ -415,6 +417,7 @@
             - [MVVM模式（状态管理V2）](ui/state-management/arkts-mvvm-V2.md)
           - V1V2混用和迁移指导<!--v1v2-migration-->
             - [自定义组件混用场景指导](ui/state-management/arkts-custom-component-mixed-scenarios.md)
+            - [状态管理V1V2混用文档](ui/state-management/arkts-v1-v2-mixusage.md)
             - [V1->V2迁移指导](ui/state-management/arkts-v1-v2-migration.md)
         - 学习UI范式渲染控制<!--arkts-rendering-control-->
           - [渲染控制概述](ui/state-management/arkts-rendering-control-overview.md)
@@ -546,6 +549,7 @@
           - [应用深浅色适配](ui/ui-dark-light-color-adaptation.md)
           - [设置应用内主题换肤](ui/theme_skinning.md)
         - [使用UI上下文接口操作界面（UIContext）](ui/arkts-global-interface.md)
+        - [使用组件截图（ComponentSnapshot）](ui/arkts-uicontext-component-snapshot.md)
         - 嵌入式组件<!--arkts-ui-cross-process-->
           - [全屏启动原子化服务 (FullScreenLaunchComponent)](ui/arkts-FullScreenComponent.md)
           - [同应用进程嵌入式组件 (EmbeddedComponent)](ui/arkts-embedded-components.md)
@@ -691,6 +695,7 @@
         - [Web组件焦点管理](web/web-focus.md)
         - [Web组件手势事件](web/web-gesture.md)
         - [Web组件缩放功能](web/web-scale-zoom.md)
+        - [使用Web组件显示网页弹框](web/web-dialog.md)
       - 管理Web组件的网络安全与隐私<!--web-manage-cyber-security-privacy-->
         - [解决Web组件本地资源跨域问题](web/web-cross-origin.md)
         - [使用智能防跟踪功能](web/web-intelligent-tracking-prevention.md)
@@ -810,6 +815,8 @@
           - ArkTS卡片页面编辑<!--arkts-ui-widget-edit-->
             - [ArkTS卡片页面编辑交互概述](form/arkts-ui-widget-event-formeditextensionability-overview.md)
             - [编辑刷新卡片页面内容](form/arkts-ui-widget-event-formeditextensionability.md)
+          - 应用内添加ArkTS卡片<!--arkts-ui-widget-within-the-app--->
+              - [应用内拉起卡片管理加桌](form/arkts-ui-widget-open-formmanager.md)
           <!--Del-->
           - [卡片使用方开发指导（仅对系统应用开放）](form/widget-host-development-guide.md)
           <!--DelEnd-->
@@ -1137,6 +1144,7 @@
         - WLAN<!--wlan-->
           - [WLAN服务开发概述](connectivity/wlan/wlan-overview.md)
           - [P2P模式开发指南](connectivity/wlan/p2p-development-guide.md)
+        - [Connectivity Kit术语](connectivity/terminology.md)
       - Distributed Service Kit（分布式管理服务）<!--distributed-service-kit-->
         - [Distributed Service Kit简介](distributedservice/distributedservice-kit-intro.md)
         - [分布式设备管理](distributedservice/devicemanager-guidelines.md)
@@ -1215,6 +1223,10 @@
               - [USB中断传输](basic-services/usb/usbManager/usbHost/interruptTransfer.md)
               - [USB批量传输](basic-services/usb/usbManager/usbHost/bulkTransfer.md)
               - [USB同步传输](basic-services/usb/usbManager/usbHost/isochronousTransfer.md)
+          - 开发USB串口通信服务<!--usb-serial-dev-->
+            - [USB串口通信服务开发概述](basic-services/usb/usbSerial/usbSerial-overview.md)
+            - [USB串口配置管理](basic-services/usb/usbSerial/usbSerial-configuration.md)
+            - [USB串口通信管理](basic-services/usb/usbSerial/usbSerial-communication.md)
           - [常见问题](basic-services/usb/faqs-usb.md)
           - [术语](basic-services/usb/usb-glossary.md)
         <!--Del-->
@@ -1716,6 +1728,7 @@
         - [使用MindSpore Lite进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [使用MindSpore Lite实现图像分类 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
+      - [使用MindSpore Lite实现语音识别 (C/C++)](ai/mindspore/mindspore-asr-based-native.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
@@ -2201,13 +2214,13 @@
             <!--DelEnd-->
       - C API<!--ability-c-->
         - 模块<!--ability-module-->
-          - [AbilityAccessControl](reference/apis-ability-kit/_ability_access_control.md)
+          - [AbilityAccessControl](reference/apis-ability-kit/capi-abilityaccesscontrol.md)
           - [AbilityBase](reference/apis-ability-kit/_ability_base.md)
           - [AbilityRuntime](reference/apis-ability-kit/_ability_runtime.md)
           - [Bundle](reference/apis-ability-kit/_bundle.md)
           - [ChildProcess](reference/apis-ability-kit/c-apis-ability-childprocess.md)
         - 头文件<!--ability-headerfile-->
-          - [ability_access_control.h](reference/apis-ability-kit/ability__access__control_8h.md)
+          - [ability_access_control.h](reference/apis-ability-kit/capi-ability-access-control-h.md)
           - [ability_base_common.h](reference/apis-ability-kit/ability__base__common_8h.md)
           - [ability_runtime_common.h](reference/apis-ability-kit/ability__runtime__common_8h.md)
           - [application_context.h](reference/apis-ability-kit/application__context_8h.md)
@@ -2491,6 +2504,7 @@
             - [悬浮态效果](reference/apis-arkui/arkui-ts/ts-universal-attributes-hover-effect.md)
             - [组件标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-component-id.md)
             - [复用标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse-id.md)
+            - [复用选项](reference/apis-arkui/arkui-ts/ts-universal-attributes-reuse.md)
             - [多态样式](reference/apis-arkui/arkui-ts/ts-universal-attributes-polymorphic-style.md)
             - [分布式迁移标识](reference/apis-arkui/arkui-ts/ts-universal-attributes-restoreId.md)
             - [前景色设置](reference/apis-arkui/arkui-ts/ts-universal-attributes-foreground-color.md)
@@ -2570,6 +2584,7 @@
           - [ArcSwiper](reference/apis-arkui/arkui-ts/ts-container-arcswiper.md)
           - [WaterFlow](reference/apis-arkui/arkui-ts/ts-container-waterflow.md)
           - [FlowItem](reference/apis-arkui/arkui-ts/ts-container-flowitem.md)
+          - [LazyVGridLayout](reference/apis-arkui/arkui-ts/ts-container-lazyvgridlayout.md)
           - [ScrollBar](reference/apis-arkui/arkui-ts/ts-basic-components-scrollbar.md)
           - [Refresh](reference/apis-arkui/arkui-ts/ts-container-refresh.md)
           - [ArcScrollBar](reference/apis-arkui/arkui-ts/ts-basic-components-arcscrollbar.md)
@@ -2769,6 +2784,7 @@
           - [TreeView](reference/apis-arkui/arkui-ts/ohos-arkui-advanced-TreeView.md)
         - 状态管理与渲染控制<!--state-management-and-rendering-control-->
           - [应用级变量的状态管理](reference/apis-arkui/arkui-ts/ts-state-management.md)
+          - [状态变量变化监听](reference/apis-arkui/arkui-ts/ts-state-management-watch-monitor.md)
           - [ForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-foreach.md)
           - [LazyForEach](reference/apis-arkui/arkui-ts/ts-rendering-control-lazyforeach.md)
           - [Repeat](reference/apis-arkui/arkui-ts/ts-rendering-control-repeat.md)
@@ -3066,10 +3082,12 @@
           - [半模态错误码](reference/apis-arkui/errorcode-bindSheet.md)
           - [滚动类组件错误码](reference/apis-arkui/errorcode-scroll.md)
           - [截图错误码](reference/apis-arkui/errorcode-snapshot.md)
+          - [属性字符串错误码](reference/apis-arkui/errorcode-styled-string.md)
           - [UI上下文错误码](reference/apis-arkui/errorcode-uicontext.md)
           - [交互事件错误码](reference/apis-arkui/errorcode-event.md)
           <!--Del-->
           - [用户界面外观服务错误码](reference/apis-arkui/errorcode-uiappearance.md)
+          - [UIExtension错误码](reference/apis-arkui/errorcode-uiextension.md)
           <!--DelEnd-->
         - 图形图像<!--arkui-graphics-images-arkts-errcode-->
           - [屏幕错误码](reference/apis-arkui/errorcode-display.md)
@@ -3323,17 +3341,17 @@
           <!--DelEnd-->
         - C API<!--asset-store-c-->
           - 模块<!--asset-store-module-->
-            - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
-            - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
+            - [AssetApi](reference/apis-asset-store-kit/capi-assetapi.md)
+            - [AssetType](reference/apis-asset-store-kit/capi-assettype.md)
           - 头文件<!--asset-store-headerfile-->
-            - [asset_api.h](reference/apis-asset-store-kit/asset__api_8h.md)
-            - [asset_type.h](reference/apis-asset-store-kit/asset__type_8h.md)
+            - [asset_api.h](reference/apis-asset-store-kit/capi-asset-api-h.md)
+            - [asset_type.h](reference/apis-asset-store-kit/capi-asset-type-h.md)
           - 结构体<!--asset-store-struct-->
-            - [Asset_Attr](reference/apis-asset-store-kit/_asset___attr.md)
-            - [Asset_Blob](reference/apis-asset-store-kit/_asset___blob.md)
-            - [Asset_Result](reference/apis-asset-store-kit/_asset___result.md)
-            - [Asset_ResultSet](reference/apis-asset-store-kit/_asset___result_set.md)
-            - [Asset_Value](reference/apis-asset-store-kit/union_asset___value.md)
+            - [Asset_Blob](reference/apis-asset-store-kit/capi-asset-blob.md)
+            - [Asset_Value](reference/apis-asset-store-kit/capi-asset-value.md)
+            - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
+            - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
+            - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
         - 错误码<!--asset-store-arkts-errcode-->
           - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
@@ -3379,9 +3397,9 @@
           <!--DelEnd-->
         - C API<!--data-protection-c-->
           - 模块<!--data-protection-module-->
-            - [DlpPermissionApi](reference/apis-data-protection-kit/_dlp_permission_api.md)
+            - [DlpPermissionApi](reference/apis-data-protection-kit/capi-dlppermissionapi.md)
           - 头文件<!--data-protection-headerfile-->
-            - [dlp_permission_api.h](reference/apis-data-protection-kit/dlp__permission__api_8h.md)
+            - [dlp_permission_api.h](reference/apis-data-protection-kit/capi-dlp-permission-api-h.md)
         - 错误码<!--data-protection-arkts-errcode-->
           - [DLP服务错误码](reference/apis-data-protection-kit/errorcode-dlp.md)
       - Device Certificate Kit（设备证书服务）<!--device-certificate-api-->
@@ -3644,6 +3662,7 @@
             - [@ohos.runningLock (Runninglock锁)](reference/apis-basic-services-kit/js-apis-runninglock.md)
             - [@ohos.thermal (热管理)](reference/apis-basic-services-kit/js-apis-thermal.md)
             - [@ohos.usbManager (USB管理)](reference/apis-basic-services-kit/js-apis-usbManager.md)
+            - [@ohos.usbManager.serial (串口管理)](reference/apis-basic-services-kit/js-apis-serialManager.md)
             <!--Del-->
             - [@ohos.batteryInfo (电量信息)(系统接口)](reference/apis-basic-services-kit/js-apis-battery-info-sys.md)
             - [@ohos.batteryStatistics (耗电统计)(系统接口)](reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md)
@@ -3655,6 +3674,7 @@
             - [@ohos.systemParameterEnhance (系统参数)(系统接口)](reference/apis-basic-services-kit/js-apis-system-parameterEnhance-sys.md)
             - [@ohos.screenLock (锁屏管理)(系统接口)](reference/apis-basic-services-kit/js-apis-screen-lock-sys.md)
             - [@ohos.usbManager (USB管理)(系统接口)](reference/apis-basic-services-kit/js-apis-usbManager-sys.md)
+            - [@ohos.usbManager.serial (串口管理)(系统接口)](reference/apis-basic-services-kit/js-apis-serialManager-sys.md)
             - [@ohos.update (升级)(系统接口)](reference/apis-basic-services-kit/js-apis-update-sys.md)
             <!--DelEnd-->
           - 数据文件处理<!--data-file-processing-arkts-->
@@ -3725,7 +3745,7 @@
           - 模块<!--basic-services-module-->
             - [CommonEvent](reference/apis-basic-services-kit/capi-common-event.md)
             - [DeviceInfo](reference/apis-basic-services-kit/_device_info.md)
-            - [OsAccount](reference/apis-basic-services-kit/_os_account.md)
+            - [OsAccount](reference/apis-basic-services-kit/capi-osaccount.md)
             - [OH_BatteryInfo](reference/apis-basic-services-kit/oh__batteryinfo.md)
             - [OH_Scan](reference/apis-basic-services-kit/c-apis-scan.md)
             - [OH_Print](reference/apis-basic-services-kit/_o_h___print.md)
@@ -3738,8 +3758,8 @@
             - [oh_commonevnt_support.h](reference/apis-basic-services-kit/oh_commonevent_support_8h.md)
             - [oh_pasteboard.h](reference/apis-basic-services-kit/oh__pasteboard_8h.md)
             - [oh_pasteboard_err_code.h](reference/apis-basic-services-kit/oh__pasteboard__err__code_8h.md)
-            - [os_account.h](reference/apis-basic-services-kit/os__account_8h.md)
-            - [os_account_common.h](reference/apis-basic-services-kit/os__account__common_8h.md)
+            - [os_account.h](reference/apis-basic-services-kit/capi-os-account-h.md)
+            - [os_account_common.h](reference/apis-basic-services-kit/capi-os-account-common-h.md)
             - [ohprint.h](reference/apis-basic-services-kit/ohprint_8h.md)
             - [time_service.h](reference/apis-basic-services-kit/time__service_8h.md)
           - 结构体<!--basic-services-struct-->
@@ -3813,11 +3833,11 @@
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
           - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
           - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
-          - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis-input-kit/js-apis-inputconsumer.md)
+          - [@ohos.multimodalInput.inputConsumer (全局快捷键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
-          - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
-          - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
+          - [@ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
+          - [@ohos.multimodalInput.inputConsumer (全局快捷键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
@@ -3844,10 +3864,13 @@
             - [Input_DeviceInfo](reference/apis-input-kit/capi-input-deviceinfo.md)
             - [Input_InterceptorOptions](reference/apis-input-kit/capi-input-interceptoroptions.md)
         - 错误码<!--input-arkts-errcode-->
-          - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
+          <!--Del-->
+          - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-cooperator.md)
+          - [按键前置监听错误码](reference/apis-input-kit/errorcode-inputmonitor.md)
+          <!--DelEnd-->
           - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
-          - [按键前置监听错误码](reference/apis-input-kit/errorcode-inputkeymonitor.md)
           - [输入设备错误码](reference/apis-input-kit/errorcode-inputdevice.md)
+          - [鼠标指针错误码](reference/apis-input-kit/errorcode-pointer.md)
       - MDM Kit（企业设备管理服务）<!--mdm-api-->
         - ArkTS API<!--mdm-arkts-->
           - [@ohos.enterprise.accountManager（账户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
@@ -4072,23 +4095,33 @@
         - [@ohos.multimedia.avVolumePanel (音量面板)](reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md)
       - C API<!--audio-c-->
         - 模块<!--audio-module-->
-          - [OHAudio](reference/apis-audio-kit/_o_h_audio.md)
+          - [OHAudio](reference/apis-audio-kit/capi-ohaudio.md)
         - 头文件<!--audio-headerfile-->
-          - [native_audio_common.h](reference/apis-audio-kit/native__audio__common_8h.md)
-          - [native_audio_device_base.h](reference/apis-audio-kit/native__audio__device__base_8h.md)
-          - [native_audio_manager.h](reference/apis-audio-kit/native__audio__manager_8h.md)
-          - [native_audio_routing_manager.h](reference/apis-audio-kit/native__audio__routing__manager_8h.md)
-          - [native_audio_session_manager.h](reference/apis-audio-kit/native__audio__session__manager_8h.md)
-          - [native_audiocapturer.h](reference/apis-audio-kit/native__audiocapturer_8h.md)
-          - [native_audiorenderer.h](reference/apis-audio-kit/native__audiorenderer_8h.md)
-          - [native_audiostream_base.h](reference/apis-audio-kit/native__audiostream__base_8h.md)
-          - [native_audiostreambuilder.h](reference/apis-audio-kit/native__audiostreambuilder_8h.md)
+          - [native_audiocapturer.h](reference/apis-audio-kit/capi-native-audiocapturer-h.md)
+          - [native_audio_manager.h](reference/apis-audio-kit/capi-native-audio-manager-h.md)
+          - [native_audio_routing_manager.h](reference/apis-audio-kit/capi-native-audio-routing-manager-h.md)
+          - [native_audio_session_manager.h](reference/apis-audio-kit/capi-native-audio-session-manager-h.md)
+          - [native_audio_stream_manager.h](reference/apis-audio-kit/capi-native-audio-stream-manager-h.md)
+          - [native_audiorenderer.h](reference/apis-audio-kit/capi-native-audiorenderer-h.md)
+          - [native_audio_common.h](reference/apis-audio-kit/capi-native-audio-common-h.md)
+          - [native_audio_device_base.h](reference/apis-audio-kit/capi-native-audio-device-base-h.md)
+          - [native_audiostream_base.h](reference/apis-audio-kit/capi-native-audiostream-base-h.md)
+          - [native_audiostreambuilder.h](reference/apis-audio-kit/capi-native-audiostreambuilder-h.md)
         - 结构体<!--audio-struct-->
-          - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_capturer___callbacks___struct.md)
-          - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/_o_h___audio_device_descriptor_array.md)
-          - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/_o_h___audio_renderer___callbacks___struct.md)
-          - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/_o_h___audio_session___deactivated_event.md)
-          - [OH_AudioSession_Strategy](reference/apis-audio-kit/_o_h___audio_session___strategy.md)
+          - [OH_AudioSession_Strategy](reference/apis-audio-kit/capi-oh-audiosession-strategy.md)
+          - [OH_AudioSession_DeactivatedEvent](reference/apis-audio-kit/capi-oh-audiosession-deactivatedevent.md)
+          - [OH_AudioDeviceDescriptorArray](reference/apis-audio-kit/capi-oh-audiodevicedescriptorarray.md)
+          - [OH_AudioStreamInfo](reference/apis-audio-kit/capi-oh-audiostreaminfo.md)
+          - [OH_AudioRenderer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiorenderer-callbacks-struct.md)
+          - [OH_AudioCapturer_Callbacks_Struct](reference/apis-audio-kit/capi-oh-audiocapturer-callbacks-struct.md)
+          - [OH_AudioManager](reference/apis-audio-kit/capi-oh-audiomanager.md)
+          - [OH_AudioRoutingManager](reference/apis-audio-kit/capi-oh-audioroutingmanager.md)
+          - [OH_AudioSessionManager](reference/apis-audio-kit/capi-oh-audiosessionmanager.md)
+          - [OH_AudioStreamManager](reference/apis-audio-kit/capi-oh-audiostreammanager.md)
+          - [OH_AudioDeviceDescriptor](reference/apis-audio-kit/capi-oh-audiodevicedescriptor.md)
+          - [OH_AudioStreamBuilderStruct](reference/apis-audio-kit/capi-oh-audiostreambuilderstruct.md)
+          - [OH_AudioRendererStruct](reference/apis-audio-kit/capi-oh-audiorendererstruct.md)
+          - [OH_AudioCapturerStruct](reference/apis-audio-kit/capi-oh-audiocapturerstruct.md)
       - 错误码<!--audio-arkts-errcode-->
         - [Audio错误码](reference/apis-audio-kit/errorcode-audio.md)
         - [Ringtone错误码](reference/apis-audio-kit/errorcode-ringtone.md)
@@ -4318,7 +4351,7 @@
         - 模块<!--media-module-->
           - [AVImageGenerator](reference/apis-media-kit/_a_v_image_generator.md)
           - [AVMetadataExtractor](reference/apis-media-kit/_a_v_metadata_extractor.md)
-          - [AVPlayer](reference/apis-media-kit/_a_v_player.md)
+          - [AVPlayer](reference/apis-media-kit/capi-avplayer.md)
           - [AVRecorder](reference/apis-media-kit/_a_v_recorder.md)
           - [AVScreenCapture](reference/apis-media-kit/_a_v_screen_capture.md)
           - [VideoProcessing](reference/apis-media-kit/_video_processing.md)
@@ -4327,8 +4360,8 @@
           - [avimage_generator_base.h](reference/apis-media-kit/avimage__generator__base_8h.md)
           - [avmetadata_extractor_base.h](reference/apis-media-kit/avmetadata__extractor__base_8h.md)
           - [avmetadata_extractor.h](reference/apis-media-kit/avmetadata__extractor_8h.md)
-          - [avplayer.h](reference/apis-media-kit/avplayer_8h.md)
-          - [avplayer_base.h](reference/apis-media-kit/avplayer__base_8h.md)
+          - [avplayer.h](reference/apis-media-kit/capi-avplayer-h.md)
+          - [avplayer_base.h](reference/apis-media-kit/capi-avplayer-base-h.md)
           - [avrecorder.h](reference/apis-media-kit/avrecorder_8h.md)
           - [avrecorder_base.h](reference/apis-media-kit/avrecorder__base_8h.md)
           - [native_avscreen_capture.h](reference/apis-media-kit/native__avscreen__capture_8h.md)
@@ -4337,7 +4370,10 @@
           - [video_processing.h](reference/apis-media-kit/video__processing_8h.md)
           - [video_processing_types.h](reference/apis-media-kit/video__processing__types_8h.md)
         - 结构体<!--media-struct-->
-          - [AVPlayerCallback](reference/apis-media-kit/_a_v_player_callback.md)
+          - [MediaKeySession](reference/apis-media-kit/capi-mediakeysession.md)
+          - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-drm-mediakeysysteminfo.md)
+          - [AVPlayerCallback](reference/apis-media-kit/capi-avplayercallback.md)
+          - [OH_AVPlayer](reference/apis-media-kit/capi-oh-avplayer.md)
           - [OH_AVRecorder_Config](reference/apis-media-kit/_o_h___a_v_recorder___config.md)
           - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/_o_h___a_v_recorder___encoder_info.md)
           - [OH_AVRecorder_Location](reference/apis-media-kit/_o_h___a_v_recorder___location.md)
@@ -4377,17 +4413,21 @@
         <!--DelEnd-->
       - C API<!--media-library-c-->
         - 模块<!--media-library-module-->
-          - [MediaAssetManager](reference/apis-media-library-kit/_media_asset_manager.md)
+          - [MediaAssetManager](reference/apis-media-library-kit/capi-mediaassetmanager.md)
         - 头文件<!--media-library-headerfile-->
-          - [media_access_helper_capi.h](reference/apis-media-library-kit/media__access__helper__capi_8h.md)
-          - [media_asset_base_capi.h](reference/apis-media-library-kit/media__asset__base__capi_8h.md)
-          - [media_asset_capi.h](reference/apis-media-library-kit/media__asset__capi_8h.md)
-          - [media_asset_change_request_capi.h](reference/apis-media-library-kit/media__asset__change__request__capi_8h.md)
-          - [media_asset_manager_capi.h](reference/apis-media-library-kit/media__asset__manager__capi_8h.md)
-          - [moving_photo_capi.h](reference/apis-media-library-kit/moving__photo__capi_8h.md)
+          - [media_access_helper_capi.h](reference/apis-media-library-kit/capi-media-access-helper-capi-h.md)
+          - [media_asset_base_capi.h](reference/apis-media-library-kit/capi-media-asset-base-capi-h.md)
+          - [media_asset_capi.h](reference/apis-media-library-kit/capi-media-asset-capi-h.md)
+          - [media_asset_change_request_capi.h](reference/apis-media-library-kit/capi-media-asset-change-request-capi-h.md)
+          - [media_asset_manager_capi.h](reference/apis-media-library-kit/capi-media-asset-manager-capi-h.md)
+          - [moving_photo_capi.h](reference/apis-media-library-kit/capi-moving-photo-capi-h.md)
         - 结构体<!--media-library-struct-->
-          - [MediaLibrary_RequestId](reference/apis-media-library-kit/_media_library___request_id.md)
-          - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/_media_library___request_options.md)
+          - [MediaLibrary_RequestId](reference/apis-media-library-kit/capi-medialibrary-requestid.md)
+          - [OH_MediaAssetManager](reference/apis-media-library-kit/capi-oh-mediaassetmanager.md)
+          - [OH_MediaAssetChangeRequest](reference/apis-media-library-kit/capi-oh-mediaassetchangerequest.md)
+          - [OH_MovingPhoto](reference/apis-media-library-kit/capi-oh-movingphoto.md)
+          - [OH_MediaAsset](reference/apis-media-library-kit/capi-oh-mediaasset.md)
+          - [MediaLibrary_RequestOptions](reference/apis-media-library-kit/capi-medialibrary-requestoptions.md)
   - 图形<!--graphics-api-->
     - ArkGraphics 2D（方舟2D图形服务）<!--arkgraphics-api-->
       - ArkTS API<!--arkgraphics-arkts-->
@@ -4536,8 +4576,6 @@
     - Calendar Kit（日历服务）<!--calendar-api-->
       - ArkTS API<!--calendar-arkts-->
         - [@ohos.calendarManager（日程管理）](reference/apis-calendar-kit/js-apis-calendarManager.md)
-      - 错误码<!--calendar-arkts-errcode-->
-        - [CalendarManager错误码](reference/apis-calendar-kit/errorcode-calendarManager.md)
     - Contacts Kit（联系人服务）<!--contacts-->
       - ArkTS API<!--contacts-arkts-->
         - [@ohos.contact (联系人)](reference/apis-contacts-kit/js-apis-contact.md)

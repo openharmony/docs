@@ -999,3 +999,85 @@ struct SliderExample {
 
 ![slider_3](figures/slider_builder.gif)
 
+### 示例4（设置滑动条渐变色）
+
+该示例通过colorGradient设置滑动条渐变色，通过focusable、defaultFocus和focusOnTouch设置滑动条支持表冠操作。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SliderExample {
+  @State inSetValueOne: number = 60
+  @State colorGradient: LinearGradient = new LinearGradient([{ color: "#FF0000FF", offset: 0 }, { color: "#FFFF0000", offset: 1 }])
+  @State sensitivity: CrownSensitivity | undefined | null = CrownSensitivity.MEDIUM
+  scroller: Scroller = new Scroller()
+
+  getIntegerDigits(num: number): string {
+    let numRound = Math.round(num);
+    return numRound.toString();
+  }
+
+  build() {
+    Column() {
+      Scroll(this.scroller){
+        Column() {
+          Row() {
+            Stack({ alignContent: Alignment.Top }) {
+              Slider({
+                value: this.inSetValueOne,
+                min: 0,
+                max: 100,
+                style: SliderStyle.NONE,
+                direction: Axis.Vertical,
+                reverse: true
+              })
+                .focusable(true)
+                .defaultFocus(true)
+                .focusOnTouch(true)
+                .digitalCrownSensitivity(this.sensitivity)
+                .trackColor("#26FFFFFF")
+                .trackThickness(52)
+                .selectedColor(this.colorGradient)
+                .onChange((value: number, mode: SliderChangeMode) => {
+                  this.inSetValueOne = value
+                })
+            }
+            .height(233 - 66)
+            .width(52)
+            .margin({ top: 33, bottom: 33, left: 56 })
+            Column() {
+              Text('音量')
+                .fontSize(19)
+                .fontColor("#A9FFFFFF")
+                .fontWeight(500)
+                .textAlign(TextAlign.Start)
+                .margin({ left: 20 })
+              Row() {
+                Text(this.getIntegerDigits(this.inSetValueOne))
+                  .fontSize(52)
+                  .fontColor("#FFFFFFFF")
+                  .fontWeight(700)
+                  .textAlign(TextAlign.Start)
+                  .margin({ left: 20 })
+                Text('%')
+                  .fontSize(19)
+                  .fontColor("#FFFFFFFF")
+                  .fontWeight(500)
+                  .textAlign(TextAlign.Start)
+                  .margin({ left: 2 })
+              }
+            }.alignItems(HorizontalAlign.Start)
+          }
+          .width(233)
+          .height(233)
+          .borderRadius(116.5)
+          .backgroundColor(Color.Black)
+        }
+      }
+    }.width('100%')
+  }
+}
+```
+
+![slider_4](figures/slider_crown.gif)

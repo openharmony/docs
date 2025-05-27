@@ -24,7 +24,7 @@ getCameraManager(context: Context): CameraManager
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)      | 是   | 应用上下文。                   |
 
 **返回值：**
 
@@ -417,6 +417,8 @@ createCameraInput(camera: CameraDevice): CameraInput
 
 使用CameraDevice对象创建CameraInput实例，同步返回结果。
 
+该接口使用前首先通过[getSupportedCameras](#getsupportedcameras)接口查询当前设备支持的相机设备信息列表，开发者需要根据具体使用场景选择符合需求的相机设备，然后使用该接口创建CameraInput实例。
+
 **需要权限：** ohos.permission.CAMERA
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -466,6 +468,8 @@ function createCameraInput(camera: camera.CameraDevice, cameraManager: camera.Ca
 createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
 根据相机位置和类型创建CameraInput实例，同步返回结果。
+
+该接口使用前需要开发者根据应用具体使用场景自行指定相机位置和类型，例如打开前置相机进入自拍功能。
 
 **需要权限：** ohos.permission.CAMERA
 
@@ -1521,7 +1525,7 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 | 参数名     | 类型                  | 必填 | 说明                                                                      |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------------|
-| isSecureEnabled | boolean | 是   | 返回true为使能以安全的方式打开相机，返回false则反之。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| isSecureEnabled | boolean | 是   | 设置true为使能以安全的方式打开相机，设置false则反之。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **返回值：**
 

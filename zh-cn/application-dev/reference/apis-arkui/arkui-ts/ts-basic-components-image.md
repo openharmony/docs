@@ -457,7 +457,7 @@ resizable(value: ResizableOptions)
 
 设置图像拉伸时可调整大小的图像选项。拉伸对拖拽缩略图以及占位图有效。
 
-设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。
+设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat属性和orientation属性设置不生效。
 
 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。
 
@@ -489,7 +489,7 @@ privacySensitive(supported: boolean)
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，表示不支持卡片敏感隐私信息，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
 
 ### dynamicRangeMode<sup>12+</sup>
 
@@ -507,7 +507,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
+| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：DynamicRangeMode.STANDARD |
 
 ### orientation<sup>14+</sup>
 
@@ -523,7 +523,7 @@ orientation(orientation: ImageRotateOrientation)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
 
 ## ImageContent<sup>12+</sup>
 
@@ -702,9 +702,9 @@ type ImageMatrix = Matrix4Transit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型       | 必填 | 说明           |
-| ------ | --------- | --- | ------------- |
-| ORIGIN  | ColorContent | 是 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
+| 名称 | 类型       | 只读 | 可选 | 说明           |
+| ------ | --------- | --- | --- | ------------- |
+| ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
@@ -795,6 +795,8 @@ type ImageErrorCallback = (error: ImageError) => void
 图片加载异常时触发回调的返回对象。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -907,7 +909,7 @@ struct ImageExample2 {
 }
 ```
 
-![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.gif)
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.png)
 
 ### 示例3（为图片添加事件）
 
@@ -1026,10 +1028,11 @@ struct Index {
       Image($r("app.media.landscape"))
         .resizable({
           slice: {
-            left: this.left,
-            right: this.right,
-            top: this.top,
-            bottom: this.bottom
+            //传入数字时默认为vp单位，但在不同设备上vp单位会被解析成不同大小的px单位，可以根据需要选择传入的单位
+            left: `${this.left}px`,
+            right: `${this.right}px`,
+            top: `${this.top}px`,
+            bottom: `${this.bottom}px`
           }
         })
         .width(200)
@@ -1122,13 +1125,13 @@ import { image } from '@kit.ImageKit';
 @Entry
 @Component
 struct ImageExample {
-  pixelmaps: Array<PixelMap>  = [];
+  pixelMaps: Array<PixelMap>  = [];
   options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
   async aboutToAppear() {
-    this.pixelmaps = await this.getPixelMaps();
-    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+    this.pixelMaps = await this.getPixelMaps();
+    this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
   }
 
   build() {
@@ -1143,11 +1146,11 @@ struct ImageExample {
       Row() {
         Button('once').width(100).padding(5).onClick(() => {
           this.options = { iterations: 1 };
-          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+          this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
           this.options = { iterations: -1 };
-          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+          this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
         }).margin(5)
       }
     }.width('50%')
@@ -1182,11 +1185,11 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
-    return Mypixelmaps;
+    let myPixelMaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
+    return myPixelMaps;
   }
 }
 ```

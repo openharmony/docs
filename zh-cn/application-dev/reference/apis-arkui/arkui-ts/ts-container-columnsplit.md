@@ -1,6 +1,6 @@
 # ColumnSplit
 
-将子组件纵向布局，并在每个子组件之间插入一根横向的分割线。
+将子组件纵向布局，并在每个子组件之间插入横向分割线。
 
 >  **说明：**
 >
@@ -9,7 +9,7 @@
 
 可以包含子组件。
 
-ColumnSplit通过分割线限制子组件的高度。初始化时，分割线位置根据子组件的高度来计算。初始化后，后续动态修改子组件的高度将不生效，分割线位置保持不变，子组件高度可通过拖动相邻分割线进行调整。
+ColumnSplit通过分割线限制子组件的高度。初始化时，分割线位置根据子组件的高度来计算。初始化后，动态修改子组件的高度不生效，分割线位置保持不变，可通过拖动相邻分割线改变子组件高度。
 
 初始化后，动态修改[margin](ts-universal-attributes-size.md#margin)、[border](ts-universal-attributes-border.md#border)、[padding](ts-universal-attributes-size.md#padding)通用属性导致子组件尺寸大于相邻分割线间距的异常情况下，不支持拖动分割线改变子组件的高度。
 ## 接口
@@ -78,7 +78,7 @@ divider(value: ColumnSplitDividerStyle | null)
 
 ## 示例
 
-ColumnSplit的基本用法。设置可拖动的、纵向布局的子组件。
+ColumnSplit的基本用法：设置可拖动的纵向布局子组件。
 
 ```ts
 // xxx.ets

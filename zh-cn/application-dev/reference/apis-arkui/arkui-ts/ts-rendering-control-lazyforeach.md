@@ -8,7 +8,7 @@
 
 ## 接口
 
-LazyForEach(dataSource: IDataSource,itemGenerator: (item: any, index: number) => void,keyGenerator?: (item: any, index: number) => string,)
+LazyForEach(dataSource: IDataSource, itemGenerator: (item: any, index: number) => void, keyGenerator?: (item: any, index: number) => string)
 
 LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
 
@@ -46,7 +46,7 @@ totalCount(): number
 
 ### getData
 
-getData(index:&nbsp;number): Object
+getData(index:&nbsp;number): any
 
 获取索引值index对应的数据。
 

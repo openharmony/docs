@@ -22,7 +22,7 @@ import { wifiManager } from '@kit.MDMKit';
 
 isWifiActiveSync(admin: Want): boolean
 
-查询设备Wi-Fi开启状态。
+查询当前设备Wi-Fi开启状态。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -74,7 +74,7 @@ try {
 
 setWifiProfileSync(admin: Want, profile: WifiProfile): void
 
-为设备配置Wi-Fi，使连接到指定网络。
+为当前设备配置Wi-Fi，使连接到指定网络。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -87,7 +87,7 @@ setWifiProfileSync(admin: Want, profile: WifiProfile): void
 | 参数名  | 类型                                                    | 必填 | 说明                   |
 | ------- | ------------------------------------------------------- | ---- | ---------------------- |
 | admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
-| profile | [WifiProfile](#wifiprofile)                             | 是   | WLAN配置信息。         |
+| profile | [WifiProfile](#wifiprofile)                             | 是   | Wi-Fi配置信息。         |
 
 **错误码**：
 
@@ -105,6 +105,7 @@ setWifiProfileSync(admin: Want, profile: WifiProfile): void
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -123,9 +124,346 @@ try {
 }
 ```
 
+## wifiManager.addAllowedWifiList<sup>19+</sup>
+
+addAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
+
+添加Wi-Fi白名单。添加白名单后当前设备仅允许连接该名单下的Wi-Fi。
+
+以下情况下，调用本接口会报策略冲突：
+
+1. 已经通过[setDiallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)接口禁用了设备Wi-Fi能力。通过[setDiallowedPolicy](js-apis-enterprise-restrictions.md#restrictionssetdisallowedpolicy)解除Wi-Fi禁用后，可解除冲突。
+2. 已经通过[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)接口添加了Wi-Fi黑名单。通过[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)移除Wi-Fi黑名单后，可解除冲突。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名       | 类型                                                       | 必填 | 说明                                                         |
+| ------------ | -------------------------------------------------------    | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md)    | 是   | 企业设备管理扩展组件。                                       |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                   | 是   | Wi-Fi白名单数组。数组长度上限为200。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200010  | A conflict policy has been configured.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let wifiIds: Array<wifiManager.WifiAccessInfo> = [{
+    //需根据实际情况进行替换
+    ssid: "wifi_name",
+    bssid: "68:77:24:77:A6:D8"
+  }];
+  wifiManager.addAllowedWifiList(wantTemp, wifiIds);
+  console.info(`Succeeded in adding allowed wifi list.`);
+} catch (err) {
+  console.error(`Failed to add allowed wifi list. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## wifiManager.removeAllowedWifiList<sup>19+</sup>
+
+removeAllowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
+
+移除Wi-Fi白名单。若移除白名单中的部分Wi-Fi，则当前设备仅允许连接剩下未移除的Wi-Fi。若移除白名单中的所有Wi-Fi，则当前设备可以连接任意Wi-Fi。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名       | 类型                                                    | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi白名单数组。数组长度上限为200。                                              |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let wifiIds: Array<wifiManager.WifiAccessInfo> = [{
+    //需根据实际情况进行替换
+    ssid: "wifi_name",
+    bssid: "68:77:24:77:A6:D8"
+  }];
+  wifiManager.removeAllowedWifiList(wantTemp, wifiIds);
+  console.info(`Succeeded in removing allowed wifi list.`);
+} catch (err) {
+  console.error(`Failed to remove allowed wifi list. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## wifiManager.getAllowedWifiList<sup>19+</sup>
+
+getAllowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
+
+获取Wi-Fi白名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+
+**返回值：**
+
+| 类型                               | 说明                      |
+| ---------------------------------- | ------------------------- |
+| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi白名单数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let result: Array<wifiManager.WifiAccessInfo> = wifiManager.getAllowedWifiList(wantTemp);
+  console.info(`Succeeded in getting allowed wifi list. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get allowed wifi list. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## wifiManager.addDisallowedWifiList<sup>19+</sup>
+
+addDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
+
+添加Wi-Fi黑名单。添加黑名单后当前设备不允许连接该名单下的Wi-Fi。
+
+以下情况下，调用本接口会报策略冲突：
+
+<!--Del-->1. 已经通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)接口禁用了设备Wi-Fi能力。通过[setWifiDisabled](js-apis-enterprise-wifiManager-sys.md#wifimanagersetwifidisabled11)解除Wi-Fi禁用后，可解除冲突。
+2. <!--DelEnd-->已经通过[addAllowedWifiList](#wifimanageraddallowedwifilist19)接口添加了Wi-Fi白名单。通过[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)移除Wi-Fi白名单后，可解除冲突。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名       | 类型                                                    | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | Wi-Fi黑名单数组。数组长度上限为200。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 9200010  | A conflict policy has been configured.                       |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let wifiIds: Array<wifiManager.WifiAccessInfo> = [{
+    //需根据实际情况进行替换
+    ssid: "wifi_name",
+    bssid: "68:77:24:77:A6:D8"
+  }];
+  wifiManager.addDisallowedWifiList(wantTemp, wifiIds);
+  console.info(`Succeeded in adding disallowed wifi list.`);
+} catch (err) {
+  console.error(`Failed to add disallowed wifi list. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## wifiManager.removeDisallowedWifiList<sup>19+</sup>
+
+removeDisallowedWifiList(admin: Want, list: Array&lt;WifiAccessInfo&gt;): void
+
+移除Wi-Fi黑名单。若移除黑名单中的部分Wi-Fi，则当前设备不允许连接黑名单内剩余的Wi-Fi。若移除黑名单中的所有Wi-Fi，则当前设备可以连接任意的Wi-Fi。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名       | 类型                                                    | 必填 | 说明                                                         |
+| ------------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| admin        | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。                                       |
+| list         | Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt;                | 是   | 待移除的Wi-Fi黑名单数组。数组长度上限为200。                      |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let wifiIds: Array<wifiManager.WifiAccessInfo> = [{
+    //需根据实际情况进行替换
+    ssid: "wifi_name",
+    bssid: "68:77:24:77:A6:D8"
+  }];
+  wifiManager.removeDisallowedWifiList(wantTemp, wifiIds);
+  console.info(`Succeeded in removing disallowed wifi list.`);
+} catch (err) {
+  console.error(`Failed to remove disallowed wifi list. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## wifiManager.getDisallowedWifiList<sup>19+</sup>
+
+getDisallowedWifiList(admin: Want): Array&lt;WifiAccessInfo&gt;
+
+获取Wi-Fi黑名单。
+
+**需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+**参数：**
+
+| 参数名 | 类型                                                    | 必填 | 说明                                   |
+| ------ | ------------------------------------------------------- | ---- | -------------------------------------- |
+| admin  | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。 |
+
+**返回值：**
+
+| 类型                               | 说明                      |
+| ---------------------------------- | ------------------------- |
+| Array&lt;[WifiAccessInfo](#wifiaccessinfo19)&gt; | Wi-Fi黑名单数组。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[企业设备管理错误码](errorcode-enterpriseDeviceManager.md)和[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**示例：**
+
+```ts
+import { Want } from '@kit.AbilityKit';
+
+let wantTemp: Want = {
+  //需根据实际情况进行替换
+  bundleName: 'com.example.edmtest',
+  abilityName: 'com.example.edmtest.EnterpriseAdminAbility'
+};
+try {
+  let result: Array<wifiManager.WifiAccessInfo> = wifiManager.getDisallowedWifiList(wantTemp);
+  console.info(`Succeeded in getting disallowed wifi list. Result: ${JSON.stringify(result)}`);
+} catch (err) {
+  console.error(`Failed to get disallowed wifi list. Code: ${err.code}, message: ${err.message}`);
+}
+```
+
+## WifiAccessInfo<sup>19+</sup>
+
+Wi-Fi的SSID和BSSID信息。
+
+**系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+
+
+| 名称          | 类型                                  | 必填 | 说明                                                        |
+| ------------- | ------------------------------------- | ---- | ----------------------------------------------------------- |
+| ssid          | string                                | 是   | Wi-Fi热点名称，编码格式为UTF-8，最大长度为32字节（中文字符占3位，英文字符占1位）。           |
+| bssid         | string                                | 否   | Wi-Fi热点的mac地址，例如：00:11:22:33:44:55。<br/>调用[addAllowedWifiList](#wifimanageraddallowedwifilist19)和[removeAllowedWifiList](#wifimanagerremoveallowedwifilist19)时为必填。<br/>调用[addDisallowedWifiList](#wifimanageradddisallowedwifilist19)和[removeDisallowedWifiList](#wifimanagerremovedisallowedwifilist19)时为选填（默认值为空字符串）。            |
+
 ## WifiProfile
 
-WLAN配置信息。
+Wi-Fi配置信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 

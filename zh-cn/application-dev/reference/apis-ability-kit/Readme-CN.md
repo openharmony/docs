@@ -259,13 +259,13 @@
       <!--DelEnd-->
 - C API<!--ability-c-->
   - 模块<!--ability-module-->
-    - [AbilityAccessControl](_ability_access_control.md)
+    - [AbilityAccessControl](capi-abilityaccesscontrol.md)
     - [AbilityBase](_ability_base.md)
     - [AbilityRuntime](_ability_runtime.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件<!--ability-headerfile-->
-    - [ability_access_control.h](ability__access__control_8h.md)
+    - [ability_access_control.h](capi-ability-access-control-h.md)
     - [ability_base_common.h](ability__base__common_8h.md)
     - [ability_runtime_common.h](ability__runtime__common_8h.md)
     - [application_context.h](application__context_8h.md)

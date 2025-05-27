@@ -47,8 +47,8 @@ equalTo(field: string, value: ValueType): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose");
 ```
 
 
@@ -71,10 +71,10 @@ and(): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
+let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "lisi")
     .and()
-    .equalTo("SALARY", 200.5)
+    .equalTo("SALARY", 200.5);
 ```
 
 ### orderByAsc<sup>10+</sup>
@@ -102,8 +102,8 @@ orderByAsc(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.orderByAsc("AGE")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.orderByAsc("AGE");
 ```
 
 ### orderByDesc<sup>10+</sup>
@@ -131,8 +131,8 @@ orderByDesc(field: string): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.orderByDesc("AGE")
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.orderByDesc("AGE");
 ```
 
 ### limit<sup>10+</sup>
@@ -161,8 +161,8 @@ limit(total: number, offset: number): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.equalTo("NAME", "Rose").limit(10, 3)
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.equalTo("NAME", "Rose").limit(10, 3);
 ```
 
 ### in<sup>10+</sup>
@@ -191,6 +191,6 @@ in(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 **示例：**
 
 ```ts
-let predicates = new dataSharePredicates.DataSharePredicates()
-predicates.in("AGE", [18, 20])
+let predicates = new dataSharePredicates.DataSharePredicates();
+predicates.in("AGE", [18, 20]);
 ```

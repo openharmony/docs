@@ -152,7 +152,7 @@ You can refer to the corresponding development guide and samples based on your d
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_SetCapacity](#oh_imagereceiveroptions_setcapacity) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, int32_t capacity) | Sets the capacity for an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverOptions_Release](#oh_imagereceiveroptions_release) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options) | Releases an [OH_ImageReceiverOptions](#oh_imagereceiveroptions) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_Create](#oh_imagereceivernative_create) ([OH_ImageReceiverOptions](#oh_imagereceiveroptions) \*options, [OH_ImageReceiverNative](#oh_imagereceivernative) \*\*receiver) | Creates an **OH_ImageReceiverNative** object at the application layer. | 
-| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | Obtains the receiver ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
+| [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, uint64_t \*surfaceId) | Obtains the surface ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.  | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | Obtains the latest image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageNative](#oh_imagenative) \*\*image) | Obtains the next image through an [OH_ImageReceiverNative](#oh_imagereceivernative) object. | 
 | [Image_ErrorCode](#image_errorcode) [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) ([OH_ImageReceiverNative](#oh_imagereceivernative) \*receiver, [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback) callback) | Registers the callback defined in [OH_ImageReceiver_OnCallback](#oh_imagereceiver_oncallback). | 
@@ -634,7 +634,7 @@ The table below describes the content and operation mode of the OH_ImageReceiver
 
 | Field Type| Field Name| Field Description|Operation Function| Function Description|
 | -------- | -------- | -------- | -------- | -------- |
-| uint64_t | surfaceId | Surface ID of the receiver.| [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) |Obtains the receiver ID of an **OH_ImageReceiverNative** object.|
+| uint64_t | surfaceId | Surface ID of the receiver.| [OH_ImageReceiverNative_GetReceivingSurfaceId](#oh_imagereceivernative_getreceivingsurfaceid) | Obtains the surface ID through an **OH_ImageReceiverNative** object. |
 | OH_ImageNative | image | Image at the native layer.| [OH_ImageReceiverNative_ReadLatestImage](#oh_imagereceivernative_readlatestimage) | Obtains the latest image through an **OH_ImageReceiverNative** object.|
 | OH_ImageNative | image | Image at the native layer.| [OH_ImageReceiverNative_ReadNextImage](#oh_imagereceivernative_readnextimage) |Obtains the next image through an **OH_ImageReceiverNative** object.|
 | OH_ImageReceiver_OnCallback | callback| Callback function of the image receiver.| [OH_ImageReceiverNative_On](#oh_imagereceivernative_on) |Registers an **OH_ImageReceiver_OnCallback**.|
@@ -2695,7 +2695,7 @@ Image_ErrorCode OH_ImageReceiverNative_GetReceivingSurfaceId(OH_ImageReceiverNat
 
 **Description**
 
-Obtains the receiver ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
+Obtains the surface ID through an [OH_ImageReceiverNative](#oh_imagereceivernative) object.
 
 **Since**: 12
 
@@ -3285,7 +3285,7 @@ Returns **IMAGE_SUCCESS** if the operation is successful; returns **IMAGE_BAD_PA
 ### OH_ImageSourceNative_CreatePixelmap()
 
 ```
-Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **pixelmap)
+Image_ErrorCode OH_ImageSourceNative_CreatePixelmap(OH_ImageSourceNative *source, OH_DecodingOptions *options, OH_PixelmapNative **resPixMap)
 ```
 
 **Description**

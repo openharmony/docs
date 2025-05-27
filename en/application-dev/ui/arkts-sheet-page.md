@@ -10,7 +10,7 @@ Semi-modal pages have different form capabilities on devices of different widths
 
  - When a [UIExtension](../reference/apis-arkui/js-apis-arkui-uiExtension.md) is embedded in a semi-modal, launching another semi-modal or popup window within the UIExtension is not allowed.
 
- - In scenarios without secondary confirmation or custom close behavior, avoid using the [shouldDismiss/onWilDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) API.
+ - In scenarios without secondary confirmation or custom close behavior, avoid using the [shouldDismiss/onWillDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions) API.
 
 ## Lifecycle
 

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > - 示例效果请以真机运行为准，当前DevEco Studio预览器不支持。
 
 ## 需要权限
@@ -274,7 +274,7 @@ Web组件指定共享渲染进程。
 | 名称        | 类型                                     | 必填   | 说明                                     |
 | ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src        | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource)   | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件(文件支持html和txt类型)，请使用file://沙箱文件路径。<br>src不能通过状态变量（例如：@State）动态更改地址，如需更改，请通过[loadUrl()](js-apis-webview.md#loadurl)重新加载。 |
-| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器，通过controller可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
+| controller | [WebController](#webcontroller) \| [WebviewController<sup>9+</sup>](#webviewcontroller9)  | 是    | 控制器，通过controller可以控制Web组件各种行为（包括页面导航、声明周期状态、JavaScript交互等行为）。从API version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 | renderMode<sup>12+</sup> | [RenderMode](#rendermode12枚举说明)| 否   | 表示当前Web组件的渲染方式，RenderMode.ASYNC_RENDER表示Web组件自渲染，RenderMode.SYNC_RENDER表示支持Web组件统一渲染能力，默认值RenderMode.ASYNC_RENDER，该模式不支持动态调整。 |
 | incognitoMode<sup>11+</sup> | boolean | 否 | 表示当前创建的webview是否是隐私模式。true表示创建隐私模式的webview，false表示创建正常模式的webview。<br> 默认值：false |
 | sharedRenderProcessToken<sup>12+</sup> | string | 否 | 表示当前Web组件指定共享渲染进程的token，多渲染进程模式下，相同token的Web组件会优先尝试复用与token相绑定的渲染进程。token与渲染进程的绑定发生在渲染进程的初始化阶段。当渲染进程没有关联的Web组件时，其与token绑定关系将被移除。<br> 默认值： ""  |
@@ -1828,6 +1828,7 @@ javaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
 > - 该脚本按照字典序执行，非数组本身顺序，若需数组本身顺序，建议使用[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)接口。
 > - 不建议与[runJavaScriptOnDocumentStart](#runjavascriptondocumentstart15)同时使用。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1904,6 +1905,7 @@ javaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 > - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
 > - 该脚本按照字典序执行，非数组本身顺序。
 > - 不建议与[runJavaScriptOnDocumentEnd](#runjavascriptondocumentend15)同时使用。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1967,6 +1969,7 @@ runJavaScriptOnDocumentStart(scripts: Array\<ScriptItem>)
 > - 该脚本将在页面的任何JavaScript代码之前运行，并且DOM树此时可能尚未加载、渲染完毕。
 > - 该脚本按照数组本身顺序执行。
 > - 不建议与[javaScriptOnDocumentStart](#javascriptondocumentstart11)同时使用。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -2043,6 +2046,7 @@ runJavaScriptOnDocumentEnd(scripts: Array\<ScriptItem>)
 > - 该脚本将在页面的任何JavaScript代码之后运行，并且DOM树此时已经加载、渲染完毕。
 > - 该脚本按照数组本身顺序执行。
 > - 不建议与[javaScriptOnDocumentEnd](#javascriptondocumentend11)同时使用。
+> - 内容相同的脚本多次注入时会被静默去重，不展示，不提醒，采用首次注入时的scriptRules。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 

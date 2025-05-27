@@ -85,8 +85,3 @@ You can use the user file access framework to access and manage user files. This
 
 Ability Kit: The user file access framework of Core File Kit depends on the Extension capability provided by Ability Kit and is scheduled and managed by Ability Kit.
 
-##   
-
- 
-
--  

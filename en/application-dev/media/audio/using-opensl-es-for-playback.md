@@ -164,4 +164,3 @@ Refer to the sample code below to play an audio file.
    (*pcmPlayerObject)->Destroy(pcmPlayerObject);
    (*engineObject)->Destroy(engineObject);
    ```
-<!--no_check-->
