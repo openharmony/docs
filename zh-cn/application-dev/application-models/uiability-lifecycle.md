@@ -48,7 +48,8 @@ export default class EntryAbility extends UIAbility {
 
 > **说明：**
 > 
-> 不同开发场景下[WindowStage事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)的时序可能存在差异。
+> - 不同开发场景下[WindowStage事件](../reference/apis-arkui/js-apis-window.md#windowstageeventtype9)的时序可能存在差异。
+> - 对于不同类型的产品，当应用主窗口从前台进入后台时，UIAbility生命周期的变化也会存在差异。详见[Stage模型下主窗口的生命周期](../windowmanager/window-overview.md#stage模型下主窗口的生命周期)。
 
 ```ts
 import { UIAbility } from '@kit.AbilityKit';
