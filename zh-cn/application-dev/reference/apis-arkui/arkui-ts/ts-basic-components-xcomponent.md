@@ -12,13 +12,13 @@
 
 ## 接口
 
-### XComponent<sup>18+</sup>
+### XComponent<sup>19+</sup>
 
 XComponent(params: NativeXComponentParameters)
 
 在native侧获取XComponent节点实例、注册XComponent持有的Surface的生命周期回调和触摸、鼠标、按键等组件事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -26,7 +26,7 @@ XComponent(params: NativeXComponentParameters)
 
 | 参数名  | 类型                                | 必填 | 说明                           |
 | ------- | --------------------------------------- | ---- | ------------------------------ |
-| params | [NativeXComponentParameters](#nativexcomponentparameters18) | 是   | 定义XComponent的具体配置参数。 |
+| params | [NativeXComponentParameters](#nativexcomponentparameters19) | 是   | 定义XComponent的具体配置参数。 |
 
 ### XComponent<sup>12+</sup>
 
@@ -98,11 +98,11 @@ XComponent(value: {id: string, type: string, libraryname?: string, controller?: 
 | controller | [XComponentController](#xcomponentcontroller) | 是 | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
 | imageAIOptions | [ImageAIOptions](ts-image-common.md#imageaioptions) | 否 | 给组件设置一个AI分析选项，通过此项可配置分析类型或绑定一个分析控制器。 |
 
-## NativeXComponentParameters<sup>18+</sup>
+## NativeXComponentParameters<sup>19+</sup>
 
 定义XComponent的具体配置参数。这种方式创建的XComponent可以对应的[FrameNode](../js-apis-arkui-frameNode.md)可以传递到native侧使用NDK接口构建UI的方式[监听组件事件](../../../ui/ndk-listen-to-component-events.md)以及进行surface生命周期相关的设置。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

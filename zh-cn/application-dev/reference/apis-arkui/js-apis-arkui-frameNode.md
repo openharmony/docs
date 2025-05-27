@@ -3009,12 +3009,12 @@ let options: XComponentOptions = {
 typeNode.createNode(uiContext, 'XComponent', options);
 ```
 
-### createNode('XComponent')<sup>18+</sup>
+### createNode('XComponent')<sup>19+</sup>
 createNode(context: UIContext, nodeType: 'XComponent', params: NativeXComponentParameters): XComponent
 
 按照params中的配置参数创建XComponent类型的FrameNode节点。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -3024,7 +3024,7 @@ createNode(context: UIContext, nodeType: 'XComponent', params: NativeXComponentP
 | ------------------ | ------------------ | ------------------- | ------------------- |
 | context | [UIContext](./js-apis-arkui-UIContext.md) | 是   | 创建对应节点时所需的UI上下文。 |
 | nodeType | 'XComponent' | 是 | 创建XComponent类型的节点。 |
-| params | [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters18) | 是 | 定义XComponent的具体配置参数。 |
+| params | [NativeXComponentParameters](./arkui-ts/ts-basic-components-xcomponent.md#nativexcomponentparameters19) | 是 | 定义XComponent的具体配置参数。 |
 
 **返回值：**
 
