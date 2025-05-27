@@ -294,9 +294,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 
 ## ItemInfo
 
-继承自[BaseItemInfo]，仅含私有参数itemType
-
-图片、视频相关信息。
+继承自[BaseItemInfo](#baseiteminfo)，增加私有参数itemType。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
