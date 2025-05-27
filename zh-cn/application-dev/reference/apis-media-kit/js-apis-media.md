@@ -295,6 +295,12 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise对象。异步返回元数据获取类对象（AVMetadataExtractor）。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
@@ -3245,8 +3251,8 @@ track变更事件回调方法。
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
-| index  | number | 是 | 当前选中的track索引。     |
-| isSelected | boolean | 是 | 当前索引的选中状态。 |
+| index  | number | 是 | 当前变更的track索引。     |
+| isSelected | boolean | 是 | 当前变更的track索引是否被选中。true表示处于选中状态，false表示处于非选中状态。 |
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
