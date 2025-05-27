@@ -72,6 +72,7 @@ import { bundleManager } from '@kit.AbilityKit';
 | INSIGHT_INTENT_UI<sup>12+</sup> | 22 | InsightIntentUIExtensionAbility：为开发者提供能被小艺意图调用，以窗口形态呈现内容的扩展能力。 |
 | FENCE<sup>18+</sup> | 24 | [FenceExtensionAbility](../apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md)：为开发者提供地理围栏相关的能力，继承自ExtensionAbility。 |
 | ASSET_ACCELERATION<sup>18+</sup> | 26 | AssetAccelerationExtensionAbility：资源预下载扩展能力，提供在设备闲时状态，进行后台资源预下载的能力。 |
+| FORM_EDIT<sup>18+</sup> | 27 | [FormEditExtensionAbility](../apis-form-kit/js-apis-app-form-formEditExtensionAbility.md)：为开发者提供卡片编辑的能力，继承自UIExtensionAbility。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
