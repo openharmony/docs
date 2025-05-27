@@ -13,14 +13,38 @@ AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后
 - 当前仅支持2in1设备。
 - 当前仅适用于企业普通应用。
 
+## 生命周期
+
+AppServiceExtensionAbility提供了[onCreate()](#oncreate)、[onRequest()](#onrequest)、[onConnect()](#onconnect)、[onDisconnect()](#ondisconnect)和[onDestroy()](#ondestroy)生命周期回调，根据需要重写对应的回调方法。下图展示了AppServiceExtensionAbility的生命周期。
+
+![AppServiceExtensionAbility-lifecycle](figures/AppServiceExtensionAbility-lifecycle.png)
+
+- **onCreate**
+  在AppServiceExtensionAbility实例创建时，系统会触发该回调。
+
+- **onDestroy**
+  在AppServiceExtensionAbility实例销毁时，系统会触发该回调。
+
+- **onRequest**
+  调用方使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
+
+- **onConnect**
+  调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
+
+- **onDisconnect**
+  当所有连接方断开与AppServiceExtensionAbility实例的连接时，系统会触发该回调。
+
 ## 导入模块
 
 ```ts
 import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 ```
 
+## AppServiceExtensionAbility
 
-## 属性
+AppServiceExtensionAbility模块提供后台服务相关扩展能力，包括后台服务的创建、销毁、连接、断开等生命周期回调。
+
+### 属性
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -29,11 +53,15 @@ import { AppServiceExtensionAbility } from '@kit.AbilityKit';
 | context | [AppServiceExtensionContext](js-apis-inner-application-appServiceExtensionContext.md)  | 是 | 否 | AppServiceExtensionAbility的上下文环境，继承自[ExtensionContext](js-apis-inner-application-extensionContext.md)。 |
 
 
-## AppServiceExtensionAbility.onCreate
+### onCreate
 
 onCreate(want: Want): void
 
-在AppServiceExtensionAbility实例创建时，系统会触发该回调。应用可以在该接口中执行自己的业务逻辑初始化操作。
+在AppServiceExtensionAbility实例创建时，系统会触发该回调。应用可以在该接口中执行自己的业务逻辑初始化操作，例如注册公共事件监听等。
+
+> **说明：**
+>
+> 如果AppServiceExtensionAbility实例已创建，再次启动或连接该实例时不会触发onCreate()回调。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -58,11 +86,11 @@ onCreate(want: Want): void
     }
     ```
 
-## AppServiceExtensionAbility.onDestroy
+### onDestroy
 
 onDestroy(): void
 
-在AppServiceExtensionAbility实例销毁时，系统会触发该回调。应用可以在该接口中执行资源清理等操作。
+在AppServiceExtensionAbility实例销毁时，系统会触发该回调。应用可以在该接口中执行资源清理等操作，如注销监听等。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -81,14 +109,14 @@ onDestroy(): void
     }
     ```
 
-## AppServiceExtensionAbility.onRequest
+### onRequest
 
 onRequest(want: Want, startId: number): void
 
-使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
+调用方使用[startAppServiceExtensionAbility()](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartappserviceextensionability20)拉起AppServiceExtensionAbility实例时，系统会触发该回调。
 
 - 如果该实例已创建，则会直接回调该接口。
-- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#appserviceextensionabilityoncreate)回调，再回调该接口。
+- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -114,16 +142,16 @@ onRequest(want: Want, startId: number): void
     }
     ```
 
-## AppServiceExtensionAbility.onConnect
+### onConnect
 
 onConnect(want: Want): rpc.RemoteObject
 
 调用方使用[connectAppServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectappserviceextensionability20)连接AppServiceExtensionAbility实例时，系统会触发该回调。
 
 - 如果该实例已创建，则会直接回调该接口。
-- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#appserviceextensionabilityoncreate)回调，再回调该接口。
+- 如果该实例此前未被创建，则会先创建实例并触发[onCreate()](#oncreate)回调，再回调该接口。
 
-应用需要在该接口中返回一个RemoteObject对象，用于客户端和服务端进行通信。当AppServiceExtensionAbility实例处于连接状态时，如果调用方发起新的连接，系统会返回缓存的RemoteObject对象，而不会重复回调[onConnect()](#appserviceextensionabilityonconnect)接口。
+应用需要在该接口中返回一个RemoteObject对象，用于客户端和服务端进行通信。当AppServiceExtensionAbility实例处于连接状态时，如果调用方发起新的连接，系统会返回缓存的RemoteObject对象，而不会重复回调[onConnect()](#onconnect)接口。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -165,7 +193,7 @@ onConnect(want: Want): rpc.RemoteObject
     }
     ```
 
-## AppServiceExtensionAbility.onDisconnect
+### onDisconnect
 
 onDisconnect(want: Want): void
 

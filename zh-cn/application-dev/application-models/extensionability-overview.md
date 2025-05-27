@@ -28,6 +28,7 @@
 | [EmbeddedUIExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-embeddedUIExtensionAbility.md) | EMBEDDED_UI类型的ExtensionAbility组件，用于提供[跨进程界面嵌入](embeddeduiextensionability.md)的能力。 | 是 | 是 | 否 | 非严格模式访问共享数据，可以读写共享数据。 |
 | [ShareExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md) | SHARE类型的ExtensionAbility组件，用于提供分享模板服务扩展的能力。 | 是 | 是 | 否 | 非严格模式访问共享数据，可以读写共享数据。 |
 | [FenceExtension](../reference/apis-location-kit/js-apis-app-ability-FenceExtensionAbility.md) | FENCE类型的ExtensionAbility组件，用于提供<!--RP1-->[地理围栏](../device/location/fenceExtensionAbility.md)<!--RP1End-->扩展的能力。 | 是 | 否 | 否 | 非严格模式访问共享数据，可以读写共享数据。 |
+| [AppServiceExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-appServiceExtensionAbility.md) | APP_SERVICE类型的ExtensionAbility组件，用于提供应用后台服务扩展的能力。 | 是 | 是 | 否 | 非严格模式访问共享数据，可以读写共享数据。 |
 
 
 
