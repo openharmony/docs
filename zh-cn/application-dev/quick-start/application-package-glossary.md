@@ -24,7 +24,7 @@ Harmony Ability Package，一个HAP文件包含应用的所有内容，由代码
 
 ### HAR 
 
-Harmony Archive Package，静态共享包，编译态复用。可以包含代码、C++库、资源和配置文件，其文件后缀名为.har，用于实现代码和资源的共享。
+Harmony Archive，静态共享包，编译态复用。可以包含代码、C++库、资源和配置文件，其文件后缀名为.har，用于实现代码和资源的共享。
 
 ### HSP 
 
