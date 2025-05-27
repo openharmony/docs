@@ -2371,6 +2371,27 @@ enum ArkUI_ImmersiveMode
 | ARKUI_IMMERSIVE_MODE_DEFAULT  | 弹窗蒙层按照显示页面给定的布局约束显示。  |
 | ARKUI_IMMERSIVE_MODE_EXTEND  | 弹窗蒙层可扩展至覆盖状态栏和导航条。  |
 
+
+### ArkUI_DialogState
+
+```
+enum ArkUI_DialogState
+```
+**描述：**
+
+枚举对话框的状态。
+
+**起始版本：** 20
+
+| 枚举值 | 描述 |
+| -------- | -------- |
+| DIALOG_UNINITIALIZED  | 未初始化，控制器未与dialog绑定时。  |
+| DIALOG_INITIALIZED  | 已初始化，控制器与dialog绑定后。  |
+| DIALOG_APPEARING  | 显示中，dialog显示动画过程中。  |
+| DIALOG_APPEARED  | 已显示，dialog显示动画结束。  |
+| DIALOG_DISAPPEARING  | 消失中，dialog消失动画过程中。  |
+| DIALOG_DISAPPEARED  | 已消失，dialog消失动画结束后。  |
+
 ### ArkUI_DragPreviewScaleMode
 
 ```
@@ -9168,6 +9189,28 @@ int32_t OH_ArkUI_CustomDialog_RegisterOnDidDisappearCallback(
 | options | 弹窗参数。 |
 | userData | 用户自定义数据指针。 |
 | callback | 弹窗消失时的事件回调。 |
+
+**返回：**
+
+[ARKUI_ERROR_CODE_NO_ERROR](_ark_u_i___native_module.md) 成功。 [ARKUI_ERROR_CODE_PARAM_INVALID](_ark_u_i___native_module.md) 函数参数异常。
+
+### OH_ArkUI_CustomDialog_GetState()
+
+```
+int32_t OH_ArkUI_CustomDialog_GetState(ArkUI_NativeDialogHandle handle, ArkUI_DialogState* state)
+```
+**描述：**
+
+获取弹窗的状态。
+
+**起始版本：** 20
+
+**参数:**
+
+| 名称 | 描述 |
+| -------- | -------- |
+| handle | 自定义弹窗控制器对象指针。 |
+| state | 自定义弹窗的状态。 |
 
 **返回：**
 
