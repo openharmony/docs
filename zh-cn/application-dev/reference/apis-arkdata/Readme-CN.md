@@ -36,7 +36,7 @@
     - [@system.storage数据存储](js-apis-system-storage.md)
     - data/rdb
       - [resultSet结果集](js-apis-data-resultset.md)
-- ArkTS 组件
+- ArkTS 组件<!--arkdata-comp-->
   - [@ohos.data.UdmfComponents (内容卡片)](js-apis-data-UdmfComponents.md)
 - C API<!--arkdata-c-->
   - 模块<!--arkdata-module-->

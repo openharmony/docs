@@ -20,7 +20,7 @@
 
 | 名称                                     | typedef关键字  | 描述                                 |
 | ---------------------------------------- | -------------- | ------------------------------------ |
-| [OH_Data_Values](capi-oh-data-values.md) | OH_Data_Values | 定义{@link OH_Data_Values}结构类型。 |
+| [OH_Data_Values](capi-oh-data-values.md) | OH_Data_Values | 定义OH_Data_Values结构类型。 |
 
 ### 函数
 

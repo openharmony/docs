@@ -10,7 +10,7 @@
 
 ## 接口说明
 
-详细的接口说明请参考[Preferences接口文档](../reference/apis-arkdata/_preferences.md)。
+详细的接口说明请参考[Preferences接口文档](../reference/apis-arkdata/capi-preferences.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |

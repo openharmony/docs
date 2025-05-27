@@ -89,7 +89,7 @@
 | [int OH_UdmfProperty_GetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int defaultValue)](#oh_udmfproperty_getextrasintparam) | - | 从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取自定义的附加整型参数。 |
 | [const char* OH_UdmfProperty_GetExtrasStringParam(OH_UdmfProperty* pThis, const char* key)](#oh_udmfproperty_getextrasstringparam) | - | 从数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)中获取自定义的附加字符串参数。 |
 | [int OH_UdmfProperty_SetTag(OH_UdmfProperty* pThis, const char* tag)](#oh_udmfproperty_settag) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的自定义标签值。 |
-| [int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option)](#oh_udmfproperty_setshareoption) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的设备内适用范围{@link OH_Udmf_ShareOption}参数。 |
+| [int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption option)](#oh_udmfproperty_setshareoption) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的设备内适用范围[Udmf_ShareOption](capi-udmf-h.md#udmf_shareoption)参数。 |
 | [int OH_UdmfProperty_SetExtrasIntParam(OH_UdmfProperty* pThis, const char* key, int param)](#oh_udmfproperty_setextrasintparam) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的附加整型参数。 |
 | [int OH_UdmfProperty_SetExtrasStringParam(OH_UdmfProperty* pThis,const char* key, const char* param)](#oh_udmfproperty_setextrasstringparam) | - | 设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的附加字符串参数。 |
 | [OH_UdmfOptions* OH_UdmfOptions_Create()](#oh_udmfoptions_create) | - | 创建指向[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
@@ -1388,7 +1388,7 @@ int OH_UdmfProperty_SetShareOption(OH_UdmfProperty* pThis, Udmf_ShareOption opti
 
 **描述**
 
-设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的设备内适用范围{@link OH_Udmf_ShareOption}参数。
+设置数据属性[OH_UdmfProperty](capi-oh-udmfproperty.md)的设备内适用范围[Udmf_ShareOption](capi-udmf-h.md#udmf_shareoption)参数。
 
 **起始版本：** 12
 
@@ -1725,7 +1725,7 @@ int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifie
 | -- | -- |
 | [OH_UdmfOptions](capi-oh-udmfoptions.md)* options | 指向数据操作选项[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
 | [OH_UdmfData](capi-oh-udmfdata.md) *unifiedData | 指向统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)实例的指针。 |
-| char *key | 成功将数据设置到数据库后对应数据的唯一标识符，内存大小不小于{@link UDMF_KEY_BUFFER_LEN}。 |
+| char *key | 成功将数据设置到数据库后对应数据的唯一标识符，内存大小不小于[UDMF_KEY_BUFFER_LEN](#udmf_key_buffer_len)。 |
 | unsigned int keyLen | 唯一标识符参数的空间大小。 |
 
 **返回：**
