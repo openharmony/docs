@@ -1184,7 +1184,7 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[按键监听错误码](./errorcode-inputkeymonitor.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[按键监听错误码](./errorcode-inputmonitor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |

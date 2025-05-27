@@ -288,7 +288,7 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 3、越界回弹。
 
-从API version12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
+从API version 12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -827,7 +827,7 @@ getItemIndex(x: number, y: number): number
 | ----- | ------ | ------ | ----------------- |
 | duration | number | 否 | 设置滚动时长。<br/>默认值：1000<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | curve | [Curve](ts-appendix-enums.md#curve) \| [ICurve](../js-apis-curve.md#icurve9) | 否 | 设置滚动曲线。<br/>默认值：Curve.Ease |
-| canOverScroll | boolean | 否 | 设置滚动是否可越界。<br/>默认值：false<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，滚动能够越界，并在越界时启动回弹动画，设置为false时不可越界。 |
+| canOverScroll | boolean | 否 | 设置滚动动画滚动到边界后，是否转换成越界回弹动画。<br/>默认值：false<br/>**说明：** <br/> 仅在设置为true，且组件的edgeEffect设置为[EdgeEffect.Spring](ts-appendix-enums.md#edgeeffect)时，使用动画滚动到边界会转换为越界回弹动画，设置为false时，滚动到边界会直接停止动画，不会转换为越界回弹动画。 <br>从API version 20开始，如果[ScrollOptions](#scrolloptions18对象说明)中的canOverScroll设置为true，表示滚动可以停留在过界位置，滚动动画过界后不会转换为回弹动画。|
 
 ## ScrollAlign<sup>10+</sup>枚举说明
 

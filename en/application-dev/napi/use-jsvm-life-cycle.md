@@ -17,9 +17,9 @@ Each **JSVM_Value** belongs to a specific **HandleScope** instance, which is cre
 
 JSVM-API provides APIs for creating and manipulating JS objects, managing references to and lifecycle of the JS objects, and registering garbage collection (GC) callbacks in C/C++. Before you get started, you need to understand the following concepts:
 
-- Scope: used to ensure that the objects created within a certain scope remain active and are properly cleared when no longer required. JSVM-API provides APIs for creating and closing normal and escapeable scopes.
+- Scope: used to ensure that the objects created within a certain scope remain active and are properly cleared when no longer required. JSVM-API provides APIs for creating and closing normal and escapable scopes.
 - Reference management: JSVM-API provides APIs for creating, deleting, and managing object references to extend the object lifecycle and prevent memory leaks when objects are used.
-- Escapeable scope: used to return the values created within the **escapable_handle_scope** to a parent scope. It is created by **OH_JSVM_OpenEscapableHandleScope** and closed by **OH_JSVM_CloseEscapableHandleScope**.
+- Escapable scope: used to return the values created within the **escapable_handle_scope** to a parent scope. It is created by **OH_JSVM_OpenEscapableHandleScope** and closed by **OH_JSVM_CloseEscapableHandleScope**.
 - GC callback: You can register GC callbacks to perform specific cleanup operations when JS objects are garbage-collected.
 
 Understanding these concepts helps you securely and effectively manipulate JS objects in C/C++ and perform object lifecycle management.
@@ -98,7 +98,7 @@ JSVM HandleScopeFor: success
 
 ### OH_JSVM_OpenEscapableHandleScope, OH_JSVM_CloseEscapableHandleScope, and OH_JSVM_EscapeHandle
 
-Call **OH_JSVM_OpenEscapableHandleScope** to create an escapeable handle scope, which allows the declared values in a scope to be returned to its parent scope. <br>Call **OH_JSVM_CloseEscapableHandleScope** to close the created scope.<br>Call **OH_JSVM_EscapeHandle** to promote the lifecycle of the passed-in JS object to its parent scope.
+Call **OH_JSVM_OpenEscapableHandleScope** to create an escapable handle scope, which allows the declared values in a scope to be returned to its parent scope. <br>Call **OH_JSVM_CloseEscapableHandleScope** to close the created scope.<br>Call **OH_JSVM_EscapeHandle** to promote the lifecycle of the passed-in JS object to its parent scope.
 These APIs are helpful for managing JS objects more flexibly in C/C++, especially when passing cross-scope values.
 
 CPP code:
@@ -107,14 +107,14 @@ CPP code:
 // Define OH_JSVM_OpenEscapableHandleScope, OH_JSVM_CloseEscapableHandleScope, and OH_JSVM_EscapeHandle.
 static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
 {
-    // Create an escapeable handle scope.
+    // Create an escapable handle scope.
     JSVM_EscapableHandleScope scope = nullptr;
     JSVM_Status status = OH_JSVM_OpenEscapableHandleScope(env, &scope);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_OpenEscapableHandleScope: failed");
         return nullptr;
     }
-    // Create an object within the scope of the escapeable handle.
+    // Create an object within the scope of the escapable handle.
     JSVM_Value obj;
     OH_JSVM_CreateObject(env, &obj);
     // Add properties to the object.
@@ -124,7 +124,7 @@ static JSVM_Value EscapableHandleScopeTest(JSVM_Env env, JSVM_CallbackInfo info)
     // Call OH_JSVM_EscapeHandle to promote the JS object handle to make it valid with the lifetime of the outer scope.
     JSVM_Value escapedObj = nullptr;
     OH_JSVM_EscapeHandle(env, scope, obj, &escapedObj);
-    // Close the escapeable handle scope to clear resources.
+    // Close the escapable handle scope to clear resources.
     status = OH_JSVM_CloseEscapableHandleScope(env, scope);
     if (status != JSVM_OK) {
         OH_LOG_ERROR(LOG_APP, "JSVM OH_JSVM_CloseEscapableHandleScope: failed");
@@ -282,15 +282,32 @@ static int AddFinalizer(JSVM_VM vm, JSVM_Env env) {
     return 0;
 }
 
-static void RunDemo(JSVM_VM vm, JSVM_Env env) {
+static JSVM_Value RunDemo(JSVM_Env env, JSVM_CallbackInfo info) {
+    JSVM_VM vm;
+    OH_JSVM_GetVM(env, &vm);
     if (AddFinalizer(vm, env) != 0) {
         OH_LOG_INFO(LOG_APP, "Run PromiseRegisterHandler failed");
     }
+
+    return nullptr;
 }
+
+// Register the RunDemo callback.
+static JSVM_CallbackStruct param[] = {
+    {.data = nullptr, .callback = RunDemo},
+};
+static JSVM_CallbackStruct *method = param;
+// Alias for the RunDemo method to be called from JS.
+static JSVM_PropertyDescriptor descriptor[] = {
+    {"RunDemo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
+};
+
+// Call C++ code from JS.
+const char *srcCallNative = R"JS(RunDemo();)JS";
 ```
 
 Expected result:
-```
+```ts
 JSVM: finalizer added.
 JSVM: before call gc.
 JSVM: finalizer called.

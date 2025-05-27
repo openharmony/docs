@@ -1,4 +1,4 @@
-# Associating Data with a Running Environment to Tide Their Lifecycle Using Node-API
+# Associating Data with a Running Environment to Tie Their Lifecycle Using Node-API
 
 ## Introduction
 
@@ -18,6 +18,8 @@ The following table lists the APIs.
 
 ## Example
 
+For details about the Node-API development process, see [Node-API Development Process](use-napi-process.md). This document describes only the related C++ and ArkTS code.
+
 ### napi_set_instance_data
 
 Associate data with the currently running environment.
@@ -25,6 +27,9 @@ Associate data with the currently running environment.
 CPP code
 
 ```cpp
+#include <cstdlib>
+#include "napi/native_api.h"
+
 // Define a struct to store instance data.
 struct InstanceData {
     int32_t value;
@@ -71,9 +76,11 @@ export const setInstanceData: (data: number) => boolean;
 ArkTS code
 
 ```ts
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let data = 5;
 let value = testNapi.setInstanceData(data);
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_set_instance_data:%{public}s', value);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}s', value);
 ```
 
 ### napi_get_instance_data
@@ -83,6 +90,8 @@ Retrieve the data that was previously associated with the currently running envi
 CPP code
 
 ```cpp
+#include "napi/native_api.h"
+
 static napi_value GetInstanceData(napi_env env, napi_callback_info info) {
     InstanceData *resData = nullptr;
     // Call napi_get_instance_data to obtain the data.
@@ -103,44 +112,19 @@ export const getInstanceData: () => number;
 ArkTS code
 
 ```ts
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 let data = 5;
 testNapi.setInstanceData(data);
 let value = testNapi.getInstanceData();
-hilog.info(0x0000, 'testTag', 'Test NAPI napi_set_instance_data:%{public}d', value);
+hilog.info(0x0000, 'testTag', 'Test Node-API napi_set_instance_data:%{public}d', value);
 ```
 
-### Configuring Compile Settings and Registering a Module
-
-- Configure compile settings.
+To print logs in the native CPP, add the following information to the **CMakeLists.txt** file and add the header file by using **#include "hilog/log.h"**.
 
 ```text
 // CMakeLists.txt
-# the minimum version of CMake.
-cmake_minimum_required(VERSION 3.4.1)
-project(AboutEnvironmentalLifeCycle)
-
-set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
-
-include_directories(${NATIVERENDER_ROOT_PATH}
-                    ${NATIVERENDER_ROOT_PATH}/include)
-
-add_library(entry SHARED environmental_life_cycle.cpp)
-target_link_libraries(entry PUBLIC libace_napi.z.so)
-```
-
-- Register the module.
-
-```cpp
-// environmental_life_cycle.cpp
-EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
-    napi_property_descriptor desc[] = {
-       {"setInstanceData", nullptr, SetInstanceData, nullptr, nullptr, nullptr, napi_default, nullptr},
-       {"getInstanceData", nullptr, GetInstanceData, nullptr, nullptr, nullptr, napi_default, nullptr}
-    };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-EXTERN_C_END
+add_definitions( "-DLOG_DOMAIN=0xd0d0" )
+add_definitions( "-DLOG_TAG=\"testTag\"" )
+target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```

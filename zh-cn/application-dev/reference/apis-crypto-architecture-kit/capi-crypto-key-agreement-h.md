@@ -6,6 +6,8 @@
 
 **库：** libohcrypto.so
 
+**引用文件：** <CryptoArchitectureKit/crypto_key_agreement.h>
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **起始版本：** 20

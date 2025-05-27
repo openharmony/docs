@@ -484,6 +484,22 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 | ---------- | ------ | ---- | ------------------------------- |
 | alignment | Optional\<[GridItemAlignment](#griditemalignment12枚举说明)\> | 是   | 设置Grid中GridItem的对齐方式。<br/>默认值：GridItemAlignment.DEFAULT |
 
+### focusWrapMode<sup>20+</sup>
+
+focusWrapMode(mode: Optional\<FocusWrapMode\>)
+
+设置方向键走焦模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
+
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
 GridItem的对齐方式枚举。
@@ -1709,6 +1725,7 @@ struct Index {
 通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 //该示例实现了Grid组件开启边缘渐隐效果并设置边缘渐隐长度
@@ -1812,3 +1829,89 @@ struct GridExample {
 ```
 
 ![edgeEffect_grid](figures/edgeEffect_grid.gif)
+
+### 示例12（方向键走焦换行模式）
+
+该示例通过focusWrapMode接口，实现了Grid组件方向键走焦换行效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  scroller: Scroller = new Scroller()
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        GridItem() {
+          Text('A')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('B')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('C')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('D')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('E')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('F')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+      }
+      .focusWrapMode(FocusWrapMode.WRAP_WITH_ARROW)
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .backgroundColor(0xDCDCDC)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_grid](figures/gridFocus.gif)

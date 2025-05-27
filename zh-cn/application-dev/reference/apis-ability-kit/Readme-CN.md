@@ -9,6 +9,7 @@
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.application (Application)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
+    - [@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](js-apis-app-ability-appServiceExtensionAbility.md)
     - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](js-apis-app-ability-atomicServiceOptions.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
@@ -129,6 +130,7 @@
       - [AbilityStateData](js-apis-inner-application-abilityStateData.md)
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
       - [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)
+      - [AppServiceExtensionContext](js-apis-inner-application-appServiceExtensionContext.md)
       - [AppStateData](js-apis-inner-application-appStateData.md)
       - [BaseContext](js-apis-inner-application-baseContext.md)
       - [Context](js-apis-inner-application-context.md)
@@ -195,9 +197,11 @@
       - [metadata](js-apis-bundleManager-metadata.md)
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
       - [Skill](js-apis-bundleManager-skill.md)
+      - [shortcutInfo](js-apis-bundleManager-shortcutInfo.md)
       <!--Del-->
       - [ApplicationInfo (系统接口)](js-apis-bundleManager-ApplicationInfo-sys.md)
       - [AppProvisionInfo (系统接口)](js-apis-bundleManager-AppProvisionInfo-sys.md)
+      - [BundleInfo (系统接口)](js-apis-bundleManager-BundleInfo-sys.md)
       - [BundlePackInfo (系统接口)](js-apis-bundleManager-BundlePackInfo-sys.md)
       - [BundleResourceInfo (系统接口)](js-apis-bundleManager-BundleResourceInfo-sys.md)
       - [BusinessAbilityInfo (系统接口)](js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -207,7 +211,6 @@
       - [recoverableApplicationInfo (系统接口)](js-apis-bundleManager-recoverableApplicationInfo-sys.md)
       - [remoteAbilityInfo (系统接口)](js-apis-bundleManager-remoteAbilityInfo-sys.md)
       - [SharedBundleInfo (系统接口)](js-apis-bundleManager-sharedBundleInfo-sys.md)
-      - [shortcutInfo (系统接口)](js-apis-bundleManager-shortcutInfo-sys.md)
       <!--DelEnd-->
     - continuation<!--continuation-->
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)

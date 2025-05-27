@@ -150,6 +150,30 @@ alignRules(alignRule: LocalizedAlignRuleOptions)
 | ------ | ------------------------------------------- | ---- | ------------------------ |
 | alignRule  | [LocalizedAlignRuleOptions](#localizedalignruleoptions12对象说明) | 是   | 指定设置在相对容器中子组件的对齐规则。 |
 
+## layoutGravity<sup>20+</sup>
+
+layoutGravity(alignment: LocalizedAlignment): T
+
+单独设置Stack容器中子组件的对齐规则，仅当父容器为Stack时生效。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                     |
+| ------ | ------------------------------------------- | ---- | ------------------------ |
+| alignment  | [LocalizedAlignment](ts-appendix-enums.md#localizedalignment20) | 是   | 指定设置在Stack容器中子组件的对齐规则。<br/>默认值：LocalizedAlignment.CENTER 。说明：当传入异常值时，按默认值处理。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## AlignRuleOption对象说明
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
@@ -627,3 +651,64 @@ struct buttonTestDemo {
 }
 ```
 ![position.png](figures/position4.png)
+
+### 示例6（layoutGravity属性单独设置Stack容器中子组件的对齐规则）
+
+更改Stack中Text的位置。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index5 {
+  private layoutGravityArr: LocalizedAlignment[] = [
+    LocalizedAlignment.TOP_START, LocalizedAlignment.TOP, LocalizedAlignment.TOP_END,
+    LocalizedAlignment.START, LocalizedAlignment.CENTER, LocalizedAlignment.END,
+    LocalizedAlignment.BOTTOM_START, LocalizedAlignment.BOTTOM, LocalizedAlignment.BOTTOM_END];
+  @State layoutGravityIndex: number = 0;
+  private directionArr: Direction[] = [Direction.Ltr, Direction.Rtl, Direction.Auto];
+  @State directionIndex: number = 0;
+
+  build() {
+    Row() {
+      Column() {
+        Stack({
+          alignContent: Alignment.TopStart
+        }) {
+          Text('StackChildAlign_TopStart').fontSize(15)
+          Text('Child Text')
+            .width(150)
+            .height(150)
+            .backgroundColor(Color.Yellow)
+            .fontSize(15)
+            .layoutGravity(this.layoutGravityArr[this.layoutGravityIndex])
+        }
+        .width('100%')
+        .height(400)
+        .backgroundColor(Color.Grey)
+        .margin({ top: 10, bottom: 10 })
+        .direction(this.directionArr[this.directionIndex])
+
+        Button("LayoutGravity: " + this.layoutGravityArr[this.layoutGravityIndex])
+          .width(300)
+          .fontSize(16)
+          .onClick(() => {
+            this.layoutGravityIndex = ++this.layoutGravityIndex % this.layoutGravityArr.length;
+          })
+          .margin({ bottom: 10 })
+
+        Button("Direction: " + this.directionArr[this.directionIndex])
+          .width(150)
+          .fontSize(16)
+          .onClick(() => {
+            this.directionIndex = ++this.directionIndex % this.directionArr.length;
+          })
+          .margin({ bottom: 10 })
+      }
+      .width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+![layoutGravity.gif](figures/layoutGravity.gif)

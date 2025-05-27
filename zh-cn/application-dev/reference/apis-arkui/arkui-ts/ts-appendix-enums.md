@@ -358,7 +358,7 @@
 
 ## LocalizedAlignment<sup>20+</sup>
 
-用于支持align属性镜像特性的枚举类型。
+用于支持align、[layoutGravity](ts-universal-attributes-location.md#layoutgravity20)属性镜像特性的枚举类型。
 
 **卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
 
@@ -1291,3 +1291,31 @@ type Nullable\<T> = T | undefined
 > - 建议在出现[像素取整常见问题](./ts-universal-attributes-pixelRound.md#常见问题)时，尝试采用PIXEL_ROUND_AFTER_MEASURE模式解决。
 > - 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量大小结束时进行一次取整，即最终大小相比于PIXEL_ROUND_ON_LAYOUT_FINISH模式可能扩大1px。
 
+## AnimationPropertyType<sup>20+</sup>
+
+用于动画的属性类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  值   | 说明                   |
+| ------  | ---- | -------------------- |
+| ROTATION | 0 | x、y、z方向的旋转角属性。该属性对应参数个数为3，属性的单位为度（°）。 |
+| TRANSLATION | 1 | x、y方向的平移属性。该属性对应参数个数为2，属性的单位为px。 |
+| SCALE | 2 | x、y方向的缩放属性。该属性对应参数个数为2。 |
+| OPACITY | 3 | 透明度属性。该属性对应参数个数为1，属性的取值范围为[0,1]。 |
+## FocusWrapMode<sup>20+</sup>
+
+交叉轴方向键走焦模式枚举。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 值   | 说明                                                         |
+| --------------- | ---- | ------------------------------------------------------------ |
+| DEFAULT         | 0    | 交叉轴方向键不能换行。                                       |
+| WRAP_WITH_ARROW | 1    | 交叉轴方向键允许换行。<br/>不规则单元格场景下，交叉轴方向键走焦时优先走到同一行的可获焦item。 |

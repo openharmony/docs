@@ -5243,6 +5243,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | authType     | [AuthType](#authtype8)       | 是    | 指示认证凭据类型。   |
 | authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。 |
 | templateId   | Uint8Array                               | 是    | 指示凭据模板ID。     |
+| isAbandoned<sup>20+</sup>   | boolean                      | 否    | 指示凭据是否废弃。废弃后的凭据可能作为备份凭据保存一段时间。   |
+| validityPeriod<sup>20+</sup>   | number                    | 否    | 指示凭据有效期。     |
 
 ## GetPropertyType<sup>8+</sup>
 
@@ -5582,6 +5584,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: Uint8Array) => void
 | UNLOCK   | 1   | 解锁意图。 |
 | SILENT_AUTH<sup>14+</sup>  | 2   | 静默认证意图。 |
 | QUESTION_AUTH<sup>14+</sup>   | 3   | 密保问题认证意图。 |
+| ABANDONED_PIN_AUTH<sup>20+</sup>   | 4   | 废弃PIN码认证意图。用户修改锁屏密码后，旧的PIN码被废弃。废弃PIN存在期间，用户如果忘记密码可以通过废弃PIN认证通过后重置锁屏密码。 |
 
 ## RemoteAuthOptions<sup>12+</sup>
 

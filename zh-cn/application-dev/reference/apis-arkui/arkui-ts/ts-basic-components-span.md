@@ -229,7 +229,7 @@ textShadow(value: ShadowOptions | Array&lt;ShadowOptions&gt;)
 
 ## 事件
 
-通用事件仅支持[点击事件](ts-universal-events-click.md)。
+通用事件支持[点击事件onClick](ts-universal-events-click.md#onclick)、[悬浮事件onHover](ts-universal-events-hover.md#onhover)。
 
 >  **说明：**
 >

@@ -22,6 +22,13 @@ JSVM-API provides APIs for compiling the WebAssembly (Wasm) bytecode, optimizing
 | OH_JSVM_CreateWasmCache     | Serializes the machine code in a Wasm module into a Wasm cache. If the Wasm module does not contain machine code, the serialization will fail.                   |
 | OH_JSVM_ReleaseCache        | Releases a Wasm cache instance created by JSVM-API. The **cacheType** and **cacheData** passed in must match. Otherwise, undefined behavior may occur.                     |
 
+## Code Cache Verification Specifications
+| Specification       | Description                                        |
+| ---------- | ------------------------------------------------ |
+| Integrity verification | Executed by the developer.                                       |
+| Compatibility verification | Checks whether the JSVM version and compilation options of the generated cache are the same as the current one.|
+| Consistency verification | Executed by the developer.                                       |
+
 ## Example
 
 If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in the APIs for Wasm.
@@ -85,7 +92,7 @@ static JSVM_Value InstantiateWasmModule(JSVM_Env env, JSVM_Value wasmModule) {
 
     JSVM_Value instance;
     JSVM_Value argv[] = {wasmModule};
-    status = OH_JSVM_NewInstance(env, WebAssemblyInstance, 1, argv, &instance);
+    status = OH_JSVM_NewInstance(env, webAssemblyInstance, 1, argv, &instance);
     CHECK(status == JSVM_OK);
     return instance;
 }

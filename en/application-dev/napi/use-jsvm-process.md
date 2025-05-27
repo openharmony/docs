@@ -14,30 +14,7 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
 
 ## Implementing Native APIs
 
-- Set module registration information.
-
-  For details, see [Setting Module Registration Information](use-napi-process.md#implementing-native-apis).
-
-- Initialize the module.
-
-  Implement the mappings between the ArkTS and C++ APIs.
-
-  ```cpp
-  // entry/src/main/cpp/hello.cpp
-  EXTERN_C_START
-  // Initialize the module.
-  static napi_value Init(napi_env env, napi_value exports)
-  {
-      // Implement the mappings between the ArkTS runJsVm and C++ RunJsVm.
-      napi_property_descriptor desc[] = {
-          {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr},
-      };
-      // Register the native RunJsVm function with the JS exports object, making the native function available to JS.
-      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-      return exports;
-  }
-  EXTERN_C_END
-  ```     
+By referring to [Node-API Development Process](use-napi-process.md#implementing-native-apis), the following code provides a demo for implementing a native method by following "JSVM-API Development Process".
 
 - In the **index.d.ts** file, declare the JS methods.
 
@@ -77,18 +54,19 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
   target_link_libraries(entry PUBLIC libace_napi.z.so libjsvm.so libhilog_ndk.z.so)
   ```
 
-- Implement the native runTest function. The code is as follows:
+- Implement the native **runTest** function. The code is as follows:
 
   ```cpp
+  // entry/src/main/cpp/hello.cpp
   #include "napi/native_api.h"
   #include "hilog/log.h"
   #include "ark_runtime/jsvm.h"
-
+  
   #define LOG_DOMAIN 0x3200
   #define LOG_TAG "APP"
-
+  
   static int g_aa = 0;
-
+  
   #define CHECK_RET(theCall)                                                                                             \
       do {                                                                                                               \
           JSVM_Status cond = theCall;                                                                                    \
@@ -100,7 +78,7 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
               return -1;                                                                                                 \
           }                                                                                                              \
       } while (0)
-
+  
   #define CHECK(theCall)                                                                                                 \
       do {                                                                                                               \
           JSVM_Status cond = theCall;                                                                                    \
@@ -110,7 +88,7 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
               return -1;                                                                                                 \
           }                                                                                                              \
       } while (0)
-
+  
   // Call theCall and check whether the return value is JSVM_OK.
   // If not, call OH_JSVM_GetLastErrorInfo to handle the error and return retVal.
   #define JSVM_CALL_BASE(env, theCall, retVal)                                                                           \
@@ -124,10 +102,10 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
               return retVal;                                                                                             \
           }                                                                                                              \
       } while (0)
-
+  
   // Simplified version of JSVM_CALL_BASE, which returns nullptr.
   #define JSVM_CALL(theCall) JSVM_CALL_BASE(env, theCall, nullptr)
-
+  
   // Define OH_JSVM_StrictEquals.
   static JSVM_Value IsStrictEquals(JSVM_Env env, JSVM_CallbackInfo info) {
       // Obtain the two parameters passed from JS.
@@ -159,7 +137,7 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
   const char *srcCallNative = R"JS(    let data = '123';
       let value = 123;
       isStrictEquals(data,value);)JS";
-
+  
   static int32_t TestJSVM() {
       JSVM_InitOptions initOptions = {0};
       JSVM_VM vm;
@@ -179,14 +157,14 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
       CHECK(OH_JSVM_OpenVMScope(vm, &vmScope));
       CHECK_RET(OH_JSVM_OpenEnvScope(env, &envScope));
       CHECK_RET(OH_JSVM_OpenHandleScope(env, &handleScope));
-
+  
       // Call the test function through the script.
       JSVM_Script script;
       JSVM_Value jsSrc;
       CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
       CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
       CHECK_RET(OH_JSVM_RunScript(env, script, &result));
-
+  
       // Destroy the JSVM environment.
       CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
       CHECK_RET(OH_JSVM_CloseEnvScope(env, envScope));
@@ -195,30 +173,34 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
       CHECK(OH_JSVM_DestroyVM(vm));
       return 0;
   }
-
+  
   static napi_value RunTest(napi_env env, napi_callback_info info)
   {
       TestJSVM();
       return nullptr;
   }
-
-  // Module registration information, which enables calling from the ArkTS side.
+  
+  // Initialize the module.
   EXTERN_C_START
   static napi_value Init(napi_env env, napi_value exports) {
-  napi_property_descriptor desc[] = {{"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr}};
-  napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-  return exports;
+      // Implement the mappings between the ArkTS and C++ APIs. 
+      napi_property_descriptor desc[] = {
+        {"runTest", nullptr, RunTest, nullptr, nullptr, nullptr, napi_default, nullptr}
+      };
+      // Register the native RunJsVm function with the JS exports object, making the native function available to JS.
+      napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+      return exports;
   }
   EXTERN_C_END
   
   static napi_module demoModule = {
-  .nm_version = 1,
-  .nm_flags = 0,
-  .nm_filename = nullptr,
-  .nm_register_func = Init,
-  .nm_modname = "entry",
-  .nm_priv = ((void *)0),
-  .reserved = {0},
+      .nm_version = 1,
+      .nm_flags = 0,
+      .nm_filename = nullptr,
+      .nm_register_func = Init,
+      .nm_modname = "entry",
+      .nm_priv = ((void *)0),
+      .reserved = {0},
   };
   
   extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
@@ -227,9 +209,9 @@ For details, see [Creating an NDK Project](create-with-ndk.md).
 ## Calling C/C++ APIs in ArkTS
 
 ```ts
-import hilog from '@ohos.hilog'
+import hilog from '@ohos.hilog';
 // Import the native APIs.
-import napitest from 'libentry.so'
+import napitest from 'libentry.so';
 
 @Entry
 @Component
