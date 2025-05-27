@@ -36,9 +36,9 @@ import { intl } from '@kit.LocalizationKit';
 | script          | string  | 是    | 区域语言的书写方式（脚本），如：Hans。取值遵循Unicode&nbsp;ISO&nbsp;15924标准。 |
 | region          | string  | 是    | 与区域设置相关的国家地区，如：CN。取值遵循ISO&nbsp;3166标准。 |
 | baseName        | string  | 是    | 区域对象的基本信息，由语言、脚本、国家地区组成，如：zh-Hans-CN。  |
-| caseFirst       | string  | 是    | 区域的排序规则是否考虑大小写，取值包括：<br>"upper",&nbsp;"lower",&nbsp;"false"。<br>不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。 |
+| caseFirst       | string  | 是    | 区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面；<br>"lower"：小写排前面；<br>"false"：使用区域默认的大小写排序规则。 |
 | calendar        | string  | 是    | 区域的日历信息，取值包括：<br>"buddhist",&nbsp;"chinese",&nbsp;"coptic","dangi",&nbsp;"ethioaa",&nbsp;"ethiopic",&nbsp;"gregory",&nbsp;"hebrew",&nbsp;"indian",&nbsp;"islamic",&nbsp;"islamic-umalqura",&nbsp;"islamic-tbla",&nbsp;"islamic-civil",&nbsp;"islamic-rgsa",&nbsp;"iso8601",&nbsp;"japanese",&nbsp;"persian",&nbsp;"roc",&nbsp;"islamicc"。<br>不同取值表示的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。 |
-| collation       | string  | 是    | 区域的排序规则，取值包括：<br>"big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。<br>不同取值表示的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。 |
+| collation       | string  | 是    | 区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序；<br>"compat"：兼容性排序，仅用于阿拉伯语；<br>"dict"：词典风格排序，仅用于僧伽罗语；<br>"direct"：二进制码点排序；<br>"ducet"：按Unicode排序元素表排序；<br>"eor"：按欧洲排序规则排序；<br>"gb2312"：拼音排序，仅用于中文排序；<br>"phonebk"：电话本风格排序；<br>"phonetic"：发音排序；<br>"pinyin"：拼音排序；<br>"reformed"：瑞典语排序；<br>"searchjl"：韩语初始辅音搜索的特殊排序；<br>"stroke"：汉语的笔画排序；<br>"trad"：传统风格排序，如西班牙语；<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序；<br>"zhuyin"：注音排序，仅用于中文排序。 |
 | hourCycle       | string  | 是    | 区域的时制信息，取值包括：<br>"h11"、"h12"、"h23"、"h24"。<br>不同取值的显示效果可参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。 |
 | numberingSystem | string  | 是    | 区域使用的数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | numeric         | boolean | 是    | true表示对数字字符进行特殊的排序规则处理，false表示不对数字字符进行特殊的排序规则处理。<br>默认值：false。                      |
@@ -195,19 +195,17 @@ minimize(): Locale
 | 名称              | 类型      | 必填   |  说明                                       |
 | --------------- | ------- | ---- |---------------------------------------- |
 | calendar        | string  | 否   |日历参数，取值包括：<br>"buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", "islamicc"。 |
-| collation       | string  | 否     |排序参数，取值包括：<br>"big5han", "compat", "dict", "direct", "ducet", "emoji", "eor", "gb2312", "phonebk", "phonetic", "pinyin", "reformed	", "search", "searchjl", "standard", "stroke", "trad", "unihan", "zhuyin"。 |
+| collation       | string  | 否     |区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序；<br>"compat"：兼容性排序，仅用于阿拉伯语；<br>"dict"：词典风格排序，仅用于僧伽罗语；<br>"direct"：二进制码点排序；<br>"ducet"：按Unicode排序元素表排序；<br>"eor"：按欧洲排序规则排序；<br>"gb2312"：拼音排序，仅用于中文排序；<br>"phonebk"：电话本风格排序；<br>"phonetic"：发音排序；<br>"pinyin"：拼音排序；<br>"reformed"：瑞典语排序；<br>"searchjl"：韩语初始辅音搜索的特殊排序；<br>"stroke"：汉语的笔画排序；<br>"trad"：传统风格排序，如西班牙语；<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序；<br>"zhuyin"：注音排序，仅用于中文排序。 |
 | hourCycle       | string  | 否     |时制格式，取值包括：<br>"h11",&nbsp;"h12",&nbsp;"h23",&nbsp;"h24"。 |
 | numberingSystem | string  | 否     |数字系统，取值包括：<br>"adlm",&nbsp;"ahom",&nbsp;"arab",&nbsp;"arabext",&nbsp;"bali",&nbsp;"beng",&nbsp;"bhks",&nbsp;"brah",&nbsp;"cakm",&nbsp;"cham",&nbsp;"deva",&nbsp;"diak",&nbsp;"fullwide",&nbsp;"gong",&nbsp;"gonm",&nbsp;"gujr",&nbsp;"guru",&nbsp;"hanidec",&nbsp;"hmng",&nbsp;"hmnp",&nbsp;"java",&nbsp;"kali",&nbsp;"khmr",&nbsp;"knda",&nbsp;"lana",&nbsp;"lanatham",&nbsp;"laoo",&nbsp;"latn",&nbsp;"lepc",&nbsp;"limb",&nbsp;"mathbold",&nbsp;"mathdbl",&nbsp;"mathmono",&nbsp;"mathsanb",&nbsp;"mathsans",&nbsp;"mlym",&nbsp;"modi",&nbsp;"mong",&nbsp;"mroo",&nbsp;"mtei",&nbsp;"mymr",&nbsp;"mymrshan",&nbsp;"mymrtlng",&nbsp;"newa",&nbsp;"nkoo",&nbsp;"olck",&nbsp;"orya",&nbsp;"osma",&nbsp;"rohg",&nbsp;"saur",&nbsp;"segment",&nbsp;"shrd",&nbsp;"sind",&nbsp;"sinh",&nbsp;"sora",&nbsp;"sund",&nbsp;"takr",&nbsp;"talu",&nbsp;"tamldec",&nbsp;"telu",&nbsp;"thai",&nbsp;"tibt",&nbsp;"tirh",&nbsp;"vaii",&nbsp;"wara",&nbsp;"wcho"。 |
 | numeric         | boolean | 否     | true表示对数字字符进行特殊的排序规则处理，false表示不对数字字符进行特殊的排序规则处理。默认值：false。                               |
-| caseFirst       | string  | 否     | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。 |
+| caseFirst       | string  | 否     | 区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面；<br>"lower"：小写排前面；<br>"false"：使用区域默认的大小写排序规则。 |
 
 >  **说明：**
 >
 >  - calendar：不同取值的含义请参考[设置日历和历法表1](../../internationalization/i18n-calendar.md)。
 >
 >  - hourCycle：不同取值的显示效果请参考[时间日期国际化表5](../../internationalization/i18n-time-date.md)。
->
->  - collation、caseFirst：不同取值的含义请参考[本地习惯排序表1](../../internationalization/i18n-sorting-local.md)。
 
 ## DateTimeFormat
 
@@ -558,11 +556,13 @@ resolvedOptions(): NumberOptions
 >
 >  - 各属性不同取值代表的含义或呈现效果，请参考[数字与度量衡国际化](../../internationalization/i18n-numbers-weights-measures.md)。
 
-## Collator<sup>8+</sup>
+## Collator<sup>(deprecated)</sup>
 
-### constructor<sup>8+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor()
+
+从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.Collator() constructor](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator)代替。
 
 创建排序对象。
 
@@ -577,9 +577,11 @@ constructor()
   ```
 
 
-### constructor<sup>8+</sup>
+### constructor<sup>(deprecated)</sup>
 
 constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
+
+从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.Collator](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator)代替。
 
 创建排序对象。
 
@@ -592,7 +594,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 区域ID或区域ID数组。输入是区域ID数组时，使用第一个有效的区域ID。  |
-| options              | [CollatorOptions](#collatoroptions8) | 否    | 创建排序对象时可设置的配置项。       |
+| options              | [CollatorOptions](#collatoroptionsdeprecated) | 否    | 创建排序对象时可设置的配置项。       |
 
 **示例：**
   ```ts
@@ -601,9 +603,11 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
   ```
 
 
-### compare<sup>8+</sup>
+### compare<sup>(deprecated)</sup>
 
 compare(first: string, second: string): number
+
+从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/compare)代替。
 
 根据配置项的排序规则，比较两个字符串。
 
@@ -633,9 +637,11 @@ compare(first: string, second: string): number
   ```
 
 
-### resolvedOptions<sup>8+</sup>
+### resolvedOptions<sup>(deprecated)</sup>
 
 resolvedOptions(): CollatorOptions
+
+从API version 8开始支持，从API version 20开始不再维护，建议使用[Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/resolvedOptions)代替。
 
 获取创建排序对象时设置的配置项。
 
@@ -647,7 +653,7 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptions8) | 返回排序对象的属性。 |
+| [CollatorOptions](#collatoroptionsdeprecated) | 返回排序对象的属性。 |
 
 **示例：**
   ```ts
@@ -659,7 +665,9 @@ resolvedOptions(): CollatorOptions
   ```
 
 
-## CollatorOptions<sup>8+</sup>
+## CollatorOptions<sup>(deprecated)</sup>
+
+从API version 8开始支持，从API version 20开始不再维护。
 
 创建排序对象时可设置的配置项。
 
@@ -671,18 +679,12 @@ resolvedOptions(): CollatorOptions
 
 | 名称                | 类型      | 必填   | 说明                                       |
 | ----------------- | ------- | ---- | ---------------------------------------- |
-| localeMatcher     | string  | 否    | 区域匹配算法，取值范围："best&nbsp;fit",&nbsp;"lookup"。<br>默认值：best fit。 |
-| usage             | string  | 否    | 比较的用途，取值范围："sort",&nbsp;"search"。<br>默认值：sort。        |
-| sensitivity       | string  | 否    | 表示字符串中的哪些差异会导致非零结果值，取值范围："base",&nbsp;"accent",&nbsp;"case",&nbsp;"letiant"。<br>默认值：variant。 |
-| ignorePunctuation | boolean | 否    | true表示忽略标点符号，false表示考虑标点符号。<br>默认值：false。        |
-| collation         | string  | 否    | 排序规则，<br>取值范围："big5han",&nbsp;"compat",&nbsp;"dict",&nbsp;"direct",&nbsp;"ducet",&nbsp;"eor",&nbsp;"gb2312",&nbsp;"phonebk",&nbsp;"phonetic",&nbsp;"pinyin",&nbsp;"reformed",&nbsp;"searchjl",&nbsp;"stroke",&nbsp;"trad",&nbsp;"unihan",&nbsp;"zhuyin"。<br>默认值：default。 |
-| numeric           | boolean | 否    | true表示使用数字排序，false表示不使用数字排序。<br>默认值：false。          |
-| caseFirst         | string  | 否    | 表示大写、小写的排序顺序，取值范围："upper",&nbsp;"lower",&nbsp;"false"。<br>默认值：false。 |
-
-
->  **说明：**
->
->  - CollatorOptions中属性的不同取值代表的含义请参考[本地习惯排序](../../internationalization/i18n-sorting-local.md)。
+| localeMatcher     | string  | 否    | 区域匹配算法，取值范围：<br>"lookup"：模糊匹配；<br>"best fit"：准确匹配。<br>默认值："best fit"。 |
+| usage             | string  | 否    | 比较的用途，取值范围：<br>"sort"：用作排序；<br>"search"：用作查找匹配的字符串。<br>默认值："sort"。        |
+| sensitivity       | string  | 否    | 表示字符串中的哪些差异会导致非零结果值，取值范围：<br>"base"：不同的字母比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' = 'A'；<br>"accent"：不同的字母或不同读音的相同字母比较不相等，比如'a' ≠ 'b', 'a' ≠ 'á', 'a' = 'A'；<br>"case"：不同的字母或相同字母大小写比较不相等，比如：'a' ≠ 'b', 'a' = 'á', 'a' ≠ 'A'；<br>"variant"：不同的字母或读音及其它有区别的标志或大小写都是不相等的，比如：'a' ≠ 'b', 'a' ≠ 'á', 'a' ≠ 'A'。<br>默认值："variant"。        |
+| collation         | string  | 否    | 区域的排序规则，取值包括：<br>"big5han"：拉丁字母使用的拼音排序；<br>"compat"：兼容性排序，仅用于阿拉伯语；<br>"dict"：词典风格排序，仅用于僧伽罗语；<br>"direct"：二进制码点排序；<br>"ducet"：按Unicode排序元素表排序；<br>"eor"：按欧洲排序规则排序；<br>"gb2312"：拼音排序，仅用于中文排序；<br>"phonebk"：电话本风格排序；<br>"phonetic"：发音排序；<br>"pinyin"：拼音排序；<br>"reformed"：瑞典语排序；<br>"searchjl"：韩语初始辅音搜索的特殊排序；<br>"stroke"：汉语的笔画排序；<br>"trad"：传统风格排序，如西班牙语；<br>"unihan"：统一汉字排序，用于日语、韩语、中文等汉字排序；<br>"zhuyin"：注音排序，仅用于中文排序。<br>默认值："default"。 |
+| numeric           | boolean | 否    | 数字排序，取值包括：<br>true：使用数字排序，比如：'1' &lt; '2' &lt; '10' &lt; '11'；<br>false：不使用数字排序，比如：'1' &lt; '10' &lt; '11' &lt; '2'。<br>默认值：false。          |
+| caseFirst         | string  | 否    | 区域的排序规则是否考虑大小写，取值包括：<br>"upper"：大写排前面；<br>"lower"：小写排前面；<br>"false"：使用区域默认的大小写排序规则。<br>默认值："false"。 |
 
 
 ## PluralRules<sup>8+</sup>
