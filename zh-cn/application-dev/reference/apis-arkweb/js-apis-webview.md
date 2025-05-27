@@ -841,7 +841,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 | 17100003 | Invalid resource path or file type.                          |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
@@ -1779,6 +1779,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1869,6 +1870,8 @@ runJavaScript(script: string): Promise\<string>
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **参数：**
@@ -4456,6 +4459,10 @@ getBackForwardEntries(): BackForwardList
 
 获取当前Webview的历史信息列表。
 
+> **说明：**
+>
+> [onLoadIntercept](ts-basic-components-web.md#onloadintercept10)在加载开始的时候触发，该时刻还未生成历史节点，所以在[onLoadIntercept](ts-basic-components-web.md#onloadintercept10)中调用getBackForwardEntries拿到的历史栈不包括当前正在加载中的跳转。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -5120,7 +5127,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -5176,7 +5183,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -5280,7 +5287,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 | 171000013| The number of preconnect sockets is invalid.                                                 |
 
 **示例：**
@@ -5437,7 +5444,7 @@ startDownload(url: string): void
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url. |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -5607,7 +5614,7 @@ static warmupServiceWorker(url: string): void
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -6287,7 +6294,7 @@ postUrl(url: string, postData: ArrayBuffer): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
@@ -8143,7 +8150,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 | -------- | ------------------------------------------------------------ |
 | 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -9160,7 +9167,7 @@ static getCookie(url: string): string
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
@@ -9227,7 +9234,7 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
@@ -9281,7 +9288,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 
 **示例：**
 
@@ -9346,7 +9353,7 @@ static fetchCookie(url: string): Promise\<string>
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 
 **示例：**
 
@@ -9410,7 +9417,7 @@ static fetchCookie(url: string, incognito: boolean): Promise\<string>
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 
 **示例：**
 
@@ -9471,7 +9478,7 @@ static setCookie(url: string, value: string): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
@@ -9535,7 +9542,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
@@ -9591,7 +9598,7 @@ static configCookieSync(url: string, value: string, incognito: boolean, includeH
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
@@ -9647,7 +9654,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 
 **示例：**
@@ -9710,7 +9717,7 @@ static configCookie(url: string, value: string): Promise\<void>
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 
 **示例：**
@@ -9777,7 +9784,7 @@ static configCookie(url: string, value: string, incognito: boolean, includeHttpO
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 
 **示例：**

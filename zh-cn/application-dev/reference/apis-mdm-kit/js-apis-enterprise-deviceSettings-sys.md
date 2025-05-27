@@ -51,6 +51,7 @@ setScreenOffTime(admin: Want, time: number): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -96,6 +97,7 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -149,6 +151,7 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -197,6 +200,7 @@ installUserCertificate(admin: Want, certificate: CertBlob, callback: AsyncCallba
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -260,6 +264,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -327,6 +332,7 @@ uninstallUserCertificate(admin: Want, certUri: string, callback: AsyncCallback&l
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -382,6 +388,7 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -428,6 +435,7 @@ setPowerPolicy(admin: Want, powerScene: PowerScene, powerPolicy: PowerPolicy): v
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -483,6 +491,7 @@ getPowerPolicy(admin: Want, powerScene: PowerScene): PowerPolicy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -505,7 +514,7 @@ try {
 | 名称         | 类型     | 必填 | 说明                            |
 | ----------- | --------| ----- | ------------------------------- |
 | powerPolicyAction | [PowerPolicyAction](#powerpolicyaction11) | 是 | 执行电源策略的动作。 |
-| delayTime | number | 是 | 延迟时间（单位：毫秒）。 |
+| delayTime | number | 是 | 延迟时间（单位：毫秒）。|
 
 ## PowerScene<sup>11+</sup>
 

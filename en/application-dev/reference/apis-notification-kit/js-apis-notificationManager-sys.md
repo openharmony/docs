@@ -22,7 +22,7 @@ Publishes a notification to a specified user. This API uses an asynchronous call
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 **System API**: This is a system API.
 
@@ -50,7 +50,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600005  | Notification slot disabled.                    |
 | 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
-| 1600009  | Over max number notifications per second.            |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
@@ -95,7 +95,7 @@ Publishes a notification to a specified user. This API uses a promise to return 
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.SEND_NOTIFICATION_CROSS_USER
 
 **System API**: This is a system API.
 
@@ -128,7 +128,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600005  | Notification slot disabled.                    |
 | 1600007  | The notification does not exist.                       |
 | 1600008  | The user does not exist.                               |
-| 1600009  | Over max number notifications per second.            |
+| 1600009  | The notification sending frequency reaches the upper limit.            |
 | 1600012  | No memory space.                                     |
 | 1600014  | No permission.                                   |
 | 1600015  | The current notification status does not support duplicate configurations. |
@@ -158,7 +158,7 @@ let userId: number = 1;
 notificationManager.publish(notificationRequest, userId).then(() => {
 	console.info("publish success");
 }).catch((err: BusinessError) => {
-    console.error(`publish fail: ${JSON.stringify(err)}`);
+    console.error(`publish failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -265,7 +265,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 notificationManager.addSlot(notificationSlot).then(() => {
 	console.info("addSlot success");
 }).catch((err: BusinessError) => {
-    console.error(`addSlot fail: ${JSON.stringify(err)}`);
+    console.error(`addSlot failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -380,7 +380,7 @@ notificationSlotArray[0] = notificationSlot;
 notificationManager.addSlots(notificationSlotArray).then(() => {
 	console.info("addSlots success");
 }).catch((err: BusinessError) => {
-    console.error(`addSlots fail: ${JSON.stringify(err)}`);
+    console.error(`addSlots failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -487,7 +487,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.setNotificationEnable(bundle, false).then(() => {
 	console.info("setNotificationEnable success");
 }).catch((err: BusinessError) => {
-    console.error(`setNotificationEnable fail: ${JSON.stringify(err)}`);
+    console.error(`setNotificationEnable failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -533,7 +533,7 @@ notificationManager.getAllNotificationEnabledBundles().then((data: Array<notific
         console.info("Enable bundle is " + JSON.stringify(element.bundle));
     });
 }).catch((err: BusinessError) => {
-    console.error("getAllNotificationEnabledBundles failed, error is" + JSON.stringify(err));
+    console.error(`getAllNotificationEnabledBundles failed, code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -639,7 +639,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.isNotificationEnabled(bundle).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -744,7 +744,7 @@ let userId: number = 1;
 notificationManager.isNotificationEnabled(userId).then((data: boolean) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isNotificationEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -850,7 +850,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.displayBadge(bundle, false).then(() => {
 	console.info("displayBadge success");
 }).catch((err: BusinessError) => {
-    console.error(`displayBadge fail: ${JSON.stringify(err)}`);
+    console.error(`displayBadge failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -955,7 +955,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.isBadgeDisplayed(bundle).then((data: boolean) => {
 	console.info("isBadgeDisplayed success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isBadgeDisplayed fail: ${JSON.stringify(err)}`);
+    console.error(`isBadgeDisplayed failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1012,7 +1012,7 @@ let slotFlags: number = 1;
 notificationManager.setSlotFlagsByBundle(bundle, slotFlags).then(() => {
 	console.info("setSlotFlagsByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`setSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setSlotFlagsByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1130,7 +1130,7 @@ let notificationSlot: notificationManager.NotificationSlot = {
 notificationManager.setSlotByBundle(bundle, notificationSlot).then(() => {
 	console.info("setSlotByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`setSlotByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1183,7 +1183,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotFlagsByBundle(bundle).then((data : number) => {
 	console.info("getSlotFlagsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSlotFlagsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotFlagsByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1288,7 +1288,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotsByBundle(bundle).then((data: Array<notificationManager.NotificationSlot>) => {
 	console.info("getSlotsByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSlotsByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotsByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1395,7 +1395,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.getSlotNumByBundle(bundle).then((data: number) => {
 	console.info("getSlotNumByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSlotNumByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotNumByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1473,7 +1473,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -1486,7 +1485,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.getAllActiveNotifications().then((data: Array<notificationManager.NotificationRequest>) => {
 	console.info("getAllActiveNotifications success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getAllActiveNotifications fail: ${JSON.stringify(err)}`);
+    console.error(`getAllActiveNotifications failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1604,7 +1603,7 @@ let filter: notificationManager.NotificationFilter = {
 notificationManager.getActiveNotificationByFilter(filter).then((data: notificationManager.NotificationRequest) => {
 	console.info("getActiveNotificationByFilter success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getActiveNotificationByFilter fail: ${JSON.stringify(err)}`);
+    console.error(`getActiveNotificationByFilter failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1711,7 +1710,7 @@ let groupName: string = "GroupName";
 notificationManager.removeGroupByBundle(bundleOption, groupName).then(() => {
 	console.info("removeGroupByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`removeGroupByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`removeGroupByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1822,7 +1821,7 @@ let doNotDisturbDate: notificationManager.DoNotDisturbDate = {
 notificationManager.setDoNotDisturbDate(doNotDisturbDate).then(() => {
 	console.info("setDoNotDisturbDate success");
 }).catch((err: BusinessError) => {
-    console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
+    console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1944,7 +1943,7 @@ let userId: number = 1;
 notificationManager.setDoNotDisturbDate(doNotDisturbDate, userId).then(() => {
 	console.info("setDoNotDisturbDate success");
 }).catch((err: BusinessError) => {
-    console.error(`setDoNotDisturbDate fail: ${JSON.stringify(err)}`);
+    console.error(`setDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2023,7 +2022,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2037,7 +2035,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.getDoNotDisturbDate().then((data: notificationManager.DoNotDisturbDate) => {
   console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
+    console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2145,7 +2143,7 @@ let userId: number = 1;
 notificationManager.getDoNotDisturbDate(userId).then((data: notificationManager.DoNotDisturbDate) => {
 	console.info("getDoNotDisturbDate success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getDoNotDisturbDate fail: ${JSON.stringify(err)}`);
+    console.error(`getDoNotDisturbDate failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2223,7 +2221,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2236,7 +2233,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.isSupportDoNotDisturbMode().then((data: boolean) => {
 	console.info("isSupportDoNotDisturbMode success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isSupportDoNotDisturbMode fail: ${JSON.stringify(err)}`);
+    console.error(`isSupportDoNotDisturbMode failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2336,7 +2333,7 @@ let enable: boolean = true;
 notificationManager.setDistributedEnable(enable).then(() => {
     console.info("setDistributedEnable success");
 }).catch((err: BusinessError) => {
-    console.error(`setDistributedEnable fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnable failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2448,7 +2445,7 @@ let enable: boolean = true;
 notificationManager.setDistributedEnableByBundle(bundle, enable).then(() => {
     console.info("setDistributedEnableByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`setDistributedEnableByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnableByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2554,7 +2551,7 @@ let bundle: notificationManager.BundleOption = {
 notificationManager.isDistributedEnabledByBundle(bundle).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2631,7 +2628,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ----------------------------------- |
 | 201      | Permission denied.     |
 | 202      | Not system application to call the interface.                                      |
-| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed.      |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect to the service.          |
@@ -2644,7 +2640,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 notificationManager.getDeviceRemindType().then((data: notificationManager.DeviceRemindType) => {
     console.info("getDeviceRemindType success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getDeviceRemindType fail: ${JSON.stringify(err)}`);
+    console.error(`getDeviceRemindType failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2657,7 +2653,7 @@ Publishes a notification through the reminder agent. This API uses an asynchrono
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **System API**: This is a system API.
 
@@ -2686,7 +2682,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600005  | Notification slot disabled.         |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
@@ -2732,7 +2728,7 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **System API**: This is a system API.
 
@@ -2767,7 +2763,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600005  | Notification slot disabled.         |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
@@ -2797,7 +2793,7 @@ let request: notificationManager.NotificationRequest = {
 notificationManager.publishAsBundle(request, representativeBundle, userId).then(() => {
 	console.info("publishAsBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
+    console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2809,7 +2805,7 @@ Publishes a notification through the reminder agent. This API uses a promise to 
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **System API**: This is a system API.
 
@@ -2843,7 +2839,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 1600005  | Notification slot disabled.         |
 | 1600007  | The notification does not exist.      |
 | 1600008  | The user does not exist.                    |
-| 1600009  | Over max number notifications per second. |
+| 1600009  | The notification sending frequency reaches the upper limit. |
 | 1600012  | No memory space.                          |
 | 1600015  | The current notification status does not support duplicate configurations. |
 | 1600016  | The notification version for this update is too low. |
@@ -2873,7 +2869,7 @@ let request: notificationManager.NotificationRequest = {
 notificationManager.publishAsBundle(representativeBundle, request).then(() => {
 	console.info("publishAsBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`publishAsBundle fail: ${JSON.stringify(err)}`);
+    console.error(`publishAsBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -2885,7 +2881,7 @@ Cancels a notification published through the reminder agent. This API uses an as
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **System API**: This is a system API.
 
@@ -2942,7 +2938,7 @@ Cancels a notification published through the reminder agent. This API uses a pro
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **System API**: This is a system API.
 
@@ -2988,7 +2984,7 @@ let userId: number = 100;
 notificationManager.cancelAsBundle(0, representativeBundle, userId).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+    console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3001,7 +2997,7 @@ Cancels a notification published through the reminder agent. This API uses a pro
 
 **System capability**: SystemCapability.Notification.Notification
 
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER or ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **System API**: This is a system API.
 
@@ -3047,7 +3043,7 @@ let representativeBundle: notificationManager.BundleOption = {
 notificationManager.cancelAsBundle(representativeBundle, 1).then(() => {
 	console.info("cancelAsBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`cancelAsBundle fail: ${JSON.stringify(err)}`);
+    console.error(`cancelAsBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3103,7 +3099,7 @@ let id: number = 1;
 notificationManager.cancel(bundle, id).then(() => {
   console.info("cancel success");
 }).catch((err: BusinessError) => {
-  console.error(`cancel fail: ${JSON.stringify(err)}`);
+  console.error(`cancel failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3242,6 +3238,12 @@ Sets the enabled status of a slot type for the specified application. This API u
 | enable | boolean                       | Yes  | Whether to enable the notification slot type. The value **true** means to enable the notification slot type, and **false** means the opposite.    |
 | isForceControl<sup>11+</sup> | boolean               | No  | Whether the enabled status of the notification slot is subject to the enabled status of notification. The value **false** means that the enabled status of the notification slot is subject to the enabled status of notification, and **true** means the opposite. Default value: **false**    |
 
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
+
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Notification Error Codes](./errorcode-notification.md).
@@ -3269,7 +3271,7 @@ notificationManager.setNotificationEnableSlot(
     true).then(() => {
         console.info("setNotificationEnableSlot success");
     }).catch((err: BusinessError) => {
-        console.error(`setNotificationEnableSlot fail: ${JSON.stringify(err)}`);
+        console.error(`setNotificationEnableSlot failed, code is ${err.code}, message is ${err.message}`);
     });
 ```
 
@@ -3376,7 +3378,7 @@ notificationManager.isNotificationSlotEnabled({ bundle: "ohos.samples.notificati
     notificationManager.SlotType.SOCIAL_COMMUNICATION).then((data: boolean) => {
     console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isNotificationSlotEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`isNotificationSlotEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3484,7 +3486,7 @@ let enable: boolean = true;
 notificationManager.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
     console.info('setSyncNotificationEnabledWithoutApp success');
 }).catch((err: BusinessError) => {
-    console.error(`setSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
+    console.error(`setSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3588,7 +3590,7 @@ let userId: number = 100;
 notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data: boolean) => {
   console.info('getSyncNotificationEnabledWithoutApp, data: ' + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSyncNotificationEnabledWithoutApp fail: ${JSON.stringify(err)}`);
+    console.error(`getSyncNotificationEnabledWithoutApp failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3640,8 +3642,8 @@ let onCheckNotification = (info : notificationManager.NotificationCheckInfo): no
 }
 try{
     notificationManager.on("checkNotification", onCheckNotification);
-} catch (error){
-    console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
+} catch (err: BusinessError){
+    console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -3694,8 +3696,8 @@ try{
     async (checkInfo)=>{
       return { code: 1, message: "INVALID_PARAMETERS"};
   },);
-} catch (error) {
-  console.error(`notificationManager.on error: ${JSON.stringify(error as BusinessError)}`);
+} catch (err) {
+  console.error(`notificationManager.on failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -3736,8 +3738,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 try{
     notificationManager.off("checkNotification");
-} catch (error){
-    console.error(`notificationManager.off error: ${JSON.stringify(error as BusinessError)}`);
+} catch (err: BusinessError){
+    console.error(`notificationManager.off failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
 
@@ -3799,8 +3801,8 @@ let buttonOptions: notificationManager.ButtonOptions = {
 }
 notificationManager.triggerSystemLiveView(bundle, notificationId, buttonOptions).then(() => {
   console.info("triggerSystemLiveView success");
-}).catch((error: BusinessError) => {
-  console.error(`triggerSystemLiveView fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`triggerSystemLiveView failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3853,8 +3855,8 @@ let subscriber: notificationManager.SystemLiveViewSubscriber  = {
 };
 notificationManager.subscribeSystemLiveView(subscriber).then(() => {
 	console.info("subscribeSystemLiveView success");
-}).catch((error: BusinessError) => {
-    console.error(`subscribeSystemLiveView fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+    console.error(`subscribeSystemLiveView failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3914,7 +3916,7 @@ let deviceType: string = "phone";
 notificationManager.setDistributedEnabledByBundle(bundle, deviceType, enable).then(() => {
     console.info("setDistributedEnabledByBundle success");
 }).catch((err: BusinessError) => {
-    console.error(`setDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -3972,7 +3974,7 @@ let deviceType: string = "phone";
 notificationManager.isDistributedEnabledByBundle(bundle, deviceType).then((data: boolean) => {
     console.info("isDistributedEnabledByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`isDistributedEnabledByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`isDistributedEnabledByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4027,7 +4029,7 @@ let enable: boolean = true;
 notificationManager.setSmartReminderEnabled(deviceType, enable).then(() => {
     console.info("setSmartReminderEnabled success");
 }).catch((err: BusinessError) => {
-    console.error(`setSmartReminderEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`setSmartReminderEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4080,7 +4082,7 @@ let deviceType: string = "phone";
 notificationManager.isSmartReminderEnabled(deviceType).then((data: boolean) => {
     console.info("isSmartReminderEnabled success, data:" + data);
 }).catch((err: BusinessError) => {
-    console.error(`isSmartReminderEnabled fail: ${JSON.stringify(err)}`);
+    console.error(`isSmartReminderEnabled failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4135,7 +4137,7 @@ let badgeNumber: number = 10;
 notificationManager.setBadgeNumberByBundle(bundle, badgeNumber).then(() => {
     console.info('setBadgeNumberByBundle success');
 }).catch((err: BusinessError) => {
-    console.error(`setBadgeNumberByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`setBadgeNumberByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4145,7 +4147,7 @@ getSlotByBundle(bundle: BundleOption, slotType: SlotType): Promise\<Notification
 
 Obtains a notification slot of a specified application. This API uses a promise to return the result.
 
-Before obtaining the notification slot, create a slot through [addSlot](#notificationmanageraddslot).
+This API is not supported on wearables.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -4195,7 +4197,7 @@ let slotType = notificationManager.SlotType.LIVE_VIEW;
 notificationManager.getSlotByBundle(bundle, slotType).then((data: notificationManager.NotificationSlot) => {
 	console.info("getSlotByBundle success, data: " + JSON.stringify(data));
 }).catch((err: BusinessError) => {
-    console.error(`getSlotByBundle fail: ${JSON.stringify(err)}`);
+    console.error(`getSlotByBundle failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4262,8 +4264,8 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
 
 notificationManager.addDoNotDisturbProfile(templates).then(() => {
   console.info("addDoNotDisturbProfile success.");
-}).catch((error: BusinessError) => {
-  console.error(`addDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`addDoNotDisturbProfile failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4318,8 +4320,8 @@ let templates: Array<notificationManager.DoNotDisturbProfile> = [
 ]
 notificationManager.removeDoNotDisturbProfile(templates).then(() => {
   console.info("removeDoNotDisturbProfile success.");
-}).catch((error: BusinessError) => {
-  console.error(`removeDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`removeDoNotDisturbProfile failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4368,8 +4370,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.setAdditionalConfig('RING_TRUSTLIST_PKG','[bundleName1,bundleName2]').then((data: number) => {
   console.info("setAdditionalConfig success, data: " + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-  console.error(`setAdditionalConfig fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`setAdditionalConfig failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4418,8 +4420,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 notificationManager.getDoNotDisturbProfile(1).then((data: notificationManager.DoNotDisturbProfile) => {
   console.info("getDoNotDisturbProfile success: " + JSON.stringify(data));
-}).catch((error: BusinessError) => {
-  console.error(`getDoNotDisturbProfile fail: ${JSON.stringify(error)}`);
+}).catch((err: BusinessError) => {
+  console.error(`getDoNotDisturbProfile failed, code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -4572,3 +4574,17 @@ Each bit can control the notification mode. When the bitwise OR operation is per
 | id | number | Yes| ID of the Do Not Disturb profile.|
 | name | string  | Yes| Name of the Do Not Disturb profile.|
 | trustlist | Array\<[BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)> | No| Trustlist in Do Not Disturb profile.|
+
+## NotificationLiveViewContent<sup>11+</sup>
+
+type NotificationLiveViewContent = _NotificationLiveViewContent
+
+Describes the common live view.
+
+**System capability**: SystemCapability.Notification.Notification
+
+**System API**: This is a system API.
+
+| Type| Description|
+| --- | --- |
+| [_NotificationLiveViewContent](js-apis-inner-notification-notificationContent-sys.md#notificationliveviewcontent11) | Common live view.|

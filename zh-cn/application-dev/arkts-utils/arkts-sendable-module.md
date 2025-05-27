@@ -48,7 +48,16 @@
 
 - 共享模块可以引用共享模块或非共享模块。共享模块的引用和被引用场景没有限制。
 
-- napi_load_module、napi_load_module_with_info以及动态加载不支持加载共享模块。
+- 仅支持使用静态加载方式加载共享模块。
+  ```ts
+  // test.ets
+  import { num } from './A'; // 静态加载
+  
+  // A.ets
+  'use shared'
+  
+  export {num, str} from './test';
+  ```
 
 
 ## 使用示例

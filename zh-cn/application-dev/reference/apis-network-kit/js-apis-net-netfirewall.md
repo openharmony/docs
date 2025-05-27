@@ -154,7 +154,6 @@ removeNetFirewallRule(userId: number, ruleId: number): Promise\<void>
 
 | 参数名   | 类型                             | 必填 | 说明                                         |
 | -------- | ----------------------------------- | ---- | -------------------------------------------- |
-| rule     | [NetFirewallRule](#netfirewallrule) | 是   | 防火墙规则。                                 |
 | userId   | number                              | 是   | 系统中的多用户用户ID，只能是存在的用户ID。     |
 | ruleId   | number                              | 是   | 防火墙规则ID。                               |
 
@@ -301,7 +300,7 @@ setNetFirewallPolicy(userId: number, policy: NetFirewallPolicy): Promise\<void>
 
 **需要权限**：ohos.permission.MANAGE_NET_FIREWALL
 
-**系统能力**：SystemCapability.Communication.NetManager.netfirewall
+**系统能力**：SystemCapability.Communication.NetManager.NetFirewall
 
 **参数：**
 

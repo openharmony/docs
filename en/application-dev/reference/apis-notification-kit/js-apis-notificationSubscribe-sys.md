@@ -128,8 +128,6 @@ let subscriber: notificationSubscribe.NotificationSubscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-
-
 ## notificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo): Promise\<void\>
@@ -240,8 +238,6 @@ notificationSubscribe.subscribeSelf(subscriber).then(() => {
   console.error("subscribeSelf fail: " + JSON.stringify(err));
 });
 ```
-
-
 
 ## notificationSubscribe.unsubscribe
 
@@ -410,8 +406,6 @@ let notificationKey: notificationSubscribe.NotificationKey = {
 let reason: notificationSubscribe.RemoveReason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason, removeCallback);
 ```
-
-
 
 ## notificationSubscribe.remove
 
@@ -896,6 +890,12 @@ Removes all notifications for a specified user. This API uses a promise to retur
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
 | userId | number | Yes  | User ID.|
+
+**Return value**
+
+| Type    | Description        |
+| ------- |------------|
+| Promise\<void\> | Promise that returns no value.|
 
 **Error codes**
 

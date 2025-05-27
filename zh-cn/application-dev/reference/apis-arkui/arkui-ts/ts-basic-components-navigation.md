@@ -314,7 +314,7 @@ navDestination(builder: (name: string, param: unknown) => void)
 
 | 参数名  | 类型                                   | 必填 | 说明                     |
 | ------- | -------------------------------------- | ---- | ------------------------ |
-| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：开发者设置的NavDestination页面详细参数。 |
+| builder | (name: string, param: unknown) => void | 是   | 创建NavDestination组件。name：NavDestination页面名称。param：开发者设置的NavDestination页面详细参数，unkown可以是用户自定义的类型。 |
 
 ### navBarWidthRange<sup>10+</sup>
 
@@ -648,7 +648,7 @@ pushPathByName(name: string, param: unknown, animated?: boolean): void
 | 参数名    | 类型      | 必填   | 说明                    |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 是    | 开发者设置的NavDestination页面详细参数。 |
+| param | unknown | 是    | 开发者设置的NavDestination页面详细参数，unkown可以是用户自定义的类型。 |
 | animated<sup>11+</sup> | boolean | 否    | 是否支持转场动画，<br/>默认值：true。<br/>true：支持转场动画。<br/>false：不支持转场动画。 |
 
 ### pushPathByName<sup>11+</sup>
@@ -1148,7 +1148,7 @@ getParamByIndex(index: number): unknown | undefined
 
 | 类型        | 说明                         |
 | --------- | -------------------------- |
-| unknown   | 返回对应NavDestination页面的参数信息。 |
+| unknown   | 返回对应NavDestination页面的参数信息，unkown可以是用户自定义的类型。 |
 | undefined | 传入index无效时返回undefined。     |
 
 ### getParamByName<sup>10+</sup>
@@ -1171,7 +1171,7 @@ getParamByName(name: string): Array<unknown\>
 
 | 类型              | 说明                                |
 | --------------- | --------------------------------- |
-| Array<unknown\> | 返回全部名为name的NavDestination页面的参数信息。 |
+| Array<unknown\> | 返回全部名为name的NavDestination页面的参数信息，unkown可以是用户自定义的类型。 |
 
 ### getIndexByName<sup>10+</sup>
 
@@ -1276,7 +1276,7 @@ constructor(name: string, param: unknown, onPop?: Callback\<PopInfo>, isEntry?: 
 | 参数名    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。   |
-| param | unknown | 是    | 开发者设置的NavDestination页面详细参数。 |
+| param | unknown | 是    | 开发者设置的NavDestination页面详细参数，unkown可以是用户自定义的类型。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true：NavDestination是入口页面。<br/>false：NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局返回事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。 |
 
@@ -1289,7 +1289,7 @@ NavPathInfo参数信息。
 | 名称    | 类型      | 必填   | 说明                   |
 | ----- | ------- | ---- | --------------------- |
 | name  | string  | 是    | NavDestination页面名称。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| param | unknown | 否    | 开发者设置的NavDestination页面详细参数。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| param | unknown | 否    | 开发者设置的NavDestination页面详细参数，unkown可以是用户自定义的类型。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | onPop<sup>11+</sup> | Callback\<[PopInfo](#popinfo11)> | 否 | NavDestination页面触发[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)时返回的回调。仅[pop](#pop11)、[popToName](#poptoname11)、[popToIndex](#poptoindex11)中设置result参数后触发。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | isEntry<sup>12+</sup> | boolean | 否 | 标记NavDestination是否为入口页面。<br/>默认值：false。<br/>true：NavDestination是入口页面。<br/>false：NavDestination不是入口页面。 <br/>标记清理时机：1、在当前navDestination页面触发一次全局back事件。2、应用退至后台。<br/>**说明**：<br/>入口NavDestination不响应应用内的全局back事件，直接触发应用间的全局back事件。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
@@ -1333,8 +1333,8 @@ NavPathInfo参数信息。
 | 名称 | 类型 | 必填 | 说明 |
 |------|-----|-----|------|
 | timeout | number | 否 | 动画超时结束时间。<br> 单位：ms。<br/>取值范围：[0, +∞)。<br> 默认值：可交互动画无默认值，不可交互动画默认超时时间为1000ms。|
-| transition | (transitionProxy：[NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy：自定义转场动画代理对象。|
-| onTransitionEnd | (success: boolean)&nbsp;=>&nbsp;void | 否 | 转场完成回调。<br> success：转场是否成功。 |
+| transition | (transitionProxy:[NavigationTransitionProxy](#navigationtransitionproxy-11)) =&gt; void | 是 | 自定义转场动画执行回调。<br> transitionProxy：自定义转场动画代理对象。|
+| onTransitionEnd | (success:boolean)&nbsp;=>&nbsp;void | 否 | 转场完成回调。<br> success：转场是否成功。 |
 | isInteractive<sup>12+</sup> | boolean | 否 | 本次转场动画是否为可交互转场。<br> 默认值：false。<br/>true：本次转场动画是可交互转场。<br/>false：本次转场动画不是可交互转场。|
 
 ## NavigationTransitionProxy <sup>11+</sup>

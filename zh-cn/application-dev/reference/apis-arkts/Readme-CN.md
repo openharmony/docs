@@ -36,3 +36,4 @@
     - [@ohos.util.Vector (线性容器Vector)](js-apis-vector.md)
 - 错误码<!--arkts-arkts-errcode-->
   - [语言基础类库错误码](errorcode-utils.md)
+  - [编译工具链错误码](errorcode-ets-loader.md)

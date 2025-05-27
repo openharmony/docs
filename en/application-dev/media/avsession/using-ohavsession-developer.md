@@ -102,7 +102,7 @@ To access a local session with the NDK, perform the following steps:
 
    > **NOTE**
    >
-   > After the provider registers a listener for fixed playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event (not used temporarily) as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
+   > After the provider registers a listener for fixed playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
 
    Currently, the following playback control commands are supported:
    - Play
