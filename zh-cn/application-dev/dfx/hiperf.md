@@ -29,6 +29,7 @@ hiperf为开发人员提供用于调试的命令行工具，用于抓取特定�
 ```shell
 hiperf --help
 ```
+**使用样例：**
 
 ```shell
 $ hiperf --help
@@ -60,8 +61,9 @@ See 'hiperf help [command]' for more information on a specific command.
 使用如下命令查看子功能的帮助信息。
 
 ```
-hiperf [command] --help
+Usage: hiperf [command] --help
 ```
+
 
 ## list命令
 
@@ -87,6 +89,7 @@ Usage: hiperf list [event type name]
 ```shell
 hiperf list --help
 ```
+**使用样例：**
 
 ```shell
 $ hiperf list --help
@@ -105,6 +108,7 @@ Usage: hiperf list [event type name]
 ```shell
 hiperf list hw
 ```
+**使用样例：**
 
 ```shell
 $ hiperf list hw
@@ -121,6 +125,7 @@ Supported events for hardware:
         hw-stalled-cycles-frontend
         hw-stalled-cycles-backend
 ```
+
 
 ## record命令
 
@@ -177,11 +182,12 @@ Supported events for hardware:
 Usage: hiperf record [options] [command [command-args]]
 ```
 
-对指定的PID为267的进程采样10秒，并且使用dwarf回栈。
+对指定的PID为1273的进程采样10秒，并且使用dwarf回栈。
 
 ```shell
 hiperf record -p 1273 -d 10 -s dwarf
 ```
+**使用样例：**
 
 ```shell
 $ hiperf record -p 1273 -d 10 -s dwarf
@@ -194,7 +200,6 @@ Process and Saving data...
 [ Sample records: 97, Non sample records: 2426 ]
 [ Sample lost: 0, Non sample lost: 0 ]
 ```
-
 
 
 ## stat命令
@@ -229,11 +234,12 @@ Process and Saving data...
 Usage: hiperf stat [options] [command [command-args]]
 ```
 
-下面展示了一个 stats 监听2349进程在CPU0上3秒的性能计数器命令。
+下面展示了一个 stats 监听1273进程在CPU0上3秒的性能计数器命令。
 
 ```shell
 hiperf stat -p 1273 -d 3 -c 0
 ```
+**使用样例：**
 
 ```shell
 $ hiperf stat -p 1273 -d 3 -c 0
@@ -249,6 +255,7 @@ Timeout exit (total 3000 ms)
                         0  sw-page-faults                 |                                  | (9%)
                    39,083  sw-task-clock                  | 0.000143 cpus used               | (9%)
 ```
+
 
 ## dump命令
 
@@ -278,6 +285,7 @@ Usage: hiperf dump [option] \<filename\>
 ```shell
 hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
 ```
+**使用样例：**
 
 ```shell
 $ hiperf dump -i /data/local/tmp/perf.data -o /data/local/tmp/perf.dump
@@ -318,7 +326,6 @@ Usage: hiperf report [option] \<filename\>
 ```shell
 hiperf report --limit-percent 1
 ```
-
 
 
 ## 脚本
