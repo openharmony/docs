@@ -1254,3 +1254,16 @@ type Nullable\<T> = T | undefined
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ON_CLICK  | 0 | 点击事件。 |
+
+## DividerMode<sup>19+</sup>枚举说明
+
+分割线模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 值 | 说明                                       |
+| ------------------ | - | ---------------------------------------- |
+| FLOATING_ABOVE_MENU| 0 | 悬浮在Menu之上，默认值，不占用高度。      |
+| EMBEDDED_IN_MENU   | 1 | 在Menu中展开，参与布局计算，占用高度。    |
