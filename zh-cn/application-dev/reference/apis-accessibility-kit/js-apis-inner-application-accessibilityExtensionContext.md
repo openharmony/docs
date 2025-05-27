@@ -125,12 +125,12 @@ type FocusType = 'accessibility' | 'normal'
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称     | 类型     | 可读   | 可写   | 说明        |
+| 名称     | 类型     | 只读   | 可选   | 说明        |
 | ------ | ------ | ---- | ---- | --------- |
-| left   | number | 是    | 否    | 矩形区域的左边界。 |
-| top    | number | 是    | 否    | 矩形区域的上边界。 |
-| width  | number | 是    | 否    | 矩形区域的宽度。  |
-| height | number | 是    | 否    | 矩形区域的高度。  |
+| left   | number | 否    | 否    | 矩形区域的左边界。 |
+| top    | number | 否    | 否    | 矩形区域的上边界。 |
+| width  | number | 否    | 否    | 矩形区域的宽度。  |
+| height | number | 否    | 否    | 矩形区域的高度。  |
 
 ## WindowType
 
