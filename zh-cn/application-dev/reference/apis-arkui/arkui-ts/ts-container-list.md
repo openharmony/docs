@@ -1146,6 +1146,8 @@ type OnListScrollIndexCallback = (start: number, end: number, center: number) =>
 
 List组件可见区域item变化事件的回调类型。
 
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
