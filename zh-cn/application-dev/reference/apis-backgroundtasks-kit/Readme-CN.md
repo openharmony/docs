@@ -35,6 +35,7 @@
     - [background_process_manager.h](background__process__manager_8h.md)
   - 结构体<!--background-tasks-struct-->
     - [TransientTask_DelaySuspendInfo](_transient_task___delay_suspend_info.md)
+    - [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md)
 - 错误码<!--background-tasks-arkts-errcode-->
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
