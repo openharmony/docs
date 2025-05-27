@@ -1,9 +1,7 @@
 # 查找设备
 
 ## 简介
-主要提供了BLE扫描和BLE广播相关操作的开发指导。可以实现发现周边BLE设备和其他设备发现本机设备的场景。
-
-
+本指南主要提供了BLE扫描和BLE广播相关操作的开发指导。可以实现发现周边BLE设备和其他设备发现本机设备的场景。
 
 ## 开发步骤
 
@@ -20,9 +18,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 ### BLE扫描流程
 
 #### 订阅扫描结果上报事件
-- 推荐使用API version 15及以上的扫描方式，该方式支持应用发起和管理多路扫描。该方式支持的上报事件请参考[on('BLEDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#onbledevicefind15)。
+- 推荐使用API version 15及以上支持的扫描方式，该方式支持应用发起和管理多路扫描。该方式支持的上报事件请参考[on('BLEDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#onbledevicefind15)。
 ```ts
-// 定义扫描结果上报回调函数，API15
+// 定义扫描结果上报回调函数
 function onReceiveEvent(scanReport: ble.ScanReport) {
   console.info('BLE scan device find result: '+ JSON.stringify(scanReport));
 }
@@ -38,9 +36,9 @@ try {
 }
 ```
 
-- API version 14及以前的扫描方式只支持应用发起单路扫描。该方式支持的上报事件请参考[ble.on('BLEDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#ble.on('BLEDeviceFind'))。
+- API version 14及以前支持的扫描方式只支持应用发起单路扫描。该方式支持的上报事件请参考[ble.on('BLEDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#bleonbledevicefind)。
 ```ts
-// 定义扫描结果上报回调函数，API14及以前
+// 定义扫描结果上报回调函数
 function onReceiveEvent(data: Array<ble.ScanResult>) {
   console.info('BLE scan device find result: '+ JSON.stringify(data));
 }
@@ -53,14 +51,14 @@ try {
 }
 ```
 
-- 如何解析扫描到的广播报文可参考本章节[完整示例](#完整示例)。
+- 如何解析扫描到的广播报文，具体可参考本章节[完整示例](#完整示例)。
 
 #### 发起扫描
 通过BLE扫描周边其他设备发出的BLE广播，可以发现或者查找到应用需要的目标设备，适用于查找设备场景。
 
 若本机设备扫描到可连接的BLE广播，则可以和该设备进行通用属性协议（Generic Attribute Profile，GATT）的连接和数据传输，此时本机设备角色也被称为GATT客户端。具体操作请参考[连接和传输数据](gatt-development-guide.md)。
 
-- 推荐使用API version 15及以上的扫描方式，该方式支持应用发起和管理多路扫描。可通过[createBleScanner](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blecreateblescanner15)创建扫描实例[BleScanner](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blescanner15)，并调用[startScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#startscan15)。
+- 推荐使用API version 15及以上支持的扫描方式，该方式支持应用发起和管理多路扫描。可通过[createBleScanner](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blecreateblescanner15)创建扫描实例[BleScanner](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blescanner15)，并调用[startScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#startscan15)。
 ```ts
 // 创建ble扫描实例
 let bleScanner: ble.BleScanner = ble.createBleScanner();
@@ -91,7 +89,7 @@ try {
 }
 ```
 
-- API version 14及以前的扫描方式只支持应用发起单路扫描。若要再次发起扫描，必须先停止上一路的扫描流程。详情请见[ble.startBLEScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartblescan)。
+- API version 14及以前支持的扫描方式只支持应用发起单路扫描。若要再次发起扫描，必须先停止上一路的扫描流程。详情请见[ble.startBLEScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartblescan)。
 ```ts
 // 构造扫描BLE广播的过滤条件，目标BLE广播报文需符合该过滤条件
 let manufactureId = 4567;
@@ -119,11 +117,11 @@ try {
 ```
 
 #### 停止扫描
-扫描是一个消耗蓝牙硬件资源和影响设备功耗的流程。当应用不再需要该扫描时，需要主动停止。
+扫描流程会消耗蓝牙硬件资源和影响设备功耗。当应用不再需要该扫描时，需要主动停止。
 
 - 搭配API version 15及以上支持的多路扫描方式。详情请见[stopScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#stopscan15)。
 ```ts
-// 定义扫描结果上报回调函数，API15
+// 定义扫描结果上报回调函数
 function onReceiveEvent(scanReport: ble.ScanReport) {
   console.info('BLE scan device find result: '+ JSON.stringify(scanReport));
 }
@@ -141,9 +139,9 @@ try {
 }
 ```
 
-- 搭配API version 14及以前的单路扫描方式。详情请见[ble.stopBLEScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopblescan)。
+- 搭配API version 14及以前支持的单路扫描方式。详情请见[ble.stopBLEScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopblescan)。
 ```ts
-// 定义扫描结果上报回调函数，API14及以前
+// 定义扫描结果上报回调函数
 function onReceiveEvent(data: Array<ble.ScanResult>) {
   console.info('BLE scan device find result: '+ JSON.stringify(data));
 }
@@ -159,7 +157,7 @@ try {
 ```
 
 ### BLE广播流程
-本机设备发送BLE广播后，就能实现被其他设备发现的功能。
+本机设备发送BLE广播后，可以实现被其他设备发现的功能。
 
 若本机设备发送的是可连接广播，则可以接受其他设备发起的通用属性协议（Generic Attribute Profile，GATT）连接，此时本机设备角色也被称为GATT服务端。具体操作请参考[连接和传输数据](gatt-development-guide.md)。
 
@@ -180,7 +178,9 @@ try {
 ```
 
 #### 启动广播
-- 推荐使用API version 11及以后开始支持的广播操作方式。支持在不释放相关广播资源情况下，多次操作启动或者停止指定标识的广播，且支持设置广播持续发送的时间。相关API请参考[ble.startAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartadvertising11)和[ble.enableAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#bleenableadvertising11)。首次启动广播接口[ble.startAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartadvertising11)会分配广播相关资源，且API version 15开始，该接口支持应用多次调用，实现启动多路广播的功能，并通过不同的广播标识进行管理。
+- 推荐使用API version 11及以后开始支持的广播操作方式。支持在不释放相关广播资源情况下，多次操作启动或者停止指定标识的广播，且支持设置广播持续发送的时间。<br>
+相关API请参考[ble.startAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartadvertising11)和[ble.enableAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#bleenableadvertising11)。<br>
+首次启动广播接口[ble.startAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartadvertising11)会分配广播相关资源，从API version 15开始，该接口支持应用多次调用，实现启动多路广播的功能，并通过不同的广播标识进行管理。
 ```ts
 // 设置广播发送的参数
 let setting: ble.AdvertiseSetting = {
@@ -215,7 +215,7 @@ let advData: ble.AdvertiseData = {
   serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb", "18881888-0000-1000-8000-00805f9b34fb"],
   manufactureData: [manufactureDataUnit],
   serviceData: [],
-  includeDeviceName: false // 表示是否携带设备名，可选参数。注意带上设备名时，容易导致广播报文长度超出31个字节。
+  includeDeviceName: false // 表示是否携带设备名，可选参数。注意：带上设备名时，容易导致广播报文长度超出31个字节，使得广播启动失败。
 };
 let advResponse: ble.AdvertiseData = {
   serviceUuids: [],
@@ -314,9 +314,10 @@ try {
 ```
 
 #### 停止广播
-广播是一个消耗蓝牙硬件资源和影响设备功耗的流程。当应用不再需要该广播时，需要主动停止。
+广播流程会消耗蓝牙硬件资源和影响设备功耗。当应用不再需要该广播时，需要主动停止。
 
-- 搭配API version 11及以上支持的广播方式。相关API请参考[ble.disableAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#bledisableadvertising11)和[ble.stopAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopadvertising11)。完全停止广播接口[ble.stopAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopadvertising11)会释放所有广播资源，因此首次启动广播分配的广播标识将无效。
+- 搭配API version 11及以上支持的广播方式。相关API请参考[ble.disableAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#bledisableadvertising11)和[ble.stopAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopadvertising11)。<br>
+完全停止广播接口[ble.stopAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopadvertising11)会释放所有广播资源，因此首次启动广播分配的广播标识将无效。
 ```ts
 let advHandle = 1; // 注意：该值是首次启动广播时获取到的广播标识，此处是伪代码ID
 
@@ -395,7 +396,7 @@ const BLUETOOTH_MANUFACTURE_ID_LENGTH = 2;
 export class BleScanManager {
   bleScanner: ble.BleScanner = ble.createBleScanner();
 
-  // 1 定义扫描结果上报回调函数
+  // 1. 定义扫描结果上报回调函数
   onReceiveEvent = (scanReport: ble.ScanReport) => {
     console.info(TAG, 'BLE scan device find result: '+ JSON.stringify(scanReport));
     if (scanReport.scanResult.length > 0) {
@@ -548,7 +549,7 @@ export class BleScanManager {
     manufactureSpecificDatas[manufactureId] = data;
   }
 
-  // 2 开启扫描
+  // 2. 开启扫描
   public startScan() {
     // 2.1 构造扫描BLE广播的过滤条件，目标BLE广播报文需符合该过滤条件
     let manufactureId = 4567;
@@ -577,7 +578,7 @@ export class BleScanManager {
     }
   }
 
-  // 3 关闭扫描
+  // 3. 关闭扫描
   public stopScan() {
     try {
       // 取消订阅
@@ -603,15 +604,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 const TAG: string = 'BleAdvertisingManager';
 
 export class BleAdvertisingManager {
-  private advHandle: number = 0xFF; // default invalid value
+  private advHandle: number = 0xFF; // 初始的无效值
 
-  // 1 定义广播状态上报事件
+  // 1. 定义广播状态上报事件
   onReceiveEvent = (data: ble.AdvertisingStateChangeInfo) => {
     console.info(TAG, 'bluetooth advertising state = ' + JSON.stringify(data));
     AppStorage.setOrCreate('advertiserState', data.state);
   };
 
-  // 2 首次启动广播
+  // 2. 首次启动广播
   public async startAdvertising() {
     // 2.1 设置广播发送的参数
     let setting: ble.AdvertiseSetting = {
@@ -646,7 +647,7 @@ export class BleAdvertisingManager {
       serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb", "18881888-0000-1000-8000-00805f9b34fb"],
       manufactureData: [manufactureDataUnit],
       serviceData: [],
-      includeDeviceName: false // 表示是否携带设备名，可选参数。注意带上设备名时，容易导致广播报文长度超出31个字节。
+      includeDeviceName: false // 表示是否携带设备名，可选参数。注意：带上设备名时，容易导致广播报文长度超出31个字节，使得广播启动失败。
     };
     let advResponse: ble.AdvertiseData = {
       serviceUuids: [],
@@ -658,10 +659,10 @@ export class BleAdvertisingManager {
       advertisingSettings: setting,
       advertisingData: advData, // 注意: 广播报文长度不能超过31个字节。
       advertisingResponse: advResponse, // 注意: 广播报文长度不能超过31个字节。
-      duration: 0 // 可选参数，若大于0，则广播发送一段时间后，则会停止，但分配的广播资源还在，可重新启动发送
+      duration: 0 // 可选参数，若参数大于0，则广播发送一段时间后会停止，但分配的广播资源还在，可重新启动发送
     }
 
-    // 2.4 首次启动广播，蓝牙子系统会分配相关资源，包括应用获取到的广播的标识ID
+    // 2.4 首次启动广播，蓝牙子系统会分配相关资源，包括应用获取到的广播标识ID
     try {
       ble.on('advertisingStateChange', this.onReceiveEvent);
       this.advHandle = await ble.startAdvertising(advertisingParams);
@@ -670,7 +671,7 @@ export class BleAdvertisingManager {
     }
   }
 
-  // 3 停止指定标识的广播，即首次启动时分配的标识，停止后，该路广播资源仍然存在
+  // 3. 停止指定标识的广播，即首次启动时分配的标识，停止后，该路广播资源仍然存在
   public async disableAdvertising() {
     // 3.1 构造停止广播参数
     let advertisingDisableParams: ble.AdvertisingDisableParams = {
@@ -684,7 +685,7 @@ export class BleAdvertisingManager {
     }
   }
 
-  // 4 启动指定标识的广播，，即首次启动时分配的标识
+  // 4. 启动指定标识的广播，即首次启动时分配的标识
   public async enableAdvertising(enableDuration: number) {
     // 4.1 构造启动广播参数
     let advertisingEnableParams: ble.AdvertisingEnableParams = {
@@ -699,7 +700,7 @@ export class BleAdvertisingManager {
     }
   }
 
-  // 5 完全停止广播，释放广播资源
+  // 5. 完全停止广播，释放广播资源
   public async stopAdvertising() {
     try {
       await ble.stopAdvertising(this.advHandle);
