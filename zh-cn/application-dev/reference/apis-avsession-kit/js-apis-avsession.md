@@ -3459,6 +3459,166 @@ aVCastController.getAVPlaybackState((err: BusinessError, state: avSession.AVPlay
   }
 });
 ```
+### getSupportedDecoders<sup>19+</sup>
+
+getSupportedDecoders(): Promise\<Array\<DecoderType>>
+
+获取当前远端设备的解码方式。使用Promise异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<[DecoderType](#decodertype19)\>\> | Promise对象。返回远端设备所支持的解码能力列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getSupportedDecoders().then((decoderTypes: avSession.DecoderType[]) => {
+  console.info(`getSupportedDecoders : SUCCESS : decoderTypes.length : ${decoderTypes.length}`);
+  if (descriptors.length > 0 ) {
+    console.info(`getSupportedDecoders : SUCCESS : decoderTypes[0] : ${decoderTypes[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedDecoders BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getRecommendedResolutionLevel<sup>19+</sup>
+
+getRecommendedResolutionLevel(decoderType: DecoderType): Promise\<ResolutionLevel>
+
+通过传递解码方式，获取推荐的分辨率。使用Promise异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**参数：** 
+| 参数名   | 类型                                      | 必填 | 说明                       |
+| -------- | ----------------------------------------- | ---- | -------------------------- |
+| decoderType | [DecoderType](#decodertype19) | 是 | 设备所支持的解码格式。<br>设备所支持的解码格式包括：<br>'OH_AVCODEC_MIMETYPE_VIDEO_AVC'：VIDEO AVC，<br>'OH_AVCODEC_MIMETYPE_VIDEO_HEVC'：VIDEO HEVC，<br>'OH_AVCODEC_MIMETYPE_AUDIO_VIVID'：AUDIO AV3A。 |
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise\<[ResolutionLevel](#resolutionlevel19)\> | Promise对象。返回远端设备推荐的分辨率。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+let decoderType = avSession.DecoderType.OH_AVCODEC_MIMETYPE_VIDEO_AVC;
+let resolutionLeve = avSession.ResolutionLevel;
+aVCastController.getRecommendedResolutionLevel(decoderType).then((resolutionLeve) => {
+  console.info('getRecommendedResolutionLevel successfully');
+}).catch((err: BusinessError) => {
+  console.error(`getRecommendedResolutionLevel BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedHdrCapabilities<sup>19+</sup>
+
+getSupportedHdrCapabilities(): Promise\<Array\<hdrCapability.HDRFormat>>
+
+获取当前的远端设备所支持的HDR能力。使用Promise异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<[hdrCapability.HDRFormat](../apis-arkgraphics2d/js-apis-hdrCapability.md#hdrformat)\>\> | Promise对象。返回远端设备所支持的HDR能力。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+import type hdrCapability from './@ohos.graphics.hdrCapability';
+
+aVCastController.getSupportedHdrCapabilities().then((hdrFormats: hdrCapability.HDRFormat[]) => {
+  console.info(`getSupportedHdrCapabilities : SUCCESS : hdrFormats.length : ${hdrFormats.length}`);
+  if (hdrFormats.length > 0 ) {
+    console.info(`getSupportedHdrCapabilities : SUCCESS : descriptors[0] : ${hdrFormats[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedHdrCapabilities BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
+
+### getSupportedPlaySpeeds<sup>19+</sup>
+
+getSupportedPlaySpeeds(): Promise\<Array\<number>>
+
+获取当前的远端设备所支持倍速播放列表。使用Promise异步回调。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| --------- | ------------------------------------------------------------ |
+| Promise\<Array\<number\>\> | Promise对象。返回远端设备所支持的倍速播放列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体会话管理错误码](errorcode-avsession.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 6600101  | Session service exception.You are advised to:1.Scheduled retry.2.Destroy the current session or session controller and re-create it. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+aVCastController.getSupportedPlaySpeeds().then((nums: number[]) => {
+  console.info(`getSupportedPlaySpeeds : SUCCESS : hdrFormats.length : ${nums.length}`);
+  if (nums.length > 0 ) {
+    console.info(`getSupportedPlaySpeeds : SUCCESS : descriptors[0] : ${nums[0]}`);
+  }
+}).catch((err: BusinessError) => {
+  console.error(`getSupportedPlaySpeeds BusinessError: code: ${err.code}, message: ${err.message}`);
+});
+```
 
 ### getAVPlaybackState<sup>10+</sup>
 
@@ -5417,6 +5577,37 @@ let keyRequestCallback: avSession.KeyRequestCallback = async(assetId: string, re
 | 名称                        | 值   | 说明           |
 | --------------------------  | ---- | ------------ |
 | TAG_AUDIO_VIVID             | 1    | AUDIO VIVID  |
+
+## DecoderType<sup>19+</sup>
+
+枚举，设备所支持的解码格式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                        | 值   | 说明           |
+| --------------------------  | ---- | ------------ |
+| OH_AVCODEC_MIMETYPE_VIDEO_AVC      | "video/avc"  | VIDEO AVC  |
+| OH_AVCODEC_MIMETYPE_VIDEO_HEVC     | "video/hevc" | VIDEO HEVC  |
+| OH_AVCODEC_MIMETYPE_AUDIO_VIVID    | "audio/av3a" | AUDIO AV3A  |
+
+
+## ResolutionLevel<sup>19+</sup>
+
+枚举，设备所支持的分辨率。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Multimedia.AVSession.AVCast
+
+| 名称                        | 值   | 说明           |
+| --------------------------  | ---- | ------------ |
+| RESOLUTION_480P             | 0    | 分辨率为480P(640*480 dpi)。     |
+| RESOLUTION_720P             | 1    | 分辨率为720P(1280*720 dpi)。    |
+| RESOLUTION_1080P            | 2    | 分辨率为1080P(1920*1080 dpi)。   |
+| RESOLUTION_2K               | 3    | 分辨率为2k(2560*1440 dpi)。   |
+| RESOLUTION_4K               | 4    | 分辨率为4k(4096*3840 dpi)。   |
 
 ## AVCastCategory<sup>10+</sup>
 
