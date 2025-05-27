@@ -60,7 +60,7 @@ bindMenu(isShow: boolean, content: Array<MenuElement&gt; | CustomBuilder, option
 
 bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: ContextMenuOptions)
 
-给组件绑定菜单，触发方式为长按或者右键点击，弹出菜单项需要自定义。
+给组件绑定菜单，控制菜单显隐的触发方式为长按或右键点击，弹出的菜单项需自定义。若需通过代码逻辑控制菜单显隐，请使用[bindContextMenu<sup>12+</sup>](#bindcontextmenu12)。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -78,7 +78,7 @@ bindContextMenu(content: CustomBuilder, responseType: ResponseType, options?: Co
 
 bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuOptions)
 
-给组件绑定菜单，通过控制绑定的isShown触发。
+给组件绑定菜单，菜单的显隐通过控制绑定的isShown触发。
 
 当isShown为true时，弹出菜单；为false时，隐藏菜单。菜单项支持自定义。
 
@@ -87,7 +87,7 @@ bindContextMenu(isShown: boolean, content: CustomBuilder, options?: ContextMenuO
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **参数：**
 
