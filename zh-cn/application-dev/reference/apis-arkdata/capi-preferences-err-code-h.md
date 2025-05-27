@@ -4,7 +4,7 @@
 
 声明首选项模块统一使用的错误码信息。
 
-**引用文件：** oh_preferences_err_code.h
+**引用文件：** <database/preferences/oh_preferences_err_code.h>
 
 **库：** libohpreferences.so
 

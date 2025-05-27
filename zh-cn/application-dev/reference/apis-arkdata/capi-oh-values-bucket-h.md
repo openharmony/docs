@@ -4,7 +4,7 @@
 
 用于存储键值对的类型。
 
-**引用文件：** oh_values_bucket.h
+**引用文件：** <database/rdb/oh_values_object.h>
 
 **库：** libnative_rdb_ndk.z.so
 

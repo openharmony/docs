@@ -2,7 +2,9 @@
 
 ## 概述
 
-提供标准化数据类型描述相关接口和数据结构。引用文件：<database/udmf/utd.h>
+提供标准化数据类型描述相关接口和数据结构。
+
+**引用文件：** <database/udmf/utd.h>
 
 **库：** libudmf.so
 

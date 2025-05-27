@@ -4,7 +4,7 @@
 
 提供访问Preferences配置选项（PreferencesOption）的接口与数据结构。
 
-**引用文件：** oh_preferences_option.h
+**引用文件：** <database/preferences/oh_preferences_option.h>
 
 **库：** libohpreferences.so
 
@@ -103,7 +103,7 @@ int OH_PreferencesOption_SetFileName(OH_PreferencesOption *option, const char *f
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行的错误码。<br> 若错误码为PREFERENCES_OK，表示操作成功。<br> 若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。 |
+| int  | 返回执行的错误码。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。 |
 
 **参考：**
 
@@ -133,7 +133,7 @@ int OH_PreferencesOption_SetBundleName(OH_PreferencesOption *option, const char 
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行的错误码。<br> 若错误码为PREFERENCES_OK，表示操作成功。<br> 若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。 |
+| int  | 返回执行的错误码。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。 |
 
 ### OH_PreferencesOption_SetDataGroupId()
 
@@ -184,7 +184,7 @@ int OH_PreferencesOption_SetStorageType(OH_PreferencesOption *option, Preference
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行的错误码。<br> 若错误码为PREFERENCES_OK，表示操作成功。<br> 若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。 |
+| int  | 返回执行的错误码。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。 |
 
 ### OH_PreferencesOption_Destroy()
 
@@ -209,7 +209,7 @@ int OH_PreferencesOption_Destroy(OH_PreferencesOption *option)
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回接口操作执行的状态码。<br> PREFERENCES_OK，表示操作成功。<br> PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。 |
+| int  | 返回接口操作执行的状态码。<br>PREFERENCES_OK，表示操作成功。<br>PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。 |
 
 
 

@@ -4,7 +4,7 @@
 
 提供与关系型数据库加密参数相关的函数和枚举。
 
-**引用文件：** oh_rdb_crypto_param.h
+**引用文件：** <database/rdb/oh_rdb_crypto_param.h>
 
 **库：** libnative_rdb_ndk.z.so
 

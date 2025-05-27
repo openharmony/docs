@@ -4,7 +4,7 @@
 
 表示关系型数据库（RDB）的谓词。
 
-**引用文件：** oh_predicates.h
+**引用文件：** <database/rdb/oh_predicates.h>
 
 **库：** libnative_rdb_ndk.z.so
 
@@ -84,7 +84,7 @@ int OH_Predicates_NotLike(OH_Predicates *predicates, const char *field, const ch
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行结果。<br> 如果执行成功，返回RDB_OK。<br> 如果输入参数无效，返回RDB_E_INVALID_ARGS。 |
+| int  | 返回执行结果。<br>如果执行成功，返回RDB_OK。<br>如果输入参数无效，返回RDB_E_INVALID_ARGS。 |
 
 ### OH_Predicates_Glob()
 
@@ -111,7 +111,7 @@ int OH_Predicates_Glob(OH_Predicates *predicates, const char *field, const char 
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行结果。<br> 如果执行成功，返回RDB_OK。<br> 如果输入参数无效，返回RDB_E_INVALID_ARGS。 |
+| int  | 返回执行结果。<br>如果执行成功，返回RDB_OK。<br>如果输入参数无效，返回RDB_E_INVALID_ARGS。 |
 
 ### OH_Predicates_NotGlob()
 
@@ -138,7 +138,7 @@ int OH_Predicates_NotGlob(OH_Predicates *predicates, const char *field, const ch
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行结果。<br> 如果执行成功，返回RDB_OK。<br> 如果输入参数无效，返回RDB_E_INVALID_ARGS。 |
+| int  | 返回执行结果。<br>如果执行成功，返回RDB_OK。<br>如果输入参数无效，返回RDB_E_INVALID_ARGS。 |
 
 ### OH_Predicates_Having()
 
@@ -165,5 +165,5 @@ int OH_Predicates_Having(OH_Predicates *predicates, const char *conditions, cons
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回错误码。<br> 如果执行成功，返回RDB_OK。<br> 如果输入参数无效，返回RDB_E_INVALID_ARGS。 |
+| int  | 返回错误码。<br>如果执行成功，返回RDB_OK。<br>如果输入参数无效，返回RDB_E_INVALID_ARGS。 |
 

@@ -4,7 +4,7 @@
 
 声明关系型数据库（RDB）的错误码信息。
 
-**引用文件：** relational_store_error_code.h
+**引用文件：** <database/rdb/relational_store_error_code.h>
 
 **库：** libnative_rdb_ndk.z.so
 

@@ -4,7 +4,7 @@
 
 提供与数据值相关的类型定义。
 
-**引用文件：** oh_rdb_types.h
+**引用文件：** <database/rdb/oh_rdb_types.h>
 
 **库：** libnative_rdb_ndk.z.so
 

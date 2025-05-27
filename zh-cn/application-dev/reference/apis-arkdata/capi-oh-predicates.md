@@ -24,7 +24,7 @@
 | [OH_Predicates *(*notEqualTo)(OH_Predicates *predicates, const char *field, OH_VObject *valueObject)](#notequalto) | 函数指针，配置谓词以匹配数据字段不等于指定值的字段。<br>该方法等同于SQL语句中的“!=”。 |
 | [OH_Predicates *(*beginWrap)(OH_Predicates *predicates)](#beginwrap) | 函数指针，向谓词添加左括号。<br>该方法等同于SQL语句中的“(”。 |
 | [OH_Predicates *(*endWrap)(OH_Predicates *predicates)](#endwrap) | 函数指针，向谓词添加右括号。<br>该方法等同于SQL语句中的“)”。 |
-| [OH_Predicates *(*orOperate)(OH_Predicates *predicates)](#oroperate) | 函数指针，将或条件添加到谓词中。<br> 该方法等同于SQL语句中的“OR”。 |
+| [OH_Predicates *(*orOperate)(OH_Predicates *predicates)](#oroperate) | 函数指针，将或条件添加到谓词中。<br>该方法等同于SQL语句中的“OR”。 |
 | [OH_Predicates *(*andOperate)(OH_Predicates *predicates)](#andoperate) | 函数指针，向谓词添加和条件。<br>该方法等同于SQL语句中的“AND”。 |
 | [OH_Predicates *(*isNull)(OH_Predicates *predicates, const char *field)](#isnull) | 函数指针，配置谓词以匹配值为null的字段。<br>该方法等同于SQL语句中的“IS NULL”。 |
 | [OH_Predicates *(*isNotNull)(OH_Predicates *predicates, const char *field)](#isnotnull) | 函数指针，配置谓词以匹配值不为null的指定字段。<br>该方法等同于SQL语句中的“IS NOT NULL”。 |
@@ -66,7 +66,7 @@ OH_Predicates *(*equalTo)(OH_Predicates *predicates, const char *field, OH_VObje
 | ------------------------- | ------------------------------------------------------------ |
 | OH_Predicates *predicates | 表示指向OH_Predicates实例的指针。                            |
 | const char *field         | 数据库表中的列名                                             |
-| OH_VObject *valueObject   | 表示指向[OH_VObject](capi-oh-vobject.md)实例的指针，指示要与谓词匹配的值。 |
+| [OH_VObject](capi-oh-vobject.md) *valueObject   | 表示指向[OH_VObject](capi-oh-vobject.md)实例的指针，指示要与谓词匹配的值。 |
 
 **返回：**
 
@@ -156,7 +156,7 @@ OH_Predicates *(*orOperate)(OH_Predicates *predicates)
 
 **描述**
 
-函数指针，将或条件添加到谓词中。<br> 该方法等同于SQL语句中的“OR”。
+函数指针，将或条件添加到谓词中。<br>该方法等同于SQL语句中的“OR”。
 
 **起始版本：** 10
 

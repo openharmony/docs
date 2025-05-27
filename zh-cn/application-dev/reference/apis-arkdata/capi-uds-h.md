@@ -2,7 +2,9 @@
 
 ## 概述
 
-提供标准化数据结构相关接口函数、结构体定义。引用文件：<database/udmf/uds.h>
+提供标准化数据结构相关接口函数、结构体定义。
+
+**引用文件：** <database/udmf/uds.h>
 
 **库：** libudmf.so
 
@@ -961,7 +963,7 @@ int OH_UdsAppItem_SetAbilityName(OH_UdsAppItem* pThis, const char* abilityName)
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>         若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
+| int  | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
 
 ### OH_UdsFileUri_Create()
 

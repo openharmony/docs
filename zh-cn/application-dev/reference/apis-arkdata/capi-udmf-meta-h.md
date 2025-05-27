@@ -2,7 +2,9 @@
 
 ## 概述
 
-声明统一类型数据信息。引用文件：<database/udmf/udmf_meta.h>
+声明统一类型数据信息。
+
+**引用文件：** <database/udmf/udmf_meta.h>
 
 **库：** libudmf.so
 

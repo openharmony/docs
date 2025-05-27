@@ -4,7 +4,7 @@
 
 提供与数据库事务相关的函数和枚举。
 
-**引用文件：** oh_rdb_transaction.h
+**引用文件：** <database/rdb/oh_rdb_transaction.h>
 
 **库：** libnative_rdb_ndk.z.so
 
@@ -89,7 +89,7 @@ OH_RDB_TransOptions *OH_RdbTrans_CreateOptions(void)
 
 | 类型                                               | 说明                                                         |
 | -------------------------------------------------- | ------------------------------------------------------------ |
-| [OH_RDB_TransOptions](capi-oh-rdb-transoptions.md) | 执行成功时返回指向[OH_RDB_TransOptions](capi-oh-rdb-transoptions.md)实例的指针。否则返回nullptr。<br> 使用完成后，必须通过[OH_RdbTrans_DestroyOptions](capi-oh-rdb-transaction-h.md#oh_rdbtrans_destroyoptions)接口释放内存。 |
+| [OH_RDB_TransOptions](capi-oh-rdb-transoptions.md) | 执行成功时返回指向[OH_RDB_TransOptions](capi-oh-rdb-transoptions.md)实例的指针。否则返回nullptr。<br>使用完成后，必须通过[OH_RdbTrans_DestroyOptions](capi-oh-rdb-transaction-h.md#oh_rdbtrans_destroyoptions)接口释放内存。 |
 
 ### OH_RdbTrans_DestroyOptions()
 

@@ -4,7 +4,7 @@
 
 提供管理关系数据库（RDB）方法的接口，未标注支持向量数据库的接口仅支持关系型数据库。
 
-**引用文件：** relational_store.h
+**引用文件：** <database/rdb/relational_store.h>
 
 **库：** libnative_rdb_ndk.z.so
 

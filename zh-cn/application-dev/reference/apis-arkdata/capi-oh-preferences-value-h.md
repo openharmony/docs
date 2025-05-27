@@ -4,7 +4,7 @@
 
 提供访问Preferences值（PreferencesValue）对象的接口、枚举类型与数据结构。
 
-**引用文件：** oh_preferences_value.h
+**引用文件：** <database/preferences/oh_preferences_value.h>
 
 **库：** libohpreferences.so
 
@@ -167,7 +167,7 @@ int OH_PreferencesValue_GetInt(const OH_PreferencesValue *object, int *value)
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行的错误码。<br> 若错误码为PREFERENCES_OK，表示操作成功。<br> 若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br> 若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br> 若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
+| int  | 返回执行的错误码。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br>若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br>若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
 
 ### OH_PreferencesValue_GetBool()
 
@@ -193,7 +193,7 @@ int OH_PreferencesValue_GetBool(const OH_PreferencesValue *object, bool *value)
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行的错误码。<br> 若错误码为PREFERENCES_OK，表示操作成功。<br> 若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br> 若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br> 若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
+| int  | 返回执行的错误码。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br>若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br>若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
 
 ### OH_PreferencesValue_GetString()
 
@@ -220,7 +220,7 @@ int OH_PreferencesValue_GetString(const OH_PreferencesValue *object, char **valu
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行的错误码。<br> 若错误码为PREFERENCES_OK，表示操作成功。<br> 若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br> 若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br> 若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
+| int  | 返回执行的错误码。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br>若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br>若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
 
 
 
