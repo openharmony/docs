@@ -4,7 +4,7 @@
 
 ArkTS容器在多个并发实例间传递时，其默认行为是引用传递，支持多个并发实例可以同时操作同一个容器实例。另外，也支持拷贝传递，即每个并发实例持有一个ArkTS容器实例。
 
-ArkTS容器并不是线程安全的，内部使用了fail-fast（快速失败）机制：当检测多个并发实例同时对容器进行结构性改变时，会触发异常。因此，在修改场景下，容器使用方需要使用ArkTS提供的异步锁机制保证ArkTS容器的安全访问。
+ArkTS容器并不是线程安全的，内部使用了fail-fast（快速失败）机制：当检测到多个并发实例同时对同一个容器进行结构性改变时，会触发异常。因此，在有修改的场景下，容器使用方需要使用ArkTS提供的异步锁机制保证ArkTS容器的安全访问。
 
 当前ArkTS容器集主要包含以下几种容器：[Array](#collectionsarray)、[Map](#collectionsmap)、[Set](#collectionsset)、[TypedArray](#collectionstypedarray)、[ArrayBuffer](#collectionsarraybuffer)、[BitVector](#collectionsbitvector)、[ConcatArray](#collectionsconcatarray)。
 
@@ -162,7 +162,7 @@ let slicedArray = concatArray.slice(1, 3); // 返回[2, 3]，原Array保持不�
 ## ArrayFromMapFn<sup>18+</sup>
 type ArrayFromMapFn<FromElementType, ToElementType> = (value: FromElementType, index: number) => ToElementType
 
-ArkTS Array归约函数类型，被Array类的'from' 接口使用。
+ArkTS Array归约函数类型，在Array类的'from' 接口使用。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -184,7 +184,7 @@ ArkTS Array归约函数类型，被Array类的'from' 接口使用。
 ## ArrayPredicateFn</a><sup>18+</sup>
 type ArrayPredicateFn<ElementType, ArrayType> = (value: ElementType, index: number, array: ArrayType) => boolean
 
-ArkTS Array归约函数类型，被Array类的'some'和'every'接口使用，用来判断数组元素是否满足测试条件。
+ArkTS Array归约函数类型，在Array类的'some'和'every'接口使用，用来判断数组元素是否满足测试条件。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -256,7 +256,7 @@ ArkTS Array归约函数类型，被Array类的'reduceRight'接口使用。
 
 constructor()
 
-创建一个ArkTS Array的构造函数。
+ArkTS Array的构造函数。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -343,7 +343,7 @@ let array = new collections.Array<number>(...arrayPara);
 
 static create\<T>(arrayLength: number, initialValue: T): Array\<T>
 
-生成一个固定长度的Array，其中，每个元素的初始值为initialValue。
+生成一个固定长度的Array，其中，每个元素的值为initialValue。
 
 **原子化服务API**：从API version 12 开始，该接口支持在原子化服务中使用。
 
@@ -471,7 +471,7 @@ console.info(newArray.toString());
 
 static from\<T>(arrayLike: ArrayLike\<T> | Iterable\<T>, mapFn: ArrayFromMapFn\<T, T>): Array\<T>
 
-从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素。
+从一个实现了ArrayLike接口或Iterable接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -512,7 +512,7 @@ console.info(newarray.toString());
 
 static from\<U, T>(arrayLike: ArrayLike\<U> | Iterable\<U>, mapFn: ArrayFromMapFn\<U, T>): Array\<T>
 
-从一个实现了ArrayLike接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素，ArrayLike接口对象的元素类型可以数组元素的类型不一样。
+从一个实现了ArrayLike接口或Iterable接口的对象创建一个新的ArkTS Array，并且使用自定义函数处理每个数组元素，ArrayLike接口对象的元素类型可以数组元素的类型不一样。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
