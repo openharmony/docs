@@ -82,7 +82,7 @@ OH_Preferences *OH_Preferences_Open(OH_PreferencesOption *option, int *errCode)
 | 参数项                                                       | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_PreferencesOption](capi-oh-preferencesoption.md) *option | 指向Preferences配置选项[OH_PreferencesOption](capi-oh-preferencesoption.md)的指针。 |
-| int *errCode                                                 | 该参数作为出参使用，表示指向返回错误码的指针，详见[OH_Preferences_ErrCode](capi-preferences-err-code-h.md#oh_preferences_errcode)。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br>若错误码为PREFERENCES_ERROR_NOT_SUPPORTED，表示系统能力不支持。<br>若错误码为PREFERENCES_ERROR_DELETE_FILE，表示删除文件失败。<br>若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br>若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
+| int *errCode                                                 | 该参数作为出参使用，表示指向返回错误码的指针，详见[OH_Preferences_ErrCode](capi-oh-preferences-err-code-h.md#oh_preferences_errcode)。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br>若错误码为PREFERENCES_ERROR_NOT_SUPPORTED，表示系统能力不支持。<br>若错误码为PREFERENCES_ERROR_DELETE_FILE，表示删除文件失败。<br>若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br>若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
 
 **返回：**
 
@@ -113,7 +113,7 @@ int OH_Preferences_Close(OH_Preferences *preference)
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| int  | 返回执行的错误码，详见[OH_Preferences_ErrCode](capi-preferences-err-code-h.md#oh_preferences_errcode)。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br>若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br>若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
+| int  | 返回执行的错误码，详见[OH_Preferences_ErrCode](capi-oh-preferences-err-code-h.md#oh_preferences_errcode)。<br>若错误码为PREFERENCES_OK，表示操作成功。<br>若错误码为PREFERENCES_ERROR_INVALID_PARAM，表示参数不合法。<br>若错误码为PREFERENCES_ERROR_STORAGE，表示存储异常。<br>若错误码为PREFERENCES_ERROR_MALLOC，表示内存分配失败。 |
 
 ### OH_Preferences_GetInt()
 

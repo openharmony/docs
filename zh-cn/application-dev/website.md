@@ -2314,7 +2314,7 @@
           - [UDMF](reference/apis-arkdata/capi-udmf.md)
         - 头文件<!--arkdata-headerfile-->
           - [oh_preferences.h](reference/apis-arkdata/capi-oh-preferences-h.md)
-          - [oh_preferences_err_code.h](reference/apis-arkdata/capi-preferences-err-code-h.md)
+          - [oh_preferences_err_code.h](reference/apis-arkdata/capi-oh-preferences-err-code-h.md)
           - [oh_preferences_option.h](reference/apis-arkdata/capi-oh-preferences-option-h.md)
           - [oh_preferences_value.h](reference/apis-arkdata/capi-oh-preferences-value-h.md)
           - [data_asset.h](reference/apis-arkdata/capi-data-asset-h.md)
