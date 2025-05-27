@@ -281,6 +281,7 @@ static napi_module demoModule = {
 
 extern "C" __attribute__((constructor)) void RegisterEntryModule(void) { napi_module_register(&demoModule); }
 ```
+<!-- @[oh_jsvm_create_snapshot_and_create_env_from_snapshot](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/createsnapshot/src/main/cpp/hello.cpp) -->
 
 ArkTS侧示例代码
 

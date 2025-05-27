@@ -72,6 +72,7 @@ const char *srcCallNative = R"JS(
 getArraybufferInfo(new ArrayBuffer(10));
 )JS";
 ```
+<!-- @[oh_jsvm_get_arraybuffer_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/getarraybufferinfo/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_IsArraybuffer
 
@@ -117,6 +118,7 @@ const char *srcCallNative = R"JS(
 isArrayBuffer(new ArrayBuffer(8));
 )JS";
 ```
+<!-- @[oh_jsvm_is_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isarraybuffer/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_DetachArraybuffer
 
@@ -185,6 +187,7 @@ detachArraybuffer(arrayBuffer);
 isDetachedArraybuffer(arrayBuffer);
 )JS";
 ```
+<!-- @[oh_jsvm_is_detached_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/isdetachedarraybuffer/src/main/cpp/hello.cpp) -->
 
 ### OH_JSVM_CreateArraybuffer
 
@@ -235,3 +238,4 @@ const char *srcCallNative = R"JS(
 createArraybuffer(8);
 )JS";
 ```
+<!-- @[oh_jsvm_create_arraybuffer](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArraybuffer/createarraybuffer/src/main/cpp/hello.cpp) -->

@@ -70,3 +70,4 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"getVMInfo", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+<!-- @[oh_jsvm_get_version_and_vm_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getversion/src/main/cpp/hello.cpp) -->
