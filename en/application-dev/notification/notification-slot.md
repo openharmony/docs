@@ -5,6 +5,9 @@ The system supports a range of notification slots. Different notification slots 
 
 The following table lists the notification slots and their reminder modes. **Y** indicates that the feature is supported, and **N** indicates that the feature is not supported.
 
+<!--RP1-->
+<!--RP1End-->
+
 | SlotType             | Value  | Category    | Notification Panel| Banner| Lock Screen| Alert Tone/Vibration| Status Bar Icon| Automatic Screen-on|
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
 | UNKNOWN_TYPE         | 0      | Unknown| Y | N | N | N | N | N |
@@ -46,7 +49,7 @@ In addition to using **addslot()**, you can also create a notification slot by p
     // addSlot callback
     let addSlotCallBack = (err: BusinessError): void => {
       if (err) {
-        hilog.info(DOMAIN_NUMBER, TAG, `addSlot failed, code is ${err.code}, message is ${err.message}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `addSlot failed, code is ${err.code}, message is ${err.message}`);
       } else {
         hilog.info(DOMAIN_NUMBER, TAG, `addSlot success`);
       }
@@ -61,9 +64,9 @@ In addition to using **addslot()**, you can also create a notification slot by p
     // getSlot callback
     let getSlotCallback = (err: BusinessError, data: notificationManager.NotificationSlot): void => {
       if (err) {
-        hilog.error(DOMAIN_NUMBER, TAG, `getSlot failed, code is ${JSON.stringify(err.code)}, message is ${JSON.stringify(err.message)}`);
+        hilog.error(DOMAIN_NUMBER, TAG, `Failed to get slot. Code is ${err.code}, message is ${err.message}`);
       } else {
-        hilog.info(DOMAIN_NUMBER, TAG, `getSlot success. `);
+        hilog.info(DOMAIN_NUMBER, TAG, `Succeeded in getting slot.`);
         if (data != null) {
           hilog.info(DOMAIN_NUMBER, TAG, `slot enable status is ${JSON.stringify(data.enabled)}`);
           hilog.info(DOMAIN_NUMBER, TAG, `slot level is ${JSON.stringify(data.level)}`);
