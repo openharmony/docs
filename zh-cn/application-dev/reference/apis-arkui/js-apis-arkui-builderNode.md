@@ -1147,6 +1147,8 @@ postInputEvent(event: InputEventType): boolean
 >
 > 鼠标左键点击事件会转换成触摸事件，转发时需注意不要在外层同时绑定触摸事件和鼠标事件，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
 >
+> 注入事件为[轴事件](arkui-ts/ts-universal-events-axis.md#axisevent)时，由于轴事件中缺少旋转轴信息与捏合轴信息，因此注入的事件无法触发[pinch捏合手势](arkui-ts/ts-basic-gestures-pinchgesture.md)与[rotate旋转手势](arkui-ts/ts-basic-gestures-rotationgesture.md)。
+>
 > 转发的事件会在被分发到的目标组件所在的子树里做touchtest，并触发对应手势，原始事件也会触发当前组件所在组件树中的手势。不保证两类手势的竞争结果。
 >
 > 针对同一个事件，在事件分发流程中不可以转发多次。
