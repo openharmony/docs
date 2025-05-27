@@ -4814,3 +4814,17 @@
 **支持设备**：Phone
 
 **起始版本**：20
+
+## ohos.permission.kernel.ALLOW_APP_CODE_DECRYPT
+
+允许系统应用或系统服务调用内核接口进行代码解密。
+
+**权限级别**：system_core
+
+**授权方式**：系统授权（system_grant）
+
+**ACL使能**：true
+
+**支持设备**：General
+
+**起始版本**：20

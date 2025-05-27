@@ -1420,7 +1420,7 @@ Allows an application to obtain information about local accounts.
 
 ## ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information. 
+Allows an application to read telephony information.
 
 **Permission level**: system_basic
 
@@ -4804,5 +4804,19 @@ Allows an application to publish common events related to NFC notifications.
 **Enable via ACL**：true
 
 **Supported devices**: Phone
+
+**Valid since**：20
+
+## ohos.permission.kernel.ALLOW_APP_CODE_DECRYPT
+
+Allows a system application or system service to call kernel APIs for code decryption.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: General
 
 **Valid since**：20
