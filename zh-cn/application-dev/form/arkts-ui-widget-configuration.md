@@ -127,12 +127,12 @@
 
 此标签标识趣味交互类型互动卡片配置。
 
-| 名称    | 类型     | 必填 | 说明                                                         |
-|--------|--------|----|------------------------------------------------------------|
-| abilityName | string | 否  | 趣味交互场景 extensionAbility 名称，默认为鸿蒙小游戏引擎对应 extensionAbility。|
-| targetBundleName  | string | 是  | 趣味交互场景 RPK 资源 bundle 名称。|
-| subBundleName  | string | 否  | 趣味交互场景 RPK 资源子 bundle 名称。 |
-| keepStateDuration  | number | 否  | 趣味交互场景无交互时，激活态保持时长（单位 ms）保持时长限制不超过 10000ms，配置超过 10000ms 按照 10000ms 计。可缺省，缺省按 10000ms 计。 |
+| 名称    | 类型  | 必填 | 说明                                                         |
+|--------|-----|----|------------------------------------------------------------|
+| abilityName | 字符串 | 否  | 趣味交互场景 extensionAbility 名称，默认为鸿蒙小游戏引擎对应 extensionAbility。|
+| targetBundleName  | 字符串 | 是  | 趣味交互场景 RPK 资源 bundle 名称。|
+| subBundleName  | 字符串 | 否  | 趣味交互场景 RPK 资源子 bundle 名称。 |
+| keepStateDuration  | 数值  | 否  | 趣味交互场景无交互时，激活态保持时长（单位 ms）保持时长限制不超过 10000ms，配置超过 10000ms 按照 10000ms 计。可缺省，缺省按 10000ms 计。 |
 
 配置示例如下：
 
@@ -178,10 +178,10 @@
 
 此标签标识场景动效类型互动卡片配置。
 
-| 名称    | 类型     | 必填 | 说明 |
-|--------|--------|----|----------------------------|
-| abilityName | string | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility 名称，相应业务逻辑需卡片提供方进一步开发。|
-| disabledDesktopBehaviors | string | 否  | 只针对系统应用生效，缺省为不禁用。支持禁用的用户操作有：滑动桌面（SWIPE_DESKTOP），下拉全搜（PULL_DOWN_SEARCH），长按（LONG_CLICK），拖动（DRAG）。配置时候通过 \| 的形式追加。例如 SWIPE_DESKTOP\|PULL_DOWN_SEARCH\|LONG_CLICK\|DRAG。 |
+| 名称                                     | 类型     | 必填 | 说明 |
+|----------------------------------------|--------|----|----------------------------|
+| abilityName                            | 字符串 | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility 名称，相应业务逻辑需卡片提供方进一步开发。|
+| <!--DelRow--> disabledDesktopBehaviors | 字符串数组 | 否  | 只针对系统应用生效，缺省为不禁用。支持禁用的用户操作有：滑动桌面（SWIPE_DESKTOP），下拉全搜（PULL_DOWN_SEARCH），长按（LONG_CLICK），拖动（DRAG）。配置时候通过 \| 的形式追加。例如 SWIPE_DESKTOP\|PULL_DOWN_SEARCH\|LONG_CLICK\|DRAG。 |
 
 <!--RP1-->
    ```json
@@ -220,3 +220,50 @@
    }
    ```
 <!--RP1End-->
+
+<!--Del--> 
+
+系统应用配置样例
+
+<!--RP1-->
+   ```json
+   {
+     "forms": [
+       {
+         "name": "widget",
+         "displayName": "$string:widget_display_name",
+         "description": "$string:widget_desc",
+         "src": "./ets/widget/pages/WidgetCard.ets",
+         "uiSyntax": "arkts",
+         "window": {
+           "designWidth": 720,
+           "autoDesignWidth": true
+         },
+         "colorMode": "auto",
+         "renderingMode": "fullColor",
+         "isDefault": true,
+         "updateEnabled": true,
+         "scheduledUpdateTime": "10:30",
+         "updateDuration": 1,
+         "defaultDimension": "2*2",
+         "supportDimensions": [
+           "2*2"
+         ],
+         "formConfigAbility": "ability://EntryAbility",
+         "dataProxyEnabled": false,
+         "isDynamic": true,
+         "transparencyEnabled": false,
+         "metadata": [],
+         "sceneAnimationParams": {
+            "abilityName": "MyLiveFormExtensionAbility",
+            "disabledDesktopBehaviors": [
+               "LONG_CLICK", "DRAG", "SWIPE_DESKTOP", "PULL_DOWN_SEARCH"  
+            ]
+         }          
+       }
+     ]
+   }
+   ```
+<!--RP1End-->
+
+<!--DelEnd-->
