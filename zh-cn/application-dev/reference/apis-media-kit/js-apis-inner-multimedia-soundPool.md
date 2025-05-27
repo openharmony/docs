@@ -33,7 +33,7 @@ import { audio } from '@kit.AudioKit';
 
 ## ErrorType<sup>20+</sup>
 
-错误类型枚举。用于区分错误发生阶段。
+枚举，错误类型（用于区分错误发生阶段）。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -48,12 +48,12 @@ import { audio } from '@kit.AudioKit';
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
-| 名称            | 类型                                     | 必填 | 说明                                                         |
-| --------------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| errorCode | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror)   | 是  |    错误码。    |
-| errorType | [ErrorType](#errortype20)    | 否  | 表示错误发生阶段。 |
-| soundId  | number | 否  |  发生错误的资源ID，load方法能够获取soundId。    |
-| streamId | number  | 否  | 发生错误的音频流ID，play方法能够获取streamId。 |
+| 名称            | 类型                                     | 只读 | 可选 | 说明                                                         |
+| --------------- | ---------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| errorCode | [BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror)   | 否  | 否  |    错误码。    |
+| errorType | [ErrorType](#errortype20)    | 否  | 是  | 表示错误发生阶段。 |
+| soundId  | number | 否  | 是  |  发生错误的资源ID，load方法能够获取soundId。    |
+| streamId | number  | 否  | 是  | 发生错误的音频流ID，play方法能够获取streamId。 |
 
 ## SoundPool
 
@@ -66,7 +66,7 @@ import { audio } from '@kit.AudioKit';
 > - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18)：监听播放完成，同时返回播放结束的音频的streamId。
 > - [on('playFinished')](#onplayfinished)：监听播放完成。
 > - [on('error')](#onerror)：监听错误事件。
-> - [on('errorOccurred')](#onerror)：监听错误事件，同时返回[errorInfo](#errorinfo20)。
+> - [on('errorOccurred')](#onerrorOccurred20)：监听错误事件，同时返回[errorInfo](#errorinfo20)。
 
 ### load
 
@@ -1777,7 +1777,7 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 on(type: 'errorOccurred', callback: Callback\<ErrorInfo>): void
 
-监听[SoundPool](#soundpool)的错误事件，并返回包含错误码，错误发生阶段，资源ID，音频流ID的[errorInfo](#errorinfo20)。
+监听[SoundPool](#soundpool)的错误事件，并返回包含错误码、错误发生阶段、资源ID和音频流ID的[ErrorInfo](#errorinfo20)。
 
 **系统能力：** SystemCapability.Multimedia.Media.SoundPool
 
@@ -1785,15 +1785,15 @@ on(type: 'errorOccurred', callback: Callback\<ErrorInfo>): void
 
 | 参数名   | 类型     | 必填 | 说明                                                         |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
-| type     | string   | 是   | 错误事件回调类型，支持的事件：'errorOccurred'，用户操作和系统都会触发此事件。 |
-| callback | Callback\<[ErrorInfo](#errorinfo20)> | 是   | 错误事件回调方法：使用播放器的过程中发生错误，并提供错误信息[errorInfo](#errorinfo20)。 |
+| type     | string   | 是   | 事件回调类型，支持的事件为'errorOccurred'，当用户或系统操作导致错误，触发该事件。 |
+| callback | Callback\<[ErrorInfo](#errorinfo20)> | 是   | 错误事件回调方法。在使用播放器的过程中发生错误时，提供错误信息[ErrorInfo](#errorinfo20)。 |
 
 **示例：**
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
@@ -1830,15 +1830,15 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
 
 | 参数名 | 类型   | 必填 | 说明                                      |
 | ------ | ------ | ---- | ----------------------------------------- |
-| type   | string | 是   | 错误事件回调类型，取消注册的事件：'errorOccurred'。 |
-| callback | Callback\<[ErrorInfo](#errorinfo20)> | 否   | 错误事件回调方法：使用播放器的过程中发生错误，并提供错误信息[errorInfo](#errorinfo20)。 |
+| type   | string | 是   | 事件回调类型，取消注册的事件为'errorOccurred'。 |
+| callback | Callback\<[ErrorInfo](#errorinfo20)> | 否   | 错误事件回调方法。在使用播放器的过程中发生错误时，提供错误信息[ErrorInfo](#errorinfo20)。 |
 
 **示例：**
 
 ```js
 import { BusinessError } from '@kit.BasicServicesKit';
 
-//创建soundPool实例。
+// 创建soundPool实例。
 let soundPool: media.SoundPool;
 let audioRendererInfo: audio.AudioRendererInfo = {
   usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
