@@ -232,7 +232,7 @@ clipContent(clip: ContentClipMode | RectShape): T
 
 ### backToTop<sup>15+</sup>
 
-backToTop(backToTop: boolean)
+backToTop(backToTop: boolean): T
 
 设置滚动组件是否支持点击状态栏回到顶部。
 
@@ -248,7 +248,11 @@ backToTop(backToTop: boolean)
 | ------ | ------- | ---- | ---------------------------------------------- |
 | backToTop  | boolean | 是   | 设置滚动组件是否支持点击状态栏回到顶部。设置为true支持点击状态栏回到顶部，设置为false不支持点击状态栏回到顶部。<br/>默认值：false |
 
+**返回值：**
 
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 ## 事件
 
