@@ -2128,7 +2128,7 @@ getMilliseconds(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 时间跳变点的时间戳。 |
+| number | 时间跳变点的时间戳，例如：1762074000000，单位：毫秒。 |
 
 **示例：**
 ```ts
@@ -2156,7 +2156,7 @@ getOffsetAfter(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 时间跳变后的偏移量，单位：毫秒。 |
+| number | 时间跳变后的偏移量，例如：-28800000，单位：毫秒。 |
 
 **示例：**
 ```ts
@@ -2184,10 +2184,12 @@ getOffsetBefore(): number
 
 | 类型       | 说明         |
 | -------- | ---------- |
-| number | 时间跳变前的偏移量，单位：毫秒。 |
+| number | 时间跳变前的偏移量，例如：-25200000，单位：毫秒。 |
 
 **示例：**
 ```ts
+import { i18n , intl } from '@kit.LocalizationKit';
+
 let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
 let date = new Date(2025, 4, 13);
