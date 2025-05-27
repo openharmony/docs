@@ -3407,7 +3407,7 @@ getDisplaySize(displayId: number): Promise\<Point>
 
 | 类型                       | 说明                                    |
 | -------------------------- | --------------------------------------- |
-| Promise\<[Point](#point9)> | Promise对象，返回当前设备指定屏幕的大小。 |
+| Promise\<[Point](#point9)> | Promise对象，返回Point对象，当前设备指定屏幕的大小为Point.x * Point.y。 |
 
 **错误码：**
 
