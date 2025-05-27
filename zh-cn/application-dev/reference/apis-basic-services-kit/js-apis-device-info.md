@@ -62,6 +62,7 @@ import { deviceInfo } from '@kit.BasicServicesKit';
 | distributionOSReleaseType<sup>10+</sup> | string | 是 | 否 | 发行版系统类型<!--Del-->，由发行方定义<!--DelEnd-->。<br/>示例：Release |
 | ODID<sup>12+</sup> | string | 是 | 否 |开发者匿名设备标识符。<br/>**ODID值会在以下场景重新生成**：<br/>手机恢复出厂设置。<br/>同一设备上同一个开发者(developerId相同)的应用全部卸载后重新安装时。<br/>**ODID生成规则**：<br/>根据签名信息里developerId解析出的groupId生成，developerId规则为groupId.developerId，若无groupId则取整个developerId作为groupId。<br/>同一设备上运行的同一个开发者(developerId相同)的应用，ODID相同。<br/>同一个设备上不同开发者(developerId不同)的应用，ODID不同。<br/>不同设备上同一个开发者(developerId相同)的应用，ODID不同。<br/>不同设备上不同开发者(developerId不同)的应用，ODID不同。<br/>**说明**：数据长度为37字节。<br/>示例：1234a567-XXXX-XXXX-XXXX-XXXXXXXXXXXX |
 | diskSN<sup>15+</sup> | string | 是 | 否 | 硬盘序列号。<br/> **说明** ：该字段只能在2in1上设备进行查询，其他设备查询结果为空。<br/> **需要权限**：ohos.permission.ACCESS_DISK_PHY_INFO <br/> 示例：2502EM400567 |
+| performanceClass<sup>19+</sup> | [PerformanceClassLevel](#performanceclasslevel19) | 是 | 否 | 描述设备能力等级。 |
 
 **示例**
 
@@ -214,4 +215,20 @@ import { deviceInfo } from '@kit.BasicServicesKit';
     // 输出结果：the value of the deviceInfo diskSN is :2502EM400567
     console.info('the value of the deviceInfo diskSN is :' + diskSN);
 
+    let performanceClass = deviceInfo.performanceClass;
+    // 输出结果：the value of the deviceInfo performanceClass is :0
+    console.info('the value of the deviceInfo performanceClass is :' + performanceClass);
+
 ```
+
+## PerformanceClassLevel<sup>19+</sup>
+
+表示设备能力定级的枚举。
+
+**系统能力**：SystemCapability.Startup.SystemInfo
+
+| 名称                  | 值  | 说明           |
+| ---------------------| ---- | -------------- |
+| CLASS_LEVEL_HIGH     | 0    | 表示设备能力定级为高。     |
+| CLASS_LEVEL_MIDIUM   | 1    | 表示设备能力定级为中。   |
+| CLASS_LEVEL_LOW      | 2    | 表示设备能力定级为低。   |

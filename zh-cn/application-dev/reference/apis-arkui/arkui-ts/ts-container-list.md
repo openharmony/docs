@@ -179,7 +179,7 @@ editMode(value: boolean)
 
 设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
 
-从API version9开始废弃不再使用，无替代接口。
+从API version 9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -575,7 +575,7 @@ onItemDelete(event: (index: number) => boolean)
 
 当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。
 
-从API version9开始废弃不再使用，无替代接口。
+从API version 9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1145,6 +1145,8 @@ setOnScrollVisibleContentChange(callback: OnScrollVisibleContentChangeCallback |
 type OnListScrollIndexCallback = (start: number, end: number, center: number) => void
 
 List组件可见区域item变化事件的回调类型。
+
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 

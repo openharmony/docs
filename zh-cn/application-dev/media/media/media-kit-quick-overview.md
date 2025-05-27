@@ -4,8 +4,8 @@
 
 |      | ArkTS 开发文档                        |      ArkTS API 文档          | C/C++ 开发文档                            | C/C++ API 文档                             |
 | ------------ | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| 音频播放     | [使用AVPlayer接口播放音频(ArkTS)](using-avplayer-for-playback.md) | [AVPlayer(ArkTS)](../../reference/apis-media-kit/js-apis-media.md#avplayer9)    | [使用AVPlayer接口播放音频(C/C++)](using-ndk-avplayer-for-playback.md) |  [AVPlayer(C/C++)](../../reference/apis-media-kit/_a_v_player.md) |
-| 视频播放     | [使用AVPlayer接口播放视频(ArkTS)](video-playback.md)              |  [AVPlayer(ArkTS)](../../reference/apis-media-kit/js-apis-media.md#avplayer9)    | [使用AVPlayer接口播放视频(C/C++)](using-ndk-avplayer-for-video-playback.md) | [AVPlayer(C/C++)](../../reference/apis-media-kit/_a_v_player.md) |
+| 音频播放     | [使用AVPlayer接口播放音频(ArkTS)](using-avplayer-for-playback.md) | [AVPlayer(ArkTS)](../../reference/apis-media-kit/js-apis-media.md#avplayer9)    | [使用AVPlayer接口播放音频(C/C++)](using-ndk-avplayer-for-playback.md) |  [AVPlayer(C/C++)](../../reference/apis-media-kit/capi-avplayer.md) |
+| 视频播放     | [使用AVPlayer接口播放视频(ArkTS)](video-playback.md)              |  [AVPlayer(ArkTS)](../../reference/apis-media-kit/js-apis-media.md#avplayer9)    | [使用AVPlayer接口播放视频(C/C++)](using-ndk-avplayer-for-video-playback.md) | [AVPlayer(C/C++)](../../reference/apis-media-kit/capi-avplayer.md) |
 | 流媒体     |  [使用AVPlayer播放流媒体(ArkTS)](streaming-media-playback-development-guide.md)    |    [AVPlayer(ArkTS)](../../reference/apis-media-kit/js-apis-media.md#avplayer9)      | - | - |
 | 添加字幕     | [使用AVPlayer接口添加视频外挂字幕(ArkTS)](video-subtitle.md) | [AVPlayer(ArkTS)](../../reference/apis-media-kit/js-apis-media.md#avplayer9) | - |- |
 | 音频池       | [使用SoundPool接口播放短音频(ArkTS)](using-soundpool-for-playback.md)    |   [SoundPool(ArkTS)](../../reference/apis-media-kit/js-apis-inner-multimedia-soundPool.md)    | -                                     |   - |

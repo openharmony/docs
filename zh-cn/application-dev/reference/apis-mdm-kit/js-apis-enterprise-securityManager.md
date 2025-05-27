@@ -37,7 +37,7 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 
 | 类型                | 说明                                                         |
 | ------------------- | ------------------------------------------------------------ |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当指定设备管理应用卸载用户证书失败时会抛出错误对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当卸载用户证书失败时会抛出错误对象。 |
 
 **错误码**：
 
@@ -56,6 +56,7 @@ uninstallUserCertificate(admin: Want, certUri: string): Promise&lt;void&gt;
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -108,6 +109,7 @@ installUserCertificate(admin: Want, certificate: CertBlob): Promise&lt;string&gt
 ```ts
 import { common, Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -169,6 +171,7 @@ installUserCertificate(admin: Want, certificate: CertBlob, accountId: number): s
 
 ```ts
 import { common, Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -192,7 +195,7 @@ context.resourceManager.getRawFileContent("test.cer").then((value) => {
 
 getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 
-获取指定系统账户下的用户证书。
+获取指定系统账户下的用户证书信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
 
@@ -225,6 +228,7 @@ getUserCertificates(admin: Want, accountId: number): Array&lt;string&gt;
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -242,7 +246,7 @@ try {
 
 getSecurityStatus(admin: Want, item: string): string
 
-获取安全策略信息。
+获取当前设备安全策略信息。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SECURITY
 
@@ -276,6 +280,7 @@ getSecurityStatus(admin: Want, item: string): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -321,6 +326,7 @@ setPasswordPolicy(admin: Want, policy: PasswordPolicy): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -376,6 +382,7 @@ getPasswordPolicy(admin: Want): PasswordPolicy
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -422,6 +429,7 @@ setAppClipboardPolicy(admin: Want, tokenId: number, policy: ClipboardPolicy): vo
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -473,6 +481,7 @@ getAppClipboardPolicy(admin: Want, tokenId?: number): string
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -621,6 +630,7 @@ setWatermarkImage(admin: Want, bundleName: string, source: string | image.PixelM
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -669,6 +679,7 @@ cancelWatermarkImage(admin: Want, bundleName: string, accountId: number): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

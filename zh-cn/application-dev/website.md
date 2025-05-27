@@ -315,6 +315,7 @@
             - [多线程取消TaskPool任务场景](arkts-utils/multi-thread-cancel-task.md)
             - [ArkTS多线程间操作Native对象场景](arkts-utils/napi-coerce-to-native-binding-object.md)
             - [Worker常驻线程通过TaskPool进行多任务并发处理](arkts-utils/worker-and-taskpool.md)
+        - [并发常见问题](arkts-utils/concurrency-faq.md)
       - [ArkTS跨语言交互](arkts-utils/arkts-cross-language-interaction.md)
       - ArkTS运行时<!--arkts-runtime-->
         - [ArkTS运行时概述](arkts-utils/arkts-runtime-overview.md)
@@ -1728,6 +1729,7 @@
         - [使用MindSpore Lite进行端侧训练 (C/C++)](ai/mindspore/mindspore-lite-train-guidelines.md)
       - [使用MindSpore Lite实现图像分类 (ArkTS)](ai/mindspore/mindspore-guidelines-based-js.md)
       - [使用MindSpore Lite实现图像分类 (C/C++)](ai/mindspore/mindspore-guidelines-based-native.md)
+      - [使用MindSpore Lite实现语音识别 (C/C++)](ai/mindspore/mindspore-asr-based-native.md)
     - Neural Network Runtime Kit（Neural Network运行时服务）<!--neural-network-runtime-kit-->
       - [Neural Network Runtime Kit简介](ai/nnrt/Neural-Network-Runtime-Kit-Introduction.md)
       - [Neural Network Runtime对接AI推理框架开发指导](ai/nnrt/neural-network-runtime-guidelines.md)
@@ -3340,17 +3342,17 @@
           <!--DelEnd-->
         - C API<!--asset-store-c-->
           - 模块<!--asset-store-module-->
-            - [AssetApi](reference/apis-asset-store-kit/_asset_api.md)
-            - [AssetType](reference/apis-asset-store-kit/_asset_type.md)
+            - [AssetApi](reference/apis-asset-store-kit/capi-assetapi.md)
+            - [AssetType](reference/apis-asset-store-kit/capi-assettype.md)
           - 头文件<!--asset-store-headerfile-->
-            - [asset_api.h](reference/apis-asset-store-kit/asset__api_8h.md)
-            - [asset_type.h](reference/apis-asset-store-kit/asset__type_8h.md)
+            - [asset_api.h](reference/apis-asset-store-kit/capi-asset-api-h.md)
+            - [asset_type.h](reference/apis-asset-store-kit/capi-asset-type-h.md)
           - 结构体<!--asset-store-struct-->
-            - [Asset_Attr](reference/apis-asset-store-kit/_asset___attr.md)
-            - [Asset_Blob](reference/apis-asset-store-kit/_asset___blob.md)
-            - [Asset_Result](reference/apis-asset-store-kit/_asset___result.md)
-            - [Asset_ResultSet](reference/apis-asset-store-kit/_asset___result_set.md)
-            - [Asset_Value](reference/apis-asset-store-kit/union_asset___value.md)
+            - [Asset_Blob](reference/apis-asset-store-kit/capi-asset-blob.md)
+            - [Asset_Value](reference/apis-asset-store-kit/capi-asset-value.md)
+            - [Asset_Attr](reference/apis-asset-store-kit/capi-asset-attr.md)
+            - [Asset_Result](reference/apis-asset-store-kit/capi-asset-result.md)
+            - [Asset_ResultSet](reference/apis-asset-store-kit/capi-asset-resultset.md)
         - 错误码<!--asset-store-arkts-errcode-->
           - [Asset错误码](reference/apis-asset-store-kit/errorcode-asset.md)
       - Crypto Architecture Kit（加解密算法框架服务）<!--crypto-architecture-api-->
@@ -3832,11 +3834,11 @@
           - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis-input-kit/js-apis-pointer.md)
           - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis-input-kit/js-apis-touchevent.md)
           - [@ohos.multimodalInput.infraredEmitter (红外管理)](reference/apis-input-kit/js-apis-infraredemitter.md)
-          - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis-input-kit/js-apis-inputconsumer.md)
+          - [@ohos.multimodalInput.inputConsumer (全局快捷键)](reference/apis-input-kit/js-apis-inputconsumer.md)
           <!--Del-->
           - [@ohos.multimodalInput.pointer (鼠标指针)(系统接口)](reference/apis-input-kit/js-apis-pointer-sys.md)
-          - [@ohos.multimodalInput.shortKey(快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
-          - [@ohos.multimodalInput.inputConsumer (组合按键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
+          - [@ohos.multimodalInput.shortKey (系统预置全局快捷键)(系统接口)](reference/apis-input-kit/js-apis-shortKey-sys.md)
+          - [@ohos.multimodalInput.inputConsumer (全局快捷键)(系统接口)](reference/apis-input-kit/js-apis-inputconsumer-sys.md)
           - [@ohos.multimodalInput.inputDevice (输入设备)(系统接口)](reference/apis-input-kit/js-apis-inputdevice-sys.md)
           - [@ohos.multimodalInput.inputEventClient (输入事件注入)(系统接口)](reference/apis-input-kit/js-apis-inputeventclient-sys.md)
           - [@ohos.multimodalInput.inputMonitor (输入监听)(系统接口)](reference/apis-input-kit/js-apis-inputmonitor-sys.md)
@@ -3863,10 +3865,13 @@
             - [Input_DeviceInfo](reference/apis-input-kit/capi-input-deviceinfo.md)
             - [Input_InterceptorOptions](reference/apis-input-kit/capi-input-interceptoroptions.md)
         - 错误码<!--input-arkts-errcode-->
-          - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-multimodalinput.md)
+          <!--Del-->
+          - [键鼠穿越管理错误码](reference/apis-input-kit/errorcode-cooperator.md)
+          - [按键前置监听错误码](reference/apis-input-kit/errorcode-inputmonitor.md)
+          <!--DelEnd-->
           - [全局快捷键管理错误码](reference/apis-input-kit/errorcode-inputconsumer.md)
-          - [按键前置监听错误码](reference/apis-input-kit/errorcode-inputkeymonitor.md)
           - [输入设备错误码](reference/apis-input-kit/errorcode-inputdevice.md)
+          - [鼠标指针错误码](reference/apis-input-kit/errorcode-pointer.md)
       - MDM Kit（企业设备管理服务）<!--mdm-api-->
         - ArkTS API<!--mdm-arkts-->
           - [@ohos.enterprise.accountManager（账户管理）](reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)
@@ -4347,7 +4352,7 @@
         - 模块<!--media-module-->
           - [AVImageGenerator](reference/apis-media-kit/_a_v_image_generator.md)
           - [AVMetadataExtractor](reference/apis-media-kit/_a_v_metadata_extractor.md)
-          - [AVPlayer](reference/apis-media-kit/_a_v_player.md)
+          - [AVPlayer](reference/apis-media-kit/capi-avplayer.md)
           - [AVRecorder](reference/apis-media-kit/_a_v_recorder.md)
           - [AVScreenCapture](reference/apis-media-kit/_a_v_screen_capture.md)
           - [VideoProcessing](reference/apis-media-kit/_video_processing.md)
@@ -4356,8 +4361,8 @@
           - [avimage_generator_base.h](reference/apis-media-kit/avimage__generator__base_8h.md)
           - [avmetadata_extractor_base.h](reference/apis-media-kit/avmetadata__extractor__base_8h.md)
           - [avmetadata_extractor.h](reference/apis-media-kit/avmetadata__extractor_8h.md)
-          - [avplayer.h](reference/apis-media-kit/avplayer_8h.md)
-          - [avplayer_base.h](reference/apis-media-kit/avplayer__base_8h.md)
+          - [avplayer.h](reference/apis-media-kit/capi-avplayer-h.md)
+          - [avplayer_base.h](reference/apis-media-kit/capi-avplayer-base-h.md)
           - [avrecorder.h](reference/apis-media-kit/avrecorder_8h.md)
           - [avrecorder_base.h](reference/apis-media-kit/avrecorder__base_8h.md)
           - [native_avscreen_capture.h](reference/apis-media-kit/native__avscreen__capture_8h.md)
@@ -4366,7 +4371,10 @@
           - [video_processing.h](reference/apis-media-kit/video__processing_8h.md)
           - [video_processing_types.h](reference/apis-media-kit/video__processing__types_8h.md)
         - 结构体<!--media-struct-->
-          - [AVPlayerCallback](reference/apis-media-kit/_a_v_player_callback.md)
+          - [MediaKeySession](reference/apis-media-kit/capi-mediakeysession.md)
+          - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-drm-mediakeysysteminfo.md)
+          - [AVPlayerCallback](reference/apis-media-kit/capi-avplayercallback.md)
+          - [OH_AVPlayer](reference/apis-media-kit/capi-oh-avplayer.md)
           - [OH_AVRecorder_Config](reference/apis-media-kit/_o_h___a_v_recorder___config.md)
           - [OH_AVRecorder_EncoderInfo](reference/apis-media-kit/_o_h___a_v_recorder___encoder_info.md)
           - [OH_AVRecorder_Location](reference/apis-media-kit/_o_h___a_v_recorder___location.md)
@@ -4569,8 +4577,6 @@
     - Calendar Kit（日历服务）<!--calendar-api-->
       - ArkTS API<!--calendar-arkts-->
         - [@ohos.calendarManager（日程管理）](reference/apis-calendar-kit/js-apis-calendarManager.md)
-      - 错误码<!--calendar-arkts-errcode-->
-        - [CalendarManager错误码](reference/apis-calendar-kit/errorcode-calendarManager.md)
     - Contacts Kit（联系人服务）<!--contacts-->
       - ArkTS API<!--contacts-arkts-->
         - [@ohos.contact (联系人)](reference/apis-contacts-kit/js-apis-contact.md)

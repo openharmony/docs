@@ -129,7 +129,7 @@ JsError通过进程内采集故障信息的方式触发回调迅速，而NativeC
 若应用主动捕获崩溃异常，崩溃事件将在**应用退出前**回调，例如以下两种情况：
 
 1. 异常处理中未主动退出，应用崩溃后将不会退出。
-采用[errorManger.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获异常会导致JsError类型的崩溃事件在应用退出前回调。若应用主动注册[崩溃异常信号](cppcrash-guidelines#哪些信号会生成cppcrash日志)处理函数但未主动退出，会导致NativeCrash类型的崩溃事件在应用退出前回调。
+采用[errorManager.on](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror)方法捕获异常会导致JsError类型的崩溃事件在应用退出前回调。若应用主动注册[崩溃异常信号](cppcrash-guidelines.md#哪些信号会生成cppcrash日志)处理函数但未主动退出，会导致NativeCrash类型的崩溃事件在应用退出前回调。
 
 2. 异常处理耗时过长，导致应用退出时间延迟。
 
