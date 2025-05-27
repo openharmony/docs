@@ -131,6 +131,7 @@ static int32_t TestJSVM() {
 }
 
 ```
+<!-- @[oh_jsvm_pump_message_loop_and_perform_microtask_checkpoint](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/UsageInstructionsOne/pumpmessageloop/src/main/cpp/hello.cpp) -->
 预期输出结果
 ```
 JSVM API TEST: Called with instance [object Object]

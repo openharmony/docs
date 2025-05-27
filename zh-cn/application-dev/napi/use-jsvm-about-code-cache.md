@@ -105,6 +105,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(globalThis.UseCodeCache())JS";
 ```
+<!-- @[jsvm_code_cache](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmDebug/aboutcodecache/src/main/cpp/hello.cpp) -->
 
 预期输出结果
 ```

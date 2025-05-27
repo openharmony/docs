@@ -86,6 +86,8 @@ const char *srcCallNative = R"JS(
   testCreateArray();
 )JS";
 ```
+<!-- @[oh_jsvm_create_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createarray/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM CreateArray success
@@ -145,6 +147,8 @@ function testCreateArrayWithLength(num){
 testCreateArrayWithLength(num);
 )JS";
 ```
+<!-- @[oh_jsvm_create_array_with_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createarraywithlength/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM CreateArrayWithLength success
@@ -247,6 +251,8 @@ createTypedArray(type.INT8_ARRAY);
 createTypedArray(type.INT32_ARRAY);
 )JS";
 ```
+<!-- @[oh_jsvm_create_typedarray](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createtypedarray/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM CreateTypedArray success
@@ -352,6 +358,8 @@ const char *srcCallNative = R"JS(
  createDataView(new ArrayBuffer(16), BYTE_OFFSET);
 )JS";
 ```
+<!-- @[oh_jsvm_create_dataview](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/createdataview/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 CreateDataView success, returnLength: 12
@@ -413,6 +421,8 @@ let data = [0, 1, 2, 3, 4, 5];
 getArrayLength(data);
 )JS";
 ```
+<!-- @[oh_jsvm_get_array_length](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getarraylength/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM length: 6
@@ -522,6 +532,8 @@ getTypedArrayInfo(new Int8Array(5), 2);
 getTypedArrayInfo(new Int8Array(1), 3);
 )JS";
 ```
+<!-- @[oh_jsvm_get_typedarray_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/gettypedarrayinfo/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM GetTypedArrayInfo success, JSVM_INT8_ARRAY: 1
@@ -627,6 +639,8 @@ isarraybuffer = 2;
 getDataViewInfo(data, isarraybuffer);
 )JS";
 ```
+<!-- @[oh_jsvm_get_dataview_info](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getdataviewinfo/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM GetDataViewInfo success, byteLength: 2
@@ -677,6 +691,8 @@ let data = [1, 2, 3, 4, 5];
 isArray(data);
 )JS";
 ```
+<!-- @[oh_jsvm_is_array](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/isarray/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM IsArray success, IsArray: 1
@@ -722,6 +738,8 @@ const char *srcCallNative = R"JS(
 setElement(3);
 )JS";
 ```
+<!-- @[oh_jsvm_set_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/setelement/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM SetElement success
@@ -771,6 +789,8 @@ let arr = [10, 'hello', null, true];
 getElement(arr, 3);
 )JS";
 ```
+<!-- @[oh_jsvm_get_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/getelement/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM GetElement success
@@ -825,6 +845,8 @@ hasElement(arr, 0);
 hasElement(arr, 4);
 )JS";
 ```
+<!-- @[oh_jsvm_has_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/haselement/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM hasElement: 1
@@ -878,6 +900,8 @@ let arr = [10, 'hello', null, true];
 deleteElement(arr, 0);
 )JS";
 ```
+<!-- @[oh_jsvm_delete_element](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/deleteelement/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM DeleteElement: 1
@@ -926,6 +950,8 @@ let dataView = new DataView(buffer);
 isDataView(dataView);
 )JS";
 ```
+<!-- @[oh_jsvm_is_dataview](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/isdataview/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM IsDataView: 1
@@ -971,6 +997,8 @@ const char *srcCallNative = R"JS(
 isTypedarray(new Uint16Array([1, 2, 3, 4]));
 )JS";
 ```
+<!-- @[oh_jsvm_is_typedarray](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutArray/istypedarray/src/main/cpp/hello.cpp) -->
+
 预计的输出结果：
 ```
 JSVM IsTypedarray: 1
