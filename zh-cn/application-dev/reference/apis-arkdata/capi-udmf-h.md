@@ -1598,3 +1598,382 @@ int OH_UdmfOptions_SetIntention(OH_UdmfOptions* pThis, Udmf_Intention intention)
 | 类型 | 说明 |
 | -- | -- |
 | int | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
+
+### OH_UdmfOptions_Reset()
+
+```
+int OH_UdmfOptions_Reset(OH_UdmfOptions* pThis)
+```
+
+**描述**
+
+重置数据操作选项[OH_UdmfOptions](capi-oh-udmfoptions.md)实例为空。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-oh-udmfoptions.md)* pThis | 指向数据操作选项[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
+
+### OH_Udmf_GetUnifiedData()
+
+```
+int OH_Udmf_GetUnifiedData(const char* key, Udmf_Intention intention, OH_UdmfData* unifiedData)
+```
+
+**描述**
+
+从统一数据管理框架数据库中获取统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据。
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| const char* key | 表示数据库存储的唯一标识符。 |
+| [Udmf_Intention](#udmf_intention) intention | 表示数据通路类型[Udmf_Intention](capi-udmf-h.md#udmf_intention)。 |
+| [OH_UdmfData](capi-oh-udmfdata.md)* unifiedData | 该参数是输出参数，获取到的统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)会写入该变量。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
+
+### OH_Udmf_GetUnifiedDataByOptions()
+
+```
+int OH_Udmf_GetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize)
+```
+
+**描述**
+
+通过数据通路类型从统一数据管理框架数据库中获取统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-oh-udmfoptions.md)* options | 指向数据操作选项[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
+| [OH_UdmfData](capi-oh-udmfdata.md)** dataArray | 该参数是输出参数，表示统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)列表，<br>此指针需要使用[OH_Udmf_DestroyDataArray](capi-udmf-h.md#oh_udmf_destroydataarray)函数释放。 |
+| unsigned int* dataSize | 该参数是输出参数，表示获取到的统一数据对象个数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。<br>若返回UDMF_ERR，表示内部数据错误。 |
+
+### OH_Udmf_SetUnifiedData()
+
+```
+int OH_Udmf_SetUnifiedData(Udmf_Intention intention, OH_UdmfData* unifiedData,char* key, unsigned int keyLen)
+```
+
+**描述**
+
+从统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据。
+
+**起始版本：** 12
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [Udmf_Intention](#udmf_intention) intention | 表示数据通路类型[Udmf_Intention](capi-udmf-h.md#udmf_intention)。 |
+| [OH_UdmfData](capi-oh-udmfdata.md)* unifiedData | 表示统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据。 |
+| key表示成功将数据设置到数据库后对应数据的唯一标识符。 |  |
+| unsigned int keyLen | 表示唯一标识符参数的空间大小，内存大小不小于512字节。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。 |
+
+### OH_Udmf_SetUnifiedDataByOptions()
+
+```
+int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen)
+```
+
+**描述**
+
+从统一数据管理框架数据库中写入统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-oh-udmfoptions.md)* options | 指向数据操作选项[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
+| [OH_UdmfData](capi-oh-udmfdata.md) *unifiedData | 指向统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)实例的指针。 |
+| char *key | 成功将数据设置到数据库后对应数据的唯一标识符，内存大小不小于{@link UDMF_KEY_BUFFER_LEN}。 |
+| unsigned int keyLen | 唯一标识符参数的空间大小。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。<br>若返回UDMF_ERR，表示内部数据错误。 |
+
+### OH_Udmf_UpdateUnifiedData()
+
+```
+int OH_Udmf_UpdateUnifiedData(OH_UdmfOptions* options, OH_UdmfData* unifiedData)
+```
+
+**描述**
+
+对统一数据管理框架数据库中的统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据进行数据更改。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-oh-udmfoptions.md)* options | 指向数据操作选项[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
+| [OH_UdmfData](capi-oh-udmfdata.md)* unifiedData | 指向统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)实例的指针。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。<br>若返回UDMF_ERR，表示内部数据错误。 |
+
+### OH_Udmf_DeleteUnifiedData()
+
+```
+int OH_Udmf_DeleteUnifiedData(OH_UdmfOptions* options, OH_UdmfData** dataArray, unsigned int* dataSize)
+```
+
+**描述**
+
+删除统一数据管理框架数据库中的统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)数据。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfOptions](capi-oh-udmfoptions.md)* options | 指向数据操作选项[OH_UdmfOptions](capi-oh-udmfoptions.md)实例的指针。 |
+| [OH_UdmfData](capi-oh-udmfdata.md)** dataArray | 该参数是输出参数，统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)列表，<br>此指针需要使用[OH_Udmf_DestroyDataArray](capi-udmf-h.md#oh_udmf_destroydataarray)函数释放。 |
+| unsigned int* dataSize | 该参数是输出参数，表示获取到的统一数据对象个数。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回执行的错误码。请参阅错误码定义[Udmf_ErrCode](capi-udmf-err-code-h.md#udmf_errcode)。<br>若返回UDMF_E_OK，表示执行成功。<br>若返回UDMF_E_INVALID_PARAM，表示传入了无效参数。<br>若返回UDMF_ERR，表示内部数据错误。 |
+
+### OH_Udmf_DestroyDataArray()
+
+```
+void OH_Udmf_DestroyDataArray(OH_UdmfData** dataArray, unsigned int dataSize)
+```
+
+**描述**
+
+销毁数据数组内存。
+
+**起始版本：** 20
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfData](capi-oh-udmfdata.md)** dataArray | 指向统一数据对象[OH_UdmfData](capi-oh-udmfdata.md)的指针列表。 |
+| unsigned int dataSize | 列表中的数据大小。 |
+
+**参考：**
+
+OH_UdmfData
+
+### OH_UdmfProgressInfo_GetProgress()
+
+```
+int OH_UdmfProgressInfo_GetProgress(OH_Udmf_ProgressInfo* progressInfo)
+```
+
+**描述**
+
+从进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)中获取进度百分比数据。
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)* progressInfo | 表示进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回进度百分比数据。 |
+
+### OH_UdmfProgressInfo_GetStatus()
+
+```
+int OH_UdmfProgressInfo_GetStatus(OH_Udmf_ProgressInfo* progressInfo)
+```
+
+**描述**
+
+从进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)中获取状态信息。
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)* progressInfo | 表示进度信息[OH_Udmf_ProgressInfo](capi-oh-udmf-progressinfo.md)。 |
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| int | 返回状态信息。 |
+
+### OH_UdmfGetDataParams_Create()
+
+```
+OH_UdmfGetDataParams* OH_UdmfGetDataParams_Create()
+```
+
+**描述**
+
+创建异步获取UDMF数据的请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)指针及实例对象。<br>当不再需要使用指针时，请使用[OH_UdmfGetDataParams_Destroy](capi-udmf-h.md#oh_udmfgetdataparams_destroy)销毁实例对象，否则会导致内存泄漏。
+
+**起始版本：** 15
+
+**返回：**
+
+| 类型 | 说明 |
+| -- | -- |
+| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* | 执行成功则返回一个指向属性[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例对象的指针，否则返回nullptr。 |
+
+### OH_UdmfGetDataParams_Destroy()
+
+```
+void OH_UdmfGetDataParams_Destroy(OH_UdmfGetDataParams* pThis)
+```
+
+**描述**
+
+销毁异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)指针指向的实例对象。
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* pThis | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+
+### OH_UdmfGetDataParams_SetDestUri()
+
+```
+void OH_UdmfGetDataParams_SetDestUri(OH_UdmfGetDataParams* params, const char* destUri)
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的目标路径。<br>若设置了目标路径，会将文件类型的数据进行拷贝到指定路径。回调中获取到的文件类型数据会被替换为目标路径的URI。<br>若不设置目标路径，则不会执行拷贝文件操作。回调中获取到的文件类型数据为源端路径URI。<br>若应用涉及复杂文件处理策略，或需要将文件拷贝在多个路径下时，建议不设置此参数，由应用自行完成文件拷贝相关处理。
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| const char* destUri | 表示目标路径地址。 |
+
+### OH_UdmfGetDataParams_SetFileConflictOptions()
+
+```
+void OH_UdmfGetDataParams_SetFileConflictOptions(OH_UdmfGetDataParams* params, const Udmf_FileConflictOptions options)
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的文件冲突选项。
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| const [Udmf_FileConflictOptions](#udmf_fileconflictoptions) options | 表示文件拷贝冲突时的选项。 |
+
+### OH_UdmfGetDataParams_SetProgressIndicator()
+
+```
+void OH_UdmfGetDataParams_SetProgressIndicator(OH_UdmfGetDataParams* params,const Udmf_ProgressIndicator progressIndicator)
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的进度条指示选项。
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| const [Udmf_ProgressIndicator](#udmf_progressindicator) progressIndicator | 表示是否使用默认进度条选项。 |
+
+### OH_UdmfGetDataParams_SetDataProgressListener()
+
+```
+void OH_UdmfGetDataParams_SetDataProgressListener(OH_UdmfGetDataParams* params,const OH_Udmf_DataProgressListener dataProgressListener)
+```
+
+**描述**
+
+设置异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)中的监听回调函数。
+
+**起始版本：** 15
+
+
+**参数：**
+
+| 参数项 | 描述 |
+| -- | -- |
+| [OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)* params | 表示指向异步请求参数[OH_UdmfGetDataParams](capi-oh-udmfgetdataparams.md)实例的指针。 |
+| const [OH_Udmf_DataProgressListener](#oh_udmf_dataprogresslistener) dataProgressListener | 用户自定义的监听回调函数，可用于获取进度信息和数据。 |
