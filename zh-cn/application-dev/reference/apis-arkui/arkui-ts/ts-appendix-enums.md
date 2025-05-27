@@ -1210,6 +1210,21 @@ type Nullable\<T> = T | undefined
 | LEFT     | 1   | 左手。 |
 | RIGHT    | 2   | 右手。 |
 
+## FocusDrawLevel<sup>19+</sup>
+
+定义节点获焦框的绘制层级。
+
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值  | 说明                                      |
+| -------------- | -- | ---------------------------------------- |
+| SELF  	     | 0   | 获焦框绘制在节点自身层级。                                 |
+| TOP            | 1   | 获焦框绘制在当前实例Z序的最上层。                                 |
+
 ## PixelRoundMode<sup>18+</sup>
 
 指定像素取整模式。
