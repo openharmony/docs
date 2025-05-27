@@ -32,7 +32,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number, callback: AsyncCallba
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 被查询的用户id。|
+| userId     | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。|
 | callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | 是 | callback形式返回bundle包含的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)信息。 |
 
 **错误码：**
@@ -87,7 +87,7 @@ getLauncherAbilityInfo(bundleName: string, userId: number) : Promise\<Array\<[La
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 被查询的用户id。 |
+| userId     | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
 
 **返回值：**
 
@@ -198,7 +198,7 @@ getAllLauncherAbilityInfo(userId: number, callback: AsyncCallback\<Array\<[Launc
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
-| userId | number | 是   | 被查询的用户id。 |
+| userId | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
 | callback | AsyncCallback\<Array\<[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)\>\> | 是 | callback形式返回指定用户下所有应用的[LauncherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo-sys.md)。 |
 
 **错误码：**
@@ -250,7 +250,7 @@ getAllLauncherAbilityInfo(userId: number) : Promise\<Array\<[LauncherAbilityInfo
 
 | 参数名 | 类型   | 必填 | 说明         |
 | ------ | ------ | ---- | -------------- |
-| userId | number | 是   | 被查询的用户id。 |
+| userId | number | 是   | 被查询的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。 |
 
 **返回值：**
 
@@ -468,7 +468,7 @@ getShortcutInfoSync(bundleName: string, userId: number) : Array\<[ShortcutInfo](
 | 参数名     | 类型   | 必填 | 说明         |
 | ---------- | ------ | ---- | -------------- |
 | bundleName | string | 是   | 应用Bundle名称。 |
-| userId     | number | 是   | 表示用户ID。  |
+| userId     | number | 是   | 表示用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。  |
 
 **返回值：**
 

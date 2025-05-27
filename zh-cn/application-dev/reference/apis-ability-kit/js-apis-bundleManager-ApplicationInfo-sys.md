@@ -1,6 +1,6 @@
 # ApplicationInfo (系统接口)
 
-应用程序信息，三方应用可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的应用程序信息，其中入参[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_APPLICATION。
+应用程序信息，可以通过[bundleManager.getBundleInfoForSelf](js-apis-bundleManager.md#bundlemanagergetbundleinfoforself)获取自身的应用程序信息，其中参数[bundleFlags](js-apis-bundleManager.md#bundleflag)至少包含GET_BUNDLE_INFO_WITH_APPLICATION。
 
 > **说明：**
 >
@@ -21,7 +21,7 @@
 
 ## PreinstalledApplicationInfo<sup>12+<sup>
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
 **系统接口：**  此接口为系统接口。
 
