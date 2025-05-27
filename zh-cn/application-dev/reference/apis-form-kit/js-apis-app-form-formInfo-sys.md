@@ -209,4 +209,4 @@ import { formInfo } from '@kit.FormKit';
 | 名称    | 类型     | 必填 | 说明 |
 |--------|--------|----|----------------------------|
 | abilityName | string | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility名称。|
-| disabledDesktopBehaviors | string | 否  | 缺省为不禁用。支持禁用的用户操作有：滑动桌面（SWIPE_DESKTOP），下拉全搜（PULL_DOWN_SEARCH），长按（LONG_CLICK），拖动（DRAG）。通过 \| 的形式追加。例如 SWIPE_DESKTOP\|PULL_DOWN_SEARCH\|LONG_CLICK\|DRAG。 |
+| disabledDesktopBehaviors | string | 否  | 缺省为不禁用。支持禁用的用户操作有：滑动桌面（SWIPE_DESKTOP），下拉全搜（PULL_DOWN_SEARCH），长按（LONG_CLICK），拖动（DRAG）。通过 \| 的形式拼接。例如 SWIPE_DESKTOP\|PULL_DOWN_SEARCH\|LONG_CLICK\|DRAG。 |
