@@ -3402,7 +3402,7 @@ on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  let waitOnCallback = (reason: request.agent.Faults) => {
+  let waitOnCallback = (reason: request.agent.WaitingReason) => {
     console.info('upload task waiting.');
   };
   request.agent.create(context, config).then((task: request.agent.Task) => {
