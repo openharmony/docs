@@ -166,6 +166,13 @@ typedef struct NativeChildProcess_Options {
 
 **起始版本**：13
 
+**参数:**
+
+| 名称          | 描述 |
+| ----------- | ------------- |
+| isolationMode     | 进程独立模式，详见[NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode)定义。 |
+| reserved | 保留字段。|
+
 ### Ability_ChildProcessConfigs
 
 ```
@@ -179,14 +186,14 @@ struct Ability_ChildProcessConfigs {
 
 启动子进程的配置信息。
 
-**起始版本**：15
-
 **参数:**
 
 | 名称          | 描述 |
 | ----------- | ------------- |
+| processName     | 子进程名称 |
 | isolationMode     | 进程独立模式，详见[NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode)定义。 |
-| reserved | 保留字段。|
+
+**起始版本**：15
 
 ## 枚举类型说明
 
