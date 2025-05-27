@@ -71,7 +71,7 @@ import { audio } from '@kit.AudioKit';
 > - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18)：监听播放完成，同时返回播放结束的音频的streamId。
 > - [on('playFinished')](#onplayfinished)：监听播放完成。
 > - [on('error')](#onerror)：监听错误事件。
-> - [on('erroroccurred')](#onerrorOccurred20)：监听错误事件，同时返回[errorInfo](#errorinfo20)。
+> - [on('errorOccurred')](#onerroroccurred20)：监听错误事件，同时返回[errorInfo](#errorinfo20)。
 
 ### load
 
