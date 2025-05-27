@@ -294,7 +294,7 @@ saveTrustedPhotoAssets(trustedUris: Array&lt;string&gt;, callback: AsyncCallback
 
 ## ItemInfo
 
-继承自[BaseItemInfo]，仅含私有参数itemType
+继承自[BaseItemInfo](#baseiteminfo)，增加私有参数itemType。
 
 图片、视频相关信息。
 
