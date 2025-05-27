@@ -1,4 +1,4 @@
-# preferences_err_code.h
+# oh_preferences_err_code.h
 
 ## 概述
 

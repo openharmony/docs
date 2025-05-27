@@ -45,7 +45,7 @@
     - [UDMF](capi-udmf.md)
   - 头文件<!--arkdata-headerfile-->
     - [oh_preferences.h](capi-oh-preferences-h.md)
-    - [preferences_err_code.h](capi-preferences-err-code-h.md)
+    - [oh_preferences_err_code.h](capi-preferences-err-code-h.md)
     - [oh_preferences_option.h](capi-oh-preferences-option-h.md)
     - [oh_preferences_value.h](capi-oh-preferences-value-h.md)
     - [data_asset.h](capi-data-asset-h.md)
