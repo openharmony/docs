@@ -1462,7 +1462,7 @@ async function example() {
       'file://media/Photo/22/IMG_datetime_0002/displayName2.jpg'];
     let result = await phAccessHelper.grantPhotoUrisPermission('com.example.myapplication01', uris,
         photoAccessHelper.PhotoPermissionType.TEMPORARY_READ_IMAGEVIDEO,
-        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOTING_PARM);
+        photoAccessHelper.HideSensitiveType.HIDE_LOCATION_AND_SHOOTING_PARAM);
 
     console.info('grantPhotoUrisPermission success, result=' + result);
   } catch (err) {
@@ -2351,11 +2351,9 @@ async function example() {
     console.info('setPendingPromiseDemo');
     let testFileName: string = 'testFile' + Date.now() + '.jpg';
     let photoAsset = await phAccessHelper.createAsset(testFileName);
-    let fd = await photoAsset.open('rw');
     await photoAsset.setPending(true);
-    // write photo buffer in fd.
+    // add asset resource.
     photoAsset.setPending(false);
-    await photoAsset.close(fd);
   } catch (err) {
     console.error(`setPendingPromiseDemo failed with error: ${err.code}, ${err.message}`);
   }
@@ -5520,6 +5518,12 @@ submitCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;, hasCloudWaterm
 | photoAssets | Array<[PhotoAsset](#photoasset)> | 是   | 需要增强照片的[PhotoAsset](#photoasset)集合。 |
 | hasCloudWatermark | boolean | 是   | 增强后图片是否添加云增强水印。 |
 
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -5576,6 +5580,12 @@ prioritizeCloudEnhancementTask(photoAsset: PhotoAsset): Promise&lt;void&gt;
 | 参数名   | 类型                      | 必填 | 说明       |
 | -------- | ------------------------- | ---- | ---------- |
 | photoAsset | [PhotoAsset](#photoasset) | 是   | 需要修改云增强优先级照片的[PhotoAsset](#photoasset)。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **错误码：**
 
@@ -5636,6 +5646,12 @@ cancelCloudEnhancementTasks(photoAssets: Array&lt;PhotoAsset&gt;): Promise&lt;vo
 | -------- | ------------------------- | ---- | ---------- |
 | photoAssets | Array<[PhotoAsset](#photoasset)> | 是   | 需要取消云增强任务的[PhotoAsset](#photoasset)集合。 |
 
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -5687,6 +5703,12 @@ cancelAllCloudEnhancementTasks(): Promise&lt;void&gt;
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **需要权限**：ohos.permission.WRITE_IMAGEVIDEO
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **错误码：**
 
@@ -5820,6 +5842,12 @@ syncCloudEnhancementTaskStatus(): Promise&lt;void&gt;
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO
 
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
+
 **错误码：**
 
 接口抛出错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[文件管理错误码](../apis-core-file-kit/errorcode-filemanagement.md)。
@@ -5932,6 +5960,12 @@ setVideoEnhancementAttr(videoEnhancementType: VideoEnhancementType, photoId: str
 | ---------- | ------- | ---- | ---------------------------------- |
 | videoEnhancementType       | [VideoEnhancementType](#videoenhancementtype13) | 是    | 需要进行分段式视频的处理类型。 |
 | photoId | string | 是    | 图片的photoId。 |
+
+**返回值：**
+
+| 类型                  | 说明         |
+| ------------------- | ---------- |
+| Promise&lt;void&gt; | Promise对象，返回void。 |
 
 **错误码：**
 
