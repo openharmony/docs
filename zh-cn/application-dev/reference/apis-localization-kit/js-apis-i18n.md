@@ -2100,7 +2100,7 @@ nextTransition(date?: number): ZoneOffsetTransition
 
 **示例：**
 ```ts
-import { i18n , intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 
 // 获取蒂华纳时区对象
 let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
@@ -2132,7 +2132,7 @@ getMilliseconds(): number
 
 **示例：**
 ```ts
-import { i18n , intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 
 let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
@@ -2160,7 +2160,7 @@ getOffsetAfter(): number
 
 **示例：**
 ```ts
-import { i18n , intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 
 let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
@@ -2188,7 +2188,7 @@ getOffsetBefore(): number
 
 **示例：**
 ```ts
-import { i18n , intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 
 let timeZone: i18n.TimeZone = i18n.getTimeZone('America/Tijuana');
 let zoneRules: i18n.ZoneRules = timeZone.getZoneRules();
