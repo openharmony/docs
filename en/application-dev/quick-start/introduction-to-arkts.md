@@ -1844,16 +1844,8 @@ The keyword `this` used as a primary expression denotes a value that is a refere
 * Object for which the instance method is called; or
 * Object being constructed.
 
-The value denoted by `this` in a lambda body and in the surrounding context is the same.
-
 ## Support for ArkUI
 
 This section demonstrates mechanisms that ArkTS provides for creating graphical user interface (GUI) programs. The section is based on the ArkUI declarative framework. ArkUI provides a set of extensions of the standard TypeScript to declaratively describe the GUI of the applications and the interaction between the GUI components.
 
-### ArkUI Example
 
-The [Example](arkts-mvvm.md#example) provides a complete ArkUI-based application as an illustration of GUI programming capabilities.
-
-For more details of the ArkUI features, refer to the ArkUI [Basic Syntax](arkts-basic-syntax-overview.md).
-
-<!--no_check-->

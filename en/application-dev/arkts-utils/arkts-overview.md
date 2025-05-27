@@ -2,8 +2,6 @@
 
 ArkTS is the official high-level language for OpenHarmony application development.
 
-ArkTS provides capabilities such as [declarative UI paradigm](../quick-start/arkts-declarative-ui-description.md), [state management](../quick-start/arkts-state-management-overview.md), and [rendering control](../quick-start/arkts-rendering-control-overview.md), helping you create applications in a more concise and natural manner.
-
 Built on the [TypeScript](https://www.typescriptlang.org/) (TS) ecosystem, ArkTS extends its functionality while maintaining the basic style of TS. It enhances static check and analysis during development through standardized definitions, improving code robustness and achieving better program execution stability and performance. For details about the differences compared with standard TS, see [TypeScript to ArkTS Cookbook](../quick-start/typescript-to-arkts-migration-guide.md). ArkTS also supports efficient interoperability with TS/JavaScript (JS).
 
 The ArkTS common and container libraries enhance the language's basic functionalities, offering capabilities such as [high-precision floating-point operations](../reference/apis-arkts/js-apis-arkts-decimal.md), [binary buffers](buffer.md), and [XML generation, parsing, and conversion](xml-overview.md), as well as various container libraries. These features help you simplify your work and improve development efficiency.

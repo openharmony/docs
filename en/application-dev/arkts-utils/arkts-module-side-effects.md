@@ -176,7 +176,7 @@ test200
 
 Modules directly change the value of **SomeAppStorageVar** in AppStorage, affecting other modules or code that use this variable.
 
-For more information on modifying ArkUI component state variables, see [State Management Overview](../quick-start/arkts-state-management-overview.md).
+For more information on modifying ArkUI component state variables, see [State Management Overview](../ui/state-management/arkts-state-management-overview.md).
 
 **Optimized methods**
 
