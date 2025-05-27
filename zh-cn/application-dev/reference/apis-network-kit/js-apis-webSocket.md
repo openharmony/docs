@@ -21,7 +21,7 @@ import { webSocket } from '@kit.NetworkKit';
 
 createWebSocket(): WebSocket
 
-创建一个WebSocket，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
+创建一个WebSocket对象，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -103,7 +103,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 
 connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
 
-根据URL地址和header，建立一个WebSocket连接，使用callback方式作为异步方法。
+根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
@@ -193,7 +193,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回建立连接的结果。true:连接请求创建成功；false:连接请求创建失败。 |
+| Promise\<boolean\> | 回调函数。true:连接请求创建成功；false:连接请求创建失败。 |
 
 **错误码：**
 
@@ -219,9 +219,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value: boolean) => {
-  console.log("connect success")
+  console.log("connect success");
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err))
+  console.log("connect fail, error:" + JSON.stringify(err));
 });
 ```
 
@@ -798,7 +798,7 @@ ws.off('dataEnd');
 
 on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
 
-订阅HTTP Response Header事件，使用callback方式作为同步方法。
+订阅HTTP Response Header事件，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -824,7 +824,7 @@ ws.on('headerReceive', (data) => {
 
 off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 
-取消订阅HTTP Response Header事件，使用callback方式作为同步方法。
+取消订阅HTTP Response Header事件，使用callback方式作为异步方法。
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -852,6 +852,10 @@ ws.off('headerReceive');
 createWebSocketServer(): WebSocketServer
 
 创建一个WebSocketServer对象，包括启动服务、发送数据、关闭连接、列出客户端信息、停止服务，订阅/取消订阅webSocket连接的连接事件、接收到客户端消息事件、关闭事件和错误事件。
+
+> **说明：**
+>
+> 目前服务端仅支持智慧屏使用，非智慧屏形态的产品调用该接口创建对象时，会返回空指针。
 
 **系统能力**: SystemCapability.Communication.NetStack
 
@@ -1086,7 +1090,7 @@ close(connection: WebSocketConnection, options?: webSocket.WebSocketCloseOptions
 | 参数名  | 类型                    | 必填 | 说明                                                     |
 | ---------- | --------------------- | ---- | ----------------------------------------------------- |
 | connection | [WebSocketConnection](#websocketconnection19) | 是  | 客户端信息，包括客户端的ip地址和端口号port。                   |
-| options    | [WebSocketCloseOptions](#websocketcloseoptions) | 否  | 关闭WebSocket连接时，可选参数的类型和说明。<br>- 错误码默认：200。原因值默认：Websocket connect failed。 |
+| options    | [webSocket.WebSocketCloseOptions](#websocketcloseoptions) | 否  | 关闭WebSocket连接时，可选参数的类型和说明。<br>- 错误码默认：200。原因值默认：Websocket connect failed。 |
 
 **返回值：**
 
@@ -1443,8 +1447,8 @@ localServer.off('error');
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | certPath   | string  | 是   | 证书路径。 |
-| keyPath | string | 是   | 证书秘钥的路径。 |
-| keyPassword | string | 否   | 证书秘钥的密码。 |
+| keyPath | string | 是   | 证书密钥的路径。 |
+| keyPassword | string | 否   | 证书密钥的密码。 |
 
 ## ProxyConfiguration<sup>12+</sup>
 type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy
