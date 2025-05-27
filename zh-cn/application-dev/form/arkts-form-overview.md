@@ -68,7 +68,7 @@ ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使�
 
 - 当前仅支持基于ArkUI开发卡片，不支持跨平台开发。
 
-- 当导入模块时，仅支持导入标识“支持在ArkTS卡片中使用”的模块。若使用了，不支持使用的API，卡片加载显示异常。
+- 当导入模块时，仅支持导入标识“支持在ArkTS卡片中使用”的模块。若使用了不支持使用的API，卡片加载显示异常。
 
 - 支持导入[HAR](../quick-start/har-package.md)静态共享包，不支持导入[HSP](../quick-start/in-app-hsp.md)动态共享包。
 
@@ -87,3 +87,9 @@ ArkTS卡片相较于JS卡片具备了更加丰富的能力，但也增加了使�
 - 暂不支持Hot Reload热重载。
 
 - 暂不支持setTimeOut。
+
+## 相关实例
+
+针对ArkTS卡片开发，有以下相关实例可供参考：
+
+- [Stage模型卡片JS与C++通信（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
