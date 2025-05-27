@@ -93,7 +93,7 @@ let result = process.is64Bit();
 
 getStartRealtime(): number
 
-获取系统启动到进程启动的实时时间（以毫秒为单位）。
+获取系统启动到进程启动的实时时间（以毫秒为单位，不包含系统休眠时间）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -634,7 +634,7 @@ pro.exit(0);
 
 kill(signal: number, pid: number): boolean
 
-发送signal到指定的进程，结束指定进程。
+发送signal到指定的进程，结束指定进程（仅支持结束本进程）。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -13,7 +13,7 @@ import { url } from '@kit.ArkTS';
 ```
 ## URLParams<sup>9+</sup>
 
-URLParams接口定义了一些处理URL查询字符串的实用方法。
+URLParams是一个用于解析、构造和操作URL参数的实用类。该类提供了统一的接口来处理参数维度（如查询参数、路径参数等）。
 
 ### constructor<sup>9+</sup>
 
@@ -168,7 +168,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -323,7 +323,9 @@ let result = paramsObject.has('bard');
 
 set(name: string, value: string): void
 
-将与name关联的URLSearchParams对象中的值设置为value。如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
+将与name关联的URLSearchParams对象中的值设置为value。
+
+如果存在名称为name的键值对，请将第一个键值对的值设置为value并删除所有其他值。如果不是，则将键值对附加到查询字符串。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -430,7 +432,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -782,7 +784,7 @@ console.log(params.getAll('fod').toString()) // Output ["1","3"].
 
 entries(): IterableIterator<[string, string]>
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >
@@ -1025,7 +1027,7 @@ for (let value of values) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[string, string]&gt;
 
-返回一个ES6的迭代器，迭代器的每一项都是一个JavaScript Array。Array的第一项是name，Array的第二项是value。
+返回一个ES6的迭代器，迭代器的每一项都是一个Array。Array的第一项是name，Array的第二项是value。
 
 > **说明：**
 >

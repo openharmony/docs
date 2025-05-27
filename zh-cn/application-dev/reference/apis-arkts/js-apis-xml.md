@@ -142,7 +142,7 @@ console.log(result); // <d/>
 
 setDeclaration(): void
 
-添加带有编码的文件声明。
+添加文件声明。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -503,6 +503,7 @@ parseXml(option: ParseOptions): void
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
+具体使用场景可参照[解析XML标签和标签值](../../arkts-utils/xml-parsing.md#解析xml标签和标签值)和[解析XML属性和属性值](../../arkts-utils/xml-parsing.md#解析xml属性和属性值)
 
 ```ts
 import { xml, util } from '@kit.ArkTS';

@@ -62,7 +62,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| typedef uint16_t **char16_t** |  | 
+| typedef uint16_t **char16_t** | 在旧版本的C++编译器中，如果char16_t类型未被定义（如C++11前的标准），则使用此语句将其定义为uint16_t类型，以实现兼容性支持。|
 | typedef struct JSVM_VM__ \* [JSVM_VM](#jsvm_vm) | 表示JavaScript虚拟机实例。 | 
 | typedef struct JSVM_VMScope__ \* [JSVM_VMScope](#jsvm_vmscope) | 表示JavaScript虚拟机作用域。 | 
 | typedef struct JSVM_EnvScope__ \* [JSVM_EnvScope](#jsvm_envscope) | 表示用于控制附加到当前虚拟机实例的环境。只有当线程通过 OH_JSVM_OpenEnvScope进入该环境的JSVM_EnvScope后，该环境才 对线程的虚拟机实例可用。 | 
