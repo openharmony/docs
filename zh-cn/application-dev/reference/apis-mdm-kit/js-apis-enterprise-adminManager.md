@@ -387,7 +387,7 @@ try {
   adminManager.startAdminProvision(wantTemp, adminManager.AdminType.ADMIN_TYPE_BYOD, context, recordParameters);
   console.info('startAdminProvision::success');
 } catch (error) {
-  console.info('startAdminProvision::errorCode: ' + error.code + ' errorMessage: ' + error.message);
+  console.error('startAdminProvision::errorCode: ' + error.code + ' errorMessage: ' + error.message);
 }
 ```
 
