@@ -3443,7 +3443,7 @@ getDisplayDensity(): Promise\<Point>
 
 | 类型                       | 说明                                      |
 | -------------------------- | ----------------------------------------- |
-| Promise\<[Point](#point9)> | Promise对象，返回当前设备屏幕的分辨率。 |
+| Promise\<[Point](#point9)> | Promise对象，返回Point对象，当前设备屏幕的分辨率为Point.x*Point.y。 |
 
 **错误码：**
 
