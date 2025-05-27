@@ -932,9 +932,15 @@ connectToCandidateConfigWithUserAction(networkId: number): Promise&lt;void&gt;
   | -------- | -------- | -------- | -------- |
   | networkId | number | 是 | 候选网络配置的ID，ID不能小于0。 |
 
+**返回值：**
+
+  | **类型** | **说明** |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
 **错误码：**
 
-以下错误码的详细介绍请参见[WIFI错误码](errorcode-wifi.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[WIFI错误码](errorcode-wifi.md)。
 
 | **错误码ID** | **错误信息** |
 | -------- | ---------------------------- |
@@ -951,7 +957,7 @@ connectToCandidateConfigWithUserAction(networkId: number): Promise&lt;void&gt;
 	import { wifiManager } from '@kit.ConnectivityKit';
 	
 	try {
-		let networkId = 0;
+		let networkId = 0; //候选网络ID，在添加候选网络时生成
 		wifiManager.connectToCandidateConfigWithUserAction(networkId).then(result => {
 			console.info("result:" + JSON.stringify(result));
 		}).catch((err:number) => {
