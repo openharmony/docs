@@ -7272,7 +7272,7 @@ onInterceptKeyboardAttach(callback: WebKeyboardCallback)
 
 onNativeEmbedVisibilityChange(callback: OnNativeEmbedVisibilityChangeCallback)
 
-网页中同层标签（如Embed标签或Object标签）在视口内的可见性发生变化时会触发该回调。同层标签默认不可见，如果首次进入页面可见则会上报，不可见则不会上报，当同层标签大小由非0值变为0 *0时，不会上报不可见，由0 *0变为非0值时会上报可见。同层标签全部不可见才算不可见，部分可见或全部可见算作可见。不支持由于CSS样式变化导致的同层标签可见状态变化上报，例如display、opacity和visibility等。
+当网页中同层标签（例如Embed标签或Object标签）在视口内的可见性发生变化时，将触发该回调。同层标签默认不可见，若在页面首次加载时已可见，则会上报；若不可见，则不会上报。同层标签全部不可见才视为不可见，部分可见或全部可见则视为可见。若要获取因同层标签CSS属性（包括visibility、display以及尺寸变化）导致的可见状态变化，需配置[nativeEmbedOptions](#nativeembedoptions16)，并将[EmbedOptions](#embedoptions16)中的supportCssDisplayChange参数设为true。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -10869,3 +10869,4 @@ Web同层渲染的配置。
 | 名称             | 类型      | 必填   | 说明                                       |
 | -------------- | ------- | ---- | ---------------------------------------- |
 | supportDefaultIntrinsicSize | boolean | 否    | 设置同层渲染元素是否支持固定大小 300 * 150。<br>当H5侧CSS设置了大小时，同层渲染元素大小为CSS大小，否则为固定大小。<br>为true时，固定大小为 300 * 150。<br>为false时，若H5侧CSS未设置大小，则同层渲染元素不渲染。<br>默认值：false<br>单位：px |
+| supportCssDisplayChange<sup>20+</sup> | boolean | 否    | 设置同层渲染可见性接口是否支持显示属性。 <br>同层渲染可见性接口默认支持同层标签相对于视口的可见状态。 <br>设置为true时，支持显示CSS属性，包括visibility、display和宽高。 <br>设置为false时，不支持显示CSS属性，仅支持同层标签相对于视口的可见性。 |
