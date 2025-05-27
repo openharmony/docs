@@ -4666,7 +4666,7 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4706,6 +4706,65 @@ imageSourceApi.getImageProperties(key).then((data) => {
 }).catch((err: BusinessError) => {
   console.error(JSON.stringify(err));
 });
+```
+
+### getImagePropertySync<sup>20+</sup>
+
+getImagePropertySync(key:PropertyKey): string
+
+获取图片exif指定属性键的值，用String形式返回结果。
+
+>**说明：**
+>
+> 该方法仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。
+>
+> exif信息是图片的元数据，包含拍摄时间、相机型号、光圈、焦距、ISO等。
+
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                 |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | [PropertyKey](#propertykey7)                                               | 是   | 图片属性名。                         |
+
+**返回值：**
+
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
+| string | 返回图片exif中指定属性键的值（如获取失败则返回属性默认值），各个数据值作用请参考[PropertyKey](#propertykey7)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed.|
+| 7700102 | Unsupported MIME type.|
+| 7700202 | Unsupported metadata. For example, key is not supported.|
+
+**示例：**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import fs from '@ohos.file.fs';
+
+let context = getContext();
+if (context == null) {
+  return;
+}
+let resoutceManager = context.resourceManager;
+if (resoutceManager == null) {
+  return;
+}
+let fd = resourceManager.getRawFdSync("example.jpg");
+
+const imageSourceApi = image.createImageSource(fd);
+console.info("getImagePropertySync");
+let bits_per_sample = imageSourceApi.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE);
+console.info("bits_per_sample : " + bits_per_sample);
 ```
 
 ### modifyImageProperty<sup>11+</sup>
@@ -4844,7 +4903,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
