@@ -3335,7 +3335,7 @@ setImageForRecent(imgResourceId: number, value: ImageFit): Promise&lt;void&gt;
 | 参数名      | 类型    | 必填 | 说明                                                         |
 | ----------- | ------- | ---- | ------------------------------------------------------------ |
 | imgResourceId | number | 是   | 静态图的资源id，获取方式：`$r("imagePath").id`，imagePath为图片所在路径，如`$r("app.media.cat").id` |
-| value | ImageFit | 是 | 静态图的[填充方式](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-appendix-enums.md#imagefit) |
+| value | ImageFit | 是 | 静态图的[填充方式](arkui-ts/ts-appendix-enums.md#imagefit) |
 
 **返回值：**
 
