@@ -8344,6 +8344,12 @@ type SourceReadCallback = (uuid: number, requestedOffset: number, requestedLengt
 | requestedOffset | number | 是  | 	当前媒体数据相对于资源起始位置的偏移量。 |
 | requestedLength | number | 是  | 	当前请求的长度。值为-1时，表示到达资源末尾，此时推送完成后需通过[finishLoading](#finishloading18)方法通知播放器推送结束。 |
 
+**返回值：**
+
+| 类型           | 说明                                |
+| -------------- | ---------------------------------- |
+| void           | 该接口应立刻返回。                   |
+
 **示例：**
 
 ```ts
@@ -8371,6 +8377,12 @@ type SourceCloseCallback = (uuid: number) => void
 | 参数名   | 类型     | 必填 | 说明                 |
 | -------- | -------- | ---- | -------------------- |
 | uuid      | number | 是  | 	资源句柄的标识。 |
+
+**返回值：**
+
+| 类型           | 说明                                |
+| -------------- | ---------------------------------- |
+| void           | 该接口应立刻返回。                   |
 
 **示例：**
 
