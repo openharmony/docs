@@ -957,7 +957,7 @@ connectToCandidateConfigWithUserAction(networkId: number): Promise&lt;void&gt;
 	import { wifiManager } from '@kit.ConnectivityKit';
 	
 	try {
-		let networkId = 0; //候选网络ID，在添加候选网络时生成
+		let networkId = 0; // 候选网络ID，在添加候选网络时生成
 		wifiManager.connectToCandidateConfigWithUserAction(networkId).then(result => {
 			console.info("result:" + JSON.stringify(result));
 		}).catch((err:number) => {
