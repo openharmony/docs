@@ -2463,7 +2463,7 @@ getVolumeGroupManagerSync(groupId: number\): AudioVolumeGroupManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2530,13 +2530,10 @@ setAppVolumePercentage(volume: number\): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 201 | Permission denied. |
-| 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 | 6800301 | Crash or blocking occurs in system process. |
 
@@ -2567,7 +2564,7 @@ on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2601,7 +2598,7 @@ off(type: 'volumeChange', callback?: Callback\<VolumeEvent>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2643,11 +2640,10 @@ on(type: 'appVolumeChange', callback: Callback\<VolumeEvent>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -2677,11 +2673,10 @@ off(type: 'appVolumeChange', callback?: Callback\<VolumeEvent>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters missing; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -2787,7 +2782,7 @@ getVolumeSync(volumeType: AudioVolumeType): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2887,7 +2882,7 @@ getMinVolumeSync(volumeType: AudioVolumeType): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2987,7 +2982,7 @@ getMaxVolumeSync(volumeType: AudioVolumeType): number
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3087,7 +3082,7 @@ isMuteSync(volumeType: AudioVolumeType): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3203,7 +3198,7 @@ on(type: 'ringerModeChange', callback: Callback\<AudioRingMode>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3423,7 +3418,7 @@ on(type: 'micStateChange', callback: Callback&lt;MicStateChangeEvent&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3455,7 +3450,7 @@ off(type: 'micStateChange', callback?: Callback&lt;MicStateChangeEvent&gt;): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3518,7 +3513,7 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3564,7 +3559,7 @@ getSystemVolumeInDb(volumeType: AudioVolumeType, volumeLevel: number, device: De
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3608,7 +3603,7 @@ getSystemVolumeInDbSync(volumeType: AudioVolumeType, volumeLevel: number, device
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3651,7 +3646,7 @@ getMaxAmplitudeForInputDevice(inputDevice: AudioDeviceDescriptor): Promise&lt;nu
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3702,7 +3697,7 @@ getMaxAmplitudeForOutputDevice(outputDevice: AudioDeviceDescriptor): Promise&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4028,7 +4023,7 @@ on(type: 'audioRendererChange', callback: Callback&lt;AudioRendererChangeInfoArr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4077,11 +4072,10 @@ off(type: 'audioRendererChange', callback?: Callback&lt;AudioRendererChangeInfoA
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -4134,7 +4128,7 @@ on(type: 'audioCapturerChange', callback: Callback&lt;AudioCapturerChangeInfoArr
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4181,11 +4175,10 @@ off(type: 'audioCapturerChange', callback?: Callback&lt;AudioCapturerChangeInfoA
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -4299,7 +4292,7 @@ isActiveSync(volumeType: AudioVolumeType): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4337,7 +4330,7 @@ getAudioEffectInfoArray(usage: StreamUsage, callback: AsyncCallback&lt;AudioEffe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4382,7 +4375,7 @@ getAudioEffectInfoArray(usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4424,7 +4417,7 @@ getAudioEffectInfoArraySync(usage: StreamUsage): AudioEffectInfoArray
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4572,7 +4565,7 @@ getDevicesSync(deviceFlag: DeviceFlag): AudioDeviceDescriptors
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4634,7 +4627,7 @@ on(type: 'micBlockStatusChanged', callback: Callback<DeviceBlockStatusInfo\>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4672,7 +4665,7 @@ off(type: 'micBlockStatusChanged', callback?: Callback<DeviceBlockStatusInfo\>):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4713,7 +4706,7 @@ on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChange
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4748,7 +4741,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4830,7 +4823,7 @@ getAvailableDevices(deviceUsage: DeviceUsage): AudioDeviceDescriptors
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4869,7 +4862,7 @@ on(type: 'availableDeviceChange', deviceUsage: DeviceUsage, callback: Callback<D
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4904,7 +4897,7 @@ off(type: 'availableDeviceChange', callback?: Callback<DeviceChangeAction\>): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5042,7 +5035,7 @@ isCommunicationDeviceActiveSync(deviceType: CommunicationDeviceType): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5080,7 +5073,7 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息                                           |
 | ------- |--------------------------------------------------|
@@ -5130,7 +5123,7 @@ getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息                                          |
 | ------- |-------------------------------------------------|
@@ -5179,7 +5172,7 @@ getPreferredOutputDeviceForRendererInfoSync(rendererInfo: AudioRendererInfo): Au
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息                     |
 | ------- |--------------------------|
@@ -5224,7 +5217,7 @@ on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererI
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5263,7 +5256,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5307,7 +5300,7 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo, callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5356,7 +5349,7 @@ getPreferredInputDeviceForCapturerInfo(capturerInfo: AudioCapturerInfo): Promise
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5404,7 +5397,7 @@ getPreferredInputDeviceForCapturerInfoSync(capturerInfo: AudioCapturerInfo): Aud
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5449,7 +5442,7 @@ on(type: 'preferredInputDeviceChangeForCapturerInfo', capturerInfo: AudioCapture
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5488,7 +5481,7 @@ off(type: 'preferredInputDeviceChangeForCapturerInfo', callback?: Callback<Audio
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5543,7 +5536,7 @@ activateAudioSession(strategy: AudioSessionStrategy): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
@@ -5638,7 +5631,7 @@ on(type: 'audioSessionDeactivated', callback: Callback\<AudioSessionDeactivatedE
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5670,7 +5663,7 @@ off(type: 'audioSessionDeactivated', callback?: Callback\<AudioSessionDeactivate
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -5739,11 +5732,10 @@ on(type: 'spatializationEnabledChangeForCurrentDevice', callback: Callback<boole
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -5773,11 +5765,10 @@ off(type: 'spatializationEnabledChangeForCurrentDevice', callback?: Callback<boo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401     | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -6285,7 +6276,7 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------------------------------|
@@ -6328,7 +6319,7 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | ---------------------------------------------|
@@ -7086,7 +7077,7 @@ setSpeed(speed: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7285,7 +7276,7 @@ setInterruptModeSync(mode: InterruptMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7759,7 +7750,7 @@ setChannelBlendMode(mode: ChannelBlendMode): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7792,7 +7783,7 @@ setVolumeWithRamp(volume: number, duration: number): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7881,7 +7872,7 @@ setDefaultOutputDevice(deviceType: DeviceType): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -7925,7 +7916,7 @@ AudioRenderer对象在start事件时获取焦点，在pause、stop等事件时�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -8009,11 +8000,10 @@ off(type: 'audioInterrupt', callback?: Callback&lt;InterruptEvent&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -8247,11 +8237,10 @@ off(type: 'stateChange', callback?: Callback&lt;AudioState&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -8292,7 +8281,7 @@ on(type: 'outputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): voi
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -8326,7 +8315,7 @@ off(type: 'outputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -8368,7 +8357,7 @@ on(type: 'outputDeviceChangeWithInfo', callback: Callback\<AudioStreamDeviceChan
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -8403,7 +8392,7 @@ off(type: 'outputDeviceChangeWithInfo', callback?: Callback\<AudioStreamDeviceCh
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -8448,7 +8437,7 @@ on(type: 'writeData', callback: AudioRendererWriteDataCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -8517,7 +8506,7 @@ off(type: 'writeData', callback?: AudioRendererWriteDataCallback): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见 [Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9343,7 +9332,7 @@ AudioCapturer对象在start事件时获取焦点，在pause、stop等事件时�
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9415,7 +9404,7 @@ off(type: 'audioInterrupt'): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9445,7 +9434,7 @@ on(type: 'inputDeviceChange', callback: Callback\<AudioDeviceDescriptors>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9478,7 +9467,7 @@ off(type: 'inputDeviceChange', callback?: Callback\<AudioDeviceDescriptors>): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9520,7 +9509,7 @@ on(type: 'audioCapturerChange', callback: Callback\<AudioCapturerChangeInfo>): v
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9746,11 +9735,10 @@ off(type: 'stateChange', callback?: Callback&lt;AudioState&gt;): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -9793,7 +9781,7 @@ on(type: 'readData', callback: Callback\<ArrayBuffer>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -9856,7 +9844,7 @@ off(type: 'readData', callback?: Callback\<ArrayBuffer>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
