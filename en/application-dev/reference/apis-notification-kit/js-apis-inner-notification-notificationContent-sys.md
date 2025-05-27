@@ -30,9 +30,9 @@ Describes the common live view.
 | version        | number                                                             | No | Yes | If the version number stored in the database is not **0xffffffff**, the version number needs to be verified when the live view is updated or ended to ensure that the current version number is greater than the version number stored in the database. The default value is **0xffffffff**.|
 | extraInfo      | Record<string, Object\>                                               | No | Yes | Extra information of the live view.          |
 | pictureInfo    | Record<string, Array<[image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)\>\> | No | Yes | Extra image information of the live view.|
-| isLocalUpdateOnly<sup>12+</sup> | boolean                                           | No | Yes | Whether the live view is updated only locally.    |
-| liveViewType<sup>16+</sup>  | [LiveViewTypes](#liveviewtypes18)  | No| Yes | Live view types. |
-| cardButtons<sup>16+</sup> | Array\<[NotificationIconButton](#notificationiconbutton18)\>    |  No |  Yes | Live view buttons (a maximum of three buttons are supported).     |
+| isLocalUpdateOnly<sup>12+</sup> | boolean                                           | No | Yes | Whether the live view is updated only locally.  <br> - **true**: Yes.<br> - **false** (default): No.    |
+| liveViewType<sup>18+</sup>  | [LiveViewTypes](#liveviewtypes18)  | No| Yes | Live view types. |
+| cardButtons<sup>18+</sup> | Array\<[NotificationIconButton](#notificationiconbutton18)\>    |  No |  Yes | Live view buttons (a maximum of three buttons are supported).     |
 
 ## NotificationCapsule<sup>11+</sup>
 

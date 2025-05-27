@@ -11,7 +11,6 @@
   - [Publishing a Live View Notification (for System Applications Only)](live-view-notification.md)
   <!--DelEnd-->
   - [Adding a WantAgent Object to a Notification](notification-with-wantagent.md)
-- [Updating a Notification](notification-update.md)
 - [Canceling a Notification](notification-cancel.md)
 <!--Del-->
 - [Subscribing to Notifications (for System Applications Only)](notification-subscription.md)
