@@ -925,7 +925,7 @@ error: signature verification failed due to not trusted app source.
 
     3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
 
-3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
+3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 ### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同

@@ -1,8 +1,8 @@
 # HAR转HSP指导
-目前HAR的使用存在打包多份，包膨胀的问题，导致整体应用包的体积很大，HSP可以很好地解决该问题，本文介绍了HAR转HSP的步骤，主要是通过配置项的变更将HAR工程变成HSP工程。
+目前HAR的使用存在打包多份，包膨胀的问题，导致整体应用包的体积很大，HSP可以很好地解决该问题，本文介绍如何通过配置项的变更将HAR工程转换为HSP工程。
 ## HAR转HSP的操作步骤
 
-1. 修改HAR模块下的module.json5文件，修改type字段为shared，新增deliveryWithInstall和pages字段。
+1. 修改HAR模块下的module.json5文件，将type字段设置为shared，并新增deliveryWithInstall和pages字段。
     ```json
     // MyApplication\library\src\main\module.json5
     {
@@ -68,7 +68,7 @@
     }
     ```
 
-7. 修改项目根目录下的配置文件build-profile.json5，在modules标签下找到library的配置，新增targets标签。
+7. 修改项目根目录下的build-profile.json5文件，在modules标签下找到library的配置，新增targets标签。
 
     ```json
     // MyApplication\build-profile.json5
