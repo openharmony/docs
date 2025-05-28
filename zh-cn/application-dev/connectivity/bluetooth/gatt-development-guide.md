@@ -6,7 +6,7 @@
 GATT是低功耗蓝牙（BLE）的核心协议，定义了基于服务（Service）、特征值（Characteristic）和描述符（Descriptor）进行蓝牙通信和传输数据的机制。相关术语介绍请参考[Connectivity Kit术语](../terminology.md)。
 
 ## 实现原理
-客户端获取到服务端的设备地址后，即可向服务端发起连接。服务端设备地址可以通过BLE扫描流程获取。待两端连接成功后，即可向服务端发起服务查询、读写特征值和接收通知等操作，从而实现发向服务端发送数据或者接收服务端数据的功能。
+客户端获取到服务端的设备地址后，即可向服务端发起连接。服务端设备地址可以通过BLE扫描流程获取。待两端连接成功后，即可向服务端发起服务查询、读写特征值和接收通知等操作，从而实现向服务端发送数据或者接收服务端数据的功能。
 
 服务端需要发送BLE广播才能被客户端发现。服务端需要支持客户端需要连接的服务，等待客户端的连接请求即可。待两端连接成功后，即可接收客户端的读写特征值和发送通知等操作，从而实现接收客户端数据或者向客户端发送数据的功能。
 
@@ -44,14 +44,14 @@ try {
 // 此处是伪代码
 let device = 'XX:XX:XX:XX:XX:XX';
 
-function ClientConnectStateChanged(state: ble.BLEConnectionChangeState) {
+function clientConnectStateChanged(state: ble.BLEConnectionChangeState) {
   console.info('bluetooth connect state changed');
   let connectState: ble.ProfileConnectionState = state.state;
 }
 
 try {
   let gattClient: ble.GattClientDevice = ble.createGattClientDevice(device);
-  gattClient.on('BLEConnectionStateChange', ClientConnectStateChanged);
+  gattClient.on('BLEConnectionStateChange', clientConnectStateChanged);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -196,7 +196,7 @@ try {
 let device = 'XX:XX:XX:XX:XX:XX';
 
 // 定义服务端特征值变化事件
-function CharacteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
+function characteristicChange(characteristicChangeReq: ble.BLECharacteristic) {
   let serviceUuid: string = characteristicChangeReq.serviceUuid;
   let characteristicUuid: string = characteristicChangeReq.characteristicUuid;
   let value: Uint8Array = new Uint8Array(characteristicChangeReq.characteristicValue);
@@ -225,7 +225,7 @@ let gattClient: ble.GattClientDevice = ble.createGattClientDevice(device);
 
 // 发起订阅
 try {
-    gattClient.on('BLECharacteristicChange', CharacteristicChange);
+    gattClient.on('BLECharacteristicChange', characteristicChange);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
 }
@@ -366,7 +366,7 @@ let cccValue = new Uint8Array(arrayBufferCCC);
 cccValue[0] = 1;
 
 // 定义特征值读取回调函数
-function ReadCharacteristicReq(characteristicReadRequest: ble.CharacteristicReadRequest) {
+function readCharacteristicReq(characteristicReadRequest: ble.CharacteristicReadRequest) {
   let deviceId: string = characteristicReadRequest.deviceId;
   let transId: number = characteristicReadRequest.transId;
   let offset: number = characteristicReadRequest.offset;
@@ -388,7 +388,7 @@ function ReadCharacteristicReq(characteristicReadRequest: ble.CharacteristicRead
 }
 
 // 定义特征值写入回调函数
-function WriteCharacteristicReq(characteristicWriteRequest: ble.CharacteristicWriteRequest) {
+function writeCharacteristicReq(characteristicWriteRequest: ble.CharacteristicWriteRequest) {
   let deviceId: string = characteristicWriteRequest.deviceId;
   let transId: number = characteristicWriteRequest.transId;
   let offset: number = characteristicWriteRequest.offset;
@@ -415,10 +415,10 @@ function WriteCharacteristicReq(characteristicWriteRequest: ble.CharacteristicWr
 }
 
 // 订阅特征值读取事件
-gattServer.on('characteristicRead', ReadCharacteristicReq);
+gattServer.on('characteristicRead', readCharacteristicReq);
 
 // 订阅特征值写入事件
-gattServer.on('characteristicWrite', WriteCharacteristicReq);
+gattServer.on('characteristicWrite', writeCharacteristicReq);
 ```
 
 **订阅描述符读取或写入事件**<br>
@@ -433,7 +433,7 @@ let gattServer: ble.GattServer = ble.createGattServer();
 let arrayBufferDesc = new ArrayBuffer(2);
 let descValue = new Uint8Array(arrayBufferDesc);
 descValue[0] = 1;
-function ReadDescriptorReq(descriptorReadRequest: ble.DescriptorReadRequest) {
+function readDescriptorReq(descriptorReadRequest: ble.DescriptorReadRequest) {
   let deviceId: string = descriptorReadRequest.deviceId;
   let transId: number = descriptorReadRequest.transId;
   let offset: number = descriptorReadRequest.offset;
@@ -455,7 +455,7 @@ function ReadDescriptorReq(descriptorReadRequest: ble.DescriptorReadRequest) {
 }
 
 // 定义描述符写入回调函数
-function WriteDescriptorReq(descriptorWriteRequest: ble.DescriptorWriteRequest) {
+function writeDescriptorReq(descriptorWriteRequest: ble.DescriptorWriteRequest) {
   let deviceId: string = descriptorWriteRequest.deviceId;
   let transId: number = descriptorWriteRequest.transId;
   let offset: number = descriptorWriteRequest.offset;
@@ -484,10 +484,10 @@ function WriteDescriptorReq(descriptorWriteRequest: ble.DescriptorWriteRequest) 
 }
 
 // 订阅描述符读取事件
-gattServer.on('descriptorRead', ReadDescriptorReq);
+gattServer.on('descriptorRead', readDescriptorReq);
 
 // 订阅描述符写入事件
-gattServer.on('descriptorWrite', WriteDescriptorReq);
+gattServer.on('descriptorWrite', writeDescriptorReq);
 ```
 
 **发送特征值变化通知或指示**<br>
