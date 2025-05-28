@@ -1,6 +1,6 @@
 # @ohos.bluetooth.connection (蓝牙connection模块)
 
-connection模块提供了对蓝牙操作和管理的方法。
+connection模块提供了蓝牙设备的配对、连接及状态查询等能力。
 
 > **说明：**
 >
@@ -19,72 +19,73 @@ import { connection } from '@kit.ConnectivityKit';
 
 type ProfileConnectionState = constant.ProfileConnectionState
 
-蓝牙设备的profile连接状态。
+蓝牙设备的Profile协议连接状态。Profile协议包括A2DP（Advanced Audio Distribution Profile）、HFP（Hands-Free Profile）和HID（Human Interface Device）等。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 蓝牙设备的profile连接状态。 |
+| [constant.ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | 蓝牙设备的Profile协议连接状态。 |
 
 
 ## ProfileId
 
 type ProfileId = constant.ProfileId
 
-蓝牙profile枚举。
+枚举，蓝牙Profile协议。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [constant.ProfileId](js-apis-bluetooth-constant.md#profileid) | 蓝牙profile枚举。 |
+| [constant.ProfileId](js-apis-bluetooth-constant.md#profileid) | 蓝牙Profile协议的枚举。 |
 
 
 ## ProfileUuids<sup>12+</sup>
 
 type ProfileUuids = constant.ProfileUuids
 
-表示Profile的UUID。
+蓝牙Profile协议的UUID。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids) | 表示Profile的UUID。 |
+| [constant.ProfileUuids](js-apis-bluetooth-constant.md#profileuuids) | 蓝牙Profile协议的UUID。 |
 
 
 ## MajorClass
 
 type MajorClass = constant.MajorClass
 
-蓝牙设备主要类别。
+蓝牙设备的主要类型。蓝牙标准协议字段。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [constant.MajorClass](js-apis-bluetooth-constant.md#majorclass) | 蓝牙设备主要类别。 |
+| [constant.MajorClass](js-apis-bluetooth-constant.md#majorclass) | 蓝牙设备的主要类型。 |
 
 
 ## MajorMinorClass
 
 type MajorMinorClass = constant.MajorMinorClass
 
-主要次要蓝牙设备类别。
+蓝牙设备的子类型，在[MajorClass](js-apis-bluetooth-constant.md#majorclass)基础上进一步细分的类型。蓝牙标准协议字段。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
 | 类型                  | 说明                  |
 | ------------------- | ------------------- |
-| [constant.MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | 主要次要蓝牙设备类别。 |
+| [constant.MajorMinorClass](js-apis-bluetooth-constant.md#majorminorclass) | 蓝牙设备的子类型。 |
 
 
 ## connection.pairDevice
 
 pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
-发起蓝牙配对。使用Callback异步回调。
+主动发起与对端蓝牙设备的配对流程。使用Callback异步回调。
+- 蓝牙配对状态通过[on('bondStateChange')](#connectiononbondstatechange)的回调结果获取。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -96,7 +97,7 @@ pairDevice(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string | 是    | 需要配对的对端蓝牙设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | callback | AsyncCallback&lt;void&gt;  | 是    | 回调函数。当配对成功，err为undefined，否则为错误对象。 |
 
 **错误码**：
@@ -132,7 +133,8 @@ try {
 
 pairDevice(deviceId: string): Promise&lt;void&gt;
 
-发起蓝牙配对。使用Promise异步回调。
+主动发起与对端蓝牙设备的配对流程。使用Promise异步回调。
+- 蓝牙配对状态通过[on('bondStateChange')](#connectiononbondstatechange)的回调结果获取。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -144,13 +146,13 @@ pairDevice(deviceId: string): Promise&lt;void&gt;
 
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string | 是    | 需要配对的对端蓝牙设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | 返回promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -199,7 +201,7 @@ getRemoteDeviceName(deviceId: string): string
 
 | 参数名      | 类型     | 必填   | 说明                                |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | 是    | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string | 是    | 表示对端设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -237,8 +239,6 @@ try {
 getRemoteDeviceName(deviceId: string, alias?: boolean): string
 
 获取对端蓝牙设备的名称，其中alias为可选参数。
-- 如果携带alias，则根据alias判断是否获取对端蓝牙设备别名。
-- 如果未携带alias，则默认返回对端蓝牙设备别名。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -250,8 +250,8 @@ getRemoteDeviceName(deviceId: string, alias?: boolean): string
 
 | 参数名      | 类型     | 必填   | 说明                                |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | 是    | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| alias | boolean | 否    | 是否获取对端蓝牙设备别名。获取成功为true，否则设置为false。 |
+| deviceId | string | 是    | 表示对端设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| alias | boolean | 否    | 表示是否获取对端蓝牙设备别名。<br>- 如果携带alias，则根据alias判断是否获取对端蓝牙设备别名：true表示获取对端蓝牙设备别名，false表示获取对端蓝牙设备原始名称。<br>- 如果未携带alias，则默认值为true，返回对端蓝牙设备别名。 |
 
 **返回值：**
 
@@ -296,13 +296,13 @@ getRemoteDeviceClass(deviceId: string): DeviceClass
 
 | 参数名      | 类型     | 必填   | 说明                                |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | 是    | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string | 是    | 表示对端设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                          | 说明       |
 | --------------------------- | -------- |
-| [DeviceClass](#deviceclass) | 远程设备的类别。 |
+| [DeviceClass](#deviceclass) | 对端设备的类别。 |
 
 **错误码**：
 
@@ -332,7 +332,8 @@ try {
 
 getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;ProfileUuids&gt;&gt;): void
 
-获取对端蓝牙设备支持的Profile UUID。使用Callback异步回调。
+获取对端蓝牙设备的Profile协议能力，通过UUID区分。使用Callback异步回调。
+- 建议仅对已配对的设备调用该方法。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -342,8 +343,8 @@ getRemoteProfileUuids(deviceId: string, callback: AsyncCallback&lt;Array&lt;Prof
 
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，否则为错误对象。 |
+| deviceId | string | 是    | 表示配对的对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| callback | AsyncCallback&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | 是    | 回调函数。当获取UUID成功，err为undefined，获取到的是UUID能力集合；否则为错误对象。 |
 
 **错误码**：
 
@@ -377,7 +378,8 @@ try {
 
 getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt;
 
-获取对端蓝牙设备支持的Profile UUID。使用Promise异步回调。
+获取对端蓝牙设备的Profile协议能力，通过UUID区分。使用Promise异步回调。
+- 建议仅对已配对的设备调用该方法。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -387,13 +389,13 @@ getRemoteProfileUuids(deviceId: string): Promise&lt;Array&lt;ProfileUuids&gt;&gt
 
 | 参数名      | 类型     | 必填   | 说明                                  |
 | -------- | ------ | ---- | ----------------------------------- |
-| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string | 是    | 表示配对的对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | 返回promise对象。 |
+|   Promise&lt;Array&lt;[ProfileUuids](js-apis-bluetooth-constant.md#profileuuids12)&gt;&gt; | Promise对象，返回支持的Profile协议列表。 |
 
 **错误码**：
 
@@ -428,7 +430,7 @@ try {
 
 getLocalName(): string
 
-获取蓝牙本地设备名称。
+获取本机蓝牙设备的名称。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -438,7 +440,7 @@ getLocalName(): string
 
 | 类型     | 说明        |
 | ------ | --------- |
-| string | 蓝牙本地设备名称。 |
+| string | 本机蓝牙设备名称。 |
 
 **错误码**：
 
@@ -467,7 +469,7 @@ try {
 
 getPairedDevices(): Array&lt;string&gt;
 
-获取蓝牙配对列表。
+获取已配对蓝牙设备列表。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -479,7 +481,7 @@ getPairedDevices(): Array&lt;string&gt;
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Array&lt;string&gt; | 已配对蓝牙设备的地址列表。<br>- 基于信息安全考虑，此处获取的设备地址为随机MAC地址。<br>- 配对成功后，该地址不会变更。<br>- 已配对设备取消配对后重新扫描或蓝牙服务下电时，该随机地址会变更。 |
+| Array&lt;string&gt; | 已配对蓝牙设备的地址列表。<br/>- 基于信息安全考虑，此处获取的设备地址为虚拟MAC地址。<br/>- 配对成功后，该地址不会变更。<br/>- 取消配对该设备后，重新扫描或蓝牙服务下电（蓝牙电源供应被切断）后，该虚拟地址会变更。 | 
 
 **错误码**：
 
@@ -509,7 +511,7 @@ try {
 
 getPairState(deviceId: string): BondState
 
-获取蓝牙配对状态。
+获取对端蓝牙设备的配对状态信息。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -521,7 +523,7 @@ getPairState(deviceId: string): BondState
 
 | 参数名      | 类型     | 必填   | 说明                                |
 | -------- | ------ | ---- | --------------------------------- |
-| deviceId | string | 是    | 表示远程设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string | 是    | 表示对端设备的地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
@@ -559,9 +561,7 @@ try {
 
 getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
-获取蓝牙Profile的连接状态，其中ProfileId为可选参数。
-- 如果携带ProfileId，则返回的是当前Profile的连接状态。
-- 如果未携带ProfileId，任一Profile已连接则返回[STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)，否则返回[STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)。
+获取蓝牙Profile协议的连接状态，其中ProfileId为可选参数。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -571,13 +571,13 @@ getProfileConnectionState(profileId?: ProfileId): ProfileConnectionState
 
 | 参数名       | 类型        | 必填   | 说明                                    |
 | --------- | --------- | ---- | ------------------------------------- |
-| profileId | [ProfileId](js-apis-bluetooth-constant.md#profileid) | 否    | 表示profile的枚举值，例如：PROFILE_A2DP_SOURCE。 |
+| profileId | [ProfileId](js-apis-bluetooth-constant.md#profileid) | 否    | 表示Profile协议的枚举值。如果携带ProfileId，则返回指定Profile协议的连接状态。如果未携带ProfileId，则检查所有支持的Profile连接状态，按如下优先级顺序检查并返回：<br>- 存在已连接的Profile协议，则返回[STATE_CONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)。<br>- 存在正在连接的Profile协议，则返回[STATE_CONNECTING](js-apis-bluetooth-constant.md#profileconnectionstate)。<br>- 存在正在断连的Profile协议，则返回[STATE_DISCONNECTING](js-apis-bluetooth-constant.md#profileconnectionstate)。<br>- 以上条件均不满足，则返回[STATE_DISCONNECTED](js-apis-bluetooth-constant.md#profileconnectionstate)。 | 
 
 **返回值：**
 
 | 类型                                              | 说明                |
 | ------------------------------------------------- | ------------------- |
-| [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | profile的连接状态。 |
+| [ProfileConnectionState](js-apis-bluetooth-constant.md#profileconnectionstate) | Profile协议的连接状态。 | 
 
 **错误码**：
 
@@ -610,7 +610,8 @@ try {
 
 setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
-设置设备配对请求确认。
+收到对端蓝牙设备的配对请求事件后，确认请求结果。
+- 对端蓝牙的配对请求通过[on('pinRequired')](#connectiononpinrequired)的回调结果获取。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH 和 ohos.permission.MANAGE_BLUETOOTH（该权限仅系统应用可申请）
 
@@ -620,8 +621,8 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 | 参数名    | 类型      | 必填   | 说明                               |
 | ------   | ------- | ---- | -------------------------------- |
-| deviceId | string  | 是    | 表示远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| accept   | boolean | 是    | 接受配对请求设置为true，否则设置为false。        |
+| deviceId | string | 是 | 表示对端设备地址，例如："XX:XX:XX:XX:XX:XX"。 | 
+| accept   | boolean | 是    | 是否接受对端设备的配对请求。true表示接受，false表示不接受。       |
 
 **错误码**：
 
@@ -640,7 +641,7 @@ setDevicePairingConfirmation(deviceId: string, accept: boolean): void
 
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
-// 订阅“pinRequired”配对请求事件，收到远端配对请求后设置配对确认。
+// 订阅“pinRequired”配对请求事件，收到对端配对请求后设置配对确认。
 function onReceivePinRequiredEvent(data: connection.PinRequiredParam) { // data为配对请求的入参，配对请求参数。
     console.info('pin required  = '+ JSON.stringify(data));
     connection.setDevicePairingConfirmation(data.deviceId, true);
@@ -657,7 +658,7 @@ try {
 
 setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void&gt;): void
 
-当蓝牙配对类型PinType为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。使用Callback异步回调。
+蓝牙配对时，弹框提示用户输入个人身份识别码（Personal identification number，PIN），调用此接口设置PIN码，完成蓝牙配对。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -667,7 +668,7 @@ setDevicePinCode(deviceId: string, code: string, callback: AsyncCallback&lt;void
 
 | 参数名    | 类型      | 必填   | 说明                               |
 | ------ | ------- | ---- | -------------------------------- |
-| deviceId | string  | 是    | 表示远端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string  | 是    | 表示对端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | code   | string  | 是    | 用户输入的PIN码。        |
 | callback   | AsyncCallback&lt;void&gt;  | 是    | 回调函数，当设置PinCode成功，err为undefined，否则为错误对象。        |
 
@@ -703,7 +704,7 @@ try {
 
 setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
-当蓝牙配对类型PinType为PIN_TYPE_ENTER_PIN_CODE或PIN_TYPE_PIN_16_DIGITS时调用此接口，请求用户输入PIN码。使用Promise异步回调。
+蓝牙配对时，弹框提示用户输入PIN码，调用此接口请求用户输入PIN码，完成蓝牙配对。使用Promise异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -713,14 +714,14 @@ setDevicePinCode(deviceId: string, code: string): Promise&lt;void&gt;
 
 | 参数名    | 类型      | 必填   | 说明                               |
 | ------ | ------- | ---- | -------------------------------- |
-| deviceId | string  | 是    | 表示远端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| deviceId | string  | 是    | 表示对端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
 | code   | string  | 是    | 用户输入的PIN码。        |
 
 **返回值：**
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | 返回promise对象。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -757,7 +758,7 @@ try {
 
 setLocalName(name: string): void
 
-设置蓝牙本地设备名称。
+设置本机蓝牙设备名称，不能设置为空字符串。如果设为空字符串会失败。
 
 > **说明：**<br/>
 > 从API version 10开始支持，从API version 12开始废弃，不再提供替代接口。
@@ -770,7 +771,7 @@ setLocalName(name: string): void
 
 | 参数名  | 类型     | 必填   | 说明                    |
 | ---- | ------ | ---- | --------------------- |
-| name | string | 是    | 要设置的蓝牙名称，最大长度为248字节数。 |
+| name | string | 是    | 需要设置的蓝牙名称，名称长度范围为(0,248]，单位是字节。 |
 
 **错误码**：
 
@@ -801,7 +802,7 @@ try {
 
 setBluetoothScanMode(mode: ScanMode, duration: number): void
 
-设置蓝牙扫描模式，可以被远端设备发现。
+设置蓝牙扫描模式，决定本机设备是否可被连接，或者可被发现。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -832,7 +833,7 @@ setBluetoothScanMode(mode: ScanMode, duration: number): void
 ```js
 import { AsyncCallback, BusinessError } from '@kit.BasicServicesKit';
 try {
-    // 设置为可连接可发现才可被远端设备扫描到，可以连接。
+    // 设置为可连接可发现才可被对端设备扫描到，可以连接。
     connection.setBluetoothScanMode(connection.ScanMode.SCAN_MODE_CONNECTABLE_GENERAL_DISCOVERABLE, 100);
 } catch (err) {
     console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -884,7 +885,7 @@ try {
 
 startBluetoothDiscovery(): void
 
-开启蓝牙扫描，可以发现远端设备。
+开启蓝牙扫描，发现对端蓝牙设备（传统蓝牙设备和BLE设备）。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -960,7 +961,7 @@ try {
 
 isBluetoothDiscovering(): boolean
 
-查询设备的蓝牙发现状态。
+判断本机蓝牙设备是否处于设备扫描状态。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -970,7 +971,7 @@ isBluetoothDiscovering(): boolean
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-|   boolean           | 设备已开启蓝牙发现为true，否则为false。 |
+|   boolean           | 是否开启蓝牙发现。true表示正在发起设备扫描，false表示未发起设备扫描。  |
 
 **错误码**：
 
@@ -1000,7 +1001,8 @@ try {
 
 setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 
-设置蓝牙远端设备名称。使用Promise异步回调。
+设置对端蓝牙设备的名称，不能设置为空字符串。如果设为空字符串会失败。使用Promise异步回调。
+- 建议仅对已配对的设备调用该方法。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1012,14 +1014,14 @@ setRemoteDeviceName(deviceId: string, name: string): Promise&lt;void&gt;
 
 | 参数名      | 类型                                  | 必填   | 说明                                     |
 | -------- | ----------------------------------- | ---- | -------------------------------------- |
-| deviceId     | string                              | 是    | 表示远端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
-| name | string | 是    | 修改远端设备名称，最大长度为64字节。    |
+| deviceId     | string                              | 是    | 表示对端设备MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| name | string | 是    | 修改对端设备名称，名称长度范围为(0,64]，单位是字节。    |
 
 **返回值：**
 
 | 类型                  | 说明            |
 | ------------------- | ------------- |
-| Promise&lt;void&gt; | 以Promise形式返回设置蓝牙远端设备名称的结果，设置失败时返回错误码信息。 |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
 **错误码**：
 
@@ -1054,7 +1056,8 @@ try {
 
 getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
 
-获取蓝牙远端设备的电量信息。使用Promise异步回调。
+获取对端蓝牙设备的电量信息。使用Promise异步回调。
+- 对端蓝牙设备的电量信息变更通过[on('batteryChange')](#connectiononbatterychange12)的回调结果获取。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1064,13 +1067,13 @@ getRemoteDeviceBatteryInfo(deviceId: string): Promise&lt;BatteryInfo&gt;
 
 | 参数名    | 类型      | 必填   | 说明                               |
 | ------ | ------- | ---- | -------------------------------- |
-| deviceId | string  | 是    | 表示远端设备MAC地址，例如："11:22:33:AA:BB:FF"。 |
+| deviceId | string  | 是    | 表示对端蓝牙设备的MAC地址，例如："XX:XX:XX:XX:XX:XX"。 |
 
 **返回值：**
 
 | 类型                  | 说明         |
 | ------------------- | ------------- |
-| Promise&lt;[BatteryInfo](#batteryinfo12)&gt; | 以Promise形式返回蓝牙远端设备的电量信息。 |
+| Promise&lt;[BatteryInfo](#batteryinfo12)&gt; | Promise对象，返回电量信息对象。 |
 
 **错误码**：
 
@@ -1535,7 +1538,7 @@ try {
 
 getLastConnectionTime(deviceId: string): Promise&lt;number&gt;
 
-获取蓝牙远端设备最近一次连接的时间点。使用Promise异步回调。
+获取对端蓝牙设备最近一次连接的时间点。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core
 
@@ -1549,7 +1552,7 @@ getLastConnectionTime(deviceId: string): Promise&lt;number&gt;
 
 | 类型                  | 说明         |
 | ------------------- | ------------- |
-| Promise&lt;number&gt; | 以Promise形式返回设置蓝牙远端设备最近一次连接的时间点结果，返回promise对象。 |
+| Promise&lt;number&gt; | Promise对象，返回对端蓝牙设备最近一次连接的时间点。 |
 
 **错误码**：
 
@@ -1685,7 +1688,7 @@ connectAllowedProfiles(deviceId: string): Promise&lt;void&gt;
 
 | 类型                                             | 说明               |
 | ------------------------------------------------- | ------------------- |
-| Promise&lt;void&gt; | Promise对象。|
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。|
 
 **错误码：**
 
