@@ -18,7 +18,7 @@
 | -- | -- |
 | char* genre | 媒体资源的类型或体裁。 |
 | char* videoOrientation | 视频的旋转方向，单位为度。 |
-| OH_AVRecorder_Location location | 视频的地理位置信息。 |
-| OH_AVRecorder_MetadataTemplate customInfo | 从 moov.meta.list 读取的自定义参数键值映射。 |
+| [OH_AVRecorder_Location](capi-oh-avrecorder-location.md) location | 视频的地理位置信息。 |
+| [OH_AVRecorder_MetadataTemplate](capi-oh-avrecorder-metadatatemplate.md) customInfo | 从 moov.meta.list 读取的自定义参数键值映射。 |
 
 
