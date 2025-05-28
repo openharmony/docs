@@ -537,6 +537,8 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
 | napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
 | napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。 |
+|napi_create_ark_context| 创建一个新的上下文环境。|
+|napi_destroy_ark_context| 销毁通过napi_create_ark_context创建的上下文环境。|
 
 #### napi_queue_async_work_with_qos
 
@@ -755,6 +757,17 @@ napi_status napi_wrap_enhance(napi_env env,
                               void* finalize_hint,
                               size_t native_binding_size,
                               napi_ref* result);
+```
+
+#### napi_create_ark_context
+```c
+NAPI_EXTERN napi_status napi_create_ark_context(napi_env env,
+                                                napi_env* newEnv);
+```
+
+#### napi_destroy_ark_context
+```c
+NAPI_EXTERN napi_status napi_destroy_ark_context(napi_env env);
 ```
 
 ### 其他实用工具

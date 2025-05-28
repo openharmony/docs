@@ -1813,6 +1813,7 @@
           - [使用扩展的Node-API接口在异步线程中运行和停止事件循环](napi/use-napi-event-loop.md)
           - [使用Node-API接口进行模块加载](napi/use-napi-load-module-with-info.md)
           - [使用Node-API接口从异步线程向ArkTS线程投递指定优先级和入队方式的的任务](napi/use-call-threadsafe-function-with-priority.md)
+          - [使用Node-API接口创建、切换和销毁上下文环境](napi/use-napi-about-context.md)
           - [使用Node-API接口产生的异常日志/崩溃分析](napi/use-napi-about-crash.md)
           - [使用Node-API调用返回值为promise的ArkTS方法](napi/use-napi-method-promise.md)
         - [Node-API常见问题](napi/use-napi-faqs.md)
