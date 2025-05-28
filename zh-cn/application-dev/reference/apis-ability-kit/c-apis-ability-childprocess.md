@@ -39,7 +39,7 @@
 | 名称                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 描述                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) {<br>    NCP_NO_ERROR = 0,<br>    NCP_ERR_INVALID_PARAM = 401,<br>    NCP_ERR_NOT_SUPPORTED = 801,<br>    NCP_ERR_INTERNAL = 16000050,<br>    NCP_ERR_BUSY = 16010001,<br>    NCP_ERR_TIMEOUT = 16010002,<br>    NCP_ERR_SERVICE_ERROR = 16010003,<br>    NCP_ERR_MULTI_PROCESS_DISABLED = 16010004,<br>    NCP_ERR_ALREADY_IN_CHILD = 16010005,<br>    NCP_ERR_MAX_CHILD_PROCESSES_REACHED = 16010006,<br>    NCP_ERR_LIB_LOADING_FAILED = 16010007,<br>    NCP_ERR_CONNECTION_FAILED = 16010008,<br>    NCP_ERR_CALLBACK_NOT_EXIST = 16010009<br>} | 定义Native子进程模块错误码。 |
-
+| [NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode) {<br> NCP_ISOLATION_MODE_NORMAL = 0,<br>    NCP_ISOLATION_MODE_ISOLATED = 1 <br>} | 定义Native子进程隔离模式。 |
 
 ### 函数
 
@@ -54,11 +54,6 @@
 | Ability_NativeChildProcess_ErrCode [OH_Ability_CreateNativeChildProcessWithConfigs](#oh_ability_createnativechildprocesswithconfigs) (const char \*libName, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 根据传入的子进程配置信息创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
 | Ability_NativeChildProcess_ErrCode [OH_Ability_StartNativeChildProcessWithConfigs](#oh_ability_startnativechildprocesswithconfigs) (const char \*entry, [NativeChildProcess_Args](#nativechildprocess_args) args, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, int32_t *pid) | 根据传入的子进程配置信息启动一个进程，并加载指定的库文件。 |
 
-
-> **说明：**
->
-> 当前仅支持2in1设备。
-> 从API version 15开始，单个进程最多支持启动50个Native子进程。API version 14及之前版本，单个进程只能启动1个Native子进程。
 
 ## 类型定义说明
 ### OH_Ability_OnNativeChildProcessStarted
@@ -435,11 +430,11 @@ Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs();
 ```
 **描述：**
 
-创建一个子进程配置信息对象0。
+创建一个子进程配置信息对象。
 
-**说明：**
-
-当前支持2in1设备
+> **说明：**
+>
+> 当前支持2in1设备。
 
 **起始版本**：15
 
@@ -455,14 +450,17 @@ Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability
 
 销毁一个子进程配置信息对象，并释放其内存。
 
-**说明**
-
-当前支持2in1设备
+> **说明：**
+>
+> 当前支持2in1设备。
 
 **起始版本**：15
 
-**返回**：
-执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+**返回**：  
+NCP_NO_ERROR - 对象销毁成功。  
+NCP_NO_ERR_INVALID_PARAM - 传入参数为nullptr  
+错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+
 
 ### OH_Ability_ChildProcessConfigs_SetIsolationMode
 
@@ -474,14 +472,23 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMo
 
 设置子进程配置信息对象中的独立模式。
 
-**说明**
-
-当前支持2in1设备
+> **说明：**
+>
+> 当前支持2in1设备。
 
 **起始版本**：15
 
-**返回**：
-执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+**参数**：
+
+| 名称                       | 描述 |
+| ---------------------- | ---------------- |
+| configs | 子进程的配置信息对象指针，详见[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)定义。 |
+| isolationMode | 独立模式枚举值， 详见[NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode)定义。|
+
+**返回**：  
+NCP_NO_ERROR - 执行成功  
+NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr  
+错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
 
 ### OH_Ability_ChildProcessConfigs_SetProcessName
 
@@ -494,12 +501,21 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 
 **说明**
 
-当前支持2in1设备
+当前支持2in1设备。
 
 **起始版本**：15
 
-**返回**：
-执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+**参数**：
+
+| 名称                       | 描述 |
+| ---------------------- | ---------------- |
+| configs | 子进程的配置信息对象指针，详见[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)定义。 |
+| processName | 设置的进程名称字符串， 必须是非空字符串，并且只能由字母、数字和下划线构成，最大长度为64。|
+
+**返回**：  
+NCP_NO_ERROR - 执行成功。    
+NCP_NO_ERR_INVALID_PARAM - 传入参数configs为nullptr或者processName不合规。  
+错误码详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
 
 
 ### OH_Ability_CreateNativeChildProcessWithConfigs
@@ -538,8 +554,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 
 **说明**
 
-> 当前仅支持2in1设备。
-> 从API version 15开始，单个进程最多支持启动50个Native子进程。API version 14及之前版本，单个进程只能启动1个Native子进程。
+> 当前支持2in1设备。
 
 **起始版本**：15
 
@@ -553,9 +568,6 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 
 **返回**：
 执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
-
-
-
 
 ### OH_Ability_StartNativeChildProcessWithConfigs
 
@@ -572,7 +584,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 
 > **说明：**
 >
-> 当前仅支持2in1、tablet设备。
+> 当前支持2in1设备。
 
 **起始版本**：15
 
