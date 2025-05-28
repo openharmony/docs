@@ -8272,7 +8272,7 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import HashMap from '@ohos.util.HashMap';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
