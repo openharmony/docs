@@ -85,7 +85,7 @@
    import { common } from '@kit.AbilityKit';
 
    private context: Context | undefined;
-    constructor(context: Context) {
+    constructor(context: Context | undefined) {
       if (context != undefined) {
         this.context = context; // this.getUIContext().getHostContext();
       }
@@ -184,7 +184,7 @@ import fs from '@ohos.file.fs';
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
   private context: Context | undefined;
-  constructor(context: Context) {
+  constructor(context: Context | undefined) {
     if (context != undefined) {
       this.context = context;
     }
