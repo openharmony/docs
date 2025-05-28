@@ -18,7 +18,7 @@
 | -- | -- |
 | int32_t x | 录屏界面的X坐标。 |
 | int32_t y | 录屏界面的Y坐标。 |
-| int32_t width | 录屏界面的宽度。 |
-| int32_t height | 录屏界面的高度。 |
+| int32_t width | 录屏界面的宽度，单位px。 |
+| int32_t height | 录屏界面的高度，单位px。 |
 
 

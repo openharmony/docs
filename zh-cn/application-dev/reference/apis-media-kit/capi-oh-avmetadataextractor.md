@@ -9,4 +9,3 @@
 **相关模块：** [AVMetadataExtractor](capi-avmetadataextractor.md)
 
 **所在头文件：** [avmetadata_extractor.h](capi-avmetadata-extractor-h.md)
-

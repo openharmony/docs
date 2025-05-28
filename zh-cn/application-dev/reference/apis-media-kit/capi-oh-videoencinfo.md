@@ -2,7 +2,7 @@
 
 ## 概述
 
-视频解码信息
+视频编码参数。
 
 **起始版本：** 10
 
@@ -16,8 +16,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_VideoCodecFormat videoCodec | 视频解码格式 |
-| int32_t videoBitrate | 比特率 |
-| int32_t videoFrameRate | 帧率 |
+| [OH_VideoCodecFormat](capi-native-avscreen-capture-base-h.md#oh_videocodecformat) videoCodec | 视频采集编码格式。 |
+| int32_t videoBitrate | 视频采集比特率。 |
+| int32_t videoFrameRate | 视频采集帧率。 |
 
 

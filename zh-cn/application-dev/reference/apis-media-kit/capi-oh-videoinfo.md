@@ -2,7 +2,7 @@
 
 ## 概述
 
-视频信息
+视频信息。
 
 **起始版本：** 10
 
@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_VideoCaptureInfo videoCapInfo | 视频录制信息 |
-| OH_VideoEncInfo videoEncInfo | 视频编码信息 |
+| [OH_VideoCaptureInfo](capi-oh-videocaptureinfo.md) videoCapInfo | 视频采集信息。 |
+| [OH_VideoEncInfo](capi-oh-videoencinfo.md) videoEncInfo | 视频编码参数。 |
 
 

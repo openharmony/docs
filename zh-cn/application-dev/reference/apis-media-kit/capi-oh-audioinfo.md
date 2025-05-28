@@ -2,7 +2,9 @@
 
 ## 概述
 
-音频信息。同时采集音频麦克风和音频内录数据时，两路音频的audioSampleRate和audioChannels采样参数需要相同
+音频信息。
+
+同时采集音频麦克风和音频内录数据时，两路音频的audioSampleRate和audioChannels采样参数需要相同。
 
 **起始版本：** 10
 
@@ -16,8 +18,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_AudioCaptureInfo micCapInfo | 音频麦克风采样信息 |
-| OH_AudioCaptureInfo innerCapInfo | 音频内录采样信息 |
-| OH_AudioEncInfo audioEncInfo | 音频编码信息，原始码流时不需要设置 |
+| [OH_AudioCaptureInfo](capi-oh-audiocaptureinfo.md) micCapInfo | 音频麦克风采样信息。 |
+| [OH_AudioCaptureInfo](capi-oh-audiocaptureinfo.md) innerCapInfo | 音频内录采样信息。 |
+| [OH_AudioEncInfo](capi-oh-audioencinfo.md) audioEncInfo | 音频编码信息，原始码流时不需要设置。 |
 
 

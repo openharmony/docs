@@ -9,4 +9,3 @@
 **相关模块：** [AVImageGenerator](capi-avimagegenerator.md)
 
 **所在头文件：** [avimage_generator.h](capi-avimage-generator-h.md)
-

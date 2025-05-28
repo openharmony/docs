@@ -42,5 +42,3 @@ enum OH_AVImageGenerator_QueryOptions
 | OH_AVIMAGE_GENERATOR_QUERY_PREVIOUS_SYNC = 1 | 此选项用于选取传入时间点或之前的关键帧。 |
 | OH_AVIMAGE_GENERATOR_QUERY_CLOSEST_SYNC = 2 | 此选项用于选取离传入时间点最近的关键帧。 |
 | OH_AVIMAGE_GENERATOR_QUERY_CLOSEST = 3 | 此选项用于选取离传入时间点最近的帧，该帧不一定是关键帧。 |
-
-

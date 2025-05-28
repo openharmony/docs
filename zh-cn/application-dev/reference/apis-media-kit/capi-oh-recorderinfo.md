@@ -2,7 +2,7 @@
 
 ## 概述
 
-录制文件信息
+录制文件信息。
 
 **起始版本：** 10
 
@@ -16,8 +16,8 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| char* url | 录制文件url |
-| uint32_t urlLen | 录制文件url长度 |
-| OH_ContainerFormatType fileFormat | 录制文件url格式 |
+| char* url | 录制文件的URL。 |
+| uint32_t urlLen | 录制文件的URL长度。 |
+| [OH_ContainerFormatType](capi-native-avscreen-capture-base-h.md#oh_containerformattype) fileFormat | 录制文件的格式。 |
 
 

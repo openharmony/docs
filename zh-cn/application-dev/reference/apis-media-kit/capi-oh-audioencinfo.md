@@ -2,7 +2,7 @@
 
 ## 概述
 
-音频编码信息
+音频编码信息。
 
 **起始版本：** 10
 
@@ -16,7 +16,7 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| int32_t audioBitrate | 音频编码比特率 |
-| OH_AudioCodecFormat audioCodecformat | 音频编码格式 |
+| int32_t audioBitrate | 音频编码比特率。 |
+| [OH_AudioCodecFormat](capi-native-avscreen-capture-base-h.md#oh_audiocodecformat) audioCodecformat | 音频编码格式。 |
 
 

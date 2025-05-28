@@ -16,9 +16,9 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| uint8_t* buf | 音频buffer块 |
-| int32_t size | 音频buffer块大小 |
-| int64_t timestamp | 时间戳 |
-| OH_AudioCaptureSourceType type | 音频录制类型 |
+| uint8_t* buf | 音频buffer内存。 |
+| int32_t size | 音频buffer内存大小。 |
+| int64_t timestamp | 音频buffer时间戳。 |
+| [OH_AudioCaptureSourceType](capi-native-avscreen-capture-base-h.md#oh_audiocapturesourcetype) type | 音频录制源类型。 |
 
 

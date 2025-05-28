@@ -2,7 +2,7 @@
 
 ## 概述
 
-录屏配置信息
+屏幕录制配置参数。
 
 **起始版本：** 10
 
@@ -16,10 +16,10 @@
 
 | 名称 | 描述 |
 | -- | -- |
-| OH_CaptureMode captureMode | 录屏模式 |
-| OH_DataType dataType | 数据类型 |
-| OH_AudioInfo audioInfo | 音频信息 |
-| OH_VideoInfo videoInfo | 视频信息 |
-| OH_RecorderInfo recorderInfo | 录制文件信息，存文件模式必须设置。 |
+| [OH_CaptureMode](capi-native-avscreen-capture-base-h.md#oh_capturemode) captureMode | 屏幕录制的模式。 |
+| [OH_DataType](capi-native-avscreen-capture-base-h.md#oh_datatype) dataType | 屏幕录制流的数据格式。 |
+| [OH_AudioInfo](capi-oh-audioinfo.md) audioInfo | 音频录制参数。 |
+| [OH_VideoInfo](capi-oh-videoinfo.md) videoInfo | 视频录制参数。 |
+| [OH_RecorderInfo](capi-oh-recorderinfo.md) recorderInfo | 录制文件参数，当数据格式为OH_CAPTURE_FILE时必须设置。 |
 
 
