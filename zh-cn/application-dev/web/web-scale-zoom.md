@@ -6,7 +6,7 @@ Web组件支持手势缩放、鼠标滚轮、键盘缩放，以方便用户调�
 
 ### 开关网页手势缩放功能
 
-通过属性[zoomAccess](../reference/apis-arkweb/ts-basic-components-web.md#zoomaccess)控制网页缩放功能，当设置为false时，网页不允许手势缩放行为。
+通过属性[zoomAccess](../reference/apis-arkweb/ts-basic-components-web-attributes.md#zoomaccess)控制网页缩放功能，当设置为false时，网页不允许手势缩放行为。
 
 当html网页设置`<meta name="viewport" id="viewport" content="user-scalable=no">`时，网页不允许手势缩放。
 
@@ -86,7 +86,7 @@ struct WebComponent {
 
 ## 监听页面缩放比例变化
 
-应用可以通过[onScaleChange](../reference/apis-arkweb/ts-basic-components-web.md#onscalechange9)接口监听页面缩放比例的变化。
+应用可以通过[onScaleChange](../reference/apis-arkweb/ts-basic-components-web-events.md#onscalechange9)接口监听页面缩放比例的变化。
 该接口事件对应手势事件(双指缩放)，`event.newScale`对应网页属性`visualViewport.scale`。
 
 ```ts
@@ -111,7 +111,7 @@ struct WebComponent {
 
 ## 控制网页的缩放比例
 
-应用可以通过[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)接口控制页面缩放。
+应用可以通过[zoom](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview-WebviewController.md#zoomout)接口控制页面缩放。
 
  > **说明：**
  >
