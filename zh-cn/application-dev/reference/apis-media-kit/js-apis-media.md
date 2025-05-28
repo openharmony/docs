@@ -5127,6 +5127,7 @@ prepare(config: AVTranscoderConfig): Promise\<void>
 | -------- | -------------------------------------- |
 | 401  | The parameter check failed. Return by promise. |
 | 5400102  | Operation not allowed. Return by promise. |
+| 5400103  | IO error. Return by promise.              |
 | 5400105  | Service died. Return by promise.       |
 | 5400106  | Unsupported format. Returned by promise.  |
 
