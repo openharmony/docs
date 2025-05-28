@@ -38,6 +38,8 @@
     - [TransientTask_TransientTaskInfo](_transient_task___transient_task_info.md)
 - 错误码<!--background-tasks-arkts-errcode-->
   - [backgroundTaskManager错误码](errorcode-backgroundTaskMgr.md)
+  <!--Del-->
   - [DeviceUsageStatistics错误码](errorcode-DeviceUsageStatistics.md)
+  <!--DelEnd-->
   - [reminderAgentManager错误码](errorcode-reminderAgentManager.md)
   - [workScheduler错误码](errorcode-workScheduler.md)
