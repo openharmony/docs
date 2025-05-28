@@ -106,8 +106,9 @@ class BackupExt extends BackupExtensionAbility {
       }
       return JSON.stringify(errorInfo);
     } catch (err) {
-      console.error(`BackupExt error. Code:${error.code}, message:${error.message}`)
+      console.error(`BackupExt error. Code:${err.code}, message:${err.message}`)
     }
+    return "";
   }
 } 
 ```
@@ -142,8 +143,9 @@ class BackupExt extends BackupExtensionAbility {
       }
       return JSON.stringify(errorInfo);
     } catch (err) {
-      console.error(`BackupExt error. Code:${error.code}, message:${error.message}`)
+      console.error(`BackupExt error. Code:${err.code}, message:${err.message}`)
     }
+    return "";
   }
 } 
 ```
@@ -227,8 +229,9 @@ class BackupExt extends BackupExtensionAbility {
       }
       return JSON.stringify(errorInfo);
     } catch (err) {
-      console.error(`onRestoreEx error. Code:${error.code}, message:${error.message}`)
-    } 
+      console.error(`onRestoreEx error. Code:${err.code}, message:${err.message}`)
+    }
+    return "";
   }
 }
 ```
@@ -263,7 +266,9 @@ class BackupExt extends BackupExtensionAbility {
       }
       return JSON.stringify(errorInfo);
     } catch (err) {
-    console.error(`onRestoreEx error. Code:${error.code}, message:${error.message}`)
+      console.error(`onRestoreEx error. Code:${err.code}, message:${err.message}`)
+    }
+    return "";
   }
 }
 
