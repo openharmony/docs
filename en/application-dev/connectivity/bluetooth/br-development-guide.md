@@ -1,9 +1,11 @@
-# Bluetooth Setting Development
+# Bluetooth Setting
 
 ## Introduction
+
 This topic walks you through on how to implement basic Bluetooth settings, including enabling and disabling Bluetooth and obtaining Bluetooth status.
 
 ## When to Use
+
 You can use the APIs provided by the **access** module to:
 
 - Enable and disable Bluetooth.

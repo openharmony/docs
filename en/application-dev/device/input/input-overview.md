@@ -9,7 +9,7 @@ In addition to the basic input event services, Input Kit provides APIs for you t
 ## How Input Kit Works
 As a basic service provided by the system for applications, Input Kit fulfills input device management as well as input event management, receiving, preprocessing, and distribution, and reports the input events to applications through the inner SDK and JSkit. The operation mechanism is as follows:
 
-![MMI-operation](figures/MMI-operation.png)
+![MMI-operation](figures/MMI-operation-new.png)
 
 <!--Del-->
 ## Constraints

@@ -1184,7 +1184,7 @@ Listens for the press and release events of the specified key, which can be the 
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Key Monitor Error Codes](errorcode-inputkeymonitor.md).
+For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Input Monitor Error Codes](errorcode-inputmonitor.md).
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
