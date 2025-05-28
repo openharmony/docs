@@ -1911,6 +1911,33 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
       Menu() {
         // 展示菜单Menu中具体的item菜单项。
         MenuItem({
+          content: '撤销',
+        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.undo();
+            this.showMenu = false;
+          })
+        MenuItem({
+          content: '重做',
+        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.redo();
+            this.showMenu = false;
+          })
+        MenuItem({
+          content: '粘贴为纯文本',
+        })
+          .width(100)
+          .height(50)
+          .onClick(() => {
+            this.result?.pasteAndMatchStyle();
+            this.showMenu = false;
+          })
+        MenuItem({
           content: '复制图片',
         })
           .width(100)
@@ -1971,7 +1998,7 @@ onContextMenuShow(callback: Callback\<OnContextMenuShowEvent, boolean\>)
           })
       }
       .width(150)
-      .height(300)
+      .height(450)
     }
 
     build() {
