@@ -1875,6 +1875,12 @@ Checks whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode 
 
 **System capability**: SystemCapability.Multimedia.Media.AVPlayer
 
+**Return value**
+
+| Type           | Description                                |
+| -------------- | ------------------------------------------ |
+| boolean | whether the media source supports [seek](#seek9) in SEEK_CONTINUOUS mode ([SeekMode](#seekmode8)).|
+
 **Example**
 
 ```ts
