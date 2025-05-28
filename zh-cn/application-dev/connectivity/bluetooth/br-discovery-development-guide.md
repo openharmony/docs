@@ -1,7 +1,7 @@
 # 查找设备
 
 ## 简介
-主要提供查找设备相关的开发指导，包括如何扫描周边设备、设置本机蓝牙扫描模式以及查找已配对设备信息。
+本文主要提供了查找设备相关的开发指导，包括如何扫描周边设备、设置本机蓝牙扫描模式以及查找已配对设备信息。
 
 ## 开发步骤
 
@@ -35,7 +35,7 @@ try {
 ```
 
 #### 发起设备扫描
-应用发起扫描后，整个扫描过程大约持续12s。应用可以对扫描到的蓝牙设备发起配对、连接和传输数据流程。具体操作请参考[配对连接设备](br-pair-device-development-guide.md)和[传输数据](spp-development-guide.md)。
+应用发起扫描后，整个扫描过程大约持续12s。应用可以对扫描到的蓝牙设备发起配对、连接和传输数据流程。具体操作请参考[配对连接设备](br-pair-device-development-guide.md)、[连接和传输数据](spp-development-guide.md)。
 ```ts
 try {
   // 判断本机设备是否正在进行扫描
@@ -115,9 +115,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 export class DiscoveryDeviceManager {
   // 定义扫描结果上报回调函数
-  onReceiveEvent(data: Array<string>) {
+  onReceiveEvent = (data: Array<string>) => {
     console.info('bluetooth device: '+ JSON.stringify(data));
-  }
+  };
 
   public startDiscovery() {
     try {
