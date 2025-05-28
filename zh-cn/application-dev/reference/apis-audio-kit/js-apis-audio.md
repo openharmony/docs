@@ -1188,6 +1188,60 @@ try {
 }
 ```
 
+### on('audioSceneChange')<sup>20+</sup>
+
+on(type: 'audioSceneChange', callback: Callback\<AudioScene\>): void
+
+监听音频场景变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'audioSceneChange'，当音频场景模式发生变化时，触发该事件。 |
+| callback | Callback\<[AudioScene](#audioscene8)> | 是   | 回调函数，返回当前音频场景模式。 |
+
+**示例：**
+
+```ts
+audioManager.on('audioSceneChange', (audioScene: audio.AudioScene) => {
+  console.info(`audio scene : ${audioScene}.`);
+});
+```
+
+### off('audioSceneChange')<sup>20+</sup>
+
+off(type: 'audioSceneChange', callback?: Callback\<AudioScene\>): void
+
+取消监听音频场景变化事件。使用callback异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Communication
+
+**参数：**
+
+| 参数名   | 类型                       | 必填 | 说明                                        |
+| :------- | :------------------------- | :--- | :------------------------------------------ |
+| type     | string                     | 是   | 事件回调类型，支持的事件为'audioSceneChange'，当取消监听当前音频场景变化事件时，触发该事件。 |
+| callback | Callback\<[AudioScene](#audioscene8)> | 是   | 回调函数，返回当前音频场景模式。 |
+
+**示例：**
+
+```ts
+// 取消该事件的所有监听。
+audioManager.off('audioSceneChange');
+
+// 同一监听事件中，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let audioSceneChangeCallback = (audioScene: audio.AudioScene) => {
+  console.info(`audio scene : ${audioScene}.`);
+};
+
+audioManager.on('audioSceneChange', audioSceneChangeCallback);
+
+audioManager.off('audioSceneChange', audioSceneChangeCallback);
+```
+
 ### getVolumeManager<sup>9+</sup>
 
 getVolumeManager(): AudioVolumeManager
