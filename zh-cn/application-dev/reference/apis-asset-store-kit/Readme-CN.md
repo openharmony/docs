@@ -18,5 +18,6 @@
     - [Asset_Attr](capi-asset-attr.md)
     - [Asset_Result](capi-asset-result.md)
     - [Asset_ResultSet](capi-asset-resultset.md)
+    - [Asset_SyncResult](capi-asset-syncresult.md)
 - 错误码<!--asset-store-arkts-errcode-->
   - [Asset错误码](errorcode-asset.md)
