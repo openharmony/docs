@@ -64,7 +64,7 @@ Use an input application to call this API.
 
 **Error Message**
 
-windowId is invalid.
+windowId is invalid. Possible causes: The window id does not belong to the current process.
 
 **Description**
 
