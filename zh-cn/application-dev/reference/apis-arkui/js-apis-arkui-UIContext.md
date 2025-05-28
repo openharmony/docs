@@ -7504,7 +7504,7 @@ struct Index {
 ```
 
 ## DragController<sup>11+</sup>
-以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取DragController实例，再通过此实例调用对应方法。
 
 ### executeDrag<sup>11+</sup>
 
@@ -8643,7 +8643,7 @@ struct Index {
 
 
 ## FocusController<sup>12+</sup>
-以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过该实例调用对应方法。
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取FocusController实例，再通过该实例调用对应方法。
 
 ### clearFocus<sup>12+</sup>
 
