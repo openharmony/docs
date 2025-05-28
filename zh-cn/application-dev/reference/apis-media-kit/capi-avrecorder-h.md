@@ -140,7 +140,7 @@ OH_AVErrCode OH_AVRecorder_GetInputSurface(OH_AVRecorder *recorder, OHNativeWind
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVRecorder](capi-oh-avrecorder.md) *recorder | 指向OH_AVRecorder实例的指针。 |
-| [OHNativeWindow](../apis-arkgraphics2d/capi-nativewindow.md) **window | 指向OHNativeWindow实例的指针。 |
+| [OHNativeWindow](../apis-arkgraphics2d/_native_window.md#ohnativewindow) **window | 指向OHNativeWindow实例的指针。 |
 
 **返回：**
 
