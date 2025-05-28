@@ -2,7 +2,7 @@
 
 ## 使用场景
 
-全球各国家和地区的经度不同，地方时间也有所不同，因此划分了不同的时区。例如英国采用0时区，中国采用东8时区，中国时间要比英国快8个小时，中国北京中午12:00是英国伦敦凌晨4点。时区模块可用于获取时区列表，应用可基于时区列表实现业务逻辑，如双时钟应用。
+全球各国家和地区的经度不同，地方时间也有所不同，因此划分了不同的时区。例如英国采用0时区，中国采用东8时区，中国时间要比英国快8个小时，中国北京中午12:00是英国伦敦凌晨4点。时区模块可用于获取时区列表，应用可基于时区列表实现业务逻辑，如双时钟应用。如果时区使用夏令时，可以获取[夏令时跳变](./i18n-dst-transition.md)规则。
 
 ## 开发步骤
 
@@ -10,7 +10,7 @@
 
 1. 导入模块。
    ```ts
-   import { i18n , intl } from '@kit.LocalizationKit';
+   import { i18n } from '@kit.LocalizationKit';
    ```
 
 2. 开发实例，包括获取特定时区、计算固定和实际时区偏移量、获取和遍历时区列表等。
@@ -78,7 +78,7 @@
    zoneOffsetTrans.getOffsetAfter(); // 跳变后的偏移量: -28800000
    zoneOffsetTrans.getOffsetBefore(); // 跳变前的偏移量: -25200000
    // 将跳变点时间格式化
-   let dateTimeFormat: intl.DateTimeFormat = new intl.DateTimeFormat('en-US', {
+   let dateTimeFormat: Intl.DateTimeFormat = new Intl.DateTimeFormat('en-US', {
      timeZone: tijuanaTzId,
      dateStyle: 'long',
      timeStyle: 'long',

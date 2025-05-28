@@ -2051,7 +2051,7 @@ getZoneRules(): ZoneRules
 
 **示例：**
 ```ts
-import { i18n , intl } from '@kit.LocalizationKit';
+import { i18n } from '@kit.LocalizationKit';
 
 let tzId: string = 'America/Tijuana';
 let timeZone: i18n.TimeZone = i18n.getTimeZone(tzId);
@@ -2063,7 +2063,7 @@ zoneOffsetTransition.getMilliseconds(); // 跳变点的时间戳: 1762074000000
 zoneOffsetTransition.getOffsetAfter(); // 跳变后的偏移量: -28800000
 zoneOffsetTransition.getOffsetBefore(); // 跳变前的偏移量: -25200000
 // 将跳变点时间格式化
-let dateTimeFormat: intl.DateTimeFormat = new intl.DateTimeFormat('en-US', {
+let dateTimeFormat: Intl.DateTimeFormat = new Intl.DateTimeFormat('en-US', {
   timeZone: tzId,
   dateStyle: 'long',
   timeStyle: 'long',
