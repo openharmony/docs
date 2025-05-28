@@ -101,21 +101,30 @@ columnEnd(value: number)
 >
 >  起始行号、终点行号、起始列号、终点列号生效规则如下：
 >
->  rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1。
+> * rowStart/rowEnd合理取值范围为0\~总行数-1，columnStart/columnEnd合理取值范围为0\~总列数-1。
 >
->  如果设置了rowStart/rowEnd/columnStart/columnEnd，GridItem会占据指定的行数(rowEnd-rowStart+1)或列数(columnEnd-columnStart+1)。
+> * 如果设置了rowStart/rowEnd/columnStart/columnEnd，GridItem会占据指定的行数(rowEnd-rowStart+1)或列数(columnEnd-columnStart+1)。
 >
->  只有在设置columnTemplate和rowTemplate的Grid中，设置合理的rowStart/rowEnd/columnStart/columnEnd四个属性的GridItem才能按照指定的行列号布局。
+> * 只有在设置columnTemplate和rowTemplate的Grid中，设置合理的rowStart/rowEnd/columnStart/columnEnd四个属性的GridItem才能按照指定的行列号布局。
 >
->  在设置columnTemplate和rowTemplate的Grid中，单独设置行号rowStart/rowEnd或列号columnStart/columnEnd的GridItem会按照一行一列进行布局。
+> * 在设置columnTemplate和rowTemplate的Grid中，单独设置行号rowStart/rowEnd或列号columnStart/columnEnd的GridItem会按照一行一列进行布局。
 >
->  在只设置columnTemplate的Grid中设置列号columnStart/columnEnd的GridItem按照列数布局。在该区域位置存在GridItem布局，则直接换行进行放置。
+>  * 在只设置columnTemplate的Grid中设置列号columnStart/columnEnd的GridItem按照列数布局。在该区域位置存在GridItem布局，则直接换行进行放置。
 >
->  在只设置rowTemplate的Grid中设置行号rowStart/rowEnd的GridItem按照行数布局。在该区域位置存在GridItem布局，则直接换列进行放置。
+> * 在只设置rowTemplate的Grid中设置行号rowStart/rowEnd的GridItem按照行数布局。在该区域位置存在GridItem布局，则直接换列进行放置。
 >
->  在只设置columnTemplate的Grid中，在GridItem上设置了不合理的值，GridItem按照一行一列进行布局。
+> * columnTemplate和rowTemplate都不设置的Grid中GridItem的行列号属性无效。
+>  
+>  以下是GridItem行列号异常值的处理规则：
 >
->  columnTemplate和rowTemplate都不设置的Grid中GridItem的行列号属性无效。
+>  | 属性设置情况  |‌异常类型| ‌修正后布局规则  |
+>  | ----- |----| ------------------------ |
+>  | 仅设置columnTemplate  |  任意行列异常 | 按一行一列布局。                 |
+>  | 仅设置rowTemplate |  任意行列异常 | 按一行一列布局。 |
+>  | 同时设置row/columnTemplate |  rowStart < rowEnd | 行跨度 = min(rowEnd-rowStart+1, 总行数)。 |
+>  | 同时设置row/columnTemplate |  rowStart > rowEnd | 按一行一列布局。 |
+>  | 同时设置row/columnTemplate |  columnStart < columnEnd | 列跨度 = min(columnEnd-columnStart+1, 总列数)。 |
+>  | 同时设置row/columnTemplate |  columnStart > columnEnd | 按一行一列布局。 |
 
 ### forceRebuild<sup>(deprecated)</sup>
 
