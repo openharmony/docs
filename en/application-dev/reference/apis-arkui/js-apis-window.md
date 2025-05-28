@@ -5675,7 +5675,7 @@ Set **isKeepScreenOn** to **true** only in necessary scenarios (such as navigati
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
-**Parameters**
+**Parameters** 
 
 | Name| Type| Mandatory| Description|
 | -------------- | ------------------------- | -- | ---------------------------------------------------- |
