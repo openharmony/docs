@@ -269,7 +269,7 @@ IP配置信息。
 
 turnOnWifi(admin: Want, isForce: boolean): **void**
 
-强制打开WiFi功能。
+强制打开Wi-Fi功能。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -279,10 +279,10 @@ turnOnWifi(admin: Want, isForce: boolean): **void**
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                       |
-| ------- | ------------------------------------------------------- | ---- | -------------------------- |
-| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。     |
-| isForce | boolean                                                 | 是   | 是否需要强制打开WiFi功能。 |
+| 参数名  | 类型                                                    | 必填 | 说明                        |
+| ------- | ------------------------------------------------------- | ---- | --------------------------- |
+| admin   | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是   | 企业设备管理扩展组件。      |
+| isForce | boolean                                                 | 是   | 是否需要强制打开Wi-Fi功能。 |
 
 **错误码**：
 
@@ -307,7 +307,7 @@ let wantTemp: Want = {
 
 try {
   wifiManager.turnOnWifi(wantTemp, true);
-  console.info(`Succeeded in turn on wifi.`);
+  console.info(`Succeeded in turning on wifi.`);
 } catch (err) {
   console.error(`Failed to turn on wifi. Code: ${err.code}, message: ${err.message}`);
 }
@@ -317,7 +317,7 @@ try {
 
 turnOffWifi(admin: Want): **void**
 
-关闭WiFi功能。
+关闭W-iFi功能。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
@@ -354,7 +354,7 @@ let wantTemp: Want = {
 
 try {
   wifiManager.turnOffWifi(wantTemp);
-  console.info(`Succeeded in turn off wifi.`);
+  console.info(`Succeeded in turning off wifi.`);
 } catch (err) {
   console.error(`Failed to turn off wifi. Code: ${err.code}, message: ${err.message}`);
 }
