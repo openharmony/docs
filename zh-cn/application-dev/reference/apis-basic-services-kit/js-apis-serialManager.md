@@ -14,7 +14,7 @@ import { serialManager } from '@kit.BasicServicesKit';
 
 ## serialManager.getPortList
 
-getPortList(): Readonly&lt;serialport&gt;[]
+getPortList(): Readonly&lt;[SerialPort](serialport)&gt;[]
 
 查询串口设备清单，包括设备名称和对应的端口号。
 
@@ -28,6 +28,11 @@ getPortList(): Readonly&lt;serialport&gt;[]
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用getPortList接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -75,6 +80,11 @@ hasSerialRight(portId: number): boolean
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用hasSerialRight接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -129,6 +139,11 @@ requestSerialRight(portId: number): Promise&lt;boolean&gt;
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用requestSerialRight接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -184,6 +199,11 @@ open(portId: number): void
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用open接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -252,6 +272,11 @@ getAttribute(portId: number): Readonly&lt;[SerialAttribute](#serialattribute)&gt
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用getAttribute接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -327,6 +352,11 @@ setAttribute(portId: number, attribute: [SerialAttribute](#serialattribute)): vo
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用setAttribute接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -413,6 +443,11 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用read接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -493,6 +528,11 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用readSync接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -574,6 +614,11 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用addSerialRight接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -654,6 +699,11 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用writeSync接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -725,6 +775,11 @@ close(portId: number): void
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用close接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -796,6 +851,11 @@ cancelSerialRight(portId: number): void
 
 **示例：**
 
+> **说明：**
+>
+> 以下示例代码只是调用cancelSerialRight接口的必要流程，需要放入具体的方法中执行。实际调用时，设备开发者需要遵循设备相关协议进行调用。
+
+<!--code_no_check-->
 ```ts
 import { JSON } from '@kit.ArkTS';
 import { serialManager } from '@kit.BasicServicesKit';
@@ -837,12 +897,12 @@ try {
 
 **系统能力：**  SystemCapability.USB.USBManager.Serial
 
-| 名称       | 类型     | 必填 | 说明        |
-|----------|--------|----|-----------|
-| baudrate | number | 是  | 串口波特率。  |
-| dataBits | number | 否  | 串口数据位，默认值为8位。  |
-| parity   | number | 否  | 串口奇偶校验，默认值为None，无奇偶校验。 |
-| stopBits | number | 否  | 串口停止位，默认值为1位。  |
+| 名称       |          类型        |  只读   |  可选 | 说明        |
+|----------|--------|----------|-----------|----------------------|
+| baudRate | [BaudRates](#baudrates) |   否   | 否  | 串口波特率。  |
+| dataBits | [DataBits](#databits)   |   否   | 是  | 串口数据位，默认值为8位。  |
+| parity   | [Parity](#parity)       |   否   | 是  | 串口奇偶校验，默认值为None，无奇偶校验。 |
+| stopBits | [StopBits](#stopbits)   |   否   | 是  | 串口停止位，默认值为1位。  |
 
 ## SerialPort
 
@@ -850,10 +910,10 @@ try {
 
 **系统能力：**  SystemCapability.USB.USBManager.Serial
 
-| 名称     | 类型     | 必填 | 说明    |
-|--------|--------|----|-------|
-| portId | number | 是  | 端口号。 |
-| deviceName   | string | 是  | 串口设备名称。 |
+| 名称     | 类型  |  只读 | 可选 | 说明    |
+|--------|--------|------|-------|--------|
+| portId | number | 否  |  否 | 端口号。 |
+| deviceName | string | 否  |  否 | 串口设备名称。 |
 
 ## BaudRates
 
