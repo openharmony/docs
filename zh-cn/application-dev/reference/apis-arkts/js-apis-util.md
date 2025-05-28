@@ -621,7 +621,7 @@ console.info('asp.msg is ' + asp.msg);
 util.Aspect.addBefore(MyClass, 'foo', false, (instance: MyClass, arg: string) => {
   console.info('arg is ' + arg);
   instance.msg = 'msg111';
-  console.info('msg is changed to ' + instance.msg)
+  console.info('msg is changed to ' + instance.msg);
 });
 
 result = asp.foo('123');
@@ -788,7 +788,7 @@ console.info('asp.msg is ' + asp.msg);
 // 输出结果：asp.msg is msg000
 
 util.Aspect.replace(MyClass, 'foo', false, (instance: MyClass, arg: string): string => {
-  console.info('execute instead')
+  console.info('execute instead');
   console.info('arg is ' + arg);
   instance.msg = 'msg111';
   console.info('msg is changed to ' + instance.msg);
@@ -855,6 +855,12 @@ static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 | -------- | ------ | ---- | ------------------------------------------------ |
 | encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
 | options  | [TextDecoderOptions](#textdecoderoptions11) | 否   | 解码相关选项参数，存在两个属性fatal和ignoreBOM。|
+
+**返回值：**
+
+| 类型       | 说明               |
+| ---------- | ------------------ |
+| [TextDecoder](#textdecoder) | 返回一个TextDecoder对象。 |
 
 **错误码：**
 
@@ -1155,6 +1161,12 @@ static create(encoding?: string): TextEncoder
 | 参数名 | 类型 | 必填 | 说明 |
 | ----- | ---- | ---- | ---- |
 | encoding | string | 否 | 编码格式，默认值为'utf-8'。 |
+
+**返回值：**
+
+| 类型       | 说明               |
+| ---------- | ------------------ |
+| [TextEncoder](#textencoder) | 返回一个TextEncoder对象。|
 
 **错误码：**
 
