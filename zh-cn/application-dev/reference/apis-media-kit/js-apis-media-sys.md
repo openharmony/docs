@@ -36,6 +36,7 @@ createVideoRecorder(callback: AsyncCallback\<VideoRecorder>): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
+| 202  | Not system App. |
 | 5400101  | No memory. Return by callback. |
 
 **示例：**
