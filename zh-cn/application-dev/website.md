@@ -3000,7 +3000,9 @@
           - [background_process_manager.h](reference/apis-backgroundtasks-kit/background__process__manager_8h.md)
       - 错误码<!--background-tasks-arkts-errcode-->
         - [backgroundTaskManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
+        <!--Del-->
         - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
+        <!--DelEnd-->
         - [reminderAgentManager错误码](reference/apis-backgroundtasks-kit/errorcode-reminderAgentManager.md)
         - [workScheduler错误码](reference/apis-backgroundtasks-kit/errorcode-workScheduler.md)
     - Core File Kit（文件基础服务）<!--core-file-api-->
