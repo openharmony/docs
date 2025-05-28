@@ -277,7 +277,7 @@ let wantTemp: Want = {
 };
 try {
     bluetoothManager.turnOnBluetooth(wantTemp);
-    console.info(`Succeeded in turn on bluetooth.`);
+    console.info(`Succeeded in turning on bluetooth.`);
 } catch(err) {
     console.error(`Failed to turn on bluetooth. Code: ${err.code}, message: ${err.message}`);
 }
@@ -324,7 +324,7 @@ let wantTemp: Want = {
 };
 try {
     bluetoothManager.turnOffBluetooth(wantTemp);
-    console.info(`Succeeded in turn off bluetooth.`);
+    console.info(`Succeeded in turning off bluetooth.`);
 } catch(err) {
     console.error(`Failed to turn off bluetooth. Code: ${err.code}, message: ${err.message}`);
 }
