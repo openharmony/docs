@@ -74,7 +74,7 @@
 | [void OH_Drawing_SetTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)](#oh_drawing_settextstyledecoration) | 设置指定文本样式中的装饰线类型，只能设置一个装饰线类型，添加多个需要使用[OH_Drawing_AddTextStyleDecoration](capi-drawing-text-typography-h.md#oh_drawing_addtextstyledecoration)。 |
 | [void OH_Drawing_AddTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)](#oh_drawing_addtextstyledecoration) | 新增指定装饰，可同时显示多种装饰线。 |
 | [void OH_Drawing_RemoveTextStyleDecoration(OH_Drawing_TextStyle* style, int decoration)](#oh_drawing_removetextstyledecoration) | 删除指定装饰。 |
-| [void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_t color)](#oh_drawing_settextstyledecorationcolor) | 设置指定文本样式中的装饰线颜色。 |
+| [void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_t color)](#oh_drawing_settextstyledecorationcolor) | 设置指定文本样式中的装饰线颜色。如果不设置该接口或者设置color为0时，装饰线颜色则跟随文本颜色。 |
 | [void OH_Drawing_SetTextStyleFontHeight(OH_Drawing_TextStyle* style, double fontHeight)](#oh_drawing_settextstylefontheight) | 设置行高，按当前字体大小的倍数进行设置。 |
 | [void OH_Drawing_SetTextStyleFontFamilies(OH_Drawing_TextStyle* style,int fontFamiliesNumber, const char* fontFamilies[])](#oh_drawing_settextstylefontfamilies) | 设置指定文本样式的字体家族类型。 |
 | [void OH_Drawing_SetTextStyleFontStyle(OH_Drawing_TextStyle* style, int fontStyle)](#oh_drawing_settextstylefontstyle) | 为指定文本样式设置字体样式。 |
@@ -974,7 +974,7 @@ void OH_Drawing_SetTextStyleDecorationColor(OH_Drawing_TextStyle* style, uint32_
 
 **描述**
 
-设置指定文本样式中的装饰线颜色。
+设置指定文本样式中的装饰线颜色。如果不设置该接口或者设置color为0时，装饰线颜色则跟随文本颜色。
 
 **系统能力：** SystemCapability.Graphic.Graphic2D.NativeDrawing
 
@@ -2238,7 +2238,7 @@ void OH_Drawing_SetTextStyleDecorationThicknessScale(OH_Drawing_TextStyle* style
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_Drawing_TextStyle](capi-oh-drawing-textstyle.md)* style | 指向OH_Drawing_TextStyle对象的指针，由[OH_Drawing_CreateTextStyle](capi-drawing-text-typography-h.md#oh_drawing_createtextstyle)获取。 |
-| double decorationThicknessScale | 缩放比例。 |
+| double decorationThicknessScale | 厚度缩放比例。默认值为1，如果设置的厚度缩放比例小于等于0，则不会绘制装饰线。 |
 
 ### OH_Drawing_SetTextStyleLetterSpacing()
 
