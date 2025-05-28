@@ -43,32 +43,33 @@ SegmentButton({ options: SegmentButtonOptions, selectedIndexes: number[], onItem
 
 **装饰器类型：** @Observed
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
-| 名称                  | 类型                                                         | 必填                                                     | 说明                                                       |
+| 名称                  | 类型                                                         | 必填                                                       | 说明                                                       |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| type                    | 'tab' \| 'capsule'                                       | 是                                        | 分段按钮的类型。                                             |
-| multiply                | boolean                                                      | 是                                                   | 是否可以多选。true表示可以多选，false表示不可以多选。默认为false。<br>**说明：** 页签类分段按钮只支持单选，设置`multiply`为`true`时不生效。 |
-| buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | 是 | 按钮信息，包括图标和文本信息。                               |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 是                | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary') |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 是                | 按钮选中态的文本颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_text_primary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。 |
-| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | 是           | 按钮未选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2') |
-| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | 是            | 按钮选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2') |
-| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | 是              | 按钮未选中态的字体粗细。<br/>默认值：FontWeight.Regular |
-| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | 是              | 按钮选中态的字体粗细。<br/>默认值：FontWeight.Medium。     |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 是                 | 底板颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal') |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 是                 | 按钮选中态底板颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_emphasize')`。 |
-| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 是                     | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
-| buttonPadding           | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 是 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
-| textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 是 | 文本内边距。<br/>默认值：0                           |
-| localizedButtonPadding<sup>12+</sup>  | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 否               | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
-| localizedTextPadding<sup>12+</sup>    | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 否              | 文本内边距。<br/>默认值：0                                                                                                                                                                                                                                          |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                          | 布局方向。<br/>默认值：Direction.Auto                                                                                                                                                                                                                                           |
-| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 是                | 背景模糊材质。<br/>默认值：BlurStyle.NONE                    |
+| type                    | 'tab' \| 'capsule'                                       | 是                                        | 分段按钮的类型。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| multiply                | boolean                                                      | 是                                                   | 是否可以多选。<br/>**说明：**<br/>默认值：false。<br>true:可多选；false:不可多选。页签类分段按钮只支持单选，设置`multiply`为`true`不生效。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| buttons                 | [SegmentButtonItemOptionsArray](#segmentbuttonitemoptionsarray) | 是 | 按钮信息，包括图标和文本信息。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮选中态的文本颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_text_primary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | 否             | 按钮未选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | 否             | 按钮选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | 否               | 按钮未选中态的字体粗细。<br/>默认值：FontWeight.Regular<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | 否               | 按钮选中态的字体粗细。<br/>默认值：FontWeight.Medium。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 底板颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮选中态底板颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_emphasize')`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 否                      | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| buttonPadding           | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 否 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 否 | 文本内边距。<br/>默认值：0<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 否                | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 否                | 文本内边距。<br/>默认值：0<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                            | 布局方向。<br/>默认值：Direction.Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 否                | 背景模糊材质。<br/>默认值：BlurStyle.NONE<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| borderRadiusMode<sup>20+</sup> | [BorderRadiusMode](#borderradiusmode20) | 否 | 边框圆角模式，用于控制圆角计算方式。<br/>默认值：BorderRadiusMode.DEFAULT<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| backgroundBorderRadius<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否 | 背景边框圆角半径（不支持百分比设置）。<br/>**说明：**<br/>此属性仅在borderRadiusMode为BorderRadiusMode.CUSTOM时生效。<br/>对于胶囊型多选按钮(type为'capsule'且multiply为true)，此属性不生效，需要用itemBorderRadius配置圆角。默认值：`$r('sys.float.segmentbutton_container_shape')`<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| itemBorderRadius<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否 | 按钮项边框圆角半径（不支持百分比设置）。<br/>**说明：**<br/>此属性仅在borderRadiusMode为BorderRadiusMode.CUSTOM时生效。默认值：`$r('sys.float.segmentbutton_selected_background_shape')`<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 ### constructor
 
@@ -149,29 +150,43 @@ type DimensionNoPercentage = PX | VP | FP | LPX | Resource
 
 用于定义分段按钮组件可自定义的属性。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 ### 属性
 
 | 名称                  | 类型                                                         | 必填                                                       | 说明                                                       |
 | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary') |
-| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮选中态的文本颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_text_primary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。 |
-| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | 否             | 按钮未选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2') |
-| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | 否             | 按钮选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2') |
-| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | 否               | 按钮未选中态的字体粗细。<br/>默认值：FontWeight.Regular |
-| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | 否               | 按钮选中态的字体粗细。<br/>默认值：FontWeight.Medium。 |
-| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 底板颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal') |
-| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮选中态底板颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_emphasize')`。 |
-| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 否                      | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。 |
-| buttonPadding           | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 否 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。 |
-| textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 否 | 文本内边距。<br/>默认值：0                         |
-| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 否                | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。 |
-| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 否                | 文本内边距。<br/>默认值：0                                                                                                                                                                                                                                          |
-| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                            | 布局方向。<br/>默认值：Direction.Auto                                                                                                                                                                                                                                          |
-| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 否                | 背景模糊材质。<br/>默认值：BlurStyle.NONE |
+| fontColor               | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮未选中态的文本颜色。<br/>默认值：$r('sys.color.ohos_id_color_text_secondary')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| selectedFontColor       | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮选中态的文本颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_text_primary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontSize                | [DimensionNoPercentage](#dimensionnopercentage)              | 否             | 按钮未选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| selectedFontSize        | [DimensionNoPercentage](#dimensionnopercentage)              | 否             | 按钮选中态的字体大小（不支持百分比设置）。<br/>默认值：$r('sys.float.ohos_id_text_size_body2')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| fontWeight              | [FontWeight](ts-appendix-enums.md#fontweight)                | 否               | 按钮未选中态的字体粗细。<br/>默认值：FontWeight.Regular<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| selectedFontWeight      | [FontWeight](ts-appendix-enums.md#fontweight)                | 否               | 按钮选中态的字体粗细。<br/>默认值：FontWeight.Medium。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| backgroundColor         | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 底板颜色。<br/>默认值：$r('sys.color.ohos_id_color_button_normal')<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| selectedBackgroundColor | [ResourceColor](ts-types.md#resourcecolor)                   | 否                  | 按钮选中态底板颜色。<br/>type为"tab"时，默认值为`$r('sys.color.ohos_id_color_foreground_contrary')`。<br/>type为"capsule"时，默认值为`$r('sys.color.ohos_id_color_emphasize')`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| imageSize               | [SizeOptions](ts-types.md#sizeoptions)                       | 否                      | 图片尺寸，默认值：{ width: 24, height: 24 }。<br/>**说明：**<br/>`imageSize`属性对仅图标按钮和图标+文本按钮生效，对仅文字按钮无效果。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| buttonPadding           | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 否 | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: 4, right: 8, bottom: 4, left: 8 }`，图标+文本按钮`{ top: 6, right: 8, bottom: 6, left: 8 }`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| textPadding             | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Dimension](ts-types.md#dimension10) | 否 | 文本内边距。<br/>默认值：0<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| localizedButtonPadding<sup>12+</sup> | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 否                | 按钮内边距，默认值：仅图标按钮和仅文字按钮`{ top: LengthMetrics.vp(4), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(4), start: LengthMetrics.vp(8) }`，图标+文本按钮`{ top: LengthMetrics.vp(6), end: LengthMetrics.vp(8), bottom: LengthMetrics.vp(6), start: LengthMetrics.vp(8) }`。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| localizedTextPadding<sup>12+</sup>   | [LocalizedPadding](ts-types.md#localizedpadding12)                 | 否                | 文本内边距。<br/>默认值：0<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| direction<sup>12+</sup> | [Direction](ts-appendix-enums.md#direction)                                             | 否                                            | 布局方向。<br/>默认值：Direction.Auto<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| backgroundBlurStyle     | [BlurStyle](ts-universal-attributes-background.md#blurstyle9)                 | 否                | 背景模糊材质。<br/>默认值：BlurStyle.NONE<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| borderRadiusMode<sup>20+</sup> | [BorderRadiusMode](#borderradiusmode20) | 否 | 边框圆角模式，用于控制圆角计算方式。<br/>默认值：BorderRadiusMode.DEFAULT<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| backgroundBorderRadius<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否 | 背景边框圆角半径（不支持百分比设置）。<br/>**说明：**<br/>此属性仅在borderRadiusMode为BorderRadiusMode.CUSTOM时生效。<br/>对于胶囊型多选按钮(type为'capsule'且multiply为true)，此属性不生效，需要用itemBorderRadius配置圆角。默认值：`$r('sys.float.segmentbutton_container_shape')`<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| itemBorderRadius<sup>20+</sup> | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)   | 否 | 按钮项边框圆角半径（不支持百分比设置）。<br/>**说明：**<br/>此属性仅在borderRadiusMode为BorderRadiusMode.CUSTOM时生效。默认值：`$r('sys.float.segmentbutton_selected_background_shape')`<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+
+## BorderRadiusMode<sup>20+</sup>
+
+边框圆角模式枚举，用于控制分段按钮的圆角计算方式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |值 | 说明                             |
+| ------- | - |-------------------------------- |
+| DEFAULT | 0 |默认模式，框架自动计算边框圆角。 |
+| CUSTOM  | 1 |自定义模式，开发者设置边框圆角。 |
 
 ## TabSegmentButtonConstructionOptions
 
@@ -929,7 +944,7 @@ struct Index {
 ![segmentbutton-sample4](figures/segmentbutton-sample4.png)
 
 ### 示例5（设置无障碍朗读）
-该示例通配置accessibilityLevel、selectedIconAccessibilityText等属性实现了分段按钮的无障碍朗读功能。
+该示例通过配置accessibilityLevel、selectedIconAccessibilityText等属性实现了分段按钮的无障碍朗读功能。
 
 ```ts
 // xxx.ets
@@ -1072,3 +1087,48 @@ struct Index {
   }
 }
 ```
+
+### 示例6（设置自定义圆角）
+
+该示例演示了如何为分段按钮组件设置自定义的边框圆角半径。
+
+```ts
+// xxx.ets
+import {
+  BorderRadiusMode,
+  ItemRestriction,
+  LengthMetrics,
+  SegmentButton,
+  SegmentButtonOptions,
+  SegmentButtonTextItem
+} from '@kit.ArkUI';
+
+@Entry
+@Component
+struct Index {
+  @State tabOptions: SegmentButtonOptions = SegmentButtonOptions.tab({
+    buttons: [{ text: '页签按钮1' }, { text: '页签按钮2' }, {
+      text: '页签按钮3'
+    }] as ItemRestriction<SegmentButtonTextItem>,
+    backgroundBlurStyle: BlurStyle.BACKGROUND_THICK,
+    borderRadiusMode: BorderRadiusMode.CUSTOM,
+    backgroundBorderRadius: LengthMetrics.vp(8),
+    itemBorderRadius: LengthMetrics.vp(6)
+  })
+  @State tabSelectedIndexes: number[] = [1]
+
+  build() {
+    Row() {
+      Column() {
+        Column({ space: 25 }) {
+          SegmentButton({
+            options: this.tabOptions,
+            selectedIndexes: $tabSelectedIndexes,
+          })
+        }.width('90%')
+      }.width('100%')
+    }.height('100%')
+  }
+}
+```
+![segmentbutton-sample6](figures/segmentbutton-sample6.png)

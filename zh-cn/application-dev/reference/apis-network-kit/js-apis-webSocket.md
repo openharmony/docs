@@ -181,7 +181,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -247,7 +247,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 

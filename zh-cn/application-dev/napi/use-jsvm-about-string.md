@@ -276,7 +276,7 @@ static JSVM_Value GetValueStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
     JSVM_Value args[1] = {nullptr};
     OH_JSVM_GetCbInfo(env, info, &argc, args, nullptr, nullptr);
     char buf[MAX_BUFFER_SIZE];
-    size_t length;
+    size_t length = 0;
     JSVM_Value jsvmRes = nullptr;
     JSVM_Status status = OH_JSVM_GetValueStringLatin1(env, args[0], buf, MAX_BUFFER_SIZE, &length);
     if (status != JSVM_OK) {
@@ -338,7 +338,7 @@ static JSVM_Value CreateStringLatin1(JSVM_Env env, JSVM_CallbackInfo info)
         OH_LOG_ERROR(LOG_APP, "JSVM CreateStringLatin1 fail");
     } else {
         char buf[MAX_BUFFER_SIZE];
-        size_t length;
+        size_t length = 0;
         OH_JSVM_GetValueStringLatin1(env, result, buf, MAX_BUFFER_SIZE, &length);
         OH_LOG_INFO(LOG_APP, "JSVM CreateStringLatin1 success: %{public}s", buf);
     }
