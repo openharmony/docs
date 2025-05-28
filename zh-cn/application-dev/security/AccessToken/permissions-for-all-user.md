@@ -220,9 +220,9 @@
 
 **权限级别**：system_basic
 
-**支持设备**：PC/2in1 | Tablet
-
 **授权方式**：用户授权（user_grant）
+
+**支持设备**：PC/2in1 | Tablet
 
 **起始版本**：14
 
