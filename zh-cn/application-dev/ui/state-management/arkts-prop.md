@@ -1,8 +1,8 @@
 # \@Prop装饰器：父子单向同步
 
-\@Prop装饰的变量可以和父组件建立单向的同步关系：\@Prop装饰的变量是可变的，但是变化不会同步回其父组件。
+\@Prop装饰的变量可以和父组件建立单向的同步关系。\@Prop装饰的变量是可变的，但是变化不会同步回其父组件。
 
-在阅读@Prop文档前，建议提前了解[@State](./arkts-state.md)的基本用法。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
+在阅读\@Prop文档前，建议开发者首先了解[\@State](./arkts-state.md)的基本用法。最佳实践请参考[状态管理最佳实践](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-status-management)。
 
 > **说明：**
 >
@@ -14,9 +14,9 @@
 
 \@Prop装饰的变量和父组件建立单向的同步关系：
 
-- \@Prop变量允许在本地修改，但修改不会同步回父组件。
+- \@Prop变量允许在本地修改，但修改后的变化不会同步回父组件。
 
-- 当数据源更改时，\@Prop装饰的变量都会更新，并且会覆盖本地所有更改。因此，数值的同步是父组件到子组件，子组件数值的变化不会同步到父组件。
+- 当数据源更改时，\@Prop装饰的变量都会更新，并且会覆盖本地所有更改。因此，数值的同步是父组件到子组件（所属组件)，子组件数值的变化不会同步到父组件。
 
 ## 限制条件
 
@@ -32,7 +32,6 @@
 | 嵌套传递层数        | 在组件复用场景，建议@Prop深度嵌套数据不要超过5层，嵌套太多会导致深拷贝占用的空间过大以及GarbageCollection(垃圾回收)，引起性能问题，此时更建议使用[\@ObjectLink](arkts-observed-and-objectlink.md)。 |
 | 被装饰变量的初始值   | 允许本地初始化。如果在API 11中和[\@Require](arkts-require.md)结合使用，则必须父组件构造传参。 |
 
-
 ## 变量的传递/访问规则说明
 
 | 装饰器使用规则          | 说明                                                         |
@@ -43,12 +42,9 @@
 
   **图1** 初始化规则图示  
 
-
 ![zh-cn_image_0000001552972029](figures/zh-cn_image_0000001552972029.png)
 
-
 ## 观察变化和行为表现
-
 
 ### 观察变化
 
@@ -194,13 +190,11 @@ struct ParentComponent {
 
 ## 使用场景
 
-
 ### 父组件\@State到子组件\@Prop简单数据类型同步
 
+以下示例是\@State到子组件\@Prop简单数据同步，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent，不会同步给父组件ParentComponent。
 
-以下示例中，父组件ParentComponent的状态变量countDownStartValue初始化子组件CountDownComponent中\@Prop装饰的count，点击“Try again”，count的修改仅保留在CountDownComponent，不会同步给父组件ParentComponent。
-
-ParentComponent的countDownStartValue变化将重置CountDownComponent的count。
+ParentComponent的状态变量countDownStartValue的变化将重置CountDownComponent的count。
 
 ```ts
 @Component
@@ -246,24 +240,21 @@ struct ParentComponent {
 }
 ```
 
-
 在上面的示例中：
 
-
-1. CountDownComponent子组件首次创建时，其\@Prop装饰的count变量将从父组件\@State装饰的countDownStartValue变量初始化。
+1. CountDownComponent子组件首次创建时其\@Prop装饰的count变量将从父组件\@State装饰的countDownStartValue变量初始化。
 
 2. 按“+1”或“-1”按钮时，父组件的\@State装饰的countDownStartValue值会变化，这将触发父组件重新渲染，在父组件重新渲染过程中会刷新使用countDownStartValue状态变量的UI组件，并单向同步更新CountDownComponent子组件中的count值。
 
 3. 更新count状态变量值也会触发CountDownComponent的重新渲染，在重新渲染过程中，评估使用count状态变量的if语句条件（this.count &gt; 0），并执行true分支中的使用count状态变量的UI组件相关描述来更新Text组件的UI显示。
 
-4. 当按下子组件CountDownComponent的“Try again”按钮时，CountDownComponent的\@Prop变量count更改，但不影响父组件的countDownStartValue。
+4. 当按下子组件CountDownComponent的“Try again”按钮时，其\@Prop变量count将被更改，但是count值的更改不会影响父组件的countDownStartValue值。
 
-5. 父组件的countDownStartValue值变化时，父组件的修改将覆盖子组件CountDownComponent中count本地的修改。
+5. 父组件的countDownStartValue值变化时，父组件的修改将覆盖掉子组件CountDownComponent中count本地的修改。
 
 ### 父组件\@State数组项到子组件\@Prop简单数据类型同步
 
-
-父组件中\@State装饰的数组，其数组项也可以初始化\@Prop。以下示例中，父组件Index中\@State装饰的数组arr，将其数组项初始化子组件Child中\@Prop装饰的value。
+当父组件中\@State装饰的变量是数组类型时，其数组项也可以初始化\@Prop。以下示例中，父组件Index内\@State装饰的数组arr，将其数组项初始化子组件Child中\@Prop装饰的value。
 
 ```ts
 @Component
@@ -312,9 +303,9 @@ struct Index {
 ```
 
 
-初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onclick事件处理程序会更改局部变量值。
+初始渲染创建6个子组件实例，每个\@Prop装饰的变量初始化都在本地拷贝了一份数组项。子组件onClick事件处理程序会更改局部变量值。
 
-如果点击界面上的“1”六次，“2”五次，“3”四次，所有变量的本地取值都变为“7”。
+如果点击界面上的“1”六次，“2”五次、“3”四次，将所有变量的本地取值都变为“7”。
 
 ```
 7
@@ -326,10 +317,7 @@ struct Index {
 7
 ```
 
-
-单击replace entire arr后，屏幕显示以下信息：
-
-
+单击replace entire arr后，屏幕将显示以下信息。
 
 ```
 3
@@ -341,16 +329,13 @@ struct Index {
 5
 ```
 
-
-- 子组件Child的修改不会同步回父组件Index，即使6个组件显示都为7，在父组件Index中，this.arr保存的值仍为[1,2,3]。
+- 在子组件Child中做的所有的修改都不会同步回父组件Index组件，所以即使6个组件显示都为7，但在父组件Index中，this.arr保存的值依旧是[1,2,3]。
 
 - 点击replace entire arr，this.arr[0] == 1成立，将this.arr赋值为[3, 4, 5]。
 
 - 因为this.arr[0]已更改，Child({value: this.arr[0]})组件将this.arr[0]更新同步到实例\@Prop装饰的变量。Child({value: this.arr[1]})和Child({value: this.arr[2]})的情况也类似。
 
-
 - this.arr的更改触发ForEach更新，this.arr更新的前后都有数值为3的数组项：[3, 4, 5] 和[1, 2, 3]。根据diff算法，数组项“3”将被保留，删除“1”和“2”的数组项，添加为“4”和“5”的数组项。这就意味着，数组项“3”的组件不会重新生成，而是将其移动到第一位。所以“3”对应的组件不会更新，此时“3”对应的组件数值为“7”，ForEach最终的渲染结果是“7”，“4”，“5”。
-
 
 ### 从父组件中的\@State类对象属性到\@Prop简单类型的同步
 
@@ -538,7 +523,6 @@ class Book {
 - \@Prop customCounter没有本地初始化，所以需要父组件提供数据源去初始化\@Prop，并当父组件的数据源变化时，\@Prop也将被更新。
 
 - \@Prop customCounter2有本地初始化，在这种情况下，\@Prop依旧允许但非强制父组件同步数据源给\@Prop。
-
 
 ```ts
 @Component
@@ -754,7 +738,6 @@ struct Child {
   }
 }
 
-
 @Entry
 @Component
 struct MapSample {
@@ -807,7 +790,6 @@ struct Child {
     .width('100%')
   }
 }
-
 
 @Entry
 @Component
