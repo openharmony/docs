@@ -8198,9 +8198,9 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 **参数：**
 
-| 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
-| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream19)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| 参数名  | 类型                                 | 必填 | 说明                                                  |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
@@ -8221,6 +8221,8 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(stre
 ## MediaStream<sup>19+</sup>
 
 媒体流数据信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
