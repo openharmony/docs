@@ -64,7 +64,7 @@ it is prohibited for non-input applications.
 
 **错误信息**
 
-windowId is invalid.
+windowId is invalid. Possible causes: The window id does not belong to the current process.
 
 **错误描述**
 
