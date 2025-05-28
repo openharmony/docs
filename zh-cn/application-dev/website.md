@@ -3185,6 +3185,7 @@
           - [background_process_manager.h](reference/apis-backgroundtasks-kit/background__process__manager_8h.md)
         - 结构体<!--background-tasks-struct-->
           - [TransientTask_DelaySuspendInfo](reference/apis-backgroundtasks-kit/_transient_task___delay_suspend_info.md)
+          - [TransientTask_TransientTaskInfo](reference/apis-backgroundtasks-kit/_transient_task___transient_task_info.md)
       - 错误码<!--background-tasks-arkts-errcode-->
         - [backgroundTaskManager错误码](reference/apis-backgroundtasks-kit/errorcode-backgroundTaskMgr.md)
         - [DeviceUsageStatistics错误码](reference/apis-backgroundtasks-kit/errorcode-DeviceUsageStatistics.md)
