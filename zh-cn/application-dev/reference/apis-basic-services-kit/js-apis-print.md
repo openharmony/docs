@@ -54,7 +54,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -97,7 +97,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -140,7 +140,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -183,7 +183,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -226,7 +226,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -269,7 +269,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -312,7 +312,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -355,7 +355,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -506,7 +506,7 @@ import { fileUri } from '@kit.CoreFileKit';
 let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
 print.print([fileUri.getUriFromPath(filePath)], (err: BusinessError, printTask: print.PrintTask) => {
     if (err) {
-        console.log('print err ' + JSON.stringify(err));
+        console.error('print err ' + JSON.stringify(err));
     } else {
         printTask.on('succeed', () => {
             console.log('print state is succeed');
@@ -560,7 +560,7 @@ print.print([fileUri.getUriFromPath(filePath)]).then((printTask: print.PrintTask
     })
     // ...
 }).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
+    console.error('print err ' + JSON.stringify(error));
 })
 ```
 
@@ -597,19 +597,34 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
-//传入文件的uri
-let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
-let context = this.getUIContext().getHostContext();
-print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
-    if (err) {
-        console.log('print err ' + JSON.stringify(err));
-    } else {
-        printTask.on('succeed', () => {
-            console.log('print state is succeed');
-        })
-        // ...
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("打印").width('90%').height(50).onClick(() => {
+                    let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+                    let context = this.getUIContext().getHostContext();
+                    print.print([fileUri.getUriFromPath(filePath)], context, (err: BusinessError, printTask: print.PrintTask) => {
+                        if (err) {
+                            console.error('print err ' + JSON.stringify(err));
+                        } else {
+                            printTask.on('succeed', () => {
+                                console.log('print state is succeed');
+                            })
+                            // ...
+                        }
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
     }
-})
+}
 ```
 
 ## print.print<sup>11+</sup>
@@ -649,17 +664,32 @@ import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 import { fileUri } from '@kit.CoreFileKit';
 
-//传入文件的uri
-let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
-let context = this.getUIContext().getHostContext();
-print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
-    printTask.on('succeed', () => {
-        console.log('print state is succeed');
-    })
-    // ...
-}).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
-})
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("打印").width('90%').height(50).onClick(() => {
+                    let filePath = '/data/storage/el2/base/haps/entry/files/test.pdf';
+                    let context = this.getUIContext().getHostContext();
+                    print.print([fileUri.getUriFromPath(filePath)], context).then((printTask: print.PrintTask) => {
+                        printTask.on('succeed', () => {
+                            console.log('print state is succeed');
+                        })
+                        // ...
+                    }).catch((error: BusinessError) => {
+                        console.error('print err ' + JSON.stringify(error));
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
 ```
 
 ## print.print<sup>11+</sup>
@@ -700,30 +730,46 @@ print(jobName: string, printAdapter: PrintDocumentAdapter, printAttributes: Prin
 import { print } from '@kit.BasicServicesKit';
 import { BusinessError } from '@ohos.base';
 
-let jobName : string = "jobName";
-let printAdapter : print.PrintDocumentAdapter | null = null;
-let printAttributes : print.PrintAttributes = {
-    copyNumber: 1,
-    pageRange: {
-        startPage: 0,
-        endPage: 5,
-        pages: []
-    },
-    pageSize: print.PrintPageType.PAGE_ISO_A3,
-    directionMode: print.PrintDirectionMode.DIRECTION_MODE_AUTO,
-    colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
-    duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
-}
-let context = this.getUIContext().getHostContext();
+@Entry
+@Component
+struct Index {
+    build() {
+        Scroll() {
+            Column({ space: 10 }) {
+                Button("打印").width('90%').height(50).onClick(() => {
+                    let jobName : string = "jobName";
+                    let printAdapter : print.PrintDocumentAdapter | null = null;
+                    let printAttributes : print.PrintAttributes = {
+                        copyNumber: 1,
+                        pageRange: {
+                            startPage: 0,
+                            endPage: 5,
+                            pages: []
+                        },
+                        pageSize: print.PrintPageType.PAGE_ISO_A3,
+                        directionMode: print.PrintDirectionMode.DIRECTION_MODE_AUTO,
+                        colorMode: print.PrintColorMode.COLOR_MODE_MONOCHROME,
+                        duplexMode: print.PrintDuplexMode.DUPLEX_MODE_NONE
+                    }
+                    let context = this.getUIContext().getHostContext();
 
-print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
-    printTask.on('succeed', () => {
-        console.log('print state is succeed');
-    })
-    // ...
-}).catch((error: BusinessError) => {
-    console.log('print err ' + JSON.stringify(error));
-})
+                    print.print(jobName, printAdapter, printAttributes, context).then((printTask: print.PrintTask) => {
+                        printTask.on('succeed', () => {
+                            console.log('print state is succeed');
+                        })
+                        // ...
+                    }).catch((error: BusinessError) => {
+                        console.error('print err ' + JSON.stringify(error));
+                    })
+                })
+            }
+            .justifyContent(FlexAlign.Center)
+            .constraintSize({ minHeight: '100%' })
+            .width('100%')
+        }
+        .height('100%')
+    }
+}
 ```
 
 ## PrintAttributes<sup>11+</sup>
@@ -1000,7 +1046,7 @@ let printerInformation : print.PrinterInformation = {
 print.addPrinterToDiscovery(printerInformation).then((data : void) => {
     console.log('addPrinterToDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('addPrinterToDiscovery error : ' + JSON.stringify(error));
+    console.error('addPrinterToDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1069,7 +1115,7 @@ let printerInformation : print.PrinterInformation = {
 print.updatePrinterInDiscovery(printerInformation).then((data : void) => {
     console.log('updatePrinterInDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('updatePrinterInDiscovery error : ' + JSON.stringify(error));
+    console.error('updatePrinterInDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1112,7 +1158,7 @@ let printerId : string = 'testPrinterId';
 print.removePrinterFromDiscovery(printerId).then((data : void) => {
     console.log('removePrinterFromDiscovery data : ' + JSON.stringify(data));
 }).catch((error: BusinessError) => {
-    console.log('removePrinterFromDiscovery error : ' + JSON.stringify(error));
+    console.error('removePrinterFromDiscovery error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1155,7 +1201,7 @@ let printerId : string = 'testPrinterId';
 print.getPrinterInformationById(printerId).then((printerInformation : print.PrinterInformation) => {
     console.log('getPrinterInformationById data : ' + JSON.stringify(printerInformation));
 }).catch((error: BusinessError) => {
-    console.log('getPrinterInformationById error : ' + JSON.stringify(error));
+    console.error('getPrinterInformationById error : ' + JSON.stringify(error));
 })
 ```
 
@@ -1299,7 +1345,6 @@ getAddedPrinters(): Promise&lt;Array&lt;string&gt;&gt;
 | 错误码ID | 错误信息                                    |
 | -------- | ------------------------------------------- |
 | 201 | the application does not have permission to call this function. |
-| 202 | not system application |
 
 **示例：**
 
@@ -1311,7 +1356,7 @@ print.getAddedPrinters().then((printers: string[]) => {
     console.log('getAddedPrinters success ' + JSON.stringify(printers));
     // ...
 }).catch((error: BusinessError) => {
-    console.log('failed to getAddedPrinters because ' + JSON.stringify(error));
+    console.error('failed to getAddedPrinters because ' + JSON.stringify(error));
 })
 ```
 
