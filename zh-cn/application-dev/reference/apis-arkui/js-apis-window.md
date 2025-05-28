@@ -574,10 +574,10 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   |  类型 | 可读 | 可写 | 说明                   |
-| ------ | ---- | ---- | ---- | --------------------- |
-| WINDOW_WILL_ROTATE| number | 是 | 否 | 窗口即将旋转。 |
-| WINDOW_DID_ROTATE | number | 是 | 否 | 窗口旋转结束。 |
+| 名称   |  值 | 说明                   |
+| ------ | ---- | --------------------- |
+| WINDOW_WILL_ROTATE| 0 | 窗口即将旋转。 |
+| WINDOW_DID_ROTATE | 1 | 窗口旋转结束。 |
 
 ## RectType<sup>19+</sup>
 
@@ -587,10 +587,10 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   |  类型 | 可读 | 可写 | 说明                   |
-| ------ | ---- | ---- | ---- | --------------------- |
-| RELATIVE_TO_SCREEN | number | 是 | 否 | 窗口矩形区域相对于屏幕坐标系。 |
-| RELATIVE_TO_PARENT_WINDOW | number | 是 | 否 | 窗口矩形区域相对于父窗口坐标系。 |
+| 名称   | 值 | 说明                   |
+| ------ | ---- | --------------------- |
+| RELATIVE_TO_SCREEN | 0 | 窗口矩形区域相对于屏幕坐标系。 |
+| RELATIVE_TO_PARENT_WINDOW | 1 | 窗口矩形区域相对于父窗口坐标系。 |
 
 ## RotationChangeInfo<sup>19+</sup>
 
@@ -600,7 +600,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读  | 可写 | 说明                    |
+| 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
 | type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转事件类型。 |
 | orientation | number | 是 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
@@ -616,14 +616,14 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 类型 | 可读  | 可写 | 说明                    |
+| 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| rectType | [RectType](#recttype19) | 是 | 是 | 窗口矩形区域坐标系类型。 |
-| windowRect | [Rect](#rect7) | 是 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
+| rectType | [RectType](#recttype19) | 是 | 否 | 窗口矩形区域坐标系类型。 |
+| windowRect | [Rect](#rect7) | 是 | 否 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
 ### RotationChangeCallback<sup>19+</sup>
 
-(info: T): U;
+(info: T): U
 
 旋转事件通知通用回调函数。
 
