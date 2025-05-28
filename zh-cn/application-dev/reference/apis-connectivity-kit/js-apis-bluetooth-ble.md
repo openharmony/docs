@@ -359,6 +359,7 @@ try {
 startAdvertising(advertisingParams: AdvertisingParams, callback: AsyncCallback&lt;number&gt;): void
 
 开始发送BLE广播。使用Callback异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
+- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取首次启动广播结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -453,6 +454,7 @@ try {
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
 开始发送BLE广播。使用Promise异步回调。从API15开始，多次调用，可发起多路广播，每一路广播通过不同的ID管理。
+- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取首次启动广播结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -547,7 +549,11 @@ try {
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams, callback: AsyncCallback&lt;void&gt;): void
 
-临时启动BLE广播。使用Callback异步回调。
+重新启动指定标识的BLE广播。使用Callback异步回调。
+- [AdvertisingEnableParams](#advertisingenableparams11)中advertisingId对应的广播资源已在[ble.startAdvertising](#blestartadvertising11)首次启动广播时分配。
+- 若[ble.startAdvertising](#blestartadvertising11)首次启动广播时指定了广播持续时间，超时后广播自动停止，调用此接口可重新启动同一路BLE广播。
+- 通过[ble.disableAdvertising](#bledisableadvertising11)停止的广播，调用此接口可重新启动同一路BLE广播。
+- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取重新启动广播结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -652,7 +658,11 @@ try {
 
 enableAdvertising(advertisingEnableParams: AdvertisingEnableParams): Promise&lt;void&gt;
 
-临时启动BLE广播。使用Promise异步回调。
+重新启动指定标识的BLE广播。使用Promise异步回调。
+- [AdvertisingEnableParams](#advertisingenableparams11)中advertisingId对应的广播资源已在[ble.startAdvertising](#blestartadvertising11)首次启动广播时分配。
+- 若[ble.startAdvertising](#blestartadvertising11)首次启动广播时指定了广播持续时间，超时后广播自动停止，调用此接口可重新启动同一路BLE广播。
+- 通过[ble.disableAdvertising](#bledisableadvertising11)停止的广播，调用此接口可重新启动同一路BLE广播。
+- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取启动广播结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -761,7 +771,10 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback: AsyncCallback&lt;void&gt;): void
 
-临时停止BLE广播。使用Callback异步回调。
+停止指定标识的BLE广播。使用Callback异步回调。
+- 停止BLE广播，但不释放已申请的广播资源，调用[ble.enableAdvertising](#bleenableadvertising11)可重新启动此方法停止的广播。
+- [AdvertisingDisableParams](#advertisingdisableparams11)中advertisingId对应的广播资源已在[ble.startAdvertising](#blestartadvertising11)首次启动广播时分配。
+- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取停止广播结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -771,7 +784,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams, callback:
 
 | 参数名                    | 类型                                                   | 必填  | 说明                             |
 | ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
-| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | 是    | 临时停止BLE广播的相关参数。        |
+| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | 是    | 临时关闭BLE广播的相关参数。        |
 | callback                  | AsyncCallback&lt;void&gt;                             | 是    | 回调函数。                        |
 
 **错误码**：
@@ -863,7 +876,10 @@ try {
 
 disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&lt;void&gt;
 
-临时停止BLE广播。使用Promise异步回调。
+停止指定标识的BLE广播。使用Promise异步回调。
+- 停止BLE广播，但不释放已申请的广播资源，调用[ble.enableAdvertising](#bleenableadvertising11)可重新启动此方法停止的广播。
+- [AdvertisingDisableParams](#advertisingdisableparams11)中advertisingId对应的广播资源已在[ble.startAdvertising](#blestartadvertising11)首次启动广播时分配。
+- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取停止广播结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -873,7 +889,7 @@ disableAdvertising(advertisingDisableParams: AdvertisingDisableParams): Promise&
 
 | 参数名                    | 类型                                                   | 必填  | 说明                             |
 | ------------------------- | ----------------------------------------------------- | ----- | ------------------------------- |
-| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | 是    | 临时停止BLE广播的相关参数。        |
+| advertisingDisableParams  | [AdvertisingDisableParams](#advertisingdisableparams11) | 是    | 临时关闭BLE广播的相关参数。        |
 
 **返回值：**
 
@@ -968,7 +984,11 @@ try {
 
 stopAdvertising(advertisingId: number, callback: AsyncCallback&lt;void&gt;): void
 
-停止发送BLE广播。使用Callback异步回调。
+完全停止发送BLE广播。使用Callback异步回调。
+- 与API version 11开始支持的[ble.startAdvertising](#blestartadvertising11)搭配使用，会释放已经申请的广播资源。
+- [ble.startAdvertising](#blestartadvertising11)首次启动广播时分配的广播标识也将失效。
+- 不可以和API version 10开始支持的[ble.startAdvertising](#blestartadvertising)接口搭配使用。
+- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取完全停止广播结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1067,7 +1087,11 @@ try {
 
 stopAdvertising(advertisingId: number): Promise&lt;void&gt;
 
-停止发送BLE广播。使用Promise异步回调。
+完全停止发送BLE广播。使用Promise异步回调。
+- 与API version 11开始支持的[ble.startAdvertising](#blestartadvertising11)搭配使用，会释放已经申请的广播资源。
+- [ble.startAdvertising](#blestartadvertising11)首次启动广播时分配的广播标识也将失效。
+- 不可以和API version 10开始支持的[ble.startAdvertising](#blestartadvertising)接口搭配使用。
+- 通过[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)回调获取完全停止广播结果。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1180,8 +1204,8 @@ on(type: 'advertisingStateChange', callback: Callback&lt;AdvertisingStateChangeI
 
 | 参数名      | 类型                                                                    | 必填   | 说明                                                      |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
-| type     | string                                                                    | 是    | 填写"advertisingStateChange"字符串，表示广播状态事件。        |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | 是    | 表示回调函数的入参，广播状态。回调函数由用户创建通过该接口注册。 |
+| type     | string                                                                    | 是    | 事件回调类型，支持的事件为'advertisingStateChange'，表示广播状态事件。<br>当调用[ble.startAdvertising](#blestartadvertising11)、[ble.stopAdvertising](#blestopadvertising11)、[ble.enableAdvertising](#bleenableadvertising11)、[ble.disableAdvertising](#bledisableadvertising11)，广播状态改变时，均会触发该事件。     |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | 是    | 指定订阅的回调函数，会携带广播状态信息。 |
 
 **错误码**：
 
@@ -1213,7 +1237,7 @@ try {
 
 off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
-取消订阅BLE广播状态。
+取消订阅BLE广播状态。广播停止或启动将不再收到通知。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1223,8 +1247,8 @@ off(type: 'advertisingStateChange', callback?: Callback&lt;AdvertisingStateChang
 
 | 参数名      | 类型                                                                    | 必填   | 说明                                                      |
 | -------- | ------------------------------------------------------------------------- | ----- | ---------------------------------------------------------- |
-| type     | string                                                                    | 是    | 填写"advertisingStateChange"字符串，表示广播状态事件。        |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | 否    | 表示取消订阅广播状态上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                                                    | 是    | 事件回调类型，支持的事件为'advertisingStateChange'，表示广播状态事件。        |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo11)&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[ble.on('advertisingStateChange')](#bleonadvertisingstatechange11)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1257,7 +1281,7 @@ try {
 
 on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
-订阅BLE设备发现上报事件。使用Callback异步回调。
+订阅BLE设备扫描结果上报事件。使用Callback异步回调。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1269,8 +1293,8 @@ on(type: 'BLEDeviceFind', callback: Callback&lt;Array&lt;ScanResult&gt;&gt;): vo
 
 | 参数名      | 类型                                       | 必填   | 说明                                  |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
-| type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。   |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 是    | 表示回调函数的入参，发现的设备集合。回调函数由用户创建通过该接口注册。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEDeviceFind'，表示BLE设备扫描结果上报事件。<br>当调用[ble.startBLEScan](#blestartblescan) 后，开始BLE扫描，若扫描到BLE设备，触发该事件。 |
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 是    | 指定订阅的回调函数，会携带扫描结果的集合。 |
 
 **错误码**：
 
@@ -1302,7 +1326,8 @@ try {
 
 off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): void
 
-取消订阅BLE设备发现上报事件。
+取消订阅BLE设备扫描结果上报事件。
+- 若不再需要扫描BLE设备，调用[ble.stopBLEScan](#blestopblescan)方法后，需要调用此方法取消订阅。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1314,8 +1339,8 @@ off(type: 'BLEDeviceFind', callback?: Callback&lt;Array&lt;ScanResult&gt;&gt;): 
 
 | 参数名      | 类型                                       | 必填   | 说明                                       |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | 是    | 填写"BLEDeviceFind"字符串，表示BLE设备发现事件。        |
-| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 否    | 表示取消订阅BLE设备发现事件上报。不填该参数则取消订阅该type对应的所有回调。 |
+| type     | string                                   | 是    | 事件回调类型，支持的事件为'BLEDeviceFind'，表示BLE设备扫描结果上报事件。        |
+| callback | Callback&lt;Array&lt;[ScanResult](#scanresult)&gt;&gt; | 否    | 指定取消订阅的回调函数通知。<br>若传参，则需与[ble.on('BLEDeviceFind')](#bleonbledevicefind)中的回调函数一致；若无传参，则取消订阅该type对应的所有回调函数通知。 |
 
 **错误码**：
 
@@ -1347,14 +1372,16 @@ try {
 
 ## GattServer
 
-server端类，使用server端方法之前需要创建该类的实例进行操作，通过createGattServer()方法构造此实例。
+GATT通信中的服务端类。
+- 通过[ble.createGattServer](#blecreategattserver)方法可以构造server实例。
+- 通过该实例可以操作server端的行为，如添加服务[addService](#addservice)、通知特征值变化[notifyCharacteristicChanged](#notifycharacteristicchanged)等。
 
 
 ### addService
 
 addService(service: GattService): void
 
-server端添加服务。
+server端添加服务。该操作会在蓝牙子系统中注册该服务，表示server端支持的能力。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1366,7 +1393,7 @@ server端添加服务。
 
 | 参数名     | 类型                          | 必填   | 说明                       |
 | ------- | --------------------------- | ---- | ------------------------ |
-| service | [GattService](#gattservice) | 是    | 服务端的service数据。BLE广播的相关参数。 |
+| service | [GattService](#gattservice) | 是    | server端的service数据。表示支持的特定功能。<br>例如：00001800-0000-1000-8000-00805f9b34fb表示通用访问服务；00001801-0000-1000-8000-00805f9b34fb表示通用属性服务等。 |
 
 **错误码**：
 
@@ -1420,7 +1447,8 @@ try {
 
 removeService(serviceUuid: string): void
 
-删除已添加的服务。
+删除server端已添加的服务。
+- 该服务曾通过[addService](#addservice)添加。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -1432,7 +1460,7 @@ removeService(serviceUuid: string): void
 
 | 参数名         | 类型     | 必填   | 说明                                       |
 | ----------- | ------ | ---- | ---------------------------------------- |
-| serviceUuid | string | 是    | service的UUID。例如“00001810-0000-1000-8000-00805F9B34FB”。 |
+| serviceUuid | string | 是    | 即将删除的服务的UUID。例如：00001810-0000-1000-8000-00805F9B34FB。 |
 
 **错误码**：
 
@@ -1466,7 +1494,7 @@ try {
 
 close(): void
 
-关闭服务端功能，去掉server在协议栈的注册，调用该接口后[GattServer](#gattserver)实例将不能再使用。
+销毁server端实例。销毁后，通过[ble.createGattServer](#blecreategattserver)创建的实例将不可用。
 
 **需要权限**：ohos.permission.ACCESS_BLUETOOTH
 
@@ -4073,7 +4101,7 @@ GATT服务结构定义，可包含多个特征值[BLECharacteristic](#blecharact
 
 | 名称              | 类型                                     | 只读 | 可选   | 说明                                       |
 | --------------- | ---------------------------------------- |---- | ---- | ---------------------------------------- |
-| serviceUuid     | string                                   | 否 | 否    | 服务UUID。例如：00001888-0000-1000-8000-00805f9b34fb。 |
+| serviceUuid     | string                                   | 否 | 否    | 服务UUID，标识一个GATT服务。例如：00001888-0000-1000-8000-00805f9b34fb。 |
 | isPrimary       | boolean                                  | 否 | 否    | 是否是主服务。true表示是主服务，false表示是次要服务。                |
 | characteristics | Array&lt;[BLECharacteristic](#blecharacteristic)&gt; | 否 | 否    | 当前服务包含的特征值列表。                             |
 | includeServices | Array&lt;[GattService](#gattservice)&gt; | 否 | 是    | 当前服务依赖的其它服务。                             |
