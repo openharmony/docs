@@ -214,9 +214,6 @@
         - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
         - [通过向量数据库实现数据持久化 (ArkTS)](database/data-persistence-by-vector-store.md)
         - [通过向量数据库实现数据持久化 (C/C++)](database/native-vector-store-guidelines.md)
-        <!--Del-->
-        - [通过图数据库实现数据持久化（仅对系统应用开放）](database/data-persistence-by-graph-store.md)
-        <!--DelEnd-->
       - 同应用跨设备数据同步（分布式）<!--distributed-data-sync-->
         - [同应用跨设备数据同步概述](database/sync-app-data-across-devices-overview.md)
         - [键值型数据库跨设备数据同步](database/data-sync-of-kv-store.md)
@@ -2297,7 +2294,6 @@
         - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
         - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md)
         - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](reference/apis-arkdata/js-apis-distributedKVStore-sys.md)
-        - [@ohos.data.graphStore (图数据库)(系统接口)](reference/apis-arkdata/js-apis-data-graphStore-sys.md)
         - [@ohos.data.relationalStore (关系型数据库)(系统接口)](reference/apis-arkdata/js-apis-data-relationalStore-sys.md)
         <!--DelEnd-->
         - 已停止维护的接口<!--arkdata-arkts-dep-->
@@ -2353,9 +2349,6 @@
           - [Rdb_SubscribeCallback](reference/apis-arkdata/union_rdb___subscribe_callback.md)
           - [Rdb_TableDetails](reference/apis-arkdata/_rdb___table_details.md)
       - 错误码<!--arkdata-arkts-errcode-->
-        <!--Del-->
-        - [图数据库错误码](reference/apis-arkdata/errorcode-data-gdb.md)
-        <!--DelEnd-->
         - [关系型数据库错误码](reference/apis-arkdata/errorcode-data-rdb.md)
         - [数据共享错误码](reference/apis-arkdata/errorcode-datashare.md)
         - [分布式数据对象错误码](reference/apis-arkdata/errorcode-distributed-dataObject.md)
