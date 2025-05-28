@@ -225,8 +225,8 @@ let advResponse: ble.AdvertiseData = {
 // 构造广播启动完整参数AdvertisingParams
 let advertisingParams: ble.AdvertisingParams = {
   advertisingSettings: setting,
-  advertisingData: advData, // 注意: 广播报文长度不能超过31个字节。
-  advertisingResponse: advResponse, // 注意: 广播报文长度不能超过31个字节。
+  advertisingData: advData, // 注意: 广播报文长度不能超过31个字节
+  advertisingResponse: advResponse, // 注意: 广播报文长度不能超过31个字节
   duration: 0 // 可选参数，若大于0，则广播发送一段时间后，则会停止，但分配的广播资源还在，可重新启动发送
 }
 
@@ -657,8 +657,8 @@ export class BleAdvertisingManager {
     // 2.3 构造广播启动完整参数AdvertisingParams
     let advertisingParams: ble.AdvertisingParams = {
       advertisingSettings: setting,
-      advertisingData: advData, // 注意: 广播报文长度不能超过31个字节。
-      advertisingResponse: advResponse, // 注意: 广播报文长度不能超过31个字节。
+      advertisingData: advData, // 注意: 广播报文长度不能超过31个字节
+      advertisingResponse: advResponse, // 注意: 广播报文长度不能超过31个字节
       duration: 0 // 可选参数，若参数大于0，则广播发送一段时间后会停止，但分配的广播资源还在，可重新启动发送
     }
 
