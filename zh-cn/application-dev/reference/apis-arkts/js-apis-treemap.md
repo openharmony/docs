@@ -54,6 +54,13 @@ TreeMap的构造函数，支持通过比较函数对元素进行升序或降序�
 | -------- | -------- | -------- | -------- |
 | comparator | function | 否 | 用户自定义的比较函数，可通过比较关系对元素进行排序。默认值为hole（一个空白占位符），表示不提供比较函数。 |
 
+comparator的参数说明：
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------| ---- | ----- | -- |
+| firstValue | K | 是 | 前一项元素。 |
+| secondValue | K | 是 | 后一项元素。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[语言基础类库错误码](errorcode-utils.md)。
@@ -77,7 +84,7 @@ treeMap.set("aa","3");
 treeMap.set("dd","1");
 treeMap.set("cc","2");
 treeMap.set("bb","4");
-let numbers = Array.from(treeMap.keys())
+let numbers = Array.from(treeMap.keys());
 for (let item of numbers) {
   console.log("treeMap:" + item);
 }
@@ -804,7 +811,7 @@ let it = treeMap.entries();
 let t: IteratorResult<Object[]> = it.next();
 while(!t.done) {
   console.log("TreeMap" + t.value);
-  t = it.next()
+  t = it.next();
 }
 
 // 使用方法二：

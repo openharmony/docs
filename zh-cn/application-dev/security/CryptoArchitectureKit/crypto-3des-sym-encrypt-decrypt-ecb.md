@@ -2,6 +2,8 @@
 
 对应的算法规格请查看[对称密钥加解密算法规格：3DES](crypto-sym-encrypt-decrypt-spec.md#3des)。
 
+## 开发步骤
+
 **加密**
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)和[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为3DES、密钥长度为 192 位的对称密钥（SymKey）。
@@ -35,6 +37,12 @@
 
 4. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
 
+## 开发示例
+
+当前示例以ECB分组模式为例，不需要设置加解密参数。
+
+如果使用的分组模式为CBC、CTR、OFB、CFB，需设置加解密参数IV，请参考[设置加解密参数IV](#设置加解密参数iv)，并注意修改加密、解密过程中生成Cipher实例和初始化Cipher实例时的参数。
+
 - 异步方法示例：
 
   ```ts
@@ -43,6 +51,7 @@
 
   // 加密消息。
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
+    // 如果是CBC、CTR、OFB、CFB分段模式，此处需要修改为对应模式并添加加解密参数IV。
     let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     await cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let encryptData = await cipher.doFinal(plainText);
@@ -50,6 +59,7 @@
   }
   // 解密消息。
   async function decryptMessagePromise(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
+    // 如果是CBC、CTR、OFB、CFB分段模式，此处需要修改为对应模式并添加加解密参数IV。
     let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     await decoder.init(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = await decoder.doFinal(cipherText);
@@ -86,6 +96,7 @@
 
   // 加密消息。
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
+    // 如果是CBC、CTR、OFB、CFB分段模式，此处需要修改为对应模式并添加加解密参数IV。
     let cipher = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     cipher.initSync(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null);
     let encryptData = cipher.doFinalSync(plainText);
@@ -93,6 +104,7 @@
   }
   // 解密消息。
   function decryptMessage(symKey: cryptoFramework.SymKey, cipherText: cryptoFramework.DataBlob) {
+    // 如果是CBC、CTR、OFB、CFB分段模式，此处需要修改为对应模式并添加加解密参数IV。
     let decoder = cryptoFramework.createCipher('3DES192|ECB|PKCS7');
     decoder.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, null);
     let decryptData = decoder.doFinalSync(cipherText);
@@ -119,4 +131,25 @@
       console.error('decrypt failed');
     }
   }
+  ```
+
+### 设置加解密参数IV
+
+下述示例为CBC分组模式，需要设置加解密参数IV。
+
+如果分组模式为CBC、CTR、OFB、CFB，需要参考如下设置IV。ECB不需要设置加解密参数。
+
+  ```ts
+  function genIvParamsSpec() {
+    let ivBlob = generateRandom(8); //3DES的 CBC、CFB、OFB、CTR的iv长度为8字节。
+    let ivParamsSpec: cryptoFramework.IvParamsSpec = {
+      algName: "IvParamsSpec",
+      iv: ivBlob
+    };
+    return ivParamsSpec;
+  }
+  let iv = genIvParamsSpec();
+  let cipher = cryptoFramework.createCipher('3DES192|CBC|PKCS7');
+  cipher.initSync(cryptoFramework.CryptoMode.DECRYPT_MODE, symKey, iv);
+  // 本段代码只展示CBC、CTR、OFB、CFB分段模式的不同，其他流程请参考开发示例。
   ```

@@ -1210,6 +1210,21 @@ type Nullable\<T> = T | undefined
 | LEFT     | 1   | 左手。 |
 | RIGHT    | 2   | 右手。 |
 
+## FocusDrawLevel<sup>19+</sup>
+
+定义节点获焦框的绘制层级。
+
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称           | 值  | 说明                                      |
+| -------------- | -- | ---------------------------------------- |
+| SELF  	     | 0   | 获焦框绘制在节点自身层级。                                 |
+| TOP            | 1   | 获焦框绘制在当前实例Z序的最上层。                                 |
+
 ## PixelRoundMode<sup>18+</sup>
 
 指定像素取整模式。
@@ -1239,3 +1254,16 @@ type Nullable\<T> = T | undefined
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ON_CLICK  | 0 | 点击事件。 |
+
+## DividerMode<sup>19+</sup>枚举说明
+
+分割线模式。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称            | 值 | 说明                                       |
+| ------------------ | - | ---------------------------------------- |
+| FLOATING_ABOVE_MENU| 0 | 悬浮在Menu之上，默认值，不占用高度。      |
+| EMBEDDED_IN_MENU   | 1 | 在Menu中展开，参与布局计算，占用高度。    |

@@ -925,7 +925,7 @@ error: signature verification failed due to not trusted app source.
 
     3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
 
-3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
+3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 ### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
@@ -1034,6 +1034,25 @@ error: install failed due to singleton not same.
 方案1：卸载已安装的应用包，再安装新的应用包。
 
 方案2：更新包调整singleton配置，与已安装包配置一致，重新打包，再更新应用包。<!--DelEnd-->
+
+<!--Del-->
+### 9568294 应用类别不一致导致的安装失败
+**错误信息**
+
+error: install failed due to apptype not same.
+
+**错误描述**
+
+应用安装时，应用已安装HAP包和待安装HAP包的签名文件中[app-feature](../security/app-provision-structure.md)配置不一致，导致安装失败。
+
+**可能原因**
+
+应用已安装HAP包和待安装HAP包包名一致，但签名文件中app-feature配置不一致。
+
+**处理步骤**
+  
+* 方案1：卸载已安装的HAP包，再安装新的HAP包。
+* 方案2：修改待安装HAP包的签名文件中的app-feature字段，确保与已安装包配置一致，重新打包、签名[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)，再重试安装。<!--DelEnd-->
 
 
 ### 9568297 由于设备sdk版本较低导致安装失败
@@ -2084,7 +2103,7 @@ error: installd set selinux label failed.
 ### 9568398 非企业设备禁止安装企业应用
 **错误信息**
 
-error: Failed to install the HAP because an enterprise normal/MDM bundle can not be installed on non-enterprise device.
+error: Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **错误描述**
 
@@ -2188,7 +2207,7 @@ HAP包中native软件包目录下不存在module.json5中配置的native软件�
 ### 9568410 安装失败，设备受管控
 **错误信息**
 
-error: Failed to install the HAP because the device has been controlled.
+error: failed to install because the device be controlled.
 
 **错误描述**
 
@@ -2224,7 +2243,7 @@ error: check syscap filed and device type is not supported.
 ### 9568415 禁止安装签名证书为debug或者配置文件debug为true的加密应用
 **错误信息**
 
-error: Debug encrypted bundle is not allowed to install.
+error: debug encrypted bundle is not allowed to install.
 
 **错误描述**
 
@@ -2242,7 +2261,7 @@ error: Debug encrypted bundle is not allowed to install.
 ### 9568416 加密应用不允许安装
 **错误信息**
 
-error: Encrypted bundle can not be installed.
+error: Encrypted bundle cannot be installed.
 
 **错误描述**
 
@@ -2294,7 +2313,7 @@ error: Failed to uninstall the app because the app is locked.
 ### 9568420 禁止通过bm安装release的预装应用
 **错误信息**
 
-os_integration bundle is not allowed to install for shell.
+error: os_integration Bundle is not allowed to install for shell.
 
 **错误描述**
 

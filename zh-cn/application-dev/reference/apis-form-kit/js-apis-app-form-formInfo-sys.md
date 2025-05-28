@@ -71,11 +71,11 @@ import { formInfo } from '@kit.FormKit';
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
-| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。  |
-| formName    | string               | 是    | 否     | 卡片名称。                     |
-| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。        |
-| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。        |
-| isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 否     | 是否包含未使用的卡片。        |
+| bundleName  | string               | 是    | 是     | 提供方卡片所属包的Bundle名称。  |
+| formName    | string               | 是    | 是     | 卡片名称。                     |
+| moduleName  | string               | 是    | 是     | 卡片所属模块的模块名称。        |
+| abilityName | string               | 是    | 是     | 卡片所属的Ability名称。        |
+| isUnusedIncluded<sup>11+</sup> | boolean               | 是    | 是     | 是否包含未使用的卡片。<br/>-&nbsp;true：包含未使用的卡片。<br/>-&nbsp;false：不包含未使用的卡片。<br/>默认值：false。        |
 
 
 ## FormInfoFilter

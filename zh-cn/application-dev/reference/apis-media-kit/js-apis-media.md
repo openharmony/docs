@@ -295,6 +295,12 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise对象。异步返回元数据获取类对象（AVMetadataExtractor）。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
@@ -1874,6 +1880,12 @@ isSeekContinuousSupported() : boolean
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| boolean | 媒体源是否支持以SEEK_CONTINUOUS模式进行seek。 |
+
 **示例：**
 
 ```ts
@@ -3152,8 +3164,8 @@ track变更事件回调方法。
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
-| index  | number | 是 | 当前选中的track索引。     |
-| isSelected | boolean | 是 | 当前索引的选中状态。 |
+| index  | number | 是 | 当前变更的track索引。     |
+| isSelected | boolean | 是 | 当前变更的track索引是否被选中。true表示处于选中状态，false表示处于非选中状态。 |
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -8010,9 +8022,9 @@ createMediaSourceWithStreamData(streams: Array\<MediaStream>): MediaSource
 
 **参数：**
 
-| 参数名  | 类型                                 | 只读 | 可选 | 说明                                                  |
-| ------- | ------------------------------------ | --- | ---- | ----------------------------------------------------- |
-| streams | Array<[MediaStream](#mediastream19)> | 否 | 否   | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
+| 参数名  | 类型                                 | 必填 | 说明                                                  |
+| ------- | ------------------------------------ | ---- | ----------------------------------------------------- |
+| streams | Array<[MediaStream](#mediastream19)> | 是 | 可设置MediaStream数组，支持的流媒体格式：HTTP-FLV。 |
 
 **返回值：**
 
@@ -8033,6 +8045,8 @@ let mediaSource : media.MediaSource = media.createMediaSourceWithStreamData(stre
 ## MediaStream<sup>19+</sup>
 
 媒体流数据信息。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
@@ -8084,16 +8098,37 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import HashMap from '@ohos.util.HashMap';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // 成功打开资源，返回唯一的句柄, 保证uuid和request对应。
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+}
+
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
+}
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // 清除当前uuid相关资源。
+  requests.remove(uuid);
+}
 
 // 应用按需实现。
 let resourceLoader: media.MediaSourceLoader = {
-  open: SourceOpenCallback,
-  read: SourceReadCallback,
-  close: SourceCloseCallback
+  open: sourceOpenCallback,
+  read: sourceReadCallback,
+  close: sourceCloseCallback
 };
 
 mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
@@ -8250,8 +8285,11 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = media.createAVPlayer();
-player.setMediaSource(mediaSource, playStrategy);
+
+async function setupPlayer() {
+  let player = await media.createAVPlayer();
+  player.setMediaSource(mediaSource, playStrategy);
+}
 ```
 
 ## MediaSourceLoadingRequest<sup>18+</sup>

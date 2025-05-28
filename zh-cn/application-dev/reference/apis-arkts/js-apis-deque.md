@@ -402,7 +402,7 @@ deque.insertFront(5);
 deque.insertFront(4);
 
 // 使用方法一：
-let nums: Array<number> = Array.from(deque)
+let nums: Array<number> = Array.from(deque);
 for (let item of nums) {
   console.log("value:" + item);
 }
