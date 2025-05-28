@@ -1,6 +1,6 @@
-# Using Image to Receive Images
+# Image Receiving
 
-You can use the **ImageReceiver** APIs to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
+You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release **ImageReceiver** instances.
 
 ## How to Develop
 

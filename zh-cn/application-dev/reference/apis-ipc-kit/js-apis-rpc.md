@@ -347,6 +347,7 @@ setSize(size: number): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -386,7 +387,8 @@ setCapacity(size: number): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
-  | 1900011  | Memory allocation failed |
+  | 1900009  | Failed to write data to the message sequence. |
+  | 1900011  | Memory allocation failed. |
 
 **示例：**
 
@@ -530,6 +532,7 @@ rewindRead(pos: number): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900010 | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -574,6 +577,7 @@ rewindWrite(pos: number): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -1587,7 +1591,6 @@ readByteArray(): number[]
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
   | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
@@ -3327,7 +3330,7 @@ writeAshmem(ashmem: Ashmem): void
   | 错误码ID | 错误信息 |
   | -------- | ------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter is not an instance of the Ashmem object. |
-  | 1900003  | Failed to write data to the shared memory. |
+  | 1900009  | Failed to write data to the message sequence. |
 
 **示例：**
 
@@ -3373,8 +3376,7 @@ readAshmem(): Ashmem
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 401      | check param failed |
-  | 1900004  | Failed to read data from the shared memory. |
+  | 1900010  | Failed to read data from the message sequence. |
 
 **示例：**
 
@@ -6822,6 +6824,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900005  | Operation allowed only for the proxy object. |
   | 1900008  | The proxy or remote object is invalid. |
 
 ### addDeathRecipient<sup>(deprecated)</sup>
@@ -6871,6 +6874,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 401      | Parameter error. Possible causes: <br/> 1.The number of parameters is incorrect; <br/> 2.The parameter type does not match; <br/> 3.The callback used to receive remote object death notifications is empty. |
+  | 1900005  | Operation allowed only for the proxy object. |
   | 1900008  | The proxy or remote object is invalid. |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
@@ -10109,7 +10113,7 @@ writeAshmem(buf: number[], size: number, offset: number): void
   | ------ | -------- | ---- | -------------------------------------------------- |
   | buf    | number[] | 是   | 写入Ashmem对象的数据。                             |
   | size   | number   | 是   | 要写入的数据大小。                                 |
-  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置 |
+  | offset | number   | 是   | 要写入的数据在此Ashmem对象关联的内存区间的起始位置。 |
 
 **错误码：**
 

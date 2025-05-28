@@ -190,7 +190,7 @@ struct ReusableKeyGeneratorUseStringify {
 
   aboutToAppear(): void {
     for (let index = 0; index < 200; index++) {
-      this.data.pushData(index.toString())
+      this.data.pushData(index.toString());
     }
   }
 
@@ -226,7 +226,7 @@ build() {
       LazyForEach(this.dataList, // 数据源          
         (item: ListItemData) => { // 根据列表项数据生成对应的组件  
           ListItem() {
-            this.initItem(item)
+            this.initItem(item);
           }
         },(item: ListItemData) => item.itemId) // 生成列表项键值
       }
@@ -253,33 +253,33 @@ class ChatListData extends BasicDataSource {
     /**  
     * 聊天列表项数组  
     */  
-    private chatList: Array<ChatModel> = []  
+    private chatList: Array<ChatModel> = [];
     /**  
     * 数据源的数据总量  
     */  
     public totalCount(): number {  
-        return this.chatList.length  
+        return this.chatList.length;
     }  
 
     /**  
     * 返回指定索引位置的数据  
     */  
     public getData(index: number): ChatModel {  
-        return this.chatList[index]  
+        return this.chatList[index];
     }  
     /**  
     * 指定位置添加一条聊天列表数据  
     */  
     public addData(index: number, data: ChatModel): void {  
-        this.chatList.splice(index, 0, data)  
-        this.notifyDataAdd(index)  
+        this.chatList.splice(index, 0, data);  
+        this.notifyDataAdd(index);  
     }  
     /**  
     * 添加一条聊天列表数据  
     */  
     public pushData(data: ChatModel): void {  
-        this.chatList.push(data)  
-        this.notifyDataAdd(this.chatList.length - 1)  
+        this.chatList.push(data);  
+        this.notifyDataAdd(this.chatList.length - 1);  
     }  
 }
 ```
@@ -309,7 +309,7 @@ build() {
       LazyForEach(this.chatListLazy, (msg: ChatModel) => {
         ListItem() {
           // ...
-          this.chatViewBuilder(msg)
+          this.chatViewBuilder(msg);
           // ...
         }
       }, (msg: ChatModel) => msg.user.userId)

@@ -92,6 +92,8 @@ getAssets(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Ph
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -153,6 +155,8 @@ getBurstAssets(burstKey: string, options: photoAccessHelper.FetchOptions): Promi
 | 14000011 | Internal system error.                                       |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -230,6 +234,8 @@ createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
@@ -288,6 +294,8 @@ getAlbums(type: AlbumType, subtype: AlbumSubtype, options?: photoAccessHelper.Fe
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -354,6 +362,8 @@ getAlbums(options: photoAccessHelper.FetchOptions): Promise&lt;FetchResult&lt;Al
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -408,6 +418,8 @@ release(): Promise&lt;void&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 async function example() {
@@ -432,6 +444,8 @@ async function example() {
 提供封装文件属性的方法。
 
 ### 属性
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -465,6 +479,8 @@ convertToPhotoAsset():  photoAccessHelper.PhotoAsset
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -519,6 +535,8 @@ get(member: string): photoAccessHelper.MemberType
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -567,6 +585,8 @@ set(member: string, value: string): void
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -620,6 +640,8 @@ commitModify(): Promise&lt;void&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -683,6 +705,8 @@ getThumbnail(size?: image.Size): Promise&lt;image.PixelMap&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -737,6 +761,8 @@ getCount(): number
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -779,6 +805,8 @@ isAfterLast(): boolean
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -819,6 +847,8 @@ close(): void
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -866,6 +896,8 @@ getFirstObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -909,6 +941,8 @@ getNextObject(): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -951,6 +985,8 @@ getLastObject(): Promise&lt;T&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -1001,6 +1037,8 @@ getObjectByPosition(index: number): Promise&lt;T&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1042,6 +1080,8 @@ getAllObjects(): Promise&lt;Array&lt;T&gt;&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -1086,8 +1126,6 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 
 将Sendable类型Album转换为非Sendable类型Album。
 
-**需要权限**：ohos.permission.READ_IMAGEVIDEO
-
 **系统能力**：SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 | 类型                    | 说明                                                      |
@@ -1104,6 +1142,8 @@ convertToPhotoAlbum(): photoAccessHelper.Album
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts
@@ -1168,6 +1208,8 @@ getAssets(options: FetchOptions): Promise&lt;FetchResult&lt;PhotoAsset&gt;&gt;
 
 **示例：**
 
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
+
 <!--code_no_check-->
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -1221,6 +1263,8 @@ commitModify(): Promise&lt;void&gt;
 | 14000011 | Internal system error.                                        |
 
 **示例：**
+
+phAccessHelper的创建请参考[sendablePhotoAccessHelper.getPhotoAccessHelper](#sendablephotoaccesshelpergetphotoaccesshelper)的示例使用。
 
 <!--code_no_check-->
 ```ts

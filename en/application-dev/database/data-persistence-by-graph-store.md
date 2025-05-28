@@ -3,7 +3,8 @@
 
 ## When to Use
 
-A graph store is a database management system dedicated to processing complex relational data. It stores and queries data through the structure of nodes (vertexes) and relationships (edges), enabling efficient processing of large-scale complex relational operations. A graph store stands out with its ability to directly traverse relationships through stored edges, which is more efficient than the RDB store that relies on multi-table joins. Common use cases include social network and relationship analysis, knowledge graph, and real-time recommendation systems. Currently, all the APIs for graph stores are available only to system applications.
+A graph store is a database management system dedicated to processing complex relational data. It stores and queries data through the structure of nodes (vertexes) and relationships (edges), enabling efficient processing of large-scale complex relational operations. A graph store stands out with its ability to directly traverse relationships through stored edges, which is more efficient than the RDB store that relies on multi-table joins. Common use cases include social network and relationship analysis, knowledge graph, and real-time recommendation systems. Currently, all the APIs for graph stores are available only to system applications.<br>
+Since API version 18, data in graph stores can be persisted.
 
 
 ## Basic Concepts
@@ -165,7 +166,7 @@ The following lists only the APIs for persisting graph store data. For details a
 | close(): Promise&lt;void&gt; | Closes the graph store. All uncommitted transactions will be rolled back.|
 | createTransaction(): Promise&lt;Transaction&gt; | Creates a transaction instance.|
 | Transaction.read(gql: string): Promise&lt;Result&gt; | Reads data with the transaction instance.|
-| Transaction.write(gql: string): Promise&lt;Result&gt; | Writes data with the transaction instance. |
+| Transaction.write(gql: string): Promise&lt;Result&gt; | Writes data with the transaction instance.|
 | Transaction.commit(): Promise&lt;void&gt; | Commits the GQL statements that have been executed in this transaction.|
 | Transaction.rollback(): Promise&lt;void&gt; | Rolls back the GQL statements that have been executed in this transaction.|
 | deleteStore(context: Context, config: StoreConfig): Promise&lt;void&gt; | Deletes a graph store.|

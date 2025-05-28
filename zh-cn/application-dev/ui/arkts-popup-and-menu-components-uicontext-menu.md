@@ -57,7 +57,7 @@
        buttons: [{
          text: 'confirm',
          action: () => {
-           console.info('confirm button click')
+           console.info('confirm button click');
          },
          fontSize: 15,
          fontColor: Color.Black,
@@ -65,7 +65,7 @@
          {
            text: 'cancel',
            action: () => {
-             console.info('cancel button click')
+             console.info('cancel button click');
            },
            fontSize: 15,
            fontColor: Color.Black
@@ -79,7 +79,7 @@
 
 ### 绑定组件信息
    
-   通过调用openPopup接口弹出气泡，需要提供绑定组件的信息[TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18)。若未传入有效的target，则无法弹出气泡。
+   通过调用openMenu接口弹出菜单，需要提供绑定组件的信息[TargetInfo](../reference/apis-arkui/js-apis-arkui-UIContext.md#targetinfo18)。若未传入有效的target，则无法弹出菜单。
    
    ```ts
    let frameNode: FrameNode | null = this.ctx.getFrameNodeByUniqueId(this.getUniqueId());
@@ -112,7 +112,7 @@
 
 ## 关闭菜单
 
-通过[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu18)可以关闭菜单。
+通过调用[closeMenu](../reference/apis-arkui/js-apis-arkui-UIContext.md#closemenu18)可以关闭菜单。
    
    ```ts
    promptAction.closeMenu(contentNode)

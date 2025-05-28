@@ -145,7 +145,7 @@ class BasicDataSource implements IDataSource {
   unregisterDataChangeListener(listener: DataChangeListener): void {
     const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
-      console.info('remove listener')
+      console.info('remove listener');
       this.listeners.splice(pos, 1);
     }
   }
@@ -182,7 +182,7 @@ class BasicDataSource implements IDataSource {
 }
 
 class MyDataSource extends BasicDataSource {
-  private dataArray: Array<string> = new Array(100).fill('test')
+  private dataArray: Array<string> = new Array(100).fill('test');
 
   public totalCount(): number {
     return this.dataArray.length;
@@ -323,7 +323,7 @@ struct MyComponent {
           Text("Hello" + item)
             .fontSize(50)
             .onAppear(() => {
-              console.log("appear:" + item)
+              console.log("appear:" + item);
             })
         }
       })
@@ -335,11 +335,11 @@ class MyDataSource implements IDataSource {
   data: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   public totalCount(): number {
-    return this.data.length
+    return this.data.length;
   }
 
   public getData(index: number): number {
-    return this.data[index]
+    return this.data[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {

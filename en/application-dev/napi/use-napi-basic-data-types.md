@@ -71,8 +71,8 @@ export const getValueUint32: <T>(data: T) => number | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 let value = testNapi.getValueUint32<number>(111111111111);
 let data = testNapi.getValueUint32<string>("sssss");
@@ -122,14 +122,14 @@ export const getValueInt32: (value: number | string) => number | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // If 'ss' (a non-number) is passed in, undefined will be returned.
 hilog.info(0x0000, 'Node-API', 'get_value_int32_not_number %{public}s', testNapi.getValueInt32('ss'));
 // If 100 (a number within the int32 value range) is passed in, the original number will be returned.
 hilog.info(0x0000, 'Node-API', 'get_value_int32_number %{public}d', testNapi.getValueInt32(100));
-// If 68719476735 (which is 11111111111111111111111111111111111111111111 in binary format and corresponds to the value -1 when interpreted as an int32 number) is passed in, -1 will be returned.
+// If 68719476735 (which is 111111111111111111111111111111111111 in binary format and corresponds to the value -1 when interpreted as an int32 number) is passed in, -1 will be returned.
 hilog.info(0x0000, 'Node-API', 'get_value_int32_oversize %{public}d', testNapi.getValueInt32(68719476735));
 // If the input number is greater than 2 <sup>31</sup>-1 and its binary format does not indicate a special number in int32 like 111111111111111111111111111111111111, the integer overflows. In this case, a number decoded from the last 32-bit binary code will be returned.
 hilog.info(0x0000, 'Node-API', 'get_value_int32_oversize %{public}d', testNapi.getValueInt32(687194767355));
@@ -148,7 +148,7 @@ CPP code:
 ```cpp
 #include "napi/native_api.h"
 
-static napi_value GetValueInt64(napi_env env, napi_callback_info info) 
+static napi_value GetValueInt64(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
     napi_value args[1] = {nullptr};
@@ -178,8 +178,8 @@ export const getValueInt64: (value: number | string) => number | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 // If a number within the int64 value range is passed in, the original number will be returned.
 hilog.info(0x0000, 'Node-API', 'get_value_int64_number %{public}d', testNapi.getValueInt64(80));
@@ -229,8 +229,8 @@ export const getDouble: (value: number | string) => number | void;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 // If a number is passed in, the number will be returned.
 hilog.info(0x0000, 'Node-API', 'get_value_double_number %{public}d', testNapi.getDouble(80.885));
 // If a non-number is passed in, undefined will be returned.
@@ -245,12 +245,13 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
+static constexpr int INT_NUM_NEG_26 = -26;   // Integer -26
 
 static napi_value CreateInt32(napi_env env, napi_callback_info info)
 {
     // int32_t represents a 32-bit signed integer, ranging from -2^31 to 2^31 - 1, that is, -2147483648 to 2147483647.
     // 
-    int32_t value = -26; 
+    int32_t value = INT_NUM_NEG_26;
     // Create an ArkTS Int32 number.
     napi_value result = nullptr;
     napi_status status = napi_create_int32(env, value, &result);
@@ -272,8 +273,8 @@ export const createInt32: () => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_int32: ' + testNapi.createInt32());
 ```
@@ -286,12 +287,14 @@ CPP code:
 
 ```cpp
 #include "napi/native_api.h"
+static constexpr int INT_NUM_26 = 26;   // Integer 26
 
-static napi_value CreateUInt32(napi_env env, napi_callback_info info) 
+static napi_value CreateUInt32(napi_env env, napi_callback_info info)
 {
     // If the uint32_t type is used to represent -26, overflow occurs. Modulo operation is performed on the result to convert the binary complement of the negative number to a positive number. That is, 4294967270 will be returned.
     // uint32_t represents a 32-bit unsigned integer, ranging from 0 to 2^32 - 1, that is, 0 to 4294967295.
-    uint32_t value = 26;
+    // 
+    uint32_t value = INT_NUM_26;
     // Create an ArkTS Uint32 number.
     napi_value result = nullptr;
     napi_status status = napi_create_uint32(env, value, &result);
@@ -313,10 +316,10 @@ export const createUInt32: () => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
- hilog.info(0x0000, 'testTag','Test Node-API napi_create_uint32: ' + testNapi.createUInt32());
+hilog.info(0x0000, 'testTag','Test Node-API napi_create_uint32: ' + testNapi.createUInt32());
 ```
 
 ### napi_create_int64
@@ -330,9 +333,10 @@ CPP code:
 
 static napi_value CreateInt64(napi_env env, napi_callback_info info)
 {
-    // int64 represents a 64-bit signed integer, ranging from -2^63 to 2^63 - 1, that is, -9223372036854775808 to 9223372036854775807.
+    // 
     int64_t value = 2147483648;
-    // Create an ArkTS Int64 number.
+    // Create an ArkTS number using the given value. Only integers in the range from -2^53 + 1 to 2^53 - 1 (inclusive) can be accurately represented.
+    // If the value to be represented exceeds 2^53, use napi_create_bigint64.
     napi_value result = nullptr;
     napi_status status = napi_create_int64(env, value, &result);
     if (status != napi_ok) {
@@ -353,8 +357,8 @@ export const createInt64: () => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_int64: ' + testNapi.createInt64());
 ```
@@ -392,8 +396,8 @@ export const createDouble: () => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag','Test Node-API napi_create_double: ' + testNapi.createDouble());
 ```

@@ -7,6 +7,8 @@ The **picture_native.h** file declares the APIs for obtaining picture data and i
 
 **Library**: libpicture.so
 
+**File to include**: &lt;multimedia/image_framework/image/picture_native.h&gt;
+
 **System capability**: SystemCapability.Multimedia.Image.Core
 
 **Since**: 13

@@ -19,7 +19,7 @@ NativeBuffer是提供**共享内存**的模块。开发者可以通过`NativeBuf
 | OH_NativeBuffer_Unmap (OH_NativeBuffer \*buffer) | 将OH_NativeBuffer对应的ION内存从进程空间移除。 | 
 | OH_NativeBuffer_GetSeqNum (OH_NativeBuffer \*buffer) | 获取OH_NativeBuffer的序列号。 | 
 
-详细的接口说明请参考[native_buffer](../reference/apis-arkgraphics2d/_o_h___native_buffer.md)。
+详细的接口说明请参考[native_buffer](../reference/apis-arkgraphics2d/capi-oh-nativebuffer.md)。
 
 ## 开发步骤
 

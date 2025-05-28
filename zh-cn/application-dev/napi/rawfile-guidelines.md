@@ -324,12 +324,12 @@
 
     ```js
     import hilog from '@ohos.hilog';
-    import testNapi from 'libentry.so'  // 导入so
+    import testNapi from 'libentry.so';  // 导入so
     @Entry
     @Component
     struct Index {
-        @State message: string = 'Hello World'
-        private resmgr = getContext().resourceManager;  // 获取本应用包的资源对象
+        @State message: string = 'Hello World';
+        private resmgr = this.getUIContext().getHostContext()?.resourceManager;  // 获取本应用包的资源对象
         build() {
             Row() {
             Column() {

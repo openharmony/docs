@@ -118,9 +118,9 @@
 
 > **说明：**
 >
-> 只能在当前文件内使用，不支持export。
+> 仅限在当前文件内使用，不支持导出。
 >
-> 如果想实现export功能，推荐使用[AttributeModifier](../../ui/arkts-user-defined-extension-attributeModifier.md)。
+> 如果要实现export功能，推荐使用[AttributeModifier](../../ui/arkts-user-defined-extension-attributeModifier.md)。
 
 【反例】
 
@@ -173,7 +173,7 @@ struct FancyUse {
 @Entry
 @Component
 struct FancyUse {
-  @State label: string = 'Hello World'
+  @State label: string = 'Hello World';
 
   build() {
     Row({ space: 10 }) {
@@ -194,7 +194,7 @@ struct FancyUse {
 }
 ```
 
-\@Extend将样式组合复用，示例如下。
+使用@Extend将样式组合复用，示例如下。
 
 
 ```ts
@@ -212,7 +212,7 @@ struct FancyUse {
 @Entry
 @Component
 struct FancyUse {
-  @State label: string = 'Hello World'
+  @State label: string = 'Hello World';
 
   build() {
     Row({ space: 10 }) {

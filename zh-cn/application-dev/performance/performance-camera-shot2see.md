@@ -58,7 +58,7 @@
    ```typescript
    XComponent({
        id: 'componentId',
-       type: 'surface',
+       type: XComponentType.SURFACE,
        controller: this.mXComponentController
    })
     .onLoad(async () => {

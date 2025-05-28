@@ -77,7 +77,7 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
    static napi_value Init(napi_env env, napi_value exports)
    {
        napi_property_descriptor desc[] = {
-           { "testHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr }      // 将TestHiCollieTimerNdk注册为ArkTS接口
+           { "TestHiCollieTimerNdk", nullptr, TestHiCollieTimerNdk, nullptr, nullptr, nullptr, napi_default, nullptr }      // 将TestHiCollieTimerNdk注册为ArkTS接口
       };
        napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
        return exports;
@@ -103,26 +103,26 @@ HiCollie模块对外提供函数执行时间超长的检测机制。
 4. 编辑"index.d.ts"文件，定义ArkTS接口：
 
    ```ts
-   export const testHiCollieTimerNdk: () => void;
+   export const TestHiCollieTimerNdk: () => void;
    ```
 
 5. 编辑"Index.ets"文件：
 
    ```ts
-   import testNapi from 'libentry.so'
+   import testNapi from 'libentry.so';
    
    @Entry
    @Component
    struct Index {
-     @State message: string = 'Hello World'
+     @State message: string = 'Hello World';
    
      build() {
        Row() {
          Column() {
-           Button("testHiCollieTimerNdk")
+           Button("TestHiCollieTimerNdk")
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
-             .onClick(testNapi.testHiCollieTimerNdk);  //添加点击事件，触发testHiCollieTimerNdk方法。
+             .onClick(testNapi.TestHiCollieTimerNdk);  //添加点击事件，触发testHiCollieTimerNdk方法。
          }
          .width('100%')
        }

@@ -13,8 +13,8 @@
 
 ## 导入模块
 
-```
-import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI'
+```ts
+import { SelectionMenu, EditorMenuOptions, ExpandedMenuOptions, EditorEventInfo, SelectionMenuOptions } from '@kit.ArkUI';
 ```
 
 ## 子组件
@@ -119,7 +119,7 @@ import {
   ExpandedMenuOptions,
   EditorEventInfo,
   SelectionMenuOptions
-} from '@kit.ArkUI'
+} from '@kit.ArkUI';
 
 @Entry
 @Component

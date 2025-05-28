@@ -45,7 +45,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |  
+| 1500003  | The common event sending frequency too high. |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -55,21 +55,18 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-// 发布公共事件回调
-function publishCB(err: BusinessError) {
-  if (err) {
-    console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info("publishAsUser");
-}
-
 //指定发送的用户
 let userId = 100;
 
 //发布公共事件
 try {
-    commonEventManager.publishAsUser("event", userId, publishCB);
+    commonEventManager.publishAsUser('event', userId, (err: BusinessError) => {
+      if (err) {
+        console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+        return;
+      }
+      console.info('publishAsUser');
+    });
 } catch (error) {
     let err: BusinessError = error as BusinessError;
     console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
@@ -102,7 +99,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
 | 202      | not system app.                     |  
-| 401     | Parameter error. Possible causes:<br>1. Mandatory parameters are left unspecified.<br>2. Incorrect parameter types.<br>3. Parameter verification failed.      |  
+| 1500003  | The common event sending frequency too high. |
 | 1500007  | Failed to send the message to the common event service. |
 | 1500008  | Failed to initialize the common event service. |
 | 1500009  | Failed to obtain system parameters.  |
@@ -115,21 +112,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 // 公共事件相关信息
 let options:commonEventManager.CommonEventPublishData = {
   code: 0,			 // 公共事件的初始代码
-  data: "initial data",// 公共事件的初始数据
+  data: 'initial data',// 公共事件的初始数据
 }
-// 发布公共事件回调
-function publishCB(err: BusinessError) {
-  if (err) {
-    console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
-    return;
-  }
-  console.info("publishAsUser");
-}
+
 // 指定发送的用户
 let userId = 100;
 // 发布公共事件
 try {
-  commonEventManager.publishAsUser("event", userId, options, publishCB);
+  commonEventManager.publishAsUser('event', userId, options, (err: BusinessError) => {
+    if (err) {
+      console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    console.info('publishAsUser');
+  });
 } catch (error) {
   let err: BusinessError = error as BusinessError;
   console.error(`publishAsUser failed, code is ${err.code}, message is ${err.message}`);
@@ -173,7 +169,7 @@ removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-commonEventManager.removeStickyCommonEvent("sticky_event", (err: BusinessError) => {
+commonEventManager.removeStickyCommonEvent('sticky_event', (err: BusinessError) => {
   if (err) {
     console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);
     return;
@@ -224,7 +220,7 @@ removeStickyCommonEvent(event: string): Promise\<void>
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
+commonEventManager.removeStickyCommonEvent('sticky_event').then(() => {
   console.info(`removeStickyCommonEvent success`);
 }).catch ((err: BusinessError) => {
   console.error(`removeStickyCommonEvent failed, errCode: ${err.code}, errMes: ${err.message}`);

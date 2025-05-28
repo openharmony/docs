@@ -1,5 +1,5 @@
 # Starting a Remote PageAbility (for System Applications Only)
-
+<!--deprecated_code_no_check-->
 
 The **startAbility()** method in the **featureAbility** class is used to start a remote PageAbility.
 

@@ -32,11 +32,12 @@ Parcel operation failed.
 
 **错误描述**
 
-进程间通信，读写操作失败。
+调用长时任务相关接口时，进程间通信，读写操作失败。
 
 **可能原因**
 
 调用MessageParcel对象读取或写入对象异常。
+<br>在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。
 
 **处理步骤**
 
@@ -68,7 +69,7 @@ System service operation failed.
 
 **错误描述**
 
-客户端进程请求系统服务进程，获取系统服务操作失败。
+调用长时任务相关接口时，客户端进程请求系统服务进程，获取系统服务操作失败。
 
 **可能原因**
 
@@ -188,7 +189,7 @@ Transient task verification failed.
 
 1. 请检查应用自身代码逻辑。
 2. 应用运行短时任务完毕及时释放。
-
+<!--Del-->
 ## 18700001 资源申请接口信息校验失败
 
 **错误信息**
@@ -207,3 +208,4 @@ Caller information verification failed for an energy resource request.
 **处理步骤**
 
 请检查输入的参数。
+<!--DelEnd-->

@@ -8,7 +8,7 @@
 
 > **说明：**
 >
-> - 该组件从API Version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 18开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 > 
 > - 该组件不支持在Wearable设备上使用。
 
@@ -16,7 +16,7 @@
 ## 导入模块
 
 ```
-import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics, ProgressButtonV2,  ProgressButtonV2Color } from '@kit.ArkUI';
 ```
 
 ## ProgressButtonV2
@@ -108,7 +108,7 @@ constructor(options: ProgressButtonV2ColorOptions);
 
 该示例实现了一个简单的带加载进度的文本下载按钮。
 ```ts
-import { ColorMetrics, LengthMetrics, ProgressButtonV2, ProgressButtonV2Color } from '@kit.ArkUI'
+import { ColorMetrics, LengthMetrics, ProgressButtonV2, ProgressButtonV2Color } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2

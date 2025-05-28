@@ -1,4 +1,4 @@
-# @ohos.abilityConnectionManager (应用多端协同管理)(系统接口)
+# @ohos.distributedsched.abilityConnectionManager (应用多端协同管理)(系统接口)
 
 abilityConnectionManager模块提供了应用协同接口管理能力。设备组网成功（需登录同账号、双端打开蓝牙）后，系统应用和三方应用可以跨设备拉起同应用的一个[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)，拉起并连接成功后可实现跨设备数据传输，包括字符串、[ArrayBuffer](../../arkts-utils/arraybuffer-object.md)字节流、图片、传输流。
 
@@ -14,11 +14,11 @@ abilityConnectionManager模块提供了应用协同接口管理能力。设备�
 import { abilityConnectionManager } from '@kit.DistributedServiceKit';
 ```
 
-## abilityConnectionManager.on
+## abilityConnectionManager.on('collaborateEvent')
 
-on(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+on(type:&nbsp;'collaborateEvent',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;CollaborateEventInfo&gt;):&nbsp;void
 
-注册collaborateEvent、receiveImage事件的回调监听。
+注册collaborateEvent事件的回调监听。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
@@ -28,9 +28,9 @@ on(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nbs
 
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | 是    |   事件回调类型，支持的事件包括：<br/>\- `'collaborateEvent'`：完成`collaborateEvent()`调用，触发该事件。<br/>\- `'receiveImage'`：完成`sendImage()`调用，触发该事件。   |
-| sessionId | number  | 是    | 创建的协同会话ID。    |
-| callback | Callback&lt;[EventCallbackInfo](js-apis-distributed-abilityConnectionManager.md#eventcallbackinfo)&gt; | 是    | 注册的回调函数。    |
+| type | string  | 是    |   表示事件回调类型，支持的事件类型为'collaborateEvent'，完成`collaborateEvent()`调用，触发该事件。   |
+| sessionId | number  | 是    | 表示创建的协同会话ID。    |
+| callback | Callback&lt;[CollaborateEventInfo](js-apis-distributed-abilityConnectionManager.md#CollaborateEventInfo)&gt; | 是    | 表示注册的回调函数。    |
 
 **错误码：**
 
@@ -48,21 +48,16 @@ on(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nbs
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   let sessionId = 100;
-  abilityConnectionManager.on("collaborateEvent", sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session collaborateEvent, sessionId is', callbackInfo.sessionId);
+  abilityConnectionManager.on("collaborateEvent", sessionId, (callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'session collaborateEvent, eventType is', callbackInfo.eventType);
   });
-
-  abilityConnectionManager.on("receiveImage", sessionId,(callbackInfo) => {
-    hilog.info(0x0000, 'testTag', 'session receiveImage, sessionId is', callbackInfo.sessionId);
-  });
-
   ```
 
-## abilityConnectionManager.off
+## abilityConnectionManager.on('receiveImage')
 
-off(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+on(type:&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
 
-取消collaborateEvent、receiveImage事件的回调监听。
+注册receiveImage事件的回调监听。
 
 **系统能力**：SystemCapability.DistributedSched.AppCollaboration
 
@@ -72,9 +67,47 @@ off(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nb
 
 | 参数名       | 类型                                    | 必填   | 说明    |
 | --------- | ------------------------------------- | ---- | ----- |
-| type | string  | 是    |   事件回调类型，支持的事件包括：<br/>\- `'collaborateEvent'`：完成`collaborateEvent()`调用，触发该事件。<br/>\- `'receiveImage'`：完成`sendImage()`调用，触发该事件。    |
-| sessionId | number  | 是    | 创建的协同会话ID。    |
-| callback | Callback&lt;[EventCallbackInfo](js-apis-distributed-abilityConnectionManager.md#eventcallbackinfo)&gt; | 否    | 注册的回调函数。    |
+| type | string  | 是    |   表示事件回调类型，支持的事件类型为'receiveImage'，完成`sendImage()`调用，触发该事件。   |
+| sessionId | number  | 是    | 表示创建的协同会话ID。    |
+| callback | Callback&lt;[EventCallbackInfo](js-apis-distributed-abilityConnectionManager.md#eventcallbackinfo)&gt; | 是    | 表示注册的回调函数。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  abilityConnectionManager.on("receiveImage", sessionId, (callbackInfo) => {
+    hilog.info(0x0000, 'testTag', 'session receiveImage, sessionId is', callbackInfo.sessionId);
+  });
+  ```
+
+## abilityConnectionManager.off('collaborateEvent')
+
+off(type:&nbsp;'collaborateEvent',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;CollaborateEventInfo&gt;):&nbsp;void
+
+取消collaborateEvent事件的回调监听。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**系统API**：此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填   | 说明    |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | 是    |   表示事件回调类型，支持的事件类型为'collaborateEvent'。    |
+| sessionId | number  | 是    | 表示创建的协同会话ID。    |
+| callback | Callback&lt;[CollaborateEventInfo](js-apis-distributed-abilityConnectionManager.md#CollaborateEventInfo)&gt; | 否    | 表示注册的回调函数。如果传入该参数，则关闭该监听。如果未传入该参数，则取消所有'collaborateEvent'事件监听。    |
 
 **错误码：**
 
@@ -93,6 +126,42 @@ off(type:&nbsp;'collaborateEvent'&nbsp;|&nbsp;'receiveImage',&nbsp;sessionId:&nb
 
   let sessionId = 100;
   abilityConnectionManager.off("collaborateEvent", sessionId);
+  ```
+
+## abilityConnectionManager.off('receiveImage')
+
+off(type:&nbsp;'receiveImage',&nbsp;sessionId:&nbsp;number,&nbsp;callback?:&nbsp;Callback&lt;EventCallbackInfo&gt;):&nbsp;void
+
+取消receiveImage事件的回调监听。
+
+**系统能力**：SystemCapability.DistributedSched.AppCollaboration
+
+**系统API**：此接口为系统接口。
+
+**参数：**
+
+| 参数名       | 类型                                    | 必填   | 说明    |
+| --------- | ------------------------------------- | ---- | ----- |
+| type | string  | 是    |   表示事件回调类型，支持的事件类型为'receiveImage'。    |
+| sessionId | number  | 是    | 表示创建的协同会话ID。    |
+| callback | Callback&lt;[EventCallbackInfo](js-apis-distributed-abilityConnectionManager.md#eventcallbackinfo)&gt; | 否    | 表示注册的回调函数。如果传入该参数，则关闭该监听。如果未传入该参数，则取消所有'receiveImage'事件监听。    |
+
+**错误码：**
+
+以下错误码详细介绍请参考[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201      | Permission verification failed. The application does not have the permission required to call the API.|
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**示例：**
+
+  ```ts
+  import { abilityConnectionManager } from '@kit.DistributedServiceKit';
+  import { hilog } from '@kit.PerformanceAnalysisKit';
+
+  let sessionId = 100;
   abilityConnectionManager.off("receiveImage", sessionId);
   ```
 
@@ -110,9 +179,9 @@ sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap,&nbsp;quality?
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | 是    | 协同会话ID。 |
-| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 图片信息。 |
-| quality | number | 否    | 图像压缩质量（范围0到100，默认30）。 |
+| sessionId | number | 是    | 表示协同会话ID。 |
+| image | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是    | 表示图片信息。 |
+| quality | number | 否    | 表示图像压缩质量（取值范围为0到100，默认值为30）。 |
 
 **返回值：**
 
@@ -135,7 +204,6 @@ sendImage(sessionId:&nbsp;number,&nbsp;image:&nbsp;image.PixelMap,&nbsp;quality?
   ```ts
   import { abilityConnectionManager } from '@kit.DistributedServiceKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
-  import CameraService from '../model/CameraService';
   import { photoAccessHelper } from '@kit.MediaLibraryKit';
   import { image } from '@kit.ImageKit';
   import { fileIo as fs } from '@kit.CoreFileKit';
@@ -183,8 +251,8 @@ createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | 是    | 协同会话ID。 |
-| param | [StreamParam](#streamparam) | 是    | 传输流的配置信息。 |
+| sessionId | number | 是    | 表示协同会话ID。 |
+| param | [StreamParam](#streamparam) | 是    | 表示传输流的配置信息。 |
 
 **返回值：**
 
@@ -212,6 +280,7 @@ createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'startStream');
+  let sessionId = 100;
   abilityConnectionManager.createStream(sessionId ,{name: 'receive', role: 0}).then(async (streamId) => {
     let surfaceParam: abilityConnectionManager.SurfaceParam = {
       width: 640,
@@ -221,7 +290,6 @@ createStream(sessionId:&nbsp;number,&nbsp;param:&nbsp;StreamParam):&nbsp;Promise
     let surfaceId = abilityConnectionManager.getSurfaceId(streamId, surfaceParam);
     hilog.info(0x0000, 'testTag', 'surfaceId is'+surfaceId);
     AppStorage.setOrCreate<string>('surfaceId', surfaceId);
-    await CameraService.initCamera(surfaceId, 0);
     abilityConnectionManager.startStream(streamId);
   })
   ```
@@ -240,9 +308,9 @@ setSurfaceId(sessionId:&nbsp;number,&nbsp;surfaceId:&nbsp;string,&nbsp;param:&nb
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | 是    | 协同会话ID。 |
-| surfaceId | string | 是    | Surface的唯一标识符。 |
-| param | [SurfaceParam](#surfaceparam) | 是    | Surface的配置参数。 |
+| sessionId | number | 是    | 表示协同会话ID。 |
+| surfaceId | string | 是    | 表示Surface的唯一标识符。 |
+| param | [SurfaceParam](#surfaceparam) | 是    | 表示Surface的配置参数。 |
 
 **错误码：**
 
@@ -260,6 +328,7 @@ setSurfaceId(sessionId:&nbsp;number,&nbsp;surfaceId:&nbsp;string,&nbsp;param:&nb
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'setSurfaceId');
+  let sessionId = 100;
   abilityConnectionManager.createStream(sessionId ,{name: 'receive', role: 0}).then(async (streamId) => {
     let surfaceParam: abilityConnectionManager.SurfaceParam = {
       width: 640,
@@ -285,8 +354,8 @@ getSurfaceId(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;string
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | 是    | 协同会话ID。 |
-| param | [SurfaceParam](#surfaceparam) | 是    | Surface的配置参数。 |
+| sessionId | number | 是    | 表示协同会话ID。 |
+| param | [SurfaceParam](#surfaceparam) | 是    | 表示Surface的配置参数。 |
 
 **返回值：**
 
@@ -310,6 +379,7 @@ getSurfaceId(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;string
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'getSurfaceId');
+  let sessionId = 100;
   abilityConnectionManager.createStream(sessionId ,{name: 'receive', role: 0}).then(async (streamId) => {
     let surfaceParam: abilityConnectionManager.SurfaceParam = {
       width: 640,
@@ -334,8 +404,8 @@ updateSurfaceParam(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | 是    | 协同会话ID。 |
-| param | [SurfaceParam](#surfaceparam) | 是    | Surface的配置参数。 |
+| sessionId | number | 是    | 表示协同会话ID。 |
+| param | [SurfaceParam](#surfaceparam) | 是    | 表示Surface的配置参数。 |
 
 **错误码：**
 
@@ -353,6 +423,7 @@ updateSurfaceParam(sessionId:&nbsp;number,&nbsp;param:&nbsp;SurfaceParam):&nbsp;
   import { hilog } from '@kit.PerformanceAnalysisKit';
 
   hilog.info(0x0000, 'testTag', 'updateSurfaceParam');
+  let sessionId = 100;
   abilityConnectionManager.createStream(sessionId ,{name: 'receive', role: 0}).then(async (streamId) => {
     let surfaceParam: abilityConnectionManager.SurfaceParam = {
       width: 640,
@@ -377,7 +448,7 @@ destroyStream(sessionId:&nbsp;number):&nbsp;void
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | 是    | 协同会话ID。 |
+| sessionId | number | 是    | 表示协同会话ID。 |
 
 **错误码：**
 
@@ -414,7 +485,7 @@ startStream(sessionId:&nbsp;number):&nbsp;void
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | 是    | 协同会话ID。 |
+| sessionId | number | 是    | 表示协同会话ID。 |
 
 **错误码：**
 
@@ -451,7 +522,7 @@ stopStream(sessionId:&nbsp;number):&nbsp;void
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| sessionId | number | 是    | 协同会话ID。 |
+| sessionId | number | 是    | 表示协同会话ID。 |
 
 **错误码：**
 
@@ -492,10 +563,10 @@ stopStream(sessionId:&nbsp;number):&nbsp;void
 
 | 名称       | 类型    | 可读   | 可写   | 必填   | 说明          |
 | -------- | ------ | ---- | ---- | ---- | ----------- |
-| name  | string   | 是    | 否    | 是    |   流传输的名称（接收端必须与发送端一致）。 |
-| role  | [StreamRole](#streamrole)     | 是    | 否    | 是    |   流传输的方式（可以是接收流或发送流）。 |
-| bitrate  | number   | 是    | 否    | 否    |   视频比特率（仅在发送端有效）。 |
-| colorSpaceConversionTarget  | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)     | 是    | 否    | 否    |   转换的目标色彩空间。 |
+| name  | string   | 是    | 否    | 是    |   表示流传输的名称（接收端必须与发送端一致）。 |
+| role  | [StreamRole](#streamrole)     | 是    | 否    | 是    |   表示流传输的方式（可以是接收流或发送流）。 |
+| bitrate  | number   | 是    | 否    | 否    |   表示视频比特率（仅在发送端有效，默认值为80000）。 |
+| colorSpaceConversionTarget  | [colorSpaceManager.ColorSpace](../apis-arkgraphics2d/js-apis-colorSpaceManager.md#colorspace)     | 是    | 否    | 否    |  表示转换的目标色彩空间。 |
 
 ## SurfaceParam
 
@@ -508,7 +579,7 @@ Surface配置参数。
 | width | number | 是    | 否    | 是    | 表示编码宽度。必须在流启动前设置，流启动后到停止前均无法更新。如需更新需要将流停止后重新配置。 |
 | height | number | 是    | 否    | 是   | 表示编码长度。必须在流启动前设置，流启动后到停止前均无法更新。如需更新需要将流停止后重新配置。 |
 | format | [VideoPixelFormat](#videopixelformat) | 是    | 否    | 否    | 表示视频像素格式，此选项必须在发送端配置。 |
-| rotation | number | 是    | 否    | 否    | 表示标识视频的旋转角度。 |
+| rotation | number | 是    | 否    | 否    | 表示视频的旋转角度（取值范围为{0, 90, 180, 270}，默认值为0）。 |
 | flip | [FlipOptions](#flipoptions) | 是    | 否    | 否    | 表示视频是否反转。 |
 
 ## CollaborateEventType

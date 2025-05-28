@@ -85,7 +85,7 @@ hideTitleBar(hide: boolean, animated: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                                         |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| hide  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false<br/>true: 隐藏标题栏。<br/>false: 显示标题栏。 |
+| hide  | boolean | 是   | 是否隐藏标题栏。<br/>默认值：false<br/>true：隐藏标题栏。<br/>false：显示标题栏。 |
 | animated  | boolean | 是   | 设置是否使用动画显隐标题栏。<br/>默认值：false<br/>true：使用动画显示隐藏标题栏。<br/>false：不使用动画显示隐藏标题栏。 |
 
 ### toolbarConfiguration<sup>13+</sup>
@@ -163,7 +163,7 @@ backButtonIcon(value: ResourceStr | PixelMap | SymbolGlyphModifier)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | [ResourceStr](ts-types.md#resourcestr)&nbsp;\|&nbsp;[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[SymbolGlyphModifier<sup>12+</sup>](ts-universal-attributes-attribute-modifier.md)  | 是   | 标题栏返回键图标。 |
 
-### backButtonIcon<sup>18+</sup>
+### backButtonIcon<sup>19+</sup>
 
 backButtonIcon(icon: ResourceStr | PixelMap | SymbolGlyphModifier, accessibilityText?: ResourceStr)
 
@@ -174,7 +174,7 @@ backButtonIcon(icon: ResourceStr | PixelMap | SymbolGlyphModifier, accessibility
 
 设置标题栏返回键图标和无障碍播报内容。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -206,7 +206,7 @@ menus(value: Array&lt;NavigationMenuItem&gt; | CustomBuilder)
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | value  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
 
-### menus<sup>18+</sup>
+### menus<sup>19+</sup>
 
 menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: NavigationMenuOptions)
 
@@ -217,7 +217,7 @@ menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: Navigati
 
 设置页面右上角菜单。不设置时不显示菜单项。与[menus](#menus12)相比，新增菜单选项。使用Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt; 写法时，竖屏最多支持显示3个图标，横屏最多支持显示5个图标，多余的图标会被放入自动生成的更多图标。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -226,7 +226,7 @@ menus(items: Array&lt;NavigationMenuItem&gt; | CustomBuilder, options?: Navigati
 | 参数名 | 类型                                                         | 必填 | 说明               |
 | ------ | ------------------------------------------------------------ | ---- | ------------------ |
 | items  | Array<[NavigationMenuItem](ts-basic-components-navigation.md#navigationmenuitem)&gt;&nbsp;\|&nbsp;[CustomBuilder](ts-types.md#custombuilder8) | 是   | 页面右上角菜单。 |
-| options | [NavigationMenuOptions](ts-basic-components-navigation.md#navigationmenuoptions18) | 否   | 页面右上角菜单选项。 |
+| options | [NavigationMenuOptions](ts-basic-components-navigation.md#navigationmenuoptions19) | 否   | 页面右上角菜单选项。 |
 
 ### ignoreLayoutSafeArea<sup>12+</sup>
 
@@ -382,7 +382,7 @@ customTransition(delegate: NavDestinationTransitionDelegate)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | delegate  | [NavDestinationTransitionDelegate](#navdestinationtransitiondelegate15) | 是   | NavDestination自定义动画的代理函数。 |
 
-### preferredOrientation<sup>18+</sup>
+### preferredOrientation<sup>19+</sup>
 
 preferredOrientation(orientation: Optional&lt;Orientation&gt;)
 
@@ -397,7 +397,7 @@ preferredOrientation(orientation: Optional&lt;Orientation&gt;)
 >
 > 设置显示方向的实际效果依赖于具体的设备支持情况，具体参考窗口的[setPreferredOrientation](../js-apis-window.md#setpreferredorientation9-1)接口。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -407,7 +407,7 @@ preferredOrientation(orientation: Optional&lt;Orientation&gt;)
 | ------ | ------- | ---- | ------------------------------------------------------------ |
 | orientation  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;[Orientation](../js-apis-window.md#orientation9)&gt; | 是   | NavDestination页面对应的Orientation。 |
 
-### enableStatusBar<sup>18+</sup>
+### enableStatusBar<sup>19+</sup>
 
 enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
 
@@ -423,7 +423,7 @@ enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
 >
 > 设置系统状态栏的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11)接口。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -434,7 +434,7 @@ enableStatusBar(enabled: Optional&lt;boolean&gt;, animated?: boolean)
 | enabled  | [Optional](ts-universal-attributes-custom-property.md#optional12)&lt;boolean&gt; | 是   | 进入该NavDestination后，系统状态栏的显示/隐藏状态。 |
 | animated  | boolean | 否   | 是否使用动画的方式显示/隐藏系统状态栏，默认值为：false。 |
 
-### enableNavigationIndicator<sup>18+</sup>
+### enableNavigationIndicator<sup>19+</sup>
 
 enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
 
@@ -450,7 +450,7 @@ enableNavigationIndicator(enabled: Optional&lt;boolean&gt;)
 >
 > 设置系统导航条的实际效果依赖于具体的设备支持情况，具体参考窗口的[setSpecificSystemBarEnabled](../js-apis-window.md#setspecificsystembarenabled11)接口。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -631,13 +631,13 @@ NavDestination处于非激活态（处于非栈顶不可操作，或处于栈顶
 | ------ | ------ | ---- | ---------------- |
 |callback | [Optional](./ts-universal-attributes-custom-property.md#optional12)\<[Callback](../../apis-basic-services-kit/js-apis-base.md#callback)\<[NavDestinationActiveReason](#navdestinationactivereason17)\>\>| 是 | NavDestination由激活态变为非激活态的原因。|
 
-### onNewParam<sup>18+</sup>
+### onNewParam<sup>19+</sup>
 
 onNewParam(callback: &nbsp;Optional\<Callback\<ESObject\>\>)
 
 当之前存在于栈中的NavDestination页面通过[launchMode.MOVE_TO_TOP_SINGLETON](./ts-basic-components-navigation.md#launchmode12枚举说明)或[launchMode.POP_TO_SINGLETON](./ts-basic-components-navigation.md#launchmode12枚举说明)移动到栈顶时，触发该回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -908,9 +908,9 @@ struct Index {
   @Builder
   MyPageMap(name: string) {
     if (name === 'myPageOne') {
-      MyPageOne()
+      MyPageOne();
     } else {
-      MyPageTwo()
+      MyPageTwo();
     }
   }
 
@@ -918,10 +918,10 @@ struct Index {
     Navigation(this.stack) {
       Column() {
         Button('push PageOne').onClick(() => {
-          this.stack.pushPath({ name: 'myPageOne' })
+          this.stack.pushPath({ name: 'myPageOne' });
         })
         Button('push PageTwo').onClick(() => {
-          this.stack.pushPath({ name: 'myPageTwo' })
+          this.stack.pushPath({ name: 'myPageTwo' });
         })
       }.height('40%').justifyContent(FlexAlign.SpaceAround)
     }.width('100%')
@@ -941,17 +941,17 @@ struct Index {
 @Entry
 @Component
 struct NavDestinationCustomTransition {
-  stack: NavPathStack = new NavPathStack()
+  stack: NavPathStack = new NavPathStack();
 
   @Builder
   pageMap(name: string) {
     if (name) {
-      NavDest()
+      NavDest();
     }
   }
 
   aboutToAppear(): void {
-    this.stack.pushPath({name: 'dest0'})
+    this.stack.pushPath({name: 'dest0'});
   }
 
   build() {
@@ -969,9 +969,9 @@ declare type voidFunc = () => void;
 
 @Component
 struct NavDest {
-  @State name: string = 'NA'
-  @State destWidth: string = '100%'
-  stack: NavPathStack = new NavPathStack()
+  @State name: string = 'NA';
+  @State destWidth: string = '100%';
+  stack: NavPathStack = new NavPathStack();
   @State y: string = '0';
 
   build() {
@@ -982,7 +982,7 @@ struct NavDest {
           .height(40)
           .margin(20)
           .onClick(() => {
-            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" })
+            this.stack.pushPath({ name: this.name == 'PageOne' ? "PageTwo" : "PageOne" });
           })
       }
       .size({ width: '100%', height: '100%' })
@@ -1017,7 +1017,7 @@ struct NavDest {
               console.log('[NavDestinationTransition]', 'transitionOne, push & !isEnter');
               this.y = '0';
             }
-            transitionOneDuration = 450
+            transitionOneDuration = 450;
           }
         } else if (op === NavigationOperation.POP) {
           if (isEnter) {
@@ -1080,20 +1080,20 @@ struct NavDestinationSystemTransition {
   @Builder
   pageMap(name: string) {
     if (name === 'Fade') {
-      Fade()
+      Fade();
     } else if (name === 'Explode') {
-      Explode()
+      Explode();
     } else if (name === 'SlideRight') {
-      SlideRight()
+      SlideRight();
     } else if (name === 'SlideBottom') {
-      SlideBottom()
+      SlideBottom();
     } else {
-      Dest()
+      Dest();
     }
   }
 
   aboutToAppear(): void {
-    this.stack.pushPath({name: 'Dest'})
+    this.stack.pushPath({name: 'Dest'});
   }
 
   build() {
@@ -1113,11 +1113,11 @@ struct Dest {
 
   build() {
     NavDestination() {
-      HomeBody()
+      HomeBody();
     }
     .title('Navigation System Animation')
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(this.homePageTransitionType)
   }
@@ -1136,7 +1136,7 @@ struct Fade {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.FADE)
   }
@@ -1155,7 +1155,7 @@ struct Explode {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.EXPLODE)
   }
@@ -1174,7 +1174,7 @@ struct SlideRight {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.SLIDE_RIGHT)
   }
@@ -1193,7 +1193,7 @@ struct SlideBottom {
     }
     .title(this.name)
     .onReady((context) => {
-      this.name = context.pathInfo.name
+      this.name = context.pathInfo.name;
     })
     .systemTransition(NavigationSystemTransitionType.SLIDE_BOTTOM)
   }
@@ -1201,14 +1201,14 @@ struct SlideBottom {
 
 @Component
 struct DestBody {
-  name: string = 'NA'
+  name: string = 'NA';
 
-  columnTextSize: number = 22
-  columnTextFontWeight: FontWeight = FontWeight.Bolder
-  columnWidth: string = '65%'
-  columnPadding: number = 22
-  columnMargin: number = 10
-  columnBorderRadius: number = 10
+  columnTextSize: number = 22;
+  columnTextFontWeight: FontWeight = FontWeight.Bolder;
+  columnWidth: string = '65%';
+  columnPadding: number = 22;
+  columnMargin: number = 10;
+  columnBorderRadius: number = 10;
 
   build() {
     Column() {
@@ -1235,13 +1235,13 @@ struct HomeBody {
   @Consume stack: NavPathStack;
   @Consume homePageTransitionType: NavigationSystemTransitionType;
 
-  columnTextSize: number = 22
-  columnTextFontWeight: FontWeight = FontWeight.Bolder
-  columnWidth: string = '85%'
-  columnPadding: number = 22
-  columnMargin: number = 10
-  columnBorderRadius: number = 10
-  columnShadow: ShadowStyle = ShadowStyle.OUTER_DEFAULT_MD
+  columnTextSize: number = 22;
+  columnTextFontWeight: FontWeight = FontWeight.Bolder;
+  columnWidth: string = '85%';
+  columnPadding: number = 22;
+  columnMargin: number = 10;
+  columnBorderRadius: number = 10;
+  columnShadow: ShadowStyle = ShadowStyle.OUTER_DEFAULT_MD;
 
   build() {
     Column() {
@@ -1259,8 +1259,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.FADE
-        this.stack.pushPath({name: 'Fade'})
+        this.homePageTransitionType = NavigationSystemTransitionType.FADE;
+        this.stack.pushPath({name: 'Fade'});
       })
 
       Column() {
@@ -1274,8 +1274,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.EXPLODE
-        this.stack.pushPath({name: 'Explode'})
+        this.homePageTransitionType = NavigationSystemTransitionType.EXPLODE;
+        this.stack.pushPath({name: 'Explode'});
       })
 
       Column() {
@@ -1289,8 +1289,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_RIGHT
-        this.stack.pushPath({name: 'SlideRight'})
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_RIGHT;
+        this.stack.pushPath({name: 'SlideRight'});
       })
 
       Column() {
@@ -1304,8 +1304,8 @@ struct HomeBody {
       .borderRadius(this.columnBorderRadius)
       .shadow(this.columnShadow)
       .onClick(() => {
-        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_BOTTOM
-        this.stack.pushPath({name: 'SlideBottom'})
+        this.homePageTransitionType = NavigationSystemTransitionType.SLIDE_BOTTOM;
+        this.stack.pushPath({name: 'SlideBottom'});
       })
     }
   }
@@ -1330,7 +1330,7 @@ struct PortraitPage {
     NavDestination() {
       Stack({alignContent: Alignment.Center}) {
         Button('push LANDSCAPE page').onClick(() => {
-          this.stack?.pushPath({name: 'landscape'})
+          this.stack?.pushPath({name: 'landscape'});
         })
       }.width('100%').height('100%')
     }
@@ -1353,7 +1353,7 @@ struct LandscapePage {
     NavDestination() {
       Stack({alignContent: Alignment.Center}) {
         Button('push PORTRAIT page').onClick(() => {
-          this.stack?.pushPath({name: 'portrait'})
+          this.stack?.pushPath({name: 'portrait'});
         })
       }.width('100%').height('100%')
     }
@@ -1376,15 +1376,15 @@ struct ExamplePage {
   private stack: NavPathStack = new NavPathStack();
 
   aboutToAppear(): void {
-    this.stack.pushPath({name: "portrait"})
+    this.stack.pushPath({name: "portrait"});
   }
 
   @Builder
   MyPageMap(name: string) {
     if (name === 'portrait') {
-      PortraitPage()
+      PortraitPage();
     } else {
-      LandscapePage()
+      LandscapePage();
     }
   }
 

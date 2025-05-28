@@ -47,7 +47,7 @@ Tabs组件参数，设置Tabs的页签位置，当前显示页签的索引，Tab
 | barPosition<sup>7+</sup> | [BarPosition](#barposition枚举说明)| 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | index<sup>7+</sup>       | number                            | 否    | 设置当前显示页签的索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>直接修改index跳页时，切换动效不生效。 使用TabController的changeIndex时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../../ui/state-management/arkts-two-way-sync.md)双向绑定变量。<br/>Tabs重建、系统资源切换（如系统字体切换、系统深浅色切换）或者组件属性变化时，会跳转到index对应的页面。若需要在上述情况下不跳转，建议使用双向绑定。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | controller<sup>7+</sup>  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。         |
-| barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle15)、[barBackgroundEffect](#barbackgroundeffect15)属性会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor18)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle18)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect18)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar18)属性为底部页签样式时不支持拖拽功能。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| barModifier<sup>15+</sup>  | [CommonModifier](#commonmodifier15) | 否    | 设置TabBar的[通用属性](ts-component-general-attributes.md)。<br/>**说明：** <br/>动态置为undefined时会保持当前状态不变，不会重置各通用属性。 <br/>由一个CommonModifier切换为另一个CommonModifier时，重复属性会进行覆盖，非重复属性会同时生效，不会重置前一个CommonModifier的通用属性。<br/>Tabs的[barWidth](#barwidth)、[barHeight](#barheight)、[barBackgroundColor](#barbackgroundcolor10)、[barBackgroundBlurStyle](#barbackgroundblurstyle18)、[barBackgroundEffect](#barbackgroundeffect18)属性会覆盖CommonModifier的[width](ts-universal-attributes-size.md#width)、[height](ts-universal-attributes-size.md#height)、[backgroundColor](ts-universal-attributes-background.md#backgroundcolor18)、[backgroundBlurStyle](ts-universal-attributes-background.md#backgroundblurstyle18)、[backgroundEffect](ts-universal-attributes-background.md#backgroundeffect18)属性。<br/>[align](ts-universal-attributes-location.md#align)属性仅在[BarMode.Scrollable](#barmode10-1)模式下生效，且Tabs为横向时还需[nonScrollableLayoutStyle](#scrollablebarmodeoptions10对象说明)未设置或设置为异常值时才能生效。<br/>[TabContent](ts-container-tabcontent.md)组件的[tabBar](ts-container-tabcontent.md#tabbar18)属性为底部页签样式时不支持拖拽功能。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## BarPosition枚举说明
 
@@ -169,9 +169,9 @@ barWidth(value: Length)
 
 barHeight(value: Length)
 
-设置TabBar的高度值。设置为'auto'时，TabBar自适应子组件高度，仅在水平模式下有效。设置为小于0或大于Tabs高度值时，按默认值显示。
+设置TabBar的高度值。横向Tabs可以设置height为'auto'，让TabBar自适应子组件高度。height设置为小于0或大于Tabs高度值时，按默认值显示。
 
-API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法扩展底部安全区。从API Version 14开始支持配合[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)属性，当safeAreaPadding不设置bottom或者bottom设置为0时，可以实现扩展安全区。
+API version 14之前的版本，若设置barHeight为固定值后，TabBar无法扩展底部安全区。从API version 14开始支持配合[safeAreaPadding](./ts-universal-attributes-size.md#safeareapadding14)属性，当safeAreaPadding不设置bottom或者bottom设置为0时，可以实现扩展安全区。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -181,13 +181,50 @@ API Version 14之前的版本，若设置barHeight为固定值后，TabBar无法
 
 | 参数名 | 类型                                      | 必填 | 说明                                                         |
 | ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp，从API Version 12开始，默认值变更为48vp。 |
+| value  | [Length](ts-types.md#length)<sup>8+</sup> | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为56vp，从API version 12开始，默认值变更为48vp。 |
+
+### barHeight<sup>20+</sup>
+
+barHeight(height: Length, noMinHeightLimit: boolean)
+
+设置TabBar的高度值。横向Tabs可以设置height为'auto'，让TabBar自适应子组件高度，并通过设置noMinHeightLimit为true让自适应高度可以小于TabBar默认高度。height设置为小于0或大于Tabs高度值时，按默认值显示。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名           | 类型                         | 必填 | 说明                                                         |
+| ---------------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| height           | [Length](ts-types.md#length) | 是   | TabBar的高度值。<br/>默认值：<br/>未设置带样式的TabBar且vertical属性为false时，默认值为56vp。<br/>未设置带样式的TabBar且vertical属性为true时，默认值为Tabs的高度。<br/>设置[SubTabBarStyle](ts-container-tabcontent.md#subtabbarstyle9)样式且vertical属性为false时，默认值为56vp。<br/>设置SubTabBarStyle样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置[BottomTabBarStyle](ts-container-tabcontent.md#bottomtabbarstyle9)样式且vertical属性为true时，默认值为Tabs的高度。<br/>设置BottomTabBarStyle样式且vertical属性为false时，默认值为48vp。 |
+| noMinHeightLimit | boolean                      | 是   | height设置为'auto'时，设置是否取消TabBar的最小高度限制。默认值为false。<br/>**说明：** <br/>值为true表示取消TabBar的最小高度限制，即TabBar的高度值可以小于默认值。<br/>值为false表示限制TabBar的最小高度，即TabBar的最小高度值等于默认值。 |
+
+### animationCurve<sup>20+</sup>
+
+animationCurve(curve: Curve | ICurve)
+
+设置Tabs翻页动画曲线。常用曲线参考[Curve](ts-appendix-enums.md#curve)枚举说明，也可以通过[插值计算](../js-apis-curve.md)模块提供的接口创建自定义的插值曲线对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                        |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------- |
+| curve  | [Curve](ts-appendix-enums.md#curve)&nbsp;\|&nbsp;[ICurve](../js-apis-curve.md#icurve9) | 是   | Tabs翻页的动画曲线。<br/>默认值：<br/>滑动TabContent翻页时，默认值为interpolatingSpring(-1, 1, 228, 30)。<br/>点击TabBar页签和调用TabsController的changeIndex接口翻页时，默认值为cubicBezierCurve(0.2, 0.0, 0.1, 1.0)。<br/>设置自定义动画曲线时，滑动翻页和点击页签、调用changeIndex翻页都使用设置的动画曲线。 |
 
 ### animationDuration
 
 animationDuration(value: number)
 
-设置点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。
+设置Tabs翻页动画时长。
+
+animationCurve不设置时，由于滑动TabContent翻页动画曲线interpolatingSpring(-1, 1, 228, 30)时长只受曲线自身参数影响，animationDuration只能控制点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。
+
+不受animationDuration控制的曲线可以查阅[插值计算](../js-apis-curve.md)模块，比如[springMotion](../js-apis-curve.md#curvesspringmotion9)、[responsiveSpringMotion](../js-apis-curve.md#curvesresponsivespringmotion9)和[interpolatingSpring](../js-apis-curve.md#curvesinterpolatingspring10)类型的曲线。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -197,7 +234,7 @@ animationDuration(value: number)
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| value  | number | 是   | 点击TabBar页签和调用TabsController的changeIndex接口切换TabContent的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0，即点击TabBar页签和调用TabsController的changeIndex接口切换TabContent无动画。设置为小于0或undefined时，默认值为300。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0。设置TabBar为其他样式时，默认值为300。<br/>单位：ms<br/>取值范围：[0, +∞)。 |
+| value  | number | 是   | Tabs翻页的动画时长。<br/>默认值：<br/>API version 10及以前，不设置该属性或设置为null时，默认值为0，即Tabs翻页无动画。设置为小于0或undefined时，默认值为300。<br/>API version 11及以后，不设置该属性或设置为异常值，且设置TabBar为BottomTabBarStyle样式时，默认值为0。设置TabBar为其他样式时，默认值为300。<br/>单位：ms<br/>取值范围：[0, +∞) |
 
 ### animationMode<sup>12+</sup>
 
@@ -311,13 +348,13 @@ barBackgroundBlurStyle(value: BlurStyle)
 | ------ | -------------------------------------------- | ---- | ---------------------------------------- |
 | value  | [BlurStyle](ts-universal-attributes-background.md#blurstyle9) | 是   | TabBar的背景模糊材质。<br />默认值：BlurStyle.NONE |
 
-### barBackgroundBlurStyle<sup>15+</sup>
+### barBackgroundBlurStyle<sup>18+</sup>
 
 barBackgroundBlurStyle(style: BlurStyle, options: BackgroundBlurStyleOptions)
 
 为TabBar提供一种在背景和内容之间的模糊能力，通过枚举值的方式封装了不同的模糊半径、蒙版颜色、蒙版透明度、饱和度、亮度。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -360,13 +397,13 @@ edgeEffect(edgeEffect: Optional&lt;EdgeEffect&gt;)
 | ------ | --------------------------------------------- | ---- | -------------------------------------------- |
 | edgeEffect  | Optional&lt;[EdgeEffect](ts-appendix-enums.md#edgeeffect)&gt; | 是   | 边缘滑动效果。<br/>默认值：EdgeEffect.Spring |
 
-### barBackgroundEffect<sup>15+</sup>
+### barBackgroundEffect<sup>18+</sup>
 
 barBackgroundEffect(options: BackgroundEffectOptions)
 
 设置TabBar背景属性，包含背景模糊半径，亮度，饱和度，颜色等参数。
 
-**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -392,13 +429,13 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
 
-### cachedMaxCount<sup>18+</sup>
+### cachedMaxCount<sup>19+</sup>
 
 cachedMaxCount(count: number, mode: TabsCacheMode)
 
 设置子组件的最大缓存个数和缓存模式。设置该属性后，不会对缓存范围内的子组件进行预加载，仅对缓存范围外的子组件进行释放。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -407,7 +444,7 @@ cachedMaxCount(count: number, mode: TabsCacheMode)
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | count  | number                                                      | 是   | 子组件的最大缓存个数。默认所有子组件加载后都不再释放。<br/>取值范围：[0, +∞)。|
-| mode   | [TabsCacheMode](#tabscachemode18枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
+| mode   | [TabsCacheMode](#tabscachemode19枚举说明)                   | 是   | 子组件的缓存模式。<br/>默认值：TabsCacheMode.CACHE_BOTH_SIDE   |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
@@ -508,11 +545,11 @@ type CommonModifier = CommonModifier
 | ---------- | ---------------------------------------- |
 | [CommonModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier) | 设置TabBar的通用属性。 |
 
-## TabsCacheMode<sup>18+</sup>枚举说明
+## TabsCacheMode<sup>19+</sup>枚举说明
 
 子组件的缓存模式。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -836,9 +873,9 @@ Tabs组件动画相关信息集合。
 
 | 名称            | 类型      | 只读 | 可选 | 说明                                       |
 | ------------- | ---------- | ---- | ---- | ------------------------ |
-| currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位VP，默认值为0。|
-| velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位VP/S，默认值为0。|
+| currentOffset | number | 否 | 否 | Tabs当前显示元素在主轴方向上，相对于Tabs起始位置的位移。单位vp，默认值为0。|
+| targetOffset | number | 否 | 否 | Tabs动画目标元素在主轴方向上，相对于Tabs起始位置的位移。单位vp，默认值为0。|
+| velocity | number | 否 | 否 | Tabs离手动画开始时的离手速度。单位vp/s，默认值为0。|
 
 ## TabContentAnimatedTransition<sup>11+</sup>
 
@@ -1001,13 +1038,13 @@ setTabBarOpacity(opacity: number): void
 @Entry
 @Component
 struct TabsExample {
-  @State text: string = "文本";
+  @State text: string = '文本';
   @State barMode: BarMode = BarMode.Fixed;
 
   build() {
     Column() {
       Row() {
-        Button("文本增加 ")
+        Button('文本增加 ')
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
@@ -1015,17 +1052,17 @@ struct TabsExample {
           })
           .margin({ right: '6%', bottom: '12vp' })
 
-        Button("文本重置")
+        Button('文本重置')
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
-            this.text = "文本";
+            this.text = '文本';
           })
           .margin({ bottom: '12vp' })
       }
 
       Row() {
-        Button("BarMode.Fixed")
+        Button('BarMode.Fixed')
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
@@ -1033,7 +1070,7 @@ struct TabsExample {
           })
           .margin({ right: '6%', bottom: '12vp' })
 
-        Button("BarMode.Scrollable")
+        Button('BarMode.Scrollable')
           .width('47%')
           .height(50)
           .onClick((event?: ClickEvent) => {
@@ -1079,12 +1116,12 @@ struct TabsExample6 {
   private controller: TabsController = new TabsController();
   @State scrollMargin: number = 0;
   @State layoutStyle: LayoutStyle = LayoutStyle.ALWAYS_CENTER;
-  @State text: string = "文本";
+  @State text: string = '文本';
 
   build() {
     Column() {
       Row() {
-        Button("scrollMargin+10 " + this.scrollMargin)
+        Button('scrollMargin+10 ' + this.scrollMargin)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1092,7 +1129,7 @@ struct TabsExample6 {
             this.scrollMargin += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("scrollMargin-10 " + this.scrollMargin)
+        Button('scrollMargin-10 ' + this.scrollMargin)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1103,7 +1140,7 @@ struct TabsExample6 {
       }
 
       Row() {
-        Button("文本增加 ")
+        Button('文本增加 ')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1111,18 +1148,18 @@ struct TabsExample6 {
             this.text += '文本增加';
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("文本重置")
+        Button('文本重置')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
-            this.text = "文本";
+            this.text = '文本';
           })
           .margin({ bottom: '12vp' })
       }
 
       Row() {
-        Button("layoutStyle.ALWAYS_CENTER")
+        Button('layoutStyle.ALWAYS_CENTER')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1134,7 +1171,7 @@ struct TabsExample6 {
       }
 
       Row() {
-        Button("layoutStyle.ALWAYS_AVERAGE_SPLIT")
+        Button('layoutStyle.ALWAYS_AVERAGE_SPLIT')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1146,7 +1183,7 @@ struct TabsExample6 {
       }
 
       Row() {
-        Button("layoutStyle.SPACE_BETWEEN_OR_CENTER")
+        Button('layoutStyle.SPACE_BETWEEN_OR_CENTER')
           .width('100%')
           .height(50)
           .margin({ top: 5 })
@@ -1501,7 +1538,7 @@ struct barHeightTest {
   build() {
     Column() {
       Text(`barOverlap ${this.barOverlap}`).fontSize(16)
-      Button("barOverlap变化").width('100%').margin({ bottom: '12vp' })
+      Button('barOverlap变化').width('100%').margin({ bottom: '12vp' })
         .onClick((event?: ClickEvent) => {
           if (this.barOverlap) {
             this.barOverlap = false;
@@ -1516,7 +1553,7 @@ struct barHeightTest {
             List({ space: 10 }) {
               ForEach(this.arr, (item: number) => {
                 ListItem() {
-                  Text("item" + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
+                  Text('item' + item).width('80%').height(200).fontSize(16).textAlign(TextAlign.Center).backgroundColor('#fff8b81e')
                 }
               }, (item: string) => item)
             }.width('100%').height('100%')
@@ -1524,7 +1561,7 @@ struct barHeightTest {
           }.width('100%').height('100%')
           .backgroundColor(Color.Pink)
         }
-        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), "测试0"))
+        .tabBar(new BottomTabBarStyle($r('sys.media.ohos_icon_mask_svg'), '测试0'))
       }
       .scrollable(false)
       .height('60%')
@@ -1551,12 +1588,12 @@ struct TabsExample5 {
   @State gridMargin: number = 10;
   @State gridGutter: number = 10;
   @State sm: number = -2;
-  @State clickedContent: string = "";
+  @State clickedContent: string = '';
 
   build() {
     Column() {
       Row() {
-        Button("gridMargin+10 " + this.gridMargin)
+        Button('gridMargin+10 ' + this.gridMargin)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1564,7 +1601,7 @@ struct TabsExample5 {
             this.gridMargin += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("gridMargin-10 " + this.gridMargin)
+        Button('gridMargin-10 ' + this.gridMargin)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1575,7 +1612,7 @@ struct TabsExample5 {
       }
 
       Row() {
-        Button("gridGutter+10 " + this.gridGutter)
+        Button('gridGutter+10 ' + this.gridGutter)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1583,7 +1620,7 @@ struct TabsExample5 {
             this.gridGutter += 10;
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("gridGutter-10 " + this.gridGutter)
+        Button('gridGutter-10 ' + this.gridGutter)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1594,7 +1631,7 @@ struct TabsExample5 {
       }
 
       Row() {
-        Button("sm+2 " + this.sm)
+        Button('sm+2 ' + this.sm)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -1602,27 +1639,27 @@ struct TabsExample5 {
             this.sm += 2;
           })
           .margin({ right: '6%' })
-        Button("sm-2 " + this.sm).width('47%').height(50).margin({ top: 5 })
+        Button('sm-2 ' + this.sm).width('47%').height(50).margin({ top: 5 })
           .onClick((event?: ClickEvent) => {
             this.sm -= 2;
           })
       }
 
-      Text("点击内容:" + this.clickedContent).width('100%').height(200).margin({ top: 5 })
+      Text('点击内容:' + this.clickedContent).width('100%').height(200).margin({ top: 5 })
 
 
       Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Pink)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "1"))
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), '1'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Green)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "2"))
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), '2'))
 
         TabContent() {
           Column().width('100%').height('100%').backgroundColor(Color.Blue)
-        }.tabBar(BottomTabBarStyle.of($r("sys.media.ohos_app_icon"), "3"))
+        }.tabBar(BottomTabBarStyle.of($r('sys.media.ohos_app_icon'), '3'))
       }
       .width('350vp')
       .animationDuration(300)
@@ -1630,7 +1667,7 @@ struct TabsExample5 {
       .barGridAlign({ sm: this.sm, margin: this.gridMargin, gutter: this.gridGutter })
       .backgroundColor(0xf1f3f5)
       .onTabBarClick((index: number) => {
-        this.clickedContent += "now index " + index + " is clicked\n";
+        this.clickedContent += 'now index ' + index + ' is clicked\n';
       })
     }
     .width('100%')
@@ -2060,7 +2097,7 @@ struct TabsPreloadItems {
 
 @Component
 struct MyComponent {
-  private color: string = "";
+  private color: string = '';
 
   aboutToAppear(): void {
     console.info('aboutToAppear backgroundColor:' + this.color);
@@ -2337,7 +2374,7 @@ struct TabsBarModifierExample {
   @Builder
   tabBuilder(title: string, targetIndex: number) {
     Column() {
-      Image($r("app.media.startIcon")).width(30).height(30)
+      Image($r('app.media.startIcon')).width(30).height(30)
       Text(title).fontColor(this.selectedIndex === targetIndex ? '#1698CE' : '#6B6B6B')
     }.width('100%')
     .height(50)
@@ -2390,7 +2427,7 @@ struct TabsBarModifierExample {
       .backgroundColor('#F1F3F5')
       .scrollable(true)
 
-      Button("isClip: " + this.isClip)
+      Button('isClip: ' + this.isClip)
         .margin({ top: 30 })
         .onClick(() => {
           this.isClip = !this.isClip;
@@ -2415,14 +2452,14 @@ import { CommonModifier } from '@kit.ArkUI';
 @Component
 struct TabsBarModifierExample {
   private controller: TabsController = new TabsController();
-  @State text: string = "文本";
+  @State text: string = '文本';
   @State isVertical: boolean = false;
   @State tabBarModifier: CommonModifier = new CommonModifier();
 
   build() {
     Column() {
       Row() {
-        Button("Alignment.Start ")
+        Button('Alignment.Start ')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2430,7 +2467,7 @@ struct TabsBarModifierExample {
             this.tabBarModifier.align(Alignment.Start);
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("Alignment.End")
+        Button('Alignment.End')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2441,7 +2478,7 @@ struct TabsBarModifierExample {
       }
 
       Row() {
-        Button("Alignment.Center")
+        Button('Alignment.Center')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2449,7 +2486,7 @@ struct TabsBarModifierExample {
             this.tabBarModifier.align(Alignment.Center);
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("isVertical: " + this.isVertical)
+        Button('isVertical: ' + this.isVertical)
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2460,7 +2497,7 @@ struct TabsBarModifierExample {
       }
 
       Row() {
-        Button("Alignment.Top")
+        Button('Alignment.Top')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2468,7 +2505,7 @@ struct TabsBarModifierExample {
             this.tabBarModifier.align(Alignment.Top);
           })
           .margin({ right: '6%', bottom: '12vp' })
-        Button("Alignment.Bottom")
+        Button('Alignment.Bottom')
           .width('47%')
           .height(50)
           .margin({ top: 5 })
@@ -2562,15 +2599,15 @@ struct TabsExample {
       .animationDuration(400)
       .animationMode(AnimationMode.CONTENT_FIRST)
       .onChange((index: number) => {
-        console.log("onChange index:" + index);
+        console.log('onChange index:' + index);
         this.currentIndex = index;
       })
       .onSelected((index: number) => {
-        console.log("onSelected index:" + index);
+        console.log('onSelected index:' + index);
         this.selectedIndex = index;
       })
       .onUnselected((index: number) => {
-        console.log("onUnselected index:" + index);
+        console.log('onUnselected index:' + index);
       })
       .width('100%')
       .height('100%')
@@ -2616,7 +2653,7 @@ struct TabsExample {
 
 @Component
 struct MyComponent {
-  private color: string = "";
+  private color: string = '';
 
   aboutToAppear(): void {
     console.info('aboutToAppear backgroundColor:' + this.color);
@@ -2759,3 +2796,67 @@ struct TabsExample {
 }
 ```
 ![tabs20](figures/tabs_edges_slide.gif)
+
+### 示例21（Tabs设置翻页动画曲线）
+
+该示例展示了如何通过animationCurve接口设置Tabs翻页动画曲线，并结合animationDuration设置翻页动画的时长。
+
+```ts
+import { curves } from '@kit.ArkUI';
+
+interface TabsItemType { text: string, backgroundColor: ResourceColor }
+
+@Entry
+@Component
+struct TabsExample {
+  private tabsController: TabsController = new TabsController();
+  private curves: (Curve | ICurve) [] = [
+    curves.interpolatingSpring(-1, 1, 328, 34),
+    curves.springCurve(10, 1, 228, 30),
+    curves.cubicBezierCurve(0.25, 0.1, 0.25, 1.0),
+  ];
+  @State curveIndex: number = 0;
+  private datas: TabsItemType[] = [
+    { text: '1', backgroundColor: '#004AAF' },
+    { text: '2', backgroundColor: '#2787D9' },
+    { text: '3', backgroundColor: '#D5D5D5' },
+    { text: '4', backgroundColor: '#707070' },
+    { text: '5', backgroundColor: '#F7F7F7' },
+  ];
+  @State duration: number = 0;
+
+  build() {
+    Column({ space:2 }) {
+      Tabs({ controller: this.tabsController }) {
+        ForEach(this.datas, (item: TabsItemType, index: number) => {
+          TabContent() {}
+          .tabBar(item.text)
+          .backgroundColor(item.backgroundColor)
+        })
+      }
+      .backgroundColor(0xf1f3f5)
+      .width('100%')
+      .height(500)
+      .animationCurve(this.curves[this.curveIndex])
+      .animationDuration(this.duration)
+      Row({ space:2 }) {
+        Text('Curve:' + this.curveIndex)
+        Button('++').onClick(() => { this.curveIndex = (this.curveIndex + 1) % this.curves.length; })
+        Button('reset').onClick(() => { this.curveIndex = 0; })
+      }
+      .margin({ left: '10vp' })
+      .width('100%')
+      Row({ space:2 }) {
+        Text('Duration:' + this.duration)
+        Button('+100').onClick(() => { this.duration = (this.duration + 100) % 10000; })
+        Button('+1000').onClick(() => { this.duration = (this.duration + 1000) % 10000; })
+        Button('reset').onClick(() => { this.duration = 0; })
+      }
+      .margin({ left: '10vp' })
+      .width('100%')
+    }
+    .margin('10vp')
+  }
+}
+```
+![tabs_curve](figures/tabs_curve.gif)

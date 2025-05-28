@@ -30,7 +30,7 @@ Before your development, configure the following permissions for your applicatio
 
 > **NOTE**
 >
-> The AVRecorder only processes video data. To complete video recording, it must work with the video data collection module, which transfers the captured video data to the AVRecorder for data processing through the surface. Currently, the commonly used data collection module is the camera module. For details, see [Video Recording](../camera/camera-recording.md).
+> The AVRecorder only processes video data. To complete video recording, it must work with the video data collection module, which transfers the captured video data to the AVRecorder for data processing through the surface. Currently, the mainstream data collection module is the camera module. For details about the implementation, see [Video Recording](../camera/camera-recording.md).
 >
 > For details about how to create and save a file, see [Accessing Application Files](../../file-management/app-file-access.md). By default, files are saved in the sandbox path of the application. To save them to Gallery, use the [security components](../medialibrary/photoAccessHelper-savebutton.md).
 
@@ -88,7 +88,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
    ```ts
    import { media } from '@kit.MediaKit';
    import { BusinessError } from '@kit.BasicServicesKit';
-   import { fileIo as fs } form '@kit.CoreFileKit';
+   import { fileIo as fs } from '@kit.CoreFileKit';
 
    let avProfile: media.AVRecorderProfile = {
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // Video file container format. Only MP4 is supported.
@@ -99,7 +99,7 @@ Read [AVRecorder](../../reference/apis-media-kit/js-apis-media.md#avrecorder9) f
      videoFrameRate: 30 // Video frame rate.
    };
 
-   const context: Context = getContext(this); // Refer to Application File Access and Management.
+   const context: Context = this.getUIContext().getHostContext()!; // Refer to Accessing Application Files.
    let filePath: string = context.filesDir + '/example.mp4';
    let videoFile: fs.File = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    let fileFd = videoFile.fd; // Obtain the file FD.
@@ -165,10 +165,11 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 
 
 const TAG = 'VideoRecorderDemo:';
-export class VideoRecorderDemo {
+export class VideoRecorderDemo extends CustomComponent {
   private context: Context;
   constructor() {
-    this.context = getContext(this);
+    super();
+    this.context = this.getUIContext().getHostContext()!;
   }
   private avRecorder: media.AVRecorder | undefined = undefined;
   private videoOutSurfaceId: string = "";

@@ -3,7 +3,8 @@
 
 ## When to Use
 
-Vector stores are designed to store, manage, and retrieve vector data while also supporting relational data processing for scalar values. The data type **floatvector** is used to store data vectorization results, enabling rapid retrieval and similarity searches for such data.
+Vector stores are designed to store, manage, and retrieve vector data while also supporting relational data processing for scalar values. The data type **floatvector** is used to store data vectorization results, enabling rapid retrieval and similarity searches for such data.<br>
+Since API version 18, data in vector stores can be persisted.
 
 ## Basic Concepts
 
@@ -142,7 +143,7 @@ The following lists only the APIs for persisting vector store data. For details 
 
    > **NOTE**
    >
-   > Use **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
+   > Call **close()** to close the **ResultSet** that is no longer used in a timely manner so that the memory allocated can be released.
 
    The sample code is as follows:
 

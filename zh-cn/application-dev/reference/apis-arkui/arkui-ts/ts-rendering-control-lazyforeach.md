@@ -8,7 +8,7 @@
 
 ## 接口
 
-LazyForEach(dataSource: IDataSource,itemGenerator: (item: any, index: number) => void,keyGenerator?: (item: any, index: number) => string,)
+LazyForEach(dataSource: IDataSource, itemGenerator: (item: any, index: number) => void, keyGenerator?: (item: any, index: number) => string)
 
 LazyForEach从提供的数据源中按需迭代数据，并在每次迭代过程中创建相应的组件。当在滚动容器中使用了LazyForEach，框架会根据滚动容器可视区域按需创建组件，当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
 
@@ -46,7 +46,7 @@ totalCount(): number
 
 ### getData
 
-getData(index:&nbsp;number): Object
+getData(index:&nbsp;number): any
 
 获取索引值index对应的数据。
 
@@ -58,7 +58,7 @@ getData(index:&nbsp;number): Object
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 获取数据对应的索引值。 |
+| index  | number | 是   | 获取数据对应的索引值。取值范围是[0, 数据源长度-1]。 |
 
 ### registerDataChangeListener
 
@@ -128,7 +128,7 @@ onDataAdded(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 数据添加位置的索引值。 |
+| index  | number | 是   | 数据添加位置的索引值。取值范围是[0, 数据源长度-1]。 |
 
 ### onDataMoved<sup>(deprecated)</sup>
 
@@ -148,8 +148,8 @@ onDataMoved(from: number, to: number): void
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| from   | number | 是   | 数据移动起始位置。 |
-| to     | number | 是   | 数据移动目标位置。 |
+| from   | number | 是   | 数据移动起始位置。取值范围是[0, 数据源长度-1]。 |
+| to     | number | 是   | 数据移动目标位置。取值范围是[0, 数据源长度-1]。 |
 
 ### onDataDeleted<sup>(deprecated)</sup>
 
@@ -165,7 +165,7 @@ onDataDeleted(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 数据删除位置的索引值。 |
+| index  | number | 是   | 数据删除位置的索引值。取值范围是[0, 数据源长度-1]。 |
 
 ### onDataChanged<sup>(deprecated)</sup>
 
@@ -181,7 +181,7 @@ onDataChanged(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| index  | number | 是   | 数据变化监听器。 |
+| index  | number | 是   | 数据变化监听器。取值范围是[0, 数据源长度-1]。 |
 
 ### onDataAdd<sup>8+</sup>
 
@@ -199,7 +199,7 @@ onDataAdd(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明           |
 | ------ | ------ | ---- | -------------- |
-| index  | number | 是   | 数据添加位置的索引值。 |
+| index  | number | 是   | 数据添加位置的索引值。取值范围是[0, 数据源长度-1]。 |
 
 ### onDataMove<sup>8+</sup>
 
@@ -219,8 +219,8 @@ onDataMove(from: number, to: number): void
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| from   | number | 是   | 数据移动起始位置。 |
-| to     | number | 是   | 数据移动目标位置。 |
+| from   | number | 是   | 数据移动起始位置。取值范围是[0, 数据源长度-1]。 |
+| to     | number | 是   | 数据移动目标位置。取值范围是[0, 数据源长度-1]。 |
 
 ### onDataDelete<sup>8+</sup>
 
@@ -240,7 +240,7 @@ onDataDelete(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 数据删除位置的索引值。 |
+| index  | number | 是   | 数据删除位置的索引值。取值范围是[0, 数据源长度-1]。 |
 
 ### onDataChange<sup>8+</sup>
 
@@ -256,7 +256,7 @@ onDataChange(index: number): void
 
 | 参数名 | 类型   | 必填 | 说明                 |
 | ------ | ------ | ---- | -------------------- |
-| index  | number | 是   | 数据变化位置的索引值。 |
+| index  | number | 是   | 数据变化位置的索引值。取值范围是[0, 数据源长度-1]。 |
 
 ### onDatasetChange<sup>12+</sup>
 
@@ -301,7 +301,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
 | type   | [DataOperationType](#dataoperationtype枚举说明).ADD     | 是   | 数据添加类型。         |
-| index  | number                    | 是   | 插入数据索引值。       |
+| index  | number                    | 是   | 插入数据索引值。取值范围是[0, 数据源长度-1]。 |
 | count  | number                    | 否   | 插入数量，默认为1。   |
 | key    | string \| Array\<string\> | 否   | 为插入的数据分配键值。 |
 
@@ -318,7 +318,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
 | type   | [DataOperationType](#dataoperationtype枚举说明).DELETE     | 是   | 数据删除类型。         |
-| index  | number                    | 是   | 起始删除位置索引值。       |
+| index  | number                    | 是   | 起始删除位置索引值。取值范围是[0, 数据源长度-1]。|
 | count  | number                    | 否   | 删除数据数量，默认为1。    |
 
 ### DataChangeOperation
@@ -334,7 +334,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
 | type   | [DataOperationType](#dataoperationtype枚举说明).CHANGE     | 是   | 数据改变类型。         |
-| index  | number                    | 是   | 改变的数据的索引值。       |
+| index  | number                    | 是   | 改变的数据的索引值。取值范围是[0, 数据源长度-1]。|
 | key  | string                    | 否   | 为改变的数据分配新的键值，默认使用原键值。    |
 
 ### DataMoveOperation
@@ -350,7 +350,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | 参数名 | 类型                      | 必填 | 说明                 |
 | ------ | ------------------------- | ---- | -------------------- |
 | type   | [DataOperationType](#dataoperationtype枚举说明).MOVE     | 是   | 数据移动类型。 |
-| index  | [MoveIndex](#moveindex)        | 是   | 移动位置。   |
+| index  | [MoveIndex](#moveindex)        | 是   | 移动位置。取值范围是[0, 数据源长度-1]。|
 | key | string              | 否   | 为被移动的数据分配新的键值，默认使用原键值。 |
 
 #### MoveIndex
@@ -363,8 +363,8 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                       | 必填 | 说明            |
 | ------ | --------------- | ---- | ------- |
-| from   | number | 是   | 起始移动位置。                 |
-| to  | number           | 是   | 目的移动位置。           |
+| from   | number | 是   | 起始移动位置。取值范围是[0, 数据源长度-1]。|
+| to  | number           | 是   | 目的移动位置。取值范围是[0, 数据源长度-1]。|
 
 ### DataExchangeOperation
 
@@ -379,7 +379,7 @@ onDatasetChange(dataOperations: DataOperation[]): void
 | 参数名 | 类型                       | 必填 | 说明                         |
 | ------ | -------------------------- | ---- | ---------------------------- |
 | type   | [DataOperationType](#dataoperationtype枚举说明).EXCHANGE | 是   | 数据交换类型。                 |
-| index  | [ExchangeIndex](#exchangeindex)            | 是   | 交换位置。                     |
+| index  | [ExchangeIndex](#exchangeindex)            | 是   | 交换位置。取值范围是[0, 数据源长度-1]。|
 | key    | [ExchangeKey](#exchangekey)              | 否   | 分配新的键值，默认使用原键值。 |
 
 #### ExchangeIndex
@@ -392,8 +392,8 @@ onDatasetChange(dataOperations: DataOperation[]): void
 
 | 参数名 | 类型                       | 必填 | 说明            |
 | ------ | --------------- | ---- | ------- |
-| start   | number | 是   | 第一个交换位置。                 |
-| end  | number           | 是   | 第二个交换位置。           |
+| start   | number | 是   | 第一个交换位置。取值范围是[0, 数据源长度-1]。|
+| end  | number           | 是   | 第二个交换位置。取值范围是[0, 数据源长度-1]。|
 
 #### ExchangeKey
 

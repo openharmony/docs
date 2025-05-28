@@ -5,7 +5,7 @@ The **sendablePreferences** module provides APIs for processing data in the form
 
 In the KV pairs, the key must be a string, and the value can be a number, a string, a Boolean value, a bigint, or a serializable object.
 
-The persistent files of the shared user preferences are stored in the [preferencesDir](../../application-models/application-context-stage.md#obtaining-application-file-path) directory. Before creating a preferences object, ensure that the **preferencesDir** directory is readable and writeable. The [encryption level](../apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) of the persistent file directory determines the access to the files. For details, see [Application File Directory and Application File Path](../../file-management/app-sandbox-directory.md#application-file-directory-and-application-file-path).
+The persistent files of the shared user preferences are stored in the [preferencesDir](../../application-models/application-context-stage.md#obtaining-application-file-path) directory. Before creating a preferences object, ensure that the **preferencesDir** path can be read and written. The [encryption level](../apis-ability-kit/js-apis-app-ability-contextConstant.md#areamode) of the persistent file directory determines the access to the files. For details, see [Application File Directory and Application File Path](../../file-management/app-sandbox-directory.md#application-file-directory-and-application-file-path).
 
 Sendable preferences can be passed between concurrent ArkTS instances (including the main thread and TaskPool or Worker threads) by reference. It allows for higher performance than [user preferences](js-apis-data-preferences.md). For more information, see [Using Sendable Objects](../../arkts-utils/sendable-guide.md).
 
@@ -30,7 +30,7 @@ import { sendablePreferences } from '@kit.ArkData';
 | Name            | Type| Readable| Writable| Description                                   |
 | ---------------- | -------- | ---- | ---- | --------------------------------------- |
 | MAX_KEY_LENGTH   | number   | Yes  | No  | Maximum length of a key, which is 1024 bytes.    |
-| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum value length, which is 16 MB.|
+| MAX_VALUE_LENGTH | number   | Yes  | No  | Maximum length of a value, which is 16 MB.|
 
 ## sendablePreferences.getPreferences
 
@@ -85,7 +85,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in getting preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to get preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -194,7 +194,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in deleting preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to delete preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -205,7 +205,7 @@ removePreferencesFromCache(context: Context, options: Options): Promise&lt;void&
 
 Removes a **Preferences** instance from the cache. This API uses a promise to return the result.
 
-After an application calls [getPreferences](#sendablepreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#sendablepreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#sendablepreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#sendablepreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -251,7 +251,7 @@ class EntryAbility extends UIAbility {
       console.info("Succeeded in removing preferences.");
     }).catch((err: BusinessError) => {
       console.error(`Failed to remove preferences. code: ${err.code}, message: ${err.message}`);
-    })
+    });
   }
 }
 ```
@@ -262,7 +262,7 @@ removePreferencesFromCacheSync(context: Context, options: Options):void
 
 Removes a **Preferences** instance from the cache. This API returns the result synchronously.
 
-After an application calls [getPreferences](#sendablepreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#sendablepreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a new **Preferences** instance.
+After an application calls [getPreferences](#sendablepreferencesgetpreferences) for the first time to obtain a **Preferences** instance, the obtained **Preferences** instance is cached. When the application calls [getPreferences](#sendablepreferencesgetpreferences) again, the **Preferences** instance will be read from the cache instead of from the persistent file. After this API is called to remove the instance from the cache, calling **getPreferences** again will read data from the persistent file and create a **Preferences** instance.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -365,7 +365,7 @@ promise.then((data: lang.ISendable) => {
   console.info(`Succeeded in getting value of 'startup'. Data: ${dataStr}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to get value of 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### getSync
@@ -444,7 +444,7 @@ promise.then((keyValues: lang.ISendable) => {
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to get all key-values. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### getAllSync
@@ -530,7 +530,7 @@ promise.then(() => {
   console.info("Succeeded in putting value of 'startup'.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to put value of 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### putSync
@@ -612,11 +612,11 @@ promise.then((val: boolean) => {
   if (val) {
     console.info("The key 'startup' is contained.");
   } else {
-    console.error("The key 'startup' dose not contain.");
+    console.error("The key 'startup' does not contain.");
   }
 }).catch((err: BusinessError) => {
   console.error(`Failed to check the key 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### hasSync
@@ -657,7 +657,7 @@ let isExist: boolean = preferences.hasSync('startup');
 if (isExist) {
   console.info("The key 'startup' is contained.");
 } else {
-  console.error("The key 'startup' dose not contain.");
+  console.error("The key 'startup' does not contain.");
 }
 ```
 
@@ -702,7 +702,7 @@ promise.then(() => {
   console.info("Succeeded in deleting the key 'startup'.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to delete the key 'startup'. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### deleteSync
@@ -774,7 +774,7 @@ promise.then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### flushSync<sup>14+</sup>
@@ -839,7 +839,7 @@ promise.then(() => {
   console.info("Succeeded in clearing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to clear. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### clearSync
@@ -903,14 +903,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('change', observer);
 preferences.putSync('startup', 'manual');
 preferences.flush().then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### on('multiProcessChange')
@@ -919,7 +919,7 @@ on(type: 'multiProcessChange', callback: Callback&lt;string&gt;): void
 
 Subscribes to inter-process data changes. When multiple processes hold the same preference file, calling [flush](#flush) in any process (including the current process) will trigger the callback in this API.
 
-This API is provided for applications that have applied for [dataGroupId](#options). Avoid using this API for the applications that have not applied for [dataGroupId](#options) because calling it in multiple process may damage the persistent files and cause data loss.
+This API is provided for applications that have applied for [dataGroupId](#options). Avoid using this API for the applications that have not applied for **dataGroupId** because calling it in multiple process may damage the persistent files and cause data loss.
 
   > **NOTE**
   >
@@ -955,14 +955,14 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('multiProcessChange', observer);
 preferences.putSync('startup', 'manual');
 preferences.flush().then(() => {
   console.info("Succeeded in flushing.");
 }).catch((err: BusinessError) => {
   console.error(`Failed to flush. code: ${err.code}, message: ${err.message}`);
-})
+});
 ```
 
 ### on('dataChange')
@@ -1003,8 +1003,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${data}`)
-}
+  console.info(`observer : ${data}`);
+};
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);
 preferences.putSync('name', 'xiaohong');
@@ -1049,7 +1049,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('change', observer);
 preferences.putSync('startup', 'auto');
 preferences.flush().then(() => {
@@ -1066,7 +1066,7 @@ off(type: 'multiProcessChange', callback?: Callback&lt;string&gt;): void
 
 Unsubscribes from inter-process data changes.
 
-This API is provided for applications that have applied for [dataGroupId](#options). Avoid using this API for the applications that have not applied for [dataGroupId](#options) because calling it in multiple process may damage the persistent files and cause data loss.
+This API is provided for applications that have applied for [dataGroupId](#options). Avoid using this API for the applications that have not applied for **dataGroupId** because calling it in multiple process may damage the persistent files and cause data loss.
 
 **Atomic service API**: This API can be used in atomic services since API version 12.
 
@@ -1095,7 +1095,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let observer = (key: string) => {
   console.info("The key " + key + " changed.");
-}
+};
 preferences.on('multiProcessChange', observer);
 preferences.putSync('startup', 'auto');
 preferences.flush().then(() => {
@@ -1139,8 +1139,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { lang } from '@kit.ArkTS';
 
 let observer = (data: lang.ISendable) => {
-  console.info(`observer : ${data}`)
-}
+  console.info(`observer : ${data}`);
+};
 let keys = ['name', 'age'];
 preferences.on('dataChange', keys, observer);
 preferences.putSync('name', 'xiaohong');

@@ -155,3 +155,31 @@ onCreate(): void {
   this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
 }
 ```
+
+## 使用建议与限制
+
+- 建议方法
+
+  当应用跟随系统深色或浅色模式时，建议采用[AbilityStage的监听回调](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)或[Ability的监听回调](../reference/apis-ability-kit/js-apis-app-ability-ability.md#abilityonconfigurationupdate)方式，主动监听系统深浅色模式变化。一旦颜色模式发生变化，应通过绑定状态变量等方法，执行特定的业务逻辑。
+
+- 不推荐方法
+
+  开发者在使用资源时，未采用监听系统深浅色模式变化的方式，而是在属性设置中通过函数适配深浅色变更。例如，参考以下代码写法：
+
+  ```ts
+  getResource() : string {
+    // 获取系统颜色模式
+    if (colorMode == "dark") {
+      return "#FF000000"
+    } else {
+      return "#FFFFFFFF"
+    }
+  // ... other code ...
+  build() {
+    // ... other code ...
+    Button.backgroundColor(this.getResource())
+    // ... other code ...
+  }
+  }
+  ```
+  这种方式依赖于切换流程中重新执行属性设置代码，随着系统的发展和性能优化，并不能确保所有属性代码均被重新执行。因为在大部分热更新场景中，重新执行全部页面构建和属性设置代码显然是冗余的。

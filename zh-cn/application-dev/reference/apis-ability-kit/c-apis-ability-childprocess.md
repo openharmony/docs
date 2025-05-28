@@ -32,12 +32,13 @@
 | typedef struct [NativeChildProcess_Args](#nativechildprocess_args) | 定义启动子进程入参。 |
 | typedef struct [NativeChildProcess_Options](#NativeChildProcess_Options) | 定义启动子进程的配置选项。 |
 | typedef struct [Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs) | 定义启动子进程的配置信息。 |
+| typedef void(\* [OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)) (int32_t pid, int32_t signal) | 定义感知Native子进程退出的回调函数。 |
 
 ### 枚举
 
 | 名称                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 描述                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) {<br>    NCP_NO_ERROR = 0,<br>    NCP_ERR_INVALID_PARAM = 401,<br>    NCP_ERR_NOT_SUPPORTED = 801,<br>    NCP_ERR_INTERNAL = 16000050,<br>    NCP_ERR_BUSY = 16010001,<br>    NCP_ERR_TIMEOUT = 16010002,<br>    NCP_ERR_SERVICE_ERROR = 16010003,<br>    NCP_ERR_MULTI_PROCESS_DISABLED = 16010004,<br>    NCP_ERR_ALREADY_IN_CHILD = 16010005,<br>    NCP_ERR_MAX_CHILD_PROCESSES_REACHED = 16010006,<br>    NCP_ERR_LIB_LOADING_FAILED = 16010007,<br>    NCP_ERR_CONNECTION_FAILED = 16010008<br>} | 定义Native子进程模块错误码。 |
+| [Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode) {<br>    NCP_NO_ERROR = 0,<br>    NCP_ERR_INVALID_PARAM = 401,<br>    NCP_ERR_NOT_SUPPORTED = 801,<br>    NCP_ERR_INTERNAL = 16000050,<br>    NCP_ERR_BUSY = 16010001,<br>    NCP_ERR_TIMEOUT = 16010002,<br>    NCP_ERR_SERVICE_ERROR = 16010003,<br>    NCP_ERR_MULTI_PROCESS_DISABLED = 16010004,<br>    NCP_ERR_ALREADY_IN_CHILD = 16010005,<br>    NCP_ERR_MAX_CHILD_PROCESSES_REACHED = 16010006,<br>    NCP_ERR_LIB_LOADING_FAILED = 16010007,<br>    NCP_ERR_CONNECTION_FAILED = 16010008,<br>    NCP_ERR_CALLBACK_NOT_EXIST = 16010009<br>} | 定义Native子进程模块错误码。 |
 
 
 ### 函数
@@ -72,7 +73,7 @@ typedef void (*OH_Ability_OnNativeChildProcessStarted)(int errCode, OHIPCRemoteP
 
 **起始版本**：12
 
-**参数:**
+**参数：**
 
 | 名称          | 描述                                                                                                                                                                                                                                  |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -84,6 +85,31 @@ typedef void (*OH_Ability_OnNativeChildProcessStarted)(int errCode, OHIPCRemoteP
 [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess)
 
 [OH_IPCRemoteProxy_Destroy](../apis-ipc-kit/_o_h_i_p_c_remote_object.md#oh_ipcremoteproxy_destroy)
+
+### OH_Ability_OnNativeChildProcessExit
+
+```
+typedef void (*OH_Ability_OnNativeChildProcessExit)(int32_t pid, int32_t signal)
+```
+
+**描述**
+
+感知Native子进程退出的回调函数。
+
+**起始版本**：20
+
+**参数：**
+
+| 名称          | 描述                                                                                                                                                                                                                                  |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| pid     | 子进程的pid。 |
+| signal | 子进程的异常退出信号。                                                                                       |
+
+**参见：**
+
+[OH_Ability_RegisterNativeChildProcessExitCallback](#oh_ability_registernativechildprocessexitcallback)
+
+[OH_Ability_UnregisterNativeChildProcessExitCallback](#oh_ability_unregisternativechildprocessexitcallback)
 
 ### NativeChildProcess_Fd
 
@@ -101,7 +127,7 @@ typedef struct NativeChildProcess_Fd {
 
 **起始版本**：13
 
-**参数:**
+**参数：**
 
 | 名称          | 描述 |
 | ----------- | ------------- |
@@ -123,7 +149,7 @@ typedef struct NativeChildProcess_FdList {
 
 **起始版本**：13
 
-**参数:**
+**参数：**
 
 | 名称          | 描述 |
 | ----------- | ------------- |
@@ -144,7 +170,7 @@ typedef struct NativeChildProcess_Args {
 
 **起始版本**：13
 
-**参数:**
+**参数：**
 
 | 名称          | 描述 |
 | ----------- | ------------- |
@@ -166,7 +192,7 @@ typedef struct NativeChildProcess_Options {
 
 **起始版本**：13
 
-**参数:**
+**参数：**
 
 | 名称          | 描述 |
 | ----------- | ------------- |
@@ -223,6 +249,7 @@ enum Ability_NativeChildProcess_ErrCode
 | NCP_ERR_MAX_CHILD_PROCESSES_REACHED | 到达最大Native子进程数量限制，不能再创建子进程。                     |
 | NCP_ERR_LIB_LOADING_FAILED          | 子进程加载动态库失败，文件不存在或者未实现对应的方法并导出。                  |
 | NCP_ERR_CONNECTION_FAILED           | 子进程调用动态库的OnConnect方法失败，可能返回了无效的IPC对象指针。         |
+| NCP_ERR_CALLBACK_NOT_EXIST          | 子进程调用解注册Native子进程退出回调，未找到注册的回调函数。         |
 
 ### NativeChildProcess_IsolationMode
 
@@ -349,162 +376,56 @@ NativeChildProcess_Args* OH_Ability_GetCurrentChildProcessArgs();
 
 执行成功返回指向[NativeChildProcess_Args](#nativechildprocess_args)对象的指针，失败返回nullptr。
 
-### OH_Ability_CreateChildProcessConfigs
+### OH_Ability_RegisterNativeChildProcessExitCallback
 
 ```
-Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs();
-```
-**描述：**
-
-创建一个子进程配置信息对象0。
-
-**说明：**
-
-当前支持2in1设备
-
-**起始版本**：15
-
-**返回**：
-执行成功返回指向[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)对象的指针，失败返回nullptr。
-
-### OH_Ability_DestroyChildProcessConfigs
-
-```
-Ability_NativeChildProcess_ErrCode OH_Ability_DestroyChildProcessConfigs(Ability_ChildProcessConfigs* configs);
-```
-**描述**
-
-销毁一个子进程配置信息对象，并释放其内存。
-
-**说明**
-
-当前支持2in1设备
-
-**起始版本**：15
-
-**返回**：
-执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
-
-### OH_Ability_ChildProcessConfigs_SetIsolationMode
-
-```
-Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetIsolationMode(
-    Ability_ChildProcessConfigs* configs, NativeChildProcess_IsolationMode isolationMode);
-```
-**描述**
-
-设置子进程配置信息对象中的独立模式。
-
-**说明**
-
-当前支持2in1设备
-
-**起始版本**：15
-
-**返回**：
-执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
-
-### OH_Ability_ChildProcessConfigs_SetProcessName
-
-```
-Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName(Ability_ChildProcessConfigs* configs, const char* processName);
-```
-**描述**
-
-设置子进程配置信息对象中的进程名称。
-
-**说明**
-
-当前支持2in1设备
-
-**起始版本**：15
-
-**返回**：
-执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
-
-
-### OH_Ability_CreateNativeChildProcessWithConfigs
-
-```
- Ability_NativeChildProcess_ErrCode OH_Ability_CreateNativeChildProcessWithConfigs(const char* libName,
-    Ability_ChildProcessConfigs* configs, OH_Ability_OnNativeChildProcessStarted onProcessStarted);
-```
-
-**描述**
-
-创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。
-
-参数所指定的动态库必须实现并导出下列函数：
-
-	1. OHIPCRemoteStub* NativeChildProcess_OnConnect()
-	2. void NativeChildProcess_MainProc()
-
-处理逻辑顺序如下列伪代码所示：
-
-	主进程：
-	1. OH_Ability_CreateNativeChildProcess(libName, onProcessStartedCallback)
-	
-	子进程 ：
-	2. dlopen(libName)
-	3. dlsym("NativeChildProcess_OnConnect")
-	4. dlsym("NativeChildProcess_MainProc")
-	5. ipcRemote = NativeChildProcess_OnConnect()
-	6. NativeChildProcess_MainProc()
-	
-	主进程 ：
-	7. onProcessStartedCallback(ipcRemote, errCode)
-	
-	子进程 ：
-	8. 在NativeChildProcess_MainProc()函数返回后子进程退出。
-
-**说明**
-
-> 当前仅支持2in1设备。
-> 从API version 15开始，单个进程最多支持启动50个Native子进程。API version 14及之前版本，单个进程只能启动1个Native子进程。
-
-**起始版本**：15
-
-**参数**：
-
-| 名称                       | 描述 |
-| ---------------------- | ---------------- |
-| libName                  | 子进程中加载的动态库文件名称，不能为nullptr。|
-| configs | 子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)定义。 |
-| onProcessStarted |  通知子进程启动结果的回调函数指针，不能为nullptr，详见[OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)。 |
-
-**返回**：
-执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
-
-
-
-
-### OH_Ability_StartNativeChildProcessWithConfigs
-
-```
- Ability_NativeChildProcess_ErrCode OH_Ability_StartNativeChildProcessWithConfigs(
-    const char* entry, NativeChildProcess_Args args, Ability_ChildProcessConfigs* configs, int32_t *pid);
+Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCallback(
+    OH_Ability_OnNativeChildProcessExit onProcessExit)
 ```
 
 **描述**：
 
-根据参数中子进程配置信息启动Native子进程，加载参数中指定的动态链接库文件并调用入口函数。支持传参到子进程。子进程中不支持创建ArkTS基础运行时环境。
 
-参数所指定的动态库必须实现参数为[NativeChildProcess_Args](#nativechildprocess_args)入口函数并导出。详见[Native子进程开发指导（C/C++）- 创建支持参数传递的子进程](../../application-models/capi_nativechildprocess_development_guideline.md#创建支持参数传递的子进程)。
+=======
+注册Native子进程异常退出回调函数，当通过[OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess)和[@ohos.app.ability.childProcessManager的startNativeChildProcess](js-apis-app-ability-childProcessManager.md#childprocessmanagerstartnativechildprocess13)启动的子进程异常退出时，调用入口参数的回调函数。当重复注册同一个回调函数时，子进程退出时只会执行一次回调函数。
 
-> **说明：**
->
-> 当前仅支持2in1、tablet设备。
+参数必须实现[OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)入口函数。详见[注册Native子进程退出回调](../../application-models/capi-nativechildprocess-exit-info.md)。
 
-**起始版本**：15
+**起始版本**：20
+>>>>>>> master
 
 **参数**：
 
 | 名称                       | 描述 |
 | ---------------------- | ---------------- |
-| entry                  | 子进程中调用动态库的符号和入口函数，中间用“:”隔开（例如“libentry.so:Main”)。不能为nullptr。 |
-| args | 传给子进程的参数，详见[NativeChildProcess_Args](#nativechildprocess_args)定义。 |
-| configs |  子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)定义。 |
-| pid | 启动子进程号。 |
+| onProcessExit                  | 子进程退出时的回调函数地址。不能为nullptr。 |
+
+
+**返回**：
+
+执行成功返回NCP_NO_ERROR，失败返回错误码，详见[Ability_NativeChildProcess_ErrCode](#ability_nativechildprocess_errcode)。
+
+### OH_Ability_UnregisterNativeChildProcessExitCallback
+
+```
+Ability_NativeChildProcess_ErrCode OH_Ability_UnregisterNativeChildProcessExitCallback(
+    OH_Ability_OnNativeChildProcessExit onProcessExit)
+```
+
+**描述**：
+
+解注册Native子进程异常退出回调函数。
+
+参数必须实现[OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)入口函数。详见[解注册Native子进程退出回调](../../application-models/capi-nativechildprocess-exit-info.md)。
+
+**起始版本**：20
+
+**参数**：
+
+| 名称                       | 描述 |
+| ---------------------- | ---------------- |
+| onProcessExit                  | 子进程退出时的回调函数地址。不能为nullptr。 |
+
 
 **返回**：
 

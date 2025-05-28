@@ -11,6 +11,8 @@ The **OhosImageSize** struct defines the image size. It is a member variable of 
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_mdk_common.h](image__mdk__common_8h.md)
+
 
 ## Summary
 

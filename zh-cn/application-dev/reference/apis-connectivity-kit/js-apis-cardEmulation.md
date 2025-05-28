@@ -1,6 +1,6 @@
 # @ohos.nfc.cardEmulation (标准NFC-cardEmulation)
 
-本模块主要提供NFC卡模拟业务，包括判断支持哪种卡模拟类型，HCE卡模拟的业务实现等。
+本模块主要提供NFC卡模拟业务，包括判断支持哪种卡模拟类型，HCE卡模拟的业务实现等。<br>
 HCE(Host Card Emulation)，称为基于主机的卡模拟，表示不依赖安全单元芯片，应用程序模拟NFC卡片，可以通过NFC服务和NFC读卡器通信。
 
 > **说明：**
@@ -178,7 +178,7 @@ isDefaultService(elementName: ElementName, type: CardType): boolean
 | elementName | [ElementName](../apis-ability-kit/js-apis-bundleManager-elementName.md#elementname) | 是    | 所属应用声明NFC卡模拟能力的页面信息（至少包含bundleName、abilityName这两项的赋值），不可以为空。 |
 | type        | [CardType](#cardtype9)                   | 是    | 卡模拟业务类型。目前只支持默认支付应用查询。   |
 
-**错误码**：
+**错误码：**
 
 以下错误码的详细介绍请参见[NFC错误码](errorcode-nfc.md)。
 
@@ -286,7 +286,7 @@ stopHCE(): boolean
 
 | **类型**  | **说明**                                 |
 | ------- | -------------------------------------- |
-| boolean | true: 禁用HCE功能或HCE已禁用，&nbsp;false: 禁用失败。 |
+| boolean | true: 禁用HCE功能或HCE已禁用，false: 禁用失败。 |
 
 **示例：**
 
@@ -399,7 +399,7 @@ off(type: 'hceCmd', callback?: AsyncCallback\<number[]>): void
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
 | type     | string                  | 是   | 要取消订阅的事件类型，固定填"hceCmd"字符串。                         |
-| callback | AsyncCallback\<number[]> | 否   | 订阅的事件回调。 |
+| callback | AsyncCallback\<number[]> | 否   | 订阅的事件回调，每个number十六进制表示，范围是0x00~0xFF。 |
 
 **错误码：**
 
@@ -537,7 +537,7 @@ transmit(response: number[], callback: AsyncCallback\<void>): void
 | 参数名  | 类型     | 必填 | 说明                    |
 | ------- | -------- | ---- | ----------------------- |
 | response | number[] | 是   | 发送到对端读卡设备的符合APDU协议的数据，每个number十六进制表示，范围是0x00~0xFF。 |
-| callback | AsyncCallback\<void> | 是   | 以callback形式异步返回发送APDU数据的结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数。当发送APDU数据成功时，err为undefined，否则为错误对象。 |
 
 **错误码：**
 

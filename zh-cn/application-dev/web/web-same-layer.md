@@ -1,6 +1,6 @@
 # 同层渲染
 
-在系统中，应用可以使用Web组件加载Web网页。在非系统框架的UI组件功能或性能不如系统组件时，可使用同层渲染，使用ArkUI组件渲染这些组件（简称为同层组件）。
+在系统中，应用可以使用Web组件加载Web网页。当非系统框架的UI组件功能或性能不如系统组件时，可使用同层渲染技术，通过ArkUI组件渲染这些组件（简称为同层组件）。
 
 ## 使用场景
 ### Web网页
@@ -12,7 +12,7 @@
 - 在应用侧，应用开发者可以使用ArkUI的NodeContainer等接口，构建H5同层标签对应的同层渲染组件。可支持同层渲染的ArkUI常用组件包括：[TextInput](../reference/apis-arkui/arkui-ts/ts-basic-components-textinput.md), [XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md), [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [Web](../reference/apis-arkweb/ts-basic-components-web.md)。具体规格可参见[同层渲染规格小节](#规格约束)。
 
 ### 三方UI框架
-Flutter提供了PlatformView与Texture抽象组件，这些组件可使用系统组件渲染，用来支持Flutter组件功能不足的部分。Weex2.0框架的Camera、Video、Canvas组件。
+Flutter提供了PlatformView与Texture抽象组件，这些组件可使用系统组件渲染，用来支持Flutter组件功能不足的部分。Weex2.0框架的Camera、Video和Canvas组件可以使用系统组件渲染，以增强功能和性能。
 
 - 在三方框架页面侧，由于Flutter、Weex等三方框架不在操作系统范围，本文不列举可被同层渲染的三方框架UI组件的范围与使用方式。
 
@@ -40,7 +40,7 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 
 - 自绘制类组件：[XComponent](../reference/apis-arkui/arkui-ts/ts-basic-components-xcomponent.md), [Canvas](../reference/apis-arkui/arkui-ts/ts-components-canvas-canvas.md), [Video](../reference/apis-arkui/arkui-ts/ts-media-components-video.md), [Web](../reference/apis-arkweb/ts-basic-components-web.md)
 
-- 命令式自定义绘制节点：[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md), [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md), [ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md), [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md), [Graphics](../reference/apis-arkui/js-apis-arkui-graphics.md), [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md), [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), [XComponentNode](../reference/apis-arkui/js-apis-arkui-xcomponentNode.md), [AttributeUpdater](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md)，[CAPI](../reference/apis-arkui/_ark_u_i___native_module.md)（支持同层渲染的组件范围同ArkTS）
+- 命令式自定义绘制节点：[BuilderNode](../reference/apis-arkui/js-apis-arkui-builderNode.md), [ComponentContent](../reference/apis-arkui/js-apis-arkui-ComponentContent.md), [ContentSlot](../reference/apis-arkui/arkui-ts/ts-components-contentSlot.md), [FrameNode](../reference/apis-arkui/js-apis-arkui-frameNode.md), [Graphics](../reference/apis-arkui/js-apis-arkui-graphics.md), [NodeController](../reference/apis-arkui/js-apis-arkui-nodeController.md), [RenderNode](../reference/apis-arkui/js-apis-arkui-renderNode.md), [XComponentNode](../reference/apis-arkui/js-apis-arkui-xcomponentNode.md), [AttributeUpdater](../reference/apis-arkui/js-apis-arkui-AttributeUpdater.md), [CAPI](../reference/apis-arkui/_ark_u_i___native_module.md)（支持同层渲染的组件范围同ArkTS）
 
 **支持的组件通用属性与事件:**
 
@@ -52,9 +52,6 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 此规格仅针对Web网页，不适用于三方框架场景。
 
 如果应用需要在Web组件加载的网页中使用同层渲染，需要按照以下规格将网页中的&lt;embed&gt;、&lt;object&gt;标签指定为同层渲染组件。
-
-**支持的产品形态：** 
-当前仅支持移动设备和平板形态。
 
 **支持的H5标签：**
 - 支持&lt;embed&gt;标签：在开启同层渲染后，仅支持type类型为native前缀的标签识别为同层组件，不支持自定义属性。
@@ -69,15 +66,14 @@ ArkWeb同层渲染特性主要提供两种能力：同层标签生命周期和�
 
 **同层标签支持的css属性：** 
 
-display，position，z-index，visibility，opacity， 
-background-color，background-image，width，height，padding，padding-left，padding-top，padding-right，padding-bottom，margin，margin-left，margin-top，margin-right，margin-bottom，border-width，border-style，border-color，border-left-width，border-left-style，border-left-color，border-top-width，border-top-style，border-top-color，border-right-width，border-right-style，border-right-color，border-bottom-width，border-bottom-style，border-bottom-color，border-left，border-right，border-top，border-bottom，border，border-top-left-radius，border-top-right-radius，border-bottom-left-radius，border-bottom-right-radius，border-radius，transition，transform（仅支持translate/scale，scale对应参数只支持大于等于0的值）
+display，position，z-index，visibility，opacity, background-color，background-image，width，height，padding，padding-left，padding-top，padding-right，padding-bottom，margin，margin-left，margin-top，margin-right，margin-bottom，border-width，border-style，border-color，border-left-width，border-left-style，border-left-color，border-top-width，border-top-style，border-top-color，border-right-width，border-right-style，border-right-color，border-bottom-width，border-bottom-style，border-bottom-color，border-left，border-right，border-top，border-bottom，border，border-top-left-radius，border-top-right-radius，border-bottom-left-radius，border-bottom-right-radius，border-radius，transition，transform（仅支持translate/scale，scale对应参数只支持大于等于0的值）
 
- 除上面支持的css属性范围，其他的css属性均不保证符合预期，比如transform属性中的rotate，shew等。
+ 除上面支持的css属性范围，其他的css属性均不保证符合预期，比如transform属性中的rotate，skew等。
 
 **同层标签的生命周期管理：** 
-当Embed标签生命周期变化时触发[onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)回调。
+当同层标签生命周期变化时触发[onNativeEmbedLifecycleChange()](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)回调。
 
-- 支持创建、销毁、位置宽高变化、不支持可见状态变化。
+- 支持创建、销毁、位置宽高变化。
 
 - 支持同层组件所在Web页面进入前进后退缓存。
 
@@ -86,11 +82,20 @@ background-color，background-image，width，height，padding，padding-left，
 
 - 不支持同层标签所在的应用页面缩放和[initialScale](../reference/apis-arkweb/ts-basic-components-web.md#initialscale9)、[zoom](../reference/apis-arkweb/js-apis-webview.md#zoom)、[zoomIn](../reference/apis-arkweb/js-apis-webview.md#zoomin)、[zoomOut](../reference/apis-arkweb/js-apis-webview.md#zoomout)等缩放接口。
 
-- 暂不支持鼠标、键盘、触摸板事件。
+- 暂不支持鼠标、键盘、触摸板事件上报。
+
+- 支持默认将鼠标和触摸板左键事件（MousePress/MouseRelease/MouseMOVE）转换为触摸事件（TouchDOWN/TouchUP/TouchMOVE）上报。
+
+**同层标签的可见状态变化：**
+当同层标签可见状态变化时触发[onNativeEmbedVisibilityChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedvisibilitychange12)回调。
+
+- 支持同层标签相对于视口的可见状态上报。
+
+- 默认不支持由于同层标签CSS样式或尺寸变化导致的可见状态变化上报，具体规格参考[onNativeEmbedVisibilityChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedvisibilitychange12)。
 
 **约束限制：**
 
-- Web页面内不建议超过5个同层标签。超过5个后，渲染性能将会下降。
+- Web页面内同层标签数量应控制在5个以内。超过5个，渲染性能将会下降。
 
 - 受GPU限制，同层标签最大高度不超过8000px，最大纹理大小为8000px。
 
@@ -98,7 +103,7 @@ background-color，background-image，width，height，padding，padding-left，
 
 - Video组件：在非全屏Video变为全屏时，Video组件变为非纹理导出模式，视频播放状态保持延续；恢复为非全屏时，变为纹理导出模式，视频播放状态保持延续。
 
-- Web组件：仅支持一层同层渲染嵌套，不支持多层同层渲染嵌套。输入事件只支持滑动、点击、缩放、长按 ，不支持拖拽、旋转。
+- Web组件：仅支持一层同层渲染嵌套，不支持多层同层渲染嵌套。输入事件只支持滑动、点击、长按，不支持拖拽、旋转、缩放。
 
 - 涉及界面交互的ArkUI组件（如TextInput等）：建议在页面布局中使用Stack包裹同层组件容器与BuilderNode，并使两者位置一致，NodeContainer要与&lt;embed&gt;/&lt;object&gt;标签对齐，以保障组件正常交互。如两者位置不一致，可能出现的问题有：TextInput/TextArea等附属的文本选择框位置错位（如下图）、LoadingProgress/Marquee等组件的动画启停与组件可见状态不匹配。
 
@@ -182,7 +187,7 @@ background-color，background-image，width，height，padding，padding-left，
 
 2. 在应用侧开启同层渲染功能。
 
-   同层渲染功能默认不开启，如果要使用同层渲染的功能，可通过enableNativeEmbedMode来开启。
+   同层渲染功能默认不开启，如果要使用同层渲染的功能，可通过[enableNativeEmbedMode](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)来开启。
 
    ```ts
    // xxx.ets
@@ -282,14 +287,6 @@ background-color，background-image，width，height，padding，padding-left，
        return this.rootNode.getFrameNode();
      }
 
-     setBuilderNode(rootNode: BuilderNode<Params[]> | null): void {
-       this.rootNode = rootNode;
-     }
-
-     getBuilderNode(): BuilderNode<[Params]> | undefined | null {
-       return this.rootNode;
-     }
-
      updateNode(arg: Object): void {
        this.rootNode?.update(arg);
      }
@@ -313,7 +310,7 @@ background-color，background-image，width，height，padding，padding-left，
 
 5. 监听同层渲染的生命周期变化。
 
-   开启该功能后，每当网页中存在同层渲染支持的标签时，ArkWeb内核会触发由[onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)注册的回调函数。
+   开启该功能后，当网页中存在同层渲染支持的标签时，ArkWeb内核会触发由[onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)注册的回调函数。
 
    开发者则需要调用[onNativeEmbedLifecycleChange](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedlifecyclechange11)来监听同层渲染标签的生命周期变化。
 
@@ -390,7 +387,7 @@ background-color，background-image，width，height，padding，padding-left，
 
    开启该功能后，每当在同层渲染的区域进行触摸操作时，ArkWeb内核会触发[onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11)注册的回调函数。
 
-   开发者则需要调用[onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11)来监听同层渲染同层渲染区域的手势事件。
+   开发者则需要调用[onNativeEmbedGestureEvent](../reference/apis-arkweb/ts-basic-components-web.md#onnativeembedgestureevent11)来监听同层渲染区域的手势事件。
 
     ```ts
     build() {
@@ -513,14 +510,6 @@ background-color，background-image，width，height，padding，padding-left，
       return this.rootNode.getFrameNode();
     }
 
-    setBuilderNode(rootNode: BuilderNode<Params[]> | null): void {
-      this.rootNode = rootNode;
-    }
-
-    getBuilderNode(): BuilderNode<[Params]> | undefined | null {
-      return this.rootNode;
-    }
-
     updateNode(arg: Object): void {
       this.rootNode?.update(arg);
     }
@@ -577,7 +566,6 @@ background-color，background-image，width，height，padding，padding-left，
     browserTabController: WebviewController = new webview.WebviewController()
     private nodeControllerMap: Map<string, MyNodeController> = new Map();
     @State componentIdArr: Array<string> = [];
-    @State posMap: Map<string, Position | undefined> = new Map();
     @State widthMap: Map<string, number> = new Map();
     @State heightMap: Map<string, number> = new Map();
     @State positionMap: Map<string, Edges> = new Map();
@@ -672,8 +660,6 @@ background-color，background-image，width，height，padding，padding-left，
 
 ## 绘制XComponent+AVPlayer和Button组件
 
-开发者可通过[enableNativeEmbedMode()](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)控制同层渲染开关。Html文件中需要显式使用embed标签，并且embed标签内type必须以“native/”开头。同层标签对应的元素区域的背景为透明。
-
 - 应用侧代码组件使用示例。
 
   ```ts
@@ -737,14 +723,6 @@ background-color，background-image，width，height，padding，padding-left，
       return this.rootNode.getFrameNode();
     }
 
-    setBuilderNode(rootNode: BuilderNode<Params[]> | null): void{
-      this.rootNode = rootNode;
-    }
-
-    getBuilderNode(): BuilderNode<[Params]> | undefined | null{
-      return this.rootNode;
-    }
-
     updateNode(arg: Object): void {
       this.rootNode?.update(arg);
     }
@@ -805,6 +783,10 @@ background-color，background-image，width，height，padding，padding-left，
     browserTabController: WebviewController = new webview.WebviewController()
     private nodeControllerMap: Map<string, MyNodeController> = new Map();
     @State componentIdArr: Array<string> = [];
+    @State widthMap: Map<string, number> = new Map();
+    @State heightMap: Map<string, number> = new Map();
+    @State positionMap: Map<string, Edges> = new Map();
+    @State edges: Edges = {};
     uiContext: UIContext = this.getUIContext();
 
     aboutToAppear() {
@@ -818,6 +800,9 @@ background-color，background-image，width，height，padding，padding-left，
           Stack() {
             ForEach(this.componentIdArr, (componentId: string) => {
               NodeContainer(this.nodeControllerMap.get(componentId))
+                .position(this.positionMap.get(componentId))
+                .width(this.widthMap.get(componentId))
+                .height(this.heightMap.get(componentId))
             }, (embedId: string) => embedId)
             // Web组件加载本地test.html页面。
             Web({ src: $rawfile("test.html"), controller: this.browserTabController })
@@ -836,19 +821,32 @@ background-color，background-image，width，height，padding，padding-left，
                   nodeController.setRenderOption({surfaceId : embed.surfaceId as string, type : embed.info?.type as string,
                     renderType : NodeRenderType.RENDER_TYPE_TEXTURE, embedId : embed.embedId as string,
                     width : this.uiContext.px2vp(embed.info?.width), height : this.uiContext.px2vp(embed.info?.height)})
+                  this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
                   nodeController.setDestroy(false);
                   // 根据web传入的embed的id属性作为key，将nodeController存入map。
                   this.nodeControllerMap.set(componentId, nodeController)
+                  this.widthMap.set(componentId,  this.uiContext.px2vp(embed.info?.width));
+                  this.heightMap.set(componentId,  this.uiContext.px2vp(embed.info?.height));
+                  this.positionMap.set(componentId, this.edges);
                   // 将web传入的embed的id属性存入@State状态数组变量中，用于动态创建nodeContainer节点容器，需要将push动作放在set之后。
                   this.componentIdArr.push(componentId)
                 } else if (embed.status == NativeEmbedStatus.UPDATE) {
                   let nodeController = this.nodeControllerMap.get(componentId)
+                  this.edges = {left: `${embed.info?.position?.x as number}px`, top: `${embed.info?.position?.y as number}px`}
+                  this.positionMap.set(componentId, this.edges);
+                  this.widthMap.set(componentId,  this.uiContext.px2vp(embed.info?.width));
+                  this.heightMap.set(componentId,  this.uiContext.px2vp(embed.info?.height));
                   nodeController?.updateNode({textOne: 'update', width: this.uiContext.px2vp(embed.info?.width), height: this.uiContext.px2vp(embed.info?.height)} as ESObject)
-                } else {
+                } else if (embed.status == NativeEmbedStatus.DESTROY) {
                   let nodeController = this.nodeControllerMap.get(componentId);
                   nodeController?.setDestroy(true)
                   this.nodeControllerMap.clear();
-                  this.componentIdArr.length = 0;
+                  this.positionMap.delete(componentId);
+                  this.widthMap.delete(componentId);
+                  this.heightMap.delete(componentId);
+                  this.componentIdArr.filter((value: string) => value != componentId)
+                } else {
+                  console.log("NativeEmbed status" + embed.status);
                 }
               })// 获取同层渲染组件触摸事件信息。
               .onNativeEmbedGestureEvent((touch) => {
@@ -877,7 +875,7 @@ background-color，background-image，width，height，padding，padding-left，
   }
   ```
 
-- 应用侧代码，视频播放示例，使用时需替换正确的视频链接地址。
+- 应用侧代码示例，视频播放，使用时需替换为正确的视频链接地址。
 
   ```ts
   // HAP's src/main/ets/pages/PlayerDemo.ets
@@ -941,7 +939,7 @@ background-color，background-image，width，height，padding，padding-left，
             break;
           case 'completed': //播放接口后触发该状态机上报。
             console.info('AVPlayer state paused called.');
-            avPlayer.stop(); // 调用播放接口接口。
+            avPlayer.stop(); // 调用播放接口。
             break;
           case 'stopped': // stop接口后触发该状态机上报。
             console.info('AVPlayer state stopped called.');
@@ -990,3 +988,62 @@ background-color，background-image，width，height，padding，padding-left，
   ```
 
   ![web-same-layer](figures/web-same-layer.png)
+
+## 常见问题
+### 同层渲染组件被拉伸该如何解决？
+
+- 组件高度过大
+  
+  受GPU限制，同层标签存在8000px的高度限制，如果html5中同层标签高度过高，会存在组件被拉伸的情况，这时需要将同层标签的高度设为8000px以下。
+
+- 自定义组件宽高未指定为同层渲染标签的宽高
+
+  自定义的同层渲染组件宽高需要与同层标签的宽高保持一致，示例如下：
+  ```ts
+    @Component
+    struct TextInputComponent {
+      @Prop params: Params
+      @State bkColor: Color = Color.White
+
+      build() {
+        Column() {
+          TextInput({text: '', placeholder: 'please input your word...'})
+            .fontColor(Color.Black)
+        }
+        // 自定义组件中的最外层容器组件宽高应该为同层标签的宽高
+        .width(this.params.width)
+        .height(this.params.height)
+      }
+    }
+  ```
+
+
+### 如何将同层渲染组件捕获到的事件透传到web前端？
+同层渲染手势事件通过[setGestureEventResult()](../reference/apis-arkweb/ts-basic-components-web.md#setgestureeventresult14)设置手势事件消费结果，可以选择系统组件侧或ArkWeb侧消费手势事件。如果要实现系统组件侧和ArkWeb侧同时消费手势事件，可以在[setGestureEventResult()](../reference/apis-arkweb/ts-basic-components-web.md#setgestureeventresult14)中将stopPropagation设置为false，即系统组件侧消费的同时可以将手势事件向上冒泡给ArkWeb。
+
+### 同层渲染页面显示该插件不支持该如何解决？
+
+- 同层渲染开关[enableNativeEmbedMode](../reference/apis-arkweb/ts-basic-components-web.md#enablenativeembedmode11)未开启
+
+  使用同层渲染技术需要显式开启同层渲染开关
+  ```ts
+  Web({ src: $rawfile("text.html"), controller: this.controller })
+    // 配置同层渲染开关开启。
+    .enableNativeEmbedMode(true)
+  ```
+
+- 同层标签使用有误
+
+  如果使用&lt;embed&gt;标签，需要显式书写embed，并且type类型以"native/"开头；如果使用&lt;object&gt;标签，需要注册&lt;object&gt;标签及type类型。
+
+### 涉及界面交互的ArkUI组件（如TextInput等）光标与输入框错位该如何解决？
+首先，需使用Stack包裹同层组件容器和BuilderNode。其次，同层组件容器NodeContainer应与同层标签的位置绑定。示例如下：
+```ts
+ForEach(this.componentIdArr, (componentId: string) => {
+  NodeContainer(this.nodeControllerMap.get(componentId))
+    // 同层组件容器应与同层标签的宽高和位置绑定
+    .position(this.positionMap.get(componentId))
+    .width(this.widthMap.get(componentId))
+    .height(this.heightMap.get(componentId))
+}, (embedId: string) => embedId)
+```

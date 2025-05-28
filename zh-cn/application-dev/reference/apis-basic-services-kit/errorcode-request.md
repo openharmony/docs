@@ -8,15 +8,15 @@
 
 **错误信息**
 
-File operation error.
+Invalid file or file system error.
 
 **错误描述**
 
-在调用uploadFile或downloadFile接口时，文件权限不足或操作失败。
+在调用uploadFile或downloadFile接口时，操作相关文件失败。
 
 **可能原因**
 
-该错误码表示文件操作异常，可能原因文件权限不足。
+该错误码表示文件操作异常，可能原因是文件权限不足。
 
 **处理步骤**
 
@@ -26,7 +26,7 @@ File operation error.
 
 **错误信息**
 
-Bad file path.
+File path not supported or invalid.
 
 **错误描述**
 
@@ -34,7 +34,7 @@ Bad file path.
 
 **可能原因**
 
-该错误码表示文件路径异常，可能原因文件路径错误或文件路径下文件已存在。
+该错误码表示文件路径异常，可能原因是文件路径错误或文件路径下文件已存在。
 
 **处理步骤**
 
@@ -52,7 +52,7 @@ Task service ability error.
 
 **可能原因**
 
-该错误码表示服务异常，可能原因任务创建失败。
+该错误码表示服务异常，可能原因是任务创建失败。
 
 **处理步骤**
 
@@ -66,11 +66,11 @@ Other error.
 
 **错误描述**
 
-在调用uploadFile或downloadFile接口时，出现特殊错误。
+在调用uploadFile或downloadFile接口时，出现其他错误。
 
 **可能原因**
 
-该错误码表示服务异常，可能原因任务创建失败。
+该错误码表示服务异常，可能原因是任务创建失败。
 
 **处理步骤**
 
@@ -103,7 +103,7 @@ The application task queue is full.
 
 **错误信息**
 
-Task mode error.
+Operation with wrong task mode.
 
 **错误描述**
 
@@ -123,11 +123,11 @@ Task mode error.
 
 **错误信息**
 
-Task not found.
+Task removed or not found.
 
 **错误描述**
 
-操作不存在的任务错误。
+操作不存在的任务。
 
 **可能原因**
 
@@ -137,7 +137,7 @@ Task not found.
 
 1. 通过检索接口查询存在的任务。
 
-2. 确认所查询的任务存在否（系统会定期清理垃圾任务）。
+2. 确认所查询的任务是否存在（系统会定期清理垃圾任务）。
 
 3. 使用正确的任务编号重新操作。
 
@@ -145,11 +145,11 @@ Task not found.
 
 **错误信息**
 
-Task state error.
+Operation with wrong task state.
 
 **错误描述**
 
-在不支持的状态上的操作。
+在不支持的状态上的操作任务。
 
 **可能原因**
 
@@ -187,4 +187,4 @@ Group deleted or not found.
 
 **处理步骤**
 
-1. 检查目标分组是否已被移除。
+检查目标分组是否已被移除。

@@ -101,8 +101,12 @@
    > 转码输出文件fd（即示例里fdDst），形式为number。需要调用基础文件操作接口（[Core File Kit的ohos.file.fs](../../reference/apis-core-file-kit/js-apis-file-fs.md)）实现应用文件访问能力，获取方式参考[应用文件访问与管理](../../file-management/app-file-access.md)。
    
    ```ts
+   // 设置输出目标文件的沙箱路径
+   let outputFilePath = this.context.filesDir + "/output.mp4";
+   // 文件不存在时创建并打开文件，文件存在时打开文件
+   let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
    // 设置转码的目标文件属性fdDst。
-   this.avTranscoder.fdDst = 55; // 参考应用文件访问与管理中的开发示例获取创建的视频文件fd填入此处。
+   this.avTranscoder.fdDst = file.fd; // 参考应用文件访问与管理中的开发示例获取创建的视频文件fd填入此处。
    ```
 
 5. 配置视频转码参数，调用prepare()接口。
@@ -122,8 +126,6 @@
      fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
      videoBitrate: 2000000, // 视频比特率。
      videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
-     videoFrameWidth: 640, // 视频分辨率的宽为640。
-     videoFrameHeight: 480, // 视频分辨率的高为480。
    };
    avTranscoder.prepare(avConfig).then(() => {
      console.log('Invoke prepare succeeded.');
@@ -131,6 +133,7 @@
      console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
    });
    ```
+   <!--RP2--><!--RP2End-->
 
 6. 开始转码，调用start()接口。
 
@@ -175,6 +178,7 @@
 import { media } from '@kit.MediaKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { common } from '@kit.AbilityKit';
+import fs from '@ohos.file.fs';
 
 export class AVTranscoderDemo {
   private avTranscoder: media.AVTranscoder | undefined = undefined;
@@ -190,8 +194,6 @@ export class AVTranscoderDemo {
     fileFormat: media.ContainerFormatType.CFT_MPEG_4, // 封装格式。
     videoBitrate: 200000, // 视频比特率。
     videoCodec: media.CodecMimeType.VIDEO_AVC, // 视频编码格式。
-    videoFrameWidth: 640, // 视频分辨率的宽。
-    videoFrameHeight: 480, // 视频分辨率的高。
   };
 
   // 注册avTranscoder回调函数。
@@ -225,7 +227,9 @@ export class AVTranscoderDemo {
       if (this.context != undefined) {
         let fileDescriptor = await this.context.resourceManager.getRawFd('H264_AAC.mp4');
         this.avTranscoder.fdSrc = fileDescriptor;
-        this.avTranscoder.fdDst = 55;
+        let outputFilePath = this.context.filesDir + "/output.mp4";
+        let file = fs.openSync(outputFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+        this.avTranscoder.fdDst = file.fd;
       }
       // 3.配置转码参数完成准备工作。
       await this.avTranscoder.prepare(this.avConfig);

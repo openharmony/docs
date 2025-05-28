@@ -181,7 +181,7 @@ int32_t ClearFocusedFocusAccessibilityNode()
     // 无障碍焦点状态
     node.accessibilityFocused = false;
     // 组件焦点状态
-    node.foucsed = false;
+    node.focused = false;
     // ...
 }
 ```
