@@ -40,7 +40,7 @@ target_link_libraries(entry PUBLIC libpixelmap.so libpixelmap_ndk.z.so)
 target_link_libraries(entry PUBLIC libhilog_ndk.z.so)
 ```
 
-开发者通过引入[avmetadata_extractor.h](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md)、[avmetadata_extractor_base.h](../../reference/apis-media-kit/avmetadata__extractor__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用获取元数据相关API。
+开发者通过引入[avmetadata_extractor.h](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md)、[avmetadata_extractor_base.h](../../reference/apis-media-kit/capi-avmetadata-extractor-base-h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用获取元数据相关API。
 详细的API说明请参考[AVMetadataExtractor API参考](../../reference/apis-media-kit/capi-avmetadataextractor.md)。
 
 1. 使用[OH_AVMetadataExtractor_Create()](../../reference/apis-media-kit/capi-avmetadata-extractor-h.md#oh_avmetadataextractor_create)创建实例。
