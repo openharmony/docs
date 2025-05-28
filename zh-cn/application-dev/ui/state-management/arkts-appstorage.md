@@ -5,7 +5,7 @@
 
 AppStorage是与应用进程绑定的全局UI状态存储容器，由UI框架在应用程序启动时创建，为应用程序的UI状态数据提供中央存储。
 
-AppStorage会将UI状态数据存储在应用的运行内存中，不同于LocalStorage应用于页面内的数据共享，AppStorage存储的UI状态数据是应用级的全局状态共享。
+AppStorage会将UI状态数据存储在应用的运行内存中，不同于LocalStorage为页面级的数据共享，AppStorage存储的UI状态数据是应用级的全局状态共享。
 
 AppStorage还相当于整个应用的“中枢”，[持久化数据PersistentStorage](arkts-persiststorage.md)和[环境变量Environment](arkts-environment.md)都是通过AppStorage中转，才可以和UI交互。
 

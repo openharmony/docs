@@ -656,6 +656,14 @@ HiLog: <- 故障之前进程打印的流水日志
 > - 函数名长度超过256字节时，CppCrash日志不打印函数名和函数内偏移的字节数。
 > - 如果没打印BuildID，可以通过readelf -n xxx.so确认二进制是否有BuildID，如果没有则尝试增加编译参数--enable-linker-build-id，同时注意LDFLAGS‌里不要加--build-id=none。
 
+ARM 64位系统支持抓取CPP和JS之间跨语言的调用栈，因此如果在函数调用链上有JS代码，崩溃日志还会打印如下格式的JS代码调用栈：
+
+```text
+#00 at onPageShow (entry|har1|1.0.0|src/main/ets/pages/Index.ts:7:13)
+```
+
+详细说明见[JS异常代码调用栈格式规范](jscrash-guidelines.md#异常代码调用栈格式规范)。
+
 #### 空指针故障场景
 
 空指针解引用通常有以下两个常见的场景：

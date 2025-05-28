@@ -43,7 +43,7 @@ getBundleInstaller(callback: AsyncCallback\<BundleInstaller>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<BundleInstaller> | 是   | 回调函数，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
+| callback | AsyncCallback\<BundleInstaller> | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，获取BundleInstaller对象，err为null，data为获取到的BundleInstaller对象；否则为错误对象。 |
 
 **错误码：**
 
@@ -181,7 +181,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
 | installParam           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -274,7 +274,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -453,7 +453,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待卸载应用的包名。                                           |
 | installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，卸载应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，卸载应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -521,7 +521,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待卸载应用的包名。                                           |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，卸载应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，卸载应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -655,7 +655,7 @@ recover(bundleName: string, installParam: InstallParam, callback: AsyncCallback&
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待恢复应用的包名。                                           |
 | installParam      | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                       |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，回滚应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -720,7 +720,7 @@ recover(bundleName: string, callback: AsyncCallback&lt;void&gt;): void
 | 参数名      | 类型                                                 | 必填 | 说明                                           |
 | ---------- | ---------------------------------------------------- | ---- | ---------------------------------------------- |
 | bundleName | string                                               | 是   | 待恢复应用的包名。                               |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，回滚应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，回滚应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -846,7 +846,7 @@ uninstall(uninstallParam: UninstallParam, callback : AsyncCallback\<void\>) : vo
 | 参数名         | 类型                                | 必填 | 说明                                                     |
 | -------------- | ----------------------------------- | ---- | -------------------------------------------------------- |
 | uninstallParam | [UninstallParam](#uninstallparam10) | 是   | 共享包卸载需指定的参数信息。                             |
-| callback       | AsyncCallback&lt;void&gt;           | 是   | 回调函数，卸载应用成功，err为null，否则为错误对象。 |
+| callback       | AsyncCallback&lt;void&gt;           | 是   | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，卸载应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1096,7 +1096,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, installParam: InstallParam, c
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
 | installParam           | [InstallParam](#installparam)                        | 是   | 指定安装所需的其他参数。                                     |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1174,7 +1174,7 @@ updateBundleForSelf(hapFilePaths: Array\<string\>, callback: AsyncCallback\<void
 | 参数名           | 类型                                                 | 必填 | 说明                                                         |
 | --------------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array&lt;string&gt;                                  | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，安装应用成功，err为null，否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | [回调函数](../apis-basic-services-kit/js-apis-base.md#asynccallback)，安装应用成功，err为null，否则为错误对象。 |
 
 **错误码：**
 
@@ -1467,7 +1467,7 @@ destroyAppClone(bundleName: string, appIndex: number, userId?: number): Promise\
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | 是   | 待删除应用分身的包名。                                         |
 | appIndex     | number                        | 是   | 待删除应用分身的索引。                                         |
-| userId       | number                        | 否   | 待删除应用分身所属用户id。默认值：调用方所在用户。                |
+| userId       | number                        | 否   | 待删除应用分身所属用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。                |
 
 **返回值：**
 
@@ -1605,7 +1605,7 @@ installPreexistingApp(bundleName: string, userId?: number): Promise\<void\>;
 | 参数名        | 类型                          | 必填 | 说明                                                          |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName   | string                        | 是   | 需要安装应用的包名。                                           |
-| userId       | number                        | 否   | 需要安装应用的用户id，userId需要大于0。默认值：调用方所在用户。   |
+| userId       | number                        | 否   | 需要安装应用的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取，userId需要大于0。默认值：调用方所在用户。   |
 
 **返回值：**
 
@@ -1656,9 +1656,9 @@ try {
 
 应用程序安装卸载哈希参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1669,9 +1669,9 @@ try {
 
 应用程序安装、卸载或恢复需指定的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
@@ -1691,9 +1691,9 @@ try {
 
 共享包卸载需指定的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
@@ -1706,9 +1706,9 @@ try {
 
 应用程序代码签名文件信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1719,9 +1719,9 @@ try {
 
 PGO（Profile-guided Optimization）配置文件参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1732,9 +1732,9 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 扩展参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称     | 类型   | 必填 | 说明             |
 | ---------- | ------ | ---------------- | ---------------- |
@@ -1745,24 +1745,24 @@ PGO（Profile-guided Optimization）配置文件参数信息。
 
 创建分身应用可指定的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型   | 必填 | 说明                                                          |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指定创建分身应用所在的用户id。默认值：调用方所在用户。            |
+| userId      | number | 否   | 指定创建分身应用所在的用户ID，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户。            |
 | appIndex    | number | 否   | 指定创建分身应用的索引值。默认值：当前可用的最小索引值。           |
 
 ## DestroyAppCloneParam<sup>15+</sup>
 
 删除应用分身所需的参数信息。
 
- **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
+**系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
- **系统接口：** 此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 | 名称        | 类型   | 必填 | 说明                                                          |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
-| userId      | number | 否   | 指定删除分身应用对应的用户id。默认值：调用方所在用户id，取值范围：大于等于0。          |
+| userId      | number | 否   | 指定删除分身应用对应的用户id，可以通过[getOsAccountLocalId接口](../apis-basic-services-kit/js-apis-osAccount.md#getosaccountlocalid9)获取。默认值：调用方所在用户id，取值范围：大于等于0。          |
 | parameters  | Array<[Parameters](#parameters15)> | 否   | 指定删除分身应用扩展参数，默认值为空。            |

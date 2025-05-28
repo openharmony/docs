@@ -294,7 +294,7 @@ onScroll(event: (xOffset: number, yOffset: number) => void)
 
 3、越界回弹。
 
-从API version12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
+从API version 12开始废弃不再使用，推荐使用[onWillScroll](#onwillscroll12)事件替代。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

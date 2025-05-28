@@ -48,7 +48,13 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
    ```
 
 3. 编辑工程中的“entry > src > main > ets  > pages > Index.ets”文件，添加按钮并在其onClick函数构造资源泄漏场景，以触发资源泄漏事件。
-   此处需要使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置内存限制，造成内存泄漏，同步在“开发者选项”中打开“系统资源泄漏日志”(打开或关闭开关均需重启设备)。接口示例代码如下：
+   在开发者模式下，建议使用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)设置本应用的内存限制，更易构造内存泄漏故障；如不调用[hidebug.setAppResourceLimit](../reference/apis-performance-analysis-kit/js-apis-hidebug.md#hidebugsetappresourcelimit12)，本应用的内存限制将使用系统默认限制，不易构造内存泄漏故障。
+
+   
+   
+   如需获取profiler日志，需要在“开发者选项”中打开“系统资源泄漏日志”开关（打开或关闭开关均需重启设备）。
+   
+   接口示例代码如下：
 
    ```ts
     import hidebug from "@ohos.hidebug";
@@ -78,7 +84,7 @@ API接口的具体使用说明（参数使用限制、具体取值范围等）�
     }
    ```
 
-4. 点击DevEco Studio界面中的运行按钮，运行应用工程，等待15~30分钟，会上报应用内存泄漏事件。
+4. 点击DevEco Studio界面中的运行按钮，运行应用工程，点击pss leak按钮，等待15~30分钟，会上报应用内存泄漏事件。
    同一个应用，24小时内至多上报一次内存泄漏，如果短时间内要二次上报，需要重启设备。
 
 5. 内存泄漏事件上报后，系统会回调应用的onReceive函数，可以在Log窗口看到对系统事件数据的处理日志：

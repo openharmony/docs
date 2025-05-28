@@ -14,7 +14,7 @@
 
 > 从API version 9开始不再维护，建议使用[bundleManager-PermissionDef](js-apis-bundleManager-permissionDef-sys.md#permissiondef)替代。
 
- **系统能力:** SystemCapability.BundleManager.BundleFramework
+ **系统能力：** SystemCapability.BundleManager.BundleFramework
 
  **系统接口：**  此接口为系统接口。
 

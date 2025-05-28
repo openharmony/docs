@@ -72,6 +72,10 @@
     };
   ```
 
+> **说明：**
+>
+> registerCustomSchemes必须在[initializeWebEngine](../reference/apis-arkweb/js-apis-webview.md#initializewebengine)方法调用前注册。
+
 ## 获取被拦截请求的请求信息
 
 通过OH_ArkWebResourceRequest_*接口获取被拦截请求的信息。可以获取url、method、referrer、headers、resourceType等信息。
