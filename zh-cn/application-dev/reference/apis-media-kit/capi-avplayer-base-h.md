@@ -176,7 +176,7 @@ OnInfo类型。<br>可用于OH_AVPlayerOnInfoCallback和OH_AVPlayerOnInfo(已废
 | AV_INFO_TYPE_TRACK_INFO_UPDATE = 15 | 轨道更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_SUBTITLE_UPDATE = 16 | 字幕信息更新时返回消息，此场景extra未定义。 |
 | AV_INFO_TYPE_AUDIO_OUTPUT_DEVICE_CHANGE = 17 | 音频输出设备改变时返回消息。<br>key为OH_PLAYER_AUDIO_DEVICE_CHANGE_REASON：取值类型int32_t。系统通过int32_t传递value，应用需通过int32_t获取。 |
-| AV_INFO_TYPE_PLAYBACK_RATE_DONE = 18 | 上报设置播放器速率完成消息。<br>当播放速率成功应用时触发，通知应用实际生效的速率。使用key OH_PLAYER_PLAYBACK_RATE从事件数据中获取值。<br>**起始版本：** 20 |
+| AV_INFO_TYPE_PLAYBACK_RATE_DONE = 18 | 播放速率成功应用时返回消息。<br>key为OH_PLAYER_PLAYBACK_RATE：取值类型float。系统通过float传递value，应用通过float获取。<br>**起始版本：** 20 |
 
 ### AVPlayerBufferingType
 
