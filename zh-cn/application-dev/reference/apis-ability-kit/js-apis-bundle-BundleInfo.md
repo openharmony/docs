@@ -12,7 +12,7 @@
 
 > 从API version 9开始不再维护，建议使用[bundleManager-BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1)替代。
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 
 | 名称                             | 类型                                                         | 只读 | 可选 | 说明                                                         |
 | -------------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
@@ -48,7 +48,7 @@
 
 应用运行时需向系统申请的权限集合的详细信息。
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 
 | 名称                  | 类型                    | 只读 | 可选 | 说明                   |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------- |
@@ -64,7 +64,7 @@
 
 描述权限使用的场景和时机。
 
-**系统能力:** SystemCapability.BundleManager.BundleFramework
+**系统能力：** SystemCapability.BundleManager.BundleFramework
 
 | 名称      | 类型           | 只读 | 可选 | 说明                        |
 | --------- | -------------- | ---- | ---- | --------------------------- |
