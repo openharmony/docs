@@ -988,6 +988,22 @@ enableAutoSpacing(enable: Optional\<boolean>)
 | ------ | ------- | ---- | ---------------------------------- |
 | enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
+### shaderStyle<sup>20+</sup>
+
+shaderStyle(shader: ShaderStyle)
+
+可以显示为径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)的效果，shaderStyle的优先级高于[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)，纯色建议使用[fontColor](../arkui-ts/ts-basic-components-symbolSpan.md#fontcolor)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                         | 必填                             | 说明                               |
+| -------------- | -------------------------------------------- | ----------------------------------- | ----------------------------------- |
+| shader | [ShaderStyle](../arkui-ts/ts-text-common.md#shaderstyle20) | 是 | 径向或线性渐变。<br/>根据传入的参数区分处理径向渐变[radialGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#radialgradient)或线性渐变[LinearGradient](../arkui-ts/ts-universal-attributes-gradient-color.md#lineargradient)，最终设置到Text文本上显示为渐变色效果。 |
+
 ## TextSpanType<sup>11+</sup>枚举说明
 
 [Span](ts-basic-components-span.md)类型信息。
@@ -2143,3 +2159,53 @@ struct TextExample {
 ```
 
 ![textEnableAutoSpacing](figures/textEnableAutoSpacing.png)
+### 示例15（文本颜色按线性或径向渐变）
+
+该示例通过shaderStyle接口实现了对Text控件显示为渐变色的功能。
+
+```ts
+@Entry
+@Component
+struct shaderStyle {
+  @State message: string = 'Hello World';
+
+  build() {
+    Column({ space: 5 }) {
+      Text('angle为45°的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
+        .margin({ top: 40, left: 40 })
+      Text(this.message)
+        .fontSize(50)
+        .shaderStyle({
+          angle: 45,
+          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]]
+        })
+        .width('80%')
+        .height(50)
+      Text('direction为LeftTop的线性渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
+        .margin({ top: 40, left: 40 })
+      Text(this.message)
+        .fontSize(50)
+        .shaderStyle({
+          direction: GradientDirection.LeftTop,
+          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+          repeating: true,
+        })
+        .width('80%')
+        .height(50)
+      Text('径向渐变').fontSize(18).width('90%').fontColor(0xCCCCCC)
+        .margin({ top: 40, left: 40 })
+      Text(this.message)
+        .fontSize(50)
+        .shaderStyle({
+          center: [50, 50],
+          radius: 20,
+          colors: [[Color.Red, 0.0], [Color.Blue, 0.3], [Color.Green, 0.5]],
+          repeating: true,
+        })
+        .width('80%')
+        .height(50)
+    }
+  }
+}
+```
+![zh-cn_image_0000001219864149](figures/gradientcolor.png)
