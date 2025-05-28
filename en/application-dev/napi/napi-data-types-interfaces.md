@@ -64,7 +64,7 @@ A C struct pointer acting as a reference to a JS object. A **napi_value** holds 
 
 ### napi_threadsafe_function
 
-Pointer that represents a JS function that can be called asynchronously from multiple threads. It can be used to pass the asynchronous (async for short) operation result to the JS environment, such as reading data from another thread or performing compute-intensive operations. In addition, it can be used to call functions in C++ code from a JS environment for execution in another thread. By using **napi_threadsafe_function**, you can implement efficient interaction between JS and C++ code while maintaining thread safety.
+[Pointer](use-napi-thread-safety.md) that represents a JS function that can be called asynchronously from multiple threads. It can be used to pass the asynchronous (async for short) operation result to the JS environment, such as reading data from another thread or performing compute-intensive operations. In addition, it can be used to call functions in C++ code from a JS environment for execution in another thread. By using **napi_threadsafe_function**, you can implement efficient interaction between JS and C++ code while maintaining thread safety.
 
 ### napi_threadsafe_function_release_mode
 
@@ -86,7 +86,7 @@ napi_release_threadsafe_function(napi_threadsafe_function func,
 
 - If the value is **napi_tsfn_release**, the current thread will not call this thread-safe function.
 
-- If the value is **napi_tsfn_abort**, only the current thread can call this thread-safe function.
+- If the value is **napi_tsfn_abort**, this thread-safe function is disabled and cannot be called.
   In this case, using **napi_call_threadsafe_function** to call this function will return **napi_closing**, and this function will not be placed in the queue.
 
 ### napi_threadsafe_function_call_mode
@@ -112,7 +112,7 @@ Node-API provides the following memory management types:
 
 **napi_handle_scope**
 
-Data used to manage the lifecycle of JS objects. It allows JS objects to remain active within a certain range for use in JS code. When **napi_handle_scope** is created, all JS objects created in this range remain active until the scope ends. This prevents released objects from being used in JS code, which improves code reliability and performance.
+Data used to manage the lifecycle of JS objects. It allows JS objects to remain active within a certain range for use in JS code. When **napi_handle_scope** is created, all JS objects created in this range remain active until the end. This minimizes their lifecycles and [prevents memory leaks](napi-guidelines.md#lifecycle-management). For details about **napi_handle_scope**, see [Precautions for Lifecycle Issues](../dfx/cppcrash-guidelines.md#case-4-lifecycle-issues).
 
 **napi_escapable_handle_scope**
 
@@ -145,7 +145,7 @@ typedef struct {
 
 **napi_async_cleanup_hook_handle**
 
-Value used to add a callback for an async operation. It is mainly used to perform a cleanup operation when an async operation is complete or canceled, for example, releasing a resource or canceling an operation. Using **napi_async_cleanup_hook_handle** ensures that related resources are correctly released and cleaned up when an async operation is complete or canceled, thereby avoiding problems such as memory leakage.
+Value used to add a callback for an async operation. It is mainly used to perform a cleanup operation when an async operation is complete or canceled, for example, releasing a resource or canceling an operation. Using **napi_async_cleanup_hook_handle** ensures that related resources are correctly released and cleaned up when an async operation is complete or canceled, thereby avoiding problems such as memory leaks.
 
 ### Callback Types
 
@@ -488,6 +488,22 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_call_function | Calls a JS function from a C/C++ addon.|
 | napi_get_cb_info | Obtains detailed information about the call, such as the parameters and **this** pointer, from the given callback info.|
 
+### Environment Lifecycle
+
+| API| Description|
+| -------- | -------- |
+| napi_set_instance_data | Associates data with the currently running environment.|
+| napi_get_instance_data | Retrieves the data that was previously associated with the currently running environment.|
+
+### Object Lifetime Management
+
+| API| Description|
+| -------- | -------- |
+| napi_add_env_cleanup_hook | Adds a cleanup hook function for releasing resources when the environment exits.|
+| napi_remove_env_cleanup_hook | Removes a cleanup hook function.|
+| napi_add_async_cleanup_hook | Adds an async cleanup hook function for releasing resources when the environment exits.|
+| napi_remove_async_cleanup_hook | Removes an async cleanup hook function.|
+
 ### Extended Capabilities
 
 [Node-API Extended Symbols](../reference/native-lib/napi.md#node-api-extended-symbols)
@@ -520,6 +536,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 | napi_wrap_sendable_with_size | Wraps a native instance into an ArkTS object with the specified size.|
 | napi_unwrap_sendable | Unwraps the native instance from an ArkTS object.|
 | napi_remove_wrap_sendable | Removes the native instance from an ArkTS object.|
+| napi_wrap_enhance | Wraps a Node-API instance into an ArkTS object and specifies the instance size. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).|
 
 #### napi_queue_async_work_with_qos
 
@@ -529,7 +546,7 @@ napi_status napi_queue_async_work_with_qos(napi_env env,
                                            napi_qos_t qos);
 ```
 
-This API has the same usage as **napi_queue_async_work**. The difference is you can specify the QoS for the work to run.
+This API has the same usage as **napi_queue_async_work**. The difference is you can specify the QoS for the work to run. For details about how to use **napi_queue_async_work_with_qos**, see "Prioritizing Asynchronous Tasks". For details about QoS, see [QoS Development](qos-guidelines.md).
 
 #### napi_run_script_path
 
@@ -577,11 +594,26 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
                                                  void* hint);
 ```
 
+#### napi_create_ark_runtime
+
+```c
+napi_status napi_create_ark_runtime(napi_env *env);
+```
+[Creating an ArkTS Runtime Environment Using napi_create_ark_runtime and napi_destroy_ark_runtime](use-napi-ark-runtime.md)
+
+#### napi_destroy_ark_runtime
+
+```c
+napi_status napi_destroy_ark_runtime(napi_env *env);
+```
+
 #### napi_run_event_loop
 
 ```c
 napi_status napi_run_event_loop(napi_env env, napi_event_mode mode);
 ```
+
+You can call the **napi_run_event_loop** and **napi_stop_event_loop** APIs only in the ArkTS runtime environment created using **napi_create_ark_runtime**. For details, see [Running or Stopping an Event Loop in an Asynchronous Thread Using Node-API Extension APIs](use-napi-event-loop.md).
 
 #### napi_stop_event_loop
 
@@ -712,28 +744,18 @@ napi_status napi_unwrap_sendable(napi_env env, napi_value js_object, void** resu
 napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void** result);
 ```
 
-### Environment Lifecycle
+#### napi_wrap_enhance
 
-| API| Description|
-| -------- | -------- |
-| napi_set_instance_data | Associates data with the currently running environment.|
-| napi_get_instance_data | Retrieves the data that was previously associated with the currently running environment.|
-
-### Object Lifetime Management
-
-| API| Description|
-| -------- | -------- |
-| napi_add_env_cleanup_hook | Adds a cleanup hook function for releasing resources when the environment exits.|
-| napi_remove_env_cleanup_hook | Removes a cleanup hook function.|
-| napi_add_async_cleanup_hook | Adds an async cleanup hook function for releasing resources when the environment exits.|
-| napi_remove_async_cleanup_hook | Removes an async cleanup hook function.|
-
-### ArkTS Runtime Environment
-
-| API| Description|
-| -------- | -------- |
-| napi_create_ark_runtime | Creates an ArkTS runtime environment.|
-| napi_destroy_ark_runtime | Destroys an ArkTS runtime environment.|
+```c
+napi_status napi_wrap_enhance(napi_env env,
+                              napi_value js_object,
+                              void* native_object,
+                              napi_finalize finalize_cb,
+                              bool async_finalizer,
+                              void* finalize_hint,
+                              size_t native_binding_size,
+                              napi_ref* result);
+```
 
 ### Other Utilities
 
@@ -742,3 +764,5 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 | napi_get_version | Obtains the latest Node-API version supported by the node runtime.|
 | node_api_get_module_file_name | Obtains the absolute path of the module to be loaded.|
 | napi_strict_equals | Compares whether two values are strictly equal, that is, whether they are of the same type and have the same value.|
+
+<!--no_check-->

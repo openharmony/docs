@@ -61,7 +61,7 @@ Code compilation is required before a code cache is created, and the creation of
 
 To use a code cache without compromising the cold startup speed in the native layer, you can start another thread to create the code cache.
 
-You can use either of the following methods to achieve this purpose:
+You can use either of the following methods to achieve this purpose(No API calling is involved as they are used to demonstrate the logic process.):
 
 - Start another thread to complete the code compilation and create a code cache. In this way, you can enable **eagerCompile** for code cache creation and disable it for cold startup. This approach decouples the code cache creation and the application running, and you do not need to consider the time when the code cache is created. However, the peak resource usage during the application running may increase. The pseudo-code of this process is as follows:
 
@@ -114,22 +114,20 @@ You can use more performant APIs provided by JSVM-API to improve performance.
 
 #### Using IsXXX Instead of TypeOf
 
-To determine the native type of an object, it is inefficient to use **OH_JSVM_TypeOf** to obtain the object type and check whether the object type is the same as a specific type. Instead, you can use the **Is**XXX APIs.
+To determine the native type of an object, it is inefficient to
+
+use **OH_JSVM_TypeOf** to obtain the object type and check whether the object type is the same as a specific type.
+
+Instead, you can use the **Is**XXX APIs. For details about the JSVM-API used in the following example, see [JSVM-API Data Types and APIs](./jsvm-data-types-interfaces.md). The following example only demonstrates the calling procedure.
 
 - Example (not recommended):
 
 
 ```cpp
-bool Test::IsFunction() const {
-    HandleScopeInit(*env);
-    JSVM_Value jsvmValue;
-    ObjectWrappingGet(*env, jsvmRef, jsvmValue);
-    // Type judgment starts.
-    bool result;
+bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
+    // type judement
     JSVM_ValueType valueType;
     OH_JSVM_TypeOf(*env, jsvmValue, &valueType);
-    OH_JSVM_CloseHandleScope(*env, scope);
-    // Type judgment ends.
     return valueType == JSVM_FUNCTION;
 }
 ```
@@ -138,15 +136,10 @@ bool Test::IsFunction() const {
 
 
 ```cpp
-bool Test::IsFunction() const {
-    HandleScopeInit(*env);
-    JSVM_Value jsvmValue;
-    ObjectWrappingGet(*env, jsvmRef, jsvmValue);
-    // Type judgment starts.
+bool Test::IsFunction(JSVM_Env env, JSVM_Value jsvmValue) const {
+    // type judement
     bool result = false;
     OH_JSVM_IsFunction(*env, jsvmValue, &result); // Check whether the object type is function.
-    OH_JSVM_CloseHandleScope(*env, scope);
-    // Type judgment ends.
     return result;
 }
 ```
@@ -160,6 +153,9 @@ Generally, the procedure for creating a reference to an object is as follows:
 Create an object -> Set a value of the object -> Create the reference to the object
 
 If the object already has the value, you can directly create a reference to the value.
+
+For details about the JSVM-API used in the following example, see [JSVM-API Data Types and APIs](./jsvm-data-types-interfaces.md). The following example only demonstrates the calling procedure.
+
 
 - Example (not recommended):
 

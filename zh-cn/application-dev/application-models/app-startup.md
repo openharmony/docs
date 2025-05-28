@@ -190,6 +190,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
         | excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#可选修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。<br/>**说明：**<br/> HSP、HAR中startupTask里的excludeFromAutoStart标签必须配置为true。 | 布尔值 | 该标签可缺省，缺省值为false。 |
         | runOnThread | 执行初始化所在的线程。<br/>-&nbsp;`mainThread`：在主线程中执行。<br/>-&nbsp;`taskPool`：在异步线程中执行。 | 字符串 | 该标签可缺省，缺省值为`mainThread`。 |
         | waitOnMainThread | 主线程是否需要等待启动框架执行。当runOnThread取值为`taskPool`时，该字段生效。 <br/>-&nbsp;true：主线程等待启动框架执行完之后，才会加载应用首页。 <br/>-&nbsp;false：主线程不等待启动任务执行。 | 布尔值 | 该标签可缺省，缺省值为true。 |
+        | matchRules | 该字段用于筛选需要以自动模式启动的启动任务，加速应用启动过程。适用于快速拉起某个页面的场景，例如，通过桌面卡片、通知或意图调用等方式触发的页面跳转，实现功能服务的一步直达体验。操作指导详见[添加任务匹配规则](#可选添加任务匹配规则)。<br/>**说明：** <br/>- 从API version 20开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 该字段的优先级高于excludeFromAutoStart。如果所有启动任务均匹配失败，则按任务的excludeFromAutoStart配置处理。 | 对象 | 该标签可缺省。|
         
         **表3** appPreloadHintStartupTasks标签说明
 
@@ -200,7 +201,7 @@ AppStartup提供了一种简单高效的应用启动方式，可以支持任务�
         | dependencies | 预加载任务依赖的其他预加载任务的so名数组。 | 对象数组 | 该标签可缺省，缺省值为空。 |
         | excludeFromAutoStart | 是否排除自动模式，详细介绍可以查看[修改启动模式](#可选修改启动模式)。 <br/>-&nbsp;true：手动模式。 <br/>-&nbsp;false：自动模式。<br/>**说明：**<br/> HSP、HAR中appPreloadHintStartupTask的excludeFromAutoStart标签必须配置为true。 | 布尔值 | 该标签可缺省，缺省值为false。|
         | runOnThread | 执行预加载所在的线程。<br/>-&nbsp;`taskPool`：在异步线程中执行。<br/>**说明：**<br/> so预加载只允许在`taskPool`线程执行。 | 字符串 | 该标签不可缺省。 |
-        
+        | matchRules | 该字段用于筛选需要以自动模式启动的预加载so任务，加速应用启动过程。适用于快速拉起某个页面的场景，例如，通过桌面卡片、通知或意图调用等方式触发的页面跳转，实现功能服务的一步直达体验。操作指导详见[添加任务匹配规则](#可选添加任务匹配规则)。<br/>**说明：** <br/>- 从API version 20开始，支持该字段。当前仅支持在HAP中配置该字段。<br/>- 该字段的优先级高于excludeFromAutoStart。如果所有预加载so任务均匹配失败，则按任务的excludeFromAutoStart配置处理。 | 对象 | 该标签可缺省。|
 
       3. 在[module.json5配置文件](../quick-start/module-configuration-file.md)的appStartup标签中，添加启动框架配置文件的索引。
 
@@ -460,3 +461,114 @@ struct Index {
   }
 }
 ```
+
+### （可选）添加任务匹配规则
+
+在通过卡片、通知、意图调用等方式拉起某个页面时，为了实现功功能服务一步直达，可以通过添加matchRules匹配规则，仅加载与当前场景相关的部分启动任务，无需加载全部默认的自动启动任务，以提高启动性能。
+
+可以通过以下两种方式添加匹配规则：
+
+* 通过matchRules中的uris、actions、insightIntents字段，根据UIAbility启动时的uri、action或意图名称，匹配不同场景启动任务及预加载so任务。
+* 如果上述方式不能满足需求，可以通过matchRules中的customization自定义匹配规则。
+
+  **表** matchRules标签说明
+
+  | 属性名称 | 含义 | 数据类型 | 是否可缺省 | 适用场景 |
+  | -------- | -------- | -------- | -------- | -------- |
+  | uris | 表示自动模式执行的任务的uri取值范围。当UIAbility启动时，会将[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中携带的uri属性，与此处配置的uris数组取值进行匹配。格式为`scheme://host/path`，uri中的其它内容会被忽略（如port、fragment等）。 | 字符串数组 | 可缺省，缺省值为空。 | 通过特定uri拉起UIAbility的场景。 |
+  | actions | 表示自动模式执行的任务的action取值范围。当UIAbility启动时，会将[Want](../reference/apis-ability-kit/js-apis-app-ability-want.md)中携带的action属性，与此处配置的actions数组取值进行匹配。 | 字符串数组 | 可缺省，缺省值为空。 | 通过特定action拉起UIAbility的场景。 |
+  | insightIntents | 表示自动模式执行的任务的意图名称取值范围。当UIAbility启动时，会将意图名称与此处配置的insightIntents数组取值进行匹配。 | 字符串数组 | 可缺省，缺省值为空。 | 通过特定意图名称拉起UIAbility的场景。 |
+  | customization | 表示自动模式执行的任务的自定义规则取值范围。通过实现StartupConfigEntry的[onRequestCustomMatchRule](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md#startupconfigentryonrequestcustommatchrule20)接口返回自定义规则值。当UIAbility启动时，会将自定义规则值与此处配置的customization数组取值进行匹配。<br/>**说明：**<br/>仅支持startupTasks中的任务配置。 | 字符串数组 | 可缺省，缺省值为空。 | 如果使用uris、actions、insightIntents字段无法满足要求，可以使用customization自定义规则。 |
+
+  > **说明：** 
+  >
+  > * uris、insightIntents、actions、customization任一属性匹配成功即为任务匹配成功。
+  > * 匹配成功的任务及其依赖任务都将在自动模式执行。
+  > * 所有任务均匹配失败，则按任务的excludeFromAutoStart配置处理。
+
+下面以uri匹配（action和意图名称类似）和customization匹配来举例，介绍如何实现添加任务匹配规则来筛选启动任务。
+
+**场景1：uri匹配**
+
+假定需要用户点击通知消息跳转到通知详情页面时，仅自动执行StartupTask_004和libentry_006任务。若启动通知详情UIAbility时Want中的uri属性为`test://com.example.startupdemo/notification`，可以通过uri匹配。示例如下：
+  
+1. 对[定义启动框架配置文件](#定义启动框架配置文件)步骤中的startup_config.json文件进行修改，增加StartupTask_004任务和libentry_006任务的matchRules配置。
+
+    ```json
+    {
+      "startupTasks": [
+        {
+          "name": "StartupTask_004",
+          "srcEntry": "./ets/startup/StartupTask_004.ets",
+          "runOnThread": "taskPool",
+          "waitOnMainThread": false,
+          "matchRules": {
+            "uris": [
+              "test://com.example.startupdemo/notification"
+            ]
+          }
+        },
+      ],
+      "appPreloadHintStartupTasks": [
+        {
+          "name": "libentry_006",
+          "srcEntry": "libentry_006.so",
+          "runOnThread": "taskPool",
+          "excludeFromAutoStart": true,
+          "matchRules": {
+            "uris": [
+              "test://com.example.startupdemo/notification"
+            ]
+          }
+        }
+      ],
+      "configEntry": "./ets/startup/StartupConfig.ets"
+    }
+    ```
+
+**场景2：customization匹配**
+
+假定需要用户点击天气卡片跳转到天气界面时，仅自动执行StartupTask_006启动任务和excludeFromAutoStart=false配置的预加载so任务。若启动天气UIAbility时Want中传入的自定义参数`fromType`为`card`，可以通过customization匹配。示例如下：
+
+  1. 对[设置启动参数](#设置启动参数)步骤中的MyStartupConfigEntry.ets文件进行修改，新增[onRequestCustomMatchRule](../reference/apis-ability-kit/js-apis-app-appstartup-startupConfigEntry.md#startupconfigentryonrequestcustommatchrule20)方法。
+
+      ```ts
+      import { StartupConfig, StartupConfigEntry, StartupListener, Want } from '@kit.AbilityKit';
+      import { hilog } from '@kit.PerformanceAnalysisKit';
+      import { BusinessError } from '@kit.BasicServicesKit';
+
+      export default class MyStartupConfigEntry extends StartupConfigEntry {
+
+        // onConfig ...
+
+        onRequestCustomMatchRule(want: Want): string {
+          if (want?.parameters?.fromType == 'card') {
+            return 'ruleCard';
+          }
+          return "";
+        }
+
+      }
+      ```
+
+  2. 对[定义启动框架配置文件](#定义启动框架配置文件)步骤中的startup_config.json文件进行修改，增加StartupTask_006任务的matchRules配置。预加载so任务不支持customization字段，按任务原有的excludeFromAutoStart配置处理。
+
+      ```json
+      {
+        "startupTasks": [
+          {
+            "name": "StartupTask_006",
+            "srcEntry": "./ets/startup/StartupTask_006.ets",
+            "runOnThread": "mainThread",
+            "waitOnMainThread": false,
+            "excludeFromAutoStart": true,
+            "matchRules": {
+              "customization": [
+                "ruleCard"
+              ]
+            }
+          }
+        ],
+        "configEntry": "./ets/startup/StartupConfig.ets"
+      }
+      ```

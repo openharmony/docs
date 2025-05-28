@@ -948,7 +948,7 @@ getCurrentAppCloneIndex(): number
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 16000011 | The context does not exist. |
-| 16000071 | The MultiAppMode is not {@link APP_CLONE}. |
+| 16000071 | App clone is not supported. |
 
 以上错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)。
 

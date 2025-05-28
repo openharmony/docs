@@ -4,7 +4,7 @@
 
 ## 监听页面触发的下载
 
-通过[setDownloadDelegate()](../reference/apis-arkweb/js-apis-webview.md#setdownloaddelegate11)向Web组件注册一个DownloadDelegate来监听页面触发的下载任务。资源由Web组件来下载，Web组件会通过DownloadDelegate将下载的进度通知给应用。
+通过[setDownloadDelegate()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setdownloaddelegate11)向Web组件注册一个DownloadDelegate来监听页面触发的下载任务。资源由Web组件来下载，Web组件会通过DownloadDelegate将下载的进度通知给应用。
 
 下面的示例中，在应用的rawfile中创建index.html以及download.html。应用启动后会创建一个Web组件并加载index.html，点击setDownloadDelegate按钮向Web组件注册一个DownloadDelegate，点击页面里的下载按钮的时候会触发一个下载任务，在DownloadDelegate中可以监听到下载的进度。
 
@@ -86,7 +86,7 @@ struct WebComponent {
 
 ## 使用Web组件发起一个下载任务
 
-使用[startDownload()](../reference/apis-arkweb/js-apis-webview.md#startdownload11)接口发起一个下载。
+使用[startDownload()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#startdownload11)接口发起一个下载。
 Web组件发起的下载会根据当前显示的url以及Web组件默认的Referrer Policy来计算referrer。
 
   在下面的示例中，先点击setDownloadDelegate按钮向Web注册一个监听类，然后点击startDownload主动发起了一个下载，

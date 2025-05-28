@@ -2476,6 +2476,99 @@ async function asyRunner2() {
 | threadInfos   | [ThreadInfo[]](#threadinfo10)    | 是   | 否   | 工作线程的内部信息。   |
 | taskInfos     | [TaskInfo[]](#taskinfo10)        | 是   | 否   | 任务的内部信息。       |
 
+## TaskResult<sup>20+</sup>
+
+处于等待或执行过程中的任务进行[taskpool.cancel](#taskpoolcancel)操作后，在catch分支里捕获到BusinessError里的补充信息。其他场景下该信息为undefined。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+### 属性
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+| 名称     | 类型                | 只读 | 可选 | 说明                                                           |
+| -------- | ------------------ | ---- | ---- | ------------------------------------------------------------- |
+| result | Object             | 是   | 是   | 任务执行结果。默认为undefined。                                    |
+| error   | Error \| Object   | 是   | 是   | 错误信息。默认和BusinessError的message字段一致。                 |
+
+> **说明：**
+>
+> 任务被取消后，有如下两种情况：
+>    - 如果当前任务是处于等待阶段，则result的值为undefined，error的值和BusinessError的message字段一致；
+>    - 如果当前任务正在运行，有异常抛出的情况下result的值为undefined，error的值为抛出的异常信息；没有异常的情况下，result为任务执行完成后的结果，error的值和BusinessError的message字段一致。
+>
+
+**示例**
+
+```ts
+import taskpool from '@ohos.taskpool';
+import {BusinessError} from '@ohos.base';
+
+@Concurrent
+function loop(): Error | number {
+  let start: number = Date.now();
+  while (Date.now() - start < 1500) {
+  }
+  if (taskpool.Task.isCanceled()) {
+    return 0;
+  }
+  while (Date.now() - start < 3000) {
+  }
+  if (taskpool.Task.isCanceled()) {
+    throw new Error("this is loop error");
+  }
+  return 1;
+}
+// 执行前取消
+function waitingCancel() {
+  let task = new taskpool.Task(loop);
+  taskpool.executeDelayed(2000, task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`waitingCancel task catch code: ${e.code}, message: ${e.message}`);
+    // waitingCancel task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`waitingCancel task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // waitingCancel task catch data: result: undefined, error: taskpool:: task has been canceled
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 1000);
+}
+
+// 执行过程中取消
+function runningCancel() {
+  let task = new taskpool.Task(loop);
+  taskpool.execute(task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`runningCancel task catch code: ${e.code}, message: ${e.message}`);
+    // runningCancel task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`runningCancel task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // runningCancel task catch data: result: 0, error: taskpool:: task has been canceled
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 1000);
+}
+
+// 执行过程中抛异常
+function runningCancelError() {
+  let task = new taskpool.Task(loop);
+  taskpool.execute(task).catch((e:BusinessError<taskpool.TaskResult>) => {
+    console.error(`runningCancelError task catch code: ${e.code}, message: ${e.message}`);
+    // runningCancelError task catch code: 0, message: taskpool:: task has been canceled
+    if (e.data !== undefined) {
+      console.error(`runningCancelError task catch data: result: ${e.data.result}, error: ${e.data.error}`);
+      // runningCancelError task catch data: result: undefined, error: Error: this is loop error
+    }
+  })
+  setTimeout(() => {
+    taskpool.cancel(task);
+  }, 2000);
+}
+```
 
 ## 其他说明
 

@@ -474,6 +474,21 @@ type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => vo
 | replacementString | [StyledString](ts-universal-styled-string.md#styledstring) | 是 | 用于替换的属性字符串。 |
 | previewText | [StyledString](ts-universal-styled-string.md#styledstring) | 否 | 预览样式字符串。 |
 
+## AutoCapitalizationMode<sup>20+</sup>枚举说明
+
+自动大小写模式类型，只提供接口能力，具体实现以输入法应用为主。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称 | 值 | 说明 |
+| ------- | ---- | ------------------- |
+| NONE | 0 | 默认状态无效。|
+| WORDS | 1 | 按单词自动大小写。|
+| SENTENCES | 2 | 按句子自动大小写。|
+| ALL_CHARACTERS | 3 | 按全字符自动大小写。|
+
 ## TextBaseController<sup>12+</sup>
 
 文本选择控制器。

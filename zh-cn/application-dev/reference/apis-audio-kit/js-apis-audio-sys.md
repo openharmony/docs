@@ -124,7 +124,7 @@ createAsrProcessingController(audioCapturer: AudioCapturer): AsrProcessingContro
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -456,7 +456,7 @@ setExtraParameters(mainKey: string, kvpairs: Record<string, string\>): Promise&l
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息                                                                                                       |
 |-----|------------------------------------------------------------------------------------------------------------|
@@ -507,7 +507,7 @@ getExtraParameters(mainKey: string, subKeys?: Array\<string>): Promise\<Record\<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------ | -------------------------|
@@ -611,7 +611,7 @@ getEffectManager(): AudioEffectManager
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -815,7 +815,7 @@ getVolumeGroupInfosSync(networkId: string\): VolumeGroupInfos
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -866,7 +866,6 @@ getAppVolumePercentageForUid(uid: number\): Promise<number\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 
 **示例：**
@@ -910,7 +909,6 @@ setAppVolumePercentageForUid(uid: number, volume: number\): Promise<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 | 6800301 | Crash or blocking occurs in system process. |
 
@@ -960,7 +958,6 @@ isAppVolumeMutedForUid(uid: number, owned: boolean\): Promise<boolean\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 |  Parameter verification failed.|
 
 **示例：**
@@ -1004,7 +1001,6 @@ setAppVolumeMutedForUid(uid: number, muted: boolean\): Promise<void\>
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed.|
 | 6800301 | Crash or blocking occurs in system process. |
 
@@ -1044,7 +1040,6 @@ on(type: 'appVolumeChangeForUid', uid: number, callback: Callback\<VolumeEvent>)
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -1084,7 +1079,6 @@ off(type: 'appVolumeChangeForUid', callback?: Callback\<VolumeEvent>): void
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. |
 
 **示例：**
@@ -1210,7 +1204,7 @@ setVolumeWithFlag(volumeType: AudioVolumeType, volume: number, flags: number): P
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1391,7 +1385,7 @@ setMicMute(mute: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1431,7 +1425,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType, callback: AsyncCallback&lt;void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1482,7 +1476,7 @@ adjustVolumeByStep(adjustType: VolumeAdjustType): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1527,7 +1521,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1578,7 +1572,7 @@ adjustSystemVolumeByStep(volumeType: AudioVolumeType, adjustType: VolumeAdjustTy
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | --------------------------------------------|
@@ -1623,7 +1617,7 @@ getSupportedAudioEffectProperty(): Array\<AudioEffectProperty>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1666,7 +1660,7 @@ getAudioEffectProperty(): Array\<AudioEffectProperty>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -1701,19 +1695,19 @@ setAudioEffectProperty(propertyArray: Array\<AudioEffectProperty>): void
 **系统能力：** SystemCapability.Multimedia.Audio.core
 
 **参数：**
+
 | 参数名        | 类型                                                  | 必填     | 说明                         |
 | ------------- | ----------------------------------------------------- | -------- | ---------------------------- |
 | propertyArray | Array\<[AudioEffectProperty](#audioeffectproperty18)> | 是       |  需要设置的音效模式。        |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 201 | Permission denied. |
 | 202 | Caller is not a system application. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 | Parameter verification failed. Possible causes: 1.more than one enhanceProps of the same enhanceClass in input Array; 2.input audioEnhanceProperties are not supported by current device. 3.names of enhanceProp or enhanceClass are incorrect.|
 | 6800301 | System error. Return by callback. |
 
@@ -2084,7 +2078,6 @@ selectInputDeviceByFilter(filter: AudioCapturerFilter, inputAudioDevices: AudioD
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 |  Parameter verification failed.|
 
 
@@ -2157,7 +2150,6 @@ getPreferredOutputDeviceByFilter(filter: AudioRendererFilter): AudioDeviceDescri
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 |  Parameter verification failed.|
 
 **示例：**
@@ -2211,7 +2203,6 @@ getPreferredInputDeviceByFilter(filter: AudioCapturerFilter): AudioDeviceDescrip
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
 | 202 | Not system App. |
-| 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 6800101 |  Parameter verification failed.|
 
 **示例：**
@@ -2264,6 +2255,16 @@ excludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Promi
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
 | Promise&lt;void&gt;   | Promise对象。无返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
+| 202     | Not system App.                             |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2322,6 +2323,16 @@ unexcludeOutputDevices(usage: DeviceUsage, devices: AudioDeviceDescriptors): Pro
 | --------------------- | --------------------------- |
 | Promise&lt;void&gt;   | Promise对象。无返回结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
+| 202     | Not system App.                             |
+| 6800101 | Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -2378,6 +2389,16 @@ unexcludeOutputDevices(usage: DeviceUsage): Promise&lt;void&gt;
 | --------------------- | --------------------------- |
 | Promise&lt;void&gt;   | Promise对象。无返回结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
+| 202     | Not system App.                             |
+| 6800101 | Parameter verification failed. |
+
 **示例：**
 
 ```ts
@@ -2418,6 +2439,16 @@ getExcludedDevices(usage: DeviceUsage): AudioDeviceDescriptors
 | 类型                  | 说明                         |
 | --------------------- | --------------------------- |
 | [AudioDeviceDescriptors](js-apis-audio.md#audiodevicedescriptors) | 排除设备列表。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 201     | Permission denied. Return by callback.      |
+| 202     | Not system App.                             |
+| 6800101 | Parameter verification failed. |
 
 **示例：**
 
@@ -2550,7 +2581,7 @@ isSpatializationSupported(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2594,7 +2625,7 @@ isSpatializationSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2650,7 +2681,7 @@ isHeadTrackingSupported(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2695,7 +2726,7 @@ isHeadTrackingSupportedForDevice(deviceDescriptor: AudioDeviceDescriptor): boole
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2757,7 +2788,7 @@ setSpatializationEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): 
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2811,7 +2842,7 @@ setSpatializationEnabled(enable: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2860,7 +2891,7 @@ setSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor, enabled: boole
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2920,7 +2951,7 @@ isSpatializationEnabled(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -2965,7 +2996,7 @@ isSpatializationEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3025,7 +3056,7 @@ on(type: 'spatializationEnabledChange', callback: Callback<boolean\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3062,7 +3093,7 @@ on(type: 'spatializationEnabledChangeForAnyDevice', callback: Callback<AudioSpat
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3103,7 +3134,7 @@ off(type: 'spatializationEnabledChange', callback?: Callback<boolean\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3146,7 +3177,7 @@ off(type: 'spatializationEnabledChangeForAnyDevice', callback?: Callback<AudioSp
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3197,7 +3228,7 @@ setHeadTrackingEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3251,7 +3282,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3301,7 +3332,7 @@ setHeadTrackingEnabled(enable: boolean): Promise&lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3360,7 +3391,7 @@ isHeadTrackingEnabled(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3405,7 +3436,7 @@ isHeadTrackingEnabled(deviceDescriptor: AudioDeviceDescriptor): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3465,7 +3496,7 @@ on(type: 'headTrackingEnabledChange', callback: Callback<boolean\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3502,7 +3533,7 @@ on(type: 'headTrackingEnabledChangeForAnyDevice', callback: Callback<AudioSpatia
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3543,7 +3574,7 @@ off(type: 'headTrackingEnabledChange', callback?: Callback<boolean\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3588,7 +3619,7 @@ off(type: 'headTrackingEnabledChangeForAnyDevice', callback?: Callback<AudioSpat
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3635,7 +3666,7 @@ updateSpatialDeviceState(spatialDeviceState: AudioSpatialDeviceState): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3686,7 +3717,7 @@ setSpatializationSceneType(spatializationSceneType: AudioSpatializationSceneType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -3728,7 +3759,7 @@ getSpatializationSceneType(): AudioSpatializationSceneType
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
@@ -4122,7 +4153,7 @@ setAsrAecMode(mode: AsrAecMode): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -4155,7 +4186,7 @@ getAsrAecMode(): AsrAecMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -4193,7 +4224,7 @@ setAsrNoiseSuppressionMode(mode: AsrNoiseSuppressionMode): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -4226,7 +4257,7 @@ getAsrNoiseSuppressionMode(): AsrNoiseSuppressionMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -4257,7 +4288,7 @@ isWhispering(): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -4294,7 +4325,7 @@ setAsrWhisperDetectionMode(mode: AsrWhisperDetectionMode): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -4328,7 +4359,7 @@ getAsrWhisperDetectionMode(): AsrWhisperDetectionMode
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -4367,7 +4398,7 @@ setAsrVoiceControlMode(mode: AsrVoiceControlMode, enable: boolean): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|
@@ -4407,7 +4438,7 @@ setAsrVoiceMuteMode(mode: AsrVoiceMuteMode, enable: boolean): boolean
 
 **错误码：**
 
-以下错误码的详细介绍请参见[Audio错误码](errorcode-audio.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[Audio错误码](errorcode-audio.md)。
 
 | 错误码ID   | 错误信息                                     |
 |---------|------------------------------------------|

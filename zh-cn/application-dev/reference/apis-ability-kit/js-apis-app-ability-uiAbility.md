@@ -890,7 +890,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
@@ -978,7 +978,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 | 16000050 | Internal error. |
 
@@ -1054,7 +1054,7 @@ release(): void
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 | 16200002 | The callee does not exist. |
 
 **示例：**
@@ -1107,7 +1107,7 @@ export default class MainUIAbility extends UIAbility {
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -1161,7 +1161,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 
@@ -1217,7 +1217,7 @@ on(type: 'release', callback: OnReleaseCallback): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 16200001 | Caller released. The caller has been released. |
+| 16200001 | The caller has been released. |
 
 **示例：**
 

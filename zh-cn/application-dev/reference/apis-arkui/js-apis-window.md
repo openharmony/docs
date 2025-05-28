@@ -520,6 +520,26 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 | config  | [WindowAnimationConfig](#windowanimationconfig20) | 是   | 本次转场动画配置。                                           |
 | opacity | number                                            | 否   | 不透明度，转场动画作用的窗口属性，值为0时窗口完全透明。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。取值范围0~1，在动画结束时恢复为1。 |
 
+## WindowAnchor<sup>20+</sup>
+
+窗口锚点枚举。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称       | 值   | 说明                          |
+| ---------- | ---- | ----------------------------- |
+| TOP_START  | 0    | 窗口左上角。|
+| TOP  | 1    | 窗口上边界横向居中点。|
+| TOP_END  | 2    | 窗口右上角。|
+| START  | 3    | 窗口左边界纵向居中点。|
+| CENTER  | 4    | 窗口横向和纵向居中点。|
+| END  | 5    | 窗口右边界纵向居中点。|
+| BOTTOM_START  | 6    | 窗口左下角。|
+| BOTTOM  | 7    | 窗口下边界横向居中点。|
+| BOTTOM_END  | 8    | 窗口右下角。|
+
 ## Callback<sup>15+</sup>
 
 ### (data: T)<sup>15+</sup>
@@ -1086,6 +1106,80 @@ struct Index {
 }
 ```
 
+## window.shiftAppWindowTouchEvent<sup>20+</sup>
+shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerId: number): Promise&lt;void&gt;
+
+在同应用内窗口的分合场景下，需要将触屏输入事件从源窗口转移到目标窗口。使用Promise异步回调，仅在2in1设备上，针对主窗和子窗生效。
+
+在2in1设备上，源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有触屏输入事件转移效果，成功调用此接口后，系统会向源窗口补发触屏抬起（touch up）事件，并且向目标窗口补发触屏按下（touch down）事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                    |
+| -------------- | ------ | ----- | ----------------------- |
+| sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取窗口id属性。            |
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取窗口id属性。             |
+| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#TouchEvent对象说明)事件中[touches](arkui-ts/ts-universal-events-touch.md#TouchObject对象说明)属性获取id。             |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| ------- | --------------------------------------------- |
+| 801     | Capability not supported. Function shiftAppWindowTouchEvent can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range.|
+
+**示例：**
+
+```ts
+// ets/pages/Index.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Blank('160')
+          .color(Color.Blue)
+          .onTouch((event: TouchEvent) => {
+            // 源窗口触屏事件类型必须为TouchType.Down
+            if (event.type === TouchType.Down) {
+              try {
+                let sourceWindowId = 1;
+                let targetWindowId = 2;
+                let promise = window.shiftAppWindowTouchEvent(sourceWindowId, targetWindowId, event.touches[0].id);
+                promise.then(() => {
+                  console.info(`Succeeded in shifting app window touch event`);
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to shift app window touch event. Cause code: ${err.code}, message: ${err.message}`);
+                });
+              } catch (exception) {
+                console.error(`Failed to shift app touch event. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            }
+          })
+      }.width('100%')
+    }.height('100%').width('100%')
+  }
+}
+```
+
 ## window.getWindowsByCoordinate<sup>14+</sup>
 
 getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
@@ -1184,7 +1278,7 @@ getAllWindowLayoutInfo(displayId: number): Promise&lt;Array&lt;WindowLayoutInfo&
 | 错误码ID    | 错误信息 |
 |----------| ------------------------------ |
 | 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed.|
-| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801      | Capability not supported. function getAllWindowLayoutInfo can not work correctly due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 
 ```ts
@@ -5415,6 +5509,86 @@ try {
 }
 ```
 
+### on('windowStatusDidChange')<sup>20+</sup>
+
+on(type: 'windowStatusDidChange', callback: Callback&lt;WindowStatusType&gt;): void
+
+开启窗口模式变化的监听，当窗口windowStatus发生变化后进行通知（此时窗口[Rect](#rect7)属性已经完成更新）。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowStatusDidChange'，即窗口模式变化完成事件。 |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 是   | 回调函数。返回当前的窗口模式。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+    windowClass.on('windowStatusDidChange', (WindowStatusType) => {
+        console.info(`Succeeded in enabling the listener for window status changes. Data: ${JSON.stringify(WindowStatusType)}`);
+    });
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('windowStatusDidChange')<sup>20+</sup>
+
+off(type: 'windowStatusDidChange', callback?: Callback&lt;WindowStatusType&gt;): void
+
+关闭窗口模式变化的监听。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | 是   | 监听事件，固定为'windowStatusDidChange'，即窗口模式变化完成事件。 |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口模式变化的监听。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+const callback = (windowStatusType: window.WindowStatusType) => {
+    // ...
+}
+try {
+    windowClass.on('windowStatusDidChange', callback);
+    windowClass.off('windowStatusDidChange', callback);
+    // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+    windowClass.off('windowStatusDidChange');
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowGrayScale<sup>12+</sup>
 
 setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
@@ -6066,6 +6240,90 @@ try {
   windowClass.off('rotationChange', callback);
   // 如果通过on开启多个callback进行监听，同时关闭所有监听。
   windowClass.off('rotationChange');
+} catch (exception) {
+  console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### on('uiExtensionSecureLimitChange')<sup>20+</sup>
+
+on(type: 'uiExtensionSecureLimitChange', callback: Callback&lt;boolean&gt;): void
+
+开启窗口内uiExtension安全限制变化事件的监听, 建议在窗口创建后立即监听。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。 |
+| callback | Callback&lt;boolean&gt; | 是   | 回调函数。当窗口内uiExtension安全限制变化时触发回调。当返回参数为true表示窗口内uiExtension开启了隐藏不安全窗口；当返回参数为false表示窗口内uiExtension关闭了隐藏不安全窗口。若窗口内存在多个uiExtension，当返回参数为true表示窗口内至少一个uiExtension开启了隐藏不安全窗口；当返回参数为false表示窗口内所有uiExtension关闭了隐藏不安全窗口。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported.Function on('uiExtensionSecureLimitChange') can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.on('uiExtensionSecureLimitChange', (data: boolean) => {
+    console.info(`Window secure limit Change: ${data}`);
+  });
+} catch (exception) {
+  console.error(`Failed to register callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('uiExtensionSecureLimitChange')<sup>20+</sup>
+
+off(type: 'uiExtensionSecureLimitChange', callback?: Callback&lt;boolean&gt;): void
+
+关闭窗口内uiextension安全限制变化事件的监听。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                         |
+| -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                         | 是   | 监听事件，固定为'uiExtensionSecureLimitChange'，即窗口内uiExtension安全限制变化事件。     |
+| callback | Callback&lt;boolean&gt; | 否   | 回调函数。若传入参数，则关闭该监听。若未传入参数，则关闭所有窗口安全限制变化的监听。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported.Function off('uiExtensionSecureLimitChange') can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+
+**示例：**
+
+```ts
+const callback = (data: boolean) => {
+  // ...
+}
+try {
+  // 通过on接口开启监听
+  windowClass.on('uiExtensionSecureLimitChange', callback);
+  // 关闭指定callback的监听
+  windowClass.off('uiExtensionSecureLimitChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('uiExtensionSecureLimitChange');
 } catch (exception) {
   console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
 }
@@ -9808,6 +10066,8 @@ setFollowParentWindowLayoutEnabled(enabled: boolean): Promise&lt;void&gt;
 
 4、当子窗或模态窗口不再使用该功能后，不保证子窗或模态窗口的布局信息（position和size）为确定的值，需要应用重新进行设置。
 
+该接口调用生效后，[setRelativePositionToParentWindowEnabled()](#setrelativepositiontoparentwindowenabled20)接口调用不生效。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
@@ -9869,6 +10129,74 @@ export default class EntryAbility extends UIAbility {
       })
     });
   }
+}
+```
+
+### setRelativePositionToParentWindowEnabled<sup>20+<sup>
+
+setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor, offsetX?: number, offsetY?: number): Promise&lt;void&gt;
+
+设置一级子窗是否支持与主窗保持相对位置不变。使用Promise异步回调。
+
+该相对位置通过一级子窗与主窗之间锚点的偏移量表示，子窗和主窗使用的窗口锚点相同。
+
+1、只支持非最大化一级子窗使用该接口。
+
+2、当子窗调用该接口后，立即使其显示位置跟随主窗并保持相对位置不变，除非传入false再次调用该接口，否则效果将持续。
+
+3、当子窗调用该接口后，再调用[moveWindowTo()](#movewindowto9)、[maximize()](#maximize12)等修改窗口位置或大小的接口将不生效。
+
+该接口调用生效后，[setFollowParentWindowLayoutEnabled()](#setfollowparentwindowlayoutenabled17)接口调用不生效。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----------- | ------- | -- | -------------------------------------------------------- |
+| enabled | boolean | 是 | 一级子窗是否支持与主窗保持相对位置不变。true表示支持；false表示不支持。  |
+| anchor | [WindowAnchor](#windowanchor20) | 否 | 一级子窗与主窗保持相对位置不变时的窗口锚点枚举。该参数仅在enabled为true时生效，默认值为window.WindowAnchor.TopStart，即默认锚点为窗口左上角。  |
+| offsetX | number | 否 | 一级子窗锚点与主窗锚点位置的x轴偏移量，单位为px。该参数仅在enabled为true时生效，仅支持整数输入，浮点数向下取整，默认值为0。  |
+| offsetY | number | 否 | 一级子窗锚点与主窗锚点位置的y轴偏移量，单位为px。该参数仅在enabled为true时生效，仅支持整数输入，浮点数向下取整，默认值为0。  |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported.Function setRelativePositionToParentWindowEnabled can not work correctly due to limited device capabilities.|
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+| 1300004  | Unauthorized operation.                                                                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let windowClass: window.Window = window.findWindow("subWindow");
+  let enabled: boolean = true;
+  let promise = windowClass?.setRelativePositionToParentWindowEnabled(enabled);
+  promise.then(() => {
+    console.info('Succeeded in setting the sub window supports relative position to parent window.')
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the sub window supports relative position to parent window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the sub window supports relative position to parent window. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 

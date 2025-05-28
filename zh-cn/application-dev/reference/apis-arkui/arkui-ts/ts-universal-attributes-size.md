@@ -160,7 +160,7 @@ margin(value: Margin | Length | LocalizedMargin)
 
 safeAreaPadding(value: Padding | LengthMetrics | LocalizedPadding)
 
-设置安全区边距属性。允许容器向自身添加组件级安全区域，供子组件延伸。
+设置安全区边距属性。允许容器向自身添加组件级安全区域，供子组件延伸，支持[attributeModifier](ts-universal-attributes-attribute-modifier.md#attributemodifier)动态设置属性方法。
 
 **卡片能力：** 从API version 14开始，该接口支持在ArkTS卡片中使用。
 
@@ -398,3 +398,48 @@ struct SafeAreaPaddingExample {
 ```
 
 ![safeAreaPaddingExample](figures/safeAreaPaddingExample.png)
+
+### 示例4（使用attributeModifier动态设置安全区）
+
+使用attributeModifier对容器设置组件级安全区。
+
+```ts
+// xxx.ets
+class MyModifier implements AttributeModifier<CommonAttribute> {
+  applyNormalAttribute(instance: CommonAttribute): void {
+    instance.safeAreaPadding({
+      left: 10,
+      top: 20,
+      right: 30,
+      bottom: 40
+    })
+  }
+}
+
+@Entry
+@Component
+struct SafeAreaPaddingExample {
+  @State modifier: MyModifier = new MyModifier()
+
+  build() {
+    Column() {
+      Column() {
+        Column()
+          .width("100%")
+          .height("100%")
+          .backgroundColor(Color.Pink)
+      }
+      .width(200)
+      .height(200)
+      .backgroundColor(Color.Yellow)
+      .borderWidth(10)
+      .padding(10)
+      .attributeModifier(this.modifier)
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+
+![safeAreaPaddingModifierExample](figures/safeAreaPaddingModifierExample.png)

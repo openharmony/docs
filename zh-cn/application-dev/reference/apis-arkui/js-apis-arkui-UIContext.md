@@ -7995,6 +7995,8 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 >
 > 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。
 >
+> 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。
+>
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -8005,7 +8007,7 @@ updateMenu\<T extends Object>(content: ComponentContent\<T>, options: MenuOption
 | 参数名     | 类型                                       | 必填   | 说明      |
 | ------- | ---------------------------------------- | ---- | ------- |
 | content | [ComponentContent\<T>](./js-apis-arkui-ComponentContent.md) | 是 | menu弹窗中显示的组件内容。 |
-| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。 |
+| options | [MenuOptions](./arkui-ts/ts-universal-attributes-menu.md#menuoptions10) | 是 | menu弹窗样式。<br/>**说明：** <br/>1. 不支持更新showInSubWindow、preview、previewAnimationOptions、transition、onAppear、aboutToAppear、onDisappear、aboutToDisappear。<br/>2. 支持mask通过设置[MenuMaskType](./arkui-ts/ts-universal-attributes-menu.md#menumasktype20类型说明)实现更新蒙层样式，不支持mask通过设置boolean实现蒙层从无到有或者从有到无的更新。 |
 | partialUpdate | boolean | 否 | menu弹窗更新方式，默认值为false。<br/>**说明：** <br/>1. true为增量更新，保留当前值，更新options中的指定属性。 <br/>2. false为全量更新，除options中的指定属性，其他属性恢复默认值。 |
 
 **返回值：**
@@ -8167,7 +8169,7 @@ struct Index {
 ```
 
 ## DragController<sup>11+</sup>
-以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取UIContext实例，再通过此实例调用对应方法。
+以下API需先使用UIContext中的[getDragController()](js-apis-arkui-UIContext.md#getdragcontroller11)方法获取DragController实例，再通过此实例调用对应方法。
 
 ### executeDrag<sup>11+</sup>
 
@@ -9348,7 +9350,7 @@ struct Index {
 
 
 ## FocusController<sup>12+</sup>
-以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getFocusController12)方法获取UIContext实例，再通过该实例调用对应方法。
+以下API需先使用UIContext中的[getFocusController()](js-apis-arkui-UIContext.md#getfocuscontroller12)方法获取FocusController实例，再通过该实例调用对应方法。
 
 ### clearFocus<sup>12+</sup>
 
@@ -9545,7 +9547,9 @@ struct ActivateExample {
 
 isActive(): boolean
 
-返回UI实例的[焦点事件](../../ui/arkts-common-events-focus-event.md)。
+返回UI实例的焦点激活态。
+
+焦点激活态可参考[基础概念：焦点激活态](../../ui/arkts-common-events-focus-event.md#基础概念)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -10028,7 +10032,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>, options?: componentSnap
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id       | string                                                       | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | callback | [AsyncCallback](../apis-basic-services-kit/js-apis-base.md#asynccallback)&lt;image.[PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7)&gt; | 是   | 截图返回结果的回调。                                         |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
@@ -10094,7 +10098,7 @@ get(id: string, options?: componentSnapshot.SnapshotOptions): Promise<image.Pixe
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id     | string | 是   | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。 |
 | options<sup>12+</sup>       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -10153,10 +10157,10 @@ struct SnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap>, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): void
 
-在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过回调返回结果。
+传入[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，系统对其进行离屏构建后进行截图，并通过回调返回结果。
 > **说明：** 
 >
-> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
@@ -10243,11 +10247,11 @@ struct ComponentSnapshotExample {
 
 createFromBuilder(builder: CustomBuilder, delay?: number, checkImageStatus?: boolean, options?: componentSnapshot.SnapshotOptions): Promise<image.PixelMap>
 
-在应用后台渲染[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，并输出其截图。通过Promise返回结果。
+传入[CustomBuilder](arkui-ts/ts-types.md#custombuilder8)自定义组件，系统对其进行离屏构建后进行截图，并通过回调返回结果。
 
 > **说明：** 
 >
-> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟。
+> 由于需要等待组件构建、渲染成功，离屏截图的回调有500ms以内的延迟，不适宜使用在对性能敏感的场景。
 >
 > 部分执行耗时任务的组件可能无法及时在截图前加载完成，因此会截取不到加载成功后的图像。例如：加载网络图片的[Image](arkui-ts/ts-basic-components-image.md)组件、[Web](../apis-arkweb/ts-basic-components-web.md)组件。
 
@@ -10352,7 +10356,7 @@ getSync(id: string, options?: componentSnapshot.SnapshotOptions): image.PixelMap
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 |
+| id   | string | 是    | 目标组件的[组件标识](arkui-ts/ts-universal-attributes-component-id.md#组件标识)。 <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -10423,7 +10427,7 @@ getWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOptions): 
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12) <br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -10521,7 +10525,7 @@ getSyncWithUniqueId(uniqueId: number, options?: componentSnapshot.SnapshotOption
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。 |
+| uniqueId   | number | 是    | 目标组件的[uniqueId](js-apis-arkui-frameNode.md#getuniqueid12)。<br/>**说明：** 不支持未挂树组件，当传入的组件标识是离屏或缓存未挂树的节点时，系统不会对其进行截图。|
 | options       | [componentSnapshot.SnapshotOptions](js-apis-arkui-componentSnapshot.md#snapshotoptions12)            | 否    | 截图相关的自定义参数。 |
 
 **返回值：**
@@ -11084,7 +11088,7 @@ struct MarqueeExample {
 }
 ```
 ## TextMenuController<sup>16+</sup>
-以下API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
+以下非静态API需先使用UIContext中的[getTextMenuController()](js-apis-arkui-UIContext.md#gettextmenucontroller16)方法获取TextMenuController实例，再通过此实例调用对应方法。
 
 ### setMenuOptions<sup>16+</sup>
 
@@ -11136,6 +11140,148 @@ struct Index {
           .fontStyle(FontStyle.Italic)
           .fontWeight(FontWeight.Bold)
           .textAlign(TextAlign.Center)
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+### disableSystemServiceMenuItems<sup>20+</sup>
+
+static disableSystemServiceMenuItems(disable: boolean): void
+
+屏蔽文本选择菜单内所有系统服务菜单项。
+
+> **说明：**
+> 
+> 此接口调用后整个应用进程都会生效。
+>
+> 此接口可在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)使用。
+>
+> 此接口调用后将影响文本组件的接口[editMenuOptions](./arkui-ts/ts-basic-components-text.md#editmenuoptions12)，其回调方法[onCreateMenu](./arkui-ts/ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+>
+> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/ts-basic-components-web.md)。
+>
+> 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| disable | boolean | 是    | 是否禁用系统服务菜单。true表示禁用，false表示不禁用。<br />默认值: false |
+
+**示例：**
+
+```ts
+import { TextMenuController } from '@kit.ArkUI';
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 禁用所有系统服务菜单。
+    TextMenuController.disableSystemServiceMenuItems(true)
+  }
+
+  aboutToDisappear(): void {
+    // 页面消失恢复系统服务菜单。
+    TextMenuController.disableSystemServiceMenuItems(false)
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+          .editMenuOptions({
+            onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含被屏蔽的系统菜单项。
+                return menuItems
+            },
+            onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false
+            }
+          })
+      }.width('100%')
+    }
+    .height('100%')
+  }
+}
+```
+### disableMenuItems<sup>20+</sup>
+
+static disableMenuItems(items: Array\<TextMenuItemId>): void
+
+屏蔽文本选择菜单内指定的系统服务菜单项。
+
+> **说明：**
+> 
+> 此接口调用后整个应用进程都会生效。
+>
+> 此接口可在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md)使用。
+>
+> 此接口调用后将影响文本组件的接口[editMenuOptions](./arkui-ts/ts-basic-components-text.md#editmenuoptions12)，其回调方法[onCreateMenu](./arkui-ts/ts-text-common.md#oncreatemenu12)的入参列表中不包含被屏蔽的菜单选项。
+>
+> 涉及文本选择菜单的组件有 [Text](./arkui-ts/ts-basic-components-text.md)、[TextArea](./arkui-ts/ts-basic-components-textarea.md)、[TextInput](./arkui-ts/ts-basic-components-textinput.md)、[Search](./arkui-ts/ts-basic-components-search.md)、[RichEditor](./arkui-ts/ts-basic-components-richeditor.md)、[Web](../apis-arkweb/ts-basic-components-web.md)。
+>
+> 系统服务菜单项指除[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)中的复制、剪切、全选、粘贴以外的菜单项。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型         | 必填   | 说明   |
+| -------- | ---------- | ---- | ---- |
+| items | Array<[TextMenuItemId](./arkui-ts/ts-text-common.md#textmenuitemid12)> | 是    | 禁用菜单项的列表。<br />默认值: [] |
+
+**示例：**
+
+```ts
+import { TextMenuController } from '@kit.ArkUI';
+
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  aboutToAppear(): void {
+    // 禁用搜索和翻译菜单。
+    TextMenuController.disableMenuItems([TextMenuItemId.SEARCH, TextMenuItemId.TRANSLATE])
+  }
+
+  aboutToDisappear(): void {
+    // 恢复系统服务菜单。
+    TextMenuController.disableMenuItems([])
+  }
+
+  build() {
+    Row() {
+      Column() {
+        TextInput({ text: "这是一个TextInput，长按弹出文本选择菜单" })
+          .height(60)
+          .fontStyle(FontStyle.Italic)
+          .fontWeight(FontWeight.Bold)
+          .textAlign(TextAlign.Center)
+          .caretStyle({ width: '4vp' })
+          .editMenuOptions({
+            onCreateMenu: (menuItems: Array<TextMenuItem>) => {
+                // menuItems不包含搜索和翻译。
+                return menuItems;
+            },
+            onMenuItemClick: (menuItem: TextMenuItem, textRange: TextRange) => {
+                return false
+            }
+          })
       }.width('100%')
     }
     .height('100%')

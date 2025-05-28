@@ -72,6 +72,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char *srcCallNative = R"JS(isPromise())JS";
 ```
+<!-- @[oh_jsvm_ispromise](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/ispromise/src/main/cpp/hello.cpp) -->
 
 预期结果
 ```
@@ -155,9 +156,10 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 // 样例测试js
 const char *srcCallNative = R"JS(createPromise();
-                                 resolveRejectDeferred('success','fail', true);
-                                 resolveRejectDeferred('success','fail', false);)JS";
+                                 resolveRejectDeferred('success', 'fail', true);
+                                 resolveRejectDeferred('success', 'fail', false);)JS";
 ```
+<!-- @[oh_jsvm_resolvedeferred_and_rejectdeferred](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutPromise/resolvereject/src/main/cpp/hello.cpp) -->
 
 预期结果
 ```

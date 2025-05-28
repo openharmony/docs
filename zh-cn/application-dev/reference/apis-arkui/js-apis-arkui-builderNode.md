@@ -51,7 +51,7 @@ import { BuilderNode, RenderOptions, NodeRenderType } from "@kit.ArkUI";
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | selfIdealSize | [Size](js-apis-arkui-graphics.md#size) | 否   | 节点的理想大小。                                             |
 | type          | [NodeRenderType](#noderendertype)      | 否   | 节点的渲染类型。                                             |
-| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/_o_h___native_image.md#oh_nativeimage)。 |
+| surfaceId     | string                                 | 否   | 纹理接收方的surfaceId。纹理接收方一般为[OH_NativeImage](../apis-arkgraphics2d/capi-oh-nativeimage.md)。 |
 
 ## BuilderNode
 
@@ -113,14 +113,12 @@ build(builder: WrappedBuilder\<Args>, arg?: Object): void
 
 build的可选参数。
 
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型                                   | 必填 | 说明                                                         |
 | ------------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
-| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值:false。                                          |
-
+| nestingBuilderSupported |boolean | 否   | 是否支持Builder嵌套Builder进行使用。其中，false表示Builder使用的入参一致，true表示Builder使用的入参不一致。默认值：false<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| localStorage<sup>20+</sup> |[LocalStorage](../../ui/state-management/arkts-localstorage.md) | 否   | 给当前builderNode设置localStorage，挂载在此builderNode下的自定义组件共享该localStorage，如果自定义组件构造函数同时也传入localStorage，优先使用构造函数中传入的localStorage。默认值：null<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务
 ### InputEventType<sup>20+</sup>
 
 type InputEventType = TouchEvent | MouseEvent | AxisEvent
@@ -1147,6 +1145,14 @@ postInputEvent(event: InputEventType): boolean
 >
 > 传入的坐标值需要转换为px。
 >
+> 鼠标左键点击事件会转换成触摸事件，转发时需注意不要在外层同时绑定触摸事件和鼠标事件，规格可查看[onTouch](arkui-ts/ts-universal-events-touch.md#ontouch)。
+>
+> 注入事件为[轴事件](arkui-ts/ts-universal-events-axis.md#axisevent)时，由于轴事件中缺少旋转轴信息与捏合轴信息，因此注入的事件无法触发[pinch捏合手势](arkui-ts/ts-basic-gestures-pinchgesture.md)与[rotate旋转手势](arkui-ts/ts-basic-gestures-rotationgesture.md)。
+>
+> 转发的事件会在被分发到的目标组件所在的子树里做touchtest，并触发对应手势，原始事件也会触发当前组件所在组件树中的手势。不保证两类手势的竞争结果。
+>
+> 针对同一个事件，在事件分发流程中不可以转发多次。
+>
 > [Webview](../apis-arkweb/js-apis-webview.md)已经处理过坐标系变换，可以将事件直接下发。
 >
 > 不建议同一个事件转发多次。<!--Del-->不支持[UIExtensionComponent](arkui-ts/ts-container-ui-extension-component-sys.md)。<!--DelEnd-->
@@ -1159,13 +1165,13 @@ postInputEvent(event: InputEventType): boolean
 
 | 参数名 | 类型                                                                      | 必填 | 说明       |
 | ------ | ------------------------------------------------------------------------- | ---- | ---------- |
-| event  | [InputEventType](#inputeventtype20) | 是   | 触摸事件。 |
+| event  | [InputEventType](#inputeventtype20) | 是   | 用于透传的输入事件。 |
 
 **返回值：**
 
 | 类型    | 说明               |
 | ------- | ------------------ |
-| boolean | 触摸事件和鼠标事件只有命中且阻止冒泡返回时true，其他情况均返回false。<br/>**说明：** <br/>轴事件默认返回true。 |
+| boolean | 事件是否被消费。 |
 
 ## 示例
 
@@ -1312,6 +1318,7 @@ class MyNodeController extends NodeController {
     let offsetX: number | null | undefined = node?.getPositionToParent().x;
     let offsetY: number | null | undefined = node?.getPositionToParent().y;
 
+    // 只转发原始事件，不转发鼠标模拟的触摸事件
     if (event.source == SourceType.TouchScreen) {
       let touchevent = event as TouchEvent;
       let changedTouchLen = touchevent.changedTouches.length;

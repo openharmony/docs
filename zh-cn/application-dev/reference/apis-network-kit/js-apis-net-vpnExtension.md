@@ -70,7 +70,7 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 
 以下错误码的详细介绍请参见[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                               |
+| 错误码ID | 错误信息                               |
 | --------- | -------------------------------------- |
 | 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
@@ -220,7 +220,7 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息         |
+| 错误码ID | 错误信息         |
 | --------- | ---------------- |
 | 401       | Parameter error. |
 
@@ -268,7 +268,7 @@ create(config: VpnConfig): Promise\<number\>
 
 以下错误码的详细介绍请参见[VPN错误码](errorcode-net-vpn.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                         |
+| 错误码ID | 错误信息                                         |
 | --------- | ------------------------------------------------ |
 | 401       | Parameter error.                                 |
 | 2200001   | Invalid parameter value.                         |
@@ -373,7 +373,7 @@ protect(socketFd: number): Promise\<void\>
 
 以下错误码的详细介绍请参见[VPN错误码](errorcode-net-vpn.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
@@ -431,7 +431,7 @@ destroy(): Promise\<void\>
 
 以下错误码的详细介绍请参见[VPN错误码](errorcode-net-vpn.md)和[通用错误码](../errorcode-universal.md)。
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2200002   | Operation failed. Cannot connect to service. |

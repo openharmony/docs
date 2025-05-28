@@ -1315,3 +1315,17 @@ import testNapi from 'libentry.so';
 
 testNapi.testNapiWrapEnhance();
 ```
+
+## napi提供多上下文环境能力
+
+### 接口描述
+
+| 接口 | 描述 |
+| -------- | -------- |
+| napi_create_ark_context | 创建基础运行时上下文环境。 |
+| napi_destroy_ark_context | 销毁基础运行时上下文环境。 |
+### 使用示例
+
+#### napi_create_ark_context、napi_destroy_ark_context
+
+[使用扩展的Node-API接口创建、切换和销毁上下文环境](use-napi-about-context.md)

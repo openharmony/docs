@@ -403,7 +403,7 @@ struct Index {
           .onClick(() => {
             let ctx = this.getUIContext();
             let promptAction = ctx.getPromptAction();
-            promptAction.openCustomDialog(new ComponentContent(ctx, wrapBuilder(buildText), new Params(this.message)));
+            promptAction.openCustomDialog(new ComponentContent(ctx, wrapBuilder(buildText), new Params(this.message)))
               .catch((err: BusinessError) => {
                 console.error("openCustomDialog error: " + err.code + " " + err.message);
               })

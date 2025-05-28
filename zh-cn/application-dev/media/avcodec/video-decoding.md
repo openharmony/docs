@@ -621,7 +621,8 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
     ```
 
     > **注意：**
-    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/_native_window.md#oh_nativewindow_nativewindowhandleopt)接口获取。
+    > 如果要获取buffer的属性，如pixel_format、stride等可通过调用[OH_NativeWindow_NativeWindowHandleOpt](../../reference/apis-arkgraphics2d/capi-external-window-h.md#oh_nativewindow_nativewindowhandleopt
+)接口获取。
     >
 
 13. （可选）调用OH_VideoDecoder_Flush()刷新解码器。
@@ -647,7 +648,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
         // 异常处理。
     }
 
-    std::shared_ptr<CodecBufferInfo> bufferInfo = outQueue.Dequeue();
+    std::shared_ptr<CodecBufferInfo> bufferInfo = inQueue.Dequeue();
     if (bufferInfo == nullptr || !bufferInfo->isValid) {
         // 异常处理。
     }

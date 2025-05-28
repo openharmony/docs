@@ -48,7 +48,7 @@ Image analysis is stopped.
 
 **错误描述**
 
-当开发者调用stopImageAnalyzer()接口时，若上一次的分析已结束，会抛出此错误码。
+当开发者调用startImageAnalyzer()接口，当前分析未完成时调用了stopImageAnalyzer()接口，会抛出此错误码。
 
 **可能原因**
 

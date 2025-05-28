@@ -91,6 +91,8 @@ getTitle(): string
 
 **错误码：**
 
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)。
+
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
 | 202     | Caller is not a system application. |
@@ -1531,7 +1533,7 @@ openAlarmTone(context: Context, uri: string): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |
@@ -1816,7 +1818,7 @@ getToneHapticsSettings(context: BaseContext, type: ToneHapticsType): Promise&lt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1869,7 +1871,7 @@ setToneHapticsSettings(context: BaseContext, type: ToneHapticsType, settings: To
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1926,7 +1928,7 @@ getToneHapticsList(context: BaseContext, isSynced: boolean): Promise&lt;ToneHapt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -1977,7 +1979,7 @@ getHapticsAttrsSyncedWithTone(context: BaseContext, toneUri: string): Promise&lt
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID   | 错误信息              |
 |---------| -------------------- |
@@ -2030,7 +2032,7 @@ openToneHaptics(context: Context, hapticsUri: string): Promise&lt;number&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)和[媒体服务错误码](../apis-media-kit/errorcode-media.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)、[媒体服务错误码](../apis-media-kit/errorcode-media.md)和[铃声错误码说明文档](./errorcode-ringtone.md)。
 
 | 错误码ID | 错误信息              |
 | ------- | --------------------- |

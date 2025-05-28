@@ -3686,7 +3686,7 @@ Camera_ErrorCode OH_CaptureSession_DeleteColorSpaces(Camera_CaptureSession* sess
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| colorSpace | 如果方法调用成功，将删除的目前[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)列表。 | 
+| colorSpace | 如果方法调用成功，将删除的目前[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)列表。 | 
 
 **返回：**
 
@@ -3714,7 +3714,7 @@ Camera_ErrorCode OH_CaptureSession_GetActiveColorSpace(Camera_CaptureSession* se
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| colorSpace | 当前的[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)。 | 
+| colorSpace | 当前的[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)。 | 
 
 **返回：**
 
@@ -4016,8 +4016,8 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedColorSpaces(Camera_CaptureSession
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| colorSpace | 如果方法调用成功，则将记录支持的[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)列表。 | 
-| size | 如果方法调用成功，则将记录支持的[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)列表的大小。 | 
+| colorSpace | 如果方法调用成功，则将记录支持的[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)列表。 | 
+| size | 如果方法调用成功，则将记录支持的[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)列表的大小。 | 
 
 **返回：**
 
@@ -4651,7 +4651,7 @@ Camera_ErrorCode OH_CaptureSession_SetActiveColorSpace(Camera_CaptureSession* se
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| colorSpace | 要设置的目标[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)。 | 
+| colorSpace | 要设置的目标[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)。 | 
 
 **返回：**
 

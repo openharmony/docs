@@ -31,6 +31,30 @@ import { audio } from '@kit.AudioKit';
 | rightVolume | number  | 否  | 设置右声道音量，设置范围（0.0~1.0）。（当前不支持左右分别设置，将以左声道音量为准）。默认值：1.0。 |
 | priority  | number  | 否  | 音频流播放的优先级，0为最低优先级，数值越大优先级越高，通过相互比较大小确定播放优先级，设置范围为大于等于0的整数。默认值：0。      |
 
+## ErrorType<sup>20+</sup>
+
+枚举，错误类型（用于区分错误发生阶段）。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+| 名称                                  | 值      | 说明                             |
+| ----------------------------------- | ------- | --------------------------------- |
+| LOAD_ERROR                           | 1       | 表示加载资源时发生错误。            |
+| PLAY_ERROR                           | 2       | 表示播放资源时发生错误。            |
+
+## ErrorInfo<sup>20+</sup>
+
+错误信息。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+| 名称            | 类型                                     | 只读 | 可选 | 说明                                                         |
+| --------------- | ---------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
+| errorCode | T  | 否  | 否  |    错误码。errorCode的类型T为[BusinessError](../apis-basic-services-kit/js-apis-base.md#businesserror)类型。    |
+| errorType | [ErrorType](#errortype20)    | 否  | 是  | 表示错误发生阶段。 |
+| soundId  | number | 否  | 是  |  发生错误的资源ID，load方法能够获取soundId。    |
+| streamId | number  | 否  | 是  | 发生错误的音频流ID，play方法能够获取streamId。 |
+
 ## SoundPool
 
 音频池提供了系统声音的加载、播放、音量设置、循环设置、停止播放、资源卸载等功能, 在调用SoundPool的接口前，需要先通过[createSoundPool](js-apis-media.md#mediacreatesoundpool10)创建实例。
@@ -42,6 +66,7 @@ import { audio } from '@kit.AudioKit';
 > - [on('playFinishedWithStreamId')](#onplayfinishedwithstreamid18)：监听播放完成，同时返回播放结束的音频的streamId。
 > - [on('playFinished')](#onplayfinished)：监听播放完成。
 > - [on('error')](#onerror)：监听错误事件。
+> - [on('errorOccurred')](#onerroroccurred20)：监听错误事件，同时返回[errorInfo](#errorinfo20)。
 
 ### load
 
@@ -1684,17 +1709,6 @@ on(type: 'error', callback: ErrorCallback): void
 | type     | string   | 是   | 错误事件回调类型，支持的事件：'error'，用户操作和系统都会触发此事件。 |
 | callback | ErrorCallback | 是   | 错误事件回调方法：使用播放器的过程中发生错误，会提供错误码ID和错误信息。 |
 
-SoundPool回调的**错误分类**<a name = error_info></a>可以分为以下几种：
-
-| 错误码ID | 错误信息              | 说明                                                         |
-| -------- | --------------------- | ------------------------------------------------------------ |
-| 401      | Invalid Parameter.    | 入参错误，表示调用无效。                                     |
-| 801      | Unsupport Capability. | 不支持该API能力，表示调用无效。                              |
-| 5400101  | No Memory.            | 内存不足。 |
-| 5400102  | Operation Not Allowed.   | 当前状态机不支持此操作，表示调用无效。                       |
-| 5400103  | IO Error.             | I/O异常。 |
-| 5400105  | Service Died.         | 播放进程死亡，音频池依赖的service端发生异常。|
-
 **示例：**
 
 ```js
@@ -1755,6 +1769,89 @@ media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: m
     soundPool = soundPool_;
     console.info(`Succeeded in createSoundPool`)
     soundPool.off('error')
+  }
+});
+```
+
+### on('errorOccurred')<sup>20+</sup>
+
+on(type: 'errorOccurred', callback: Callback\<ErrorInfo>): void
+
+监听[SoundPool](#soundpool)的错误事件，并返回包含错误码、错误发生阶段、资源ID和音频流ID的[ErrorInfo](#errorinfo20)。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                         |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| type     | string   | 是   | 事件回调类型，支持的事件为'errorOccurred'，当用户或系统操作导致错误，触发该事件。 |
+| callback | Callback\<[ErrorInfo](#errorinfo20)> | 是   | 错误事件回调方法。在使用播放器的过程中发生错误时，提供错误信息[ErrorInfo](#errorinfo20)。 |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 创建soundPool实例。
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`Succeeded in createSoundPool`)
+    soundPool.on('errorOccurred', (errorInfo) => {
+      console.error('error happened,and error message is :' + errorInfo.errorCode.message)
+      console.error('error happened,and error code is :' + errorInfo.errorCode.code)
+      console.error('error happened,and errorType is :' + errorInfo.errorType)
+      console.error('error happened,and soundId is :' + errorInfo.soundId)
+      console.error('error happened,and streamId is :' + errorInfo.streamId)
+    })
+  }
+});
+
+```
+
+### off('errorOccurred')<sup>20+</sup>
+
+ off(type: 'errorOccurred', callback?: Callback\<ErrorInfo>): void
+
+取消监听音频池的错误事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.SoundPool
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                      |
+| ------ | ------ | ---- | ----------------------------------------- |
+| type   | string | 是   | 事件回调类型，取消注册的事件为'errorOccurred'。 |
+| callback | Callback\<[ErrorInfo](#errorinfo20)> | 否   | 错误事件回调方法。在使用播放器的过程中发生错误时，提供错误信息[ErrorInfo](#errorinfo20)。 |
+
+**示例：**
+
+```js
+import { BusinessError } from '@kit.BasicServicesKit';
+
+// 创建soundPool实例。
+let soundPool: media.SoundPool;
+let audioRendererInfo: audio.AudioRendererInfo = {
+  usage: audio.StreamUsage.STREAM_USAGE_MUSIC,
+  rendererFlags: 1
+}
+media.createSoundPool(5, audioRendererInfo, (error: BusinessError, soundPool_: media.SoundPool) => {
+  if (error) {
+    console.error(`Failed to createSoundPool`)
+    return;
+  } else {
+    soundPool = soundPool_;
+    console.info(`Succeeded in createSoundPool`)
+    soundPool.off('errorOccurred')
   }
 });
 ```

@@ -6,6 +6,8 @@
 
 **库：** libohdlp_permission.so
 
+**引用文件：** <DataProtectionKit/dlp_permission_api.h>
+
 **系统能力：** SystemCapability.Security.DataLossPrevention
 
 **起始版本：** 14
