@@ -386,7 +386,7 @@ onWillScroll(handler: Optional&lt;OnWillScrollCallback&gt;): T
 
 > **说明：** 
 > 
-> 调用ScrollEdge和不带动画的ScrollToIndex时，不触发onWillScroll。
+> 调用不带动画的ScrollEdge和ScrollToIndex时，不触发onWillScroll。
 
 
 ### onDidScroll<sup>12+</sup> 
