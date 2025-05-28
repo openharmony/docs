@@ -37,3 +37,4 @@
   - [应用数据向量化](aip-data-intelligence-embedding.md)
 - [RelationalStore开发指导 (C/C++)](native-relational-store-guidelines.md)
 - [UDMF开发指导 (C/C++)](native-unified-data-management-framework-guidelines.md)
+- [ArkData术语](data-terminology.md)
