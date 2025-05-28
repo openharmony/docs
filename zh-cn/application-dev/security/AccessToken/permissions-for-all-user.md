@@ -15,9 +15,9 @@
 
 ## ohos.permission.ACCESS_BLUETOOTH
 
-允许应用接入蓝牙并使用蓝牙能力，例如配对、连接外围设备等。
+允许应用接入蓝牙并使用蓝牙功能。
 
-允许应用接入并使用蓝牙功能，如扫描发现外围设备与外围蓝牙设备配对、连接等，以及低功耗蓝牙的广播和扫描功能。
+包括扫描和发现外围蓝牙设备、与外围蓝牙设备配对和连接等操作，同时支持低功耗蓝牙的广播和扫描功能。
 
 **权限级别**：normal
 
@@ -39,7 +39,7 @@
 
 允许应用读取开放匿名设备标识符。
 
-获取此权限，应用程序必须通过弹出显示询问是否允许APP跟踪窗口。
+<!--RP3--><!--RP3End-->
 
 **权限级别**：normal
 
@@ -51,7 +51,7 @@
 
 允许应用读取用户的运动状态。
 
-该权限允许应用读取用户当前的运动状态。例如，判断用户是否处于运动中、记录用户行走步数。
+例如，判断用户是否处于运动中、记录用户行走步数。
 
 **权限级别**：normal
 
@@ -63,8 +63,6 @@
 
 允许应用使用相机。
 
-该权限允许应用使用相机。
-
 **权限级别**：normal
 
 **授权方式**：用户授权（user_grant）
@@ -74,8 +72,6 @@
 ## ohos.permission.DISTRIBUTED_DATASYNC
 
 允许不同设备间的数据交换。
-
-该权限允许应用与远程设备交换用户数据（如图片、音乐、视频及应用数据等）。
 
 **权限级别**：normal
 
@@ -87,7 +83,24 @@
 
 允许应用在后台运行时获取设备位置信息。
 
-应用在获取了位置权限{@code ohos.permission.LOCATION}后，如果需要在后台运行时获取设备位置信息，则需要申请该权限。
+由于安全隐私要求，应用不能通过弹窗的形式被授予后台位置权限，应用如果需要使用后台位置权限，需要引导用户到设置界面手动授予。
+
+**申请流程**：
+
+1. 在“module.json5”配置文件中[声明权限](declare-permissions.md)。
+
+   由于在申请后台权限前，必须先申请前台位置权限，因此开发者在配置时，应同时配置后台位置权限ohos.permission.LOCATION_IN_BACKGROUND和前台位置权限。前台位置权限的申请有两种允许情况：
+   - 申请前台模糊位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)。
+   - 申请前台精确位置权限：[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)和[ohos.permission.LOCATION](#ohospermissionlocation)。
+2. 应用需通过弹窗向用户申请对应的前台位置权限。
+3. 当用户点击弹窗授予前台位置权限后，应用应通过弹窗、提示窗等形式告知用户前往设置界面授予后台位置权限。
+4. 用户在设置界面中的选择“始终允许”应用访问位置信息权限，完成手动授予。
+
+   设置路径：
+   <!--RP1-->
+   - 路径一：设置 > 隐私 > 权限管理 > 位置信息 > *具体应用*
+   - 路径二：设置 > 隐私 > 权限管理 > 应用 > *具体应用* > 位置信息
+   <!--RP1End-->
 
 **权限级别**：normal
 
@@ -98,6 +111,8 @@
 ## ohos.permission.LOCATION
 
 允许应用获取设备位置信息。
+
+**申请条件**：需要与模糊位置权限[ohos.permission.APPROXIMATELY_LOCATION](#ohospermissionapproximately_location)一起，才可申请此权限。
 
 **权限级别**：normal
 
@@ -118,8 +133,6 @@
 ## ohos.permission.MICROPHONE
 
 允许应用使用麦克风。
-
-该权限允许应用使用麦克风。
 
 **权限级别**：normal
 
@@ -151,8 +164,6 @@
 
 允许应用读取用户的健康数据。
 
-该权限允许应用读取用户的健康数据，如心率数据等。
-
 **权限级别**：normal
 
 **授权方式**：用户授权（user_grant）
@@ -162,8 +173,6 @@
 ## ohos.permission.ACCESS_NEARLINK
 
 允许应用接入星闪并使用星闪能力，例如配对、连接外围设备等。
-
-允许接入并使用星闪功能，例如发现远端设备、向远端设备发起配对、连接远端设备，以及发送广播和扫描外围设备。
 
 **权限级别**：normal
 
@@ -175,37 +184,43 @@
 
 允许应用访问公共目录下Download目录及子目录。
 
-当前仅2in1设备和平板上的应用可申请此权限。
+<!--RP2--><!--RP2End-->
 
 **权限级别**：normal
 
 **授权方式**：用户授权（user_grant）
 
-**变更信息**:从PKI网站同步过来，按照PKI网站权限内容进行修正
+**支持设备**：PC/2in1 | Tablet
 
 **起始版本**：11
+
+**变更信息：** API 11，权限级别为system_basic；从API 12开始，变更为normal。
 
 ## ohos.permission.READ_WRITE_DOCUMENTS_DIRECTORY
 
-允许应用访问公共目录下的Documents目录。
+允许应用访问公共目录下的Documents目录及子目录。
 
-当前仅2in1设备和平板上的应用可申请此权限。
+<!--RP2--><!--RP2End-->
 
 **权限级别**：normal
 
 **授权方式**：用户授权（user_grant）
 
-**变更信息**:从PKI网站同步过来，按照PKI网站权限内容进行修正
+**支持设备**：PC/2in1 | Tablet
 
 **起始版本**：11
+
+**变更信息：** API 11，权限级别为system_basic；从API 12开始，变更为normal。
 
 ## ohos.permission.CUSTOM_SCREEN_CAPTURE
 
 允许应用获取屏幕图像。
 
-应用获取此权限后，可进行截屏、录屏等操作。当前仅平板、2in1设备应用可申请此权限。
+应用获取此权限后，可进行截屏、录屏等操作。
 
 **权限级别**：system_basic
+
+**支持设备**：PC/2in1
 
 **授权方式**：用户授权（user_grant）
 
@@ -223,6 +238,12 @@
 
 **起始版本**：7
 
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
+
 ## ohos.permission.WRITE_MEDIA
 
 允许应用读写用户外部存储中的媒体文件信息。
@@ -234,4 +255,10 @@
 **授权方式**：用户授权（user_grant）
 
 **起始版本**：7
+
+**废弃版本**：12
+
+**替代方案**：
+
+请参考[文件权限组废弃替代方案](app-permission-group-list.md#文件deprecated)。
 
