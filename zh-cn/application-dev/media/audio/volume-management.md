@@ -69,7 +69,7 @@ audioVolumeManager.on('volumeChange', (volumeEvent: audio.VolumeEvent) => {
 
 管理应用音量的接口由AudioVolumeManager提供，在使用之前，需要使用[getVolumeManager()](../../reference/apis-audio-kit/js-apis-audio.md#getvolumemanager9)获取AudioVolumeManager实例。
 
-当[音量模式](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumemode18)设置为APP_INDIVIDUAL时，可通过下面示例接口设置、查询应用音量。
+当[音量模式](../../reference/apis-audio-kit/js-apis-audio.md#audiovolumemode19)设置为APP_INDIVIDUAL时，可通过下面示例接口设置、查询应用音量。
 
 ### 调节应用音量
 
@@ -166,4 +166,22 @@ audioRenderer.setVolume(0.5).then(() => {  // 音量范围为[0.0-1.0]。
 }).catch((err: BusinessError) => {  
   console.error(`Invoke setVolume failed, code is ${err.code}, message is ${err.message}`);
 });
+```
+
+### 监听活跃流变化
+
+通过设置监听事件，可以监听活跃流的变化。
+
+```ts
+import { audio } from '@kit.AudioKit';
+
+// 监听活跃流变化，on方法和off方法传入callback参数一致，off方法取消对应on方法订阅的监听。
+let activeVolumeTypeChangeCallback = (volumeType: audio.AudioVolumeType) => {
+  console.info(`VolumeType of stream: ${volumeType} `);
+};
+audioVolumeManager.on('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+audioVolumeManager.off('activeVolumeTypeChange', activeVolumeTypeChangeCallback);
+
+// 取消该事件的所有监听。
+audioVolumeManager.off('activeVolumeTypeChange');
 ```
