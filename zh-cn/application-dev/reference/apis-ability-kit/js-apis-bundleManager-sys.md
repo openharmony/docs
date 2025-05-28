@@ -4775,7 +4775,9 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 try {
     bundleManager.getAllPreinstalledApplicationInfo().then((data)=>{
         hilog.info(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo success, Data: %{public}s', JSON.stringify(data));
-    })
+    }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo failed. Cause: %{public}s', err.message);
+    });
 } catch (err) {
     let message = (err as BusinessError).message;
     hilog.error(0x0000, 'testTag', 'getAllPreinstalledApplicationInfo failed: %{public}s', message);

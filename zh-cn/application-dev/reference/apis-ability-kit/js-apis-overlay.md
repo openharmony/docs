@@ -64,12 +64,12 @@ try {
     .then(() => {
       console.info('setOverlayEnabled success');
     }).catch((err: BusinessError) => {
-      console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+      console.error('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
     });
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
-  console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
+  console.error('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -111,7 +111,7 @@ let isEnabled = false;
 try {
   overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
     if (err) {
-      console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
+      console.error('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
       return;
     }
     console.info('setOverlayEnabled success');
@@ -119,7 +119,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
-  console.info('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
+  console.error('setOverlayEnabled failed due to err code: ' + code + ' ' + 'message:' + message);
 }
 ```
 
@@ -169,7 +169,7 @@ let moduleName = "feature";
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
+    console.error('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
   }
 })();
 ```
@@ -211,7 +211,7 @@ let moduleName = "feature";
 try {
   overlay.getOverlayModuleInfo(moduleName, (err, data) => {
     if (err) {
-      console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+      console.error('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
       return;
     }
     console.log('overlayModuleInfo is ' + JSON.stringify(data));
@@ -219,7 +219,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
-  console.log('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
+  console.error('getOverlayModuleInfo failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
@@ -268,7 +268,7 @@ let targetModuleName = "feature";
   } catch (err) {
     let code = (err as BusinessError).code;
     let message = (err as BusinessError).message;
-    console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+    console.error('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
   }
 })();
 ```
@@ -309,7 +309,7 @@ let targetModuleName = "feature";
 try {
   overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
     if (err) {
-      console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
+      console.error('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
       return;
     }
     console.log('overlayModuleInfo is ' + JSON.stringify(data));
@@ -317,7 +317,7 @@ try {
 } catch (err) {
   let code = (err as BusinessError).code;
   let message = (err as BusinessError).message;
-  console.log('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
+  console.error('getTargetOverlayModuleInfos failed due to err code : ' + code + ' ' + 'message :' + message);
 }
 ```
 
