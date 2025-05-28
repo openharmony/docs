@@ -317,7 +317,7 @@ try {
 
 turnOffWifi(admin: Want): **void**
 
-关闭W-iFi功能。
+关闭Wi-Fi功能。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_WIFI
 
