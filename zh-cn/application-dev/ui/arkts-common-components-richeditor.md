@@ -457,15 +457,15 @@ RichEditor(this.options)
 
 更多事件使用请参考[RichEditor事件](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#事件)。
 
-## 设置用户预设的样式
-通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle11)设置用户预设的样式。
+## 设置用户预设的文本样式
+通过[setTypingStyle](../reference/apis-arkui/arkui-ts/ts-basic-components-richeditor.md#settypingstyle11)设置用户预设的文本样式。
 
 此接口可用于个性化的写作体验，例如可以使用此接口让输入的不同层级标题自动应用相应格式（如一级、二级标题）。
 
 ```ts
 RichEditor(this.options)
   .onReady(() => {
-    this.controller.addTextSpan('点击按钮,改变组件预设样式。', {
+    this.controller.addTextSpan('点击按钮，改变预设文本样式。', {
       style: {
         fontColor: Color.Black,
         fontSize: 15
