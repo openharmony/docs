@@ -2037,7 +2037,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 getZoneRules(): ZoneRules
 
-获取时区跳变规则。
+获取时区跳变规则，时区的跳变逻辑参考[夏令时跳变](../../internationalization/i18n-dst-transition.md)。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
