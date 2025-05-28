@@ -2772,6 +2772,12 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 | stepLen | number           | 是   | 间隔距离，取值大于等于0的整数，单位：px。                                         |
 | speed   | number           | 是   | 滑动速率，取值范围为200-40000的整数，默认值为600，不在范围内设为默认值为600，单位：px/s。 |
 
+**返回值：**
+
+| 类型             | 说明              |
+|----------------|-----------------|
+| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[uitest测试框架错误码](errorcode-uitest.md)。
