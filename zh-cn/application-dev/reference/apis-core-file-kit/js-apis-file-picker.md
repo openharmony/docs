@@ -794,6 +794,7 @@ async function example18(context: common.UIAbilityContext) { // 需确保 contex
 |multiAuthMode<sup>15+</sup>  | boolean                             |否    |  是 | 支持批量授权模式，默认为false（非批量授权模式）。当multAuthMode为true时为批量授权模式。当multAuthMode为true时，只有multiUriArray参数生效，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
 |multiUriArray<sup>15+</sup>  | Array&lt;string&gt;                             |否    |  是 | 传入需要批量授权的URI数组（仅支持文件，文件夹不生效）。配合multAuthMode使用。当multAuthMode为false时，配置该参数不生效。默认为空（效果为拉起批量授权页面后展示的文件为空）。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
 |mergeMode<sup>15+</sup>  | [MergeTypeMode](#mergetypemode15)                             |否    |  是 | 开启聚合视图模式，支持拉起文件管理应用的聚合视图。默认为DEFAULT，表示该参数不生效，非聚合视图。当该参数置为非DEFAULT时，其他参数不生效。仅支持手机设备。<br>**原子化服务API**：从API version 15开始，该接口支持在原子化服务中使用。|
+|isEncryptionSupported<sup>19+</sup>    | boolean |否    |  是 | 是否支持加密（仅支持文件，文件夹不生效），默认为false。该参数为true时，在Picker界面可以选择对文件进行加密。<br>**原子化服务API**：从API version 19开始，该接口支持在原子化服务中使用。  |
 
 ## DocumentPickerMode<sup>12+</sup>
 
