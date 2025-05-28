@@ -215,7 +215,7 @@ let advData: ble.AdvertiseData = {
   serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb", "18881888-0000-1000-8000-00805f9b34fb"],
   manufactureData: [manufactureDataUnit],
   serviceData: [],
-  includeDeviceName: false // 表示是否携带设备名，可选参数。注意：带上设备名时，容易导致广播报文长度超出31个字节，使得广播启动失败。
+  includeDeviceName: false // 表示是否携带设备名，可选参数。注意：带上设备名时，容易导致广播报文长度超出31个字节，使得广播启动失败
 };
 let advResponse: ble.AdvertiseData = {
   serviceUuids: [],
@@ -298,7 +298,7 @@ let advData: ble.AdvertiseData = {
   serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb", "18881888-0000-1000-8000-00805f9b34fb"],
   manufactureData: [manufactureDataUnit],
   serviceData: [],
-  includeDeviceName: false // 表示是否携带设备名，可选参数。注意：带上设备名时，容易导致广播报文长度超出31个字节。
+  includeDeviceName: false // 表示是否携带设备名，可选参数。注意：带上设备名时，容易导致广播报文长度超出31个字节
 };
 let advResponse: ble.AdvertiseData = {
   serviceUuids: [],
@@ -647,7 +647,7 @@ export class BleAdvertisingManager {
       serviceUuids: ["00001888-0000-1000-8000-00805f9b34fb", "18881888-0000-1000-8000-00805f9b34fb"],
       manufactureData: [manufactureDataUnit],
       serviceData: [],
-      includeDeviceName: false // 表示是否携带设备名，可选参数。注意：带上设备名时，容易导致广播报文长度超出31个字节，使得广播启动失败。
+      includeDeviceName: false // 表示是否携带设备名，可选参数。注意：带上设备名时，容易导致广播报文长度超出31个字节，使得广播启动失败
     };
     let advResponse: ble.AdvertiseData = {
       serviceUuids: [],
