@@ -455,10 +455,10 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   |  值   | 说明                    |
-| ------ | ---  | ----------------------- |
-| WINDOW_WILL_ROTATE| 0 | 窗口即将旋转。 |
-| WINDOW_DID_ROTATE | 1 | 窗口旋转结束。 |
+| 名称   |  类型 | 可读 | 可写 | 说明                   |
+| ------ | ---- | ---- | ---- | --------------------- |
+| WINDOW_WILL_ROTATE| number | 是 | 否 | 窗口即将旋转。 |
+| WINDOW_DID_ROTATE | number | 是 | 否 | 窗口旋转结束。 |
 
 ## RectType<sup>19+</sup>
 
@@ -468,10 +468,10 @@ import { window } from '@kit.ArkUI';
 
 **系统能力：**  SystemCapability.Window.SessionManager
 
-| 名称   | 值 | 说明                    |
-| ------ | --- | ------------------------ |
-| RELATIVE_TO_SCREEN | 0 | 窗口矩形区域相对于屏幕坐标系。 |
-| RELATIVE_TO_PARENT_WINDOW | 1 | 窗口矩形区域相对于父窗口坐标系。 |
+| 名称   |  类型 | 可读 | 可写 | 说明                   |
+| ------ | ---- | ---- | ---- | --------------------- |
+| RELATIVE_TO_SCREEN | number | 是 | 否 | 窗口矩形区域相对于屏幕坐标系。 |
+| RELATIVE_TO_PARENT_WINDOW | number | 是 | 否 | 窗口矩形区域相对于父窗口坐标系。 |
 
 ## RotationChangeInfo<sup>19+</sup>
 
@@ -502,7 +502,7 @@ import { window } from '@kit.ArkUI';
 | rectType | [RectType](#recttype19) | 是 | 是 | 窗口矩形区域坐标系类型。 |
 | windowRect | [Rect](#rect7) | 是 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
-### RotationChangeCallback<T, U><sup>19+</sup>
+### RotationChangeCallback<sup>19+</sup>
 
 (info: T): U;
 
