@@ -60,7 +60,7 @@ sticky(value: Sticky)
 
 设置ListItem吸顶效果。
 
-从API version9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#sticky9)。
+从API version 9开始废弃不再使用，推荐使用[List组件sticky属性](ts-container-list.md#sticky9)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -76,7 +76,7 @@ editable(value: boolean | EditMode)
 
 设置当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。
 
-从API version9开始废弃不再使用，无替代接口。
+从API version 9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -142,7 +142,7 @@ swipeAction(value: SwipeActionOptions)
 
 ListItem吸顶效果枚举。
 
-从API version9开始废弃不再使用，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
+从API version 9开始废弃不再使用，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -156,7 +156,7 @@ ListItem吸顶效果枚举。
 
 ListItem元素编辑模式枚举。
 
-从API version9开始废弃不再使用，无替代接口。
+从API version 9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

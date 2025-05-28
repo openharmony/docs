@@ -8262,7 +8262,7 @@ int32_t OH_ArkUI_DialogDismissEvent_GetDismissReason (ArkUI_DialogDismissEvent *
 
 **返回：**
 
-关闭原因，异常情况返回-1。 DIALOG_DISMISS_BACK_PRESS 对应点击三键back、左滑/右滑、键盘ESC关闭。 DIALOG_DISMISS_TOUCH_OUTSIDE 点击遮障层时。 DIALOG_DISMISS_CLOSE_BUTTON 点击关闭按钮。 DIALOG_DISMISS_SLIDE_DOWN 下拉关闭。
+关闭原因，异常情况返回-1。 DIALOG_DISMISS_BACK_PRESS 对应点击三键back、侧滑（左滑/右滑）、键盘ESC关闭。 DIALOG_DISMISS_TOUCH_OUTSIDE 点击遮障层时。 DIALOG_DISMISS_CLOSE_BUTTON 点击关闭按钮。 DIALOG_DISMISS_SLIDE_DOWN 下拉关闭。
 
 ### OH_ArkUI_DialogDismissEvent_GetUserData()
 

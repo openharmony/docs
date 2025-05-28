@@ -232,7 +232,7 @@ clipContent(clip: ContentClipMode | RectShape): T
 
 ### backToTop<sup>15+</sup>
 
-backToTop(backToTop: boolean)
+backToTop(backToTop: boolean): T
 
 设置滚动组件是否支持点击状态栏回到顶部。
 
@@ -248,9 +248,15 @@ backToTop(backToTop: boolean)
 | ------ | ------- | ---- | ---------------------------------------------- |
 | backToTop  | boolean | 是   | 设置滚动组件是否支持点击状态栏回到顶部。设置为true支持点击状态栏回到顶部，设置为false不支持点击状态栏回到顶部。<br/>默认值：<br/>API version 18之前：false。 <br/>API version 18及以后：滚动方向是水平方向时为false，是垂直方向时为true。 |
 
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
+
 ### digitalCrownSensitivity<sup>18+</sup>
 
-digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
+digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>): T
 
 设置表冠响应事件灵敏度。
 
@@ -265,6 +271,12 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 | 参数名      | 类型                                                         | 必填 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | sensitivity | [Optional&lt;CrownSensitivity&gt;](ts-appendix-enums.md#crownsensitivity18) | 是   | 表冠响应灵敏度。<br/>默认值：CrownSensitivity.MEDIUM，响应速度适中。 |
+
+**返回值：**
+
+| 类型 | 说明           |
+| --- | -------------- |
+| T | 返回当前滚动组件。 |
 
 
 ## 事件
@@ -432,7 +444,7 @@ onScroll(event: (scrollOffset: number, scrollState: ScrollState) => void): T
 
 滚动组件滑动时触发。
 
-从API version11开始使用。
+从API version 11开始使用。
 
 从API version 12开始废弃不再使用，Scroll组件的onScroll事件在布局之前触发，建议使用[onWillScroll](#onwillscroll12)替代；List、Grid和WaterFlow组件的onScroll事件在布局之后触发，建议使用[onDidScroll](#ondidscroll12)替代。
 
