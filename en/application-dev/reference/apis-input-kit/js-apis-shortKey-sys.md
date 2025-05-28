@@ -28,7 +28,7 @@ Sets the delay for starting an ability using shortcut keys. This API uses an asy
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
 | businessKey| string              | Yes  | Unique service ID registered on the multimodal side. It corresponds to **businessId** in the **ability_launch_config.json** file. You need to query this parameter on your own before calling the API.|
 | delay      | number              | Yes  | Delay for starting an ability using shortcut keys, in milliseconds. This field is invalid only when shortcut keys are used.|
-| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |                                               
+| callback   | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
@@ -42,17 +42,16 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("businessId", 500, (error) => {
     if (error) {
-      console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
     }
     console.log(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -89,13 +88,12 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 **Example**
 
 ```js
-import { shortKey } from '@kit.InputKit';
 try {
   shortKey.setKeyDownDuration("businessId", 500).then(() => {
     console.log(`Set key down duration success`);
   });
 } catch (error) {
-  console.log(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Set key down duration failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 

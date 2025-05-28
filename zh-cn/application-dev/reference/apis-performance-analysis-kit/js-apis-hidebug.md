@@ -482,7 +482,7 @@ startAppTraceCapture(tags: number[], flag: TraceFlag, limitSize: number) : strin
 
 该接口补充了[hitrace](../../dfx/hitrace.md)功能，开发者可通过该接口完成指定范围的trace自动化采集。由于该接口中trace采集过程中消耗的性能与需要采集的范围成正相关，建议开发者在使用该接口前，通过hitrace命令抓取应用的trace日志，从中筛选出所需trace采集的关键范围，以提高该接口性能。
 
-`startAppTraceCapture()`方法的调用需要与`[stopAppTraceCapture()](#hidebugstopapptracecapture12)`方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
+`startAppTraceCapture()`方法的调用需要与'[stopAppTraceCapture()](#hidebugstopapptracecapture12)'方法的调用一一对应，重复开启trace采集将导致接口调用异常，由于trace采集过程中会消耗较多性能，开发者应在完成采集后及时关闭。
 
 应用调用startAppTraceCapture接口启动采集trace，当采集的trace大小超过了limitSize，系统将自动调用stopAppTraceCapture接口停止采集。因此limitSize大小设置不当，将导致生成trace数据不足，无法满足故障分析。所以要求开发者根据实际情况，评估limitSize大小。
 
@@ -644,6 +644,8 @@ try {
 setAppResourceLimit(type: string, value: number, enableDebugLog: boolean) : void
 
 设置应用的文件描述符数量、线程数量、JS内存或Native内存资源限制。
+
+主要应用场景在于构造内存泄漏故障，参见[订阅资源泄漏事件（ArkTS）](../../dfx/hiappevent-watcher-resourceleak-events-arkts.md)、[订阅资源泄漏事件（C/C++）](../../dfx/hiappevent-watcher-resourceleak-events-ndk.md)。
 
 > **注意：**
 >

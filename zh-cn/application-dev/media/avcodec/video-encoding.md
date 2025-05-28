@@ -407,7 +407,7 @@ target_link_libraries(sample PUBLIC libnative_media_venc.so)
     // 通过OHNativeWindow*变量类型，可通过生产者接口获取待填充数据地址。
     ```
 
-    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/_native_window.md#ohnativewindow)。
+    OHNativeWindow*变量类型的使用方法请参考图形子系统 [OHNativeWindow](../../reference/apis-arkgraphics2d/capi-nativewindow.md)。
 
 7. 调用OH_VideoEncoder_Prepare()编码器就绪。
 

@@ -109,7 +109,7 @@ function add(num1: number, num2: number): number {
   return num1 + num2;
 }
 
-async function ConcurrentFunc(): Promise<void> {
+async function concurrentFunc(): Promise<void> {
   try {
     const task: taskpool.Task = new taskpool.Task(add, 1, 2);
     console.info(`taskpool res is: ${await taskpool.execute(task)}`);
@@ -130,7 +130,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            ConcurrentFunc();
+            concurrentFunc();
           })
       }
       .width('100%')
@@ -139,10 +139,11 @@ struct Index {
   }
 }
 ```
+<!-- @[concurrent_taskpool_common_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/generaluse.ets) -->
 
 #### 并发函数返回Promise
 
-并发函数中返回Promise时需要特别关注。如示例所示，testPromise和testPromise1等并发同步函数会处理该Promise并返回结果。
+并发函数中返回Promise时需要特别关注。如示例所示，testPromise和testPromise1等需处理Promise并返回结果。
 
 示例：
 
@@ -250,6 +251,7 @@ struct Index {
   }
 }
 ```
+<!-- @[concurrent_taskpool_promise_return](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/returnpromise.ets) -->
 
 #### 并发函数中使用自定义类或函数
 
@@ -331,6 +333,7 @@ struct Index {
   }
 }
 ```
+<!-- @[concurrent_taskpool_custom_class_function](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/customclasses.ets) -->
 
 ```ts
 // Test.ets
@@ -350,6 +353,7 @@ export class MyTestB {
   static nameStr:string = 'MyTestB';
 }
 ```
+<!-- @[concurrent_taskpool_test_resources](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/Test.ets) -->
 
 #### 并发异步函数中使用Promise
 
@@ -426,6 +430,7 @@ struct Index {
   }
 }
 ```
+<!-- @[concurrent_taskpool_async_promise_usage](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/ArkTsConcurrent/MultithreadedConcurrency/TaskPoolIntroduction/entry/src/main/ets/managers/asynchronousfunctions.ets) -->
 
 ## TaskPool扩缩容机制
 

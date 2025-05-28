@@ -509,14 +509,15 @@ zh-cn/application-dev/reference/apis-ability-kit/errorcode-DistributedSchedule.m
 [API参考-Ability Kit-包管理]
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-bundle*.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-installer-sys.md  @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl.md @Brilliantry_Rui  @changzheng6  @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-appControl*.md @Brilliantry_Rui  @changzheng6  @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-defaultAppManager.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-distributedBundleManager.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-freeInstall.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-installer.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-launcherBundleManager.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
-zh-cn/application-dev/reference/apis-ability-kit/js-apis-overlay.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-overlay*.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/js-apis-zlib.md @Brilliantry_Rui @changzheng6   @kongjing2  @small_bricklayer
+zh-cn/application-dev/reference/apis-ability-kit/js-apis-shortcut*.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-bundle.md @Brilliantry_Rui  @changzheng6   @kongjing2  @small_bricklayer
 zh-cn/application-dev/reference/apis-ability-kit/errorcode-zlib.md @Brilliantry_Rui  @changzheng6    @kongjing2  @small_bricklayer
 
@@ -941,7 +942,7 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-battery-info-sys
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-batteryStatistics-sys.md @li-yan339  @alien0208
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-brightness-sys.md @li-yan339  @alien0208
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-charger-sys.md @li-yan339  @alien0208
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @Brilliantry_Rui @yangqing3 @caiminggang @li-yan339
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-enterprise-usbManager-sys.md @liuzuming @Brilliantry_Rui  @lpw_work @caiminggang @li-yan339
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @li-yan339  @alien0208
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-usbManager-sys.md @li-yan339 @Kevin-Lau @liuhonggang123
 

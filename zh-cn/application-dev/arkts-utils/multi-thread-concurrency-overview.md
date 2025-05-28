@@ -41,41 +41,43 @@ Actor并发模型中，线程不共享内存，需通过线程间通信机制传
 // 此段示例为伪代码仅作为逻辑示意，便于开发者理解使用内存共享模型和Actor模型的区别
 class Queue {
   // ...
-  push(value: number) {}
- 
+  push(value: number) {
+  }
+
   empty(): boolean {
     // ...
-    return true
+    return true;
   }
- 
-  pop(value: number) :number {
+
+  pop(value: number): number {
     // ...
     return value;
   }
 }
- 
+
 class Mutex {
   // ...
   lock(): boolean {
     // ...
     return true;
   }
- 
+
   unlock() {
- 
   }
 }
+
 class BufferQueue {
-  queue: Queue = new Queue()
-  mutex: Mutex = new Mutex()
+  queue: Queue = new Queue();
+  mutex: Mutex = new Mutex();
+
   add(value: number) {
     // 尝试获取锁
     if (this.mutex.lock()) {
-      this.queue.push(value)
-      this.mutex.unlock()
+      this.queue.push(value);
+      this.mutex.unlock();
     }
   }
- 
+
   take(value: number): number {
     let res: number = 0;
     // 尝试获取锁
@@ -83,48 +85,50 @@ class BufferQueue {
       if (this.queue.empty()) {
         res = 1;
       }
-      let num: number = this.queue.pop(value)
-      this.mutex.unlock()
+      let num: number = this.queue.pop(value);
+      this.mutex.unlock();
       res = num;
     }
     return res;
   }
 }
- 
+
 // 构造一段全局共享的内存
-let g_bufferQueue = new BufferQueue()
- 
+let g_bufferQueue = new BufferQueue();
+
 class Producer {
   constructor() {
   }
+
   run() {
-    let value = Math.random()
+    let value = Math.random();
     // 跨线程访问bufferQueue对象
-    g_bufferQueue.add(value)
+    g_bufferQueue.add(value);
   }
 }
- 
+
 class ConsumerTest {
   constructor() {
   }
+
   run() {
     // 跨线程访问bufferQueue对象
     let num = 123;
-    let res = g_bufferQueue.take(num)
+    let res = g_bufferQueue.take(num);
     if (res != null) {
       // 添加消费逻辑
     }
   }
 }
- 
+
 function Main(): void {
-  let consumer: ConsumerTest = new ConsumerTest()
-  let producer1: Producer = new Producer()
-  for (let i = 0;i < 0;i++) {
+  let consumer: ConsumerTest = new ConsumerTest();
+  let producer1: Producer = new Producer();
+  for (let i = 0; i < 0; i++) {
     // 模拟启动多线程执行生产任务
-    // let thread = new Thread()
-    // thread.run(producer.run())
-    // consumer.run()
+    // let thread = new Thread();
+    // thread.run(producer.run());
+    // consumer.run();
   }
 }
 ```
@@ -145,21 +149,21 @@ import { taskpool } from '@kit.ArkTS';
 @Concurrent
 async function produce(): Promise<number> {
   // 添加生产相关逻辑
-  console.info("producing...");
+  console.info('producing...');
   return Math.random();
 }
 
 class Consumer {
   public consume(value: Object) {
     // 添加消费相关逻辑
-    console.info("consuming value: " + value);
+    console.info('consuming value: ' + value);
   }
 }
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -168,7 +172,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button() {
-          Text("start")
+          Text('start')
         }.onClick(() => {
           let produceTask: taskpool.Task = new taskpool.Task(produce);
           let consumer: Consumer = new Consumer();
@@ -190,6 +194,7 @@ struct Index {
   }
 }
 ```
+<!-- @[actor_model](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/ArkTsConcurrent/MultithreadedConcurrency/MultiThreadConcurrencyOverview/entry/src/main/ets/pages/Index.ets) -->
 
 也可以等待生产者完成所有生产任务，通过序列化通信将结果发送给UI线程。UI线程接收完毕后，由消费者统一消费结果。
 
@@ -200,14 +205,14 @@ import { taskpool } from '@kit.ArkTS';
 @Concurrent
 async function produce(): Promise<number> {
   // 添加生产相关逻辑
-  console.info("producing...");
+  console.info('producing...');
   return Math.random();
 }
 
 class Consumer {
   public consume(value: Object) {
     // 添加消费相关逻辑
-    console.info("consuming value: " + value);
+    console.info('consuming value: ' + value);
   }
 }
 
@@ -223,7 +228,7 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Button() {
-          Text("start")
+          Text('start')
         }.onClick(async () => {
           let dataArray = new Array<number>();
           let produceTask: taskpool.Task = new taskpool.Task(produce);

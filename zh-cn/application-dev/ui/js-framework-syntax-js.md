@@ -142,8 +142,8 @@ JS文件用来定义HML页面的业务逻辑，支持ECMA规范的JavaScript语�
   示例：
 
   ```js
-  this.$rootElement().scrollTo({position: 0})
-  this.$rootElement().scrollTo({id: 'id', duration: 200, timingFunction: 'ease-in', complete: ()=>void})
+  this.$rootElement().scrollTo({ position: 0 });
+  this.$rootElement().scrollTo({ id: 'id', duration: 200, timingFunction: 'ease-in', complete: () => void });
   ```
 
 

@@ -45,8 +45,8 @@ WebSocket连接功能主要由[webSocket](../reference/apis-network-kit/js-apis-
 | off(type: 'messageReceive')  | 取消订阅WebSocketServer的接收到客户端消息事件。           |
 | on(type: 'close')            | 订阅WebSocketServer的关闭事件。                          |
 | off(type: 'close')           | 取消订阅WebSocketServer的关闭事件。                      |
-| on(type: 'error')            | 订阅WebSocketServer的Error事件。                        |
-| off(type: 'error')           | 取消订阅WebSocketServer的Error事件。                    |
+| on(type: 'error')            | 订阅WebSocketServer的error事件。                        |
+| off(type: 'error')           | 取消订阅WebSocketServer的error事件。                    |
 
 
 ## client端开发步骤

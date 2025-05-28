@@ -9,6 +9,7 @@
     - [@ohos.app.ability.ActionExtensionAbility (自定义服务扩展能力)](js-apis-app-ability-actionExtensionAbility.md)
     - [@ohos.app.ability.application (Application)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (ApplicationStateChangeCallback)](js-apis-app-ability-applicationStateChangeCallback.md)
+    - [@ohos.app.ability.AppServiceExtensionAbility (应用后台服务扩展组件)](js-apis-app-ability-appServiceExtensionAbility.md)
     - [@ohos.app.ability.AtomicServiceOptions (EmbeddableUIAbility启动可选参数)](js-apis-app-ability-atomicServiceOptions.md)
     - [@ohos.app.ability.autoFillManager (autoFillManager)](js-apis-app-ability-autoFillManager.md)
     - [@ohos.app.ability.ChildProcess](js-apis-app-ability-childProcess.md)
@@ -25,6 +26,7 @@
     - [@ohos.app.ability.insightIntent (insightIntent)](js-apis-app-ability-insightIntent.md)
     - [@ohos.app.ability.InsightIntentContext (意图调用执行上下文)](js-apis-app-ability-insightIntentContext.md)
     - [@ohos.app.ability.InsightIntentDecorator (意图装饰器定义)](js-apis-app-ability-InsightIntentDecorator.md)
+    - [@ohos.app.ability.InsightIntentEntryExecutor (@InsightIntentEntry的意图调用执行基类)](js-apis-app-ability-InsightIntentEntryExecutor.md)
     - [@ohos.app.ability.InsightIntentExecutor (意图调用执行基类)](js-apis-app-ability-insightIntentExecutor.md)
     - [@ohos.app.ability.PhotoEditorExtensionAbility (图片编辑能力)](js-apis-app-ability-photoEditorExtensionAbility.md)
     - [@ohos.app.ability.OpenLinkOptions (OpenLinkOptions)](js-apis-app-ability-openLinkOptions.md)
@@ -90,6 +92,7 @@
     - [@ohos.bundle.defaultAppManager (默认应用管理)](js-apis-defaultAppManager.md)
     - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](js-apis-launcherBundleManager.md)
     - [@ohos.bundle.overlay (overlay模块)](js-apis-overlay.md)
+    - [@ohos.bundle.shortcutManager (shortcutManager模块)](js-apis-shortcutManager.md)
     <!--Del-->
     - [@ohos.bundle.appControl (appControl模块)(系统接口)](js-apis-appControl-sys.md)
     - [@ohos.bundle.appDomainVerify (应用域名校验)(系统接口)](js-apis-appDomainVerify-sys.md)
@@ -128,6 +131,7 @@
       - [AbilityStateData](js-apis-inner-application-abilityStateData.md)
       - [ApplicationContext](js-apis-inner-application-applicationContext.md)
       - [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)
+      - [AppServiceExtensionContext](js-apis-inner-application-appServiceExtensionContext.md)
       - [AppStateData](js-apis-inner-application-appStateData.md)
       - [BaseContext](js-apis-inner-application-baseContext.md)
       - [Context](js-apis-inner-application-context.md)
@@ -194,9 +198,11 @@
       - [metadata](js-apis-bundleManager-metadata.md)
       - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
       - [Skill](js-apis-bundleManager-skill.md)
+      - [shortcutInfo](js-apis-bundleManager-shortcutInfo.md)
       <!--Del-->
       - [ApplicationInfo (系统接口)](js-apis-bundleManager-ApplicationInfo-sys.md)
       - [AppProvisionInfo (系统接口)](js-apis-bundleManager-AppProvisionInfo-sys.md)
+      - [BundleInfo (系统接口)](js-apis-bundleManager-BundleInfo-sys.md)
       - [BundlePackInfo (系统接口)](js-apis-bundleManager-BundlePackInfo-sys.md)
       - [BundleResourceInfo (系统接口)](js-apis-bundleManager-BundleResourceInfo-sys.md)
       - [BusinessAbilityInfo (系统接口)](js-apis-bundleManager-businessAbilityInfo-sys.md)
@@ -206,7 +212,6 @@
       - [recoverableApplicationInfo (系统接口)](js-apis-bundleManager-recoverableApplicationInfo-sys.md)
       - [remoteAbilityInfo (系统接口)](js-apis-bundleManager-remoteAbilityInfo-sys.md)
       - [SharedBundleInfo (系统接口)](js-apis-bundleManager-sharedBundleInfo-sys.md)
-      - [shortcutInfo (系统接口)](js-apis-bundleManager-shortcutInfo-sys.md)
       <!--DelEnd-->
     - continuation<!--continuation-->
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
@@ -261,13 +266,13 @@
       <!--DelEnd-->
 - C API<!--ability-c-->
   - 模块<!--ability-module-->
-    - [AbilityAccessControl](_ability_access_control.md)
+    - [AbilityAccessControl](capi-abilityaccesscontrol.md)
     - [AbilityBase](_ability_base.md)
     - [AbilityRuntime](_ability_runtime.md)
     - [Bundle](_bundle.md)
     - [ChildProcess](c-apis-ability-childprocess.md)
   - 头文件<!--ability-headerfile-->
-    - [ability_access_control.h](ability__access__control_8h.md)
+    - [ability_access_control.h](capi-ability-access-control-h.md)
     - [ability_base_common.h](ability__base__common_8h.md)
     - [ability_runtime_common.h](ability__runtime__common_8h.md)
     - [application_context.h](application__context_8h.md)
@@ -280,6 +285,8 @@
     - [AbilityBase_Element](_ability_base_element.md)
     - [OH_NativeBundle_ApplicationInfo](_o_h___native_bundle_application_info.md)
     - [OH_NativeBundle_ElementName](_o_h___native_bundle_element_name.md)
+    - [OH_NativeBundle_Metadata](native_interface_bundle_metadata.md)
+    - [OH_NativeBundle_ModuleMetadata](native_interface_bundle_module_metadata.md)
 - 错误码<!--ability-arkts-errcode-->
   - [元能力子系统错误码](errorcode-ability.md)
   - [DistributedSchedule错误码](errorcode-DistributedSchedule.md)

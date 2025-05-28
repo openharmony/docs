@@ -4573,6 +4573,20 @@ Allows an application to call the APIs for installing plugins.
 
 **Valid since**: 19
 
+## ohos.permission.ENTERPRISE_ACCESS_DLP_FILE
+
+Allows an applications to call the interface of enterprise space to access DLP files.
+
+**Permission level**：system_core
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: PC/2in1
+
+**Valid since**：20
+
 ## ohos.permission.UNINSTALL_PLUGIN_BUNDLE
 
 Allows an application to call the APIs for uninstalling plugins.
@@ -4751,11 +4765,55 @@ Allows an application to run background request tasks without triggering notific
 
 **Valid since**: 20
 
+## ohos.permission.RESTORE_APP
+
+Allows a system application to display a pop-up window for application restore.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: true
+
+**Supported devices**: Phone | PC/2in1 | Tablet
+
+**Valid since**: 20
+
 ## ohos.permission.ALLOW_IOURING
 
 Allows a system application to call io_uring to perform async IO operations.
 
 **Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: General
+
+**Valid since**：20
+
+## ohos.permission.NFC_NOTIFICATION
+
+Allows an application to publish common events related to NFC notifications.
+
+**Permission level**：system_basic
+
+**Authorization mode**：system_grant
+
+**Enable via ACL**：true
+
+**Supported devices**: Phone
+
+**Valid since**：20
+
+## ohos.permission.kernel.ALLOW_APP_CODE_DECRYPT
+
+Allows a system application or system service to call kernel APIs for code decryption.
+
+With this permission, the application can access kernel APIs across processes to request decryption of encrypted code. This helps prevent unauthorized access and further safeguards application code assets.
+
+**Permission level**：system_core
 
 **Authorization mode**：system_grant
 

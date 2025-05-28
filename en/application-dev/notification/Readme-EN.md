@@ -16,3 +16,10 @@
 <!--Del-->
 - [Subscribing to Notifications (for System Applications Only)](notification-subscription.md)
 <!--DelEnd-->
+- Cross-Device Notification<!--notification-distributed-->
+  - [Cross-Device Notification Overview](notification-distributed-overview.md)
+    <!--Del-->
+  - [Cross-Device Notification Management (for System Applications Only)](notification-distributed-notdistributed.md)
+  <!--DelEnd-->
+  - [Enabling Quick Reply for Cross-device Notifications](notification-quickreply.md)
+  - [Clearing Repeated Notifications Across Devices](notification-distributed-messageid.md)

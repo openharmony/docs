@@ -213,7 +213,7 @@ rootElement.getCursorPosition((err: BusinessError, data: number) => {
 
 ### startAbility<sup>12+</sup>
 
-startAbility(want: Want): void;
+startAbility(want: Want): Promise\<void>;
 
 提供拉起前台页面的能力。
 
@@ -224,6 +224,12 @@ startAbility(want: Want): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | want | [Want](../../reference/apis-ability-kit/js-apis-app-ability-want.md) | 是 | Want类型参数，传入需要启动的ability的信息，如Ability名称，Bundle名称等。 |
+
+**返回值：**
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -264,7 +270,7 @@ getElements(windowId: number, elementId?: number): Promise<Array&lt;Accessibilit
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | windowId | number | 是 | 表示查询的窗口id。 |
-| elementId | number | 否 | 表示查询的节点id。传入此参数表示查询当前节点下的所有子节点列表，不传则查询窗口下所有节点。 |
+| elementId | number | 否 | 表示查询的节点id。传入此参数表示查询当前节点下的所有子节点列表，不传则查询窗口下所有节点。默认值为-1。 |
 
 **返回值：**
 | 类型                                  | 说明                     |
@@ -277,7 +283,7 @@ getElements(windowId: number, elementId?: number): Promise<Array&lt;Accessibilit
 
 | 错误码ID   | 错误信息                                     |
 | ------- | ---------------------------------------- |
-| 201 | Permission verification failed. The application does not have the permission required to call the API. |
+| 202 | Permission verification failed. A non-system application calls a system API. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 9300003 | No accessibility permission to perform the operation. |
 

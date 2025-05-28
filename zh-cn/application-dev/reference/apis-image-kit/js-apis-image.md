@@ -219,7 +219,7 @@ createPixelMap(colors: ArrayBuffer, options: InitializationOptions, callback: As
 | 参数名   | 类型                                             | 必填 | 说明                       |
 | -------- | ------------------------------------------------ | ---- | -------------------------- |
 | colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数。 |
-| options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度，尺寸，缩略值，像素格式和是否可编辑。 |
+| options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
 | callback | AsyncCallback\<[PixelMap](#pixelmap7)>           | 是   | 回调函数，当创建PixelMap成功，err为undefined，data为获取到的PixelMap对象；否则为错误对象。 |
 
 **示例：**
@@ -237,6 +237,54 @@ async function CreatePixelMap() {
     } else {
       console.info('Succeeded in creating pixelmap.');
     }
+  })
+}
+```
+
+## image.createPixelMapUsingAllocator<sup>20+</sup>
+
+createPixelMapUsingAllocator(colors: ArrayBuffer, options: InitializationOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
+
+通过属性创建以及指定内存类型创建PixelMap，默认采用BGRA_8888格式处理数据。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名   | 类型                                             | 必填 | 说明                       |
+| -------- | ------------------------------------------------ | ---- | -------------------------- |
+| colors   | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数。 |
+| options  | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
+| allocatorType  | [AllocatorType](#allocatortype15)          | 否   | 指定创建pixelmap的内存类型，默认内存类型是AllocatorType.AUTO。<br> 1. image.AllocatorType.AUTO：不支持该内存类型的格式有UNKNOWN、YCBCR_P010、YCRCB_P010和ASTC_4x4。RGBA_1010102默认申请DMA内存。其他格式（RGB_565、RGBA_8888、BGRA_8888和RGBAF_16）尺寸大于512*512默认申请DMA内存，否则申请共享内存。<br>2. image.AllocatorType.DMA：RGBA_1010102、RGB_565、RGBA_8888、BGRA_8888和RGBAF_16支持DMA内存类型，其余格式不支持。<br>3. image.AllocatorType.SHARED：UNKNOWN、RGBA_1010102、YCBCR_P010、YCRCB_P010和ASTC_4x4不支持共享内存，其余格式支持。|
+
+**返回值：**
+
+| 类型                             | 说明                                                                    |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| Promise\<[PixelMap](#pixelmap7)> | Promise对象，返回PixelMap。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  7600201    | Unsupported operation. |
+|  7600301    | Memory alloc failed. |
+|  7600302    | Memory copy failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreatePixelMapUseAllocator() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  image.createPixelMapUsingAllocator(color, opts, image.AllocatorType.AUTO).then((pixelMap: image.PixelMap) => {
+    console.info('Succeeded in creating pixelmap.');
+  }).catch((error: BusinessError) => {
+    console.error(`Failed to create pixelmap. code is ${error.code}, message is ${error.message}`);
   })
 }
 ```
@@ -587,6 +635,91 @@ import { BusinessError } from '@kit.BasicServicesKit';
 async function CreatePixelMapSync() {
   let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
   let pixelMap : image.PixelMap = image.createPixelMapSync(opts);
+  return pixelMap;
+}
+```
+
+## image.createPixelMapUsingAllocatorSync<sup>20+</sup>
+
+createPixelMapUsingAllocatorSync(colors: ArrayBuffer, options: InitializationOptions, allocatorType?: AllocatorType): PixelMap
+
+通过指定属性以及内存类型创建PixelMap，默认采用BGRA_8888格式处理数据，同步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| colors  | ArrayBuffer                                      | 是   | 图像像素数据的缓冲区，用于初始化PixelMap的像素。初始化前，缓冲区中的像素格式需要由[InitializationOptions](#initializationoptions8).srcPixelFormat指定。<br>**说明：** 图像像素数据的缓冲区长度：length = width * height * 单位像素字节数。 |
+| options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
+| allocatorType  | [AllocatorType](#allocatortype15)          | 否   | 指定创建pixelmap的内存类型，默认内存类型是AllocatorType.AUTO。<br> 1. image.AllocatorType.AUTO：不支持该内存类型的格式有UNKNOWN、YCBCR_P010、YCRCB_P010和ASTC_4x4。RGBA_1010102默认申请DMA内存。其他格式（RGB_565、RGBA_8888、BGRA_8888和RGBAF_16）尺寸大于512*512默认申请DMA内存，否则申请共享内存。<br>2. image.AllocatorType.DMA：RGBA_1010102、RGB_565、RGBA_8888、BGRA_8888和RGBAF_16支持DMA内存类型，其余格式不支持。<br>3. image.AllocatorType.SHARED：UNKNOWN、RGBA_1010102、YCBCR_P010、YCRCB_P010和ASTC_4x4不支持共享内存，其余格式支持。|
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  7600201    | Unsupported operation. |
+|  7600301    | Memory alloc failed. |
+|  7600302    | Memory copy failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreatePixelMapSync() {
+  const color: ArrayBuffer = new ArrayBuffer(96); // 96为需要创建的像素buffer大小，取值为：height * width *4。
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  let pixelMap : image.PixelMap = image.createPixelMapUsingAllocatorSync(color, opts, image.AllocatorType.AUTO);
+  return pixelMap;
+}
+```
+
+## image.createPixelMapUsingAllocatorSync<sup>20+</sup>
+
+createPixelMapUsingAllocatorSync(options: InitializationOptions, allocatorType?: AllocatorType): PixelMap
+
+通过属性创建PixelMap，同步返回PixelMap结果。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名  | 类型                                             | 必填 | 说明                                                             |
+| ------- | ------------------------------------------------ | ---- | ---------------------------------------------------------------- |
+| options | [InitializationOptions](#initializationoptions8) | 是   | 创建像素的属性，包括透明度、尺寸、缩略值、像素格式和是否可编辑。 |
+| allocatorType  | [AllocatorType](#allocatortype15)          | 否   | 指定创建pixelmap的内存类型，默认内存类型是AllocatorType.AUTO。<br> 1. image.AllocatorType.AUTO：不支持该内存类型的格式有UNKNOWN和ASTC_4x4。RGBA_1010102、YCBCR_P010、YCRCB_P010格式默认申请DMA内存。其他格式（RGB_565, RGBA_8888, BGRA_8888, RGBAF_16）尺寸大于512*512默认申请DMA内存，否则申请共享内存。<br>2. image.AllocatorType.DMA：RGB_565、RGBA_8888、BGRA_8888、RGBAF_16、RGBA_1010102、YCBCR_P010和YCRCB_P010支持DMA内存类型，其余格式不支持。<br>3. image.AllocatorType.SHARED：UNKNOWN、RGBA_1010102、YCBCR_P010、YCRCB_P010和ASTC_4x4不支持共享内存，其余格式支持。|
+
+**返回值：**
+| 类型                             | 说明                  |
+| -------------------------------- | --------------------- |
+| [PixelMap](#pixelmap7) | 成功同步返回PixelMap对象，失败抛出异常。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+|  7600201    | Unsupported operation. |
+|  7600301    | Memory alloc failed. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function CreatePixelMapSync() {
+  let opts: image.InitializationOptions = { editable: true, pixelFormat: image.PixelMapFormat.RGBA_8888, size: { height: 4, width: 6 } }
+  let pixelMap : image.PixelMap = image.createPixelMapUsingAllocatorSync(opts, image.AllocatorType.AUTO);
   return pixelMap;
 }
 ```
@@ -4666,7 +4799,7 @@ imageSourceApi.getImageProperty("BitsPerSample", property, (error: BusinessError
 
 getImageProperties(key: Array&#60;PropertyKey&#62;): Promise<Record<PropertyKey, string|null>>
 
-批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量获取图片中的指定属性键的值，用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -4706,6 +4839,65 @@ imageSourceApi.getImageProperties(key).then((data) => {
 }).catch((err: BusinessError) => {
   console.error(JSON.stringify(err));
 });
+```
+
+### getImagePropertySync<sup>20+</sup>
+
+getImagePropertySync(key:PropertyKey): string
+
+获取图片exif指定属性键的值，用String形式返回结果。
+
+>**说明：**
+>
+> 该方法仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。
+>
+> exif信息是图片的元数据，包含拍摄时间、相机型号、光圈、焦距、ISO等。
+
+
+**系统能力：** SystemCapability.Multimedia.Image.ImageSource
+
+**参数：**
+
+| 参数名  | 类型                                                 | 必填 | 说明                                 |
+| ------- | ---------------------------------------------------- | ---- | ------------------------------------ |
+| key     | [PropertyKey](#propertykey7)                                               | 是   | 图片属性名。                         |
+
+**返回值：**
+
+| 类型             | 说明                                                              |
+| ---------------- | ----------------------------------------------------------------- |
+| string | 返回图片exif中指定属性键的值（如获取失败则返回属性默认值），各个数据值作用请参考[PropertyKey](#propertykey7)。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Image错误码](errorcode-image.md)。
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 7700101  | Bad source. e.g.,1. Image has invalid width or height. 2. Image source incomplete. 3. Read image data failed. 4. Codec create failed.|
+| 7700102 | Unsupported MIME type.|
+| 7700202 | Unsupported metadata. For example, key is not supported.|
+
+**示例：**
+
+```ts
+import { image } from '@kit.ImageKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import fs from '@ohos.file.fs';
+
+let context = getContext();
+if (context == null) {
+  return;
+}
+let resoutceManager = context.resourceManager;
+if (resoutceManager == null) {
+  return;
+}
+let fd = resourceManager.getRawFdSync("example.jpg");
+
+const imageSourceApi = image.createImageSource(fd);
+console.info("getImagePropertySync");
+let bits_per_sample = imageSourceApi.getImagePropertySync(image.PropertyKey.BITS_PER_SAMPLE);
+console.info("bits_per_sample : " + bits_per_sample);
 ```
 
 ### modifyImageProperty<sup>11+</sup>
@@ -4844,7 +5036,7 @@ imageSourceApi.modifyImageProperty("ImageWidth", "120", (err: BusinessError) => 
 
 modifyImageProperties(records: Record<PropertyKey, string|null>): Promise\<void>
 
-批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF<sup>12+</sup>（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
+批量通过指定的键修改图片属性的值，使用Promise形式返回结果。仅支持JPEG、PNG和HEIF（不同硬件设备支持情况不同）文件，且需要包含exif信息。其中可以通过supportedFormats属性查询是否支持HEIF格式的exif读写。
 
 > **说明：**
 >
@@ -5022,6 +5214,8 @@ createPixelMap(options?: DecodingOptions): Promise\<PixelMap>
 
 通过图片解码参数创建PixelMap对象。
 
+从API version 15开始，推荐使用[createPixelMapUsingAllocator](#createpixelmapusingallocator15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -5058,6 +5252,8 @@ createPixelMap(callback: AsyncCallback\<PixelMap>): void
 
 通过默认参数创建PixelMap对象，使用callback形式返回结果。
 
+从API version 15开始，推荐使用[createPixelMapUsingAllocator](#createpixelmapusingallocator15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
+
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -5089,6 +5285,8 @@ imageSourceApi.createPixelMap((err: BusinessError, pixelMap: image.PixelMap) => 
 createPixelMap(options: DecodingOptions, callback: AsyncCallback\<PixelMap>): void
 
 通过图片解码参数创建PixelMap对象。
+
+从API version 15开始，推荐使用[createPixelMapUsingAllocator](#createpixelmapusingallocator15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
@@ -5132,6 +5330,8 @@ imageSourceApi.createPixelMap(decodingOptions, (err: BusinessError, pixelMap: im
 createPixelMapSync(options?: DecodingOptions): PixelMap
 
 通过图片解码参数同步创建PixelMap对象。
+
+从API version 15开始，推荐使用[createPixelMapUsingAllocatorSync](#createpixelmapusingallocatorsync15)，该接口可以指定输出pixelMap的内存类型[AllocatorType](#allocatortype15)，详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -5365,7 +5565,7 @@ imageSourceApi.createPixelMapList(decodeOpts, (err: BusinessError, pixelMapList:
 
 createPixelMapUsingAllocator(options?: DecodingOptions, allocatorType?: AllocatorType): Promise\<PixelMap>
 
-使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise返回对象。
+使用指定的分配器根据图像解码参数异步创建PixelMap对象。使用Promise异步回调。接口使用详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -5428,7 +5628,7 @@ if (pixelmap != undefined) {
 
 createPixelMapUsingAllocatorSync(options?: DecodingOptions, allocatorType?: AllocatorType): PixelMap
 
-根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。
+根据指定的分配器同步创建一个基于图像解码参数的PixelMap对象。接口使用详情请参考[申请图片解码内存(ArkTS)](../../media/image/image-allocator-type.md)。
 
 **系统能力：** SystemCapability.Multimedia.Image.ImageSource
 
@@ -8067,7 +8267,7 @@ creator.release().then(() => {
 | -------- | ------------------ | ---- | ---- | -------------------------------------------------- |
 | clipRect | [Region](#region8) | 是   | 是   | 要裁剪的图像区域。                                 |
 | size     | [Size](#size)      | 是   | 否   | 图像大小。如果image对象所存储的是相机预览流数据，即YUV图像数据，那么获取到的size中的宽高分别对应YUV图像的宽高； 如果image对象所存储的是相机拍照流数据，即JPEG图像，由于已经是编码后的文件，size中的宽等于JPEG文件大小，高等于1。image对象所存储的数据是预览流还是拍照流，取决于应用将receiver中的surfaceId传给相机的previewOutput还是captureOutput。相机预览与拍照最佳实践请参考[双路预览(ArkTS)](../../media/camera/camera-dual-channel-preview.md)与[拍照实现方案(ArkTS)](../../media/camera/camera-shooting-case.md)。                                |
-| format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_format)。 |
+| format   | number             | 是   | 否   | 图像格式，参考[OH_NativeBuffer_Format](../apis-arkgraphics2d/capi-native-buffer-h.md#oh_nativebuffer_format)。 |
 | timestamp<sup>12+</sup> | number         | 是      | 否   | 图像时间戳。时间戳以纳秒为单位，通常是单调递增的。时间戳的具体含义和基准取决于图像的生产者，在相机预览/拍照场景，生产者就是相机。来自不同生产者的图像的时间戳可能有不同的含义和基准，因此可能无法进行比较。如果要获取某张照片的生成时间，可以通过[getImageProperty](#getimageproperty11)接口读取相关的EXIF信息。|
 
 ### getComponent<sup>9+</sup>
@@ -8701,7 +8901,7 @@ PixelMap的初始化选项。
 | 名称          | 类型                             | 只读 | 可选 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
 | componentType | [ComponentType](#componenttype9) | 是   | 否   | 组件类型。   |
-| rowStride     | number                           | 是   | 否   | 行距。读取相机预览流数据时，需要考虑按stride进行读取，具体用法见[ArkTS双路预览示例](../../media/camera/camera-dual-channel-preview.md)。       |
+| rowStride     | number                           | 是   | 否   | 行距。读取相机预览流数据时，需要按stride进行读取，使用详情请参考[相机预览花屏解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-deal-stride-solution)。       |
 | pixelStride   | number                           | 是   | 否   | 像素间距。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
 
@@ -8731,6 +8931,16 @@ PixelMap的初始化选项。
 ## CropAndScaleStrategy<sup>18+</sup>
 
 枚举，裁剪与缩放的先后策略。
+
+如果在配置解码选项[DecodingOptions](#decodingoptions7)时，未填入参数cropAndScaleStrategy，并且同时设置了参数desiredRegion和desiredSize，由于系统对于不同图片格式采用的解码算法不同，最终解码效果将略有差异。
+
+例如原始图片大小为200x200，传入desiredSize:{width: 150, height: 150}，desiredRegion:{x: 0, y: 0, width: 100, height: 100}，即预期解码原图左上角1/4区域，最终将pixelMap大小缩放至150x150返回。
+
+对于jpeg、webp图片（部分dng图片解码时会优先解码图片中的jpeg预览图，在此场景下也会被视为jpeg图片格式）会先进行下采样，例如按照7/8下采样，再基于175x175的图片大小进行区域裁剪，因此最终的区域内容稍大于原图的左上角1/4区域。
+
+对于svg图片，由于是矢量图，可以任意缩放不损失清晰度，在解码时会根据desiredSize与原图Size的比例选择缩放比例，在基于缩放后的图片大小进行区域裁剪，因此最终返回的解码区域会有所差异。
+
+针对该场景，建议在解码选项同时设置了desiredRegion与desiredSize时，参数cropAndScaleStrategy应传入CROP_FIRST保证效果一致。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
 

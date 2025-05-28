@@ -60,7 +60,7 @@ struct Index {
 }
 ```
 
-上述代码中，可以通过在初始化Child组件时，传入新的值来覆盖Child组件想要作为内部状态变量使用的componentInfo。但Child组件并不能感知到componentInfo从外部进行了初始化，这不利于组件内部状态的管理。因此推出\@Local装饰器表示组件的内部状态。
+上述代码中，可以通过在初始化Child自定义组件时传入新的值来覆盖作为内部状态变量使用的componentInfo。但Child自定义组件并不能感知到componentInfo从外部进行了初始化，这不利于自定义组件内部状态的管理。因此推出\@Local装饰器表示组件的内部状态。
 
 ## 装饰器说明
 
@@ -150,7 +150,7 @@ struct Index {
     }
     ```
 
-- 当装饰的变量类型为简单类型的数组时，可以观察到数组整体或数组项的变化。
+- 当装饰简单类型数组时，可以观察到数组整体或数组项的变化。
 
     ```ts
     @Entry
@@ -242,7 +242,7 @@ struct Index {
   }
   ```
 
-- 当装饰的变量类型是内置类型时，可以观察到变量整体赋值以及通过API调用带来的变化。
+- 当装饰内置类型时，可以观察到变量整体赋值及API调用带来的变化。
 
   | 类型  | 可观测变化的API                                              |
   | ----- | ------------------------------------------------------------ |
@@ -509,10 +509,10 @@ struct Index {
 ```
 
 以上示例每次点击Button('change to self')，把相同的Array类型常量赋值给一个Array类型的状态变量，都会触发刷新。原因是在状态管理V2中，会给使用状态变量装饰器如@Trace、@Local装饰的Date、Map、Set、Array添加一层代理用于观测API调用产生的变化。  
-当再次赋值list[0]时，dataObjFromList已经是一个Proxy类型，而list[0]是Array类型，判断是不相等的，因此会触发赋值和刷新。  
+当再次赋值`list[0]`时，`dataObjFromList`已经是Proxy类型，而`list[0]`是Array类型。由于类型不相等，会触发赋值和刷新。
 为了避免这种不必要的赋值和刷新，可以使用[UIUtils.getTarget()](./arkts-new-getTarget.md)获取原始对象提前进行新旧值的判断，当两者相同时不执行赋值。
 
-使用UIUtils.getTarget()方法示例
+使用UIUtils.getTarget()方法示例。
 
 ```ts
 import { UIUtils } from '@ohos.arkui.StateManagement';
@@ -581,7 +581,7 @@ struct Index {
 }
 ```
 
-上面的代码中，开发者预期显示的动画为绿色矩形从长宽100变化成200，字符串从`Hello World`变化成`Hello ArkUI`，但由于当前animateTo与V2在刷新机制上暂不兼容，在执行动画前额外的修改并不会生效，因此实际显示的动画为绿色矩形从长宽50变化成200，字符串从`Hello`变化成`Hello ArkUI`。
+上述代码中，开发者预期的动画效果是：绿色矩形从长宽100变为200，字符串从`Hello World`变为`Hello ArkUI`。但由于当前animateTo与V2的刷新机制不兼容，执行动画前的额外修改未生效，实际显示的动画效果是：绿色矩形从长宽50变为200，字符串从`Hello`变为`Hello ArkUI`。
 
 ![arkts-new-local-animateTo-1](figures/arkts-new-local-animateTo-1.gif)
 
@@ -631,4 +631,4 @@ struct Index {
 
 ![arkts-new-local-animateTo-2](figures/arkts-new-local-animateTo-2.gif)
 
-建议开发者在状态管理V2中谨慎使用animateTo接口。
+建议在状态管理V2中谨慎使用animateTo接口。

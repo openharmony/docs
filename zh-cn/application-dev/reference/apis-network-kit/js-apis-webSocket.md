@@ -73,11 +73,11 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Internal error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -114,7 +114,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -130,11 +130,11 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Internal error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -180,7 +180,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -201,11 +201,11 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Internal error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -397,7 +397,7 @@ ws.close((err: BusinessError) => {
 
 close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
-根据可选参数code和reason，关闭WebSocket连接，使用callback方式作为异步方法。
+根据参数options，关闭WebSocket连接，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -567,7 +567,7 @@ ws.off('open', callback1);
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
-订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
+订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
@@ -580,7 +580,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
-| type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
+| type     | string                  | 是   | 'message'：WebSocket的接收服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
 **示例：**
@@ -599,7 +599,7 @@ ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
 
 off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
-取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
+取消订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。

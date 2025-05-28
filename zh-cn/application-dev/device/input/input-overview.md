@@ -9,7 +9,7 @@ Input Kit除了提供基础的输入事件服务之外，还提供了获取输�
 ## 运作机制
 多模输入能力作为系统为应用提供的一种基础服务，通过处理上报的输入设备驱动事件，完成输入事件管理、接收、预处理、分发，通过inner SDK与JSkit上报应用，具体运行机制如下。
 
-![MMI-operation](figures/MMI-operation.png)
+![MMI-operation](figures/MMI-operation-new.png)
 
 <!--Del-->
 ## 约束与限制

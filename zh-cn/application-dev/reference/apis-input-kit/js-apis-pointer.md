@@ -130,7 +130,7 @@ try {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-检查鼠标指针是否显示，使用Callback异步回调。
+获取鼠标指针显示状态，使用callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -168,7 +168,7 @@ try {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-检查鼠标指针是否显示，使用Promise异步回调。
+获取鼠标指针显示状态，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -227,7 +227,7 @@ getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): 
 
 | 参数名       | 类型                                       | 必填   | 说明             |
 | -------- | ---------------------------------------- | ---- | -------------- |
-| windowId | number                                   | 是    | 窗口id。    |
+| windowId | number                                   | 是    | 窗口id。取值范围为大于等于-1的整数，取值为-1时表示全局窗口。    |
 | callback | AsyncCallback&lt;[PointerStyle](#pointerstyle)&gt; | 是    | 回调函数，返回鼠标样式类型。 |
 
 **错误码**：
@@ -698,7 +698,7 @@ setCustomCursor(windowId: number, cursor: CustomCursor, config: CursorConfig): P
 | 错误码ID  | 错误信息             |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
-| 26500001 | Invalid windowId. Possible causes: The window id does not belong to the current process. |
+| 26500001 | Invalid windowId. |
 
 **示例**：
 

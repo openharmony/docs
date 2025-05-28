@@ -198,7 +198,7 @@ letterSpacing(value: number | ResourceStr)
 
 | 参数名 | 类型                       | 必填 | 说明           |
 | ------ | -------------------------- | ---- | -------------- |
-| value  | number&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 是   | 文本字符间距。<br/>单位：[fp](ts-pixel-units.md#像素单位) <br>从API version 20开始，支持Resource类型。|
+| value  | number&nbsp;\|&nbsp;[ResourceStr](ts-types.md#resourcestr) | 是   | 文本字符间距。<br/>默认值：0<br/>单位：[fp](ts-pixel-units.md#像素单位) <br>从API version 20开始，支持Resource类型。|
 
 ### minFontSize
 
@@ -290,7 +290,7 @@ fontColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明       |
 | ------ | ------------------------------------------ | ---- | ---------- |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。<br />默认值：'e6182431'<br />Wearable设备上默认值为：'#c5ffffff' |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 字体颜色。<br />默认值：'#e6182431'<br />Wearable设备上默认值为：'#c5ffffff' |
 
 ### fontSize
 
@@ -404,7 +404,7 @@ draggable(value: boolean)
 
 | 参数名 | 类型    | 必填 | 说明                                 |
 | ------ | ------- | ---- | ------------------------------------ |
-| value  | boolean | 是   | 选中文本拖拽效果。<br/>默认值：false |
+| value  | boolean | 是   | 选中文本拖拽效果。<br/>true表示选中文本可拖拽，false表示不可拖拽。<br/>默认值：false |
 
 ### font<sup>10+</sup>
 
@@ -576,6 +576,10 @@ decoration:{
 
 当copyOption设置为CopyOptions.None时，点击实体弹出的菜单不包含选择文本、复制、翻译、分享和搜索功能。当copyOption不为CopyOptions.None，且textSelectable设置为TextSelectableMode.UNSELECTABLE时，仍然具有实体复制功能，但不包含选择文本功能。
 
+从API 20开始支持AI菜单。当enableDataDetector设置为true，并且[copyOption](#copyoption9)设置为CopyOptions.LocalDevice时，AI菜单生效，菜单选项包括[TextMenuItemId](ts-text-common.md#textmenuitemid12)中的url、email、phoneNumber、address、dateTime。
+
+AI菜单生效时，需要选中单个AI实体，才能展示AI菜单。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
@@ -584,7 +588,7 @@ decoration:{
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable  | boolean | 是   | 使能文本识别。<br/>默认值： false |
+| enable  | boolean | 是   | 使能文本识别。<br/>true表示文本可实体识别，false表示不可识别。<br/>默认值：false |
 
 ### dataDetectorConfig<sup>11+</sup>
 
@@ -896,16 +900,17 @@ enableHapticFeedback(isEnabled: boolean)
 
 optimizeTrailingSpace(optimize: boolean)
 
-
 设置是否在文本布局过程中优化每行末尾的空格，可解决行尾空格影响对齐显示效果问题。
 
 设置Text.optimizeTrailingSpace为true时：
 
-* 多行、单行、图文混排等多种情况下均会优化行尾空格（TextAlign.Center时，优化效果明显）；
+* 多行、单行、图文混排等多种情况下均会优化行尾空格（TextAlign.Center或TextAlign.End时，优化效果明显）；
 
 * 纯空格文本时，修饰线、阴影、背景色跟随空格文本显示；
 
 * 行首空格不在优化范围内，行尾文本强制换行，每行行尾空格根据组件宽度优化行尾空格。
+
+当纯空格文本设置优化行尾空格[optimizeTrailingSpace](#optimizetrailingspace20)为true时，不允许同时设置文本背景色 [backgroundcolor](ts-universal-attributes-background.md#backgroundcolor)、空格装饰线 [textDecoration](../arkui-js/js-components-basic-text.md#text)和对齐 [textAlign](#textalign)三个属性。
 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
 
@@ -966,6 +971,22 @@ marqueeOptions(options: Optional\<TextMarqueeOptions>)
 | 参数名 | 类型                                       | 必填 | 说明                                       |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------ |
 | options | [Optional](ts-universal-attributes-custom-property.md#optional12)\<[TextMarqueeOptions](#textmarqueeoptions18对象说明)> | 是 | 当text组件的textOverflow属性设置为MARQUEE时，可通过marqueeOptions设置跑马灯动效具体的属性，如开关、步长、循环次数、方向等。 |
+
+### enableAutoSpacing<sup>20+</sup>
+
+enableAutoSpacing(enable: Optional\<boolean>)
+
+设置是否开启中文与西文的自动间距。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                               |
+| ------ | ------- | ---- | ---------------------------------- |
+| enable | [Optional](ts-universal-attributes-custom-property.md#optional12)\<boolean> | 是   | 是否开启中文与西文的自动间距。<br/>true为开启自动间距，false为不开启。<br />默认值：false |
 
 ## TextSpanType<sup>11+</sup>枚举说明
 
@@ -2095,3 +2116,30 @@ struct TextExample13 {
 ```
 
 ![textPrivacySensitive](figures/textPrivacySensitive.gif)
+
+### 示例14（设置中西文自动间距）
+
+该示例通过enableAutoSpacing属性设置中西文自动间距。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample {
+  build() {
+    Row() {
+      Column() {
+        Text('开启中西文自动间距').margin(5)
+        Text('中西文Auto Spacing自动间距')
+          .enableAutoSpacing(true)
+        Text('关闭中西文自动间距').margin(5)
+        Text('中西文Auto Spacing自动间距')
+          .enableAutoSpacing(false)
+      }.height('100%')
+    }
+    .width('60%')
+  }
+}
+```
+
+![textEnableAutoSpacing](figures/textEnableAutoSpacing.png)

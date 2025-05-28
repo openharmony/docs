@@ -1462,7 +1462,7 @@ typedef void (*OH_PhotoOutput_PhotoAssetAvailable)(Camera_PhotoOutput* photoOutp
 | 名称 | 描述 | 
 | -------- | -------- |
 | photoOutput | 传递回调的[Camera_PhotoOutput](#camera_photooutput)。 | 
-| photoAsset | 回调传递的[OH_MediaAsset](../apis-media-library-kit/_media_asset_manager.md#oh_mediaasset)。 | 
+| photoAsset | 回调传递的[OH_MediaAsset](../apis-media-library-kit/capi-oh-mediaasset.md)。 | 
 
 
 ### OH_PhotoOutput_PhotoAvailable
@@ -2844,7 +2844,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 **描述**
 
-获取指定相机的并发信息，返回空表示不支持并发。
+获取指定相机的并发信息。
 
 **起始版本：** 18
 
@@ -2855,8 +2855,8 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 | cameraManager | 相机管理器实例[Camera_Manager](#camera_manager)。 | 
 | camera | 用于查询的[Camera_Device](_camera___device.md)数组。 | 
 | deviceSize | 用于查询的相机数组长度。 | 
-| cameraConcurrentInfo | 查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)。 | 
-| infoSize | 查询到的相机并发能力数组长度。 | 
+| cameraConcurrentInfo | 查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)，作为入参应当默认设置为空。如果相机支持并发，cameraConcurrentInfo会被赋值为查询到的相机并发能力数组[Camera_ConcurrentInfo](_camera___concurrent_info.md)。 如果相机不支持并发，不会对cameraConcurrentInfo进行更改，并且返回错误码[Camera_ErrorCode](#camera_errorcode-1)中的CAMERA_SERVICE_FATAL_ERROR。 | 
+| infoSize | 查询到的相机并发能力数组长度，作为入参应当默认设置为0。如果相机支持并发，infoSize会被赋值为查询到的相机并发能力数组长度。如果相机不支持并发，不会对infoSize进行更改，并且返回错误码[Camera_ErrorCode](#camera_errorcode-1)中的CAMERA_SERVICE_FATAL_ERROR。 | 
 
 **返回：**
 
@@ -2866,7 +2866,7 @@ Camera_ErrorCode OH_CameraManager_GetCameraConcurrentInfos(Camera_Manager* camer
 
 - CAMERA_INVALID_ARGUMENT：如果参数丢失或参数类型不正确。
 
-- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误。
+- CAMERA_SERVICE_FATAL_ERROR：如果相机服务出现致命错误，或者相机不支持并发。
 
 
 ### OH_CameraManager_GetCameraDevice()
@@ -3686,7 +3686,7 @@ Camera_ErrorCode OH_CaptureSession_DeleteColorSpaces(Camera_CaptureSession* sess
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| colorSpace | 如果方法调用成功，将删除的目前[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)列表。 | 
+| colorSpace | 如果方法调用成功，将删除的目前[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)列表。 | 
 
 **返回：**
 
@@ -3714,7 +3714,7 @@ Camera_ErrorCode OH_CaptureSession_GetActiveColorSpace(Camera_CaptureSession* se
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| colorSpace | 当前的[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)。 | 
+| colorSpace | 当前的[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)。 | 
 
 **返回：**
 
@@ -4016,8 +4016,8 @@ Camera_ErrorCode OH_CaptureSession_GetSupportedColorSpaces(Camera_CaptureSession
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| colorSpace | 如果方法调用成功，则将记录支持的[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)列表。 | 
-| size | 如果方法调用成功，则将记录支持的[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)列表的大小。 | 
+| colorSpace | 如果方法调用成功，则将记录支持的[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)列表。 | 
+| size | 如果方法调用成功，则将记录支持的[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)列表的大小。 | 
 
 **返回：**
 
@@ -4651,7 +4651,7 @@ Camera_ErrorCode OH_CaptureSession_SetActiveColorSpace(Camera_CaptureSession* se
 | 名称 | 描述 | 
 | -------- | -------- |
 | session | [Camera_CaptureSession](#camera_capturesession)实例。 | 
-| colorSpace | 要设置的目标[OH_NativeBuffer_ColorSpace](../apis-arkgraphics2d/_o_h___native_buffer.md#oh_nativebuffer_colorspace-1)。 | 
+| colorSpace | 要设置的目标[OH_NativeBuffer_ColorSpace](..apis-arkgraphics2d/capi-buffer-common-h.md#oh_nativebuffer_colorspace)。 | 
 
 **返回：**
 

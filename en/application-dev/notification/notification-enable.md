@@ -1,7 +1,7 @@
 # Requesting Notification Authorization
 
-Your application can send notifications only after obtaining user authorization. Call the [requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10-1) API before a notification is published. A dialog box is displayed for the user to determine whether to allow notification sending. When this API is called again, no dialog box is displayed.
-  
+Your application can send notifications only after obtaining user authorization. Call [requestEnableNotification()](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10-1) before a notification is published. A dialog box is displayed for the user to determine whether to allow notification sending. When this API is called again, no dialog box is displayed.
+
 ## Available APIs
 
 For details about the APIs, see [@ohos.notificationManager (NotificationManager)](../reference/apis-notification-kit/js-apis-notificationManager.md#notificationmanagerrequestenablenotification10-1).
@@ -33,7 +33,7 @@ For details about the APIs, see [@ohos.notificationManager (NotificationManager)
     You can determine whether the user has authorized the request based on the error code of **requestEnableNotification**. If the error code **1600004** is returned, the authorization is rejected.
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
+    let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
     notificationManager.isNotificationEnabled().then((data: boolean) => {
       hilog.info(DOMAIN_NUMBER, TAG, "isNotificationEnabled success, data: " + JSON.stringify(data));
       if(!data){

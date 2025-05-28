@@ -453,6 +453,8 @@ bm install-plugin -n com.ohos.app -p /data/plugin.hsp
 > **说明：**
 >
 > 在同一个应用中安装同一个插件，则视作插件版本更新，插件不支持降级安装；插件版本更新后，需要重启应用插件才能生效。
+> 
+> 不推荐安装与宿主应用模块同名的插件，目前运行态暂不支持。
 
 
 ## 卸载插件命令（uninstall-plugin）
@@ -951,28 +953,28 @@ error: signature verification failed due to not trusted app source.
 **处理步骤**
 
 * 场景一：
-	1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
-	2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
+1. 使用[自动签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section18815157237)。在连接设备后，重新为应用进行签名。
+2. 如果使用的是手动签名，对于OpenHarmony应用，请参考<!--RP2-->[OpenHarmony应用手动签名](../security/hapsigntool-guidelines.md)<!--RP2End-->，在UnsgnedDebugProfileTemplate.json文件中添加该调试设备的**UDID**。
 
-        1. 获取当前设备的UDID。
+    1. 获取当前设备的UDID。
 
-        ```
-          //UDID获取命令
-          hdc shell bm get -u
-        ```
+    ```
+      //UDID获取命令
+      hdc shell bm get -u
+    ```
+    
+    2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
 
-        2. 打开IDE安装路径，在sdk目录下找到UnsgnedDebugProfileTemplate.json配置文件。
+    ```
+      IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
 
-        ```
-          IDE安装路径\sdk\版本号或者default\openharmony\toolchains\lib\
+      例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
+      例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
+    ```
 
-          例如：xxxx\Huawei\DevEco Studio\sdk\HarmonyOS-NEXT-DB1\openharmony\toolchains\lib\
-          例如：xxxx\Huawei\DevEco Studio\sdk\default\openharmony\toolchains\lib\
-        ```
+    3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
 
-        3. 在UnsgnedDebugProfileTemplate.json文件的device-ids字段中，添加当前设备的UDID。
-
-  3. 查看签名中是否包含调试设备的UDID，可以使用文本编辑器打开已签名的HAP搜索device-ids。
+3. 使用文本编辑器打开已签名的HAP，检查签名中是否包含调试设备的UDID，搜索device-ids。
 * 场景二：使用[调试证书和调试profile文件](https://developer.huawei.com/consumer/cn/doc/app/agc-help-debug-app-0000001914423098)重新签名应用。
 
 ### 9568286 安装应用的签名证书profile文件中的类型与已安装应用的不相同
@@ -1082,6 +1084,24 @@ error: install failed due to singleton not same.
 
 方案2：更新包调整singleton配置，与已安装包配置一致，重新打包，再更新应用包。<!--DelEnd-->
 
+<!--Del-->
+### 9568294 应用类别不一致导致的安装失败
+**错误信息**
+
+error: install failed due to apptype not same.
+
+**错误描述**
+
+应用安装时，应用已安装HAP包和待安装HAP包的签名文件中[app-feature](../security/app-provision-structure.md)配置不一致，导致安装失败。
+
+**可能原因**
+
+应用已安装HAP包和待安装HAP包包名一致，但签名文件中app-feature配置不一致。
+
+**处理步骤**
+  
+* 方案1：卸载已安装的HAP包，再安装新的HAP包。
+* 方案2：修改待安装HAP包的签名文件中的app-feature字段，确保与已安装包配置一致，重新打包、签名[应用/元服务签名](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing)，再重试安装。<!--DelEnd-->
 
 ### 9568297 由于设备sdk版本较低导致安装失败
 **错误信息**
@@ -1548,16 +1568,19 @@ error: bundle manager service is died.
 1. 重启手机后再次尝试安装应用。
 
 2. 重复上述步骤3到5次后依旧安装失败，请查询设备的/data/log/faultlog/faultlogger/目录下是否存在包含foundation字样的crash文件。
-```
-hdc shell
-cd /data/log/faultlog/faultlogger/
-ls -ls
-```
+
+  ```
+  hdc shell
+  cd /data/log/faultlog/faultlogger/
+  ls -ls
+  ```
+
 3. 导出crash文件和日志文件提[在线工单](https://developer.huawei.com/consumer/cn/support/feedback/#/)获取帮助。
-```
-hdc file recv /data/log/faultlog/faultlogger/
-hdc file recv /data/log/hilog/
-```
+
+  ```
+  hdc file recv /data/log/faultlog/faultlogger/
+  hdc file recv /data/log/hilog/
+  ```
 
 ### 9568393 验证代码签名失败
 **错误信息**
@@ -2129,7 +2152,7 @@ error: installd set selinux label failed.
 ### 9568398 非企业设备禁止安装企业应用
 **错误信息**
 
-error: Failed to install the HAP because an enterprise normal/MDM bundle can not be installed on non-enterprise device.
+error: Failed to install the HAP because an enterprise normal/MDM bundle cannot be installed on non-enterprise device.
 
 **错误描述**
 
@@ -2233,7 +2256,7 @@ HAP包中native软件包目录下不存在module.json5中配置的native软件�
 ### 9568410 安装失败，设备受管控
 **错误信息**
 
-error: Failed to install the HAP because the device has been controlled.
+error: failed to install because the device be controlled.
 
 **错误描述**
 
@@ -2269,7 +2292,7 @@ error: check syscap filed and device type is not supported.
 ### 9568415 禁止安装签名证书为debug或者配置文件debug为true的加密应用
 **错误信息**
 
-error: Debug encrypted bundle is not allowed to install.
+error: debug encrypted bundle is not allowed to install.
 
 **错误描述**
 
@@ -2287,7 +2310,7 @@ error: Debug encrypted bundle is not allowed to install.
 ### 9568416 加密应用不允许安装
 **错误信息**
 
-error: Encrypted bundle can not be installed.
+error: Encrypted bundle cannot be installed.
 
 **错误描述**
 
@@ -2308,15 +2331,16 @@ error: bundle cannot be installed because the appId is not same with preinstalle
 
 **错误描述**
 
-签名校验失败。
+预置应用卸载后安装同bundleName的应用，由于应用的签名信息不一致禁止安装。
 
 **可能原因**
 
-安装的应用与已经预置的同包名应用签名不一致。
+安装应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)与已卸载的预置应用都不一致。
 
 **处理步骤**
 
-1. 如果安装的应用是预置应用，需要保证安装应用的签名与预置应用的一致。
+1. 重新签名，保证应用签名信息中的[密钥](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-signing#section462703710326)和[APP ID](https://developer.huawei.com/consumer/cn/doc/app/agc-help-createharmonyapp-0000001945392297)任意一个与预置应用的一致。
+2. 修改安装应用的[bundleName](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-configuration-file.md)，确保与预置应用的不一致。
 
 ### 9568418 应用设置了卸载处置规则，不允许直接卸载
 **错误信息**
@@ -2338,7 +2362,7 @@ error: Failed to uninstall the app because the app is locked.
 ### 9568420 禁止通过bm安装release的预装应用
 **错误信息**
 
-os_integration bundle is not allowed to install for shell.
+error: os_integration Bundle is not allowed to install for shell.
 
 **错误描述**
 

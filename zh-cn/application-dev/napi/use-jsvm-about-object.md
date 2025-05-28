@@ -74,6 +74,7 @@ const char* srcCallNative = R"JS(const myObject = {};
     const proto = getPrototype(myObject);
     console.log(proto === Object.prototype);)JS";
 ```
+<!-- @[oh_jsvm_get_prototype](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getprototype/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -126,6 +127,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createObject())JS";
 ```
+<!-- @[oh_jsvm_create_object](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createobject/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -175,6 +177,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS(let obj = { data: 55, message: "hello world"};
   objectFreeze(obj))JS";
 ```
+<!-- @[oh_jsvm_object_freeze](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectfreeze/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -237,6 +240,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 const char* srcCallNative = R"JS( let obj = { data: 55, message: "hello world"};
   objectSeal(obj))JS";
 ```
+<!-- @[oh_jsvm_object_seal](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/objectseal/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -322,6 +326,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getTypeof(true);)JS";
 ```
+<!-- @[oh_jsvm_typeof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/typeof/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -378,6 +383,7 @@ const char* srcCallNative = R"JS(class Person {
      instanceOf(new Person('Alice', 30), Person);
      ;)JS";
 ```
+<!-- @[oh_jsvm_instanceof](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/instanceof/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -474,6 +480,7 @@ const char* srcCallNative = R"JS(
          setTypeTagToObject(obj, 0);
          checkObjectTypeTag(obj,0);)JS";
 ```
+<!-- @[oh_jsvm_check_object_type_tag](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/checkobjecttypetag/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -530,6 +537,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createExternal())JS";
 ```
+<!-- @[oh_jsvm_create_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createexternal/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -583,6 +591,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueExternal())JS";
 ```
+<!-- @[oh_jsvm_get_value_external](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/getvalueexternal/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -630,6 +639,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createSymbol())JS";
 ```
+<!-- @[oh_jsvm_create_symbol](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/createsymbol/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -682,6 +692,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(symbolFor())JS";
 ```
+<!-- @[oh_jsvm_symbol_for](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutObject/symbolfor/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts

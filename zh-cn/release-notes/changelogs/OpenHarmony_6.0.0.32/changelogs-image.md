@@ -24,7 +24,7 @@
 |cr2|image/jpeg|image/x-canon-cr2|支持解码预览图|不支持|
 |raf|image/jpeg|image/x-fuji-raf|支持解码预览图|不支持|
 |nef|image/jpeg|image/x-nikon-nef|支持解码预览图|不支持|
-|nrw|image/jpeg|image/x-nikon--nrw|支持解码预览图|不支持|
+|nrw|image/jpeg|image/x-nikon-nrw|支持解码预览图|不支持|
 |orf|image/jpeg|image/x-olympus-orf|支持解码预览图|不支持|
 |rw2|image/jpeg|image/x-panasonic-rw2|支持解码预览图|不支持|
 |pef|image/jpeg|image/x-pentax-pef|支持解码预览图|不支持|

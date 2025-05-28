@@ -1,4 +1,4 @@
-# Working with Functions Using Node-API
+# Creating and Calling Functions Using Node-API
 
 ## Introduction
 
@@ -67,8 +67,8 @@ export const getCbContext: () => Object;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 function summation(arr: Array<number>) {
   let sum: number = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -106,8 +106,7 @@ hilog.info(0x0000, 'testTag', 'Test Node-API napi_get_cb_info get thisArg:%{publ
 ## napi_call_function
 
 Use **napi_call_function** to call an ArkTS function from a C/C++ addon.
-
-> **NOTE**<br>The length of **argv** passed by **napi_call_function** must be greater than or equal to the value of **argc** and must be initialized to **nullptr**.
+>**NOTE**<br>The length of **argv** passed by **napi_call_function** must be greater than or equal to the value of **argc** and must be initialized to **nullptr**.
 
 CPP code:
 
@@ -156,8 +155,8 @@ export const objCallFunction: (obj: Object, func: Function) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 function returnNumber() {
   return 10;
@@ -216,8 +215,8 @@ export const calculateArea: (width: number, height: number) => number;
 ArkTS code:
 
 ```ts
-import hilog from '@ohos.hilog'
-import testNapi from 'libentry.so'
+import hilog from '@ohos.hilog';
+import testNapi from 'libentry.so';
 
 hilog.info(0x0000, 'testTag', 'Test Node-API create_function:%{public}d ', testNapi.calculateArea(1.2, 4));
 ```

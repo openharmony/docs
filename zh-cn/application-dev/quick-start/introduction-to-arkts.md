@@ -1818,7 +1818,7 @@ function foo(arg1: number) {
 // 注解的使用：
 @ClassAuthor({authorName: "Bob"})
 class MyClass {
-  /*body*/
+  // ...
 }
 ```
 
@@ -1838,7 +1838,9 @@ ClassAuthor({authorName: "Bob"}) // 编译错误：注解需要'@'为前缀
 ```typescript
 @MyAnno()
 @ClassAuthor({authorName: "John Smith"})
-class MyClass {/*body*/}
+class MyClass {
+  // ...
+}
 ```
 注解不是Typescript中的特性，只能在`.ets/.d.ets`文件中使用。
 
@@ -1851,7 +1853,7 @@ class MyClass {/*body*/}
 * boolean
 * string
 * 枚举
-* 以上类型的数组（一维数组，例如：string[]）
+* 以上类型的数组
 >**说明：**
 >
 > - 如果使用其他类型用作注解字段的类型，则会发生编译错误。
@@ -1862,7 +1864,7 @@ class MyClass {/*body*/}
 * 布尔字面量
 * 字符串字面量
 * 枚举值（需要在编译时确定值）
-* 以上常量组成的数组（一维数组）
+* 以上常量组成的数组
 >**说明：**
 >
 > 如果枚举值不能在编译时确定，将会出现编译报错。
@@ -1884,12 +1886,18 @@ import {X} from './a';
 注解不支持类型Typescript中的合并，否则会出现编译报错。
 ```typescript
 namespace ns {
-  @interface MataInfo {/*properties*/} // 编译错误：注解必须定义在顶层作用域
+  @interface MataInfo { // 编译错误：注解必须定义在顶层作用域
+    // ...
+  }
 }
 
-@interface Position {/*properties*/}
+@interface Position {
+  // ...
+}
 
-class Position {/*body*/} // 编译错误：注解的名称不能与注解定义所在作用域内可见的其他实体名称相同
+class Position { // 编译错误：注解的名称不能与注解定义所在作用域内可见的其他实体名称相同
+  // ...
+}
 
 @interface ClassAuthor {
   name: string;
@@ -1904,6 +1912,27 @@ class Position {/*body*/} // 编译错误：注解的名称不能与注解定义
 @interface Position {}
 type Pos = Position; // 编译错误：注解不是类型
 ```
+注解不支持在类的getter和setter方法添加，若添加注解会编译报错。
+```typescript
+@interface ClassAuthor {
+  authorName: string;
+}
+
+@ClassAuthor({authorName: "John Smith"})
+class MyClass {
+  private _name: string = "Bob";
+
+  @ClassAuthor({authorName: "John Smith"}) // 编译错误：注解不支持在类的getter和setter方法添加
+  get name() {
+    return this._name;
+  }
+
+  @ClassAuthor({authorName: "John Smith"}) // 编译错误：注解不支持在类的getter和setter方法添加
+  set name(authorName: string) {
+    this._name = authorName;
+  }
+}
+```
 
 #### 用户自定义注解的使用
 注解声明示例如下：
@@ -1917,10 +1946,14 @@ type Pos = Position; // 编译错误：注解不是类型
 当前仅允许对`class declarations`和`method declarations`使用注解，对类和方法可以同时使用同一个注解。<br>注解用法示例如下：
 ```typescript
 @ClassPreamble({authorName: "John", revision: 2})
-class C1 {/*body*/}
+class C1 {
+  // ...
+}
 
 @ClassPreamble({authorName: "Bob"}) // revision的默认值为1
-class C2 {/*body*/}
+class C2 {
+  // ...
+}
 
 @MyAnno() // 对类和方法可以同时使用同一个注解
 class C3 {
@@ -1942,7 +1975,9 @@ class C3 {
 > 赋值应当与注解声明的类型一致，所赋的值与注解字段默认值的要求一样，只能使用常量表达式。
 ```typescript
 @ClassPreamble() // 编译错误：authorName字段未定义
-class C1 {/*body*/}
+class C1 {
+  // ...
+}
 ```
 如果注解中定义了数组类型的字段，则使用数字字面量来设置该字段的值。
 ```typescript
@@ -1958,19 +1993,22 @@ class C1 {/*body*/}
     reviewers: ["Bob", "Clara"]
   }
 )
-class C3 {/*body*/}
+class C3 {
+  // ...
+}
 ```
 如果不需要定义注解字段，注解名称后的括号可省略。
 ```typescript
 @MyAnno
-class C4 {/*body*/}
+class C4 {
+  // ...
+}
 ```
 
 #### 导入和导出注解
 注解也可以被导入导出。针对导出，当前仅支持在定义时的导出，即`export @interface`的形式。<br>
 **示例：**
 ```typescript
-@MyAnno
 export @interface MyAnno {}
 ```
 针对导入，当前仅支持`import {}`和`import * as`两种方式。<br>
@@ -1986,7 +2024,9 @@ import * as ns from './a';
 
 @MyAnno
 @ns.ClassAuthor
-class C {/*body*/}
+class C {
+  // ...
+}
 ```
 - 不允许在import中对注解进行重命名。
 ```typescript
@@ -2052,7 +2092,9 @@ export declare @interface MyAnno {}
 import { MyAnno } from './a';
 
 @MyAnno
-class C {/*body*/}
+class C {
+  // ...
+}
 ```
 
 **编译器自动生成的.d.ets文件**<br>
@@ -2114,13 +2156,17 @@ export declare class C {
 @interface ClassAuthor {}
 
 @ClassAuthor // 声明文件中有注解
-class C {/*body*/}
+class C {
+  // ...
+}
 
 // b.ets 开发者对声明文件实现的源代码
 @interface ClassAuthor {}
 
 // 实现文件中没有注解
-class C {/*body*/}
+class C {
+  // ...
+}
 ```
 在最终编译产物中，class C没有注解。
 
@@ -2129,7 +2175,9 @@ class C {/*body*/}
 ```typescript
 @MyAnno({name: "123", value: 456})
 @MyAnno({name: "321", value: 654}) // 编译错误：不允许重复注释
-class C {/*body*/}
+class C {
+  // ...
+}
 ```
 子类不会继承基类的注解和基类方法的注解。
 

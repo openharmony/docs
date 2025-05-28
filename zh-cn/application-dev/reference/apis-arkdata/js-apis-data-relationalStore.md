@@ -1100,6 +1100,18 @@ type ModifyTime = Map<PRIKeyType, UTCTime>
 | prepareTime<sup>12+</sup>    | number                        | 是   |   否   | 表示准备SQL和绑定参数的时间，单位为μs。                                 |
 | executeTime<sup>12+</sup>    | number                        | 是   |   否   | 表示执行SQL语句的时间，单位为μs。 |
 
+## ExceptionMessage<sup>20+</sup>
+
+描述数据库执行的SQL语句的错误信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称     | 类型                                               | 只读 | 可选  |说明                                                         |
+| -------- | ------------------------------------------------- | ---- | ---- | -------------------------------------------------------- |
+| code<sup>20+</sup>      | number                        | 是   |   否   | 表示执行SQL返回的错误码，对应的取值和含义请见[sqlite错误码](https://www.sqlite.org/rescode.html) |
+| messgae<sup>20+</sup>       | string                        | 是   |   否   | 表示执行SQL返回的错误信息。                                         |
+| sql<sup>20+</sup>    | string                        | 是   |   否   | 表示报错执行的SQL语句。                         |
+
 ## TransactionType<sup>14+</sup>
 
 描述创建事务对象的枚举。请使用枚举名称而非枚举值。
@@ -2287,7 +2299,51 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.notLike("NAME", "os");
 ```
 
+### having<sup>20+</sup>
 
+having(conditions:string, args?: Array\<ValueType>): RdbPredicates
+
+筛选符合条件的分组数据。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                   |
+| ------ | ------ | ---- | ---------------------- |
+| conditions  | string | 是   | 用于过滤使用[groupBy](#groupby)获得的数据，不能为空且必须与[groupBy](#groupby)配合使用。
+| args  | Array<[ValueType](#valuetype)> | 否   | 条件中使用的参数，用来替换条件语句中的占位符，不传时默认为空数组。 |
+
+**返回值**：
+
+| 类型                            | 说明                       |
+| ------------------------------- | -------------------------- |
+| [RdbPredicates](#rdbpredicates) | 返回与指定字段匹配的谓词。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                                                                       |
+| --------- |----------------------------------------------------------------------------------------------------------------|
+| 14800001       | Invalid args. Possible causes: 1. conditions are empty;  2. missing GROUP BY clause. |
+
+**示例1：**
+
+```ts
+// 传递完整的条件
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.groupBy(["AGE"]);
+predicates.having("NAME = zhangsan");
+```
+**示例2：**
+
+```ts
+// 条件中使用占位符替代，args参数传入替换占位符的值
+let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
+predicates.groupBy(["AGE"]);
+predicates.having("NAME = ?", ["zhangsan"]);
+```
 
 ## RdbStore
 
@@ -6607,7 +6663,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br>当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br>当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。 |
 
 **错误码：**
 
@@ -6851,6 +6907,72 @@ try {
 }
 ```
 
+### on('sqliteErrorOccurred')<sup>20+</sup>
+
+on(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
+
+记录执行SQL语句时的异常日志。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 订阅事件名称，取值为'sqliteErrorOccurred'，记录SQL语句执行过程中的错误信息。 |
+| observer     | Callback&lt;[ExceptionMessage](#exceptionmessage20)&gt; | 是   | 回调函数。用于返回SQL执行时出现的异常信息。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**    |
+|-----------|--------|
+| 801       | Capability not supported.  |
+| 14800014  | The RdbStore or ResultSet is already closed.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async test()
+{
+  try {
+    if (store != undefined) {
+      let exceptionMessage: relationalStore.ExceptionMessage;
+      store.on('sqliteErrorOccurred', exceptionMessage => {
+        let sqliteCode = exceptionMessage.code;
+        let sqliteMessage = exceptionMessage.message;
+        let errSQL = exceptionMessage.sql;
+        console.info(`error log is ${sqliteCode}, errMessage is ${sqliteMessage}, errSQL is ${errSQL}`);
+      })
+    }
+  } catch (err) {
+    let code = (err as BusinessError).code;
+    let message = (err as BusinessError).message;
+    console.error(`Register observer failed, code is ${code},message is ${message}`);
+  }
+  const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL)";
+  try {
+    let value = new Uint8Array([1, 2, 3, 4, 5]);
+    const valueBucket: relationalStore.ValuesBucket = {
+      'name': "Lisa",
+      'age': 18,
+      'salary': 100.5,
+      'codes': value,
+    };
+    await store.executeSql(CREATE_TABLE_TEST);
+    if (store != undefined) {
+      (store as relationalStore.RdbStore).insert('test', valueBucket);
+    }
+  } catch (err) {
+    console.error(`Insert fail, code:${err.code}, message: ${err.message}`);
+  }
+}
+```
+
 ### off('dataChange')
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -6926,7 +7048,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;[ChangeInfo](#changeinfo10)&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。<br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br>当type为SUBSCRIBE_TYPE_LOCAL_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为本地数据库中的数据更改的详情。<br>当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **错误码：**
 
@@ -7127,6 +7249,47 @@ try {
   console.error(`Unregister observer failed, code is ${code},message is ${message}`);
 }
 ```
+
+### off('sqliteErrorOccurred')<sup>20+</sup>
+
+off(event: 'sqliteErrorOccurred', observer: Callback&lt;ExceptionMessage&gt;): void
+
+停止记录SQL执行过程中的异常日志。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名       | 类型                              | 必填 | 说明                                |
+| ------------ |---------------------------------| ---- |-----------------------------------|
+| event        | string                          | 是   | 取消订阅事件名称，取值为'sqliteErrorOccurred'，记录SQL语句执行过程中的错误信息。 |
+| observer     | Callback&lt;[ExceptionMessage](#exceptionmessage20)&gt; | 是   | 回调函数。该参数存在，则取消指定Callback监听回调，否则取消该event事件的所有监听回调。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[关系型数据库错误码](errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**    |
+|-----------|--------|
+| 801       | Capability not supported.  |
+| 14800014  | The RdbStore or ResultSet is already closed.     |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  if (store != undefined) {
+    (store as relationalStore.RdbStore).off('sqliteErrorOccurred');
+  }
+} catch (err) {
+  let code = (err as BusinessError).code;
+  let message = (err as BusinessError).message;
+  console.error(`Unregister observer failed, code is ${code},message is ${message}`);
+}
+```
+
 
 ### emit<sup>10+</sup>
 
