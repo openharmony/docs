@@ -97,7 +97,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   | 13400002 | File path not supported or invalid. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -157,7 +157,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   | 13400002 | File path not supported or invalid. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -860,7 +860,7 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
   | 13400003 | Task service ability error. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -915,7 +915,7 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
   | 13400003 | Task service ability error. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1078,7 +1078,7 @@ on(type: 'progress', callback: (receivedSize: number, totalSize: number) =&gt; v
   | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -1134,35 +1134,35 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
   | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let progressCallback1 = (receivedSize: number, totalSize: number) => {
-      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
-    };
-    let progressCallback2 = (receivedSize: number, totalSize: number) => {
-      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
-    };
-    downloadTask.on('progress', progressCallback1);
-    downloadTask.on('progress', progressCallback2);
-    //表示取消progressCallback1的订阅
-    downloadTask.off('progress', progressCallback1);
-    //表示取消订阅下载任务进度事件的所有回调
-    downloadTask.off('progress');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let progressCallback1 = (receivedSize: number, totalSize: number) => {
+        console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+      };
+      let progressCallback2 = (receivedSize: number, totalSize: number) => {
+        console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+      };
+      downloadTask.on('progress', progressCallback1);
+      downloadTask.on('progress', progressCallback2);
+      //表示取消progressCallback1的订阅
+      downloadTask.off('progress', progressCallback1);
+      //表示取消订阅下载任务进度事件的所有回调
+      downloadTask.off('progress');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 
@@ -1190,37 +1190,37 @@ on(type: 'complete'|'pause'|'remove', callback: () =&gt; void): void
   | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let completeCallback = () => {
-      console.info('Download task completed.');
-    };
-    downloadTask.on('complete', completeCallback);
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let completeCallback = () => {
+        console.info('Download task completed.');
+      };
+      downloadTask.on('complete', completeCallback);
 
-    let pauseCallback = () => {
-      console.info('Download task pause.');
-    };
-    downloadTask.on('pause', pauseCallback);
+      let pauseCallback = () => {
+        console.info('Download task pause.');
+      };
+      downloadTask.on('pause', pauseCallback);
 
-    let removeCallback = () => {
-      console.info('Download task remove.');
-    };
-    downloadTask.on('remove', removeCallback);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      let removeCallback = () => {
+        console.info('Download task remove.');
+      };
+      downloadTask.on('remove', removeCallback);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 
@@ -1248,62 +1248,61 @@ off(type: 'complete'|'pause'|'remove', callback?: () =&gt; void): void
   | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let completeCallback1 = () => {
-      console.info('Download delete complete notification.');
-    };
-    let completeCallback2 = () => {
-      console.info('Download delete complete notification.');
-    };
-    downloadTask.on('complete', completeCallback1);
-    downloadTask.on('complete', completeCallback2);
-    //表示取消completeCallback1的订阅
-    downloadTask.off('complete', completeCallback1);
-    //表示取消订阅下载任务完成的所有回调
-    downloadTask.off('complete');
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let completeCallback1 = () => {
+        console.info('Download delete complete notification.');
+      };
+      let completeCallback2 = () => {
+        console.info('Download delete complete notification.');
+      };
+      downloadTask.on('complete', completeCallback1);
+      downloadTask.on('complete', completeCallback2);
+      //表示取消completeCallback1的订阅
+      downloadTask.off('complete', completeCallback1);
+      //表示取消订阅下载任务完成的所有回调
+      downloadTask.off('complete');
 
-    let pauseCallback1 = () => {
-      console.info('Download delete pause notification.');
-    };
-    let pauseCallback2 = () => {
-      console.info('Download delete pause notification.');
-    };
-    downloadTask.on('pause', pauseCallback1);
-    downloadTask.on('pause', pauseCallback2);
-    //表示取消pauseCallback1的订阅
-    downloadTask.off('pause', pauseCallback1);
-    //表示取消订阅下载任务暂停的所有回调
-    downloadTask.off('pause');
+      let pauseCallback1 = () => {
+        console.info('Download delete pause notification.');
+      };
+      let pauseCallback2 = () => {
+        console.info('Download delete pause notification.');
+      };
+      downloadTask.on('pause', pauseCallback1);
+      downloadTask.on('pause', pauseCallback2);
+      //表示取消pauseCallback1的订阅
+      downloadTask.off('pause', pauseCallback1);
+      //表示取消订阅下载任务暂停的所有回调
+      downloadTask.off('pause');
 
-    let removeCallback1 = () => {
-      console.info('Download delete remove notification.');
-    };
-    let removeCallback2 = () => {
-      console.info('Download delete remove notification.');
-    };
-    downloadTask.on('remove', removeCallback1);
-    downloadTask.on('remove', removeCallback2);
-    //表示取消removeCallback1的订阅
-    downloadTask.off('remove', removeCallback1);
-    //表示取消订阅下载任务移除的所有回调
-    downloadTask.off('remove');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
-  
+      let removeCallback1 = () => {
+        console.info('Download delete remove notification.');
+      };
+      let removeCallback2 = () => {
+        console.info('Download delete remove notification.');
+      };
+      downloadTask.on('remove', removeCallback1);
+      downloadTask.on('remove', removeCallback2);
+      //表示取消removeCallback1的订阅
+      downloadTask.off('remove', removeCallback1);
+      //表示取消订阅下载任务移除的所有回调
+      downloadTask.off('remove');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }  
   ```
 
 
@@ -1337,27 +1336,27 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
   | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let failCallback = (err: number) => {
-      console.error(`Failed to download the task. Code: ${err}`);
-    };
-    downloadTask.on('fail', failCallback);
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let failCallback = (err: number) => {
+        console.error(`Failed to download the task. Code: ${err}`);
+      };
+      downloadTask.on('fail', failCallback);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 
@@ -1391,35 +1390,35 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
   | 401 | The parameters check fails. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    let failCallback1 = (err: number) => {
-      console.error(`Failed to download the task. Code: ${err}`);
-    };
-    let failCallback2 = (err: number) => {
-      console.error(`Failed to download the task. Code: ${err}`);
-    };
-    downloadTask.on('fail', failCallback1);
-    downloadTask.on('fail', failCallback2);
-    //表示取消failCallback1的订阅
-    downloadTask.off('fail', failCallback1);
-    //表示取消订阅下载任务失败的所有回调
-    downloadTask.off('fail');
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      let failCallback1 = (err: number) => {
+        console.error(`Failed to download the task. Code: ${err}`);
+      };
+      let failCallback2 = (err: number) => {
+        console.error(`Failed to download the task. Code: ${err}`);
+      };
+      downloadTask.on('fail', failCallback1);
+      downloadTask.on('fail', failCallback2);
+      //表示取消failCallback1的订阅
+      downloadTask.off('fail', failCallback1);
+      //表示取消订阅下载任务失败的所有回调
+      downloadTask.off('fail');
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 ### delete<sup>9+</sup>
@@ -1447,28 +1446,28 @@ delete(): Promise&lt;boolean&gt;
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.delete().then((result: boolean) => {
-      console.info('Succeeded in removing the download task.');
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.delete().then((result: boolean) => {
+        console.info('Succeeded in removing the download task.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -1501,30 +1500,30 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.delete((err: BusinessError, result: boolean) => {
-      if (err) {
-        console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in removing the download task.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.delete((err: BusinessError, result: boolean) => {
+        if (err) {
+          console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in removing the download task.');
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -1557,28 +1556,28 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
-      console.info('Succeeded in querying the download task')
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.getTaskInfo().then((downloadInfo: request.DownloadInfo) => {
+        console.info('Succeeded in querying the download task')
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-} 
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  } 
   ```
 
 > **说明：**
@@ -1611,30 +1610,30 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
-      if (err) {
-        console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info('Succeeded in querying the download mimeType');
-      }
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.getTaskInfo((err: BusinessError, downloadInfo: request.DownloadInfo) => {
+        if (err) {
+          console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+        } else {
+          console.info('Succeeded in querying the download mimeType');
+        }
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -1667,28 +1666,28 @@ getTaskMimeType(): Promise&lt;string&gt;
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.getTaskMimeType().then((data: string) => {
-      console.info('Succeeded in querying the download MimeType');
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.getTaskMimeType().then((data: string) => {
+        console.info('Succeeded in querying the download MimeType');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -1721,30 +1720,30 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
-      if (err) {
-        console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
-      } else {
-        console.info('Succeeded in querying the download mimeType');
-      }
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.getTaskMimeType((err: BusinessError, data: string) => {
+        if (err) {
+          console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+        } else {
+          console.info('Succeeded in querying the download mimeType');
+        }
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -1777,28 +1776,28 @@ suspend(): Promise&lt;boolean&gt;
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.suspend().then((result: boolean) => {
-      console.info('Succeeded in pausing the download task.');
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.suspend().then((result: boolean) => {
+        console.info('Succeeded in pausing the download task.');
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -1831,30 +1830,30 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.suspend((err: BusinessError, result: boolean) => {
-      if (err) {
-        console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in pausing the download task.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.suspend((err: BusinessError, result: boolean) => {
+        if (err) {
+          console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in pausing the download task.');
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -1887,28 +1886,28 @@ restore(): Promise&lt;boolean&gt;
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.restore().then((result: boolean) => {
-      console.info('Succeeded in resuming the download task.')
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.restore().then((result: boolean) => {
+        console.info('Succeeded in resuming the download task.')
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+      });
     }).catch((err: BusinessError) => {
-      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -1941,30 +1940,30 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
   | 201 | The permissions check fails. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-import { common } from '@kit.AbilityKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
+  import { common } from '@kit.AbilityKit';
 
-// 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
-let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-try {
-  // 需要手动将url替换为真实服务器的HTTP协议地址
-  request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
-    let downloadTask: request.DownloadTask = data;
-    downloadTask.restore((err: BusinessError, result: boolean) => {
-      if (err) {
-        console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
-        return;
-      }
-      console.info('Succeeded in resuming the download task.');
-    });
-  }).catch((err: BusinessError) => {
-    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch (err) {
-  console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
-}
+  // 请在组件内获取context，确保this.getUIContext().getHostContext()返回结果为UIAbilityContext
+  let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+  try {
+    // 需要手动将url替换为真实服务器的HTTP协议地址
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data: request.DownloadTask) => {
+      let downloadTask: request.DownloadTask = data;
+      downloadTask.restore((err: BusinessError, result: boolean) => {
+        if (err) {
+          console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in resuming the download task.');
+      });
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+    })
+  } catch (err) {
+    console.error(`Failed to request the download. err: ${JSON.stringify(err)}`);
+  }
   ```
 
 > **说明：**
@@ -2730,7 +2729,7 @@ on(event: 'progress', callback: (progress: [Progress](#progress10)) =&gt; void):
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2814,7 +2813,7 @@ on(event: 'completed', callback: (progress: [Progress](#progress10)) =&gt; void)
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2898,7 +2897,7 @@ on(event: 'failed', callback: (progress: [Progress](#progress10)) =&gt; void): v
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -2980,7 +2979,7 @@ on(event: 'pause', callback: (progress: [Progress](#progress10)) =&gt; void): vo
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3064,7 +3063,7 @@ on(event: 'resume', callback: (progress: [Progress](#progress10)) =&gt; void): v
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3150,7 +3149,7 @@ on(event: 'remove', callback: (progress: [Progress](#progress10)) =&gt; void): v
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3230,7 +3229,7 @@ on(event: 'response', callback: Callback&lt;HttpResponse&gt;): void
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3451,7 +3450,7 @@ off(event: 'progress', callback?: (progress: [Progress](#progress10)) =&gt; void
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3544,7 +3543,7 @@ off(event: 'completed', callback?: (progress: [Progress](#progress10)) =&gt; voi
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3636,7 +3635,7 @@ off(event: 'failed', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3726,7 +3725,7 @@ off(event: 'pause', callback?: (progress: [Progress](#progress10)) =&gt; void): 
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3816,7 +3815,7 @@ off(event: 'resume', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3906,7 +3905,7 @@ off(event: 'remove', callback?: (progress: [Progress](#progress10)) =&gt; void):
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -3992,7 +3991,7 @@ off(event: 'response', callback?: Callback&lt;HttpResponse&gt;): void
   | 401 | Parameter error. Possible causes: 1. Missing mandatory parameters. 2. Incorrect parameter type. 3. Parameter verification failed. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4238,7 +4237,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4317,7 +4316,7 @@ start(): Promise&lt;void&gt;
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4386,7 +4385,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4455,7 +4454,7 @@ pause(): Promise&lt;void&gt;
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4525,7 +4524,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4599,7 +4598,7 @@ resume(): Promise&lt;void&gt;
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4670,7 +4669,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4742,7 +4741,7 @@ stop(): Promise&lt;void&gt;
   | 21900007 | Operation with wrong task state. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4815,7 +4814,7 @@ setMaxSpeed(speed: number): Promise\<void\>
 | 13400003 | Task service ability error.     |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4874,7 +4873,7 @@ create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;
   | 21900005 | Operation with wrong task mode. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -4966,7 +4965,7 @@ create(context: BaseContext, config: Config): Promise&lt;Task&gt;
   | 21900005 | Operation with wrong task mode. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
@@ -5049,7 +5048,7 @@ getTask(context: BaseContext, id: string, token?: string): Promise&lt;Task&gt;
   | 21900006 | Task removed or not found. |
 
 **示例：**
-
+  <!--code_no_check-->
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
   import { common } from '@kit.AbilityKit';
