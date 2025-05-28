@@ -6566,19 +6566,19 @@ try {
 
 setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: ColorMetrics): Promise&lt;void&gt;
 
-设置启动页背景色
+设置同应用进程内指定mouduleName、abilityName对应UIAbility的启动页背景色，使用Promise异步回调。
 
-**系统能力：** SystemCapability.Window.SessionManager
- 
 **原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+ 
+**系统能力：** SystemCapability.Window.SessionManager
 
 **参数：**
 
 | 参数名   | 类型                          | 必填 | 说明                                                     |
 | -------- | ----------------------------- | ---- | -------------------------------------------------------- |
-| moduleName     | string                        | 是   | 需要设置的UIability所属module的名字，取值范围为0-200，仅支持设置当前bundle中的内容。 |
-| abilityName     | string                        | 是   | 需要设置的UIability名字，取值范围为0-200，仅支持设置当前bundle中的内容。 |
-| color | ColorMetrics | 是   | 设置的背景色。                       |
+| moduleName     | string                        | 是   | 需要设置的UIAbility所属module的名字，moduleName的长度范围为0-200，仅支持设置当前bundle中的内容。 |
+| abilityName     | string                        | 是   | 需要设置的UIAbility名字，abilityName的长度范围为0-200，仅支持设置当前bundle中的内容。 |
+| color | ColorMetrics | 是   | 设置的启动页背景色。                       |
 
 **返回值：**
 
@@ -6592,7 +6592,6 @@ setStartWindowBackgroundColor(moduleName: string, abilityName: string, color: Co
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------------------- |
-| 401     | Parameter error. Possible cause: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
 | 1300003 | This window manager service works abnormally. |
 | 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
