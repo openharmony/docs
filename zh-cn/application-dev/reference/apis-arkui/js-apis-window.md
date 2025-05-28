@@ -8130,6 +8130,108 @@ try {
 }
 ```
 
+### setParentWindow<sup>19+</sup>
+
+setParentWindow(windowId: number): Promise&lt;void&gt;
+
+更改子窗口的父窗口，该父窗口仅支持主窗口、子窗口或悬浮窗，使用Promise异步回调。
+
+如果该子窗口处于获焦状态，且新的父窗口处于前台，则会抬升父窗口的层级。
+
+如果该子窗口处于获焦状态，且新的父窗口的子窗口存在层级更高的模态子窗口，则焦点会转移给该模态子窗口。
+
+此接口仅可在2in1设备下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明           |
+| ------ | ------ | ---- | -------------- |
+| windowId  | number | 是   | 父窗口id，该参数应为整数。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取父窗口id属性。|
+
+**返回值：**
+
+| 类型                | 说明                     |
+| ------------------- | ------------------------|
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invaild. |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let windowClass: window.Window = window.findWindow("subWindow");
+  let newParentWindow: window.Window = window.findWindow("newParentWindow");
+  let newParentWindowId: number = newParentWindow.getWindowProperties().id;
+  let promise = windowClass.setParentWindow(newParentWindowId);
+  promise.then(() => {
+    console.info('Succeeded in setting the new parent window.');
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the new parent window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the new parent window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### getParentWindow<sup>19+</sup>
+
+getParentWindow(): Window
+
+获取子窗口的父窗口。
+
+此接口仅可在2in1设备下使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ----------------- | ------------------- |
+| [Window](#window) | 子窗口的父窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+| 1300009 | The parent window is invaild. |
+
+**示例：**
+
+```ts
+try {
+  let windowClass: window.Window = window.findWindow("subWindow");
+  let parentWindow: window.Window = windowClass.getParentWindow();
+  let properties = parentWindow.getWindowProperties();
+  console.info(`Succeeded in obtaining parent window properties. Property: ${JSON.stringify(properties)}`);
+} catch (exception) {
+  console.error(`Failed to get the parent window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowTitleButtonVisible<sup>14+</sup>
 
 setWindowTitleButtonVisible(isMaximizeButtonVisible: boolean, isMinimizeButtonVisible: boolean, isCloseButtonVisible?: boolean): void
