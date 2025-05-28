@@ -154,8 +154,8 @@ static JSVM_PropertyDescriptor descriptor[] = {
 
 // 样例测试js
 const char *srcCallNative = R"JS(createPromise();
-                                 resolveRejectDeferred('success','fail', true);
-                                 resolveRejectDeferred('success','fail', false);)JS";
+                                 resolveRejectDeferred('success', 'fail', true);
+                                 resolveRejectDeferred('success', 'fail', false);)JS";
 ```
 
 预期结果
