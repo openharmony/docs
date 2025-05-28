@@ -263,16 +263,16 @@ The input parameter is invalid.
 
 1. 必选参数没有传入。
 
-2. 参数类型错误 (Type Error)。
+2. 参数类型错误（Type Error）。
 
-3. 参数数量错误 (Argument Count Error)。
+3. 参数数量错误（Argument Count Error）。
 
-4. 空参数错误 (Null Argument Error)。
+4. 空参数错误（Null Argument Error）。
 
-5. 参数格式错误 (Format Error)。
+5. 参数格式错误（Format Error）。
 
-6. 参数值范围错误 (Value Range Error)。
+6. 参数值范围错误（Value Range Error）。
 
 **处理步骤**
 
-请检查必选参数是否传入，或者传入的参数类型是否错误。对于参数校验失败，阅读参数规格约束，按照可能原因进行排查。
+请检查必选参数是否传入，或者传入的参数类型是否错误。对于参数校验失败原因，请阅读参数规格约束，按照可能原因进行排查。
