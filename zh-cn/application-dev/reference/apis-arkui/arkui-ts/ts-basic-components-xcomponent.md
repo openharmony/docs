@@ -522,6 +522,60 @@ getXComponentSurfaceRotation(): Required\<SurfaceRotationOptions>
 | ------------------------------------ | ------------------------------------- |
 | [SurfaceRotationOptions](#surfacerotationoptions12对象说明) | 获取XComponent持有Surface在屏幕旋转时是否锁定方向的设置。 |
 
+### lockCanvas<sup>20+</sup>
+
+lockCanvas(): Canvas | null
+
+返回可用于向XComponent上绘制内容的画布对象。具体绘制方法请参考[Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas)。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**返回值：**
+| 类型                                 | 说明                                  |
+| ------------------------------------ | ------------------------------------- |
+| [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) \| null | 可用于向XComponent区域绘制的画布对象或者空对象null。 |
+
+> **说明：**
+>
+> 如果当前XComponent状态无法获取画布对象则将返回null。原因通常为：
+>
+> 1. XComponent持有的Surface未创建完成（可通过设置[onLoad](#onload)/[onSurfaceCrearted](#onsurfacecreated12)回调来确定，此回调触发时，Surface已创建完成）。
+>
+> 2. 之前已经调用过lockCanvas来获取过画布对象，且该画布对象未调用[unlockCanvasAndPost](#unlockcanvasandpost20)去释放。
+>
+> 只支持TEXTURE和SURFACE模式。
+>
+> 使用此接口后，同时在NDK侧获取NativeWindow并调用相关接口进行绘制，可能出现缓冲区竞争和上下文冲突而发生绘制画面错误等异常，因此不允许使用。
+>
+> 此接口需要和[unlockCanvasAndPost](#unlockcanvasandpost20)接口配对使用，具体参考[示例3使用画布对象在XComponent上绘制内容](#示例3使用画布对象在xcomponent上绘制内容)。
+
+### unlockCanvasAndPost<sup>20+</sup>
+
+unlockCanvasAndPost(canvas: Canvas): void
+
+将画布对象中的内容绘制在XComponent区域，并释放该画布对象。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| canvas | [Canvas](../../apis-arkgraphics2d/js-apis-graphics-drawing.md#canvas) | 是 | 之前调用lockCanvas方法返回的画布对象。 |
+
+> **说明：**
+>
+> 1. 画布对象调用unlockCanvasAndPost释放后，不可再使用该画布对象。
+>
+> 2. 只支持TEXTURE和SURFACE模式。
+>
+> 3. 使用此接口后，同时在NDK侧获取NativeWindow并调用相关接口进行绘制，可能出现缓冲区竞争和上下文冲突而发生绘制画面错误等异常，因此不允许使用。
+>
+> 4. 此接口需要和[lockCanvas](#lockcanvas20)接口配对使用，具体参考[示例3使用画布对象在XComponent上绘制内容](#示例3使用画布对象在xcomponent上绘制内容)。
+
 ## SurfaceRotationOptions<sup>12+</sup>对象说明
 
 用于描述XComponent持有Surface在屏幕旋转时是否锁定方向的设置。
@@ -730,3 +784,51 @@ struct Index {
 }
 ```
 
+### 示例3（使用画布对象在XComponent上绘制内容）
+
+应用调用lockCanvas返回画布对象，然后通过画布对象调用对应的绘制接口，最后调用unlockCanvasAndPost在XComponent上绘制内容。
+
+```ts
+// xxx.ets
+import { drawing } from '@kit.ArkGraphics2D';
+
+@Entry
+@Component
+struct Index {
+  private xcController: XComponentController = new XComponentController();
+  private mCanvas: DrawingCanvas | null = null;
+
+  build() {
+    Column() {
+      XComponent({ type: XComponentType.SURFACE, controller: this.xcController })
+        .width("80%")
+        .height("80%")
+        .onLoad(() => {
+          this.mCanvas = this.xcController.lockCanvas();
+          if (this.mCanvas) {
+            this.mCanvas.drawColor(255, 240, 250, 255); // 每次绘制前必须完全重绘整个XComponent区域,可以调用此方法实现
+            const brush = new drawing.Brush(); // 创建画刷对象
+            brush.setColor({ // 设置画刷的颜色
+              alpha: 255,
+              red: 39,
+              green: 135,
+              blue: 217
+            });
+            this.mCanvas.attachBrush(brush); // 绑定画刷到画布上
+            this.mCanvas.drawRect({ // 绘制一个矩形
+              left: 300,
+              right: 800,
+              top: 100,
+              bottom: 800
+            });
+            this.mCanvas.detachBrush(); // 将画刷与画布解绑
+            this.xcController.unlockCanvasAndPost(this.mCanvas);
+          }
+        })
+    }
+    .height('100%')
+    .width('100%')
+  }
+}
+```
+![DrawingCanvas示例图](./figures/DrawingCanvas.PNG)

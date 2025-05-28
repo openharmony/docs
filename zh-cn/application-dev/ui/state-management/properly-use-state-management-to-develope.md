@@ -1352,7 +1352,7 @@ struct ChildComponent {
     Column() {
       Text(this.data.message).fontSize(20)
         .onAppear(() => {
-          console.info("text appear:" + this.data.message)
+          console.info("text appear:" + this.data.message);
         })
       Image(this.data.imgSrc)
         .width(100)

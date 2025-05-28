@@ -1,6 +1,6 @@
 # Image
 
-Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](#drawabledescriptor10)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif和heif类型的图片格式。
+Image为图片组件，常用于在应用中显示图片。Image支持加载[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)、[ResourceStr](ts-types.md#resourcestr)和[DrawableDescriptor](#drawabledescriptor10)类型的数据源，支持png、jpg、jpeg、bmp、svg、webp、gif、apng和heif类型的图片格式，不支持svga格式。
 
 > **说明：**
 >
@@ -54,7 +54,7 @@ Image加载成功且组件不设置宽高时，其显示大小自适应父组件
 >
 > Image直接传入URL可能会带来的潜在性能问题，例如：(1) 大图加载时无法提前下载，白块显示的时间较长；(2) 小图设置同步加载，在弱网环境下，可能会阻塞UI线程造成冻屏问题；(3) 在快速滑动的瀑布流中，无法提前对即将要显示的图片进行下载，导致滑动白块较多。不同场景下，性能问题会有不同的表现，建议将网络下载部分与Image的显示剥离，可提前下载或者异步下载。如果图片加载过程中出现白色块，请参考[Image白块问题解决方案](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-image-white-lump-solution)。如果图片加载时间过长，请参考按照步骤[优化应用预置图片资源加载耗时问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-texture-compression-improve-performance)。
 >
-> src由有效切换为无效时，图片保持不动。
+> src由有效值（可正常解析并加载的图片资源）切换为无效值（无法解析或加载的图片路径）时，组件应保持显示此前成功加载的图片内容，不进行清除或重置操作。
 >
 > 当Image组件入参为[PixelMap](../../apis-image-kit/js-apis-image.md#pixelmap7)类型时，只有当PixelMap对象的引用发生变化（即指向一个新的PixelMap实例），Image组件才能感知到数据的变化。仅修改PixelMap对象的内容（如像素值）而不更换对象引用，无法触发数据变化的感知。
 
@@ -267,7 +267,9 @@ matchTextDirection(value: boolean)
 
 fitOriginalSize(value: boolean)
 
-设置图片的显示尺寸是否跟随图源尺寸。图片组件尺寸未设置时，其显示尺寸是否跟随图源尺寸。
+设置图片的显示尺寸是否跟随图源尺寸。
+
+图片组件已设置width、height属性时，fitOriginalSize属性不生效。
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时设置该属性不生效。
 
@@ -460,7 +462,7 @@ resizable(value: ResizableOptions)
 
 设置图像拉伸时可调整大小的图像选项。拉伸对拖拽缩略图以及占位图有效。
 
-设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat 属性设置不生效。
+设置合法的 [ResizableOptions](#resizableoptions11) 时，objectRepeat属性和orientation属性设置不生效。
 
 当设置 top +bottom 大于原图的高或者 left + right 大于原图的宽时 [ResizableOptions](#resizableoptions11) 属性设置不生效。
 
@@ -492,7 +494,7 @@ privacySensitive(supported: boolean)
 
 | 参数名    | 类型    | 必填 | 说明                     |
 | --------- | ------- | ---- | ------------------------ |
-| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
+| supported | boolean | 是   | 是否支持卡片敏感隐私信息。<br/>默认值为false，表示不支持卡片敏感隐私信息，当设置为true时，隐私模式下图片将显示为半透明底板样式。<br/>**说明：** <br/>设置null则不敏感。<br/>进入隐私模式需要[卡片框架支持](./ts-universal-attributes-obscured.md)。 |
 
 ### dynamicRangeMode<sup>12+</sup>
 
@@ -510,7 +512,7 @@ dynamicRangeMode(value: DynamicRangeMode)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：dynamicRangeMode.Standard |
+| value  | [DynamicRangeMode](#dynamicrangemode12枚举说明) | 是   | 图像显示的动态范围。<br/>默认值：DynamicRangeMode.STANDARD |
 
 ### orientation<sup>14+</sup>
 
@@ -526,9 +528,9 @@ orientation(orientation: ImageRotateOrientation)
 
 | 参数名 | 类型                                    | 必填 | 说明                             |
 | ------ | --------------------------------------- | ---- | -------------------------------- |
-| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
+| orientation  | [ImageRotateOrientation](#imagerotateorientation14) | 是   | 图像内容的显示方向。<br/>不支持gif和svg类型的图片。<br/>如果需要显示携带旋转角度信息或翻转信息的图片，建议使用ImageRotateOrientation.AUTO进行设置。<br/>默认值：ImageRotateOrientation.UP |
 
-### hdrBrightness<sup>20+</sup>
+### hdrBrightness<sup>19+</sup>
 
 hdrBrightness(brightness: number)
 
@@ -538,7 +540,7 @@ svg类型图源不支持该属性。
 
 该属性与[dynamicRangeMode](#dynamicrangemode12)属性同时设置时，[dynamicRangeMode](#dynamicrangemode12)属性不生效。
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -725,9 +727,9 @@ type ImageMatrix = Matrix4Transit
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称 | 类型       | 必填 | 说明           |
-| ------ | --------- | --- | ------------- |
-| ORIGIN  | ColorContent | 是 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
+| 名称 | 类型       | 只读 | 可选 | 说明           |
+| ------ | --------- | --- | --- | ------------- |
+| ORIGIN  | ColorContent | 是 | 否 | 重置[fillColor](#fillcolor)接口，效果上与不设置[fillColor](#fillcolor)一致。 |
 
 ## 事件
 
@@ -779,7 +781,7 @@ onError(callback: ImageErrorCallback)
 
 | 参数名   | 类型                                       | 必填 | 说明                       |
 | -------- | ------------------------------------------ | ---- | -------------------------- |
-| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。<br>**说明：**<br/>建议开发者使用此回调，可快速确认图片加载失败时的具体原因。 |
+| callback | [ImageErrorCallback](#imageerrorcallback9) | 是   | 图片加载异常时触发的回调。<br>**说明：**<br/>建议开发者使用此回调，可快速确认图片加载失败时的具体原因，参见[ImageError的错误信息详细介绍](#imageerror9)。 |
 
 ### onFinish
 
@@ -819,15 +821,62 @@ type ImageErrorCallback = (error: ImageError) => void
 
 当组件的参数类型为[AnimatedDrawableDescriptor](../js-apis-arkui-drawableDescriptor.md#animateddrawabledescriptor12)时该事件不触发。
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型   | 必填 | 说明                      |
 | --------------- | ------ | ---- | ------------------------- |
-| componentWidth  | number | 是   | 组件的宽。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| componentHeight | number | 是   | 组件的高。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| message<sup>10+</sup>         | string | 是   | 报错信息。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| componentWidth  | number | 是   | 组件的宽。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| componentHeight | number | 是   | 组件的高。<br/>单位：像素<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| message<sup>10+</sup>         | string | 是   | 报错信息。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| error<sup>20+</sup>         | [BusinessError\<void>](#businesserror20) | 否   | 图片加载异常返回的报错信息，其中code为错误码，message为错误信息。报错信息请参考以下错误信息的详细介绍。<br/>默认值：{ code : -1, message : "" }<br/>**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+
+
+
+以下是错误信息的详细介绍。
+
+| 错误码ID  | 错误信息                       | 错误信息发生阶段 | 图片加载类型 |
+| --------  | ----------------------------   | --------- | ------- |
+| 101000    | unknown source type.           | 数据加载 | 未知类型 |
+| 102010    | sync http task of uri cancelled. | 数据加载 | 网络文件 |
+| 102011    | sync http task of uri failed.  | 数据加载 | 网络文件 |
+| 102012    | async http task of uri cancelled. | 数据加载 | 网络文件 |
+| 102013    | async http task of uri failed. | 数据加载 | 网络文件 |
+| 102030    | wrong code format.             | 数据加载 | base64字符串 |
+| 102031    | decode base64 image failed.    | 数据加载 | base64字符串 |
+| 102050    | path is too long.              | 数据加载 | base64字符串 |
+| 102051    | read data failed.              | 数据加载 | 沙箱文件 |
+| 102070    | get image data by name failed. | 数据加载 | 沙箱文件 |
+| 102071    | get image data by id failed.   | 数据加载 | 资源文件 |
+| 102072    | uri is invalid.                | 数据加载 | 资源文件 |
+| 102090    | uri is invalid.                | 数据加载 | 包内文件 |
+| 102091    | get asset failed.              | 数据加载 | 包内文件 |
+| 102110    | open file failed.              | 数据加载 | 媒体库文件 |
+| 102111    | get file stat failed.          | 数据加载 | 媒体库文件 |
+| 102112    | read file failed.              | 数据加载 | 媒体库文件 |
+| 102130    | decoded data is empty.         | 数据加载 | 媒体库缩略图文件 |
+| 102131    | load shared memory image data timeout. | 数据加载 | 共享内存 |
+| 103100    | make svg dom failed.           | 数据加载 | 矢量图 |
+| 103200    | image data size is invalid.    | 数据加载 | 位图 |
+| 111000    | image source create failed.    | 数据解码 | 位图 |
+| 111001    | pixelmap create failed.        | 数据解码 | 位图 |
+
+## BusinessError<sup>20+</sup>
+
+type BusinessError\<T> = BusinessError\<T>
+
+图片加载异常返回的错误信息。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 类型  | 说明   |
+| ---- | ------ |
+| [BusinessError\<T>](../../apis-basic-services-kit/js-apis-base.md#businesserror) | 图片加载异常返回的错误信息。 |
 
 ## 示例
 
@@ -930,7 +979,7 @@ struct ImageExample2 {
 }
 ```
 
-![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.gif)
+![zh-cn_image_0000001607845173](figures/zh-cn_image_view2.png)
 
 ### 示例3（为图片添加事件）
 
@@ -1049,10 +1098,11 @@ struct Index {
       Image($r("app.media.landscape"))
         .resizable({
           slice: {
-            left: this.left,
-            right: this.right,
-            top: this.top,
-            bottom: this.bottom
+            //传入数字时默认为vp单位，但在不同设备上vp单位会被解析成不同大小的px单位，可以根据需要选择传入的单位
+            left: `${this.left}px`,
+            right: `${this.right}px`,
+            top: `${this.top}px`,
+            bottom: `${this.bottom}px`
           }
         })
         .width(200)
@@ -1145,13 +1195,13 @@ import { image } from '@kit.ImageKit';
 @Entry
 @Component
 struct ImageExample {
-  pixelmaps: Array<PixelMap>  = [];
+  pixelMaps: Array<PixelMap>  = [];
   options: AnimationOptions = { iterations: 1 };
   @State animated: AnimatedDrawableDescriptor | undefined = undefined;
 
   async aboutToAppear() {
-    this.pixelmaps = await this.getPixelMaps();
-    this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+    this.pixelMaps = await this.getPixelMaps();
+    this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
   }
 
   build() {
@@ -1166,11 +1216,11 @@ struct ImageExample {
       Row() {
         Button('once').width(100).padding(5).onClick(() => {
           this.options = { iterations: 1 };
-          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+          this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
         }).margin(5)
         Button('infinite').width(100).padding(5).onClick(() => {
           this.options = { iterations: -1 };
-          this.animated = new AnimatedDrawableDescriptor(this.pixelmaps, this.options);
+          this.animated = new AnimatedDrawableDescriptor(this.pixelMaps, this.options);
         }).margin(5)
       }
     }.width('50%')
@@ -1205,11 +1255,11 @@ struct ImageExample {
   }
 
   private async getPixelMaps() {
-    let Mypixelmaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
-    Mypixelmaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
-    return Mypixelmaps;
+    let myPixelMaps:Array<PixelMap> = await this.getPixmapListFromMedia($r('app.media.mountain')); //添加图片
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.sky')));
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.clouds')));
+    myPixelMaps.push(await this.getPixmapFromMedia($r('app.media.landscape')));
+    return myPixelMaps;
   }
 }
 ```
@@ -1651,7 +1701,7 @@ struct Index {
 
 ### 示例18（设置HDR图源动态提亮）
 
-该示例通过[hdrBrightness](#hdrbrightness20)调整HDR图源的亮度，将hdrBrightness从0调整到1。
+该示例通过[hdrBrightness](#hdrbrightness19)调整HDR图源的亮度，将hdrBrightness从0调整到1。
 
 ```ts
 import { image } from '@kit.ImageKit';

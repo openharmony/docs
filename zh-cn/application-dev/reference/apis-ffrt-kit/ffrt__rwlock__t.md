@@ -9,6 +9,8 @@ FFRT读写锁结构。
 
 **相关模块：** [FFRT](_f_f_r_t.md)
 
+**所在头文件：** [type_def.h](type__def_8h.md)
+
 
 ## 汇总
 

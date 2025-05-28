@@ -20,7 +20,7 @@ import { bundleManager } from '@kit.MDMKit';
 
 addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-添加应用至包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，否则不允许安装。
+添加应用至应用程序包安装白名单，添加至白名单的应用允许在当前/指定用户下安装，其它非白名单应用不允许安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -51,6 +51,7 @@ addAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -69,7 +70,7 @@ try {
 
 removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-在包安装白名单中移除应用，在白名单存在的情况下，不在包安装白名单中的应用不允许在当前/指定用户下安装。
+在应用程序包安装白名单中移除应用，在白名单存在的情况下，不在应用程序包安装白名单中的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -100,6 +101,7 @@ removeAllowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -118,7 +120,7 @@ try {
 
 getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下的包安装白名单。
+获取当前/指定用户下的应用程序包安装白名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -136,7 +138,7 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的包安装白名单。 |
+| Array&lt;string&gt; | 返回当前用户下的应用程序包安装白名单。 |
 
 **错误码**：
 
@@ -153,6 +155,7 @@ getAllowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&g
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -170,7 +173,7 @@ try {
 
 addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-添加应用至包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。
+添加应用至应用程序包安装黑名单，添加至黑名单的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -200,6 +203,7 @@ addDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accoun
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -218,7 +222,7 @@ try {
 
 removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, accountId?: number): void
 
-在包安装黑名单中移除应用，在黑名单存在的情况下，在包安装黑名单中的应用不允许在当前/指定用户下安装。
+在应用程序包安装黑名单中移除应用，在黑名单存在的情况下，在应用程序包安装黑名单中的应用不允许在当前/指定用户下安装。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -248,6 +252,7 @@ removeDisallowedInstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acc
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -266,7 +271,7 @@ try {
 
 getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;string&gt;
 
-获取当前/指定用户下的包安装黑名单。
+获取当前/指定用户下的应用程序包安装黑名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
@@ -284,7 +289,7 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 | 类型                | 说明                           |
 | ------------------- | ------------------------------ |
-| Array&lt;string&gt; | 返回当前用户下的包安装黑名单。 |
+| Array&lt;string&gt; | 返回当前用户下的应用程序包安装黑名单。 |
 
 **错误码**：
 
@@ -301,6 +306,7 @@ getDisallowedInstallBundlesSync(admin: Want, accountId?: number): Array&lt;strin
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -348,6 +354,7 @@ addDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, acco
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -396,6 +403,7 @@ removeDisallowedUninstallBundlesSync(admin: Want, appIds: Array&lt;string&gt;, a
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -449,6 +457,7 @@ getDisallowedUninstallBundlesSync(admin: Want, accountId?: number): Array&lt;str
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -504,6 +513,7 @@ uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -539,7 +549,7 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 
 | 类型                | 说明                                                    |
 | ------------------- | ------------------------------------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。当包安装失败时，抛出错误对象。 |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。当应用程序包安装失败时，抛出错误对象。 |
 
 **错误码**：
 
@@ -558,7 +568,6 @@ install(admin: Want, hapFilePaths: Array\<string>, installParam?: InstallParam):
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { bundleManager } from '@kit.MDMKit';
 
 // 为当前用户安装应用
 let wantTemp: Want = {
@@ -577,7 +586,6 @@ bundleManager.install(wantTemp, hapFilePaths).then(() => {
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { bundleManager } from '@kit.MDMKit';
 
 // 为所有用户安装应用
 let wantTemp: Want = {

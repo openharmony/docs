@@ -167,6 +167,7 @@ Form is not trust.
 
 检查卡片代码的死循环、内存泄漏等问题。
 
+<!--Del-->
 ## 16501008 等待卡片加桌超时
 
 **错误信息**
@@ -184,3 +185,122 @@ Waiting for the form addition to the desktop timed out.
 **处理步骤**
 
 服务繁忙，请稍后重试。
+<!--DelEnd-->
+
+## 2293761 内部服务错误
+
+**错误信息**
+
+Some internal server error occurs.
+
+**错误描述**
+
+系统执行当前请求时发生内部错误。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+
+## 2293766 包管理获取请求的应用包名不存在
+
+**错误信息**
+
+The requested bundle name does not exist.
+
+**错误描述**
+
+系统执行获取请求的应用包名不存在，该错误属于内部错误。
+
+**可能原因**
+
+包管理获取请求方的bundleName时出错，属于系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+
+## 2293767 无效参数
+
+**错误信息**
+
+Invalid params received on operating form.
+
+**错误描述**
+
+接口调用时存在无效入参。
+
+**可能原因**
+
+1. 未传入必选参数。
+2. 参数类型错误。
+3. 参数数量错误。
+4. 空参数错误，比如传入空字符串（''）。
+5. 参数格式错误。
+6. 参数值错误。输入参数与[app.json5](../../quick-start/app-configuration-file.md)、[配置卡片的配置文件](../../form/arkts-ui-widget-configuration.md)的对应配置需要保持一致。
+
+**处理步骤**
+
+按照可能原因进行排查，确认必选参数是否传入、传入的参数类型是否错误等。
+
+## 2293795 获取包管理服务失败
+
+**错误信息**
+
+Get bms rpc failed.
+
+**错误描述**
+
+获取包管理服务失败。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+
+## 2293798 获取卡片管理服务失败
+
+**错误信息**
+
+Get fms rpc failed.
+
+**错误描述**
+
+获取卡片管理服务失败。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。
+
+## 2293802 获取系统能力管理服务失败
+
+**错误信息**
+
+Get system manager service failed.
+
+**错误描述**
+
+获取系统能力管理服务失败。
+
+**可能原因**
+
+系统业务内部执行异常。
+
+**处理步骤**
+
+1. 重启系统后重试。
+2. 重启后仍旧失败，请提[在线工单](http://developer.huawei.com/consumer/cn/support/feedback/#)获取帮助。

@@ -43,6 +43,8 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <fstream>
+#include <string>
 // Register the GetPrototype callback.
 // Define OH_JSVM_GetPrototype.
 static JSVM_Value GetPrototype(JSVM_Env env, JSVM_CallbackInfo info)
@@ -89,6 +91,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <fstream>
 // Define OH_JSVM_CreateObject.
 static JSVM_Value CreateObject(JSVM_Env env, JSVM_CallbackInfo info)
 {
@@ -490,6 +493,7 @@ CPP code:
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
 #include <hilog/log.h>
+#include <fstream>
 // Define OH_JSVM_CreateExternal.
 static JSVM_Value CreateExternal(JSVM_Env env, JSVM_CallbackInfo info)
 {

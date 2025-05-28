@@ -44,4 +44,7 @@ OH_HiAppEvent_DestroyParamList(list);
 | [EVENT_CPU_USAGE_HIGH](_hi_app_event.md#event_cpu_usage_high)&nbsp;&nbsp;&nbsp;"CPU_USAGE_HIGH" | Event indicating high CPU usage of an application. | 
 | [EVENT_BATTERY_USAGE](_hi_app_event.md#event_battery_usage)&nbsp;&nbsp;&nbsp;"BATTERY_USAGE" | Application power usage event. | 
 | [EVENT_RESOURCE_OVERLIMIT](_hi_app_event.md#event_resource_overlimit)&nbsp;&nbsp;&nbsp;"RESOURCE_OVERLIMIT" | Application resource threshold-crossing event. | 
+| [EVENT_ADDRESS_SANITIZER](_hi_app_event.md#event_address_sanitizer)&nbsp;&nbsp;&nbsp;"ADDRESS_SANITIZER" | Address sanitizer event. | 
+| [EVENT_MAIN_THREAD_JANK](_hi_app_event.md#event_main_thread_jank)&nbsp;&nbsp;&nbsp;"MAIN_THREAD_JANK" | Main thread jank event. | 
+| [EVENT_APP_HICOLLIE](_hi_app_event.md#event_app_hicollie)&nbsp;&nbsp;&nbsp;"APP_HICOLLIE" | Task execution timeout event. | 
 | [DOMAIN_OS](_hi_app_event.md#domain_os)&nbsp;&nbsp;&nbsp;"OS" | OS scope. | 

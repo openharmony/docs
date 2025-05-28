@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> - 本模块接口从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 本模块接口从API version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > - 示例效果请以真机运行为准，当前IDE预览器不支持。
 
@@ -75,9 +75,9 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                              |
+| 名称         | 类型   | 只读 | 可选 | 说明                                              |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------|
-| isExtentionType<sup>10+</sup> | boolean | 是   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口，[postMessageEventExt](#postmessageeventext10)、[onMessageEventExt](#onmessageeventext10)。<br>true表示使用扩展增强接口，false表示不使用扩展增强接口。<br>默认值：false。   |
+| isExtentionType<sup>10+</sup> | boolean | 否   | 是 | 创建WebMessagePort时是否指定使用扩展增强接口，[postMessageEventExt](#postmessageeventext10)、[onMessageEventExt](#onmessageeventext10)。<br>true表示使用扩展增强接口，false表示不使用扩展增强接口。<br>默认值：false。   |
 
 ### postMessageEvent
 
@@ -601,6 +601,8 @@ constructor(webTag?: string)
 > 传参且参数是合法字符串：new webview.WebviewController("xxx")，用于开发者区分多实例，并调用对应实例下的方法。
 > 
 > 传入参数为空：new webview.WebviewController("")或new webview.WebviewController(undefined)，该场景下参数无意义，无法区分多个实例，直接返回undefined，需要开发者判断返回值是否正常。
+>
+> Web组件销毁后会解绑WebViewController，之后调用WebviewController的非静态方法会抛出17100001异常，应注意调用时机和捕获异常，防止进程异常退出。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -839,7 +841,7 @@ loadUrl(url: string | Resource, headers?: Array\<WebHeader>): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 | 17100003 | Invalid resource path or file type.                          |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
@@ -1781,6 +1783,7 @@ runJavaScript(script: string, callback : AsyncCallback\<string>): void
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态将不再保留。例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -1871,6 +1874,7 @@ runJavaScript(script: string): Promise\<string>
 >
 > - 跨导航操作（如loadUrl）时，JavaScript状态 将不再保留，例如，调用loadUrl前定义的全局变量和函数在加载的页面中将不存在。
 > - 建议应用程序使用registerJavaScriptProxy来确保JavaScript状态能够在页面导航间保持。
+> - 执行异步方法无法获取返回值，需要根据具体情境判断是否使用同步或异步方式。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -4519,6 +4523,10 @@ getBackForwardEntries(): BackForwardList
 
 获取当前Webview的历史信息列表。
 
+> **说明：**
+>
+> [onLoadIntercept](ts-basic-components-web.md#onloadintercept10)在加载开始的时候触发，该时刻还未生成历史节点，所以在[onLoadIntercept](ts-basic-components-web.md#onloadintercept10)中调用getBackForwardEntries拿到的历史栈不包括当前正在加载中的跳转。
+
 **系统能力：** SystemCapability.Web.Webview.Core
 
 **返回值：**
@@ -4691,7 +4699,7 @@ struct WebComponent {
               let buf = new ArrayBuffer(size);
               fileIo.read(file.fd, buf, (err, readLen) => {
                 if (err) {
-                  console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+                  console.error("console error with error message: " + err.message + ", error code: " + err.code);
                 } else {
                   console.info("read file data succeed");
                   this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
@@ -5183,7 +5191,7 @@ prefetchPage(url: string, additionalHeaders?: Array\<WebHeader>): void
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -5239,7 +5247,7 @@ static prefetchResource(request: RequestInfo, additionalHeaders?: Array\<WebHead
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -5343,7 +5351,7 @@ static prepareForPageLoad(url: string, preconnectable: boolean, numSockets: numb
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 | 171000013| The number of preconnect sockets is invalid.                                                 |
 
 **示例：**
@@ -5500,7 +5508,7 @@ startDownload(url: string): void
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url. |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -5593,6 +5601,113 @@ struct WebComponent {
 }
 ```
 
+### setAppCustomUserAgent<sup>20+</sup>
+
+static setAppCustomUserAgent(userAgent: string): void
+
+设置应用级自定义用户代理，会覆盖系统的用户代理，应用内所有Web组件生效。
+
+当需要设置应用级自定义用户代理时，建议在Web组件创建前调用setAppCustomUserAgent方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
+
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明 |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | 是   | 用户自定义代理信息。建议先使用[getDefaultUserAgent](#getdefaultuseragent14)获取当前默认用户代理，在此基础上追加自定义用户代理信息。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.initializeWebEngine();
+      let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setAppCustomUserAgent(appUA);
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+### setUserAgentForHosts<sup>20+</sup>
+
+static setUserAgentForHosts(userAgent: string, hosts: Array): void
+
+针对特定网站设置自定义用户代理，会覆盖系统的用户代理，应用内所有Web组件生效。
+
+当需要对特定网站设置自定义用户代理时，建议在Web组件创建前调用setUserAgentForHosts方法设置User-Agent，再创建指定src的Web组件或通过[loadUrl](#loadurl)加载具体页面。
+
+
+
+默认User-Agent定义与使用场景，及相关User-Agent接口定义优先级请参考[User-Agent开发指导](../../web/web-default-userAgent.md)
+
+**系统能力：**  SystemCapability.Web.Webview.Core
+
+**参数：**
+
+| 参数名          | 类型    |  必填  | 说明 |
+| ---------------| ------- | ---- | ------------- |
+| userAgent      | string  | 是   | 用户自定义代理信息。建议先使用[getDefaultUserAgent](#getdefaultuseragent14)获取当前默认用户代理，在此基础上追加自定义用户代理信息。 |
+| hosts      | Array  | 是   | 用户自定义代理的相关域名列表，每次调用时仅保留最新传入的列表，并限制最大条目数为两万，超出部分自动截断。 |
+
+**示例：**
+
+```ts
+// xxx.ets
+import { webview } from '@kit.ArkWeb';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+
+  aboutToAppear(): void {
+    try {
+      webview.WebviewController.initializeWebEngine();
+      let defaultUserAgent = webview.WebviewController.getDefaultUserAgent();
+      let appUA = defaultUserAgent + " appUA";
+      webview.WebviewController.setUserAgentForHosts(
+        appUA,
+        [
+          "www.example.com",
+          "www.baidu.com"
+        ]
+      );
+    } catch (error) {
+      console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
+    }
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ### setConnectionTimeout<sup>11+</sup>
 
 static setConnectionTimeout(timeout: number): void
@@ -5670,7 +5785,7 @@ static warmupServiceWorker(url: string): void
 
 | 错误码ID  | 错误信息                                                      |
 | -------- | ------------------------------------------------------------ |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -5800,7 +5915,7 @@ enableIntelligentTrackingPrevention(enable: boolean): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5857,7 +5972,7 @@ isIntelligentTrackingPreventionEnabled(): boolean
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5913,7 +6028,7 @@ static addIntelligentTrackingPreventionBypassingList(hostList: Array\<string>): 
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -5969,7 +6084,7 @@ static removeIntelligentTrackingPreventionBypassingList(hostList: Array\<string>
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6019,7 +6134,7 @@ static clearIntelligentTrackingPreventionBypassingList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持智能防跟踪功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6103,7 +6218,7 @@ enableAdsBlock(enable: boolean): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6160,7 +6275,7 @@ isAdsBlockEnabled() : boolean
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6216,7 +6331,7 @@ isAdsBlockEnabledForCurPage() : boolean
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -6411,7 +6526,7 @@ postUrl(url: string, postData: ArrayBuffer): void
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
@@ -6824,6 +6939,12 @@ getLastJavascriptProxyCallingFrameUrl(): string
 通过[registerJavaScriptProxy](#registerjavascriptproxy)或者[javaScriptProxy](ts-basic-components-web.md#javascriptproxy)注入JavaScript对象到window对象中。该接口可以获取最后一次调用注入的对象的frame的url。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**返回值：**
+
+| 类型     | 说明           |
+| ------ | ------------ |
+| string | 最后一次调用注入的对象的frame的url。 |
 
 **错误码：**
 
@@ -7516,6 +7637,10 @@ startCamera(): void
 开启当前网页摄像头捕获。
 
 **系统能力：** SystemCapability.Web.Webview.Core
+
+**需要权限：**
+
+使用摄像头功能前请在module.json5中添加权限: ohos.permission.CAMERA，具体权限的添加方法请参考[在配置文件中声明权限](../../security/AccessToken/declare-permissions.md)。
 
 **错误码：**
 
@@ -8259,7 +8384,7 @@ injectOfflineResources(resourceMaps: Array\<[OfflineResourceMap](#offlineresourc
 | -------- | ------------------------------------------------------------ |
 | 401      | Invalid input parameter.Possible causes: 1. Mandatory parameters are left unspecified.2. Incorrect parameter types.3. Parameter verification failed.                                     |
 | 17100001 | Init error. The WebviewController must be associated with a Web component. |
-| 17100002 | Invalid url.                                                 |
+| 17100002 | URL error. The webpage corresponding to the URL is invalid, or the URL length exceeds 2048. |
 
 **示例：**
 
@@ -9331,7 +9456,7 @@ static getCookie(url: string): string
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3.Parameter verification failed. |
 
 **示例：**
@@ -9398,7 +9523,7 @@ static fetchCookieSync(url: string, incognito?: boolean): string
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
 **示例：**
@@ -9452,7 +9577,7 @@ static fetchCookie(url: string, callback: AsyncCallback\<string>): void
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 
 **示例：**
 
@@ -9517,7 +9642,7 @@ static fetchCookie(url: string): Promise\<string>
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 
 **示例：**
 
@@ -9581,7 +9706,7 @@ static fetchCookie(url: string, incognito: boolean): Promise\<string>
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 
 **示例：**
 
@@ -9642,7 +9767,7 @@ static setCookie(url: string, value: string): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
@@ -9706,7 +9831,7 @@ static configCookieSync(url: string, value: string, incognito?: boolean): void
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
@@ -9762,7 +9887,7 @@ static configCookieSync(url: string, value: string, incognito: boolean, includeH
 
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
 
@@ -9818,7 +9943,7 @@ static configCookie(url: string, value: string, callback: AsyncCallback\<void>):
 | 错误码ID | 错误信息                                               |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 
 **示例：**
@@ -9881,7 +10006,7 @@ static configCookie(url: string, value: string): Promise\<void>
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 
 **示例：**
@@ -9948,7 +10073,7 @@ static configCookie(url: string, value: string, incognito: boolean, includeHttpO
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------ |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 17100002 | Invalid url.                                           |
+| 17100002 | URL error. No valid cookie found for the specified URL. |
 | 17100005 | Invalid cookie value.                                  |
 
 **示例：**
@@ -11869,10 +11994,10 @@ Web组件返回的请求/响应头对象。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 可读 | 可写 |说明                 |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| headerKey   | string | 是 | 是 | 请求/响应头的key。   |
-| headerValue | string | 是 | 是 | 请求/响应头的value。 |
+| headerKey   | string | 否 | 否 | 请求/响应头的key。   |
+| headerValue | string | 否 | 否 | 请求/响应头的value。 |
 
 ## RequestInfo<sup>12+</sup>
 
@@ -11880,11 +12005,11 @@ Web组件发送的资源请求信息。
 
 **系统能力：**: SystemCapability.Web.Webview.Core
 
-| 名称      | 类型   | 可读 | 可写 |说明        |
+| 名称      | 类型   | 只读 | 可选 |说明        |
 | ---------| ------ | -----|------|--------  |
-| url      | string | 是 | 是 | 请求的链接。    |
-| method   | string | 是 | 是 | 请求的方法。    |
-| formData | string | 是 | 是 | 请求的表单数据。 |
+| url      | string | 否 | 否 | 请求的链接。    |
+| method   | string | 否 | 否 | 请求的方法。    |
+| formData | string | 否 | 否 | 请求的表单数据。 |
 
 ## WebHitTestType
 
@@ -11922,10 +12047,10 @@ Web组件发送的资源请求信息。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明|
+| 名称 | 类型 | 只读 | 可选 | 说明|
 | ---- | ---- | ---- | ---- |---- |
-| type | [WebHitTestType](#webhittesttype) | 是 | 是 | 当前被点击区域的元素类型。|
-| extra | string        | 是 | 是 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
+| type | [WebHitTestType](#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
+| extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
 ## WebMessage
 
@@ -12433,11 +12558,11 @@ setError(message: Error): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称   | 类型   | 可读 | 可写 | 说明 |
+| 名称   | 类型   | 只读 | 可选 | 说明 |
 | ------ | ------ | ---- | ---- | ---- |
-| origin | string | 是  | 是 | 指定源的字符串索引。 |
-| usage  | number | 是  | 是 | 指定源的存储量。     |
-| quota  | number | 是  | 是 | 指定源的存储配额。   |
+| origin | string | 否  | 否 | 指定源的字符串索引。 |
+| usage  | number | 否  | 否 | 指定源的存储量。     |
+| quota  | number | 否  | 否 | 指定源的存储配额。   |
 
 ## BackForwardList
 
@@ -12445,10 +12570,10 @@ setError(message: Error): void
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称         | 类型   | 只读 | 可选 | 说明                                                         |
 | ------------ | ------ | ---- | ---- | ------------------------------------------------------------ |
-| currentIndex | number | 是   | 是   | 当前在页面历史列表中的索引。                                 |
-| size         | number | 是   | 是   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
+| currentIndex | number | 否   | 否   | 当前在页面历史列表中的索引。                                 |
+| size         | number | 否   | 否   | 历史列表中索引的数量，最多保存50条，超过时起始记录会被覆盖。 |
 
 ### getItemAtIndex
 
@@ -12517,12 +12642,12 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称          | 类型                                   | 可读 | 可写 | 说明                         |
+| 名称          | 类型                                   | 只读 | 可选 | 说明                         |
 | ------------- | -------------------------------------- | ---- | ---- | ---------------------------- |
 | icon          | [image.PixelMap](../apis-image-kit/js-apis-image.md#pixelmap7) | 是   | 否   | 历史页面图标的PixelMap对象。 |
-| historyUrl    | string                                 | 是   | 是   | 历史记录项的url地址。        |
-| historyRawUrl | string                                 | 是   | 是   | 历史记录项的原始url地址。    |
-| title         | string                                 | 是   | 是   | 历史记录项的标题。           |
+| historyUrl    | string                                 | 否   | 否   | 历史记录项的url地址。        |
+| historyRawUrl | string                                 | 否   | 否   | 历史记录项的原始url地址。    |
+| title         | string                                 | 否   | 否   | 历史记录项的标题。           |
 
 ## WebCustomScheme
 
@@ -12530,17 +12655,17 @@ struct WebComponent {
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| 名称           | 类型       | 只读 | 可选 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| schemeName     | string    | 是   | 是   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'，同时需要以字母开头。        |
-| isSupportCORS  | boolean   | 是   | 是   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
-| isSupportFetch | boolean   | 是   | 是   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
-| isStandard<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
-| isLocal<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
-| isDisplayIsolated<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
-| isSecure<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
-| isCspBypassing<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
-| isCodeCacheSupported<sup>12+</sup> | boolean   | 是   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code cache，false表示设置了该选项的scheme的js资源不支持生成code cache。<br>默认值：false。         |
+| schemeName     | string    | 否   | 否   | 自定义协议名称。最大长度为32，其字符仅支持小写字母、数字、'.'、'+'、'-'，同时需要以字母开头。        |
+| isSupportCORS  | boolean   | 否   | 否   | 是否支持跨域请求。<br>true表示支持跨域请求，false表示不支持跨域请求。<br>默认值：true。    |
+| isSupportFetch | boolean   | 否   | 否   | 是否支持fetch请求。<br>true表示支持fetch请求，false表示不支持fetch请求。<br>默认值：true。           |
+| isStandard<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将作为标准scheme进行处理。标准scheme需要符合RFC 1738第3.1节中定义的URL规范化和解析规则。<br>true表示设置了该选项的scheme将作为标准scheme进行处理，false表示设置了该选项的scheme不作为标准scheme进行处理。<br>默认值：true。           |
+| isLocal<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将使用与“file”协议相同的安全规则来处理。<br>true表示设置了该选项的scheme将使用与“file”协议相同的安全规则来处理，false表示设置了该选项的scheme不使用与“file”协议相同的安全规则来处理。<br>默认值：true。           |
+| isDisplayIsolated<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的内容是否只能从相同scheme的其他内容中显示或访问。<br>true表示设置了该选项的scheme的内容只能从相同scheme的其他内容中显示或访问，false表示设置了该选项的scheme的内容不是只能从相同scheme的其他内容中显示或访问。<br>默认值：true。           |
+| isSecure<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme是否将使用与应用于“https”的安全规则相同的安全规则来处理。true表示设置了该选项的scheme将使用与应用于“https”的安全规则相同的安全规则来处理，false表示设置了该选项的scheme不使用与应用于“https”的安全规则相同的安全规则来处理。<br>默认值：true。           |
+| isCspBypassing<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme可以绕过内容安全策略（CSP）检查。<br>true表示设置了该选项的scheme可以绕过内容安全策略（CSP）检查，false表示设置了该选项的scheme不可以绕过内容安全策略（CSP）检查。<br>默认值：true。<br>在大多数情况下，当设置isStandard为true时，不应设置此值。         |
+| isCodeCacheSupported<sup>12+</sup> | boolean   | 否   | 是   | 设置了该选项的scheme的js资源是否支持生成code cache。<br>true表示设置了该选项的scheme的js资源支持生成code cache，false表示设置了该选项的scheme的js资源不支持生成code cache。<br>默认值：false。         |
 
 ## SecureDnsMode<sup>10+</sup>
 
@@ -15139,7 +15264,7 @@ WebHttpBodyStream是否采用分块传输。
 
 | 类型   | 说明                      |
 | ------ | ------------------------- |
-| boolean | WebHttpBodyStream是否采用分块传输。 |
+| boolean | WebHttpBodyStream是否采用分块传输，如果采用分块传输则返回true，否则返回false。 |
 
 **示例：**
 
@@ -15269,7 +15394,7 @@ isMainFrame(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 判断资源请求是否为主frame。 |
+| boolean | 判断资源请求是否为主frame，如果资源请求是主frame则返回true，否则返回false。 |
 
 **示例：**
 
@@ -15287,7 +15412,7 @@ hasGesture(): boolean
 
 | 类型     | 说明            |
 | ------ | ------------- |
-| boolean | 返回资源请求是否与手势（如点击）相关联。 |
+| boolean | 返回资源请求是否与手势（如点击）相关联，如果返回资源请求与手势相关联则返回true，否则返回false。 |
 
 **示例：**
 
@@ -15988,9 +16113,9 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 可读 | 可写 |说明                 |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| responseHeaders   | Array<[WebHeader](#webheader)> | 是 | 是 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
+| responseHeaders   | Array<[WebHeader](#webheader)> | 否 | 否 | 请求此JavaScript文件时服务器返回的响应头，使用E-Tag或Last-Modified标识文件版本，判断是否需要更新。   |
 
 ## PlaybackStatus<sup>12+</sup>
 
@@ -16613,12 +16738,12 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称        | 类型   | 可读 | 可写 |说明                 |
+| 名称        | 类型   | 只读 | 可选 |说明                 |
 | ----------- | ------ | -----|------|------------------- |
-| urlList | Array\<string\> | 是   | 是   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin)，如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议，长度不超过2048。      |
-| resource | Uint8Array | 是   | 是   | 本地离线资源的内容。      |
-| responseHeaders | Array<[WebHeader](#webheader)> | 是   | 是   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anonymous或use-credentials。      |
-| type | [OfflineResourceType](#offlineresourcetype12) | 是   | 是   | 资源的类型，目前仅支持Javascript、图片和CSS类型的资源。      |
+| urlList | Array\<string\> | 否   | 否   | 本地离线资源对应的网络地址列表，列表的第一项将作为资源的源(Origin)，如果仅提供一个网络地址，则使用该地址作为这个资源的源。url仅支持http或https协议，长度不超过2048。      |
+| resource | Uint8Array | 否   | 否   | 本地离线资源的内容。      |
+| responseHeaders | Array<[WebHeader](#webheader)> | 否   | 否   | 资源对应的HTTP响应头。其中提供的Cache-Control或Expires响应头将被用于控制资源在内存缓存中的有效期。如果不提供，默认的有效期为86400秒，即1天。其中提供的Content-Type响应头将被用于定义资源的MIMEType，MODULE_JS必须提供有效的MIMEType，其他类型可不提供，无默认值，不符合标准的MIMEType会导致内存缓存失效。如果业务网页中的script标签使用了crossorigin属性，则必须在接口的responseHeaders参数中设置Cross-Origin响应头的值为anonymous或use-credentials。      |
+| type | [OfflineResourceType](#offlineresourcetype12) | 否   | 否   | 资源的类型，目前仅支持Javascript、图片和CSS类型的资源。      |
 
 ## OfflineResourceType<sup>12+</sup>
 
@@ -16668,12 +16793,12 @@ type CreateNativeMediaPlayerCallback = (handler: NativeMediaPlayerHandler, media
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称           | 类型       | 可读 | 可写 | 说明                         |
+| 名称           | 类型       | 只读 | 可选 | 说明                         |
 | -------------- | --------- | ---- | ---- | ---------------------------- |
-| x  | number   | 是   | 是   | 矩形区域左上角x坐标。    |
-| y  | number   | 是   | 是   | 矩形区域左上角y坐标。    |
-| width  | number   | 是   | 是   | 矩形的宽度。    |
-| height  | number   | 是   | 是   | 矩形的高度。    |
+| x  | number   | 否   | 否   | 矩形区域左上角x坐标。    |
+| y  | number   | 否   | 否   | 矩形区域左上角y坐标。    |
+| width  | number   | 否   | 否   | 矩形的宽度。    |
+| height  | number   | 否   | 否   | 矩形的高度。    |
 
 ## BackForwardCacheSupportedFeatures<sup>12+<sup>
 
@@ -16740,7 +16865,7 @@ static setAdsBlockRules(rulesFile: string, replace: boolean): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16813,7 +16938,7 @@ static addAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16895,7 +17020,7 @@ static removeAdsBlockDisallowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -16967,7 +17092,7 @@ static clearAdsBlockDisallowedList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17046,7 +17171,7 @@ static addAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17131,7 +17256,7 @@ static removeAdsBlockAllowedList(domainSuffixes: Array\<string\>): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17203,7 +17328,7 @@ static clearAdsBlockAllowedList(): void
 
 > **说明：**
 >
-> 从API Version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
+> 从API version 18开始，在不支持广告过滤功能的设备上调用该API会抛出801异常。
 
 以下错误码的详细介绍请参见[webview错误码](errorcode-webview.md)。
 
@@ -17358,7 +17483,7 @@ pdfArrayBuffer(): Uint8Array
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
-| 名称 | 类型   | 可读 | 可写 | 说明                                                         |
+| 名称 | 类型   | 只读 | 可选 | 说明                                                         |
 | ---- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| x    | number | 是   | 是   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br/>单位：vp。 |
-| y    | number | 是   | 是   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br/>单位：vp。 |
+| x    | number | 否   | 否   | 网页在水平方向的滚动偏移量。取值为网页左边界x坐标与Web组件左边界x坐标的差值。<br/>当网页向右过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向左过滚动时，取值为0或正值。<br/>单位：vp。 |
+| y    | number | 否   | 否   | 网页在垂直方向的滚动偏移量。取值为网页上边界y坐标与Web组件上边界y坐标的差值。<br/>当网页向下过滚动时，取值范围为负值。<br/>当网页没有过滚动或者网页向上过滚动时，取值为0或正值。<br/>单位：vp。 |

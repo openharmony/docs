@@ -10,10 +10,12 @@
       - [页面和自定义组件生命周期](../ui/state-management/arkts-page-custom-components-lifecycle.md)
       - [自定义组件的自定义布局](../ui/state-management/arkts-page-custom-components-layout.md)
       - [自定义组件成员属性访问限定符使用限制](../ui/state-management/arkts-custom-components-access-restrictions.md)
-    - [\@Builder装饰器：自定义构建函数](../ui/state-management/arkts-builder.md)
-    - [\@LocalBuilder装饰器：维持组件关系](../ui/state-management/arkts-localBuilder.md)
-    - [\@BuilderParam装饰器：引用\@Builder函数](../ui/state-management/arkts-builderparam.md)
-    - [wrapBuilder：封装全局@Builder](../ui/state-management/arkts-wrapBuilder.md)
+    - 组件扩展<!--arkts-extend-components-->
+      - [组件扩展概述](../ui/state-management/arkts-extend-components-overview.md)
+      - [\@Builder装饰器：自定义构建函数](../ui/state-management/arkts-builder.md)
+      - [\@LocalBuilder装饰器：维持组件关系](../ui/state-management/arkts-localBuilder.md)
+      - [\@BuilderParam装饰器：引用\@Builder函数](../ui/state-management/arkts-builderparam.md)
+      - [wrapBuilder：封装全局@Builder](../ui/state-management/arkts-wrapBuilder.md)
     - [\@Styles装饰器：定义组件重用样式](../ui/state-management/arkts-style.md)
     - [\@Extend装饰器：定义扩展组件样式](../ui/state-management/arkts-extend.md)
     - [stateStyles：多态样式](../ui/state-management/arkts-statestyles.md)
@@ -200,6 +202,7 @@
     - [应用深浅色适配](ui-dark-light-color-adaptation.md)
     - [设置应用内主题换肤](theme_skinning.md)
   - [使用UI上下文接口操作界面（UIContext）](arkts-global-interface.md)
+  - [使用组件截图（ComponentSnapshot）](arkts-uicontext-component-snapshot.md)
   - 嵌入式组件<!--arkts-ui-cross-process-->
     - [全屏启动原子化服务 (FullScreenLaunchComponent)](arkts-FullScreenComponent.md)
     - [同应用进程嵌入式组件 (EmbeddedComponent)](arkts-embedded-components.md)
@@ -218,11 +221,15 @@
     - 构建布局<!--arkts-build-layout-ndk-->
       - [使用列表](ndk-loading-long-list.md)
       - [使用瀑布流](ndk-waterflow.md)
+    - 使用文本<!--arkts-build-text-ndk-->
+        - [Text组件的文本绘制与显示](ndk-styled-string.md)
+        - [输入框文本事件监听](ndk-textarea-event.md)
     - [构建弹窗](ndk-build-pop-up-window.md)
     - [构建自定义组件](ndk-build-custom-components.md)
     - [嵌入ArkTS组件](ndk-embed-arkts-components.md)
     - [通过XComponent接入无障碍](ndk-accessibility-xcomponent.md)
     - [自定义绘制](arkts-user-defined-draw.md)
+    - [通过EmbeddedComponent拉起EmbeddedUIExtensionAbility](ndk-embedded-component.md)
 - UI开发 (兼容JS的类Web开发范式)<!--ui-js-dev-->
   - [UI开发 (兼容JS的类Web开发范式)概述](ui-js-overview.md)
   - 框架说明<!--js-framework-overview-->

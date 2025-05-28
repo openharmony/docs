@@ -36,7 +36,9 @@ struct WebComponent {
   }
 }
 ```
-
+> **说明：**
+>
+> Cookie每30s周期性保存到磁盘中，也可以使用接口[saveCookieAsync](../reference/apis-arkweb/js-apis-webview.md#savecookieasync)进行强制落盘。
 
 ## 缓存与存储管理
 

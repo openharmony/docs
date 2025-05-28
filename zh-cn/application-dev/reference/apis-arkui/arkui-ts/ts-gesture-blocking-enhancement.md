@@ -19,7 +19,7 @@ shouldBuiltInRecognizerParallelWith(callback: ShouldBuiltInRecognizerParallelWit
 **参数：**
 | 参数名        | 参数类型                    | 必填  | 参数描述                          |
 | ---------- | -------------------------- | ------- | ----------------------------- |
-| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件做触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
+| callback      | [ShouldBuiltInRecognizerParallelWithCallback](#shouldbuiltinrecognizerparallelwithcallback) | 是   |  提供系统内置手势与响应链上其他组件的手势设置并行关系的回调事件，当该组件进行触摸碰撞测试时，会触发用户定义的回调来形成手势并行关系。 |
 
 **返回值：**
 
@@ -409,7 +409,7 @@ getDuration(): number
 
 | 类型     | 说明        |
 | ------ | --------- |
-| number | 预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
+| number | 返回预设长按手势识别器触发长按最短时间阈值，单位为ms。<br/>取值范围：[0, +∞) |
 
 ## SwipeRecognizer<sup>18+</sup>
 
@@ -435,7 +435,7 @@ getVelocityThreshold(): number
 
 getDirection(): SwipeDirection
 
-返回预设滑动手势识别器触发滑动手势滑动方向阈值。
+返回预设滑动手势识别器触发滑动手势滑动方向。
 
 **原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
 
@@ -445,7 +445,7 @@ getDirection(): SwipeDirection
 
 | 类型     | 说明        |
 | ------ | --------- |
-| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向阈值。 |
+| [SwipeDirection](./ts-basic-gestures-swipegesture.md#swipedirection枚举说明) | 预设滑动手势识别器触发滑动手势滑动方向。 |
 
 ## PinchRecognizer<sup>18+</sup>
 

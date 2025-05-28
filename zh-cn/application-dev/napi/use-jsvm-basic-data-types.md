@@ -74,6 +74,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueUint32(123))JS";
 ```
+<!-- @[oh_jsvm_get_value_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueuint32/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -127,6 +128,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueInt32(-123))JS";
 ```
+<!-- @[oh_jsvm_get_value_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueint32/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -177,6 +179,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueInt64(-123))JS";
 ```
+<!-- @[oh_jsvm_get_value_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvalueint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -225,6 +228,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getDouble(-110.0456))JS";
 ```
+<!-- @[oh_jsvm_get_value_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/getvaluedouble/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -274,6 +278,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createInt32())JS";
 ```
+<!-- @[oh_jsvm_create_int32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createint32/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -327,6 +332,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createUInt32())JS";
 ```
+<!-- @[oh_jsvm_create_uint32](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createuint32/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -376,6 +382,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createInt64())JS";
 ```
+<!-- @[oh_jsvm_create_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 
@@ -425,6 +432,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createDouble())JS";
 ```
+<!-- @[oh_jsvm_create_double](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmBasicDataTypes/createdouble/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 

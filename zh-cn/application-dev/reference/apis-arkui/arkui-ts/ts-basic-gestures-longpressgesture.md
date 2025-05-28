@@ -15,9 +15,9 @@ LongPressGesture(value?: { fingers?: number, repeat?: boolean, duration?: number
 
 当组件默认支持可拖拽时，如Text、TextInput、TextArea、HyperLink、Image和RichEditor等组件。长按手势与拖拽会出现冲突，事件优先级如下： 
 
-长按触发时间 < 500ms，长按事件优先拖拽事件响应。 
+当长按触发时间小于500毫秒时，系统优先响应长按事件而非拖拽事件。 
 
-长按触发时间 >= 500ms，拖拽事件优先长按事件响应。 
+当长按触发时间达到或超过500毫秒时，系统优先响应拖拽事件而非长按事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 

@@ -432,7 +432,7 @@ Failed to install the HAP because the overlay check of the HAP failed.
 The specified bundle does not contain any overlay module.
 
 **错误描述**<br/>
-查询指定应用中overlay特征module的overlayModuleInfo时, 指定的应用不包含overlay特征module。
+查询指定应用中overlay特征module的overlayModuleInfo时，指定的应用不包含overlay特征module。
 
 **可能原因**<br/>
 指定的应用不包含overlay特征module。
@@ -446,7 +446,7 @@ The specified bundle does not contain any overlay module.
 The specified module is not an overlay module.
 
 **错误描述**<br/>
-查询指定的overlay特征module的overlayModuleInfo时, 指定的module不是overlay特征module。
+查询指定的overlay特征module的overlayModuleInfo时，指定的module不是overlay特征module。
 
 **可能原因**<br/>
 指定的module不是overlay特征的module。
@@ -460,7 +460,7 @@ The specified module is not an overlay module.
 The specified module is an overlay module.
 
 **错误描述**<br/>
-查询指定的目标module所关联的overlayModuleInfo时, 指定的module是overlay特征module。
+查询指定的目标module所关联的overlayModuleInfo时，指定的module是overlay特征module。
 
 **可能原因**<br/>
 指定的module是overlay特征的module。
@@ -474,7 +474,7 @@ The specified module is an overlay module.
 The specified bundle is an overlay bundle.
 
 **错误描述**<br/>
-查询指定应用的目标module所关联的overlayModuleInfo时, 指定的应用只包含overlay特征的module。
+查询指定应用的目标module所关联的overlayModuleInfo时，指定的应用只包含overlay特征的module。
 
 **可能原因**<br/>
 指定的应用只包含overlay特征的module。
@@ -921,7 +921,7 @@ The specified shortcut id is illegal.
 快捷方式id是不合法的。
 
 **可能原因**<br/>
-调用添加快捷方式接口时，已经存在相同包名，分身索引，用户id和快捷方式id的快捷方式信息，或者快捷方式id为空字符串。
+已经存在相同包名、分身索引、用户id和快捷方式id的快捷方式信息；传参对应的快捷方式id不存在，或快捷方式id为空字符串。
 
 **处理步骤**<br/>
 1. 检查包名或者快捷方式id是否正确。
@@ -937,7 +937,7 @@ It is not allowed to install the enterprise bundle.
 因策略管制，不允许通过特定的接口，安装企业应用。
 
 **处理步骤**<br/>
-请更换[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)。
+请更换[install接口](../apis-ability-kit/js-apis-installer-sys.md#bundleinstallerinstall)。<!--DelEnd-->
 
 
 ## 17700072 Launch Want不存在
@@ -953,6 +953,7 @@ Launch Want不存在。
 **处理步骤**<br/>
 应用需要有entities配置为entity.system.home并且actions配置为action.system.home的Ability。
 
+<!--Del-->
 ## 17700073 由于设备上存在具有相同包名称但不同签名信息的应用程序，导致安装失败
 **错误信息**<br/>
 Failed to install the HAP because an application with the same bundle name but different signature information exists on the device.

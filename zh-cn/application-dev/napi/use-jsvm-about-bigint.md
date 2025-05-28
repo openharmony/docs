@@ -82,11 +82,12 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueBigintWords(BigInt(5555555555555555)))JS";
 ```
+<!-- @[oh_jsvm_get_value_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintwords/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
 OH_JSVM_GetValueBigintWords wordCount:1.
-OH_JSVM_GetValueBigintWords signBit: 1.
+OH_JSVM_GetValueBigintWords signBit: 0.
 ```
 
 ### OH_JSVM_CreateBigintWords
@@ -129,6 +130,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createBigintWords())JS";
 ```
+<!-- @[oh_jsvm_create_bigint_words](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintwords/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -173,6 +175,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createBigintUint64())JS";
 ```
+<!-- @[oh_jsvm_create_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintuint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -224,6 +227,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getValueBigintUint64(BigInt(5555555555555555)))JS";
 ```
+<!-- @[oh_jsvm_get_value_bigint_uint64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintuint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -267,6 +271,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(createBigintInt64())JS";
 ```
+<!-- @[oh_jsvm_create_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/createbigintint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts
@@ -317,6 +322,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 // 样例测试js
 const char* srcCallNative = R"JS(getBigintInt64(BigInt(-5555555555555555)))JS";
 ```
+<!-- @[oh_jsvm_get_value_bigint_int64](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutBigint/getvaluebigintint64/src/main/cpp/hello.cpp) -->
 
 预期的输出结果
 ```ts

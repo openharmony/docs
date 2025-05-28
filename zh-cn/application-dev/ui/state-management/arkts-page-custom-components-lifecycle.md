@@ -1,8 +1,6 @@
 # 页面和自定义组件生命周期
 
-
 在开始之前，我们先明确自定义组件和页面的关系：
-
 
 - 自定义组件：\@Component装饰的UI单元，可以组合多个系统组件实现UI的复用，可以调用组件的生命周期。
 
@@ -35,7 +33,7 @@
 ![zh-cn_image_0000001502372786](figures/zh-cn_image_0000001502372786.png)
 
 
-根据上面的流程图，我们从自定义组件的初始创建、重新渲染和删除来详细解释。
+根据上面的流程图，我们从自定义组件的初始创建、重新渲染和删除来详细说明。
 
 
 ## 自定义组件的创建和渲染流程
@@ -44,35 +42,29 @@
 
 2. 初始化自定义组件的成员变量：通过本地默认值或者构造方法传递参数来初始化自定义组件的成员变量，初始化顺序为成员变量的定义顺序。
 
-3. 如果开发者定义了aboutToAppear，则执行aboutToAppear方法。
+3. 如果开发者定义了aboutToAppear，则执行该方法。
 
 4. 在首次渲染的时候，执行build方法渲染系统组件，如果子组件为自定义组件，则创建自定义组件的实例。在首次渲染的过程中，框架会记录状态变量和组件的映射关系，当状态变量改变时，驱动其相关的组件刷新。
 
-5. 如果开发者定义了onDidBuild，则执行onDidBuild方法。
-
+5. 如果开发者定义了onDidBuild，则执行该方法。
 
 ## 自定义组件重新渲染
 
 当事件句柄被触发（比如设置了点击事件，即触发点击事件）改变了状态变量时，或者LocalStorage / AppStorage中的属性更改，并导致绑定的状态变量更改其值时：
 
+1. 框架观察到变化，启动重新渲染。
 
-1. 框架观察到了变化，将启动重新渲染。
-
-2. 根据框架持有的两个map（[自定义组件的创建和渲染流程](#自定义组件的创建和渲染流程)中第4步），框架可以知道该状态变量管理了哪些UI组件，以及这些UI组件对应的更新函数。执行这些UI组件的更新函数，实现最小化更新。
-
+2. 根据框架持有的两个map（[自定义组件的创建和渲染流程](#自定义组件的创建和渲染流程)中第4步），框架知道状态变量管理的UI组件及其更新函数。执行这些更新函数，实现最小化更新。
 
 ## 自定义组件的删除
 
-如果if组件的分支改变，或者ForEach循环渲染中数组的个数改变，组件将被删除：
-
+如果if组件的分支改变或ForEach循环渲染中数组的个数改变，组件将被移除：
 
 1. 在删除组件之前，将调用其aboutToDisappear生命周期函数，标记着该节点将要被销毁。ArkUI的节点删除机制是：后端节点直接从组件树上摘下，后端节点被销毁，对前端节点解引用，前端节点已经没有引用时，将被JS虚拟机垃圾回收。
 
-2. 自定义组件和它的变量将被删除，如果其有同步的变量，比如[@Link](arkts-link.md)、[@Prop](arkts-prop.md)、[@StorageLink](arkts-appstorage.md#storagelink)，将从[同步源](arkts-state-management-overview.md#基本概念)上取消注册。
+2. 自定义组件和它的变量将被删除，如果组件有同步的变量（如[@Link](arkts-link.md)、[@Prop](arkts-prop.md)、[@StorageLink](arkts-appstorage.md#storagelink)），将从[同步源](arkts-state-management-overview.md#基本概念)上取消注册。
 
-
-不建议在生命周期aboutToDisappear内使用async await，如果在生命周期的aboutToDisappear使用异步操作（Promise或者回调方法），自定义组件将被保留在Promise的闭包中，直到回调方法被执行完，这个行为阻止了自定义组件的垃圾回收。
-
+不建议在生命周期`aboutToDisappear`中使用`async await`。如果在此生命周期中使用异步操作（如 Promise 或回调方法），自定义组件将被保留在Promise的闭包中，直到回调方法执行完毕，这会阻止自定义组件的垃圾回收。
 
 以下示例展示了生命周期的调用时机：
 
@@ -230,7 +222,7 @@ struct Page {
 }
 ```
 
-以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent和其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / onDidBuild / aboutToDisappear）。
+以上示例中，Index页面包含两个自定义组件，一个是被\@Entry装饰的MyComponent，也是页面的入口组件，即页面的根节点；一个是Child，是MyComponent的子组件。只有\@Entry装饰的节点才可以使页面级别的生命周期方法生效，因此在MyComponent中声明当前Index页面的页面生命周期函数（onPageShow / onPageHide / onBackPress）。MyComponent及其子组件Child分别声明了各自的组件级别生命周期函数（aboutToAppear / onDidBuild / aboutToDisappear）。
 
 - 应用冷启动的初始化流程为：MyComponent aboutToAppear --&gt; MyComponent build --&gt; MyComponent onDidBuild --&gt; Child aboutToAppear --&gt; Child build --&gt; Child onDidBuild --&gt; Index onPageShow。此时日志输出信息如下：
 
@@ -242,8 +234,7 @@ Child onDidBuild
 Index onPageShow
 ```
 
-- 点击“delete Child”，if绑定的this.showChild变成false，删除Child组件，会执行Child aboutToDisappear方法。
-
+- 点击“delete Child”，设置this.showChild为false，删除Child组件，执行Child aboutToDisappear方法。
 
 - 点击“push to next page”，调用this.getUIContext().getRouter().pushUrl({ url: 'pages/Page' })接口，跳转到另外一个页面，当前Index页面隐藏，执行页面生命周期Index onPageHide。此处调用的是pushUrl接口，Index页面被隐藏，并没有销毁，所以只调用onPageHide。跳转到新页面后，执行初始化新页面的生命周期的流程。
 
@@ -274,10 +265,9 @@ Index onPageShow
 Page aboutToDisappear
 ```
 
-- 最小化应用或者应用进入后台，触发Index onPageHide。当前Index页面没有被销毁，所以并不会执行组件的aboutToDisappear。应用回到前台，执行Index onPageShow。
+- 最小化应用或者应用进入后台，触发Index onPageHide。当前Index页面未被销毁，所以并不会执行组件的aboutToDisappear。应用回到前台，执行Index onPageShow。
 
-
-- 退出应用，执行Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
+- 退出应用时，触发以下生命周期：Index onPageHide --&gt; MyComponent aboutToDisappear --&gt; Child aboutToDisappear。
 
 ## 自定义组件监听页面生命周期
 

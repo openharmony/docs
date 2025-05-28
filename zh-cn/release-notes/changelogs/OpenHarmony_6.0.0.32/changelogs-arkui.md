@@ -1,6 +1,6 @@
 # ArkUI子系统Changelog
 
-## cl.arkui.1 TextPicker、Progress、QRCode、TextClock、TextTimer接口支持Resource类型
+## cl.arkui.1 文本与输入、信息展示、按钮与选择、滚动与滑动、图形绘制组件接口支持Resource类型
 
 **访问级别**
 
@@ -8,15 +8,15 @@
 
 **变更原因**
 
-基础能力增强，TextPicker、Progress、QRCode、TextClock、TextTimer接口支持Resource类型，可以使用资源对象设置默认选项的值。
+基础能力增强，文本与输入、信息展示、按钮与选择、滚动与滑动、图形绘制组件的接口支持Resource类型，可以使用资源对象设置默认选项的值。
 
 **变更影响**
 
-此变更不涉及应用适配。
+此变更涉及应用适配。
 
-- 变更前：TextPickerOptions、Progress、QRCode、TextClock、TextTimer中部分接口不支持Resource类型。
+- 变更前：TextPickerOptions、Progress、QRCode、TextClock、TextTimer、Badge、Circle、Text、TextArea、TextInput、Search、Span、RichEditor、Rating、Rect、Ellipse、Line、Polyline、Path、Polygon、ProgressButton、SubHeader、SubHeaderV2、Shape、SwipeRefresher中部分接口不支持Resource类型。
 
-- 变更后：TextPickerOptions、Progress、QRCode、TextClock、TextTimer中部分接口支持Resource类型。
+- 变更后：TextPickerOptions、Progress、QRCode、TextClock、TextTimer、Badge、Circle、Text、TextArea、TextInput、Search、Span、RichEditor、Rating、Rect、Ellipse、Line、Polyline、Path、Polygon、ProgressButton、SubHeader、SubHeaderV2、Shape、SwipeRefresher中部分接口支持Resource类型。
 
 
 **起始API Level**
@@ -29,11 +29,72 @@
 
 **变更的接口/组件**
 
-TextPicker.TextPickerOptions.value、Progress.CapsuleStyleOptions.content、QRCode.value、TextClock.format、TextTimer.fontWeight
+|组件名称|接口名称|参数名称|
+|--|--|--|
+|TextPicker|TextPickerOptions|value|
+|Progress|CapsuleStyleOptions|content|
+|TextPicker|TextPickerOptions|value|
+|QRCode|QRCodeInterface|value|
+|TextClock|format|value|
+|TextTimer|fontWeight|value|
+|Badge|BadgeStyle|fontSize、badgeSize、fontWeight|
+|Badge|BadgeParamWithString|value|
+|Circle|CircleOptions|width、height|
+|Text|fontWeight|value、weight|
+|Text|letterSpacing|value|
+|Text|baselineOffset|value|
+|TextArea|fontWeight|value|
+|TextInput|fontWeight|value|
+|Search|SearchOptions|value|
+|Search|searchButton|value|
+|Span|fontWeight|value|
+|Span|letterSpacing|value|
+|RichEditor|RichEditorController.addTextSpan|content|
+|Rating|StarStyleOptions|backgroundUri、foregroundUri、secondaryUri|
+|Rect|RectOptions|width、height、radius|
+|Rect|RoundedRectOptions|width、height、radiusWidth、radiusHeight|
+|Rect|radiusWidth|value|
+|Rect|radiusHeight|value|
+|Rect|radius|value|
+|Ellipse|EllipseOptions|width、height|
+|Line|LineOptions|width、height|
+|Polyline|PolylineOptions|width、height|
+|Path|PathOptions|width、height、commands|
+|Path|commands|value|
+|Polygon|PolygonOptions|width、height|
+|ProgressButton|-|content|
+|SubHeader|SelectOptions|value|
+|SubHeaderV2|SubHeaderV2SelectOptions|selectedContent|
+|SubHeaderV2|SubHeaderV2Select|selectedContent|
+|Shape|ViewportRect|x、y、width、height|
+|Shape|strokeDashOffset|value|
+|Shape|strokeMiterLimit|value|
+|Shape|strokeWidth|value|
+|SwipeRefresher|-|content|
 
 **适配指导**
 
-默认行为变更，无需适配。
+若有继承派生或者读取赋值则需要在定义处增加Resource类型支持，否则无需适配。
+
+```ts
+@Entry
+@Component
+struct Index {
+  searchOptions: SearchOptions = { value: '123456'}
+  // @State text: string = this.searchOptions.value; //原定义
+  @State text: ResourceStr | undefined = this.searchOptions.value; //适配定义
+  build() {
+    Column() {
+      Scroll() {
+        Column({ space: 20 }) {
+          Search(this.searchOptions)
+          Text(this.text)
+        }.alignItems(HorizontalAlign.Center).width('100%').margin({ top: 20 })
+      }
+    }
+  }
+}
+```
 
 ## cl.arkui.2 width和height支持的matchParent接口规格变更
 
@@ -179,3 +240,49 @@ struct Example {
   }
 }
 ```
+## cl.arkui.2 UI Input相关NDK接口行为变更
+
+**访问级别**
+
+公开接口
+
+**变更原因**
+
+修复相关接口在如下场景下的返回值异常问题，以确保开发者能够获取正确的结果：
+
+- 鼠标滚轮或触控板双指滑动；
+- 通过Enter键触发点击或单指轻触手势；
+- 使用外设键盘等设备与焦点窗口交互；
+- 组件节点接收按键事件；
+- 为XComponent组件注册自定义事件拦截回调后进行触摸测试；
+- 绑定组件接收轴事件；
+- 为XComponent组件注册UI输入事件回调后接收UI输入事件。
+
+**变更影响**
+
+此变更为非兼容性变更。
+
+变更前与变更后的变化说明：
+| 接口名称                                                      | 起始版本 | 说明                                                     | 变更原因                                                     | 变更影响                                                     |
+| ------------------------------------------------------------- | -------- | -------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------ |
+| int32_t<br> OH_ArkUI_UIInputEvent_GetType(const ArkUI_UIInputEvent* event); | 12        | 获取该裸事件对应的枚举类型ArkUI_UIInputEvent_Type，变更前包括触控、轴、鼠标这几种裸事件 | 遗漏支持key事件类型                                          | 当传入的参数为key事件时，获取的类型为0，修复后可获取正确值(ARKUI_UIINPUTEVENT_TYPE_KEY)。 |
+| int32_t<br> OH_ArkUI_UIInputEvent_GetAction(const ArkUI_UIInputEvent* event); | 12        | 获取裸事件对应的事件action类型，例如，如果裸事件为触控事件，则获取到的事件action类型为DOWN、MOVE、UP、CANCEL之一；若裸事件类型为鼠标事件，则为PRESS、RELEASE、MOVE、CANCEL之一；若为轴事件，则为BEGIN、UPDATE、END、CANCEL之一。因此，action类型的定义和含义存在差异，但在接口设计上，将返回值统一为int类型，以消除这些差异。 | 遗漏支持axis事件类型                                          | 当传入的参数为axis事件时，获取的类型为0，修复后可获取正确值（BEGIN/UPDATE/END/CANCEL）。 |
+| int32_t<br> OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event); | 14        | 获取当前输入事件的触发设备ID                                 |  实现遗漏通过键盘Enter键触发的click事件场景。 | 1. 仅TAB键走焦场景有可能触发该场景；<br>2.变更前应用无法获取正确的当前输入事件的触发设备ID，修复后可获取正确的当前输入事件的触发设备ID。 |
+
+**起始API Level**
+
+API 12
+
+**变更发生版本**
+
+从OpenHarmony 6.0.0.32版本开始。
+
+**变更的接口/组件**
+
+int32_t OH_ArkUI_UIInputEvent_GetType(const ArkUI_UIInputEvent* event);<br>
+int32_t OH_ArkUI_UIInputEvent_GetAction(const ArkUI_UIInputEvent* event);<br>
+int32_t OH_ArkUI_UIInputEvent_GetDeviceId(const ArkUI_UIInputEvent* event);<br>
+
+**适配指导**
+
+变更前的接口遗漏对部分事件的支持，导致输入这些事件时会返回默认值，与预期不符；修复后的接口已支持这些遗漏的事件，调用时可获取正确的返回值，应用无需特殊适配。

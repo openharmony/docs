@@ -920,7 +920,7 @@ struct TodoList {
 ### Model层
 Model层负责管理应用的数据及其业务逻辑，通常与后端或数据存储进行交互。在todolist应用中，Model层的主要职责是存储任务数据、加载任务列表，并提供数据操作的接口，而不直接涉及UI展示。
 
-- TaskModel: 单个任务的基本数据结构，包含任务名称和完成状态。
+- TaskModel：单个任务的基本数据结构，包含任务名称和完成状态。
 
 ```ts
 // src/main/ets/model/TaskModel.ets
@@ -931,7 +931,7 @@ export default class TaskModel {
 }
 ```
 
-- TaskListModel: 任务的集合，提供从本地加载任务数据的功能。
+- TaskListModel：任务的集合，提供从本地加载任务数据的功能。
 ```ts
 // src/main/ets/model/TaskListModel.ets
 
@@ -988,7 +988,7 @@ export default class TaskViewModel {
 }
 ```
 
-- TaskListViewModel: 封装了任务列表以及管理功能，包括加载任务、批量更新任务状态，以及添加和删除任务。
+- TaskListViewModel：封装了任务列表以及管理功能，包括加载任务、批量更新任务状态，以及添加和删除任务。
 
 ```ts
 // src/main/ets/viewmodel/TaskListViewModel.ets

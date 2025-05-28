@@ -1,6 +1,6 @@
-# 消息认证码计算HMAC
+# 消息认证码计算HMAC(ArkTS)
 
-HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入，生成消息认证码用于检验传递报文的完整性。HMAC在消息摘要算法的基础上增加了密钥的输入，确保了信息的正确性。生成的消息认证码为固定长度。
+HMAC使用指定的摘要算法，以共享密钥和消息作为输入，生成固定长度的消息认证码，用于检验报文的完整性。HMAC在消息摘要算法基础上增加密钥输入，确保信息正确性。
 
 ## 开发步骤
 
@@ -13,7 +13,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac)，指定摘要算法SHA256，生成消息认证码实例（Mac）。
 
 2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为HMAC的对称密钥（SymKey）。
-   生成对称密钥的详细开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
+   详细开发指导请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
 
 3. 调用[Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-6)，指定共享对称密钥（SymKey），初始化Mac对象。
 
@@ -44,7 +44,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     let message = 'hmacTestMessage'; // 待进行HMAC的数据。
     let mac = cryptoFramework.createMac(macAlgName);
     await mac.init(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
+    // 数据量较少时，可以一次性执行update操作，将所有数据传入。该接口不对入参长度进行限制。
     await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = await mac.doFinal();
     console.info('HMAC result:' + macResult.data);
@@ -74,7 +74,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     let message = 'hmacTestMessage'; // 待进行HMAC的数据。
     let mac = cryptoFramework.createMac(macAlgName);
     mac.initSync(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
+    // 数据量较少时，可以一次性执行update操作，将所有数据传入。接口不对入参长度进行限制。
     mac.updateSync({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = mac.doFinalSync();
     console.info('[Sync]HMAC result:' + macResult.data);
@@ -87,8 +87,8 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
 1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac)，指定摘要算法SHA256，生成消息认证码实例（Mac）。
 
-2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为HMAC的对称密钥（SymKey）。
-   生成对称密钥的详细开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
+2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)和[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为HMAC的对称密钥（SymKey）。
+   生成对称密钥的开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
 
 3. 调用[Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-7)，指定共享对称密钥（SymKey），初始化Mac对象。
 
@@ -98,7 +98,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 
 6. 调用[Mac.getMacLength](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#getmaclength)，获取Mac消息认证码的长度，单位为字节。
 
-- 以使用await方式分段传入数据，获取消息认证码计算结果为例：
+- 使用await方式分段传入数据，获取消息认证码计算结果。
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -117,10 +117,10 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     let key = await genSymKeyByData(keyData);
     let macAlgName = "SHA256"; // 摘要算法名。
     let mac = cryptoFramework.createMac(macAlgName);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
+    // 信息共43字节，utf-8解码后仍为43字节。
     let messageText = "aaaaa......bbbbb......ccccc......ddddd......eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
-    let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
+    let updateLength = 20; // 以20字节为单位进行分段更新。
     await mac.init(key);
     for (let i = 0; i < messageData.length; i += updateLength) {
       let updateMessage = messageData.subarray(i, i + updateLength);
@@ -134,7 +134,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
   }
   ```
 
-- 以使用同步方式分段传入数据，获取消息认证码计算结果为例：
+- 使用同步方式分段传入数据，获取消息认证码计算结果。
 
   ```ts
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
@@ -148,12 +148,12 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     return symKey;
   }
   function doLoopHmacBySync() {
-    // 把字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
+    // 字符串按utf-8解码为Uint8Array，使用固定的128位的密钥，即16字节。
     let keyData = new Uint8Array(buffer.from("12345678abcdefgh", 'utf-8').buffer);
     let key = genSymKeyByData(keyData);
     let macAlgName = "SHA256"; // 摘要算法名。
     let mac = cryptoFramework.createMac(macAlgName);
-    // 假设信息总共43字节，根据utf-8解码后，也是43字节。
+    // 信息总计43字节，按utf-8解码。
     let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee";
     let messageData = new Uint8Array(buffer.from(messageText, 'utf-8').buffer);
     let updateLength = 20; // 假设以20字节为单位进行分段update，实际并无要求。
@@ -174,8 +174,8 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
 ### HMAC(HmacSpec作为参数传入)
 1. 调用[cryptoFramework.createMac](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatemac)，指定消息认证码算法HMAC，指定摘要算法SHA256，生成消息认证码实例（Mac）。
 
-2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为HMAC的对称密钥（SymKey）。
-   生成对称密钥的详细开发指导，请参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
+2. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)和[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为HMAC的对称密钥（SymKey）。
+   参考[指定二进制数据生成对称密钥](crypto-convert-binary-data-to-sym-key.md)。
 
 3. 调用[Mac.init](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#init-6)，指定共享对称密钥（SymKey），初始化Mac对象。
 
@@ -209,7 +209,7 @@ HMAC通过指定摘要算法，以通信双方共享密钥与消息作为输入�
     let message = 'hmacTestMessage'; // 待进行HMAC的数据。
     let mac = cryptoFramework.createMac(spec);
     await mac.init(key);
-    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制。
+    // 数据量较少时，可以只做一次update，将所有数据传入，接口不对参数长度设限。
     await mac.update({ data: new Uint8Array(buffer.from(message, 'utf-8').buffer) });
     let macResult = await mac.doFinal();
     console.info('HMAC result:' + macResult.data);

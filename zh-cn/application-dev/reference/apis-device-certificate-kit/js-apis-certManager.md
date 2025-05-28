@@ -189,16 +189,28 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 | CURRENT_USER   | 1      | 表示当前用户。 |
 | GLOBAL_USER   | 2      | 表示设备公共，即所有用户都可以访问的位置。 |
 
+## CertAlgorithm<sup>20+</sup>
+
+表示证书的算法类型。
+
+**系统能力：** SystemCapability.Security.CertificateManager
+
+| 名称            | 值 | 说明                       |
+|---------------| ------ |--------------------------|
+| INTERNATIONAL | 1      | 表示国际密码算法，如RSA、NIST ECC等。 |
+| SM            | 2      | 表示商用密码算法，如SM2、SM4等。      |
+
 ## CertStoreProperty<sup>18+</sup>
 
 表示获取证书存储位置的参数集合，包括证书的类型及证书的位置。
 
 **系统能力：** SystemCapability.Security.CertificateManager
 
-| 名称           | 类型                              | 只读 | 可选 | 说明                                                         |
-| -------------- | --------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| certType          | [CertType](#certtype18)                     | 否  | 否  | 表示证书的类型。 |
-| certScope        | [CertScope](#certscope18)                     | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。 |
+| 名称        | 类型                                | 只读 | 可选 | 说明                                          |
+|-----------|-----------------------------------| ---- | ------------------------------------------------------------ |---------------------------------------------|
+| certType  | [CertType](#certtype18)           | 否  | 否  | 表示证书的类型。                                    |
+| certScope | [CertScope](#certscope18)         | 否   | 是  | 表示证书的存储位置。当证书类型为CA_CERT_USER时，此项为必选项。       |
+| certAlg   | [CertAlgorithm](#certalgorithm20) | 否   | 是  | 表示证书算法类型。仅当certType为CA_CERT_SYSTEM时有效，默认值为INTERNATIONAL。 |
 
 ## AuthStorageLevel<sup>18+</sup>
 
@@ -1520,10 +1532,11 @@ getCertificateStorePath(property: CertStoreProperty): string;
 
 以下错误码的详细介绍请参见[证书管理错误码](errorcode-certManager.md)。
 
-| 错误码ID | 错误信息      |
-| -------- | ------------- |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+| 错误码ID    | 错误信息      |
+|----------| ------------- |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 17500001 | Internal error. |
+| 17500009 | The device does not support the specified certificate store path. |
 
 **示例**：
 ```ts
@@ -1552,9 +1565,15 @@ try {
   }
   let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
   console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
+
+  /* 获取SM算法系统CA的存储位置 */
+  let property4: certificateManager.CertStoreProperty = {
+    certType: certificateManager.CertType.CA_CERT_SYSTEM,
+    certAlg: certificateManager.CertAlgorithm.SM,
+  }
+  let smSystemCAPath = certificateManager.getCertificateStorePath(property4);
+  console.info(`Success to get SM system ca path: ${smSystemCAPath}`);
 } catch (error) {
   console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
 }
 ```
-
-

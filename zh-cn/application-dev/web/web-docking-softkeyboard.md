@@ -71,6 +71,46 @@
 >inputmode优化移动设备键盘输入体验，不影响基本行为或验证。
 
 
+## 软键盘自动弹出
+为提升用户体验，可以在页面完成加载后，输入框自动获焦并弹出软键盘。通过调用[showTextInput()](../reference/apis-ime-kit/js-apis-inputmethod.md#showtextinput10)设置软键盘自动弹出功能。
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>测试网页</title>
+  </head>
+  <body>
+    <h1>DEMO</h1>
+    <input type="text" id="input_a">
+  </body>
+</html>
+```
+
+```ts
+//Index.ets
+import { webview } from '@kit.ArkWeb';
+import { inputMethod } from '@kit.IMEKit';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: webview.WebviewController = new webview.WebviewController();
+  build() {
+    Column() {
+      Web({ src: $rawfile("index.html"), controller: this.controller})
+        .onPageEnd(() => {
+          this.controller.runJavaScript(`document.getElementById('input_a').focus()`).then(() => {
+            setTimeout(() => {
+              inputMethod.getController().showTextInput();
+            }, 10);
+          });
+        });
+    }
+  }
+}
+```
 
 ## 设置软键盘避让模式
 
@@ -183,6 +223,28 @@ ArkWeb组件根据避让模式进行避让，效果见图3。
 **图3**  Web组件网页自身软键盘避让模式
 
 ![web-keyboardavoid](figures/web-keyboardavoid.png)
+
+3.在软键盘弹出时，为使Web组件不发生避让行为，可通过调用[expandSafeArea()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-expand-safe-area.md#expandsafearea)设置Web组件扩展安全区域。更多详细示例可参考[网页中安全区域计算和避让适配](../web/web-safe-area-insets.md)。
+
+  ```ts
+  // xxx.ets
+  import { webview } from '@kit.ArkWeb';
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: webview.WebviewController = new webview.WebviewController();
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .width('100%').height('100%')
+          .expandSafeArea([SafeAreaType.KEYBOARD, SafeAreaType.SYSTEM])
+      }
+    }
+  }
+  ```
+
 
 与其他Web组件行为的交互场景：
 

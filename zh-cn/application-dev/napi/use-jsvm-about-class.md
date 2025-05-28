@@ -36,6 +36,7 @@ cpp部分代码
 ```cpp
 // hello.cpp
 #include <string.h>
+#include <fstream>
 
 std::string ToString(JSVM_Env env, JSVM_Value val) {
     JSVM_Value jsonString;
@@ -78,6 +79,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"newInstance", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+<!-- @[oh_jsvm_newinstance](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/newinstance/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 
@@ -177,6 +179,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
 };
 
 ```
+<!-- @[oh_jsvm_defineclass](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/defineclass/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 
@@ -289,6 +292,7 @@ static JSVM_PropertyDescriptor descriptor[] = {
     {"removeWrap", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
 ```
+<!-- @[oh_jsvm_removewrap](https://gitee.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTs/JSVMAPI/JsvmUsageGuide/JsvmAboutClass/removewrap/src/main/cpp/hello.cpp) -->
 
 #### 样例JS
 

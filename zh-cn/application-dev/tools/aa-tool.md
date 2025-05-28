@@ -44,7 +44,7 @@ aa help
 
 ```bash
 # 显示启动Ability
-aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-D] [-R] [-S] [-W] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 
 # 隐式启动Ability。如果命令中的参数都不填，会导致启动失败。
 aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D] [-R] [--pi <key> <integer-value>] [--pb <key> <bool-value: true/false/t/f大小写不敏感] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
@@ -75,6 +75,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-D]
   | -S | 可选参数，调试时是否进入应用沙箱。携带该参数代表进入，不携带代表不进入。 |
   | -D | 可选参数，调试模式。        |
   | -p | 可选参数，调优命令。命令由调用方自定义。        |
+  | -W | 可选参数，调优命令。打印启动耗时。<br>**说明：** 从API version 20开始，支持该参数。        |
 
   **返回值**：
 
@@ -267,7 +268,7 @@ aa dump -a
   
   ```bash
   # 打印指定应用组件详细信息
-  aa dump -i 12
+  aa dump -i 105
   ```
 
   ![aa-dump-i](figures/aa-dump-i.png)
@@ -512,6 +513,39 @@ aa process -b <bundleName> -a <abilityName> [-m <moduleName>] [-p <perf-cmd>] [-
   aa process -b com.example.myapplication -a EntryAbility -p perf-cmd [-S]
   ```
 
+## onMemoryLevel回调命令（send-memory-level）
+
+从API version 20开始，开发者可以通过该命令来调试应用的[onMemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)生命周期。通过在参数中指定进程的pid和内存使用级别来触发该进程的onMemoryLevel生命周期回调。
+
+```bash
+# 触发onMemoryLevel回调
+aa send-memory-level -p <processId> -l <memoryLevel>
+```
+
+**参数列表**
+
+| 参数 | 参数说明 |
+| -------- | -------- |
+| -h/--help | 帮助信息。 |
+| -p | 必选参数，进程pid。 |
+| -l | 必选参数，内存使用级别，具体值参考[AbilityConstant.MemoryLevel](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#memorylevel)。 |
+
+**返回值**：
+
+当执行成功时，返回"send memory level successfully."；当执行失败时，返回"error: failed to send memory level."；当给定参数值缺失时，返回"fail: unknow option."并打印帮助信息。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 10104003 | The specified pid does not exist. |
+| 10104004 | The specified level does not exist. |
+
+**示例**：
+
+```bash
+# 触发进程号为6066应用的onMemoryLevel回调，此时回调的level为0
+aa send-memory-level -p 6066 -l 0
+```
+
 ## aa工具错误码
 
 ### 10103001 目标Ability可见性校验失败
@@ -556,6 +590,42 @@ The specified ability does not exist.
     ```
     hdc shell bm dump -n 包名
     ```
+
+### 10104003 指定的pid不存在
+
+**错误信息**
+
+The specified pid does not exist.
+
+**错误描述**
+ 
+当指定的pid不存在时，aa工具将返回该错误码。
+
+**可能原因**
+
+指定的pid不存在。
+
+**处理步骤**
+
+检查-p参数指定的进程号在设备上是否存在。
+
+### 10104004 指定的内存使用级别不存在
+
+**错误信息**
+
+The specified level does not exist.
+
+**错误描述**
+ 
+当指定的内存使用级别不存在时，aa工具将返回该错误码。
+
+**可能原因**
+
+指定的内存使用级别不存在。
+
+**处理步骤**
+
+检查-l参数指定的内存使用级别是否为[0, 2]区间内的整数值。
 
 ### 10105001 Ability服务连接失败
 

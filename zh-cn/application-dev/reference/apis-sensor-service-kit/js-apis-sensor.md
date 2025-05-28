@@ -687,6 +687,10 @@ on(type: SensorId.ORIENTATION, callback: Callback&lt;OrientationResponse&gt;, op
 
 订阅方向传感器数据。
 
+> **说明：**
+> 
+> 调用本接口的应用或服务可以通过提示用户使用8字校准法来提高应用获取的方向传感器的精度，此传感器理论误差正负5度，具体的精度根据不同的驱动及算法实现可能存在差异。
+
 **原子化服务API**：从API Version 11开始，该接口支持在原子化服务中使用。
 
 **系统能力**：SystemCapability.Sensors.Sensor 

@@ -49,7 +49,7 @@ AVVolumePanel({volumeLevel?: number, volumeParameter?: AVVolumePanelParameter})
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | 否 | 设置音量面板的位置。 |
+|position | [Position](../apis-arkui/arkui-ts/ts-types.md#position) | 否 | 设置音量面板的位置。如果不传入该参数，则为系统音量条位置。 |
 
 ## 事件
 

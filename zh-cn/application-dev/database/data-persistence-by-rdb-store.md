@@ -1,4 +1,4 @@
-# 通过关系型数据库实现数据持久化
+# 通过关系型数据库实现数据持久化（ArkTS）
 
 
 ## 场景介绍
@@ -29,7 +29,7 @@
 
 ## 约束限制
 
-- 系统默认日志方式是WAL（Write Ahead Log）模式，系统默认落盘方式是FULL模式。
+- 系统默认日志方式是[WAL](data-terminology.md#wal模式)（Write Ahead Log）模式，系统默认落盘方式是[FULL模式](data-terminology.md#full模式)。
 
 - 数据库中常驻有4个读连接和1个写连接。读连接会动态扩充，无可用读连接时，会创建新的读连接执行读操作。写连接不会动态扩充，无可用写连接时，会等待连接释放后执行写操作。
 
@@ -384,7 +384,93 @@
    }
    ```
 
-5. 在同路径下备份数据库。关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
+5. 使用事务对象执行数据的插入、删除和更新操作。
+   
+   调用createTransaction方法创建事务对象并执行相应操作。
+   支持配置的事务类型有DEFERRED、IMMEDIATE和EXCLUSIVE，默认为DEFERRED。
+
+   具体信息请参见[关系型数据库](../reference/apis-arkdata/js-apis-data-relationalStore.md#createtransaction14)。
+
+   ```ts
+   if (store != undefined) {
+     const valueBucket: relationalStore.ValuesBucket = {
+       'NAME': "Lisa",
+       'AGE': 18,
+       'SALARY': 100.5,
+       'CODES': new Uint8Array([1, 2, 3, 4, 5])
+     };
+     // 创建事务对象
+     (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+       // 使用事务对象插入数据
+       transaction.insert("EMPLOYEE", valueBucket, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
+         .then((rowId: number) => {
+           // 插入成功提交事务
+           transaction.commit();
+           console.info(`Insert is successful, rowId = ${rowId}`);
+         })
+         .catch((e: BusinessError) => {
+           // 插入失败回滚事务
+           transaction.rollback();
+           console.error(`Insert is failed, code is ${e.code},message is ${e.message}`);
+         });
+     }).catch((err: BusinessError) => {
+       console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
+     });
+   }
+   ```
+
+   ```ts
+   if (store != undefined) {
+     const valueBucket: relationalStore.ValuesBucket = {
+       'NAME': "Rose",
+       'AGE': 22,
+       'SALARY': 200.5,
+       'CODES': new Uint8Array([1, 2, 3, 4, 5]),
+     };
+     let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
+     predicates.equalTo("NAME", "Lisa");
+     // 创建事务对象
+     (store as relationalStore.RdbStore).createTransaction().then((transaction: relationalStore.Transaction) => {
+       // 使用事务对象更新数据
+       transaction.update(valueBucket, predicates, relationalStore.ConflictResolution.ON_CONFLICT_REPLACE)
+         .then(async (rows: Number) => {
+           // 更新成功提交事务
+           transaction.commit();
+           console.info(`Updated row count: ${rows}`);
+         }).catch((e: BusinessError) => {
+           // 更新失败回滚事务
+           transaction.rollback();
+           console.error(`Updated failed, code is ${e.code},message is ${e.message}`);
+         });
+     }).catch((err: BusinessError) => {
+       console.error(`createTransaction failed, code is ${err.code},message is ${err.message}`);
+     });
+   }
+   ```
+
+   ```ts
+   if (store != undefined) {
+     // 创建事务
+     (store as relationalStore.RdbStore).createTransaction()
+       .then((transaction: relationalStore.Transaction) => {
+         // 使用事务对象删除数据
+         transaction.execute("DELETE FROM EMPLOYEE WHERE age = ? OR age = ?", [21, 20]).then(() => {
+           // 删除成功提交事务
+           transaction.commit();
+           console.log(`execute delete success`);
+         }).catch((e: BusinessError) => {
+           // 删除失败回滚事务
+           transaction.rollback();
+           console.error(`execute sql failed, code is ${e.code},message is ${e.message}`);
+         });
+       })
+       .catch((err: BusinessError) => {
+         console.error(`createTransaction faided, code is ${err.code},message is ${err.message}`);
+       });
+   }
+   ```
+
+6. 在同路径下备份数据库。关系型数据库支持两种手动备份和自动备份（仅系统应用可用）两种方式，具体可见[关系型数据库备份](data-backup-and-restore.md#关系型数据库备份)。
 
    此处以手动备份为例：
 
@@ -401,7 +487,7 @@
    }
    ```
 
-6. 从备份数据库中恢复数据。关系型数据库支持两种方式：恢复手动备份数据和恢复自动备份数据（仅系统应用可用），具体可见[关系型数据库数据恢复](data-backup-and-restore.md#关系型数据库数据恢复)。
+7. 从备份数据库中恢复数据。关系型数据库支持两种方式：恢复手动备份数据和恢复自动备份数据（仅系统应用可用），具体可见[关系型数据库数据恢复](data-backup-and-restore.md#关系型数据库数据恢复)。
 
    此处以调用[restore](../reference/apis-arkdata/js-apis-data-relationalStore.md#restore)接口恢复手动备份数据为例：
 
@@ -417,7 +503,7 @@
    }
    ```
 
-7. 删除数据库。
+8. 删除数据库。
 
    调用deleteRdbStore()方法，删除数据库及数据库相关文件。示例代码如下：
 
@@ -450,3 +536,5 @@
 针对关系型数据库的开发，有以下相关实例可供参考：
 
 - [`Rdb`：关系型数据库（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/Data/Rdb)
+
+<!--RP1--><!--RP1End-->

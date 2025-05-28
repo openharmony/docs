@@ -6,9 +6,13 @@
 
 ## Resource
 
+资源引用类型，用于设置组件属性的值。各类资源文件，需要放入特定子目录中存储管理，资源目录的示例请参考[资源分类](../../../quick-start/resource-categories-and-access.md#资源分类)。
+
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-资源引用类型，用于设置组件属性的值。各类资源文件，需要放入特定子目录中存储管理，资源目录的示例请参考[资源分类](../../../quick-start/resource-categories-and-access.md#资源分类)。
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 可以通过`$r`或者`$rawfile`创建Resource类型对象，不可以修改Resource中的各属性的值。
 
@@ -30,7 +34,11 @@
 
 长度类型，用于描述尺寸单位。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -42,7 +50,11 @@
 
 字符串类型，用于描述字符串入参可以使用的类型。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                    | 说明                        |
 | --------------------- | ------------------------- |
@@ -53,7 +65,11 @@
 
 内边距类型，用于描述组件不同方向的内边距。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
@@ -66,6 +82,12 @@
 
 内边距类型，用于描述组件不同方向的内边距。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
 | top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上内边距，组件内元素距组件顶部的尺寸。  |
@@ -77,7 +99,11 @@
 
 外边距类型，用于描述组件不同方向的外边距。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
@@ -90,6 +116,12 @@
 
 外边距类型，用于描述组件不同方向的外边距。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
 | top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
@@ -101,7 +133,11 @@
 
 边框宽度类型，用于描述组件边框不同方向的宽度。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                | 必填   | 说明       |
 | ------ | ----------------- | ---- | -------- |
@@ -114,6 +150,12 @@
 
 边框宽度类型，用于描述组件边框不同方向的宽度。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 类型                | 必填   | 说明       |
 | ------ | ----------------- | ---- | -------- |
 | top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件上边框宽度。 |
@@ -125,7 +167,11 @@
 
 圆角类型，用于描述组件边框圆角半径。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型                | 必填   | 说明         |
 | ----------- | ----------------- | ---- | ---------- |
@@ -138,6 +184,12 @@
 
 圆角类型，用于描述组件边框圆角半径。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称          | 类型                | 必填   | 说明         |
 | ----------- | ----------------- | ---- | ---------- |
 | topStart    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否    | 组件左上角圆角半径。<br />从右至左显示语言模式下为组件右上角圆角半径。 |
@@ -149,7 +201,11 @@
 
 边框颜色，用于描述组件边框四条边的颜色。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                              | 必填   | 说明       |
 | ------ | ------------------------------- | ---- | -------- |
@@ -162,7 +218,11 @@
 
 边框颜色，用于描述组件边框四条边的颜色。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                              | 必填   | 说明       |
 | ------ | ------------------------------- | ---- | -------- |
@@ -175,7 +235,11 @@
 
 边框样式，用于描述组件边框四条边的样式。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                                       | 必填   | 说明       |
 | ------ | ---------------------------------------- | ---- | -------- |
@@ -190,6 +254,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型                | 必填   | 说明       |
 | ---- | ----------------- | ---- | -------- |
 | dx   | [Length](#length) | 是    | 水平方向偏移量。 |
@@ -200,6 +266,8 @@
 位置和尺寸类型，用于描述组件的位置和宽高。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数      | 类型     | 描述 |
 | ------- | ------ | ----------------------- |
@@ -212,7 +280,11 @@
 
 颜色类型，用于描述资源颜色类型。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                                | 说明                                                         |
 | ----------------------------------- | ------------------------------------------------------------ |
@@ -225,7 +297,11 @@
 
 长度约束，用于对组件最大、最小长度做限制。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                | 必填   | 说明      |
 | --------- | ----------------- | ---- | ------- |
@@ -239,6 +315,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | size   | [Length](#length)                                            | 否   | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。<br>默认值：16.0 |
@@ -250,7 +328,11 @@
 
 区域类型，用于存储元素所占区域信息。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称             | 类型                     | 说明                             |
 | -------------- | ---------------------- | ------------------------------ |
@@ -263,7 +345,11 @@
 
 位置类型，用于表示一个坐标点。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型                | 必填   | 说明                          |
 | ---- | ----------------- | ---- | --------------------------- |
@@ -274,6 +360,10 @@
 
 位置类型，用于表示一个坐标点。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型                | 必填   | 说明                          |
 | ---- | ----------------- | ---- | --------------------------- |
 | start  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | LTR模式时x轴相对左边坐标，RTL模式x轴相对右边坐标。  |
@@ -283,7 +373,11 @@
 
 位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置left和right，仅left生效。
 
+**卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
@@ -296,6 +390,10 @@
 
 位置类型，表示相对四边的偏移量。同时设置top和bottom，仅top生效；同时设置start和end，仅start生效。
 
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型     | 必填   | 说明                          |
 | ---- | ------ | ---- | --------------------------- |
 | top    | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 否    | 相对顶边的偏移量。 |
@@ -307,7 +405,11 @@
 
 设置约束尺寸，组件布局时，进行尺寸范围限制。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称        | 类型                | 必填   | 说明      |
 | --------- | ----------------- | ---- | ------- |
@@ -320,7 +422,11 @@
 
 设置宽高尺寸。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                | 必填   | 说明    |
 | ------ | ----------------- | ---- | ----- |
@@ -332,7 +438,11 @@
 
 边框属性集合，用于描述边框相关信息。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                                       | 必填   | 说明      |
 | ------ | ---------------------------------------- | ---- | ------- |
@@ -345,7 +455,11 @@
 
 创建具有4*5矩阵的颜色过滤器。
 
+**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 类型       | 必填   | 描述                                       |
 | ----------- | -------- | ---- | ---------------------------------------- |
@@ -378,6 +492,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称      | 描述           |
 | ------- | ------------ |
 | NONE    | 全屏模态无转场动画。   |
@@ -389,6 +505,8 @@
 长度类型，用于描述尺寸单位。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -405,6 +523,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}px               | 需要指定以px像素单位，如'10px'。 |
@@ -414,6 +534,8 @@
 长度类型，用于描述以vp像素单位为单位的长度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -425,6 +547,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}fp               | 需要指定以fp像素单位，如'10fp'。 |
@@ -434,6 +558,8 @@
 长度类型，用于描述以lpx像素单位为单位的长度。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
@@ -445,6 +571,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}%               | 需要指定以%像素单位，如'10%'。 |
@@ -455,6 +583,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 类型                    | 说明                                     |
 | --------------------- | -------------------------------------- |
 | {number}deg               | 需要指定以deg像素单位，如'10deg'。 |
@@ -464,6 +594,8 @@
 投影样式。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
@@ -477,6 +609,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称     | 描述                                       |
 | -------- | ------------------------------------------ |
 | SYSTEM   | 系统默认非安全区域，包括状态栏、导航栏。   |
@@ -489,6 +623,8 @@
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 描述       |
 | ------ | ---------- |
 | TOP    | 上方区域。 |
@@ -497,6 +633,8 @@
 | END    | 尾部区域。 |
 
 ## KeyboardAvoidMode<sup>12+</sup>枚举说明
+
+弹窗避让键盘时，避让模式的枚举类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -530,6 +668,8 @@
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称   | 类型定义 | 描述       |
 | ------ | ----------------------| ---------- |
 | X | [Dimension](#dimension10) | 跟手点X轴坐标。 |
@@ -539,7 +679,11 @@
 
 指定组件级像素取整的方向。
 
+**卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 类型                | 必填   | 说明                   |
 | ------ | ----------------- | ---- | -------------------- |
@@ -554,6 +698,8 @@ type VoidCallback：() => void;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## Callback<sup>12+</sup>
 
 Callback<T,V = void> = (data: T) => V;
@@ -562,6 +708,8 @@ Callback<T,V = void> = (data: T) => V;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 ## HoverCallback<sup>12+</sup>
 
 hover事件的回调类型。
@@ -569,6 +717,8 @@ hover事件的回调类型。
 type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称            | 类型                  | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
@@ -579,6 +729,8 @@ type HoverCallback = (isHover: boolean, event: HoverEvent) => void;
 关于区域变化相关的参数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 参数名 | 类型                                                | 必填 | 说明                                                         |
 | ------ | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -593,6 +745,8 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
 | 名称            | 类型                   | 描述                                       |
 | ------------- | ---------------------- | ---------------------------------------- |
 | VisibleAreaChangeCallback | (isExpanding: boolean, currentRatio: number) => void | 组件可见区域变化事件的回调。<br/>-isExpanding：表示组件的可见面积与自身面积的比值与上一次变化相比的情况，比值变大为true，比值变小为false。<br/>-currentRatio：触发回调时，组件可见面积与自身面积的比值。 |
@@ -600,6 +754,8 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 ## DividerStyleOptions<sup>12+</sup>
 
 分割线样式属性集合, 用于描述分割线相关信息。
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -609,7 +765,7 @@ type VisibleAreaChangeCallback = (isExpanding: boolean, currentRatio: number) =>
 | color  | [ResourceColor](#resourcecolor) | 否  | 分割线的颜色。         |
 | startMargin | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup> | 否  | 分割线与菜单侧边起始端的距离。 |
 | endMargin  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)<sup>12+</sup>| 否  | 分割线与菜单侧边结束端的距离。 |
-| mode  | [DividerMode](#dividermode19枚举说明)<sup>19+</sup>| 否  | 设置分割线模式。 |
+| mode  | [DividerMode](ts-appendix-enums.md#dividermode19枚举说明)<sup>19+</sup>| 否  | 设置分割线模式。 |
 
 ## TextContentControllerBase<sup>10+</sup>
 
@@ -746,13 +902,13 @@ clearPreviewText(): void
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-### getText<sup>18+</sup>
+### getText<sup>19+</sup>
 
 getText(range?: TextRange): string
 
 获取指定范围的文本内容。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -769,6 +925,8 @@ getText(range?: TextRange): string
 | string | 指定范围的文本内容。 |
 
 ## TextDecorationOptions<sup>12+</sup>对象说明
+
+**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -901,16 +1059,3 @@ setTextSelection选中文字时的配置。
 | 名称      | 类型   | 只读 | 可选 | 说明       |
 | --------- | ------ | ---- | ---- | ---------- |
 | offset | number | 是   | 是   | 插入文本的位置。 |
-
-## DividerMode<sup>19+</sup>枚举说明
-
-分割线模式
-
-**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
-
-**系统能力：** SystemCapability.ArkUI.ArkUI.Full
-
-| 名称            | 值 | 说明                                       |
-| ------------------ | - | ---------------------------------------- |
-| FLOATING_ABOVE_MENU| 0 | 悬浮在Menu之上，默认值，不占用高度。      |
-| EMBEDDED_IN_MENU   | 1 | 在Menu中展开，参与布局计算，占用高度。    |

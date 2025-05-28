@@ -484,6 +484,22 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 | ---------- | ------ | ---- | ------------------------------- |
 | alignment | Optional\<[GridItemAlignment](#griditemalignment12枚举说明)\> | 是   | 设置Grid中GridItem的对齐方式。<br/>默认值：GridItemAlignment.DEFAULT |
 
+### focusWrapMode<sup>20+</sup>
+
+focusWrapMode(mode: Optional\<FocusWrapMode\>)
+
+设置方向键走焦模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
+
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
 GridItem的对齐方式枚举。
@@ -763,12 +779,12 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 | totalOffset | number | 否 | 否 |  Grid内容相对显示区域的总偏移，单位px。    |
 | totalLength   | number | 否 | 否 |  Grid内容总长度，单位px。    |
 
-## UIGridEvent<sup>18+</sup>
-frameNode中[getEvent('Grid')](../js-apis-arkui-frameNode.md#geteventgrid18)方法的返回值，可用于给Grid节点设置滚动事件。
+## UIGridEvent<sup>19+</sup>
+frameNode中[getEvent('Grid')](../js-apis-arkui-frameNode.md#geteventgrid19)方法的返回值，可用于给Grid节点设置滚动事件。
 
-UIGridEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent18)。
+UIGridEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent19)。
 
-### setOnWillScroll<sup>18+</sup>
+### setOnWillScroll<sup>19+</sup>
 
 setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 
@@ -776,7 +792,7 @@ setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -786,7 +802,7 @@ setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
 
-### setOnDidScroll<sup>18+</sup>
+### setOnDidScroll<sup>19+</sup>
 
 setOnDidScroll(callback: OnScrollCallback | undefined): void
 
@@ -794,7 +810,7 @@ setOnDidScroll(callback: OnScrollCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -804,7 +820,7 @@ setOnDidScroll(callback: OnScrollCallback | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
 
-### setOnScrollIndex<sup>18+</sup>
+### setOnScrollIndex<sup>19+</sup>
 
 setOnScrollIndex(callback: OnGridScrollIndexCallback | undefined): void
 
@@ -812,7 +828,7 @@ setOnScrollIndex(callback: OnGridScrollIndexCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -820,14 +836,14 @@ setOnScrollIndex(callback: OnGridScrollIndexCallback | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [OnGridScrollIndexCallback](#ongridscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+| callback  | [OnGridScrollIndexCallback](#ongridscrollindexcallback19)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
 
-## OnGridScrollIndexCallback<sup>18+</sup>
+## OnGridScrollIndexCallback<sup>19+</sup>
 type OnGridScrollIndexCallback = (first: number, last: number) => void
 
 Grid组件可见区域item变化事件的回调类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1709,6 +1725,7 @@ struct Index {
 通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 //该示例实现了Grid组件开启边缘渐隐效果并设置边缘渐隐长度
@@ -1812,3 +1829,89 @@ struct GridExample {
 ```
 
 ![edgeEffect_grid](figures/edgeEffect_grid.gif)
+
+### 示例12（方向键走焦换行模式）
+
+该示例通过focusWrapMode接口，实现了Grid组件方向键走焦换行效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  scroller: Scroller = new Scroller()
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        GridItem() {
+          Text('A')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('B')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('C')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('D')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('E')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('F')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+      }
+      .focusWrapMode(FocusWrapMode.WRAP_WITH_ARROW)
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .backgroundColor(0xDCDCDC)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_grid](figures/gridFocus.gif)

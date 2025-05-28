@@ -1514,7 +1514,7 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<number\> |  是  | 回调函数。失败返回错误码、错误信息。  |
+| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。失败返回错误码、错误信息。  |
 
 **错误码：**
 
@@ -2774,7 +2774,7 @@ TCPSocket连接的参数。
 | 名称  | 类型                               | 必填 | 说明                       |
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
-| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
+| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。默认值为5000。 |
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## TCPSendOptions
@@ -4069,6 +4069,12 @@ bind(address: LocalAddress): Promise\<void\>;
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [LocalAddress](#localaddress11) | 是   | 目标地址信息，参考[LocalAddress](#localaddress11)。 |
 
+**返回值：**
+
+| 类型            | 说明                                       |
+| :-------------- | :---------------------------------------- |
+| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。|
+
 **错误码：**
 
 | 错误码ID | 错误信息                    |
@@ -4848,7 +4854,7 @@ LocalSocket客户端在连接服务端时传入的参数信息。
 | 名称     | 类型       | 必填 | 说明                            |
 | ------- | ---------- | --- | ------------------------------ |
 | address | [LocalAddress](#localaddress11)    | 是   | 指定的本地套接字路径。            |
-| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。  |
+| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。默认值为0。需要应用手动设置一下，建议设置为5000。  |
 
 ## LocalSendOptions<sup>11+</sup>
 
@@ -5781,12 +5787,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let connAddress: socket.TCPConnectOptions = {
+let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
-};
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: connAddress,
+  address: netAddress,
   timeout: 6000
 }
 

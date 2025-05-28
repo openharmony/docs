@@ -53,6 +53,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -108,6 +109,7 @@ setDateTime(admin: Want, time: number): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -155,6 +157,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -210,6 +213,7 @@ disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -256,6 +260,7 @@ isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
 ```ts
 import { Want } from '@kit.AbilityKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',
@@ -310,6 +315,7 @@ isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 ```ts
 import { Want } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
+
 let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EntryAbility',

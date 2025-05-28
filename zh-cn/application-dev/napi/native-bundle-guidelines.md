@@ -13,6 +13,8 @@
 | [OH_NativeBundle_GetAppIdentifier](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getappidentifier) | 获取自身应用的appIdentifier信息。 |
 | [OH_NativeBundle_GetMainElementName](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getmainelementname) | 获取自身应用入口的信息。 |
 | [OH_NativeBundle_GetCompatibleDeviceType](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getcompatibledevicetype) | 获取自身应用适用的设备类型。 |
+| [OH_NativeBundle_IsDebugMode](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_isdebugmode) | 查询当前应用的调试模式。|
+| [OH_NativeBundle_GetModuleMetadata](../reference/apis-ability-kit/_bundle.md#oh_nativebundle_getmodulemetadata) | 获取当前应用的元数据信息。 |
 
 
 ## 开发步骤
@@ -35,6 +37,8 @@
 2. 打开src/main/cpp/napi_init.cpp文件，添加头文件。
 
     ```c++
+    //napi依赖头文件
+    #include "napi/native_api.h"
     //NDK接口依赖头文件
     #include "bundle/native_interface_bundle.h"
     //free()函数依赖的基础库
@@ -55,7 +59,9 @@
             { "getAppId", nullptr, GetAppId, nullptr, nullptr, nullptr, napi_default, nullptr},                                     // 新增方法 getAppId
             { "getAppIdentifier", nullptr, GetAppIdentifier, nullptr, nullptr, nullptr, napi_default, nullptr},                     // 新增方法 getAppIdentifier
             { "getMainElementName", nullptr, GetMainElementName, nullptr, nullptr, nullptr, napi_default, nullptr},                 // 新增方法 getMainElementName
-            { "getCompatibleDeviceType", nullptr, GetCompatibleDeviceType, nullptr, nullptr, nullptr, napi_default, nullptr}        // 新增方法 getCompatibleDeviceType
+            { "getCompatibleDeviceType", nullptr, GetCompatibleDeviceType, nullptr, nullptr, nullptr, napi_default, nullptr},       // 新增方法 getCompatibleDeviceType
+            { "isDebugMode", nullptr, IsDebugMode, nullptr, nullptr, nullptr, napi_default, nullptr},                               // 新增方法 isDebugMode
+            { "getModuleMetadata", nullptr, GetModuleMetadata, nullptr, nullptr, nullptr, napi_default, nullptr}                    // 新增方法 getModuleMetadata
         };
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
         return exports;
@@ -66,13 +72,13 @@
 2. 在src/main/cpp/napi_init.cpp文件中，增加对应的方法，如下所示：
 
     ```c++
-    static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info)
-    static napi_value GetAppId(napi_env env, napi_callback_info info)
-    static napi_value GetAppIdentifier(napi_env env, napi_callback_info info)
-    static napi_value GetMainElementName(napi_env env, napi_callback_info info)
-    static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info)
-    ```
-
+    static napi_value GetCurrentApplicationInfo(napi_env env, napi_callback_info info);
+    static napi_value GetAppId(napi_env env, napi_callback_info info);
+    static napi_value GetAppIdentifier(napi_env env, napi_callback_info info);
+    static napi_value GetMainElementName(napi_env env, napi_callback_info info);
+    static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info);
+    static napi_value IsDebugMode(napi_env env, napi_callback_info info);
+    static napi_value GetModuleMetadata(napi_env env, napi_callback_info info);
 3. 在src/main/cpp/napi_init.cpp文件中获取Native的包信息对象，并转为js的包信息对象，即可在js测获取应用的信息：
 
     ```c++
@@ -90,13 +96,13 @@
         napi_value fingerprint;
         napi_create_string_utf8(env, nativeApplicationInfo.fingerprint, NAPI_AUTO_LENGTH, &fingerprint);
         napi_set_named_property(env, result, "fingerprint", fingerprint);
-
+    
         // 最后为了防止内存泄漏，手动释放
         free(nativeApplicationInfo.bundleName);
         free(nativeApplicationInfo.fingerprint);
         return result;
     }
-
+    
     static napi_value GetAppId(napi_env env, napi_callback_info info)
     {
         // 调用Native接口获取应用appId
@@ -108,7 +114,7 @@
         free(appId);
         return nAppId;
     }
-
+    
     static napi_value GetAppIdentifier(napi_env env, napi_callback_info info)
     {
         // 调用Native接口获取应用appIdentifier
@@ -120,7 +126,7 @@
         free(appIdentifier);
         return nAppIdentifier;
     }
-
+    
     static napi_value GetMainElementName(napi_env env, napi_callback_info info)
     {
         // 调用Native接口获取应用入口的信息
@@ -145,7 +151,7 @@
         free(elementName.abilityName);
         return result;
     }
-
+    
     static napi_value GetCompatibleDeviceType(napi_env env, napi_callback_info info)
     {
         // 调用Native接口获取应用deviceType
@@ -156,6 +162,87 @@
         // 最后为了防止内存泄漏，手动释放
         free(deviceType);
         return nDeviceType;
+    }
+    
+    static napi_value IsDebugMode(napi_env env, napi_callback_info info)
+    {
+        bool isDebug = false;
+        // 调用Native接口获取应用DebugMode的信息
+        bool isSuccess = OH_NativeBundle_IsDebugMode(&isDebug);
+        // 调用Native接口失败抛出异常
+        if (isSuccess == false) {
+            napi_throw_error(env, nullptr, "call failed");
+            return nullptr;
+        }
+        // Native接口转成debug返回
+        napi_value debug;
+        napi_get_boolean(env, isDebug, &debug);
+        return debug;
+    }
+    
+    static napi_value GetModuleMetadata(napi_env env, napi_callback_info info)
+    {
+        size_t moduleCount = 0;
+        // 调用Native接口获取应用元数据的信息
+        OH_NativeBundle_ModuleMetadata* modules = OH_NativeBundle_GetModuleMetadata(&moduleCount);
+        if (modules == nullptr || moduleCount == 0) {
+            napi_throw_error(env, nullptr, "no metadata found");
+            return nullptr;
+        }
+    
+        napi_value result;
+        napi_create_array(env, &result);
+    
+        for (size_t i = 0; i < moduleCount; i++) {
+            napi_value moduleObj;
+            napi_create_object(env, &moduleObj);
+    
+            // Native接口获取的模块名转为js对象里的moduleName属性
+            napi_value moduleName;
+            napi_create_string_utf8(env, modules[i].moduleName, NAPI_AUTO_LENGTH, &moduleName);
+            napi_set_named_property(env, moduleObj, "moduleName", moduleName);
+    
+            napi_value metadataArray;
+            napi_create_array(env, &metadataArray);
+    
+            for (size_t j = 0; j < modules[i].metadataArraySize; j++) {
+                napi_value metadataObj;
+                napi_create_object(env, &metadataObj);
+    
+                napi_value name;
+                napi_value value;
+                napi_value resource;
+    
+                napi_create_string_utf8(env, modules[i].metadataArray[j].name, NAPI_AUTO_LENGTH, &name);
+                napi_create_string_utf8(env, modules[i].metadataArray[j].value, NAPI_AUTO_LENGTH, &value);
+                napi_create_string_utf8(env, modules[i].metadataArray[j].resource, NAPI_AUTO_LENGTH, &resource);
+    
+                // Native接口获取的元数据名称转为js对象里的name属性
+                napi_set_named_property(env, metadataObj, "name", name);
+                // Native接口获取的元数据值名称转为js对象里的value属性
+                napi_set_named_property(env, metadataObj, "value", value);
+                // Native接口获取的元数据资源转为js对象里的resource属性
+                napi_set_named_property(env, metadataObj, "resource", resource);
+    
+                napi_set_element(env, metadataArray, j, metadataObj);
+            }
+    
+            napi_set_named_property(env, moduleObj, "metadata", metadataArray);
+            napi_set_element(env, result, i, moduleObj);
+        }
+    
+        // 最后为了防止内存泄漏，手动释放
+        for (size_t i = 0; i < moduleCount; i++) {
+            free(modules[i].moduleName);
+            for (size_t j = 0; j < modules[i].metadataArraySize; j++) {
+                free(modules[i].metadataArray[j].name);
+                free(modules[i].metadataArray[j].value);
+                free(modules[i].metadataArray[j].resource);
+            }
+            free(modules[i].metadataArray);
+        }
+        free(modules);
+        return result;
     }
     ```
 
@@ -170,6 +257,8 @@ export const getAppId: () => string;                    // 新增暴露方法 ge
 export const getAppIdentifier: () => string;            // 新增暴露方法 getAppIdentifier
 export const getMainElementName: () => object;          // 新增暴露方法 getMainElementName
 export const getCompatibleDeviceType: () => string;     // 新增暴露方法 getCompatibleDeviceType
+export const isDebugMode: () => string;                 // 新增暴露方法 isDebugMode
+export const getModuleMetadata: () => object;           // 新增暴露方法 getModuleMetadata
 ```
 
 **5. js侧调用**
@@ -182,14 +271,14 @@ export const getCompatibleDeviceType: () => string;     // 新增暴露方法 ge
     ```js
     import { hilog } from '@kit.PerformanceAnalysisKit';
     import testNapi from 'libentry.so';
-
+    
     const DOMAIN = 0x0000;
-
+    
     @Entry
     @Component
     struct Index {
     @State message: string = 'Hello World';
-
+    
     build() {
         Row() {
         Column() {
@@ -209,6 +298,10 @@ export const getCompatibleDeviceType: () => string;     // 新增暴露方法 ge
                 console.info("bundleNDK getMainElementName success, data is " + JSON.stringify(mainElement));
                 let deviceType = testNapi.getCompatibleDeviceType();
                 console.info("bundleNDK getCompatibleDeviceType success, deviceType is " + deviceType);
+                let isDebugMode = testNapi.isDebugMode();
+                console.info("bundleNDK isDebugMode success, isDebugMode is " + isDebugMode);
+                let moduleMetadata = testNapi.getModuleMetadata();
+                console.info("bundleNDK getModuleMetadata success, data is " + JSON.stringify(moduleMetadata));
             })
         }
         .width('100%')

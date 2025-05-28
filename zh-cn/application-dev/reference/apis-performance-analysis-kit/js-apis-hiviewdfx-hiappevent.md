@@ -253,7 +253,7 @@ hiAppEvent.setEventParam(params, "test_domain", "test_event").then(() => {
 
 setEventConfig(name: string, config: Record&lt;string, ParamType&gt;): Promise&lt;void&gt;
 
-事件自定义门限触发条件的参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件名称，自定义事件门限触发条件相关的参数。**目前仅支持MAIN_THREAD_JANK事件。参数配置详见：[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义采样栈参数介绍)**。
+事件相关的配置参数设置方法，使用Promise方式作为异步回调。在同一生命周期中，可以通过事件名称，设置事件相关的配置参数。<br/>目前仅支持MAIN_THREAD_JANK（参数配置详见[主线程超时事件检测](../../dfx/hiappevent-watcher-mainthreadjank-events.md#自定义采样栈参数介绍)）和APP_CRASH（参数配置详见[崩溃日志配置参数设置介绍](../../dfx/hiappevent-watcher-crash-events-arkts.md#崩溃日志配置参数设置接口描述)）事件。
 
 **原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。
 
@@ -344,7 +344,7 @@ hiAppEvent.setEventConfig(hiAppEvent.event.MAIN_THREAD_JANK, params).then(() => 
 
 | 名称             | 类型                                                |  只读  | 可选 | 说明                                                         |
 | ---------------- | ----------------------------------------------------|------ | ---- | ------------------------------------------------------------ |
-| name             | string                                              |  否   | 否   | 观察者名称，用于唯一标识观察者。                             |
+| name             | string                                              |  否   | 否   | 观察者名称，用于唯一标识观察者。首字符必须为字母字符，中间字符必须为数字字符、字母字符或下划线字符，结尾字符必须为数字字符或字母字符，长度非空且不超过32个字符。如testName1、crash_Watcher等。                             |
 | triggerCondition | [TriggerCondition](#triggercondition)               |  否   | 是   | 订阅回调触发条件，需要与回调函数onTrigger一同传入才会生效。默认不触发。           |
 | appEventFilters  | [AppEventFilter](#appeventfilter)[]                 |  否   | 是   | 订阅过滤条件，在需要对订阅事件进行过滤时传入。默认不过滤事件。               |
 | onTrigger        | (curRow: number, curSize: number, holder: [AppEventPackageHolder](#appeventpackageholder)) => void |  否   | 是   | 订阅回调函数，需要与回调触发条件triggerCondition一同传入才会生效，函数入参说明如下：<br>curRow：在本次回调触发时的订阅事件总数量； <br>curSize：在本次回调触发时的订阅事件总大小，单位为byte；  <br/>holder：订阅数据持有者对象，可以通过其对订阅事件进行处理。 |
@@ -534,11 +534,11 @@ let eventPkg: hiAppEvent.AppEventPackage | null = holder4.takeNext();
 
 | 名称      | 类型     | 只读 | 可选 | 说明                           |
 | --------- | -------- | ---- | ---- | ------------------------------ |
-| packageId | number   | 是 | 否   | 事件包ID，从0开始自动递增。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
-| row       | number   | 是 | 否   | 事件包的事件数量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
-| size      | number   | 是 | 否   | 事件包的事件大小，单位为byte。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| data      | string[] | 是 | 否   | 事件包的事件信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
-| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 是 | 否   | 事件对象集合。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| packageId | number   | 否 | 否   | 事件包ID，从0开始自动递增。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。    |
+| row       | number   | 否 | 否   | 事件包的事件数量。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| size      | number   | 否 | 否   | 事件包的事件大小，单位为byte。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| data      | string[] | 否 | 否   | 事件包的事件信息。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。             |
+| appEventInfos<sup>12+</sup> | Array<[AppEventInfo](#appeventinfo)> | 否 | 否   | 事件对象集合。<br>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 
 
 ## AppEventGroup<sup>11+</sup>
@@ -551,8 +551,8 @@ let eventPkg: hiAppEvent.AppEventPackage | null = holder4.takeNext();
 
 | 名称          | 类型                            | 只读 | 可选  | 说明          |
 | ------------- | ------------------------------- | ---- | ---- | ------------- |
-| name          | string                          | 是 | 否   | 事件名称。     |
-| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | 是 | 否   | 事件对象集合。 |
+| name          | string                          | 否 | 否   | 事件名称。     |
+| appEventInfos | Array<[AppEventInfo](#appeventinfo)> | 否 | 否   | 事件对象集合。 |
 
 
 ## hiAppEvent.write

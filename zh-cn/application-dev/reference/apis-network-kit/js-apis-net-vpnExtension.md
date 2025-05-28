@@ -1,6 +1,6 @@
 # @ohos.net.vpnExtension (VPN 增强管理)
 
-三方VPN管理模块，支持三方VPN的启动和停止功能。三方VPN是指由第三方提供的VPN服务，它们通常提供更多的功能和更广泛的网络连接选项，包括更多的安全和隐私功能，以及更全面的定制选项。
+三方VPN管理模块，支持三方VPN的启动和停止功能。三方VPN是指由第三方提供的VPN服务，它们通常提供更多的功能和更广泛的网络连接选项，包括更多的安全和隐私功能，以及更全面的定制选项。当前提供三方VPN能力主要用于创建虚拟网卡及配置VPN路由信息，连接隧道过程及内部连接的协议需要应用内部自行实现。
 
 > **说明：**
 > 本模块首批接口从 API version 11 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -68,7 +68,7 @@ startVpnExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                               |
+| 错误码ID | 错误信息                               |
 | --------- | -------------------------------------- |
 | 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
@@ -137,7 +137,7 @@ stopVpnExtensionAbility(want: Want): Promise\<void>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                               |
+| 错误码ID | 错误信息                               |
 | --------- | -------------------------------------- |
 | 401       | If the input parameter is not valid parameter.|
 | 16000001  | The specified ability does not exist.  |
@@ -214,7 +214,7 @@ createVpnConnection(context: VpnExtensionContext): VpnConnection
 
 **错误码：**
 
-| 错误码 ID | 错误信息         |
+| 错误码ID | 错误信息         |
 | --------- | ---------------- |
 | 401       | Parameter error. |
 
@@ -260,7 +260,7 @@ create(config: VpnConfig): Promise\<number\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                         |
+| 错误码ID | 错误信息                                         |
 | --------- | ------------------------------------------------ |
 | 401       | Parameter error.                                 |
 | 2200001   | Invalid parameter value.                         |
@@ -363,7 +363,7 @@ protect(socketFd: number): Promise\<void\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2200001   | Invalid parameter value.                     |
@@ -419,7 +419,7 @@ destroy(): Promise\<void\>
 
 **错误码：**
 
-| 错误码 ID | 错误信息                                     |
+| 错误码ID | 错误信息                                     |
 | --------- | -------------------------------------------- |
 | 401       | Parameter error.                             |
 | 2200002   | Operation failed. Cannot connect to service. |

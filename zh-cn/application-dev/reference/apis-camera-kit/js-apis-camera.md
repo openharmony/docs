@@ -24,7 +24,7 @@ getCameraManager(context: Context): CameraManager
 
 | 参数名     | 类型                                             | 必填 | 说明                           |
 | -------- | ----------------------------------------------- | ---- | ---------------------------- |
-| context  | [Context](../apis-ability-kit/js-apis-inner-application-baseContext.md)      | 是   | 应用上下文。                   |
+| context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md)      | 是   | 应用上下文。                   |
 
 **返回值：**
 
@@ -417,6 +417,8 @@ createCameraInput(camera: CameraDevice): CameraInput
 
 使用CameraDevice对象创建CameraInput实例，同步返回结果。
 
+该接口使用前首先通过[getSupportedCameras](#getsupportedcameras)接口查询当前设备支持的相机设备信息列表，开发者需要根据具体使用场景选择符合需求的相机设备，然后使用该接口创建CameraInput实例。
+
 **需要权限：** ohos.permission.CAMERA
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
@@ -466,6 +468,8 @@ function createCameraInput(camera: camera.CameraDevice, cameraManager: camera.Ca
 createCameraInput(position: CameraPosition, type: CameraType): CameraInput
 
 根据相机位置和类型创建CameraInput实例，同步返回结果。
+
+该接口使用前需要开发者根据应用具体使用场景自行指定相机位置和类型，例如打开前置相机进入自拍功能。
 
 **需要权限：** ohos.permission.CAMERA
 
@@ -1521,7 +1525,7 @@ open(isSecureEnabled: boolean): Promise\<bigint\>
 
 | 参数名     | 类型                  | 必填 | 说明                                                                      |
 | -------- | -------------------- | ---- |-------------------------------------------------------------------------|
-| isSecureEnabled | boolean | 是   | 返回true为使能以安全的方式打开相机，返回false则反之。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
+| isSecureEnabled | boolean | 是   | 设置true为使能以安全的方式打开相机，设置false则反之。接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)。 |
 
 **返回值：**
 
@@ -5906,6 +5910,73 @@ function isFocusModeSupported(photoSession: camera.PhotoSession): boolean {
 }
 ```
 
+## MacroQuery<sup>19+</sup>
+
+提供查询设备是否支持相机微距拍摄的方法。
+
+### isMacroSupported<sup>19+</sup>
+
+isMacroSupported(): boolean
+
+检测当前状态下是否支持微距能力，需要在CaptureSession调用[commitConfig](js-apis-camera.md#commitconfig11-1)之后进行调用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**返回值：**
+
+| 类型        | 说明                          |
+| ---------- | ----------------------------- |
+|   boolean  | 返回是否支持微距能力。true表示支持，false表示不支持。 |
+
+**示例：**
+
+```ts
+function isMacroSupported(photoSession: camera.PhotoSession): boolean {
+  let isSupported: boolean = photoSession.isMacroSupported();
+  return isSupported;
+}
+```
+
+## Macro<sup>19+</sup>
+
+Macro extends [MacroQuery](#macroquery19)
+
+提供使能微距能力的接口。
+
+### enableMacro<sup>19+</sup>
+
+enableMacro(enabled: boolean): void
+
+使能当前的微距能力，需要在支持微距能力的情况下进行调用。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+**参数：**
+
+| 参数名     | 类型                   | 必填 | 说明                  |
+| -------- | -------------------- | ---- | -------------------- |
+| enabled | boolean | 是   | 是否开启微距能力。true表示开启微距能力，false表示关闭微距能力。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[Camera错误码](errorcode-camera.md)。
+
+| 错误码ID    | 错误信息                     |
+|----------|--------------------------|
+| 7400102  | Operation not allowed.   |
+| 7400103  | Session not config.      |
+
+**示例：**
+
+```ts
+function enableMacro(photoSession: camera.PhotoSession): void {
+  let isSupported: boolean = photoSession.isMacroSupported();
+  if (isSupported) {
+    photoSession.enableMacro(true);
+  }
+}
+```
+
 ## SmoothZoomMode<sup>11+</sup>
 
 平滑变焦模式。
@@ -8199,9 +8270,9 @@ function enableAutoDeviceSwitch(session: camera.PhotoSession, isEnable: boolean)
 
 ## PhotoSession<sup>11+</sup>
 
-PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
+PhotoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13), [Macro](#macro19)
 
-普通拍照模式会话类，提供了对闪光灯、曝光、对焦、变焦及色彩空间的操作。
+普通拍照模式会话类，提供了对闪光灯、曝光、对焦、变焦、色彩空间及微距的操作。
 
 > **说明：**
 >
@@ -8538,9 +8609,9 @@ function unregisterSmoothZoomInfo(photoSession: camera.PhotoSession): void {
 
 ## VideoSession<sup>11+</sup>
 
-VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13)
+VideoSession extends [Session](#session11), [Flash](#flash11), [AutoExposure](#autoexposure11), [Focus](#focus11), [Zoom](#zoom11), [Stabilization](#stabilization11), [ColorManagement](#colormanagement12), [AutoDeviceSwitch](#autodeviceswitch13), [Macro](#macro19)
 
-普通录像模式会话类，提供了对闪光灯、曝光、对焦、变焦、视频防抖、色彩空间的操作。
+普通录像模式会话类，提供了对闪光灯、曝光、对焦、变焦、视频防抖、色彩空间及微距的操作。
 
 > **说明：**
 >

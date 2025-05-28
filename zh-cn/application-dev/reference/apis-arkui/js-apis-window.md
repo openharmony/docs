@@ -244,11 +244,11 @@ import { window } from '@kit.ArkUI';
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                 |
 | brightness                            | number                    | 否   | 否   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                      |
-| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从API version 7开始支持。 |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | 否   | 否   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从API version 7开始支持。当前无可替代接口。|
 | isKeepScreenOn                        | boolean                   | 否   | 否   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。<br> **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                                                                   |
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 否   | 否   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                  |
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从API version 7开始支持。      |
-| isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口是否透明。默认为false。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 否   | 否   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从API version 7开始支持。当前无可替代接口。|
+| isTransparent<sup>7+</sup>            | boolean                   | 否   | 否   | 窗口背景是否透明。默认为false。true表示透明；false表示不透明。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                   |
 | id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                    |
 | displayId<sup>12+</sup>               | number                    | 是   | 是   | 窗口所在屏幕ID，默认返回主屏幕ID,该参数应为整数。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
 | name<sup>18+</sup>               | string                    | 是   | 是   | 窗口名字，默认为空字符串。<br/>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。 |
@@ -268,7 +268,7 @@ import { window } from '@kit.ArkUI';
 | spacingBetweenButtons  | number        | 是   | 是   | 按钮间距，取值范围8vp-24vp，默认值12vp。 |
 | closeButtonRightMargin | number        | 是   | 是   | 关闭按钮右侧距窗口边距，取值范围6vp-22vp，默认值20vp。 |
 | buttonIconSize<sup>20+</sup> | number        | 是   | 是   | 按键icon的大小，取值范围16vp-24vp，默认值20vp。 |
-| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 是   | 是   | 按键背板圆角半径，取值范围4-8vp，默认值4vp。 |
+| buttonBackgroundCornerRadius<sup>20+</sup> | number        | 是   | 是   | 按键背板圆角半径，取值范围4vp-8vp，默认值4vp。 |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -410,6 +410,18 @@ import { window } from '@kit.ArkUI';
 | animated<sup>20+</sup> | boolean  | 否 | 当前是否有显示/隐藏动画，true表示有动画，false表示没有。 |
 | config<sup>20+</sup> | [WindowAnimationConfig](#windowanimationconfig20)  | 否 | 动画配置信息。 |
 
+## ShowWindowOptions<sup>20+</sup>
+
+显示子窗口或系统窗口时的参数。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+| 名称   | 类型   | 必填 | 说明                                       |
+| ------ | ------ | ---- | ------------------------------------------ |
+| focusOnShow | boolean  | 否 | 窗口调用[showWindow()](#showwindow20)显示时是否自动获焦，默认为true。该参数对主窗、模态窗、dialog窗口不生效。|
+
 ## WindowAnimationCurve<sup>20+</sup>
 
 窗口动画曲线类型。
@@ -483,6 +495,51 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 | windowStatusType | [WindowStatusType](js-apis-window.md#windowstatustype11) | 是   | 否   | 窗口模式枚举。   |
 | isFocused | boolean | 是   | 是   | 窗口是否获焦。true表示窗口获焦；false表示窗口未获焦。   |
 
+## WindowTransitionType<sup>20+</sup>
+
+窗口转场动画类型枚举。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称    | 值   | 说明                       |
+| ------- | ---- | -------------------------- |
+| DESTROY | 0    | 表示窗口销毁时的转场动画。 |
+
+## TransitionAnimation<sup>20+</sup>
+
+窗口转场动画配置。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+| 名称    | 类型                                              | 必填 | 说明                                                         |
+| ------- | ------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| config  | [WindowAnimationConfig](#windowanimationconfig20) | 是   | 本次转场动画配置。                                           |
+| opacity | number                                            | 否   | 不透明度，转场动画作用的窗口属性，值为0时窗口完全透明。当动画类型为WindowTransitionType.DESTROY时，代表动画终点的不透明度。取值范围0~1，在动画结束时恢复为1。 |
+
+## WindowAnchor<sup>20+</sup>
+
+窗口锚点枚举。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称       | 值   | 说明                          |
+| ---------- | ---- | ----------------------------- |
+| TOP_START  | 0    | 窗口左上角。|
+| TOP  | 1    | 窗口上边界横向居中点。|
+| TOP_END  | 2    | 窗口右上角。|
+| START  | 3    | 窗口左边界纵向居中点。|
+| CENTER  | 4    | 窗口横向和纵向居中点。|
+| END  | 5    | 窗口右边界纵向居中点。|
+| BOTTOM_START  | 6    | 窗口左下角。|
+| BOTTOM  | 7    | 窗口下边界横向居中点。|
+| BOTTOM_END  | 8    | 窗口右下角。|
+
 ## Callback<sup>15+</sup>
 
 ### (data: T)<sup>15+</sup>
@@ -511,7 +568,7 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 ## RotationChangeType<sup>19+</sup>
 
-窗口旋转类型。
+窗口旋转事件类型。
 
 **原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
@@ -545,8 +602,8 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 | 名称   | 类型 | 只读  | 可写 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转类型。 |
-| orientation | number | 是 | 否 | 窗口旋转方向。<br>- 0表示竖屏。<br>- 1表示横屏。<br>- 2表示反向竖屏。<br>- 3表示反向竖屏。 |
+| type | [RotationChangeType](#rotationchangetype19) | 是 | 否 | 窗口旋转事件类型。 |
+| orientation | number | 是 | 否 | 窗口显示方向。<br>- 0表示竖屏。<br>- 1表示反向横屏。<br>- 2表示反向竖屏。<br>- 3表示横屏。<br>开发者在使用时，需要注意该方向与display对象的属性orientation含义不一致。 |
 | displayId | number | 是 | 否 | 窗口所在屏幕Id。 |
 | displayRect | [Rect](#rect7) | 是 | 否 | 窗口所在屏幕旋转后的矩形区域大小。 |
 
@@ -563,6 +620,21 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 | ------ | ---- | ----- | ---- | ----------------------- |
 | rectType | [RectType](#recttype19) | 否 | 是 | 窗口矩形区域坐标系类型。 |
 | windowRect | [Rect](#rect7) | 否 | 是 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
+
+## GlobalWindowMode<sup>20+</sup>
+
+窗口模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：**  SystemCapability.Window.SessionManager
+
+| 名称   | 值 | 类型  | 说明                    |
+| ------ | --- | --- | ------------------------ |
+| FULLSCREEN | 1 | number | 全屏窗口。 |
+| SPLIT  | 1 << 1 | number | 分屏窗口。 |
+| FLOAT   | 1 << 2  | number | 悬浮窗。 |
+| PIP   | 1 << 3  | number | 画中画。 |
 
 ## window.createWindow<sup>9+</sup>
 
@@ -744,7 +816,9 @@ try {
 
 getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 
-获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用callback异步回调。
+获取当前应用内最上层显示的子窗口，使用callback异步回调。
+
+若无应用子窗口或子窗口未调用[showWindow()](#showwindow9)进行显示，则返回应用主窗口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -770,29 +844,32 @@ getLastWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 **示例：**
 
 ```ts
-// EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    try {
-      window.getLastWindow(this.context, (err: BusinessError, data) => {
-        const errCode: number = err.code;
-        if (errCode) {
-          console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
-          return;
+    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+      subWindow.showWindow().then(() => {
+        try {
+          window.getLastWindow(this.context, (err: BusinessError, topWindow) => {
+            const errCode: number = err.code;
+            if (errCode) {
+              console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+              return;
+            }
+            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+          });
+        } catch (exception) {
+          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
         }
-        windowClass = data;
-        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
       });
-    } catch (exception) {
-      console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
+  //...
 }
 ```
 
@@ -800,7 +877,9 @@ export default class EntryAbility extends UIAbility {
 
 getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 
-获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口，使用Promise异步回调。
+获取当前应用内最上层显示的子窗口，使用Promise异步回调。
+
+若无应用子窗口或子窗口未调用[showWindow()](#showwindow9)进行显示，则返回应用主窗口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -833,25 +912,28 @@ getLastWindow(ctx: BaseContext): Promise&lt;Window&gt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   // ...
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    try {
-      let promise = window.getLastWindow(this.context);
-      promise.then((data) => {
-        windowClass = data;
-        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+    windowStage.createSubWindow('TestSubWindow').then((subWindow) => {
+      subWindow.showWindow().then(() => {
+        try {
+          window.getLastWindow(this.context).then((topWindow) => {
+            console.info(`Succeeded in obtaining the top window. Window id: ${topWindow.getWindowProperties().id}`);
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to obtain the top window. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        } catch (exception) {
+          console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
+        }
       });
-    } catch (exception) {
-      console.error(`Failed to obtain the top window. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
+  //...
 }
 ```
 
@@ -859,6 +941,8 @@ export default class EntryAbility extends UIAbility {
 shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;void&gt;
 
 在同应用内将窗口焦点从源窗口转移到目标窗口，仅支持应用主窗和子窗的焦点转移。
+
+目标窗口需确保可获焦属性为true（见[setWindowFocusable()](#setwindowfocusable9)）,并确保调用[showWindow()](#showwindow9)成功并执行完毕。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -894,52 +978,48 @@ shiftAppWindowFocus(sourceWindowId: number, targetWindowId: number): Promise&lt;
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // ...
     console.info('onWindowStageCreate');
-    let windowClass: window.Window | undefined = undefined;
-    let subWindowClass: window.Window | undefined = undefined;
-    let windowClassId: number = -1;
-    let subWindowClassId: number = -1;
+    let mainWindow: window.Window | undefined = undefined;
+    let subWindow: window.Window | undefined = undefined;
+    let mainWindowId: number = -1;
+    let subWindowId: number = -1;
 
     try {
       // 获取应用主窗及ID
-      let promise = windowStage.getMainWindow();
-      promise.then((data) => {
+      windowStage.getMainWindow().then((data) => {
         if (data == null) {
-          console.error("Failed to obtaining the window. Cause: The data is empty");
+          console.error('Failed to obtain the main window. Cause: The data is empty');
           return;
         }
-        windowClass = data;
-        windowClass.setUIContent("pages/Index");
-        windowClassId = windowClass.getWindowProperties().id;
-        console.info('Succeeded in obtaining the window')
+        mainWindow = data;
+        mainWindowId = mainWindow.getWindowProperties().id;
+        console.info('Succeeded in obtaining the main window');
       }).catch((err: BusinessError) => {
-        console.error(`Failed to obtaining the window. Cause code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
       });
 
       // 创建或获取子窗及ID，此时子窗口获焦
-      let promiseSub = windowStage.createSubWindow("testSubWindow");
-      promiseSub.then((data) => {
+      windowStage.createSubWindow('testSubWindow').then((data) => {
         if (data == null) {
-          console.error("Failed to obtaining the window. Cause: The data is empty");
+          console.error('Failed to obtain the sub window. Cause: The data is empty');
           return;
         }
-        subWindowClass = data;
-        subWindowClassId = subWindowClass.getWindowProperties().id;
-        subWindowClass.resize(500, 500);
-        subWindowClass.setUIContent("pages/Index2");
-        subWindowClass.showWindow();
+        subWindow = data;
+        subWindowId = subWindow.getWindowProperties().id;
+        subWindow.resize(500, 500);
+        subWindow.showWindow();
 
         // 监听Window状态，确保已经就绪
-        subWindowClass.on("windowEvent", (windowEvent) => {
+        subWindow.on("windowEvent", (windowEvent) => {
           if (windowEvent == window.WindowEventType.WINDOW_ACTIVE) {
             // 切换焦点
-            let promise = window.shiftAppWindowFocus(subWindowClassId, windowClassId);
-            promise.then(() => {
+            window.shiftAppWindowFocus(subWindowId, mainWindowId).then(() => {
               console.info('Succeeded in shifting app window focus');
             }).catch((err: BusinessError) => {
               console.error(`Failed to shift app window focus. Cause code: ${err.code}, message: ${err.message}`);
@@ -1026,11 +1106,85 @@ struct Index {
 }
 ```
 
+## window.shiftAppWindowTouchEvent<sup>20+</sup>
+shiftAppWindowTouchEvent(sourceWindowId: number, targetWindowId: number, fingerId: number): Promise&lt;void&gt;
+
+在同应用内窗口的分合场景下，需要将触屏输入事件从源窗口转移到目标窗口。使用Promise异步回调，仅在2in1设备上，针对主窗和子窗生效。
+
+在2in1设备上，源窗口仅在[onTouch](arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有触屏输入事件转移效果，成功调用此接口后，系统会向源窗口补发触屏抬起（touch up）事件，并且向目标窗口补发触屏按下（touch down）事件。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名          | 类型   | 必填  | 说明                    |
+| -------------- | ------ | ----- | ----------------------- |
+| sourceWindowId | number | 是    | 源窗口id。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取窗口id属性。            |
+| targetWindowId | number | 是    | 目标窗口id。推荐使用[getWindowProperties()](#getwindowproperties9)方法获取窗口id属性。             |
+| fingerId | number | 是    | 触屏事件的fingerId。推荐使用[touchEvent](arkui-ts/ts-universal-events-touch.md#TouchEvent对象说明)事件中[touches](arkui-ts/ts-universal-events-touch.md#TouchObject对象说明)属性获取id。             |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                      |
+| ------- | --------------------------------------------- |
+| 801     | Capability not supported. Function shiftAppWindowTouchEvent can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal.                |
+| 1300003 | This window manager service works abnormally. |
+| 1300004 | Unauthorized operation.                       |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range.|
+
+**示例：**
+
+```ts
+// ets/pages/Index.ets
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+struct Index {
+  build() {
+    Row() {
+      Column() {
+        Blank('160')
+          .color(Color.Blue)
+          .onTouch((event: TouchEvent) => {
+            // 源窗口触屏事件类型必须为TouchType.Down
+            if (event.type === TouchType.Down) {
+              try {
+                let sourceWindowId = 1;
+                let targetWindowId = 2;
+                let promise = window.shiftAppWindowTouchEvent(sourceWindowId, targetWindowId, event.touches[0].id);
+                promise.then(() => {
+                  console.info(`Succeeded in shifting app window touch event`);
+                }).catch((err: BusinessError) => {
+                  console.error(`Failed to shift app window touch event. Cause code: ${err.code}, message: ${err.message}`);
+                });
+              } catch (exception) {
+                console.error(`Failed to shift app touch event. Cause code: ${exception.code}, message: ${exception.message}`);
+              }
+            }
+          })
+      }.width('100%')
+    }.height('100%').width('100%')
+  }
+}
+```
+
 ## window.getWindowsByCoordinate<sup>14+</sup>
 
 getWindowsByCoordinate(displayId: number, windowNumber?: number, x?: number, y?: number): Promise&lt;Array&lt;Window&gt;&gt;
 
-查询本应用指定坐标下的可见窗口，使用Promise异步回调。
+查询本应用指定坐标下的可见窗口数组，按当前窗口层级排列，层级最高的窗口对应数组下标为0，使用Promise异步回调。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 
@@ -1069,8 +1223,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-    let windowClass = windowStage.getMainWindowSync();
     try {
+      let windowClass = windowStage.getMainWindowSync();
       let properties = windowClass.getWindowProperties();
       window.getWindowsByCoordinate(properties.displayId).then((data) => {
         console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
@@ -1141,6 +1295,55 @@ try {
   });
 } catch (exception) {
   console.error(`Failed to obtain all window layout info. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+## window.getGlobalWindowMode<sup>20+</sup>
+
+getGlobalWindowMode(displayId?: number): Promise&lt;number&gt;
+
+获取指定屏幕上生命周期位于前台的窗口对应的窗口模式，使用Promise异步回调。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                                        |
+| ------ | ---------- |----|---------------------------------------------------------------------------|
+| displayId   | number| 否  | 可选的屏幕ID，用于获取对应屏幕上的窗口模式信息，该参数应为大于等于0的整数，小于0时会返回错误码1300016，不传则代表查询所有屏幕，如果指定的屏幕不存在，返回值为0。|
+
+**返回值：**
+
+| 类型                             | 说明                      |
+| -------------------------------- |-------------------------|
+| Promise&lt;number&gt; | Promise对象。返回获取到的窗口模式。每一个二进制位代表一种窗口模式，当前支持的窗口模式见[GlobalWindowMode](#globalwindowmode20)，返回值为对应窗口模式值按位进行或运算的结果，比如，当前屏幕上存在全屏窗口、悬浮窗和画中画三种窗口，则返回值为`0b1\|0b100\|0b1000 = 13`。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID    | 错误信息 |
+|----------| ------------------------------ |
+| 801      | Capability not supported. function getGlobalWindowMode can not work correctly due to limited device capabilities. |
+| 1300003 | This window manager service works abnormally. |
+| 1300016 | Parameter error. Possible cause: 1. Invalid parameter range. |
+
+```ts
+import { window } from '@ohos.window';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let displayId = 0;
+  let promise = window.getGlobalWindowMode(displayId);
+  promise.then((data) => {
+    console.info(`Succeeded in obtaining global window mode. Data: ${data}`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to obtain global window mode. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to obtain global window mode. Cause code: ${exception.code}, message: ${exception.message}`);
 }
 ```
 
@@ -1581,22 +1784,26 @@ getVisibleWindowInfo(): Promise&lt;Array&lt;WindowInfo&gt;&gt;
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let promise = window.getVisibleWindowInfo();
-promise.then((data) => {
-  data.forEach(windowInfo=>{
-    console.info(`left:${windowInfo.rect.left}`);
-    console.info(`top:${windowInfo.rect.top}`);
-    console.info(`width:${windowInfo.rect.width}`);
-    console.info(`height:${windowInfo.rect.height}`);
-    console.info(`windowId:${windowInfo.windowId}`);
-    console.info(`windowStatusType:${windowInfo.windowStatusType}`);
-    console.info(`abilityName:${windowInfo.abilityName}`);
-    console.info(`bundleName:${windowInfo.bundleName}`);
-    console.info(`isFocused:${windowInfo.isFocused}`);
-  })
-}).catch((err: BusinessError) => {
-  console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
-});
+try {
+  let promise = window.getVisibleWindowInfo();
+  promise.then((data) => {
+    data.forEach(windowInfo=>{
+      console.info(`left:${windowInfo.rect.left}`);
+      console.info(`top:${windowInfo.rect.top}`);
+      console.info(`width:${windowInfo.rect.width}`);
+      console.info(`height:${windowInfo.rect.height}`);
+      console.info(`windowId:${windowInfo.windowId}`);
+      console.info(`windowStatusType:${windowInfo.windowStatusType}`);
+      console.info(`abilityName:${windowInfo.abilityName}`);
+      console.info(`bundleName:${windowInfo.bundleName}`);
+      console.info(`isFocused:${windowInfo.isFocused}`);
+    })
+  }).catch((err: BusinessError) => {
+    console.error('Failed to getWindowInfo. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error(`Failed to get visible window info. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ## SpecificSystemBar<sup>11+</sup>
@@ -1695,6 +1902,71 @@ promise.then(() => {
 }).catch((err: BusinessError) => {
   console.error(`Failed to show the window. Cause code: ${err.code}, message: ${err.message}`);
 });
+```
+
+### showWindow<sup>20+</sup>
+
+showWindow(options: ShowWindowOptions): Promise&lt;void&gt;
+
+显示当前窗口，使用Promise异步回调，仅支持系统窗口及应用子窗口，或将已显示的应用主窗口的层级提升至顶部。支持传入参数来控制窗口显示的行为。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**返回值：**
+
+| 类型 | 说明 |
+| ------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Function showWindow can not work correctly due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+| 1300004 | Unauthorized operation. |
+| 1300016     | Parameter validation error. Possible cause: 1. The value of the parameter is out of the allowed range; 2. The length of the parameter exceeds the allowed length; 3. The parameter format is incorrect. |
+
+**示例：**
+
+```ts
+// EntryAbility.ets
+import { window } from '@kit.ArkUI';
+import { UIAbility } from '@kit.AbilityKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+export default class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    // 创建子窗
+    try {
+      windowStage.createSubWindow('subWindow').then((data) => {
+        if (data == null) {
+          console.error('Failed to create the sub window. Cause: The data is empty');
+          return;
+        }
+        let options: window.ShowWindowOptions = {
+          focusOnShow: false
+        };
+        try {
+          data.showWindow(options).then(() => {
+            console.info('Succeeded in showing window');
+          }).catch((err: BusinessError) => {
+            console.error(`Failed to show window. Cause code: ${err.code}, message: ${err.message}`);
+          });
+        } catch (exception) {
+          console.error(`Failed to show window. Cause code: ${exception.code}, message: ${exception.message}`);
+        }
+      });
+    } catch (exception) {
+      console.error(`Failed to create the sub window. Cause code: ${exception.code}, message: ${exception.message}`);
+    }
+  }
+}
 ```
 
 ### destroyWindow<sup>9+</sup>
@@ -1832,7 +2104,7 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 <!--RP4-->
 全屏模式下，本接口仅在2in1设备上生效。<!--RP4End-->
-在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
+使用此接口，在2in1设备上窗口相对于屏幕移动，在其他设备上窗口相对于父窗口移动。若需要在非2in1设备上相对于屏幕进行移动，建议使用接口[moveWindowToGlobal()](#movewindowtoglobal15)。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -1882,7 +2154,7 @@ try {
 
 moveWindowToAsync(x: number, y: number): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
@@ -1939,7 +2211,7 @@ try {
 
 moveWindowToAsync(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 仅在自由悬浮窗口模式（即窗口模式为window.WindowStatusType.FLOATING）下生效。
 在2in1设备上窗口相对于屏幕移动，其他设备上窗口相对于父窗口移动。
@@ -2001,7 +2273,7 @@ try {
 
 moveWindowToGlobal(x: number, y: number): Promise&lt;void&gt;
 
-基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
+基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 全屏模式窗口不支持该操作。
 
@@ -2045,6 +2317,8 @@ try {
   let promise = windowClass.moveWindowToGlobal(300, 300);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
+    let rect = windowClass?.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -2057,7 +2331,7 @@ try {
 
 moveWindowToGlobal(x: number, y: number, moveConfiguration?: MoveConfiguration): Promise&lt;void&gt;
 
-基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回。
+基于屏幕坐标移动窗口位置，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 全屏模式窗口不支持该操作。
 
@@ -2106,6 +2380,8 @@ try {
   let promise = windowClass.moveWindowToGlobal(300, 300, moveConfiguration);
   promise.then(() => {
     console.info('Succeeded in moving the window.');
+    let rect = windowClass?.getWindowProperties().windowRect;
+    console.info(`Get window rect: ` + JSON.stringify(rect));
   }).catch((err: BusinessError) => {
     console.error(`Failed to move the window. Cause code: ${err.code}, message: ${err.message}`);
   });
@@ -2121,7 +2397,7 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 改变当前窗口大小，使用callback异步回调。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
 系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
@@ -2179,7 +2455,7 @@ resize(width: number, height: number): Promise&lt;void&gt;
 改变当前窗口大小，使用Promise异步回调。调用成功即返回，该接口返回后无法立即获取最终生效结果，如需立即获取，建议使用接口[resizeAsync()](#resizeasync12)。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
 系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
@@ -2237,10 +2513,10 @@ try {
 
 resizeAsync(width: number, height: number): Promise&lt;void&gt;
 
-改变当前窗口大小，使用Promise异步回调。调用生效后返回，回调中可使用getWindowProperties（见示例）立即获取最终生效结果。
+改变当前窗口大小，使用Promise异步回调。调用生效后返回，回调中可使用[getWindowProperties()](#getwindowproperties9)（见示例）立即获取最终生效结果。
 
 应用主窗口与子窗口存在大小限制，默认宽度范围：[320, 1920]，默认高度范围：[240, 1920]，单位为vp。
-应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品段配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
+应用主窗口与子窗口的最小宽度与最小高度可由产品端进行配置，配置后的最小宽度与最小高度以产品端配置值为准，具体尺寸限制范围可以通过[getWindowLimits](#getwindowlimits11)接口进行查询。
 
 系统窗口存在大小限制，宽度范围：(0, 1920]，高度范围：(0, 1920]，单位为vp。
 
@@ -5233,6 +5509,86 @@ try {
 }
 ```
 
+### on('windowStatusDidChange')<sup>20+</sup>
+
+on(type: 'windowStatusDidChange', callback: Callback&lt;WindowStatusType&gt;): void
+
+开启窗口模式变化的监听，当窗口windowStatus发生变化后进行通知（此时窗口[Rect](#rect7)属性已经完成更新）。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                           | 必填 | 说明                                                     |
+| -------- | ------------------------------ | ---- | -------------------------------------------------------- |
+| type     | string                         | 是   | 监听事件，固定为'windowStatusDidChange'，即窗口模式变化完成事件。 |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 是   | 回调函数。返回当前的窗口模式。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+    windowClass.on('windowStatusDidChange', (WindowStatusType) => {
+        console.info(`Succeeded in enabling the listener for window status changes. Data: ${JSON.stringify(WindowStatusType)}`);
+    });
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### off('windowStatusDidChange')<sup>20+</sup>
+
+off(type: 'windowStatusDidChange', callback?: Callback&lt;WindowStatusType&gt;): void
+
+关闭窗口模式变化的监听。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名   | 类型                          | 必填 | 说明                                                     |
+| -------- | ----------------------------- | ---- | -------------------------------------------------------- |
+| type     | string                        | 是   | 监听事件，固定为'windowStatusDidChange'，即窗口模式变化完成事件。 |
+| callback | Callback&lt;[WindowStatusType](#windowstatustype11)&gt; | 否   | 回调函数。返回当前的窗口模式。如果传入参数，则关闭该监听。如果未传入参数，则关闭所有窗口模式变化的监听。                           |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+const callback = (windowStatusType: window.WindowStatusType) => {
+    // ...
+}
+try {
+    windowClass.on('windowStatusDidChange', callback);
+    windowClass.off('windowStatusDidChange', callback);
+    // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+    windowClass.off('windowStatusDidChange');
+} catch (exception) {
+    console.error(`Failed to unregister callback. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowGrayScale<sup>12+</sup>
 
 setWindowGrayScale(grayScale: number): Promise&lt;void&gt;
@@ -5416,9 +5772,13 @@ on(type:  'windowRectChange', callback: Callback&lt;RectChangeOptions&gt;): void
 **示例：**
 
 ```ts
-windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
-    console.info('Succeeded window rect changes. Data: ' + JSON.stringify(data));
-});
+try {
+  windowClass.on('windowRectChange', (data: window.RectChangeOptions) => {
+      console.info(`Succeeded window rect changes. Data: ` + JSON.stringify(data));
+  });
+} catch (exception) {
+  console.error(`Failed to disable the listener for window rect changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### off('windowRectChange')<sup>12+</sup>
@@ -5455,10 +5815,15 @@ off(type: 'windowRectChange', callback?: Callback&lt;RectChangeOptions&gt;): voi
 const callback = (rectChangeOptions: window.RectChangeOptions) => {
   // ...
 }
-windowClass.on('windowRectChange', callback);
-windowClass.off('windowRectChange', callback);
-// 如果通过on开启多个callback进行监听，同时关闭所有监听：
-windowClass.off('windowRectChange');
+
+try {
+  windowClass.on('windowRectChange', callback);
+  windowClass.off('windowRectChange', callback);
+  // 如果通过on开启多个callback进行监听，同时关闭所有监听：
+  windowClass.off('windowRectChange');
+} catch (exception) {
+  console.error(`Failed to disable the listener for window rect changes. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### on('subWindowClose')<sup>12+</sup>
@@ -5767,7 +6132,7 @@ try {
 
 on(type: 'rotationChange', callback: RotationChangeCallback&lt;info: RotationChangeInfo, RotationChangeResult | void&gt;): void
 
-开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo19)中窗口旋转类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult19)。窗口旋转类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult19)不生效。
+开启窗口旋转变化的监听。[RotationChangeInfo](#rotationchangeinfo19)中窗口旋转事件类型为窗口即将旋转时，必须返回[RotationChangeResult](#rotationchangeresult19)。窗口旋转事件类型为窗口旋转结束时返回[RotationChangeResult](#rotationchangeresult19)不生效。
 
 同一个窗口多次注册同类型回调函数，只生效最新注册的同类型回调函数返回值。系统提供了超时保护机制，若20ms内窗口未返回[RotationChangeResult](#rotationchangeresult19)，系统不处理该返回值。
 
@@ -5915,7 +6280,7 @@ windowClass.isWindowSupportWideGamut((err: BusinessError, data) => {
     console.error(`Failed to check whether the window support WideGamut. Cause code: ${err.code}, message: ${err.message}`);
     return;
   }
-  console.info('Succeeded in checking whether the window support WideGamut Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in checking whether the window support WideGamut Data: ${data}`);
 });
 ```
 
@@ -5950,7 +6315,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let promise = windowClass.isWindowSupportWideGamut();
 promise.then((data) => {
-  console.info('Succeeded in checking whether the window support WideGamut. Data: ' + JSON.stringify(data));
+  console.info(`Succeeded in checking whether the window support WideGamut. Data: ${data}`);
 }).catch((err: BusinessError) => {
   console.error(`Failed to check whether the window support WideGamut. Cause code: ${err.code}, message: ${err.message}`);
 });
@@ -6076,7 +6441,14 @@ getWindowColorSpace(): ColorSpace
 **示例：**
 
 ```ts
-let colorSpace = windowClass.getWindowColorSpace();
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let colorSpace = windowClass.getWindowColorSpace();
+  console.info(`Succeeded in getting the window color space. ColorSpace: ${colorSpace}`);
+} catch (exception) {
+  console.error(`Failed to set the window to be focusable. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setWindowBackgroundColor<sup>9+</sup>
@@ -6179,7 +6551,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      let brightness: number = 1;
+      let brightness: number = 1.0;
       try {
         windowClass.setWindowBrightness(brightness, (err: BusinessError) => {
           const errCode: number = err.code;
@@ -6251,7 +6623,7 @@ export default class EntryAbility extends UIAbility {
         return;
       }
       windowClass = data;
-      let brightness: number = 1;
+      let brightness: number = 1.0;
       try {
         let promise = windowClass.setWindowBrightness(brightness);
         promise.then(() => {
@@ -6458,7 +6830,7 @@ try {
   promise.then(() => {
     console.info('Succeeded in setting the screen to be always on.');
   }).catch((err: BusinessError) => {
-    console.info(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
+    console.error(`Failed to set the screen to be always on. Cause code: ${err.code}, message: ${err.message}`);
   });
 } catch (exception) {
   console.error(`Failed to set the screen to be always on. Cause code: ${exception.code}, message: ${exception.message}`);
@@ -6667,7 +7039,7 @@ try {
 
 snapshot(callback: AsyncCallback&lt;image.PixelMap&gt;): void
 
-获取窗口截图，使用callback异步回调。
+获取窗口截图，使用callback异步回调。若当前窗口设置为隐私模式（可通过[setWindowPrivacyMode](#setwindowprivacymode9)接口设置），截图结果为白屏。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -7126,7 +7498,7 @@ promise.then(() => {
 ### maximize<sup>12+</sup>
 maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
-主窗口调用，实现最大化功能，使用Promise异步回调。
+实现最大化功能。主窗口可调用此接口实现最大化功能；子窗口需在创建时设置子窗口参数maximizeSupported为true，再调用此接口可实现最大化功能。使用Promise异步回调。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -7138,7 +7510,7 @@ maximize(presentation?: MaximizePresentation): Promise&lt;void&gt;
 
 | 参数名 | 类型  | 必填 | 说明 |
 | ----- | ---------------------------- | -- | --------------------------------- |
-| presentation  | [MaximizePresentation](#maximizepresentation12) | 否 | 主窗口最大化时候的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入沉浸式布局。 |
+| presentation  | [MaximizePresentation](#maximizepresentation12) | 否 | 主窗口或子窗口最大化时的布局枚举。默认值window.MaximizePresentation.ENTER_IMMERSIVE，即默认最大化时进入沉浸式布局。 |
 
 **返回值：**
 
@@ -7218,16 +7590,18 @@ setResizeByDragEnabled(enable: boolean, callback: AsyncCallback&lt;void&gt;): vo
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
-
-let enabled = false;
-windowClass.setResizeByDragEnabled(enabled, (err) => {
-  if (err.code) {
-    console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
-    return;
-  }
-  console.info('Succeeded in setting the function of disabling the resize by drag window.');
-});
+try {
+  let enabled = false;
+  windowClass.setResizeByDragEnabled(enabled, (err) => {
+    if (err.code) {
+      console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in setting the function of disabling the resize by drag window.`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### setResizeByDragEnabled<sup>14+</sup>
@@ -7267,13 +7641,17 @@ setResizeByDragEnabled(enable: boolean): Promise&lt;void&gt;
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let enabled = false;
-let promise = windowClass.setResizeByDragEnabled(enabled);
-promise.then(() => {
-  console.info('Succeeded in setting the function of disabling the resize by drag window.');
-}).catch((err: BusinessError) => {
-  console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
-});
+try {
+  let enabled = false;
+  let promise = windowClass.setResizeByDragEnabled(enabled);
+  promise.then(() => {
+    console.info(`Succeeded in setting the function of disabling the resize by drag window.`);
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the function of disabling the resize by drag window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
 ```
 
 ### recover<sup>11+</sup>
@@ -8665,26 +9043,19 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     // 创建子窗
-    try {
-      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
-      subWindowPromise.then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        let showWindowPromise = data.showWindow();
-        showWindowPromise.then(() => {
-          let raiseToTopPromise = data.raiseToAppTop();
-          raiseToTopPromise.then(() => {
-            console.info('Succeeded in raising window to app top.');
-          }).catch((err: BusinessError)=>{
-            console.error(`Failed to raise window to app top. Cause code: ${err.code}, message: ${err.message}`);
-          });
+    windowStage.createSubWindow('testSubWindow').then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        subWindow.raiseToAppTop().then(() => {
+          console.info('Succeeded in raising window to app top');
+        }).catch((err: BusinessError)=>{
+          console.error(`Failed to raise window to app top. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
 }
 ```
@@ -8739,27 +9110,24 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
     // 创建子窗
-    try {
-      let subWindowPromise = windowStage.createSubWindow("testSubWindow");
-      subWindowPromise.then((data) => {
-        if (data == null) {
-          console.error("Failed to create the subWindow. Cause: The data is empty");
-          return;
-        }
-        let showWindowPromise = data.showWindow();
-        showWindowPromise.then(() => {
+    windowStage.createSubWindow("testSubWindow").then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the subWindow. Cause: The data is empty');
+        return;
+      }
+      subWindow.showWindow().then(() => {
+        try {
           let enabled = false;
-          let setRaisePromise = data.setRaiseByClickEnabled(enabled);
-          setRaisePromise.then(() => {
+          subWindow.setRaiseByClickEnabled(enabled).then(() => {
             console.info('Succeeded in disabling the raise-by-click function.');
-          }).catch((err: BusinessError)=>{
+          }).catch((err: BusinessError) => {
             console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
           });
-        });
+        } catch (err) {
+          console.error(`Failed to disable the raise-by-click function. Cause code: ${err.code}, message: ${err.message}`);
+        }
       });
-    } catch (exception) {
-      console.error(`Failed to create the subWindow. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+    });
   }
 }
 ```
@@ -8984,7 +9352,7 @@ startMoving(): Promise&lt;void&gt;
 
 开始移动窗口，使用Promise异步回调。
 
-仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标移动。
+仅在[onTouch](./arkui-ts/ts-universal-events-touch.md#touchevent)事件（其中，事件类型必须为TouchType.Down）的回调方法中调用此接口才会有移动效果，成功调用此接口后，窗口将跟随鼠标或触摸点移动。
 
 <!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
 
@@ -9614,6 +9982,8 @@ setFollowParentWindowLayoutEnabled(enabled: boolean): Promise&lt;void&gt;
 
 4、当子窗或模态窗口不再使用该功能后，不保证子窗或模态窗口的布局信息（position和size）为确定的值，需要应用重新进行设置。
 
+该接口调用生效后，[setRelativePositionToParentWindowEnabled()](#setrelativepositiontoparentwindowenabled20)接口调用不生效。
+
 **模型约束：** 此接口仅可在Stage模型下使用。
 
 **原子化服务API：** 从API version 17开始，该接口支持在原子化服务中使用。
@@ -9645,6 +10015,7 @@ setFollowParentWindowLayoutEnabled(enabled: boolean): Promise&lt;void&gt;
 | 1300004 | Unauthorized operation. |
 
 **示例：**
+
 ```ts
 // EntryAbility.ets
 import { window } from '@kit.ArkUI';
@@ -9673,6 +10044,229 @@ export default class EntryAbility extends UIAbility {
         console.error(`createSubWindow failed. ${error.code} ${error.message}`);
       })
     });
+  }
+}
+```
+
+### setRelativePositionToParentWindowEnabled<sup>20+<sup>
+
+setRelativePositionToParentWindowEnabled(enabled: boolean, anchor?: WindowAnchor, offsetX?: number, offsetY?: number): Promise&lt;void&gt;
+
+设置一级子窗是否支持与主窗保持相对位置不变。使用Promise异步回调。
+
+该相对位置通过一级子窗与主窗之间锚点的偏移量表示，子窗和主窗使用的窗口锚点相同。
+
+1、只支持非最大化一级子窗使用该接口。
+
+2、当子窗调用该接口后，立即使其显示位置跟随主窗并保持相对位置不变，除非传入false再次调用该接口，否则效果将持续。
+
+3、当子窗调用该接口后，再调用[moveWindowTo()](#movewindowto9)、[maximize()](#maximize12)等修改窗口位置或大小的接口将不生效。
+
+该接口调用生效后，[setFollowParentWindowLayoutEnabled()](#setfollowparentwindowlayoutenabled17)接口调用不生效。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ----------- | ------- | -- | -------------------------------------------------------- |
+| enabled | boolean | 是 | 一级子窗是否支持与主窗保持相对位置不变。true表示支持；false表示不支持。  |
+| anchor | [WindowAnchor](#windowanchor20) | 否 | 一级子窗与主窗保持相对位置不变时的窗口锚点枚举。该参数仅在enabled为true时生效，默认值为window.WindowAnchor.TopStart，即默认锚点为窗口左上角。  |
+| offsetX | number | 否 | 一级子窗锚点与主窗锚点位置的x轴偏移量，单位为px。该参数仅在enabled为true时生效，仅支持整数输入，浮点数向下取整，默认值为0。  |
+| offsetY | number | 否 | 一级子窗锚点与主窗锚点位置的y轴偏移量，单位为px。该参数仅在enabled为true时生效，仅支持整数输入，浮点数向下取整，默认值为0。  |
+
+**返回值：**
+
+| 类型 | 说明 |
+| ---------------------- | ------------------------------------------------ |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                                                                     |
+| -------- | ------------------------------------------------------------------------------------------------------------ |
+| 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
+| 801      | Capability not supported.Function setRelativePositionToParentWindowEnabled can not work correctly due to limited device capabilities.|
+| 1300002  | This window state is abnormal.                                                                               |
+| 1300003  | This window manager service works abnormally.                                                                |
+| 1300004  | Unauthorized operation.                                                                                |
+
+**示例：**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+try {
+  let windowClass: window.Window = window.findWindow("subWindow");
+  let enabled: boolean = true;
+  let promise = windowClass?.setRelativePositionToParentWindowEnabled(enabled);
+  promise.then(() => {
+    console.info('Succeeded in setting the sub window supports relative position to parent window.')
+  }).catch((err: BusinessError) => {
+    console.error(`Failed to set the sub window supports relative position to parent window. Cause code: ${err.code}, message: ${err.message}`);
+  });
+} catch (exception) {
+  console.error(`Failed to set the sub window supports relative position to parent window. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
+### setWindowTransitionAnimation<sup>20+</sup>
+
+setWindowTransitionAnimation(transitionType: WindowTransitionType, animation: TransitionAnimation): Promise&lt;void&gt;
+
+给特定场景下的窗口增加转场动画。
+
+当前只支持在应用主窗下使用。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名         | 类型                                            | 必填 | 说明                                   |
+| -------------- | ----------------------------------------------- | ---- | -------------------------------------- |
+| transitionType | [WindowTransitionType](#windowtransitiontype20) | 是   | 本次转场动画场景。当前只支持销毁场景。 |
+| animation      | [TransitionAnimation](#transitionanimation20)   | 是   | 本次转场动画配置。                     |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal.                               |
+| 1300003  | This window manager service works abnormally.                |
+| 1300004  | Unauthorized operation.                                      |
+| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length. |
+
+**示例：**
+
+```typescript
+// EntryAbility.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        const animationConfig: window.WindowAnimationConfig = {
+          duration: 1000,
+          curve: window.WindowAnimationCurve.LINEAR,
+        };
+        const transitionAnimation: window.TransitionAnimation = {
+          opacity: 0.5,
+          config: animationConfig
+        };
+        let promise = windowClass.setWindowTransitionAnimation(window.WindowTransitionType.DESTROY, transitionAnimation);
+        promise.then((data) => {
+          console.info('Succeeded in setting window transition animation. Cause:' + JSON.stringify(data));
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to set window transition animation. Cause code: ${err.code}, message: ${err.message}`);
+        });
+      } catch (exception) {
+        console.error(`Failed to obtain the window status of window. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    })
+  }
+}
+```
+
+### getWindowTransitionAnimation<sup>20+</sup>
+
+getWindowTransitionAnimation(transitionType: WindowTransitionType): TransitionAnimation | undefined
+
+获取特定场景下的窗口转场动画配置。
+
+当前只支持在应用主窗下使用。
+
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Window.SessionManager
+
+**参数：**
+
+| 参数名         | 类型                                            | 必填 | 说明                                   |
+| -------------- | ----------------------------------------------- | ---- | -------------------------------------- |
+| transitionType | [WindowTransitionType](#windowtransitiontype20) | 是   | 本次转场动画场景。当前只支持销毁场景。 |
+
+**返回值：**
+
+| 类型                                          | 说明                       |
+| --------------------------------------------- | -------------------------- |
+| [TransitionAnimation](#transitionanimation20) \| undefined | 对应场景下的转场动画配置。当未使用过[setWindowTransitionAnimation](#setwindowtransitionanimation20)接口时，返回undefined。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息                                                     |
+| -------- | ------------------------------------------------------------ |
+| 801      | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002  | This window state is abnormal.                               |
+| 1300003  | This window manager service works abnormally.                |
+| 1300004  | Unauthorized operation.                                      |
+| 1300016  | Parameter error. Possible cause: 1. Invalid parameter range; 2. Invalid parameter length. |
+
+**示例：**
+
+```typescript
+// EntryAbility.ets
+import { BusinessError } from '@kit.BasicServicesKit';
+import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+
+export default class EntryAbility extends UIAbility {
+  // ...
+  onWindowStageCreate(windowStage: window.WindowStage): void {
+    console.info('onWindowStageCreate');
+    let windowClass: window.Window | undefined = undefined;
+    windowStage.getMainWindow((err: BusinessError, data) => {
+      const errCode: number = err.code;
+      if (errCode) {
+        console.error(`Failed to obtain the main window. Cause code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      windowClass = data;
+      try {
+        let transitionAnimationResult = windowClass.getWindowTransitionAnimation(window.WindowTransitionType.DESTROY);
+        console.info('Succeeded in getting window transition animation: ' + JSON.stringify(transitionAnimationResult));
+      } catch (exception) {
+        console.error(`Failed to obtain the window transition animation. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    })
   }
 }
 ```
@@ -9803,23 +10397,22 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
+    let zLevel: number = 1;
     // 创建子窗
     try {
-      let subWindowPromise = windowStage.createSubWindow('testSubWindow');
-      subWindowPromise.then((subWindow) => {
+      windowStage.createSubWindow('testSubWindow').then((subWindow) => {
         if (subWindow == null) {
           console.error('Failed to create the sub window. Cause: The sub window is null');
           return;
         }
-        let zLevelPromise = subWindow.setSubWindowZLevel(1);
-        zLevelPromise.then(() => {
+        subWindow.setSubWindowZLevel(zLevel).then(() => {
           console.info('Succeeded in setting sub window zLevel.');
         }).catch((err: BusinessError) => {
           console.error(`Failed to set sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
         });
       });
     } catch (err) {
-      console.error(`Failed to create the sub window. Cause code: ${err.code}, message: ${err.message}`);
+      console.error(`Failed to create the sub window or set zLevel. Cause code: ${err.code}, message: ${err.message}`);
     }
   }
 }
@@ -9862,24 +10455,20 @@ export default class EntryAbility extends UIAbility {
   // ...
   onWindowStageCreate(windowStage: window.WindowStage): void {
     console.info('onWindowStageCreate');
+    let subWindowZLevel = -1;
     // 创建子窗
-    try {
-      let subWindowPromise = windowStage.createSubWindow('testSubWindow');
-      subWindowPromise.then((subWindow) => {
-        if (subWindow == null) {
-          console.error('Failed to create the sub window. Cause: The sub window is null');
-          return;
-        }
-        try {
-          let subWindowZLevel = subWindow.getSubWindowZLevel();
-          console.info(`Succeeded in getting sub window zLevel: ${subWindowZLevel}`);
-        } catch (err) {
-          console.error(`Failed to get sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
-        }
-      });
-    } catch (err) {
-      console.error(`Failed to create the sub window. Cause code: ${err.code}, message: ${err.message}`);
-    }
+    windowStage.createSubWindow('testSubWindow').then((subWindow) => {
+      if (subWindow == null) {
+        console.error('Failed to create the sub window. Cause: The sub window is null');
+        return;
+      }
+      try {
+        subWindowZLevel = subWindow.getSubWindowZLevel();
+        console.info(`Succeeded in obtaining sub window zLevel: ${subWindowZLevel}`);
+      } catch (err) {
+        console.error(`Failed to obtain the sub window zLevel. Cause code: ${err.code}, message: ${err.message}`);
+      }
+    });
   }
 }
 ```
@@ -11960,6 +12549,8 @@ WindowStage生命周期。
 | modalityType<sup>14+</sup>    | [ModalityType](#modalitytype14) | 否 | 是 | 子窗口模态类型，仅当子窗口启用模态属性时生效。WINDOW_MODALITY表示子窗口模态类型为模窗口子窗，APPLICATION_MODALITY表示子窗口模态类型为模应用子窗。不设置，则默认为WINDOW_MODALITY。<br>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。       |
 | windowRect<sup>18+</sup>    | [Rect](#rect7) | 否 | 是 | 子窗口矩形区域，其中子窗存在大小限制，具体参考[resize()](#resize9)方法。不设置，此窗口在显示时默认为全屏大小。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
 | zLevel<sup>18+</sup>    | number | 否 | 是 | 子窗口层级级别，仅当子窗口未启用模态属性，即未设置isModal时生效。该参数是整数，取值范围为[-10000, 10000]，浮点数输入将向下取整。不设置，则默认为0。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| maximizeSupported<sup>19+</sup>    | boolean | 否 | 是 | 子窗口是否支持最大化特性。<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->true表示子窗口支持最大化，false表示子窗口不支持最大化。不设置，则默认为false。<br>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
+| outlineEnabled<sup>20+</sup>    | boolean | 否 | 是 | 子窗口是否显示描边。<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->true表示子窗口显示描边，false表示子窗口不显示描边。不设置，则默认为false。<br>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。|
 
 ## WindowStage<sup>9+</sup>
 
@@ -13069,7 +13660,7 @@ export default class EntryAbility extends UIAbility {
 
 setDefaultDensityEnabled(enabled: boolean): void
 
-设置应用是否使用系统默认Density。
+设置应用是否使用系统默认Density，调用此接口前，需先调用[WindowStage.loadContent()](#loadcontent9-2)初始化布局，确保接口调用时序正确。
 
 不调用此接口进行设置，则表示不使用系统默认Density，即窗口会跟随系统显示大小变化重新布局。
 
@@ -13101,17 +13692,27 @@ setDefaultDensityEnabled(enabled: boolean): void
 ```ts
 // EntryAbility.ets
 import { UIAbility } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit'
 
 export default class EntryAbility extends UIAbility {
   // ...
 
   onWindowStageCreate(windowStage: window.WindowStage) {
-    console.info('onWindowStageCreate');
-    try {
-      windowStage.setDefaultDensityEnabled(true);
-    } catch (exception) {
-      console.error(`Failed to set default density enabled. Cause code: ${exception.code}, message: ${exception.message}`);
-    }
+      windowStage.loadContent("pages/page2", (err: BusinessError) => {
+        let errCode: number = err.code;
+        if (errCode) {
+          console.error(`Failed to load the content. Cause code: ${err.code}, message: ${err.message}`);
+          return;
+        }
+        console.info('onWindowStageCreate');
+      try {
+        windowStage.setDefaultDensityEnabled(true);
+        console.info('Succeeded in loading the content.');
+      } catch (exception) {
+        console.error(`Failed to set default density enabled. Cause code: ${exception.code}, message: ${exception.message}`);
+      }
+    });
   }
 };
 ```
@@ -13120,7 +13721,7 @@ export default class EntryAbility extends UIAbility {
 
 setCustomDensity(density: number): void
 
-支持应用主窗口自定义其显示大小缩放系数，子窗会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最终调用的结果设置效果为准。
+支持应用主窗口自定义其显示大小缩放系数，子窗会跟随主窗生效。当存在同时使用该接口和[setDefaultDensityEnabled(true)](#setdefaultdensityenabled12)时，以最后调用的设置效果为准。
 
 **模型约束：** 此接口仅可在Stage模型下使用。
 
@@ -13477,7 +14078,7 @@ export default class EntryAbility extends UIAbility {
     try {
       let promise = windowStage.isWindowRectAutoSave();
       promise.then((data) => {
-        console.info('Succeeded in checking whether the window support the rect auto-save. Data: ' + JSON.stringify(data));
+        console.info(`Succeeded in checking whether the window support the rect auto-save. Data: ${data}`);
       }).catch((err: BusinessError) => {
         console.error(`Failed to check whether the window support the rect auto-save. Cause code: ${err.code}, message: ${err.message}`);
       });

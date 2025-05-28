@@ -15,7 +15,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [neural_network_core.h](neural__network__core_8h.md) | Neural Network Core模块接口定义，AI推理框架使用Neural Network Core提供的Native接口，完成模型编译，并在加速硬件上执行推理和计算。 | 
+| [neural_network_core.h](neural__network__core_8h.md) | Neural Network Core模块接口定义，AI推理框架使用Neural Network Core提供的Native接口，完成模型编译，并在加速硬件上执行推理和计算。<br/>部分接口定义从neural_network_runtime.h移动至此头文件统一呈现，对于此类接口，API version 11 版本之前即支持使用，各版本均可正常使用。 | 
 | [neural_network_runtime.h](neural__network__runtime_8h.md) | Neural Network Runtime模块接口定义，AI推理框架使用Neural Network Runtime提供的Native接口，完成模型构建。 | 
 | [neural_network_runtime_type.h](neural__network__runtime__type_8h.md) | Neural Network Runtime定义的结构体和枚举值。 | 
 
@@ -40,17 +40,8 @@
 | typedef struct [NN_QuantParam](#nn_quantparam)  [NN_QuantParam](#nn_quantparam) | 量化参数的句柄。 | 
 | typedef struct [NN_TensorDesc](#nn_tensordesc)  [NN_TensorDesc](#nn_tensordesc) | Tensor描述的句柄。 | 
 | typedef struct [NN_Tensor](#nn_tensor)  [NN_Tensor](#nn_tensor) | Tensor句柄。 | 
-| typedef enum [OH_NN_PerformanceMode](#oh_nn_performancemode)  [OH_NN_PerformanceMode](#oh_nn_performancemode) | 硬件的性能模式。 | 
-| typedef enum [OH_NN_Priority](#oh_nn_priority)  [OH_NN_Priority](#oh_nn_priority) | 模型推理任务优先级。 | 
-| typedef enum [OH_NN_ReturnCode](#oh_nn_returncode)  [OH_NN_ReturnCode](#oh_nn_returncode) | Neural Network Runtime 定义的错误码类型。 | 
 | typedef void(\* [NN_OnRunDone](#nn_onrundone)) (void \*userData, [OH_NN_ReturnCode](#oh_nn_returncode) errCode, void \*outputTensor[], int32_t outputCount) | 异步推理结束后的回调处理函数句柄。 | 
 | typedef void(\* [NN_OnServiceDied](#nn_onservicedied)) (void \*userData) | 异步推理执行期间设备驱动服务异常终止时的回调处理函数句柄。 | 
-| typedef enum [OH_NN_FuseType](#oh_nn_fusetype)  [OH_NN_FuseType](#oh_nn_fusetype) | Neural Network Runtime 融合算子中激活函数的类型。 | 
-| typedef enum [OH_NN_Format](#oh_nn_format)  [OH_NN_Format](#oh_nn_format) | 张量数据的排布类型。 | 
-| typedef enum [OH_NN_DeviceType](#oh_nn_devicetype)  [OH_NN_DeviceType](#oh_nn_devicetype) | Neural Network Runtime 支持的设备类型。 | 
-| typedef enum [OH_NN_DataType](#oh_nn_datatype)  [OH_NN_DataType](#oh_nn_datatype) | Neural Network Runtime 支持的数据类型。 | 
-| typedef enum [OH_NN_OperationType](#oh_nn_operationtype)  [OH_NN_OperationType](#oh_nn_operationtype) | Neural Network Runtime 支持算子的类型。 | 
-| typedef enum [OH_NN_TensorType](#oh_nn_tensortype)  [OH_NN_TensorType](#oh_nn_tensortype) | 张量的类型。 | 
 | typedef struct [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md)  [OH_NN_UInt32Array](#oh_nn_uint32array) | 该结构体用于存储32位无符号整型数组。 | 
 | typedef struct [OH_NN_QuantParam](_o_h___n_n___quant_param.md)  [OH_NN_QuantParam](#oh_nn_quantparam) | 量化信息。 | 
 | typedef struct [OH_NN_Tensor](_o_h___n_n___tensor.md)  [OH_NN_Tensor](#oh_nn_tensor) | 张量结构体。 | 
@@ -80,77 +71,77 @@
 | [OH_NNCompilation](#oh_nncompilation) \* [OH_NNCompilation_ConstructWithOfflineModelFile](#oh_nncompilation_constructwithofflinemodelfile) (const char \*modelPath) | 基于离线模型文件创建编译实例。 | 
 | [OH_NNCompilation](#oh_nncompilation) \* [OH_NNCompilation_ConstructWithOfflineModelBuffer](#oh_nncompilation_constructwithofflinemodelbuffer) (const void \*modelBuffer, size_t modelSize) | 基于离线模型文件内存创建编译实例。 | 
 | [OH_NNCompilation](#oh_nncompilation) \* [OH_NNCompilation_ConstructForCache](#oh_nncompilation_constructforcache) () | 创建一个空的编译实例，以便稍后从模型缓存中恢复。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_ExportCacheToBuffer](#oh_nncompilation_exportcachetobuffer) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const void \*buffer, size_t length, size_t \*modelSize) | 将模型缓存写入到指定内存区域。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_ImportCacheFromBuffer](#oh_nncompilation_importcachefrombuffer) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const void \*buffer, size_t modelSize) | 从指定内存区域读取模型缓存。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_AddExtensionConfig](#oh_nncompilation_addextensionconfig) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const char \*configName, const void \*configValue, const size_t configValueSize) | 为自定义硬件属性添加扩展配置。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_SetDevice](#oh_nncompilation_setdevice) ([OH_NNCompilation](#oh_nncompilation) \*compilation, size_t deviceID) | 指定模型编译和计算的硬件。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_SetCache](#oh_nncompilation_setcache) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const char \*cachePath, uint32_t version) | 设置编译模型的缓存目录和版本。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_SetPerformanceMode](#oh_nncompilation_setperformancemode) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_PerformanceMode](#oh_nn_performancemode) performanceMode) | 设置模型计算的性能模式。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_SetPriority](#oh_nncompilation_setpriority) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_Priority](#oh_nn_priority) priority) | 设置模型计算的优先级。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_EnableFloat16](#oh_nncompilation_enablefloat16) ([OH_NNCompilation](#oh_nncompilation) \*compilation, bool enableFloat16) | 是否以float16的浮点数精度计算。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNCompilation_Build](#oh_nncompilation_build) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | 执行模型编译。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_ExportCacheToBuffer](#oh_nncompilation_exportcachetobuffer) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const void \*buffer, size_t length, size_t \*modelSize) | 将模型缓存写入到指定内存区域。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_ImportCacheFromBuffer](#oh_nncompilation_importcachefrombuffer) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const void \*buffer, size_t modelSize) | 从指定内存区域读取模型缓存。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_AddExtensionConfig](#oh_nncompilation_addextensionconfig) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const char \*configName, const void \*configValue, const size_t configValueSize) | 为自定义硬件属性添加扩展配置。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_SetDevice](#oh_nncompilation_setdevice) ([OH_NNCompilation](#oh_nncompilation) \*compilation, size_t deviceID) | 指定模型编译和计算的硬件。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_SetCache](#oh_nncompilation_setcache) ([OH_NNCompilation](#oh_nncompilation) \*compilation, const char \*cachePath, uint32_t version) | 设置编译模型的缓存目录和版本。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_SetPerformanceMode](#oh_nncompilation_setperformancemode) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_PerformanceMode](#oh_nn_performancemode) performanceMode) | 设置模型计算的性能模式。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_SetPriority](#oh_nncompilation_setpriority) ([OH_NNCompilation](#oh_nncompilation) \*compilation, [OH_NN_Priority](#oh_nn_priority) priority) | 设置模型计算的优先级。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_EnableFloat16](#oh_nncompilation_enablefloat16) ([OH_NNCompilation](#oh_nncompilation) \*compilation, bool enableFloat16) | 是否以float16的浮点数精度计算。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNCompilation_Build](#oh_nncompilation_build) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | 执行模型编译。 | 
 | void [OH_NNCompilation_Destroy](#oh_nncompilation_destroy) ([OH_NNCompilation](#oh_nncompilation) \*\*compilation) | 销毁Compilation实例。 | 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNTensorDesc_Create](#oh_nntensordesc_create) () | 创建一个[NN_TensorDesc](#nn_tensordesc)实例。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_Destroy](#oh_nntensordesc_destroy) ([NN_TensorDesc](#nn_tensordesc) \*\*tensorDesc) | 释放一个[NN_TensorDesc](#nn_tensordesc)实例。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_SetName](#oh_nntensordesc_setname) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*name) | 设置[NN_TensorDesc](#nn_tensordesc)的名称。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetName](#oh_nntensordesc_getname) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*\*name) | 获取[NN_TensorDesc](#nn_tensordesc)的名称。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_SetDataType](#oh_nntensordesc_setdatatype) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_DataType](#oh_nn_datatype) dataType) | 设置[NN_TensorDesc](#nn_tensordesc)的数据类型。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetDataType](#oh_nntensordesc_getdatatype) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_DataType](#oh_nn_datatype) \*dataType) | 获取[NN_TensorDesc](#nn_tensordesc)的数据类型。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_SetShape](#oh_nntensordesc_setshape) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const int32_t \*shape, size_t shapeLength) | 设置[NN_TensorDesc](#nn_tensordesc)的数据形状。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetShape](#oh_nntensordesc_getshape) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int32_t \*\*shape, size_t \*shapeLength) | 获取[NN_TensorDesc](#nn_tensordesc)的形状。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_SetFormat](#oh_nntensordesc_setformat) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) format) | 设置[NN_TensorDesc](#nn_tensordesc)的数据布局。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetFormat](#oh_nntensordesc_getformat) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) \*format) | 获取[NN_TensorDesc](#nn_tensordesc)的数据布局。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetElementCount](#oh_nntensordesc_getelementcount) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*elementCount) | 获取[NN_TensorDesc](#nn_tensordesc)的元素个数。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensorDesc_GetByteSize](#oh_nntensordesc_getbytesize) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*byteSize) | 获取基于[NN_TensorDesc](#nn_tensordesc)的形状和数据类型计算的数据占用字节数。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_Destroy](#oh_nntensordesc_destroy) ([NN_TensorDesc](#nn_tensordesc) \*\*tensorDesc) | 释放一个[NN_TensorDesc](#nn_tensordesc)实例。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_SetName](#oh_nntensordesc_setname) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*name) | 设置[NN_TensorDesc](#nn_tensordesc)的名称。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetName](#oh_nntensordesc_getname) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const char \*\*name) | 获取[NN_TensorDesc](#nn_tensordesc)的名称。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_SetDataType](#oh_nntensordesc_setdatatype) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_DataType](#oh_nn_datatype) dataType) | 设置[NN_TensorDesc](#nn_tensordesc)的数据类型。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetDataType](#oh_nntensordesc_getdatatype) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_DataType](#oh_nn_datatype) \*dataType) | 获取[NN_TensorDesc](#nn_tensordesc)的数据类型。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_SetShape](#oh_nntensordesc_setshape) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, const int32_t \*shape, size_t shapeLength) | 设置[NN_TensorDesc](#nn_tensordesc)的数据形状。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetShape](#oh_nntensordesc_getshape) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int32_t \*\*shape, size_t \*shapeLength) | 获取[NN_TensorDesc](#nn_tensordesc)的形状。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_SetFormat](#oh_nntensordesc_setformat) ([NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) format) | 设置[NN_TensorDesc](#nn_tensordesc)的数据布局。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetFormat](#oh_nntensordesc_getformat) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, [OH_NN_Format](#oh_nn_format) \*format) | 获取[NN_TensorDesc](#nn_tensordesc)的数据布局。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetElementCount](#oh_nntensordesc_getelementcount) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*elementCount) | 获取[NN_TensorDesc](#nn_tensordesc)的元素个数。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetByteSize](#oh_nntensordesc_getbytesize) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*byteSize) | 获取基于[NN_TensorDesc](#nn_tensordesc)的形状和数据类型计算的数据占用字节数。 | 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_Create](#oh_nntensor_create) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | 从[NN_TensorDesc](#nn_tensordesc)创建一个[NN_Tensor](#nn_tensor)实例。 | 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t size) | 按照指定内存大小和[NN_TensorDesc](#nn_tensordesc)创建[NN_Tensor](#nn_tensor)实例。 | 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithFd](#oh_nntensor_createwithfd) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int fd, size_t size, size_t offset) | 按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建{\@Link NN_Tensor}实例。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensor_Destroy](#oh_nntensor_destroy) ([NN_Tensor](#nn_tensor) \*\*tensor) | 销毁一个[NN_Tensor](#nn_tensor)实例。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_Destroy](#oh_nntensor_destroy) ([NN_Tensor](#nn_tensor) \*\*tensor) | 销毁一个[NN_Tensor](#nn_tensor)实例。 | 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNTensor_GetTensorDesc](#oh_nntensor_gettensordesc) (const [NN_Tensor](#nn_tensor) \*tensor) | 获取[NN_Tensor](#nn_tensor)的[NN_TensorDesc](#nn_tensordesc)实例。 | 
 | void \* [OH_NNTensor_GetDataBuffer](#oh_nntensor_getdatabuffer) (const [NN_Tensor](#nn_tensor) \*tensor) | 获取[NN_Tensor](#nn_tensor)数据的内存地址。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensor_GetFd](#oh_nntensor_getfd) (const [NN_Tensor](#nn_tensor) \*tensor, int \*fd) | 获取[NN_Tensor](#nn_tensor)数据所在共享内存的文件描述符。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensor_GetSize](#oh_nntensor_getsize) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*size) | 获取[NN_Tensor](#nn_tensor)数据所在共享内存的大小。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNTensor_GetOffset](#oh_nntensor_getoffset) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*offset) | 获取[NN_Tensor](#nn_tensor)数据所在共享内存上的偏移量。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_GetFd](#oh_nntensor_getfd) (const [NN_Tensor](#nn_tensor) \*tensor, int \*fd) | 获取[NN_Tensor](#nn_tensor)数据所在共享内存的文件描述符。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_GetSize](#oh_nntensor_getsize) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*size) | 获取[NN_Tensor](#nn_tensor)数据所在共享内存的大小。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_GetOffset](#oh_nntensor_getoffset) (const [NN_Tensor](#nn_tensor) \*tensor, size_t \*offset) | 获取[NN_Tensor](#nn_tensor)数据所在共享内存上的偏移量。 | 
 | [OH_NNExecutor](#oh_nnexecutor) \* [OH_NNExecutor_Construct](#oh_nnexecutor_construct) ([OH_NNCompilation](#oh_nncompilation) \*compilation) | 创建[OH_NNExecutor](#oh_nnexecutor)执行器实例。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_GetOutputShape](#oh_nnexecutor_getoutputshape) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, int32_t \*\*shape, uint32_t \*shapeLength) | 获取输出张量的维度信息。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_GetOutputShape](#oh_nnexecutor_getoutputshape) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, int32_t \*\*shape, uint32_t \*shapeLength) | 获取输出张量的维度信息。 | 
 | void [OH_NNExecutor_Destroy](#oh_nnexecutor_destroy) ([OH_NNExecutor](#oh_nnexecutor) \*\*executor) | 销毁执行器实例，释放执行器占用的内存。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_GetInputCount](#oh_nnexecutor_getinputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*inputCount) | 获取输入张量的数量。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_GetOutputCount](#oh_nnexecutor_getoutputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*outputCount) | 获取输出张量的数量。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_GetInputCount](#oh_nnexecutor_getinputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*inputCount) | 获取输入张量的数量。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_GetOutputCount](#oh_nnexecutor_getoutputcount) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t \*outputCount) | 获取输出张量的数量。 | 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNExecutor_CreateInputTensorDesc](#oh_nnexecutor_createinputtensordesc) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t index) | 由指定索引值创建一个输入张量的描述。 | 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNExecutor_CreateOutputTensorDesc](#oh_nnexecutor_createoutputtensordesc) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t index) | 由指定索引值创建一个输出张量的描述。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_GetInputDimRange](#oh_nnexecutor_getinputdimrange) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t index, size_t \*\*minInputDims, size_t \*\*maxInputDims, size_t \*shapeLength) | 获取所有输入张量的维度范围。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetOnRunDone](#oh_nnexecutor_setonrundone) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_OnRunDone](#nn_onrundone) onRunDone) | 设置异步推理结束后的回调处理函数。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetOnServiceDied](#oh_nnexecutor_setonservicedied) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_OnServiceDied](#nn_onservicedied) onServiceDied) | 设置异步推理执行期间设备驱动服务突然死亡时的回调处理函数。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_Tensor](#nn_tensor) \*inputTensor[], size_t inputCount, [NN_Tensor](#nn_tensor) \*outputTensor[], size_t outputCount) | 执行同步推理。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_RunAsync](#oh_nnexecutor_runasync) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_Tensor](#nn_tensor) \*inputTensor[], size_t inputCount, [NN_Tensor](#nn_tensor) \*outputTensor[], size_t outputCount, int32_t timeout, void \*userData) | 执行异步推理。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNDevice_GetAllDevicesID](#oh_nndevice_getalldevicesid) (const size_t \*\*allDevicesID, uint32_t \*deviceCount) | 获取对接到 Neural Network Runtime 的硬件ID。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNDevice_GetName](#oh_nndevice_getname) (size_t deviceID, const char \*\*name) | 获取指定硬件的名称。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNDevice_GetType](#oh_nndevice_gettype) (size_t deviceID, [OH_NN_DeviceType](#oh_nn_devicetype) \*deviceType) | 获取指定硬件的类别信息。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_GetInputDimRange](#oh_nnexecutor_getinputdimrange) (const [OH_NNExecutor](#oh_nnexecutor) \*executor, size_t index, size_t \*\*minInputDims, size_t \*\*maxInputDims, size_t \*shapeLength) | 获取所有输入张量的维度范围。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetOnRunDone](#oh_nnexecutor_setonrundone) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_OnRunDone](#nn_onrundone) onRunDone) | 设置异步推理结束后的回调处理函数。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetOnServiceDied](#oh_nnexecutor_setonservicedied) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_OnServiceDied](#nn_onservicedied) onServiceDied) | 设置异步推理执行期间设备驱动服务突然死亡时的回调处理函数。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_RunSync](#oh_nnexecutor_runsync) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_Tensor](#nn_tensor) \*inputTensor[], size_t inputCount, [NN_Tensor](#nn_tensor) \*outputTensor[], size_t outputCount) | 执行同步推理。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_RunAsync](#oh_nnexecutor_runasync) ([OH_NNExecutor](#oh_nnexecutor) \*executor, [NN_Tensor](#nn_tensor) \*inputTensor[], size_t inputCount, [NN_Tensor](#nn_tensor) \*outputTensor[], size_t outputCount, int32_t timeout, void \*userData) | 执行异步推理。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNDevice_GetAllDevicesID](#oh_nndevice_getalldevicesid) (const size_t \*\*allDevicesID, uint32_t \*deviceCount) | 获取对接到 Neural Network Runtime 的硬件ID。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNDevice_GetName](#oh_nndevice_getname) (size_t deviceID, const char \*\*name) | 获取指定硬件的名称。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNDevice_GetType](#oh_nndevice_gettype) (size_t deviceID, [OH_NN_DeviceType](#oh_nn_devicetype) \*deviceType) | 获取指定硬件的类别信息。 | 
 | [NN_QuantParam](#nn_quantparam) \* [OH_NNQuantParam_Create](#oh_nnquantparam_create) () | 创建一个[NN_QuantParam](#nn_quantparam)量化参数实例。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNQuantParam_SetScales](#oh_nnquantparam_setscales) ([NN_QuantParam](#nn_quantparam) \*quantParams, const double \*scales, size_t quantCount) | 设置[NN_QuantParam](#nn_quantparam)的缩放系数。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNQuantParam_SetZeroPoints](#oh_nnquantparam_setzeropoints) ([NN_QuantParam](#nn_quantparam) \*quantParams, const int32_t \*zeroPoints, size_t quantCount) | 设置[NN_QuantParam](#nn_quantparam)的零点。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNQuantParam_SetNumBits](#oh_nnquantparam_setnumbits) ([NN_QuantParam](#nn_quantparam) \*quantParams, const uint32_t \*numBits, size_t quantCount) | 设置[NN_QuantParam](#nn_quantparam)的量化位数。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNQuantParam_Destroy](#oh_nnquantparam_destroy) ([NN_QuantParam](#nn_quantparam) \*\*quantParams) | 销毁[NN_QuantParam](#nn_quantparam)实例。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNQuantParam_SetScales](#oh_nnquantparam_setscales) ([NN_QuantParam](#nn_quantparam) \*quantParams, const double \*scales, size_t quantCount) | 设置[NN_QuantParam](#nn_quantparam)的缩放系数。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNQuantParam_SetZeroPoints](#oh_nnquantparam_setzeropoints) ([NN_QuantParam](#nn_quantparam) \*quantParams, const int32_t \*zeroPoints, size_t quantCount) | 设置[NN_QuantParam](#nn_quantparam)的零点。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNQuantParam_SetNumBits](#oh_nnquantparam_setnumbits) ([NN_QuantParam](#nn_quantparam) \*quantParams, const uint32_t \*numBits, size_t quantCount) | 设置[NN_QuantParam](#nn_quantparam)的量化位数。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNQuantParam_Destroy](#oh_nnquantparam_destroy) ([NN_QuantParam](#nn_quantparam) \*\*quantParams) | 销毁[NN_QuantParam](#nn_quantparam)实例。 | 
 | [OH_NNModel](#oh_nnmodel) \* [OH_NNModel_Construct](#oh_nnmodel_construct) (void) | 创建[OH_NNModel](#oh_nnmodel)类型的模型实例，搭配OH_NNModel模块提供的其他接口，完成模型实例的构造。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_AddTensorToModel](#oh_nnmodel_addtensortomodel) ([OH_NNModel](#oh_nnmodel) \*model, const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | 向模型实例中添加张量。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_SetTensorData](#oh_nnmodel_settensordata) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, const void \*dataBuffer, size_t length) | 设置张量的数值。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_SetTensorQuantParams](#oh_nnmodel_settensorquantparams) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, [NN_QuantParam](#nn_quantparam) \*quantParam) | 设置张量的量化参数，参考[NN_QuantParam](#nn_quantparam)。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_SetTensorType](#oh_nnmodel_settensortype) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, [OH_NN_TensorType](#oh_nn_tensortype) tensorType) | 设置张量的类型，参考[OH_NN_TensorType](#oh_nn_tensortype)。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_AddOperation](#oh_nnmodel_addoperation) ([OH_NNModel](#oh_nnmodel) \*model, [OH_NN_OperationType](#oh_nn_operationtype) op, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*paramIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | 向模型实例中添加算子。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_SpecifyInputsAndOutputs](#oh_nnmodel_specifyinputsandoutputs) ([OH_NNModel](#oh_nnmodel) \*model, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | 指定模型的输入和输出张量的索引值。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_Finish](#oh_nnmodel_finish) ([OH_NNModel](#oh_nnmodel) \*model) | 完成模型构图。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_AddTensorToModel](#oh_nnmodel_addtensortomodel) ([OH_NNModel](#oh_nnmodel) \*model, const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | 向模型实例中添加张量。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_SetTensorData](#oh_nnmodel_settensordata) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, const void \*dataBuffer, size_t length) | 设置张量的数值。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_SetTensorQuantParams](#oh_nnmodel_settensorquantparams) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, [NN_QuantParam](#nn_quantparam) \*quantParam) | 设置张量的量化参数，参考[NN_QuantParam](#nn_quantparam)。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_SetTensorType](#oh_nnmodel_settensortype) ([OH_NNModel](#oh_nnmodel) \*model, uint32_t index, [OH_NN_TensorType](#oh_nn_tensortype) tensorType) | 设置张量的类型，参考[OH_NN_TensorType](#oh_nn_tensortype)。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_AddOperation](#oh_nnmodel_addoperation) ([OH_NNModel](#oh_nnmodel) \*model, [OH_NN_OperationType](#oh_nn_operationtype) op, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*paramIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | 向模型实例中添加算子。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_SpecifyInputsAndOutputs](#oh_nnmodel_specifyinputsandoutputs) ([OH_NNModel](#oh_nnmodel) \*model, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*inputIndices, const [OH_NN_UInt32Array](_o_h___n_n___u_int32_array.md) \*outputIndices) | 指定模型的输入和输出张量的索引值。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_Finish](#oh_nnmodel_finish) ([OH_NNModel](#oh_nnmodel) \*model) | 完成模型构图。 | 
 | void [OH_NNModel_Destroy](#oh_nnmodel_destroy) ([OH_NNModel](#oh_nnmodel) \*\*model) | 销毁模型实例。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_GetAvailableOperations](#oh_nnmodel_getavailableoperations) ([OH_NNModel](#oh_nnmodel) \*model, size_t deviceID, const bool \*\*isSupported, uint32_t \*opCount) | 查询硬件对模型内所有算子的支持情况，通过布尔值序列指示支持情况。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNModel_AddTensor](#oh_nnmodel_addtensor) ([OH_NNModel](#oh_nnmodel) \*model, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor) | 向模型实例中添加张量。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetInput](#oh_nnexecutor_setinput) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const void \*dataBuffer, size_t length) | 设置模型单个输入的数据。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetOutput](#oh_nnexecutor_setoutput) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, void \*dataBuffer, size_t length) | 设置模型单个输出的内存。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_Run](#oh_nnexecutor_run) ([OH_NNExecutor](#oh_nnexecutor) \*executor) | 执行推理。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_GetAvailableOperations](#oh_nnmodel_getavailableoperations) ([OH_NNModel](#oh_nnmodel) \*model, size_t deviceID, const bool \*\*isSupported, uint32_t \*opCount) | 查询硬件对模型内所有算子的支持情况，通过布尔值序列指示支持情况。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNModel_AddTensor](#oh_nnmodel_addtensor) ([OH_NNModel](#oh_nnmodel) \*model, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor) | 向模型实例中添加张量。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetInput](#oh_nnexecutor_setinput) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const void \*dataBuffer, size_t length) | 设置模型单个输入的数据。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetOutput](#oh_nnexecutor_setoutput) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, void \*dataBuffer, size_t length) | 设置模型单个输出的内存。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_Run](#oh_nnexecutor_run) ([OH_NNExecutor](#oh_nnexecutor) \*executor) | 执行推理。 | 
 | [OH_NN_Memory](_o_h___n_n___memory.md) \* [OH_NNExecutor_AllocateInputMemory](#oh_nnexecutor_allocateinputmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, size_t length) | 在硬件上为单个输入申请共享内存。 | 
 | [OH_NN_Memory](_o_h___n_n___memory.md) \* [OH_NNExecutor_AllocateOutputMemory](#oh_nnexecutor_allocateoutputmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, size_t length) | 在硬件上为单个输出申请共享内存。 | 
 | void [OH_NNExecutor_DestroyInputMemory](#oh_nnexecutor_destroyinputmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, [OH_NN_Memory](_o_h___n_n___memory.md) \*\*memory) | 释放[OH_NN_Memory](_o_h___n_n___memory.md)实例指向的输入内存。 | 
 | void [OH_NNExecutor_DestroyOutputMemory](#oh_nnexecutor_destroyoutputmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, [OH_NN_Memory](_o_h___n_n___memory.md) \*\*memory) | 释放[OH_NN_Memory](_o_h___n_n___memory.md)实例指向的输出内存。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetInputWithMemory](#oh_nnexecutor_setinputwithmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | 将[OH_NN_Memory](_o_h___n_n___memory.md)实例指向的硬件共享内存，并指定为单个输入使用的内存。 | 
-| [OH_NN_ReturnCode](#oh_nn_returncode)[OH_NNExecutor_SetOutputWithMemory](#oh_nnexecutor_setoutputwithmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | 将[OH_NN_Memory](_o_h___n_n___memory.md)实例指向的硬件共享内存，并指定为单个输出使用的内存。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetInputWithMemory](#oh_nnexecutor_setinputwithmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t inputIndex, const [OH_NN_Tensor](_o_h___n_n___tensor.md) \*tensor, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | 将[OH_NN_Memory](_o_h___n_n___memory.md)实例指向的硬件共享内存，并指定为单个输入使用的内存。 | 
+| [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNExecutor_SetOutputWithMemory](#oh_nnexecutor_setoutputwithmemory) ([OH_NNExecutor](#oh_nnexecutor) \*executor, uint32_t outputIndex, const [OH_NN_Memory](_o_h___n_n___memory.md) \*memory) | 将[OH_NN_Memory](_o_h___n_n___memory.md)实例指向的硬件共享内存，并指定为单个输出使用的内存。 | 
 
 
 ## 类型定义说明
@@ -206,7 +197,7 @@ typedef void(* NN_OnServiceDied) (void *userData)
 ### NN_QuantParam
 
 ```
-typedef struct NN_QuantParamNN_QuantParam
+typedef struct NN_QuantParam NN_QuantParam
 ```
 
 **描述**
@@ -306,6 +297,9 @@ typedef struct OH_NN_Memory OH_NN_Memory
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[NN_Tensor](#nn_tensor)。
 
 ### OH_NN_OperationType
 
@@ -372,6 +366,9 @@ clamp函数定义如下：
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[NN_QuantParam](#nn_quantparam)。
 
 ### OH_NN_ReturnCode
 
@@ -400,6 +397,9 @@ typedef struct OH_NN_Tensor OH_NN_Tensor
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[NN_TensorDesc](#nn_tensordesc)。
 
 ### OH_NN_TensorType
 
@@ -745,7 +745,7 @@ Neural Network Runtime 定义的错误码类型。
 | OH_NN_OPERATION_FORBIDDEN | 非法操作 | 
 | OH_NN_NULL_PTR | 空指针异常 | 
 | OH_NN_INVALID_FILE | 无效文件 | 
-| OH_NN_UNAVALIDABLE_DEVICE | 硬件发生错误，错误可能包含：HDL服务崩溃<br/>**弃用：**从API version 11开始废弃，此接口废弃。<br/>**替代：**推荐使用 OH_NN_UNAVAILABLE_DEVICE。 | 
+| OH_NN_UNAVALIDABLE_DEVICE | 硬件发生错误，错误可能包含：HDL服务崩溃<br/>**弃用：**从API version 11开始，此接口废弃。<br/>**替代：**推荐使用 OH_NN_UNAVAILABLE_DEVICE。 | 
 | OH_NN_INVALID_PATH | 非法路径 | 
 | OH_NN_TIMEOUT<sup>11+</sup> | 执行超时 | 
 | OH_NN_UNSUPPORTED<sup>11+</sup> | 未支持 | 
@@ -1452,6 +1452,10 @@ Neural Network Runtime 提供主动申请硬件共享内存的方法。通过指
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -1478,6 +1482,10 @@ OH_NN_Memory *OH_NNExecutor_AllocateOutputMemory (OH_NNExecutor *executor, uint3
 Neural Network Runtime 提供主动申请硬件共享内存的方法。通过指定执行器和输出索引值，该接口在单个输出关联的硬件 上，申请大小为length的共享内存，通过[OH_NN_Memory](_o_h___n_n___memory.md)实例返回。
 
 **起始版本：** 9
+
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize)。
 
 **参数:**
 
@@ -1610,6 +1618,10 @@ void OH_NNExecutor_DestroyInputMemory (OH_NNExecutor *executor, uint32_t inputIn
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNTensor_Destroy](#oh_nntensor_destroy)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -1634,6 +1646,10 @@ void OH_NNExecutor_DestroyOutputMemory (OH_NNExecutor *executor, uint32_t output
 如果memory或\*memory为空指针，该接口仅打印警告日志，不执行释放操作。
 
 **起始版本：** 9
+
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNTensor_Destroy](#oh_nntensor_destroy)。
 
 **参数:**
 
@@ -1779,6 +1795,10 @@ OH_NN_ReturnCode OH_NNExecutor_Run (OH_NNExecutor *executor)
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -1882,6 +1902,10 @@ OH_NN_ReturnCode OH_NNExecutor_SetInput (OH_NNExecutor *executor, uint32_t input
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -1910,6 +1934,10 @@ OH_NN_ReturnCode OH_NNExecutor_SetInputWithMemory (OH_NNExecutor *executor, uint
 在需要自行管理内存的场景下，该接口将执行输入和[OH_NN_Memory](_o_h___n_n___memory.md)内存实例绑定。执行计算时，底层硬件从内存实例指向的共享内存 中读取输入数据。通过该接口，可以实现设置输入、执行计算、读取输出的并发执行，提升数据流的推理效率。
 
 **起始版本：** 9
+
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
 
 **参数:**
 
@@ -1997,6 +2025,10 @@ OH_NN_ReturnCode OH_NNExecutor_SetOutput (OH_NNExecutor *executor, uint32_t outp
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -2024,6 +2056,10 @@ OH_NN_ReturnCode OH_NNExecutor_SetOutputWithMemory (OH_NNExecutor *executor, uin
 在需要自行管理内存的场景下，该接口将执行输出和[OH_NN_Memory](_o_h___n_n___memory.md)内存实例绑定。执行计算时，底层硬件将计算结果直接写入内存实例指向 的共享内存。通过该接口，可以实现设置输入、执行计算、读取输出的并发执行，提升数据流的推理效率。
 
 **起始版本：** 9
+
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNExecutor_RunSync](#oh_nnexecutor_runsync)。
 
 **参数:**
 
@@ -2087,6 +2123,10 @@ Neural Network Runtime支持动态形状输入和输出。在添加动态形状�
 
 **起始版本：** 9
 
+**弃用：** 从API version 11开始，此接口废弃。
+
+**替代：** 推荐使用[OH_NNModel_AddTensorToModel](#oh_nnmodel_addtensortomodel)。
+
 **参数:**
 
 | 名称 | 描述 | 
@@ -2113,7 +2153,7 @@ Neural Network Runtime模型中的数据节点和算子参数均由模型的张�
 
 Neural Network Runtime支持动态形状的输入和输出张量。在添加动态形状的数据节点时，需要将tensor.dimensions中支持动态 变化的维度设置为-1。例如可将一个四维tensor的dimensions设置为[1, -1, 2, 2]，表示其第二个维度支持 动态变化。
 
-**起始版本：** 9
+**起始版本：** 11
 
 **参数:**
 
