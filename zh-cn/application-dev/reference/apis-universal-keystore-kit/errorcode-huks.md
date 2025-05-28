@@ -265,13 +265,9 @@ The input parameter is invalid.
 
 2. 参数类型错误（Type Error）。
 
-3. 参数数量错误（Argument Count Error）。
+3. 空参数错误（Null Argument Error）。
 
-4. 空参数错误（Null Argument Error）。
-
-5. 参数格式错误（Format Error）。
-
-6. 参数值范围错误（Value Range Error）。
+4. 参数值范围错误（Value Range Error）。
 
 **处理步骤**
 
