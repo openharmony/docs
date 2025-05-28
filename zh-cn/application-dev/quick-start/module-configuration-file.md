@@ -631,7 +631,7 @@ metadata中指定shortcut信息，其中：
 
 此标签用于标识快捷方式内定义的目标wants信息集合。
 
-**表10-1** wants标签说明
+**表11** wants标签说明
 
 | 属性名称 | 含义 | 类型  | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -703,7 +703,7 @@ data标签示例：
 - **配置方式：** 该标签需要配置在/resources/base/profile资源目录下，并在metadata的resource字段中引用。
 
 
-**表11** distributionFilter标签配置说明
+**表12** distributionFilter标签配置说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -714,7 +714,7 @@ data标签示例：
 
 ### screenShape标签
 
-**表12** screenShape标签说明
+**表13** screenShape标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -723,7 +723,7 @@ data标签示例：
 
 ### screenWindow标签
 
-**表13** screenWindow标签说明
+**表14** screenWindow标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -732,7 +732,7 @@ data标签示例：
 
 ### screenDensity标签
 
-**表14** screenDensity标签说明
+**表15** screenDensity标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -741,7 +741,7 @@ data标签示例：
 
 ### countryCode标签
 
-**表15** countryCode标签说明
+**表16** countryCode标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -809,7 +809,7 @@ data标签示例：
 
 此标签用于支持对测试框架的配置。
 
-**表16** testRunner标签说明
+**表17** testRunner标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -835,14 +835,14 @@ testRunner标签示例：
 
 此标签用于支持对原子化服务的配置。此标签仅在app.json中将bundleType设置为atomicService时生效。
 
-**表17** atomicService标签说明
+**表18** atomicService标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | preloads | 标识原子化服务中预加载列表。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
 
-**表18** preloads标签说明
+**表19** preloads标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -869,7 +869,7 @@ atomicService标签示例：
 
 此标签标识模块运行时依赖的共享库列表。
 
-**表19** dependencies标签说明
+**表20** dependencies标签说明
 
 | 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
 | ----------- | ------------------------------ | -------- | ---------- |
@@ -897,7 +897,7 @@ dependencies标签示例：
 
 此标签标识模块提供的数据代理列表，仅限entry和feature配置。
 
-**表20** proxyData标签说明
+**表21** proxyData标签说明
 | 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
 | ----------- | ------------------------------ | -------- | ---------- |
 | uri | 标识用于访问该数据代理的URI，不同的数据代理配置的URI不可重复，且需要满足`datashareproxy://当前应用包名/xxx`的格式。取值为长度不超过255字节的字符串。 | 字符串   | 该标签不可缺省。 |
@@ -931,7 +931,7 @@ proxyData标签示例：
 
 routerMap配置文件描述模块的路由表信息，routerMap标签的值为数组类型。
 
-**表21** routerMap标签说明
+**表22** routerMap标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -1039,7 +1039,7 @@ customData标签示例：
 
 此标签标识模块配置的应用环境变量。
 
-**表22** appEnvironments标签说明
+**表23** appEnvironments标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -1065,7 +1065,7 @@ appEnvironments标签示例：
 
 该标签仅支持系统资源hap定义权限，不支持应用自定义权限。权限定义方式参见[系统资源权限定义](https://gitee.com/openharmony/utils_system_resources/blob/master/systemres/main/config.json)。
 
-**表23** definePermissions标签说明
+**表24** definePermissions标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -1100,7 +1100,7 @@ definePermissions标签示例：
 
 该标签标识应用包含的Native软件包信息。
 
-**表24** hnpPackages标签说明
+**表25** hnpPackages标签说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -1141,7 +1141,7 @@ fileContextMenu标签示例
 在开发视图的resources/base/profile下面定义配置文件menu.json，其中文件名“menu.json”可自定义，需要和fileContextMenu标签指定的信息对应。配置文件中描述了当前应用注册的右键菜单的项目和响应行为。
 配置文件根节点名称为fileContextMenu，为对象数组，标识当前module注册右键菜单的数量。（单模块和单应用注册数量不能超过5个，配置超过数量当前只解析随机5个）
 
-**表25** fileContextMenu标签配置说明
+**表26** fileContextMenu标签配置说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -1150,7 +1150,7 @@ fileContextMenu标签示例
 | menuHandler | 一个ability可以创建多个右键菜单， 用该字段来区分用户拉起的不同右键菜单项。该字段在用户点击右键菜单执行时，会作为参数传递给右键菜单应用。 | 字符串 | 不可缺省。 |
 | menuContext | 定义展示该菜单项需要的上下文，可以支持多种情况，类型为数组。 | 对象数组 | 不可缺省。 |
 
-**表26** menuContext标签配置说明
+**表27** menuContext标签配置说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -1199,7 +1199,7 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 
 应用进行右键扩展菜单注册后，在文件管理器通过右键操作拉起菜单，该菜单中会有“更多”选项。单击“更多”选项后，会出现注册后的menuItem列表，单击任意一个选项后，文件管理器默认通过startAbility的方式拉起三方应用，除了指定三方应用的包名和ability名之外，want中的parameter中，也会传入如下字段：
 
-**表27** want中parameter字段说明
+**表28** want中parameter字段说明
 
 | 参数名 | 值 | 类型 |
 | -------- | -------- | -------- |
@@ -1210,7 +1210,7 @@ resources/base/profile路径下的menu.json资源文件示例如下：
 
 该标签指向一个profile文件资源，用于指定UIAbility组件启动页面的配置文件，在开发视图的resources/base/profile下面定义配置文件start_window.json，如果配置了该字段，startWindowIcon和startWindowBackground字段将不生效。从API version 18开始，支持该字段。
 
-**表28** startWindow标签配置说明
+**表29** startWindow标签配置说明
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -1252,7 +1252,7 @@ systemTheme标签示例：
 
 在开发视图的resources/base/profile下面定义配置文件theme_config.json，其中文件名“theme_config.json”可自定义为“theme_config”开头文件名，例如"theme_config"、"theme_config_1"。需要和systemTheme标签指定的信息对应。配置文件中标识当前应用使用的系统主题。
 
-  **表29** theme_config.json配置说明
+  **表30** theme_config.json配置说明
 
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
