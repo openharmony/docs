@@ -635,6 +635,21 @@
 | End                   | 水平对齐尾部。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | JUSTIFY<sup>10+</sup> | 双端对齐。<br/>**卡片能力：** 从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
+## TextVerticalAlign
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                   | 说明                  |
+| --------------------- | ------------------- |
+| BASELINE | 对齐文本基线。 |
+| BOTTOM   | 对齐文本底部。 |
+| CENTER   | 垂直居中对齐。 |
+| TOP      | 对齐文本顶部。 |
+
 ## TextOverflow
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
@@ -1052,16 +1067,15 @@ type Nullable\<T> = T | undefined
 
 ## ImageSpanAlignment<sup>10+</sup>
 
-**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 名称     | 说明                           |
 | -------- | ------------------------------ |
-| TOP      | 图片上边沿与行上边沿对齐。   |
-| CENTER   | 图片中间与行中间对齐。       |
-| BOTTOM   | 图片下边沿与行下边沿对齐。   |
-| BASELINE | 图片下边沿与文本BaseLine对齐。 |
+| TOP      | 图片上边沿与行上边沿对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| CENTER   | 图片中间与行中间对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。       |
+| BOTTOM   | 图片下边沿与行下边沿对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
+| BASELINE | 图片下边沿与文本BaseLine对齐。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| FOLLOW_PARAGRAPH<sup>20+</sup>  | 对齐方式跟随Text父组件。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 
 ## XComponentType<sup>10+</sup>

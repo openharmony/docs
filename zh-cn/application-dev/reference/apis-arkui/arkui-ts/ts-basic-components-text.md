@@ -62,6 +62,24 @@ textAlign(value: TextAlign)
 | ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
 | value  | [TextAlign](ts-appendix-enums.md#textalign) | 是   | 文本段落在水平方向的对齐方式。<br/>默认值：TextAlign.Start<br/>Wearable设备上默认值为：TextAlign.Center |
 
+### textVerticalAlign
+
+textVerticalAlign(textVerticalAlign: TextVerticalAlign)
+
+设置文本段落在水平方向的对齐方式。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                        | 必填 | 说明                                                       |
+| ------ | ------------------------------------------- | ---- | ---------------------------------------------------------- |
+| textVerticalAlign  | [TextVerticalAlign](ts-appendix-enums.md#textverticalalign) | 是   | 文本段落在垂直方向的对齐方式。<br/>默认值：TextVerticalAlign.BASELINE |
+
 ### textOverflow
 
 textOverflow(options: TextOverflowOptions)
@@ -2115,3 +2133,33 @@ struct TextExample13 {
 ```
 
 ![textPrivacySensitive](figures/textPrivacySensitive.gif)
+
+### 示例14（文本垂直对齐）
+
+该示例通过textVerticalAlign属性展示了文本如何设置文本垂直对齐效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct TextExample14 {
+  build() {
+    Column({ space: 10 }) {
+      Text() {
+        Span("Hello")
+          .fontSize(50)
+        ImageSpan($r('app.media.app_icon'))
+          .width(30).height(30)
+          .verticalAlign(ImageSpanAlignment.FOLLOW_PARAGRAPH)
+        Span("World")
+      }
+        .textVerticalAlign(TextVerticalAlign.center)
+        .borderWidth(1)
+    }
+    .alignItems(HorizontalAlign.Center)
+    .width("100%")
+  }
+}
+```
+
+![textVerticalAlign](figures/textVerticalAlign.png)
