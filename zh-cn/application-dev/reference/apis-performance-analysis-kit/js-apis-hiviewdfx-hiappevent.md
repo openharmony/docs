@@ -446,7 +446,9 @@ setSize(size: number): void
 **示例：**
 
 ```ts
-let holder2: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher2");
+// 创建订阅数据持有者实例，holder2持有的数据为已通过addWatcher添加的观察者“Watcher1”监听到的事件
+let holder2: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("Watcher1");
+// 设置每次取出事件包的数据大小阈值为1000byte
 holder2.setSize(1000);
 ```
 
@@ -478,7 +480,9 @@ setRow(size: number): void
 **示例：**
 
 ```ts
-let holder3: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher3");
+// 创建订阅数据持有者实例，holder3持有的数据为已通过addWatcher添加的观察者“Watcher1”监听到的事件
+let holder3: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("Watcher1");
+// 设置每次取出的事件包的数据条数为1000条
 holder3.setRow(1000);
 ```
 
@@ -505,7 +509,9 @@ takeNext(): AppEventPackage
 **示例：**
 
 ```ts
-let holder4: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("watcher4");
+// 创建订阅数据持有者实例，holder4持有的数据为已通过addWatcher添加的观察者“Watcher1”监听到的事件
+let holder4: hiAppEvent.AppEventPackageHolder = new hiAppEvent.AppEventPackageHolder("Watcher1");
+// 获取订阅事件
 let eventPkg: hiAppEvent.AppEventPackage | null = holder4.takeNext();
 ```
 
