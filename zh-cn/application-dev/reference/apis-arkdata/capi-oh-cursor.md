@@ -28,7 +28,7 @@
 | [int (*getRowCount)(OH_Cursor *cursor, int *count)](#getrowcount) | 函数指针，获取结果集中的行数。                               |
 | [int (*goToNextRow)(OH_Cursor *cursor)](#gotonextrow)        | 函数指针，转到结果集的下一行。                               |
 | [int (*getSize)(OH_Cursor *cursor, int32_t columnIndex, size_t *size)](#getsize) | 函数指针，当结果集中列的数据类型是BLOB或者TEXT时，获取其值所需的内存。 |
-| [int (*getText)(OH_Cursor *cursor, int32_t columnIndex, char *value, int length)](#getText) | 函数指针，以字符串形式获取当前行中指定列的值。               |
+| [int (*getText)(OH_Cursor *cursor, int32_t columnIndex, char *value, int length)](#gettext) | 函数指针，以字符串形式获取当前行中指定列的值。               |
 | [int (*getInt64)(OH_Cursor *cursor, int32_t columnIndex, int64_t *value)](#getint64) | 函数指针，以int64_t形式获取当前行中指定列的值。              |
 | [int (*getReal)(OH_Cursor *cursor, int32_t columnIndex, double *value)](#getreal) | 函数指针，以double形式获取当前行中指定列的值。               |
 | [int (*getBlob)(OH_Cursor *cursor, int32_t columnIndex, unsigned char *value, int length)](#getblob) | 函数指针，以字节数组的形式获取当前行中指定列的值。           |
