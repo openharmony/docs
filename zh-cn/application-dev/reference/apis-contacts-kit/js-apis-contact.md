@@ -94,7 +94,6 @@ addContact(contact: Contact, callback: AsyncCallback&lt;number&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -204,7 +203,6 @@ addContact(contact: Contact): Promise&lt;number&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -293,7 +291,6 @@ deleteContact(key: string, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -385,7 +382,6 @@ deleteContact(key: string): Promise&lt;void&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -475,7 +471,6 @@ updateContact(contact: Contact, callback: AsyncCallback&lt;void&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -578,7 +573,6 @@ updateContact(contact: Contact, attrs: ContactAttributes, callback: AsyncCallbac
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -692,7 +686,6 @@ updateContact(contact: Contact, attrs?: ContactAttributes): Promise&lt;void&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -786,7 +779,6 @@ isLocalContact(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -880,7 +872,6 @@ isLocalContact(id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -964,7 +955,6 @@ isMyCard(id: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1058,7 +1048,6 @@ isMyCard(id: number): Promise&lt;boolean&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1140,7 +1129,6 @@ queryMyCard(callback: AsyncCallback&lt;Contact&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1227,7 +1215,6 @@ queryMyCard(attrs: ContactAttributes, callback: AsyncCallback&lt;Contact&gt;): v
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1325,7 +1312,6 @@ queryMyCard(attrs?: ContactAttributes): Promise&lt;Contact&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1359,7 +1345,6 @@ selectContact(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1392,7 +1377,6 @@ selectContact(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1430,7 +1414,6 @@ selectContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1462,7 +1445,6 @@ selectContacts(): Promise&lt;Array&lt;Contact&gt;&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1501,7 +1483,6 @@ selectContacts(options: ContactSelectionOptions, callback: AsyncCallback&lt;Arra
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1548,7 +1529,6 @@ selectContacts(options: ContactSelectionOptions): Promise&lt;Array&lt;Contact&gt
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1632,7 +1612,6 @@ queryContact(key: string,  callback: AsyncCallback&lt;Contact&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1723,7 +1702,6 @@ queryContact(key: string, holder: Holder, callback: AsyncCallback&lt;Contact&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1816,7 +1794,6 @@ queryContact(key: string,  attrs: ContactAttributes, callback: AsyncCallback&lt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -1913,7 +1890,6 @@ queryContact(key: string, holder: Holder, attrs: ContactAttributes, callback: As
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2023,7 +1999,6 @@ queryContact(key: string, holder?: Holder, attrs?: ContactAttributes): Promise&l
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2111,7 +2086,6 @@ queryContacts(callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2200,7 +2174,6 @@ queryContacts(holder: Holder, callback: AsyncCallback&lt;Array&lt;Contact&gt;&gt
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2291,7 +2264,6 @@ queryContacts(attrs: ContactAttributes, callback: AsyncCallback&lt;Array&lt;Cont
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2386,7 +2358,6 @@ queryContacts(holder: Holder, attrs: ContactAttributes, callback: AsyncCallback&
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2494,7 +2465,6 @@ queryContacts(holder?: Holder, attrs?: ContactAttributes): Promise&lt;Array&lt;C
 
 **示例：**
 
-  <!--code_no_check-->
 ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2584,7 +2554,6 @@ queryContactsByPhoneNumber(phoneNumber: string, callback: AsyncCallback&lt;Array
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2675,7 +2644,6 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, callback: AsyncC
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2768,7 +2736,6 @@ queryContactsByPhoneNumber(phoneNumber: string, attrs: ContactAttributes, callba
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2865,7 +2832,6 @@ queryContactsByPhoneNumber(phoneNumber: string, holder: Holder, attrs: ContactAt
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -2975,7 +2941,6 @@ queryContactsByPhoneNumber(phoneNumber: string, holder?: Holder, attrs?: Contact
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3065,7 +3030,6 @@ queryContactsByEmail(email: string, callback: AsyncCallback&lt;Array&lt;Contact&
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3156,7 +3120,6 @@ queryContactsByEmail(email: string, holder: Holder, callback: AsyncCallback&lt;A
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3249,7 +3212,6 @@ queryContactsByEmail(email: string, attrs: ContactAttributes, callback: AsyncCal
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3346,7 +3308,6 @@ queryContactsByEmail(email: string, holder: Holder, attrs: ContactAttributes, ca
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3456,7 +3417,6 @@ queryContactsByEmail(email: string, holder?: Holder, attrs?: ContactAttributes):
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3542,7 +3502,6 @@ queryGroups(callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3631,7 +3590,6 @@ queryGroups(holder: Holder, callback: AsyncCallback&lt;Array&lt;Group&gt;&gt;): 
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3733,7 +3691,6 @@ queryGroups(holder?: Holder): Promise&lt;Array&lt;Group&gt;&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3819,7 +3776,6 @@ queryHolders(callback: AsyncCallback&lt;Array&lt;Holder&gt;&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3906,7 +3862,6 @@ queryHolders(): Promise&lt;Array&lt;Holder&gt;&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -3990,7 +3945,6 @@ queryKey(id: number, callback: AsyncCallback&lt;string&gt;): void
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -4081,7 +4035,6 @@ queryKey(id: number, holder: Holder, callback: AsyncCallback&lt;string&gt;): voi
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -4185,7 +4138,6 @@ queryKey(id: number, holder?: Holder): Promise&lt;string&gt;
 
 **示例：**
 
-  <!--code_no_check-->
   ```js
   import { BusinessError } from '@kit.BasicServicesKit';
 
@@ -4473,7 +4425,6 @@ let promise = contact.saveToExistingContactViaUI(context, contactInfo);
 
 使用JSON格式创建联系人数据。
 
-<!--code_no_check-->
 ```js
 let myContact: contact.Contact = {
     phoneNumbers: [{
@@ -4506,7 +4457,6 @@ let myContact: contact.Contact = {
 
 使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let contactAttributes: contact.ContactAttributes = {
     attributes: [
@@ -4546,7 +4496,6 @@ let contactAttributes: contact.ContactAttributes = {
 
 使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_PHONE];
 ```
@@ -4582,7 +4531,6 @@ let attributes = [contact.Attribute.ATTR_EMAIL, contact.Attribute.ATTR_NAME, con
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let email: contact.Email = {
     email: "xxx@email.com",
@@ -4593,7 +4541,6 @@ let email: contact.Email = {
 
   或使用new一个Email对象的方式创建数据。
 
-<!--code_no_check-->
 ```js
 let email = new contact.Email();
 email.email = "xxx@email.com";
@@ -4615,7 +4562,6 @@ email.email = "xxx@email.com";
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let holder: contact.Holder = {
   bundleName: "com.ohos.contacts",
@@ -4654,7 +4600,6 @@ let holder: contact.Holder = {
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let event: contact.Event = {
     eventDate: "xxxxxx"
@@ -4663,7 +4608,6 @@ let event: contact.Event = {
 
   或使用new一个Event对象的方式创建数据。
 
-<!--code_no_check-->
 ```js
 let event = new contact.Event();
 event.eventDate = "xxxxxx";
@@ -4686,7 +4630,6 @@ event.eventDate = "xxxxxx";
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let group: contact.Group = {
     groupId: 1,
@@ -4728,7 +4671,6 @@ let group: contact.Group = {
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let imAddress: contact.ImAddress = {
     imAddress: "imAddress",
@@ -4739,7 +4681,6 @@ let imAddress: contact.ImAddress = {
 
   或使用new一个ImAddress对象的方式创建数据。
 
-<!--code_no_check-->
 ```js
 let imAddress = new contact.ImAddress();
 imAddress.imAddress = "imAddress";
@@ -4769,7 +4710,6 @@ imAddress.imAddress = "imAddress";
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let name: contact.Name = {
     familyName: "familyName",
@@ -4793,7 +4733,6 @@ let name: contact.Name = {
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let nickName: contact.NickName = {
     nickName: "nickName"
@@ -4816,7 +4755,6 @@ let nickName: contact.NickName = {
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let note: contact.Note = {
     noteContent: "noteContent"
@@ -4840,7 +4778,6 @@ let note: contact.Note = {
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let organization: contact.Organization = {
     name: "name",
@@ -4895,7 +4832,6 @@ let organization: contact.Organization = {
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let phoneNumber: contact.PhoneNumber = {
     phoneNumber: "138xxxxxxxx",
@@ -4905,7 +4841,6 @@ let phoneNumber: contact.PhoneNumber = {
 
   或使用new一个PhoneNumber对象的方式创建数据。
 
-<!--code_no_check-->
 ```js
 let phoneNumber = new contact.PhoneNumber();
 phoneNumber.phoneNumber = "138xxxxxxxx";
@@ -4927,7 +4862,6 @@ phoneNumber.phoneNumber = "138xxxxxxxx";
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let portrait: contact.Portrait = {
     uri: "uri"
@@ -4971,7 +4905,6 @@ let portrait: contact.Portrait = {
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let postalAddress: contact.PostalAddress = {
     city: "city",
@@ -4981,7 +4914,6 @@ let postalAddress: contact.PostalAddress = {
 
   或使用new一个PostalAddress对象的方式创建数据。
 
-<!--code_no_check-->
 ```js
 let postalAddress = new contact.PostalAddress();
 postalAddress.city = "city";
@@ -5029,7 +4961,6 @@ postalAddress.postalAddress = "postalAddress";
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let relation: contact.Relation = {
     relationName: "relationName",
@@ -5039,7 +4970,6 @@ let relation: contact.Relation = {
 
   或使用new一个Relation对象的方式创建数据。
 
-<!--code_no_check-->
 ```js
 let relation = new contact.Relation();
 relation.relationName = "relationName";
@@ -5076,7 +5006,6 @@ relation.labelId = contact.Relation.RELATION_ASSISTANT;
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let sipAddress: contact.SipAddress = {
     sipAddress: "sipAddress"
@@ -5085,7 +5014,6 @@ let sipAddress: contact.SipAddress = {
 
   或使用new一个SipAddress对象的方式创建数据。
 
-<!--code_no_check-->
 ```js
 let sipAddress = new contact.SipAddress();
 sipAddress.sipAddress = "sipAddress";
@@ -5107,7 +5035,6 @@ sipAddress.sipAddress = "sipAddress";
 
   使用JSON格式创建数据。
 
-<!--code_no_check-->
 ```js
 let website: contact.Website = {
     website: "website"
