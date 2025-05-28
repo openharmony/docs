@@ -239,7 +239,7 @@ let ruleParam: netFirewall.RequestParam = {
   orderField: netFirewall.NetFirewallOrderField.ORDER_BY_RULE_NAME,
   orderType: netFirewall.NetFirewallOrderType.ORDER_ASC
 };
-netFirewall.getNetFirewallRules(100, ruleParam).then((result: netfirewall.FirewallRulePage) => {
+netFirewall.getNetFirewallRules(100, ruleParam).then((result: netFirewall.FirewallRulePage) => {
   console.info("result:", JSON.stringify(result));
 }, (error: BusinessError) => {
   console.error("get firewall rules failed: " + JSON.stringify(error));
