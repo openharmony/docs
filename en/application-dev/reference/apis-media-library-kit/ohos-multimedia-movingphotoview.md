@@ -4,8 +4,9 @@ The **MovingPhotoView** component is used to play moving photos and control the 
 
 > **NOTE**
 >
-> - This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
-> - Currently, the **MovingPhotoView** component cannot be used in Previewer.
+> This component is supported since API version 12. Updates will be marked with a superscript to indicate their earliest API version.
+>
+> Currently, the **MovingPhotoView** component cannot be used in Previewer.
 
 ## Modules to Import
 
@@ -20,7 +21,7 @@ import { MovingPhotoView, MovingPhotoViewController, MovingPhotoViewAttribute } 
 > - Currently, live attributes cannot be set.
 > - Currently, **expandSafeArea** in the ArkUI common attribute **ComponentOptions** cannot be set.
 > - When this component is long pressed to trigger playback, the component area is zoomed in to 1.1 times.
-> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur during the playback.
+> - This component uses [AVPlayer](../apis-media-kit/_a_v_player.md#avplayer) to play moving photos. A maximum of three [AVPlayers](../apis-media-kit/_a_v_player.md#avplayer) can be used at the same time. Otherwise, frame freezing may occur.
 
 MovingPhotoView(options: MovingPhotoViewOptions)
 
@@ -94,8 +95,8 @@ Before this API is called, [autoPlay](#autoplay13) must be set to **true**. Othe
 
 | Name | Type   | Mandatory| Description                        |
 | ------- | ------- | ---- | ---------------------------- |
-| startTime| number| Yes  | Start playback time, in ms.<br>The value must be greater than or equal to 0.|
-| endTime| number| Yes  | End playback time, in ms.<br>The value must be greater than **startTime**.|
+| startTime| number| Yes  | Start playback time, in ms.<br>The value range is [0,3000].|
+| endTime| number| Yes  | End playback time, in ms.<br>The value range is [0,3000].|
 
 ### autoPlay<sup>13+</sup>
 
@@ -413,7 +414,7 @@ class MediaDataHandlerMovingPhoto implements photoAccessHelper.MediaAssetDataHan
 }
 ```
 
-## Example 2: Enable the AI analyzer.
+## Example 2: Use moving photos in an atomic service.
 
 ```ts
 // xxx.ets

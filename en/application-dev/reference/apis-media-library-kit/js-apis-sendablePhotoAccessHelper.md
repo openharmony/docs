@@ -192,7 +192,7 @@ async function example() {
 
 createAsset(photoType: PhotoType, extension: string, options?: photoAccessHelper.CreateOptions): Promise&lt;string&gt;
 
-Creates a media asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
+Creates an image or video asset with the specified file type, file name extension, and options. This API uses a promise to return the result.
 
 If the caller does not have the ohos.permission.WRITE_IMAGEVIDEO permission, you can create a media asset by using a security component. For details, see [Creating a Media Asset Using a Security Component](../../media/medialibrary/photoAccessHelper-savebutton.md).
 

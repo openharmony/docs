@@ -169,7 +169,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 201      | Permission verification failed, usually the result returned by VerifyAccessToken. |
 | 202      | Permission verification failed, application which is not a system application uses system API. |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
-| 14000011 | Internal system error.                                        |
+| 14000011 | Internal system error                                        |
 
 **Example**
 
@@ -359,7 +359,7 @@ Obtains the face identifier on the cover of a portrait album or group photo albu
 
 | Type               | Description                               |
 | :------------------ | :---------------------------------- |
-| Promise&lt;string&gt; | Promise used to return **tag_id**  of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
+| Promise&lt;string&gt; | Promise used to return **tag_id** of the portrait album, **group_tag** of the group photo album, or an empty string if no face identifier is found.|
 
 **Error codes**
 

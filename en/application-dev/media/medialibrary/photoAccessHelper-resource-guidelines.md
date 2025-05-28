@@ -4,8 +4,9 @@ Applications can call **photoAccessHelper** APIs to manage media assets (images 
 
 > **NOTE**
 >
-> - Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
-> - Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
+> Before you get started, obtain a **PhotoAccessHelper** instance and apply for required permissions. For details, see [Before You Start](photoAccessHelper-preparation.md).
+>
+> Unless otherwise specified, the **PhotoAccessHelper** instance obtained in the **Before You Start** section is used to call **photoAccessHelper** APIs. If the code for obtaining the **PhotoAccessHelper** instance is missing, an error will be reported to indicate that **photoAccessHelper** is not defined.
 
 To ensure application running efficiency, most PhotoAccessHelper APIs are asynchronously implemented in callback or promise mode. The following examples use promise-based APIs. For details about the APIs, see [Album Management](../../reference/apis-media-library-kit/js-apis-photoAccessHelper.md).
 
@@ -65,7 +66,7 @@ The thumbnails offer a quick preview on images and videos. You can use [PhotoAss
 
 Your application may need to obtain the thumbnail of an image or video for preview purposes.
 
-For example, obtain the file descriptor (FD) of an image, and decode the image into a pixel map for display or processing. For details, see [Image Decoding](../image/image-decoding.md).
+For example, obtain the file descriptor (FD) of an image, and decode the image into a PixelMap for display or processing. For details, see [Image Decoding](../image/image-decoding.md).
 
 Example: Obtain the thumbnail at the size of 720 x 720 of an image.
 
@@ -121,7 +122,7 @@ Example: Create an image asset.
 
 **How to Develop**
 
-1. Set the file name and create **createOption** for setting attributes for the image asset to create.
+1. Set the file name and **createOption** for setting attributes for the image asset to create.
 2. Call **MediaAssetChangeRequest.createAssetRequest** to create a media asset change request object.
 3. Call **MediaAssetChangeRequest.getWriteCacheHandler** to obtain the handle of the file to write and write the content of the image asset.
 4. Call **PhotoAccessHelper.applyChanges** to apply the changes to the image.
