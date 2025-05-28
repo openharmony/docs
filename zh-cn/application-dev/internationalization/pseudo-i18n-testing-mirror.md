@@ -15,7 +15,7 @@
    ```ts
    import { i18n } from '@kit.LocalizationKit';
 
-   i18n.System.setSystemLanguage('en-XA');
+   i18n.System.setSystemLanguage('ar-XB');
    ```
    <!--RP1End-->
 
