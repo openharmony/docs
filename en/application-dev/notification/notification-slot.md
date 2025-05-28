@@ -5,6 +5,9 @@ The system supports a range of notification slots. Different notification slots 
 
 The following table lists the notification slots and their reminder modes. **Y** indicates that the feature is supported, and **N** indicates that the feature is not supported.
 
+<!--RP1-->
+<!--RP1End-->
+
 | SlotType             | Value  | Category    | Notification Panel| Banner| Lock Screen| Alert Tone/Vibration| Status Bar Icon| Automatic Screen-on|
 | -------------------- | ------ | --------| ------- |------|------|----------|-----------|---------|
 | UNKNOWN_TYPE         | 0      | Unknown| Y | N | N | N | N | N |

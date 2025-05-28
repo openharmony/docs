@@ -295,6 +295,12 @@ createAVMetadataExtractor(): Promise\<AVMetadataExtractor>
 
 **系统能力：** SystemCapability.Multimedia.Media.AVMetadataExtractor
 
+**返回值：**
+
+| 类型           | 说明                                     |
+| -------------- | ---------------------------------------- |
+| Promise\<[AVMetadataExtractor](#avmetadataextractor11)>  | Promise对象。异步返回元数据获取类对象（AVMetadataExtractor）。 |
+
 **错误码：**
 
 以下错误码的详细介绍请参见[媒体错误码](errorcode-media.md)
@@ -1874,6 +1880,12 @@ isSeekContinuousSupported() : boolean
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
+**返回值：**
+
+| 类型           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| boolean | 媒体源是否支持以SEEK_CONTINUOUS模式进行seek。 |
+
 **示例：**
 
 ```ts
@@ -3152,8 +3164,8 @@ track变更事件回调方法。
 
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ------ | ---------------------------------------------------------- |
-| index  | number | 是 | 当前选中的track索引。     |
-| isSelected | boolean | 是 | 当前索引的选中状态。 |
+| index  | number | 是 | 当前变更的track索引。     |
+| isSelected | boolean | 是 | 当前变更的track索引是否被选中。true表示处于选中状态，false表示处于非选中状态。 |
 
 ## OnAVPlayerStateChangeHandle<sup>12+</sup>
 
@@ -4875,7 +4887,7 @@ type OnAVRecorderStateChangeHandler = (state: AVRecorderState, reason: StateChan
 | videoCodec       | [CodecMimeType](#codecmimetype8)             | 否   | 视频编码格式，选择视频录制时必填。当前支持VIDEO_AVC。|
 | videoFrameWidth  | number                                       | 否   | 视频帧的宽，选择视频录制时必填，支持范围[176 - 4096]。         |
 | videoFrameHeight | number                                       | 否   | 视频帧的高，选择视频录制时必填，支持范围[144 - 4096]。         |
-| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，支持范围[1 - 60]。             |
+| videoFrameRate   | number                                       | 否   | 视频帧率，选择视频录制时必填，推荐范围[1 - 60]。             |
 | isHdr<sup>11+</sup>            | boolean                        | 否   | HDR编码，选择视频录制时选填，isHdr默认为false，对应编码格式没有要求，isHdr为true时，对应的编码格式必须为video/hevc。|
 | enableTemporalScale<sup>12+</sup>            | boolean                        | 否   | 视频录制是否支持时域分层编码功能，选择视频录制时选填，enableTemporalScale默认为false。设置为true时，编码输出的码流中部分帧可以支持跳过不编码。|
 

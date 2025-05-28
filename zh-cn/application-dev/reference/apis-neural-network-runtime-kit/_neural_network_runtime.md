@@ -95,7 +95,7 @@
 | [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensorDesc_GetByteSize](#oh_nntensordesc_getbytesize) (const [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t \*byteSize) | 获取基于[NN_TensorDesc](#nn_tensordesc)的形状和数据类型计算的数据占用字节数。 | 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_Create](#oh_nntensor_create) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc) | 从[NN_TensorDesc](#nn_tensordesc)创建一个[NN_Tensor](#nn_tensor)实例。 | 
 | [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithSize](#oh_nntensor_createwithsize) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, size_t size) | 按照指定内存大小和[NN_TensorDesc](#nn_tensordesc)创建[NN_Tensor](#nn_tensor)实例。 | 
-| [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithFd](#oh_nntensor_createwithfd) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int fd, size_t size, size_t offset) | 按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建{\@Link NN_Tensor}实例。 | 
+| [NN_Tensor](#nn_tensor) \* [OH_NNTensor_CreateWithFd](#oh_nntensor_createwithfd) (size_t deviceID, [NN_TensorDesc](#nn_tensordesc) \*tensorDesc, int fd, size_t size, size_t offset) | 按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建NN_Tensor实例。 | 
 | [OH_NN_ReturnCode](#oh_nn_returncode) [OH_NNTensor_Destroy](#oh_nntensor_destroy) ([NN_Tensor](#nn_tensor) \*\*tensor) | 销毁一个[NN_Tensor](#nn_tensor)实例。 | 
 | [NN_TensorDesc](#nn_tensordesc) \* [OH_NNTensor_GetTensorDesc](#oh_nntensor_gettensordesc) (const [NN_Tensor](#nn_tensor) \*tensor) | 获取[NN_Tensor](#nn_tensor)的[NN_TensorDesc](#nn_tensordesc)实例。 | 
 | void \* [OH_NNTensor_GetDataBuffer](#oh_nntensor_getdatabuffer) (const [NN_Tensor](#nn_tensor) \*tensor) | 获取[NN_Tensor](#nn_tensor)数据的内存地址。 | 
@@ -2548,7 +2548,7 @@ NN_Tensor *OH_NNTensor_CreateWithFd (size_t deviceID, NN_TensorDesc *tensorDesc,
 
 **描述**
 
-按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建{\@Link NN_Tensor}实例。
+按照指定共享内存的文件描述符和[NN_TensorDesc](#nn_tensordesc)创建NN_Tensor实例。
 
 该接口复用文件描述符**fd**对应的共享内存，**fd**可能来自另一个[NN_Tensor](#nn_tensor)实例。 当调用[OH_NNTensor_Destroy](#oh_nntensor_destroy)接口销毁该接口创建的张量时，不会释放该张量数据的内存。
 
