@@ -4261,7 +4261,6 @@
           - [OH_Drawing_RunBuffer](reference/apis-arkgraphics2d/_o_h___drawing___run_buffer.md) 
           - [OH_Drawing_String](reference/apis-arkgraphics2d/_o_h___drawing___string.md)
           - [OH_Drawing_StrutStyle](reference/apis-arkgraphics2d/_o_h___drawing___strut_style.md)
-          - [OH_Filter](reference/apis-arkgraphics2d/_o_h___filter.md)
           - [OH_Filter_ColorMatrix](reference/apis-arkgraphics2d/_o_h___filter___color_matrix.md)
           - [OH_NativeBuffer_ColorXY](reference/apis-arkgraphics2d/_o_h___native_buffer___color_x_y.md)
           - [OH_NativeBuffer_Config](reference/apis-arkgraphics2d/_o_h___native_buffer___config.md)
