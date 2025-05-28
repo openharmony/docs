@@ -793,7 +793,7 @@ try {
 
 querySyncResult(query: AssetMap): Promise\<SyncResult>
 
-执行同步操作后，查询同步执行结果。
+执行同步操作后，查询同步执行结果。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Security.Asset
 
@@ -802,6 +802,12 @@ querySyncResult(query: AssetMap): Promise\<SyncResult>
 | 参数名 | 类型     | 必填 | 说明                                                         |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
 | query | [AssetMap](#assetmap) | 是   | 同步结果查询条件，如关键资产所属群组、业务自定义属性信息是否加密。|
+
+**返回值：**
+
+| 类型          | 说明                    |
+| ------------- | ----------------------- |
+| Promise\<void> | Promise对象，无返回值。 |
 
 **错误码：**
 

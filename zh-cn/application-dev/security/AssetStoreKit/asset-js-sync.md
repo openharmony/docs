@@ -33,15 +33,15 @@ try {
 
 ## 接入备份恢复扩展能力
 
-为触发应用数据备份恢复，应用需接入[应用接入数据备份恢复](../../file-management/app-file-backup-extension.md)。
+为触发应用数据备份恢复，需要[应用接入数据备份恢复](../../file-management/app-file-backup-extension.md)。
 
 ## 查询关键资产同步结果
 
 ### 接口介绍
 
-通过API文档查看查询关键资产同步结果接口[asset.querySyncResult<sup>20+</sup>](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysyncresult20)。
+通过API文档查看查询关键资产同步结果接口[asset.querySyncResult](../../reference/apis-asset-store-kit/js-apis-asset.md#assetquerysyncresult20)。
 
-在查询关键资产同步结果时，关键资产属性的内容（AssetMap）参数如下表所示：
+在查询关键资产同步结果时，关键资产属性的内容（AssetMap）参数如下表所示。
 
 | 属性名称（Tag）        | 属性内容（Value）                                             | 是否可选  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
