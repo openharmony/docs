@@ -618,8 +618,8 @@ type WindowAnimationCurveParam = Array&lt;number&gt;
 
 | 名称   | 类型 | 只读  | 可选 | 说明                    |
 | ------ | ---- | ----- | ---- | ----------------------- |
-| rectType | [RectType](#recttype19) | 是 | 否 | 窗口矩形区域坐标系类型。 |
-| windowRect | [Rect](#rect7) | 是 | 否 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
+| rectType | [RectType](#recttype19) | 否 | 否 | 窗口矩形区域坐标系类型。 |
+| windowRect | [Rect](#rect7) | 否 | 否 | 相对于屏幕或父窗坐标系的窗口矩形区域信息。|
 
 ### RotationChangeCallback<sup>19+</sup>
 
