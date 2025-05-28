@@ -385,14 +385,11 @@ Ability_NativeChildProcess_ErrCode OH_Ability_RegisterNativeChildProcessExitCall
 
 **描述**：
 
-
-=======
 注册Native子进程异常退出回调函数，当通过[OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess)和[@ohos.app.ability.childProcessManager的startNativeChildProcess](js-apis-app-ability-childProcessManager.md#childprocessmanagerstartnativechildprocess13)启动的子进程异常退出时，调用入口参数的回调函数。当重复注册同一个回调函数时，子进程退出时只会执行一次回调函数。
 
 参数必须实现[OH_Ability_OnNativeChildProcessExit](#oh_ability_onnativechildprocessexit)入口函数。详见[注册Native子进程退出回调](../../application-models/capi-nativechildprocess-exit-info.md)。
 
 **起始版本**：20
->>>>>>> master
 
 **参数**：
 
