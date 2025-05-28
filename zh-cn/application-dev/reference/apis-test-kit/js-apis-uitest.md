@@ -120,15 +120,17 @@ import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPatter
 
 窗口的标志属性信息。
 
+**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
+
 **系统能力**：SystemCapability.Test.UiTest
 
 | 名称                 | 类型    | 只读 | 可选 | 说明                                                                                     |
 | -------------------- | ------- | ---- | ---- |----------------------------------------------------------------------------------------|
-| bundleName           | string  | 否  | 是  | 窗口归属应用的包名，默认值为空。                        |
-| title                | string  | 否  | 是  | 窗口的标题信息，默认值为空。                         |
-| focused              | boolean | 否  | 是   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。|
-| actived(deprecated)  | boolean | 否   | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。                                               |
-| active<sup>11+</sup> | boolean | 否  | 是  | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。                    |
+| bundleName           | string  | 是   | 否   | 窗口归属应用的包名，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                        |
+| title                | string  | 是   | 否   | 窗口的标题信息，默认值为空。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。                          |
+| focused              | boolean | 是   | 否   | 窗口是否处于获焦状态，true：获焦状态，false：未获焦状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
+| actived(deprecated)  | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br>从API version 11开始废弃，建议使用active替代。                                                 |
+| active<sup>11+</sup> | boolean | 是   | 否   | 窗口是否正与用户进行交互，true：交互状态，false：未交互状态，默认值为false。<br />**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。      
 
 ## UiDirection<sup>10+</sup>
 
@@ -905,6 +907,7 @@ hint(val: string, pattern?: MatchPattern): On
 
 | 类型       | 说明                                     |
 | ---------- | ---------------------------------------- |
+
 | [On](#on9) | 返回指定提示文本控件的On对象。 |
 
 **错误码：**
@@ -5538,7 +5541,6 @@ async function demo() {
 }
 ```
 
-
 ### click<sup>(deprecated)</sup>
 
 click(x: number, y: number): Promise\<void>
@@ -5669,7 +5671,6 @@ UiDriver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的
 | savePath | string | 是   | 文件保存路径。 |
 
 **返回值：**
-
 
 | 类型              | 说明                                            |
 | ----------------- |-----------------------------------------------|
