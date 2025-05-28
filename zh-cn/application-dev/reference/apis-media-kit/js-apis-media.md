@@ -8275,16 +8275,37 @@ setMediaResourceLoaderDelegate(resourceLoader: MediaSourceLoader): void
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit';
+import HashMap from '@ohos.util.HashMap';
 
 let headers: Record<string, string> = {"User-Agent" : "User-Agent-Value"};
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://xxx",  headers);
+let uuid: number = 1;
+let requests: HashMap<number, media.MediaSourceLoadingRequest> = new HashMap();
+
+let sourceOpenCallback: media.SourceOpenCallback = (request: media.MediaSourceLoadingRequest) => {
+  console.log(`Opening resource: ${request.url}`);
+  // 成功打开资源，返回唯一的句柄, 保证uuid和request对应。
+  uuid += 1;
+  requests.set(uuid, request);
+  return uuid;
+}
+
+let sourceReadCallback: media.SourceReadCallback = (uuid: number, requestedOffset: number, requestedLength: number) => {
+  console.log(`Reading resource with handle ${uuid}, offset: ${requestedOffset}, length: ${requestedLength}`);
+  // 判断uuid是否合法、存储read请求，不要在read请求阻塞去推送数据和头信息。
+}
+
+let sourceCloseCallback: media.SourceCloseCallback = (uuid: number) => {
+  console.log(`Closing resource with handle ${uuid}`);
+  // 清除当前uuid相关资源。
+  requests.remove(uuid);
+}
 
 // 应用按需实现。
 let resourceLoader: media.MediaSourceLoader = {
-  open: SourceOpenCallback,
-  read: SourceReadCallback,
-  close: SourceCloseCallback
+  open: sourceOpenCallback,
+  read: sourceReadCallback,
+  close: sourceCloseCallback
 };
 
 mediaSource.setMediaResourceLoaderDelegate(resourceLoader);
@@ -8441,8 +8462,11 @@ mediaSource.setMediaResourceLoaderDelegate(mediaSourceLoader);
 let playStrategy : media.PlaybackStrategy = {
   preferredBufferDuration: 20,
 };
-let player = media.createAVPlayer();
-player.setMediaSource(mediaSource, playStrategy);
+
+async function setupPlayer() {
+  let player = await media.createAVPlayer();
+  player.setMediaSource(mediaSource, playStrategy);
+}
 ```
 
 ## MediaSourceLoadingRequest<sup>18+</sup>
