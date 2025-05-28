@@ -1,4 +1,4 @@
-#使用JSVM - API接口进行array相关开发
+# 使用JSVM-API接口进行array相关开发
 
 ## 简介
 
