@@ -7488,7 +7488,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 release(callback: AsyncCallback\<void>): void
 
-Releases this **AVMetadataExtractor** instance. This API uses an asynchronous callback to return the result.
+Releases this **AVImageGenerator** instance. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 
@@ -7535,7 +7535,7 @@ media.createAVImageGenerator((err: BusinessError, generator: media.AVImageGenera
 
 release(): Promise\<void>
 
-Releases this **AVMetadataExtractor** instance. This API uses a promise to return the result.
+Releases this **AVImageGenerator** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Media.AVImageGenerator
 

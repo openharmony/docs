@@ -4606,6 +4606,7 @@ Media asset handler, which can be used to customize the media asset processing l
 onDataPrepared(data: T, imageSource: image.ImageSource, map: Map<string, string>): void
 
 Called when the requested image is ready. If an error occurs, **data** returned by the callback is **undefined**.
+
 **T** supports the Picture data type.
 
 Information returned by **map**:
@@ -5325,7 +5326,7 @@ Defines the basic options for selecting media assets from Gallery.
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
 | MIMEType<sup>10+</sup>    | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| maxSelectNumber<sup>10+</sup>      | number | No  | Maximum number of media files that can be selected.<br>Maximum value: **500**<br>Default value: **50**<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
+| maxSelectNumber<sup>10+</sup>      | number | No  | Maximum number of media files that can be selected. The maximum value is **500**, and the default value is **50**.<br>**Atomic service API**: This API can be used in atomic services since API version 11.  |
 | isPhotoTakingSupported<sup>11+</sup> | boolean  | No  | Whether photo taking is supported.<br>The value **true** means photo taking is supported; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isSearchSupported<sup>11+</sup> | boolean  | No  | Whether the image is searchable.<br>The value **true** means the image is searchable; the value **false** means the opposite.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | recommendationOptions<sup>11+</sup>       | [RecommendationOptions](#recommendationoptions11)   | No  | Image recommendation parameters.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
