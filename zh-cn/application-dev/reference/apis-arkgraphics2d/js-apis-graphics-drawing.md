@@ -1609,6 +1609,142 @@ let path: drawing.Path = new drawing.Path();
 let iter = path.getPathIterator();
 ```
 
+### approximate<sup>20+</sup>
+
+approximate(acceptableError: number): Array\<number>
+
+将当前路径转化为由连续直线段构成的近似路径。
+
+> **说明：**
+>
+> - 当acceptableError为0时，曲线路径被极度细分，会严重影响性能和内存消耗，不建议设置误差值为0。
+> - 当acceptableError特别大时，路径会极度简化，保留少量关键点，可能会丢失原有形状。
+> - 对于椭圆等曲线，当acceptableError过大时，拟合结果通常只包含椭圆的分段贝塞尔曲线的起止点，椭圆形会被极度简化为多边形。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| acceptableError | number | 是 | 表示路径上每条线段的可接受误差。该参数为浮点数，不应小于0，当参数小于0时报错。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| Array\<number> | 返回包含近似路径的点的数组，至少包含两个点。每个点由三个值组成：<br>1. 该点所在的位置距离路径起点的长度比例值，范围为[0.0, 1.0]。<br>2. 点的x坐标。<br>3. 点的y坐标。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+path.moveTo(100, 100);
+path.lineTo(500, 500);
+let points: number[] = path.approximate(0.5);
+for (let i = 0; i < points.length; i += 3) {
+  console.info("PathApproximate Fraction =" + points[i] + ", X =" + points[i + 1] + ", Y =" + points[i + 2] + "\n");
+}
+```
+
+### interpolate<sup>20+</sup>
+
+interpolate(other: Path, weight: number, interpolatedPath: Path): boolean
+
+根据给定的权重，在当前路径和另一条路径之间进行插值，并将结果存储在目标路径对象中。两条路径点数相同即可插值成功，目标路径按照当前路径的结构进行创建。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| other | [Path](#path) | 是 | 表示另一条路径对象。 |
+| weight | number | 是 | 表示插值权重，必须在[0.0, 1.0]范围内。该参数为浮点数。 |
+| interpolatedPath | [Path](#path) | 是 | 表示用于存储插值结果的目标路径对象。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回插值操作是否成功的结果。true表示插值成功，false表示插值失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[图形绘制与显示错误码](../apis-arkgraphics2d/errorcode-drawing.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | --------------------------------------------|
+| 25900001 | Parameter error.Possible causes: Incorrect parameter range. |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+path.moveTo(50, 50);
+path.lineTo(100, 100);
+path.lineTo(200, 200);
+let other: drawing.Path = new drawing.Path();
+other.moveTo(80, 80);
+other.lineTo(300, 300);
+let interpolatedPath: drawing.Path = new drawing.Path();
+if (path.interpolate(other, 0.0, interpolatedPath)) {
+  console.info('interpolate return true');
+} else {
+  console.info('interpolate return false');
+}
+```
+
+### isInterpolate<sup>20+</sup>
+
+isInterpolate(other: Path): boolean
+
+判断当前路径与另一条路径在结构和操作顺序上是否完全一致，以确定两条路径是否兼容插值。若路径中包含圆锥曲线（Conic）操作，则对应操作的权重值也必须一致，才能视为兼容插值。
+
+**系统能力：** SystemCapability.Graphics.Drawing
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                            |
+| -------- | -------------------------------------------- | ---- | ------------------------------- |
+| other | [Path](#path) | 是 | 表示另一条路径对象。 |
+
+**返回值：**
+
+| 类型                  | 说明           |
+| --------------------- | -------------- |
+| boolean | 返回当前路径与另一条路径是否兼容插值的结果。true表示兼容插值，false表示不兼容插值。 |
+
+**示例：**
+
+```ts
+import { drawing } from '@kit.ArkGraphics2D';
+
+let path: drawing.Path = new drawing.Path();
+path.moveTo(0, 0);
+path.lineTo(100, 100);
+let other: drawing.Path = new drawing.Path();
+other.moveTo(0, 1);
+other.lineTo(200, 200);
+if (path.isInterpolate(other)) {
+  console.info('isInterpolate return true');
+} else {
+  console.info('isInterpolate return false');
+}
+```
+
 ## Canvas
 
 承载绘制内容与绘制状态的载体。
