@@ -2,7 +2,7 @@
 
 ## 概述
 
-随着应用的功能越来越复杂，用户在使用应用时，找到某个功能的操作步骤也在变得更加繁琐。为了提升用户体验，可以对应用中常用的功能创建对应的桌面快捷方式，以达到快速启动应用、一键直达特定功能等目的。例如相机应用的 “快速拍照”、便签应用的 “新建便签” 和地图应用的常用地点导航等功能的快捷方式，用户通过快捷方式可以快速进入特定功能页面，既能大大提高操作效率，同时也增加了用户对应用的依赖性。使用快捷方式，还可以实现个性化定制的需求，创建多个快捷方式，以满足个性化的工作流程和操作偏好。
+随着应用的功能越来越复杂，用户在使用应用时，找到某个功能的操作步骤也变得更加繁琐。为提升用户体验，可以对应用中常用的功能创建对应的桌面快捷方式，以达到快速启动应用、一键直达特定功能等目的。例如相机应用的 “快速拍照”、便签应用的 “新建便签” 和地图应用的常用地点导航等功能的快捷方式，用户通过快捷方式可以快速进入特定功能页面，既能大大提高操作效率，同时也增加了用户对应用的依赖性。使用快捷方式，还可以实现个性化定制的需求，创建多个快捷方式，以满足个性化的工作流程和操作偏好。
 
 ## 场景介绍
 
@@ -18,10 +18,8 @@
 
   <img src="figures/shortcuts02.gif"/>
 
-安装应用后，长按桌面上的应用图标，图标上方会出现开发者配置的快捷方式：“添加收藏”和“分享好友”。点击相应标签，即可启动对应的组件。
-
 > **说明：**<br>
-> 本文以单[HAP](hap-package.md)包为场景，讲述了快捷方式的实现步骤。多HAP包的场景下， 步骤与单HAP包一致，都是在entry文件夹下进行shortcuts_config.json的创建和module.json5的配置。
+> 本文以单[HAP](hap-package.md)包为场景，讲述了快捷方式的实现步骤。多HAP包的场景下，步骤与单HAP包一致，都是在entry文件夹下进行shortcuts_config.json的创建和module.json5的配置。
 >
 
 ## 实现原理
@@ -42,7 +40,7 @@
 | parameters | 表示拉起快捷方式时的自定义数据，仅支持配置字符串类型的数据。其中键值均最大支持1024长度的字符串。 | 
 
 
-[shortcuts](module-configuration-file.md#shortcuts标签)配置完成后，还需要在[module.json5](module-configuration-file.md)配置文件中配置[metadata字段](module-configuration-file.md#metadata标签)来指定应用v的快捷方式配置文件，从而完成快捷方式的基本配置。
+[shortcuts](module-configuration-file.md#shortcuts标签)配置完成后，还需要在[module.json5](module-configuration-file.md)配置文件中配置[metadata字段](module-configuration-file.md#metadata标签)来指定应用的快捷方式配置文件，从而完成快捷方式配置。
 
 >
 > **说明：**
@@ -65,7 +63,7 @@
     }
     ```
 
-2. 在/resources/base/profile/目录下创建名为shortcuts_config.json的文件，并在文件中定义应用快捷方式的相关配置。其中shortcutId表示快捷方式的ID、label表示快捷方式对外显示的文字描述信息、icon表示快捷方式的图标、wants中则是快捷方式内定义的目标wants信息集合。通过wants中的parameters参数来指定拉起快捷方式时的自定义数据。
+2. 在/resources/base/profile/目录下创建名为shortcuts_config.json的文件，并在文件中定义应用快捷方式的相关配置。
 
     ```json
     {
@@ -162,7 +160,7 @@
     }
     ```
 
-5. 最后，需要在EntryAbility.ets文件中的[onNewWant()函数](../reference/apis-ability-kit/js-apis-app-ability-uiability.md#uiabilityonnewwant)中调用步骤4的goToSpecifyPage()方法，并将want作为参数传入。
+5. 最后，需要在EntryAbility.ets文件中的[onNewWant()函数](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)中调用步骤4的goToSpecifyPage()方法，并将want作为参数传入。
 
     ```ts
     onNewWant(want: Want, launchParam: AbilityConstant.LaunchParam): void {
