@@ -46,13 +46,13 @@
 | 名称                                                                                                                                                                                                         | 描述                                                                                    |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | int [OH_Ability_CreateNativeChildProcess](#oh_ability_createnativechildprocess) (const char \*libName, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
-| Ability_NativeChildProcess_ErrCode [OH_Ability_StartNativeChildProcess](#OH_Ability_StartNativeChildProcess) (const char \*entry, [NativeChildProcess_Args](#NativeChildProcess_Args) args, [NativeChildProcess_Options](#NativeChildProcess_Options) options, int32_t *pid) | 启动一个进程，并加载指定的库文件。 |
-| Ability_ChildProcessConfigs* [OH_Ability_CreateChildProcessConfigs](#OH_Ability_CreateChildProcessConfigs) () | 创建一个子进程配置信息对象。 |
-| Ability_NativeChildProcess_ErrCode [OH_Ability_DestroyChildProcessConfigs](#OH_Ability_DestroyChildProcessConfigs) () | 销毁一个子进程配置信息对象，并释放其内存。 |
-| Ability_NativeChildProcess_ErrCode [OH_Ability_ChildProcessConfigs_SetIsolationMode](#OH_Ability_ChildProcessConfigs_SetIsolationMode) ([Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs) \*configs, [NativeChildProcess_IsolationMode](#NativeChildProcess_IsolationMode) isolationMode) | 设置子进程配置信息对象中的独立模式。 |
-| Ability_NativeChildProcess_ErrCode [OH_Ability_ChildProcessConfigs_SetProcessName](#OH_Ability_ChildProcessConfigs_SetProcessName) ([Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs) \*configs, const char \*processName) | 设置子进程配置信息对象中的进程名称。 |
-| Ability_NativeChildProcess_ErrCode [OH_Ability_CreateNativeChildProcessWithConfigs](#OH_Ability_CreateNativeChildProcessWithConfigs) (const char \*libName, [Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs) \*configs, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 根据传入的子进程配置信息创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
-| Ability_NativeChildProcess_ErrCode [OH_Ability_StartNativeChildProcessWithConfigs](#OH_Ability_StartNativeChildProcessWithConfigs) (const char \*entry, [NativeChildProcess_Args](#NativeChildProcess_Args) args, [Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs) \*configs, int32_t *pid) | 根据传入的子进程配置信息启动一个进程，并加载指定的库文件。 |
+| Ability_NativeChildProcess_ErrCode [OH_Ability_StartNativeChildProcess](#oh_ability_startnativechildprocess) (const char \*entry, [NativeChildProcess_Args](#nativechildprocess_args) args, [NativeChildProcess_Options](#nativechildprocess_options) options, int32_t *pid) | 启动一个进程，并加载指定的库文件。 |
+| Ability_ChildProcessConfigs* [OH_Ability_CreateChildProcessConfigs](#oh_ability_createchildprocessconfigs) () | 创建一个子进程配置信息对象。 |
+| Ability_NativeChildProcess_ErrCode [OH_Ability_DestroyChildProcessConfigs](#oh_ability_destroychildprocessconfigs) () | 销毁一个子进程配置信息对象，并释放其内存。 |
+| Ability_NativeChildProcess_ErrCode [OH_Ability_ChildProcessConfigs_SetIsolationMode](#oh_ability_childprocessconfigs_setisolationmode) ([Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, [NativeChildProcess_IsolationMode](#nativechildprocess_isolationmode) isolationMode) | 设置子进程配置信息对象中的独立模式。 |
+| Ability_NativeChildProcess_ErrCode [OH_Ability_ChildProcessConfigs_SetProcessName](#oh_ability_childprocessconfigs_setprocessname) ([Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, const char \*processName) | 设置子进程配置信息对象中的进程名称。 |
+| Ability_NativeChildProcess_ErrCode [OH_Ability_CreateNativeChildProcessWithConfigs](#oh_ability_createnativechildprocesswithconfigs) (const char \*libName, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, [OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted) onProcessStarted) | 根据传入的子进程配置信息创建子进程并加载参数中指定的动态链接库文件，进程启动结果通过回调参数异步通知，需注意回调通知为独立线程，回调函数实现需要注意线程同步，且不能执行高耗时操作避免长时间阻塞。 |
+| Ability_NativeChildProcess_ErrCode [OH_Ability_StartNativeChildProcessWithConfigs](#oh_ability_startnativechildprocesswithconfigs) (const char \*entry, [NativeChildProcess_Args](#nativechildprocess_args) args, [Ability_ChildProcessConfigs](#ability_childprocessconfigs) \*configs, int32_t *pid) | 根据传入的子进程配置信息启动一个进程，并加载指定的库文件。 |
 
 
 > **说明：**
@@ -444,7 +444,7 @@ Ability_ChildProcessConfigs* OH_Ability_CreateChildProcessConfigs();
 **起始版本**：15
 
 **返回**：
-执行成功返回指向[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)对象的指针，失败返回nullptr。
+执行成功返回指向[Ability_ChildProcessConfigs](#ability_childprocessconfigs)对象的指针，失败返回nullptr。
 
 ### OH_Ability_DestroyChildProcessConfigs
 
@@ -548,7 +548,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 | 名称                       | 描述 |
 | ---------------------- | ---------------- |
 | libName                  | 子进程中加载的动态库文件名称，不能为nullptr。|
-| configs | 子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)定义。 |
+| configs | 子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。 |
 | onProcessStarted |  通知子进程启动结果的回调函数指针，不能为nullptr，详见[OH_Ability_OnNativeChildProcessStarted](#oh_ability_onnativechildprocessstarted)。 |
 
 **返回**：
@@ -582,7 +582,7 @@ Ability_NativeChildProcess_ErrCode OH_Ability_ChildProcessConfigs_SetProcessName
 | ---------------------- | ---------------- |
 | entry                  | 子进程中调用动态库的符号和入口函数，中间用“:”隔开（例如“libentry.so:Main”)。不能为nullptr。 |
 | args | 传给子进程的参数，详见[NativeChildProcess_Args](#nativechildprocess_args)定义。 |
-| configs |  子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#Ability_ChildProcessConfigs)定义。 |
+| configs |  子进程的配置信息参数，详见[Ability_ChildProcessConfigs](#ability_childprocessconfigs)定义。 |
 | pid | 启动子进程号。 |
 
 **返回**：
