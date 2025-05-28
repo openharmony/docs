@@ -2,10 +2,6 @@
 
 ##简介
 
-使用 JSVM-API 接口进行数组（array）相关开发时，调用相关接口可以在 JSVM 模块中直接操作# 使用JSVM-API接口进行array相关开发
-
-## 简介
-
 使用 JSVM-API 接口进行数组（array）相关开发时，调用相关接口可以在 JSVM 模块中直接操作和处理 JavaScript 中的数组。
 
 ## 基本概念
