@@ -61,7 +61,7 @@ static JSVM_Value ConsoleInfo(JSVM_Env env, JSVM_CallbackInfo info) {
     size_t argc = 1;
     JSVM_Value args[1];
     char log[256] = "";
-    size_t logLength;
+    size_t logLength = 0;
     JSVM_CALL(OH_JSVM_GetCbInfo(env, info, &argc, args, NULL, NULL));
 
     OH_JSVM_GetValueStringUtf8(env, args[0], log, 255, &logLength);
