@@ -13,6 +13,18 @@ formInfo模块提供了卡片信息和状态等相关类型和枚举。
 import { formInfo } from '@kit.FormKit';
 ```
 
+## FormInfo
+
+卡片配置信息。
+
+**系统能力：** SystemCapability.Ability.Form
+
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| previewImages<sup>18+</sup> | Array&lt;number&gt; | 是 | 否 | 卡片预览图资源ID。<br>**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。|
+| enableBlurBackground<sup>18+</sup>  | boolean               | 是    | 否     | 卡片是否使用模糊背板。 |
+| renderingMode<sup>18+</sup>|[RenderingMode](./js-apis-app-form-formInfo-sys.md#renderingmode18)|是|否|卡片渲染模式。|
+
 
 ##  FormParam
 
