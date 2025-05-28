@@ -2728,6 +2728,44 @@ try {
 }
 ```
 
+### setWindowDelayRaiseOnDrag<sup>19+</sup>
+
+setWindowDelayRaiseOnDrag(isEnabled: boolean): void
+
+设置窗口是否使能延迟抬升，仅主窗和子窗可设置。<br>
+不调用此接口或传入false，主窗和子窗在鼠标左键按下时，默认立即抬升。<br>
+调用此接口使能延迟抬升后，在跨窗拖拽场景，可拖拽组件所在窗口在鼠标左键按下时不会立即抬升，直到鼠标左键抬起。
+<!--RP6-->此接口仅可在2in1设备下使用。<!--RP6End-->
+
+**系统能力**：SystemCapability.Window.SessionManager
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
+
+**参数：**
+
+| 参数名      | 类型    | 必填 | 说明                                                         |
+| ---------- | ------- | ---- | ------------------------------------------------------------ |
+| isEnabled    | boolean | 是   | 是否使能延迟抬升。<br>true表示使能窗口延迟抬升；false表示不使能窗口延迟抬升。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[窗口错误码](errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------------------- |
+| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 1300002 | This window state is abnormal. |
+
+**示例：**
+
+```ts
+try {
+  windowClass.setWindowDelayRaiseOnDrag(true);
+} catch (exception) {
+  console.error(`Failed to set window delay raise. Cause code: ${exception.code}, message: ${exception.message}`);
+}
+```
+
 ### setWindowSystemBarEnable<sup>9+</sup>
 
 setWindowSystemBarEnable(names: Array<'status' | 'navigation'>): Promise&lt;void&gt;
