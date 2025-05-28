@@ -935,7 +935,7 @@ static getShared(): LocalStorage
 | [LocalStorage](#localstorage9) | 返回LocalStorage实例。 |
 
 **示例：**
-getShared具体使用，见[在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例](../../../ui/state-management/arkts-localstorage.md#将localstorage实例从uiability共享到一个或多个视图)。
+getShared具体使用，见[在UI页面通过getShared接口获取在通过loadContent共享的LocalStorage实例](../../../ui/state-management/arkts-localstorage.md#将localstorage实例从uiability共享到一个或多个页面)。
 
 
 ### has<sup>9+</sup>
