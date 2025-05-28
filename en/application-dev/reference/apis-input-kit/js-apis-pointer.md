@@ -696,7 +696,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | ID | Error Message            |
 | ---- | --------------------- |
 | 401  | Parameter error. Possible causes: 1. Abnormal windowId parameter passed in. 2. Abnormal pixelMap parameter passed in; 3. Abnormal focusX parameter passed in.4. Abnormal focusY parameter passed in. |
-| 26500001 | Invalid windowId.  Possible causes: The window id does not belong to the current process.|
+| 26500001 | Invalid windowId. Possible causes: The window id does not belong to the current process. |
 
 **Example**
 
