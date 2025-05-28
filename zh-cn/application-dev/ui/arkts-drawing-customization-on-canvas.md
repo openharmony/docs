@@ -16,9 +16,9 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   @Component
   struct CanvasExample1 {
     //用来配置CanvasRenderingContext2D对象的参数，包括是否开启抗锯齿，true表明开启抗锯齿。
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
     //用来创建CanvasRenderingContext2D对象，通过在canvas中调用CanvasRenderingContext2D对象来绘制。
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
   
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -51,10 +51,10 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   @Component
   struct CanvasExample2 {
     //用来配置CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象的参数，包括是否开启抗锯齿。true表明开启抗锯齿
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
     //用来创建OffscreenCanvas对象，width为离屏画布的宽度，height为离屏画布的高度。通过在canvas中调用OffscreenCanvasRenderingContext2D对象来绘制。
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
    
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -66,7 +66,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
             let offContext = this.offCanvas.getContext("2d", this.settings)
             //可以在这里绘制内容
             offContext.strokeRect(50, 50, 200, 150);
-            //将离屏绘值渲染的图像在普通画布上显示
+            //将离屏绘制渲染的图像在普通画布上显示
             let image = this.offCanvas.transferToImageBitmap();
             this.context.transferFromImageBitmap(image);
           })
@@ -81,12 +81,12 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
 
   >**说明：**
   >
-  >在画布组件中，通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制时调用的接口相同，另接口参数如无特别说明，单位均为vp。
+  >在画布组件中，通过CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制时调用的接口相同，另外，接口参数如无特别说明，单位均为vp。
 
 - 在Canvas上加载Lottie动画时，需要先按照如下方式下载Lottie。
 
   ```ts
-  import lottie from '@ohos/lottie'
+  import lottie from '@ohos/lottie';
   ```
 
   具体接口请参考[Lottie](https://gitee.com/openharmony-tpc/lottieETS)。
@@ -228,10 +228,10 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
   @Entry
   @Component
   struct GetImageData {
-    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-    private img: ImageBitmap = new ImageBitmap("/common/images/1234.png")
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
+    private img: ImageBitmap = new ImageBitmap("/common/images/1234.png");
 
     build() {
       Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {

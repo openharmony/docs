@@ -23,7 +23,7 @@ The **effect_types.h** file declares the data types of the image effect filter.
 
 | Name| Description| 
 | -------- | -------- |
-| struct&nbsp;&nbsp;[OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) | Describes a matrix used to create an effect filter.| 
+| struct  [OH_Filter_ColorMatrix](_o_h___filter___color_matrix.md) | Describes a matrix used to create an effect filter.| 
 
 
 ### Types

@@ -11,7 +11,7 @@
 ## 导入模块
 
 ```
-import { uiExtension } from '@kit.ArkUI'
+import { uiExtension } from '@kit.ArkUI';
 ```
 
 ## WindowProxy
@@ -66,18 +66,18 @@ export default class EntryAbility extends UIExtensionAbility {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 隐藏非安全窗口
     extensionHostWindow.hideNonSecureWindows(true).then(()=> {
-      console.log(`Succeeded in hiding the non-secure windows.`);
+      console.info(`Succeeded in hiding the non-secure windows.`);
     }).catch((err: BusinessError)=> {
-      console.log(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to hide the non-secure windows. Cause:${JSON.stringify(err)}`);
     })
   }
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 取消隐藏非安全窗口
     extensionHostWindow.hideNonSecureWindows(false).then(()=> {
-      console.log(`Succeeded in showing the non-secure windows.`);
+      console.info(`Succeeded in showing the non-secure windows.`);
     }).catch((err: BusinessError)=> {
-      console.log(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to show the non-secure windows. Cause:${JSON.stringify(err)}`);
     })
   }
 }
@@ -128,18 +128,18 @@ export default class EntryAbility extends UIExtensionAbility {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 添加安全水印标志
     extensionHostWindow.setWaterMarkFlag(true).then(() => {
-      console.log(`Succeeded in setting water mark flag of window.`);
+      console.info(`Succeeded in setting water mark flag of window.`);
     }).catch((err: BusinessError) => {
-      console.log(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to setting water mark flag of window. Cause:${JSON.stringify(err)}`);
     })
   }
   onSessionDestroy(session: UIExtensionContentSession) {
     const extensionHostWindow = session.getUIExtensionHostWindowProxy();
     // 删除安全水印标志
     extensionHostWindow.setWaterMarkFlag(false).then(() => {
-      console.log(`Succeeded in deleting water mark flag of window.`);
+      console.info(`Succeeded in deleting water mark flag of window.`);
     }).catch((err: BusinessError) => {
-      console.log(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
+      console.error(`Failed to deleting water mark flag of window. Cause:${JSON.stringify(err)}`);
     })
   }
 }

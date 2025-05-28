@@ -102,7 +102,7 @@ trackColor(value: ResourceColor | LinearGradient)
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                         |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。<br/>默认值：`$r('sys.color.ohos_id_color_component_normal')`<br/>该接口中的LinearGradient类型不支持在原子化服务中使用。 |
+| value  | [ResourceColor](ts-types.md#resourcecolor)&nbsp;\|&nbsp;[LinearGradient<sup>12+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 是   | 滑轨的背景颜色。<br/>**说明：** 设置渐变色时，如果颜色断点颜色值为非法值或渐变色断点为空，渐变色将不起效果。默认值：`$r('sys.color.ohos_id_color_component_normal')`。注意：该接口中的LinearGradient类型不支持在原子化服务中使用。 |
 
 ### selectedColor
 
@@ -120,7 +120,7 @@ selectedColor(value: ResourceColor)
 
 | 参数名 | 类型                                       | 必填 | 说明                                                         |
 | ------ | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时，若颜色断点颜色值为非法值或者渐变色断点为空时，渐变色不起效果。 <br/>默认值：`$r('sys.color.ohos_id_color_emphasize')` |
+| value  | [ResourceColor](ts-types.md#resourcecolor) | 是   | 滑轨的已滑动部分颜色。 <br/>**说明：** 设置渐变色时设置渐变色时，如果颜色断点颜色值为非法值或渐变色断点为空，渐变色将不起效果。默认值：`$r('sys.color.ohos_id_color_emphasize')`。|
 
 ### selectedColor<sup>18+</sup>
 
@@ -187,13 +187,15 @@ tip的绘制区域为Slider自身节点的overlay。
 
 trackThickness(value: Length)
 
-设置滑轨的粗细。设置为小于等于0的值时，取默认值。
+设置滑轨的粗细。设置小于等于0的值时，取默认值。
 
 为保证滑块和滑轨的[SliderStyle](#sliderstyle枚举说明)样式，[blockSize](#blocksize10)跟随trackThickness同比例增减。
 
 当style为[SliderStyle](#sliderstyle枚举说明).OutSet时，trackThickness ：[blockSize](#blocksize10) = 1 ：4，当style为[SliderStyle](#sliderstyle枚举说明).InSet时，trackThickness ：[blockSize](#blocksize10) = 5 ：3。
 
-在变更trackThickness过程中，若trackThickness的大小或者[blockSize](#blocksize10)的大小超过slider组件的width或者height([SliderStyle](#sliderstyle枚举说明).OutSet时可能trackThickness没超过，但是[blockSize](#blocksize10)超过了)，取默认值。
+trackThickness或[blockSize](#blocksize10)的大小超过Slider组件的宽度或高度时，取默认值。
+
+当[SliderStyle](#sliderstyle枚举说明)设置为OutSet时，尽管trackThickness的大小没超过Slider组件的宽度或高度，但是[blockSize](#blocksize10)超过了，取默认值。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -281,7 +283,7 @@ trackBorderRadius(value: Length)
 
 | 参数名 | 类型                         | 必填 | 说明                             |
 | ------ | ---------------------------- | ---- | -------------------------------- |
-| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：<br/>style值为SliderStyle.OutSet默认值为'2vp'<br/>style值为SliderStyle.InSet默认值为'10vp'。<br/>**说明**：设置string类型时，不支持百分比。设定值小于0时取默认值。 |
+| value  | [Length](ts-types.md#length) | 是   | 底板圆角半径。<br/>默认值：<br/>style值为SliderStyle.OutSet默认值为'2vp'。<br/>style值为SliderStyle.InSet默认值为'10vp'。<br/>**说明**：设置string类型时，不支持百分比。设定值小于0时取默认值。 |
 
 ### selectedBorderRadius<sup>12+</sup>
 
@@ -441,8 +443,8 @@ contentModifier(modifier: ContentModifier\<SliderConfiguration>)
 
 >  **说明：**
 >
->  - 如果设置了contentModifier，则在自定义区域内点击和手势滑动均不可触发原slider组件的onChange事件。
->  - 仅当调用triggerChange函数且传递正确的参数值时才可以触发原slider组件的onChange事件。
+>  - 如果设置了contentModifier，则在自定义区域内点击和手势滑动均不可触发原Slider组件的onChange事件。
+>  - 仅当调用triggerChange函数且传递正确的参数值时才可以触发原Slider组件的onChange事件。
 
 ### slideRange<sup>12+</sup>
 
@@ -499,6 +501,75 @@ digitalCrownSensitivity(sensitivity: Optional\<CrownSensitivity>)
 | 参数名      | 类型                                                         | 必填 | 说明                                                    |
 | ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
 | sensitivity | [Optional\<CrownSensitivity>](ts-appendix-enums.md#crownsensitivity18) | 是   | 旋转表冠的灵敏度。<br />默认值：CrownSensitivity.MEDIUM |
+
+### prefix<sup>20+</sup>
+
+prefix(content: ComponentContent, options?: SliderPrefixOptions)
+
+设置滑动条的前缀。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                    |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| content | [ComponentContent](../js-apis-arkui-ComponentContent.md) | 是   | 自定义组件内容，用于定义滑块前缀的可视化内容，该内容会显示在滑块的起始位置。 |
+| options | [SliderPrefixOptions](#sliderprefixoptions20) | 否   | 滑块前缀的配置选项，用于设置与无障碍功能相关的属性。 |
+
+### suffix<sup>20+</sup>
+
+suffix(content: ComponentContent, options?: SliderSuffixOptions)
+
+设置滑动条的后缀。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名      | 类型                                                         | 必填 | 说明                                                    |
+| ----------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------- |
+| content | [ComponentContent](../js-apis-arkui-ComponentContent.md)    | 是   | 自定义组件内容，用于定义滑块后缀的可视化内容，该内容会显示在滑块的结束位置。 |
+| options | [SliderSuffixOptions](#slidersuffixoptions20) | 否   | 滑块后缀的配置选项，用于设置与无障碍功能相关的属性。 |
+
+## SliderCustomContentOptions<sup>20+</sup>
+
+Slider前后缀组件无障碍信息参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称                     | 类型        | 必填 | 说明                                                         |
+| ------------------------ | ----------- | ---- | ------------------------------------------------------------ |
+| accessibilityText        | [ResourceStr](ts-types.md#resourcestr) | 否   | 用于提供辅助功能的文本，供屏幕阅读器等工具读取，增强无障碍功能。 <br/>默认值："" |
+| accessibilityDescription | [ResourceStr](ts-types.md#resourcestr) | 否   | 用于提供辅助功能的详细描述，描述滑块前缀或后缀的功能或用途，供屏幕阅读器等工具使用。 <br/>默认值为“单指双击即可执行”。 |
+| accessibilityLevel       | string      | 否   | 用于控制某个组件是否可被无障碍辅助服务所识别。<br>支持的值为:<br>"auto"：当前组件会转换为“yes”。<br>"yes"：当前组件可被无障碍辅助服务所识别。<br>"no"：当前组件不可被无障碍辅助服务所识别。<br>"no-hide-descendants"：当前组件及其所有子组件不可被无障碍辅助服务所识别。<br>默认值："auto"。 |
+| accessibilityGroup       | boolean     | 否   | 用于标识该元素是否属于一个无障碍的组，帮助屏幕阅读器等工具将相关元素进行分组处理。设置为true时表示该组件及其所有子组件为一整个可以选中的组件，无障碍服务将不再关注其子组件内容。<br/>默认值：false |
+
+## SliderPrefixOptions<sup>20+</sup>
+
+Slider前缀组件无障碍信息参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+提供前缀组件的无障碍信息，继承自[SliderCustomContentOptions](#slidercustomcontentoptions20)。
+
+## SliderSuffixOptions<sup>20+</sup>
+
+Slider后缀组件无障碍信息参数。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+提供后缀组件的无障碍信息，继承自[SliderCustomContentOptions](#slidercustomcontentoptions20)。
 
 ## SliderBlockStyle<sup>10+</sup>对象说明
 
@@ -997,3 +1068,243 @@ struct SliderExample {
 
 ![slider_3](figures/slider_builder.gif)
 
+### 示例4（设置滑动条渐变色）
+
+该示例通过colorGradient设置滑动条渐变色，通过focusable、defaultFocus和focusOnTouch设置滑动条支持表冠操作。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SliderExample {
+  @State inSetValueOne: number = 60
+  @State colorGradient: LinearGradient = new LinearGradient([{ color: "#FF0000FF", offset: 0 }, { color: "#FFFF0000", offset: 1 }])
+  @State sensitivity: CrownSensitivity | undefined | null = CrownSensitivity.MEDIUM
+  scroller: Scroller = new Scroller()
+
+  getIntegerDigits(num: number): string {
+    let numRound = Math.round(num);
+    return numRound.toString();
+  }
+
+  build() {
+    Column() {
+      Scroll(this.scroller){
+        Column() {
+          Row() {
+            Stack({ alignContent: Alignment.Top }) {
+              Slider({
+                value: this.inSetValueOne,
+                min: 0,
+                max: 100,
+                style: SliderStyle.NONE,
+                direction: Axis.Vertical,
+                reverse: true
+              })
+                .focusable(true)
+                .defaultFocus(true)
+                .focusOnTouch(true)
+                .digitalCrownSensitivity(this.sensitivity)
+                .trackColor("#26FFFFFF")
+                .trackThickness(52)
+                .selectedColor(this.colorGradient)
+                .onChange((value: number, mode: SliderChangeMode) => {
+                  this.inSetValueOne = value
+                })
+            }
+            .height(233 - 66)
+            .width(52)
+            .margin({ top: 33, bottom: 33, left: 56 })
+            Column() {
+              Text('音量')
+                .fontSize(19)
+                .fontColor("#A9FFFFFF")
+                .fontWeight(500)
+                .textAlign(TextAlign.Start)
+                .margin({ left: 20 })
+              Row() {
+                Text(this.getIntegerDigits(this.inSetValueOne))
+                  .fontSize(52)
+                  .fontColor("#FFFFFFFF")
+                  .fontWeight(700)
+                  .textAlign(TextAlign.Start)
+                  .margin({ left: 20 })
+                Text('%')
+                  .fontSize(19)
+                  .fontColor("#FFFFFFFF")
+                  .fontWeight(500)
+                  .textAlign(TextAlign.Start)
+                  .margin({ left: 2 })
+              }
+            }.alignItems(HorizontalAlign.Start)
+          }
+          .width(233)
+          .height(233)
+          .borderRadius(116.5)
+          .backgroundColor(Color.Black)
+        }
+      }
+    }.width('100%')
+  }
+}
+```
+
+![slider_4](figures/slider_crown.gif)
+
+
+### 示例4（滑动条设置前后缀内容）
+
+该示例实现了Slider组件通过prefix、suffix属性设置滑动条的前后缀内容，定制其内容区以及无障碍属性。设置无障碍属性后，屏幕阅读器将以设置的无障碍内容进行朗读。
+
+```ts
+// xxx.ets
+import { ComponentContent } from '@kit.ArkUI';
+
+class NodeParams {
+  param: ResourceStr = ""
+
+  constructor(param: ResourceStr) {
+    this.param = param;
+  }
+}
+
+@Builder
+function textBuilder(params: NodeParams) {
+  Text(params.param)
+    .fontSize($r('sys.float.Caption_L'))
+    .clip(true)
+    .textAlign(TextAlign.Center)
+    .fontColor(Color.Black)
+}
+
+@Entry
+@Component
+struct SliderExample {
+  private pre: string = '低';
+  private suf: string = '高';
+  private uiContext: UIContext = this.getUIContext();
+
+  private preNode1: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode1: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode2: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode2: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode3: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode3: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+  private preNode4: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.pre));
+  private sufNode4: ComponentContent<NodeParams> = new ComponentContent(this.uiContext, wrapBuilder(textBuilder), new NodeParams(this.suf));
+
+  build() {
+    Column({ space: 8 }) {
+      Text('outset slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .prefix(this.preNode1, {
+            accessibilityText: 'prefixText',
+            accessibilityDescription: 'prefixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+          .suffix(this.sufNode1, {
+            accessibilityText: 'suffixText',
+            accessibilityDescription: 'suffixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .prefix(this.preNode3)
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.OutSet
+        })
+          .showTips(true)
+          .suffix(this.sufNode3)
+      }
+      .width('80%')
+
+      Text('inset slider').fontSize(9).fontColor(0xCCCCCC).width('90%').margin(15)
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .prefix(this.preNode2, {
+            accessibilityText: 'prefixText',
+            accessibilityDescription: 'prefixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+          .suffix(this.sufNode2, {
+            accessibilityText: 'suffixText',
+            accessibilityDescription: 'suffixDescription',
+            accessibilityLevel: 'auto',
+            accessibilityGroup: true
+          })
+      }
+      .width('80%')
+
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .prefix(this.preNode4)
+      }
+      .width('80%')
+      
+      Row() {
+        Slider({
+          value: 50,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .blockColor('#191970')
+          .trackColor('#ADD8E6')
+          .selectedColor('#4169E1')
+          .showTips(true)
+          .trackThickness(36)
+          .suffix(this.sufNode4)
+      }
+      .width('80%')
+    }.width('100%')
+  }
+}
+```
+
+![slider_4](figures/slider_4.jpeg)

@@ -208,12 +208,12 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
 
     ```cpp
     #include "ffrt/task.h"
-    #include "ffrt/type_def.h"
-    #include "ffrt/condition_variable.h"
-    #include "ffrt/loop.h"
     #include "ffrt/mutex.h"
-    #include "ffrt/queue.h"
+    #include "ffrt/shared_mutex.h"
+    #include "ffrt/condition_variable.h"
     #include "ffrt/sleep.h"
+    #include "ffrt/queue.h"
+    #include "ffrt/loop.h"
     #include "ffrt/timer.h"
     ```
 
@@ -263,11 +263,11 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
         ffrt_function_t func;
         ffrt_function_t after_func;
         void* arg;
-    } c_function_t;
+    } ffrt_function_wrapper_t;
 
     static inline void ffrt_exec_function_wrapper(void* t)
     {
-       c_function_t* f = (c_function_t *)t;
+       ffrt_function_wrapper_t* f = (ffrt_function_wrapper_t *)t;
        if (f->func) {
            f->func(f->arg);
        }
@@ -275,20 +275,20 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
 
     static inline void ffrt_destroy_function_wrapper(void* t)
     {
-        c_function_t* f = (c_function_t *)t;
+        ffrt_function_wrapper_t* f = (ffrt_function_wrapper_t *)t;
         if (f->after_func) {
             f->after_func(f->arg);
         }
     }
 
     #define FFRT_STATIC_ASSERT(cond, msg) int x(int static_assertion_##msg[(cond) ? 1 : -1])
-    static inline ffrt_function_header_t *ffrt_create_function_wrapper(const ffrt_function_t func,
-        const ffrt_function_t after_func, void *arg)
+    static inline ffrt_function_header_t *ffrt_create_function_wrapper(ffrt_function_t func,
+        ffrt_function_t after_func, void* arg, ffrt_function_kind_t kind)
     {
-        FFRT_STATIC_ASSERT(sizeof(c_function_t) <= ffrt_auto_managed_function_storage_size,
+        FFRT_STATIC_ASSERT(sizeof(ffrt_function_wrapper_t) <= ffrt_auto_managed_function_storage_size,
             size_of_function_must_be_less_than_ffrt_auto_managed_function_storage_size);
 
-        c_function_t* f = (c_function_t *)ffrt_alloc_auto_managed_function_storage_base(ffrt_function_kind_general);
+        ffrt_function_wrapper_t* f = (ffrt_function_wrapper_t *)ffrt_alloc_auto_managed_function_storage_base(kind);
         f->header.exec = ffrt_exec_function_wrapper;
         f->header.destroy = ffrt_destroy_function_wrapper;
         f->func = func;
@@ -348,11 +348,11 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
 
     // ******串行任务******
     // 提交不返回handle的串行队列任务
-    ffrt_queue_submit(queue_handle, ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a,
-        ffrt_function_kind_queue), nullptr);
+    ffrt_queue_submit(queue_handle,
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_queue), NULL);
     // 提交带handle的串行队列任务
     ffrt_task_handle_t handle = ffrt_queue_submit_h(queue_handle,
-        ffrt_create_function_wrapper(OnePlusForTest, nullptr, &a, ffrt_function_kind_queue), nullptr);
+        ffrt_create_function_wrapper(OnePlusForTest, NULL, &a, ffrt_function_kind_queue), NULL);
 
     // 如果需要等待执行结果，则调用wait
     const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
@@ -362,7 +362,32 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
     ffrt_queue_wait(handle);
     ```
 
-6. 任务提交完成后销毁相应资源。
+6. 在任务不需要任何销毁动作时可以通过简化接口提交任务（可选）。
+
+    ```cpp
+    int a = 0;
+    // 在步骤3场景中的after_func函数指针为NULL时，可以使用简化接口提交任务，避免冗余的任务结构封装。
+    // ******并行任务******
+    // 通过简化接口提交不带handle返回值的并行任务
+    ffrt_submit_f(OnePlusForTest, &a, NULL, NULL, &attr);
+    // 通过简化接口提交带handle返回值的并行任务
+    ffrt_task_handle_t task = ffrt_submit_h_f(OnePlusForTest, &a, NULL, NULL, &attr);
+
+    // ******串行任务******
+    // 通过简化接口提交不返回handle的串行队列任务
+    ffrt_queue_submit_f(queue_handle, OnePlusForTest, &a, NULL);
+    // 通过简化接口提交带handle的串行队列任务
+    ffrt_task_handle_t handle = ffrt_queue_submit_h_f(queue_handle, OnePlusForTest, &a, NULL);
+
+    // 如果需要等待执行结果，则调用wait
+    const std::vector<ffrt_dependence_t> wait_deps = {{ffrt_dependence_task, task}};
+    ffrt_deps_t wait{static_cast<uint32_t>(wait_deps.size()), wait_deps.data()};
+    ffrt_wait_deps(&wait);
+
+    ffrt_queue_wait(handle);
+    ```
+
+7. 任务提交完成后销毁相应资源。
 
     ```cpp
     // ******销毁并行任务******
@@ -383,7 +408,7 @@ FFRT任务的调度和执行过程中，利用了OH系统的Trace打点能力，
 - 程序过程各步骤以函数封装表达，函数满足类纯函数特性。
 - 无全局数据访问。
 - 无内部状态保留。
-- 通过`ffrt_submit_base()`接口以异步任务方式提交函数执行。
+- 通过`ffrt_submit_base()`或`ffrt_submit_f()`接口以异步任务方式提交函数执行。
 - 将函数访问的数据对象以及访问方式在`ffrt_submit_base()`接口中的`in_deps`和`out_deps`参数表达。
 - 程序员通过`in_deps`和`out_deps`参数表达任务间依赖关系以保证程序执行的正确性。
 
@@ -556,20 +581,20 @@ FFRT任务中使用标准库的互斥锁可能发生死锁，需要更换为FFRT
 
 ### Using FFRT C API
 
-NDK（Native Development Kit）是HarmonyOS SDK提供的Native API的集合，方便开发者使用C或C++语言实现应用的关键功能。
+NDK（Native Development Kit）是系统提供的Native API的集合，方便开发者使用C或C++语言实现应用的关键功能。
 
 FFRT C API已集成在NDK中，在DevEco IDE中可以直接使用对应的接口。
 
-```cpp
-#include "ffrt/type_def.h"
+```c
 #include "ffrt/task.h"
-#include "ffrt/queue.h"
-#include "ffrt/condition_variable.h"
 #include "ffrt/mutex.h"
 #include "ffrt/shared_mutex.h"
+#include "ffrt/condition_variable.h"
 #include "ffrt/sleep.h"
+#include "ffrt/queue.h"
 #include "ffrt/loop.h"
 #include "ffrt/timer.h"
+#include "ffrt/type_def.h"
 ```
 
 ### Using FFRT C++ API
@@ -578,7 +603,7 @@ FFRT的部署依赖FFRT动态库`libffrt.so`和一组头文件，其中动态库
 
 ![image](figures/ffrt_figure7.png)
 
-如果要使用FFRT C++ API，需要使用FFRT三方库[@ppd/ffrt](https://ohpm.openharmony.cn/#/cn/detail/@ppd%2Fffrt)，该三方库是由FFRT官方维护的FFRT C++ API库。
+如果要使用FFRT C++ API，需要使用FFRT C++接口三方库[@ppd/ffrt](https://ohpm.openharmony.cn/#/cn/detail/@ppd%2Fffrt)，该三方库是由FFRT官方维护的FFRT C++ API库。
 
 在模块目录下执行三方库安装命令：
 
@@ -588,19 +613,25 @@ ohpm install @ppd/ffrt
 
 也可以直接在`oh-package.json5`文件中配置对应的依赖，由IDE自动进行三方库下载安装。
 
-同时在模块`CMakeLists.txt`文件中添加依赖：
+在模块`CMakeLists.txt`文件中添加头文件搜索路径和链接依赖：
 
-```txt
-target_link_libraries(<target_name> PUBLIC libffrt.z.so ffrt::ffrtapi)
+```cmake
+# ${MODULES_PATH}表示三方库安装位置，需要开发者自己定义或者直接替换成绝对路径或者相对路径。
+include_directories(${MODULES_PATH}/@ppd/ffrt/include)
+target_link_libraries(${TARGET_NAME} PUBLIC libffrt.z.so)
 ```
 
 至此就可以在代码中使用FFRT C++接口：
 
 ```cpp
+// include all C or C++ header files
+#include "ffrt/ffrt.h"
+
+// include specified header files
 #include "ffrt/cpp/task.h"
-#include "ffrt/cpp/queue.h"
-#include "ffrt/cpp/condition_variable.h"
 #include "ffrt/cpp/mutex.h"
 #include "ffrt/cpp/shared_mutex.h"
+#include "ffrt/cpp/condition_variable.h"
 #include "ffrt/cpp/sleep.h"
+#include "ffrt/cpp/queue.h"
 ```

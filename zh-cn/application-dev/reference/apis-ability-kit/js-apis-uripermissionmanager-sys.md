@@ -50,6 +50,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
 | 201 | Permission denied. |
 | 202 | Not System App. Interface caller is not a system app. |
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+| 801 | Capability not supported. |
 | 16000050 | Internal error. |
 | 16000058 | Invalid URI flag. |
 | 16000059 | Invalid URI type. |
@@ -121,6 +122,7 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 201 | Permission denied. |
   | 202 | Not System App. Interface caller is not a system app. |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+  | 801 | Capability not supported. |
   | 16000050 | Internal error. |
   | 16000058 | Invalid URI flag. |
   | 16000059 | Invalid URI type. |
@@ -193,11 +195,12 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, targetBundleName: stri
   | 201 | Permission denied. |
   | 202 | Not System App. Interface caller is not a system app. |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+  | 801 | Capability not supported. |
   | 16000050 | Internal error. |
   | 16000058 | Invalid URI flag. |
   | 16000059 | Invalid URI type. |
   | 16000060 | A sandbox application cannot grant URI permission. |
-  | 16000081 | Get target application info failed. |
+  | 16000081 | Failed to obtain the target application information. |
 
 **示例：**
 
@@ -276,6 +279,7 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
   | ------- | -------------------------------- |
   | 202 | Not System App. Interface caller is not a system app. |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+  | 801 | Capability not supported. |
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
 
@@ -332,6 +336,7 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
   | ------- | -------------------------------- |
   | 202 | Not System App. Interface caller is not a system app. |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+  | 801 | Capability not supported. |
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
 
@@ -389,9 +394,10 @@ revokeUriPermission(uri: string, targetBundleName: string, appCloneIndex: number
   | ------- | -------------------------------- |
   | 202 | Not System App. Interface caller is not a system app. |
   | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types.|
+  | 801 | Capability not supported. |
   | 16000050 | Internal error. |
   | 16000059 | Invalid URI type. |
-  | 16000081 | Get target application info failed. |
+  | 16000081 | Failed to obtain the target application information. |
 
 **示例：**
 

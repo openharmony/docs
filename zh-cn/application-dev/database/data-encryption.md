@@ -1,5 +1,4 @@
-# 数据库加密
-
+# 数据库加密（ArkTS）
 
 ## 场景介绍
 
@@ -17,61 +16,68 @@
 具体接口及功能，可见[分布式键值数据库](../reference/apis-arkdata/js-apis-distributedKVStore.md)。
 
 ```ts
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvManager: distributedKVStore.KVManager | undefined = undefined;
-let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
-let context = getContext(this);
-const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-  context: context,
-  bundleName: 'com.example.datamanagertest',
-}
-try {
-  kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-  console.info('Succeeded in creating KVManager.');
-} catch (e) {
-  let error = e as BusinessError;
-  console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-}
-if (kvManager !== undefined) {
-  kvManager = kvManager as distributedKVStore.KVManager;
-  try {
-    const options: distributedKVStore.Options = {
-      createIfMissing: true,
-      // 设置数据库加密
-      encrypt: true,
-      backup: false,
-      autoSync: false,
-      kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-      securityLevel: distributedKVStore.SecurityLevel.S3
-    };
-    kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
-      if (err) {
-        console.error(`Fail to get KVStore. Code:${err.code},message:${err.message}`);
-        return;
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let kvManager: distributedKVStore.KVManager | undefined = undefined;
+    let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
+    let context = this.context;
+    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+      context: context,
+      bundleName: 'com.example.datamanagertest',
+    }
+    try {
+      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+      console.info('Succeeded in creating KVManager.');
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+    }
+    if (kvManager !== undefined) {
+      kvManager = kvManager as distributedKVStore.KVManager;
+      try {
+        const options: distributedKVStore.Options = {
+          createIfMissing: true,
+          // 设置数据库加密
+          encrypt: true,
+          backup: false,
+          autoSync: false,
+          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+          securityLevel: distributedKVStore.SecurityLevel.S3
+        };
+        kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+          if (err) {
+            console.error(`Fail to get KVStore. Code:${err.code},message:${err.message}`);
+            return;
+          }
+          console.info('Succeeded in getting KVStore.');
+          kvStore = store;
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
       }
-      console.info('Succeeded in getting KVStore.');
-      kvStore = store;
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    }
+    if (kvStore !== undefined) {
+      kvStore = kvStore as distributedKVStore.SingleKVStore;
+      //进行后续操作
+      //...
+    }
   }
 }
-if (kvStore !== undefined) {
-  kvStore = kvStore as distributedKVStore.SingleKVStore;
-    //进行后续操作
-    //...
-}
 ```
-
 
 ## 关系型数据库加密
 
 关系型数据库，通过[StoreConfig](../reference/apis-arkdata/js-apis-data-relationalStore.md#storeconfig)中encrypt属性来设置是否加密。encrypt参数为true时表示加密；为false时表示不加密；默认值为false。
 
-当encrypt为true时，支持开发者通过ArkTs API中的可选属性cryptoParam设置自定义的加密/解密密钥和算法等参数。Native侧暂不支持此配置项。
+当encrypt为true时，支持开发者通过ArkTs API中的可选属性cryptoParam设置自定义的加密/解密密钥和算法等参数。
 
 针对cryptoParam的配置与否，有如下两种场景：
 

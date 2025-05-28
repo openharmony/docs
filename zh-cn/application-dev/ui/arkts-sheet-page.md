@@ -10,7 +10,7 @@
 
  - 半模态内嵌[UIExtension](../reference/apis-arkui/js-apis-arkui-uiExtension.md)时，不支持再在UIExtension内拉起半模态/弹窗。
 
- - 若无二次确认或者自定义关闭行为的场景，不建议使用[shouldDismiss/onWilDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)接口。
+ - 若无二次确认或者自定义关闭行为的场景，不建议使用[shouldDismiss/onWillDismiss](../reference/apis-arkui/arkui-ts/ts-universal-attributes-sheet-transition.md#sheetoptions)接口。
 
 ## 生命周期
 
@@ -61,8 +61,8 @@
 @Entry
 @Component
 struct SheetDemo {
-  @State isShowSheet: boolean = false
-  private items: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State isShowSheet: boolean = false;
+  private items: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   @Builder
   SheetBuilder() {
@@ -98,7 +98,7 @@ struct SheetDemo {
     Column() {
       Button('Open Sheet').width('90%').height('80vp')
         .onClick(() => {
-          this.isShowSheet = !this.isShowSheet
+          this.isShowSheet = !this.isShowSheet;
         })
         .bindSheet($$this.isShowSheet, this.SheetBuilder(), {
           detents: [SheetSize.MEDIUM, SheetSize.LARGE, 600],
@@ -133,7 +133,7 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
       primaryButton: {
         value: 'cancel',
         action: () => {
-          console.info('Callback when the cancel button is clicked')
+          console.info('Callback when the cancel button is clicked');
         }
       },
       secondaryButton: {
@@ -144,12 +144,12 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
         // 第三步：确认关闭半模态逻辑所在，此处为AlertDialog的Button回调
         action: () => {
           // 第四步：上述第三步逻辑触发的时候，调用dismiss()关闭半模态
-          DismissSheetAction.dismiss()
-          console.info('Callback when the ok button is clicked')
+          DismissSheetAction.dismiss();
+          console.info('Callback when the ok button is clicked');
         }
       },
       cancel: () => {
-        console.info('AlertDialog Closed callbacks')
+        console.info('AlertDialog Closed callbacks');
       }
     }
   )
@@ -164,7 +164,7 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 ```ts
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
   if (DismissSheetAction.reason === DismissReason.SLIDE_DOWN) {
-    DismissSheetAction.dismiss() //注册dismiss行为
+    DismissSheetAction.dismiss(); //注册dismiss行为
   }
 }),
 ```
@@ -177,12 +177,12 @@ onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
 ```ts
 onWillDismiss: ((DismissSheetAction: DismissSheetAction) => {
   if (DismissSheetAction.reason === DismissReason.SLIDE_DOWN) {
-    DismissSheetAction.dismiss() //注册dismiss行为
+    DismissSheetAction.dismiss(); //注册dismiss行为
   }
 }),
 
 onWillSpringBackWhenDismiss: ((SpringBackAction: SpringBackAction) => {
- //没有注册springBack, 下拉半模态页面无回弹行为
+ //没有注册springBack，下拉半模态页面无回弹行为
 }),
 ```
 

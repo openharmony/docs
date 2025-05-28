@@ -11,7 +11,7 @@
 
 ## 开发流程
 
-相机应用从后台切换至前台启动恢复调用流程图建议如下：
+相机应用从后台切换至前台启动恢复的调用流程建议如下：
 
 ![Camera Background recovery processing](figures/camera-background-recovery.png)
 

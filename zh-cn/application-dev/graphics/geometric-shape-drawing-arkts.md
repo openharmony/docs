@@ -156,7 +156,7 @@ path.lineTo(cX, cY);
 path.lineTo(dX, dY);
 path.lineTo(eX, eY);
 // 闭合形状，path绘制完毕
-path.close()
+path.close();
 
 // 创建画笔对象
 let pen = new drawing.Pen();

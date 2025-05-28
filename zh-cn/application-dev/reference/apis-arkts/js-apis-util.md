@@ -16,7 +16,7 @@ import { util } from '@kit.ArkTS';
 
 format(format: string,  ...args: Object[]): string
 
-通过式样化字符串对输入的内容按特定格式输出。
+使用样式化字符串将输入内容按特定格式输出。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -180,7 +180,7 @@ console.info("result = " + result);
 
 callbackWrapper(original: Function): (err: Object, value: Object )=&gt;void
 
-对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果Promise已解决，则为null），第二个参数将是已解决的值。
+对异步函数进行回调化处理，回调中第一个参数将是拒绝原因（如果Promise已解决，则为null），第二个参数是已解决的值。
 
 > **说明：**
 >
@@ -228,7 +228,7 @@ cb(1, (err : Object, ret : string) => {
 
 promisify(original: (err: Object, value: Object) =&gt; void): Function
 
-对异步函数处理并返回一个promise的函数。
+处理异步函数并返回一个Promise函数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -276,7 +276,7 @@ const addCall = util.promisify(util.callbackWrapper(fn));
 
 generateRandomUUID(entropyCache?: boolean): string
 
-使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。为了提升性能，此接口会默认使用缓存，即入参为true，最多可缓存128个随机的UUID。当缓存中128个UUID都被使用后，会重新进行一次缓存UUID的生成，以保证UUID的随机性。假如不需要使用缓存的UUID，请将入参设置为false。
+使用加密安全随机数生成器生成随机的RFC 4122版本4的string类型UUID。为了提升性能，此接口会默认使用缓存，即入参为true，最多可缓存128个随机的UUID。当缓存中128个UUID用尽后，会重新生成，以保证UUID的随机性。如需禁用缓存，请将入参设置为false。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -352,7 +352,7 @@ console.info(JSON.stringify(uuid));
 
 parseUUID(uuid: string): Uint8Array
 
-将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，如RFC 4122版本4中所述。
+将generateRandomUUID生成的string类型UUID转换为generateRandomBinaryUUID生成的Uint8Array类型UUID，符合RFC 4122版本规范。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -458,7 +458,7 @@ console.info("result = " + result);
 
 promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
-对异步函数处理并返回一个promise的版本。
+处理异步函数并返回promise函数。
 
 > **说明：**
 >
@@ -476,14 +476,14 @@ promiseWrapper(original: (err: Object, value: Object) =&gt; void): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将&nbsp;(err,&nbsp;value)&nbsp;=&gt;&nbsp;...&nbsp;回调作为最后一个参数），并返回一个返回&nbsp;promise&nbsp;的版本。 |
+| Function | 采用遵循常见的错误优先的回调风格的函数（也就是将(err, value) => ...回调作为最后一个参数），并返回一个promise的函数。 |
 
 
 ## util.getHash<sup>12+</sup>
 
 getHash(object: object): number
 
-获取对象的Hash值。如果是第一次获取，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；如果不是第一次获取，则从Hash域中获取并返回Hash值（同一对象多次返回值保持不变）。
+获取对象的Hash值。首次获取时，则计算Hash值并保存到对象的Hash域（返回随机的Hash值）；后续获取时，直接从Hash域中返回Hash值（同一对象多次返回值保持不变）。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -493,7 +493,7 @@ getHash(object: object): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| object | object | 是 | 希望获取Hash值的对象。 |
+| object | object | 是 | 需要获取Hash值的对象。 |
 
 **返回值：**
 
@@ -524,10 +524,33 @@ console.info('result2 is ' + result2);
 // 输出结果：result1 与 result2 的值相等，且为随机的Hash值。
 ```
 
+## util.getMainThreadStackTrace<sup>20+</sup>
+
+getMainThreadStackTrace(): string
+
+获取主线程的栈追踪信息，最多返回64层调用帧。该接口可能会影响到主线程性能，建议谨慎使用。
+
+**原子化服务API**：从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| string | 主线程的栈追踪信息。若主线程未处于执行JS代码状态，则返回空字符串。|
+
+**示例：**
+
+```ts
+let stack = util.getMainThreadStackTrace();
+console.info(stack);
+// 输出当前主线程的栈追踪信息。
+```
 
 ## TextDecoderOptions<sup>11+</sup>
 
-解码相关选项参数，存在两个属性fatal和ignoreBOM。
+解码相关选项参数，包含两个属性fatal和ignoreBOM。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -560,17 +583,17 @@ console.info('result2 is ' + result2);
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
+| stream | boolean | 否 | 在随后的decodeWithStream()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据未分块，则设置为false。默认为false。 |
 
 ## Aspect<sup>11+</sup>
 
-Aspect类用于封装提供切面能力（Aspect Oriented Programming，简写AOP）的接口，这些接口可以用来对类方法进行前后插桩或者替换实现。
+Aspect类用于封装提供切面能力（Aspect Oriented Programming，简写AOP）的接口，这些接口可用于对类方法进行前后插桩或替换实现。
 
 ### addBefore<sup>11+</sup>
 
 static addBefore(targetClass: Object, methodName: string, isStatic: boolean, before: Function): void
 
-在指定的类对象的原方法执行前插入一个函数。addBefore接口执行完成后，都会先执行插入的函数逻辑，再执行指定类对象的原方法。
+在指定的类对象的原方法执行前插入一个函数。执行addBefore接口后，先运行插入的函数逻辑，再执行指定类对象的原方法。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -581,7 +604,7 @@ static addBefore(targetClass: Object, methodName: string, isStatic: boolean, bef
 | 参数名    | 类型    | 必填 | 说明                                   |
 | -------- | ------- | ---- | -------------------------------------|
 | targetClass  | Object   | 是   | 指定的类对象。                    |
-| methodName   | string   | 是   | 指定的方法名，不支持read-only方法。                    |
+| methodName   | string   | 是   | 指定的原方法名，不支持read-only方法。                    |
 | isStatic     | boolean  | 是   | 指定的原方法是否为静态方法。true表示静态方法，false表示实例方法。      |
 | before       | Function | 是   | 要插入的函数对象。函数有参数，则第一个参数是this对象（若isStatic为true，则为类对象即targetClass；若isStatic为false，则为调用方法的实例对象），其余参数是原方法的参数。函数也可以无参数，无参时不做处理。 |
 
@@ -662,7 +685,7 @@ console.info('MyClass.data is ' + MyClass.data);
 
 static addAfter(targetClass: Object, methodName: string, isStatic: boolean, after: Function): void
 
-在指定的类方法执行后插入一段逻辑。最终返回值是插入函数执行后的返回值。
+在指定的类方法执行后插入一段逻辑。最终返回插入函数执行后的返回值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -745,7 +768,7 @@ util.Aspect.addAfter(AroundTest, 'foo', false, () => {
 
 static replace(targetClass: Object, methodName: string, isStatic: boolean, instead: Function) : void
 
-将指定的类方法的原方法替换为另一个函数。replace接口执行完成后，调用指定的类方法时，只会执行替换后的逻辑。最终返回值为替换函数执行完毕的返回值。
+将指定类的原方法替换为另一个函数。replace接口执行完成后，调用指定的类方法时，仅执行替换后的逻辑。最终返回替换函数执行完毕的返回值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -807,7 +830,7 @@ console.info('asp.msg is ' + asp.msg);
 
 ## TextDecoder
 
-TextDecoder用于将字节数组解码为字符串，可以处理多种编码格式，包括utf-8、utf-16le/be、iso-8859和windows-1251等不同的编码格式。
+TextDecoder用于将字节数组解码为字符串，支持utf-8、utf-16le/be、iso-8859和windows-1251等不同的编码格式。
 
 ### 属性
 
@@ -818,8 +841,8 @@ TextDecoder用于将字节数组解码为字符串，可以处理多种编码格
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | encoding | string | 是 | 否 | 编码格式。<br/>-&nbsp;支持格式：utf-8、ibm866、iso-8859-2、iso-8859-3、iso-8859-4、iso-8859-5、iso-8859-6、iso-8859-7、iso-8859-8、iso-8859-8-i、iso-8859-10、iso-8859-13、iso-8859-14、iso-8859-15、koi8-r、koi8-u、macintosh、windows-874、windows-1250、windows-1251、windows-1252、windows-1253、windows-1254、windows-1255、windows-1256、windows-1257、windows-1258、x-mac-cyrillic、gbk、gb18030、big5、euc-jp、iso-2022-jp、shift_jis、euc-kr、utf-16be、utf-16le、UTF-8、GBK、GB2312、gb2312、GB18030、iso-8859-1。 |
-| fatal | boolean | 是 | 否 | 是否显示致命错误，true表示显示致命错误，false表示不显示致命错误。 |
-| ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte&nbsp;order&nbsp;marker）标记，默认值为false&nbsp;，表示解码结果包含BOM标记。 |
+| fatal | boolean | 是 | 否 | 是否显示致命错误，true表示显示，false表示不显示。 |
+| ignoreBOM | boolean | 是 | 否 | 是否忽略BOM（byte order marker）标记，默认值为false，表示解码结果包含BOM标记。 |
 
 ### constructor<sup>9+</sup>
 
@@ -843,7 +866,7 @@ console.info('retStr = ' + retStr);
 
 static create(encoding?: string, options?: TextDecoderOptions): TextDecoder
 
-替代有参构造功能。
+替代有参构造函数的功能。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -881,7 +904,7 @@ console.info('retStr = ' + retStr);
 
 decodeToString(input: Uint8Array, options?: DecodeToStringOptions): string
 
-通过输入参数解码后输出对应文本。
+将输入参数解码后输出对应文本。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -891,7 +914,7 @@ decodeToString(input: Uint8Array, options?: DecodeToStringOptions): string
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| input | Uint8Array | 是 | 符合格式需要解码的数组。 |
+| input | Uint8Array | 是 | 需要解码的数组。 |
 | options | [DecodeToStringOptions](#decodetostringoptions12) | 否 | 解码相关选项参数。默认undefined。|
 
 **返回值：**
@@ -929,7 +952,7 @@ console.info("retStr = " + retStr);
 
 decodeWithStream(input: Uint8Array, options?: DecodeWithStreamOptions): string
 
-通过输入参数解码后输出对应文本。当input是一个空数组时，返回值为undefined。
+将输入参数解码后输出对应文本。当input是一个空数组时，返回undefined。
 
 > **说明：**
 >
@@ -1039,7 +1062,7 @@ decode(input: Uint8Array, options?: { stream?: false }): string
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理最后的数据块或数据未分块，则设置为false。默认为false。 |
+| stream | boolean | 否 | 在随后的decode()调用中是否跟随附加数据块。如果以块的形式处理数据，则设置为true；如果处理数据未分块，则设置为false。默认为false。 |
 
 **返回值：**
 
@@ -1068,20 +1091,20 @@ console.info("retStr = " + retStr);
 
 **系统能力：** SystemCapability.Utils.Lang
 
-编码后的文本。
+编码后的数据。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
 | 名称      | 类型 | 可读  |可写  | 说明               |
 | --------- | -------- | -------- |-------- |------------------ |
-| read     | number  | 是 | 否 |表示已读取的字符数。 |
-| written | number   | 是 |否 |表示已写入的字节数。  |
+| read     | number  | 是 | 否 |已读取的字符数。 |
+| written | number   | 是 |否 |已写入的字节数。  |
 
 
 ## TextEncoder
 
-TextEncoder用于将字符串编码为字节数组，支持多种编码格式。
-需要注意的是，在使用TextEncoder进行编码时，不同编码格式下字符所占的字节数是不同的，在使用TextEncoder时需要明确指定要使用的编码格式，以确保编码结果正确。
+TextEncoder将字符串编码为字节数组，支持多种编码格式。
+在使用TextEncoder进行编码时，需要注意不同编码格式下字符所占的字节数不同。务必明确指定编码格式，以确保编码结果正确。
 
 ### 属性
 
@@ -1174,7 +1197,7 @@ let textEncoder = util.TextEncoder.create("utf-8");
 
 encodeInto(input?: string): Uint8Array
 
-通过输入参数编码后输出Uint8Array对象。
+将输入参数编码后输出Uint8Array对象。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1184,7 +1207,7 @@ encodeInto(input?: string): Uint8Array
 
 | 参数名 | 类型   | 必填 | 说明               |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | 否   | 需要编码的字符串，默认值是空字符串。当入参是空字符串时，返回值是undefined。 |
+| input  | string | 否   | 需要编码的字符串，默认值是空字符串。当入参是空字符串时，返回undefined。 |
 
 **返回值：**
 
@@ -1213,7 +1236,7 @@ console.info("result = " + result);
 
 encodeIntoUint8Array(input: string, dest: Uint8Array): EncodeIntoUint8ArrayInfo
 
-对字符串进行编码，将结果写入dest数组。
+对字符串进行编码，将结果存储到dest数组。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -1259,7 +1282,7 @@ console.info("result.written = " + result.written);
 
 encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
-放置生成的UTF-8编码文本。
+将生成的UTF-8编码文本写入dest数组。
 
 > **说明：**
 >
@@ -1278,7 +1301,7 @@ encodeInto(input: string, dest: Uint8Array): { read: number; written: number }
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Uint8Array | 返回编码后的文本。 |
+| Uint8Array | 返回编码后的Uint8Array对象。 |
 
 **示例：**
 
@@ -1295,7 +1318,7 @@ console.info("uint8 = " + uint8);
 
 encode(input?: string): Uint8Array
 
-通过输入参数编码后输出对应文本。
+将输入参数编码后输出对应文本。
 
 > **说明：**
 >
@@ -1326,7 +1349,7 @@ console.info("result = " + result);
 
 ## RationalNumber<sup>8+</sup>
 
-RationalNumber主要是对有理数进行比较，获取分子分母等方法。例如使用toString()方法可以将有理数转换为字符串形式，使用该类可以方便地进行有理数的各种操作。
+RationalNumber主要用于有理数的比较，并提供获取分子和分母的方法。使用toString()方法可以将有理数转换为字符串形式，使用该类可以方便地进行有理数的各种操作。
 
 ### constructor<sup>9+</sup>
 
@@ -1348,7 +1371,7 @@ let rationalNumber = new util.RationalNumber();
 
 static parseRationalNumber(numerator: number,denominator: number): RationalNumber
 
-用于创建具有给定分子和分母的RationalNumber实例。
+创建具有给定分子和分母的RationalNumber实例。
 
 > **说明：**
 >
@@ -1389,7 +1412,7 @@ let rationalNumber = util.RationalNumber.parseRationalNumber(1,2);
 
 static createRationalFromString(rationalString: string): RationalNumber​
 
-基于给定的字符串创建一个RationalNumber对象。
+使用给定的字符串创建RationalNumber对象。
 
 > **说明：**
 >
@@ -1409,7 +1432,7 @@ static createRationalFromString(rationalString: string): RationalNumber​
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [RationalNumber](#rationalnumber8) | RationalNumber对象。 |
+| [RationalNumber](#rationalnumber8)​ | RationalNumber对象。 |
 
 **错误码：**
 
@@ -1445,7 +1468,7 @@ compare(another: RationalNumber): number​
 
 | 类型   | 说明                                                         |
 | ------ | ------------------------------------------------------------ |
-| number | 如果两个对象相等，则返回0；如果给定对象小于当前对象，则返回1；如果给定对象大于当前对象，则返回-1。 |
+| number | 两个对象相等时返回0；给定对象小于当前对象时返回1；给定对象大于当前对象时返回-1。 |
 
 **错误码：**
 
@@ -1469,7 +1492,7 @@ console.info("result = " + result);
 
 valueOf(): number
 
-以整数形式或者浮点数的形式获取当前RationalNumber对象的值。
+获取当前RationalNumber对象的整数或浮点数值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1501,7 +1524,7 @@ console.info("result = " + result);
 
 equals(obj: Object): boolean
 
-将当前的RationalNumber对象与给定的对象进行比较是否相等。
+比较当前的RationalNumber对象与给定对象是否相等。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1539,9 +1562,9 @@ console.info("result = " + result);
 
 ### getCommonFactor<sup>9+</sup>
 
-static getCommonFactor(number1: number,number2: number): number
+static getCommonFactor(number1: number, number2: number): number
 
-获取两个指定整数的最大公约数。
+获取两个整数的最大公约数。
 
 > **说明：**
 >
@@ -1594,7 +1617,7 @@ getNumerator(): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回RationalNumber对象的分子的值。 |
+| number | 返回RationalNumber对象的分子。 |
 
 **示例：**
 
@@ -1626,7 +1649,7 @@ getDenominator(): number
 
 | 类型 | 说明 |
 | -------- | -------- |
-| number | 返回RationalNumber对象的分母的值。 |
+| number | 返回RationalNumber对象的分母。 |
 
 **示例：**
 
@@ -1658,7 +1681,7 @@ isZero():boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 如果当前对象表示的值为0，则返回true；否则返回false。 |
+| boolean | 如果当前对象的值为0，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -1712,7 +1735,7 @@ console.info("result = " + result);
 
 isFinite():boolean
 
-检查当前RationalNumber对象是否表示一个有限值。
+检查RationalNumber对象是否表示一个有限值。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1744,7 +1767,7 @@ console.info("result = " + result);
 
 toString(): string
 
-获取当前RationalNumber对象的字符串表示形式。
+获取RationalNumber对象的字符串表示形式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1754,7 +1777,7 @@ toString(): string
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 返回Numerator/Denominator格式的字符串，例如3/5，如果当前对象的分子为0，则返回0/1。如果当前对象的分母为0，则返回Infinity。如果当前对象的分子和分母都为0，则返回NaN。|
+| string | 返回Numerator/Denominator格式的字符串，例如3/5，如果分子为0，则返回0/1。如果分母为0，则返回Infinity。如果分子和分母都为0，则返回NaN。|
 
 **示例：**
 
@@ -1801,7 +1824,7 @@ let rationalNumber = new util.RationalNumber(1,2);
 
 compareTo(another: RationalNumber): number​
 
-将当前的RationalNumber对象与给定的对象进行比较。
+比较当前的RationalNumber对象与给定的对象。
 
 > **说明：**
 >
@@ -1860,7 +1883,7 @@ static getCommonDivisor(number1: number,number2: number): number
 
 ## LRUCache<sup>9+</sup>
 
-LRUCache用于在缓存空间不够的时候，将近期最少使用的数据替换为新数据。此设计基于资源访问的考虑：近期访问的数据，可能在不久的将来会再次访问。于是最少访问的数据就是价值最小的数据，是最应该踢出缓存空间的数据。
+LRUCache用于在缓存空间不足时，将近期最少使用的数据替换为新数据。此设计基于资源访问的考虑：近期访问的数据，可能在不久的将来会再次访问。因此最少访问的数据被认为价值最低，应当优先从缓存中移除。
 
 ### 属性
 
@@ -1918,7 +1941,7 @@ let pro = new util.LRUCache<number, number>();
 
 updateCapacity(newCapacity: number): void
 
-将缓冲区容量更新为指定容量，如果newCapacity小于或等于0，则抛出异常。当缓冲区中值的总数大于指定容量时，会执行删除操作。
+更新缓冲区容量为指定值，如果newCapacity小于或等于0，则抛出异常。当缓冲区中值的总数大于指定容量时，会执行删除操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -1949,7 +1972,7 @@ pro.updateCapacity(100);
 
 toString(): string
 
-返回对象的字符串表示形式。
+返回对象的字符串表示。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2002,7 +2025,7 @@ console.info('result = ' + result);
 
 clear(): void
 
-从当前缓冲区清除键值对。
+清除当前缓冲区中的键值对。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2026,7 +2049,7 @@ console.info('res = ' + res);
 
 getCreateCount(): number
 
-获取创建对象的次数。
+获取对象创建的次数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2091,7 +2114,7 @@ console.info('result = ' + result);
 
 getRemovalCount(): number
 
-获取缓冲区键值对回收的次数。
+获取缓冲区键值对的回收次数。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2172,7 +2195,7 @@ console.info('result = ' + result);
 
 isEmpty(): boolean
 
-检查当前缓冲区是否为空。
+检查缓冲区是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2182,7 +2205,7 @@ isEmpty(): boolean
 
 | 类型    | 说明                                     |
 | ------- | ---------------------------------------- |
-| boolean | 如果当前缓冲区不包含任何值，则返回true。 |
+| boolean | 如果缓冲区不包含任何值，则返回true。 |
 
 **示例：**
 
@@ -2238,7 +2261,7 @@ console.info('result = ' + result);
 
 put(key: K,value: V): V
 
-将键值对添加到缓冲区中，返回与添加的键关联的值。当缓冲区中值的总数大于容量时，会执行删除操作。
+将键值对添加到缓冲区，返回与添加的键关联的值。当缓冲区中值的总数超过容量时，执行删除操作。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2278,7 +2301,7 @@ console.info('result = ' + result);
 
 values(): V[]
 
-获取当前缓冲区中所有值从最近访问到最近最少访问的顺序列表。
+获取当前缓冲区中所有值，从最近访问到最近最少访问的顺序列表。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2288,7 +2311,7 @@ values(): V[]
 
 | 类型      | 说明                                                         |
 | --------- | ------------------------------------------------------------ |
-| V&nbsp;[] | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有值的列表。 |
+| V[] | 按从最近访问到最近最少访问的顺序返回当前缓冲区中所有值的列表。 |
 
 **示例：**
 
@@ -2333,7 +2356,7 @@ console.info('result = ' + result);
 
 remove(key: K): V | undefined
 
-从当前缓冲区中删除指定的键及其关联的值，返回键关联的值。如果键不存在时，则返回undefined。
+从当前缓冲区中删除指定的键及其关联的值，并返回键关联的值。如果指定的键不存在，则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2371,9 +2394,9 @@ console.info('result = ' + result);
 
 ### afterRemoval<sup>9+</sup>
 
-afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
+afterRemoval(isEvict: boolean, key: K, value: V, newValue: V): void
 
-删除值后执行后续操作，后续操作由开发者自行实现。本接口会在删除操作时被调用，如[get<sup>9+</sup>](#get9)、[put<sup>9+</sup>](#put9)、[remove<sup>9+</sup>](#remove9)、[clear<sup>9+</sup>](#clear9)、[updateCapacity<sup>9+</sup>](#updatecapacity9)接口。
+删除值后执行后续操作，这些操作由开发者自行实现。本接口会在删除操作时被调用，如[get<sup>9+</sup>](#get9)、[put<sup>9+</sup>](#put9)、[remove<sup>9+</sup>](#remove9)、[clear<sup>9+</sup>](#clear9)、[updateCapacity<sup>9+</sup>](#updatecapacity9)接口。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2383,7 +2406,7 @@ afterRemoval(isEvict: boolean,key: K,value: V,newValue: V): void
 
 | 参数名   | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| isEvict  | boolean | 是   | 因容量不足而调用该方法时，参数值为true，其他情况为false。    |
+| isEvict  | boolean | 是   | 当因容量不足而调用该方法时，参数值设置为true，其他情况设置为false。    |
 | key      | K       | 是   | 表示删除的键。                                               |
 | value    | V       | 是   | 表示删除的值。                                               |
 | newValue | V       | 是   | 如果已调用put方法并且要添加的键已经存在，则参数值是关联的新值。其他情况下参数值为空。 |
@@ -2435,7 +2458,7 @@ contains(key: K): boolean
 
 | 参数名 | 类型   | 必填 | 说明             |
 | ------ | ------ | ---- | ---------------- |
-| key    | K | 是   | 表示要检查的键。 |
+| key    | K | 是   | 要检查的键。 |
 
 **返回值：**
 
@@ -2502,9 +2525,9 @@ console.info('result = ' + result);
 
 ### entries<sup>9+</sup>
 
-entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
+entries(): IterableIterator&lt;[K, V]&gt;
 
-允许迭代包含在这个对象中的所有键值对。
+迭代此对象中的所有键值对。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2514,7 +2537,7 @@ entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 | 类型        | 说明                 |
 | ----------- | -------------------- |
-| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个可迭代数组。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个可迭代数组。 |
 
 **示例：**
 
@@ -2534,9 +2557,9 @@ for (let value of arrayValue) {
 
 ### [Symbol.iterator]<sup>9+</sup>
 
-[Symbol.iterator]\(): IterableIterator&lt;[K,&nbsp;V]&gt;
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-返回一个键值对形式的二维数组。
+返回键值对形式的二维数组。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2546,7 +2569,7 @@ for (let value of arrayValue) {
 
 | 类型        | 说明                           |
 | ----------- | ------------------------------ |
-| IterableIterator&lt;[K,&nbsp;V]&gt;| 返回一个键值对形式的二维数组。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个键值对形式的二维数组。 |
 
 **示例：**
 
@@ -2622,7 +2645,7 @@ class Temperature implements util.ScopeComparable {
 
 type ScopeType = ScopeComparable | number
 
-用于表示范围中的值的类型。
+表示范围中的值的类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2635,13 +2658,13 @@ type ScopeType = ScopeComparable | number
 
 ## ScopeHelper<sup>9+</sup>
 
-ScopeHelper接口用于描述一个字段的有效范围。ScopeHelper实例的构造函数用于创建具有指定下限和上限的对象，并要求这些对象必须具有可比性。
+ScopeHelper接口用于描述一个字段的有效范围。构造函数用于创建具有指定下限和上限的对象，并要求这些对象必须具有可比性。
 
 ### constructor<sup>9+</sup>
 
 constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
-用于创建指定下限和上限的作用域实例的构造函数，返回一个ScopeHelper对象。
+创建指定下限和上限的作用域实例，返回一个ScopeHelper对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2695,7 +2718,7 @@ console.info("range = " + range);
 
 toString(): string
 
-该字符串化方法返回一个包含当前范围的字符串表示形式。
+该字符串化方法返回当前范围的字符串表示形式。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2705,7 +2728,7 @@ toString(): string
 
 | 类型   | 说明                                   |
 | ------ | -------------------------------------- |
-| string | 返回包含当前范围对象的字符串表示形式。 |
+| string | 返回当前范围的字符串表示形式。 |
 
 **示例：**
 
@@ -2752,7 +2775,7 @@ intersect(range: ScopeHelper): ScopeHelper
 
 | 参数名 | 类型                         | 必填 | 说明               |
 | ------ | ---------------------------- | ---- | ------------------ |
-| range  | [ScopeHelper](#scopehelper9) | 是   | 传入一个给定范围。 |
+| range  | [ScopeHelper](#scopehelper9) | 是   | 传入给定范围。 |
 
 **返回值：**
 
@@ -2804,7 +2827,7 @@ range.intersect(rangeFir);
 
 intersect(lowerObj:ScopeType,upperObj:ScopeType):ScopeHelper
 
-获取当前范围与给定下限和上限范围的交集。
+获取当前范围与指定下限和上限范围的交集。当交集为空集时，抛出异常。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -2962,7 +2985,7 @@ console.info("result = " + result);
 
 expand(lowerObj: ScopeType,upperObj: ScopeType): ScopeHelper
 
-创建并返回包括当前范围和给定下限和上限的并集。
+创建并返回当前范围与给定下限和上限的并集。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3026,7 +3049,7 @@ console.info("result = " + result);
 
 expand(range: ScopeHelper): ScopeHelper
 
-创建并返回包括当前范围和给定范围的并集。
+创建并返回当前范围和给定范围的并集。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3090,7 +3113,7 @@ console.info("result = " + result);
 
 expand(value: ScopeType): ScopeHelper
 
-创建并返回包括当前范围和给定值的并集。
+创建并返回当前范围和给定值的并集。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3152,7 +3175,7 @@ console.info("result = " + result);
 
 contains(value: ScopeType): boolean
 
-检查给定value是否包含在当前范围内。
+检查给定value是否在当前范围内。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3230,7 +3253,7 @@ contains(range: ScopeHelper): boolean
 
 | 类型    | 说明                                                  |
 | ------- | ----------------------------------------------------- |
-| boolean | 如果给定范围包含在当前范围内返回true，否则返回false。 |
+| boolean | 如果给定范围在当前范围内则返回true，否则返回false。 |
 
 **错误码：**
 
@@ -3278,7 +3301,7 @@ console.info("result = " + result);
 
 clamp(value: ScopeType): ScopeType
 
-将给定值限定到当前范围内。
+将值限定到当前范围内。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3294,7 +3317,7 @@ clamp(value: ScopeType): ScopeType
 
 | 类型                     | 说明                                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| [ScopeType](#scopetype8) | 如果传入的value小于下限，则返回lowerObj；如果大于上限值则返回upperObj；如果在当前范围内，则返回value。 |
+| [ScopeType](#scopetype8) | 如果传入的value小于下限，返回lowerObj；如果大于上限值，返回upperObj；如果在当前范围内，返回value。 |
 
 **错误码：**
 
@@ -3370,7 +3393,7 @@ encodeSync(src: Uint8Array, options?: Type): Uint8Array
 
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
-| src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
+| src    | Uint8Array | 是   | 待编码的Uint8Array对象。 |
 | options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC表示Base64编码。<br/>util.Type.BASIC_URL_SAFE表示Base64URL编码。 |
 
 **返回值：**
@@ -3448,7 +3471,7 @@ encodeToStringSync(src: Uint8Array, options?: Type): string
 
 decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
-通过输入参数解码后输出对应Uint8Array对象。
+将输入参数解码后输出对应Uint8Array对象。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3458,7 +3481,7 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 | 参数名 | 类型                           | 必填 | 说明                          |
 | ------ | ------------------------------ | ---- | ----------------------------- |
-| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码Uint8Array对象或者字符串。 |
+| src    | Uint8Array&nbsp;\|&nbsp;string | 是   | 待解码的Uint8Array对象或者字符串。 |
 | options<sup>10+</sup>    | [Type](#type10) | 否   | 从API version 10开始支持该参数，表示对应的解码格式。<br/>此参数可选，可选值为：util.Type.BASIC，util.Type.MIME，util.Type.BASIC_URL_SAFE和util.Type.MIME_URL_SAFE，默认值为：util.Type.BASIC。<br/>- 当参数取值为util.Type.BASIC，表示Base64解码。<br/>- 当参数取值为util.Type.MIME，表示Base64解码，src入参包含回车符、换行符。<br/>- 当参数取值为util.Type.BASIC_URL_SAFE，表示Base64URL解码。<br/>- 当参数取值为util.Type.MIME_URL_SAFE，表示Base64URL解码，src入参包含回车符、换行符。 |
 
 **返回值：**
@@ -3490,9 +3513,9 @@ decodeSync(src: Uint8Array | string, options?: Type): Uint8Array
 
 ### encode<sup>9+</sup>
 
-encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
+encode(src: Uint8Array, options?: Type): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步编码后输出对应Uint8Array对象。
+将输入参数异步编码后输出对应Uint8Array对象。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -3502,7 +3525,7 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 | 参数名 | 类型       | 必填 | 说明                    |
 | ------ | ---------- | ---- | ----------------------- |
-| src    | Uint8Array | 是   | 异步编码输入Uint8Array对象。 |
+| src    | Uint8Array | 是   | 待编码Uint8Array对象。 |
 | options<sup>12+</sup> | [Type](#type10) | 否 | 从API version 12开始支持该参数，表示对应的编码格式。<br/>此参数可选，可选值为：util.Type.BASIC和util.Type.BASIC_URL_SAFE，默认值为：util.Type.BASIC。<br/>util.Type.BASIC表示Base64编码。<br/>util.Type.BASIC_URL_SAFE表示Base64URL编码。 |
 
 **返回值：**
@@ -3535,7 +3558,7 @@ encode(src: Uint8Array,  options?: Type): Promise&lt;Uint8Array&gt;
 
 encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
-通过输入参数异步编码后输出对应文本。
+将输入参数异步编码后输出对应文本。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3583,7 +3606,7 @@ encodeToString(src: Uint8Array, options?: Type): Promise&lt;string&gt;
 
 decode(src: Uint8Array | string, options?: Type): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步解码后输出对应Uint8Array对象。
+将输入参数异步解码后输出对应Uint8Array对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3671,7 +3694,7 @@ write(chunk: string | Uint8Array): string
 
 | 参数名 | 类型       | 必填 | 说明                |
 | ------ | ---------- | ---- | ------------------- |
-| chunk  | string \| Uint8Array | 是   | 需要解码的字符串。会根据输入的编码类型进行解码，参数为Uint8Array时会正常解码，参数为string类型时会原路返回。 |
+| chunk  | string \| Uint8Array | 是   | 需要解码的字符串。会根据输入的编码类型进行解码，参数为Uint8Array时正常解码，参数为string时会将参数直接返回。 |
 
 **返回值：**
 
@@ -3701,7 +3724,7 @@ write(chunk: string | Uint8Array): string
 
 end(chunk?: string | Uint8Array): string
 
-结束解码过程，以字符串形式返回存储在内部缓冲区中的任何剩余输入。
+结束解码过程，以字符串形式返回存储在内部缓冲区中的所有剩余输入。
 
 **原子化服务API**：从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3757,7 +3780,7 @@ Base64编码格式枚举。
 
 ## types<sup>8+</sup>
 
-types为不同类型的内置对象提供类型检查，可以避免由于类型错误导致的异常或崩溃。该模块包含了多个工具函数，用于判断JS对象是否属于各种类型例如：ArrayBuffer、Map、Set等。
+types为不同类型的内置对象提供类型检查，可以避免由于类型错误导致的异常。该模块包含了多个工具函数，用于判断JS对象是否属于各种类型，例如：ArrayBuffer、Map、Set等。
 
 ### constructor<sup>8+</sup>
 
@@ -3780,7 +3803,7 @@ Types的构造函数。
 
 isAnyArrayBuffer(value: Object): boolean
 
-检查输入的value是否是ArrayBuffer或SharedArrayBuffer类型。
+检查value是否为ArrayBuffer或SharedArrayBuffer类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3796,7 +3819,7 @@ isAnyArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是ArrayBuffer或SharedArrayBuffer类型为true，反之为false。 |
+| boolean | 如果是ArrayBuffer或SharedArrayBuffer类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -3812,9 +3835,9 @@ isAnyArrayBuffer(value: Object): boolean
 
 isArrayBufferView(value: Object): boolean
 
-检查输入的value是否是内置ArrayBufferView辅助类型。
+检查value是否为ArrayBufferView类型。
 
-ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint32Array、Float32Array、Float64Array、DataView。
+ArrayBufferView类型包括：Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint32Array、Float32Array、Float64Array、DataView。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3830,7 +3853,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的ArrayBufferView辅助类型为true，反之为false。 |
+| boolean | 如果是ArrayBufferView类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -3846,7 +3869,7 @@ ArrayBufferView辅助类型包括：Int8Array、Int16Array、Int32Array、Uint8A
 
 isArgumentsObject(value: Object): boolean
 
-检查输入的value是否是一个arguments对象。
+检查value是否为arguments对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3862,7 +3885,7 @@ isArgumentsObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是一个arguments对象为true，反之为false。 |
+| boolean | 如果是arguments对象则返回true，否则返回false。 |
 
 **示例：**
 
@@ -3881,7 +3904,7 @@ isArgumentsObject(value: Object): boolean
 
 isArrayBuffer(value: Object): boolean
 
-检查输入的value是否是ArrayBuffer类型。
+检查value是否为ArrayBuffer类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3897,7 +3920,7 @@ isArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的ArrayBuffer类型为true，反之为false。 |
+| boolean | 如果是ArrayBuffer类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -3913,7 +3936,7 @@ isArrayBuffer(value: Object): boolean
 
 isAsyncFunction(value: Object): boolean
 
-检查输入的value是否是一个异步函数类型。
+检查value是否为异步函数类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -3929,7 +3952,7 @@ isAsyncFunction(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的异步函数类型为true，反之为false。 |
+| boolean | 如果是异步函数则返回true，否则返回false。 |
 
 **示例：**
 
@@ -3945,7 +3968,7 @@ isAsyncFunction(value: Object): boolean
 
 isBooleanObject(value: Object): boolean
 
-检查输入的value是否是一个Boolean对象类型。
+检查value是否为Boolean对象。
 
 > **说明：**
 >
@@ -3965,7 +3988,7 @@ isBooleanObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Boolean对象类型为true，反之为false。 |
+| boolean | 如果是Boolean对象则返回true，否则返回false。 |
 
 **示例：**
 
@@ -3981,7 +4004,7 @@ isBooleanObject(value: Object): boolean
 
 isBoxedPrimitive(value: Object): boolean
 
-检查输入的value是否是Boolean或Number或String或Symbol对象类型。
+检查value是否为Boolean、Number、String或Symbol对象类型。
 
 > **说明：**
 >
@@ -4001,7 +4024,7 @@ isBoxedPrimitive(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Boolean或Number或String或Symbol对象类型为true，反之为false。 |
+| boolean | 如果是Boolean、Number、String或Symbol对象则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4017,7 +4040,7 @@ isBoxedPrimitive(value: Object): boolean
 
 isDataView(value: Object): boolean
 
-检查输入的value是否是DataView类型。
+检查value是否为DataView类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4033,7 +4056,7 @@ isDataView(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的DataView对象类型为true，反之为false。 |
+| boolean | 如果是DataView类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4050,7 +4073,7 @@ isDataView(value: Object): boolean
 
 isDate(value: Object): boolean
 
-检查输入的value是否是Date类型。
+检查value是否为Date类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4066,7 +4089,7 @@ isDate(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Date对象类型为true，反之为false。 |
+| boolean | 如果是Date类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4082,7 +4105,7 @@ isDate(value: Object): boolean
 
 isExternal(value: Object): boolean
 
-检查输入的value是否是native External类型。
+检查value是否为native External类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4098,7 +4121,7 @@ isExternal(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含native&nbsp;External类型为true，反之为false。 |
+| boolean | 如果是native&nbsp;External类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4154,7 +4177,7 @@ isExternal(value: Object): boolean
 
 isFloat32Array(value: Object): boolean
 
-检查输入的value是否是Float32Array数组类型。
+检查value是否为Float32Array数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4170,7 +4193,7 @@ isFloat32Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Float32Array数组类型为true，反之为false。 |
+| boolean | 如果是Float32Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4186,7 +4209,7 @@ isFloat32Array(value: Object): boolean
 
 isFloat64Array(value: Object): boolean
 
-检查输入的value是否是Float64Array数组类型。
+检查value是否为Float64Array数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4202,7 +4225,7 @@ isFloat64Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Float64Array数组类型为true，反之为false。 |
+| boolean | 如果是Float64Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4218,7 +4241,7 @@ isFloat64Array(value: Object): boolean
 
 isGeneratorFunction(value: Object): boolean
 
-检查输入的value是否是generator函数类型。
+检查value是否是为generator函数类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4234,7 +4257,7 @@ isGeneratorFunction(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的generator函数类型为true，反之为false。 |
+| boolean | 如果是generator函数类型则返回true，否则返回false。 |
 
 **示例：**
 <!--code_no_check-->
@@ -4258,7 +4281,7 @@ isGeneratorFunction(value: Object): boolean
 
 isGeneratorObject(value: Object): boolean
 
-检查输入的value是否是generator对象类型。
+检查value是否为generator对象类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4274,7 +4297,7 @@ isGeneratorObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的generator对象类型为true，反之为false。 |
+| boolean | 如果是generator对象则返回true，否则返回false。 |
 
 **示例：**
 <!--code_no_check-->
@@ -4299,7 +4322,7 @@ isGeneratorObject(value: Object): boolean
 
 isInt8Array(value: Object): boolean
 
-检查输入的value是否是Int8Array数组类型。
+检查value是否为Int8Array数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4315,7 +4338,7 @@ isInt8Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Int8Array数组类型为true，反之为false。 |
+| boolean | 如果是Int8Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4331,7 +4354,7 @@ isInt8Array(value: Object): boolean
 
 isInt16Array(value: Object): boolean
 
-检查输入的value是否是Int16Array数组类型。
+检查value是否为Int16Array数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4347,7 +4370,7 @@ isInt16Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Int16Array数组类型为true，反之为false。 |
+| boolean | 如果是Int16Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4363,7 +4386,7 @@ isInt16Array(value: Object): boolean
 
 isInt32Array(value: Object): boolean
 
-检查输入的value是否是Int32Array数组类型。
+检查value是否为Int32Array数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4379,7 +4402,7 @@ isInt32Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Int32Array数组类型为true，反之为false。 |
+| boolean | 如果是Int32Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4395,7 +4418,7 @@ isInt32Array(value: Object): boolean
 
 isMap(value: Object): boolean
 
-检查输入的value是否是Map类型。
+检查value是否为Map类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4411,7 +4434,7 @@ isMap(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Map类型为true，反之为false。 |
+| boolean | 如果是Map类型返回则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4427,7 +4450,7 @@ isMap(value: Object): boolean
 
 isMapIterator(value: Object): boolean
 
-检查输入的value是否是Map的Iterator类型。
+检查value是否为Map的Iterator类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4444,7 +4467,7 @@ isMapIterator(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Map的Iterator类型为true，反之为false。 |
+| boolean | 如果是Map的Iterator类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4461,7 +4484,7 @@ isMapIterator(value: Object): boolean
 
 isNativeError(value: Object): boolean
 
-检查输入的value是否是Error类型。
+检查value是否为Error类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4477,7 +4500,7 @@ isNativeError(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Error类型为true，反之为false。 |
+| boolean | 如果是Error类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4493,7 +4516,7 @@ isNativeError(value: Object): boolean
 
 isNumberObject(value: Object): boolean
 
-检查输入的value是否是Number对象类型。
+检查value是否为Number对象类型。
 
 > **说明：**
 >
@@ -4513,7 +4536,7 @@ isNumberObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Number对象类型为true，反之为false。 |
+| boolean | 如果是Number对象类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4529,7 +4552,7 @@ isNumberObject(value: Object): boolean
 
 isPromise(value: Object): boolean
 
-检查输入的value是否是Promise类型。
+检查value是否为Promise类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4545,7 +4568,7 @@ isPromise(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Promise类型为true，反之为false。 |
+| boolean | 如果是Promise类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4561,7 +4584,7 @@ isPromise(value: Object): boolean
 
 isProxy(value: Object): boolean
 
-检查输入的value是否是Proxy类型。
+检查value是否为Proxy类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4577,7 +4600,7 @@ isProxy(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Proxy类型为true，反之为false。 |
+| boolean | 如果是Proxy类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4597,7 +4620,7 @@ isProxy(value: Object): boolean
 
 isRegExp(value: Object): boolean
 
-检查输入的value是否是RegExp类型。
+检查value是否为RegExp类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4613,7 +4636,7 @@ isRegExp(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的RegExp类型为true，反之为false。 |
+| boolean | 如果是RegExp类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4629,7 +4652,7 @@ isRegExp(value: Object): boolean
 
 isSet(value: Object): boolean
 
-检查输入的value是否是Set类型。
+检查value是否为Set类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4645,7 +4668,7 @@ isSet(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Set类型为true，反之为false。 |
+| boolean | 如果是Set类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4662,7 +4685,7 @@ isSet(value: Object): boolean
 
 isSetIterator(value: Object): boolean
 
-检查输入的value是否是Set的Iterator类型。
+检查value是否为Set的Iterator类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4678,7 +4701,7 @@ isSetIterator(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Set的Iterator类型为true，反之为false。 |
+| boolean | 如果是Set的Iterator类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4695,7 +4718,7 @@ isSetIterator(value: Object): boolean
 
 isStringObject(value: Object): boolean
 
-检查输入的value是否是String对象类型。
+检查value是否为String对象类型。
 
 > **说明：**
 >
@@ -4715,7 +4738,7 @@ isStringObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的String对象类型为true，反之为false。 |
+| boolean | 如果是String对象类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4731,7 +4754,7 @@ isStringObject(value: Object): boolean
 
 isSymbolObject(value: Object): boolean
 
-检查输入的value是否是Symbol对象类型。
+检查value是否为Symbol对象类型。
 
 > **说明：**
 >
@@ -4751,7 +4774,7 @@ isSymbolObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Symbol对象类型为true，反之为false。 |
+| boolean | 如果是Symbol对象类型为则返回true，否则返回false。 |
 
 **示例：**
 <!--code_no_check-->
@@ -4775,9 +4798,9 @@ isSymbolObject(value: Object): boolean
 
 isTypedArray(value: Object): boolean
 
-检查输入的value是否是TypedArray类型的辅助类型。
+检查value是否为TypedArray类型。
 
-TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、BigInt64Array、BigUint64Array。
+TypedArray类型，包括Int8Array、Int16Array、Int32Array、Uint8Array、Uint8ClampedArray、Uint16Array、Uint32Array、Float32Array、Float64Array、BigInt64Array、BigUint64Array。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4793,7 +4816,7 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的TypedArray包含的类型为true，反之为false。 |
+| boolean | 如果是TypedArray包含的类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4809,7 +4832,7 @@ TypedArray类型的辅助类型，包括Int8Array、Int16Array、Int32Array、Ui
 
 isUint8Array(value: Object): boolean
 
-检查输入的value是否是Uint8Array数组类型。
+检查value是否为Uint8Array数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4825,7 +4848,7 @@ isUint8Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Uint8Array数组类型为true，反之为false。 |
+| boolean | 如果是Uint8Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4841,7 +4864,7 @@ isUint8Array(value: Object): boolean
 
 isUint8ClampedArray(value: Object): boolean
 
-检查输入的value是否是Uint8ClampedArray数组类型。
+检查value是否为Uint8ClampedArray数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4857,7 +4880,7 @@ isUint8ClampedArray(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Uint8ClampedArray数组类型为true，反之为false。 |
+| boolean | 如果是Uint8ClampedArray数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4873,7 +4896,7 @@ isUint8ClampedArray(value: Object): boolean
 
 isUint16Array(value: Object): boolean
 
-检查输入的value是否是Uint16Array数组类型。
+检查value是否为Uint16Array数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4889,7 +4912,7 @@ isUint16Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Uint16Array数组类型为true，反之为false。 |
+| boolean | 如果是Uint16Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4905,7 +4928,7 @@ isUint16Array(value: Object): boolean
 
 isUint32Array(value: Object): boolean
 
-检查输入的value是否是Uint32Array数组类型。
+检查value是否为Uint32Array数组类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4921,7 +4944,7 @@ isUint32Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Uint32Array数组类型为true，反之为false。 |
+| boolean | 如果是Uint32Array数组类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4937,7 +4960,7 @@ isUint32Array(value: Object): boolean
 
 isWeakMap(value: Object): boolean
 
-检查输入的value是否是WeakMap类型。
+检查value是否为WeakMap类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4953,7 +4976,7 @@ isWeakMap(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的WeakMap类型为true，反之为false。 |
+| boolean | 如果是WeakMap类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -4970,7 +4993,7 @@ isWeakMap(value: Object): boolean
 
 isWeakSet(value: Object): boolean
 
-检查输入的value是否是WeakSet类型。
+检查value是否为WeakSet类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -4986,7 +5009,7 @@ isWeakSet(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的WeakSet类型为true，反之为false。 |
+| boolean | 如果是WeakSet类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -5002,7 +5025,7 @@ isWeakSet(value: Object): boolean
 
 isBigInt64Array(value: Object): boolean
 
-检查输入的value是否是BigInt64Array类型。
+检查value是否为BigInt64Array类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5018,7 +5041,7 @@ isBigInt64Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的BigInt64Array类型为true，反之为false。 |
+| boolean | 如果是BigInt64Array类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -5034,7 +5057,7 @@ isBigInt64Array(value: Object): boolean
 
 isBigUint64Array(value: Object): boolean
 
-检查输入的value是否是BigUint64Array类型。
+检查value是否为BigUint64Array类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5050,7 +5073,7 @@ isBigUint64Array(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的BigUint64Array类型为true，反之为false。 |
+| boolean | 如果是BigUint64Array类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -5066,7 +5089,7 @@ isBigUint64Array(value: Object): boolean
 
 isModuleNamespaceObject(value: Object): boolean
 
-检查输入的value是否是Module Namespace Object类型。
+检查value是否为Module Namespace Object类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5082,7 +5105,7 @@ isModuleNamespaceObject(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的Module Namespace Object类型为true，反之为false。 |
+| boolean | 如果是Module Namespace Object类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -5108,7 +5131,7 @@ isModuleNamespaceObject(value: Object): boolean
 
 isSharedArrayBuffer(value: Object): boolean
 
-检查输入的value是否是SharedArrayBuffer类型。
+检查value是否为SharedArrayBuffer类型。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -5124,7 +5147,7 @@ isSharedArrayBuffer(value: Object): boolean
 
 | 类型 | 说明 |
 | -------- | -------- |
-| boolean | 判断的结果，如果是内置包含的SharedArrayBuffer类型为true，反之为false。 |
+| boolean | 如果是SharedArrayBuffer类型则返回true，否则返回false。 |
 
 **示例：**
 
@@ -5164,7 +5187,7 @@ isSharedArrayBuffer(value: Object): boolean
 
 constructor(capacity?: number)
 
-默认构造函数用于创建一个新的LruBuffer实例，默认容量为64。
+构造函数用于创建一个新的LruBuffer实例，默认容量为64。
 
 > **说明：**
 >
@@ -5270,7 +5293,7 @@ getCapacity(): number
 
 clear(): void
 
-从当前缓冲区清除键值对。后续会调用afterRemoval()方法执行后续操作。
+清除当前缓冲区中的键值对，后续调用afterRemoval()方法执行操作。
 
 > **说明：**
 >
@@ -5589,7 +5612,7 @@ keys(): K[]
 
 remove(key: K): V | undefined
 
-从当前缓冲区中删除指定的键及其关联的值。
+删除当前缓冲区中指定的键及其关联的值。
 
 > **说明：**
 >
@@ -5733,7 +5756,7 @@ createDefault(key: K): V
 
 ### entries<sup>(deprecated)</sup>
 
-entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
+entries(): IterableIterator&lt;[K, V]&gt;
 
 允许迭代包含在这个对象中的所有键值对。
 
@@ -5747,7 +5770,7 @@ entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个可迭代数组。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个可迭代数组。 |
 
 **示例：**
 
@@ -5759,7 +5782,7 @@ entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 ### [Symbol.iterator]<sup>(deprecated)</sup>
 
-[Symbol.iterator]\(): IterableIterator&lt;[K,&nbsp;V]&gt;
+[Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
 返回一个键值对形式的二维数组。
 
@@ -5773,7 +5796,7 @@ entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 | 类型 | 说明 |
 | -------- | -------- |
-| IterableIterator&lt;[K,&nbsp;V]&gt; | 返回一个键值对形式的二维数组。 |
+| IterableIterator&lt;[K, V]&gt; | 返回一个键值对形式的二维数组。 |
 
 **示例：**
 
@@ -5793,7 +5816,7 @@ entries(): IterableIterator&lt;[K,&nbsp;V]&gt;
 
 constructor(lowerObj: ScopeType, upperObj: ScopeType)
 
-用于创建指定下限和上限的作用域实例的构造函数，返回一个Scope对象。
+创建指定下限和上限的作用域实例，并返回一个Scope对象。
 
 > **说明：**
 >
@@ -6646,7 +6669,7 @@ encodeToString(src: Uint8Array): Promise&lt;string&gt;
 
 decode(src: Uint8Array | string): Promise&lt;Uint8Array&gt;
 
-通过输入参数异步解码后输出对应文本。
+将输入参数异步解码后输出对应文本。
 
 > **说明：**
 >

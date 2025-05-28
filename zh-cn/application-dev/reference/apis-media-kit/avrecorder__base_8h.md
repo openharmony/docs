@@ -53,7 +53,7 @@
 | typedef struct [OH_AVRecorder_EncoderInfo](_o_h___a_v_recorder___encoder_info.md) [OH_AVRecorder_EncoderInfo](_a_v_recorder.md#oh_avrecorder_encoderinfo) | 提供编码器信息。 | 
 | typedef void(\* [OH_AVRecorder_OnStateChange](_a_v_recorder.md#oh_avrecorder_onstatechange)) ([OH_AVRecorder](_a_v_recorder.md#oh_avrecorder) \*recorder, [OH_AVRecorder_State](_a_v_recorder.md#oh_avrecorder_state) state, [OH_AVRecorder_StateChangeReason](_a_v_recorder.md#oh_avrecorder_statechangereason) reason, void \*userData) | 当录制状态发生变化时调用。 | 
 | typedef void(\* [OH_AVRecorder_OnError](_a_v_recorder.md#oh_avrecorder_onerror)) ([OH_AVRecorder](_a_v_recorder.md#oh_avrecorder) \*recorder, int32_t errorCode, const char \*errorMsg, void \*userData) | 当录制过程中发生错误时调用。 | 
-| typedef void(\* [OH_AVRecorder_OnUri](_a_v_recorder.md#oh_avrecorder_onuri)) ([OH_AVRecorder](_a_v_recorder.md#oh_avrecorder) \*recorder, [OH_MediaAsset](../apis-media-library-kit/_media_asset_manager.md#oh_mediaasset) \*asset, void \*userData) | 当录制在 OH_AVRecorder_FileGenerationMode.AVRECORDER_AUTO_CREATE_CAMERA_SCENE 模式下时调用。 | 
+| typedef void(\* [OH_AVRecorder_OnUri](_a_v_recorder.md#oh_avrecorder_onuri)) ([OH_AVRecorder](_a_v_recorder.md#oh_avrecorder) \*recorder, [OH_MediaAsset](../apis-media-library-kit/capi-oh-mediaasset.md) \*asset, void \*userData) | 当录制在 OH_AVRecorder_FileGenerationMode.AVRECORDER_AUTO_CREATE_CAMERA_SCENE 模式下时调用。 | 
 
 
 ### 枚举

@@ -6,7 +6,7 @@ The multimodal module provides applications with the ability to listen for key a
 
 ## Available APIs
 
-The following table lists the APIs for event listening. For details, see [Input](../../reference/apis-input-kit/input.md).
+The following table lists the APIs for event listening. For details, see [Input](../../reference/apis-input-kit/capi-input.md).
 
 | API | Description|
 | ------------------------------------------------------------ | -------------------------- |
@@ -60,7 +60,7 @@ struct KeyEvent {
 void OnKeyEventCallback(const Input_KeyEvent* keyEvent)
 {
     KeyEvent event;
-    // The lifecycle of Input_KeyEvent is limited to the callback function. Input_KeyEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_KeyEvent is limited to the callback function. After the callback function is executed, Input_KeyEvent is automatically destroyed.
     event.action = OH_Input_GetKeyEventAction(keyEvent);
     event.keyCode = OH_Input_GetKeyEventKeyCode(keyEvent);
     event.actionTime = OH_Input_GetKeyEventActionTime(keyEvent);
@@ -94,7 +94,7 @@ struct MouseEvent {
 void OnMouseEventCallback(const Input_MouseEvent* mouseEvent)
 {
     MouseEvent event;
-    // The lifecycle of Input_MouseEvent is limited to the callback function. Input_MouseEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_MouseEvent is limited to the callback function. After the callback function is executed, Input_MouseEvent is automatically destroyed.
     event.action = OH_Input_GetMouseEventAction(mouseEvent);
     event.displayX = OH_Input_GetMouseEventDisplayX(mouseEvent);
     event.displayY = OH_Input_GetMouseEventDisplayY(mouseEvent);
@@ -130,7 +130,7 @@ struct TouchEvent {
 void OnTouchEventCallback(const Input_TouchEvent* touchEvent)
 {
     TouchEvent event;
-    // The lifecycle of Input_TouchEvent is limited to the callback function. Input_TouchEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_TouchEvent is limited to the callback function. After the callback function is executed, Input_TouchEvent is automatically destroyed.
     event.action = OH_Input_GetTouchEventAction(touchEvent);
     event.id = OH_Input_GetTouchEventFingerId(touchEvent);
     event.displayX = OH_Input_GetTouchEventDisplayX(touchEvent);
@@ -168,7 +168,7 @@ void OnAllAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     
-    // The lifecycle of Input_AxisEvent is limited to the callback function. Input_AxisEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_AxisEvent is limited to the callback function. After the callback function is executed, Input_AxisEvent is automatically destroyed.
     InputEvent_AxisAction action;
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
@@ -201,7 +201,7 @@ void OnPinchAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     
-    // The lifecycle of Input_AxisEvent is limited to the callback function. Input_AxisEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_AxisEvent is limited to the callback function. After the callback function is executed, Input_AxisEvent is automatically destroyed.
     InputEvent_AxisAction action;
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;
@@ -226,7 +226,7 @@ void OnScrollAxisEventCallback(const Input_AxisEvent* axisEvent)
 {
     AxisEvent event;
     
-    // The lifecycle of Input_AxisEvent is limited to the callback function. Input_AxisEvent will be destroyed if it is called outside of the callback function.
+    // The lifecycle of Input_AxisEvent is limited to the callback function. After the callback function is executed, Input_AxisEvent is automatically destroyed.
     InputEvent_AxisAction action;
     Input_Result ret = OH_Input_GetAxisEventAction(axisEvent, &action);
     event.axisAction = action;

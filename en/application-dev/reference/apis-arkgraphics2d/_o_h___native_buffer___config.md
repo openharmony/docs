@@ -7,14 +7,11 @@ The **OH_NativeBuffer_Config** struct describes the **OH_NativeBuffer** attribut
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeBuffer
 
-**Since**
+**Since**: 9
 
-9
+**Related module**: [OH_NativeBuffer](_o_h___native_buffer.md)
 
-**Related Modules**
-
-[OH_NativeBuffer](_o_h___native_buffer.md)
-
+**Header file**: [native_buffer.h](native__buffer_8h.md)
 
 ## Summary
 
@@ -41,7 +38,7 @@ int32_t OH_NativeBuffer_Config::format
 
 **Description**
 
-Pixel map format.
+Pixel format.
 
 
 ### height

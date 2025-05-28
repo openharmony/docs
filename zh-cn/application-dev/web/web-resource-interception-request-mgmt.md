@@ -1,7 +1,7 @@
 # 自定义页面请求响应
 
 
-Web组件支持在应用拦截到页面请求后自定义响应请求能力。开发者通过[onInterceptRequest()](../reference/apis-arkweb/ts-basic-components-web.md#oninterceptrequest9)接口来实现自定义资源请求响应 。自定义请求能力可以用于开发者自定义Web页面响应、自定义文件资源响应等场景。
+Web组件支持在应用拦截到页面请求后自定义响应请求能力。开发者通过[onInterceptRequest()](../reference/apis-arkweb/ts-basic-components-web-events.md#oninterceptrequest9)接口来实现自定义资源请求响应 。自定义请求能力可以用于开发者自定义Web页面响应、自定义文件资源响应等场景。
 
 
 Web网页上发起资源加载请求，应用层收到资源请求消息。应用层构造本地资源响应消息发送给Web内核。Web内核解析应用层响应信息，根据此响应信息进行页面资源加载。
@@ -70,6 +70,10 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
     }
   }
   ```
+
+- 被拦截后的页面
+
+  ![输入图片说明](figures/web-rescource-interception-request-1.PNG)
 
 为自定义的JavaScript请求响应生成 CodeCache：自定义请求响应的资源类型如果是JavaScript脚本，可以在响应头中添加“ResponseDataID”字段，Web内核读取到该字段后会在为该JS资源生成CodeCache，加速JS执行，并且ResponseData如果有更新时必须更新该字段。不添加“ResponseDataID”字段的情况下默认不生成CodeCache。
 
@@ -164,3 +168,7 @@ Web网页上发起资源加载请求，应用层收到资源请求消息。应�
     }
   }
   ```
+
+- 被拦截后的页面
+
+  ![输入图片说明](figures/web-rescource-intercption-request-2.PNG)

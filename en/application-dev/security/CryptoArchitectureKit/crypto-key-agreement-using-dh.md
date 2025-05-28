@@ -1,8 +1,6 @@
 # Key Agreement Using DH
 
-
 For details about the algorithm specifications, see [DH](crypto-key-agreement-overview.md#dh).
-
 
 ## How to Develop
 

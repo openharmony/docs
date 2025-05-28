@@ -253,15 +253,15 @@ A conflicting constraint already exists.
 
 参照行业标准，检查修改确保GQL语句无上述冲突存在。
 
-## 31300014 数据库路径不合法
+## 31300014 使用非法路径开库或删库
 
 **错误信息**
 
-Invalid database path.
+Failed to open or delete the database with an invalid database path.
 
 **错误描述**
 
-数据库路径不合法。
+使用非法路径开库或删库。
 
 **可能原因**
 
@@ -271,15 +271,15 @@ Invalid database path.
 
 图数据库暂不支持自定义路径，目前仅支持使用[Context](../apis-ability-kit/js-apis-inner-app-context.md)中默认沙箱路径。请参考[getStore](js-apis-data-graphStore-sys.md#graphstoregetstore)接口示例代码进行修正。
 
-## 31300015 关键配置已被更改
+## 31300015 数据库关键配置（如安全等级或是否加密等）已被更改
 
 **错误信息**
 
-Config changed.
+StoreConfig, for example, securityLevel or encrypt, is changed.
 
 **错误描述**
 
-数据库关键配置已被更改。
+数据库关键配置（如安全等级或是否加密等）已被更改。
 
 **可能原因**
 

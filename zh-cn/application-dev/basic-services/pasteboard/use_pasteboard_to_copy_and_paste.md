@@ -26,7 +26,7 @@
 | MIMETYPE_TEXT_URI : "text/uri" | UDMF_META_GENERAL_FILE_URI : "general.file-uri" |
 | MIMETYPE_TEXT_WANT : "text/want" | NDK接口不支持该数据类型。 |
 
-ArkTS数据类型对应剪贴板类型，详见[ohos.pasteboard](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)。NDK数据类型对应统一数据管理框架，详见[UDMF](../../reference/apis-arkdata/_u_d_m_f.md)。
+ArkTS数据类型对应剪贴板类型，详见[ohos.pasteboard](../../reference/apis-basic-services-kit/js-apis-pasteboard.md)。NDK数据类型对应统一数据管理框架，详见[UDMF](../../reference/apis-arkdata/capi-udmf.md)。
 
 ### 接口说明
 
@@ -92,51 +92,42 @@ export default class EntryAbility extends UIAbility {
 
 ### 示例代码
 ```ts
-import {unifiedDataChannel, uniformTypeDescriptor} from '@kit.ArkData';
 import {BusinessError, pasteboard} from '@kit.BasicServicesKit';
+import { unifiedDataChannel, uniformDataStruct, uniformTypeDescriptor } from '@kit.ArkData';
 
-// 构造一条PlainText数据,并书写获取延时数据的函数。
-let plainTextData = new unifiedDataChannel.UnifiedData();
-let GetDelayPlainText = ((dataType:string) => {
-  let plainText = new unifiedDataChannel.PlainText();
-  plainText.details = {
-    Key: 'delayPlaintext',
-    Value: 'delayPlaintext',
-  };
-  plainText.textContent = 'delayTextContent';
-  plainText.abstract = 'delayTextContent';
-  plainTextData.addRecord(plainText);
-  return plainTextData;
+// 构造一条PlainText数据
+let plainText : uniformDataStruct.PlainText = {
+    uniformDataType: uniformTypeDescriptor.UniformDataType.PLAIN_TEXT,
+    textContent : 'PLAINTEXT_CONTENT',
+    abstract : 'PLAINTEXT_ABSTRACT',
+}
+let record = new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
+let data = new unifiedDataChannel.UnifiedData();
+data.addRecord(record);
+
+// 向系统剪贴板中存入一条PlainText数据
+let systemPasteboard: pasteboard.SystemPasteboard = pasteboard.getSystemPasteboard();
+systemPasteboard.setUnifiedData(data).then((data: void) => {
+    console.info('Succeeded in setting UnifiedData.');
+    // 存入成功，处理正常场景
+}).catch((err: BusinessError) => {
+    console.error('Failed to set UnifiedData. Cause: ' + err.message);
+    // 处理异常场景
 });
 
-// 向系统剪贴板中存入一条PlainText数据。
-let SetDelayPlainText = (() => {
-  plainTextData.properties.shareOptions = unifiedDataChannel.ShareOptions.CROSS_APP;
-  // 跨应用使用时设置为CROSS_APP，本应用内使用时设置为IN_APP
-  plainTextData.properties.getDelayData = GetDelayPlainText;
-  pasteboard.getSystemPasteboard().setUnifiedData(plainTextData).then(()=>{
-    // 存入成功，处理正常场景
-  }).catch((error: BusinessError) => {
-    // 处理异常场景
-  });
-})
-
 // 从系统剪贴板中读取这条text数据
-let GetPlainTextUnifiedData = (() => {
-  pasteboard.getSystemPasteboard().getUnifiedData().then((data) => {
-    let outputData = data;
-    let records = outputData.getRecords();
-    if (records[0].getType() == uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
-      let record = records[0] as unifiedDataChannel.PlainText;
-      console.log('GetPlainText success, type:' + records[0].getType + ', details:' +
-      JSON.stringify(record.details) + ', textContent:' + record.textContent + ', abstract:' + record.abstract);
-    } else {
-      console.log('Get Plain Text Data No Success, Type is: ' + records[0].getType());
+systemPasteboard.getUnifiedData().then((data) => {
+    let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+    for (let j = 0; j < records.length; j++) {
+        if (records[j].getType() === uniformTypeDescriptor.UniformDataType.PLAIN_TEXT) {
+            let text = records[j].getValue() as uniformDataStruct.PlainText;
+            console.info(`${j + 1}.${text.textContent}`);
+        }
     }
-  }).catch((error: BusinessError) => {
-    //处理异常场景
-  })
-})
+}).catch((err: BusinessError) => {
+    console.error('Failed to get UnifiedData. Cause: ' + err.message);
+    // 处理异常场景
+});
 ```
 
 <!--RP1-->

@@ -88,7 +88,7 @@ ws.connect(defaultIpAddress, {
 
 createWebSocket(): WebSocket
 
-创建一个WebSocket，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
+创建一个WebSocket对象，里面包括建立连接、关闭连接、发送数据和订阅/取消订阅WebSocket连接的打开事件、接收到服务器消息事件、关闭事件和错误事件。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -140,11 +140,11 @@ connect(url: string, callback: AsyncCallback\<boolean\>): void
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -170,7 +170,7 @@ ws.connect(url, (err: BusinessError, value: boolean) => {
 
 connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
 
-根据URL地址和header，建立一个WebSocket连接，使用callback方式作为异步方法。
+根据URL地址，建立一个WebSocket连接，使用callback方式作为异步方法。
 
 > **说明：**
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
@@ -181,7 +181,7 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -197,11 +197,11 @@ connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -236,7 +236,7 @@ ws.connect(url, options, (err: BusinessError, value: Object) => {
 
 connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
-根据URL地址和header，建立一个WebSocket连接，使用Promise方式作为异步方法。
+根据URL地址，建立一个WebSocket连接，使用Promise方式作为异步方法。
 
 > **说明：**
 > 可通过监听error事件获得该接口的执行结果，错误发生时会得到错误码：200。
@@ -247,7 +247,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-**注意：**URL地址长度不能超过1024个字符，否则会连接失败。
+**注意：** URL地址长度不能超过1024个字符，否则会连接失败。
 
 **参数：**
 
@@ -260,7 +260,7 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
 | 类型               | 说明                              |
 | :----------------- | :-------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回建立连接的结果。true:连接请求创建成功；false:连接请求创建失败。 |
+| Promise\<boolean\> | 回调函数。true:连接请求创建成功；false:连接请求创建失败。 |
 
 **错误码：**
 
@@ -268,11 +268,11 @@ connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 | --------------------- | ------------------------------------------ |
 | 401                   | Parameter error.                           |
 | 201                   | Permission denied.                         |
-| 2302001<sup>12+</sup> | Websocket url error.                       |
-| 2302002<sup>12+</sup> | Websocket certificate file does not exist. |
-| 2302003<sup>12+</sup> | Websocket connection already exists.       |
-| 2302998<sup>12+</sup> | It is not allowed to access this domain.   |
-| 2302999<sup>10+</sup> | Websocket other unknown error.             |
+| 2302001               | Websocket url error.                       |
+| 2302002               | Websocket certificate file does not exist. |
+| 2302003               | Websocket connection already exists.       |
+| 2302998               | It is not allowed to access this domain.   |
+| 2302999               | Internal error.             |
 
 > **错误码说明：**
 > 以上错误码的详细介绍参见[webSocket错误码](errorcode-net-webSocket.md)。
@@ -286,9 +286,9 @@ let ws = webSocket.createWebSocket();
 let url = "ws://"
 let promise = ws.connect(url);
 promise.then((value: boolean) => {
-  console.log("connect success")
+  console.log("connect success");
 }).catch((err:string) => {
-  console.log("connect fail, error:" + JSON.stringify(err))
+  console.log("connect fail, error:" + JSON.stringify(err));
 });
 ```
 
@@ -464,7 +464,7 @@ ws.close((err: BusinessError) => {
 
 close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
-根据可选参数code和reason，关闭WebSocket连接，使用callback方式作为异步方法。
+根据参数options，关闭WebSocket连接，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -512,7 +512,7 @@ ws.close(options, (err: BusinessError) => {
 
 close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
-根据可选参数code和reason，关闭WebSocket连接，使用Promise方式作为异步方法。
+根据可选参数options，关闭WebSocket连接，使用Promise方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -634,7 +634,7 @@ ws.off('open', callback1);
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
-订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
+订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
@@ -647,7 +647,7 @@ on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
 | 参数名   | 类型                    | 必填 | 说明                                         |
 | -------- | ----------------------- | ---- | -------------------------------------------- |
-| type     | string                  | 是   | 'message'：WebSocket的接收到服务器消息事件。 |
+| type     | string                  | 是   | 'message'：WebSocket的接收服务器消息事件。 |
 | callback | AsyncCallback\<string \| ArrayBuffer <sup>8+</sup>\> | 是   | 回调函数。                                   |
 
 **示例：**
@@ -666,7 +666,7 @@ ws.on('message', (err: BusinessError<void>, value: string | ArrayBuffer) => {
 
 off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
-取消订阅WebSocket的接收到服务器消息事件，使用callback方式作为异步方法。
+取消订阅WebSocket的接收服务器消息事件，使用callback方式作为异步方法。
 
 > **说明：**
 > AsyncCallback中的数据可以是字符串(API 6)或ArrayBuffer(API 8)。
@@ -865,7 +865,7 @@ ws.off('dataEnd');
 
 on(type: 'headerReceive', callback: Callback\<ResponseHeaders\>): void
 
-订阅HTTP Response Header事件，使用callback方式作为同步方法。
+订阅HTTP Response Header事件，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -891,7 +891,7 @@ ws.on('headerReceive', (data) => {
 
 off(type: 'headerReceive', callback?: Callback\<ResponseHeaders\>): void
 
-取消订阅HTTP Response Header事件，使用callback方式作为同步方法。
+取消订阅HTTP Response Header事件，使用callback方式作为异步方法。
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -923,7 +923,7 @@ ws.off('headerReceive');
 | 名称 | 类型 |  只读  | 可选 | 说明                                                         |
 | ------ | ------ |------ | ---- | ------------------------------------------------------------ |
 | header | Object |  否  |  是   | 建立WebSocket连接可选参数，代表建立连接时携带的HTTP头信息。参数内容自定义，也可以不指定。<br>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
-| caPath<sup>11+</sup> | string |  否  |  是  | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过Global.getContext().filesDir获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
+| caPath<sup>11+</sup> | string |  否  |  是  | 如果设置了此参数，系统将使用用户指定路径的CA证书，(开发者需保证该路径下CA证书的可访问性)，否则将使用系统预设CA证书，系统预设CA证书位置：/etc/ssl/certs/cacert.pem。证书路径为沙箱映射路径（开发者可通过UIAbilityContext提供的能力获取应用沙箱路径）。目前仅支持格式为pem的文本证书。 |
 | clientCert<sup>11+</sup> | [ClientCert](#clientcert11) |   否  |  是   | 支持传输客户端证书。 |
 | proxy<sup>12+</sup> | ProxyConfiguration |  否  | 是 | 通信过程中的代理信息，默认使用系统网络代理。 |
 | protocol<sup>12+</sup> | string |  否  | 是 | 自定义Sec-WebSocket-Protocol字段，默认为""。              |
@@ -937,8 +937,8 @@ ws.off('headerReceive');
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | certPath   | string  | 是   | 证书路径。 |
-| keyPath | string | 是   | 证书秘钥的路径。 |
-| keyPassword | string | 否   | 证书秘钥的密码。 |
+| keyPath | string | 是   | 证书密钥的路径。 |
+| keyPassword | string | 否   | 证书密钥的密码。 |
 
 ## ProxyConfiguration<sup>12+</sup>
 type ProxyConfiguration = 'system' | 'no-proxy' | HttpProxy

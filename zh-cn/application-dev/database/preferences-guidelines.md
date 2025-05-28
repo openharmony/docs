@@ -1,8 +1,7 @@
 # 通过用户首选项实现数据持久化 (C/C++)
 
 ## 场景介绍
-用户首选项（Preferences）模块主要提供轻量级Key-Value操作，支持本地应用存储少量数据，数据存储在本地文件中，同时也加载在内存中，所以访问速度更快，效率更高。首选项提供非关系型数据存储，不宜存储大量数据，经常用于操作键值对形式数据的场景。
-
+用户首选项（Preferences）模块主要提供轻量级Key-Value操作，支持本地存储少量数据，数据存储在文件和内存中，访问速度快。如果存在大量数据场景，请考虑使用键值型数据库或关系型数据库。
 
 ## 约束限制
 1. Preferences不支持C API与ArkTS API混合使用。
@@ -11,7 +10,7 @@
 
 ## 接口说明
 
-详细的接口说明请参考[Preferences接口文档](../reference/apis-arkdata/_preferences.md)。
+详细的接口说明请参考[Preferences接口文档](../reference/apis-arkdata/capi-preferences.md)。
 
 | 接口名称 | 描述 |
 | -------- | -------- |
@@ -29,7 +28,7 @@
 | int OH_Preferences_UnregisterDataObserver (OH_Preferences \*preference, void \*context, OH_PreferencesDataObserver observer, const char \*keys[], uint32_t keyCount) | 取消注册选取Key的数据变更订阅。 |
 | int OH_Preferences_IsStorageTypeSupported (Preferences_StorageType type, bool \*isSupported) | 检查当前平台是否支持对应的存储模式。 |
 | OH_PreferencesOption \* OH_PreferencesOption_Create (void) | 创建一个Preferences配置选项的OH_PreferencesOption实例对象以及指向它的指针。 当不再需要使用指针时，请使用OH_PreferencesOption_Destroy销毁实例对象，否则会导致内存泄漏。 |
-| int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | 设置Preferences配置选项OH_PreferencesOption实例对象的文件名称。名称长度需大于零且小于等于255字节，名称中不能包含'/'且不能以'/'结尾。 |
+| int OH_PreferencesOption_SetFileName (OH_PreferencesOption \*option, const char \*fileName) | 设置Preferences配置选项OH_PreferencesOption实例对象的文件名称。名称长度为0到255字节，其中不能包含'/'。 |
 | int OH_PreferencesOption_SetBundleName (OH_PreferencesOption \*option, const char \*bundleName) | 设置Preferences配置选项OH_PreferencesOption实例对象的包名称。 |
 | int OH_PreferencesOption_SetDataGroupId (OH_PreferencesOption \*option, const char \*dataGroupId) | 设置Preferences配置选项OH_PreferencesOption实例对象的应用组ID。 |
 | int OH_PreferencesOption_SetStorageType (OH_PreferencesOption \*option, Preferences_StorageType type) | 设置Preferences配置选项 OH_PreferencesOption实例对象的存储模式。 |
@@ -61,12 +60,12 @@ libohpreferences.so
 ```
 
 ## 开发步骤
-下列实例展示如何通过Preferences实现对KV数据的修改与持久化。
-1. 创建Preferences配置选项（PreferencesOption）对象并设置配置选项成员（名称、应用组ID、包名、存储模式），配置选项实例使用完后需要调用OH_PreferencesOption_Destroy销毁。
+下列实例展示如何通过Preferences实现对键值数据的修改与持久化。
+1. 创建Preferences配置选项（PreferencesOption）对象并设置配置选项成员（名称、应用组ID、包名、存储模式）。使用完毕后，调用OH_PreferencesOption_Destroy销毁配置选项实例。
 2. 调用OH_Preferences_Open打开一个Preferences实例，该实例使用完后需要调用OH_Preferences_Close关闭。
 3. 调用OH_Preferences_RegisterDataObserver注册3个Key的数据变更订阅，订阅回调函数为DataChangeObserverCallback。
-4. 设置Preferences实例中的KV数据。
-5. 获取Preferences实例中的KV数据。
+4. 设置Preferences实例中的键值数据。
+5. 获取Preferences实例中的键值数据。
 6. 调用OH_Preferences_Close关闭Preferences实例，关闭后需要将实例指针置空。
 
 ```c

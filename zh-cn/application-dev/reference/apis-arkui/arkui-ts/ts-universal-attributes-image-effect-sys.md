@@ -27,13 +27,19 @@ advancedBlendMode(effect: BlendMode | Blender, type?: BlendApplyType): T
 | effect  | [BlendMode](ts-universal-attributes-image-effect.md#blendmode11枚举说明)&nbsp;\|&nbsp;[Blender](../../apis-arkgraphics2d/js-apis-uiEffect-sys.md#blender13)  | 是   | 入参类型为BlendMode时表示混合模式。<br/>默认值：BlendMode.NONE <br/>入参类型为Blender时表示混合器类型，用于描述混合效果。<br/>需要使用uiEffect模块中的方法创建Blender实例。例如：[uiEffect.createBrightnessBlender](../../apis-arkgraphics2d/js-apis-uiEffect-sys.md#uieffectcreatebrightnessblender)。使用自定义object作为入参不会生效。  |
 | type   | [BlendApplyType](ts-universal-attributes-image-effect.md#blendapplytype11)  |    否    | blendMode实现方式是否离屏。<br/>默认值：BlendApplyType.FAST<br/>**说明：**<br/>1. 设置BlendApplyType.FAST时，不离屏。<br/>2. 设置BlendApplyType.OFFSCREEN时，会创建当前组件大小的离屏画布，再将当前组件（含子组件）的内容绘制到离屏画布上，再用指定的混合模式与下方画布已有内容进行混合。<br/>3. 不离屏情况下对文字类组件中emoji表情不生效。     |
 
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| T | 返回当前组件。 |
+
 ## 示例
 
 该示例主要通过advancedBlendMode给组件添加提亮效果。
 
 ```ts
 // xxx.ets
-import { uiEffect } from "@kit.ArkGraphics2D"
+import { uiEffect } from "@kit.ArkGraphics2D";
 
 // uiEffect.createBrightnessBlender创建BrightnessBlender实例用于给组件添加提亮效果
 let blender: uiEffect.BrightnessBlender = uiEffect.createBrightnessBlender({

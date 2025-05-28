@@ -11,7 +11,7 @@ The **PluginComponentManager** module provides APIs for the **PluginComponent** 
 ## Modules to Import
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 ```
 
 ### PushParameterForStage
@@ -31,7 +31,7 @@ Sets the parameters to be passed in the **PluginManager.Push** API in the stage 
 | name      | string                              | Yes   | Component name.                                   |
 | data      | [KVObject](js-apis-plugincomponent.md#kvobject)               | Yes   | Component data value.                                  |
 | extraData | [KVObject](js-apis-plugincomponent.md#kvobject)               | Yes   | Additional data value.                                  |
-| jsonPath  | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. |
+| jsonPath  | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### RequestParameterForStage
 
@@ -49,7 +49,7 @@ Sets the parameters to be passed in the **PluginManager.Request** API in the sta
 | target   | [Want](../apis-ability-kit/js-apis-application-want.md) | Yes   | Ability information of the component provider.                         |
 | name     | string                              | Yes   | Name of the requested component.                                 |
 | data     | [KVObject](js-apis-plugincomponent.md#kvobject)               | Yes   | Additional data.                                   |
-| jsonPath | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set. |
+| jsonPath | string                              | No   | Path to the [external.json](#about-the-externaljson-file) file that stores the template path. Request communication is not triggered when **jsonPath** is not empty or not set.|
 
 ### push
 
@@ -65,17 +65,17 @@ Pushes the component and data to the component user.
 | Name     | Type                                      | Mandatory  | Description          |
 | -------- | ---------------------------------------- | ---- | ------------ |
 | param    | [PushParameterForStage](#pushparameterforstage) | Yes   | Information about the component user. |
-| callback | AsyncCallback&lt;void&gt;                | Yes   | Asynchronous callback used to return the result. |
+| callback | AsyncCallback&lt;void&gt;                | Yes   | Asynchronous callback used to return the result.|
 
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.push(
   {
     owner: {
       bundleName: "com.example.provider",
-      abilityName: "com.example.provider.MainAbility"
+      abilityName: "com.example.provider.MainAbility",
     },
     target: {
       bundleName: "com.example.user",
@@ -114,17 +114,17 @@ Requests the component from the component provider.
 | Name     | Type                                      | Mandatory  | Description                                 |
 | -------- | ---------------------------------------- | ---- | ----------------------------------- |
 | param    | [RequestParameterForStage](js-apis-plugincomponent-sys.md#requestparameterforstage) | Yes   | Information about the component request.                       |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](js-apis-plugincomponent.md#requestcallbackparameters) \| void&gt; | Yes   | Asynchronous callback used to return the requested data. |
+| callback | AsyncCallback&lt;[RequestCallbackParameters](js-apis-plugincomponent.md#requestcallbackparameters) \| void&gt; | Yes   | Asynchronous callback used to return the requested data.|
 
 **Example**
 
 ```ts
-import { pluginComponentManager } from '@kit.ArkUI'
+import { pluginComponentManager } from '@kit.ArkUI';
 pluginComponentManager.request(
   {
     owner: {
       bundleName: "com.example.user",
-      abilityName: "com.example.user.MainAbility"
+      abilityName: "com.example.user.MainAbility",
     },
     target: {
       bundleName: "com.example.provider",
@@ -137,8 +137,8 @@ pluginComponentManager.request(
     jsonPath: "",
   },
   (err, data) => {
-    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability);
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source);
   }
 )
 ```

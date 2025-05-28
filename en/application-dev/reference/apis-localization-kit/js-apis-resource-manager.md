@@ -1420,7 +1420,6 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1477,7 +1476,6 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1538,7 +1536,6 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001003  | Invalid resource name.                                       |
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1593,7 +1590,6 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1650,7 +1646,6 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001001  | Invalid resource ID.                                         |
 | 9001002  | No matching resource is found based on the resource ID.      |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -1711,7 +1706,6 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
 
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
-| 401      | If the input parameter invalid. Possible causes: Incorrect parameter types. |
 | 9001003  | Invalid resource name.                                       |
 | 9001004  | No matching resource is found based on the resource name.    |
 | 9001006  | The resource is referenced cyclically.                       |
@@ -5015,7 +5009,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.addResource(path);
   } catch (error) {
@@ -5054,7 +5048,7 @@ For details about the error codes, see [Resource Manager Error Codes](errorcode-
   ```ts
   import { BusinessError } from '@kit.BasicServicesKit';
 
-  let path = getContext().bundleCodeDir + "/library1-default-signed.hsp";
+  let path = this.context.bundleCodeDir + "/library1-default-signed.hsp";
   try {
     this.context.resourceManager.removeResource(path);
   } catch (error) {
@@ -6549,23 +6543,23 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
 
     ```json
     {
-    "string": [
+      "string": [
         {
-        "name": "test",
-        "value": "10"
+          "name": "test",
+          "value": "10"
         }
-    ]
+      ]
     }
     ```
 
     ```json
     {
-    "string": [
-     {
-        "name": "test",
-        "value": "%s %d %f"
+      "string": [
+        {
+          "name": "test",
+          "value": "%s %d %f"
         }
-    ]
+      ]
     }
     ```
 
@@ -6573,16 +6567,16 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
 
     ```json
     {
-    "strarray": [
+      "strarray": [
         {
-        "name": "test",
-        "value": [
-          {
-            "value": "strarray_test"
-          }
-        ]
+          "name": "test",
+          "value": [
+            {
+              "value": "strarray_test"
+            }
+          ]
         }
-    ]
+      ]
     }
     ```
 
@@ -6591,53 +6585,53 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
     {
       "plural": [
         {
-        "name": "test",
-        "value": [
+          "name": "test",
+          "value": [
             {
-            "quantity": "one",
-            "value": "%d apple"
+              "quantity": "one",
+              "value": "%d apple"
             },
             {
-            "quantity": "other",
-            "value": "%d apples"
+              "quantity": "other",
+              "value": "%d apples"
             }
-        ]
+          ]
         }
-    ]
+      ]
     }
     ```
 
 - Content of the **app.plural.format_test** file:
 
-    ```
+    ```json
     {
       "plural": [
         {
-        "name": "format_test",
-        "value": [
+          "name": "format_test",
+          "value": [
             {
-            "quantity": "one",
-            "value": "%d apple, %s, %f"
+              "quantity": "one",
+              "value": "%d apple, %s, %f"
             },
             {
-            "quantity": "other",
-            "value": "%d apples, %s, %f"
+              "quantity": "other",
+              "value": "%d apples, %s, %f"
             }
-        ]
+          ]
         }
-    ]
+      ]
     }
     ```
 
 - Content of the **app.boolean.boolean_test** file:
     ```json
     {
-        "boolean": [
-            {
-                "name": "boolean_test",
-                "value": true
-            }
-        ]
+      "boolean": [
+        {
+          "name": "boolean_test",
+          "value": true
+        }
+      ]
     }
     ```
 
@@ -6670,7 +6664,7 @@ Defines an asynchronous callback that carries an error parameter and asynchronou
         {
           "name": "test",
           "value": "#FFFFFF"
-       }
+        }
       ]
     }
     ```

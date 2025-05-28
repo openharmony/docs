@@ -6,7 +6,7 @@
 
 > **说明：**
 >
-> 该组件从API Version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 该组件从API version 11开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 该组件不支持在Wearable设备上使用。
 
@@ -14,7 +14,7 @@
 ## 导入模块
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI';
 ```
 
 
@@ -59,7 +59,7 @@ PromptOptions定义options的类型。
 | marginType | [MarginType](#margintype) | 是 | 指定当前异常提示的边距样式。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                                 |
 | actionText | [ResourceStr](ts-types.md#resourcestr) | 否 | 指定当前异常提示的右侧图标按钮的文字内容。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                          |
 | marginTop | [Dimension](ts-types.md#dimension10) | 是 | 指定当前异常提示的距离顶部的位置。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                                              |
-| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true:显示状态。<br />false：隐藏状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                 |
+| isShown | boolean | 否 | 指定当前异常提示的显隐状态。<br />true：显示状态。<br />false：隐藏状态。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。                                                                                                                                                                                                                                                 |
 
 ## MarginType
 
@@ -83,7 +83,7 @@ MarginType定义marginType的类型。
 该示例展示了如何设置异常提示的异常图标、异常提示的文字、边距样式和右侧图标按钮的文字内容。
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -120,7 +120,7 @@ struct Index {
 该示例使用自定义弹窗设置弹窗类型的异常提示。
 
 ```ts
-import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI'
+import { ExceptionPrompt, PromptOptions, MarginType } from '@kit.ArkUI';
 
 @CustomDialog
 struct CustomDialogExample {
@@ -248,7 +248,7 @@ struct Index1 {
 该示例通过设置PromptOptions的属性symbolStyle，展示了自定义Symbol类型图标。
 
 ```ts
-import { ExceptionPrompt, MarginType, SymbolGlyphModifier } from '@kit.ArkUI'
+import { ExceptionPrompt, MarginType, SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component

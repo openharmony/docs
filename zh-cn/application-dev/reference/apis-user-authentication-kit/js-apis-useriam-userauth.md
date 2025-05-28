@@ -1,6 +1,6 @@
 # @ohos.userIAM.userAuth (用户认证)
 
-提供用户认证能力，可应用于设备解锁、支付、应用登录等身份认证场景。
+提供用户认证能力，应用于设备解锁、支付、应用登录等场景。
 
 > **说明：**
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -14,19 +14,13 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 ## 常量
 
-表示复用设备解锁结果最大有效时长。
-
-**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
-
-**系统能力**：SystemCapability.UserIAM.UserAuth.Core
-
 | 名称        | 值   | 说明       |
 | ----------- | ---- | ---------- |
-| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | 复用设备解锁结果最大有效时长，值为300000毫秒。 |
+| MAX_ALLOWABLE_REUSE_DURATION<sup>12+</sup>    | 300000   | 复用解锁认证结果最大有效时长，值为300000毫秒。<br/> **系统能力：** SystemCapability.UserIAM.UserAuth.Core <br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
 
 ## EnrolledState<sup>12+</sup>
 
-表示用户注册凭据的状态。
+用户注册凭据的状态。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -39,24 +33,23 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 ## ReuseMode<sup>12+</sup>
 
-表示复用设备解锁结果的模式。
+复用解锁认证结果的模式。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
 | 名称        | 值   | 说明       |
 | ----------- | ---- | ---------- |
-| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，只要解锁认证结果在有效时间内，就可以重复使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
-| CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT<sup>14+</sup>    | 3   | 与认证类型相关，只有当任意身份认证（包括设备解锁）结果在有效时间内，并且身份认证的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
-| CALLER_IRRELEVANT_AUTH_TYPE_IRRELEVANT<sup>14+</sup>  | 4   | 与认证类型无关，只要任意身份认证（包括设备解锁）结果在有效时间内，就可以重复使用。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| AUTH_TYPE_RELEVANT    | 1   | 与认证类型相关，只有当设备解锁认证结果在有效时间内，并且设备解锁的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。<br/> **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| AUTH_TYPE_IRRELEVANT  | 2   | 与认证类型无关，设备解锁认证结果在有效时间内，可以重复使用。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。 |
+| CALLER_IRRELEVANT_AUTH_TYPE_RELEVANT<sup>14+</sup>    | 3   | 与认证类型相关，任意身份认证（包括设备解锁）结果在有效时间内，并且身份认证的认证类型匹配上本次认证指定认证类型之一时，可以复用该结果。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
+| CALLER_IRRELEVANT_AUTH_TYPE_IRRELEVANT<sup>14+</sup>  | 4   | 与认证类型无关，任意身份认证（包括设备解锁）结果在有效时间内，可以重复使用。<br/>**原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。 |
 
 ## ReuseUnlockResult<sup>12+</sup>
 
-表示复用设备解锁结果。
+复用解锁认证结果。
 > **说明**：
 >
-> 如果锁屏解锁后，在有效时间内凭据发生了变化，锁屏认证结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用锁屏认证结果
-> 时，凭据已经被完全删除，则返回的EnrolledState中credentialCount和credentialDigest均为0。
+> 如果身份认证解锁（包括设备解锁）后，在有效时间内凭据发生了变化，身份认证的结果依然可以复用，认证结果中返回当前实际的EnrolledState。若复用认证结果时，之前认证时所使用的身份认证凭据已经被删除，如果删除的是人脸、指纹，则认证结果依然可以复用，只是返回的EnrolledState中credentialCount和credentialDigest均为0；如果删除的是锁屏口令，则此次复用会失败。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -64,14 +57,14 @@ import { userAuth } from '@kit.UserAuthenticationKit';
 
 | 名称         | 类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------- |
-| reuseMode        | [ReuseMode](#reusemode12) | 是   | 复用设备解锁结果的模式。       |
-| reuseDuration    | number | 是   | 允许复用设备解锁结果的有效时长，有效时长的值应大于0，最大值为[MAX_ALLOWABLE_REUSE_DURATION](#常量)。 |
+| reuseMode        | [ReuseMode](#reusemode12) | 是   | 复用解锁认证结果的模式。       |
+| reuseDuration    | number | 是   | 允许复用解锁认证结果的有效时长，有效时长的值应大于0，最大值为[MAX_ALLOWABLE_REUSE_DURATION](#常量)。 |
 
 ## userAuth.getEnrolledState<sup>12+</sup>
 
 getEnrolledState(authType : UserAuthType): EnrolledState
 
-查询凭据注册的状态，用于感知用户注册凭据变化。
+查询凭据注册的状态，以检测用户注册凭据的变更。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -89,7 +82,7 @@ getEnrolledState(authType : UserAuthType): EnrolledState
 
 | 类型                  | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ |
-| [EnrolledState](#enrolledstate12) | 当查询成功时，返回用户注册凭据的状态。 |
+| [EnrolledState](#enrolledstate12) | 当查询成功时，返回值为用户注册凭据的状态。|
 
 **错误码：**
 
@@ -126,10 +119,10 @@ try {
 
 | 名称           | 类型                               | 必填 | 说明                                                         |
 | -------------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| challenge      | Uint8Array                         | 是   | 随机挑战值，用来防重放攻击。最大长度为32字节，可传Uint8Array([])。 |
+| challenge      | Uint8Array                         | 是   | 随机挑战值，可用于防重放攻击。最大长度为32字节，可传Uint8Array([])。 |
 | authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型列表，用来指定用户认证界面提供的认证方法。           |
-| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。                                               |
-| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | 否   |表示可以复用设备解锁结果。|
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 期望达到的认证可信等级。典型操作需要的身份认证可写等级，以及身份认证可信等级的划分请参见[认证可信等级划分原则](../../security/UserAuthenticationKit/user-authentication-overview.md)。|
+| reuseUnlockResult<sup>12+</sup> | [ReuseUnlockResult](#reuseunlockresult12) | 否   |表示可以复用解锁认证的结果。|
 
 ## WidgetParam<sup>10+</sup>
 
@@ -145,7 +138,7 @@ try {
 
 ## UserAuthResult<sup>10+</sup>
 
-用户认证结果。当认证结果为成功时，返回认证类型和认证通过的令牌信息。
+用户认证结果。认证成功时，返回认证类型和认证成功的令牌信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -154,9 +147,9 @@ try {
 | 名称     | 类型                           | 必填 | 说明                                                         |
 | -------- | ------------------------------ | ---- | ------------------------------------------------------------ |
 | result   | number                         | 是   | 用户认证结果。若成功返回SUCCESS，若失败返回相应错误码，参见[UserAuthResultCode](#userauthresultcode9)。 |
-| token    | Uint8Array                     | 否   | 当认证结果为成功时，返回认证通过的令牌信息。                 |
-| authType | [UserAuthType](#userauthtype8) | 否   | 当认证结果为成功时，返回认证类型。                           |
-| enrolledState<sup>12+</sup> | [EnrolledState](#enrolledstate12) | 否   |  当认证结果为成功时，返回注册凭据的状态。         |
+| token    | Uint8Array                     | 否   | 认证成功时，返回认证成功的令牌信息。                  |
+| authType | [UserAuthType](#userauthtype8) | 否   | 认证成功时，返回认证类型。                           |
+| enrolledState<sup>12+</sup> | [EnrolledState](#enrolledstate12) | 否   |  认证成功时，返回注册凭据的状态。|
 
 ## IAuthCallback<sup>10+</sup>
 
@@ -166,7 +159,7 @@ try {
 
 onResult(result: UserAuthResult): void
 
-回调函数，返回认证结果。如果认证成功，可以通过UserAuthResult获取到认证通过的令牌信息。
+回调函数，返回认证结果。认证成功时，可以通过UserAuthResult获取到认证成功的令牌信息。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -180,7 +173,7 @@ onResult(result: UserAuthResult): void
 
 **示例1：**
 
-发起用户认证，采用认证可信等级≥ATL3的人脸+锁屏密码认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的锁屏口令认证，获取认证结果：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -209,6 +202,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -217,7 +212,7 @@ try {
 
 **示例2：**
 
-发起用户认证，采用认证可信等级≥ATL3的人脸 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的锁屏口令 + 认证类型相关 + 复用设备解锁最大有效时长认证，获取认证结果：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -250,6 +245,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -258,7 +255,7 @@ try {
 
 **示例3：**
 
-发起用户认证，采用认证可信等级≥ATL3的人脸 + 任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果：
+发起用户认证，采用认证可信等级≥ATL3的锁屏口令 + 任意应用认证类型相关 + 复用任意应用最大有效时长认证，获取认证结果：
 
 ```ts
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -291,6 +288,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -300,13 +299,13 @@ try {
 ## UserAuthInstance<sup>10+</sup>
 
 用于执行用户身份认证，并支持使用统一用户身份认证控件。
-使用以下接口前，都需要先通过[getUserAuthInstance](#userauthgetuserauthinstance10)方法获取UserAuthInstance对象。
+使用以下接口前，需先通过[getUserAuthInstance](#userauthgetuserauthinstance10)方法获取UserAuthInstance对象。
 
 ### on<sup>10+</sup>
 
 on(type: 'result', callback: IAuthCallback): void
 
-订阅用户身份认证结果。
+订阅用户身份认证的结果。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -358,6 +357,8 @@ try {
     }
   });
   console.info('auth on success');
+  userAuthInstance.start();
+  console.info('auth start success');
 } catch (error) {
   const err: BusinessError = error as BusinessError;
   console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -401,6 +402,8 @@ struct Index {
         }
       });
       console.info('auth on success');
+      userAuthInstance.start();
+      console.info('auth start success');
     } catch (error) {
       const err: BusinessError = error as BusinessError;
       console.error(`auth catch error. Code is ${err?.code}, message is ${err?.message}`);
@@ -422,7 +425,7 @@ struct Index {
 
 off(type: 'result', callback?: IAuthCallback): void
 
-取消订阅用户身份认证结果。
+取消订阅用户身份认证的结果。
 
 > **说明**：
 > 
@@ -488,11 +491,11 @@ start(): void
 开始认证。
 
 > **说明：**
-> 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
+> 每个UserAuthInstance只能进行一次认证，需要再次认证时，必须重新获取UserAuthInstance。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC 或 ohos.permission.USER_AUTH_FROM_BACKGROUND（仅向系统应用开放）
 
-从API 20开始，仅系统应用可以通过申请ohos.permission.USER_AUTH_FROM_BACKGROUND，从后台发起认证。
+从API 20开始，仅系统应用可以通过申请ohos.permission.USER_AUTH_FROM_BACKGROUND，在后台发起认证。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -555,7 +558,7 @@ cancel(): void
 
 > **说明**：
 >
-> 此时UserAuthInstance需要是正在进行认证的对象。
+> 此时UserAuthInstance必须是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -593,6 +596,8 @@ try {
   const userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
   console.info('get userAuth instance success');
   // 需要调用UserAuthInstance的start()接口，启动认证后，才能调用cancel()接口。
+  userAuthInstance.start();
+  console.info('auth start success');
   userAuthInstance.cancel();
   console.info('auth cancel success');
 } catch (error) {
@@ -605,10 +610,10 @@ try {
 
 getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance
 
-获取[UserAuthInstance](#userauthinstance10)对象，用于执行用户身份认证，并支持使用统一用户身份认证控件。
+获取[UserAuthInstance](#userauthinstance10)对象，执行用户身份认证，并支持使用统一用户身份认证控件。
 
 > **说明：**
-> 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
+> 每个UserAuthInstance只能进行一次认证，需要再次认证时，必须重新获取UserAuthInstance。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -667,7 +672,7 @@ try {
 
 ## AuthResultInfo<sup>(deprecated)</sup>
 
-表示认证结果信息。
+表示认证结果信息，用于描述认证结果。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃。
@@ -683,7 +688,7 @@ try {
 
 ## TipInfo<sup>(deprecated)</sup>
 
-表示认证过程中的提示信息。
+表示认证过程中的提示信息，用于提供认证过程的反馈。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃。
@@ -701,7 +706,7 @@ type EventInfo = AuthResultInfo | TipInfo
 
 表示认证过程中事件信息的类型。
 
-该类型为下表类型中的联合类型。
+该类型为下表类型取值中的联合类型。
 
 > **说明：**
 > 从 API version 9 开始支持，从 API version 11 开始废弃，请使用[UserAuthResult](#userauthresult10)替代。
@@ -1101,10 +1106,13 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 
 > **错误码返回顺序说明：**
 >
-> - 无对应执行器注册时，判断系统不支持该认证能力，需返回12500005。
-> - 有对应执行器注册时，功能未禁用，但认证安全等级低于业务指定时，需返回12500006。
-> - 有对应执行器注册时，功能未禁用，但用户没有注册凭据时，需返回12500010。
-> - 有对应执行器注册时，功能未禁用，但密码过期时，需返回12500013。
+> - 如果未注册对应执行器，系统不支持该认证能力，需返回12500005。
+> - 如果已注册对应执行器，功能未禁用，但认证安全等级低于业务指定时，需返回12500006。
+> - 如果已注册对应执行器，功能未禁用，但用户未注册凭据时，需返回12500010。
+> - 如果已注册对应执行器，功能未禁用，但密码过期时，需返回12500013。
+
+> **注意：**
+> - 若用户注册的锁屏口令是4位PIN时，其认证可信等级为ATL3，调用该接口查询是否支持ATL4级别的密码认证时，需返回12500010。
 
 **错误码：**
 
@@ -1126,7 +1134,7 @@ getAvailableStatus(authType : UserAuthType, authTrustLevel : AuthTrustLevel): vo
 import { userAuth } from '@kit.UserAuthenticationKit';
 
 try {
-  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1);
+  userAuth.getAvailableStatus(userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL3);
   console.info('current auth trust level is supported');
 } catch (error) {
   console.error(`current auth trust level is not supported, error = ${error}`);
@@ -1146,15 +1154,15 @@ try {
 | SUCCESS                 | 12500000      | 执行成功。           |
 | FAIL                    | 12500001      | 认证失败。           |
 | GENERAL_ERROR           | 12500002      | 操作通用错误。       |
-| CANCELED                | 12500003      | 操作取消。           |
-| TIMEOUT                 | 12500004      | 操作超时。           |
-| TYPE_NOT_SUPPORT        | 12500005      | 不支持的认证类型。   |
-| TRUST_LEVEL_NOT_SUPPORT | 12500006      | 不支持的认证等级。   |
-| BUSY                    | 12500007      | 忙碌状态。           |
+| CANCELED                | 12500003      | 认证取消。           |
+| TIMEOUT                 | 12500004      | 认证超时。           |
+| TYPE_NOT_SUPPORT        | 12500005      | 认证类型不支持。      |
+| TRUST_LEVEL_NOT_SUPPORT | 12500006      | 认证等级不支持。      |
+| BUSY                    | 12500007      | 系统繁忙。           |
 | LOCKED                  | 12500009      | 认证器已锁定。       |
 | NOT_ENROLLED            | 12500010      | 用户未录入指定的系统身份认证凭据。 |
 | CANCELED_FROM_WIDGET<sup>10+</sup> | 12500011 | 用户取消了系统认证方式，选择应用自定义认证。需调用者拉起自定义认证界面。 |
-| PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏密码过期。 |
+| PIN_EXPIRED<sup>12+</sup> | 12500013 | 当前的认证操作执行失败。返回这个错误码，表示系统锁屏口令过期。 |
 
 ## UserAuth<sup>(deprecated)</sup>
 
@@ -1304,7 +1312,7 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 cancelAuth(contextID : Uint8Array) : number
 
-表示通过contextID取消本次认证操作。
+表示通过contextID取消本次认证。
 
 > **说明：**
 > 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[cancel](#canceldeprecated)代替。
@@ -1453,7 +1461,7 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 | 名称         | 类型   | 必填 | 说明                 |
 | ------------ | ---------- | ---- | -------------------|
-| token        | Uint8Array | 否   | 认证通过的令牌信息。 |
+| token        | Uint8Array | 否   | 认证成功的令牌信息。 |
 | remainTimes  | number     | 否   | 剩余的认证操作次数。 |
 | freezingTime | number     | 否   | 认证操作的冻结时间。 |
 
@@ -1549,10 +1557,10 @@ auth.auth(challenge, userAuth.UserAuthType.FACE, userAuth.AuthTrustLevel.ATL1, {
 
 | 名称 | 值    | 说明                                                         |
 | ---- | ----- | ------------------------------------------------------------ |
-| ATL1 | 10000 | 认证结果的信任等级级别1，代表该认证方案能够识别用户个体，有一定的活体检测能力。常用的业务场景有业务风控、一般个人数据查询等。 |
-| ATL2 | 20000 | 认证结果的信任等级级别2，代表该认证方案能够精确识别用户个体，有一定的活体检测能力。常用的业务场景有维持设备解锁状态，应用登录等。 |
-| ATL3 | 30000 | 认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 |
-| ATL4 | 40000 | 认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
+| ATL1 | 10000 | 认证结果的信任等级级别1，表示该认证方案能够识别用户个体，具备一定的活体检测能力。适用于业务风控、一般个人数据查询等场景。 |
+| ATL2 | 20000 | 认证结果的信任等级级别2，表示该认证方案能够精确识别用户个体，具备一定的活体检测能力。适用于维持设备解锁状态、应用登录等场景。|
+| ATL3 | 30000 | 认证结果的信任等级级别3，表示该认证方案能够精确识别用户个体，具备较强的活体检测能力。适用于设备解锁等场景。|
+| ATL4 | 40000 | 认证结果的信任等级级别4，表示该认证方案能够高精度的识别用户个体，具备很强的活体检测能力。适用于小额支付等场景。|
 
 ## SecureLevel<sup>(deprecated)</sup>
 
@@ -1566,7 +1574,7 @@ type SecureLevel = string
 
 | 类型 | 说明                                                         |
 | ---- | ------------------------------------------------------------ |
-| string | 表示类型为字符，认证的安全级别包括：`'S1'` \| `'S2' `\|`'S3'`\|`'S4'`。 <br/>\- `'S1'`：认证结果的信任等级级别1，代表该认证方案能够识别用户个体，有一定的活体检测能力。常用的业务场景有业务风控、一般个人数据查询等。 <br/>\- `'S2'`：认证结果的信任等级级别2，代表该认证方案能够精确识别用户个体，有一定的活体检测能力。常用的业务场景有维持设备解锁状态，应用登录等。 <br/>\- `'S3'`：认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 <br/>\- `'S4'`：认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
+| string | 表示类型为字符，认证的安全级别包括：`'S1'` \| `'S2'`\|`'S3'`\|`'S4'`。 <br/>\- `'S1'`：认证结果的信任等级级别1，代表该认证方案能够识别用户个体，有一定的活体检测能力。常用的业务场景有业务风控、一般个人数据查询等。 <br/>\- `'S2'`：认证结果的信任等级级别2，代表该认证方案能够精确识别用户个体，有一定的活体检测能力。常用的业务场景有维持设备解锁状态，应用登录等。 <br/>\- `'S3'`：认证结果的信任等级级别3，代表该认证方案能够精确识别用户个体，有较强的活体检测能力。常用的业务场景有设备解锁等。 <br/>\- `'S4'`：认证结果的信任等级级别4，代表该认证方案能够高精度的识别用户个体，有很强的活体检测能力。常用的业务场景有小额支付等。 |
 
 ## AuthType<sup>(deprecated)</sup>
 

@@ -1,8 +1,8 @@
 # Using AVPlayer to Play Streaming Media (ArkTS)
 
-In this topic, you will learn how to use the [AVPlayer](media-kit-intro.md#avplayer) to develop live streaming and Video on Demand (VOD) features, enabling the complete playback of a streaming video from beginning to end.
+This topic describes how to use [AVPlayer](media-kit-intro.md#avplayer) for streaming live broadcasts and video-on-demand. The examples demonstrate how to play streaming videos in an end-to-end manner.
 
-This topic describes only how to implement streaming media playback. For details about other scenarios such as local playback, see [Video Playback](using-avplayer-for-playback.md).
+This guide focuses solely on streaming media playback. For details about other scenarios such as local audio and video playback, see [Using AVPlayer to Play Audio (ArkTS)](using-avplayer-for-playback.md).
 
 ## Formats Supported by Streaming Media
 
@@ -15,7 +15,7 @@ This topic describes only how to implement streaming media playback. For details
 
 ## How to Develop
 
-The full streaming media playback process includes creating an AVPlayer instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AVPlayer is not in the given state, the system may throw an exception or generate other undefined behavior. For details about the state, see [AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9). The development procedure is as follows:
+The full streaming media playback process includes creating an AVPlayer instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. Performing actions when the AVPlayer is in an incorrect state can lead to exceptions or undefined behavior. For details, see [AVPlayerState](../../reference/apis-media-kit/js-apis-media.md#avplayerstate9).  
 
 1. Call **createAVPlayer()** to create an AVPlayer instance. The AVPlayer is the **idle** state.
 
@@ -57,7 +57,7 @@ The full streaming media playback process includes creating an AVPlayer instance
 
 ## Special Notes
 
-The standard procedure for streaming media playback is outlined in the development steps provided above. However, there are differences when working with various streaming media formats during actual development. This section will describe these differences in detail, including video playback startup strategies and switching between audio and video tracks.
+The standard process for playing streaming media follows the development steps outlined above. However, different streaming media formats have their own peculiarities in practice. This section delves into these differences, covering aspects like video startup strategies and the switching between audio and video tracks.
 
 ### Buffering Status for Streaming Media
 
@@ -104,7 +104,7 @@ HLS streams currently support playback at multiple bit rates. By default, the AV
 
 To maintain a smooth playback experience in environments with poor network connectivity, the AVPlayer initially selects the lowest video resolution for playback and then adjusts automatically based on the network status. You can customize the playback startup strategy, including setting parameters such as the video width, height, and color format, for DASH videos based on service requirements.
 
-As an illustration of adjusting the startup resolution, the sample code below demonstrates setting the video to start at a width of 1920 px and a height of 1080 px. In this case, the AVPlayer selects a video stream with a resolution of 1920 x 1080 from the MPD resources for playback.
+The sample code below demonstrates setting the video to start at a width of 1920 px and a height of 1080 px. The AVPlayer selects a video stream with a resolution of 1920 x 1080 from the MPD resources for playback.
 
 ```ts
 let mediaSource : media.MediaSource = media.createMediaSourceWithUrl("http://test.cn/dash/aaa.mpd",  {"User-Agent" : "User-Agent-Value"});
@@ -114,7 +114,7 @@ avPlayer.setMediaSource(mediaSource, playbackStrategy);
 
 ### DASH Audio and Video Track Switching
 
-DASH streaming media generally include multiple audio, video, and subtitle tracks, each with distinct parameters like resolution, bit rate, sampling rate, and encoding format. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
+DASH streaming media includes multiple audio, video, and subtitle tracks, each with different resolutions, bit rates, sampling rates, and encoding formats. By default, the AVPlayer automatically select video tracks with different bit rates based on the network status. You can manually select an audio or video track for playback based on service requirements. In this case, the adaptive bit rate switching feature becomes invalid.
 
 1. Set the [trackChange](../../reference/apis-media-kit/js-apis-media.md#ontrackchange12) event.
 
@@ -157,7 +157,7 @@ DASH streaming media generally include multiple audio, video, and subtitle track
 
 ## Exception Description
 
-If the network is disconnected when the AVPlayer is playing streaming media, the AVPlayer module handles the fault based on the returned error code, response time of the server request failure, and number of requests. If the error code type does not require a retry, the module reports the corresponding error code to the application. If the error code type requires a retry, the module initiates a maximum of 10 retries within 30 seconds. If the number of retries exceeds 10 or the total retry duration exceeds 30 seconds, the module reports the corresponding error code to the application. If the retry is successful, the module continues the playback.
+If the network is disconnected when the AVPlayer is playing streaming media, the AVPlayer module handles the fault based on the returned error code, server response time, and number of requests. If the error code type does not require a retry, the module reports the corresponding error code to the application. If the error code type requires a retry, the module initiates a maximum of 10 retries within 30 seconds. If the number of retries exceeds 10 or the total retry duration exceeds 30 seconds, the module reports the corresponding error code to the application. If the retry is successful, the module continues the playback.
 
 ## Sample Code
 

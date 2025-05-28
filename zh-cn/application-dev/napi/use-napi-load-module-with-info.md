@@ -5,10 +5,7 @@ Node-API中的napi_load_module_with_info接口的功能是进行模块的加载�
 ## 函数说明
 
 ```cpp
-napi_status napi_load_module_with_info(napi_env env,
-                                       const char* path,
-                                       const char* module_info,
-                                       napi_value* result);
+napi_status napi_load_module_with_info(napi_env env, const char* path, const char* module_info, napi_value* result);
 ```
 
 | 参数            | 说明          |
@@ -22,7 +19,6 @@ napi_status napi_load_module_with_info(napi_env env,
 >
 > 1. bundleName表示AppScope/app.json5中配置的工程名；
 > 2. moduleName指的是待加载模块所在的HAP下module.json5中配置的名字；
-> 3. [napi_load_module](use-napi-load-module.md)只局限于在主线程中进行模块加载。
 
 ## napi_load_module_with_info支持的场景
 
@@ -42,7 +38,7 @@ napi_status napi_load_module_with_info(napi_env env,
 > 3. 如果在HAP/HSP中直接或间接使用了三方包，该三方包中使用napi_load_module_with_info接口加载其他模块A，则需要在HAP/HSP中也添加A的依赖。
 
 ## 异常场景
-1. 加载hsp失败，返回错误码`napi_generic_failure`。
+1. 例如当hsp的moduleName错误时，会导致加载hsp失败，返回错误码`napi_generic_failure`。
 2. 在模块加载过程中，若出现链接关系错误或包内未找到对应文件等问题，该API将抛出referenceError异常，并返回错误码`napi_pending_exception`。
 3. 系统侧发生非预期行为导致加载模块无法正常执行，将抛出cppcrash。
 
@@ -81,16 +77,19 @@ export {value, test};
 
     > **注意**
     >
-    >开启useNormalizedOHMUrl后（即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true），加载模块内文件路径时：1. bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。2. 路径需要以packageName开头，packageName指的是模块的oh-package.json5中配置的name字段。
+    > 开启useNormalizedOHMUrl后（即将工程目录中与entry同级别的应用级build-profile.json5文件中strictMode属性的useNormalizedOHMUrl字段配置为true），加载模块内文件路径时：
+    >
+    > 1. bundleName不会影响最终加载逻辑，会智能通过module名索引进程内对应的hap，例如：工程的bundleName为com.example.application，实际入参时填写为 com.example.application1，模块也能正常加载。
+    > 2. 路径需要以packageName开头，packageName指的是模块的oh-package.json5中配置的name字段。
 
 
-    ```cpp
+    ~~~c++
     static napi_value loadModule(napi_env env, napi_callback_info info) {
         napi_value result;
         // 1. 使用napi_load_module_with_info加载Test文件中的模块
         napi_status status = napi_load_module_with_info(env, "entry/src/main/ets/Test", "com.example.application/entry", &result);
         if (status != napi_ok) {
-           return nullptr;
+        return nullptr;
         }
 
         napi_value testFn;
@@ -107,20 +106,20 @@ export {value, test};
         napi_get_property(env, result, key, &value);
         return result;
     }
-    ```
+    ~~~
 
 - **加载源码HAR模块**
 
 HAR包Index.ets文件如下：
 
-    ```javascript
-    //library Index.ets
-    let value = 123;
-    function test() {
-        console.log("Hello OpenHarmony");
-    }
-    export {value, test};
-    ```
+```javascript
+//library Index.ets
+let value = 123;
+function test() {
+    console.log("Hello OpenHarmony");
+}
+export {value, test};
+```
 
 1. 在oh-package.json5文件中配置dependencies项：
 
@@ -157,6 +156,72 @@ HAR包Index.ets文件如下：
         napi_status status = napi_load_module_with_info(env, "library", "com.example.application/entry", &result);
         if (status != napi_ok) {
            return nullptr;
+        }
+    
+        napi_value testFn;
+        // 2. 使用napi_get_named_property获取test函数
+        napi_get_named_property(env, result, "test", &testFn);
+        // 3. 使用napi_call_function调用函数test
+        napi_call_function(env, result, testFn, 0, nullptr, nullptr);
+    
+        napi_value value;
+        napi_value key;
+        std::string keyStr = "value";
+        napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
+        // 4. 使用napi_get_property获取变量value
+        napi_get_property(env, result, key, &value);
+        return result;
+    }
+    ```
+
+- **加载源码HSP模块**
+
+HSP包Index.ets文件如下：
+
+```javascript
+//hsp Index.ets
+let value = 123;
+function test() {
+    console.log("Hello World");
+}
+export {value, test};
+```
+
+1. 在oh-package.json5文件中配置dependencies项：
+
+    ```json
+    {
+        "dependencies": {
+            "hsp": "file:../hsp"
+        }
+    }
+    ```
+
+2. 在使用hsp的模块中，对build-profile.json5进行配置：
+
+    ```json
+    {
+        "buildOption" : {
+            "arkOptions" : {
+                "runtimeOnly" : {
+                    "packages": [
+                        "hsp"
+                    ]
+                }
+            }
+        }
+    }
+    ```
+
+3. 使用napi_load_module_with_info加载hsp，调用函数test以及获取变量value：
+
+    ```cpp
+    static napi_value loadModule(napi_env env, napi_callback_info info) {
+        napi_value result;
+        // 1. 使用napi_load_module_with_info加载hsp
+        napi_status status = napi_load_module_with_info(env, "hsp", "com.example.application/entry", &result);
+        if (status != napi_ok) {
+            return nullptr;
         }
 
         napi_value testFn;
@@ -213,7 +278,7 @@ HAR包Index.ets文件如下：
         if (status != napi_ok) {
            return nullptr;
         }
-
+    
         napi_value key;
         std::string keyStr = "DEFAULT";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
@@ -262,14 +327,14 @@ HAR包Index.ets文件如下：
         if (status != napi_ok) {
            return nullptr;
         }
-
+    
         napi_value key;
         std::string keyStr = "default";
         napi_create_string_utf8(env, keyStr.c_str(), keyStr.size(), &key);
         // 2. 使用napi_get_property获取default对象
         napi_value defaultValue;
         napi_get_property(env, result, key, &defaultValue);
-
+    
         napi_value stringifyFn;
         // 3. 使用napi_get_named_property获取stringify函数
         napi_get_named_property(env, defaultValue, "stringify", &stringifyFn);
@@ -278,7 +343,7 @@ HAR包Index.ets文件如下：
         std::string text = "call json5 stringify";
         napi_create_string_utf8(env, text.c_str(), text.size(), &argStr);
         napi_value args[1] = {argStr};
-
+    
         napi_value returnValue;
         napi_call_function(env, defaultValue, stringifyFn, 1, args, &returnValue);
         return result;
@@ -358,7 +423,7 @@ export const add: (a: number, b: number) => number;
     ```cpp
     static constexpr int INT_NUM_2 = 2; // int类型数值2
     static constexpr int INT_NUM_3 = 3; // int类型数值3
-
+    
     static napi_value loadModule(napi_env env, napi_callback_info info) {
         napi_value result;
         // 1. 使用napi_load_module_with_info加载libentry.so
@@ -366,11 +431,11 @@ export const add: (a: number, b: number) => number;
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value addFn;
         // 2. 使用napi_get_named_property获取add函数
         napi_get_named_property(env, result, "add", &addFn);
-
+    
         napi_value a;
         napi_value b;
         napi_create_int32(env, INT_NUM_2, &a);
@@ -432,13 +497,13 @@ export {value, test};
         if (status != napi_ok) {
             return nullptr;
         }
-
+    
         napi_value testFn;
         // 2. 使用napi_get_named_property获取test函数
         napi_get_named_property(env, result, "test", &testFn);
         // 3. 使用napi_call_function调用函数test
         napi_call_function(env, result, testFn, 0, nullptr, nullptr);
-
+    
         napi_value value;
         napi_value key;
         std::string keyStr = "value";

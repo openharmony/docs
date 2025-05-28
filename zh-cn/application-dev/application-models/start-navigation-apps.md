@@ -55,42 +55,61 @@ startAbilityByType接口中type字段为navigation，支持路线规划、导航
 
 
     ```ts
-    let context = getContext(this) as common.UIAbilityContext;
-    let wantParam: Record<string, Object> = {
-      'sceneType': 1,
-      'destinationLatitude': 32.060844,
-      'destinationLongitude': 118.78315,
-      'destinationName': 'xx市xx路xx号',
-      'destinationPoiIds': {
-          1: '1111',  // key为1代表花瓣地图，value需为花瓣地图POI
-          2: '2222'   // key为2代表高德地图，value需为高德地图POI
-      } as Record<number, string>,
-      'originName': 'xx市xx公园',
-      'originLatitude': 31.060844,
-      'originLongitude': 120.78315,
-      'originPoiIds': {
-          1: '3333',  // key为1代表花瓣地图，value需为花瓣地图POI
-          2: '4444'   // key为2代表高德地图，value需为高德地图POI
-      } as Record<number, string>,
-      'vehicleType': 0
-    };
-    let abilityStartCallback: common.AbilityStartCallback = {
-      onError: (code: number, name: string, message: string) => {
-        console.log(`onError code ${code} name: ${name} message: ${message}`);
-      },
-      onResult: (result)=>{
-        console.log(`onResult result: ${JSON.stringify(result)}`);
-      }
-    }
-    
-    context.startAbilityByType("navigation", wantParam, abilityStartCallback, 
-        (err) => {
-            if (err) {
-                console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
-            } else {
-                console.log(`success`);
-            }
-    });
+	@Entry
+	@Component
+	struct Index {
+	@State hideAbility: string = 'hideAbility'
+
+		build() {
+			Row() {
+				Column() {
+					Text(this.hideAbility)
+						.fontSize(30)
+						.fontWeight(FontWeight.Bold)
+						.onClick(() => {
+							let context = this.getUIContext().getHostContext() as common.UIAbilityContext;
+							let wantParam: Record<string, Object> = {
+								'sceneType': 1,
+								'destinationLatitude': 32.060844,
+								'destinationLongitude': 118.78315,
+								'destinationName': 'xx市xx路xx号',
+								'destinationPoiIds': {
+									1: '1111', // key为1代表花瓣地图，value需为花瓣地图POI
+									2: '2222'   // key为2代表高德地图，value需为高德地图POI
+								} as Record<number, string>,
+								'originName': 'xx市xx公园',
+								'originLatitude': 31.060844,
+								'originLongitude': 120.78315,
+								'originPoiIds': {
+									1: '3333', // key为1代表花瓣地图，value需为花瓣地图POI
+									2: '4444'   // key为2代表高德地图，value需为高德地图POI
+								} as Record<number, string>,
+								'vehicleType': 0
+							};
+							let abilityStartCallback: common.AbilityStartCallback = {
+								onError: (code: number, name: string, message: string) => {
+									console.log(`onError code ${code} name: ${name} message: ${message}`);
+								},
+								onResult: (result) => {
+									console.log(`onResult result: ${JSON.stringify(result)}`);
+								}
+							}
+
+							context.startAbilityByType("navigation", wantParam, abilityStartCallback,
+								(err) => {
+									if (err) {
+										console.error(`startAbilityByType fail, err: ${JSON.stringify(err)}`);
+									} else {
+										console.log(`success`);
+									}
+								});
+						});
+				}
+				.width('100%')
+			}
+			.height('100%')
+		}
+	}
     ```
     效果示例图：
 

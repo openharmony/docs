@@ -64,6 +64,9 @@ Grid布局选项。其中，irregularIndexes和onGetIrregularSizeByIndex可对�
 ## 属性
 
 除支持[通用属性](ts-component-general-attributes.md)和[滚动组件通用属性](ts-container-scrollable-common.md#属性)外，还支持以下属性：
+> **说明：** 
+>
+> Grid组件使用通用属性[clip<sup>12+</sup>](ts-universal-attributes-sharp-clipping.md#clip12)和通用属性[clip<sup>18+</sup>](ts-universal-attributes-sharp-clipping.md#clip18)时默认值都为true。
 
 ### columnsTemplate
 
@@ -484,6 +487,22 @@ alignItems(alignment: Optional\<GridItemAlignment\>)
 | ---------- | ------ | ---- | ------------------------------- |
 | alignment | Optional\<[GridItemAlignment](#griditemalignment12枚举说明)\> | 是   | 设置Grid中GridItem的对齐方式。<br/>默认值：GridItemAlignment.DEFAULT |
 
+### focusWrapMode<sup>20+</sup>
+
+focusWrapMode(mode: Optional\<FocusWrapMode\>)
+
+设置方向键走焦模式。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型                                                         | 必填 | 说明                                                         |
+| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| mode   | Optional\<[FocusWrapMode](ts-appendix-enums.md#focuswrapmode20)\> | 是   | 交叉轴方向键走焦模式。<br/>默认值：FocusWrapMode.DEFAULT<br/>**说明：** <br/>异常值按默认值处理，即交叉轴方向键不能换行。 |
+
 ## GridItemAlignment<sup>12+</sup>枚举说明
 
 GridItem的对齐方式枚举。
@@ -519,10 +538,6 @@ GridItem的对齐方式枚举。
 | Column |  1  | 主轴布局方向沿垂直方向布局，即自上往下先填满一列，再去填下一列。 |
 | RowReverse    |  2  | 主轴布局方向沿水平方向反向布局，即自右往左先填满一行，再去填下一行。 |
 | ColumnReverse   |  3  | 主轴布局方向沿垂直方向反向布局，即自下往上先填满一列，再去填下一列。 |
-
-> **说明：** 
->
-> Grid组件[通用属性clip](ts-universal-attributes-sharp-clipping.md)的默认值为true。
 
 ## 事件
 
@@ -763,12 +778,12 @@ onScroll(event: (scrollOffset: number, scrollState: [ScrollState](ts-container-l
 | totalOffset | number | 否 | 否 |  Grid内容相对显示区域的总偏移，单位px。    |
 | totalLength   | number | 否 | 否 |  Grid内容总长度，单位px。    |
 
-## UIGridEvent<sup>18+</sup>
-frameNode中[getEvent('Grid')](../js-apis-arkui-frameNode.md#geteventgrid18)方法的返回值，可用于给Grid节点设置滚动事件。
+## UIGridEvent<sup>19+</sup>
+frameNode中[getEvent('Grid')](../js-apis-arkui-frameNode.md#geteventgrid19)方法的返回值，可用于给Grid节点设置滚动事件。
 
-UIGridEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent18)。
+UIGridEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent19)。
 
-### setOnWillScroll<sup>18+</sup>
+### setOnWillScroll<sup>19+</sup>
 
 setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 
@@ -776,7 +791,7 @@ setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -786,7 +801,7 @@ setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
 
-### setOnDidScroll<sup>18+</sup>
+### setOnDidScroll<sup>19+</sup>
 
 setOnDidScroll(callback: OnScrollCallback | undefined): void
 
@@ -794,7 +809,7 @@ setOnDidScroll(callback: OnScrollCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -804,7 +819,7 @@ setOnDidScroll(callback: OnScrollCallback | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
 
-### setOnScrollIndex<sup>18+</sup>
+### setOnScrollIndex<sup>19+</sup>
 
 setOnScrollIndex(callback: OnGridScrollIndexCallback | undefined): void
 
@@ -812,7 +827,7 @@ setOnScrollIndex(callback: OnGridScrollIndexCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -820,14 +835,14 @@ setOnScrollIndex(callback: OnGridScrollIndexCallback | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [OnGridScrollIndexCallback](#ongridscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+| callback  | [OnGridScrollIndexCallback](#ongridscrollindexcallback19)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
 
-## OnGridScrollIndexCallback<sup>18+</sup>
+## OnGridScrollIndexCallback<sup>19+</sup>
 type OnGridScrollIndexCallback = (first: number, last: number) => void
 
 Grid组件可见区域item变化事件的回调类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -847,26 +862,26 @@ Grid组件可见区域item变化事件的回调类型。
 @Entry
 @Component
 struct GridExample {
-  @State numbers1: String[] = ['0', '1', '2', '3', '4']
-  @State numbers2: String[] = ['0', '1','2','3','4','5']
-
+  @State numbers1: String[] = ['0', '1', '2', '3', '4'];
+  @State numbers2: String[] = ['0', '1', '2', '3', '4', '5'];
   layoutOptions3: GridLayoutOptions = {
     regularSize: [1, 1],
     onGetRectByIndex: (index: number) => {
-      if (index == 0)
-        return [0, 0, 1, 1]
-      else if(index==1)
-        return [0, 1, 2, 2]
-      else if(index==2)
-        return [0 ,3 ,3 ,3]
-      else if(index==3)
-        return [3, 0, 3, 3]
-      else if(index==4)
-        return [4, 3, 2, 2]
-      else
-        return [5, 5, 1, 1]
+      if (index == 0) {
+        return [0, 0, 1, 1];
+      } else if (index == 1) {
+        return [0, 1, 2, 2];
+      } else if (index == 2) {
+        return [0, 3, 3, 3];
+      } else if (index == 3) {
+        return [3, 0, 3, 3];
+      } else if (index == 4) {
+        return [4, 3, 2, 2];
+      } else {
+        return [5, 5, 1, 1];
+      }
     }
-  }
+  };
 
   build() {
     Column({ space: 5 }) {
@@ -984,8 +999,8 @@ import { GridDataSource } from './GridDataSource';
 @Component
 struct GridExample {
   numbers: GridDataSource = new GridDataSource([]);
-  scroller: Scroller = new Scroller()
-  @State gridPosition: number = 0 //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
+  scroller: Scroller = new Scroller();
+  @State gridPosition: number = 0; //0代表滚动到grid顶部，1代表中间值，2代表滚动到grid底部。
 
   aboutToAppear() {
     let list: string[] = [];
@@ -1027,35 +1042,35 @@ struct GridExample {
       .backgroundColor(0xFAEEE0)
       .height(300)
       .onScrollIndex((first: number, last: number) => {
-        console.info(first.toString())
-        console.info(last.toString())
+        console.info(first.toString());
+        console.info(last.toString());
       })
       .onScrollBarUpdate((index: number, offset: number) => {
-        console.info("XXX" + 'Grid onScrollBarUpdate,index : ' + index.toString() + ",offset" + offset.toString())
-        return { totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4 }
+        console.info("XXX" + 'Grid onScrollBarUpdate,index : ' + index.toString() + ",offset" + offset.toString());
+        return { totalOffset: (index / 5) * (80 + 10) - offset, totalLength: 80 * 5 + 10 * 4 };
       })  //只适用于当前示例代码数据源，如果数据源有变化，则需要修改该部分代码，或者删掉此属性
       .onDidScroll((scrollOffset: number, scrollState: ScrollState) => {
-        console.info(scrollOffset.toString())
-        console.info(scrollState.toString())
+        console.info(scrollOffset.toString());
+        console.info(scrollState.toString());
       })
       .onScrollStart(() => {
-        console.info("XXX" + "Grid onScrollStart")
+        console.info("XXX" + "Grid onScrollStart");
       })
       .onScrollStop(() => {
-        console.info("XXX" + "Grid onScrollStop")
+        console.info("XXX" + "Grid onScrollStop");
       })
       .onReachStart(() => {
-        this.gridPosition = 0
-        console.info("XXX" + "Grid onReachStart")
+        this.gridPosition = 0;
+        console.info("XXX" + "Grid onReachStart");
       })
       .onReachEnd(() => {
-        this.gridPosition = 2
-        console.info("XXX" + "Grid onReachEnd")
+        this.gridPosition = 2;
+        console.info("XXX" + "Grid onReachEnd");
       })
 
       Button('next page')
         .onClick(() => { // 点击后滑到下一页
-          this.scroller.scrollPage({ next: true })
+          this.scroller.scrollPage({ next: true });
         })
     }.width('100%').margin({ top: 5 })
   }
@@ -1077,22 +1092,22 @@ import { GridDataSource } from './GridDataSource';
 @Component
 struct GridExample {
   numbers: GridDataSource = new GridDataSource([]);
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
   layoutOptions1: GridLayoutOptions = {
     regularSize: [1, 1],        // 只支持[1, 1]
     irregularIndexes: [0, 6],   // 索引为0和6的GridItem占用一行
-  }
+  };
 
   layoutOptions2: GridLayoutOptions = {
     regularSize: [1, 1],
     irregularIndexes: [0, 7],   // 索引为0和7的GridItem占用的列数由onGetIrregularSizeByIndex指定
     onGetIrregularSizeByIndex: (index: number) => {
       if (index === 0) {
-        return [1, 5]
+        return [1, 5];
       }
-      return [1, index % 6 + 1]
+      return [1, index % 6 + 1];
     }
-  }
+  };
 
   aboutToAppear() {
     let list: string[] = [];
@@ -1166,14 +1181,14 @@ import { GridDataSource } from './GridDataSource';
 @Entry
 @Component
 struct GridExample {
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
   numbers: GridDataSource = new GridDataSource([]);
-  @State translateY: number = 0
-  private scroller: Scroller = new Scroller()
-  private gridScroller: Scroller = new Scroller()
-  private touchDown: boolean = false
-  private listTouchDown: boolean = false
-  private scrolling: boolean = false
+  @State translateY: number = 0;
+  private scroller: Scroller = new Scroller();
+  private gridScroller: Scroller = new Scroller();
+  private touchDown: boolean = false;
+  private listTouchDown: boolean = false;
+  private scrolling: boolean = false;
 
   aboutToAppear() {
     let list: string[] = [];
@@ -1270,9 +1285,9 @@ struct GridExample {
               })
               .onTouch((event: TouchEvent) => {
                 if (event.type == TouchType.Down) {
-                  this.listTouchDown = true
+                  this.listTouchDown = true;
                 } else if (event.type == TouchType.Up) {
-                  this.listTouchDown = false
+                  this.listTouchDown = false;
                 }
               })
             }
@@ -1281,31 +1296,31 @@ struct GridExample {
           .edgeEffect(EdgeEffect.None)
           .onTouch((event: TouchEvent) => {
             if (event.type == TouchType.Down) {
-              this.touchDown = true
+              this.touchDown = true;
             } else if (event.type == TouchType.Up) {
-              this.touchDown = false
+              this.touchDown = false;
             }
           })
           .onScrollFrameBegin((offset: number, state: ScrollState) => {
             if (this.scrolling && offset > 0) {
-              let newOffset = this.scroller.currentOffset().yOffset
+              let newOffset = this.scroller.currentOffset().yOffset;
               if (newOffset >= 590) {
-                this.gridScroller.scrollBy(0, offset)
-                return { offsetRemain: 0 }
+                this.gridScroller.scrollBy(0, offset);
+                return { offsetRemain: 0 };
               } else if (newOffset + offset > 590) {
-                this.gridScroller.scrollBy(0, newOffset + offset - 590)
-                return { offsetRemain: 590 - newOffset }
+                this.gridScroller.scrollBy(0, newOffset + offset - 590);
+                return { offsetRemain: 590 - newOffset };
               }
             }
-            return { offsetRemain: offset }
+            return { offsetRemain: offset };
           })
           .onScrollStart(() => {
             if (this.touchDown && !this.listTouchDown) {
-              this.scrolling = true
+              this.scrolling = true;
             }
           })
           .onScrollStop(() => {
-            this.scrolling = false
+            this.scrolling = false;
           })
         }
         .width('100%')
@@ -1325,8 +1340,8 @@ struct GridExample {
       .shadow({ radius: 10, color: '#909399', offsetX: 1, offsetY: 1 })
       .margin({ right: 22, bottom: 15 })
       .onClick(() => {
-        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 })
-        this.gridScroller.scrollTo({ xOffset: 0, yOffset: 0 })
+        this.scroller.scrollTo({ xOffset: 0, yOffset: 0 });
+        this.gridScroller.scrollTo({ xOffset: 0, yOffset: 0 });
       })
     }
     .align(Alignment.BottomEnd)
@@ -1354,8 +1369,8 @@ import { GridDataSource } from './GridDataSource';
 @Component
 struct GridExample {
   numbers: GridDataSource = new GridDataSource([]);
-  scroller: Scroller = new Scroller()
-  @State text: string = 'drag'
+  scroller: Scroller = new Scroller();
+  @State text: string = 'drag';
 
   @Builder pixelMapBuilder() { //拖拽过程样式
     Column() {
@@ -1403,15 +1418,15 @@ struct GridExample {
       .editMode(true) //设置Grid是否进入编辑模式，进入编辑模式可以拖拽Grid组件内部GridItem
       .onItemDragStart((event: ItemDragInfo, itemIndex: number) => { //第一次拖拽此事件绑定的组件时，触发回调。
         this.text = this.numbers.getData(itemIndex);
-        return this.pixelMapBuilder() //设置拖拽过程中显示的图片。
+        return this.pixelMapBuilder(); //设置拖拽过程中显示的图片。
       })
       .onItemDrop((event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => { //绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。
         // isSuccess=false时，说明drop的位置在grid外部；insertIndex > length时，说明有新增元素的事件发生
         if (!isSuccess || insertIndex >= this.numbers.totalCount()) {
-          return
+          return;
         }
-        console.info('beixiang' + itemIndex + '', insertIndex + '') //itemIndex拖拽起始位置，insertIndex拖拽插入位置
-        this.changeIndex(itemIndex, insertIndex)
+        console.info('beixiang' + itemIndex + '', insertIndex + ''); //itemIndex拖拽起始位置，insertIndex拖拽插入位置
+        this.changeIndex(itemIndex, insertIndex);
       })
     }.width('100%').margin({ top: 5 })
   }
@@ -1497,12 +1512,12 @@ import { GridDataSource } from './GridDataSource';
 @Component
 struct GridExample {
   numbers: GridDataSource = new GridDataSource([]);
-  @State columns: number = 2
+  @State columns: number = 2;
 
   aboutToAppear() {
-    let lastCount = AppStorage.get<number>('columnsCount')
+    let lastCount = AppStorage.get<number>('columnsCount');
     if (typeof lastCount != 'undefined') {
-      this.columns = lastCount
+      this.columns = lastCount;
     }
 
     let list: string[] = [];
@@ -1550,16 +1565,16 @@ struct GridExample {
       .priorityGesture(
         PinchGesture()
           .onActionEnd((event: GestureEvent) => {
-            console.info('end scale:' + event.scale)
+            console.info('end scale:' + event.scale);
             // 手指分开，减少列数以放大Item，触发阈值可以自定义，示例为2
             if (event.scale > 2) {
-              this.columns--
+              this.columns--;
             } else if (event.scale < 0.6) {
-              this.columns++
+              this.columns++;
             }
             // 可以根据设备屏幕宽度设定最大和最小列数，此处以最小1列最大4列为例
             this.columns = Math.min(4, Math.max(1, this.columns));
-            AppStorage.setOrCreate<number>('columnsCount', this.columns)
+            AppStorage.setOrCreate<number>('columnsCount', this.columns);
           })
       )
     }.width('100%').margin({ top: 5 })
@@ -1576,9 +1591,9 @@ struct GridExample {
 @Entry
 @Component
 struct GridColumnsTemplate {
-  data: number[] = [0, 1, 2, 3, 4, 5]
-  data1: number[] = [0, 1, 2, 3, 4, 5]
-  data2: number[] = [0, 1, 2, 3, 4, 5]
+  data: number[] = [0, 1, 2, 3, 4, 5];
+  data1: number[] = [0, 1, 2, 3, 4, 5];
+  data2: number[] = [0, 1, 2, 3, 4, 5];
 
   build() {
     Column({ space: 10 }) {
@@ -1657,14 +1672,14 @@ struct Index {
     let list: string[] = [];
     for (let i = 0; i < 100; i++) {
       list.push(i.toString());
-      this.items.push(this.getSize())
+      this.items.push(this.getSize());
     }
     this.data= new GridDataSource(list);
   }
 
   getSize() {
-    let ret = Math.floor(Math.random() * 5)
-    return Math.max(1, ret)
+    let ret = Math.floor(Math.random() * 5);
+    return Math.max(1, ret);
   }
 
   build() {
@@ -1709,17 +1724,18 @@ struct Index {
 通过[fadingEdge](ts-container-scrollable-common.md#fadingedge14)属性来设置边缘渐隐效果。
 
 <!--code_no_check-->
+
 ```ts
 // xxx.ets
 //该示例实现了Grid组件开启边缘渐隐效果并设置边缘渐隐长度
-import { LengthMetrics } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI';
 import { GridDataSource } from './GridDataSource';
 
 @Entry
 @Component
 struct GridExample {
   numbers: GridDataSource = new GridDataSource([]);
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
 
   aboutToAppear() {
     let list: string[] = [];
@@ -1772,7 +1788,7 @@ import { GridDataSource } from './GridDataSource';
 @Component
 struct GridExample {
   numbers: GridDataSource = new GridDataSource([]);
-  scroller: Scroller = new Scroller()
+  scroller: Scroller = new Scroller();
 
   aboutToAppear() {
     let list: string[] = [];
@@ -1812,3 +1828,89 @@ struct GridExample {
 ```
 
 ![edgeEffect_grid](figures/edgeEffect_grid.gif)
+
+### 示例12（方向键走焦换行模式）
+
+该示例通过focusWrapMode接口，实现了Grid组件方向键走焦换行效果。
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct GridExample {
+  scroller: Scroller = new Scroller()
+  build() {
+    Column() {
+      Grid(this.scroller) {
+        GridItem() {
+          Text('A')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('B')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('C')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('D')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('E')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+        GridItem() {
+          Text('F')
+            .focusable(true)
+            .fontSize(18)
+            .fontWeight(5)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(80)
+            .textAlign(TextAlign.Center)
+        }
+      }
+      .focusWrapMode(FocusWrapMode.WRAP_WITH_ARROW)
+      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+      .columnsGap(10)
+      .rowsGap(20)
+      .backgroundColor(0xDCDCDC)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![edgeEffect_grid](figures/gridFocus.gif)

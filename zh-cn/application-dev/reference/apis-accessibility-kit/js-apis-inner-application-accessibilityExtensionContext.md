@@ -30,64 +30,64 @@ class EntryAbility extends AccessibilityExtensionAbility {
 
 ### 属性
 
-| 名称                   | 类型                                                                 | 可读  | 可写  | 说明                  |
-|----------------------|--------------------------------------------------------------------|-----|-----| ------------------- |
-| accessibilityFocused | boolean                                                            | 是   | 否   |   accessibility焦点状态。   |
-| accessibilityText<sup>12+</sup> | string                                                  | 是   | 否   | 元素的无障碍文本信息。 |
-| bundleName           | string                                                             | 是   | 否   | 应用包名。 |
-| checkable            | boolean                                                            | 是   | 否   | 元素是否可查。 |
-| checked              | boolean                                                            | 是   | 否   | 元素是否被检查。 |
-| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | 是   | 否   | 所有子元素。 |
-| clickable            | boolean                                                            | 是   | 否   | 是否可点击。 |
-| componentId          | number                                                             | 是   | 否   | 元素所属的组件ID。 |
-| componentType        | string                                                             | 是   | 否   | 元素所属的组件类型。 |
-| contents             | Array&lt;string&gt;                                                | 是   | 否   | 内容。 |
-| currentIndex         | number                                                             | 是   | 否   | 当前项的索引。 |
-| description          | string                                                             | 是   | 否   | 元素的描述信息。 |
-| editable             | boolean                                                            | 是   | 否   | 元素是否可编辑。 |
-| endIndex             | number                                                             | 是   | 否   | 屏幕最后显示项的列表索引。 |
-| error                | string                                                             | 是   | 否   | 错误状态字符串。 |
-| focusable            | boolean                                                            | 是   | 否   | 元素是否可聚焦。 |
-| hintText             | string                                                             | 是   | 否   | 提示文本。 |
-| inputType            | number                                                             | 是   | 否   | 输入文本的类型。 |
-| inspectorKey         | string                                                             | 是   | 否   | 检查键。 |
-| isActive             | boolean                                                            | 是   | 否   | 元素是否处于活动状态。 |
-| isEnable             | boolean                                                            | 是   | 否   | 元素是否启用。 |
-| isHint               | boolean                                                            | 是   | 否   | 元素是否为提示状态。 |
-| isFocused            | boolean                                                            | 是   | 否   | 元素是否聚焦。 |
-| isPassword           | boolean                                                            | 是   | 否   | 元素是否为密码。 |
-| isVisible            | boolean                                                            | 是   | 否   | 元素是否可见。 |
-| itemCount            | number                                                             | 是   | 否   | 项目的总数。 |
-| lastContent          | string                                                             | 是   | 否   | 最后的内容。 |
-| layer                | number                                                             | 是   | 否   | 该元素的显示层。 |
-| longClickable        | boolean                                                            | 是   | 否   | 元素是否可长单击。 |
-| pageId               | number                                                             | 是   | 否   | 页码id。 |
-| parent               | [AccessibilityElement](#accessibilityelement9)                     | 是   | 否   | 元素的父元素。 |
-| pluralLineSupported  | boolean                                                            | 是   | 否   | 元素是否支持多行文本。 |
-| rect                 | [Rect](#rect)                                                      | 是   | 否   | 元素的面积。 |
-| resourceName         | string                                                             | 是   | 否   | 元素的资源名称。 |
-| rootElement          | [AccessibilityElement](#accessibilityelement9)                     | 是   | 否   | 窗口元素的根元素。 |
-| screenRect           | [Rect](#rect)                                                      | 是   | 否   | 元素的显示区域。 |
-| scrollable           | boolean                                                            | 是   | 否   | 元素是否可滚动。 |
-| selected             | boolean                                                            | 是   | 否   | 元素是否被选中。 |
-| startIndex           | number                                                             | 是   | 否   | 在屏幕上的第一个项目的列表索引。 |
-| text                 | string                                                             | 是   | 否   | 元素的文本。 |
-| textLengthLimit      | number                                                             | 是   | 否   | 元素文本的最大长度限制。 |
-| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit) | 是   | 否   | 文本被读取时的移动单位。 |
-| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)         | 是   | 否   | 触发元素事件的动作。 |
-| type                 | [WindowType](#windowtype)                                          | 是   | 否   | 元素的窗口类型。 |
-| valueMax             | number                                                             | 是   | 否   | 最大值。 |
-| valueMin             | number                                                             | 是   | 否   | 最小值。|
-| valueNow             | number                                                             | 是   | 否   | 当前值。 |
-| windowId             | number                                                             | 是   | 否   | 窗口id。 |
-| textType<sup>12+</sup>             | string                                                             | 是   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置。 |
-| offset<sup>12+</sup>             | number                                                             | 是   | 否   | 对于可滚动类控件，如List、Grid，内容区相对控件的顶部坐标滚动的像素偏移量。 |
-| hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | 是   | 否   | 元素的可触摸区域。 |
-| customComponentType<sup>18+</sup>             | string                                                             | 是   | 否   | 自定义组件类型。 |
-| accessibilityNextFocusId<sup>18+</sup>             | number                | 是   | 否   | 下一个要聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。 |
-| accessibilityPreviousFocusId<sup>18+</sup>             | number                | 是   | 否   | 上一个聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。 |
-| extraInfo<sup>18+</sup>             | string     | 是   | 否   | 扩展属性，用于定义一些特定组件的属性，包含：<br>- CheckboxGroupSelectedStatus：表示CheckboxGroup组件的选中状态，其中取值0表示已选中，取值1表示部分选中，取值2表示未选中。<br>- Row：Grid组件中聚焦item的行信息，表示该item在第几行。<br>- Column：Grid组件中聚焦的item的列，表示该item在第几列。<br>- ListItemIndex：List组件中聚焦item的行信息，表示当前该item在第几行。<br>- SideBarContainerStates：表示可展开类组件（SideBarContainer、Select）的展开状态，其中取值0表示收起态，取值1表示展开态。<br>- ToggleType：表示Toggle组件的具体类型，其中取值0表示Checkbox，取值1表示Switch，取值2表示Button。<br>- BindSheet：表示BindSheet组件的状态，其中取值0表示状态高，取值1表示状态中，取值2表示状态低。<br>- hasRegisteredHover：表示组件是否注册了onAccessibilityHover事件回调，取值为1表示组件注册了事件回调，若未注册不会使用该字段。<br>- direction：表示list组件的布局方向，其中取值"vertical"表示竖向，取值"horizontal"表示横向。<br>- expandedState：表示list组件中listItem的展开状态，其中取值"expanded"表示展开态，取值"collapsed"表示收起态。|
-| accessibilityScrollable<sup>18+</sup>             | boolean                 | 是   | 否   | 无障碍模式下元素是否滚动，优先级高于scrollable。其中，true表示可滚动，false表示不可滚动，默认值为true。|
+| 名称                   | 类型                                                              | 只读 | 可选 | 说明              |
+|----------------------|--------------------------------------------------------------------|------|------|-------------------|
+| accessibilityFocused | boolean                                                            | 否   | 否   | 表示元素是否处于无障碍焦点状态。true表示元素当前处于无障碍焦点状态，false表示元素当前不处于无障碍焦点状态，默认值为false。|
+| accessibilityText<sup>12+</sup> | string                                                  | 否   | 否   | 元素的无障碍文本信息。 |
+| bundleName           | string                                                             | 否   | 否   | 应用包名。 |
+| checkable            | boolean                                                            | 否   | 否   | 表示元素是否支持点击操作。true表示元素支持点击操作，false表示元素不支持点击操作，默认值为false。 |
+| checked              | boolean                                                            | 否   | 否   | 表示元素当前的可点击状态。true表示元素当前是可点击的，false表示元素当前是不可点击的，默认值为false。 |
+| children             | Array&lt;[AccessibilityElement](#accessibilityelement9)&gt;        | 否   | 否   | 所有子元素。 |
+| clickable            | boolean                                                            | 否   | 否   | 表示元素是否可点击。true表示元素可点击，false表示元素不可点击，默认值为false。|
+| componentId          | number                                                             | 否   | 否   | 元素所属的组件ID。默认值为-1。|
+| componentType        | string                                                             | 否   | 否   | 元素所属的组件类型。 |
+| contents             | Array&lt;string&gt;                                                | 否   | 否   | 内容。 |
+| currentIndex         | number                                                             | 否   | 否   | 当前项的索引。默认值为0。|
+| description          | string                                                             | 否   | 否   | 元素的描述信息。 |
+| editable             | boolean                                                            | 否   | 否   | 表示元素是否可编辑。true表示元素可编辑，false表示元素不可编辑，默认值为false。 |
+| endIndex             | number                                                             | 否   | 否   | 屏幕最后显示项的列表索引。默认值为0。 |
+| error                | string                                                             | 否   | 否   | 错误状态字符串。 |
+| focusable            | boolean                                                            | 否   | 否   | 表示元素是否可聚焦。true表示元素可聚焦，false表示元素不可聚焦，默认值为false。 |
+| hintText             | string                                                             | 否   | 否   | 提示文本。 |
+| inputType            | number                                                             | 否   | 否   | 输入文本的类型。默认值为0。 |
+| inspectorKey         | string                                                             | 否   | 否   | 检查键。 |
+| isActive             | boolean                                                            | 否   | 否   | 表示元素是否处于活动状态。true表示元素处于活动状态，false表示元素不处于活动状态，默认值为true。 |
+| isEnable             | boolean                                                            | 否   | 否   | 表示元素是否启用。true表示元素已启用，false表示元素未启用，默认值为false。 |
+| isHint               | boolean                                                            | 否   | 否   | 表示元素是否为提示状态。true表示元素处于提示状态，false表示元素不处于提示状态，默认值为false。 |
+| isFocused            | boolean                                                            | 否   | 否   | 表示元素是否聚焦。true表示元素处于聚焦状态，false表示元素不处于聚焦状态，默认值为false。 |
+| isPassword           | boolean                                                            | 否   | 否   | 表示元素是否为密码。true表示元素为密码，false表示元素不为密码，默认值为false。 |
+| isVisible            | boolean                                                            | 否   | 否   | 表示元素是否可见。true表示元素可见，false表示元素不可见，默认值为false。 |
+| itemCount            | number                                                             | 否   | 否   | 项目的总数。默认值为0。 |
+| lastContent          | string                                                             | 否   | 否   | 最后的内容。 |
+| layer                | number                                                             | 否   | 否   | 该元素的显示层。 |
+| longClickable        | boolean                                                            | 否   | 否   | 表示元素是否可长单击。true表示元素可长单击，false表示元素不可长单击，默认值为false。 |
+| pageId               | number                                                             | 否   | 否   | 页码id。默认值为-1。 |
+| parent               | [AccessibilityElement](#accessibilityelement9)                     | 否   | 否   | 元素的父元素。 |
+| pluralLineSupported  | boolean                                                            | 否   | 否   | 表示元素是否支持多行文本。true表示元素支持多行文本，false表示元素不支持多行文本，默认值为false。|
+| rect                 | [Rect](#rect)                                                      | 否   | 否   | 元素的面积。 |
+| resourceName         | string                                                             | 否   | 否   | 元素的资源名称。 |
+| rootElement          | [AccessibilityElement](#accessibilityelement9)                     | 否   | 否   | 窗口元素的根元素。 |
+| screenRect           | [Rect](#rect)                                                      | 否   | 否   | 元素的显示区域。 |
+| scrollable           | boolean                                                            | 否   | 否   | 表示元素是否可滚动。true表示元素可滚动，false表示元素不可滚动，默认值为false。 |
+| selected             | boolean                                                            | 否   | 否   | 表示元素是否被选中。true表示元素被选中，false表示元素未被选中，默认值为false。 |
+| startIndex           | number                                                             | 否   | 否   | 在屏幕上的第一个项目的列表索引。默认值为0。 |
+| text                 | string                                                             | 否   | 否   | 元素的文本。 |
+| textLengthLimit      | number                                                             | 否   | 否   | 元素文本的最大长度限制。 |
+| textMoveUnit         | [accessibility.TextMoveUnit](js-apis-accessibility.md#textmoveunit)| 否   | 否   | 文本被读取时的移动单位。 |
+| triggerAction        | [accessibility.Action](js-apis-accessibility.md#action)            | 否   | 否   | 触发元素事件的动作。 |
+| type                 | [WindowType](#windowtype)                                          | 否   | 否   | 元素的窗口类型。 |
+| valueMax             | number                                                             | 否   | 否   | 最大值。默认值为0。 |
+| valueMin             | number                                                             | 否   | 否   | 最小值。默认值为0。|
+| valueNow             | number                                                             | 否   | 否   | 当前值。默认值为0。 |
+| windowId             | number                                                             | 否   | 否   | 窗口ID。默认值为-1。 |
+| textType<sup>12+</sup>             | string                                                             | 否   | 否   | 元素的无障碍文本类型，由组件accessibilityTextHint属性配置。 |
+| offset<sup>12+</sup>             | number              | 是   | 否   | 对于可滚动类控件，如List、Grid，内容区相对控件的顶部坐标滚动的像素偏移量。默认值为0。 |
+| hotArea<sup>12+</sup>             | [Rect](#rect)                                                              | 否   | 否   | 元素的可触摸区域。 |
+| customComponentType<sup>18+</sup>             | string                                                             | 否   | 是   | 自定义组件类型。|
+| accessibilityNextFocusId<sup>18+</sup>             | number                | 否   | 是   | 下一个要聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。默认值为-1。 |
+| accessibilityPreviousFocusId<sup>18+</sup>             | number                | 否   | 是   | 上一个聚焦的组件ID。通过findElement('elementId')查询到的AccessibilityElementInfo对象中可获取到用户在控件上设置的该属性值。默认值为-1。 |
+| extraInfo<sup>18+</sup>             | string     | 否  | 是   | 扩展属性，用于定义一些特定组件的属性，包含：<br>- CheckboxGroupSelectedStatus：表示CheckboxGroup组件的选中状态，其中取值0表示已选中，取值1表示部分选中，取值2表示未选中。<br>- Row：Grid组件中聚焦item的行信息，表示该item在第几行。<br>- Column：Grid组件中聚焦的item的列，表示该item在第几列。<br>- ListItemIndex：List组件中聚焦item的行信息，表示当前该item在第几行。<br>- SideBarContainerStates：表示可展开类组件（SideBarContainer、Select）的展开状态，其中取值0表示收起态，取值1表示展开态。<br>- ToggleType：表示Toggle组件的具体类型，其中取值0表示Checkbox，取值1表示Switch，取值2表示Button。<br>- BindSheet：表示BindSheet组件的状态，其中取值0表示状态高，取值1表示状态中，取值2表示状态低。<br>- hasRegisteredHover：表示组件是否注册了onAccessibilityHover事件回调，取值为1表示组件注册了事件回调，若未注册不会使用该字段。<br>- direction：表示list组件的布局方向，其中取值"vertical"表示竖向，取值"horizontal"表示横向。<br>- expandedState：表示list组件中listItem的展开状态，其中取值"expanded"表示展开态，取值"collapsed"表示收起态。<br>- componentTypeDescripiton：组件类型详细信息，对componentType的补充描述。|
+| accessibilityScrollable<sup>18+</sup>             | boolean                 | 否   | 是   | 表示无障碍模式下元素是否滚动，优先级高于scrollable。其中，true表示可滚动，false表示不可滚动，默认值为true。|
 
 ## FocusDirection
 
@@ -125,12 +125,12 @@ type FocusType = 'accessibility' | 'normal'
 
 **系统能力**：以下各项对应的系统能力均为 SystemCapability.BarrierFree.Accessibility.Core
 
-| 名称     | 类型     | 可读   | 可写   | 说明        |
+| 名称     | 类型     | 只读   | 可选   | 说明        |
 | ------ | ------ | ---- | ---- | --------- |
-| left   | number | 是    | 否    | 矩形区域的左边界。 |
-| top    | number | 是    | 否    | 矩形区域的上边界。 |
-| width  | number | 是    | 否    | 矩形区域的宽度。  |
-| height | number | 是    | 否    | 矩形区域的高度。  |
+| left   | number | 否    | 否    | 矩形区域的左边界。 |
+| top    | number | 否    | 否    | 矩形区域的上边界。 |
+| width  | number | 否    | 否    | 矩形区域的宽度。  |
+| height | number | 否    | 否    | 矩形区域的高度。  |
 
 ## WindowType
 
@@ -153,7 +153,7 @@ setTargetBundleName(targetNames: Array\<string>): Promise\<void>;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -198,7 +198,7 @@ setTargetBundleName(targetNames: Array\<string>, callback: AsyncCallback\<void>)
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -244,7 +244,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -252,7 +252,7 @@ getFocusElement(isAccessibilityFocus?: boolean): Promise\<AccessibilityElement>;
 
 | 参数名                  | 类型      | 必填   | 说明                  |
 | -------------------- | ------- | ---- | ------------------- |
-| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，True表示是，False表示否，默认为否。 |
+| isAccessibilityFocus | boolean | 否    | 获取的是否是无障碍焦点元素，true表示是，false表示否，默认为否。 |
 
 **返回值：**
 | 类型                                  | 说明                     |
@@ -292,7 +292,7 @@ getFocusElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -337,7 +337,7 @@ getFocusElement(isAccessibilityFocus: boolean, callback: AsyncCallback\<Accessib
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -384,7 +384,7 @@ getWindowRootElement(windowId?: number): Promise\<AccessibilityElement>;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -433,7 +433,7 @@ getWindowRootElement(callback: AsyncCallback\<AccessibilityElement>): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -478,7 +478,7 @@ getWindowRootElement(windowId: number, callback: AsyncCallback\<AccessibilityEle
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -521,11 +521,11 @@ axContext.getWindowRootElement(windowId, (err: BusinessError, data: Accessibilit
 
 getWindows(displayId?: number): Promise\<Array\<AccessibilityElement>>;
 
-获取指定屏幕中的所有窗口, 使用Promise异步回调。
+获取指定屏幕中的所有窗口，使用Promise异步回调。
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -567,11 +567,11 @@ axContext.getWindows().then((data: AccessibilityElement[]) => {
 
 getWindows(callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定屏幕中的所有窗口，使用callback异步回调。
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -609,11 +609,11 @@ axContext.getWindows((err: BusinessError, data: AccessibilityElement[]) => {
 
 getWindows(displayId: number, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
-获取指定屏幕中的所有窗口, 使用callback异步回调。
+获取指定屏幕中的所有窗口，使用callback异步回调。
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -655,7 +655,7 @@ injectGesture(gesturePath: GesturePath): Promise\<void>;
 
 > **说明：**
 >
-> 从API version 10开始废弃。
+> 从API version 10开始废弃。系统不再开放相关能力。
 
 注入手势，使用Promise异步回调。
 
@@ -706,7 +706,7 @@ injectGesture(gesturePath: GesturePath, callback: AsyncCallback\<void>): void
 
 > **说明：**
 >
-> 从API version 10开始废弃。
+> 从API version 10开始废弃。系统不再开放相关能力。
 
 注入手势，使用callback异步回调。
 
@@ -755,7 +755,7 @@ injectGestureSync(gesturePath: GesturePath): void
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -801,7 +801,7 @@ attributeNames\<T extends keyof ElementAttributeValues>() : Promise\<Array\<T>>;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -833,7 +833,7 @@ attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -867,7 +867,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promi
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -919,7 +919,7 @@ attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T,
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -965,7 +965,7 @@ actionNames(): Promise\<Array\<string>>;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -996,7 +996,7 @@ actionNames(callback: AsyncCallback\<Array\<string>>): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1027,7 +1027,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1122,7 +1122,7 @@ performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1167,7 +1167,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1214,7 +1214,7 @@ findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityEl
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1262,7 +1262,7 @@ findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1307,7 +1307,7 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1315,7 +1315,7 @@ findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElem
 
 | 参数名       | 类型                      | 必填   | 说明                                 |
 | --------- | ----------------------- | ---- | ---------------------------------- |
-| type      | string                  | 是    | 固定为'focusType', 表示查询的类型为节点的焦点元素类型。 |
+| type      | string                  | 是    | 固定为'focusType'，表示查询的类型为节点的焦点元素类型。 |
 | condition | [FocusType](#focustype) | 是    | 表示查询焦点元素的类型。                       |
 
 **返回值：**
@@ -1356,7 +1356,7 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1364,7 +1364,7 @@ findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<Ac
 
 | 参数名       | 类型                                       | 必填   | 说明                                 |
 | --------- | ---------------------------------------- | ---- | ---------------------------------- |
-| type      | string                                   | 是    | 固定为'focusType', 表示查询的类型为节点的焦点元素类型。 |
+| type      | string                                   | 是    | 固定为'focusType'，表示查询的类型为节点的焦点元素类型。 |
 | condition | [FocusType](#focustype)                  | 是    | 表示查询焦点元素的类型。                       |
 | callback  | AsyncCallback&lt;[AccessibilityElement](#accessibilityelement9)&gt; | 是    | 回调函数，返回满足指定查询焦点元素类型的节点元素。          |
 
@@ -1402,7 +1402,7 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 
@@ -1410,7 +1410,7 @@ findElement(type: 'focusDirection', condition: FocusDirection): Promise\<Accessi
 
 | 参数名       | 类型                                | 必填   | 说明                                       |
 | --------- | --------------------------------- | ---- | ---------------------------------------- |
-| type      | string                            | 是    | 固定为'focusDirection', 表示查询的类型为节点的下一焦点元素方向。 |
+| type      | string                            | 是    | 固定为'focusDirection'，表示查询的类型为节点的下一焦点元素方向。 |
 | condition | [FocusDirection](#focusdirection) | 是    | 表示查询下一焦点元素的方向。                           |
 
 **返回值：**
@@ -1451,7 +1451,7 @@ findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCa
 
 > **说明：**
 >
-> 从API version 12开始废弃。
+> 从API version 12开始废弃。系统不再开放相关能力。
 
 **系统能力**：SystemCapability.BarrierFree.Accessibility.Core
 

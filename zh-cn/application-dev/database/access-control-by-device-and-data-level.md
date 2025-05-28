@@ -1,5 +1,4 @@
-# 基于设备分类和数据分级的访问控制
-
+# 基于设备分类和数据分级的访问控制（ArkTS）
 
 ## 基本概念
 
@@ -22,9 +21,9 @@
 
 ### 设备安全等级
 <!--RP1-->
-根据设备安全能力，比如是否有TEE、是否有安全存储芯片等，将设备安全等级分为SL1、SL2、SL3、SL4、SL5五个等级。例如，开发板rk3568、hi3516为低安全的SL1设备，平板通常为高安全的SL4设备。
+根据设备安全能力（例如是否有TEE、是否有安全存储芯片等），将设备安全等级分为SL1、SL2、SL3、SL4、SL5五个等级。例如，开发板rk3568、hi3516为安全等级低的SL1设备，平板为安全等级高的SL4设备。
 
-在设备组网时可以通过`hidumper -s 3511`查看设备安全等级，例如，rk3568设备的安全等级查询如下：
+在设备组网时，可以通过`hidumper -s 3511`命令查看设备的安全等级。如果查询无结果可以通过service_control start dslm_service主动拉起对应进程，之后再使用hidumper命令查询。例如，rk3568设备的安全等级查询如下：
 <!--RP1End-->
 <!--Del-->
 ![zh-cn_image_0000001542496993](figures/zh-cn_image_0000001542496993.png)
@@ -32,7 +31,7 @@
 
 ## 跨设备同步访问控制机制
 
-数据跨设备同步时，数据管理基于数据安全标签和设备安全等级进行访问控制。规则为，在本设备的数据安全标签不高于对端设备的设备安全等级时，数据才能从本设备同步到对端设备，否则不能同步。具体访问控制矩阵如下：
+数据跨设备同步时，基于数据安全标签和设备安全等级进行访问控制。数据库的数据安全标签不高于对端设备的设备安全等级时，数据才能同步。具体访问控制矩阵如下：
 
 |设备安全级别|可同步的数据安全标签|
 |---|---|
@@ -62,45 +61,53 @@
 > * 该操作需在关闭当前数据库之后，通过修改securityLevel开库参数重新设置数据库的安全等级，再进行开库操作。
 > * 该操作只支持升级，不支持降级。例如支持S2->S3的升级，不支持S3->S2的降级。
 
-  
+
 ```ts
+import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { hilog } from '@kit.PerformanceAnalysisKit';
 import { distributedKVStore } from '@kit.ArkData';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-let kvManager: distributedKVStore.KVManager;
-let kvStore: distributedKVStore.SingleKVStore;
-let context = getContext(this);
-const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-  context: context,
-  bundleName: 'com.example.datamanagertest'
-}
-try {
-  kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-  console.info('Succeeded in creating KVManager.');
-  try {
-    const options: distributedKVStore.Options = {
-      createIfMissing: true,
-      encrypt: true,
-      backup: false,
-      autoSync: false,
-      kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-      securityLevel: distributedKVStore.SecurityLevel.S3
-    };
-    kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
-      if (err) {
-        console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
-        return;
+export default class EntryAbility extends UIAbility {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    let kvManager: distributedKVStore.KVManager;
+    let kvStore: distributedKVStore.SingleKVStore;
+    let context = this.context;
+    const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+      context: context,
+      bundleName: 'com.example.datamanagertest'
+    }
+    try {
+      kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+      console.info('Succeeded in creating KVManager.');
+      try {
+        const options: distributedKVStore.Options = {
+          createIfMissing: true,
+          encrypt: true,
+          backup: false,
+          autoSync: false,
+          kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+          securityLevel: distributedKVStore.SecurityLevel.S3
+        };
+        kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+          if (err) {
+            console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+            return;
+          }
+          console.info('Succeeded in getting KVStore.');
+          kvStore = store;
+        });
+      } catch (e) {
+        let error = e as BusinessError;
+        console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
       }
-      console.info('Succeeded in getting KVStore.');
-      kvStore = store;
-    });
-  } catch (e) {
-    let error = e as BusinessError;
-    console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+    } catch (e) {
+      let error = e as BusinessError;
+      console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+    }
   }
-} catch (e) {
-  let error = e as BusinessError;
-  console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
 }
 ```
 

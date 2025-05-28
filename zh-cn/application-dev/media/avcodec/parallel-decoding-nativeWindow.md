@@ -76,7 +76,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
       // 通过消费端的OH_NativeImage获取一个OHNativeWindowBuffer。
       OH_NativeImage_AcquireNativeWindowBuffer(image, &buffer, &fenceFd);
       // 通过OH_NativeImage实例将OHNativeWindowBuffer归还到buffer队列中。
-      OH_NativeImage_ReleaseNativeWindowBuffer(image, &buffer, &fenceFd);
+      OH_NativeImage_ReleaseNativeWindowBuffer(image, buffer, fenceFd);
     }
     
     static void context()
@@ -119,7 +119,7 @@ target_link_libraries(sample PUBLIC libnative_media_vdec.so)
 
 7. 启动解码器。
 
-    具体开发指导请参考[视频解码Surface模式](video-decoding.md#surface模式)“步骤-9：调用OH_VideoDecoder_Start()启动解码器”。
+    具体开发指导请参考[视频解码Surface模式](video-decoding.md#surface模式)“步骤-8：调用OH_VideoDecoder_Start()启动解码器”。
 
 
 8. 设置surface。

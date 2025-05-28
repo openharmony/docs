@@ -11,6 +11,7 @@ Defines a **HiTraceId** instance.
 
 **Related module**: [Hitrace](_hitrace.md)
 
+**Header file**: [trace.h](trace_8h.md)
 
 ## Summary
 

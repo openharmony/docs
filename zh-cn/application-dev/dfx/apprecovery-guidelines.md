@@ -57,7 +57,7 @@ API 10开始支持应用卡死时的状态保存。JsError故障时，onSaveStat
 
 - 故障监听指的是通过[errorManager](../reference/apis-ability-kit/js-apis-app-ability-errorManager.md)注册[ErrorObserver](../reference/apis-ability-kit/js-apis-inner-application-errorObserver.md)，监听故障的发生，并通知到监听方。
 
-- 故障恢复指的是[appRecovery](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)，及故障发生后，将应用重启恢复到故障之前的状态。
+- 故障恢复指的是[appRecovery](../reference/apis-ability-kit/js-apis-app-ability-appRecovery.md)，即故障发生后，将应用重启恢复到故障之前的状态。
 
 - 故障查询指的是[faultLogger](../reference/apis-performance-analysis-kit/js-apis-faultLogger.md)通过其查询接口获取当前的故障信息。
 

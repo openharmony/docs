@@ -8,7 +8,7 @@ TreeMap和[HashMap](js-apis-hashmap.md)相比，HashMap依据键的hashCode存�
 
 **推荐使用场景：** 一般需要存储有序键值对的场景，可以使用TreeMap。
 
-文档中存在泛型的使用，涉及以下泛型标记符：
+文档使用了泛型，涉及以下泛型标记符：
 
 - K：Key，键
 
@@ -106,7 +106,7 @@ for (let item of numbers) {
 
 isEmpty(): boolean
 
-判断该容器是否为空。
+判断容器是否为空。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -138,7 +138,7 @@ let result = treeMap.isEmpty();
 
 hasKey(key: K): boolean
 
-判断此容器中是否含有该指定key。
+判断容器中是否包含指定key。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -177,7 +177,7 @@ let result = treeMap.hasKey("squirrel");
 
 hasValue(value: V): boolean
 
-判断此容器中是否含有该指定value。
+判断容器中是否包含该指定value。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -216,7 +216,7 @@ let result = treeMap.hasValue(123);
 
 get(key: K): V
 
-获取指定key所对应的value，为空时返回undefined。
+获取指定key所对应的value，若为空则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -256,7 +256,7 @@ let result = treeMap.get("sparrow");
 
 getFirstKey(): K
 
-获取容器中排序第一的key，为空时返回undefined。
+获取容器中排序第一的key，若为空则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -290,7 +290,7 @@ let result = treeMap.getFirstKey();
 
 getLastKey(): K
 
-获取容器中排序最后的key，为空时返回undefined。
+获取容器中排序最后的key，若为空则返回undefined。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -381,7 +381,7 @@ set(key: K, value: V): Object
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Object | 返回添加后的treeMap。 |
+| Object | 返回添加后的TreeMap。 |
 
 **错误码：**
 
@@ -565,7 +565,7 @@ let result = treeMap.replace("sparrow", 357);
 
 clear(): void
 
-清除容器中的所有元素，并把length置为0。
+清除容器中的所有元素，并将length置为0。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -593,7 +593,7 @@ treeMap.clear();
 
 keys(): IterableIterator&lt;K&gt;
 
-返回包含此映射中包含的键的新迭代器对象。
+返回包含此映射中所有键的新迭代器对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -671,7 +671,7 @@ while(!t.done) {
 
 forEach(callbackFn: (value?: V, key?: K, map?: TreeMap<K, V>) => void, thisArg?: Object): void
 
-通过回调函数来遍历实例对象上的元素以及元素对应的下标。
+通过回调函数来遍历实例对象上的元素及其下标。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -773,7 +773,7 @@ while(!t.done) {
 
 [Symbol.iterator]\(): IterableIterator&lt;[K, V]&gt;
 
-返回一个迭代器，迭代器的每一项都是一个JavaScript对象，并返回该对象。
+返回一个迭代器，迭代器的每一项都是一个JavaScript对象。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

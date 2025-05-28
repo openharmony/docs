@@ -1,5 +1,4 @@
-# 数据库备份与恢复
-
+# 数据库备份与恢复（ArkTS）
 
 ## 场景介绍
 
@@ -25,51 +24,59 @@
 
    (3) 创建kvStore。
 
-     
+
    ```ts
+   import { AbilityConstant, ConfigurationConstant, UIAbility, Want } from '@kit.AbilityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
    import { distributedKVStore } from '@kit.ArkData';
    import { BusinessError } from '@kit.BasicServicesKit';
-   
-   let kvManager: distributedKVStore.KVManager;
-   let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
-   let context = getContext(this);
-   const kvManagerConfig: distributedKVStore.KVManagerConfig = {
-     context: context,
-     bundleName: 'com.example.datamanagertest'
-   }
-   try {
-     kvManager = distributedKVStore.createKVManager(kvManagerConfig);
-     console.info('Succeeded in creating KVManager.');
-     try {
-       const options: distributedKVStore.Options = {
-         createIfMissing: true,
-         encrypt: true,
-         backup: false,
-         autoSync: false,
-         kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-         securityLevel: distributedKVStore.SecurityLevel.S3
-       };
-       kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
-         if (err) {
-           console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
-           return;
+
+   export default class EntryAbility extends UIAbility {
+     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+       this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+       hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+       let kvManager: distributedKVStore.KVManager;
+       let kvStore: distributedKVStore.SingleKVStore | undefined = undefined;
+       let context = this.context;
+       const kvManagerConfig: distributedKVStore.KVManagerConfig = {
+         context: context,
+         bundleName: 'com.example.datamanagertest'
+       }
+       try {
+         kvManager = distributedKVStore.createKVManager(kvManagerConfig);
+         console.info('Succeeded in creating KVManager.');
+         try {
+           const options: distributedKVStore.Options = {
+             createIfMissing: true,
+             encrypt: true,
+             backup: false,
+             autoSync: false,
+             kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
+             securityLevel: distributedKVStore.SecurityLevel.S3
+           };
+           kvManager.getKVStore<distributedKVStore.SingleKVStore>('storeId', options, (err, store: distributedKVStore.SingleKVStore) => {
+             if (err) {
+               console.error(`Failed to get KVStore. Code:${err.code},message:${err.message}`);
+               return;
+             }
+             console.info('Succeeded in getting KVStore.');
+             kvStore = store;
+           });
+         } catch (e) {
+           let error = e as BusinessError;
+           console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
          }
-         console.info('Succeeded in getting KVStore.');
-         kvStore = store;
-       });
-     } catch (e) {
-       let error = e as BusinessError;
-       console.error(`An unexpected error occurred. Code:${error.code},message:${error.message}`);
+       } catch (e) {
+         let error = e as BusinessError;
+         console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
+       }
+
+       if (kvStore !== undefined) {
+         kvStore = kvStore as distributedKVStore.SingleKVStore;
+         //进行后续操作
+         //...
+       }
      }
-   } catch (e) {
-     let error = e as BusinessError;
-     console.error(`Failed to create KVManager. Code:${error.code},message:${error.message}`);
-   }
-   
-   if (kvStore !== undefined) {
-     kvStore = kvStore as distributedKVStore.SingleKVStore;
-     //进行后续操作
-     //...
    }
    ```
 
@@ -415,7 +422,7 @@ export default class EntryAbility extends UIAbility {
                resultSet.close();
              } catch (e) {
                  if (e.code !== 14800014) {
-                   console.info(`Code:${err.code}, message:${err.message}`);
+                   console.error(`Code:${e.code}, message:${e.message}`);
                  }
              }
            }
@@ -428,9 +435,11 @@ export default class EntryAbility extends UIAbility {
              console.info(`Succeeded in restoring RdbStore.`);
            })
          }
-         console.info(`Code:${err.code}, message:${err.message}`);
+         console.error(`Code:${err.code}, message:${err.message}`);
      }
    }
    ```
 
 <!--DelEnd-->
+
+<!--RP1--><!--RP1End-->

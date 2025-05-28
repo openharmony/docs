@@ -11,6 +11,8 @@ The **OhosImageSourceUpdateData** struct defines the update data option of the i
 
 **Related module**: [Image](image.md)
 
+**Header file**: [image_source_mdk.h](image__source__mdk_8h.md)
+
 
 ## Summary
 

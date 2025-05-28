@@ -9,6 +9,8 @@ The OH_Pixelmap_HdrStaticMetadata struct describes the static metadata values av
 
 **Related module**: [Image_NativeModule](_image___native_module.md)
 
+**Header file**: [pixelmap_native.h](pixelmap__native_8h.md)
+
 
 ## Summary
 

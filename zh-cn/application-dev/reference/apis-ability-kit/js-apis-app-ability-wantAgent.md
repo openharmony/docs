@@ -40,7 +40,7 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -127,7 +127,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -203,7 +203,7 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -301,7 +301,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -389,7 +389,7 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -487,7 +487,7 @@ getUid(agent: WantAgent): Promise\<number\>
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -576,7 +576,7 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -674,7 +674,7 @@ cancel(agent: WantAgent): Promise\<void\>
 |-----------|--------------------|
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -1053,7 +1053,7 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 **示例：**
 
@@ -1152,7 +1152,7 @@ getOperationType(agent: WantAgent): Promise\<number>
 | 401        | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 | 16000007   | Service busy. There are concurrent tasks. Try again later. |
 | 16000015   | Service timeout.|
-| 16000151   | Invalid wantagent object.|
+| 16000151   | Invalid wantAgent object.|
 
 错误码详细介绍请参考[元能力子系统错误码](errorcode-ability.md)
 

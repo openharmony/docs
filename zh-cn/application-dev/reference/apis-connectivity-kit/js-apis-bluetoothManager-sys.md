@@ -235,7 +235,7 @@ setTethering(enable: boolean): void
 
 | 参数名    | 类型     | 必填   | 说明      |
 | ------ | ------ | ---- | ------- |
-| value | boolean | 是    | 是否设置蓝牙共享。 |
+| enable | boolean | 是    | 是否启用网络共享。true表示启用，false表示不启用。 |
 
 **错误码**：
 

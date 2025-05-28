@@ -102,7 +102,7 @@ struct SpecialImage {
 }
 @Component
 struct CompA {
-  @ObjectLink uiStyle: UIStyle
+  @ObjectLink uiStyle: UIStyle;
   // the following functions are used to show whether the component is called to be rendered
   private isRenderColumn() : number {
     console.info("Column is rendered");
@@ -175,7 +175,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             },() => {
               this.uiStyle.translateY = (this.uiStyle.translateY + 180) % 250;
@@ -451,7 +451,7 @@ class UIStyle {
 @Component
 struct SpecialImage {
   @ObjectLink uiStyle : UIStyle;
-  @ObjectLink needRenderImage: NeedRenderImage // receive the new class from its parent component
+  @ObjectLink needRenderImage: NeedRenderImage; // receive the new class from its parent component
   private isRenderSpecialImage() : number { // function to show whether the component is rendered
     console.info("SpecialImage is rendered");
     return 1;
@@ -554,7 +554,7 @@ struct CompA {
           .backgroundColor("#FF007DFF")
           .margin({ bottom: 10 })
           .onClick(() => {
-            animateTo({
+            this.getUIContext().animateTo({
               duration: 500
             }, () => {
               this.needRenderTranslate.translateY = (this.needRenderTranslate.translateY + 180) % 250;
@@ -663,7 +663,7 @@ this.uiStyle.needRenderImage.imageWidth = (this.uiStyle.needRenderImage.imageWid
 this.needRenderXxx.xxx = x;
 
 //example
-this.needRenderScale.scaleX = (this.needRenderScale.scaleX + 0.6) % 1
+this.needRenderScale.scaleX = (this.needRenderScale.scaleX + 0.6) % 1;
 ```
 
 属性拆分应当重点考虑变化较为频繁的属性，来提高应用运行的性能。
@@ -683,7 +683,7 @@ class SomeClass {
 @Component
 struct Page {
   @State someClass: SomeClass = new SomeClass();
-  @State needRenderProperty: NeedRenderProperty = this.someClass.needRenderProperty
+  @State needRenderProperty: NeedRenderProperty = this.someClass.needRenderProperty;
   build() {
     Row() {
       Column() {

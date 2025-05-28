@@ -96,6 +96,7 @@ This permission is of the **system\_basic** level. Before applying for the permi
     let isSupport = call.hasVoiceCapability();
     if (isSupport) {
         // If the voice call function is supported, the user will be redirected to the dial screen and the dialed number is displayed.
+        // The tel URI format is supported since API version 15, for example, tel:13xxxx.
         call.makeCall("13xxxx", (err: BusinessError) => {
             if (!err) {
                 console.log("make call success.");
@@ -115,3 +116,4 @@ This permission is of the **system\_basic** level. Before applying for the permi
         });
     }
    ```
+

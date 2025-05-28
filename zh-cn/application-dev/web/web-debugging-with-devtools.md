@@ -1,14 +1,14 @@
 # 使用DevTools工具调试前端页面
 
 
-Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前端开发调试工具，提供了电脑上调试移动设备前端页面的能力。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，利用DevTools工具可以在电脑上调试移动设备上的前端网页，设备需为4.1.0及以上版本。
+Web组件支持使用DevTools工具调试前端页面。DevTools是Web前端开发调试工具，支持在电脑上调试移动设备前端页面。开发者通过[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web组件前端页面调试能力，使用DevTools在电脑上调试移动前端网页，设备需为4.1.0及以上版本。
 
 
 ## 调试步骤
 
 ### 应用代码开启Web调试开关
 
-调试网页前，需要应用侧代码调用[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview.md#setwebdebuggingaccess)接口开启Web调试开关。  
+调试网页前，需要应用侧代码调用[setWebDebuggingAccess()](../reference/apis-arkweb/js-apis-webview-WebviewController.md#setwebdebuggingaccess)接口开启Web调试开关。  
 如果没有开启Web调试开关，则DevTools无法发现被调试的网页。
 
 1. 在应用代码中开启Web调试开关，具体如下：
@@ -59,20 +59,20 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    ```shell
    hdc list targets
    ```
-   - 如果命令有返回设备的ID，则说明hdc已连接上设备。  
+   - 如果命令返回设备的ID，表示hdc已连接上设备。  
    ![hdc_list_targets_success](figures/devtools_resources_hdc_list_targets_success.png)
    - 如果命令返回 `[Empty]`，则说明hdc还没有发现设备。  
    ![hdc_list_targets_empty](figures/devtools_resources_hdc_list_targets_empty.jpg)
 
 3. 进入hdc shell。   
-   当hdc命令连接上设备后，执行如下命令，进入hdc shell。
+   连接设备后，执行以下命令进入hdc shell。
    ```shell
    hdc shell
    ```
 
 ### 端口转发
 当应用代码调用setWebDebuggingAccess接口开启Web调试开关后，ArkWeb内核将启动一个domain socket的监听，以此实现DevTools对网页的调试功能。  
-但是Chrome浏览器无法直接访问到设备上的domain socket， 所以需要将设备上的domain socket转发到电脑上。
+Chrome浏览器无法直接访问到设备上的domain socket， 因此需要将设备上的domain socket转发到电脑上。
 
 1. 先在hdc shell里执行如下命令，查询ArkWeb在设备里创建的domain socket。  
    ```shell
@@ -96,8 +96,8 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
    ```
    > **说明：**
    >
-   > "webview_devtools_remote_" 后面的数字，代表ArkWeb所在应用的进程号， 该数字不是固定的。请将数字改为自己查询到的值。  
-   > 如果应用的进程号发生变化（例如，应用重新启动），则需要重新进行端口转发。
+   > "webview_devtools_remote_" 后面的数字，代表ArkWeb所在应用的进程号， 该数字不是固定的。请将”webview_devtools_remote_“后面的数字改为自己查询到的值。  
+   > 如果应用的进程号发生变化，例如，应用重新启动，则需要重新配置端口转发。
 
    命令执行成功示意图：  
    ![hdc_fport_38532_success](figures/devtools_resources_hdc_fport_38532_success.jpg)
@@ -126,7 +126,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
 
 ### 等待发现被调试页面
 
-  如果前面的步骤执行成功，稍后，Chrome的调试页面将显示待调试的网页。  
+  如果前面的步骤执行成功，Chrome的调试页面将显示待调试的网页。  
   ![chrome_inspect](figures/devtools_resources_chrome_inspect.jpg)
 
 ### 开始网页调试
@@ -353,7 +353,7 @@ Web组件支持使用DevTools工具调试前端页面。DevTools是一个 Web前
     - 如果网页有内容， 说明端口转发成功，请在Chrome的调试页面[等待被调试页面的出现](#等待发现被调试页面)。  
     ![chrome_localhost](figures/devtools_resources_chrome_localhost.jpg)
 
-    - 如果展示的是错误网页， 说明端口转发失败， 解决方法见上面的[端口转发不成功](#端口转发不成功)。  
+    - 如果展示的是错误网页， 说明端口转发失败， 请参阅[端口转发不成功](#端口转发不成功)中的解决方法。  
     ![chrome_localhost_refused](figures/devtools_resources_chrome_localhost_refused.jpg)
 
   * 电脑端Chrome浏览器打开 http://localhost:9222/json 页面有内容，但是Chrome的调试工具界面还是无法发现调试目标。

@@ -4,7 +4,7 @@
 
 > **说明：**
 >
-> 从API Version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> 从API version 10开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
 > 本模块接口为系统接口。
 
@@ -12,7 +12,7 @@
 ## 导入模块
 
 ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 ```
 
 
@@ -59,7 +59,7 @@ setDarkMode(mode: DarkMode, callback: AsyncCallback\<void>): void
 **示例：** 
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK, (error) => {
@@ -111,7 +111,7 @@ setDarkMode(mode: DarkMode): Promise\<void>;
 **示例：** 
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     uiAppearance.setDarkMode(uiAppearance.DarkMode.ALWAYS_DARK).then(() => {
@@ -155,7 +155,7 @@ getDarkMode(): DarkMode;
 **示例：** 
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let darkMode = uiAppearance.getDarkMode();
@@ -169,7 +169,7 @@ try {
 
 ## uiAppearance.setFontScale<sup>12+<sup>
 
-setFontScale(fontScale: number): Promise<void>
+setFontScale(fontScale: number): Promise\<void>
 
 设置系统字体大小。
 
@@ -205,7 +205,7 @@ setFontScale(fontScale: number): Promise<void>
 **示例：** 
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let fontScale = 10;
@@ -255,7 +255,7 @@ getFontScale(): number
 **示例：** 
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let fontScale = uiAppearance.getFontScale();
@@ -268,7 +268,7 @@ try {
 
 ## uiAppearance.setFontWeightScale<sup>12+<sup>
 
-setFontWeightScale(fontWeightScale: number): Promise<void>
+setFontWeightScale(fontWeightScale: number): Promise\<void>
 
 设置系统字体粗细。
 
@@ -304,7 +304,7 @@ setFontWeightScale(fontWeightScale: number): Promise<void>
 **示例：** 
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let fontWeightScale = 1;
@@ -354,7 +354,7 @@ getFontWeightScale(): number
 **示例：** 
 
   ```ts
-import { uiAppearance } from '@kit.ArkUI'
+import { uiAppearance } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 try {
     let fontWeightScale = uiAppearance.getFontWeightScale();

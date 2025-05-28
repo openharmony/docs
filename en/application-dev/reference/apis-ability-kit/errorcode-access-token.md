@@ -23,7 +23,7 @@ Invalid Parameter. Error message: ${messageInfo}.
 
 **Solution**
 
-Check and set input parameters correctly.
+Check and correct input parameters. For details about the valid values, see [Permission List](../../security/AccessToken/app-permissions.md).
 
 
 ## 12100002 TokenId Not Exist
@@ -39,7 +39,7 @@ TokenId does not exist.
 
 **Solution**
 
-Check and set input parameters correctly.
+Check and correct input parameters. For details about the valid values, see [Permission List](../../security/AccessToken/app-permissions.md).
 
 
 ## 12100003 Permission Not Exist

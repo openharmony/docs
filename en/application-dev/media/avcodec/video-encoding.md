@@ -39,6 +39,8 @@ The following table lists the video encoding capabilities supported:
   - In buffer mode, the caller calls **OH_VideoEncoder_PushInputBuffer** to input data. In surface mode, the caller, before the encoder is ready, calls **OH_VideoEncoder_GetSurface** to obtain the OHNativeWindow for video data transmission.
   - In buffer mode, you can use **attr** in **OH_AVBuffer** to pass in the End of Stream (EOS) flag, and the encoder stops when it reads the last frame. In surface mode, the caller calls **OH_VideoEncoder_NotifyEndOfStream** to notify the encoder of EOS.
 
+- Data transfer performance in surface mode is better than that in buffer mode.
+
 For details about the development procedure, see [Surface Input](#surface-input) and [Buffer Input](#buffer-input).
 
 ## State Machine Interaction
@@ -836,8 +838,6 @@ Currently, the VideoEncoder module supports only data rotation in asynchronous m
         // Handle exceptions.
     }
     ```
-
-    
 
     Offset the stride. The following uses an NV12 image as an example, presenting the image layout of **width**, **height**, **wStride**, and **hStride**.
 
