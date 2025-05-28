@@ -2222,7 +2222,6 @@
         - [@ohos.data.dataSharePredicates (数据共享谓词)(系统接口)](reference/apis-arkdata/js-apis-data-dataSharePredicates-sys.md)
         - [@ohos.data.dataShareResultSet (数据共享结果集)(系统接口)](reference/apis-arkdata/js-apis-data-DataShareResultSet-sys.md)
         - [@ohos.data.distributedKVStore (分布式键值数据库)(系统接口)](reference/apis-arkdata/js-apis-distributedKVStore-sys.md)
-        - [@ohos.data.graphStore (图数据库)(系统接口)](reference/apis-arkdata/js-apis-data-graphStore-sys.md)
         - [@ohos.data.relationalStore (关系型数据库)(系统接口)](reference/apis-arkdata/js-apis-data-relationalStore-sys.md)
         <!--DelEnd-->
         - 已停止维护的接口<!--arkdata-arkts-dep-->
@@ -2278,9 +2277,6 @@
           - [Rdb_SubscribeCallback](reference/apis-arkdata/union_rdb___subscribe_callback.md)
           - [Rdb_TableDetails](reference/apis-arkdata/_rdb___table_details.md)
       - 错误码<!--arkdata-arkts-errcode-->
-        <!--Del-->
-        - [图数据库错误码](reference/apis-arkdata/errorcode-data-gdb.md)
-        <!--DelEnd-->
         - [关系型数据库错误码](reference/apis-arkdata/errorcode-data-rdb.md)
         - [数据共享错误码](reference/apis-arkdata/errorcode-datashare.md)
         - [分布式数据对象错误码](reference/apis-arkdata/errorcode-distributed-dataObject.md)
