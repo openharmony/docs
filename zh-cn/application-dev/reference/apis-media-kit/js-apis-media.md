@@ -8461,7 +8461,7 @@ let playStrategy : media.PlaybackStrategy = {
 };
 
 async function setupPlayer() {
-  let player = media.createAVPlayer();
+  let player = await media.createAVPlayer();
   player.setMediaSource(mediaSource, playStrategy);
 }
 ```
