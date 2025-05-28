@@ -2419,7 +2419,7 @@ screenCap(savePath: string): Promise\<boolean>
 
 | 参数名   | 类型   | 必填 | 说明                                       |
 | -------- | ------ | ---- | ------------------------------------------ |
-| savePath | string | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
+| savePath | string | 是   | 文件保存路径。路径需为当前应用的[沙箱路径](../../file-management/app-sandbox-directory.md)。 |
 
 **返回值：**
 
@@ -2908,7 +2908,7 @@ screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 | 参数名   | 类型           | 必填 | 说明                                       |
 | -------- | -------------- | ---- | ------------------------------------------ |
-| savePath | string         | 是   | 文件保存路径。路径需为当前应用的沙箱路径。 |
+| savePath | string         | 是   | 文件保存路径。路径需为当前应用的[沙箱路径](../../file-management/app-sandbox-directory.md)。 |
 | rect     | [Rect](#rect9) | 否   | 截图区域，默认为全屏。                     |
 
 **返回值：**
