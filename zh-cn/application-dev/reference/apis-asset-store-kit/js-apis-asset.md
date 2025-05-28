@@ -807,7 +807,7 @@ querySyncResult(query: AssetMap): Promise\<SyncResult>
 
 | 类型          | 说明                    |
 | ------------- | ----------------------- |
-| Promise\<SyncResult> | Promise对象，返回同步执行结果。 |
+| Promise\<[SyncResult](#syncresult20)> | Promise对象，返回同步执行结果。 |
 
 **错误码：**
 
