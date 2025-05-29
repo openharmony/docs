@@ -886,10 +886,7 @@ zh-cn/application-dev/reference/apis-arkui/errorcode-display.md @ge-yafang @acha
 
 
 [API参考-ArkWeb]
-zh-cn/application-dev/reference/apis-arkweb/js-apis-webview.md @bigpumpkin @HelloCrease @patrickrubystar @GHiker
-zh-cn/application-dev/reference/apis-arkweb/ts-basic-components-web.md @bigpumpkin @HelloCrease @patrickrubystar @GHiker
-zh-cn/application-dev/reference/apis-arkweb/native_interface_arkweb.md @bigpumpkin @HelloCrease @patrickrubystar @GHiker
-zh-cn/application-dev/reference/apis-arkweb/errorcode-webview.md @bigpumpkin @HelloCrease @patrickrubystar @GHiker
+zh-cn/application-dev/reference/apis-arkweb/  @bigpumpkin @HelloCrease @patrickrubystar @GHiker
 
 
 [API参考-Background Tasks Kit]
