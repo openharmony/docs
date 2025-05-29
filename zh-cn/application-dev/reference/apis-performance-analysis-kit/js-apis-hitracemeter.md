@@ -175,7 +175,7 @@ startAsyncTrace(level: HiTraceOutputLevel, name: string, taskId: number, customC
 ```js
 // 不需要customCategory参数时，可传入空字符串
 // 不需要customArgs参数时，可不传入该参数或传入空字符串
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "", "");
 hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 2, "");
 // 多个键值对用逗号分隔
@@ -206,12 +206,12 @@ finishAsyncTrace的level、name和taskId必须与流程开始的[startAsyncTrace
 **示例：**
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
 ```
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 // 跟踪并行执行的同名任务
 // 第一个跟踪的任务开始
 hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
@@ -227,16 +227,16 @@ hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 2);
 ```
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 // 跟踪串行执行的同名任务
 // 第一个跟踪的任务开始
-hiTraceMeter.startTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
+hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
 // 业务流程......
 // 第一个跟踪的任务结束
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
 // 业务流程......
 // 第二个跟踪的同名任务开始，同名的待跟踪任务串行执行
-hiTraceMeter.startTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
+hiTraceMeter.startAsyncTrace(COMMERCIAL, "myTestFunc", 1, "categoryTest", "key=value");
 // 业务流程......
 // 第二个跟踪的同名任务结束
 hiTraceMeter.finishAsyncTrace(COMMERCIAL, "myTestFunc", 1);
@@ -263,7 +263,7 @@ startSyncTrace(level: HiTraceOutputLevel, name: string, customArgs?: string): vo
 **示例：**
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 // 不需要customArgs参数时，可不传入该参数或传入空字符串
 hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc");
 hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc", "");
@@ -293,12 +293,12 @@ finishSyncTrace的level必须与流程开始的[startSyncTrace](#hitracemetersta
 **示例：**
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 hiTraceMeter.finishSyncTrace(COMMERCIAL);
 ```
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 // 可嵌套使用，相邻的startSyncTrace与finishSyncTrace匹配
 // 第一个跟踪的任务开始
 hiTraceMeter.startSyncTrace(COMMERCIAL, "myTestFunc1", "key=value");
@@ -334,7 +334,7 @@ traceByValue(level: HiTraceOutputLevel, name: string, count: number): void
 **示例：**
 
 ```js
-const COMMERCIAL = hiTraceMeter.HiTraceOutPutLevel.COMMERCIAL;
+const COMMERCIAL = hiTraceMeter.HiTraceOutputLevel.COMMERCIAL;
 let traceCount = 3;
 hiTraceMeter.traceByValue(COMMERCIAL, "myTestCount", traceCount);
 traceCount = 4;
