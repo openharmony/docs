@@ -4045,7 +4045,7 @@ getSensorListSync(): Array&lt;Sensor&gt;
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 14500101 | Service exception. |
+| 14500101 | Service exception.Possible causes:1. Sensor hdf service exception;2. Sensor service ipc exception;3.Sensor data channel exception. |
 
 **示例**：
 
