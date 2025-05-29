@@ -95,14 +95,14 @@ export class MyFenceExtensionAbility extends FenceExtensionAbility {
         })
         .catch((error: BusinessError) => {
           // 处理业务逻辑错误
-          console.info('startAbility failed, error.code: ' + JSON.stringify(error.code) +
+          console.error('startAbility failed, error.code: ' + JSON.stringify(error.code) +
             ' error.message: ' + JSON.stringify(error.message));
         });
     } catch (paramError) {
       // 处理入参错误异常
       let code = (paramError as BusinessError).code;
       let message = (paramError as BusinessError).message;
-      console.info('startAbility failed, error.code: ' + JSON.stringify(code) +
+      console.error('startAbility failed, error.code: ' + JSON.stringify(code) +
         ' error.message: ' + JSON.stringify(message));
     }
   }
