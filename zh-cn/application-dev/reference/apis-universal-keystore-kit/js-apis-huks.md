@@ -1811,7 +1811,7 @@ let emptyOptions: huks.HuksOptions = {
 huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
     console.info(`keyAlias:${keyAlias} is existed!`)
 }).catch((error: Error)=>{
-    console.error(`keyAlias:${keyAlias} not existed!`)
+    console.error(`find key failed`)
 })
 ```
 
