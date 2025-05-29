@@ -248,7 +248,7 @@ VPN连接对象。在调用VpnConnection的方法前，需要先通过vpnExt.cre
 
 create(config: VpnConfig): Promise\<number\>
 
-使用 config 创建一个VPN网络。使用Promise异步回调。
+使用config创建一个VPN网络。使用Promise异步回调。
 
 **系统能力**：SystemCapability.Communication.NetManager.Vpn
 
@@ -470,13 +470,13 @@ export default class MyVpnExtAbility extends VpnExtensionAbility {
 | routes              | Array\<[RouteInfo](js-apis-net-connection.md#routeinfo)\>     | 否   | VPN虚拟网卡的路由信息（目前最多可配置1024条路由）。                  |
 | dnsAddresses        | Array\<string\>                                                | 否   | DNS服务器地址信息。                                    |
 | searchDomains       | Array\<string\>                                                | 否   | DNS的搜索域列表。                                     |
-| mtu                 | number                                                         | 否   | 最大传输单元MTU值（单位:字节）。取值范围：576-1500。               |
-| isIPv4Accepted      | boolean                                                        | 否   | 是否支持IPV4, 默认值为true。true：支持IPV4；false：不支持IPV4。  |
-| isIPv6Accepted      | boolean                                                        | 否   | 是否支持IPV6, 默认值为false。true：支持IPV6；false：不支持IPV6。 |
-| isInternal          | boolean                                                        | 否   | 是否支持内置VPN, 默认值为false。true：支持内置VPN；false：不支持内置VPN。 |
-| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为false。true：阻塞模式；false：非阻塞模式。       |
-| trustedApplications | Array\<string\>                                                | 否   | 白名单信息, string 类型表示的包名。                         |
-| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息, string 类型表示的包名。                         |
+| mtu                 | number                                                         | 否   | 最大传输单元MTU值（单位：字节）。取值范围：576-1500。               |
+| isIPv4Accepted      | boolean                                                        | 否   | 是否支持IPV4, 默认值为true。true表示支持，false表示不支持。  |
+| isIPv6Accepted      | boolean                                                        | 否   | 是否支持IPV6, 默认值为false。true表示支持，false表示不支持。 |
+| isInternal          | boolean                                                        | 否   | 是否支持内置VPN, 默认值为false。true表示支持，false表示不支持。 |
+| isBlocking          | boolean                                                        | 否   | 是否阻塞模式, 默认值为false。true表示阻塞模式，false表示非阻塞模式。       |
+| trustedApplications | Array\<string\>                                                | 否   | 白名单信息，string 类型表示的包名。                         |
+| blockedApplications | Array\<string\>                                                | 否   | 黑名单信息，string 类型表示的包名。                         |
 
 **示例：**
 
