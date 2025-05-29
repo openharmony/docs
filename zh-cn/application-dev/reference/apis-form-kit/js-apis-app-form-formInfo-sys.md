@@ -152,61 +152,53 @@ import { formInfo } from '@kit.FormKit';
 
 互动卡片动效请求信息。
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Ability.Form
 
 **系统接口：** 此接口为系统接口。
 
-| 名称           | 类型      | 必填 | 说明                                                       |
-|--------------|---------|----|---------------------------------------------------------------|
-| formId       | string  | 是  | 卡片id。                                                         |
-| isOverflow   | boolean | 是  | true 表示互动卡片请求触发动效，false 表示互动卡片请求取消动效。|
-| overflowInfo | [formInfo.OverflowInfo](js-apis-app-form-formInfo.md#overflowinfo) | 否 | 动效请求参数信息，包括溢出动效时长（单位：ms）和溢出动效区域（溢出动效区域范围以卡片左上角为原点，单位为vp）默认为空。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|-----|-----|----|----|-----|
+| formId       | string  | 是  | 否  | 卡片id。|
+| isOverflow   | boolean | 是  | 否  | 动效请求类型标记，true 表示互动卡片请求触发动效，false 表示互动卡片请求取消动效。|
+| overflowInfo | [formInfo.OverflowInfo](js-apis-app-form-formInfo.md#overflowinfo20) | 是 | 是 | 动效请求参数信息，包括溢出动效时长（单位：ms）和溢出动效区域（溢出动效区域范围以卡片左上角为原点，单位为vp）默认为空。 |
 
 ## ChangeSceneAnimationStateRequest<sup>20+</sup>
 
 互动卡片状态切换请求信息。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
 
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
-
 **系统能力：** SystemCapability.Ability.Form
 
 **系统接口：** 此接口为系统接口。
 
-| 名称    | 类型     | 必填 | 说明                          |
-|--------|--------|----|-----------------------------|
-| formId | string | 是  | 卡片id。|
-| state  | number | 是  | 1 表示请求切换为激活态，0 表示请求切换为非激活态。|
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|-----|-----|-----|-----|----------------------------------------|
+| formId | string | 是 | 否 | 卡片id。                                  |
+| state  | number | 是 | 否 | 状态切换请求类型标记：1 表示请求切换为激活态，0 表示请求切换为非激活态。 |
 
 ## FunInteractionParams<sup>20+</sup>
 
-趣味交互类型互动卡片配置参数。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+趣味交互卡片配置参数。
 
 **系统能力：** SystemCapability.Ability.Form
 
 **系统接口：** 此接口为系统接口。
 
-| 名称    | 类型     | 必填 | 说明                                                         |
-|--------|--------|----|------------------------------------------------------------|
-| abilityName | string | 否  | 趣味交互场景 extensionAbility 名称，默认为鸿蒙小游戏引擎对应 extensionAbility。|
-| targetBundleName  | string | 是  | 趣味交互场景 RPK 资源 bundle 名称。|
-| subBundleName  | string | 否  | 趣味交互场景 RPK 资源子 bundle 名称。 |
-| keepStateDuration  | number | 否  | 趣味交互场景无交互时，激活态保持时长（单位 ms）保持时长限制不超过 10000ms，配置超过 10000ms 按照 10000ms 计。可缺省，缺省按 10000ms 计。 |
+| 名称 | 类型 | 只读 | 可选 | 说明                                                                                      |
+|-----|-----|----|-----|-----------------------------------------------------------------------------------------|
+| abilityName | string | 是  | 是   | 趣味交互场景 extensionAbility 名称，默认为鸿蒙快游戏引擎对应 ability                                     |
+| targetBundleName  | string | 是  | 否   | 趣味交互场景 RPK 资源 bundle 名称。                                                                |
+| subBundleName  | string | 是  | 否   | 趣味交互场景 RPK 资源子 bundle 名称。                                                               |
+| keepStateDuration  | number | 是  | 是   | 趣味交互场景无交互时，激活态保持时长。默认值为10000，单位ms。取值为[0,10000]的整数，超过取值范围则取默认值10000。 |
 
 ## SceneAnimationParams<sup>20+</sup>
 
-场景动效类型互动卡片配置参数。
-
-**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+场景动效卡片配置参数。
 
 **系统能力：** SystemCapability.Ability.Form
 
 **系统接口：** 此接口为系统接口。
 
-| 名称    | 类型     | 必填 | 说明 |
-|--------|--------|----|----------------------------|
-| abilityName | string | 是  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility名称。|
-| disabledDesktopBehaviors | string | 否  | 缺省为不禁用。支持禁用的用户操作有：滑动桌面（SWIPE_DESKTOP），下拉全搜（PULL_DOWN_SEARCH），长按（LONG_CLICK），拖动（DRAG）。通过 \| 的形式拼接。例如 SWIPE_DESKTOP\|PULL_DOWN_SEARCH\|LONG_CLICK\|DRAG。 |
+| 名称 | 类型 | 只读 | 可选 | 说明 |
+|-----|-----|------|----|-----------------------------------------------------------------------------------------|
+| abilityName | string | 是 | 否  | 场景动效 extensionAbility 名称，如卡片提供方 liveFormExtensionAbility名称。|
+| disabledDesktopBehaviors | string | 是 | 是  | 缺省为不禁用。支持禁用的用户操作有：滑动桌面（SWIPE_DESKTOP），下拉全搜（PULL_DOWN_SEARCH），长按（LONG_CLICK），拖动（DRAG）。通过 \| 的形式拼接。例如 SWIPE_DESKTOP\|PULL_DOWN_SEARCH\|LONG_CLICK\|DRAG。 |

@@ -2887,11 +2887,11 @@ try {
 
 ```
 
-## on('formOverflow')
+## formHost.on('formOverflow')<sup>20+</sup>
 
-on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): void;
+on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): void
 
-订阅互动卡片动效请求事件。使用callback异步回调。互动卡片动效支持动效渲染范围超过卡片自身边界。
+订阅互动卡片动效请求事件。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -2900,9 +2900,9 @@ on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): vo
 **参数：**
 
 | 参数名 | 类型       | 必填 | 说明 |
-|----------|--------|---|-----------------------------------------|
-| type     | string | 是 | 事件回调类型，支持的事件为'formOverflow'，表示互动卡片动效请求。|
-| callback | Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#OverflowRequest)&gt; | 是 | 回调函数，返回动效处理函数。|
+|----------|--------|---|---------------------------------------|
+| type     | string | 是 | 事件回调类型，仅支持事件'formOverflow'，表示互动卡片动效请求。|
+| callback | Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#overflowrequest20)&gt; | 是 | 回调函数，用于卡片使用方对动效请求进行处理|
 
 **错误码：**
 
@@ -2916,8 +2916,7 @@ on(type: 'formOverflow', callback: Callback&lt;formInfo.OverflowRequest&gt;): vo
 **示例：**
 
 ```ts
-import { formHost } from '@kit.FormKit';
-import { formInfo } from '@kit.FormKit';
+import { formHost, formInfo } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -2929,11 +2928,11 @@ try {
 }
 ```
 
-## off('formOverflow')
+## formHost.off('formOverflow')<sup>20+</sup>
 
-off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): void;
+off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): void
 
-取消订阅互动卡片动效请求事件。使用callback异步回调。互动卡片动效支持动效渲染范围超过卡片自身边界。
+取消订阅互动卡片动效请求事件。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -2943,8 +2942,8 @@ off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): 
 
 | 参数名 | 类型    | 必填 | 说明                                     |
 | ------ | ------ |----|----------------------------------------|
-| type | string | 是  | 事件回调类型，支持的事件为'formOverflow'，表示互动卡片动效请求。|
-| callback |Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#OverflowRequest)&gt; | 否  | 回调函数，返回动效处理函数。|
+| type | string | 是  | 事件回调类型，仅支持事件'formOverflow'，表示互动卡片动效请求。 |
+| callback |Callback&lt;[formInfo.OverflowRequest](js-apis-app-form-formInfo-sys.md#overflowrequest20)&gt; | 否  | 回调函数，对应已订阅互动卡片动效请求。缺省时，表示注销所有已注册事件回调。 |
 
 **错误码：**
 
@@ -2958,8 +2957,7 @@ off(type: 'formOverflow', callback?: Callback&lt;formInfo.OverflowRequest&gt;): 
 **示例：**
 
 ```ts
-import { formHost } from '@kit.FormKit';
-import { formInfo } from '@kit.FormKit';
+import { formHost, formInfo } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -2971,11 +2969,11 @@ try {
 }   
 ```
 
-## on('changeSceneAnimationState')
+## formHost.on('changeSceneAnimationState')<sup>20+</sup>
 
-on(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.ChangeSceneAnimationStateRequest&gt;): void;
+on(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.ChangeSceneAnimationStateRequest&gt;): void
 
-订阅互动卡片状态切换事件。使用callback异步回调。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
+订阅互动卡片状态切换请求事件。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 [LiveFormExtensionAbility](js-apis-app-form-LiveFormExtensionAbility.md) 进程，加载应用自定义页面。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -2986,7 +2984,7 @@ on(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.ChangeScene
 | 参数名 | 类型    | 必填 | 说明                                                   |
 | ------ | ------ | ---- |------------------------------------------------------|
 | type | string | 是   | 事件回调类型，支持的事件为'changeSceneAnimationState'，表示互动卡片状态切换。|
-| callback |Callback&lt;[formInfo.ChangeSceneAnimationStateRequest](js-apis-app-form-formInfo-sys.md#ChangeSceneAnimationStateRequest)&gt; | 是 | 回调函数，返回状态切换处理函数。|
+| callback |Callback&lt;[formInfo.ChangeSceneAnimationStateRequest](js-apis-app-form-formInfo-sys.md#changesceneanimationstaterequest20)&gt; | 是 | 回调函数，用于卡片使用方处理状态切换请求。|
 
 **错误码：**
 
@@ -3000,8 +2998,7 @@ on(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.ChangeScene
 **示例：**
 
 ```ts
-import { formHost } from '@kit.FormKit';
-import { formInfo } from '@kit.FormKit';
+import { formHost, formInfo } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
@@ -3013,11 +3010,11 @@ try {
 }
 ```
 
-## off('changeSceneAnimationState')
+## formHost.off('changeSceneAnimationState')<sup>20+</sup>
 
-off(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.changeSceneAnimationState&gt;): void;
+off(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.changeSceneAnimationState&gt;): void
 
-取消订阅互动卡片状态切换事件。使用callback异步回调。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
+取消订阅互动卡片状态切换请求事件。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 [LiveFormExtensionAbility](js-apis-app-form-LiveFormExtensionAbility.md)  进程，加载应用自定义页面。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -3028,7 +3025,7 @@ off(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.changeScen
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ |----| ------- |
 | type | string | 是  | 事件回调类型，支持的事件为'changeSceneAnimationState'，表示互动卡片状态切换。|
-| callback |Callback&lt;[formInfo.ChangeSceneAnimationStateRequest](js-apis-app-form-formInfo-sys.md#ChangeSceneAnimationStateRequest)&gt; | 否  | 回调函数，返回状态切换处理函数。|
+| callback |Callback&lt;[formInfo.ChangeSceneAnimationStateRequest](js-apis-app-form-formInfo-sys.md#changesceneanimationstaterequest20)&gt; | 否  | 回调函数，对应已订阅互动卡片状态切换请求。缺省时，表示注销所有已注册事件回调。|
 
 **错误码：**
 
@@ -3042,8 +3039,7 @@ off(type: 'changeSceneAnimationState', callback: Callback&lt;formInfo.changeScen
 **示例：**
 
 ```ts
-import { formHost } from '@kit.FormKit';
-import { formInfo } from '@kit.FormKit';
+import { formHost, formInfo } from '@kit.FormKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {

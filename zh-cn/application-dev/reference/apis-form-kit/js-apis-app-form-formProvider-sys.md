@@ -328,7 +328,7 @@ try {
 
 activateSceneAnimation(formId: string): Promise&lt;void&gt;
 
-卡片提供方发起互动卡片状态切换到激活态请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
+互动卡片请求状态切换到激活态，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -339,6 +339,12 @@ activateSceneAnimation(formId: string): Promise&lt;void&gt;
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- |-------|
 | formId | string | 是 | 卡片id。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
@@ -379,7 +385,7 @@ try {
 
 deactivateSceneAnimation(formId: string): Promise&lt;void&gt;
 
-卡片提供方发起互动卡片状态切换到非激活态请求，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效。互动卡片状态分为激活态和非激活态，非激活态下，互动卡片同普通卡片一致；激活态下，互动卡片支持拉起卡片提供方所开发的 LiveFormExtensionAbility 进程，加载应用自定义页面。
+互动卡片请求切换到非激活态，只针对[场景动效类型互动卡片](../../form/arkts-ui-widget-configuration.md#sceneanimationparams标签)生效，使用Promise异步回调。
 
 **系统能力：** SystemCapability.Ability.Form
 
@@ -390,6 +396,12 @@ deactivateSceneAnimation(formId: string): Promise&lt;void&gt;
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- |-------|
 | formId | string | 是 | 卡片id。|
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **错误码：**
 
