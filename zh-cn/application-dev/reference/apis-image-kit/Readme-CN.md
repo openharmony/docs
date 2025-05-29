@@ -10,7 +10,7 @@
   - 模块<!--image-module-->
     - [Image_NativeModule](capi-image-nativemodule.md)
     - [image](capi-image.md)
-    - [ImageEffect](_image_effect.md)
+    - [ImageEffect](capi-imageeffect.md)
     - [ImageProcessing](capi-imageprocessing.md)
   - 头文件<!--image-headerfile-->
     - [image_common.h](capi-image-common-h.md)
