@@ -36,7 +36,7 @@ Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Fa
 
 **可能原因**
 
-1. 调用MessageParcel对象读取或写入对象异常。
+1. 进程间通信的时候，读取或写入数据对象失败。
 2. 读写操作申请内存失败。
 <br>在RPC过程中，发送方可以使用MessageParcel提供的写方法，将待发送的数据以特定格式写入该对象。接收方可以使用MessageParcel提供的读方法从该对象中读取特定格式的数据。
 
