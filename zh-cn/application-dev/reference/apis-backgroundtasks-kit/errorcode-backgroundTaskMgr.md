@@ -36,7 +36,7 @@ Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Fa
 
 **可能原因**
 
-1. 调用MessageParcel对象读取或写入对象异常。
+1. 进程间通信的时候，读取或写入数据对象失败。
 2. 读写操作申请内存失败。
 
 **处理步骤**
