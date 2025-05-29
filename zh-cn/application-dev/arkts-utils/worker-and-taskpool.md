@@ -1,8 +1,8 @@
 # Worker常驻线程通过TaskPool进行多任务并发处理
 
-ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务并发处理，也可以两种线程都选择。
+ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务并发处理，也可以两种并发能力都选择。
 
-本示例将说明在Worker线程中通过TaskPool线程执行并发任务。
+本示例将说明在Worker线程中通过TaskPool执行并发任务。
 
 1. 在主线程中创建Worker线程并发送消息。
 
@@ -45,7 +45,7 @@ ArkTS应用开发过程中，可以选择TaskPool或Worker线程进行多任务�
    }
    ```
 
-2. 在Worker线程中创建TaskPool线程，并在TaskPool线程中执行并发任务。
+2. 在Worker线程中调用TaskPool执行并发任务。
 
    ```ts
    // Worker.ets
