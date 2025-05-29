@@ -41,6 +41,10 @@ Web页面保活可以参考[使用离线Web组件](../web/web-offline-mode.md)�
 
 - [onDisAppear](../reference/apis-arkui/arkui-ts/ts-universal-events-show-hide.md#ondisappear)事件：组件卸载消失时触发此回调。该事件在组件卸载时触发。
 
+> **说明：**
+>
+> - 当前web页面没有加载完成时不允许上滑。
+
 应用侧代码。
 
   ```ts
