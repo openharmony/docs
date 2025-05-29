@@ -43,6 +43,9 @@
 
 主机（Host）连接设备（Device），通过`usbControlTransfer`接口进行数据传输。以下步骤描述了如何使用控制传输方式来传输数据：
 
+> **说明：** 
+>
+> 以下示例代码只是使用控制传输方式来传输数据的必要流程，需要放入具体的方法中执行。在实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
 
 1. 导入模块。
 
@@ -118,7 +121,7 @@
    usbManager.requestRight(deviceName).then((hasRight : boolean) => {
      console.info("usb device request right result: " + hasRight);
    }).catch((error : BusinessError)=> {
-     console.info("usb device request right failed : " + error);
+     console.error(`usb device request right failed : ${error}`);
    });
    ```
 
@@ -152,7 +155,7 @@
     };
 
     usbManager.usbControlTransfer(pipe, param).then((ret: number) => {
-    console.info("usbControlTransfer = ${ret}");
+    console.info(`usbControlTransfer = ${ret}`);
     })
     ```
 

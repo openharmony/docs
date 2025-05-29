@@ -44,6 +44,10 @@
 
 主机（Host）连接设备（Device），通过`usbSubmitTransfer`接口进行数据传输。以下步骤描述了如何使用中断传输方式来传输数据：
 
+> **说明：** 
+>
+> 以下示例代码只是使用中断传输方式来传输数据的必要流程，需要放入具体的方法中执行。在实际调用时，设备开发者需要遵循设备相关协议进行调用，确保数据的正确传输和设备的兼容性。
+
 1. 导入模块。
 
     ```ts
@@ -56,9 +60,9 @@
     ```ts
     // 获取连接主设备的USB设备列表
     let usbDevices: Array<usbManager.USBDevice> = usbManager.getDevices();
-    console.info('usbDevices: ', JSON.stringify(usbDevices));
+    console.info(`usbDevices: ${usbDevices}`);
     if(usbDevices.length === 0) {
-      console.info('usbDevices is empty');
+      console.error('usbDevices is empty');
       return;
     }
     ```
@@ -72,7 +76,7 @@
       await usbManager.requestRight(usbDevice.name).then(result => {
         if(!result) {
           // 没有访问设备的权限且用户不授权则退出
-          console.info('user is not granted the operation permission');
+          console.error('The user does not have permission to perform this operation');
           return;
         }
       });
@@ -137,13 +141,13 @@
      };
    
      transferParams.callback = (err: Error, callBackData: usbManager.SubmitTransferCallback) => {
-       console.info('callBackData = ' + JSON.stringify(callBackData));
-       console.info('transfer success，result = ' + transferParams.buffer.toString());
+       console.info(`callBackData = ${callBackData}`);
+       console.info(`transfer success，result = ${transferParams.buffer}`);
      }
      usbManager.usbSubmitTransfer(transferParams);
      console.info('USB transfer request submitted.');
    } catch (error) {
-     console.error('USB transfer failed:', error);
+     console.error(`USB transfer failed: ${error}`);
    }
    ```
 

@@ -133,7 +133,7 @@ USB设备可作为Host连接Device进行设备管理，开发示例如下：
    usbManager.requestRight(deviceName).then((hasRight : boolean) => {
      console.info("usb device request right result: " + hasRight);
    }).catch((error : BusinessError)=> {
-     console.info("usb device request right failed : " + error);
+     console.error(`usb device request right failed : ${error}`);
    });
    ```
 
