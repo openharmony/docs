@@ -1293,6 +1293,19 @@ type Nullable\<T> = T | undefined
 > - 建议在出现[像素取整常见问题](./ts-universal-attributes-pixelRound.md#常见问题)时，尝试采用PIXEL_ROUND_AFTER_MEASURE模式解决。
 > - 在PIXEL_ROUND_AFTER_MEASURE模式下，组件会在测量大小结束时进行一次取整，即最终大小相比于PIXEL_ROUND_ON_LAYOUT_FINISH模式可能扩大1px。
 
+## TipsAnchorType<sup>20+</sup>
+
+指定Tips跟随类型。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+| 名称    |  说明                   |
+| ------  | -------------------- |
+| TARGET | Tips跟随目标物。 |
+| CURSOR | Tips跟随鼠标。 |
+
 ## AnimationPropertyType<sup>20+</sup>
 
 用于动画的属性类型。
