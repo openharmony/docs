@@ -4437,7 +4437,7 @@
           - [AVPlayer](reference/apis-media-kit/capi-avplayer.md)
           - [AVRecorder](reference/apis-media-kit/_a_v_recorder.md)
           - [AVScreenCapture](reference/apis-media-kit/_a_v_screen_capture.md)
-          - [VideoProcessing](reference/apis-media-kit/_video_processing.md)
+          - [VideoProcessing](reference/apis-media-kit/capi-videoprocessing.md)
         - 头文件<!--media-headerfile-->
           - [avimage_generator.h](reference/apis-media-kit/avimage__generator_8h.md)
           - [avimage_generator_base.h](reference/apis-media-kit/avimage__generator__base_8h.md)
@@ -4450,8 +4450,8 @@
           - [native_avscreen_capture.h](reference/apis-media-kit/native__avscreen__capture_8h.md)
           - [native_avscreen_capture_base.h](reference/apis-media-kit/native__avscreen__capture__base_8h.md)
           - [native_avscreen_capture_errors.h](reference/apis-media-kit/native__avscreen__capture__errors_8h.md)
-          - [video_processing.h](reference/apis-media-kit/video__processing_8h.md)
-          - [video_processing_types.h](reference/apis-media-kit/video__processing__types_8h.md)
+          - [video_processing.h](reference/apis-media-kit/capi-video-processing-h.md)
+          - [video_processing_types.h](reference/apis-media-kit/capi-video-processing-types-h.md)
         - 结构体<!--media-struct-->
           - [MediaKeySession](reference/apis-media-kit/capi-mediakeysession.md)
           - [DRM_MediaKeySystemInfo](reference/apis-media-kit/capi-drm-mediakeysysteminfo.md)
@@ -4475,7 +4475,9 @@
           - [OH_VideoCaptureInfo](reference/apis-media-kit/_o_h___video_capture_info.md)
           - [OH_VideoEncInfo](reference/apis-media-kit/_o_h___video_enc_info.md)
           - [OH_VideoInfo](reference/apis-media-kit/_o_h___video_info.md)
-          - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/_video_processing___color_space_info.md)
+          - [VideoProcessing_ColorSpaceInfo](reference/apis-media-kit/capi-videoprocessing-colorspaceinfo.md)
+          - [OH_VideoProcessing](reference/apis-media-kit/capi-oh-videoprocessing.md)
+          - [VideoProcessing_Callback](reference/apis-media-kit/capi-videoprocessing-callback.md)
       - 错误码<!--media-arkts-errcode-->
         - [Media错误码](reference/apis-media-kit/errorcode-media.md)
     - Media Library Kit（媒体文件管理服务）<!--media-library-api-->
