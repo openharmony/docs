@@ -15,7 +15,7 @@ import { FenceExtensionAbility } from '@kit.LocationKit';
 
 ## FenceExtensionAbility
 
-
+为开发者提供地理围栏相关的能力，继承自ExtensionAbility。
 
 ### 属性
 

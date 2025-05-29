@@ -143,7 +143,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 | -------- | -------- | -------- | -------- | -------- |
 | locatingPriority | [LocatingPriority](#locatingpriority12) | 否 | 否 | 表示优先级信息。取值范围见[LocatingPriority](#locatingpriority12)的定义。|
 | locatingTimeoutMs | number | 否 | 否 | 表示超时时间，单位是毫秒，最小为1000毫秒。取值范围为大于等于1000。 |
-| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。|
+| needPoi<sup>19+ | boolean | 否 | 是 | 表示是否需要获取当前位置附近的POI信息。false代表不需要获取当前位置附近的POI信息，true代表需要获取当前位置附近的POI信息。不设置时，默认值为false。<br/>**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。|
 
 
 ## SatelliteStatusInfo
