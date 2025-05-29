@@ -1405,7 +1405,7 @@ type SpecificSystemBar = 'status' \| 'navigation' \| 'navigationIndicator'
 |------------|--------|
 | 'status'   | 状态栏。   |
 | 'navigation'   | 三键导航栏。<br><!--RP13--><!--RP13End-->   |
-| 'navigationIndicator'   | 底部导航。<!--RP12-->OpenHarmony各设备不支持此能力<!--RP12End--> |
+| 'navigationIndicator'   | 底部导航。<!--RP12-->OpenHarmony各设备不支持此能力。<!--RP12End--> |
 
 ## Window
 
@@ -2315,8 +2315,8 @@ export default class EntryAbility extends UIAbility {
 setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 设置主窗口或子窗口的布局是否为沉浸式布局，使用Promise异步回调。<!--RP8-->从API version 14开始，该接口在2in1设备上调用不生效。<!--RP8End-->
-沉浸式布局生效时，布局不避让状态栏与三键导航栏，组件可能产生与其重叠的情况。
-非沉浸式布局生效时，布局避让状态栏与三键导航栏，组件不会与其重叠。
+沉浸式布局生效时，布局不避让状态栏与<!--RP15-->三键导航栏<!--RP15End-->，组件可能产生与其重叠的情况。
+非沉浸式布局生效时，布局避让状态栏与<!--RP15-->三键导航栏<!--RP15End-->，组件不会与其重叠。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -2326,7 +2326,7 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------------ | ------- | -- | ------------------------------------------------------------------------------------------------ |
-| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、三键导航栏仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
+| isLayoutFullScreen | boolean | 是 | 窗口的布局是否为沉浸式布局（该沉浸式布局状态栏、<!--RP15-->三键导航栏<!--RP15End-->仍然显示）。true表示沉浸式布局；false表示非沉浸式布局。 |
 
 **返回值：**
 
