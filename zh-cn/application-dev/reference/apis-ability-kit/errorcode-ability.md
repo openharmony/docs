@@ -360,6 +360,7 @@ Installation-free timed out.
 
 免安装超时，请稍后重试。
 
+<!--Del-->
 ## 16000058 指定的URI flag无效
 
 **错误信息**
@@ -413,6 +414,7 @@ A sandbox application cannot grant URI permission.
 **处理步骤**
 
 确认为非沙箱应用。
+<!--DelEnd-->
 
 ## 16000061 不支持的操作
 
@@ -648,9 +650,7 @@ The app clone index is invalid.
 **可能原因**
 
 1.调用startAbility时，使用ohos.extra.param.key.appCloneIndex携带的appCloneIndex是一个无效值，则返回该错误码。
-<!--Del-->
-2.调用isAppRunning是，入参appCloneIndex是一个无效值，则返回该错误码。
-<!--DelEnd-->
+2.调用isAppRunning时，入参appCloneIndex是一个无效值，则返回该错误码。
 
 **处理步骤**
 
@@ -789,6 +789,7 @@ Creating a new instance is not supported.
 
 删除参数[CREATE_APP_INSTANCE_KEY](js-apis-app-ability-wantConstant.md#params)。
 
+<!--Del-->
 ## 16000081 获取目标应用信息失败
 
 **错误信息**
@@ -797,7 +798,7 @@ Failed to obtain the target application information.
 
 **错误描述**
 
-调用<!--Del-->[<!--DelEnd-->URI授权相关接口<!--Del-->](js-apis-uripermissionmanager-sys.md)<!--DelEnd-->时，无法根据应用包名和分身索引获取到目标应用的相关信息。
+调用[URI授权相关接口](js-apis-uripermissionmanager-sys.md)时，无法根据应用包名和分身索引获取到目标应用的相关信息。
 
 **可能原因**
 
@@ -810,6 +811,7 @@ Failed to obtain the target application information.
 1. 检查目标应用是否已经安装。
 2. 检查分身应用索引是否在允许范围内。
 3. 检查目标应用是否创建了该索引对应的分身应用。
+<!--DelEnd-->
 
 ## 16000084 只允许DelegatorAbility单次调用
 
@@ -988,6 +990,7 @@ The method has not been registered.
 
 请检查是否未注册该方法。
 
+<!--Del-->
 ## 16200006 没有权限设置常驻进程使能状态
 
 **错误信息**
@@ -1041,6 +1044,7 @@ The specified mission listener does not exist.
 **处理步骤**
 
 确认操作的任务监听器是否存在。
+<!--DelEnd-->
 
 ## 16300003 目标应用程序不是自身应用程序
 
@@ -1060,6 +1064,7 @@ The target application is not the current application.
 
 确认被拉起的应用程序是否为自身应用程序。
 
+<!--Del-->
 ## 18500001 指定的包名无效
 
 **错误信息**
@@ -1132,6 +1137,7 @@ The application has an ongoing quick fix task.
 **处理步骤**
 
 等待快速修复任务处理完成。
+<!--DelEnd-->
 
 ## 16300004 指定的observer不存在
 
@@ -1151,6 +1157,7 @@ The observer does not exist.
 
 请检查是否有重复注销监听器。
 
+<!--Del-->
 ## 16300005 指定的包信息不存在
 
 **错误信息**
@@ -1222,6 +1229,7 @@ The target application is not attached to the status bar.
 **处理步骤**
 
 检查应用是否绑定状态栏。
+<!--DelEnd-->
 
 ## 29600001 图片编辑内部错误
 
@@ -1279,6 +1287,7 @@ Image too big.
 1. 尝试将图片编辑后大小控制在50M以内。
 2. 对图片大小进行校验。
 
+<!--Del-->
 ## 16300007 指定的原子化服务的下载安装任务信息不存在
 
 **错误信息**
@@ -1296,6 +1305,7 @@ The target free-installation task does not exist.
 **处理步骤**
 
 检查传入的bundleName、moduleName、abilityName或startTime参数是否正确。
+<!--DelEnd-->
 
 ## 28800001 启动任务或其依赖项不存在
 
