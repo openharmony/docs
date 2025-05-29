@@ -19,7 +19,7 @@ For details about how to use related APIs, see [getAppPreferredLanguage](../refe
    let appPreferredLanguage: string = i18n.System.getAppPreferredLanguage(); // Obtain the preferred language of the application.
    ```
    
-3. Sets the preferred language of the application. After the preferred language of the application is set to the target language, the application UI is switched to the target language. The setting is subject only to the application. It does not affect the system language settings.
+3. Set the preferred language of the application. After the preferred language of the application is set to the target language, the application UI is switched to the target language. The setting is subject only to the application. It does not affect the system language settings.
    ```ts
    try {
      i18n.System.setAppPreferredLanguage('zh-Hans'); // Set the preferred language of the application to zh-Hans.

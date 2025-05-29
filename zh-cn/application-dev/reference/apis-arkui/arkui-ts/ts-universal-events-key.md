@@ -166,7 +166,7 @@ struct KeyEventExample {
 
 ### 示例2（获取uniCode码值）
 
-该示例通过key事件获取按键的unicode码值。
+该示例通过按键事件获取所按按键的unicode码值。
 
 ```ts
 // xxx.ets

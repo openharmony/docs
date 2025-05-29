@@ -53,7 +53,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -94,7 +94,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -161,7 +161,7 @@ let rect: display.Rect[] = [{
 try {
   inputMonitor.on('mouse', rect, callback);
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -206,7 +206,7 @@ try {
   inputMonitor.off('touch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -223,7 +223,7 @@ try {
   inputMonitor.off('touch');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -268,7 +268,7 @@ try {
   inputMonitor.off('mouse', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -285,7 +285,7 @@ try {
   inputMonitor.off('mouse');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -324,7 +324,7 @@ try {
     return false;
   });
 } catch (error) {
-    console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+    console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -366,7 +366,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -412,7 +412,7 @@ try {
   inputMonitor.off('pinch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -429,7 +429,7 @@ try {
   inputMonitor.off('pinch');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -469,7 +469,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -515,7 +515,7 @@ try {
   inputMonitor.off("threeFingersSwipe", callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -532,7 +532,7 @@ try {
   inputMonitor.off("threeFingersSwipe");
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -572,7 +572,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -618,7 +618,7 @@ try {
   inputMonitor.off('fourFingersSwipe', callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -635,7 +635,7 @@ try {
   inputMonitor.off('fourFingersSwipe');
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -678,7 +678,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -725,7 +725,7 @@ try {
   inputMonitor.off('rotate', 2, callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -742,7 +742,7 @@ try {
   inputMonitor.off('rotate', 2);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -785,7 +785,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -832,7 +832,7 @@ try {
   inputMonitor.off('pinch', 2, callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -849,7 +849,7 @@ try {
   inputMonitor.off('pinch', 2);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -889,7 +889,7 @@ try {
     return false;
   });
 } catch (error) {
-  console.log(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor on failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -935,7 +935,7 @@ try {
   inputMonitor.off("threeFingersTap", callback);
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -952,7 +952,7 @@ try {
   inputMonitor.off("threeFingersTap");
   console.log(`Monitor off success`);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -995,7 +995,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1041,7 +1041,7 @@ try {
   inputMonitor.on('touchscreenSwipe', fingers, callback);
   inputMonitor.off('touchscreenSwipe', fingers, callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1056,7 +1056,7 @@ try {
   });
   inputMonitor.off('touchscreenSwipe', fingers);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1099,7 +1099,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1145,7 +1145,7 @@ try {
   inputMonitor.on('touchscreenPinch', fingers, callback);
   inputMonitor.off("touchscreenPinch", fingers, callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1160,7 +1160,7 @@ try {
   });
   inputMonitor.off("touchscreenPinch", fingers);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1184,7 +1184,7 @@ on(type: 'keyPressed', keys: Array&lt;KeyCode&gt;, receiver: Callback&lt;KeyEven
 
 **错误码**：
 
-以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[按键监听错误码](./errorcode-inputkeymonitor.md)。
+以下错误码的详细介绍请参见[通用错误码](../errorcode-universal.md)和[按键监听错误码](./errorcode-inputmonitor.md)。
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
@@ -1204,7 +1204,7 @@ try {
     console.log(`Monitor on success ${JSON.stringify(event)}`);
   });
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1249,7 +1249,7 @@ try {
   inputMonitor.on('keyPressed', keys, callback);
   inputMonitor.off("keyPressed", callback);
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
@@ -1264,6 +1264,6 @@ try {
   });
   inputMonitor.off("keyPressed");
 } catch (error) {
-  console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+  console.error(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```

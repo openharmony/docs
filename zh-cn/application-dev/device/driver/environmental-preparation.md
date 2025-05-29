@@ -33,6 +33,6 @@ HDC（HarmonyOS Device Connector）是为开发人员提供的用于调试的命
 
 ## 开发设备
 <!--RP1-->
-- 当前开发调试及验证，以RK3568作为开发设备进行说明。关于RK3568的编译、烧录操作等方法，可参考[快速入门](https://gitee.com/openharmony/docs/blob/master/zh-cn/device-dev/quick-start/quickstart-pkg-3568-burn.md)。<!--RP1End-->
+- 当前开发调试及验证，以RK3568作为开发设备进行说明。关于RK3568的编译、烧录操作等方法，可参考[快速入门](../../../device-dev/quick-start/quickstart-pkg-3568-burn.md)。<!--RP1End-->
 - 开发扩展外设驱动客户端和扩展外设驱动时，需要一个外接USB设备进行调试，**当前仅支持USB总线的外接设备**。
 - 需要知道外接USB设备的ProductId和VendorId，用于定义驱动以及IPC通信。

@@ -12,7 +12,7 @@
 
 onChildTouchTest(event: (value: Array&lt;TouchTestInfo&gt;) => TouchResult): T
 
-当前组件可通过设置回调来自定义触摸测试，可以控制触摸测试中的子节点行为。
+当前组件通过设置回调，可自定义触摸测试并控制触摸测试中的子节点行为。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 

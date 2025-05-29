@@ -115,17 +115,17 @@ export default class EntryAbility extends UIAbility {
               context.terminateSelf((err: BusinessError) => {
                 if (err.code) {
                   // 处理业务逻辑错误
-                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}`);
+                  console.error(`terminateSelf failed, code is ${err.code}, message is ${err.message}.`);
                   return;
                 }
                 // 执行正常业务
-                console.info('terminateSelf succeed');
+                console.info(`terminateSelf succeed.`);
               });
             } catch (err) {
               // 捕获同步的参数错误
               let code = (err as BusinessError).code;
               let message = (err as BusinessError).message;
-              console.error(`terminateSelf failed, code is ${code}, message is ${message}`);
+              console.error(`terminateSelf failed, code is ${code}, message is ${message}.`);
             }
           })
       }
@@ -177,7 +177,7 @@ export default class EntryAbility extends UIAbility {
 
               this.context.startAbility(want, (err: BusinessError) => {
                 if (err.code) {
-                  console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+                  console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}.`);
                 }
               });
             })
@@ -196,25 +196,24 @@ export default class EntryAbility extends UIAbility {
     export default class UIAbilityB extends UIAbility {
       onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         // 调用方无需手动传递parameters参数，系统会自动向Want对象中传递调用方信息。
-        console.log('onCreate, callerPid: ' + want.parameters?.['ohos.aafwk.param.callerPid']);
-        console.log('onCreate, callerBundleName: ' + want.parameters?.['ohos.aafwk.param.callerBundleName']);
-        console.log('onCreate, callerAbilityName: ' + want.parameters?.['ohos.aafwk.param.callerAbilityName']);
+        console.log(`onCreate, callerPid: ${want.parameters?.['ohos.aafwk.param.callerPid']}.`);
+        console.log(`onCreate, callerBundleName: ${want.parameters?.['ohos.aafwk.param.callerBundleName']}.`);
+        console.log(`onCreate, callerAbilityName: ${want.parameters?.['ohos.aafwk.param.callerAbilityName']}.`);
       }
 
       onDestroy(): void {
-        console.log('UIAbilityB onDestroy');
+        console.log(`UIAbilityB onDestroy.`);
       }
 
       onWindowStageCreate(windowStage: window.WindowStage): void {
-        console.log('Ability onWindowStageCreate');
+        console.log(`Ability onWindowStageCreate.`);
 
         windowStage.loadContent('pages/Index', (err) => {
           if (err.code) {
-          
-            console.log('Failed to load the content. Cause:', JSON.stringify(err));
+            console.error(`Failed to load the content, error code: ${err.code}, error msg: ${err.message}.`);
             return;
           }
-          console.log('Succeeded in loading the content.');
+          console.log(`Succeeded in loading the content.`);
         });
       }
     }

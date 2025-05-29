@@ -16,7 +16,7 @@ NativeWindow是**本地平台化窗口**，表示图形队列的生产者端。�
 | OH_NativeWindow_NativeWindowFlushBuffer (OHNativeWindow \*window, OHNativeWindowBuffer \*buffer, int fenceFd, Region region) | 通过OHNativeWindow将生产好内容的OHNativeWindowBuffer放回到Buffer队列中，用以内容消费。 | 
 | OH_NativeWindow_NativeWindowHandleOpt (OHNativeWindow \*window, int code,...) | 设置/获取OHNativeWindow的属性，包括设置/获取宽高、内容格式等。 | 
 
-详细的接口说明请参考[native_window](../reference/apis-arkgraphics2d/_native_window.md)。
+详细的接口说明请参考[native_window](../reference/apis-arkgraphics2d/capi-nativewindow.md)。
 
 ## 开发步骤
 

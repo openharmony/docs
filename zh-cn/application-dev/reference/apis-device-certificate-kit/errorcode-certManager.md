@@ -87,3 +87,17 @@ The device enters advanced security mode.
 **处理步骤**
 
 需要在应用界面提醒用户关闭坚盾守护模式。
+
+## 17500009 不支持指定的证书存储路径
+
+**错误信息**
+
+The device does not support the specified certificate store path.
+
+**可能原因**
+
+设备不支持指定的证书存储路径。
+
+**处理步骤**
+
+检查输入的证书类型是否正确。

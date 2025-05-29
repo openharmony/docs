@@ -151,7 +151,7 @@ onDragEnd(event: (event: DragEvent, extraParams?: string) => void)
 
 onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
-绑定此事件的组件，当触发拖拽发起前的不同阶段时，触发回调。
+绑定此事件的组件，当处于拖拽发起前的不同阶段时，触发回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
@@ -237,7 +237,9 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 | startDataLoading(options: [DataSyncOptions](#datasyncoptions15))<sup>15+</sup> | string | 异步获取拖拽数据，并通知开发者当前数据同步进度，仅支持在onDrop阶段使用。数据传输过程中可使用[cancelDataLoading](../js-apis-arkui-UIContext.md#canceldataloading15)接口取消。<br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。 |
 | getX()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的x轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowX()代替。 |
 | getY()<sup>(deprecated)</sup> | number | 当前拖拽点相对于窗口左上角的y轴坐标，单位为vp。<br>从API version 10开始不再维护，建议使用getWindowY()代替。 |
-
+| getDisplayId()<sup>20+</sup> | number | 获取当前拖拽事件发生时所在的屏幕ID，不支持当eventType为NODE_ON_DRAG_END时获取。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| getDragSource()<sup>20+</sup> | string | 获取拖起方包名。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
+| isRemote()<sup>20+</sup> | boolean | 获取是否是跨设备拖拽，跨设备拖拽时为true。<br/>**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。 |
 
 **错误码：**
 
@@ -266,7 +268,7 @@ onPreDrag(event: (preDragStatus: PreDragStatus) => void)
 
 ## DragBehavior<sup>10+</sup>
 
-当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（COPY）或剪切（MOVE）。DragBehavior用来向开发者描述数据的处理方式是复制（COPY）还是剪切（MOVE），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制还是剪切数据的不同行为。
+当设置[DragResult](#dragresult10枚举说明)为DROP_ENABLED后，可设置DragBehavior为复制（COPY）或剪切（MOVE）。DragBehavior用来向开发者描述数据的处理方式是复制（COPY）还是剪切（MOVE），但无法最终决定对数据的实际处理方式。DragBehavior会通过onDragEnd带回给数据拖出方，发起拖拽的一方可通过DragBehavior来区分做出的是复制（COPY）还是剪切（MOVE）数据的不同行为。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -724,3 +726,260 @@ struct ImageExample {
   }
 }
 ```
+### 示例4（获取当前拖拽的屏幕ID）
+
+通过onDragXXX（不支持onDragEnd）接口获取到拖拽事件，并调用拖拽事件里的getDisplayId接口获取屏幕ID。
+
+```ts
+import { unifiedDataChannel, uniformTypeDescriptor } from '@kit.ArkData';
+import { promptAction } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+@Entry
+@Component
+struct Index {
+  @State targetImage: string = '';
+  @State imageWidth: number = 100;
+  @State imageHeight: number = 100;
+  @State imgState: Visibility = Visibility.Visible;
+  @State backGroundColor: Color = Color.Transparent;
+  @State startDisplayId: number = -1;
+  @State enterDisplayId: number = -1;
+  @State moveDisplayId: number = -1;
+  @State LeaveDisplayId: number = -1;
+  @State dropDisplayId: number = -1;
+
+  @Builder
+  pixelMapBuilder() {
+    Column() {
+      Image($r('app.media.app_icon'))
+        .width(120)
+        .height(120)
+        .backgroundColor(Color.Yellow)
+    }
+  }
+
+  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent) => void) {
+    try {
+      let data: UnifiedData = event.getData();
+      if (!data) {
+        return false;
+      }
+      let records: Array<unifiedDataChannel.UnifiedRecord> = data.getRecords();
+      if (!records || records.length <= 0) {
+        return false;
+      }
+      callback(event);
+      return true;
+    } catch (e) {
+      console.log("getData failed, code = " + (e as BusinessError).code + ", message = " + (e as BusinessError).message);
+      return false;
+    }
+  }
+
+  getDataFromUdmf(event: DragEvent, callback: (data: DragEvent) => void) {
+    if (this.getDataFromUdmfRetry(event, callback)) {
+      return;
+    }
+    setTimeout(() => {
+      this.getDataFromUdmfRetry(event, callback);
+    }, 1500);
+  }
+
+  private PreDragChange(preDragStatus: PreDragStatus): void {
+    if (preDragStatus == PreDragStatus.READY_TO_TRIGGER_DRAG_ACTION) {
+      this.backGroundColor = Color.Red;
+    } else if (preDragStatus == PreDragStatus.ACTION_CANCELED_BEFORE_DRAG
+      || preDragStatus == PreDragStatus.PREVIEW_LANDING_FINISHED) {
+      this.backGroundColor = Color.Blue;
+    }
+  }
+
+  build() {
+    Row() {
+      Column() {
+        Text('start Drag')
+          .fontSize(18)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .backgroundColor('#008888')
+        Image($r('app.media.startIcon'))
+          .width(100)
+          .height(100)
+          .draggable(true)
+          .margin({ left: 15 })
+          .visibility(this.imgState)
+          .onDragStart((event) => {
+            let id = event.getDisplayId();
+            this.startDisplayId = id;
+          })
+
+          .onDragEnd((event) => {
+            if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
+              promptAction.showToast({ duration: 100, message: 'Drag Success' });
+            } else if (event.getResult() === DragResult.DRAG_FAILED) {
+              promptAction.showToast({ duration: 100, message: 'Drag failed' });
+            }
+          })
+
+        Text('displayID in onDragStart: ' + this.startDisplayId.toString())
+          .width('100%')
+          .height(50)
+          .draggable(true)
+          .margin({ left: 15 })
+        Text('displayID in onDragEnter: ' + this.enterDisplayId.toString())
+          .width('100%')
+          .height(50)
+          .draggable(true)
+          .margin({ left: 15 })
+        Text('displayID in onDragMove: ' + this.moveDisplayId.toString())
+          .width('100%')
+          .height(50)
+          .draggable(true)
+          .margin({ left: 15 })
+        Text('displayID in onDragLeave: ' + this.LeaveDisplayId.toString())
+          .width('100%')
+          .height(50)
+          .draggable(true)
+          .margin({ left: 15 })
+        Text('displayID in onDrop: ' + this.dropDisplayId.toString())
+          .width('100%')
+          .height(50)
+          .draggable(true)
+          .margin({ left: 15 })
+          .onPreDrag((status: PreDragStatus) => {
+            this.PreDragChange(status);
+          })
+      }.width('45%')
+      .height('100%')
+
+      Column() {
+        Text('Drag Target Area')
+          .fontSize(20)
+          .width('100%')
+          .height(40)
+          .margin(10)
+          .backgroundColor('#008888')
+        Image(this.targetImage)
+          .width(this.imageWidth)
+          .height(this.imageHeight)
+          .draggable(true)
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 1 })
+          .allowDrop([uniformTypeDescriptor.UniformDataType.IMAGE])
+          .onDragEnter((event) => {
+            let id = event.getDisplayId();
+            this.enterDisplayId = id;
+          })
+          .onDragMove((event) => {
+            let id = event.getDisplayId();
+            this.moveDisplayId = id;
+          })
+          .onDragLeave((event) => {
+            let id = event.getDisplayId();
+            this.LeaveDisplayId = id;
+          })
+          .onDrop((dragEvent: DragEvent) => {
+            let id = dragEvent.getDisplayId();
+            this.dropDisplayId = id;
+            this.getDataFromUdmf((dragEvent as DragEvent), (event: DragEvent) => {
+              let records: Array<unifiedDataChannel.UnifiedRecord> = event.getData().getRecords();
+              let rect: Rectangle = event.getPreviewRect();
+              this.imageWidth = Number(rect.width);
+              this.imageHeight = Number(rect.height);
+              this.targetImage = (records[0] as unifiedDataChannel.Image).imageUri;
+              event.useCustomDropAnimation = false;
+              this.imgState = Visibility.None;
+              event.setResult(DragResult.DRAG_SUCCESSFUL);
+            })
+          })
+      }.width('45%')
+      .height('100%')
+      .margin({ left: '5%' })
+    }
+    .height('100%')
+  }
+}
+```
+![DragEvent_getDisplayId](figures/DragEvent_getDisplayId.png)
+
+### 示例5（获取包名和是否是跨设备）
+
+通过onDragXXX接口获取到拖拽事件，调用拖拽事件里的getDragSource接口获取包名，调用isRemote接口获取是否是跨设备。
+
+```ts
+@Entry
+@Component
+struct Index {
+  @State targetImage: string = '';
+  @State startDragSource: string = '';
+  @State startIsRemote: boolean = true;
+  @State enterDragSource: string = '';
+  @State enterIsRemote: boolean = true;
+
+  build() {
+    Column() {
+      Row() {
+        Column() {
+          Text('start Drag Area')
+            .fontSize(18)
+            .width('100%')
+            .height(40)
+            .margin(10)
+            .backgroundColor('#008888')
+          Image($r('app.media.startIcon'))
+            .onDragStart((event) => {
+              this.startDragSource = (event as DragEvent).getDragSource();
+              this.startIsRemote = (event as DragEvent).isRemote();
+            })
+            .width(100)
+            .height(100)
+            .draggable(true)
+            .margin({ left: 15 })
+        }
+        .border({ color: Color.Black, width: 1 })
+        .width('45%')
+        .height('50%')
+
+        Column() {
+          Text('Drag Target Area')
+            .fontSize(20)
+            .width('100%')
+            .height(40)
+            .margin(10)
+            .backgroundColor('#008888')
+          Image(this.targetImage)
+            .width(100)
+            .height(100)
+            .draggable(true)
+            .margin({ left: 15 })
+            .border({ color: Color.Black, width: 1 })
+            .onDragEnter((event) => {
+              this.enterDragSource = (event as DragEvent).getDragSource();
+              this.enterIsRemote = (event as DragEvent).isRemote();
+            })
+            .onDrop(()=>{})
+        }
+        .border({ color: Color.Black, width: 1 })
+        .width('45%')
+        .height('50%')
+        .margin({ left: '5%' })
+      }
+      .height('70%')
+
+      Text('onDragStart dragSource: ' + this.startDragSource.toString() + '\n' + 'onDragStart isRemote: ' +
+      this.startIsRemote.toString())
+        .width('100%')
+        .height(50)
+        .margin({ left: 15 })
+      Text('onDragEnter dragSource: ' + this.enterDragSource.toString() + '\n' + 'onDragEnter isRemote: ' +
+      this.startIsRemote.toString())
+        .width('100%')
+        .height(50)
+        .margin({ left: 15 })
+    }
+  }
+}
+```
+![dragSourceAndIsRemote](figures/dragSourceAndIsRemote.png)

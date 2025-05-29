@@ -20,7 +20,7 @@
 >
 >  - 当Swiper子组件设置了[offset](ts-universal-attributes-location.md#offset)属性时，会按照子组件的层级进行绘制，层级高的子组件会覆盖层级低的子组件。例如，Swiper包含3个子组件，其中第3个子组件设置了offset({ x : 100 })，那么在横向循环滑动中，第3个子组件会覆盖第1个子组件，此时可设置第1个子组件的[zIndex](ts-universal-attributes-z-order.md)属性值大于第3个子组件，使第1个子组件层级高于第3个子组件。
 >
->  - 在走焦到用户定义的子节点时，导航点、箭头会由于[焦点样式](../../../ui/arkts-common-events-focus-event.md#焦点样式)修改zindex的行为被遮挡。
+>  - 在走焦到用户定义的子节点时，导航点、箭头会由于[焦点样式](../../../ui/arkts-common-events-focus-event.md#焦点样式)修改zIndex的行为被遮挡。
 >
 >  - 在包含大量子组件的场景中，建议采用懒加载、缓存数据、预加载数据和组件复用等方法，以优化Swiper的性能并减少内存占用。最佳实践请参考[优化Swiper组件加载慢丢帧问题](https://developer.huawei.com/consumer/cn/doc/best-practices/bpta-swiper_high_performance_development_guide)。
 
@@ -366,6 +366,8 @@ displayCount(value: number | string | SwiperAutoFill, swipeByGroup?: boolean)
 
 当导航点样式设定为圆形导航点，视窗内显示子元素数量等于1时（单页场景）或者 displayCount设置为'auto'时，显示导航点数量等于子元素数量。
 
+displayCount设置为'auto'，并且设置非循环时，选中导航点的位置与视窗内首个页面的位置保持一致。如果翻页完成后，视窗内首个页面仅部分显示在视窗内，选中导航点亦与页面的位置保持一致，位于两个未选中的导航点之间。在此情况下，建议开发者隐藏导航点。
+
 当导航点样式设定为圆形导航点，视窗内显示子元素数量大于1（多页场景），显示导航点数量情况如下表：
 
 | 子元素总数量是否大于视窗内显示的子元素数量 | 是否按组翻页 | 是否循环        | 圆形导航点显示数量                                           | 说明                                     |
@@ -533,6 +535,26 @@ pageFlipMode(mode: Optional\<PageFlipMode>)
 | 参数名 | 类型                                                        | 必填 | 说明                                                         |
 | ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | mode  | Optional\<[PageFlipMode](ts-appendix-enums.md#pageflipmode15)> | 是   | 鼠标滚轮翻页模式。<br/>默认值：PageFlipMode.CONTINUOUS |
+
+### maintainVisibleContentPosition<sup>20+</sup>
+
+maintainVisibleContentPosition(enabled: boolean)
+
+设置显示区域上方或前方插入或删除数据时是否要保持可见内容位置不变。
+
+在displayCount属性的swipeByGroup参数设置为true，生效按组翻页时，一次在显示区域上方或前方插入或删除和一组节点数量倍数的数据量时才能保持可见内容位置不变，否则可见内容位置可能会随每组数据重新分组改变。
+
+**卡片能力：** 从API version 20开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 20开始，该接口支持在原子化服务中使用。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名 | 类型                                                        | 必填 | 说明                                                         |
+| ------ | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| enabled  | boolean | 是   | 设置显示区域上方或前方插入或删除数据时是否要保持可见内容位置不变。<br/>默认值：false，显示区域上方或前方插入或删除数据时可见内容位置会跟随变化。 true：显示区域上方或前方插入或删除数据时可见内容位置不变。 |
 
 ## IndicatorStyle<sup>(deprecated)</sup>对象说明
 
@@ -760,6 +782,12 @@ left(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点左侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于right属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围时，取最近的边界值。 |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### top
 
 top(value: Length): T
@@ -777,6 +805,12 @@ top(value: Length): T
 | 参数名 | 类型                         | 必填 | 说明                                                         |
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点顶部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：高于bottom属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
+
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
 
 ### right
 
@@ -796,6 +830,12 @@ right(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点右侧相对于Swiper的位置。<br/>未设置left和right时，进行自适应大小布局，按照指示器本身大小和Swiper的大小在主轴方向上进行居中对齐。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于left属性。<br/>取值范围：[0,Swiper宽度-导航点区域宽度]，超出该范围 时，取最近的边界值。 |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### bottom
 
 bottom(value: Length): T
@@ -814,16 +854,21 @@ bottom(value: Length): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | value  | [Length](ts-types.md#length) | 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
 
+**返回值：**
 
-### bottom<sup>18+</sup>
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
+### bottom<sup>19+</sup>
 
 bottom(bottom: LengthMetrics | Length, ignoreSize: boolean): T
 
 导航点底部相对于Swiper的位置，并可通过ignoreSize属性忽略导航点大小。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -834,6 +879,12 @@ bottom(bottom: LengthMetrics | Length, ignoreSize: boolean): T
 | ------ | ---------------------------- | ---- | ------------------------------------------------------------ |
 | bottom  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12)&nbsp;\|&nbsp;[Length](ts-types.md#length)| 是   | 设置导航点底部相对于Swiper的位置。<br/>未设置top和bottom时，进行自适应大小布局，按照指示器本身大小和Swiper的大小，在交叉轴方向上，位于底部，效果与设置bottom=0一致。<br/>设置为0时：按照0位置布局计算。<br/>优先级：低于top属性。<br/>取值范围：[0,Swiper高度-导航点区域高度]，超出该范围时，取最近的边界值。 |
 | ignoreSize  | boolean | 是   | 设置是否忽略导航点本身大小，默认false。<br/>设为true时可以将导航点更靠近Swiper底部，使用方法可以参考[示例9演示导航点space与bottom](#示例9演示导航点space与bottom)。<br/> 说明：[数字导航点](#digitindicator10)ignoreSize属性，不生效的场景如下：<br/> &bull;  当[vertical](#vertical) 设置为false，且bottom > 0。<br/>  &bull;  当[vertical](#vertical) 设置为true时：<br/>1、bottom > 0 时。<br/> 2、bottom设为undefined。 <br/> 3、isSidebarMiddle设置为false时。|
+
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
 
 ### start<sup>12+</sup>
 
@@ -853,6 +904,12 @@ start(value: LengthMetrics): T
 | ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | value  | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是   | 设置在RTL模式下为导航点距离Swiper组件右边的距离，在LTR模式下为导航点距离Swiper组件左边的距离<br/>默认值：0<br/>单位：vp |
 
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
+
 ### end<sup>12+</sup>
 
 end(value: LengthMetrics): T
@@ -870,6 +927,12 @@ end(value: LengthMetrics): T
 | 参数名 | 类型                         | 必填  | 说明                                     |
 | ------ | ---------------------------- | ---- | ---------------------------------------- |
 | value | [LengthMetrics](../js-apis-arkui-graphics.md#lengthmetrics12) | 是    | 设置在RTL模式下为导航点距离Swiper组件左边的距离，在LTR模式下为导航点距离Swiper组件右边的距离。<br/>默认值：0<br/>单位：vp  |
+
+**返回值：**
+
+| 类型 | 说明               |
+| --- | ------------------ |
+| T | 返回当前导航点指示器。 |
 
 ### dot
 
@@ -937,7 +1000,7 @@ Swiper组件圆点导航指示器的宽，不支持设置百分比。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### itemHeight
 
@@ -961,7 +1024,7 @@ Swiper组件圆点导航指示器的高，不支持设置百分比。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedItemWidth
 
@@ -985,7 +1048,7 @@ selectedItemWidth(value: Length): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedItemHeight
 
@@ -1009,7 +1072,7 @@ selectedItemHeight(value: Length): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### mask
 
@@ -1033,7 +1096,7 @@ mask(value: boolean): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### color
 
@@ -1057,7 +1120,7 @@ Swiper组件圆点导航指示器的颜色。
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### selectedColor
 
@@ -1081,7 +1144,7 @@ selectedColor(value: ResourceColor): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### maxDisplayCount<sup>12+</sup>
 
@@ -1097,23 +1160,23 @@ maxDisplayCount(maxDisplayCount: number): DotIndicator
 
 | 参数名          | 类型   | 必填 | 说明                                                         |
 | --------------- | ------ | ---- | ------------------------------------------------------------ |
-| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：6-9<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。<br/>3、当前仅支持displayCount为1的场景。 |
+| maxDisplayCount | number | 是   | 设置圆点导航点指示器样式下，导航点显示个数最大值，当实际导航点个数大于最大导航点个数时，会生效超长效果样式，样式如示例5所示。<br/>默认值：这个属性没有默认值，如果设置异常值那等同于没有超长显示效果。<br/>取值范围：[6, 9]<br/>**说明：** <br/>1、超长显示场景，目前暂时不支持交互功能（包括：手指点击拖拽、鼠标操作等）。<br/>2、在超长显示场景下，中间页面对应的选中导航点的位置，并不是完全固定的，取决于之前的翻页操作序列。<br/>3、当前仅支持displayCount为1的场景。 |
 
 **返回值：** 
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
-### space<sup>18+</sup>
+### space<sup>19+</sup>
 
 space(space: LengthMetrics): DotIndicator
 
 设置Swiper圆点导航点间距，不支持设置百分比。
 
-**卡片能力：** 从API version 18开始，该接口支持在ArkTS卡片中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1127,7 +1190,7 @@ space(space: LengthMetrics): DotIndicator
 
 | 类型                            | 说明         |
 | ------------------------------- | ------------ |
-| [DotIndicator](#dotindicator10) | 圆点指示器。 |
+| [DotIndicator](#dotindicator10) | 返回当前圆点指示器。 |
 
 ### constructor
 
@@ -1182,7 +1245,7 @@ Swiper组件数字导航点的字体颜色。
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### selectedFontColor
 
@@ -1206,7 +1269,7 @@ selectedFontColor(value: ResourceColor): DigitIndicator
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### digitFont
 
@@ -1230,7 +1293,7 @@ Swiper组件数字导航点的字体样式。
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### selectedDigitFont
 
@@ -1258,7 +1321,7 @@ selectedDigitFont(value: Font): DigitIndicator
 
 | 类型                                | 说明         |
 | ----------------------------------- | ------------ |
-| [DigitIndicator](#digitindicator10) | 数字指示器。 |
+| [DigitIndicator](#digitindicator10) | 返回当前数字指示器。 |
 
 ### constructor
 

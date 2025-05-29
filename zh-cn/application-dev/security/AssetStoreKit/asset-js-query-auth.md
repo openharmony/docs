@@ -48,7 +48,7 @@
   | --------------------- | ------------------------------------------------------------ | -------- | ------------------------------------------------ |
   | ALIAS                 | 类型为Uint8Array，长度为1-256字节。                            | 必选     | 关键资产别名，每条关键资产的唯一索引。       |
   | AUTH_CHALLENGE        | 类型为Uint8Array，长度为32字节。                               | 必选     | 用户认证的挑战值。                              |
-  | AUTH_TOKEN            | 类型为Uint8Array，长度为148字节。                              | 必选     | 用户认证通过的授权令牌。                         |
+  | AUTH_TOKEN            | 类型为Uint8Array。<br>API 20开始：长度为1-1024字节。<br>API 11-19：长度为148字节。       | 必选     | 用户认证通过的授权令牌。                         |
   | RETURN_TYPE           | 类型为number，asset.ReturnType.ALL。                           | 必选     | 关键资产查询返回的结果类型。                    |
   | ACCESSIBILITY         | 类型为number，取值范围详见[Accessibility](../../reference/apis-asset-store-kit/js-apis-asset.md#accessibility)。 | 可选     | 基于锁屏状态的访问控制。                                     |
   | REQUIRE_PASSWORD_SET  | 类型为boolean。                                                   | 可选     | 是否仅在设置了锁屏密码的情况下，可访问关键资产。为true时表示查询仅用户设置了锁屏密码才允许访问的关键资产；为false时表示查询无论用户是否设置锁屏密码，均可访问的关键资产。     |

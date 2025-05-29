@@ -123,7 +123,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | MPEGURL_AUDIO<sup>12+</sup>                         | 'general.mpegurl-audio'                    | MPEG audio playlist format.<br>This type belongs to **AUDIO**.      |
 | MPEG_4_AUDIO<sup>12+</sup>                         | 'general.mpeg-4-audio'                    | MPEG-4.<br>This type belongs to **AUDIO**.      |
 | MP2<sup>12+</sup>                         | 'general.mp2'                    | MP2.<br>This type belongs to **AUDIO**.      |
-| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPEG.<br>This type belongs to **AUDIO**.      |
+| MPEG_AUDIO<sup>12+</sup>                         | 'general.mpeg-audio'                    | MPEG audio format.<br>This type belongs to **AUDIO**.      |
 | ULAW_AUDIO<sup>12+</sup>                         | 'general.ulaw-audio'                    | ULAW.<br>This type belongs to **AUDIO**.      |
 | SD2_AUDIO<sup>12+</sup>                         | 'com.digidesign.sd2-audio'                    | Digidesign Sound Designer II (SDII).<br>This type belongs to **AUDIO**.      |
 | REALAUDIO<sup>12+</sup>                         | 'com.real.realaudio'                    | RealAudio.<br>This type belongs to **AUDIO**.      |
@@ -142,7 +142,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | TAR_ARCHIVE<sup>11+</sup>                        | 'general.tar-archive'                  | TAR.<br>This type belongs to ARCHIVE.          |
 | ZIP_ARCHIVE<sup>11+</sup>                       | 'general.zip-archive'                 | ZIP.<br>This type belongs to **ARCHIVE**.          |
 | JAVA_ARCHIVE<sup>11+</sup>             | 'com.sun.java-archive'               | JAR (Java archive).<br>This type belongs to **ARCHIVE** and **EXECUTABLE**.         |
-| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GUN archive.<br>This type belongs to **ARCHIVE**.          |
+| GNU_TAR_ARCHIVE<sup>11+</sup>         | 'org.gnu.gnu-tar-archive'           | GNU.<br>This type belongs to **ARCHIVE**.          |
 | GNU_ZIP_ARCHIVE<sup>11+</sup>        | 'org.gnu.gnu-zip-archive'          | GZIP archive.<br>This type belongs to **ARCHIVE**.         |
 | GNU_ZIP_TAR_ARCHIVE<sup>11+</sup>                         | 'org.gnu.gnu-zip-tar-archive'                   | GZIP TAR.<br>This type belongs to **ARCHIVE**.      |
 | OPENXML<sup>12+</sup>                         | 'org.openxmlformats.openxml'                    |   OpenXML base type.<br>This type belongs to **ARCHIVE**.      |
@@ -197,7 +197,7 @@ Enumerates the uniform data types. Some data types are related. For example, the
 | CAD<sup>12+</sup>                         | 'general.cad'                    | Generic type of all computer-aided design types.<br>This type belongs to **OBJECT**.      |
 | OCTET_STREAM<sup>12+</sup>                         | 'general.octet-stream'                    | Any binary data type.<br>This type belongs to **OBJECT**.      |
 | FILE_URI<sup>15+</sup>                         | 'general.file-uri'                    | File address type.<br>This type belongs to **TEXT**.      |
-| CONTENT_FORM<sup>15+<sup>                         | 'general.content-form'                    | Content widget type.<br>This type belongs to **OBJECT**.      |
+| CONTENT_FORM<sup>15+</sup>                         | 'general.content-form'                    | Content widget type.<br>This type belongs to **OBJECT**.      |
 
 
 ## TypeDescriptor<sup>11+</sup> 

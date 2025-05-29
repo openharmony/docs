@@ -4,7 +4,7 @@ DistributedExtensionAbility模块提供分布式相关扩展能力，提供分�
 
 > **说明：**
 >
-> 本模块首批接口从API version 18开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块首批接口从API version 20开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
 > 本模块接口仅可在Stage模型下使用。
 
@@ -42,11 +42,11 @@ Extension生命周期回调，在创建时回调，执行初始化业务逻辑�
 import { Want } from '@kit.AbilityKit';
 import { DistributedExtensionAbility } from '@kit.DistributedServiceKit';
 
-class MyDistributedExtensionAbility extends DistributedExtensionAbility {
-   onCreate(want: Want) {
-       console.info(`DistributedExterntion Create ok`);
-       console.info(`DistributedExterntionon onCollabRequest ${JSON.stringify(want)}`);
-       console.info(`DistributedExterntionon Create end`);
+export default class DistributedExtension extends DistributedExtensionAbility {
+  onCreate(want: Want) {
+    console.info(`DistributedExtension Create ok`);
+    console.info(`DistributedExtension on Create want: ${JSON.stringify(want)}`);
+    console.info(`DistributedExtension Create end`);
   }
 }
 ```
@@ -74,19 +74,19 @@ onCollaborate(wantParam: Record <string, Object>) : AbilityConstant.CollaborateR
 **示例**
 
 ```ts
-import { DistributedExtensionAbility } from '@kit.DistributedServiceKit';
+import { abilityConnectionManager, DistributedExtensionAbility } from '@kit.DistributedServiceKit';
 import { AbilityConstant } from '@kit.AbilityKit';
 
-class MyDistributedExtensionAbility extends DistributedExtensionAbility  {
-    onCollaborate(wantParam: Record<string, Object>)  {
-        console.info(`DistributedExterntionon onCollabRequest Accept to the result of Ability collaborate`);
-        let sessionId = -1;
-        const collabrationType = wantParam["CollabrationType"] as abilityConnectionManager.CollabrationType;
-        if (collabrationType == undefined) {
-            return sessionId;
-        }
-        console.info(`onCollab, peerInfo: ${JSON.stringify(collabrationType)}`);
-        return AbilityConstant.CollaborateResult.ACCEPT;
+export default class DistributedExtension extends DistributedExtensionAbility {
+  onCollaborate(wantParam: Record<string, Object>) {
+    console.info(`DistributedExtension onCollabRequest Accept to the result of Ability collaborate`);
+    let sessionId = -1;
+    const collaborationValues = wantParam["CollaborationValues"] as abilityConnectionManager.CollaborationValues;
+    if (collaborationValues == undefined) {
+      return sessionId;
+    }
+    console.info(`onCollab, collaborationValues: ${JSON.stringify(collaborationValues)}`);
+    return AbilityConstant.CollaborateResult.ACCEPT;
   }
 }
 ```
@@ -104,9 +104,9 @@ Extension生命周期回调，在销毁时回调，执行资源清理等操作�
 ```ts
 import { DistributedExtensionAbility } from '@kit.DistributedServiceKit';
 
-class MyDistributedExtensionAbility extends DistributedExtensionAbility {
+export default class DistributedExtension extends DistributedExtensionAbility {
   onDestroy() {
-    console.info('DistributedExterntion onDestroy ok');
+    console.info('DistributedExtension onDestroy ok');
   }
 }
 ```

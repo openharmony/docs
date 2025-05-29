@@ -37,7 +37,7 @@ EmbeddedComponent组件主要用于实现跨模块、跨进程的嵌入式界面
 
   与屏幕坐标相关的事件信息会基于EmbeddedComponent的位置宽高进行坐标转换后传递给被拉起的EmbeddedUIExtensionAbility处理。
 
-  EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件<!--Del-->，仅支持[onTerminated](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onterminated12)事件和[onError](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onerror)事件<!--DelEnd-->。
+  EmbeddedComponent组件不支持[点击](../reference/apis-arkui/arkui-ts/ts-universal-events-click.md)等通用事件，仅支持[onTerminated](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md#onterminated)事件和[onError](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md#onerror)事件。
 
 ## 场景示例
 
@@ -89,11 +89,11 @@ struct Index {
 - 多进程模型检测
 
   在应用启动时，建议检测设备是否已开启多进程模型。如果未开启，应提供明确的错误提示或引导用户开启。
-<!--Del-->
+
 - 异常处理
 
-  通过[onError](../reference/apis-arkui/arkui-ts/ts-container-ui-extension-component-sys.md#onerror)事件处理加载或运行嵌入式能力时可能出现的错误，提升用户体验。
-<!--DelEnd-->
+  通过[onError](../reference/apis-arkui/arkui-ts/ts-container-embedded-component.md#onerror)事件处理加载或运行嵌入式能力时可能出现的错误，提升用户体验。
+
 - 生命周期管理
 
   了解并管理好嵌入式组件的生命周期，确保资源的正确释放和回收。

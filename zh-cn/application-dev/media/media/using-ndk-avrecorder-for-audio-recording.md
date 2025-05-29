@@ -28,9 +28,9 @@ AVRecorder支持开发音频或视频单独录制，集成了音频捕获，音�
 > 选择只录音频时，与视频相关的所有参数（如videoFrameWidth和videoFrameHeight）均不需要配置。同理，选择只录视频不录音频时，与音频相关的所有参数（如audioBitrate和audioChannels）均不需要配置。
 
 
-开发者通过引入[avrecorder.h](../../reference/apis-media-kit/avrecorder_8h.md)、[avrecorder_base.h](../../reference/apis-media-kit/avrecorder__base_8h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频录制相关API。
+开发者通过引入[avrecorder.h](../../reference/apis-media-kit/capi-avrecorder-h.md)、[avrecorder_base.h](../../reference/apis-media-kit/capi-avrecorder-base-h.md)和[native_averrors.h](../../reference/apis-avcodec-kit/native__averrors_8h.md)头文件，使用视频录制相关API。
 
-AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/_a_v_recorder.md)。
+AVRecorder详细的API说明请参考[AVRecorder API参考](../../reference/apis-media-kit/capi-avrecorder.md)。
 
 
 在 CMake 脚本中链接动态库。

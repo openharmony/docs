@@ -578,8 +578,8 @@ udp.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 6000000,
-    sendBufferSize: 2000000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
@@ -645,8 +645,8 @@ udp.bind(bindAddr, (err: BusinessError) => {
   }
   console.log('bind success');
   let udpextraoptions: socket.UDPExtraOptions = {
-    receiveBufferSize: 6000000,
-    sendBufferSize: 2000000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: false,
     socketTimeout: 6000,
     broadcast: true
@@ -1514,7 +1514,7 @@ getLoopbackMode(callback: AsyncCallback\<boolean\>): void
 
 | 参数名         | 类型                     | 必填 | 说明                         |
 | ------------- | ----------------------- | ---- | --------------------------- |
-| callback      | AsyncCallback\<number\> |  是  | 回调函数。失败返回错误码、错误信息。  |
+| callback      | AsyncCallback\<boolean\> |  是  | 回调函数。失败返回错误码、错误信息。  |
 
 **错误码：**
 
@@ -2429,8 +2429,8 @@ tcp.connect(tcpconnectoptions, () => {
     OOBInline: true,
     TCPNoDelay: true,
     socketLinger: { on: true, linger: 10 } as SocketLinger,
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: true,
     socketTimeout: 3000
   }
@@ -2504,8 +2504,8 @@ tcp.connect(tcpconnectoptions, () => {
     OOBInline: true,
     TCPNoDelay: true,
     socketLinger: { on: true, linger: 10 } as SocketLinger,
-    receiveBufferSize: 1000,
-    sendBufferSize: 1000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     reuseAddress: true,
     socketTimeout: 3000
   }
@@ -2774,7 +2774,7 @@ TCPSocket连接的参数。
 | 名称  | 类型                               | 必填 | 说明                       |
 | ------- | ---------------------------------- | ---- | -------------------------- |
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
-| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
+| timeout | number                             | 否   | 超时时间，单位毫秒（ms）。默认值为5000。 |
 | proxy<sup>18+</sup>   | [ProxyOptions](#proxyoptions18) | 否   | 使用的代理信息，默认不使用代理。 |
 
 ## TCPSendOptions
@@ -3103,8 +3103,8 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
@@ -3182,8 +3182,8 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
@@ -4069,6 +4069,12 @@ bind(address: LocalAddress): Promise\<void\>;
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------ |
 | address  | [LocalAddress](#localaddress11) | 是   | 目标地址信息，参考[LocalAddress](#localaddress11)。 |
 
+**返回值：**
+
+| 类型            | 说明                                       |
+| :-------------- | :---------------------------------------- |
+| Promise\<void\> | Promise\<void\>：Promise对象。无返回结果的Promise对象。|
+
 **错误码：**
 
 | 错误码ID | 错误信息                    |
@@ -4412,8 +4418,8 @@ let connectOpt: socket.LocalConnectOptions = {
 client.connect(connectOpt).then(() => {
   console.log('connect success');
   let options: socket.ExtraOptionsBase = {
-    receiveBufferSize: 8000,
-    sendBufferSize: 8000,
+    receiveBufferSize: 8192,
+    sendBufferSize: 8192,
     socketTimeout: 3000
   }
   client.setExtraOptions(options).then(() => {
@@ -4848,7 +4854,7 @@ LocalSocket客户端在连接服务端时传入的参数信息。
 | 名称     | 类型       | 必填 | 说明                            |
 | ------- | ---------- | --- | ------------------------------ |
 | address | [LocalAddress](#localaddress11)    | 是   | 指定的本地套接字路径。            |
-| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。  |
+| timeout | number     | 否   | 连接服务端的超时时间，单位为毫秒。默认值为0。需要应用手动设置一下，建议设置为5000。  |
 
 ## LocalSendOptions<sup>11+</sup>
 
@@ -4869,8 +4875,8 @@ Socket套接字的基础属性。
 
 | 名称            | 类型    | 必填 | 说明                              |
 | ----------------- | ------- | ---- | ----------------------------- |
-| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。     |
-| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。     |
+| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte），取值范围0~262144，不设置或设置的值超过取值范围则会默认为8192。     |
+| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），取值范围0~262144，不设置或设置的值超过取值范围则会默认为8192。     |
 | reuseAddress      | boolean | 否   | 是否重用地址。true：重用地址；false：不重用地址。                   |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。    |
 
@@ -5054,8 +5060,8 @@ server.listen(listenAddr).then(() => {
 })
 
 let options: socket.ExtraOptionsBase = {
-  receiveBufferSize: 6000,
-  sendBufferSize: 6000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   socketTimeout: 3000
 }
 server.setExtraOptions(options).then(() => {
@@ -5781,12 +5787,12 @@ import { socket } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-let connAddress: socket.TCPConnectOptions = {
+let netAddress: socket.NetAddress = {
   address: '192.168.xx.xxx',
   port: 8080
-};
+}
 let tcpconnectoptions: socket.TCPConnectOptions = {
-  address: connAddress,
+  address: netAddress,
   timeout: 6000
 }
 
@@ -6053,8 +6059,8 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
@@ -6124,8 +6130,8 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
@@ -7251,6 +7257,46 @@ tls.getLocalAddress().then((localAddress: socket.NetAddress) => {
 })
 ```
 
+### getSocketFd<sup>16+</sup>
+
+getSocketFd(): Promise\<number\>
+
+获取TLSSocket的文件描述符。使用Promise异步回调。
+
+> **说明：**
+>
+> bind方法调用成功后，才可调用此方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**返回值：**
+
+| 类型                                             | 说明                                       |
+| ----------------------------------------------- | ----------------------------------------- |
+| Promise\<number\> | 以Promise形式返回socket的文件描述符。 |
+
+**示例：**
+
+```ts
+import { socket } from '@kit.NetworkKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+let bindAddr: socket.NetAddress = {
+  address: '192.168.xx.xxx',
+  port: 8080
+}
+tls.bind(bindAddr, (err: BusinessError) => {
+  if (err) {
+    console.error('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
+tls.getSocketFd().then((data: number) => {
+  console.info("tls socket fd: " + data);
+})
+```
+
 ### send<sup>9+</sup>
 
 send(data: string \| ArrayBuffer, callback: AsyncCallback\<void\>): void
@@ -7834,8 +7880,8 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
@@ -7921,8 +7967,8 @@ let tcpExtraOptions: socket.TCPExtraOptions = {
   OOBInline: true,
   TCPNoDelay: true,
   socketLinger: { on: true, linger: 10 } as SocketLinger,
-  receiveBufferSize: 1000,
-  sendBufferSize: 1000,
+  receiveBufferSize: 8192,
+  sendBufferSize: 8192,
   reuseAddress: true,
   socketTimeout: 3000
 }
@@ -9348,46 +9394,6 @@ tlsServer.on('connect', (client: socket.TLSSocketConnection) => {
     console.error("TLS Client Get Family IP Port failed, error: " + JSON.stringify(err));
   })
 });
-```
-
-### getSocketFd<sup>16+</sup>
-
-getSocketFd(): Promise\<number\>
-
-获取TLSSocket的文件描述符。使用Promise异步回调。
-
-> **说明：**
->
-> bind方法调用成功后，才可调用此方法。
-
-**系统能力**：SystemCapability.Communication.NetStack
-
-**返回值：**
-
-| 类型                                             | 说明                                       |
-| ----------------------------------------------- | ----------------------------------------- |
-| Promise\<number\> | 以Promise形式返回socket的文件描述符。 |
-
-**示例：**
-
-```ts
-import { socket } from '@kit.NetworkKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-let bindAddr: socket.NetAddress = {
-  address: '192.168.xx.xxx',
-  port: 8080
-}
-tls.bind(bindAddr, (err: BusinessError) => {
-  if (err) {
-    console.error('bind fail');
-    return;
-  }
-  console.log('bind success');
-});
-tls.getSocketFd().then((data: number) => {
-  console.info("tls socket fd: " + data);
-})
 ```
 
 ### on('message')<sup>10+</sup>

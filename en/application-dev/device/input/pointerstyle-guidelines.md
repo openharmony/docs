@@ -83,7 +83,7 @@ import { window } from '@kit.ArkUI';
 
 // 1. Enable the color pickup function.
 // 2. Obtain the window ID.
-window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;
@@ -103,7 +103,7 @@ window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Wi
   }
 });
 // 4. End color pickup.
-window.getLastWindow(getContext(), (error: BusinessError, windowClass: window.Window) => {
+window.getLastWindow(this.getUIContext().getHostContext(), (error: BusinessError, windowClass: window.Window) => {
   if (error.code) {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(error));
     return;

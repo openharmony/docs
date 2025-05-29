@@ -112,7 +112,7 @@ Node-API包含以下内存管理类型：
 
 **napi_handle_scope**
 
-napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#类型三生命周期类问题)。
+napi_handle_scope数据类型是用来管理JavaScript对象的生命周期的。它允许JavaScript对象在一定范围内保持活动状态，以便在JavaScript代码中使用。在创建napi_handle_scope时，所有在该范围内创建的JavaScript对象都会保持活动状态，直到结束。这样可以做到JavaScript对象生命周期最小化，[避免发生内存泄漏问题](napi-guidelines.md#生命周期管理)。同时，napi_handle_scope也可参考[生命周期类问题注意事项](../dfx/cppcrash-guidelines.md#案例4生命周期类问题)。
 
 **napi_escapable_handle_scope**
 
@@ -535,8 +535,10 @@ Node-API接口在Node.js提供的原生模块基础上扩展，目前支持部�
 | napi_wrap_sendable | 包裹一个native实例到ArkTS对象中。|
 | napi_wrap_sendable_with_size | 包裹一个native实例到ArkTS对象中并指定大小。|
 | napi_unwrap_sendable | 获取ArkTS对象包裹的native实例。|
-| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例。|
+| napi_remove_wrap_sendable | 移除并获取ArkTS对象包裹的native实例，移除后回调将不再触发，需手动delete释放内存。|
 | napi_wrap_enhance | 在ArkTS对象上绑定一个Node-API模块对象实例并指定实例大小，开发者可以指定绑定的回调函数是否异步执行，如果异步执行，则回调函数必须是线程安全的。 |
+|napi_create_ark_context| 创建一个新的上下文环境。|
+|napi_destroy_ark_context| 销毁通过napi_create_ark_context创建的上下文环境。|
 
 #### napi_queue_async_work_with_qos
 
@@ -755,6 +757,17 @@ napi_status napi_wrap_enhance(napi_env env,
                               void* finalize_hint,
                               size_t native_binding_size,
                               napi_ref* result);
+```
+
+#### napi_create_ark_context
+```c
+NAPI_EXTERN napi_status napi_create_ark_context(napi_env env,
+                                                napi_env* newEnv);
+```
+
+#### napi_destroy_ark_context
+```c
+NAPI_EXTERN napi_status napi_destroy_ark_context(napi_env env);
 ```
 
 ### 其他实用工具

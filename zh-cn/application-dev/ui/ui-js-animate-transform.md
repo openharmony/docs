@@ -349,7 +349,7 @@
 .ripple{
     margin-top: 400px;
     margin-left: 40%;
-    position: absolute;  z-index: 0;
+    position: absolute; z-index: 0;
     width: 100px;
     height: 100px;
     border-radius: 50px;
@@ -423,7 +423,7 @@ text{
 
 ## 设置matrix属性
 
-matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY, skewX, scaleY, translateX, translateY。下面示例中设置 了matrix属性为matrix(1,0,0,1,0,200)使组件移动和倾斜。
+matrix是一个入参为六个值的矩阵，6个值分别代表：scaleX, skewY, skewX, scaleY, translateX, translateY。下面示例中设置了matrix属性为matrix(1,0,0,1,0,200)使组件移动和倾斜。
 
 ```html
 <!-- xxx.hml -->

@@ -48,7 +48,7 @@ Data error.
 
 **错误描述**
 
-当开发者调用DragEvent的startDataLoading()接口时，若不在onDrop阶段，会抛出此错误码。
+当开发者在非onDrop阶段调用DragEvent的startDataLoading()接口时，系统会抛出此错误码。
 
 **可能原因**
 

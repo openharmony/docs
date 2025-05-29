@@ -30,7 +30,8 @@ JSVM-API接口开发流程参考[使用JSVM-API实现JS与C/C++语言交互开�
 
 - 在正确的HandleScope内调用JSVM_Value类型变量。
 ```cpp
-static int32_t TestJSVM() {
+static int32_t TestJSVM()
+{
     JSVM_InitOptions initOptions = {0};
     JSVM_VM vm;
     JSVM_Env env = nullptr;
@@ -41,7 +42,7 @@ static int32_t TestJSVM() {
     // 初始化JavaScript引擎实例
     if (g_aa == 0) {
         g_aa++;
-       CHECK(OH_JSVM_Init(&initOptions));
+        CHECK(OH_JSVM_Init(&initOptions));
     }
     // 创建JSVM环境
     CHECK(OH_JSVM_CreateVM(nullptr, &vm));
@@ -59,7 +60,7 @@ static int32_t TestJSVM() {
     CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
     CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
     CHECK_RET(OH_JSVM_RunScript(env, script, &result));
-    
+
     bool boolResult = true;
     // OH_JSVM_IsBoolean接口调用JSVM_Value类型变量result
     JSVM_Status status = OH_JSVM_IsBoolean(env, result, &boolResult);
@@ -68,7 +69,7 @@ static int32_t TestJSVM() {
     } else {
         OH_LOG_INFO(LOG_APP, "JSVM OH_JSVM_IsBoolean: success: %{public}d", boolResult);
     }
-    
+
     // 销毁JSVM环境
     // 关闭HandleScope
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));
@@ -103,7 +104,8 @@ JSVM OH_JSVM_IsBoolean: success: 1
 - 在错误的HandleScope内调用JSVM_Value类型变量。
 
 ```cpp
-static int32_t TestJSVM() {
+static int32_t TestJSVM()
+{
     JSVM_InitOptions initOptions = {0};
     JSVM_VM vm;
     JSVM_Env env = nullptr;
@@ -114,7 +116,7 @@ static int32_t TestJSVM() {
     // 初始化JavaScript引擎实例
     if (g_aa == 0) {
         g_aa++;
-       CHECK(OH_JSVM_Init(&initOptions));
+        CHECK(OH_JSVM_Init(&initOptions));
     }
     // 创建JSVM环境
     CHECK(OH_JSVM_CreateVM(nullptr, &vm));
@@ -132,9 +134,9 @@ static int32_t TestJSVM() {
     CHECK_RET(OH_JSVM_CreateStringUtf8(env, srcCallNative, JSVM_AUTO_LENGTH, &jsSrc));
     CHECK_RET(OH_JSVM_CompileScript(env, jsSrc, nullptr, 0, true, nullptr, &script));
     CHECK_RET(OH_JSVM_RunScript(env, script, &result));
-    
+
     bool boolResult = true;
-    
+
     // 销毁JSVM环境
     // 关闭HandleScope
     CHECK_RET(OH_JSVM_CloseHandleScope(env, handleScope));

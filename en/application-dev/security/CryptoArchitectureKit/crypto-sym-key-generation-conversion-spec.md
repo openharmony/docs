@@ -1,11 +1,8 @@
 # Symmetric Key Generation and Conversion Specifications
 
-
 This topic describes the supported algorithms and specifications for symmetric key generation and conversion.
 
-
 A key can be generated based on a string parameter, which holds key specifications. The string parameters supported by each algorithm are provided in the specific algorithm specifications.
-
 
 ## AES
 
@@ -19,16 +16,13 @@ It has the following features:
 
 - It provides higher security and faster processing speed than Triple Data Encryption Standard (3DES).
 
-
 An AES key can be generated from a string parameter. When creating a symmetric key generator instance, you need to specify the key specifications in a string parameter. The string parameter consists of the symmetric key algorithm and key length.
-
 
 | Symmetric Key Algorithm| Key Length (Bit)| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- |
 | AES | 128 | AES128 | 9+ | 
 | AES | 192 | AES192 | 9+ | 
 | AES | 256 | AES256 | 9+ | 
-
 
 ## 3DES
 
@@ -45,7 +39,6 @@ A 3DES key can be generated from a string parameter. When creating a symmetric k
 | Symmetric Key Algorithm| Key Length (Bit)| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- |
 | 3DES | 192 | 3DES192 | 9+ | 
-
 
 ## SM4
 
@@ -64,7 +57,6 @@ An SM4 key can be generated from a string parameter. When creating a symmetric k
 | Symmetric Key Algorithm| Key Length (Bit)| String Parameter| API Version| 
 | -------- | -------- | -------- | -------- |
 | SM4 | 128 | SM4_128 | 10+ | 
-
 
 ## HMAC
 

@@ -23,7 +23,7 @@
 @Component
 struct NavigationDemo {
   @Provide('pathInfos') pathInfos: NavPathStack = new NavPathStack();
-  private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotpot', 'Connect & Share'];
+  private listArray: Array<string> = ['WLAN', 'Bluetooth', 'Personal Hotspot', 'Connect & Share'];
 
   build() {
     Column() {
@@ -268,7 +268,7 @@ export struct MySharePage {
       "buildFunction" : "MyCommonPageBuilder"
     },
     {
-      "name" : "Personal Hotpot",
+      "name" : "Personal Hotspot",
       "pageSourceFile"  : "src/main/ets/pages/PageOne.ets",
       "buildFunction" : "MyCommonPageBuilder"
     },

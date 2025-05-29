@@ -185,7 +185,7 @@ editMode(value: boolean)
 
 设置当前List组件是否处于可编辑模式。可参考[示例3](#示例3设置编辑模式)实现删除选中的list项。
 
-从API version9开始废弃不再使用，无替代接口。
+从API version 9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -471,17 +471,17 @@ maintainVisibleContentPosition(enabled: boolean)
 
 > **说明：** 
 > - 只有使用LazyForEach在显示区域外插入或删除数据时，才能保持可见内容位置不变。使用ForEach插入或删除数据或使用LazyForEach重新加载数据时，即使maintainVisibleContentPosition属性设置为true，可见区内容位置也会跟随变化。
-> - 从API version 20开始，使用[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)在virtualScroll模式下，显示区域外插入或删除数据时，保持可见内容位置不变。
+> - 从API version 20开始，使用[Repeat](../../../ui/state-management/arkts-new-rendering-control-repeat.md)在懒加载场景下，显示区域外插入或删除数据时，保持可见内容位置不变。
 > - maintainVisibleContentPosition属性设置为true后，在显示区域上方插入或删除数据，会触发onDidScroll、onScrollIndex事件。
 > - maintainVisibleContentPosition属性设置为true后，在多列场景下，一次插入或删除整行数据，可以保持可见内容位置不变，如果不是插入或删除整行数据，可见内容位置还是会发生变化。
 
-### stackFromEnd<sup>18+</sup>
+### stackFromEnd<sup>19+</sup>
 
 stackFromEnd(enabled: boolean)
 
 设置List组件是否从末尾开始布局。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -568,7 +568,7 @@ ListItemGroup吸顶或吸底效果枚举。
 
 | 名称     | 类型     | 必填 | 说明                   |
 | ------- | -------- | ---- | ---------------------- |
-| strokeWidth<sup>7+</sup> | [Length](ts-types.md#length) | 是   | 分割线的线宽。<br/>**说明：** <br/>设置为负数，百分比，或者大于等于List内容区长度时，按0处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
+| strokeWidth<sup>7+</sup> | [Length](ts-types.md#length) | 是   | 分割线的线宽。<br/>单位：vp<br/>**说明：** <br/>设置为负数，百分比，或者大于等于List内容区长度时，按0处理。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | color<sup>7+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 否   | 分割线颜色。<br/>默认值：0x08000000<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。 |
 | startMargin<sup>7+</sup> | [Length](ts-types.md#length) | 否   | 分割线与列表侧边起始端的距离。<br/>默认值：0 <br/>单位：vp<br/>**说明：** <br/>设置为负数或者百分比时，按默认值处理。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin均会被置0。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
 | endMargin<sup>7+</sup> | [Length](ts-types.md#length) | 否   | 分割线与列表侧边结束端的距离。<br/>默认值：0 <br/>单位：vp<br/> **说明：** <br/>设置为负数或者百分比时，按默认值处理。<br/>endMargin + startMargin 超过列宽度后startMargin和endMargin均会被置0。<br/>**卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。|
@@ -583,7 +583,7 @@ onItemDelete(event: (index: number) => boolean)
 
 当List组件在编辑模式时，点击ListItem右边出现的删除按钮时触发。
 
-从API version9开始废弃不再使用，无替代接口。
+从API version 9开始废弃不再使用，无替代接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -661,7 +661,7 @@ onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain
 
 当listDirection的值为Axis.Vertical时，返回垂直方向滑动量，当listDirection的值为Axis.Horizontal时，返回水平方向滑动量。
 
-触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、使用滚动控制器和拖动滚动条的滚动不会触发。
+触发该事件的条件：手指拖动List、List惯性划动时每帧开始时触发；List超出边缘回弹、调用除fling接口外的其他滚动控制接口和拖动滚动条的滚动不会触发。
 
 **卡片能力：** 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1072,12 +1072,12 @@ type OnScrollVisibleContentChangeCallback = (start: VisibleListContentInfo, end:
 | IN_HEADER_AREA |  2  | ListItemGroup内部header区域。 |
 | IN_FOOTER_AREA |  3  | ListItemGroup内部footer区域。 |
 
-## UIListEvent<sup>18+</sup>
-frameNode中[getEvent('List')](../js-apis-arkui-frameNode.md#geteventlist18)方法的返回值，可用于给List节点设置滚动事件。
+## UIListEvent<sup>19+</sup>
+frameNode中[getEvent('List')](../js-apis-arkui-frameNode.md#geteventlist19)方法的返回值，可用于给List节点设置滚动事件。
 
-UIListEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent18)。
+UIListEvent继承于[UIScrollableCommonEvent](./ts-container-scrollable-common.md#uiscrollablecommonevent19)。
 
-### setOnWillScroll<sup>18+</sup>
+### setOnWillScroll<sup>19+</sup>
 
 setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 
@@ -1085,7 +1085,7 @@ setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1095,7 +1095,7 @@ setOnWillScroll(callback:  OnWillScrollCallback | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [OnWillScrollCallback](./ts-container-scrollable-common.md#onwillscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onWillScroll事件的回调函数。 |
 
-### setOnDidScroll<sup>18+</sup>
+### setOnDidScroll<sup>19+</sup>
 
 setOnDidScroll(callback: OnScrollCallback | undefined): void
 
@@ -1103,7 +1103,7 @@ setOnDidScroll(callback: OnScrollCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1113,7 +1113,7 @@ setOnDidScroll(callback: OnScrollCallback | undefined): void
 | ------ | ------ | ---- | -------------------------- |
 | callback  | [OnScrollCallback](./ts-container-scrollable-common.md#onscrollcallback12)&nbsp;\|&nbsp;undefined | 是   | onDidScroll事件的回调函数。 |
 
-### setOnScrollIndex<sup>18+</sup>
+### setOnScrollIndex<sup>19+</sup>
 
 setOnScrollIndex(callback: OnListScrollIndexCallback | undefined): void
 
@@ -1121,7 +1121,7 @@ setOnScrollIndex(callback: OnListScrollIndexCallback | undefined): void
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1129,9 +1129,9 @@ setOnScrollIndex(callback: OnListScrollIndexCallback | undefined): void
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| callback  | [OnListScrollIndexCallback](#onlistscrollindexcallback18)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
+| callback  | [OnListScrollIndexCallback](#onlistscrollindexcallback19)&nbsp;\|&nbsp;undefined | 是   | onScrollIndex事件的回调函数。 |
 
-### setOnScrollVisibleContentChange<sup>18+</sup>
+### setOnScrollVisibleContentChange<sup>19+</sup>
 
 setOnScrollVisibleContentChange(callback: OnScrollVisibleContentChangeCallback | undefined): void
 
@@ -1139,7 +1139,7 @@ setOnScrollVisibleContentChange(callback: OnScrollVisibleContentChangeCallback |
 
 方法入参为undefined时，会重置事件回调。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1149,12 +1149,14 @@ setOnScrollVisibleContentChange(callback: OnScrollVisibleContentChangeCallback |
 | ------ | ------ | ---- | -------------------------- |
 | callback  |  [OnScrollVisibleContentChangeCallback](./ts-container-list.md#onscrollvisiblecontentchangecallback12)&nbsp;\|&nbsp;undefined | 是   | onScrollVisibleContentChange事件的回调函数。 |
 
-## OnListScrollIndexCallback<sup>18+</sup>
+## OnListScrollIndexCallback<sup>19+</sup>
 type OnListScrollIndexCallback = (start: number, end: number, center: number) => void
 
 List组件可见区域item变化事件的回调类型。
 
-**原子化服务API：** 从API version 18开始，该接口支持在原子化服务中使用。
+**卡片能力：** 从API version 19开始，该接口支持在ArkTS卡片中使用。
+
+**原子化服务API：** 从API version 19开始，该接口支持在原子化服务中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

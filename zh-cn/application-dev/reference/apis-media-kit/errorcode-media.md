@@ -135,6 +135,24 @@ Audio interrupted.
 
 销毁当前实例，并确认当前是否有其他进程在进行录制。如果可以停止其他进程的占用，则可以重新创建。
 
+## 5400108 参数超过取值范围
+
+**错误信息**
+
+The parameter check failed, parameter value out of range.
+
+**错误描述**
+
+参数检查失败，参数值超出范围。
+
+**可能原因**
+
+参数值超出取值范围。
+
+**处理步骤**
+
+调整参数值，使其在取值范围内。
+
 ## 5411001 解析或链接服务端地址错误
 
 **错误信息**
@@ -309,7 +327,7 @@ SSL链接失败。
 
 **错误信息**
 
-SSL server cert needed.
+SSL server cert untrusted.
 
 **错误描述**
 

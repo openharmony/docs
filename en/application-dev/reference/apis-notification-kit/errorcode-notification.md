@@ -130,7 +130,7 @@ The notification has been canceled or deleted.
 
 **Solution**
 
-N/A
+None.
 
 ## 1600008 User Not Found
 
@@ -420,4 +420,4 @@ This error code is reported when the bundle name is incorrect or the application
 
 **Solution**
 
-1. Verify the bundle name and make sure the application is installed.
+Verify the bundle name and make sure the application is installed.

@@ -55,7 +55,7 @@
    ```ts
    import { DataShareExtensionAbility, dataShare, dataSharePredicates, relationalStore, DataShareResultSet } from '@kit.ArkData';
    import { Want } from '@kit.AbilityKit';
-   import { BusinessError } from '@kit.BasicServicesKit'
+   import { BusinessError } from '@kit.BasicServicesKit';
    ```
 
 4. 数据提供方的业务实现由开发者自定义。例如可以通过数据库、读写文件或访问网络等各方式实现数据提供方的数据存储。
@@ -81,7 +81,7 @@
        }, (err:BusinessError, data:relationalStore.RdbStore) => {
          rdbStore = data;
          rdbStore.executeSql(DDL_TBL_CREATE, [], (err) => {
-           console.info(`DataShareExtAbility onCreate, executeSql done err:${err}`);
+           console.error(`DataShareExtAbility onCreate, executeSql done err:${err}`);
          });
          if (callback) {
            callback();
@@ -92,7 +92,7 @@
      // 重写query接口
      query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array<string>, callback: Function) {
        if (predicates === null || predicates === undefined) {
-         console.info('invalid predicates');
+         console.error('invalid predicates');
        }
        try {
          rdbStore.query(TBL_NAME, predicates, columns, (err:BusinessError, resultSet:relationalStore.ResultSet) => {
@@ -105,7 +105,7 @@
          });
        } catch (err) {
          let code = (err as BusinessError).code;
-         let message = (err as BusinessError).message
+         let message = (err as BusinessError).message;
          console.error(`Failed to query. Code:${code},message:${message}`);
        }
      }
@@ -123,7 +123,7 @@
              console.info('Update row count is ' + rows);
              result.push(rows);
            }).catch((err:BusinessError) => {
-             console.info('Update failed, err is ' + JSON.stringify(err));
+             console.error('Update failed, err is ' + JSON.stringify(err));
              result.push(-1)
            })
          }
@@ -136,7 +136,7 @@
        if (valueBuckets == null || valueBuckets.length == undefined) {
         return;
        }
-       let resultNum = valueBuckets.length
+       let resultNum = valueBuckets.length;
        rdbStore.batchInsert(TBL_NAME, valueBuckets, (err, ret) => {
         if (callback !== undefined) {
           callback(err, ret);
@@ -300,12 +300,12 @@
    let operation1: dataShare.UpdateOperation = {
      values: valuesBucket,
      predicates: predicates
-   }
+   };
    operations1.push(operation1);
    let operation2: dataShare.UpdateOperation = {
      values: updateBucket,
      predicates: predicates
-   }
+   };
    operations2.push(operation2);
    record["uri1"] = operations1;
    record["uri2"] = operations2;
@@ -333,7 +333,7 @@
         let a = Object.entries(data);
         for (let i = 0; i < a.length; i++) {
           let key = a[i][0];
-          let values = a[i][1]
+          let values = a[i][1];
           console.info(`Update uri:${key}`);
           for (const value of values) {
             console.info(`Update result:${value}`);
