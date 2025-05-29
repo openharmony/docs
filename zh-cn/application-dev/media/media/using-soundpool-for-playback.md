@@ -282,7 +282,7 @@ function finishPlayCallback() {
 //设置错误类型监听。
 function setErrorCallback() {
   soundPool.on('error', (error: BusinessError) => {
-    console.info('error happened,message is :' + error.message);
+    console.error('error happened,message is :' + error.message);
   })
 }
 async function PlaySoundPool() {
